@@ -1317,7 +1317,7 @@ return|return
 name|u
 return|;
 block|}
-comment|/**      * RpcClients are cached by address+user. The password is transparently changed.      * @param user      * @param password      * @param address      * @throws XMLDBException      */
+comment|/**      * RpcClients are cached by address+user. The password is transparently changed.      * @param user      * @param password      * @param url      * @throws XMLDBException      */
 specifier|private
 name|XmlRpcClient
 name|getRpcClient
@@ -1374,22 +1374,6 @@ argument_list|(
 name|url
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|client
-operator|!=
-literal|null
-condition|)
-block|{
-name|client
-operator|.
-name|setBasicAuthentication
-argument_list|(
-name|user
-argument_list|,
-name|password
-argument_list|)
-expr_stmt|;
 name|rpcClients
 operator|.
 name|put
@@ -1400,7 +1384,15 @@ name|client
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+name|client
+operator|.
+name|setBasicAuthentication
+argument_list|(
+name|user
+argument_list|,
+name|password
+argument_list|)
+expr_stmt|;
 return|return
 name|client
 return|;
