@@ -351,6 +351,7 @@ literal|"/"
 argument_list|)
 return|;
 comment|/* walk up the node hierarchy 		 * - node names become path names  		 * - attributes become predicates 		 */
+comment|// TODO DIZZZZ Java5 remove toString()
 name|StringBuffer
 name|buf
 init|=
@@ -361,6 +362,9 @@ name|nodeToXPath
 argument_list|(
 name|n
 argument_list|)
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 while|while

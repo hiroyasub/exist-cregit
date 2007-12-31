@@ -183,6 +183,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|// TODO DIZ fix java5
 throw|throw
 operator|new
 name|IllegalStateException
@@ -193,8 +194,7 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
+comment|/* , e */
 argument_list|)
 throw|;
 block|}
@@ -285,6 +285,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|// TODO DIZ fix java5
 throw|throw
 operator|new
 name|IllegalStateException
@@ -295,8 +296,7 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
+comment|/*, e*/
 argument_list|)
 throw|;
 block|}
