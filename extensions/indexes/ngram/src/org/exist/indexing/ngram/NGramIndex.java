@@ -374,11 +374,11 @@ operator|.
 name|getCacheManager
 argument_list|()
 argument_list|,
-literal|0.1
+literal|1.4
 argument_list|,
-literal|0.1
+literal|0.01
 argument_list|,
-literal|0.1
+literal|0.07
 argument_list|)
 expr_stmt|;
 block|}
@@ -435,6 +435,13 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"SYNC NGRAM"
+argument_list|)
+expr_stmt|;
 name|db
 operator|.
 name|close
@@ -448,6 +455,13 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"SYNC NGRAM"
+argument_list|)
+expr_stmt|;
 name|db
 operator|.
 name|flush
