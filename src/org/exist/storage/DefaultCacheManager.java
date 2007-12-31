@@ -1082,6 +1082,8 @@ name|agent
 operator|.
 name|addMBean
 argument_list|(
+name|instanceName
+argument_list|,
 literal|"org.exist.management."
 operator|+
 name|instanceName
@@ -1141,6 +1143,8 @@ name|agent
 operator|.
 name|addMBean
 argument_list|(
+name|instanceName
+argument_list|,
 literal|"org.exist.management."
 operator|+
 name|instanceName

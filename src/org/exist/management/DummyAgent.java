@@ -60,8 +60,21 @@ comment|// do nothing
 block|}
 specifier|public
 name|void
+name|closeDBInstance
+parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|)
+block|{
+comment|// nothing to do
+block|}
+specifier|public
+name|void
 name|addMBean
 parameter_list|(
+name|String
+name|dbInstance
+parameter_list|,
 name|String
 name|name
 parameter_list|,

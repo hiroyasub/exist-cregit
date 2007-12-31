@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/**  * Interface to allow the JMX classes to be plugged in on systems which  * support it. A dummy implementation will be used if JMX is not available.  */
 end_comment
 
 begin_interface
@@ -54,8 +54,18 @@ name|instance
 parameter_list|)
 function_decl|;
 name|void
+name|closeDBInstance
+parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|)
+function_decl|;
+name|void
 name|addMBean
 parameter_list|(
+name|String
+name|dbInstance
+parameter_list|,
 name|String
 name|name
 parameter_list|,

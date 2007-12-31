@@ -4478,6 +4478,17 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+comment|// deregister JMX MBeans
+name|AgentFactory
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|closeDBInstance
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 comment|//Invalidate the configuration
 name|conf
 operator|=
