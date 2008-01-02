@@ -17,9 +17,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xmldb
 operator|.
-name|DocumentImpl
+name|XmldbURI
 import|;
 end_import
 
@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Finite State Machine, managing the state of a Running trigger;  * allows to avoid infinite recursions by forbidding another trigger to run  * where there is allready one; feature trigger_update .  * I implemented that when a trigger is running , another trigger in the same  * Thread cannot be fired .  * There is a second condition that  when a trigger is running triggered by   * some document d, even the same trigger cannot run on a different document .   * maybe TODO: apply "state" design pattern */
+comment|/** Finite State Machine, managing the state of a Running trigger;  * allows to avoid infinite recursions by forbidding another trigger to run  * where there is already one; feature trigger_update .  * I implemented that when a trigger is running , another trigger in the same  * Thread cannot be fired .  * There is a second condition that  when a trigger is running triggered by   * some document d, even the same trigger cannot run on a different document .   * maybe TODO: apply "state" design pattern */
 end_comment
 
 begin_class
@@ -110,7 +110,7 @@ parameter_list|(
 name|DocumentTrigger
 name|trigger
 parameter_list|,
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 parameter_list|)
 block|{
@@ -151,11 +151,11 @@ parameter_list|(
 name|DocumentTrigger
 name|trigger
 parameter_list|,
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 parameter_list|)
 block|{
-comment|// another trigger is allready running
+comment|// another trigger is already running
 name|DocumentTrigger
 name|runningTrigger
 init|=
@@ -185,10 +185,14 @@ argument_list|()
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|modifiedDocument
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|getModifiedDocument
 argument_list|()
+argument_list|)
 condition|)
 block|{
 return|return
@@ -241,7 +245,7 @@ name|Txn
 name|transaction
 decl_stmt|;
 specifier|private
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 decl_stmt|;
 specifier|public
@@ -276,7 +280,7 @@ parameter_list|,
 name|DocumentTrigger
 name|trigger
 parameter_list|,
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 parameter_list|)
 block|{
@@ -368,7 +372,7 @@ specifier|private
 name|void
 name|setModifiedDocument
 parameter_list|(
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 parameter_list|)
 block|{
@@ -380,7 +384,7 @@ name|modifiedDocument
 expr_stmt|;
 block|}
 specifier|private
-name|DocumentImpl
+name|XmldbURI
 name|getModifiedDocument
 parameter_list|()
 block|{
@@ -442,7 +446,7 @@ parameter_list|,
 name|DocumentTrigger
 name|trigger
 parameter_list|,
-name|DocumentImpl
+name|XmldbURI
 name|modifiedDocument
 parameter_list|)
 block|{
@@ -514,7 +518,7 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|static
-name|DocumentImpl
+name|XmldbURI
 name|getModifiedDocument
 parameter_list|()
 block|{

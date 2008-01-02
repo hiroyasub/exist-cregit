@@ -785,7 +785,7 @@ name|Txn
 name|transaction
 parameter_list|,
 name|XmldbURI
-name|documentName
+name|documentPath
 parameter_list|,
 name|DocumentImpl
 name|existingDocument
@@ -806,7 +806,7 @@ argument_list|)
 operator|+
 literal|"XQuery trigger for document: '"
 operator|+
-name|documentName
+name|documentPath
 operator|+
 literal|"'"
 argument_list|)
@@ -837,7 +837,7 @@ name|verifyUniqueTriggerPerThreadBeforePrepare
 argument_list|(
 name|this
 argument_list|,
-name|existingDocument
+name|documentPath
 argument_list|)
 condition|)
 block|{
@@ -921,7 +921,7 @@ argument_list|,
 operator|new
 name|AnyURIValue
 argument_list|(
-name|documentName
+name|documentPath
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1177,6 +1177,9 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
+name|XmldbURI
+name|documentPath
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -1194,10 +1197,7 @@ argument_list|)
 operator|+
 literal|" XQuery trigger for document : '"
 operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
+name|documentPath
 operator|+
 literal|"'"
 argument_list|)
@@ -1228,7 +1228,7 @@ name|verifyUniqueTriggerPerThreadBeforeFinish
 argument_list|(
 name|this
 argument_list|,
-name|document
+name|documentPath
 argument_list|)
 condition|)
 block|{
@@ -1306,10 +1306,7 @@ argument_list|,
 operator|new
 name|AnyURIValue
 argument_list|(
-name|document
-operator|.
-name|getURI
-argument_list|()
+name|documentPath
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -151,7 +151,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
-comment|/**      * This method is called after the operation completed. At this point, the document has already      * been stored.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param transaction the current transaction context      * @param document the stored document      **/
+comment|/**      * This method is called after the operation completed. At this point, the document has already      * been stored.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param transaction the current transaction context      * @param The path of the document, if removed the old path of the document      * @param document the stored document or null if the document is removed      **/
 specifier|public
 name|void
 name|finish
@@ -164,6 +164,9 @@ name|broker
 parameter_list|,
 name|Txn
 name|transaction
+parameter_list|,
+name|XmldbURI
+name|documentPath
 parameter_list|,
 name|DocumentImpl
 name|document

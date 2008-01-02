@@ -2131,7 +2131,7 @@ name|Txn
 name|txn
 parameter_list|,
 name|XmldbURI
-name|documentName
+name|documentPath
 parameter_list|,
 name|DocumentImpl
 name|existingDocument
@@ -2145,7 +2145,7 @@ init|=
 operator|new
 name|EventKey
 argument_list|(
-name|documentName
+name|documentPath
 operator|.
 name|getCollectionPath
 argument_list|()
@@ -2178,6 +2178,9 @@ parameter_list|,
 name|Txn
 name|txn
 parameter_list|,
+name|XmldbURI
+name|documentPath
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -2188,10 +2191,7 @@ init|=
 operator|new
 name|EventKey
 argument_list|(
-name|document
-operator|.
-name|getURI
-argument_list|()
+name|documentPath
 operator|.
 name|getCollectionPath
 argument_list|()

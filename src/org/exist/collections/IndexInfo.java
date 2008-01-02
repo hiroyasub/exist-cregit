@@ -558,6 +558,9 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
+name|XmldbURI
+name|documentPath
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -578,6 +581,8 @@ argument_list|,
 name|broker
 argument_list|,
 name|transaction
+argument_list|,
+name|documentPath
 argument_list|,
 name|doc
 argument_list|)

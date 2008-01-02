@@ -9004,6 +9004,11 @@ name|getTransaction
 argument_list|()
 argument_list|,
 name|doc
+operator|.
+name|getURI
+argument_list|()
+argument_list|,
+name|doc
 argument_list|)
 expr_stmt|;
 block|}
