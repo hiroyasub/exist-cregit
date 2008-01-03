@@ -428,17 +428,19 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Class "
 operator|+
 name|className
 operator|+
 literal|" not found. Cannot configure index."
+argument_list|,
+name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -446,9 +448,9 @@ name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Exception while configuring index "
 operator|+
@@ -460,8 +462,10 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -469,9 +473,9 @@ name|InstantiationException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Exception while configuring index "
 operator|+
@@ -483,8 +487,10 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 block|}
