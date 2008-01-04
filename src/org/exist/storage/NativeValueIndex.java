@@ -4681,10 +4681,9 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 specifier|final
-name|int
-name|collectionId
+name|Collection
+name|c
 init|=
-operator|(
 operator|(
 name|Collection
 operator|)
@@ -4692,7 +4691,12 @@ name|i
 operator|.
 name|next
 argument_list|()
-operator|)
+decl_stmt|;
+specifier|final
+name|int
+name|collectionId
+init|=
+name|c
 operator|.
 name|getId
 argument_list|()
