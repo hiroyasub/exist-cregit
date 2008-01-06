@@ -317,7 +317,7 @@ name|setProperty
 argument_list|(
 literal|"configuration"
 argument_list|,
-literal|"/home/wolf/test/conf.xml"
+literal|"path/to/testConf.xml"
 argument_list|)
 expr_stmt|;
 name|database2
@@ -590,9 +590,7 @@ name|path
 operator|.
 name|lastIndexOf
 argument_list|(
-name|File
-operator|.
-name|separatorChar
+literal|'/'
 argument_list|)
 argument_list|)
 argument_list|,
