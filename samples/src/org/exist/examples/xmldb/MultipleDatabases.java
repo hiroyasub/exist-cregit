@@ -180,7 +180,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Retrieve a document from the database. To run this example enter:  *   *  bin/run.sh org.exist.examples.xmldb.Retrieve collection document   *   *  in the root directory of the distribution.  *  *	@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  *  Retrieve a document from the database. To run this example enter:  *   *  bin/run.sh org.exist.examples.xmldb.MultipleDatabases   *   *  in the root directory of the distribution.  *  *	@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
