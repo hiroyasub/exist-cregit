@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Example code for demonstrating XMLRPC methods upload  * and parseLocal. Please run 'admin-examples setup' first, this will  * download the required mondial.xml document.  *  * @author dizzzz  */
+comment|/**  *  Example code for demonstrating XMLRPC methods upload and parseLocal.  *   * Execute: bin\run.bat org.exist.examples.xmlrpc.StoreChunked   *  * @author dizzzz  */
 end_comment
 
 begin_class
@@ -142,11 +142,11 @@ name|args
 index|[]
 parameter_list|)
 block|{
-comment|// Download file (ohoh not in spec) using xmldb url
+comment|// Upload file to this uri:
 name|String
 name|xmldbUri
 init|=
-literal|"xmldb:exist://guest:guest@localhost:8080/exist/xmlrpc/db/shakespeare/netbeans.png"
+literal|"xmldb:exist://guest:guest@localhost:8080/exist/xmlrpc/db/admin2.png"
 decl_stmt|;
 name|XmldbURI
 name|uri
@@ -183,11 +183,11 @@ operator|.
 name|getCollectionPath
 argument_list|()
 decl_stmt|;
-comment|// Hardcoded yet too
+comment|// TODO: Filename hardcoded
 name|String
 name|filename
 init|=
-literal|"netbeans.png"
+literal|"webapp/resources/admin2.png"
 decl_stmt|;
 try|try
 block|{

@@ -133,7 +133,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
-comment|// Download file (ohoh not in spec) using xmldb url
+comment|// Download file using xmldb url
 name|String
 name|xmldbUri
 init|=
@@ -173,7 +173,7 @@ operator|.
 name|getCollectionPath
 argument_list|()
 decl_stmt|;
-comment|// Hardcoded yet too
+comment|// TODO file is hardcoded
 name|String
 name|filename
 init|=
