@@ -2653,7 +2653,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param xupdates      * @throws NumberFormatException      */
+comment|/**      * @param xupdate      * @throws NumberFormatException      */
 specifier|private
 name|void
 name|configureXUpdate
@@ -2896,7 +2896,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param serializers      */
+comment|/**      * @param serializer      */
 specifier|private
 name|void
 name|configureSerializer
@@ -3781,7 +3781,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param dbHome      * @param dbcon      * @throws DatabaseConfigurationException      */
+comment|/**      * @param dbHome      * @param con      * @throws DatabaseConfigurationException      */
 specifier|private
 name|void
 name|configureBackend
@@ -4198,78 +4198,6 @@ argument_list|(
 name|NativeBroker
 operator|.
 name|PROPERTY_PAGE_SIZE
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|nfe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|nfe
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|String
-name|freeMem
-init|=
-name|con
-operator|.
-name|getAttribute
-argument_list|(
-name|NativeBroker
-operator|.
-name|MIN_FREE_MEMORY_ATTRIBUTE
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|freeMem
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|config
-operator|.
-name|put
-argument_list|(
-name|NativeBroker
-operator|.
-name|PROPERTY_MIN_FREE_MEMORY
-argument_list|,
-operator|new
-name|Integer
-argument_list|(
-name|freeMem
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|NativeBroker
-operator|.
-name|PROPERTY_MIN_FREE_MEMORY
-operator|+
-literal|": "
-operator|+
-name|config
-operator|.
-name|get
-argument_list|(
-name|NativeBroker
-operator|.
-name|PROPERTY_MIN_FREE_MEMORY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5605,7 +5533,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * @param watchConf      */
+comment|/**      * @param watchDog      */
 specifier|private
 name|void
 name|configureWatchdog
@@ -5755,7 +5683,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param queryPoolConf      */
+comment|/**      * @param queryPool      */
 specifier|private
 name|void
 name|configureXQueryPool
@@ -6053,7 +5981,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param poolConf      */
+comment|/**      * @param pool      */
 specifier|private
 name|void
 name|configurePool
