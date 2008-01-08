@@ -648,6 +648,13 @@ block|}
 argument_list|)
 expr_stmt|;
 comment|//declare any parameters as external variables
+if|if
+condition|(
+name|params
+operator|!=
+literal|null
+condition|)
+block|{
 name|String
 name|bindingPrefix
 init|=
@@ -664,10 +671,12 @@ name|bindingPrefix
 operator|==
 literal|null
 condition|)
+block|{
 name|bindingPrefix
 operator|=
 literal|"local"
 expr_stmt|;
+block|}
 name|Enumeration
 name|paramNames
 init|=
@@ -722,6 +731,7 @@ name|value
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
