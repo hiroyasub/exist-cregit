@@ -491,24 +491,6 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|XUPDATE_GROWTH_FACTOR_ATTRIBUTE
-init|=
-literal|"growth-factor"
-decl_stmt|;
-comment|//TODO : move elsewhere
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|PROPERTY_XUPDATE_GROWTH_FACTOR
-init|=
-literal|"xupdate.growth-factor"
-decl_stmt|;
-comment|//TODO : move elsewhere
-specifier|public
-specifier|final
-specifier|static
-name|String
 name|XUPDATE_FRAGMENTATION_FACTOR_ATTRIBUTE
 init|=
 literal|"allowed-fragmentation"
@@ -650,24 +632,6 @@ argument_list|()
 expr_stmt|;
 comment|//Copy specific properties
 comment|//TODO : think about an automatic copy
-name|customProperties
-operator|.
-name|put
-argument_list|(
-name|PROPERTY_XUPDATE_GROWTH_FACTOR
-argument_list|,
-operator|new
-name|Integer
-argument_list|(
-name|config
-operator|.
-name|getInteger
-argument_list|(
-name|PROPERTY_XUPDATE_GROWTH_FACTOR
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|customProperties
 operator|.
 name|put
