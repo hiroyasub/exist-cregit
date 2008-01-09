@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-08 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -32,6 +32,16 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
 import|;
 end_import
 
@@ -98,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * PostExample  * Execute: bin\run.bat org.exist.examples.http.PostExample  *  * @author wolf  */
+comment|/**  * PostExample  * Execute: bin\run.bat org.exist.examples.http.PostExample  * Make sure you have the server started with bin\startup.bat beforehand.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -198,8 +208,6 @@ operator|+
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
-operator|+
-literal|"/"
 argument_list|)
 decl_stmt|;
 name|HttpURLConnection
@@ -252,6 +260,38 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+name|InputStream
+name|iso
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// For now catch the Http 400 if no result is produced.
+comment|// Why does it return that when it can just return:
+comment|//<exist:result xmlns:exist="http://exist.sourceforge.net/NS/exist" exist:hits="0" exist:start="0" exist:count="0" />? /ljo
+name|iso
+operator|=
+name|connect
+operator|.
+name|getInputStream
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+block|}
+if|if
+condition|(
+name|iso
+operator|!=
+literal|null
+condition|)
+block|{
 name|BufferedReader
 name|is
 init|=
@@ -261,10 +301,7 @@ argument_list|(
 operator|new
 name|InputStreamReader
 argument_list|(
-name|connect
-operator|.
-name|getInputStream
-argument_list|()
+name|iso
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -286,13 +323,14 @@ literal|null
 condition|)
 name|System
 operator|.
-name|err
+name|out
 operator|.
 name|println
 argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|static
