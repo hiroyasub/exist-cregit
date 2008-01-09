@@ -14,12 +14,106 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
-name|textui
+name|Assert
 operator|.
-name|TestRunner
+name|assertTrue
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|BufferedReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|BindException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|HttpURLConnection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Vector
 import|;
 end_import
 
@@ -75,6 +169,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|serializers
+operator|.
+name|XIncludeFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -112,30 +220,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -144,98 +228,6 @@ operator|.
 name|util
 operator|.
 name|MultiException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|BufferedReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|BindException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|HttpURLConnection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
 import|;
 end_import
 
@@ -307,7 +299,13 @@ specifier|static
 name|String
 name|XML_DATA1
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -339,7 +337,13 @@ specifier|static
 name|String
 name|XML_DATA3
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -355,7 +359,13 @@ specifier|static
 name|String
 name|XML_DATA4
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -371,7 +381,13 @@ specifier|static
 name|String
 name|XML_DATA5
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -387,7 +403,13 @@ specifier|static
 name|String
 name|XML_DATA6
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -403,7 +425,13 @@ specifier|static
 name|String
 name|XML_DATA7
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -423,7 +451,13 @@ specifier|static
 name|String
 name|XML_DATA8
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -439,7 +473,13 @@ specifier|static
 name|String
 name|XML_RESULT
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -463,7 +503,13 @@ specifier|static
 name|String
 name|XML_RESULT_XPOINTER
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
@@ -479,7 +525,13 @@ specifier|static
 name|String
 name|XML_RESULT_FALLBACK1
 init|=
-literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+literal|"<test xmlns:xi='"
+operator|+
+name|XIncludeFilter
+operator|.
+name|XINCLUDE_NS
+operator|+
+literal|"'>"
 operator|+
 literal|"<root>"
 operator|+
