@@ -218,6 +218,20 @@ operator|+
 name|docName
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"PUT file to "
+operator|+
+name|url
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -298,6 +312,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|os
 operator|.
 name|write
@@ -309,24 +324,53 @@ argument_list|,
 name|c
 argument_list|)
 expr_stmt|;
+block|}
+name|os
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|os
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"Connecting to "
+literal|"Statuscode "
+operator|+
+name|connect
+operator|.
+name|getResponseCode
+argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|connect
+operator|.
+name|getResponseMessage
+argument_list|()
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"GET file from "
 operator|+
 name|url
 operator|.
 name|toString
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|connect
-operator|.
-name|connect
-argument_list|()
 expr_stmt|;
 name|connect
 operator|=
@@ -391,6 +435,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -400,6 +445,7 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
