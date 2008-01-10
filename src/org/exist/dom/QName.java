@@ -987,7 +987,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * @param context 	 * @param qname 	 * @return defaultNS the default namespace to use if no namespace prefix is present. 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
+comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * @param context 	 * @param qname 	 * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
 specifier|public
 specifier|static
 name|QName
