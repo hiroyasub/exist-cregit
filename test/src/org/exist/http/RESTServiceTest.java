@@ -686,7 +686,7 @@ literal|"Server returned response code "
 operator|+
 name|r
 argument_list|,
-literal|200
+literal|201
 argument_list|,
 name|r
 argument_list|)
@@ -939,7 +939,7 @@ literal|"Server returned response code "
 operator|+
 name|r
 argument_list|,
-literal|200
+literal|201
 argument_list|,
 name|r
 argument_list|)
@@ -1794,7 +1794,7 @@ literal|"Server returned response code "
 operator|+
 name|r
 argument_list|,
-literal|200
+literal|201
 argument_list|,
 name|r
 argument_list|)
