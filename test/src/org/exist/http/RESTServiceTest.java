@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier (wolfgang@exist-db.org)   *  and others (see http://exist-db.org)  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2008 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -312,6 +312,40 @@ operator|+
 literal|"(::pragma exist:serialize indent=no ::)"
 operator|+
 literal|"//para[. = '\u00E4\u00E4\u00FC\u00FC\u00F6\u00F6\u00C4\u00C4\u00D6\u00D6\u00DC\u00DC']/text()"
+operator|+
+literal|"</text>"
+operator|+
+literal|"</query>"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|QUERY_REQUEST_ERROR
+init|=
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+operator|+
+literal|"<query xmlns=\""
+operator|+
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|+
+literal|"\">"
+operator|+
+literal|"<properties>"
+operator|+
+literal|"<property name=\"indent\" value=\"yes\"/>"
+operator|+
+literal|"<property name=\"encoding\" value=\"UTF-8\"/>"
+operator|+
+literal|"</properties>"
+operator|+
+literal|"<text>"
+operator|+
+literal|"xquery version \"1.0\";"
+operator|+
+literal|"//undeclared:para"
 operator|+
 literal|"</text>"
 operator|+
@@ -1058,6 +1092,77 @@ operator|+
 name|r
 argument_list|,
 literal|200
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|readResponse
+argument_list|(
+name|connect
+operator|.
+name|getInputStream
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testQueryPostXQueryError
+parameter_list|()
+block|{
+try|try
+block|{
+name|HttpURLConnection
+name|connect
+init|=
+name|preparePost
+argument_list|(
+name|QUERY_REQUEST_ERROR
+argument_list|)
+decl_stmt|;
+name|connect
+operator|.
+name|connect
+argument_list|()
+expr_stmt|;
+name|int
+name|r
+init|=
+name|connect
+operator|.
+name|getResponseCode
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Server returned response code "
+operator|+
+name|r
+argument_list|,
+literal|202
 argument_list|,
 name|r
 argument_list|)
