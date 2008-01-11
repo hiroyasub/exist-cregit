@@ -213,7 +213,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist."
+literal|"Shutdown eXist (dba role only)."
 argument_list|,
 literal|null
 argument_list|,
@@ -247,7 +247,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist. $a is the delay in milliseconds."
+literal|"Shutdown eXist. $a is the delay in milliseconds. (dba role only)"
 argument_list|,
 operator|new
 name|SequenceType
