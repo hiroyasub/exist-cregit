@@ -536,7 +536,7 @@ name|Collection
 operator|.
 name|LENGTH_COLLECTION_ID
 decl_stmt|;
-comment|//2
+comment|//4
 specifier|public
 specifier|static
 name|int
@@ -548,7 +548,7 @@ name|ElementValue
 operator|.
 name|LENGTH_TYPE
 decl_stmt|;
-comment|//3
+comment|//5
 specifier|public
 specifier|static
 name|int
@@ -560,7 +560,7 @@ name|SymbolTable
 operator|.
 name|LENGTH_LOCAL_NAME
 decl_stmt|;
-comment|//5
+comment|//7
 specifier|private
 specifier|static
 name|Logger
