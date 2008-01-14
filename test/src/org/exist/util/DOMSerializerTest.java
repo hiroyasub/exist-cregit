@@ -227,6 +227,13 @@ argument_list|(
 name|factory
 argument_list|)
 expr_stmt|;
+name|factory
+operator|.
+name|setNamespaceAware
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|DocumentBuilder
 name|builder
 init|=
@@ -306,6 +313,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
