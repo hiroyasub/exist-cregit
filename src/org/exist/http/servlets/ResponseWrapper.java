@@ -81,6 +81,24 @@ name|int
 name|maxAge
 parameter_list|)
 function_decl|;
+comment|/** 	 * @param name	Name of the Cookie 	 * @param value	Value of the Cookie 	 * @param maxAge maxAge of the Cookie 	 * @param secure security of the Cookie 	 */
+specifier|public
+name|void
+name|addCookie
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|value
+parameter_list|,
+name|int
+name|maxAge
+parameter_list|,
+name|boolean
+name|secure
+parameter_list|)
+function_decl|;
 comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|void
