@@ -426,8 +426,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if (contextItem != null)
-comment|//contextSequence = contextItem.toSequence();
 name|Sequence
 name|seq
 init|=

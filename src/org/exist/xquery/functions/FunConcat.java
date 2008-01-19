@@ -648,8 +648,6 @@ argument_list|(
 literal|"concat requires at least two arguments"
 argument_list|)
 throw|;
-comment|//if(contextItem != null)
-comment|//	contextSequence = contextItem.toSequence();
 name|StringBuffer
 name|concat
 init|=
