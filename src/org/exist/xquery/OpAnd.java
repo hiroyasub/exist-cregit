@@ -286,10 +286,13 @@ name|rl
 operator|.
 name|getContextNodes
 argument_list|(
-name|contextId
+name|left
+operator|.
+name|getContextId
+argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: optimize and return false if rl.getLength() == 0 ?
+comment|// TODO: optimize and return false if rl.isEmpty() ?
 name|NodeSet
 name|rr
 init|=
@@ -311,7 +314,10 @@ name|rr
 operator|.
 name|getContextNodes
 argument_list|(
-name|contextId
+name|right
+operator|.
+name|getContextId
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
