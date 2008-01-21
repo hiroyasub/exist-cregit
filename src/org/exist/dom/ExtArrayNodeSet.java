@@ -1567,6 +1567,9 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|NodeSet
 name|result
 init|=
@@ -1669,6 +1672,9 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 specifier|final
 name|Part
 name|part
