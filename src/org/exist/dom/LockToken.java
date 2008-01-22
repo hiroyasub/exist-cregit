@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class representing a locktoken. Introduced for webDAV locking.  *  *  UUID generation @see http://jug.safehaus.org/  *  * @author Dannes Wessels  */
+comment|/**  *  Class representing a locktoken. Introduced for webDAV locking.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
