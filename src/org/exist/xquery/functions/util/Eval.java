@@ -69,6 +69,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Stack
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -136,6 +156,18 @@ operator|.
 name|memtree
 operator|.
 name|ReferenceNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|MemTreeBuilder
 import|;
 end_import
 
@@ -354,6 +386,18 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Module
 import|;
 end_import
 
@@ -1560,6 +1604,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 comment|// use the existing outer context
 comment|// TODO: check if copying the static context would be sufficient???
 name|innerContext
@@ -1569,7 +1614,15 @@ operator|.
 name|copyContext
 argument_list|()
 expr_stmt|;
+name|innerContext
+operator|.
+name|setShared
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|//innerContext = context;
+block|}
 try|try
 block|{
 if|if
@@ -2834,6 +2887,44 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//    private class EvalContext extends XQueryContext {
+comment|//
+comment|//        private EvalContext(XQueryContext copyFrom) {
+comment|//            super(copyFrom);
+comment|//            copyFields(copyFrom);
+comment|//        }
+comment|//
+comment|//        public void reset(boolean keepGlobals) {
+comment|//            calendar = null;
+comment|//            implicitTimeZone = null;
+comment|//            builder = new MemTreeBuilder(this);
+comment|//            builder.startDocument();
+comment|//            if (!keepGlobals) {
+comment|//                // do not reset the statically known documents
+comment|//                staticDocumentPaths = null;
+comment|//                staticDocuments = null;
+comment|//            }
+comment|//            lastVar = null;
+comment|//            fragmentStack = new Stack();
+comment|//            callStack.clear();
+comment|//            protectedDocuments = null;
+comment|//            if (!keepGlobals)
+comment|//                globalVariables.clear();
+comment|//
+comment|//            //remove the context-vars, subsequent execution of the query
+comment|//            //may generate different values for the vars based on the
+comment|//            //content of the db
+comment|//            XQueryContextVars.clear();
+comment|//
+comment|//            watchdog.reset();
+comment|//            profiler.reset();
+comment|//            for(Iterator i = modules.values().iterator(); i.hasNext(); ) {
+comment|//                Module module = (Module)i.next();
+comment|//                module.reset(this);
+comment|//            }
+comment|//            clearUpdateListeners();
+comment|//        }
+comment|//    }
 block|}
 end_class
 

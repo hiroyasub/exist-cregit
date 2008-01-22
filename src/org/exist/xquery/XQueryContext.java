@@ -1441,6 +1441,12 @@ init|=
 literal|true
 decl_stmt|;
 specifier|private
+name|boolean
+name|isShared
+init|=
+literal|false
+decl_stmt|;
+specifier|private
 name|XQueryContext
 parameter_list|()
 block|{
@@ -4117,6 +4123,19 @@ comment|//        return remaining;
 comment|//    }
 specifier|public
 name|void
+name|setShared
+parameter_list|(
+name|boolean
+name|shared
+parameter_list|)
+block|{
+name|isShared
+operator|=
+name|shared
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|reset
 parameter_list|()
 block|{
@@ -4172,6 +4191,11 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|isShared
+condition|)
 name|lastVar
 operator|=
 literal|null
@@ -4209,6 +4233,11 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|isShared
+condition|)
 name|watchdog
 operator|.
 name|reset
