@@ -962,6 +962,13 @@ name|descendant
 argument_list|)
 expr_stmt|;
 block|}
+name|ancestor
+operator|.
+name|addMatches
+argument_list|(
+name|descendant
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
