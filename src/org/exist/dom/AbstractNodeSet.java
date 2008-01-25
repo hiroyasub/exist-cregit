@@ -516,11 +516,11 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
-name|DocumentSet
+name|MutableDocumentSet
 name|ds
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy

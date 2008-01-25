@@ -462,11 +462,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 for|for

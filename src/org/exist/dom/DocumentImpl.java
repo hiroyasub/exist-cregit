@@ -2627,11 +2627,11 @@ name|QName
 name|qname
 parameter_list|)
 block|{
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|docs
@@ -3203,11 +3203,11 @@ name|String
 name|localName
 parameter_list|)
 block|{
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|docs

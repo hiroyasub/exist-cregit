@@ -3047,7 +3047,7 @@ name|iDoc
 init|=
 name|docs
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|iDoc

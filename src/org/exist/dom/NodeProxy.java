@@ -3416,11 +3416,11 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|(
 literal|1
 argument_list|)

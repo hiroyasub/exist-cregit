@@ -17,6 +17,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -29,7 +41,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|MutableDocumentSet
 import|;
 end_import
 
@@ -55,11 +67,11 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -169,7 +181,7 @@ block|{
 return|return
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 return|;
 block|}

@@ -524,6 +524,8 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// determine the set of potential ancestors for which the predicate has to
+comment|// be re-evaluated to filter out wrong matches
 if|if
 condition|(
 name|contextStep
@@ -832,6 +834,13 @@ argument_list|()
 operator|-
 name|start
 operator|)
+operator|+
+literal|"; found: "
+operator|+
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

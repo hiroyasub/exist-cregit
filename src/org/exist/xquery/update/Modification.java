@@ -375,11 +375,11 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|DocumentSet
+name|MutableDocumentSet
 name|modifiedDocuments
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -944,7 +944,7 @@ name|iterator
 init|=
 name|modifiedDocuments
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 decl_stmt|;
 name|DocumentImpl
@@ -1084,7 +1084,7 @@ name|i
 init|=
 name|docs
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|i
@@ -1161,7 +1161,7 @@ name|itTrigDoc
 init|=
 name|modifiedDocuments
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 decl_stmt|;
 while|while

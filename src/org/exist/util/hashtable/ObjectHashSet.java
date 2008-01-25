@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A hash set on objects. Objects are compared for equality by  * calling Object.equals().  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A hash set on objects. Objects are compared for equality by  * calling Object.equals().  * calling Object.equals().  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class

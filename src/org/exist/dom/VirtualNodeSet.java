@@ -2159,7 +2159,7 @@ operator|.
 name|getDocumentSet
 argument_list|()
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 decl_stmt|;
 if|if

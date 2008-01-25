@@ -3017,7 +3017,7 @@ name|ExtArrayNodeSet
 argument_list|(
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 argument_list|,
 literal|256
@@ -3530,7 +3530,7 @@ name|ExtArrayNodeSet
 argument_list|(
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 argument_list|,
 literal|256

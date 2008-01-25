@@ -363,7 +363,7 @@ literal|null
 operator|||
 name|ds
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 operator|==
 literal|0
@@ -383,7 +383,7 @@ literal|null
 operator|&&
 name|cachedDocs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|ds
 argument_list|)
@@ -431,7 +431,7 @@ name|i
 init|=
 name|ds
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|i

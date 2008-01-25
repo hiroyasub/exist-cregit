@@ -1677,7 +1677,7 @@ argument_list|(
 name|broker_
 argument_list|,
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 argument_list|,
 literal|false
@@ -3605,7 +3605,7 @@ argument_list|(
 name|broker
 argument_list|,
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 argument_list|,
 name|recursive
@@ -3628,7 +3628,7 @@ name|ExtArrayNodeSet
 argument_list|(
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 argument_list|,
 literal|1
@@ -3644,7 +3644,7 @@ name|i
 init|=
 name|docs
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|i
@@ -3755,7 +3755,7 @@ argument_list|(
 name|broker_
 argument_list|,
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 argument_list|,
 literal|true

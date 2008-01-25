@@ -438,7 +438,7 @@ name|it
 init|=
 name|mainPolicyDocs
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|it

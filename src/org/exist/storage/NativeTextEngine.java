@@ -71,18 +71,6 @@ name|exist
 operator|.
 name|fulltext
 operator|.
-name|FTIndexWorker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|fulltext
-operator|.
 name|FTMatch
 import|;
 end_import
@@ -266,16 +254,6 @@ operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
 import|;
 end_import
 
@@ -1996,7 +1974,7 @@ name|ExtArrayNodeSet
 argument_list|(
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 argument_list|,
 literal|250

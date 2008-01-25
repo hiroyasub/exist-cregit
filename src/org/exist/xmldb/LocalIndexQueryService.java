@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -65,7 +55,19 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|MutableDocumentSet
 import|;
 end_import
 
@@ -248,6 +250,16 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
 import|;
 end_import
 
@@ -961,11 +973,11 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|parent
@@ -996,7 +1008,7 @@ name|docs
 argument_list|,
 name|docs
 operator|.
-name|toNodeSet
+name|docsToNodeSet
 argument_list|()
 argument_list|,
 name|start

@@ -2134,7 +2134,7 @@ name|getDocumentSet
 argument_list|()
 argument_list|)
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 operator|==
 literal|0

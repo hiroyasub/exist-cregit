@@ -208,7 +208,7 @@ name|i
 operator|<
 name|documentSet
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 condition|;
 name|i
@@ -218,12 +218,9 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|documentSet
 operator|.
-name|item
+name|getDocumentAt
 argument_list|(
 name|i
 argument_list|)

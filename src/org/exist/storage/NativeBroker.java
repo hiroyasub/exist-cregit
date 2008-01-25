@@ -8574,23 +8574,23 @@ block|}
 block|}
 comment|/**      *  Get all the documents in this database matching the given      *  document-type's name.      * @return The documentsByDoctype value      */
 specifier|public
-name|DocumentSet
+name|MutableDocumentSet
 name|getXMLResourcesByDoctype
 parameter_list|(
 name|String
 name|doctypeName
 parameter_list|,
-name|DocumentSet
+name|MutableDocumentSet
 name|result
 parameter_list|)
 block|{
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 name|getAllXMLResources
 argument_list|(
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -8601,7 +8601,7 @@ name|i
 init|=
 name|docs
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|i
@@ -8694,10 +8694,10 @@ return|;
 block|}
 comment|/**      *  Adds all the documents in the database to the specified DocumentSet.      *      * @param docs a (possibly empty) document set to which the found      *  documents are added.      */
 specifier|public
-name|DocumentSet
+name|MutableDocumentSet
 name|getAllXMLResources
 parameter_list|(
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 parameter_list|)
 block|{
@@ -8760,17 +8760,10 @@ literal|"loading "
 operator|+
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 operator|+
-literal|" documents from "
-operator|+
-name|docs
-operator|.
-name|getCollectionCount
-argument_list|()
-operator|+
-literal|"collections took "
+literal|" documents took "
 operator|+
 operator|(
 name|System

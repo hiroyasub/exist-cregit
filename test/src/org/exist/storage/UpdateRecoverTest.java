@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -75,6 +65,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -87,7 +89,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|MutableDocumentSet
 import|;
 end_import
 
@@ -296,6 +298,16 @@ operator|.
 name|modules
 operator|.
 name|XUpdateQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
 import|;
 end_import
 
@@ -565,11 +577,11 @@ argument_list|(
 literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
-name|DocumentSet
+name|MutableDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|docs

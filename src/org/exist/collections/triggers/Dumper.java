@@ -17,26 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -67,7 +47,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentImpl
+name|DefaultDocumentSet
 import|;
 end_import
 
@@ -79,7 +59,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|DocumentImpl
 import|;
 end_import
 
@@ -118,6 +98,26 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -300,11 +300,11 @@ argument_list|(
 literal|"collection contents:"
 argument_list|)
 expr_stmt|;
-name|DocumentSet
+name|DefaultDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|collection
@@ -329,7 +329,7 @@ name|i
 operator|<
 name|docs
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 condition|;
 name|i
@@ -343,17 +343,12 @@ name|println
 argument_list|(
 literal|"\t"
 operator|+
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|docs
 operator|.
-name|item
+name|getDocumentAt
 argument_list|(
 name|i
 argument_list|)
-operator|)
 operator|.
 name|getFileURI
 argument_list|()

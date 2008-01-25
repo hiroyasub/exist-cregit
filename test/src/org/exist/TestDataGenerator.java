@@ -27,6 +27,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -401,7 +413,7 @@ argument_list|(
 name|broker
 argument_list|,
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 argument_list|,
 literal|true

@@ -340,7 +340,7 @@ name|itSourceDocuments
 init|=
 name|sourceDocuments
 operator|.
-name|iterator
+name|getDocumentIterator
 argument_list|()
 decl_stmt|;
 name|NodeSet
@@ -351,7 +351,7 @@ name|ExtArrayNodeSet
 argument_list|(
 name|sourceDocuments
 operator|.
-name|getLength
+name|getDocumentCount
 argument_list|()
 argument_list|,
 literal|1

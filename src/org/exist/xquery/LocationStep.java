@@ -2094,7 +2094,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -2550,7 +2550,7 @@ name|currentDocs
 operator|||
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -2866,7 +2866,7 @@ name|currentDocs
 operator|||
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -3378,7 +3378,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -3845,7 +3845,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -4040,7 +4040,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -4509,7 +4509,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
@@ -4887,7 +4887,7 @@ operator|!
 operator|(
 name|docs
 operator|.
-name|equals
+name|equalDocs
 argument_list|(
 name|currentDocs
 argument_list|)
