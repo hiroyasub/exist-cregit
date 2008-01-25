@@ -117,6 +117,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -332,11 +344,11 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 comment|// create a document set containing "contents.xml"
-name|DocumentSet
+name|DefaultDocumentSet
 name|docs
 init|=
 operator|new
-name|DocumentSet
+name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 name|docs
