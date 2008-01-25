@@ -293,6 +293,18 @@ name|JobExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class to represent a User's XQuery Job  * Extends UserJob  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
@@ -304,6 +316,21 @@ name|UserXQueryJob
 extends|extends
 name|UserJob
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|UserXQueryJob
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|String
 name|JOB_NAME
@@ -527,6 +554,13 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+block|{
 name|Source
 name|source
 init|=
@@ -794,6 +828,21 @@ argument_list|(
 name|source
 argument_list|,
 name|compiled
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"XQuery User Job not found: "
+operator|+
+name|xqueryresource
+operator|+
+literal|", job not scheduled"
 argument_list|)
 expr_stmt|;
 block|}
