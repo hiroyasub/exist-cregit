@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServletResponse
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -87,6 +99,10 @@ name|getWriter
 parameter_list|()
 throws|throws
 name|IOException
+function_decl|;
+name|HttpServletResponse
+name|getResponse
+parameter_list|()
 function_decl|;
 block|}
 end_interface
