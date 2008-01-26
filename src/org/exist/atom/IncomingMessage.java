@@ -94,6 +94,10 @@ name|String
 name|getModuleBase
 parameter_list|()
 function_decl|;
+name|HttpServletRequest
+name|getRequest
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
