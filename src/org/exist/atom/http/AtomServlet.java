@@ -2543,6 +2543,26 @@ operator|.
 name|getPathInfo
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|path
+operator|==
+literal|null
+condition|)
+block|{
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
+argument_list|,
+literal|"URL has no extra path information specified."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|int
 name|firstSlash
 init|=
