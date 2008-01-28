@@ -470,7 +470,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
 specifier|public
 name|void
 name|finish
@@ -491,21 +490,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-name|super
-operator|.
-name|finish
-argument_list|(
-name|event
-argument_list|,
-name|broker
-argument_list|,
-name|transaction
-argument_list|,
-name|documentPath
-argument_list|,
-name|document
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

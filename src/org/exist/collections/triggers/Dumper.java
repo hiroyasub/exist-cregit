@@ -369,6 +369,9 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
+name|XmldbURI
+name|documentPath
+parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
