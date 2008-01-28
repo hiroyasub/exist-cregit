@@ -1912,6 +1912,23 @@ name|ServletResponse
 name|srvResponse
 parameter_list|)
 block|{
+comment|//if no encoding specified default to UTF-8
+if|if
+condition|(
+name|srvRequest
+operator|.
+name|getCharacterEncoding
+argument_list|()
+operator|==
+literal|null
+condition|)
+name|srvRequest
+operator|.
+name|setCharacterEncoding
+argument_list|(
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
 name|HttpServletRequest
 name|request
 init|=
