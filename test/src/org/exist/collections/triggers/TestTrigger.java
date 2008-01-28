@@ -659,6 +659,28 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|finish
+parameter_list|(
+name|int
+name|event
+parameter_list|,
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|XmldbURI
+name|documentPath
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 block|}
 end_class
 
