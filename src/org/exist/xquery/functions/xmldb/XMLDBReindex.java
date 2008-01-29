@@ -249,8 +249,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -265,6 +263,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// this is "/db"
+name|String
+name|ROOTCOLLECTION
+init|=
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+comment|// Check for DBA user
 if|if
 condition|(
 operator|!
@@ -295,6 +305,7 @@ literal|"' must be a DBA to shutdown the database"
 argument_list|)
 throw|;
 block|}
+comment|// Get collection path
 name|String
 name|collectionArg
 init|=
@@ -306,23 +317,34 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|// Have /db as default when argument is empty string
+comment|// Collection should start with /db
 if|if
 condition|(
+operator|!
 name|collectionArg
 operator|.
-name|equals
+name|startsWith
 argument_list|(
-literal|""
+name|ROOTCOLLECTION
 argument_list|)
 condition|)
 block|{
-name|collectionArg
-operator|=
-literal|"/db"
-expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Collection should start with "
+operator|+
+name|ROOTCOLLECTION
+operator|+
+literal|""
+argument_list|)
+throw|;
 block|}
-comment|// Check is collection does exist
+comment|// Check if collection does exist
 name|XmldbURI
 name|colName
 init|=
