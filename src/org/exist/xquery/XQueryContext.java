@@ -6834,6 +6834,8 @@ name|module
 operator|=
 name|compileModule
 argument_list|(
+name|prefix
+argument_list|,
 name|namespaceURI
 argument_list|,
 name|location
@@ -6997,6 +6999,8 @@ name|module
 operator|=
 name|compileModule
 argument_list|(
+name|prefix
+argument_list|,
 name|namespaceURI
 argument_list|,
 name|location
@@ -7035,6 +7039,9 @@ specifier|private
 name|Module
 name|compileModule
 parameter_list|(
+name|String
+name|prefix
+parameter_list|,
 name|String
 name|namespaceURI
 parameter_list|,
@@ -7097,6 +7104,10 @@ operator|new
 name|ModuleContext
 argument_list|(
 name|this
+argument_list|,
+name|prefix
+argument_list|,
+name|namespaceURI
 argument_list|)
 decl_stmt|;
 name|XQueryLexer
