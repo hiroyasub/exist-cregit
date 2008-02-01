@@ -11,21 +11,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|sun
 operator|.
-name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|xacml
 operator|.
-name|util
+name|ctx
 operator|.
-name|List
+name|RequestCtx
 import|;
 end_import
 
@@ -137,15 +131,21 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|sun
+name|io
 operator|.
-name|xacml
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|ctx
+name|util
 operator|.
-name|RequestCtx
+name|List
 import|;
 end_import
 
@@ -772,12 +772,17 @@ block|}
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 block|{
 name|function
 operator|.
 name|resetState
-argument_list|()
+argument_list|(
+name|postOptimization
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public

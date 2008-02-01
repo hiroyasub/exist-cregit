@@ -15,11 +15,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|sun
 operator|.
-name|List
+name|xacml
+operator|.
+name|ctx
+operator|.
+name|RequestCtx
 import|;
 end_import
 
@@ -145,15 +149,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|sun
+name|util
 operator|.
-name|xacml
-operator|.
-name|ctx
-operator|.
-name|RequestCtx
+name|List
 import|;
 end_import
 
@@ -1152,17 +1152,28 @@ comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 block|{
 name|super
 operator|.
 name|resetState
-argument_list|()
+argument_list|(
+name|postOptimization
+argument_list|)
 expr_stmt|;
 name|functionDef
 operator|.
 name|resetState
-argument_list|()
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
+name|analyzed
+operator|=
+literal|false
 expr_stmt|;
 comment|//TODO : reset expression ?
 block|}

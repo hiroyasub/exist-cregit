@@ -17,11 +17,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|dom
+name|log4j
 operator|.
-name|QName
+name|Logger
 import|;
 end_import
 
@@ -41,11 +41,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|dom
 operator|.
-name|value
-operator|.
-name|Sequence
+name|QName
 import|;
 end_import
 
@@ -67,11 +65,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|log4j
+name|xquery
 operator|.
-name|Logger
+name|value
+operator|.
+name|Sequence
 import|;
 end_import
 
@@ -137,7 +137,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|analyze
+name|ananlyze
 parameter_list|(
 name|AnalyzeContextInfo
 name|contextInfo

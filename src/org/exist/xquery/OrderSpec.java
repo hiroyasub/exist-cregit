@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -34,6 +24,16 @@ operator|.
 name|util
 operator|.
 name|ExpressionDumper
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -290,12 +290,17 @@ block|}
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 block|{
 name|expression
 operator|.
 name|resetState
-argument_list|()
+argument_list|(
+name|postOptimization
+argument_list|)
 expr_stmt|;
 block|}
 block|}

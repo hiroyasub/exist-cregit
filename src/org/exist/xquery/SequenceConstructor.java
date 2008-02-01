@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -90,6 +80,16 @@ operator|.
 name|value
 operator|.
 name|ValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -614,12 +614,17 @@ comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 block|{
 name|super
 operator|.
 name|resetState
-argument_list|()
+argument_list|(
+name|postOptimization
+argument_list|)
 expr_stmt|;
 block|}
 block|}

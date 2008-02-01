@@ -248,11 +248,14 @@ name|int
 name|getDependencies
 parameter_list|()
 function_decl|;
-comment|/** 	 * Called to inform an expression that it should reset to its initial state.  	 *  	 * All cached data in the expression object should be dropped. For example, 	 * the xmldb:document() function calls this method whenever the input document 	 * set has changed. 	 */
+comment|/** 	 * Called to inform an expression that it should reset to its initial state.  	 *  	 * All cached data in the expression object should be dropped. For example, 	 * the xmldb:document() function calls this method whenever the input document 	 * set has changed.      * @param postOptimization      */
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 function_decl|;
 comment|/** 	 * Start traversing the expression tree using the specified {@link ExpressionVisitor}. 	 * @param visitor 	 */
 specifier|public
