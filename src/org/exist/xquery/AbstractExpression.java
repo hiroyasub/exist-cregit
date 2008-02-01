@@ -192,7 +192,10 @@ comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
 specifier|public
 name|void
 name|resetState
-parameter_list|()
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
 block|{
 name|contextDocSet
 operator|=
