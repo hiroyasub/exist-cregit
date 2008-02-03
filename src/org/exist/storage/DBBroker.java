@@ -653,13 +653,6 @@ return|return
 name|indexController
 return|;
 block|}
-comment|//TODO : give more abstraction in the future (Symbolprovider or something like this)
-specifier|public
-specifier|abstract
-name|SymbolTable
-name|getSymbols
-parameter_list|()
-function_decl|;
 comment|/** 	 * @return A reference to the global {@link XQuery} service. 	 */
 specifier|public
 name|XQuery

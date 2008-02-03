@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -84,6 +74,16 @@ operator|.
 name|dom
 operator|.
 name|DocumentType
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -390,6 +390,9 @@ name|writeInt
 argument_list|(
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -514,6 +517,9 @@ expr_stmt|;
 name|mimeType
 operator|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

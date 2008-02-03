@@ -29,6 +29,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionConfiguration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|*
@@ -194,18 +206,6 @@ operator|.
 name|value
 operator|.
 name|StringValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfiguration
 import|;
 end_import
 
@@ -2534,6 +2534,9 @@ name|QName
 name|qn
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

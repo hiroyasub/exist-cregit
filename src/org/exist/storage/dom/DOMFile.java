@@ -7214,6 +7214,9 @@ operator|)
 name|owner
 operator|)
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
