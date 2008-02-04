@@ -850,15 +850,22 @@ comment|// after decrementing, the DLN may need less bytes
 comment|// than before. Remove the unused bytes, otherwise binary
 comment|// comparisons may get wrong.
 name|int
-name|blen
+name|len
 init|=
 name|bitIndex
+operator|+
+literal|1
+decl_stmt|;
+name|int
+name|blen
+init|=
+name|len
 operator|/
 literal|8
 decl_stmt|;
 if|if
 condition|(
-name|bitIndex
+name|len
 operator|%
 literal|8
 operator|>
