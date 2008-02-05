@@ -89,7 +89,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|HashMap
 import|;
 end_import
 
@@ -109,7 +109,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Stack
 import|;
 end_import
 
@@ -431,6 +431,15 @@ operator|+
 name|on
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|server
+operator|.
+name|isRegistered
+argument_list|(
+name|on
+argument_list|)
+condition|)
 name|server
 operator|.
 name|unregisterMBean
