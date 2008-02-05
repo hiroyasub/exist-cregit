@@ -4228,6 +4228,13 @@ name|ElementImpl
 name|element
 parameter_list|)
 block|{
+name|currentNodeId
+operator|=
+name|element
+operator|.
+name|getNodeId
+argument_list|()
+expr_stmt|;
 name|String
 name|currentSrsName
 init|=
@@ -4276,13 +4283,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|currentNodeId
-operator|=
-name|element
-operator|.
-name|getNodeId
-argument_list|()
-expr_stmt|;
 name|geometries
 operator|.
 name|put
