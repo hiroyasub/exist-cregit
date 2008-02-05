@@ -276,6 +276,15 @@ name|content
 operator|=
 name|path
 expr_stmt|;
+name|this
+operator|.
+name|content
+operator|.
+name|setUseStaticContext
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
