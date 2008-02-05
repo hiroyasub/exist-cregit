@@ -41,6 +41,26 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Enumeration
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Hashtable
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -64,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
 
 begin_class
@@ -111,6 +131,22 @@ name|PROPERTY_TRANSFORMER_CLASS
 init|=
 literal|"transformer.class"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONFIGURATION_TRANSFORMER_ATTRIBUTE_ELEMENT_NAME
+init|=
+literal|"attribute"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_TRANSFORMER_ATTRIBUTES
+init|=
+literal|"transformer.attributes"
+decl_stmt|;
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
@@ -147,10 +183,11 @@ argument_list|(
 name|PROPERTY_TRANSFORMER_CLASS
 argument_list|)
 decl_stmt|;
-comment|//        LOG.debug("transformerFactoryClassName=" + transformerFactoryClassName);
-comment|//        LOG.debug("javax.xml.transform.TransformerFactory="
-comment|//                + System.getProperty("javax.xml.transform.TransformerFactory"));
-comment|//was a TransformerFactory class specified
+comment|//		if( LOG.isDebugEnabled() ) {
+comment|//          LOG.debug( "transformerFactoryClassName=" + transformerFactoryClassName );
+comment|//          LOG.debug( "javax.xml.transform.TransformerFactory=" + System.getProperty( "javax.xml.transform.TransformerFactory" ) );
+comment|//		}
+comment|// was a TransformerFactory class specified?
 if|if
 condition|(
 name|transformerFactoryClassName
@@ -190,12 +227,156 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Set transformer factory: "
+operator|+
+name|transformerFactoryClassName
+argument_list|)
+expr_stmt|;
+block|}
+name|Hashtable
+name|attributes
+init|=
+operator|(
+name|Hashtable
+operator|)
+name|broker
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_TRANSFORMER_ATTRIBUTES
+argument_list|)
+decl_stmt|;
+name|Enumeration
+name|attrNames
+init|=
+name|attributes
+operator|.
+name|keys
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|attrNames
+operator|.
+name|hasMoreElements
+argument_list|()
+condition|)
+block|{
+name|String
+name|name
+init|=
+operator|(
+name|String
+operator|)
+name|attrNames
+operator|.
+name|nextElement
+argument_list|()
+decl_stmt|;
+name|Object
+name|value
+init|=
+name|attributes
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|factory
+operator|.
+name|setAttribute
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Set transformer attribute: "
+operator|+
+literal|", name: "
+operator|+
+name|name
+operator|+
+literal|", value: "
+operator|+
+name|value
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to set attribute for TransformerFactory: '"
+operator|+
+name|transformerFactoryClassName
+operator|+
+literal|"', name: "
+operator|+
+name|name
+operator|+
+literal|", value: "
+operator|+
+name|value
+operator|+
+literal|", exception: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 catch|catch
 parameter_list|(
 name|ClassNotFoundException
 name|cnfe
 parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -208,6 +389,7 @@ operator|+
 literal|"'. Using default TrAX Transformer Factory instead."
 argument_list|)
 expr_stmt|;
+block|}
 comment|//fallback to system default
 name|factory
 operator|=
@@ -226,6 +408,14 @@ name|ClassCastException
 name|cce
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -234,11 +424,10 @@ literal|"The indicated class '"
 operator|+
 name|transformerFactoryClassName
 operator|+
-literal|"' is not a TrAX Transformer Factory. "
-operator|+
-literal|"Using default TrAX Transformer Factory instead."
+literal|"' is not a TrAX Transformer Factory. Using default TrAX Transformer Factory instead."
 argument_list|)
 expr_stmt|;
+block|}
 comment|//fallback to system default
 name|factory
 operator|=
@@ -257,6 +446,14 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -265,9 +462,12 @@ literal|"Error found loading the requested TrAX Transformer Factory '"
 operator|+
 name|transformerFactoryClassName
 operator|+
-literal|"'. Using default TrAX Transformer Factory instead."
+literal|"'. Using default TrAX Transformer Factory instead: "
+operator|+
+name|e
 argument_list|)
 expr_stmt|;
+block|}
 comment|//fallback to system default
 name|factory
 operator|=
@@ -282,7 +482,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|factory
+operator|)
 return|;
 block|}
 block|}
