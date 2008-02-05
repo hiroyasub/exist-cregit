@@ -524,6 +524,9 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|//TODO : add default collection to the context
+comment|//If the value of the default collection is undefined an error is raised [err:FODC0002].
+comment|//throw new XPathException("FODC0002: unknown collection '" + uri + "'");
 name|docs
 operator|=
 name|context
