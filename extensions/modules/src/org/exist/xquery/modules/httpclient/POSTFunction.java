@@ -233,7 +233,7 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Performs a HTTP POST request. $a is the URL, $b is the XML POST payload/content, $c determines if cookies persist for the query lifetime. $d defines any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>."
+literal|"Performs a HTTP POST request. $a is the URL, $b is the POST payload/content. If $b is an XML Node it will be serialized, any other type will be atomized into a string. $c determines if cookies persist for the query lifetime. $d defines any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>."
 operator|+
 literal|" This method returns the HTTP response encoded as an XML fragment, that looks as follows:<httpclient:response xmlns:httpclient=\"http://exist-db.org/xquery/httpclient\" statusCode=\"200\"><httpclient:headers><httpclient:header name=\"name\" value=\"value\"/>...</httpclient:headers><httpclient:body type=\"xml|xhtml|text|binary\" mimetype=\"returned content mimetype\">body content</httpclient:body></httpclient:response>"
 operator|+
@@ -260,7 +260,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -339,6 +339,17 @@ name|response
 init|=
 literal|null
 decl_stmt|;
+name|byte
+index|[]
+name|reqPayload
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|mime
+init|=
+literal|"text/xml; charset=utf-8"
+decl_stmt|;
 comment|// must be a URL
 if|if
 condition|(
@@ -402,6 +413,23 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|payload
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
 comment|//serialize the node to SAX
 name|ByteArrayOutputStream
 name|baos
@@ -496,6 +524,31 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+name|reqPayload
+operator|=
+name|baos
+operator|.
+name|toByteArray
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|reqPayload
+operator|=
+name|payload
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|getBytes
+argument_list|()
+expr_stmt|;
+name|mime
+operator|=
+literal|"text/text; charset=utf-8"
+expr_stmt|;
+block|}
 comment|//setup POST request
 name|PostMethod
 name|post
@@ -512,12 +565,9 @@ init|=
 operator|new
 name|ByteArrayRequestEntity
 argument_list|(
-name|baos
-operator|.
-name|toByteArray
-argument_list|()
+name|reqPayload
 argument_list|,
-literal|"text/xml; charset=utf-8"
+name|mime
 argument_list|)
 decl_stmt|;
 name|post
