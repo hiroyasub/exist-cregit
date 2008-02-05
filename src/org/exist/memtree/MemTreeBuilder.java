@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -92,6 +82,16 @@ operator|.
 name|sax
 operator|.
 name|Attributes
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
 import|;
 end_import
 
@@ -548,6 +548,7 @@ index|[
 name|level
 index|]
 decl_stmt|;
+comment|// TODO: remove potential ArrayIndexOutOfBoundsException
 if|if
 condition|(
 name|prevNr
