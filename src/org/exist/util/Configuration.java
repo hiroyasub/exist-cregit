@@ -2952,7 +2952,38 @@ literal|"Discarded invalid attribute for TransformerFactory: '"
 operator|+
 name|className
 operator|+
-literal|"', null name"
+literal|"', name not specified"
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|type
+operator|==
+literal|null
+operator|||
+name|type
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|||
+name|type
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"string"
+argument_list|)
+condition|)
+block|{
+name|attributes
+operator|.
+name|put
+argument_list|(
+name|name
+argument_list|,
+name|value
 argument_list|)
 expr_stmt|;
 block|}
