@@ -13104,12 +13104,12 @@ name|address
 init|=
 name|node
 operator|.
-name|getOldInternalAddress
+name|getInternalAddress
 argument_list|()
 decl_stmt|;
 name|node
 operator|.
-name|setOldInternalAddress
+name|setInternalAddress
 argument_list|(
 name|oldAddress
 argument_list|)
@@ -13126,17 +13126,12 @@ expr_stmt|;
 comment|//restore old value, whatever it was
 name|node
 operator|.
-name|setOldInternalAddress
+name|setInternalAddress
 argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
-operator|(
-operator|(
-name|ElementImpl
-operator|)
 name|node
-operator|)
 operator|.
 name|setDirty
 argument_list|(
