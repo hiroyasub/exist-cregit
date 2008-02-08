@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -34,6 +24,16 @@ operator|.
 name|io
 operator|.
 name|VariableByteOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -151,6 +151,13 @@ function_decl|;
 name|NodeId
 name|insertBefore
 parameter_list|()
+function_decl|;
+name|NodeId
+name|append
+parameter_list|(
+name|NodeId
+name|other
+parameter_list|)
 function_decl|;
 comment|/**      * Returns a new NodeId representing the parent      * of the current node. If the parent is the document,      * the constant {@link #DOCUMENT_NODE} will be returned.      * For the document itself, the parent id will be null.      *      * @return the id of the parent node or null if the current node      * is the document node.      */
 name|NodeId
