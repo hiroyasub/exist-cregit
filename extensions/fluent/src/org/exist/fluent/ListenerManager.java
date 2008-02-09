@@ -17,19 +17,7 @@ name|lang
 operator|.
 name|ref
 operator|.
-name|Reference
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|ref
-operator|.
-name|WeakReference
+name|*
 import|;
 end_import
 
@@ -889,6 +877,15 @@ name|path
 argument_list|)
 operator|&&
 operator|(
+name|this
+operator|.
+name|path
+operator|.
+name|equals
+argument_list|(
+literal|"/"
+argument_list|)
+operator|||
 name|this
 operator|.
 name|path
