@@ -83,7 +83,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
+name|*
 import|;
 end_import
 
@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|SecurityManager
 import|;
 end_import
 
@@ -187,21 +187,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|ValueSequence
+name|*
 import|;
 end_import
 
@@ -379,7 +365,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Ensure the database is started.  If the database is not started, start it with the 	 * given config file.  If it is already started, make sure it was started with the same 	 * config file. 	 *  	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database was already started with a different config file 	 */
+comment|/** 	 * Ensure the database is started.  If the database is not started, start it with the 	 * given config file.  If it is already started, make sure it was started with the same 	 * config file. 	 *  	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database was already started with a different config file 	 *  	 * @deprecated Please use a combination of {@link #isStarted()} and {@link #startup(File)}. 	 */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|void
@@ -445,7 +433,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Return whether the database has been started and is currently running. 	 * 	 * @return<code>true</code> if the database has been started with any configuration file 	 */
+comment|/** 	 * Return whether the database has been started and is currently running in this JVM.  This will 	 * be the case if {@link #startup(File)} or {@link #ensureStarted(File)} was previously called 	 * successfully and {@link #shutdown()} was not yet called. 	 * 	 * @return<code>true</code> if the database has been started with any configuration file 	 */
 specifier|public
 specifier|static
 name|boolean
