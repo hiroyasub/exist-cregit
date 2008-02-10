@@ -1612,10 +1612,13 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
 name|first
 condition|)
-block|{
+name|first
+operator|=
+literal|false
+expr_stmt|;
+else|else
 name|buf
 operator|.
 name|append
@@ -1623,11 +1626,6 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
-name|first
-operator|=
-literal|false
-expr_stmt|;
-block|}
 name|buf
 operator|.
 name|append
