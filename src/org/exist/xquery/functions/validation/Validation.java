@@ -23,6 +23,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
 import|;
 end_import
@@ -691,14 +701,19 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|// Get inputstream
 name|InputStream
 name|is
 init|=
 literal|null
 decl_stmt|;
+name|ValidationReport
+name|vr
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
+comment|// Get inputstream of XML instance document
 if|if
 condition|(
 name|args
@@ -738,6 +753,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+comment|// Fix URL
 if|if
 condition|(
 name|url
@@ -795,13 +811,6 @@ name|DOCUMENT
 condition|)
 block|{
 comment|// Node provided
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Node"
-argument_list|)
-expr_stmt|;
 name|is
 operator|=
 operator|new
@@ -866,6 +875,70 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|// Perform validation
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+block|{
+comment|// Validate using system catalog
+name|vr
+operator|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+name|is
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Validate using resource speciefied in second parameter
+name|String
+name|url
+init|=
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|url
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+name|url
+operator|=
+literal|"xmldb:exist://"
+operator|+
+name|url
+expr_stmt|;
+block|}
+name|vr
+operator|=
+name|validator
+operator|.
+name|validate
+argument_list|(
+name|is
+argument_list|,
+name|url
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -873,7 +946,6 @@ name|MalformedURLException
 name|ex
 parameter_list|)
 block|{
-comment|//ex.printStackTrace();
 name|LOG
 operator|.
 name|error
@@ -910,7 +982,6 @@ name|getCause
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//ex.getCause().printStackTrace();
 throw|throw
 operator|new
 name|XPathException
@@ -940,7 +1011,6 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
-comment|//ex.printStackTrace();
 throw|throw
 operator|new
 name|XPathException
@@ -954,77 +1024,33 @@ name|ex
 argument_list|)
 throw|;
 block|}
-name|ValidationReport
-name|vr
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|1
-condition|)
+finally|finally
 block|{
-name|vr
-operator|=
-name|validator
-operator|.
-name|validate
-argument_list|(
+comment|// Force release stream
+try|try
+block|{
 name|is
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|String
-name|url
-init|=
-name|args
-index|[
-literal|1
-index|]
 operator|.
-name|getStringValue
+name|close
 argument_list|()
-decl_stmt|;
-comment|//            if(url.endsWith(".dtd")){
-comment|//                String txt =  "Unable to validate with a specified DTD ("+url+"). "+
-comment|//                    "Please register the DTD in an xml catalog document.";
-comment|//                LOG.error(txt);
-comment|//                throw new XPathException(getASTNode(), txt);
-comment|//            }
-if|if
-condition|(
-name|url
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-name|url
-operator|=
-literal|"xmldb:exist://"
-operator|+
-name|url
 expr_stmt|;
 block|}
-name|vr
-operator|=
-name|validator
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+name|LOG
 operator|.
-name|validate
+name|debug
 argument_list|(
-name|is
+literal|"Attemted to close stream. ignore."
 argument_list|,
-name|url
+name|ex
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Create response
 if|if
@@ -1090,6 +1116,7 @@ return|return
 name|result
 return|;
 block|}
+comment|// Oops
 name|LOG
 operator|.
 name|error
