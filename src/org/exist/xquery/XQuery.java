@@ -631,18 +631,7 @@ argument_list|(
 literal|"Unknown XQuery parser error: the parser returned an empty syntax tree."
 argument_list|)
 throw|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Generated AST: "
-operator|+
-name|ast
-operator|.
-name|toStringTree
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("Generated AST: " + ast.toStringTree());
 name|PathExpr
 name|expr
 init|=
