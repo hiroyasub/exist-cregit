@@ -137,7 +137,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|ananlyze
+name|analyze
 parameter_list|(
 name|AnalyzeContextInfo
 name|contextInfo
