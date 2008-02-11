@@ -743,17 +743,6 @@ argument_list|(
 name|offset
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"id: "
-operator|+
-name|id
-argument_list|)
-expr_stmt|;
 name|newId
 operator|.
 name|addLevelId
