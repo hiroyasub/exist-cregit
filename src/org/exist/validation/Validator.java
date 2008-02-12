@@ -485,6 +485,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// Setup validation properties. see Jing interface
 name|PropertyMapBuilder
 name|properties
 init|=
@@ -503,6 +504,8 @@ argument_list|,
 name|report
 argument_list|)
 expr_stmt|;
+comment|// Copied from Jing code ; the Compact syntax seem to have a different
+comment|// Schema reader. To be investigated. http://www.thaiopensource.com/relaxng/api/jing/index.html
 name|SchemaReader
 name|schemaReader
 init|=
@@ -520,6 +523,7 @@ argument_list|()
 else|:
 literal|null
 decl_stmt|;
+comment|// Setup driver
 name|ValidationDriver
 name|driver
 init|=
@@ -534,6 +538,7 @@ argument_list|,
 name|schemaReader
 argument_list|)
 decl_stmt|;
+comment|// Load schema
 name|driver
 operator|.
 name|loadSchema
@@ -545,20 +550,16 @@ name|grammarUrl
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|InputSource
-name|source
-init|=
+comment|// Validate XML instance
+name|driver
+operator|.
+name|validate
+argument_list|(
 operator|new
 name|InputSource
 argument_list|(
 name|is
 argument_list|)
-decl_stmt|;
-name|driver
-operator|.
-name|validate
-argument_list|(
-name|source
 argument_list|)
 expr_stmt|;
 block|}
@@ -591,28 +592,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SAXException
-name|ex
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-name|report
-operator|.
-name|setThrowable
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
+name|Exception
 name|ex
 parameter_list|)
 block|{
