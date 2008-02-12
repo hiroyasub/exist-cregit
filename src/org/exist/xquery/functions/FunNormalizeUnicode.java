@@ -756,6 +756,10 @@ name|getMethod
 argument_list|(
 literal|"getText"
 argument_list|,
+operator|(
+name|Class
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
@@ -779,6 +783,10 @@ name|invoke
 argument_list|(
 name|instance
 argument_list|,
+operator|(
+name|Object
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;

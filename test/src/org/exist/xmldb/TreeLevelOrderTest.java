@@ -236,6 +236,10 @@ name|getMethod
 argument_list|(
 literal|"getTextContent"
 argument_list|,
+operator|(
+name|Class
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
@@ -276,6 +280,10 @@ name|invoke
 argument_list|(
 name|n
 argument_list|,
+operator|(
+name|Object
+index|[]
+operator|)
 literal|null
 argument_list|)
 return|;

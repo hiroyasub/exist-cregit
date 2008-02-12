@@ -863,6 +863,10 @@ name|getMethod
 argument_list|(
 literal|"getDocumentURI"
 argument_list|,
+operator|(
+name|Class
+index|[]
+operator|)
 literal|null
 argument_list|)
 decl_stmt|;
@@ -880,6 +884,10 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 argument_list|,
+operator|(
+name|Object
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
