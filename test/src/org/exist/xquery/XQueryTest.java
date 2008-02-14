@@ -15278,7 +15278,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestCurrentDateTimeInModules_1894009
+name|testCurrentDateTimeInModules_1894009
 parameter_list|()
 block|{
 name|String
