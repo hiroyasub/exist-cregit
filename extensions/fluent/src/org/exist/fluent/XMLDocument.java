@@ -282,7 +282,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Serialize this document to the given output stream using the default encoding specified 	 * for the database.  If you wish to control the encoding at a finer granularity, use 	 * {@link #write(Writer)}. 	 *  	 * @see Database#setDefaultExportEncoding(String) 	 * @param stream the output stream to write to 	 * @throws IOException in case of problems with the encoding 	 * @throws DatabaseException in case of I/O problems 	 */
+comment|/** 	 * Serialize this document to the given output stream using the default encoding specified 	 * for the database.  If you wish to control the encoding at a finer granularity, use 	 * {@link #write(Writer)}. 	 *  	 * @see Database#setDefaultCharacterEncoding(String) 	 * @param stream the output stream to write to 	 * @throws IOException in case of problems with the encoding 	 * @throws DatabaseException in case of I/O problems 	 */
 annotation|@
 name|Override
 specifier|public
@@ -304,7 +304,7 @@ name|stream
 argument_list|,
 name|db
 operator|.
-name|defaultExportEncoding
+name|defaultCharacterEncoding
 argument_list|)
 argument_list|)
 expr_stmt|;

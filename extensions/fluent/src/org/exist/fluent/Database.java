@@ -723,7 +723,7 @@ name|NamespaceMap
 name|namespaceBindings
 decl_stmt|;
 name|String
-name|defaultExportEncoding
+name|defaultCharacterEncoding
 init|=
 literal|"UTF-8"
 decl_stmt|;
@@ -775,7 +775,9 @@ name|extend
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Set the default character encoding to be used when exporting XML files from the database. 	 * If not explicitly set, it defaults to UTF-8. 	 * 	 * @param encoding 	 */
+comment|/** 	 * @deprecated Renamed to {@link #setDefaultCharacterEncoding(String)}. 	 */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setDefaultExportEncoding
@@ -784,7 +786,22 @@ name|String
 name|encoding
 parameter_list|)
 block|{
-name|defaultExportEncoding
+name|setDefaultCharacterEncoding
+argument_list|(
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Set the default character encoding to be used when exporting XML files from the database. 	 * If not explicitly set, it defaults to UTF-8. 	 * 	 * @param encoding 	 */
+specifier|public
+name|void
+name|setDefaultCharacterEncoding
+parameter_list|(
+name|String
+name|encoding
+parameter_list|)
+block|{
+name|defaultCharacterEncoding
 operator|=
 name|encoding
 expr_stmt|;

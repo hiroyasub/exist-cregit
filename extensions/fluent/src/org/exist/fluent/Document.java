@@ -25,17 +25,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|EnumSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
+name|*
 import|;
 end_import
 
@@ -744,7 +734,7 @@ operator|+
 literal|"'"
 return|;
 block|}
-comment|/** 	 * Return the local filename of this document.  This name will never contain slashes ('/'). 	 *  	 * @return the local filename of this document 	 */
+comment|/** 	 * Return the local filename of this document. This name will never contain 	 * slashes ('/'). 	 *  	 * @return the local filename of this document 	 */
 specifier|public
 name|String
 name|name
@@ -833,6 +823,19 @@ literal|false
 argument_list|,
 name|this
 argument_list|)
+return|;
+block|}
+comment|/** 	 * Return the length of this document, in bytes.  For binary documents, this is the actual 	 * size of the file; for XML documents, this is the approximate amount of space that the 	 * document occupies in the database, and is unrelated to its serialized length. 	 * 	 * @return the length of this document, in bytes 	 */
+specifier|public
+name|long
+name|length
+parameter_list|()
+block|{
+return|return
+name|doc
+operator|.
+name|getContentLength
+argument_list|()
 return|;
 block|}
 comment|/** 	 * Delete this document from the database. 	 */
@@ -955,6 +958,67 @@ name|copy
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Return the contents of this document interpreted as a string.  Binary documents are 	 * decoded using the default character encoding specified for the database. 	 *  	 * @see Database#setDefaultCharacterEncoding(String) 	 * @return the contents of this document 	 * @throws DatabaseException if the encoding is not supported or some other unexpected IOException occurs 	 */
+specifier|public
+name|String
+name|contentsAsString
+parameter_list|()
+block|{
+name|DBBroker
+name|broker
+init|=
+name|db
+operator|.
+name|acquireBroker
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+return|return
+operator|new
+name|String
+argument_list|(
+name|broker
+operator|.
+name|getBinaryResource
+argument_list|(
+operator|(
+name|BinaryDocument
+operator|)
+name|doc
+argument_list|)
+argument_list|,
+name|db
+operator|.
+name|defaultCharacterEncoding
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedEncodingException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|db
+operator|.
+name|releaseBroker
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** 	 * Export this document to the given file, overwriting it if it already exists. 	 * 	 * @param destination the file to export to 	 * @throws IOException if the export failed due to an I/O error 	 */
 specifier|public
 name|void
@@ -996,7 +1060,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Copy the contents of the document to the given stream.  XML documents will use 	 * the default character encoding set for the database. 	 * @see Database#setDefaultExportEncoding(String) 	 * 	 * @param stream the output stream to copy the document to 	 * @throws IOException in case of I/O problems 	 */
+comment|/** 	 * Copy the contents of the document to the given stream.  XML documents will use 	 * the default character encoding set for the database. 	 * @see Database#setDefaultCharacterEncoding(String) 	 * 	 * @param stream the output stream to copy the document to 	 * @throws IOException in case of I/O problems; 	 * 		WARNING: I/O exceptions are currently logged and eaten by eXist, so they won't propagate to this layer! 	 */
 specifier|public
 name|void
 name|write
@@ -1017,19 +1081,16 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|stream
-operator|.
-name|write
-argument_list|(
 name|broker
 operator|.
-name|getBinaryResource
+name|readBinaryResource
 argument_list|(
 operator|(
 name|BinaryDocument
 operator|)
 name|doc
-argument_list|)
+argument_list|,
+name|stream
 argument_list|)
 expr_stmt|;
 block|}
