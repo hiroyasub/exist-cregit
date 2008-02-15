@@ -437,8 +437,6 @@ operator|+
 name|className
 operator|+
 literal|" not found. Cannot configure index."
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 block|}
