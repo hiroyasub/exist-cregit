@@ -89,6 +89,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|datatype
+operator|.
+name|XMLGregorianCalendar
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -423,6 +435,19 @@ return|return
 name|parentContext
 operator|.
 name|getWatchDog
+argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getCalendar() 	 */
+specifier|public
+name|XMLGregorianCalendar
+name|getCalendar
+parameter_list|()
+block|{
+return|return
+name|parentContext
+operator|.
+name|getCalendar
 argument_list|()
 return|;
 block|}
