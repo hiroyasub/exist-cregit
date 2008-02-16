@@ -47,6 +47,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -76,7 +88,7 @@ specifier|public
 class|class
 name|Document
 extends|extends
-name|Resource
+name|NamedResource
 block|{
 comment|/** 	 * Listener for events affecting documents.  The three possible actions are document 	 * creation, update (modification), and deletion. 	 * 	 * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a> 	 */
 specifier|public
@@ -415,6 +427,92 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * The metadata facet for this document.  Allows access to and manipulation of various aspects 	 * of the document's metadata, including its permissions and various timestamps. 	 * NOTE:  The interface is fairly bare-bones right now, until I figure out the use cases and flesh 	 * it out a bit. 	 */
+specifier|public
+specifier|static
+class|class
+name|MetadataFacet
+extends|extends
+name|NamedResource
+operator|.
+name|MetadataFacet
+block|{
+specifier|private
+specifier|final
+name|DocumentMetadata
+name|docMetadata
+decl_stmt|;
+specifier|private
+name|MetadataFacet
+parameter_list|(
+name|Permission
+name|permissions
+parameter_list|,
+name|DocumentMetadata
+name|docMetadata
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|permissions
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|docMetadata
+operator|=
+name|docMetadata
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Date
+name|creationDate
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Date
+argument_list|(
+name|docMetadata
+operator|.
+name|getCreated
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** 		 * Return the time at which this document was last modified. 		 * 		 * @return the date of the last modification 		 */
+specifier|public
+name|Date
+name|lastModificationDate
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Date
+argument_list|(
+name|docMetadata
+operator|.
+name|getLastModified
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** 		 * Return the recorded MIME type of this document. 		 *  		 * @return this document's MIME type 		 */
+specifier|public
+name|String
+name|mimeType
+parameter_list|()
+block|{
+return|return
+name|docMetadata
+operator|.
+name|getMimeType
+argument_list|()
+return|;
+block|}
+block|}
 specifier|protected
 name|DocumentImpl
 name|doc
@@ -426,6 +524,10 @@ decl_stmt|;
 specifier|private
 name|ListenersFacet
 name|listeners
+decl_stmt|;
+specifier|private
+name|MetadataFacet
+name|metadata
 decl_stmt|;
 name|Document
 parameter_list|(
@@ -651,6 +753,39 @@ return|return
 name|listeners
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|MetadataFacet
+name|metadata
+parameter_list|()
+block|{
+if|if
+condition|(
+name|metadata
+operator|==
+literal|null
+condition|)
+name|metadata
+operator|=
+operator|new
+name|MetadataFacet
+argument_list|(
+name|doc
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|,
+name|doc
+operator|.
+name|getMetadata
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|metadata
+return|;
+block|}
 comment|/** 	 * Cast this document to an {@link XMLDocument}, if possible. 	 * 	 * @return this document cast as an XML document 	 * @throws DatabaseException if this document is not an XML document 	 */
 specifier|public
 name|XMLDocument
@@ -735,6 +870,8 @@ literal|"'"
 return|;
 block|}
 comment|/** 	 * Return the local filename of this document. This name will never contain 	 * slashes ('/'). 	 *  	 * @return the local filename of this document 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|name
@@ -751,6 +888,8 @@ argument_list|()
 return|;
 block|}
 comment|/** 	 * Return the full path of this document.  This is the path of its parent folder plus its 	 * filename. 	 * 	 * @return the full path of this document 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|path
@@ -839,6 +978,8 @@ argument_list|()
 return|;
 block|}
 comment|/** 	 * Delete this document from the database. 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|delete
@@ -858,7 +999,9 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Copy this document to another collection, potentially changing its name in the process. 	 * @see Name 	 * 	 * @param destination the destination collection for the copy 	 * @param name the desired name for the copy 	 * @return the new copy of the document 	 */
+comment|/** 	 * Copy this document to another collection, potentially changing the copy's name in the process. 	 * @see Name 	 * 	 * @param destination the destination folder for the copy 	 * @param name the desired name for the copy 	 * @return the new copy of the document 	 */
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|copy
@@ -886,7 +1029,9 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Move this document to another collection, potentially changing its name in the process. 	 * This document will refer to the document in its new location after this method returns. 	 * You can easily use this method to move a document without changing its name 	 * (<code>doc.move(newFolder, Name.keepCreate())</code>) or to rename a document 	 * without changing its location (<code>doc.move(doc.folder(), Name.create(newName))</code>). 	 * @see Name 	 * 	 * @param destination the destination collection for the move 	 * @param name the desired name for the moved document 	 */
+comment|/** 	 * Move this document to another collection, potentially changing its name in the process. 	 * This document will refer to the document in its new location after this method returns. 	 * You can easily use this method to move a document without changing its name 	 * (<code>doc.move(newFolder, Name.keepCreate())</code>) or to rename a document 	 * without changing its location (<code>doc.move(doc.folder(), Name.create(newName))</code>). 	 * @see Name 	 * 	 * @param destination the destination folder for the move 	 * @param name the desired name for the moved document 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|move

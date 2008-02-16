@@ -188,7 +188,7 @@ specifier|public
 class|class
 name|Folder
 extends|extends
-name|Resource
+name|NamedResource
 implements|implements
 name|Cloneable
 block|{
@@ -2028,6 +2028,10 @@ specifier|private
 name|ListenersFacet
 name|listeners
 decl_stmt|;
+specifier|private
+name|MetadataFacet
+name|metadata
+decl_stmt|;
 comment|// the following are only valid while we're holding a broker
 specifier|private
 name|DBBroker
@@ -2299,6 +2303,56 @@ argument_list|()
 expr_stmt|;
 return|return
 name|listeners
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|MetadataFacet
+name|metadata
+parameter_list|()
+block|{
+if|if
+condition|(
+name|metadata
+operator|==
+literal|null
+condition|)
+name|metadata
+operator|=
+operator|new
+name|MetadataFacet
+argument_list|(
+name|getQuickHandle
+argument_list|()
+operator|.
+name|getPermissionsNoLock
+argument_list|()
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Date
+name|creationDate
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Date
+argument_list|(
+name|getQuickHandle
+argument_list|()
+operator|.
+name|getCreationTime
+argument_list|()
+argument_list|)
+return|;
+block|}
+block|}
+expr_stmt|;
+return|return
+name|metadata
 return|;
 block|}
 comment|/** 	 * Create a duplicate handle that copies the original's path and namespace bindings. 	 * No copy is created of the underlying folder.  The namespace bindings will copy the 	 * original's immediate namespace map and namespace bindings inheritance chain. 	 *  	 * @return a duplicate of this collection wrapper 	 */
@@ -3056,6 +3110,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|void
 name|delete
@@ -3233,6 +3289,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Move this folder to another spot in the folder hierarchy, possibly changing its name in the process. 	 * This folder will refer to the newly relocated folder when this method returns.  You can use this 	 * method to move a folder without changing its name (<code>folder.move(destFolder, Name.keepCreate())</code>) 	 * or to rename it without changing its location (<code>folder.move(folder.parent(), Name.create(newName))</code>). 	 * 	 * @param destination the new parent folder of this folder 	 * @param name the new name for this folder 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|move
@@ -3258,6 +3316,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * Copy this folder to another place in the folder hierarchy, returning the newly copied folder 	 * with namespace bindings inherited from this one. 	 * 	 * @param destination the desired parent folder of the copy 	 * @param name the desired name of the copy 	 * @return a reference to the copied folder 	 */
+annotation|@
+name|Override
 specifier|public
 name|Folder
 name|copy
@@ -3604,6 +3664,8 @@ argument_list|)
 return|;
 block|}
 comment|/** 	 * Return the full path to the folder; always starts with '/'. 	 *  	 * @return the full path to the folder 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|path
@@ -3614,6 +3676,8 @@ name|path
 return|;
 block|}
 comment|/** 	 * Return the local name of the folder; this is the last segment of its path. 	 *  	 * @return the local name of the folder 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|name

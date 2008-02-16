@@ -530,7 +530,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Login to obtain access to the database.  The password should be passed in the clear. 	 * If a user does not have a password set, you can pass in any value including<code>null</code>. 	 * Note that all newly created databases have a user<code>admin</code> with no password set. 	 * 	 * @param username the username of the user being logged in 	 * @param password the password corresponding to that user name, or<code>null</code> if none 	 * @return an instance of the database configured for access by the given user 	 * @throws DatabaseException if the user could not be logged in 	 */
+comment|/** 	 * Login to obtain access to the database.  The password should be passed in the clear. 	 * If a user does not have a password set, pass in<code>null</code>. 	 * Note that all newly created databases have a user<code>admin</code> with no password set. 	 * 	 * @param username the username of the user being logged in 	 * @param password the password corresponding to that user name, or<code>null</code> if none 	 * @return an instance of the database configured for access by the given user 	 * @throws DatabaseException if the user could not be logged in 	 */
 specifier|public
 specifier|static
 name|Database
