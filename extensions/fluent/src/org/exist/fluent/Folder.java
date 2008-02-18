@@ -3534,13 +3534,13 @@ return|return
 name|documents
 return|;
 block|}
-comment|/** 	 * Return whether this folder or one of its descendants contains the given document. 	 *  	 * @param doc the document to check for 	 * @return<code>true</code> if the document is contained (directly or indirectly) in this folder,<code>false</code> otherwise 	 */
+comment|/** 	 * Return whether this folder or one of its descendants contains the given named resource. 	 *  	 * @param res the resource to check for 	 * @return<code>true</code> if the resource is contained (directly or indirectly) in this folder,<code>false</code> otherwise 	 */
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
-name|Document
-name|doc
+name|NamedResource
+name|res
 parameter_list|)
 block|{
 name|staleMarker
@@ -3552,11 +3552,11 @@ name|db
 operator|.
 name|checkSame
 argument_list|(
-name|doc
+name|res
 argument_list|)
 expr_stmt|;
 return|return
-name|doc
+name|res
 operator|.
 name|path
 argument_list|()
@@ -3566,7 +3566,19 @@ argument_list|(
 name|path
 argument_list|()
 operator|+
+operator|(
+name|path
+argument_list|()
+operator|.
+name|equals
+argument_list|(
 literal|"/"
+argument_list|)
+condition|?
+literal|""
+else|:
+literal|"/"
+operator|)
 argument_list|)
 return|;
 block|}
