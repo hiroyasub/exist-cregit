@@ -27,19 +27,7 @@ name|xml
 operator|.
 name|parsers
 operator|.
-name|DocumentBuilderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
+name|*
 import|;
 end_import
 
@@ -80,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A builder of DOM trees, meant to be either stand alone or be inserted into  * pre-existing ones.  Cannot remove nodes from the base tree.  You must {@link #commit()}  * the builder to persist the recorded changes in the database.  *   * @param<K> the type of object returned upon completion of the builder,  * 	depends on the context in which the builder is used  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  * @version $Revision: 1.18 $ ($Date: 2006/04/13 19:12:16 $)  */
+comment|/**  * A builder of DOM trees, meant to be either stand alone or be inserted into  * pre-existing ones.  Cannot remove nodes from the base tree.  You must {@link #commit()}  * the builder to persist the recorded changes in the database.  *   * All the nodes in the tree being built must be from the same implementation.  If you attempt  * to add foreign nodes -- for example, persistent nodes from the database -- using the  * {@link #node} or {@link #nodes} methods to a builder that already has temporary nodes  * built using its other methods, they'll be imported.  Importing nodes will usually make a deep  * copy of the tree in memory, which could cause problems if you're trying to add a big stored  * node tree.  *   * @param<K> the type of object returned upon completion of the builder,  * 	depends on the context in which the builder is used  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  * @version $Revision: 1.18 $ ($Date: 2006/04/13 19:12:16 $)  */
 end_comment
 
 begin_class
