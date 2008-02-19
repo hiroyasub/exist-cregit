@@ -3572,14 +3572,12 @@ operator|==
 literal|2
 condition|)
 break|break;
+comment|//currentNode = (StoredNode) currentNode.getParentNode();
 name|currentNode
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|currentNode
 operator|.
-name|getParentNode
+name|getParentStoredNode
 argument_list|()
 expr_stmt|;
 block|}
