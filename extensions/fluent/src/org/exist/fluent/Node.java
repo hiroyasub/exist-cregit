@@ -927,7 +927,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"updates on in-memory nodes are not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
+literal|"appends to in-memory nodes are not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
 argument_list|)
 throw|;
 block|}
@@ -937,7 +937,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"cannot update attributes on a "
+literal|"cannot append to a "
 operator|+
 name|Type
 operator|.
@@ -1246,6 +1246,50 @@ operator|+
 literal|" with no parent"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|oldNode
+operator|.
+name|getParentNode
+argument_list|()
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+operator|.
+name|DOCUMENT_NODE
+condition|)
+return|return
+name|document
+argument_list|()
+operator|.
+name|folder
+argument_list|()
+operator|.
+name|documents
+argument_list|()
+operator|.
+name|build
+argument_list|(
+name|Name
+operator|.
+name|overwrite
+argument_list|(
+name|document
+argument_list|()
+operator|.
+name|name
+argument_list|()
+argument_list|)
+argument_list|)
+return|;
 return|return
 operator|new
 name|ElementBuilder
@@ -1422,7 +1466,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|RuntimeException
+name|ClassCastException
 name|e
 parameter_list|)
 block|{
@@ -1444,7 +1488,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"updates on in-memory nodes are not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
+literal|"replacement of in-memory nodes is not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
 argument_list|)
 throw|;
 block|}
@@ -1454,7 +1498,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"cannot update attributes on a "
+literal|"cannot replace a "
 operator|+
 name|Type
 operator|.

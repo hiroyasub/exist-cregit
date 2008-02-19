@@ -476,7 +476,7 @@ name|ElementImpl
 operator|)
 name|node
 operator|.
-name|getParentNode
+name|getParentStoredNode
 argument_list|()
 expr_stmt|;
 if|if

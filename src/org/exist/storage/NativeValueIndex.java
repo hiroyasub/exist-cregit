@@ -1301,9 +1301,6 @@ name|StoredNode
 name|currentNode
 init|=
 operator|(
-name|StoredNode
-operator|)
-operator|(
 operator|(
 name|node
 operator|.
@@ -1328,7 +1325,7 @@ name|node
 else|:
 name|node
 operator|.
-name|getParentNode
+name|getParentStoredNode
 argument_list|()
 operator|)
 decl_stmt|;
@@ -1409,12 +1406,9 @@ condition|)
 break|break;
 name|currentNode
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|currentNode
 operator|.
-name|getParentNode
+name|getParentStoredNode
 argument_list|()
 expr_stmt|;
 name|path

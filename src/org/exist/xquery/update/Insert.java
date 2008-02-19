@@ -941,7 +941,7 @@ name|NodeImpl
 name|parent
 init|=
 operator|(
-name|StoredNode
+name|NodeImpl
 operator|)
 name|node
 operator|.
@@ -971,12 +971,7 @@ break|break;
 case|case
 name|INSERT_AFTER
 case|:
-operator|(
-operator|(
-name|NodeImpl
-operator|)
 name|parent
-operator|)
 operator|.
 name|insertAfter
 argument_list|(

@@ -638,12 +638,9 @@ name|currentNode
 expr_stmt|;
 name|currentNode
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|currentNode
 operator|.
-name|getParentNode
+name|getParentStoredNode
 argument_list|()
 expr_stmt|;
 block|}

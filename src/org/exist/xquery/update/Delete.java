@@ -771,7 +771,7 @@ comment|//update the document
 name|parent
 operator|=
 operator|(
-name|StoredNode
+name|NodeImpl
 operator|)
 name|node
 operator|.
