@@ -1141,7 +1141,9 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"literal string"
+literal|"literal string:\n"
+operator|+
+name|literal
 return|;
 block|}
 block|}
