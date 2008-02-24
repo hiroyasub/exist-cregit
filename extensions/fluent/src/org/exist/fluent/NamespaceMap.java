@@ -661,6 +661,23 @@ return|return
 name|all
 return|;
 block|}
+comment|/** 	 * Return whether this namespace map contains no bindings other than inherited 	 * ones. 	 *  	 * @return<code>true</code> if this namespace map is empty except for possible 	 * 		inherited bindings,<code>false</code> otherwise 	 */
+specifier|public
+name|boolean
+name|isFresh
+parameter_list|()
+block|{
+return|return
+name|map
+operator|==
+literal|null
+operator|||
+name|map
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

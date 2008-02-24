@@ -81,6 +81,12 @@ condition|(
 name|query
 operator|==
 literal|null
+operator|||
+operator|!
+name|query
+operator|.
+name|isFresh
+argument_list|()
 condition|)
 block|{
 name|query
