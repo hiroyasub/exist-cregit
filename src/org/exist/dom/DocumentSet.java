@@ -501,13 +501,8 @@ name|READ
 argument_list|)
 condition|)
 block|{
-name|doc
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
+comment|// WM: we don't have a lock on the document, so we should not change its broker:
+comment|// doc.setBroker(broker);
 name|put
 argument_list|(
 name|doc
@@ -607,13 +602,6 @@ name|WRITE
 argument_list|)
 condition|)
 block|{
-name|doc
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 name|lock
 operator|=
 name|doc
@@ -638,6 +626,14 @@ name|getDocId
 argument_list|()
 argument_list|,
 name|doc
+argument_list|)
+expr_stmt|;
+comment|// we now have a lock on the doc, change its broker
+name|doc
+operator|.
+name|setBroker
+argument_list|(
+name|broker
 argument_list|)
 expr_stmt|;
 name|lockMap
