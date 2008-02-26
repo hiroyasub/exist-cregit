@@ -3754,21 +3754,16 @@ name|AtomicValue
 operator|)
 name|o
 decl_stmt|;
+comment|//        if(Type.subTypeOf(other.getType(), Type.STRING))
 if|if
 condition|(
-name|Type
-operator|.
-name|subTypeOf
-argument_list|(
+name|getType
+argument_list|()
+operator|==
 name|other
 operator|.
 name|getType
 argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|)
 condition|)
 return|return
 name|value
