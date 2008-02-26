@@ -18712,7 +18712,7 @@ throws|,
 name|Exception
 block|{
 name|boolean
-name|retVal
+name|isValid
 init|=
 literal|false
 decl_stmt|;
@@ -18768,19 +18768,20 @@ argument_list|)
 decl_stmt|;
 comment|// Perform validation
 name|ValidationReport
-name|veh
+name|report
 init|=
 name|validator
 operator|.
-name|validate
+name|validateParse
 argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
+comment|// TODO DIZ check method
 comment|// Return validation result
-name|retVal
+name|isValid
 operator|=
-name|veh
+name|report
 operator|.
 name|isValid
 argument_list|()
@@ -18814,7 +18815,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|retVal
+name|isValid
 return|;
 block|}
 comment|/**      * The method<code>getDocType</code>      *      * @param user an<code>User</code> value      * @param documentPath a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */

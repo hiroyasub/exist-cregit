@@ -460,9 +460,43 @@ name|CATALOG_RESOLVER
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+comment|////    /**
+comment|////     *  Validate XML data using system catalog. XSD and DTD only.
+comment|////     *
+comment|////     * @param stream XML input.
+comment|////     * @return Validation report containing all validation info.
+comment|////     */
+comment|////    public ValidationReport validate(InputStream stream) {
+comment|////        return validate(stream, null);
+comment|////    }
+comment|////
+comment|////    /**
+comment|////     *  Validate XML data from reader using specified grammar.
+comment|////     *
+comment|////     * @param grammarPath   User supplied path to grammar.
+comment|////     * @param stream XML input.
+comment|////     * @return Validation report containing all validation info.
+comment|////     */
+comment|////    public ValidationReport validate(InputStream stream, String grammarPath) {
+comment|////
+comment|////        // repair path to local resource
+comment|////        if(grammarPath != null&& grammarPath.startsWith("/")){
+comment|////            grammarPath = "xmldb:exist://" + grammarPath;
+comment|////        }
+comment|////
+comment|////        if(grammarPath != null&&
+comment|////                (grammarPath.endsWith(".rng") || grammarPath.endsWith(".rnc") ||
+comment|////                grammarPath.endsWith(".onvl") || grammarPath.endsWith(".sch"))){
+comment|////            return validateJing(stream, grammarPath);
+comment|////        } else {
+comment|////            return validateParse(stream, grammarPath);
+comment|////        }
+comment|////
+comment|////    }
+comment|/**      *  Validate XML data from reader using specified grammar with Jing.      *      * @param grammarPath   User supplied path to grammar.      * @param stream XML input.      * @return Validation report containing all validation info.      */
+specifier|public
 name|ValidationReport
-name|validateRelaxNG
+name|validateJing
 parameter_list|(
 name|InputStream
 name|is
@@ -626,14 +660,14 @@ block|}
 comment|/**      *  Validate XML data using system catalog. XSD and DTD only.      *      * @param stream XML input.      * @return Validation report containing all validation info.      */
 specifier|public
 name|ValidationReport
-name|validate
+name|validateParse
 parameter_list|(
 name|InputStream
 name|stream
 parameter_list|)
 block|{
 return|return
-name|validate
+name|validateParse
 argument_list|(
 name|stream
 argument_list|,
@@ -644,98 +678,7 @@ block|}
 comment|/**      *  Validate XML data from reader using specified grammar.      *      * @param grammarPath   User supplied path to grammar.      * @param stream XML input.      * @return Validation report containing all validation info.      */
 specifier|public
 name|ValidationReport
-name|validate
-parameter_list|(
-name|InputStream
-name|stream
-parameter_list|,
-name|String
-name|grammarPath
-parameter_list|)
-block|{
-comment|// repair path to local resource
-if|if
-condition|(
-name|grammarPath
-operator|!=
-literal|null
-operator|&&
-name|grammarPath
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-name|grammarPath
-operator|=
-literal|"xmldb:exist://"
-operator|+
-name|grammarPath
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|grammarPath
-operator|!=
-literal|null
-operator|&&
-operator|(
-name|grammarPath
-operator|.
-name|endsWith
-argument_list|(
-literal|".rng"
-argument_list|)
-operator|||
-name|grammarPath
-operator|.
-name|endsWith
-argument_list|(
-literal|".rnc"
-argument_list|)
-operator|||
-name|grammarPath
-operator|.
-name|endsWith
-argument_list|(
-literal|".onvl"
-argument_list|)
-operator|||
-name|grammarPath
-operator|.
-name|endsWith
-argument_list|(
-literal|".sch"
-argument_list|)
-operator|)
-condition|)
-block|{
-return|return
-name|validateRelaxNG
-argument_list|(
-name|stream
-argument_list|,
-name|grammarPath
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-return|return
-name|validateDefault
-argument_list|(
-name|stream
-argument_list|,
-name|grammarPath
-argument_list|)
-return|;
-block|}
-block|}
-specifier|private
-name|ValidationReport
-name|validateDefault
+name|validateParse
 parameter_list|(
 name|InputStream
 name|stream
