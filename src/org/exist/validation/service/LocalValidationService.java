@@ -441,12 +441,11 @@ name|report
 operator|=
 name|validator
 operator|.
-name|validateParse
+name|validate
 argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
-comment|// TODO Dizzz check which method
 block|}
 else|else
 block|{
@@ -454,7 +453,7 @@ name|report
 operator|=
 name|validator
 operator|.
-name|validateParse
+name|validate
 argument_list|(
 name|is
 argument_list|,

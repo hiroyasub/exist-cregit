@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program stream free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program stream distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -81,29 +81,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
 import|;
 end_import
 
@@ -365,7 +343,7 @@ name|systemCatalogResolver
 init|=
 literal|null
 decl_stmt|;
-comment|/**      *  Setup Validator object with brokerpool as centre.      */
+comment|/**      *  Setup Validator object with brokerpool as db connection.      *       * @param pool Brokerpool      */
 specifier|public
 name|Validator
 parameter_list|(
@@ -460,46 +438,125 @@ name|CATALOG_RESOLVER
 argument_list|)
 expr_stmt|;
 block|}
-comment|////    /**
-comment|////     *  Validate XML data using system catalog. XSD and DTD only.
-comment|////     *
-comment|////     * @param stream XML input.
-comment|////     * @return Validation report containing all validation info.
-comment|////     */
-comment|////    public ValidationReport validate(InputStream stream) {
-comment|////        return validate(stream, null);
-comment|////    }
-comment|////
-comment|////    /**
-comment|////     *  Validate XML data from reader using specified grammar.
-comment|////     *
-comment|////     * @param grammarPath   User supplied path to grammar.
-comment|////     * @param stream XML input.
-comment|////     * @return Validation report containing all validation info.
-comment|////     */
-comment|////    public ValidationReport validate(InputStream stream, String grammarPath) {
-comment|////
-comment|////        // repair path to local resource
-comment|////        if(grammarPath != null&& grammarPath.startsWith("/")){
-comment|////            grammarPath = "xmldb:exist://" + grammarPath;
-comment|////        }
-comment|////
-comment|////        if(grammarPath != null&&
-comment|////                (grammarPath.endsWith(".rng") || grammarPath.endsWith(".rnc") ||
-comment|////                grammarPath.endsWith(".onvl") || grammarPath.endsWith(".sch"))){
-comment|////            return validateJing(stream, grammarPath);
-comment|////        } else {
-comment|////            return validateParse(stream, grammarPath);
-comment|////        }
-comment|////
-comment|////    }
-comment|/**      *  Validate XML data from reader using specified grammar with Jing.      *      * @param grammarPath   User supplied path to grammar.      * @param stream XML input.      * @return Validation report containing all validation info.      */
+comment|/**      *  Validate XML data using system catalog. XSD and DTD only.       *      * @param stream XML input.      * @return Validation report containing all validation info.      */
+specifier|public
+name|ValidationReport
+name|validate
+parameter_list|(
+name|InputStream
+name|stream
+parameter_list|)
+block|{
+return|return
+name|validate
+argument_list|(
+name|stream
+argument_list|,
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**      *  Validate XML data from reader using specified grammar.      *      * @param grammarUrl   User supplied path to grammar.      * @param stream       XML input.      * @return Validation report containing all validation info.      */
+specifier|public
+name|ValidationReport
+name|validate
+parameter_list|(
+name|InputStream
+name|stream
+parameter_list|,
+name|String
+name|grammarUrl
+parameter_list|)
+block|{
+comment|// repair path to local resource
+if|if
+condition|(
+name|grammarUrl
+operator|!=
+literal|null
+operator|&&
+name|grammarUrl
+operator|.
+name|startsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+name|grammarUrl
+operator|=
+literal|"xmldb:exist://"
+operator|+
+name|grammarUrl
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|grammarUrl
+operator|!=
+literal|null
+operator|&&
+operator|(
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".rng"
+argument_list|)
+operator|||
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".rnc"
+argument_list|)
+operator|||
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".nvdl"
+argument_list|)
+operator|||
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".sch"
+argument_list|)
+operator|)
+condition|)
+block|{
+comment|// Validate with Jing
+return|return
+name|validateJing
+argument_list|(
+name|stream
+argument_list|,
+name|grammarUrl
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|// Validate with Xerces
+return|return
+name|validateParse
+argument_list|(
+name|stream
+argument_list|,
+name|grammarUrl
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**      *  Validate XML data from reader using specified grammar with Jing.      *      * @param stream       XML input document.      * @param grammarUrl   User supplied path to grammar.      * @return Validation report containing all validation info.      */
 specifier|public
 name|ValidationReport
 name|validateJing
 parameter_list|(
 name|InputStream
-name|is
+name|stream
 parameter_list|,
 name|String
 name|grammarUrl
@@ -592,7 +649,7 @@ argument_list|(
 operator|new
 name|InputSource
 argument_list|(
-name|is
+name|stream
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -675,7 +732,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      *  Validate XML data from reader using specified grammar.      *      * @param grammarPath   User supplied path to grammar.      * @param stream XML input.      * @return Validation report containing all validation info.      */
+comment|/**      *  Validate XML data from reader using specified grammar.      *      * @param grammarUrl   User supplied path to grammar.      * @param stream XML input.      * @return Validation report containing all validation info.      */
 specifier|public
 name|ValidationReport
 name|validateParse
@@ -684,7 +741,7 @@ name|InputStream
 name|stream
 parameter_list|,
 name|String
-name|grammarPath
+name|grammarUrl
 parameter_list|)
 block|{
 name|logger
@@ -722,7 +779,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|grammarPath
+name|grammarUrl
 operator|==
 literal|null
 condition|)
@@ -749,7 +806,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|grammarPath
+name|grammarUrl
 operator|.
 name|endsWith
 argument_list|(
@@ -764,7 +821,7 @@ name|debug
 argument_list|(
 literal|"Validation using user specified catalog '"
 operator|+
-name|grammarPath
+name|grammarUrl
 operator|+
 literal|"'."
 argument_list|)
@@ -784,7 +841,7 @@ operator|new
 name|String
 index|[]
 block|{
-name|grammarPath
+name|grammarUrl
 block|}
 argument_list|)
 expr_stmt|;
@@ -802,7 +859,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|grammarPath
+name|grammarUrl
 operator|.
 name|endsWith
 argument_list|(
@@ -817,7 +874,7 @@ name|debug
 argument_list|(
 literal|"Validation using searched grammar, start from '"
 operator|+
-name|grammarPath
+name|grammarUrl
 operator|+
 literal|"'."
 argument_list|)
@@ -828,7 +885,7 @@ init|=
 operator|new
 name|SearchResourceResolver
 argument_list|(
-name|grammarPath
+name|grammarUrl
 argument_list|,
 name|brokerPool
 argument_list|)
@@ -854,7 +911,7 @@ name|debug
 argument_list|(
 literal|"Validation using specified grammar '"
 operator|+
-name|grammarPath
+name|grammarUrl
 operator|+
 literal|"'."
 argument_list|)
@@ -865,7 +922,7 @@ init|=
 operator|new
 name|AnyUriResolver
 argument_list|(
-name|grammarPath
+name|grammarUrl
 argument_list|)
 decl_stmt|;
 name|xmlReader

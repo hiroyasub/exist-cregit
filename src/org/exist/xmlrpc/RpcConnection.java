@@ -18772,12 +18772,11 @@ name|report
 init|=
 name|validator
 operator|.
-name|validateParse
+name|validate
 argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
-comment|// TODO DIZ check method
 comment|// Return validation result
 name|isValid
 operator|=

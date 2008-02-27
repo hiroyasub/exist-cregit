@@ -368,7 +368,9 @@ literal|"Validate document specified by $a. "
 operator|+
 literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
 operator|+
-literal|"The grammar files are resolved using the global catalog file(s)."
+literal|"The grammar files (DTD, XML Schema) are resolved using the global "
+operator|+
+literal|"catalog file(s)."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -380,25 +382,13 @@ literal|"Validate document specified by $a using $b. "
 operator|+
 literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
 operator|+
-literal|"$b can point to an OASIS catalog file, a grammar (xml schema only) "
+literal|"$b can point to an OASIS catalog file (.xml), "
 operator|+
-literal|"or a collection (path ends with '/')."
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|jingFunctionTxt
-init|=
-literal|"Validate document specified by $a using $b with jing. "
+literal|"a collection (path ends with '/') or a grammar document. "
 operator|+
-literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
+literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
 operator|+
-literal|"$b points to a grammar document with document name extension "
-operator|+
-literal|".dtd, xsd, .ndvl (Namespace-based Validation Dispatching Language), "
-operator|+
-literal|".rng/.rnc (RelaxNG/Compact notation) or .sch (Schematron)."
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -642,130 +632,6 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"jing"
-argument_list|,
-name|ValidationModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ValidationModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-name|jingFunctionTxt
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"jing-report"
-argument_list|,
-name|ValidationModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ValidationModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-name|jingFunctionTxt
-operator|+
-literal|" A simple report is returned."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-argument_list|)
 block|}
 decl_stmt|;
 specifier|public
@@ -804,7 +670,7 @@ name|brokerPool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see BasicFunction#eval(Sequence[], Sequence)      */
+comment|/**      * @throws org.exist.xquery.XPathException       * @see BasicFunction#eval(Sequence[], Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1017,20 +883,6 @@ throw|;
 block|}
 if|if
 condition|(
-name|isCalledAs
-argument_list|(
-literal|"validate"
-argument_list|)
-operator|||
-name|isCalledAs
-argument_list|(
-literal|"validate-report"
-argument_list|)
-condition|)
-block|{
-comment|// Perform validation using xerces SAX parsing
-if|if
-condition|(
 name|args
 operator|.
 name|length
@@ -1043,7 +895,7 @@ name|vr
 operator|=
 name|validator
 operator|.
-name|validateParse
+name|validate
 argument_list|(
 name|is
 argument_list|)
@@ -1084,79 +936,13 @@ name|vr
 operator|=
 name|validator
 operator|.
-name|validateParse
+name|validate
 argument_list|(
 name|is
 argument_list|,
 name|url
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-if|else if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"jing"
-argument_list|)
-operator|||
-name|isCalledAs
-argument_list|(
-literal|"jing-report"
-argument_list|)
-condition|)
-block|{
-comment|// Perform validation using JING
-name|String
-name|url
-init|=
-name|args
-index|[
-literal|1
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|url
-operator|.
-name|startsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-name|url
-operator|=
-literal|"xmldb:exist://"
-operator|+
-name|url
-expr_stmt|;
-block|}
-name|vr
-operator|=
-name|validator
-operator|.
-name|validateJing
-argument_list|(
-name|is
-argument_list|,
-name|url
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// This should not happen
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Validaton function not found"
-argument_list|)
-throw|;
 block|}
 block|}
 catch|catch
