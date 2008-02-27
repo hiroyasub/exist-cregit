@@ -9919,8 +9919,13 @@ operator|+
 literal|"; class: "
 operator|+
 name|clazz
-argument_list|,
+operator|+
+literal|"; message: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
