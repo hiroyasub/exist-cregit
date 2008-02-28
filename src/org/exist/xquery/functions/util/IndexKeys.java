@@ -655,18 +655,24 @@ expr_stmt|;
 else|else
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 name|indexWorker
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 operator|+
-literal|" isn't an instance of org.exist.indexing.OrderedIndexWorker. "
+literal|" isn't an instance of org.exist.indexing.OrderedIndexWorker. Start value '"
 operator|+
 name|args
 index|[
 literal|1
 index|]
 operator|+
-literal|" ignored."
+literal|"' ignored."
 argument_list|)
 expr_stmt|;
 name|Occurrences
