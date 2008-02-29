@@ -227,7 +227,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the date for a given set of parameters. $a the year of interest. $b the month of interest (1 = January, 12 = December). $c The week in the month of interest (1 = first week, 4 = last week). $d The day in the week of interest (1 = Sunday, 7 = Saturday)."
+literal|"Returns the date for a given set of parameters. $a the year of interest. $b the month of interest (1 = January, 12 = December). $c The week in the month of interest (1 = first week, 4 or 5 = last week). $d The day in the week of interest (1 = Sunday, 7 = Saturday)."
 argument_list|,
 operator|new
 name|SequenceType
@@ -408,7 +408,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
-comment|//TODO: check bounds of supplied parameters
+comment|//check bounds of supplied parameters
 if|if
 condition|(
 name|monthOfInterest
@@ -434,13 +434,13 @@ literal|1
 operator|||
 name|weekInMonth
 operator|>
-literal|4
+literal|5
 condition|)
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"The week in the month of interest must be between 1 and 4"
+literal|"The week in the month of interest must be between 1 and 5"
 argument_list|)
 throw|;
 if|if
@@ -460,6 +460,7 @@ argument_list|(
 literal|"The day in the week of interest must be between 1 and 7"
 argument_list|)
 throw|;
+comment|//create date
 name|GregorianCalendar
 name|cal
 init|=
