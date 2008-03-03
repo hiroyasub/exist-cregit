@@ -1434,7 +1434,12 @@ name|list
 return|;
 block|}
 return|return
+name|DataUtils
+operator|.
+name|toXMLObject
+argument_list|(
 name|o
+argument_list|)
 return|;
 block|}
 specifier|private

@@ -421,7 +421,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|10
+literal|50
 argument_list|)
 expr_stmt|;
 name|Date
@@ -561,7 +561,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|10
+literal|50
 argument_list|)
 expr_stmt|;
 name|Date
@@ -709,7 +709,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|10
+literal|50
 argument_list|)
 expr_stmt|;
 name|Date

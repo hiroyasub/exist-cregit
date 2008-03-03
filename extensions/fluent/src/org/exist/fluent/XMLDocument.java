@@ -295,8 +295,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|write
-argument_list|(
+name|OutputStreamWriter
+name|outputStreamWriter
+init|=
 operator|new
 name|OutputStreamWriter
 argument_list|(
@@ -306,7 +307,16 @@ name|db
 operator|.
 name|defaultCharacterEncoding
 argument_list|)
+decl_stmt|;
+name|write
+argument_list|(
+name|outputStreamWriter
 argument_list|)
+expr_stmt|;
+name|outputStreamWriter
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	 * Serialize this document to the given writer. 	 * 	 * @param writer destination writer 	 */
