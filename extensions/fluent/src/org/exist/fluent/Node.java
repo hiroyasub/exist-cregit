@@ -356,6 +356,24 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Comparable
+argument_list|<
+name|Object
+argument_list|>
+name|comparableValue
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|DatabaseException
+argument_list|(
+literal|"nodes are not comparable"
+argument_list|)
+throw|;
+block|}
 comment|/** 	 * Return whether this node represents the same node in the database as the given object. 	 */
 annotation|@
 name|Override

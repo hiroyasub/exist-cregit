@@ -427,6 +427,28 @@ name|toSequence
 argument_list|()
 return|;
 block|}
+comment|/** 	 * Return a singleton item list consisting of this item. 	 * 	 * @return an item list that contains only this item 	 */
+specifier|public
+name|ItemList
+name|toItemList
+parameter_list|()
+block|{
+return|return
+operator|new
+name|ItemList
+argument_list|(
+name|convertToSequence
+argument_list|()
+argument_list|,
+name|namespaceBindings
+operator|.
+name|extend
+argument_list|()
+argument_list|,
+name|db
+argument_list|)
+return|;
+block|}
 comment|/** 	 * @return the string value of this item if atomic, or the concatenation of its text content if a node 	 */
 specifier|public
 name|String
@@ -711,6 +733,30 @@ argument_list|(
 name|dateTimeValue
 argument_list|()
 argument_list|)
+return|;
+block|}
+comment|/** 	 * Return the comparable value of this item, if available.  The resulting object will 	 * directly compare the XQuery value without converting to a string first.  Items 	 * of different types will compare in an arbitrary but stable order.  Nodes are never 	 * comparable. 	 * 	 * @return the comparable value of this item 	 * @throws DatabaseException if this item is not comparable 	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+specifier|public
+name|Comparable
+argument_list|<
+name|Object
+argument_list|>
+name|comparableValue
+parameter_list|()
+block|{
+return|return
+operator|(
+name|Comparable
+argument_list|<
+name|Object
+argument_list|>
+operator|)
+name|item
 return|;
 block|}
 comment|/** 	 * Return the string representation of this item.  If the item is atomic, return its string 	 * value.  If it is a node, serialize it to a string. 	 *  	 * @return the string representation of this item 	 */
