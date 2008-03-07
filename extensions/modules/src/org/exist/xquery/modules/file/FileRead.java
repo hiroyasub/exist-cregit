@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: FileRead.java 7488 2008-03-07 05:27:06Z chaeron $  */
 end_comment
 
 begin_package
@@ -11,9 +11,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
+name|modules
 operator|.
-name|util
+name|file
 package|;
 end_package
 
@@ -33,7 +33,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|StringWriter
+name|InputStreamReader
 import|;
 end_import
 
@@ -43,7 +43,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStreamReader
+name|StringWriter
 import|;
 end_import
 
@@ -76,6 +76,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|UnicodeReader
 import|;
 end_import
 
@@ -196,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  *  * DEPRECATED.  Moved to the file extension module.  See file:file-read.  This class will eventually be deleted  */
+comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  *  */
 end_comment
 
 begin_class
@@ -210,7 +222,7 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|deprecated
+name|signatures
 index|[]
 init|=
 block|{
@@ -222,16 +234,16 @@ name|QName
 argument_list|(
 literal|"file-read"
 argument_list|,
-name|UtilModule
+name|FileModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|UtilModule
+name|FileModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a. DEPRECATED: Moved to the file extension module.  See file:file-read"
+literal|"Read content of file $a"
 argument_list|,
 operator|new
 name|SequenceType
@@ -271,16 +283,16 @@ name|QName
 argument_list|(
 literal|"file-read"
 argument_list|,
-name|UtilModule
+name|FileModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|UtilModule
+name|FileModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a with the encoding specified in $b. DEPRECATED: Moved to the file extension module.  See file:file-read"
+literal|"Read content of file $a with the encoding specified in $b."
 argument_list|,
 operator|new
 name|SequenceType

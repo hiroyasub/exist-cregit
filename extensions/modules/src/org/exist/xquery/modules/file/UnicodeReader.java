@@ -9,7 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|xquery
+operator|.
+name|modules
+operator|.
+name|file
 package|;
 end_package
 
