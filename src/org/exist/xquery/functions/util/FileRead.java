@@ -33,16 +33,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringWriter
 import|;
 end_import
@@ -76,6 +66,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|UnicodeReader
 import|;
 end_import
 
@@ -196,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  *  */
+comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  *  */
 end_comment
 
 begin_class
@@ -389,8 +391,8 @@ argument_list|(
 name|arg
 argument_list|)
 decl_stmt|;
-name|InputStreamReader
-name|isr
+name|UnicodeReader
+name|reader
 decl_stmt|;
 if|if
 condition|(
@@ -400,10 +402,11 @@ name|length
 operator|>
 literal|1
 condition|)
-name|isr
+block|{
+name|reader
 operator|=
 operator|new
-name|InputStreamReader
+name|UnicodeReader
 argument_list|(
 name|url
 operator|.
@@ -426,11 +429,13 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
-name|isr
+block|{
+name|reader
 operator|=
 operator|new
-name|InputStreamReader
+name|UnicodeReader
 argument_list|(
 name|url
 operator|.
@@ -438,6 +443,7 @@ name|openStream
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|sw
 operator|=
 operator|new
@@ -462,7 +468,7 @@ condition|(
 operator|(
 name|len
 operator|=
-name|isr
+name|reader
 operator|.
 name|read
 argument_list|(
@@ -485,7 +491,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-name|isr
+name|reader
 operator|.
 name|close
 argument_list|()
@@ -503,6 +509,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -514,6 +521,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 catch|catch
@@ -523,6 +531,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -534,10 +543,12 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 comment|//TODO : return an *Item* built with sw.toString()
 return|return
+operator|(
 operator|new
 name|StringValue
 argument_list|(
@@ -546,6 +557,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
