@@ -85,18 +85,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|UnicodeReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -232,7 +220,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"file-read"
+literal|"read"
 argument_list|,
 name|FileModule
 operator|.
@@ -243,7 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a"
+literal|"Read content of file. $a is a string representing a URL, eg file://etc. "
 argument_list|,
 operator|new
 name|SequenceType
@@ -281,7 +269,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"file-read"
+literal|"read"
 argument_list|,
 name|FileModule
 operator|.
@@ -292,7 +280,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a with the encoding specified in $b."
+literal|"Read content of file. $a is a string representing a URL, eg file://etc with the encoding specified in $b."
 argument_list|,
 operator|new
 name|SequenceType

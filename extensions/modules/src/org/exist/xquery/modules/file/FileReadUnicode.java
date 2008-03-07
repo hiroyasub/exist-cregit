@@ -210,7 +210,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"file-read-unicode"
+literal|"read-unicode"
 argument_list|,
 name|FileModule
 operator|.
@@ -221,7 +221,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a. Unicode BOM (Byte Order Marker) will be stripped off if found"
+literal|"Read content of file. $a is a string representing a URL, eg file://etc. Unicode BOM (Byte Order Marker) will be stripped off if found"
 argument_list|,
 operator|new
 name|SequenceType
@@ -259,7 +259,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"file-read-unicode"
+literal|"read-unicode"
 argument_list|,
 name|FileModule
 operator|.
@@ -270,7 +270,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a with the encoding specified in $b. Unicode BOM (Byte Order Marker) will be stripped off if found"
+literal|"Read content of file. $a is a string representing a URL, eg file://etc. with the encoding specified in $b. Unicode BOM (Byte Order Marker) will be stripped off if found"
 argument_list|,
 operator|new
 name|SequenceType

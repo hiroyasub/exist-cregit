@@ -387,6 +387,8 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
+literal|"DEPRECATED.  Use the file:serialize() function in the file extension module instead! "
+operator|+
 literal|"Writes the node set passed in parameter $a into a file on the file system. The "
 operator|+
 literal|"full path to the file is specified in parameter $b. $c contains a "

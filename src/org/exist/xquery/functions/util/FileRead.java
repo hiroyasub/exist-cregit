@@ -231,7 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a. DEPRECATED: Moved to the file extension module.  See file:file-read"
+literal|"Read content of file $a. DEPRECATED: Moved to the file extension module.  See file:read()"
 argument_list|,
 operator|new
 name|SequenceType
@@ -280,7 +280,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a with the encoding specified in $b. DEPRECATED: Moved to the file extension module.  See file:file-read"
+literal|"Read content of file $a with the encoding specified in $b. DEPRECATED: Moved to the file extension module.  See file:read()"
 argument_list|,
 operator|new
 name|SequenceType
