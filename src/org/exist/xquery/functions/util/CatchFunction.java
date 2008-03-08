@@ -225,7 +225,7 @@ literal|"in $b will be put inside a try-catch statement. If an exception is thro
 operator|+
 literal|"$b, the function checks the name of the exception and calls $c if it matches one of "
 operator|+
-literal|"the fully qualified Java class names specified in $a"
+literal|"the fully qualified Java class names specified in $a.  A value of \"*\" in $a will catch all java exceptions"
 argument_list|,
 operator|new
 name|SequenceType
@@ -402,6 +402,7 @@ operator|instanceof
 name|XPathException
 operator|)
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -416,6 +417,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 comment|//            context.popDocumentContext();
 name|context
 operator|.
@@ -452,9 +454,32 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|String
+name|exClassName
+init|=
+name|next
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 name|Class
 name|exClass
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|exClassName
+operator|.
+name|equals
+argument_list|(
+literal|"*"
+argument_list|)
+condition|)
+block|{
+name|exClass
+operator|=
 name|Class
 operator|.
 name|forName
@@ -464,9 +489,17 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 if|if
 condition|(
+name|exClassName
+operator|.
+name|equals
+argument_list|(
+literal|"*"
+argument_list|)
+operator|||
 name|exClass
 operator|.
 name|getName
@@ -587,13 +620,16 @@ name|e2
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e2
 throw|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -611,6 +647,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|// this type of exception is not caught: throw again
