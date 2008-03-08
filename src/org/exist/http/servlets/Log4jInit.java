@@ -514,6 +514,27 @@ argument_list|(
 literal|"log4j-init-file"
 argument_list|)
 decl_stmt|;
+name|String
+name|logdir
+init|=
+name|getInitParameter
+argument_list|(
+literal|"log4j-log-dir"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|logdir
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Use default location for exist logs if not specified in web.xml
+name|logdir
+operator|=
+literal|"WEB-INF/logs"
+expr_stmt|;
+block|}
 comment|// Get path where eXist is running
 name|String
 name|existDir
@@ -535,7 +556,7 @@ name|File
 argument_list|(
 name|existDir
 argument_list|,
-literal|"WEB-INF/logs"
+name|logdir
 argument_list|)
 decl_stmt|;
 name|logsdir
