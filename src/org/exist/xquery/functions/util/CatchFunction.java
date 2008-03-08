@@ -328,7 +328,11 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-comment|//            context.pushDocumentContext();
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 name|LocalVariable
 name|mark
 init|=
@@ -357,7 +361,11 @@ return|;
 block|}
 finally|finally
 block|{
-comment|//                context.popDocumentContext();
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
 name|context
 operator|.
 name|popLocalVariables

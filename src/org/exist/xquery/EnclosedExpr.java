@@ -280,7 +280,11 @@ argument_list|()
 expr_stmt|;
 name|Sequence
 name|result
-init|=
+decl_stmt|;
+try|try
+block|{
+name|result
+operator|=
 name|super
 operator|.
 name|eval
@@ -289,12 +293,16 @@ name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 comment|// create the output
 name|MemTreeBuilder
 name|builder

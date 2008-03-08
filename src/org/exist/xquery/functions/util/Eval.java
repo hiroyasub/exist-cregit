@@ -1724,13 +1724,6 @@ argument_list|(
 name|innerContext
 argument_list|)
 expr_stmt|;
-name|compiled
-operator|.
-name|setContext
-argument_list|(
-name|innerContext
-argument_list|)
-expr_stmt|;
 block|}
 if|if
 condition|(
