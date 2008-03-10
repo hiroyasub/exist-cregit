@@ -622,6 +622,13 @@ operator|.
 name|separatorChar
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|>=
+literal|0
+condition|)
+block|{
 name|relDir
 operator|=
 name|relPath
@@ -646,6 +653,7 @@ argument_list|,
 literal|'/'
 argument_list|)
 expr_stmt|;
+block|}
 name|builder
 operator|.
 name|startElement
