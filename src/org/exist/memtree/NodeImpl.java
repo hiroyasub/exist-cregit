@@ -223,6 +223,20 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ext
+operator|.
+name|LexicalHandler
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -2172,6 +2186,25 @@ argument_list|(
 name|handler
 argument_list|)
 expr_stmt|;
+comment|// Preserve e.g. comments
+if|if
+condition|(
+name|handler
+operator|instanceof
+name|LexicalHandler
+condition|)
+block|{
+name|streamer
+operator|.
+name|setLexicalHandler
+argument_list|(
+operator|(
+name|LexicalHandler
+operator|)
+name|handler
+argument_list|)
+expr_stmt|;
+block|}
 name|streamer
 operator|.
 name|serialize
