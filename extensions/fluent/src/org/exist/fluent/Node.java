@@ -293,6 +293,19 @@ expr_stmt|;
 comment|// node
 block|}
 block|}
+specifier|public
+name|boolean
+name|extant
+parameter_list|()
+block|{
+return|return
+operator|!
+name|staleMarker
+operator|.
+name|stale
+argument_list|()
+return|;
+block|}
 name|org
 operator|.
 name|w3c

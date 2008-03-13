@@ -18,6 +18,15 @@ name|boolean
 name|stale
 decl_stmt|;
 specifier|synchronized
+name|boolean
+name|stale
+parameter_list|()
+block|{
+return|return
+name|stale
+return|;
+block|}
+specifier|synchronized
 name|void
 name|mark
 parameter_list|()
