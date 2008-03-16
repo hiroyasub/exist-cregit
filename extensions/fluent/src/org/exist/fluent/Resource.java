@@ -85,8 +85,10 @@ operator|||
 operator|!
 name|query
 operator|.
-name|isFresh
-argument_list|()
+name|isFreshFrom
+argument_list|(
+name|this
+argument_list|)
 condition|)
 block|{
 name|query

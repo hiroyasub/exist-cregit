@@ -661,13 +661,17 @@ return|return
 name|all
 return|;
 block|}
-comment|/** 	 * Return whether this namespace map contains no bindings other than inherited 	 * ones. 	 *  	 * @return<code>true</code> if this namespace map is empty except for possible 	 * 		inherited bindings,<code>false</code> otherwise 	 */
+comment|/** 	 * Return whether this namespace map contains no bindings other than inherited 	 * ones, and inherits from the given parent. 	 *  	 * @param freshParent the fresh parent to compare against 	 * @return<code>true</code> if this namespace map is empty except for possible 	 * 		inherited bindings,<code>false</code> otherwise 	 */
 specifier|public
 name|boolean
-name|isFresh
-parameter_list|()
+name|isFreshFrom
+parameter_list|(
+name|NamespaceMap
+name|freshParent
+parameter_list|)
 block|{
 return|return
+operator|(
 name|map
 operator|==
 literal|null
@@ -676,6 +680,11 @@ name|map
 operator|.
 name|isEmpty
 argument_list|()
+operator|)
+operator|&&
+name|parent
+operator|==
+name|freshParent
 return|;
 block|}
 annotation|@
