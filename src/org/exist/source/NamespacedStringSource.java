@@ -55,13 +55,9 @@ block|{
 specifier|private
 specifier|final
 name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
 name|map
 decl_stmt|;
+comment|/** 	 * Create a new source for the given content and namespace map (string to string). 	 * The map will be taken over and modified by the source, so make a copy first if 	 * you're passing a shared one. 	 * 	 * @param content the content of the query 	 * @param namespaceMap the map of prefixes to namespace URIs 	 */
 specifier|public
 name|NamespacedStringSource
 parameter_list|(
@@ -69,11 +65,6 @@ name|String
 name|content
 parameter_list|,
 name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
 name|namespaceMap
 parameter_list|)
 block|{
@@ -139,6 +130,9 @@ return|return
 operator|new
 name|StringReader
 argument_list|(
+operator|(
+name|String
+operator|)
 name|map
 operator|.
 name|get
@@ -156,6 +150,9 @@ throws|throws
 name|IOException
 block|{
 return|return
+operator|(
+name|String
+operator|)
 name|map
 operator|.
 name|get
