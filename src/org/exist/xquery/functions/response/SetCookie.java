@@ -689,6 +689,20 @@ decl_stmt|;
 name|Sequence
 name|ageSeq
 init|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+decl_stmt|;
+if|if
+condition|(
+name|getArgumentCount
+argument_list|()
+operator|>
+literal|2
+condition|)
+block|{
+name|ageSeq
+operator|=
 name|getArgument
 argument_list|(
 literal|2
@@ -700,7 +714,8 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 comment|//set response header
 if|if
 condition|(
