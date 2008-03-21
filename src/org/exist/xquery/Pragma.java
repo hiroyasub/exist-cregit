@@ -167,6 +167,15 @@ name|qname
 return|;
 block|}
 specifier|public
+name|void
+name|resetState
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
+block|{
+block|}
+specifier|public
 name|String
 name|toString
 parameter_list|()
