@@ -2300,6 +2300,27 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+name|NodeImpl
+name|node
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|nodeType
+operator|<
+literal|0
+condition|)
+block|{
+name|node
+operator|=
+operator|(
+name|NodeImpl
+operator|)
+name|getNode
+argument_list|()
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|nodeType
@@ -2313,10 +2334,21 @@ name|AttrImpl
 name|attr
 init|=
 operator|(
+name|node
+operator|==
+literal|null
+condition|?
+operator|(
 name|AttrImpl
 operator|)
 name|getNode
 argument_list|()
+else|:
+operator|(
+name|AttrImpl
+operator|)
+name|node
+operator|)
 decl_stmt|;
 name|receiver
 operator|.
@@ -2342,8 +2374,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//	    Serializer serializer = broker.getSerializer();
-comment|//	    serializer.toReceiver(this, receiver);
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public

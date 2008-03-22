@@ -79,6 +79,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -789,6 +801,15 @@ name|i
 operator|.
 name|next
 argument_list|()
+expr_stmt|;
+name|n
+operator|.
+name|setNodeType
+argument_list|(
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+argument_list|)
 expr_stmt|;
 name|result
 operator|.
