@@ -11042,6 +11042,18 @@ operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|||
+name|s
+operator|.
+name|getTest
+argument_list|()
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATTRIBUTE
 condition|)
 comment|// combines descendant-or-self::node()/attribute:*
 name|s
@@ -29602,6 +29614,18 @@ operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|||
+name|rs
+operator|.
+name|getTest
+argument_list|()
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATTRIBUTE
 condition|)
 block|{
 name|rs
@@ -37625,7 +37649,7 @@ literal|"dollar sign '$'"
 block|,
 literal|"opening curly brace '{'"
 block|,
-literal|"closing curly brace '{'"
+literal|"closing curly brace '}'"
 block|,
 literal|"COLON"
 block|,
