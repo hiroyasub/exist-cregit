@@ -129,6 +129,18 @@ name|SequenceIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a dynamic attribute constructor. The implementation differs from  * AttributeConstructor as the evaluation is not controlled by the surrounding   * element. The attribute name as well as its value are only determined at evaluation time,  * not at compile time.  *    * @author wolf  */
 end_comment
@@ -535,6 +547,13 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
+name|NodeImpl
+name|node
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
 name|int
 name|nodeNr
 init|=
@@ -547,9 +566,8 @@ argument_list|,
 name|value
 argument_list|)
 decl_stmt|;
-name|NodeImpl
 name|node
-init|=
+operator|=
 operator|(
 operator|(
 name|DocumentImpl
@@ -564,7 +582,29 @@ name|getAttribute
 argument_list|(
 name|nodeNr
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|DOMException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Error XQDY0025: element has more than one attribute '"
+operator|+
+name|qn
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|context
