@@ -1530,8 +1530,13 @@ name|nextAttr
 operator|-
 literal|1
 decl_stmt|;
+comment|// check if an attribute with the same qname exists in the parent element
 while|while
 condition|(
+name|nodeNr
+operator|>
+literal|0
+operator|&&
 name|prevAttr
 operator|>
 operator|-
