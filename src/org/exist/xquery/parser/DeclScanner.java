@@ -557,7 +557,7 @@ literal|"dollar sign '$'"
 block|,
 literal|"opening curly brace '{'"
 block|,
-literal|"closing curly brace '{'"
+literal|"closing curly brace '}'"
 block|,
 literal|"COLON"
 block|,
