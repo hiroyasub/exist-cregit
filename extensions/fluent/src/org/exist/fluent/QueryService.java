@@ -636,7 +636,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|varBindingsOverride
 parameter_list|)
@@ -722,7 +722,7 @@ name|Entry
 argument_list|<
 name|String
 argument_list|,
-name|Object
+name|?
 argument_list|>
 name|entry
 range|:

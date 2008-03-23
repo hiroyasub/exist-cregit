@@ -621,6 +621,9 @@ name|node
 range|:
 name|this
 control|)
+block|{
+try|try
+block|{
 name|docs
 operator|.
 name|add
@@ -631,6 +634,16 @@ name|document
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedOperationException
+name|e
+parameter_list|)
+block|{
+comment|// ignore, must be a non-persistent node
+block|}
+block|}
 return|return
 name|docs
 return|;
