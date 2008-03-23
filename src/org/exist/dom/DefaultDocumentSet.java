@@ -1449,6 +1449,9 @@ specifier|public
 name|void
 name|lock
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|boolean
 name|exclusive
 parameter_list|,
@@ -1537,6 +1540,13 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
+argument_list|)
+expr_stmt|;
+name|d
+operator|.
+name|setBroker
+argument_list|(
+name|broker
 argument_list|)
 expr_stmt|;
 block|}

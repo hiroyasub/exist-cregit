@@ -200,6 +200,11 @@ name|docs
 operator|.
 name|lock
 argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
 name|exclusive
 argument_list|,
 literal|false
