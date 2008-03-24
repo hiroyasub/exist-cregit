@@ -1189,6 +1189,8 @@ name|lockedDocuments
 operator|.
 name|lock
 argument_list|(
+name|broker
+argument_list|,
 literal|true
 argument_list|,
 literal|false
@@ -1253,13 +1255,6 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-name|doc
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 comment|// call the eventual triggers
 comment|// TODO -jmv separate loop on docs and not on nodes
 comment|//prepare Trigger
