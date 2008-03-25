@@ -302,6 +302,25 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * @param contentType Content Type of the response 	 */
+specifier|public
+name|void
+name|setContentType
+parameter_list|(
+name|String
+name|contentType
+parameter_list|)
+block|{
+name|response
+operator|.
+name|setHeader
+argument_list|(
+literal|"Content-Type"
+argument_list|,
+name|contentType
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|void

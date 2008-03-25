@@ -173,6 +173,15 @@ name|Locale
 name|getLocale
 parameter_list|()
 function_decl|;
+comment|/** 	 * @param contentType Content Type of the response 	 */
+specifier|public
+name|void
+name|setContentType
+parameter_list|(
+name|String
+name|contentType
+parameter_list|)
+function_decl|;
 comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|void
