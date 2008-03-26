@@ -243,7 +243,7 @@ literal|"Returns the namespace URI of the xs:QName of the context item. "
 operator|+
 literal|"If the context item is in no namespace or is neither an element nor attribute node, "
 operator|+
-literal|"returns the xs:anyURI eqvivalent to the zero-length string."
+literal|"returns the xs:anyURI equivalent to the zero-length string."
 operator|+
 literal|" Raises an error if the context item is undefined or not a node."
 argument_list|,
@@ -281,7 +281,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the namespace URI of the xs:QName value of $a"
+literal|"Returns the namespace URI of the xs:QName value of $a. "
 operator|+
 literal|"If $a is in no namespace or is neither an element nor attribute node, "
 operator|+
@@ -457,8 +457,7 @@ name|item
 init|=
 literal|null
 decl_stmt|;
-comment|// check if the node is passed as an argument or should be taken from
-comment|// the context sequence
+comment|// check if the node is passed as an argument or should be taken from the context sequence
 if|if
 condition|(
 name|getArgumentCount
@@ -478,6 +477,8 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|,
+name|contextItem
 argument_list|)
 decl_stmt|;
 if|if
@@ -520,12 +521,6 @@ name|item
 operator|=
 name|contextItem
 expr_stmt|;
-comment|//if (contextSequence == null)
-comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
-comment|//Doh !
-comment|//if(!contextSequence.isEmpty())
-comment|//	throw new XPathException(getASTNode(), "XPDY0002: Undefined context item");
-comment|//item = contextSequence.itemAt(0);
 block|}
 name|Sequence
 name|result
