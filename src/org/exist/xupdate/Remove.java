@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -188,6 +178,16 @@ operator|.
 name|dom
 operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -373,6 +373,10 @@ expr_stmt|;
 if|if
 condition|(
 name|parent
+operator|==
+literal|null
+operator|||
+name|parent
 operator|.
 name|getNodeType
 argument_list|()
@@ -382,25 +386,6 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"parent = "
-operator|+
-name|parent
-operator|.
-name|getNodeType
-argument_list|()
-operator|+
-literal|"; "
-operator|+
-name|parent
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|EXistException
