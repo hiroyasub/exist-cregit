@@ -307,11 +307,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"This version of the function returns the value of the base-uri property "
-operator|+
-literal|"from the static context. If the base-uri property is undefined, the "
-operator|+
-literal|"empty sequence is returned."
+literal|"Returns the value of the base-uri property for the context item."
 argument_list|,
 literal|null
 argument_list|,
@@ -388,9 +384,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the Base URI property from the static context. "
+literal|"Returns the value of the base-uri property from the static context. "
 operator|+
-literal|"If the Base URI property is undefined, the empty sequence is returned."
+literal|"If the base-uri property is undefined, the empty sequence is returned."
 argument_list|,
 literal|null
 argument_list|,
