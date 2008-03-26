@@ -1187,7 +1187,12 @@ specifier|private
 name|String
 name|formEncoding
 decl_stmt|;
-comment|//TODO: we may be able to remove this eventually, in favour of HttpServletRequestWrapper being setup in EXistServlet, currently used for doPost() but perhaps could be used for other Request Methods? - deliriumsky
+comment|// TODO: we may be able to remove this
+comment|// eventually, in favour of
+comment|// HttpServletRequestWrapper being setup in
+comment|// EXistServlet, currently used for doPost()
+comment|// but perhaps could be used for other
+comment|// Request Methods? - deliriumsky
 specifier|private
 name|String
 name|containerEncoding
@@ -1229,7 +1234,7 @@ operator|=
 name|useDynamicContentType
 expr_stmt|;
 block|}
-comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a binary      * resource with mime-type "application/xquery", this resource will be      * loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type "application/xquery" is requested      * then the xquery will not be executed, instead the source of the document will be returned.      * Must be enabled in descriptor.xml with the following syntax       *<xquery-app><allow-source><xquery path="/db/mycollection/myquery.xql"/></allow-source></xquery-app>      *</li>      *       *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
+comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection, 	 * a listing of the collection contents is returned. If it resolves to a 	 * binary resource with mime-type "application/xquery", this resource will 	 * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul>      *<li>_xpath or _query: if specified, the given query is executed on the      * current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      * 	 *<li>_source: if set to "yes" and a resource with mime-type 	 * "application/xquery" is requested then the xquery will not be executed, 	 * instead the source of the document will be returned. Must be enabled in 	 * descriptor.xml with the following syntax<xquery-app><allow-source><xquery 	 * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li>      *       *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
 specifier|public
 name|void
 name|doGet
@@ -1645,171 +1650,42 @@ operator|.
 name|MEDIA_TYPE
 argument_list|)
 decl_stmt|;
-comment|// Process the request
-name|DocumentImpl
-name|resource
-init|=
-literal|null
-decl_stmt|;
-name|XmldbURI
-name|pathUri
-init|=
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-name|path
-argument_list|)
-decl_stmt|;
-try|try
-block|{
-comment|// check if path leads to an XQuery resource
-name|resource
-operator|=
-name|broker
-operator|.
-name|getXMLResource
-argument_list|(
-name|pathUri
-argument_list|,
-name|Lock
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
-name|resource
+name|query
 operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-name|resource
-operator|.
-name|getResourceType
-argument_list|()
-operator|==
-name|DocumentImpl
-operator|.
-name|BINARY_FILE
-operator|&&
-name|MimeType
-operator|.
-name|XQUERY_TYPE
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
-argument_list|)
-condition|)
-block|{
-comment|// found an XQuery resource
-comment|//Should we display the source of the XQuery or execute it
-name|Descriptor
-name|descriptor
-init|=
-name|Descriptor
-operator|.
-name|getDescriptorSingleton
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|source
-operator|&&
-name|descriptor
-operator|!=
-literal|null
-condition|)
-block|{
-comment|//show the source
-comment|//check are we allowed to show the xquery source - descriptor.xml
-if|if
-condition|(
-name|descriptor
-operator|.
-name|allowSourceXQuery
-argument_list|(
-name|path
-argument_list|)
-condition|)
-block|{
-comment|//TODO: change writeResourceAs to use a serializer that will serialize xquery to syntax coloured xhtml, replace the asMimeType parameter with a method for specifying the serializer, or split the code into two methods. - deliriumsky
-comment|//Show the source of the XQuery
-name|writeResourceAs
-argument_list|(
-name|resource
-argument_list|,
-name|broker
-argument_list|,
-name|stylesheet
-argument_list|,
-name|encoding
-argument_list|,
-name|MimeType
-operator|.
-name|TEXT_TYPE
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|outputProperties
-argument_list|,
-name|response
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//we are not allowed to show the source - query not allowed in descriptor.xml
-name|response
-operator|.
-name|sendError
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_FORBIDDEN
-argument_list|,
-literal|"Permission to view XQuery source for: "
-operator|+
-name|path
-operator|+
-literal|" denied. Must be explicitly defined in descriptor.xml"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-block|}
-else|else
-block|{
-comment|//Execute the XQuery
+comment|// query parameter specified, search method does all the rest of the
+comment|// work
 try|try
 block|{
 name|String
 name|result
 init|=
-name|executeXQuery
+name|search
 argument_list|(
 name|broker
 argument_list|,
-name|resource
+name|query
 argument_list|,
+name|path
+argument_list|,
+name|howmany
+argument_list|,
+name|start
+argument_list|,
+name|outputProperties
+argument_list|,
+name|wrap
+argument_list|,
+operator|(
+name|HttpServletRequest
+operator|)
 name|request
 argument_list|,
 name|response
-argument_list|,
-name|outputProperties
 argument_list|)
 decl_stmt|;
 name|encoding
@@ -1836,6 +1712,579 @@ argument_list|)
 expr_stmt|;
 comment|//only write the response if it is not already committed,
 comment|//some xquery functions can write directly to the response
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+condition|)
+block|{
+name|writeResponse
+argument_list|(
+name|response
+argument_list|,
+name|result
+argument_list|,
+name|mimeType
+argument_list|,
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|response
+operator|.
+name|setStatus
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|mimeType
+argument_list|)
+condition|)
+block|{
+name|writeResponse
+argument_list|(
+name|response
+argument_list|,
+name|formatXPathException
+argument_list|(
+name|query
+argument_list|,
+name|path
+argument_list|,
+name|e
+argument_list|)
+argument_list|,
+name|mimeType
+argument_list|,
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|writeResponse
+argument_list|(
+name|response
+argument_list|,
+name|formatXPathExceptionHtml
+argument_list|(
+name|query
+argument_list|,
+name|path
+argument_list|,
+name|e
+argument_list|)
+argument_list|,
+name|MimeType
+operator|.
+name|HTML_TYPE
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return;
+block|}
+comment|// Process the request
+name|DocumentImpl
+name|resource
+init|=
+literal|null
+decl_stmt|;
+name|XmldbURI
+name|pathUri
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|path
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+comment|// check if path leads to an XQuery resource
+name|String
+name|xquery_mime_type
+init|=
+name|MimeType
+operator|.
+name|XQUERY_TYPE
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+name|resource
+operator|=
+name|broker
+operator|.
+name|getXMLResource
+argument_list|(
+name|pathUri
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|resource
+operator|&&
+operator|(
+operator|!
+name|xquery_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+operator|||
+comment|// not xquery mime time
+operator|(
+name|resource
+operator|.
+name|getResourceType
+argument_list|()
+operator|!=
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+operator|)
+operator|)
+condition|)
+block|{
+comment|// not
+comment|// a
+comment|// binary
+comment|// file
+comment|// return regular resource that is not an xquery
+name|writeResourceAs
+argument_list|(
+name|resource
+argument_list|,
+name|broker
+argument_list|,
+name|stylesheet
+argument_list|,
+name|encoding
+argument_list|,
+literal|null
+argument_list|,
+name|outputProperties
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
+name|resource
+operator|==
+literal|null
+condition|)
+block|{
+comment|// could be request for a Collection
+comment|// no document: check if path points to a collection
+name|Collection
+name|collection
+init|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|pathUri
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|collection
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Not allowed to read collection"
+argument_list|)
+throw|;
+comment|// return a listing of the collection contents
+name|writeResponse
+argument_list|(
+name|response
+argument_list|,
+name|printCollection
+argument_list|(
+name|broker
+argument_list|,
+name|collection
+argument_list|)
+argument_list|,
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|encoding
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|source
+condition|)
+block|{
+comment|// didn't find regular resource, or user wants source
+comment|// on a possible xquery resource that was not found
+throw|throw
+operator|new
+name|NotFoundException
+argument_list|(
+literal|"Document "
+operator|+
+name|path
+operator|+
+literal|" not found"
+argument_list|)
+throw|;
+block|}
+block|}
+name|XmldbURI
+name|servletPath
+init|=
+name|pathUri
+decl_stmt|;
+comment|// if resource is still null, work up the url path to find an
+comment|// xquery resource
+while|while
+condition|(
+literal|null
+operator|==
+name|resource
+condition|)
+block|{
+comment|// traverse up the path looking for xquery objects
+name|servletPath
+operator|=
+name|servletPath
+operator|.
+name|removeLastSegment
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|servletPath
+operator|==
+name|XmldbURI
+operator|.
+name|EMPTY_URI
+condition|)
+break|break;
+name|resource
+operator|=
+name|broker
+operator|.
+name|getXMLResource
+argument_list|(
+name|servletPath
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|resource
+operator|&&
+name|resource
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+operator|&&
+name|xquery_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+break|break;
+comment|// found a binary file with mime-type xquery
+block|}
+if|else if
+condition|(
+literal|null
+operator|!=
+name|resource
+condition|)
+block|{
+comment|// not an xquery resource. This means we have a path
+comment|// that cannot contain an xquery object even if we keep
+comment|// moving up the path, so bail out now
+throw|throw
+operator|new
+name|NotFoundException
+argument_list|(
+literal|"Document "
+operator|+
+name|path
+operator|+
+literal|" not found"
+argument_list|)
+throw|;
+block|}
+block|}
+if|if
+condition|(
+literal|null
+operator|==
+name|resource
+condition|)
+block|{
+comment|// path search failed
+throw|throw
+operator|new
+name|NotFoundException
+argument_list|(
+literal|"Document "
+operator|+
+name|path
+operator|+
+literal|" not found"
+argument_list|)
+throw|;
+block|}
+comment|// found an XQuery resource, fixup request values
+name|String
+name|pathInfo
+init|=
+name|pathUri
+operator|.
+name|trimFromBeginning
+argument_list|(
+name|servletPath
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+comment|// Should we display the source of the XQuery or execute it
+name|Descriptor
+name|descriptor
+init|=
+name|Descriptor
+operator|.
+name|getDescriptorSingleton
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|source
+condition|)
+block|{
+comment|// show the source
+comment|// check are we allowed to show the xquery source -
+comment|// descriptor.xml
+if|if
+condition|(
+operator|(
+literal|null
+operator|!=
+name|descriptor
+operator|)
+operator|&&
+name|descriptor
+operator|.
+name|allowSourceXQuery
+argument_list|(
+name|path
+argument_list|)
+condition|)
+block|{
+comment|// TODO: change writeResourceAs to use a serializer
+comment|// that will serialize xquery to syntax coloured
+comment|// xhtml, replace the asMimeType parameter with a
+comment|// method for specifying the serializer, or split
+comment|// the code into two methods. - deliriumsky
+comment|// Show the source of the XQuery
+name|writeResourceAs
+argument_list|(
+name|resource
+argument_list|,
+name|broker
+argument_list|,
+name|stylesheet
+argument_list|,
+name|encoding
+argument_list|,
+name|MimeType
+operator|.
+name|TEXT_TYPE
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|outputProperties
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// we are not allowed to show the source - query not
+comment|// allowed in descriptor.xml
+comment|// or descriptor not found, so assume source view not
+comment|// allowed
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_FORBIDDEN
+argument_list|,
+literal|"Permission to view XQuery source for: "
+operator|+
+name|path
+operator|+
+literal|" denied. Must be explicitly defined in descriptor.xml"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+block|}
+else|else
+block|{
+comment|// Execute the XQuery
+try|try
+block|{
+name|String
+name|result
+init|=
+name|executeXQuery
+argument_list|(
+name|broker
+argument_list|,
+name|resource
+argument_list|,
+operator|(
+name|HttpServletRequest
+operator|)
+name|request
+argument_list|,
+name|response
+argument_list|,
+name|outputProperties
+argument_list|,
+name|servletPath
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|pathInfo
+argument_list|)
+decl_stmt|;
+name|encoding
+operator|=
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|ENCODING
+argument_list|)
+expr_stmt|;
+name|mimeType
+operator|=
+name|outputProperties
+operator|.
+name|getProperty
+argument_list|(
+name|OutputKeys
+operator|.
+name|MEDIA_TYPE
+argument_list|)
+expr_stmt|;
+comment|// only write the response if it is not already
+comment|// committed,
+comment|// some xquery functions can write directly to the
+comment|// response
 if|if
 condition|(
 operator|!
@@ -1954,282 +2403,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-return|return;
-block|}
-block|}
-if|if
-condition|(
-name|query
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// query parameter specified
-try|try
-block|{
-name|String
-name|result
-init|=
-name|search
-argument_list|(
-name|broker
-argument_list|,
-name|query
-argument_list|,
-name|path
-argument_list|,
-name|howmany
-argument_list|,
-name|start
-argument_list|,
-name|outputProperties
-argument_list|,
-name|wrap
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|)
-decl_stmt|;
-name|encoding
-operator|=
-name|outputProperties
-operator|.
-name|getProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|ENCODING
-argument_list|)
-expr_stmt|;
-name|mimeType
-operator|=
-name|outputProperties
-operator|.
-name|getProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|MEDIA_TYPE
-argument_list|)
-expr_stmt|;
-comment|//only write the response if it is not already committed,
-comment|//some xquery functions can write directly to the response
-if|if
-condition|(
-operator|!
-name|response
-operator|.
-name|isCommitted
-argument_list|()
-condition|)
-block|{
-name|writeResponse
-argument_list|(
-name|response
-argument_list|,
-name|result
-argument_list|,
-name|mimeType
-argument_list|,
-name|encoding
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|response
-operator|.
-name|setStatus
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_BAD_REQUEST
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|MimeType
-operator|.
-name|XML_TYPE
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|mimeType
-argument_list|)
-condition|)
-block|{
-name|writeResponse
-argument_list|(
-name|response
-argument_list|,
-name|formatXPathException
-argument_list|(
-name|query
-argument_list|,
-name|path
-argument_list|,
-name|e
-argument_list|)
-argument_list|,
-name|mimeType
-argument_list|,
-name|encoding
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|writeResponse
-argument_list|(
-name|response
-argument_list|,
-name|formatXPathExceptionHtml
-argument_list|(
-name|query
-argument_list|,
-name|path
-argument_list|,
-name|e
-argument_list|)
-argument_list|,
-name|MimeType
-operator|.
-name|HTML_TYPE
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|encoding
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-else|else
-block|{
-comment|// no query parameter: try to load a document from the specified
-comment|// path
-if|if
-condition|(
-name|resource
-operator|==
-literal|null
-condition|)
-block|{
-comment|// no document: check if path points to a collection
-name|Collection
-name|collection
-init|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|pathUri
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|collection
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Not allowed to read collection"
-argument_list|)
-throw|;
-comment|// return a listing of the collection contents
-name|writeResponse
-argument_list|(
-name|response
-argument_list|,
-name|printCollection
-argument_list|(
-name|broker
-argument_list|,
-name|collection
-argument_list|)
-argument_list|,
-name|MimeType
-operator|.
-name|XML_TYPE
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|encoding
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|NotFoundException
-argument_list|(
-literal|"Document "
-operator|+
-name|path
-operator|+
-literal|" not found"
-argument_list|)
-throw|;
-block|}
-block|}
-else|else
-block|{
-comment|// document found: serialize it
-name|writeResourceAs
-argument_list|(
-name|resource
-argument_list|,
-name|broker
-argument_list|,
-name|stylesheet
-argument_list|,
-name|encoding
-argument_list|,
-literal|null
-argument_list|,
-name|outputProperties
-argument_list|,
-name|response
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 finally|finally
 block|{
@@ -2253,7 +2426,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//writes out a resource, uses asMimeType as the specified mime-type or if null uses the type of the resource
+comment|// writes out a resource, uses asMimeType as the specified mime-type or if
+comment|// null uses the type of the resource
 specifier|private
 name|void
 name|writeResourceAs
@@ -2970,6 +3144,16 @@ try|try
 block|{
 comment|// check if path leads to an XQuery resource.
 comment|// if yes, the resource is loaded and the XQuery executed.
+name|String
+name|xquery_mime_type
+init|=
+name|MimeType
+operator|.
+name|XQUERY_TYPE
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
 name|resource
 operator|=
 name|broker
@@ -2983,6 +3167,111 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+name|XmldbURI
+name|servletPath
+init|=
+name|pathUri
+decl_stmt|;
+comment|// if resource is still null, work up the url path to find an
+comment|// xquery resource
+while|while
+condition|(
+literal|null
+operator|==
+name|resource
+condition|)
+block|{
+comment|// traverse up the path looking for xquery objects
+name|servletPath
+operator|=
+name|servletPath
+operator|.
+name|removeLastSegment
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|servletPath
+operator|==
+name|XmldbURI
+operator|.
+name|EMPTY_URI
+condition|)
+break|break;
+name|resource
+operator|=
+name|broker
+operator|.
+name|getXMLResource
+argument_list|(
+name|servletPath
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|resource
+operator|&&
+name|resource
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+operator|&&
+name|xquery_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+break|break;
+comment|// found a binary file with mime-type xquery
+block|}
+if|else if
+condition|(
+literal|null
+operator|!=
+name|resource
+condition|)
+block|{
+comment|// not an xquery resource. This means we have a path
+comment|// that cannot contain an xquery object even if we keep
+comment|// moving up the path, so bail out now
+name|resource
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+name|resource
+operator|=
+literal|null
+expr_stmt|;
+break|break;
+block|}
+block|}
 if|if
 condition|(
 name|resource
@@ -3001,12 +3290,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 operator|&&
-name|MimeType
-operator|.
-name|XQUERY_TYPE
-operator|.
-name|getName
-argument_list|()
+name|xquery_mime_type
 operator|.
 name|equals
 argument_list|(
@@ -3020,7 +3304,20 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// found an XQuery resource
+comment|// found an XQuery resource, fixup request values
+name|String
+name|pathInfo
+init|=
+name|pathUri
+operator|.
+name|trimFromBeginning
+argument_list|(
+name|servletPath
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|String
@@ -3037,6 +3334,16 @@ argument_list|,
 name|response
 argument_list|,
 name|outputProperties
+argument_list|,
+name|servletPath
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|pathInfo
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|encoding
@@ -4342,7 +4649,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Creates an input source from a URL location with an optional      * known charset.      */
+comment|/** 	 * Creates an input source from a URL location with an optional known 	 * charset.      */
 specifier|private
 name|InputSource
 name|createInputSource
@@ -4416,7 +4723,7 @@ name|source
 return|;
 block|}
 block|}
-comment|/**      * Handles PUT requests. The request content is stored as a new resource at      * the specified location. If the resource already exists, it is overwritten if the      * user has write permissions.      *      * The resource type depends on the content type specified in the HTTP header.      * The content type will be looked up in the global mime table. If the corresponding      * mime type is not a know XML mime type, the resource will be stored as a binary      * resource.      *      * @param broker      * @param tempFile The temp file from which the PUT will get its content      * @param path The path to which the file should be stored      * @param request      * @param response      * @throws BadRequestException      * @throws PermissionDeniedException      */
+comment|/**      * Handles PUT requests. The request content is stored as a new resource at 	 * the specified location. If the resource already exists, it is overwritten 	 * if the user has write permissions.      * 	 * The resource type depends on the content type specified in the HTTP 	 * header. The content type will be looked up in the global mime table. If 	 * the corresponding mime type is not a know XML mime type, the resource 	 * will be stored as a binary resource.      *      * @param broker 	 * @param tempFile 	 *            The temp file from which the PUT will get its content 	 * @param path 	 *            The path to which the file should be stored      * @param request      * @param response      * @throws BadRequestException      * @throws PermissionDeniedException      */
 specifier|public
 name|void
 name|doPut
@@ -5729,9 +6036,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Pass the request, response and session objects to the XQuery      * context.      *      * @param context      * @param request      * @param response      * @throws XPathException      */
+comment|/** 	 * Pass the request, response and session objects to the XQuery context.      *      * @param context      * @param request      * @param response      * @throws XPathException      */
 specifier|private
-name|void
+name|HttpRequestWrapper
 name|declareVariables
 parameter_list|(
 name|XQueryContext
@@ -5746,7 +6053,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|RequestWrapper
+name|HttpRequestWrapper
 name|reqw
 init|=
 operator|new
@@ -5768,7 +6075,8 @@ argument_list|(
 name|response
 argument_list|)
 decl_stmt|;
-comment|//context.declareNamespace(RequestModule.PREFIX, RequestModule.NAMESPACE_URI);
+comment|// context.declareNamespace(RequestModule.PREFIX,
+comment|// RequestModule.NAMESPACE_URI);
 name|context
 operator|.
 name|declareVariable
@@ -5779,6 +6087,9 @@ name|PREFIX
 operator|+
 literal|":request"
 argument_list|,
+operator|(
+name|RequestWrapper
+operator|)
 name|reqw
 argument_list|)
 expr_stmt|;
@@ -5811,8 +6122,11 @@ name|getSession
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return
+name|reqw
+return|;
 block|}
-comment|/**      * Directly execute an XQuery stored as a      * binary document in the database.      */
+comment|/** 	 * Directly execute an XQuery stored as a binary document in the database.      */
 specifier|private
 name|String
 name|executeXQuery
@@ -5831,6 +6145,12 @@ name|response
 parameter_list|,
 name|Properties
 name|outputProperties
+parameter_list|,
+name|String
+name|servletPath
+parameter_list|,
+name|String
+name|pathInfo
 parameter_list|)
 throws|throws
 name|XPathException
@@ -5891,7 +6211,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// special header to indicate that the query is not returned from cache
+comment|// special header to indicate that the query is not returned from
+comment|// cache
 name|response
 operator|.
 name|setHeader
@@ -5974,6 +6295,9 @@ argument_list|()
 block|}
 argument_list|)
 expr_stmt|;
+name|HttpRequestWrapper
+name|reqw
+init|=
 name|declareVariables
 argument_list|(
 name|context
@@ -5981,6 +6305,20 @@ argument_list|,
 name|request
 argument_list|,
 name|response
+argument_list|)
+decl_stmt|;
+name|reqw
+operator|.
+name|setServletPath
+argument_list|(
+name|servletPath
+argument_list|)
+expr_stmt|;
+name|reqw
+operator|.
+name|setPathInfo
+argument_list|(
+name|pathInfo
 argument_list|)
 expr_stmt|;
 if|if
@@ -6899,7 +7237,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//add an attribute for the last modified date as an xs:dateTime
+comment|// add an attribute for the last modified date as an
+comment|// xs:dateTime
 try|try
 block|{
 name|DateTimeValue
