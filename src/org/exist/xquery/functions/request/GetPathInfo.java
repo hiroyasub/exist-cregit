@@ -219,9 +219,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the context path of the current request, i.e. the portion of the request URI that "
+literal|"Returns any extra path information associated with the URL the client sent when it made this request.\n"
 operator|+
-literal|"indicates the context of the request."
+literal|"For example an xquery GET or POST to /some/path/myfile.xq/extra/path will return /extra/path when myfile.xq is executed."
 argument_list|,
 literal|null
 argument_list|,
