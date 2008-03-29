@@ -414,6 +414,10 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|allowAttribs
+operator|=
+literal|false
+expr_stmt|;
 name|next
 operator|=
 name|i
