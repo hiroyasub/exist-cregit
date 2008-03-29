@@ -583,11 +583,10 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"Error XQDY0025: element has more than one attribute '"
-operator|+
-name|qname
-operator|+
-literal|"'"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
