@@ -573,6 +573,17 @@ operator|.
 name|NODE
 argument_list|)
 operator|&&
+operator|(
+name|contextSequence
+operator|==
+literal|null
+operator|||
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+operator|)
+operator|&&
 operator|!
 name|Dependency
 operator|.

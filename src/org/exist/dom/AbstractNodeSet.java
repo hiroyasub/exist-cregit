@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -133,6 +123,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|MemoryNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -174,6 +178,16 @@ operator|.
 name|dom
 operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -2105,6 +2119,17 @@ name|XPathException
 block|{
 return|return
 name|this
+return|;
+block|}
+specifier|public
+name|MemoryNodeSet
+name|toMemNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getState()      */

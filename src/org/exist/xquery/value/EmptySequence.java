@@ -216,6 +216,19 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
+specifier|public
+name|MemoryNodeSet
+name|toMemNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|MemoryNodeSet
+operator|.
+name|EMPTY
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
 specifier|public
 name|void

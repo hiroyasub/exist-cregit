@@ -17,16 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -82,6 +72,16 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -223,6 +223,14 @@ comment|/** 	 * Convert the sequence into a NodeSet. If the sequence contains it
 specifier|public
 name|NodeSet
 name|toNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
+function_decl|;
+comment|/**      * Convert the sequence into an in-memory node set. If the sequence contains      * items which are not nodes, an XPathException is thrown. For persistent      * node sets, this method will return null. Call {@link #isPersistentSet()} to check      * if the sequence is a persistent node set.       *      * @throws XPathException if the sequence contains items which are not nodes or is      * a persistent node set      */
+specifier|public
+name|MemoryNodeSet
+name|toMemNodeSet
 parameter_list|()
 throws|throws
 name|XPathException

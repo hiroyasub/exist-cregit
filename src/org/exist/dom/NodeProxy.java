@@ -211,6 +211,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|MemoryNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -378,7 +392,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Placeholder class for DOM nodes.   *   * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.   * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper   * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain   * the real node for a proxy, simply call {@link #getNode()}.   *   * All sets of type NodeSet operate on NodeProxys. A node set is a special type of   * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also   * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Placeholder class for DOM nodes.  *  * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.  * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper  * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain  * the real node for a proxy, simply call {@link #getNode()}.  *  * All sets of type NodeSet operate on NodeProxys. A node set is a special type of  * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also  * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -394,7 +408,7 @@ name|DocumentSet
 implements|,
 name|Comparable
 block|{
-comment|/*       * Special values for nodes gid :      * Chosen in order to facilitate fast arithmetic computations      */
+comment|/*      * Special values for nodes gid :      * Chosen in order to facilitate fast arithmetic computations      */
 specifier|public
 specifier|static
 specifier|final
@@ -458,14 +472,14 @@ name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
-comment|/**      * The type of this node (as defined by DOM), if known.       * @link #UNKNOWN_NODE_TYPE      */
+comment|/**      * The type of this node (as defined by DOM), if known.      * @link #UNKNOWN_NODE_TYPE      */
 specifier|private
 name|short
 name|nodeType
 init|=
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
-comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track fulltext hits throughout query processing.      *       * Matches are stored as a linked list.      */
+comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track fulltext hits throughout query processing.      *      * Matches are stored as a linked list.      */
 specifier|private
 name|Match
 name|match
@@ -733,7 +747,7 @@ operator|.
 name|PERSISTENT_NODE
 return|;
 block|}
-comment|/**      * Ordering first according to document ID; then if equal       * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
+comment|/**      * Ordering first according to document ID; then if equal      * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|compareTo
@@ -1221,7 +1235,7 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      * Sets the storage address of this node in dom.dbx.      *       * @param internalAddress The internalAddress to set      */
+comment|/**      * Sets the storage address of this node in dom.dbx.      *      * @param internalAddress The internalAddress to set      */
 specifier|public
 name|void
 name|setInternalAddress
@@ -1531,7 +1545,7 @@ name|nextMatch
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add a node to the list of context nodes for this node.      *       * NodeProxy internally stores the context nodes of the XPath context, for which       * this node has been selected during a previous processing step.      *       * Since eXist tries to process many expressions in one, single processing step,      * the context information is required to resolve predicate expressions. For      * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'],      * we have to remember the SCENE nodes for which the equality expression      * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the      * SCENE nodes become context items of the SPEECH nodes and this context      * information is preserved through all following steps.      *       * To process the predicate expression, {@link org.exist.xquery.Predicate} will take the      * context nodes returned by the filter expression and compare them to its context      * node set.      */
+comment|/**      * Add a node to the list of context nodes for this node.      *      * NodeProxy internally stores the context nodes of the XPath context, for which      * this node has been selected during a previous processing step.      *      * Since eXist tries to process many expressions in one, single processing step,      * the context information is required to resolve predicate expressions. For      * example, for an expression like //SCENE[SPEECH/SPEAKER='HAMLET'],      * we have to remember the SCENE nodes for which the equality expression      * in the predicate was true.  Thus, when evaluating the step SCENE[SPEECH], the      * SCENE nodes become context items of the SPEECH nodes and this context      * information is preserved through all following steps.      *      * To process the predicate expression, {@link org.exist.xquery.Predicate} will take the      * context nodes returned by the filter expression and compare them to its context      * node set.      */
 specifier|public
 name|void
 name|addContextNode
@@ -1657,7 +1671,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add all context nodes from the other NodeProxy to the      * context of this NodeProxy.      *       * @param other      */
+comment|/**      * Add all context nodes from the other NodeProxy to the      * context of this NodeProxy.      *      * @param other      */
 specifier|public
 name|void
 name|addContext
@@ -2808,6 +2822,17 @@ name|XPathException
 block|{
 return|return
 name|this
+return|;
+block|}
+specifier|public
+name|MemoryNodeSet
+name|toMemNodeSet
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
