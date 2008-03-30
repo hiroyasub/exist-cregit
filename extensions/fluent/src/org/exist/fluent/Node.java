@@ -1243,7 +1243,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"appends to in-memory nodes are not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
+literal|"appends to in-memory nodes are not supported"
 argument_list|)
 throw|;
 block|}
@@ -1804,7 +1804,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"replacement of in-memory nodes is not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
+literal|"replacement of in-memory nodes is not supported"
 argument_list|)
 throw|;
 block|}
@@ -1996,7 +1996,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"updates on in-memory nodes are not yet supported, but calling query().single(\"self::*\").node() on the node will implicitly materialize the result in a temporary area of the database"
+literal|"updates on in-memory nodes are not supported"
 argument_list|)
 throw|;
 block|}

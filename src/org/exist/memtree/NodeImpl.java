@@ -1236,12 +1236,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"annot compare persistent node with in-memory node"
+literal|"cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
 return|return
 name|nodeNumber
-operator|<
+operator|>
 operator|(
 operator|(
 name|NodeImpl
@@ -1281,12 +1281,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"annot compare persistent node with in-memory node"
+literal|"cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
 return|return
 name|nodeNumber
-operator|>
+operator|<
 operator|(
 operator|(
 name|NodeImpl
