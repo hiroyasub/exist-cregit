@@ -453,6 +453,10 @@ decl_stmt|;
 if|if
 condition|(
 name|next
+operator|<
+literal|0
+operator|||
+name|next
 operator|>
 name|Integer
 operator|.
@@ -477,7 +481,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Codepoint "
+literal|"err:FOCH0001: Codepoint "
 operator|+
 name|next
 operator|+
