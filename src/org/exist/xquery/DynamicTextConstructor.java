@@ -308,6 +308,11 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+comment|//The line below if necessayr to make fn-root-17 pass (but no other test AFAICT)
+comment|//let $var := text {"a text Node"} return  fn:root(text {"A text Node"})
+comment|//<expected-result compare="Text">A text Node</expected-result>
+comment|//The result of the constructed text node is reused
+comment|//TODO : how to avoid this ?
 name|builder
 operator|.
 name|startDocument

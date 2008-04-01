@@ -349,6 +349,7 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : include that tricky attribute normalization here
 name|StringValue
 name|result
 init|=
