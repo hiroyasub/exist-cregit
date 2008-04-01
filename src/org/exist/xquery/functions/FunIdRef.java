@@ -803,10 +803,21 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
-name|processInMem
-operator|=
-literal|true
-expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"FODC0001: node '"
+operator|+
+name|node
+operator|+
+literal|"' is an in-memory node"
+argument_list|)
+throw|;
+comment|//processInMem = true;
 else|else
 block|{
 name|MutableDocumentSet
