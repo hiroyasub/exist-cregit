@@ -1124,6 +1124,18 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+specifier|private
+name|boolean
+name|preserveNamespaces
+init|=
+literal|true
+decl_stmt|;
+specifier|private
+name|boolean
+name|inheritNamespaces
+init|=
+literal|true
+decl_stmt|;
 comment|// Local namespace stack
 specifier|protected
 specifier|final
@@ -1333,18 +1345,6 @@ comment|/** 	 * Should whitespace inside node constructors be stripped? 	 */
 specifier|private
 name|boolean
 name|stripWhitespace
-init|=
-literal|true
-decl_stmt|;
-specifier|private
-name|boolean
-name|preserveNamespaces
-init|=
-literal|true
-decl_stmt|;
-specifier|private
-name|boolean
-name|inheritNamespaces
 init|=
 literal|true
 decl_stmt|;
@@ -3013,6 +3013,7 @@ argument_list|(
 literal|"null argument passed to declareNamespace"
 argument_list|)
 throw|;
+comment|//Activate the namespace by removing it from the inherited namespaces
 if|if
 condition|(
 name|inheritedInScopePrefixes
@@ -3213,7 +3214,11 @@ condition|)
 return|return
 name|uri
 return|;
-comment|//TODO : test NS inheritance
+if|if
+condition|(
+name|inheritNamespaces
+condition|)
+block|{
 name|uri
 operator|=
 name|inheritedInScopeNamespaces
@@ -3241,7 +3246,7 @@ condition|)
 return|return
 name|uri
 return|;
-comment|// Check global declarations
+block|}
 return|return
 operator|(
 name|String
@@ -3292,7 +3297,11 @@ condition|)
 return|return
 name|prefix
 return|;
-comment|//TODO : test the NS inheritance
+if|if
+condition|(
+name|inheritNamespaces
+condition|)
+block|{
 name|prefix
 operator|=
 name|inheritedInScopePrefixes
@@ -3320,6 +3329,7 @@ condition|)
 return|return
 name|prefix
 return|;
+block|}
 return|return
 operator|(
 name|String
