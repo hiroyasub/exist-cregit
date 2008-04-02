@@ -400,20 +400,38 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
-name|NodeSet
-name|originalContext
-init|=
-name|contextSequence
-operator|.
-name|toNodeSet
-argument_list|()
-decl_stmt|;
-comment|// contextSequence will be overwritten
 name|boolean
 name|useCached
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|optimize
+init|=
+literal|false
+decl_stmt|;
+name|NodeSet
+name|originalContext
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+block|{
+comment|// don't try to optimize in-memory node sets!
+name|originalContext
+operator|=
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+expr_stmt|;
+comment|// contextSequence will be overwritten
 if|if
 condition|(
 name|cachedContext
@@ -436,11 +454,6 @@ argument_list|)
 expr_stmt|;
 comment|// check if all Optimizable expressions signal that they can indeed optimize
 comment|// in the current context
-name|boolean
-name|optimize
-init|=
-literal|false
-decl_stmt|;
 if|if
 condition|(
 name|useCached
@@ -504,6 +517,7 @@ operator|=
 literal|false
 expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 block|}
