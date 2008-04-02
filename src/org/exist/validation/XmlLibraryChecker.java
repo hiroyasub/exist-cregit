@@ -80,6 +80,16 @@ name|ClassVersion
 argument_list|(
 literal|"Saxon"
 argument_list|,
+literal|"9.0.0.4"
+argument_list|,
+literal|"net.sf.saxon.Version.getProductVersion()"
+argument_list|)
+block|,
+operator|new
+name|ClassVersion
+argument_list|(
+literal|"Saxon"
+argument_list|,
 literal|"9.0.0.3"
 argument_list|,
 literal|"net.sf.saxon.Version.getProductVersion()"
