@@ -803,21 +803,13 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"FODC0001: node '"
-operator|+
-name|node
-operator|+
-literal|"' is an in-memory node"
-argument_list|)
-throw|;
-comment|//processInMem = true;
+comment|//TODO : how to enforce this ?
+comment|//If $node, or the context item if the second argument is omitted,
+comment|//is a node in a tree whose root is not a document node [err:FODC0001] is raised                    processInMem = true;
+name|processInMem
+operator|=
+literal|true
+expr_stmt|;
 else|else
 block|{
 name|MutableDocumentSet
