@@ -173,16 +173,6 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-literal|"Moved to the '"
-operator|+
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-operator|+
-literal|"' namespace."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */
