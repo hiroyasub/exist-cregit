@@ -845,11 +845,26 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//TODO : enable if we have a collection-available function
-comment|//TODO : rename xmldb:collection-exists() ?
-comment|//if (context.isFODC0002Enabled()) {
-comment|//	throw new XPathException("FODC0002: can not access collection '" + uri + "'");
-comment|//}
+if|if
+condition|(
+name|context
+operator|.
+name|isFODC0002Enabled
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FODC0002: can not access collection '"
+operator|+
+name|uri
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 block|{

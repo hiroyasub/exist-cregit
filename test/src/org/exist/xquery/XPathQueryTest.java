@@ -6175,11 +6175,13 @@ expr_stmt|;
 comment|//The collection doesn't exist : let's see how the query behaves with empty sequences
 name|query
 operator|=
-literal|"let $checkDate := xs:date(adjust-date-to-timezone(current-date(), ()))"
+literal|"let $checkDate := xs:date(adjust-date-to-timezone(current-date(), ())) "
+operator|+
+literal|"let $collection := if (xmldb:collection-available(\"/db/lease\")) then collection(\"/db/lease\") else () "
 operator|+
 literal|"for $x in "
 operator|+
-literal|"collection(\"/db/lease\")//Lease/Events/Type/Event[(When/Date<=$checkDate or "
+literal|"$collection//Lease/Events/Type/Event[(When/Date<=$checkDate or "
 operator|+
 literal|"When/EstimateDate<=$checkDate) and not(Status='Complete')] "
 operator|+
