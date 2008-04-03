@@ -241,6 +241,8 @@ decl_stmt|;
 specifier|private
 name|Expression
 name|innerExpr
+init|=
+literal|null
 decl_stmt|;
 specifier|private
 name|LocationStep
@@ -521,6 +523,10 @@ name|originalContext
 operator|.
 name|getState
 argument_list|()
+expr_stmt|;
+name|cachedOptimize
+operator|=
+literal|true
 expr_stmt|;
 name|NodeSet
 name|ancestors
@@ -941,6 +947,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|innerExpr
+operator|!=
+literal|null
+condition|)
+return|return;
 name|innerExpr
 operator|=
 name|expression
