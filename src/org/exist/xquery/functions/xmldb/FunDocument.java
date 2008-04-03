@@ -722,7 +722,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid argument to fn:doc function: empty string is not allowed here."
+literal|"Invalid argument to "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":document() function: empty string is not allowed here."
 argument_list|)
 throw|;
 block|}
@@ -771,9 +777,32 @@ decl_stmt|;
 if|if
 condition|(
 name|doc
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|isFODC0002Enabled
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FODC0002: can not access '"
+operator|+
+name|nextUri
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
 block|{
 if|if
 condition|(

@@ -5073,7 +5073,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//ensure the test collection is removed and call collection-exists,
+comment|//ensure the test collection is removed and call collection-available,
 comment|//which should return false, no exception thrown
 specifier|public
 name|void
@@ -5177,7 +5177,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|//create a collection and call collection-exists, which should return true,
+comment|//create a collection and call collection-available, which should return true,
 comment|//no exception thrown
 specifier|public
 name|void
@@ -5292,7 +5292,7 @@ name|boolean
 name|expectedResult
 parameter_list|)
 block|{
-comment|//collection-exists should not throw an exception and should return expectedResult
+comment|//collection-available should not throw an exception and should return expectedResult
 name|String
 name|importXMLDB
 init|=
@@ -5301,7 +5301,7 @@ decl_stmt|;
 name|String
 name|collectionExists
 init|=
-literal|"xmldb:collection-exists('"
+literal|"xmldb:collection-available('"
 operator|+
 name|collectionPath
 operator|+
@@ -5400,7 +5400,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"Error calling xmldb:collection-exists:"
+literal|"Error calling xmldb:collection-available:"
 argument_list|)
 expr_stmt|;
 name|xe

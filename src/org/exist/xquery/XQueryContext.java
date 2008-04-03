@@ -988,6 +988,14 @@ name|XQUERY_BACKWARD_COMPATIBLE_ATTRIBUTE
 init|=
 literal|"backwardCompatible"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|XQUERY_ENABLE_FODC0002_ATTRIBUTE
+init|=
+literal|"enableFODC0002"
+decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
 specifier|static
@@ -1028,6 +1036,22 @@ name|String
 name|PROPERTY_ENABLE_QUERY_REWRITING
 init|=
 literal|"xquery.enable-query-rewriting"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_ENABLE_FODC0002
+init|=
+literal|"xquery.enable-FODC0002"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|ENABLE_FODC0002_BY_DEFAULT
+init|=
+literal|false
 decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
@@ -1463,6 +1487,12 @@ name|boolean
 name|enableOptimizer
 init|=
 literal|true
+decl_stmt|;
+specifier|private
+name|boolean
+name|enableFODC0002
+init|=
+name|ENABLE_FODC0002_BY_DEFAULT
 decl_stmt|;
 specifier|private
 name|boolean
@@ -6030,6 +6060,15 @@ operator|.
 name|backwardsCompatible
 return|;
 block|}
+specifier|public
+name|boolean
+name|isFODC0002Enabled
+parameter_list|()
+block|{
+return|return
+name|enableFODC0002
+return|;
+block|}
 comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * The DBBroker is the main database access object, providing 	 * access to all internal database functions. 	 *  	 * @return DBBroker instance 	 */
 specifier|public
 name|DBBroker
@@ -9588,6 +9627,27 @@ name|equals
 argument_list|(
 literal|"yes"
 argument_list|)
+expr_stmt|;
+name|enableFODC0002
+operator|=
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|getBroker
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_ENABLE_FODC0002
+argument_list|)
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
 expr_stmt|;
 comment|// load built-in modules
 name|Map

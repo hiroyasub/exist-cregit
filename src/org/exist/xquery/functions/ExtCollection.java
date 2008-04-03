@@ -841,9 +841,17 @@ decl_stmt|;
 if|if
 condition|(
 name|coll
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+comment|//TODO : enable if we have a collection-available function
+comment|//TODO : rename xmldb:collection-exists() ?
+comment|//if (context.isFODC0002Enabled()) {
+comment|//	throw new XPathException("FODC0002: can not access collection '" + uri + "'");
+comment|//}
+block|}
+else|else
 block|{
 if|if
 condition|(

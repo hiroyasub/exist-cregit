@@ -777,11 +777,15 @@ name|qs
 operator|.
 name|query
 argument_list|(
-literal|"doc('"
+literal|"if (doc-available('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE']"
+literal|"/messages.xml')) then doc('"
+operator|+
+name|testCollection
+operator|+
+literal|"/messages.xml')/events/event[@id = 'STORE'] else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -956,11 +960,15 @@ name|qs
 operator|.
 name|query
 argument_list|(
-literal|"doc('"
+literal|"if (doc-available('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE']/string(@collection)"
+literal|"/messages.xml')) then doc('"
+operator|+
+name|testCollection
+operator|+
+literal|"/messages.xml')/events/event[@id = 'STORE']/string(@collection) else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals

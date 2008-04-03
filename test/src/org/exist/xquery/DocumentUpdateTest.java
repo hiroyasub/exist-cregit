@@ -203,7 +203,7 @@ name|imports
 operator|+
 literal|"declare function local:get-doc($path as xs:string) {\n"
 operator|+
-literal|"    doc($path)\n"
+literal|"    if (doc-available($path)) then doc($path) else ()\n"
 operator|+
 literal|"};\n"
 operator|+
@@ -249,7 +249,7 @@ name|imports
 operator|+
 literal|"declare function local:get-doc($path as xs:string) {\n"
 operator|+
-literal|"    xmldb:document($path)\n"
+literal|"    if (doc-available($path)) then xmldb:document($path) else ()\n"
 operator|+
 literal|"};\n"
 operator|+

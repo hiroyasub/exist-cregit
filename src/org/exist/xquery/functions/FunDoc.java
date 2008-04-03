@@ -500,6 +500,31 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
+name|context
+operator|.
+name|isFODC0002Enabled
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"FODC0002: can not access '"
+operator|+
+name|path
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 comment|//			TODO: we still need a final decision about this. Also check base-uri.
 comment|//			if (result == Sequence.EMPTY_SEQUENCE)
 comment|//				throw new XPathException(getASTNode(), path + " is not an XML document");
