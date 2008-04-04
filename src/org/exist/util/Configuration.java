@@ -2589,7 +2589,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|String
-name|enableFODC0002
+name|raiseErrorOnFailedRetrieval
 init|=
 name|xquery
 operator|.
@@ -2597,7 +2597,7 @@ name|getAttribute
 argument_list|(
 name|XQueryContext
 operator|.
-name|XQUERY_ENABLE_FODC0002_ATTRIBUTE
+name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 name|config
@@ -2606,17 +2606,17 @@ name|put
 argument_list|(
 name|XQueryContext
 operator|.
-name|PROPERTY_ENABLE_FODC0002
+name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 argument_list|,
 name|Configuration
 operator|.
 name|parseBoolean
 argument_list|(
-name|enableFODC0002
+name|raiseErrorOnFailedRetrieval
 argument_list|,
 name|XQueryContext
 operator|.
-name|ENABLE_FODC0002_BY_DEFAULT
+name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_DEFAULT
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2626,7 +2626,7 @@ name|debug
 argument_list|(
 name|XQueryContext
 operator|.
-name|PROPERTY_ENABLE_FODC0002
+name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 operator|+
 literal|": "
 operator|+
@@ -2636,7 +2636,7 @@ name|get
 argument_list|(
 name|XQueryContext
 operator|.
-name|PROPERTY_ENABLE_FODC0002
+name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 argument_list|)
 argument_list|)
 expr_stmt|;

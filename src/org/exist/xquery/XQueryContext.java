@@ -992,9 +992,9 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|XQUERY_ENABLE_FODC0002_ATTRIBUTE
+name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_ATTRIBUTE
 init|=
-literal|"enableFODC0002"
+literal|"raise-error-on-failed-retrieval"
 decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
@@ -1041,15 +1041,15 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|PROPERTY_ENABLE_FODC0002
+name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 init|=
-literal|"xquery.enable-FODC0002"
+literal|"xquery.raise-error-on-failed-retrieval"
 decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
 name|boolean
-name|ENABLE_FODC0002_BY_DEFAULT
+name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_DEFAULT
 init|=
 literal|false
 decl_stmt|;
@@ -1490,9 +1490,9 @@ literal|true
 decl_stmt|;
 specifier|private
 name|boolean
-name|enableFODC0002
+name|raiseErrorOnFailedRetrieval
 init|=
-name|ENABLE_FODC0002_BY_DEFAULT
+name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_DEFAULT
 decl_stmt|;
 specifier|private
 name|boolean
@@ -6062,11 +6062,11 @@ return|;
 block|}
 specifier|public
 name|boolean
-name|isFODC0002Enabled
+name|isRaiseErrorOnFailedRetrieval
 parameter_list|()
 block|{
 return|return
-name|enableFODC0002
+name|raiseErrorOnFailedRetrieval
 return|;
 block|}
 comment|/** 	 * Get the DBBroker instance used for the current query. 	 *  	 * The DBBroker is the main database access object, providing 	 * access to all internal database functions. 	 *  	 * @return DBBroker instance 	 */
@@ -9628,7 +9628,7 @@ argument_list|(
 literal|"yes"
 argument_list|)
 expr_stmt|;
-name|enableFODC0002
+name|raiseErrorOnFailedRetrieval
 operator|=
 operator|(
 operator|(
@@ -9642,7 +9642,7 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-name|PROPERTY_ENABLE_FODC0002
+name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 argument_list|)
 operator|)
 operator|.

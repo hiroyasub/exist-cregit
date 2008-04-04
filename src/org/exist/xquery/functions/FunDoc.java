@@ -509,7 +509,7 @@ argument_list|()
 operator|&&
 name|context
 operator|.
-name|isFODC0002Enabled
+name|isRaiseErrorOnFailedRetrieval
 argument_list|()
 condition|)
 block|{

@@ -849,7 +849,7 @@ if|if
 condition|(
 name|context
 operator|.
-name|isFODC0002Enabled
+name|isRaiseErrorOnFailedRetrieval
 argument_list|()
 condition|)
 block|{
