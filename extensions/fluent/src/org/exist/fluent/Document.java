@@ -949,6 +949,12 @@ return|return
 operator|new
 name|Folder
 argument_list|(
+name|i
+operator|==
+literal|0
+condition|?
+literal|"/"
+else|:
 name|path
 operator|.
 name|substring
