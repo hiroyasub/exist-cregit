@@ -9441,7 +9441,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc(\"http://www.w3.org/RDF/\")"
+literal|"if (doc-available(\"http://www.w3.org/RDF/\")) then doc(\"http://www.w3.org/RDF/\") else ()"
 expr_stmt|;
 name|result
 operator|=
@@ -9477,7 +9477,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc(\"http://www.w3.org/RDF/dummy\")"
+literal|"if (doc-available(\"http://www.w3.org/RDF/dummy\")) then doc(\"http://www.w3.org/RDF/dummy\") else ()"
 expr_stmt|;
 name|result
 operator|=
@@ -9670,7 +9670,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc(\"file:////doesnotexist.xml\")"
+literal|"if (doc-available(\"file:////doesnotexist.xml\")) then doc(\"file:////doesnotexist.xml\") else ()"
 expr_stmt|;
 name|result
 operator|=
