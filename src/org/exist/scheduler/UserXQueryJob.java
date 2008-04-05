@@ -397,6 +397,19 @@ return|return
 name|JOB_NAME
 return|;
 block|}
+specifier|public
+name|void
+name|setName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|JOB_NAME
+operator|=
+name|name
+expr_stmt|;
+block|}
 comment|/** 	 * Returns the XQuery Resource for this Job 	 *  	 * @return The XQuery Resource for this Job 	 */
 specifier|protected
 name|String
