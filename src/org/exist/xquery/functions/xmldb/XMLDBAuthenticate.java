@@ -612,6 +612,26 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|root
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
+literal|"Unable to authenticate user: target collection "
+operator|+
+name|targetColl
+operator|+
+literal|" does not exist"
+argument_list|)
+throw|;
+if|if
+condition|(
 name|isCalledAs
 argument_list|(
 literal|"login"
