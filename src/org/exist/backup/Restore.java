@@ -685,21 +685,7 @@ argument_list|()
 condition|)
 block|{
 comment|//TODO : find a way to make a corespondance with DBRoker's named constants
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"found 'db"
-operator|+
-name|File
-operator|.
-name|separatorChar
-operator|+
-literal|"system'. It will be processed first."
-argument_list|)
-expr_stmt|;
+comment|//found 'db/system'. It will be processed first
 name|stack
 operator|.
 name|push
@@ -956,17 +942,7 @@ argument_list|(
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"restoring "
-operator|+
-name|sysId
-argument_list|)
-expr_stmt|;
+comment|//restoring sysId
 name|reader
 operator|.
 name|parse
@@ -1893,23 +1869,7 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|dialog
-operator|==
-literal|null
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Restoring "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
+comment|// Restoring name
 name|Date
 name|date_created
 init|=

@@ -1781,20 +1781,7 @@ literal|"__contents__.xml"
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Skipping "
-operator|+
-name|resources
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
+comment|//Skipping resources[i]
 continue|continue;
 block|}
 name|resource
@@ -1809,28 +1796,6 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|dialog
-operator|==
-literal|null
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"writing "
-operator|+
-name|resources
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-else|else
-block|{
 name|dialog
 operator|.
 name|setResource
@@ -1848,7 +1813,6 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
-block|}
 name|os
 operator|=
 name|output

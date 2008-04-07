@@ -130,17 +130,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"removing "
-operator|+
-name|path
-argument_list|)
-expr_stmt|;
+comment|//removing "path"
 name|file
 operator|.
 name|delete
