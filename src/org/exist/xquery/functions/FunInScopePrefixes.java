@@ -646,6 +646,7 @@ condition|)
 do|;
 block|}
 block|}
+comment|//TODO : should we get the static NS there ? The automatic XML binding normally only stands for constructed nodes
 comment|// Add xmlNS to all in-memory constructs. /ljo
 name|prefixes
 operator|.
