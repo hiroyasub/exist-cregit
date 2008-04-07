@@ -392,6 +392,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|filePath
+return|;
+block|}
 block|}
 end_class
 

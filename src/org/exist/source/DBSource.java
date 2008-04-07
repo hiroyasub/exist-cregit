@@ -515,6 +515,18 @@ name|checkedEnc
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|doc
+operator|.
+name|getDocumentURI
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

@@ -420,6 +420,27 @@ literal|null
 return|;
 block|}
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+if|if
+condition|(
+name|url
+operator|==
+literal|null
+condition|)
+return|return
+literal|"[not set]"
+return|;
+return|return
+name|url
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

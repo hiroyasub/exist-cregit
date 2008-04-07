@@ -1148,6 +1148,14 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+specifier|protected
+name|HashMap
+name|mappedModules
+init|=
+operator|new
+name|HashMap
+argument_list|()
+decl_stmt|;
 specifier|private
 name|boolean
 name|preserveNamespaces
@@ -1823,6 +1831,14 @@ name|from
 operator|.
 name|modules
 expr_stmt|;
+name|this
+operator|.
+name|mappedModules
+operator|=
+name|from
+operator|.
+name|mappedModules
+expr_stmt|;
 block|}
 specifier|protected
 name|void
@@ -2120,6 +2136,18 @@ operator|=
 name|this
 operator|.
 name|contextStack
+expr_stmt|;
+name|ctx
+operator|.
+name|mappedModules
+operator|=
+operator|new
+name|HashMap
+argument_list|(
+name|this
+operator|.
+name|mappedModules
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * Prepares the current context before xquery execution 	 */
@@ -4461,6 +4489,16 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|keepGlobals
+condition|)
+name|mappedModules
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|clearUpdateListeners
 argument_list|()
 expr_stmt|;
@@ -6997,6 +7035,27 @@ argument_list|)
 return|;
 block|}
 comment|/* ----------------- Module imports ------------------------ */
+specifier|public
+name|void
+name|mapModule
+parameter_list|(
+name|String
+name|namespace
+parameter_list|,
+name|XmldbURI
+name|uri
+parameter_list|)
+block|{
+name|mappedModules
+operator|.
+name|put
+argument_list|(
+name|namespace
+argument_list|,
+name|uri
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** 	 * Import a module and make it available in this context. The prefix and 	 * location parameters are optional. If prefix is null, the default prefix specified 	 * by the module is used. If location is null, the module will be read from the 	 * namespace URI. 	 *  	 * @param namespaceURI 	 * @param prefix 	 * @param location 	 * @throws XPathException 	 */
 specifier|public
 name|void
@@ -7052,6 +7111,33 @@ condition|)
 name|location
 operator|=
 name|namespaceURI
+expr_stmt|;
+comment|//Is the module's namespace mapped to a URL ?
+if|if
+condition|(
+name|mappedModules
+operator|.
+name|containsKey
+argument_list|(
+name|location
+argument_list|)
+condition|)
+name|location
+operator|=
+operator|(
+operator|(
+name|XmldbURI
+operator|)
+name|mappedModules
+operator|.
+name|get
+argument_list|(
+name|location
+argument_list|)
+operator|)
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
 comment|// is it a Java module?
 if|if
@@ -7379,11 +7465,15 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"source for module "
+literal|"source for module '"
 operator|+
 name|namespaceURI
 operator|+
-literal|" not found: "
+literal|"' not found at '"
+operator|+
+name|location
+operator|+
+literal|"': "
 operator|+
 name|e
 operator|.
@@ -7402,11 +7492,15 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Permission denied to access module "
+literal|"Permission denied to access module '"
 operator|+
 name|namespaceURI
 operator|+
-literal|" : "
+literal|"' at '"
+operator|+
+name|location
+operator|+
+literal|"': "
 operator|+
 name|e
 operator|.
@@ -7509,9 +7603,15 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"IO exception while loading module "
+literal|"IO exception while loading module '"
 operator|+
 name|namespaceURI
+operator|+
+literal|"' from '"
+operator|+
+name|source
+operator|+
+literal|"'"
 argument_list|,
 name|e
 argument_list|)
