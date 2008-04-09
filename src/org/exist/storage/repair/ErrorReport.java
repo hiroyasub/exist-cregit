@@ -55,6 +55,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|CHILD_COLLECTION
+init|=
+literal|4
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|ERRCODES
@@ -67,6 +75,8 @@ block|,
 literal|"ERR_NODE_HIERARCHY"
 block|,
 literal|"ERR_ACCESS"
+block|,
+literal|"ERR_CHILD_COLLECTION"
 block|}
 decl_stmt|;
 specifier|private
@@ -274,7 +284,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|": "
+literal|":\n\r"
 argument_list|)
 expr_stmt|;
 if|if
@@ -290,35 +300,37 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|collectionId
+operator|!=
+operator|-
+literal|1
+condition|)
 name|sb
 operator|.
 name|append
 argument_list|(
-literal|"\r\n"
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"Collection ID: "
+literal|"\n\rCollection ID: "
 argument_list|)
 operator|.
 name|append
 argument_list|(
 name|collectionId
 argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\r\n"
-argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|documentId
+operator|!=
+operator|-
+literal|1
+condition|)
 name|sb
 operator|.
 name|append
 argument_list|(
-literal|"Document ID: "
+literal|"\n\rDocument ID: "
 argument_list|)
 operator|.
 name|append
