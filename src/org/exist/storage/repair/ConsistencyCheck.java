@@ -1522,7 +1522,7 @@ name|ErrorReport
 argument_list|(
 name|ErrorReport
 operator|.
-name|ACCESS_FAILED
+name|RESOURCE_ACCESS_FAILED
 argument_list|,
 name|e
 operator|.
