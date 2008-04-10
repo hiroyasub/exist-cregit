@@ -11821,7 +11821,7 @@ comment|// DWES Funny in sandbox and REST it fails ; here it is OK... sometimes
 comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1691112&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestOrder_1691112
+name|testOrder_1691112
 parameter_list|()
 block|{
 name|String
@@ -14356,7 +14356,7 @@ block|}
 comment|// regression http://sourceforge.net/support/tracker.php?aid=1805609
 specifier|public
 name|void
-name|bugtestWrongAttributeCardinalityCount_1805609
+name|testWrongAttributeCardinalityCount_1805609
 parameter_list|()
 block|{
 comment|// OK
