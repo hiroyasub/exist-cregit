@@ -620,7 +620,9 @@ decl_stmt|;
 name|sysexport
 operator|.
 name|export
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 block|}
