@@ -1080,6 +1080,36 @@ parameter_list|)
 block|{
 comment|// not applicable
 block|}
+specifier|public
+name|int
+name|getState
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasChanged
+parameter_list|(
+name|int
+name|previousState
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

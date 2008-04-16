@@ -2105,8 +2105,13 @@ name|boolean
 name|canCache
 init|=
 name|contextSequence
-operator|instanceof
-name|NodeSet
+operator|!=
+literal|null
+operator|&&
+name|contextSequence
+operator|.
+name|isCacheable
+argument_list|()
 operator|&&
 operator|!
 name|Dependency
@@ -2161,9 +2166,6 @@ operator|=
 operator|new
 name|CachedResult
 argument_list|(
-operator|(
-name|NodeSet
-operator|)
 name|contextSequence
 argument_list|,
 name|contextItem

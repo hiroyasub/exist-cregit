@@ -1308,8 +1308,13 @@ comment|// Caches the result
 if|if
 condition|(
 name|contextSequence
-operator|instanceof
-name|NodeSet
+operator|!=
+literal|null
+operator|&&
+name|contextSequence
+operator|.
+name|isCacheable
+argument_list|()
 condition|)
 block|{
 comment|// TODO : cache *after* removing duplicates ? -pb
@@ -1318,9 +1323,6 @@ operator|=
 operator|new
 name|CachedResult
 argument_list|(
-operator|(
-name|NodeSet
-operator|)
 name|contextSequence
 argument_list|,
 name|contextItem
