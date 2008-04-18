@@ -1798,6 +1798,13 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|dialog
+operator|!=
+literal|null
+condition|)
+block|{
 name|dialog
 operator|.
 name|setResource
@@ -1815,6 +1822,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|=
 name|output
