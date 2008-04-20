@@ -100,6 +100,9 @@ specifier|public
 name|void
 name|updateErrors
 parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
 name|List
 name|errorList
 parameter_list|,

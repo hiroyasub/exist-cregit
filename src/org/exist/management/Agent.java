@@ -88,6 +88,9 @@ function_decl|;
 name|void
 name|updateErrors
 parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|,
 name|List
 name|errorList
 parameter_list|,

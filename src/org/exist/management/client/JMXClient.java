@@ -1488,7 +1488,11 @@ init|=
 operator|new
 name|ObjectName
 argument_list|(
-literal|"org.exist.management.tasks:type=ConsistencyCheckTask"
+literal|"org.exist.management."
+operator|+
+name|instance
+operator|+
+literal|".tasks:type=SanityReport"
 argument_list|)
 decl_stmt|;
 name|String
@@ -2116,7 +2120,7 @@ name|ARGUMENT_DISALLOWED
 argument_list|,
 name|SANITY_OPT
 argument_list|,
-literal|"provide a sanity check report"
+literal|"retrieve sanity check report from the db"
 argument_list|)
 block|}
 decl_stmt|;
