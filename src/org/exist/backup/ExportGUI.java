@@ -2909,6 +2909,13 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|messages
+operator|.
+name|setText
+argument_list|(
+literal|""
+argument_list|)
+expr_stmt|;
 name|displayMessage
 argument_list|(
 literal|"Checking collections ..."

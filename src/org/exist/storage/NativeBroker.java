@@ -2470,6 +2470,15 @@ name|ALL_STORAGE_FILES
 return|;
 block|}
 specifier|public
+name|int
+name|getDefaultIndexDepth
+parameter_list|()
+block|{
+return|return
+name|defaultIndexDepth
+return|;
+block|}
+specifier|public
 name|void
 name|backupToArchive
 parameter_list|(
