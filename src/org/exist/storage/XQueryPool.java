@@ -758,6 +758,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|timeoutCheckInterval
+operator|<
+literal|0
+condition|)
+return|return;
+if|if
+condition|(
 name|currentTime
 operator|-
 name|lastTimeOutCheck
