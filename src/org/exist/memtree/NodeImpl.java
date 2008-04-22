@@ -3232,6 +3232,37 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|int
+name|getState
+parameter_list|()
+block|{
+return|return
+literal|0
+return|;
+block|}
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
+name|boolean
+name|hasChanged
+parameter_list|(
+name|int
+name|previousState
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+comment|// will never change
+block|}
 block|}
 end_class
 

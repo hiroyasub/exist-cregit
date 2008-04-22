@@ -307,6 +307,24 @@ name|StoredNode
 name|newNode
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+function_decl|;
+specifier|public
+name|int
+name|getState
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|hasChanged
+parameter_list|(
+name|int
+name|previousState
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

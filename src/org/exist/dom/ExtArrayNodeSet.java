@@ -2639,6 +2639,15 @@ return|return
 name|state
 return|;
 block|}
+specifier|public
+name|boolean
+name|isCacheable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
