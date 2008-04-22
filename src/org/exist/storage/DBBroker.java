@@ -891,6 +891,15 @@ name|BTreeCallback
 name|callback
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|getCollectionsFailsafe
+parameter_list|(
+name|BTreeCallback
+name|callback
+parameter_list|)
+function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection getCollection(String name); 	 */
 comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */
 specifier|public
