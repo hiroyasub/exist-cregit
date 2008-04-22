@@ -19,9 +19,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
+name|storage
 operator|.
-name|DatabaseConfigurationException
+name|BrokerPool
 import|;
 end_import
 
@@ -31,9 +31,19 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|BrokerPool
+name|DatabaseConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -85,6 +95,22 @@ throws|throws
 name|DatabaseConfigurationException
 block|{
 comment|// just do nothing
+block|}
+specifier|public
+name|void
+name|updateErrors
+parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
+name|List
+name|errorList
+parameter_list|,
+name|long
+name|startTime
+parameter_list|)
+block|{
+comment|// nothing to do
 block|}
 block|}
 end_class
