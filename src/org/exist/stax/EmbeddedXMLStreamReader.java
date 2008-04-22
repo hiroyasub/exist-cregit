@@ -1712,6 +1712,10 @@ operator|||
 name|state
 operator|==
 name|COMMENT
+operator|||
+name|state
+operator|==
+name|CDATA
 condition|)
 block|{
 if|if
@@ -1863,6 +1867,10 @@ operator|||
 name|state
 operator|==
 name|COMMENT
+operator|||
+name|state
+operator|==
+name|CDATA
 return|;
 block|}
 specifier|public
