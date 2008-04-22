@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -96,6 +86,16 @@ operator|.
 name|dom
 operator|.
 name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -401,13 +401,19 @@ name|boolean
 name|includeSelf
 parameter_list|)
 function_decl|;
-comment|/**      * Optimized method to select attributes. Use this if the context has just one or      * two nodes. Attributes will be directly looked up in the persistent DOM store.      *        * @param qname the QName of the attribute      * @param contextId used to track context nodes when evaluating predicate       * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.       */
+comment|/**      * Optimized method to select attributes. Use this if the context has just one or      * two nodes. Attributes will be directly looked up in the persistent DOM store.      *        * @param test a node test      * @param contextId used to track context nodes when evaluating predicate       * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.       */
 specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
-name|QName
-name|qname
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+name|test
 parameter_list|,
 name|int
 name|contextId
