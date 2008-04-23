@@ -77,6 +77,18 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamReader
+import|;
+end_import
+
 begin_comment
 comment|/**  * The class<code>AnyNodeTest</code>  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
 end_comment
@@ -225,6 +237,25 @@ operator|.
 name|ATTRIBUTE_NODE
 return|;
 block|}
+block|}
+specifier|public
+name|boolean
+name|matches
+parameter_list|(
+name|XMLStreamReader
+name|reader
+parameter_list|)
+block|{
+return|return
+name|reader
+operator|.
+name|getEventType
+argument_list|()
+operator|!=
+name|XMLStreamReader
+operator|.
+name|ATTRIBUTE
+return|;
 block|}
 specifier|public
 name|void
