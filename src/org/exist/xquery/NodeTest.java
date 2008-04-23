@@ -49,6 +49,18 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamReader
+import|;
+end_import
+
 begin_comment
 comment|/**  * The interface<code>NodeTest</code>  *  */
 end_comment
@@ -89,6 +101,14 @@ name|matches
 parameter_list|(
 name|Node
 name|node
+parameter_list|)
+function_decl|;
+specifier|public
+name|boolean
+name|matches
+parameter_list|(
+name|XMLStreamReader
+name|reader
 parameter_list|)
 function_decl|;
 comment|/**      * The method<code>isWildcardTest</code>      *      * @return a<code>boolean</code> value      */
