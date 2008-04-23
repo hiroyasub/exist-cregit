@@ -150,7 +150,7 @@ specifier|static
 name|long
 name|TIMEOUT
 init|=
-literal|120000
+literal|120000L
 decl_stmt|;
 specifier|public
 specifier|final
@@ -158,7 +158,7 @@ specifier|static
 name|long
 name|TIMEOUT_CHECK_INTERVAL
 init|=
-literal|30000
+literal|30000L
 decl_stmt|;
 specifier|private
 specifier|final
@@ -760,7 +760,7 @@ if|if
 condition|(
 name|timeoutCheckInterval
 operator|<
-literal|0
+literal|0L
 condition|)
 return|return;
 if|if
