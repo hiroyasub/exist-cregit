@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -140,6 +130,16 @@ operator|.
 name|dom
 operator|.
 name|Text
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -2458,8 +2458,14 @@ parameter_list|(
 name|NodeSet
 name|candidates
 parameter_list|,
-name|QName
-name|qname
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+name|test
 parameter_list|,
 name|int
 name|contextId
@@ -2520,7 +2526,7 @@ name|candidate
 operator|.
 name|directSelectAttribute
 argument_list|(
-name|qname
+name|test
 argument_list|,
 name|contextId
 argument_list|)

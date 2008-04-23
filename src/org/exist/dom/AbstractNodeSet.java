@@ -792,7 +792,13 @@ specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
-name|QName
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
 name|qname
 parameter_list|,
 name|int
