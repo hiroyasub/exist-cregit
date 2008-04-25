@@ -15581,7 +15581,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1938498
 specifier|public
 name|void
-name|testMemproc_1938498
+name|bugtestMemproc_1938498
 parameter_list|()
 block|{
 try|try
@@ -15589,19 +15589,17 @@ block|{
 name|String
 name|xmldocument
 init|=
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-operator|+
-literal|"<Root>\n\t<Child/>\n</Root>"
+literal|"<Root><Child/></Root>"
 decl_stmt|;
 name|String
 name|location
 init|=
-literal|"/db/1938498.xml"
+literal|"1938498.xml"
 decl_stmt|;
 name|String
 name|query
 init|=
-literal|"let $test := doc(\"/db/1938498.xml\")"
+literal|"let $test := doc(\"1938498.xml\")"
 operator|+
 literal|"let $inmems :=<InMem>{$test}</InMem>"
 operator|+
