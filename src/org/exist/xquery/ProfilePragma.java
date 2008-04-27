@@ -46,7 +46,7 @@ specifier|public
 specifier|final
 specifier|static
 name|QName
-name|PROFILIE_PRAGMA
+name|PROFILING_PRAGMA
 init|=
 operator|new
 name|QName

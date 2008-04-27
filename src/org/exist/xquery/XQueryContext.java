@@ -8780,7 +8780,7 @@ if|if
 condition|(
 name|ProfilePragma
 operator|.
-name|PROFILIE_PRAGMA
+name|PROFILING_PRAGMA
 operator|.
 name|equalsSimple
 argument_list|(
