@@ -161,7 +161,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"No password specified. Aborting."
+literal|"No password specified. Admin password will be empty."
 argument_list|)
 expr_stmt|;
 return|return;
