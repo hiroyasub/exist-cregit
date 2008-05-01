@@ -287,17 +287,6 @@ name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
-name|AtomicValue
-name|convertTo
-parameter_list|(
-name|int
-name|requiredType
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
 name|boolean
 name|compareTo
 parameter_list|(
@@ -733,7 +722,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot convert value of type "
+literal|"cannot convert "
 operator|+
 name|Type
 operator|.
@@ -742,6 +731,13 @@ argument_list|(
 name|getType
 argument_list|()
 argument_list|)
+operator|+
+literal|"('"
+operator|+
+name|getStringValue
+argument_list|()
+operator|+
+literal|"')"
 operator|+
 literal|" to a node set"
 argument_list|)
