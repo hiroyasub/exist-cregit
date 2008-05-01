@@ -1323,6 +1323,12 @@ block|}
 comment|// Caches the result
 if|if
 condition|(
+name|axis
+operator|!=
+name|Constants
+operator|.
+name|SELF_AXIS
+operator|&&
 name|contextSequence
 operator|!=
 literal|null
