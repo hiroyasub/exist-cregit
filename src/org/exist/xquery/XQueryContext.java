@@ -10676,6 +10676,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|listeners
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|void
