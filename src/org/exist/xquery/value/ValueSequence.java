@@ -3413,8 +3413,10 @@ name|NodeImpl
 operator|)
 name|o2
 decl_stmt|;
-if|if
-condition|(
+specifier|final
+name|int
+name|docCmp
+init|=
 name|n1
 operator|.
 name|getDocument
@@ -3427,6 +3429,10 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docCmp
 operator|==
 literal|0
 condition|)
@@ -3469,9 +3475,7 @@ return|;
 block|}
 else|else
 return|return
-name|Constants
-operator|.
-name|INFERIOR
+name|docCmp
 return|;
 block|}
 block|}
