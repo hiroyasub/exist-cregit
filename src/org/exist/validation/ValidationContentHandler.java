@@ -75,6 +75,8 @@ init|=
 literal|null
 decl_stmt|;
 comment|/**      * @see org.xml.sax.helpers.DefaultHandler#startElement(String,String,String,Attributes)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -109,6 +111,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
+comment|/**      *  Get namespace of root element. To be used for reporting.      *       * @return Namespace of root element.      */
 specifier|public
 name|String
 name|getNamespaceUri

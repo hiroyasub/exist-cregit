@@ -127,7 +127,7 @@ specifier|private
 name|XMLGrammarPool
 name|pool
 decl_stmt|;
-comment|/**  Constructs a grammar pool with a default number of buckets. */
+comment|/**      * Constructs a grammar pool with a default number of buckets.       */
 specifier|public
 name|GrammarPool
 parameter_list|()
@@ -153,7 +153,7 @@ name|XMLGrammarPoolImpl
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**  Constructs a grammar pool with a default number of buckets.           The supplied grammar pool is reused */
+comment|/**        * Constructs a grammar pool with a default number of buckets using pool.      *       * @param pool The supplied grammar pool is reused.      */
 specifier|public
 name|GrammarPool
 parameter_list|(
