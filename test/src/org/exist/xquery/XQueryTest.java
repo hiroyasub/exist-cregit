@@ -15581,7 +15581,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1938498
 specifier|public
 name|void
-name|bugtestMemproc_1938498
+name|testMemproc_1938498
 parameter_list|()
 block|{
 try|try
