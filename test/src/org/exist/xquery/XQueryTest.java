@@ -15164,7 +15164,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1884360
 specifier|public
 name|void
-name|bugtestCardinalityAttributeNamespace_1884360
+name|testCardinalityAttributeNamespace_1884360
 parameter_list|()
 block|{
 try|try
@@ -15224,7 +15224,7 @@ name|result
 operator|.
 name|getResource
 argument_list|(
-literal|1
+literal|0
 argument_list|)
 operator|.
 name|getContent
@@ -15238,7 +15238,7 @@ name|assertEquals
 argument_list|(
 name|query
 argument_list|,
-literal|"<c a=\"2\"/>"
+literal|"<c b=\"2\"/>"
 argument_list|,
 name|result
 operator|.
