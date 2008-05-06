@@ -841,6 +841,9 @@ name|NodeId
 name|getNodeId
 parameter_list|()
 block|{
+name|expand
+argument_list|()
+expr_stmt|;
 return|return
 name|document
 operator|.
