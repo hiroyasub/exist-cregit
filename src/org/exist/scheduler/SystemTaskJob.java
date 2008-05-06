@@ -114,6 +114,9 @@ comment|/** 	 * Constructor for Creating a new SystemTask Job 	 */
 specifier|public
 name|SystemTaskJob
 parameter_list|(
+name|String
+name|jobName
+parameter_list|,
 name|SystemTask
 name|task
 parameter_list|)
@@ -124,6 +127,12 @@ name|task
 operator|=
 name|task
 expr_stmt|;
+if|if
+condition|(
+name|jobName
+operator|==
+literal|null
+condition|)
 name|this
 operator|.
 name|JOB_NAME
@@ -137,6 +146,13 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+expr_stmt|;
+else|else
+name|this
+operator|.
+name|JOB_NAME
+operator|=
+name|jobName
 expr_stmt|;
 block|}
 specifier|public

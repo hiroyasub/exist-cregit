@@ -360,6 +360,9 @@ specifier|public
 name|UserXQueryJob
 parameter_list|(
 name|String
+name|jobName
+parameter_list|,
+name|String
 name|XQueryResource
 parameter_list|,
 name|User
@@ -378,6 +381,12 @@ name|user
 operator|=
 name|user
 expr_stmt|;
+if|if
+condition|(
+name|jobName
+operator|==
+literal|null
+condition|)
 name|this
 operator|.
 name|JOB_NAME
@@ -385,6 +394,13 @@ operator|+=
 literal|": "
 operator|+
 name|XQueryResource
+expr_stmt|;
+else|else
+name|this
+operator|.
+name|JOB_NAME
+operator|=
+name|jobName
 expr_stmt|;
 block|}
 specifier|public
