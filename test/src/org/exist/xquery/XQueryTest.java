@@ -10409,7 +10409,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestInstanceOf
+name|testInstanceOfDocumentNode
 parameter_list|()
 block|{
 try|try
