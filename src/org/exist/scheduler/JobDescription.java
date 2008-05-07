@@ -28,6 +28,15 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
+comment|/**      * Set the name of the job      *       * @param name The job's new name      */
+specifier|public
+name|void
+name|setName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 comment|/** 	 * Get the name group for the job 	 *  	 * @return The job's group name 	 */
 specifier|public
 name|String

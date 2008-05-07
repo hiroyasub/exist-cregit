@@ -120,6 +120,15 @@ return|;
 block|}
 specifier|public
 name|void
+name|setName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+block|}
+specifier|public
+name|void
 name|execute
 parameter_list|(
 name|BrokerPool
