@@ -2428,6 +2428,12 @@ condition|(
 name|contextSet
 operator|instanceof
 name|ExtArrayNodeSet
+operator|&&
+operator|!
+name|contextSet
+operator|.
+name|getProcessInReverseOrder
+argument_list|()
 condition|)
 block|{
 return|return
@@ -2838,6 +2844,12 @@ condition|(
 name|contextSet
 operator|instanceof
 name|ExtArrayNodeSet
+operator|&&
+operator|!
+name|contextSet
+operator|.
+name|getProcessInReverseOrder
+argument_list|()
 condition|)
 block|{
 return|return
