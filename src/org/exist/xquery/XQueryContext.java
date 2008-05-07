@@ -9718,9 +9718,7 @@ operator|=
 name|param
 operator|==
 literal|null
-condition|?
-literal|true
-else|:
+operator|||
 name|param
 operator|.
 name|equals
@@ -9728,8 +9726,9 @@ argument_list|(
 literal|"yes"
 argument_list|)
 expr_stmt|;
-name|raiseErrorOnFailedRetrieval
-operator|=
+name|Boolean
+name|option
+init|=
 operator|(
 operator|(
 name|Boolean
@@ -9745,6 +9744,14 @@ argument_list|(
 name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 argument_list|)
 operator|)
+decl_stmt|;
+name|raiseErrorOnFailedRetrieval
+operator|=
+name|option
+operator|!=
+literal|null
+operator|&&
+name|option
 operator|.
 name|booleanValue
 argument_list|()
