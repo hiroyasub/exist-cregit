@@ -15,46 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -96,6 +56,18 @@ operator|.
 name|exist
 operator|.
 name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
@@ -205,8 +177,48 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
 begin_comment
-comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote  * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *  * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *  * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *  * @author Wolfgang Meier  */
+comment|/**  * The XMLDB driver class for eXist. This driver manages two different  * internal implementations. The first communicates with a remote  * database using the XMLRPC protocol. The second has direct access  * to an embedded database instance running in the same virtual machine.  * The driver chooses an implementation depending on the XML:DB URI passed  * to getCollection().  *   * When running in embedded mode, the driver can create a new database  * instance if none is available yet. It will do so if the property  * "create-database" is set to "true" or if there is a system property  * "exist.initdb" with value "true".  *   * You may optionally provide the location of an alternate configuration  * file through the "configuration" property. The driver is also able to  * address different database instances - which may have been installed at  * different places.  *   * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -360,7 +372,7 @@ literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  In embedded mode: configure the database instance      *      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  In embedded mode: configure the database instance    *       *@exception  XMLDBException  Description of the Exception    */
 specifier|private
 name|void
 name|configure
@@ -442,7 +454,7 @@ operator|=
 name|instanceName
 expr_stmt|;
 block|}
-comment|/* @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.xmldb.api.base.Database#acceptsURI(java.lang.String)      */
+comment|/* @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.    * @see org.xmldb.api.base.Database#acceptsURI(java.lang.String)    */
 specifier|public
 name|boolean
 name|acceptsURI
@@ -534,7 +546,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)      */
+comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)    */
 specifier|public
 name|Collection
 name|getCollection
@@ -700,7 +712,7 @@ name|xmldbURI
 argument_list|)
 throw|;
 block|}
-comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
+comment|/**    * @param xmldbURI    * @param user    * @param password    * @return The collection    * @throws XMLDBException    */
 specifier|private
 name|Collection
 name|getLocalCollection
@@ -910,7 +922,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
+comment|/**    * @param xmldbURI    * @param user    * @param password    * @return The collection    * @throws XMLDBException    */
 specifier|private
 name|Collection
 name|getRemoteCollection
@@ -1217,7 +1229,7 @@ return|return
 name|current
 return|;
 block|}
-comment|/**      * @param user      * @param pool      * @return the User object corresponding to the username in<code>user</code>      * @throws XMLDBException      */
+comment|/**    * @param user    * @param pool    * @return the User object corresponding to the username in<code>user</code>    * @throws XMLDBException    */
 specifier|private
 name|User
 name|getUser
@@ -1250,13 +1262,18 @@ operator|=
 literal|"guest"
 expr_stmt|;
 block|}
-name|User
-name|u
+name|SecurityManager
+name|securityManager
 init|=
 name|pool
 operator|.
 name|getSecurityManager
 argument_list|()
+decl_stmt|;
+name|User
+name|u
+init|=
+name|securityManager
 operator|.
 name|getUser
 argument_list|(
@@ -1294,6 +1311,8 @@ operator|.
 name|validate
 argument_list|(
 name|password
+argument_list|,
+name|securityManager
 argument_list|)
 condition|)
 block|{
@@ -1317,7 +1336,7 @@ return|return
 name|u
 return|;
 block|}
-comment|/**      * RpcClients are cached by address+user. The password is transparently changed.      * @param user      * @param password      * @param url      * @throws XMLDBException      */
+comment|/**    * RpcClients are cached by address+user. The password is transparently changed.    * @param user    * @param password    * @param url    * @throws XMLDBException    */
 specifier|private
 name|XmlRpcClient
 name|getRpcClient
@@ -1397,7 +1416,7 @@ return|return
 name|client
 return|;
 block|}
-comment|/**      * Register a ShutdownListener for the current database instance. The ShutdownListener is called      * after the database has shut down. You have to register a listener before any calls to getCollection().      *       * @param listener      * @throws XMLDBException      */
+comment|/**    * Register a ShutdownListener for the current database instance. The ShutdownListener is called      * after the database has shut down. You have to register a listener before any calls to getCollection().    *     * @param listener    * @throws XMLDBException    */
 specifier|public
 name|void
 name|setDatabaseShutdownListener
