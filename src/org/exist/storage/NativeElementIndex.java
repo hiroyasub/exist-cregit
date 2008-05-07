@@ -3660,7 +3660,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Optimized lookup method which directly implements the ancestor-descendant join. The algorithm      * does directly operate on the input stream containing the potential descendant nodes. It thus needs      * less comparisons than {@link #findElementsByTagName(byte, DocumentSet, QName, NodeSelector)}.      *       * @param type either {@link ElementValue#ATTRIBUTE}, {@link ElementValue#ELEMENT}      *      or {@link ElementValue#ATTRIBUTE_ID} or {@link ElementValue#ATTRIBUTE_IDREF}       *      or {@link ElementValue#ATTRIBUTE_IDREFS}      * @param docs the set of documents to look up in the index      * @param contextSet the set of ancestor nodes for which the method will try to find descendants      * @param contextId id of the current context expression as passed by the query engine      * @param qname the QName to search for      */
+comment|/**      * Optimized lookup method which directly implements the ancestor-descendant join. The algorithm      * does directly operate on the input stream containing the potential descendant nodes. It thus needs      * less comparisons than {@link #findElementsByTagName(byte, DocumentSet, QName, NodeSelector)}.      *       * @param type either {@link ElementValue#ATTRIBUTE} or {@link ElementValue#ELEMENT}      * @param docs the set of documents to look up in the index      * @param contextSet the set of ancestor nodes for which the method will try to find descendants      * @param contextId id of the current context expression as passed by the query engine      * @param qname the QName to search for      */
 specifier|public
 name|NodeSet
 name|findDescendantsByTagName
@@ -3985,11 +3985,6 @@ name|NodeId
 name|markedId
 init|=
 literal|null
-decl_stmt|;
-name|NodeId
-name|lastMarked
-init|=
-name|ancestorId
 decl_stmt|;
 name|NodeId
 name|previousId
@@ -4457,27 +4452,6 @@ block|}
 else|else
 block|{
 comment|// mark the current position in the input stream
-if|if
-condition|(
-operator|!
-name|next
-operator|.
-name|getNodeId
-argument_list|()
-operator|.
-name|isDescendantOf
-argument_list|(
-name|lastMarked
-argument_list|)
-condition|)
-block|{
-name|lastMarked
-operator|=
-name|next
-operator|.
-name|getNodeId
-argument_list|()
-expr_stmt|;
 name|markedPosition
 operator|=
 name|prevPosition
@@ -4486,7 +4460,6 @@ name|markedId
 operator|=
 name|nodeId
 expr_stmt|;
-block|}
 block|}
 name|ancestor
 operator|=
