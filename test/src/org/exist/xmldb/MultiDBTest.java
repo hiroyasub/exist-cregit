@@ -15,21 +15,21 @@ end_package
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|io
+name|framework
 operator|.
-name|File
+name|TestCase
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|junit
 operator|.
-name|io
+name|textui
 operator|.
-name|FileOutputStream
+name|TestRunner
 import|;
 end_import
 
@@ -42,18 +42,6 @@ operator|.
 name|storage
 operator|.
 name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -78,6 +66,18 @@ operator|.
 name|util
 operator|.
 name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SingleInstanceConfiguration
 import|;
 end_import
 
@@ -157,20 +157,6 @@ name|xmldb
 operator|.
 name|api
 operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
 name|modules
 operator|.
 name|CollectionManagementService
@@ -193,21 +179,21 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|framework
+name|io
 operator|.
-name|TestCase
+name|File
 import|;
 end_import
 
 begin_import
 import|import
-name|junit
+name|java
 operator|.
-name|textui
+name|io
 operator|.
-name|TestRunner
+name|FileOutputStream
 import|;
 end_import
 
@@ -478,6 +464,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -659,6 +650,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e

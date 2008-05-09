@@ -152,7 +152,6 @@ name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//        suite.addTest(new TestSuite(MultiDBTest.class));
 name|suite
 operator|.
 name|addTestSuite
@@ -178,6 +177,19 @@ argument_list|(
 name|CollectionTest
 operator|.
 name|class
+argument_list|)
+expr_stmt|;
+name|suite
+operator|.
+name|addTest
+argument_list|(
+operator|new
+name|TestSuite
+argument_list|(
+name|MultiDBTest
+operator|.
+name|class
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//$JUnit-END$

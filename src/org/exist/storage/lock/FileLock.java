@@ -17,6 +17,42 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ReadOnlyException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -107,44 +143,8 @@ name|Properties
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ReadOnlyException
-import|;
-end_import
-
 begin_comment
-comment|/**  * Cooperative inter-process file locking, used to synchronize access to database files across  * processes, i.e. across different Java VMs or separate database instances within one  * VM. This is similar to the native file locks provided by Java NIO. However, the NIO  * implementation has various problems. Among other things, we observed that locks  * were not properly released on WinXP.  *   * FileLock implements a cooperative approach. The class attempts to write a lock file  * at the specified location. Every lock file stores 1) a magic word to make sure that the  * file was really written by eXist, 2) a heartbeat timestamp. The procedure for acquiring the  * lock in {@link #tryLock()} is as follows:  *    * If a lock file does already exist in the specified location, we check its heartbeat timestamp.  * If the timestamp is more than {@link #HEARTBEAT} milliseconds in the past, we assume  * that the lock is stale and its owner process has died. The lock file is removed and we create  * a new one.  *   * If the heartbeat indicates that the owner process is still alive, the lock  * attempt is aborted and {@link #tryLock()} returns false.   *   * Otherwise, we create a new lock file and start a daemon thread to periodically update  * the lock file's heartbeat value.   *   * @author Wolfgang Meier  *  */
+comment|/**  * Cooperative inter-process file locking, used to synchronize access to database files across  * processes, i.e. across different Java VMs or separate database instances within one  * VM. This is similar to the native file locks provided by Java NIO. However, the NIO  * implementation has various problems. Among other things, we observed that locks  * were not properly released on WinXP.  *   * FileLock implements a cooperative approach. The class attempts to write a lock file  * at the specified location. Every lock file stores 1) a magic word to make sure that the  * file was really written by eXist, 2) a heartbeat timestamp. The procedure for acquiring the  * lock in {@link #tryLock()} is as follows:  *   * If a lock file does already exist in the specified location, we check its heartbeat timestamp.  * If the timestamp is more than {@link #HEARTBEAT} milliseconds in the past, we assume  * that the lock is stale and its owner process has died. The lock file is removed and we create  * a new one.  *   * If the heartbeat indicates that the owner process is still alive, the lock  * attempt is aborted and {@link #tryLock()} returns false.  *   * Otherwise, we create a new lock file and start a daemon thread to periodically update  * the lock file's heartbeat value.  *   * @author Wolfgang Meier  *   */
 end_comment
 
 begin_class
@@ -526,7 +526,7 @@ name|FileLockHeartBeat
 argument_list|(
 name|lockFile
 operator|.
-name|getName
+name|getAbsolutePath
 argument_list|()
 argument_list|)
 argument_list|,
@@ -540,7 +540,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Release the lock. Removes the lock file and closes all       * open channels.      */
+comment|/**      * Release the lock. Removes the lock file and closes all      * open channels.      */
 specifier|public
 name|void
 name|release
@@ -621,7 +621,7 @@ return|return
 name|lockFile
 return|;
 block|}
-comment|/**      * Check if the lock has an active heartbeat, i.e. if it was updated      * during the past {@link #HEARTBEAT} milliseconds.      *      * @return true if there's an active heartbeat      */
+comment|/**      * Check if the lock has an active heartbeat, i.e. if it was updated      * during the past {@link #HEARTBEAT} milliseconds.      *       * @return true if there's an active heartbeat      */
 specifier|private
 name|boolean
 name|checkHeartbeat
