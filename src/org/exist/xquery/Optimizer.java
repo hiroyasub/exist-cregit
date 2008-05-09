@@ -273,7 +273,7 @@ name|parent
 init|=
 name|locationStep
 operator|.
-name|getParent
+name|getParentExpression
 argument_list|()
 decl_stmt|;
 if|if
