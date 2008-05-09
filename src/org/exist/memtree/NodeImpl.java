@@ -1271,11 +1271,28 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
-else|else
+if|else if
+condition|(
+name|document
+operator|.
+name|docId
+operator|<
+name|n
+operator|.
+name|document
+operator|.
+name|docId
+condition|)
 return|return
 name|Constants
 operator|.
 name|INFERIOR
+return|;
+else|else
+return|return
+name|Constants
+operator|.
+name|SUPERIOR
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getChildNodes() 	 */

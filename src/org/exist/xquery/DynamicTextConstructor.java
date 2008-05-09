@@ -146,6 +146,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
 name|contextInfo
 operator|.
 name|setParent
@@ -274,9 +281,20 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|newDocumentContext
+condition|)
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|result
 decl_stmt|;
+try|try
+block|{
 name|Sequence
 name|contentSeq
 init|=
@@ -317,6 +335,11 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+comment|//The line below if necessayr to make fn-root-17 pass (but no other test AFAICT)
+comment|//let $var := text {"a text Node"} return  fn:root(text {"A text Node"})
+comment|//<expected-result compare="Text">A text Node</expected-result>
+comment|//The result of the constructed text node is reused
+comment|//TODO : how to avoid this ?
 name|builder
 operator|.
 name|startDocument
@@ -439,6 +462,19 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|newDocumentContext
+condition|)
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
