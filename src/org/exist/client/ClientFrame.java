@@ -9709,7 +9709,7 @@ name|action
 operator|=
 name|action
 expr_stmt|;
-name|notify
+name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
@@ -9723,7 +9723,7 @@ name|terminate
 operator|=
 literal|true
 expr_stmt|;
-name|notify
+name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
@@ -9806,7 +9806,7 @@ expr_stmt|;
 name|actionFinished
 argument_list|()
 expr_stmt|;
-name|notify
+name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
