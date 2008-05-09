@@ -713,6 +713,12 @@ literal|null
 decl_stmt|;
 specifier|private
 name|String
+name|jobName
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
 name|resourceName
 init|=
 literal|null
@@ -753,6 +759,9 @@ name|String
 name|type
 parameter_list|,
 name|String
+name|jobName
+parameter_list|,
+name|String
 name|resourceName
 parameter_list|,
 name|String
@@ -786,6 +795,12 @@ operator|.
 name|JOB_TYPE_USER
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|jobName
+operator|=
+name|jobName
+expr_stmt|;
 if|if
 condition|(
 name|resourceName
@@ -860,6 +875,15 @@ parameter_list|()
 block|{
 return|return
 name|type
+return|;
+block|}
+specifier|public
+name|String
+name|getJobName
+parameter_list|()
+block|{
+return|return
+name|jobName
 return|;
 block|}
 specifier|public
@@ -3249,6 +3273,11 @@ init|=
 literal|null
 decl_stmt|;
 name|String
+name|jobName
+init|=
+literal|null
+decl_stmt|;
+name|String
 name|jobResource
 init|=
 literal|null
@@ -3324,6 +3353,17 @@ operator|.
 name|JOB_TYPE_USER
 expr_stmt|;
 comment|//default to user if unspecified
+name|jobName
+operator|=
+name|job
+operator|.
+name|getAttribute
+argument_list|(
+name|Scheduler
+operator|.
+name|JOB_NAME_ATTRIBUTE
+argument_list|)
+expr_stmt|;
 comment|//get the job resource
 name|jobResource
 operator|=
@@ -3392,6 +3432,8 @@ operator|new
 name|JobConfig
 argument_list|(
 name|jobType
+argument_list|,
+name|jobName
 argument_list|,
 name|jobResource
 argument_list|,

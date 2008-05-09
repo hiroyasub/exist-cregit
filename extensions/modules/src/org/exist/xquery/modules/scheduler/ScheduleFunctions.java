@@ -467,6 +467,8 @@ operator|=
 operator|new
 name|UserXQueryJob
 argument_list|(
+literal|null
+argument_list|,
 name|resource
 argument_list|,
 name|user
