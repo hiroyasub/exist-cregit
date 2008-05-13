@@ -715,6 +715,12 @@ operator|.
 name|separatorChar
 operator|+
 literal|"test"
+operator|+
+name|File
+operator|.
+name|separatorChar
+operator|+
+literal|"temp"
 argument_list|)
 decl_stmt|;
 if|if
