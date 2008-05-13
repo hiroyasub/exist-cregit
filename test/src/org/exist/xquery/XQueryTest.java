@@ -10825,8 +10825,10 @@ name|result
 operator|=
 name|service
 operator|.
-name|query
+name|queryResource
 argument_list|(
+literal|"cdata.xml"
+argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
@@ -10877,8 +10879,10 @@ name|result
 operator|=
 name|service
 operator|.
-name|query
+name|queryResource
 argument_list|(
+literal|"cdata.xml"
+argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
@@ -10929,8 +10933,10 @@ name|result
 operator|=
 name|service
 operator|.
-name|query
+name|queryResource
 argument_list|(
+literal|"cdata.xml"
+argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
@@ -10981,8 +10987,10 @@ name|result
 operator|=
 name|service
 operator|.
-name|query
+name|queryResource
 argument_list|(
+literal|"cdata.xml"
+argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
