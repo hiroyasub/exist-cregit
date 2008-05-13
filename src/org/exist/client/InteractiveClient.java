@@ -13625,7 +13625,7 @@ argument_list|(
 literal|"product-version"
 argument_list|)
 operator|+
-literal|", Copyright (C) 2001-2007 Wolfgang Meier"
+literal|", Copyright (C) 2001-2008 Wolfgang Meier"
 argument_list|)
 expr_stmt|;
 name|messageln
