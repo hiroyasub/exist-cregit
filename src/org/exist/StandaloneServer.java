@@ -2493,7 +2493,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"eXist version 1.0, Copyright (C) 2005 The eXist Project"
+literal|"eXist version 1.3, Copyright (C) 2001-2008 The eXist Project"
 argument_list|)
 expr_stmt|;
 name|System
