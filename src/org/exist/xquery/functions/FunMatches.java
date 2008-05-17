@@ -1521,13 +1521,6 @@ else|else
 block|{
 name|contextStep
 operator|.
-name|setPreloadNodeSets
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|contextStep
-operator|.
 name|setPreloadedData
 argument_list|(
 name|contextSequence

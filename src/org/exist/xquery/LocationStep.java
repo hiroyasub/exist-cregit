@@ -294,7 +294,7 @@ name|UNKNOWN_DEPENDENCY
 decl_stmt|;
 specifier|protected
 name|boolean
-name|preload
+name|preloadedData
 init|=
 literal|false
 decl_stmt|;
@@ -456,13 +456,13 @@ block|}
 comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return Whether or not we can optimize       */
 specifier|protected
 name|boolean
-name|preloadNodeSets
+name|hasPreloadedData
 parameter_list|()
 block|{
 comment|// TODO : log elsewhere ?
 if|if
 condition|(
-name|preload
+name|preloadedData
 condition|)
 block|{
 name|context
@@ -535,22 +535,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * The method<code>setPreloadNodeSets</code>      *      * @param doPreload a<code>boolean</code> value      */
-specifier|public
-name|void
-name|setPreloadNodeSets
-parameter_list|(
-name|boolean
-name|doPreload
-parameter_list|)
-block|{
-name|this
-operator|.
-name|preload
-operator|=
-name|doPreload
-expr_stmt|;
-block|}
 comment|/**      * The method<code>setPreloadedData</code>      *      * @param docs a<code>DocumentSet</code> value      * @param nodes a<code>NodeSet</code> value      */
 specifier|public
 name|void
@@ -563,6 +547,12 @@ name|NodeSet
 name|nodes
 parameter_list|)
 block|{
+name|this
+operator|.
+name|preloadedData
+operator|=
+literal|true
+expr_stmt|;
 name|this
 operator|.
 name|currentDocs
@@ -745,7 +735,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|preload
+name|preloadedData
 operator|=
 literal|true
 expr_stmt|;
@@ -2133,7 +2123,7 @@ comment|// do directly search for the attribute in the parent node.
 block|}
 if|if
 condition|(
-name|preloadNodeSets
+name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
@@ -2145,6 +2135,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+comment|//TODO : currentDocs can not be null here
+comment|//TODO : currentSet can not be null here
 if|if
 condition|(
 operator|!
@@ -2635,7 +2627,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|preloadNodeSets
+name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
@@ -2648,6 +2640,8 @@ name|contextSet
 argument_list|)
 decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
+comment|//TODO : currentDocs can not be null here
+comment|//TODO : currentSet can not be null here
 if|if
 condition|(
 operator|!
@@ -3005,7 +2999,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|preloadNodeSets
+name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
@@ -3018,6 +3012,8 @@ name|contextSet
 argument_list|)
 decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
+comment|//TODO : currentDocs can not be null here
+comment|//TODO : currentSet can not be null here
 if|if
 condition|(
 operator|!
@@ -3580,6 +3576,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -4082,6 +4079,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -4312,6 +4310,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -4819,7 +4818,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|preloadNodeSets
+name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
@@ -4831,6 +4830,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+comment|//TODO : currentDocs can not be null here
+comment|//TODO : currentSet can not be null here
 if|if
 condition|(
 operator|!
@@ -5238,7 +5239,7 @@ return|;
 block|}
 if|else if
 condition|(
-name|preloadNodeSets
+name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
@@ -5250,6 +5251,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+comment|//TODO : currentDocs can not be null here
+comment|//TODO : currentSet can not be null here
 if|if
 condition|(
 operator|!
@@ -5735,6 +5738,7 @@ operator|!
 name|postOptimization
 condition|)
 block|{
+comment|//TODO : preloadedData = false ?
 name|currentSet
 operator|=
 literal|null
