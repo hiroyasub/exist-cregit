@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension GetConnectionFunction  *  Copyright (C) 2008 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: GetConnectionFunction.java 4126 2006-09-18 21:20:17 +0000 (Mon, 18 Sep 2006) deliriumsky $  */
+comment|/*  *  eXist SQL Module Extension GetJNDIConnectionFunction  *  Copyright (C) 2008 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: GetConnectionFunction.java 4126 2006-09-18 21:20:17 +0000 (Mon, 18 Sep 2006) deliriumsky $  */
 end_comment
 
 begin_package
@@ -29,21 +29,31 @@ end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|sql
+name|naming
 operator|.
-name|DriverManager
+name|Context
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|naming
 operator|.
-name|Properties
+name|InitialContext
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|sql
+operator|.
+name|DataSource
 import|;
 end_import
 
@@ -127,37 +137,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|modules
-operator|.
-name|ModuleUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|value
 operator|.
 name|IntegerValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|NodeValue
 import|;
 end_import
 
@@ -204,13 +186,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction  *   * Get a connection to a SQL Database  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction  *   * Get a connection to a SQL Database via JNDI  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|GetConnectionFunction
+name|GetJNDIConnectionFunction
 extends|extends
 name|BasicFunction
 block|{
@@ -228,7 +210,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-connection"
+literal|"get-jndi-connection"
 argument_list|,
 name|SQLModule
 operator|.
@@ -239,7 +221,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JDBC Driver class name in $a and a JDBC URL in $b. Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JNDI name in $a. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
@@ -289,7 +271,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-connection"
+literal|"get-jndi-connection"
 argument_list|,
 name|SQLModule
 operator|.
@@ -300,105 +282,12 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects "
-operator|+
-literal|"a JDBC Driver class name in $a and a JDBC URL in $b."
-operator|+
-literal|" Additional JDBC properties may be set in $c in the"
-operator|+
-literal|" form<properties><property name=\"\" value=\"\"/></properties>. "
-operator|+
-literal|"Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JNDI name in $a, a username in $b and a password in $c. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ELEMENT
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|LONG
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"get-connection"
-argument_list|,
-name|SQLModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|SQLModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JDBC Driver class name in $a, a JDBC URL in $b, a username in $c and a password in $d. Returns an xs:long representing the connection handle."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
 operator|new
 name|SequenceType
 argument_list|(
@@ -450,9 +339,9 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * GetConnectionFunction Constructor 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 */
+comment|/** 	 * GetJNDIConnectionFunction Constructor 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 */
 specifier|public
-name|GetConnectionFunction
+name|GetJNDIConnectionFunction
 parameter_list|(
 name|XQueryContext
 name|context
@@ -469,7 +358,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-connection() function, it is really 	 * the main entry point of this class 	 *  	 * @param args 	 *            arguments from the get-connection() function call 	 * @param contextSequence 	 *            the Context Sequence to operate on (not used here internally!) 	 * @return A xs:long representing a handle to the connection 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * evaluate the call to the xquery get-jndi-connection() function, it is 	 * really the main entry point of this class 	 *  	 * @param args 	 *            arguments from the get-jndi-connection() function call 	 * @param contextSequence 	 *            the Context Sequence to operate on (not used here internally!) 	 * @return A xs:long representing a handle to the connection 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -486,20 +375,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// was a db driver and url specified?
+comment|// was a JNDI name specified?
 if|if
 condition|(
 name|args
 index|[
 literal|0
-index|]
-operator|.
-name|isEmpty
-argument_list|()
-operator|||
-name|args
-index|[
-literal|1
 index|]
 operator|.
 name|isEmpty
@@ -517,9 +398,9 @@ name|con
 init|=
 literal|null
 decl_stmt|;
-comment|// get the db connection details
+comment|// get the JNDI source
 name|String
-name|dbDriver
+name|jndiName
 init|=
 name|args
 index|[
@@ -529,8 +410,55 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+name|Context
+name|ctx
+init|=
+operator|new
+name|InitialContext
+argument_list|()
+decl_stmt|;
+name|DataSource
+name|ds
+init|=
+operator|(
+name|DataSource
+operator|)
+name|ctx
+operator|.
+name|lookup
+argument_list|(
+name|jndiName
+argument_list|)
+decl_stmt|;
+comment|// try and get the connection
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+block|{
+name|con
+operator|=
+name|ds
+operator|.
+name|getConnection
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|3
+condition|)
+block|{
 name|String
-name|dbURL
+name|jndiUser
 init|=
 name|args
 index|[
@@ -540,96 +468,8 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|// load the driver
-name|Class
-operator|.
-name|forName
-argument_list|(
-name|dbDriver
-argument_list|)
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|2
-condition|)
-block|{
-comment|// try and get the connection
-name|con
-operator|=
-name|DriverManager
-operator|.
-name|getConnection
-argument_list|(
-name|dbURL
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|3
-condition|)
-block|{
-comment|// try and get the connection
-name|Properties
-name|props
-init|=
-name|ModuleUtils
-operator|.
-name|parseProperties
-argument_list|(
-operator|(
-operator|(
-name|NodeValue
-operator|)
-name|args
-index|[
-literal|2
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-operator|)
-operator|.
-name|getNode
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|con
-operator|=
-name|DriverManager
-operator|.
-name|getConnection
-argument_list|(
-name|dbURL
-argument_list|,
-name|props
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|4
-condition|)
-block|{
 name|String
-name|dbUser
+name|jndiPassword
 init|=
 name|args
 index|[
@@ -639,29 +479,15 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|String
-name|dbPassword
-init|=
-name|args
-index|[
-literal|3
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-comment|// try and get the connection
 name|con
 operator|=
-name|DriverManager
+name|ds
 operator|.
 name|getConnection
 argument_list|(
-name|dbURL
+name|jndiUser
 argument_list|,
-name|dbUser
-argument_list|,
-name|dbPassword
+name|jndiPassword
 argument_list|)
 expr_stmt|;
 block|}
