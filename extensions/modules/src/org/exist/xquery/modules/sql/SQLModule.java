@@ -284,8 +284,6 @@ name|functions
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -295,8 +293,6 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -603,8 +599,6 @@ operator|++
 return|;
 block|}
 comment|/** 	 * Resets the Module Context and closes any DB connections for the 	 * XQueryContext 	 *  	 * @param xqueryContext 	 *            The XQueryContext 	 */
-annotation|@
-name|Override
 specifier|public
 name|void
 name|reset
