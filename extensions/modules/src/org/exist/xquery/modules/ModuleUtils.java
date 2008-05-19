@@ -37,6 +37,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -91,7 +101,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|DocumentImpl
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -103,7 +113,7 @@ name|exist
 operator|.
 name|memtree
 operator|.
-name|DocumentBuilderReceiver
+name|DocumentImpl
 import|;
 end_import
 
@@ -139,7 +149,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|XPathException
 import|;
 end_import
 
@@ -151,7 +161,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
+name|XQueryContext
 import|;
 end_import
 
@@ -178,6 +188,42 @@ operator|.
 name|dom
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
 import|;
 end_import
 
@@ -241,7 +287,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Takes a String of XML and Creates an XML Node from it using SAX in the context of the query 	 *  	 * @param context	The Context of the calling XQuery 	 * @param xml	The String of XML 	 *  	 * @return	The NodeValue of XML  	 * */
+comment|/** 	 * Takes a String of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param xml 	 *            The String of XML 	 *  	 * @return The NodeValue of XML 	 */
 specifier|public
 specifier|static
 name|NodeValue
@@ -265,7 +311,8 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|//try and construct xml document from input stream, we use eXist's in-memory DOM implementation
+comment|// try and construct xml document from input stream, we use eXist's
+comment|// in-memory DOM implementation
 name|SAXParserFactory
 name|factory
 init|=
@@ -281,7 +328,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//TODO : we should be able to cope with context.getBaseURI()
+comment|// TODO : we should be able to cope with context.getBaseURI()
 name|InputSource
 name|src
 init|=
@@ -353,7 +400,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-comment|//return (NodeValue)doc.getDocumentElement();
+comment|// return (NodeValue)doc.getDocumentElement();
 return|return
 operator|(
 name|NodeValue
@@ -404,7 +451,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Takes a HTML InputSource and creates an XML representation of the HTML by tidying it (uses NekoHTML) 	 *  	 * @param context	The Context of the calling XQuery 	 * @param srcHtml	The InputSource for the HTML 	 *  	 * @return	An in-memory Document representing the XML'ised HTML 	 * */
+comment|/** 	 * Takes a HTML InputSource and creates an XML representation of the HTML by 	 * tidying it (uses NekoHTML) 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param srcHtml 	 *            The InputSource for the HTML 	 *  	 * @return An in-memory Document representing the XML'ised HTML 	 */
 specifier|public
 specifier|static
 name|DocumentImpl
@@ -424,7 +471,7 @@ name|XPathException
 throws|,
 name|SAXException
 block|{
-comment|//we use eXist's in-memory DOM implementation
+comment|// we use eXist's in-memory DOM implementation
 name|org
 operator|.
 name|exist
@@ -436,7 +483,7 @@ name|memtreeDoc
 init|=
 literal|null
 decl_stmt|;
-comment|//use Neko to parse the HTML content to XML
+comment|// use Neko to parse the HTML content to XML
 name|XMLReader
 name|reader
 init|=
@@ -468,7 +515,7 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
-comment|//do not modify the case of elements and attributes
+comment|// do not modify the case of elements and attributes
 name|reader
 operator|.
 name|setProperty
@@ -594,6 +641,156 @@ argument_list|)
 expr_stmt|;
 return|return
 name|memtreeDoc
+return|;
+block|}
+comment|/** 	 * Parses a structure like<parameters><param name="a" value="1"/><param 	 * name="b" value="2"/></parameters> into a set of Properties 	 *  	 * @param parameters 	 *            The parameters Node 	 * @return a set of name value properties for representing the parameters 	 */
+specifier|public
+specifier|static
+name|Properties
+name|parseParameters
+parameter_list|(
+name|Node
+name|parameters
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|Properties
+name|properties
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|parameters
+operator|!=
+literal|null
+operator|&&
+name|parameters
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+operator|&&
+name|parameters
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"parameters"
+argument_list|)
+condition|)
+block|{
+name|NodeList
+name|params
+init|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|parameters
+operator|)
+operator|.
+name|getElementsByTagName
+argument_list|(
+literal|"param"
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|params
+operator|.
+name|getLength
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|Element
+name|param
+init|=
+operator|(
+operator|(
+name|Element
+operator|)
+name|params
+operator|.
+name|item
+argument_list|(
+name|i
+argument_list|)
+operator|)
+decl_stmt|;
+name|String
+name|name
+init|=
+name|param
+operator|.
+name|getAttribute
+argument_list|(
+literal|"name"
+argument_list|)
+decl_stmt|;
+name|String
+name|value
+init|=
+name|param
+operator|.
+name|getAttribute
+argument_list|(
+literal|"value"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|name
+operator|!=
+literal|null
+operator|&&
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+name|properties
+operator|.
+name|setProperty
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Name or value attribute missing for stylesheet parameter"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|properties
 return|;
 block|}
 block|}
