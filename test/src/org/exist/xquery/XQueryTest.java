@@ -13257,7 +13257,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740883
 specifier|public
 name|void
-name|bugtestNoErrorNeOperatorWithSequence_1740883
+name|testNoErrorNeOperatorWithSequence_1740883
 parameter_list|()
 block|{
 try|try
@@ -13311,22 +13311,34 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"one item"
+argument_list|)
+condition|)
+block|{
 name|ex
 operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-comment|// TODO add real test criterium
 name|fail
 argument_list|(
-literal|"To be removed"
-operator|+
 name|ex
 operator|.
 name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1740885
