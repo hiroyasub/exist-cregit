@@ -1770,6 +1770,13 @@ name|XINCLUDE_NS
 argument_list|)
 expr_stmt|;
 comment|//TODO: change these to putting the XmldbURI in, but we need to warn users!
+if|if
+condition|(
+name|document
+operator|!=
+literal|null
+condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1803,6 +1810,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|xpointer
