@@ -523,8 +523,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* 	 * Actual implementation of the rendering process. When a function in this 	 * module is called, this method is executed with the given inputs. @param 	 * Sequence[] args (XSL-FO, mime-type, parameters) @param Sequence 	 * contextSequence (default sequence) 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
-annotation|@
-name|Override
 specifier|public
 name|Sequence
 name|eval

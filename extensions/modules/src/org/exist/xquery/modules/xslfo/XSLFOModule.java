@@ -99,8 +99,6 @@ name|functions
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -110,8 +108,6 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
