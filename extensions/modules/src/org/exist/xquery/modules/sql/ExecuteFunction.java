@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension ExecuteFunction  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExecuteFunction.java 4126 2006-09-18 21:20:17 +0000 (Mon, 18 Sep 2006) deliriumsky $  */
+comment|/*  *  eXist SQL Module Extension ExecuteFunction  *  Copyright (C) 2006 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExecuteFunction.java 4126 2006-09-18 21:20:17 +0000 (Mon, 18 Sep 2006) deliriumsky $  */
 end_comment
 
 begin_package
@@ -74,16 +74,6 @@ operator|.
 name|sql
 operator|.
 name|Types
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
 import|;
 end_import
 
@@ -266,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension ExecuteFunction   *   * Execute a SQL statement against a SQL capable Database  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-11-21  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension ExecuteFunction  *   * Execute a SQL statement against a SQL capable Database  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.11  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -358,7 +348,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * ExecuteFunction Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+comment|/** 	 * ExecuteFunction Constructor 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 */
 specifier|public
 name|ExecuteFunction
 parameter_list|(
@@ -377,7 +367,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the XQuery execute() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the execute() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A node representing the SQL result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/** 	 * evaluate the call to the XQuery execute() function, it is really the main 	 * entry point of this class 	 *  	 * @param args 	 *            arguments from the execute() function call 	 * @param contextSequence 	 *            the Context Sequence to operate on (not used here internally!) 	 * @return A node representing the SQL result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -392,7 +382,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//was a connection and SQL statement specified?
+comment|// was a connection and SQL statement specified?
 if|if
 condition|(
 name|args
@@ -411,41 +401,18 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
-comment|//get the existing connections map from the context
-name|HashMap
-name|connections
-init|=
 operator|(
-name|HashMap
-operator|)
-name|context
-operator|.
-name|getXQueryContextVar
-argument_list|(
-name|SQLModule
-operator|.
-name|CONNECTIONS_CONTEXTVAR
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|connections
-operator|==
-literal|null
-condition|)
-return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
-comment|//get the connection
+block|}
+comment|// get the Connection
 name|long
-name|conID
+name|connectionUID
 init|=
 operator|(
 operator|(
@@ -468,18 +435,13 @@ decl_stmt|;
 name|Connection
 name|con
 init|=
-operator|(
-name|Connection
-operator|)
-name|connections
+name|SQLModule
 operator|.
-name|get
+name|retrieveConnection
 argument_list|(
-operator|new
-name|Long
-argument_list|(
-name|conID
-argument_list|)
+name|context
+argument_list|,
+name|connectionUID
 argument_list|)
 decl_stmt|;
 if|if
@@ -488,11 +450,13 @@ name|con
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|Statement
 name|stmt
 init|=
@@ -512,7 +476,7 @@ operator|new
 name|StringBuffer
 argument_list|()
 decl_stmt|;
-comment|//get the SQL statement
+comment|// get the SQL statement
 name|String
 name|sql
 init|=
@@ -524,7 +488,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|//execute the SQL statement
+comment|// execute the SQL statement
 name|stmt
 operator|=
 name|con
@@ -532,7 +496,7 @@ operator|.
 name|createStatement
 argument_list|()
 expr_stmt|;
-comment|//execute the query statement
+comment|// execute the query statement
 if|if
 condition|(
 name|stmt
@@ -544,7 +508,7 @@ argument_list|)
 condition|)
 block|{
 comment|/* SQL Query returned results */
-comment|//iterate through the result set building an XML document
+comment|// iterate through the result set building an XML document
 name|rs
 operator|=
 name|stmt
@@ -601,7 +565,7 @@ operator|+
 literal|"\">"
 argument_list|)
 expr_stmt|;
-comment|//get each tuple in the row
+comment|// get each tuple in the row
 for|for
 control|(
 name|int
@@ -636,6 +600,44 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|String
+name|colValue
+init|=
+name|rs
+operator|.
+name|getString
+argument_list|(
+name|i
+operator|+
+literal|1
+argument_list|)
+decl_stmt|;
+name|String
+name|sqlNull
+init|=
+literal|""
+decl_stmt|;
+if|if
+condition|(
+name|rs
+operator|.
+name|wasNull
+argument_list|()
+condition|)
+block|{
+comment|// Add a null indicator attributed if the value
+comment|// was SQL Null
+name|sqlNull
+operator|=
+literal|" "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":null=\"true\""
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -657,8 +659,8 @@ name|effectiveBooleanValue
 argument_list|()
 condition|)
 block|{
-comment|//use column names as the XML node
-comment|/** Spaces in column names are replaced with underscore's */
+comment|// use column names as the XML node
+comment|/** 								 * Spaces in column names are replaced with 								 * underscore's 								 */
 name|xmlBuf
 operator|.
 name|append
@@ -713,26 +715,31 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|+
-literal|"\">"
+literal|"\""
+operator|+
+name|sqlNull
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|colValue
+operator|!=
+literal|null
+condition|)
+block|{
 name|xmlBuf
 operator|.
 name|append
 argument_list|(
 name|escapeXmlText
 argument_list|(
-name|rs
-operator|.
-name|getString
-argument_list|(
-name|i
-operator|+
-literal|1
-argument_list|)
+name|colValue
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|xmlBuf
 operator|.
 name|append
@@ -757,7 +764,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//DONT use column names as the XML node
+comment|// DONT use column names as the XML node
 name|xmlBuf
 operator|.
 name|append
@@ -805,26 +812,31 @@ argument_list|)
 argument_list|)
 argument_list|)
 operator|+
-literal|"\">"
+literal|"\""
+operator|+
+name|sqlNull
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|colValue
+operator|!=
+literal|null
+condition|)
+block|{
 name|xmlBuf
 operator|.
 name|append
 argument_list|(
 name|escapeXmlText
 argument_list|(
-name|rs
-operator|.
-name|getString
-argument_list|(
-name|i
-operator|+
-literal|1
-argument_list|)
+name|colValue
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|xmlBuf
 operator|.
 name|append
@@ -945,7 +957,7 @@ literal|"\"/>"
 argument_list|)
 expr_stmt|;
 block|}
-comment|//return the XML result set
+comment|// return the XML result set
 return|return
 name|ModuleUtils
 operator|.
@@ -990,7 +1002,7 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|//close any record set or statement
+comment|// close any record set or statement
 try|try
 block|{
 if|if
@@ -999,22 +1011,26 @@ name|rs
 operator|!=
 literal|null
 condition|)
+block|{
 name|rs
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|stmt
 operator|!=
 literal|null
 condition|)
+block|{
 name|stmt
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1032,7 +1048,7 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
-comment|//explicitly ready for Garbage Collection
+comment|// explicitly ready for Garbage Collection
 name|rs
 operator|=
 literal|null
@@ -1043,7 +1059,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Converts a SQL data type to an XML data type 	 *  	 * @param	sqlType	The SQL data type as specified by JDBC 	 * 	 * @return	The XML Type as specified by eXist 	 */
+comment|/** 	 * Converts a SQL data type to an XML data type 	 *  	 * @param sqlType 	 *            The SQL data type as specified by JDBC 	 *  	 * @return The XML Type as specified by eXist 	 */
 specifier|private
 name|int
 name|sqlTypeToXMLType
@@ -1247,6 +1263,17 @@ block|{
 name|String
 name|work
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|text
+operator|!=
+literal|null
+condition|)
+block|{
+name|work
+operator|=
 name|text
 operator|.
 name|replaceAll
@@ -1255,7 +1282,7 @@ literal|"\\&"
 argument_list|,
 literal|"\\&amp;"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|work
 operator|=
 name|work
@@ -1278,8 +1305,11 @@ argument_list|,
 literal|"\\&gt;"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|work
+operator|)
 return|;
 block|}
 specifier|private
@@ -1291,6 +1321,11 @@ name|String
 name|attr
 parameter_list|)
 block|{
+name|String
+name|work
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|attr
@@ -1298,14 +1333,13 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|String
 name|work
-init|=
+operator|=
 name|escapeXmlText
 argument_list|(
 name|attr
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|work
 operator|=
 name|work
@@ -1328,12 +1362,11 @@ argument_list|,
 literal|"\\&quot;"
 argument_list|)
 expr_stmt|;
-return|return
-name|work
-return|;
 block|}
 return|return
-literal|null
+operator|(
+name|work
+operator|)
 return|;
 block|}
 block|}
