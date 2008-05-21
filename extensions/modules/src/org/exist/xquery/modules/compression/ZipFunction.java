@@ -19,6 +19,60 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|zip
+operator|.
+name|ZipEntry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|zip
+operator|.
+name|ZipOutputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -37,7 +91,43 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
 import|;
 end_import
 
@@ -113,7 +203,55 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|BasicFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -127,7 +265,77 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|*
+name|AnyURIValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Base64Binary
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|SequenceIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|SequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -143,62 +351,8 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|zip
-operator|.
-name|ZipEntry
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|zip
-operator|.
-name|ZipOutputStream
-import|;
-end_import
-
 begin_comment
-comment|/**  * Compresses a sequence of resources and/or collections  * into a Zip file  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @version 1.0  */
+comment|/**  * Compresses a sequence of resources and/or collections into a Zip file  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @version 1.0  */
 end_comment
 
 begin_class
@@ -393,7 +547,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//are there some uri's to zip?
+comment|// are there some uri's to zip?
 if|if
 condition|(
 name|args
@@ -411,7 +565,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|//use a hierarchy in the zip file?
+comment|// use a hierarchy in the zip file?
 name|boolean
 name|useHierarchy
 init|=
@@ -504,7 +658,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//try for a doc
+comment|// try for a doc
 name|doc
 operator|=
 name|context
@@ -531,7 +685,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//no doc, try for a collection
+comment|// no doc, try for a collection
 name|Collection
 name|col
 init|=
@@ -555,7 +709,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//got a collection
+comment|// got a collection
 name|zipCollection
 argument_list|(
 name|zos
@@ -570,7 +724,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//no doc or collection
+comment|// no doc or collection
 throw|throw
 operator|new
 name|XPathException
@@ -590,7 +744,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//got a doc
+comment|// got a doc
 name|zipResource
 argument_list|(
 name|zos
@@ -747,7 +901,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds a document to a Zip      *       * @param zos The Zip Output Stream to add the document to      * @param doc The document to add to the Zip      * @param useHierarchy Whether to use a folder hierarchy in the Zip file that reflects the collection hierarchy      */
+comment|/** 	 * Adds a document to a Zip 	 *  	 * @param zos 	 *            The Zip Output Stream to add the document to 	 * @param doc 	 *            The document to add to the Zip 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Zip file that 	 *            reflects the collection hierarchy 	 */
 specifier|private
 name|void
 name|zipResource
@@ -769,7 +923,7 @@ name|IOException
 throws|,
 name|SAXException
 block|{
-comment|//create an entry in the Zip for the document
+comment|// create an entry in the Zip for the document
 name|ZipEntry
 name|entry
 init|=
@@ -893,7 +1047,7 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-comment|//add the document to the Zip
+comment|// add the document to the Zip
 if|if
 condition|(
 name|doc
@@ -906,7 +1060,7 @@ operator|.
 name|XML_FILE
 condition|)
 block|{
-comment|//xml file
+comment|// xml file
 name|Serializer
 name|serializer
 init|=
@@ -970,7 +1124,7 @@ operator|.
 name|BINARY_FILE
 condition|)
 block|{
-comment|//binary file
+comment|// binary file
 name|byte
 index|[]
 name|data
@@ -996,14 +1150,14 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|//close the entry in the Zip
+comment|// close the entry in the Zip
 name|zos
 operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Adds a Collection and its child collections and resources recursively to a Zip      *       * @param zos The Zip Output Stream to add the document to      * @param col The Collection to add to the Zip      * @param useHierarchy Whether to use a folder hierarchy in the Zip file that reflects the collection hierarchy      */
+comment|/** 	 * Adds a Collection and its child collections and resources recursively to 	 * a Zip 	 *  	 * @param zos 	 *            The Zip Output Stream to add the document to 	 * @param col 	 *            The Collection to add to the Zip 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Zip file that 	 *            reflects the collection hierarchy 	 */
 specifier|private
 name|void
 name|zipCollection
@@ -1027,12 +1181,12 @@ name|SAXException
 throws|,
 name|LockException
 block|{
-comment|//iterate over child documents
-name|MutableDocumentSet
+comment|// iterate over child documents
+name|DocumentSet
 name|childDocs
 init|=
 operator|new
-name|DefaultDocumentSet
+name|DocumentSet
 argument_list|()
 decl_stmt|;
 name|col
@@ -1056,7 +1210,7 @@ name|itChildDocs
 init|=
 name|childDocs
 operator|.
-name|getDocumentIterator
+name|iterator
 argument_list|()
 init|;
 name|itChildDocs
@@ -1091,7 +1245,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|//zip the resource
+comment|// zip the resource
 name|zipResource
 argument_list|(
 name|zos
@@ -1120,7 +1274,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//iterate over child collections
+comment|// iterate over child collections
 for|for
 control|(
 name|Iterator
@@ -1138,7 +1292,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-comment|//get the child collection
+comment|// get the child collection
 name|XmldbURI
 name|childColURI
 init|=
@@ -1171,7 +1325,7 @@ name|childColURI
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//recurse
+comment|// recurse
 name|zipCollection
 argument_list|(
 name|zos
