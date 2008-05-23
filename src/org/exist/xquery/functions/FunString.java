@@ -429,6 +429,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+comment|// if the function is called with an argument and it is empty,
+comment|// return the empty string
 if|if
 condition|(
 name|getArgumentCount
@@ -436,6 +438,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|getArgument
@@ -449,6 +452,19 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 if|if
+condition|(
+name|contextSequence
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|StringValue
+operator|.
+name|EMPTY_STRING
+return|;
+block|}
+if|else if
 condition|(
 name|contextSequence
 operator|==
@@ -471,25 +487,22 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
-name|Sequence
-name|result
-decl_stmt|;
-if|if
+comment|// no argument and the context sequence is empty: return the empty sequence
+if|else if
 condition|(
 name|contextSequence
 operator|.
 name|isEmpty
 argument_list|()
 condition|)
-name|result
-operator|=
-name|StringValue
+return|return
+name|Sequence
 operator|.
-name|EMPTY_STRING
-expr_stmt|;
-else|else
+name|EMPTY_SEQUENCE
+return|;
+name|Sequence
 name|result
-operator|=
+init|=
 name|contextSequence
 operator|.
 name|convertTo
@@ -498,7 +511,7 @@ name|Type
 operator|.
 name|STRING
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|context
