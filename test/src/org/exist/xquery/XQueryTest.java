@@ -15328,7 +15328,7 @@ comment|// in a path expression, a step returning an empty sequence stops the ev
 comment|// (and return an empty sequence) as confirmed by Michael Kay on the XQuery mailing list
 specifier|public
 name|void
-name|bugtestStringOfEmptySequence_1841105
+name|testStringOfEmptySequence_1841105
 parameter_list|()
 block|{
 comment|// OK
