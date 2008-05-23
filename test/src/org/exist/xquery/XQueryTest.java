@@ -14812,9 +14812,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"element {\"a\"} {<element b=\"\"/>"
+literal|"element {\"a\"} {<element b=\"\" c=\"\" />/attribute()[namespace-uri(.) != "
 operator|+
-literal|"/attribute()[namespace-uri(.) != \"http://www.asml.com/metainformation\"]}"
+literal|"\"http://www.asml.com/metainformation\"]}"
 decl_stmt|;
 name|XPathQueryService
 name|service
@@ -14856,7 +14856,7 @@ name|assertEquals
 argument_list|(
 name|query
 argument_list|,
-literal|"<a b=\"\"/>"
+literal|"<a b=\"\" c=\"\"/>"
 argument_list|,
 name|result
 operator|.
