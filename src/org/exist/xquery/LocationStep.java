@@ -5739,6 +5739,8 @@ name|postOptimization
 condition|)
 block|{
 comment|//TODO : preloadedData = false ?
+comment|//No : introduces a regression in testMatchCount
+comment|//TODO : Investigate...
 name|currentSet
 operator|=
 literal|null
