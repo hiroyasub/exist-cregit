@@ -1727,6 +1727,14 @@ block|}
 block|}
 return|return
 name|preselectResult
+operator|==
+literal|null
+condition|?
+name|NodeSet
+operator|.
+name|EMPTY_SET
+else|:
+name|preselectResult
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
