@@ -41,6 +41,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|sql
+operator|.
+name|SQLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Properties
@@ -204,7 +214,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction  *   * Get a connection to a SQL Database  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetConnectionFunction  *   * Get a connection to a SQL Database  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-29  * @version 1.21  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -508,13 +518,6 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-try|try
-block|{
-name|Connection
-name|con
-init|=
-literal|null
-decl_stmt|;
 comment|// get the db connection details
 name|String
 name|dbDriver
@@ -538,6 +541,8 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 comment|// load the driver
 name|Class
 operator|.
@@ -549,6 +554,11 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
+name|Connection
+name|con
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|args
@@ -681,18 +691,117 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|IllegalAccessException
+name|iae
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"sql:get-connection() Illegal Access to database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|iae
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|e
+literal|"sql:get-connection() Illegal Access to database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|iae
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|ClassNotFoundException
+name|cnfe
+parameter_list|)
+block|{
+name|LOG
 operator|.
-name|getMessage
-argument_list|()
+name|error
+argument_list|(
+literal|"sql:get-connection() Cannot find database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|cnfe
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"sql:get-connection() Cannot find database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|cnfe
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|InstantiationException
+name|ie
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"sql:get-connection() Cannot instantiate database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|ie
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"sql:get-connection() Cannot instantiate database driver class: "
+operator|+
+name|dbDriver
+argument_list|,
+name|ie
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|SQLException
+name|sqle
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"sql:get-connection() Cannot connect to database: "
+operator|+
+name|dbURL
+argument_list|,
+name|sqle
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"sql:get-connection() Cannot connect to database: "
+operator|+
+name|dbURL
+argument_list|,
+name|sqle
 argument_list|)
 throw|;
 block|}
