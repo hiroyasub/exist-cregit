@@ -393,6 +393,19 @@ operator|.
 name|getDefaultIndexDepth
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"DefaultIndexDepth = "
+operator|+
+name|this
+operator|.
+name|defaultIndexDepth
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Combines {@link #checkCollectionTree(ConsistencyCheck.ProgressCallback)} and      * {@link #checkDocuments(ConsistencyCheck.ProgressCallback)}.      *       * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or      *  an empty list if no errors were found      */
 specifier|public
@@ -1249,6 +1262,23 @@ operator|.
 name|getCurrentPosition
 argument_list|()
 condition|)
+block|{
+name|Value
+name|v
+init|=
+name|domDb
+operator|.
+name|get
+argument_list|(
+name|p
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|v
+operator|==
+literal|null
+condition|)
 return|return
 operator|new
 name|ErrorReport
@@ -1263,7 +1293,18 @@ literal|"Failed to access node "
 operator|+
 name|nodeId
 operator|+
-literal|" through dom.dbx index."
+literal|" through dom.dbx index. Wrong storage address. Expected: "
+operator|+
+name|p
+operator|+
+literal|"; got: "
+operator|+
+name|reader
+operator|.
+name|getCurrentPosition
+argument_list|()
+operator|+
+literal|" - "
 argument_list|,
 name|doc
 operator|.
@@ -1271,6 +1312,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
