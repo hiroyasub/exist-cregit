@@ -2603,14 +2603,14 @@ name|trigger
 operator|.
 name|getAttribute
 argument_list|(
-literal|"event"
+literal|"class"
 argument_list|)
 argument_list|,
 name|trigger
 operator|.
 name|getAttribute
 argument_list|(
-literal|"class"
+literal|"event"
 argument_list|)
 argument_list|,
 name|parameters
