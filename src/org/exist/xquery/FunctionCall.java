@@ -711,12 +711,6 @@ operator|)
 operator|&&
 comment|//Don't test on empty sequences since they can have several types
 comment|//TODO : add a prior cardinality check on wether an empty result is allowed or not
-operator|!
-name|result
-operator|.
-name|isEmpty
-argument_list|()
-operator|&&
 comment|//TODO : should we introduce a deffered type check on VirtualNodeSet
 comment|// and trigger it when the nodeSet is realized ?
 operator|!
@@ -725,6 +719,12 @@ name|result
 operator|instanceof
 name|VirtualNodeSet
 operator|)
+operator|&&
+operator|!
+name|result
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 name|getSignature
 argument_list|()
