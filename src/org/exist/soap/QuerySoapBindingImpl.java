@@ -3208,15 +3208,22 @@ index|[
 name|howmany
 index|]
 expr_stmt|;
+name|int
+name|j
+init|=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|int
 name|i
 init|=
-literal|0
+name|start
 init|;
 name|i
 operator|<
+name|start
+operator|+
 name|howmany
 condition|;
 name|i
@@ -3235,7 +3242,7 @@ operator|)
 operator|.
 name|get
 argument_list|(
-name|start
+name|i
 argument_list|)
 decl_stmt|;
 if|if
@@ -3255,7 +3262,7 @@ argument_list|)
 throw|;
 name|xml
 index|[
-name|i
+name|j
 index|]
 operator|=
 name|serializer
@@ -3265,6 +3272,10 @@ argument_list|(
 name|proxy
 argument_list|)
 expr_stmt|;
+name|j
+operator|++
+expr_stmt|;
+comment|// update count number of results
 block|}
 block|}
 else|else
