@@ -7629,7 +7629,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// re-enable later
-comment|//chooser.addChoosableFileFilter(new ZipFilter());
+name|chooser
+operator|.
+name|addChoosableFileFilter
+argument_list|(
+operator|new
+name|ZipFilter
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//chooser.setSelectedFile(new File("eXist-backup.zip"));
 if|if
 condition|(

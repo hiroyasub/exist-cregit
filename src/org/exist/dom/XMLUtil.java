@@ -145,6 +145,18 @@ name|DocumentFragment
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Defines some static utility methods.   *  */
 end_comment
@@ -935,6 +947,33 @@ name|file
 argument_list|)
 argument_list|,
 name|defaultEncoding
+argument_list|)
+return|;
+block|}
+specifier|public
+specifier|static
+name|String
+name|readFile
+parameter_list|(
+name|InputSource
+name|is
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// read the file into a string
+return|return
+name|readFile
+argument_list|(
+name|is
+operator|.
+name|getByteStream
+argument_list|()
+argument_list|,
+name|is
+operator|.
+name|getEncoding
+argument_list|()
 argument_list|)
 return|;
 block|}

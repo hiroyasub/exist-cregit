@@ -3803,6 +3803,11 @@ condition|(
 name|is
 operator|!=
 literal|null
+operator|&&
+name|is
+operator|.
+name|markSupported
+argument_list|()
 condition|)
 name|is
 operator|.
@@ -3825,6 +3830,11 @@ condition|(
 name|cs
 operator|!=
 literal|null
+operator|&&
+name|cs
+operator|.
+name|markSupported
+argument_list|()
 condition|)
 name|cs
 operator|.
