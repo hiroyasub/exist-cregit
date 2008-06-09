@@ -80,17 +80,7 @@ name|ClassVersion
 argument_list|(
 literal|"Saxon"
 argument_list|,
-literal|"9.0.0.4"
-argument_list|,
-literal|"net.sf.saxon.Version.getProductVersion()"
-argument_list|)
-block|,
-operator|new
-name|ClassVersion
-argument_list|(
-literal|"Saxon"
-argument_list|,
-literal|"9.0.0.3"
+literal|"8.9.0"
 argument_list|,
 literal|"net.sf.saxon.Version.getProductVersion()"
 argument_list|)
@@ -100,21 +90,11 @@ name|ClassVersion
 argument_list|(
 literal|"Xalan"
 argument_list|,
-literal|"Xalan Java 2.7.0"
+literal|"Xalan Java 2.7.1"
 argument_list|,
 literal|"org.apache.xalan.Version.getVersion()"
 argument_list|)
-block|,
-operator|new
-name|ClassVersion
-argument_list|(
-literal|"Saxon"
-argument_list|,
-literal|"8.9.0.3"
-argument_list|,
-literal|"net.sf.saxon.Version.getProductVersion()"
-argument_list|)
-block|}
+block|, 	}
 decl_stmt|;
 comment|/** 	 * Checks to see if a valid XML Parser exists 	 *  	 * @return boolean true indicates a valid Parser was found, false otherwise 	 */
 specifier|public
@@ -224,7 +204,7 @@ if|if
 condition|(
 name|actualVersion
 operator|.
-name|equals
+name|compareToIgnoreCase
 argument_list|(
 name|validParsers
 index|[
@@ -234,6 +214,8 @@ operator|.
 name|getRequiredVersion
 argument_list|()
 argument_list|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|message
@@ -423,7 +405,7 @@ if|if
 condition|(
 name|actualVersion
 operator|.
-name|equals
+name|compareToIgnoreCase
 argument_list|(
 name|validTransformers
 index|[
@@ -433,6 +415,8 @@ operator|.
 name|getRequiredVersion
 argument_list|()
 argument_list|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|message
