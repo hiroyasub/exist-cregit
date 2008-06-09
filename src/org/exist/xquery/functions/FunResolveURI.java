@@ -673,8 +673,6 @@ name|base
 operator|.
 name|getStringValue
 argument_list|()
-operator|+
-literal|"/"
 argument_list|)
 expr_stmt|;
 block|}
