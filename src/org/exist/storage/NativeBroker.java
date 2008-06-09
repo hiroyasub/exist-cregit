@@ -3574,10 +3574,6 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|BFile
-operator|.
-name|UNKNOWN_ADDRESS
-argument_list|,
 name|Lock
 operator|.
 name|NO_LOCK
