@@ -49,25 +49,29 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|zip
+name|tools
 operator|.
-name|ZipEntry
+name|tar
+operator|.
+name|TarEntry
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|zip
+name|tools
 operator|.
-name|ZipOutputStream
+name|tar
+operator|.
+name|TarOutputStream
 import|;
 end_import
 
@@ -364,13 +368,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Compresses a sequence of resources and/or collections into a Zip file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
+comment|/**  * Compresses a sequence of resources and/or collections into a Tar file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ZipFunction
+name|TarFunction
 extends|extends
 name|BasicFunction
 block|{
@@ -388,7 +392,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"zip"
+literal|"tar"
 argument_list|,
 name|CompressionModule
 operator|.
@@ -399,11 +403,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Zip's resources and/or collections. $a is a sequence of URI's, if a URI points to a collection"
+literal|"Tar's resources and/or collections. $a is a sequence of URI's, if a URI points to a collection"
 operator|+
-literal|"then the collection, its resources and sub-collections are zipped recursively. "
+literal|"then the collection, its resources and sub-collections are tarred recursively. "
 operator|+
-literal|"$b indicates whether to use the collection hierarchy in the zip file."
+literal|"$b indicates whether to use the collection hierarchy in the tar file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -453,7 +457,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"zip"
+literal|"tar"
 argument_list|,
 name|CompressionModule
 operator|.
@@ -464,11 +468,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Zip's resources and/or collections. $a is a sequence of URI's, if a URI points to a collection"
+literal|"Tar's resources and/or collections. $a is a sequence of URI's, if a URI points to a collection"
 operator|+
-literal|"then the collection, its resources and sub-collections are zipped recursively. "
+literal|"then the collection, its resources and sub-collections are tarred recursively. "
 operator|+
-literal|"$b indicates whether to use the collection hierarchy in the zip file."
+literal|"$b indicates whether to use the collection hierarchy in the tar file."
 operator|+
 literal|"$c is removed from the beginning of each file path."
 argument_list|,
@@ -528,7 +532,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|ZipFunction
+name|TarFunction
 parameter_list|(
 name|XQueryContext
 name|context
@@ -559,7 +563,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// are there some uri's to zip?
+comment|// are there some uri's to tar?
 if|if
 condition|(
 name|args
@@ -577,7 +581,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|// use a hierarchy in the zip file?
+comment|// use a hierarchy in the tar file?
 name|boolean
 name|useHierarchy
 init|=
@@ -622,11 +626,11 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
-name|ZipOutputStream
-name|zos
+name|TarOutputStream
+name|tos
 init|=
 operator|new
-name|ZipOutputStream
+name|TarOutputStream
 argument_list|(
 name|baos
 argument_list|)
@@ -722,9 +726,9 @@ literal|null
 condition|)
 block|{
 comment|// got a collection
-name|zipCollection
+name|tarCollection
 argument_list|(
-name|zos
+name|tos
 argument_list|,
 name|col
 argument_list|,
@@ -757,9 +761,9 @@ block|}
 else|else
 block|{
 comment|// got a doc
-name|zipResource
+name|tarResource
 argument_list|(
-name|zos
+name|tos
 argument_list|,
 name|doc
 argument_list|,
@@ -876,7 +880,7 @@ block|}
 block|}
 try|try
 block|{
-name|zos
+name|tos
 operator|.
 name|close
 argument_list|()
@@ -913,13 +917,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Adds a document to a Zip 	 *  	 * @param zos 	 *            The Zip Output Stream to add the document to 	 * @param doc 	 *            The document to add to the Zip 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Zip file that 	 *            reflects the collection hierarchy 	 */
+comment|/** 	 * Adds a document to a Tar 	 *  	 * @param tos 	 *            The Tar Output Stream to add the document to 	 * @param doc 	 *            The document to add to the Tar 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Tar file that 	 *            reflects the collection hierarchy 	 */
 specifier|private
 name|void
-name|zipResource
+name|tarResource
 parameter_list|(
-name|ZipOutputStream
-name|zos
+name|TarOutputStream
+name|tos
 parameter_list|,
 name|DocumentImpl
 name|doc
@@ -935,8 +939,8 @@ name|IOException
 throws|,
 name|SAXException
 block|{
-comment|// create an entry in the Zip for the document
-name|ZipEntry
+comment|// create an entry in the Tar for the document
+name|TarEntry
 name|entry
 init|=
 literal|null
@@ -1018,7 +1022,7 @@ decl_stmt|;
 name|entry
 operator|=
 operator|new
-name|ZipEntry
+name|TarEntry
 argument_list|(
 name|collection
 operator|.
@@ -1040,7 +1044,7 @@ block|{
 name|entry
 operator|=
 operator|new
-name|ZipEntry
+name|TarEntry
 argument_list|(
 name|doc
 operator|.
@@ -1052,14 +1056,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|zos
+name|tos
 operator|.
 name|putNextEntry
 argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
-comment|// add the document to the Zip
+comment|// add the document to the Tar
 if|if
 condition|(
 name|doc
@@ -1113,7 +1117,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|zos
+name|tos
 operator|.
 name|write
 argument_list|(
@@ -1154,7 +1158,7 @@ operator|)
 name|doc
 argument_list|)
 decl_stmt|;
-name|zos
+name|tos
 operator|.
 name|write
 argument_list|(
@@ -1162,20 +1166,20 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|// close the entry in the Zip
-name|zos
+comment|// close the entry in the Tar
+name|tos
 operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Adds a Collection and its child collections and resources recursively to 	 * a Zip 	 *  	 * @param zos 	 *            The Zip Output Stream to add the document to 	 * @param col 	 *            The Collection to add to the Zip 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Zip file that 	 *            reflects the collection hierarchy 	 */
+comment|/** 	 * Adds a Collection and its child collections and resources recursively to 	 * a Tar 	 *  	 * @param tos 	 *            The Tar Output Stream to add the document to 	 * @param col 	 *            The Collection to add to the Tar 	 * @param useHierarchy 	 *            Whether to use a folder hierarchy in the Tar file that 	 *            reflects the collection hierarchy 	 */
 specifier|private
 name|void
-name|zipCollection
+name|tarCollection
 parameter_list|(
-name|ZipOutputStream
-name|zos
+name|TarOutputStream
+name|tos
 parameter_list|,
 name|Collection
 name|col
@@ -1257,10 +1261,10 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// zip the resource
-name|zipResource
+comment|// tar the resource
+name|tarResource
 argument_list|(
-name|zos
+name|tos
 argument_list|,
 name|childDoc
 argument_list|,
@@ -1338,9 +1342,9 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// recurse
-name|zipCollection
+name|tarCollection
 argument_list|(
-name|zos
+name|tos
 argument_list|,
 name|childCol
 argument_list|,

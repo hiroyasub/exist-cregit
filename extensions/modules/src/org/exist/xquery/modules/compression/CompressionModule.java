@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for compression and de-compression functions  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @version 1.0  */
+comment|/**  * XQuery Extension module for compression and de-compression functions  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
 end_comment
 
 begin_class
@@ -105,7 +105,52 @@ name|ZipFunction
 operator|.
 name|class
 argument_list|)
-block|}
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|GZipFunction
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|GZipFunction
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|TarFunction
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|TarFunction
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|TarFunction
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
+argument_list|,
+name|TarFunction
+operator|.
+name|class
+argument_list|)
+block|, }
 decl_stmt|;
 specifier|public
 name|CompressionModule
