@@ -1555,7 +1555,15 @@ operator|.
 name|getStringValue
 argument_list|()
 operator|+
-literal|"()' denied."
+literal|"()' denied. "
+operator|+
+name|def
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getDeprecated
+argument_list|()
 argument_list|)
 throw|;
 block|}
