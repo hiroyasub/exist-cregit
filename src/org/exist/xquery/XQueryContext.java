@@ -509,6 +509,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|hashtable
+operator|.
+name|NamePool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -1344,6 +1358,15 @@ name|MemTreeBuilder
 name|builder
 init|=
 literal|null
+decl_stmt|;
+comment|/**      * Shared name pool used by all in-memory documents constructed in      * this query context.      */
+specifier|private
+name|NamePool
+name|sharedNamePool
+init|=
+operator|new
+name|NamePool
+argument_list|()
 decl_stmt|;
 comment|/** 	 * Stack for temporary document fragments 	 */
 specifier|private
@@ -6225,6 +6248,16 @@ expr_stmt|;
 block|}
 return|return
 name|builder
+return|;
+block|}
+comment|/**      * Returns the shared name pool used by all in-memory      * documents which are created within this query context.      * Create a name pool for every document would be a waste of      * memory, especially since it is likely that the documents      * contain elements or attributes with similar names.      *       * @return the shared name pool      */
+specifier|public
+name|NamePool
+name|getSharedNamePool
+parameter_list|()
+block|{
+return|return
+name|sharedNamePool
 return|;
 block|}
 comment|/* Methods delegated to the watchdog */
