@@ -171,6 +171,15 @@ block|{
 block|}
 specifier|public
 name|void
+name|visitFilteredExpr
+parameter_list|(
+name|FilteredExpression
+name|filtered
+parameter_list|)
+block|{
+block|}
+specifier|public
+name|void
 name|visitPredicate
 parameter_list|(
 name|Predicate

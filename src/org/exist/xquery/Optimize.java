@@ -251,6 +251,12 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+name|VariableReference
+name|contextVar
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|int
 name|contextId
 init|=
@@ -439,6 +445,12 @@ name|NodeSet
 name|originalContext
 init|=
 name|contextSequence
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|contextSequence
 operator|.
 name|toNodeSet
 argument_list|()
@@ -469,6 +481,23 @@ argument_list|(
 name|cachedTimestamp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|contextVar
+operator|!=
+literal|null
+condition|)
+block|{
+name|contextSequence
+operator|=
+name|contextVar
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+expr_stmt|;
+block|}
 comment|// check if all Optimizable expressions signal that they can indeed optimize
 comment|// in the current context
 name|boolean
@@ -555,6 +584,12 @@ expr_stmt|;
 name|cachedTimestamp
 operator|=
 name|originalContext
+operator|==
+literal|null
+condition|?
+literal|0
+else|:
+name|originalContext
 operator|.
 name|getState
 argument_list|()
@@ -565,8 +600,6 @@ literal|true
 expr_stmt|;
 name|NodeSet
 name|ancestors
-init|=
-literal|null
 decl_stmt|;
 name|NodeSet
 name|result
@@ -683,15 +716,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//                    switch (optimizables[current].getOptimizeAxis()) {
-comment|//                        case Constants.CHILD_AXIS:
-comment|//                        case Constants.ATTRIBUTE_AXIS:
-comment|//                            selector = new ParentSelector(selection, -1);
-comment|//                            break;
-comment|//                        default:
-comment|//                            selector = new AncestorSelector(selection, -1, true);
-comment|//                            break;
-comment|//                    }
 name|ElementIndex
 name|index
 init|=
@@ -756,7 +780,6 @@ argument_list|,
 name|selector
 argument_list|)
 expr_stmt|;
-comment|//                        ancestors = selection;
 block|}
 else|else
 name|ancestors
@@ -891,6 +914,12 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|originalContext
+operator|!=
+literal|null
+condition|)
 name|contextSequence
 operator|=
 name|originalContext
@@ -899,6 +928,11 @@ name|filterDocuments
 argument_list|(
 name|result
 argument_list|)
+expr_stmt|;
+else|else
+name|contextSequence
+operator|=
+literal|null
 expr_stmt|;
 name|Sequence
 name|seq
@@ -953,6 +987,16 @@ name|trace
 argument_list|(
 literal|"exist:optimize: Cannot optimize expression."
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|originalContext
+operator|!=
+literal|null
+condition|)
+name|contextSequence
+operator|=
+name|originalContext
 expr_stmt|;
 return|return
 name|innerExpr
@@ -1061,6 +1105,83 @@ name|List
 name|predicates
 init|=
 name|locationStep
+operator|.
+name|getPredicates
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|predicates
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|Predicate
+name|pred
+init|=
+operator|(
+name|Predicate
+operator|)
+name|predicates
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+name|pred
+operator|.
+name|accept
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|visitFilteredExpr
+parameter_list|(
+name|FilteredExpression
+name|filtered
+parameter_list|)
+block|{
+name|Expression
+name|filteredExpr
+init|=
+name|filtered
+operator|.
+name|getExpression
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|filteredExpr
+operator|instanceof
+name|VariableReference
+condition|)
+name|contextVar
+operator|=
+operator|(
+name|VariableReference
+operator|)
+name|filteredExpr
+expr_stmt|;
+name|List
+name|predicates
+init|=
+name|filtered
 operator|.
 name|getPredicates
 argument_list|()
@@ -1298,6 +1419,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1307,6 +1429,16 @@ operator|+
 name|contextStep
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"exist:optimize: context var: "
+operator|+
+name|contextVar
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

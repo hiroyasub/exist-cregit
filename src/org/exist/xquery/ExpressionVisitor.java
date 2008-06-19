@@ -61,6 +61,14 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|visitFilteredExpr
+parameter_list|(
+name|FilteredExpression
+name|filtered
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
 name|visitPredicate
 parameter_list|(
 name|Predicate
