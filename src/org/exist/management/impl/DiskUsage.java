@@ -128,17 +128,11 @@ name|long
 name|getDataDirectoryFreeDiskSpace
 parameter_list|()
 block|{
+comment|//return (new File( getJournalDirectory() ).getUsableSpace());
 return|return
+operator|-
 operator|(
-operator|new
-name|File
-argument_list|(
-name|getJournalDirectory
-argument_list|()
-argument_list|)
-operator|.
-name|getUsableSpace
-argument_list|()
+literal|1L
 operator|)
 return|;
 block|}
@@ -185,16 +179,12 @@ name|long
 name|getJournalDirectoryFreeSpace
 parameter_list|()
 block|{
+comment|//return new File(getJournalDirectory()).getUsableSpace();
 return|return
-operator|new
-name|File
-argument_list|(
-name|getJournalDirectory
-argument_list|()
-argument_list|)
-operator|.
-name|getUsableSpace
-argument_list|()
+operator|-
+operator|(
+literal|1L
+operator|)
 return|;
 block|}
 specifier|public
@@ -202,17 +192,11 @@ name|long
 name|getDataDirectoryTotalSpace
 parameter_list|()
 block|{
+comment|//return (new File( getJournalDirectory() ).getTotalSpace());
 return|return
+operator|-
 operator|(
-operator|new
-name|File
-argument_list|(
-name|getJournalDirectory
-argument_list|()
-argument_list|)
-operator|.
-name|getTotalSpace
-argument_list|()
+literal|1L
 operator|)
 return|;
 block|}
@@ -221,16 +205,12 @@ name|long
 name|getJournalDirectoryTotalSpace
 parameter_list|()
 block|{
+comment|//return new File(getJournalDirectory()).getTotalSpace();
 return|return
-operator|new
-name|File
-argument_list|(
-name|getJournalDirectory
-argument_list|()
-argument_list|)
-operator|.
-name|getTotalSpace
-argument_list|()
+operator|-
+operator|(
+literal|1L
+operator|)
 return|;
 block|}
 block|}
