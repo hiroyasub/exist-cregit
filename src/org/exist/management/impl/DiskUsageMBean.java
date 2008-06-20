@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface DiskUsageMBean  *  * @author wessels  */
+comment|/**  * Interface DiskUsageMBean  *  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_interface
@@ -54,7 +54,16 @@ name|long
 name|getJournalDirectoryTotalSpace
 parameter_list|()
 function_decl|;
-comment|//    public int getNumberOfTransactionLogs();
+specifier|public
+name|long
+name|getDataDirectoryUsedSpace
+parameter_list|()
+function_decl|;
+specifier|public
+name|long
+name|getJournalDirectoryUsedSpace
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
