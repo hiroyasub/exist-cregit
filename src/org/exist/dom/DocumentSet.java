@@ -1150,7 +1150,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 name|getLength
 argument_list|()

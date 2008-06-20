@@ -145,6 +145,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -183,6 +197,8 @@ class|class
 name|ExtArrayNodeSet
 extends|extends
 name|AbstractNodeSet
+implements|implements
+name|ExtNodeSet
 block|{
 specifier|private
 specifier|final
@@ -1229,6 +1245,12 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|//    public void addAll(Sequence other) throws XPathException {
+comment|//        if (other instanceof AbstractNodeSet)
+comment|//            addAll((NodeSet) other);
+comment|//        else
+comment|//            super.addAll(other);
+comment|//    }
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet)      */
 specifier|public
 name|void

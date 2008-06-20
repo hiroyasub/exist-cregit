@@ -45,18 +45,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -82,6 +70,18 @@ operator|.
 name|dom
 operator|.
 name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -396,7 +396,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 literal|2
 argument_list|)

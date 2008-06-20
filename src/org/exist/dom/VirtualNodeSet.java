@@ -938,7 +938,7 @@ condition|)
 name|realSet
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 literal|256
 argument_list|)
@@ -1109,11 +1109,11 @@ name|NodeSet
 name|getNodes
 parameter_list|()
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 for|for

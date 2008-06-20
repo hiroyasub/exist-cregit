@@ -67,6 +67,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|ExtNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -130,7 +142,7 @@ if|if
 condition|(
 name|descendants
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 condition|)
 name|this
 operator|.
@@ -184,7 +196,7 @@ else|else
 return|return
 operator|(
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|descendants
 operator|)

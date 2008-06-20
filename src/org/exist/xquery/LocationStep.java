@@ -115,6 +115,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|NewArrayNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ExtNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -222,7 +246,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *   * The results of the first evaluation of the expression are cached for the  * lifetime of the object and only reloaded if the context sequence (as passed  * to the {@link #eval(Sequence, Item)} method) has changed.  *   * @author wolf  */
+comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *  * The results of the first evaluation of the expression are cached for the  * lifetime of the object and only reloaded if the context sequence (as passed  * to the {@link #eval(Sequence, Item)} method) has changed.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -358,7 +382,7 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
+comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -439,7 +463,7 @@ return|return
 name|deps
 return|;
 block|}
-comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return Whether or not we can optimize       */
+comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *      * @return Whether or not we can optimize      */
 specifier|protected
 name|boolean
 name|preloadNodeSets
@@ -673,7 +697,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression)      */
+comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression)      */
 specifier|public
 name|void
 name|analyze
@@ -1698,7 +1722,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
 for|for
@@ -2408,7 +2432,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|&&
 operator|!
 name|contextSet
@@ -2436,7 +2460,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -2537,11 +2561,11 @@ condition|(
 name|useDirectChildSelect
 condition|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 for|for
@@ -2788,7 +2812,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|&&
 operator|!
 name|contextSet
@@ -2816,7 +2840,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -3213,7 +3237,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 condition|)
 block|{
 return|return
@@ -3235,7 +3259,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -4901,7 +4925,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy

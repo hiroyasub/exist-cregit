@@ -77,18 +77,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeSet
 import|;
 end_import
@@ -102,6 +90,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ExtNodeSet
 import|;
 end_import
 
@@ -254,7 +254,7 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|ExtArrayNodeSet
+name|ExtNodeSet
 name|contextSet
 parameter_list|,
 name|int

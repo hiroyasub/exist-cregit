@@ -145,6 +145,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|NewArrayNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -700,7 +712,7 @@ name|NodeSet
 name|set
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeValue

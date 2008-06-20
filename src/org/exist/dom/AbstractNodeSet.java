@@ -957,7 +957,7 @@ name|NodeSet
 name|parents
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy
@@ -1751,7 +1751,7 @@ name|NodeSet
 name|newSet
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 for|for
@@ -1838,11 +1838,11 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|result
@@ -1945,11 +1945,11 @@ decl_stmt|;
 name|ContextItem
 name|contextNode
 decl_stmt|;
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|DocumentImpl

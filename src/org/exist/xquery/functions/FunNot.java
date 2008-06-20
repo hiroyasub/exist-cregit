@@ -23,18 +23,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|NodeProxy
 import|;
 end_import
@@ -60,6 +48,18 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -632,7 +632,7 @@ block|{
 name|result
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
 if|if
