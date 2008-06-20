@@ -40,6 +40,11 @@ name|getDataDirectoryTotalSpace
 parameter_list|()
 function_decl|;
 specifier|public
+name|long
+name|getDataDirectoryUsedSpace
+parameter_list|()
+function_decl|;
+specifier|public
 name|String
 name|getJournalDirectory
 parameter_list|()
@@ -56,12 +61,12 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|long
-name|getDataDirectoryUsedSpace
+name|getJournalDirectoryUsedSpace
 parameter_list|()
 function_decl|;
 specifier|public
-name|long
-name|getJournalDirectoryUsedSpace
+name|int
+name|getJournalDirectoryNumberOfFiles
 parameter_list|()
 function_decl|;
 block|}
