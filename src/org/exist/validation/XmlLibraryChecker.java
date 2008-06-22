@@ -82,22 +82,7 @@ specifier|public
 class|class
 name|XmlLibraryChecker
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|XmlLibraryChecker
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-comment|/** 	 * Possible XML Parsers, at least one must be valid 	 */
+comment|/**      * Possible XML Parsers, at least one must be valid      */
 specifier|private
 specifier|final
 specifier|static
@@ -117,7 +102,7 @@ literal|"org.apache.xerces.impl.Version.getVersion()"
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * Possible XML Transformers, at least one must be valid 	 */
+comment|/**      * Possible XML Transformers, at least one must be valid      */
 specifier|private
 specifier|final
 specifier|static
@@ -145,9 +130,9 @@ literal|"Xalan Java 2.7.1"
 argument_list|,
 literal|"org.apache.xalan.Version.getVersion()"
 argument_list|)
-block|, 	}
+block|,     }
 decl_stmt|;
-comment|/** 	 * Possible XML resolvers, at least one must be valid 	 */
+comment|/**      * Possible XML resolvers, at least one must be valid      */
 specifier|private
 specifier|final
 specifier|static
@@ -165,7 +150,7 @@ literal|"XmlResolver 1.2"
 argument_list|,
 literal|"org.apache.xml.resolver.Version.getVersion()"
 argument_list|)
-block|, 	}
+block|,     }
 decl_stmt|;
 comment|/**      *  Remove "@" from string.      */
 specifier|private
@@ -335,7 +320,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-literal|"Sun Java embeddeds Xerces2 Java Parser"
+literal|"Sun Java embedded Xerces2 Java Parser"
 return|;
 block|}
 else|else
@@ -733,7 +718,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Checks to see if a valid XML Parser exists 	 *  	 * @return boolean true indicates a valid Parser was found, false otherwise 	 */
+comment|/**      * Checks to see if a valid XML Parser exists      *       * @return boolean true indicates a valid Parser was found, false otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -749,7 +734,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Checks to see if a valid XML Parser exists 	 *  	 * @param message	Messages about the status of available Parser's will be appended to this buffer 	 *  	 * @return boolean true indicates a valid Parser was found, false otherwise 	 */
+comment|/**      * Checks to see if a valid XML Parser exists      *       * @param message	Messages about the status of available Parser's will       *                  be appended to this buffer      *       * @return boolean true indicates a valid Parser was found, false otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -770,7 +755,7 @@ name|message
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Checks to see if a valid XML Transformer exists 	 *  	 * @return boolean true indicates a valid Transformer was found, false otherwise 	 */
+comment|/**      * Checks to see if a valid XML Transformer exists      *       * @return boolean true indicates a valid Transformer was found,       *         false otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -786,7 +771,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Checks to see if a valid XML Transformer exists 	 *  	 * @param message	Messages about the status of available Transformer's will be appended to this buffer 	 *  	 * @return boolean true indicates a valid Transformer was found, false otherwise 	 */
+comment|/**      * Checks to see if a valid XML Transformer exists      *       * @param message	Messages about the status of available Transformer's       *                  will be appended to this buffer      *       * @return boolean true indicates a valid Transformer was found,       *         false otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -807,7 +792,7 @@ name|message
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Simple class to describe a class, its required version and how to obtain the actual version  	 */
+comment|/**      * Simple class to describe a class, its required version and how to       * obtain the actual version       */
 specifier|public
 specifier|static
 class|class
@@ -825,7 +810,7 @@ specifier|private
 name|String
 name|versionFunction
 decl_stmt|;
-comment|/**     	 * Default Constructor     	 *      	 * @param simpleName		The simple name for the class (just a descriptor really)     	 * @param requiredVersion	The required version of the class     	 * @param versionFunction	The function to be invoked to obtain the actual version of the class, must be fully qualified (i.e. includes the package name)     	 */
+comment|/**          * Default Constructor          *           * @param simpleName		The simple name for the class (just a           *                          descriptor really)          * @param requiredVersion	The required version of the class          * @param versionFunction	The function to be invoked to obtain the           *                          actual version of the class, must be fully           *                          qualified (i.e. includes the package name)          */
 name|ClassVersion
 parameter_list|(
 name|String
@@ -857,7 +842,7 @@ operator|=
 name|versionFunction
 expr_stmt|;
 block|}
-comment|/**     	 *  @return the simple name of the class     	 */
+comment|/**          *  @return the simple name of the class          */
 specifier|public
 name|String
 name|getSimpleName
@@ -867,7 +852,7 @@ return|return
 name|simpleName
 return|;
 block|}
-comment|/**     	 *  @return the required version of the class     	 */
+comment|/**          *  @return the required version of the class          */
 specifier|public
 name|String
 name|getRequiredVersion
@@ -877,7 +862,7 @@ return|return
 name|requiredVersion
 return|;
 block|}
-comment|/**     	 * Invokes the specified versionFunction using reflection to get the actual version of the class     	 *      	 *  @return the actual version of the class     	 */
+comment|/**          * Invokes the specified versionFunction using reflection to get the           * actual version of the class          *           *  @return the actual version of the class          */
 specifier|public
 name|String
 name|getActualVersion
