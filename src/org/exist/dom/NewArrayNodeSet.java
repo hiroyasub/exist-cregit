@@ -2559,13 +2559,7 @@ name|boolean
 name|sorted
 parameter_list|)
 block|{
-name|isSorted
-operator|=
-name|sorted
-expr_stmt|;
-name|updateDocs
-argument_list|()
-expr_stmt|;
+comment|// has to be ignored for this node set implementation
 block|}
 comment|/**      * Remove all duplicate nodes, but merge their      * contexts.      */
 specifier|public
