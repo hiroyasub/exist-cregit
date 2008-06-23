@@ -2100,6 +2100,11 @@ name|contextSet
 operator|.
 name|directSelectAttribute
 argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
 name|test
 argument_list|,
 name|contextId

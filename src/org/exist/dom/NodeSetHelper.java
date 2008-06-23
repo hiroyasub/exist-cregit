@@ -65,6 +65,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -2455,6 +2467,9 @@ specifier|static
 name|NodeSet
 name|directSelectAttributes
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|NodeSet
 name|candidates
 parameter_list|,
@@ -2526,6 +2541,8 @@ name|candidate
 operator|.
 name|directSelectAttribute
 argument_list|(
+name|broker
+argument_list|,
 name|test
 argument_list|,
 name|contextId
