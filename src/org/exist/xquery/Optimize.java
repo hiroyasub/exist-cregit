@@ -459,20 +459,30 @@ decl_stmt|;
 if|if
 condition|(
 name|contextSequence
+operator|==
+literal|null
+operator|||
+name|contextSequence
 operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
 block|{
 comment|// don't try to optimize in-memory node sets!
+comment|// contextSequence will be overwritten
 name|originalContext
 operator|=
+name|contextSequence
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|contextSequence
 operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
-comment|// contextSequence will be overwritten
 if|if
 condition|(
 name|cachedContext
