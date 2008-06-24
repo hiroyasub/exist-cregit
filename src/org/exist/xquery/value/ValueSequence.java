@@ -3008,11 +3008,6 @@ decl_stmt|;
 name|CollectionIterator
 parameter_list|()
 block|{
-name|nextCollection
-operator|=
-operator|(
-name|Collection
-operator|)
 name|next
 argument_list|()
 expr_stmt|;
