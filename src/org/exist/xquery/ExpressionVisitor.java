@@ -196,6 +196,14 @@ name|DynamicAttributeConstructor
 name|constructor
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|visitVariableReference
+parameter_list|(
+name|VariableReference
+name|ref
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
