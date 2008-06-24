@@ -4240,6 +4240,9 @@ specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|org
 operator|.
 name|exist
@@ -4280,10 +4283,7 @@ decl_stmt|;
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXMLStreamReader
 argument_list|(

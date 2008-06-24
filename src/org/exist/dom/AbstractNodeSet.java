@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Constants
@@ -806,6 +818,9 @@ specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|org
 operator|.
 name|exist
@@ -824,6 +839,8 @@ name|NodeSetHelper
 operator|.
 name|directSelectAttributes
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|qname
