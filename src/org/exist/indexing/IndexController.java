@@ -1447,6 +1447,8 @@ name|worker
 operator|.
 name|getMatchListener
 argument_list|(
+name|broker
+argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;

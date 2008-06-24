@@ -669,6 +669,9 @@ specifier|public
 name|MatchListener
 name|getMatchListener
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -738,6 +741,8 @@ operator|=
 operator|new
 name|FTMatchListener
 argument_list|(
+name|broker
+argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;
@@ -746,6 +751,8 @@ name|matchListener
 operator|.
 name|reset
 argument_list|(
+name|broker
+argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;

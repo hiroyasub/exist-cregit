@@ -1488,6 +1488,9 @@ specifier|public
 name|MatchListener
 name|getMatchListener
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|NodeProxy
 name|proxy
 parameter_list|)
