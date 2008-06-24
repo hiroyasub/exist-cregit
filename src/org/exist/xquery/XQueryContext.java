@@ -9092,8 +9092,6 @@ argument_list|()
 operator|.
 name|getConfiguration
 argument_list|(
-name|doc
-operator|.
 name|getBroker
 argument_list|()
 argument_list|)
@@ -9183,8 +9181,6 @@ name|Trigger
 operator|.
 name|UPDATE_DOCUMENT_EVENT
 argument_list|,
-name|doc
-operator|.
 name|getBroker
 argument_list|()
 argument_list|,
