@@ -51,13 +51,25 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|apache
+name|xml
 operator|.
-name|log4j
+name|transform
 operator|.
-name|Logger
+name|Transformer
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerFactory
 import|;
 end_import
 
@@ -206,7 +218,7 @@ return|return
 name|className
 return|;
 block|}
-comment|/**      *  Determine the class that is actually used during XML parsing. Possible      * values:      * - com.bluecast.xml.Piccolo      * - com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser      * - org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser      *       * @return Full classname of parser.      */
+comment|/**      *  Determine the class that is actually used as XML parser.       *       * @return Full classname of parser.      */
 specifier|private
 specifier|static
 name|String
@@ -216,7 +228,7 @@ block|{
 name|String
 name|parserClass
 init|=
-literal|"unknown"
+literal|"Unable to determine parser class"
 decl_stmt|;
 try|try
 block|{
@@ -271,64 +283,67 @@ return|return
 name|parserClass
 return|;
 block|}
-comment|/**      * Convert a parser classname into human readable name.      */
+comment|/**      *  Determine the class that is actually used as XML transformer.       *       * @return Full classname of transformer.      */
 specifier|private
 specifier|static
 name|String
-name|determineActualUsedParser
-parameter_list|(
+name|determineActualTransformerClass
+parameter_list|()
+block|{
 name|String
-name|parserClass
+name|transformerClass
+init|=
+literal|"Unable to determine transformer class"
+decl_stmt|;
+try|try
+block|{
+name|TransformerFactory
+name|factory
+init|=
+name|TransformerFactory
+operator|.
+name|newInstance
+argument_list|()
+decl_stmt|;
+name|Transformer
+name|transformer
+init|=
+name|factory
+operator|.
+name|newTransformer
+argument_list|()
+decl_stmt|;
+name|String
+name|classId
+init|=
+name|transformer
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|transformerClass
+operator|=
+name|getClassName
+argument_list|(
+name|classId
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
 parameter_list|)
 block|{
-if|if
-condition|(
-name|parserClass
+name|ex
 operator|.
-name|startsWith
-argument_list|(
-literal|"com.bluecast.xml"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|"Piccolo XML Parser for Java"
-return|;
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
-if|else if
-condition|(
-name|parserClass
-operator|.
-name|startsWith
-argument_list|(
-literal|"org.apache.xerces"
-argument_list|)
-condition|)
-block|{
 return|return
-literal|"Apache Xerces2 Java Parser"
+name|transformerClass
 return|;
-block|}
-if|else if
-condition|(
-name|parserClass
-operator|.
-name|startsWith
-argument_list|(
-literal|"com.sun.org.apache.xerces"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|"Sun Java embedded Xerces2 Java Parser"
-return|;
-block|}
-else|else
-block|{
-return|return
-literal|"Unknown parser"
-return|;
-block|}
 block|}
 comment|/**      *  Perform checks on parsers, transformers and resolvers.      */
 specifier|public
@@ -394,7 +409,7 @@ if|if
 condition|(
 name|hasValidClassVersion
 argument_list|(
-literal|"Transformers"
+literal|"Transformer"
 argument_list|,
 name|validTransformers
 argument_list|,
@@ -476,35 +491,28 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|String
-name|actualParserClassName
-init|=
-name|determineActualParserClass
-argument_list|()
-decl_stmt|;
-name|String
-name|msg
-init|=
-literal|"Used parser: "
-operator|+
-name|determineActualUsedParser
-argument_list|(
-name|actualParserClassName
-argument_list|)
-operator|+
-literal|" ("
-operator|+
-name|actualParserClassName
-operator|+
-literal|")."
-decl_stmt|;
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-name|msg
+literal|"Using parser "
+operator|+
+name|determineActualParserClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Using transformer "
+operator|+
+name|determineActualTransformerClass
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
@@ -515,6 +523,7 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      *  Check if for the specified service object one of the required      * classes is availabe.      *       * @param type  Parser, Transformer or Resolver, used for reporting only.      * @param validClasses Array of valid classes.       * @param message  Output message of detecting classes.      * @return TRUE if valid class has been found, otherwise FALSE.      */
 specifier|public
 specifier|static
 name|boolean
