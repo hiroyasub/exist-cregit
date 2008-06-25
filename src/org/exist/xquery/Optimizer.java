@@ -955,6 +955,12 @@ operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|||
+name|axis
+operator|==
+name|Constants
+operator|.
+name|DESCENDANT_ATTRIBUTE_AXIS
 operator|)
 condition|)
 block|{
