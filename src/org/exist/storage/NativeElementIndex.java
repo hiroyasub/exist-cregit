@@ -103,7 +103,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|ExtNodeSet
 import|;
 end_import
 
@@ -115,7 +115,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtNodeSet
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -3201,11 +3201,11 @@ name|type
 argument_list|)
 decl_stmt|;
 specifier|final
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 name|docs
 operator|.
@@ -3714,11 +3714,11 @@ name|iterateByDocument
 argument_list|()
 decl_stmt|;
 specifier|final
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 name|docs
 operator|.
