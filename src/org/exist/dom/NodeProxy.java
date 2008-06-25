@@ -3419,11 +3419,11 @@ name|int
 name|contextId
 parameter_list|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|ContextItem
@@ -3730,11 +3730,11 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|result
@@ -3932,7 +3932,7 @@ name|NodeSet
 name|ancestors
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 if|if
@@ -4275,7 +4275,7 @@ name|EMPTY_SET
 return|;
 try|try
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 literal|null
@@ -4427,7 +4427,7 @@ condition|)
 name|result
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
 name|result
@@ -4566,11 +4566,11 @@ operator|.
 name|EMPTY_SET
 return|;
 comment|//        System.out.println("Retrieving child nodes for " + node + ": " + children.getLength());
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|StoredNode

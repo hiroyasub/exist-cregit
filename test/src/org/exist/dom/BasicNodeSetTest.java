@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework
@@ -394,6 +384,16 @@ operator|.
 name|sax
 operator|.
 name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
 import|;
 end_import
 
@@ -2220,11 +2220,11 @@ literal|"------------ Testing NativeElementIndex.findChildNodesByTagName -------
 argument_list|)
 expr_stmt|;
 comment|// parent set: 1.1.1; child set: 1.1.1.1, 1.1.1.2, 1.1.1.3, 1.1.2.1, 1.2.1
-name|ExtArrayNodeSet
+name|ExtNodeSet
 name|nestedSet
 init|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2285,7 +2285,7 @@ comment|// parent set: 1.1; child set: 1.1.1, 1.1.2
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2346,7 +2346,7 @@ comment|// problem: ancestor set contains nested nodes
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2407,7 +2407,7 @@ comment|// problem: ancestor set contains nested nodes
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2466,7 +2466,7 @@ expr_stmt|;
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2525,7 +2525,7 @@ expr_stmt|;
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2584,7 +2584,7 @@ expr_stmt|;
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2643,7 +2643,7 @@ expr_stmt|;
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(
@@ -2702,7 +2702,7 @@ expr_stmt|;
 name|nestedSet
 operator|=
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|executeQuery
 argument_list|(

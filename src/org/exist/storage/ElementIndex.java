@@ -15,26 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -77,7 +57,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|ExtNodeSet
 import|;
 end_import
 
@@ -138,6 +118,26 @@ operator|.
 name|xquery
 operator|.
 name|NodeSelector
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
 import|;
 end_import
 
@@ -254,7 +254,7 @@ parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
-name|ExtArrayNodeSet
+name|ExtNodeSet
 name|contextSet
 parameter_list|,
 name|int

@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|MutableDocumentSet
 import|;
 end_import
 
@@ -83,7 +83,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|MutableDocumentSet
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -874,7 +874,7 @@ name|NodeSet
 name|set
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeValue

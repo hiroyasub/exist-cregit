@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -643,7 +643,7 @@ block|{
 name|result
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
 if|if

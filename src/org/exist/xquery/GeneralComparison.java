@@ -67,7 +67,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -2747,7 +2747,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 specifier|final

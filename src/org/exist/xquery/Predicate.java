@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -1657,11 +1657,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeSet
@@ -2004,7 +2004,7 @@ name|Sequence
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 literal|100
 argument_list|)
@@ -2063,7 +2063,7 @@ block|{
 name|outerNodeSet
 operator|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
 for|for
@@ -2174,11 +2174,11 @@ argument_list|(
 literal|"contextSet and outerNodeSet don't share any document"
 argument_list|)
 expr_stmt|;
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|temp
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 literal|100
 argument_list|)

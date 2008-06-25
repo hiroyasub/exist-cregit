@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|ExtNodeSet
 import|;
 end_import
 
@@ -130,7 +130,7 @@ if|if
 condition|(
 name|descendants
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 condition|)
 name|this
 operator|.
@@ -184,7 +184,7 @@ else|else
 return|return
 operator|(
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|descendants
 operator|)

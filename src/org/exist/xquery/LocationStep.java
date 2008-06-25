@@ -45,7 +45,19 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ExtArrayNodeSet
+name|ExtNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NewArrayNodeSet
 import|;
 end_import
 
@@ -2373,7 +2385,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|&&
 operator|!
 name|contextSet
@@ -2401,7 +2413,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -2593,11 +2605,11 @@ condition|(
 name|useDirectChildSelect
 condition|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 for|for
@@ -2846,7 +2858,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|&&
 operator|!
 name|contextSet
@@ -2874,7 +2886,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -3267,7 +3279,7 @@ if|if
 condition|(
 name|contextSet
 operator|instanceof
-name|ExtArrayNodeSet
+name|ExtNodeSet
 condition|)
 block|{
 return|return
@@ -3289,7 +3301,7 @@ argument_list|,
 name|docs
 argument_list|,
 operator|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 operator|)
 name|contextSet
 argument_list|,
@@ -3491,11 +3503,11 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 name|contextSet
 operator|.
@@ -3768,7 +3780,7 @@ implements|implements
 name|NodeVisitor
 block|{
 specifier|private
-name|ExtArrayNodeSet
+name|ExtNodeSet
 name|resultSet
 decl_stmt|;
 specifier|private
@@ -3778,7 +3790,7 @@ decl_stmt|;
 specifier|public
 name|SiblingVisitor
 parameter_list|(
-name|ExtArrayNodeSet
+name|ExtNodeSet
 name|resultSet
 parameter_list|)
 block|{
@@ -4535,7 +4547,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|result
@@ -5226,7 +5238,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|NodeProxy
