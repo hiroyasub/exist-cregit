@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -167,6 +157,16 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provide concurrent access to the index structure. Implements the core operations on the index.  * The methods in this class are used in a multi-threaded environment. Every thread accessing the  * database will have exactly one IndexWorker for every index. {@link org.exist.indexing.Index#getWorker(DBBroker)}  * should thus return a new IndexWorker whenever it is  called. Implementations of IndexWorker have  * to take care of synchronizing access to shared resources.  */
 end_comment
@@ -273,6 +273,9 @@ comment|/**      * Returns a {@link org.exist.indexing.MatchListener}, which can
 name|MatchListener
 name|getMatchListener
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|NodeProxy
 name|proxy
 parameter_list|)
