@@ -2717,6 +2717,8 @@ operator|=
 operator|new
 name|EmbeddedXMLStreamReader
 argument_list|(
+name|this
+argument_list|,
 operator|(
 name|DocumentImpl
 operator|)
@@ -2737,6 +2739,8 @@ name|streamReader
 operator|.
 name|reposition
 argument_list|(
+name|this
+argument_list|,
 name|node
 argument_list|,
 name|reportAttributes
@@ -2787,6 +2791,8 @@ operator|=
 operator|new
 name|EmbeddedXMLStreamReader
 argument_list|(
+name|this
+argument_list|,
 operator|(
 name|DocumentImpl
 operator|)
@@ -2807,6 +2813,8 @@ name|streamReader
 operator|.
 name|reposition
 argument_list|(
+name|this
+argument_list|,
 name|proxy
 argument_list|,
 name|reportAttributes
