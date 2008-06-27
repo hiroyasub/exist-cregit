@@ -1044,15 +1044,7 @@ operator|=
 operator|new
 name|MultiReadReentrantLock
 argument_list|(
-name|collection
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|append
-argument_list|(
 name|fileURI
-argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
