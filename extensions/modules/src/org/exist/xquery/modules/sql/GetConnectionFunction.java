@@ -710,6 +710,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:get-connection() Illegal Access to database driver class: "
 operator|+
 name|dbDriver
@@ -739,6 +742,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:get-connection() Cannot find database driver class: "
 operator|+
 name|dbDriver
@@ -768,6 +774,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:get-connection() Cannot instantiate database driver class: "
 operator|+
 name|dbDriver
@@ -797,6 +806,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:get-connection() Cannot connect to database: "
 operator|+
 name|dbURL

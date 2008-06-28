@@ -405,6 +405,9 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|ioe
 argument_list|)
 operator|)
