@@ -481,6 +481,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|e
 argument_list|)
 throw|;
