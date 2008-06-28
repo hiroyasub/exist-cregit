@@ -2081,6 +2081,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Unable to set up transformer: "
 operator|+
 name|e
@@ -2210,6 +2213,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
 throw|;
@@ -2441,6 +2447,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Malformed URL for stylesheet: "
 operator|+
 name|stylesheet
@@ -2459,6 +2468,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"IO error while loading stylesheet: "
 operator|+
 name|stylesheet
@@ -2739,6 +2751,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Permission denied to read stylesheet: "
 operator|+
 name|uri

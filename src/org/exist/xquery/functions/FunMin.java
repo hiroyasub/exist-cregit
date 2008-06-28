@@ -637,6 +637,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0006: Cannot compare "
 operator|+
 name|Type
@@ -719,6 +722,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0006: Cannot compare "
 operator|+
 name|Type
@@ -808,6 +814,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0006: Cannot compare "
 operator|+
 name|Type
@@ -914,6 +923,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0006: Cannot compare "
 operator|+
 name|Type
@@ -975,6 +987,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0006: Cannot compare "
 operator|+
 name|Type

@@ -415,6 +415,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
@@ -436,6 +439,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
 throw|;
@@ -501,6 +507,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Variable $response is not bound to a Response object."
 argument_list|)
 throw|;

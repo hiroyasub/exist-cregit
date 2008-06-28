@@ -1185,6 +1185,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Data should be either a node or a string"
 argument_list|)
 throw|;
@@ -1207,6 +1210,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XMLDB reported an exception while storing document"
 operator|+
 name|e
@@ -1225,6 +1231,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"SAX reported an exception while storing document"
 argument_list|,
 name|e
@@ -1274,6 +1283,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XMLDB reported an exception while retrieving the "
 operator|+
 literal|"stored document"

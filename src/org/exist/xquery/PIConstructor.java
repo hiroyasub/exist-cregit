@@ -254,6 +254,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPST0003 : The target 'xml' is not allowed in XML processing instructions."
 argument_list|)
 throw|;

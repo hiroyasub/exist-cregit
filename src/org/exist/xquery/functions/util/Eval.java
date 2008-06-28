@@ -2210,6 +2210,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"source for module "
 operator|+
 name|location
@@ -2246,6 +2249,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"source for module "
 operator|+
 name|location
@@ -2284,6 +2290,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"permission denied to read module source from "
 operator|+
 name|location
@@ -2370,6 +2379,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"source location for query at "
 operator|+
 name|location
@@ -2393,6 +2405,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"source for query at "
 operator|+
 name|location
@@ -2416,6 +2431,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Permission denied to access query at "
 operator|+
 name|location

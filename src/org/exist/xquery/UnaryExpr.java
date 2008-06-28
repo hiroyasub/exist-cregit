@@ -268,6 +268,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"unary expression requires an operand"
 argument_list|)
 throw|;

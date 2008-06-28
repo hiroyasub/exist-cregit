@@ -1066,6 +1066,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -1720,6 +1723,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|e
 operator|.
 name|getMessage

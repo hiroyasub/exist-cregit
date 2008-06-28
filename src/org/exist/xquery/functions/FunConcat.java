@@ -645,6 +645,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"concat requires at least two arguments"
 argument_list|)
 throw|;

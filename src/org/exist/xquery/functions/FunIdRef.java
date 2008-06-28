@@ -642,6 +642,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"function id requires one argument"
 argument_list|)
 throw|;

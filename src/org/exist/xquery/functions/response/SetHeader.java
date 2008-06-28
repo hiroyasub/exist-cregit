@@ -545,6 +545,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Response not set"
 argument_list|)
 throw|;
@@ -566,6 +569,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Variable $response is not bound to a Java object."
 argument_list|)
 throw|;
@@ -654,6 +660,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: variable $response is not bound to a response object"
 argument_list|)
 throw|;

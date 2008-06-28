@@ -382,6 +382,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Session not set"
 argument_list|)
 throw|;
@@ -403,6 +406,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Variable $session is not bound to an Java object."
 argument_list|)
 throw|;
@@ -475,6 +481,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: variable $request is not bound to a request object"
 argument_list|)
 throw|;
