@@ -249,7 +249,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ZERO_OR_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -268,7 +268,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)          */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -402,6 +402,21 @@ argument_list|(
 name|param
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|headerValue
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+else|else
+block|{
 return|return
 name|XPathUtil
 operator|.
@@ -415,14 +430,12 @@ literal|false
 argument_list|)
 return|;
 block|}
+block|}
 else|else
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
