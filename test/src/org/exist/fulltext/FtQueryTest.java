@@ -1211,7 +1211,7 @@ literal|"t:index-terms(collection('"
 operator|+
 name|TEST_COLLECTION_PATH
 operator|+
-literal|"'), \'is\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"'), \'is\', util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -1241,7 +1241,7 @@ literal|"t:index-terms(collection('"
 operator|+
 name|TEST_COLLECTION_PATH
 operator|+
-literal|"')//LINE, \'is\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"')//LINE, \'is\', util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 expr_stmt|;
 name|result
 operator|=
@@ -1270,7 +1270,7 @@ literal|"t:index-terms(collection('"
 operator|+
 name|TEST_COLLECTION_PATH
 operator|+
-literal|"')//mods:title, \'s\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"')//mods:title, \'s\', util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 expr_stmt|;
 name|result
 operator|=

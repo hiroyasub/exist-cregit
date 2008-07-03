@@ -1682,7 +1682,7 @@ name|query
 init|=
 name|queryBody
 operator|+
-literal|"u:index-keys(//item/name, \'\', util:function(\'f:term-callback\', 2), 1000)"
+literal|"u:index-keys(//item/name, \'\', util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -1741,7 +1741,7 @@ name|query
 operator|=
 name|queryBody
 operator|+
-literal|"u:index-keys(//item/stock, 0, util:function(\'f:term-callback\', 2), 1000)"
+literal|"u:index-keys(//item/stock, 0, util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 expr_stmt|;
 name|result
 operator|=
