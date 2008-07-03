@@ -142,7 +142,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|QNAME
 argument_list|,
 name|Cardinality
 operator|.
