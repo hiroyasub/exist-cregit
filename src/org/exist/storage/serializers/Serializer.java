@@ -1877,6 +1877,13 @@ name|equals
 argument_list|(
 literal|"both"
 argument_list|)
+operator|||
+name|option
+operator|.
+name|equals
+argument_list|(
+literal|"all"
+argument_list|)
 condition|)
 return|return
 name|TAG_BOTH
