@@ -3553,9 +3553,9 @@ name|query
 init|=
 name|queryBody
 operator|+
-literal|"util:index-keys(/test/item, \'\', util:function(\'local:callback\', 2), 1000, 'ngram-index')"
+literal|"util:index-keys(/test/item, \'\', util:function(xs:QName(\'local:callback\'), 2), 1000, 'ngram-index')"
 decl_stmt|;
-comment|//String query = queryBody + "util:index-keys(/test/item, \'\', util:function(\xs:QName('local:callback\'), 2), 1000, 'org.exist.indexing.impl.NGramIndex')";
+comment|//String query = queryBody + "util:index-keys(/test/item, \'\', util:function(xs:QName(\'local:callback\'), 2), 1000, 'org.exist.indexing.impl.NGramIndex')";
 name|seq
 operator|=
 name|xquery

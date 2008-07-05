@@ -1150,7 +1150,7 @@ literal|"</entry> "
 operator|+
 literal|"}; "
 operator|+
-comment|//"util:index-keys(//gml:*, '', util:function('local:key-callback', 2), 1000, 'spatial-index')[entry/frequency> 1] ",
+comment|//"util:index-keys(//gml:*, '', util:function(xs:QName('local:key-callback'), 2), 1000, 'spatial-index')[entry/frequency> 1] ",
 literal|"util:index-keys(//gml:*, '', util:function(xs:QName('local:key-callback'), 2), 1000, 'spatial-index') "
 argument_list|,
 literal|null

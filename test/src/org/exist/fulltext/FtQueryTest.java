@@ -2405,7 +2405,7 @@ literal|"t:index-terms(collection('"
 operator|+
 name|TEST_COLLECTION_PATH
 operator|+
-literal|"')//node, (), util:function(\'f:term-callback\', 2), 1000)"
+literal|"')//node, (), util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
 decl_stmt|;
 name|ResourceSet
 name|result
