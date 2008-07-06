@@ -348,7 +348,9 @@ init|=
 name|context
 operator|.
 name|getDocumentBuilder
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|DocumentBuilderReceiver
 name|receiver
