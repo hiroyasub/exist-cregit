@@ -833,7 +833,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * @see TestCase#tearDown() 	 */
+comment|/*      * @see TestCase#tearDown()      */
 specifier|public
 name|void
 name|tearDown
@@ -6074,7 +6074,7 @@ name|exceptionThrown
 argument_list|)
 expr_stmt|;
 comment|//TODO : uncomment when PI are OK
-comment|/* 			System.out.println("testImprobableAxesAndNodeTestsCombinations 19: ========" ); 			query = "let $a :=<x>a<?foo ?>c</x>/self::processing-instruction('foo') return<z>{$a}</z>"; 			result = service.query(query);				 			assertEquals( "XQuery: " + query, 1, result.getSize() ); 			assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());  			System.out.println("testImprobableAxesAndNodeTestsCombinations 20: ========" ); 			query = "let $a :=<x>a<?foo ?>c</x>/parent::processing-instruction('foo') return<z>{$a}</z>"; 			result = service.query(query);				 			assertEquals( "XQuery: " + query, 1, result.getSize() ); 			assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	 			 			System.out.println("testImprobableAxesAndNodeTestsCombinations 21: ========" ); 			query = "let $a :=<x>a<?foo ?>c</x>/ancestor::processing-instruction('foo') return<z>{$a}</z>"; 			result = service.query(query);				 			assertEquals( "XQuery: " + query, 1, result.getSize() ); 			assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent()); 			 			System.out.println("testImprobableAxesAndNodeTestsCombinations 22: ========" ); 			query = "let $a :=<x>a<?foo ?>c</x>/ancestor-or-self::processing-instruction('foo') return<z>{$a}</z>"; 			result = service.query(query);				 			assertEquals( "XQuery: " + query, 1, result.getSize() ); 			assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	 			*/
+comment|/*             System.out.println("testImprobableAxesAndNodeTestsCombinations 19: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());                          System.out.println("testImprobableAxesAndNodeTestsCombinations 20: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/parent::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	                          System.out.println("testImprobableAxesAndNodeTestsCombinations 21: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/ancestor::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());                          System.out.println("testImprobableAxesAndNodeTestsCombinations 22: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/ancestor-or-self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	              */
 comment|//			This one is intercepted by the parser
 name|System
 operator|.
@@ -6975,7 +6975,7 @@ expr_stmt|;
 comment|//Interesting one : let's see with XQuery gurus :-)
 comment|//declare namespace fn="";
 comment|//fn:current-time()
-comment|/* 			 If the URILiteral part of a namespace declaration is a zero-length string,  			 any existing namespace binding for the given prefix is removed from  			 the statically known namespaces. This feature provides a way  			 to remove predeclared namespace prefixes such as local. 			 */
+comment|/*             If the URILiteral part of a namespace declaration is a zero-length string,              any existing namespace binding for the given prefix is removed from              the statically known namespaces. This feature provides a way              to remove predeclared namespace prefixes such as local.              */
 name|System
 operator|.
 name|out
@@ -11704,7 +11704,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** CAUTION side effect on field xml 	 * @return the large string contained in the atrbute(s) 	 */
+comment|/** CAUTION side effect on field xml      * @return the large string contained in the atrbute(s)      */
 specifier|private
 name|String
 name|createXMLContentWithLargeString
@@ -11755,10 +11755,12 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|xml
 operator|+=
 name|elem
 expr_stmt|;
+block|}
 name|xml
 operator|+=
 name|tail
@@ -11833,7 +11835,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** This test is obsolete because testLargeAttributeSimple() reproduces the problem without a file, 	 * but I keep it to show how one can test with an XML file. */
+comment|/** This test is obsolete because testLargeAttributeSimple() reproduces the problem without a file,      * but I keep it to show how one can test with an XML file. */
 specifier|public
 name|void
 name|obsoleteTestLargeAttributeRealFile
@@ -11872,10 +11874,12 @@ name|attributeXML
 operator|!=
 literal|null
 condition|)
+block|{
 name|large
 operator|=
 name|attributeXML
 expr_stmt|;
+block|}
 name|String
 name|xml
 init|=
@@ -16354,8 +16358,99 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=2003042
+specifier|public
+name|void
+name|bugtestXPTY0018_MixNodesAtomicValues_2003042
+parameter_list|()
+block|{
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"<a>{2}<b/></a>"
+decl_stmt|;
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|query
+argument_list|,
+literal|"<a>{2}<b/></a>"
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// ======================================
-comment|/** 	 * @return 	 * @throws XMLDBException 	 */
+comment|/**      * @return      * @throws XMLDBException      */
 specifier|private
 name|XPathQueryService
 name|storeXMLStringAndGetQueryService
@@ -16423,7 +16518,7 @@ return|return
 name|service
 return|;
 block|}
-comment|/** 	 * @return 	 * @throws XMLDBException 	 */
+comment|/**      * @return      * @throws XMLDBException      */
 specifier|private
 name|XPathQueryService
 name|storeXMLStringAndGetQueryService
@@ -16492,7 +16587,7 @@ return|return
 name|service
 return|;
 block|}
-comment|/** 	 * @param result 	 * @throws XMLDBException 	 */
+comment|/**      * @param result      * @throws XMLDBException      */
 specifier|private
 name|void
 name|printResult
