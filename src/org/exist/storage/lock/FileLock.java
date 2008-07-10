@@ -324,6 +324,16 @@ name|exists
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+operator|++
+name|attempt
+operator|>
+literal|2
+condition|)
+return|return
+literal|false
+return|;
 try|try
 block|{
 name|read
@@ -349,20 +359,14 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+comment|// check if there's a heartbeat. if not, remove the stale .lck file and try again
 if|if
 condition|(
 name|checkHeartbeat
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-operator|++
-name|attempt
-operator|==
-literal|1
-condition|)
-block|{
+comment|// there seems to be a heartbeat...
 comment|// sometimes Java does not properly delete files, so we may have an old
 comment|// lock file from a previous db run, which has not timed out yet. We thus
 comment|// give the db a second chance and wait for HEARTBEAT + 100 milliseconds
@@ -424,12 +428,6 @@ name|e
 parameter_list|)
 block|{
 block|}
-block|}
-else|else
-comment|// we found a valid heartbeat
-return|return
-literal|false
-return|;
 block|}
 block|}
 try|try
