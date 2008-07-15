@@ -492,6 +492,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQST0070 : can not redefine '"
 operator|+
 name|qn
@@ -514,6 +517,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQST0070 : can not redefine '"
 operator|+
 name|qn
@@ -546,6 +552,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQST0085 : cannot undeclare a prefix "
 operator|+
 name|name
@@ -612,6 +621,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQST0071 : duplicate definition for '"
 operator|+
 name|qn
@@ -748,7 +760,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
-comment|//		        		throw new XPathException("XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+comment|//		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 block|}
 else|else
 name|context
@@ -926,7 +938,7 @@ comment|//if ("".equals(namespaceDecls[i].getNamespaceURI())) {
 comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
 comment|//	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
 comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
-comment|//		        		throw new XPathException("XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+comment|//		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 comment|//} else
 name|context
 operator|.
@@ -1158,6 +1170,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQST0040 '"
 operator|+
 name|attrQName
@@ -1231,6 +1246,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
 throw|;
@@ -1337,6 +1355,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004 '"
 operator|+
 name|qnitem

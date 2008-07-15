@@ -1843,6 +1843,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Internal evaluation error: context is missing for node "
 operator|+
 name|currentNode
