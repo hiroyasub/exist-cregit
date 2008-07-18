@@ -106,6 +106,8 @@ block|,
 literal|"log4j-%latest%"
 block|,
 literal|"stax-api-%latest%"
+block|,
+literal|"sunxacml"
 block|}
 decl_stmt|;
 comment|// Resolves jar file patterns from jars[].
