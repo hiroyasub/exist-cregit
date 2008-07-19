@@ -13,7 +13,7 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|session
+name|request
 package|;
 end_package
 
@@ -39,7 +39,7 @@ name|http
 operator|.
 name|servlets
 operator|.
-name|SessionWrapper
+name|RequestWrapper
 import|;
 end_import
 
@@ -250,16 +250,16 @@ name|QName
 argument_list|(
 literal|"set-attribute"
 argument_list|,
-name|SessionModule
+name|RequestModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|SessionModule
+name|RequestModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Stores a value in the current session using the supplied attribute name."
+literal|"Stores a value in the current request using the supplied attribute name."
 argument_list|,
 operator|new
 name|SequenceType
@@ -385,6 +385,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -403,12 +404,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -431,22 +434,23 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|SessionModule
+block|}
+name|RequestModule
 name|myModule
 init|=
 operator|(
-name|SessionModule
+name|RequestModule
 operator|)
 name|context
 operator|.
 name|getModule
 argument_list|(
-name|SessionModule
+name|RequestModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// session object is read from global variable $session
+comment|// request object is read from global variable $request
 name|Variable
 name|var
 init|=
@@ -454,9 +458,9 @@ name|myModule
 operator|.
 name|resolveVariable
 argument_list|(
-name|SessionModule
+name|RequestModule
 operator|.
-name|SESSION_VAR
+name|REQUEST_VAR
 argument_list|)
 decl_stmt|;
 if|if
@@ -472,16 +476,20 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Session not set"
+literal|"Request not set"
 argument_list|)
+operator|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -496,18 +504,22 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Variable $session is not bound to a Java object."
+literal|"Variable $request is not bound to a Java object."
 argument_list|)
+operator|)
 throw|;
+block|}
 name|JavaObjectValue
-name|session
+name|request
 init|=
 operator|(
 name|JavaObjectValue
@@ -558,18 +570,19 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|session
+name|request
 operator|.
 name|getObject
 argument_list|()
 operator|instanceof
-name|SessionWrapper
+name|RequestWrapper
 condition|)
+block|{
 operator|(
 operator|(
-name|SessionWrapper
+name|RequestWrapper
 operator|)
-name|session
+name|request
 operator|.
 name|getObject
 argument_list|()
@@ -582,21 +595,28 @@ argument_list|,
 name|attribValue
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Type error: variable $session is not bound to a session object"
+literal|"Type error: variable $request is not bound to a request object"
 argument_list|)
+operator|)
 throw|;
+block|}
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}
