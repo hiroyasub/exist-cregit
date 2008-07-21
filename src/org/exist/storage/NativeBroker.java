@@ -15852,6 +15852,17 @@ name|currentPath
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+name|Node
+operator|.
+name|COMMENT_NODE
+case|:
+case|case
+name|Node
+operator|.
+name|PROCESSING_INSTRUCTION_NODE
+case|:
+break|break;
 default|default :
 name|LOG
 operator|.
