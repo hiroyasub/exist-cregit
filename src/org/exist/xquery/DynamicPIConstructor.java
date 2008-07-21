@@ -518,6 +518,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQDY0041 '"
 operator|+
 name|nameSeq
@@ -544,6 +547,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQDY0064 '"
 operator|+
 name|nameSeq
@@ -703,6 +709,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XQDY0026 '"
 operator|+
 name|contentString

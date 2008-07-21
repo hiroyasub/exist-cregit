@@ -664,6 +664,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: too many operands at the left of "
 operator|+
 name|Constants
@@ -685,6 +688,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: too many operands at the right of "
 operator|+
 name|Constants
@@ -823,6 +829,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -862,6 +871,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -919,6 +931,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -966,6 +981,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -1009,6 +1027,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FOAR0001: division by zero"
 argument_list|)
 throw|;
@@ -1029,6 +1050,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FOAR0002: division of "
 operator|+
 name|Type
@@ -1065,6 +1089,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FOAR0002: division of "
 operator|+
 name|Type
@@ -1101,6 +1128,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FOAR0002: division of "
 operator|+
 name|Type
@@ -1319,6 +1349,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -1359,6 +1392,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type

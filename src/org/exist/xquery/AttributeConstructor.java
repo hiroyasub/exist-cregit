@@ -226,6 +226,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"enclosed expressions are not allowed in namespace "
 operator|+
 literal|"declaration attributes"

@@ -370,6 +370,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:XPST0080: cannot cast to "
 operator|+
 name|Type
@@ -418,6 +421,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:XPST0051: cannot cast to "
 operator|+
 name|Type
