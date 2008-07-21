@@ -449,6 +449,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: expected at most one xs:date"
 argument_list|)
 throw|;
@@ -466,6 +469,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: expected at most one xs:time"
 argument_list|)
 throw|;
@@ -575,16 +581,19 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORG0008: operands have different timezones"
 argument_list|)
 throw|;
 block|}
 block|}
-comment|/* else {     				if (!((DayTimeDurationValue)dv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     	        		throw new XPathException("FORG0008: operands have different timezones");     			} */
+comment|/* else {     				if (!((DayTimeDurationValue)dv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     	        		throw new XPathException(getASTNode(), "FORG0008: operands have different timezones");     			} */
 block|}
 else|else
 block|{
-comment|/*     			if (!tv.getTimezone().isEmpty()) {     				if (!((DayTimeDurationValue)tv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     					throw new XPathException("FORG0008: operands have different timezones");     			}     			*/
+comment|/*     			if (!tv.getTimezone().isEmpty()) {     				if (!((DayTimeDurationValue)tv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     					throw new XPathException(getASTNode(), "FORG0008: operands have different timezones");     			}     			*/
 block|}
 name|String
 name|dtv

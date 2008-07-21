@@ -991,7 +991,7 @@ operator|++
 control|)
 block|{
 comment|//Commented out : this seems to be a total non sense
-comment|/*             	if (replace.charAt(i) == '$') {             		try {             			if (!(replace.charAt(i - 1) == '\\' || Character.isDigit(replace.charAt(i + 1))))             				throw new XPathException("err:FORX0004 The value of $replacement contains a '$' character that is not immediately followed by a digit 0-9 and not immediately preceded by a '\\'.");             		//Handle index exceptions             		} catch (Exception e){             			throw new XPathException("err:FORX0004 The value of $replacement contains a '$' character that is not immediately followed by a digit 0-9 and not immediately preceded by a '\\'.");             		}             	}             	*/
+comment|/*             	if (replace.charAt(i) == '$') {             		try {             			if (!(replace.charAt(i - 1) == '\\' || Character.isDigit(replace.charAt(i + 1))))             				throw new XPathException(getASTNode(), "err:FORX0004 The value of $replacement contains a '$' character that is not immediately followed by a digit 0-9 and not immediately preceded by a '\\'.");             		//Handle index exceptions             		} catch (Exception e){             			throw new XPathException(getASTNode(), "err:FORX0004 The value of $replacement contains a '$' character that is not immediately followed by a digit 0-9 and not immediately preceded by a '\\'.");             		}             	}             	*/
 if|if
 condition|(
 name|replace
@@ -1037,6 +1037,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:FORX0004 The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
 argument_list|)
 throw|;
@@ -1055,6 +1058,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"err:FORX0004 The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
 argument_list|)
 throw|;

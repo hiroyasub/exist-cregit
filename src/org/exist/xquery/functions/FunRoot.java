@@ -601,6 +601,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FOTY0011: item is not a node; got '"
 operator|+
 name|item

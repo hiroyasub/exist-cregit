@@ -643,6 +643,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type
@@ -729,6 +732,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0004: '"
 operator|+
 name|Type

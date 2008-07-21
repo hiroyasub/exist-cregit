@@ -601,6 +601,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"FORX0003: regular expression could match empty string"
 argument_list|)
 throw|;

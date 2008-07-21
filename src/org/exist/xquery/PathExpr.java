@@ -1239,6 +1239,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"XPTY0018: Cannot mix nodes and atomic values in the result of a path expression."
 argument_list|)
 throw|;
