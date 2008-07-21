@@ -733,6 +733,10 @@ expr_stmt|;
 if|if
 condition|(
 name|varDeps
+operator|!=
+literal|null
+operator|&&
+name|varDeps
 index|[
 name|i
 index|]
