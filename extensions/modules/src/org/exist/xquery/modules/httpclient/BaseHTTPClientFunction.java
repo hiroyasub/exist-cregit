@@ -523,6 +523,9 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Name or value attribute missing for request header parameter"
 argument_list|)
 operator|)
@@ -1480,6 +1483,9 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|ue
 argument_list|)
 operator|)

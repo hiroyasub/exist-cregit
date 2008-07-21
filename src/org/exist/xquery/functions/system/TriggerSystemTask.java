@@ -656,6 +656,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
 throw|;

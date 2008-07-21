@@ -693,6 +693,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Could not Transform XHTML Message Body: "
 operator|+
 name|e

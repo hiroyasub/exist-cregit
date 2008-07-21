@@ -995,6 +995,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:execute() Could not serialize SQL results to XML for SQL: \""
 operator|+
 name|sql
@@ -1028,6 +1031,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"sql:execute() Caught SQLException for SQL: \""
 operator|+
 name|sql

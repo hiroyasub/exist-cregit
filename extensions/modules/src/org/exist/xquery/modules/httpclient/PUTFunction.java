@@ -452,6 +452,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 literal|"Internal error"
 argument_list|)
 throw|;
@@ -614,6 +617,9 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
+name|getASTNode
+argument_list|()
+argument_list|,
 name|ioe
 argument_list|)
 operator|)
