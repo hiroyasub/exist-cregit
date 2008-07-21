@@ -313,6 +313,77 @@ literal|1024
 operator|*
 literal|1024
 expr_stmt|;
+name|long
+name|max
+init|=
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|maxMemory
+argument_list|()
+decl_stmt|;
+name|long
+name|maxCache
+init|=
+name|max
+operator|>=
+literal|768
+operator|*
+literal|1024
+operator|*
+literal|1024
+condition|?
+name|max
+operator|/
+literal|2
+else|:
+name|max
+operator|/
+literal|3
+decl_stmt|;
+if|if
+condition|(
+name|totalMem
+operator|>
+name|maxCache
+condition|)
+block|{
+name|totalMem
+operator|=
+name|maxCache
+expr_stmt|;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"The cacheSize=\""
+operator|+
+name|cacheSize
+operator|+
+literal|"\" setting in conf.xml is too large. Java has only "
+operator|+
+operator|(
+name|max
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"k available. Cache manager will not use more than "
+operator|+
+operator|(
+name|totalMem
+operator|/
+literal|1024
+operator|)
+operator|+
+literal|"k "
+operator|+
+literal|"to avoid memory issues which may lead to database corruptions."
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|buffers
 init|=
@@ -356,7 +427,18 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Cache settings: totalPages: "
+literal|"Cache settings: "
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|totalMem
+operator|/
+literal|1024
+argument_list|)
+operator|+
+literal|"k; totalPages: "
 operator|+
 name|nf
 operator|.
