@@ -1428,6 +1428,10 @@ condition|(
 name|canCache
 operator|&&
 name|contextSequence
+operator|!=
+literal|null
+operator|&&
+name|contextSequence
 operator|.
 name|isCacheable
 argument_list|()
