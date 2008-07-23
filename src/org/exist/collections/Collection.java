@@ -707,10 +707,13 @@ literal|4
 decl_stmt|;
 comment|//sizeof int
 specifier|public
-name|Collection
-parameter_list|()
-block|{
-block|}
+specifier|static
+specifier|final
+name|int
+name|POOL_PARSER_THRESHOLD
+init|=
+literal|500
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -866,6 +869,11 @@ name|isTempCollection
 init|=
 literal|false
 decl_stmt|;
+specifier|public
+name|Collection
+parameter_list|()
+block|{
+block|}
 specifier|public
 name|Collection
 parameter_list|(
@@ -4191,6 +4199,8 @@ name|releaseReader
 argument_list|(
 name|broker
 argument_list|,
+name|info
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -4329,6 +4339,8 @@ block|{
 name|releaseReader
 argument_list|(
 name|broker
+argument_list|,
+name|info
 argument_list|,
 name|reader
 argument_list|)
@@ -4943,6 +4955,8 @@ block|{
 name|releaseReader
 argument_list|(
 name|broker
+argument_list|,
+name|info
 argument_list|,
 name|reader
 argument_list|)
@@ -7550,6 +7564,9 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+name|IndexInfo
+name|info
+parameter_list|,
 name|XMLReader
 name|reader
 parameter_list|)
@@ -7563,6 +7580,19 @@ condition|)
 block|{
 return|return;
 block|}
+if|if
+condition|(
+name|info
+operator|.
+name|getIndexer
+argument_list|()
+operator|.
+name|getDocSize
+argument_list|()
+operator|>
+name|POOL_PARSER_THRESHOLD
+condition|)
+return|return;
 comment|// Get validation mode from static configuration
 name|Configuration
 name|config
