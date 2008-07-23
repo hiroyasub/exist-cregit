@@ -10539,7 +10539,7 @@ argument_list|()
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
-literal|"<text xml:space=\"default\"/>"
+literal|"<text xml:space=\"default\"></text>"
 argument_list|,
 name|item
 argument_list|)
