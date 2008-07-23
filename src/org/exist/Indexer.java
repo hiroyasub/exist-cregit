@@ -771,6 +771,12 @@ name|suppressWSmixed
 init|=
 literal|false
 decl_stmt|;
+specifier|protected
+name|int
+name|docSize
+init|=
+literal|0
+decl_stmt|;
 comment|/* used to record the number of children of an element during       * validation phase. later, when storing the nodes, we already      * know the child count and don't need to update the element      * a second time.      */
 specifier|private
 name|int
@@ -1060,6 +1066,10 @@ operator|new
 name|Stack
 argument_list|()
 expr_stmt|;
+name|docSize
+operator|=
+literal|0
+expr_stmt|;
 name|nsMappings
 operator|.
 name|clear
@@ -1100,6 +1110,15 @@ parameter_list|()
 block|{
 return|return
 name|document
+return|;
+block|}
+specifier|public
+name|int
+name|getDocSize
+parameter_list|()
+block|{
+return|return
+name|docSize
 return|;
 block|}
 specifier|public
@@ -2590,6 +2609,10 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+name|docSize
+operator|=
+literal|0
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -3683,6 +3706,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+operator|++
+name|docSize
+expr_stmt|;
 block|}
 specifier|private
 name|void
