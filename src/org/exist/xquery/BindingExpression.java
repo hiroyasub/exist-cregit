@@ -1384,6 +1384,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|seq
+operator|!=
+literal|null
+operator|&&
 operator|!
 operator|(
 name|seq
