@@ -2312,7 +2312,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"Could not append index data for key '"
 operator|+

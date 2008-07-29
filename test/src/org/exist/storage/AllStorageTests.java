@@ -126,6 +126,10 @@ block|,
 name|RangeIndexUpdateTest
 operator|.
 name|class
+block|,
+name|LargeValuesTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
