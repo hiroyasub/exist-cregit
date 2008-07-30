@@ -2188,10 +2188,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -2200,8 +2196,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equals
@@ -2660,10 +2664,6 @@ decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -2672,6 +2672,10 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
 name|docs
@@ -2992,10 +2996,6 @@ decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -3004,6 +3004,10 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
 name|docs
@@ -4659,10 +4663,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -4671,8 +4671,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equals
@@ -5042,10 +5050,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -5054,8 +5058,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equals
