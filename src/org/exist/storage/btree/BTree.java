@@ -5906,6 +5906,13 @@ condition|(
 name|prefix
 operator|!=
 literal|null
+operator|&&
+name|prefix
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|byte
@@ -11497,6 +11504,13 @@ name|void
 name|growPrefix
 parameter_list|()
 block|{
+if|if
+condition|(
+name|nKeys
+operator|==
+literal|0
+condition|)
+return|return;
 if|if
 condition|(
 name|nKeys
