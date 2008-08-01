@@ -6425,7 +6425,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|serializer
+name|outputProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -6434,7 +6434,7 @@ argument_list|,
 literal|"xhtml"
 argument_list|)
 expr_stmt|;
-name|serializer
+name|outputProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -6443,7 +6443,7 @@ argument_list|,
 literal|"text/html"
 argument_list|)
 expr_stmt|;
-name|serializer
+name|outputProperties
 operator|.
 name|setProperty
 argument_list|(
@@ -6452,7 +6452,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
-name|serializer
+name|outputProperties
 operator|.
 name|setProperty
 argument_list|(
