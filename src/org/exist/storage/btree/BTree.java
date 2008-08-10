@@ -515,7 +515,9 @@ throws|throws
 name|DBException
 block|{
 name|super
-argument_list|()
+argument_list|(
+name|pool
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -12549,66 +12551,11 @@ block|}
 block|}
 block|}
 comment|////////////////////////////////////////////////////////////////////
-comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader()      */
-specifier|public
-name|FileHeader
-name|createFileHeader
-parameter_list|()
-block|{
-return|return
-operator|new
-name|BTreeFileHeader
-argument_list|(
-name|PAGE_SIZE
-argument_list|)
-return|;
-block|}
-comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(boolean)      */
+comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(int pageSize)      */
 specifier|public
 name|FileHeader
 name|createFileHeader
 parameter_list|(
-name|boolean
-name|read
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-operator|new
-name|BTreeFileHeader
-argument_list|(
-name|read
-argument_list|)
-return|;
-block|}
-comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(long)      */
-specifier|public
-name|FileHeader
-name|createFileHeader
-parameter_list|(
-name|long
-name|pageCount
-parameter_list|)
-block|{
-return|return
-operator|new
-name|BTreeFileHeader
-argument_list|(
-name|pageCount
-argument_list|,
-name|PAGE_SIZE
-argument_list|)
-return|;
-block|}
-comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(long, int)      */
-specifier|public
-name|FileHeader
-name|createFileHeader
-parameter_list|(
-name|long
-name|pageCount
-parameter_list|,
 name|int
 name|pageSize
 parameter_list|)
@@ -12617,8 +12564,6 @@ return|return
 operator|new
 name|BTreeFileHeader
 argument_list|(
-name|pageCount
-argument_list|,
 name|pageSize
 argument_list|)
 return|;
@@ -12947,6 +12892,8 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
+literal|1024
+argument_list|,
 name|pageSize
 argument_list|)
 expr_stmt|;

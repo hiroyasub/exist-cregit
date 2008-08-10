@@ -7821,7 +7821,10 @@ block|}
 specifier|public
 name|FileHeader
 name|createFileHeader
-parameter_list|()
+parameter_list|(
+name|int
+name|pageSize
+parameter_list|)
 block|{
 return|return
 operator|new
@@ -7829,7 +7832,7 @@ name|BTreeFileHeader
 argument_list|(
 literal|1024
 argument_list|,
-name|PAGE_SIZE
+name|pageSize
 argument_list|)
 return|;
 block|}

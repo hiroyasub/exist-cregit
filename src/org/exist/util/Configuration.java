@@ -4157,7 +4157,7 @@ name|config
 operator|.
 name|put
 argument_list|(
-name|NativeBroker
+name|BrokerPool
 operator|.
 name|PROPERTY_PAGE_SIZE
 argument_list|,
@@ -4172,7 +4172,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|NativeBroker
+name|BrokerPool
 operator|.
 name|PROPERTY_PAGE_SIZE
 operator|+
@@ -4182,7 +4182,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|NativeBroker
+name|BrokerPool
 operator|.
 name|PROPERTY_PAGE_SIZE
 argument_list|)

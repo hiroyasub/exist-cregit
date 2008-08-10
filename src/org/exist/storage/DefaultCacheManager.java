@@ -266,7 +266,7 @@ argument_list|()
 operator|.
 name|getInteger
 argument_list|(
-name|NativeBroker
+name|BrokerPool
 operator|.
 name|PROPERTY_PAGE_SIZE
 argument_list|)
@@ -277,7 +277,7 @@ condition|)
 comment|//TODO : should we share the page size with the native broker ?
 name|pageSize
 operator|=
-name|NativeBroker
+name|BrokerPool
 operator|.
 name|DEFAULT_PAGE_SIZE
 expr_stmt|;
