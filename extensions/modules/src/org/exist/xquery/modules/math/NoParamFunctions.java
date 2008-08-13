@@ -298,6 +298,17 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|NO_DEPENDENCY
+return|;
+block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)          */
 specifier|public
 name|Sequence
