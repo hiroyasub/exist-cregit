@@ -1677,7 +1677,7 @@ operator|+
 operator|(
 name|refine_query_on_doc
 condition|?
-literal|"  ("
+literal|"("
 operator|+
 name|docConstraint
 operator|+
@@ -1685,9 +1685,9 @@ literal|") AND "
 else|:
 literal|""
 operator|)
-operator|)
 operator|+
 name|bboxConstraint
+operator|)
 operator|+
 literal|";"
 argument_list|)
