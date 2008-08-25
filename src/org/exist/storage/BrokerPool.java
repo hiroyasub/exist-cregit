@@ -1322,6 +1322,22 @@ name|DEFAULT_COLLECTION_BUFFER_SIZE
 init|=
 literal|128
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_PAGE_SIZE
+init|=
+literal|"db-connection.page-size"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_PAGE_SIZE
+init|=
+literal|4096
+decl_stmt|;
 comment|/**      *<code>true</code> if the database instance is able to handle transactions.       */
 specifier|private
 name|boolean
@@ -1432,6 +1448,10 @@ comment|//TODO : for now, this member is used for recovery management
 specifier|private
 name|boolean
 name|isReadOnly
+decl_stmt|;
+specifier|private
+name|int
+name|pageSize
 decl_stmt|;
 specifier|private
 name|FileLock
@@ -1916,6 +1936,25 @@ name|this
 operator|.
 name|transactionsEnabled
 argument_list|)
+expr_stmt|;
+name|pageSize
+operator|=
+name|conf
+operator|.
+name|getInteger
+argument_list|(
+name|PROPERTY_PAGE_SIZE
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|pageSize
+operator|<
+literal|0
+condition|)
+name|pageSize
+operator|=
+name|DEFAULT_PAGE_SIZE
 expr_stmt|;
 comment|/* TODO: start -adam- remove OLD SystemTask initialization */
 comment|//How ugly : needs refactoring...
@@ -2861,6 +2900,15 @@ name|cacheManager
 operator|.
 name|getSizeInBytes
 argument_list|()
+return|;
+block|}
+specifier|public
+name|int
+name|getPageSize
+parameter_list|()
+block|{
+return|return
+name|pageSize
 return|;
 block|}
 comment|/** 	 * Whether or not the database instance is being initialized.  	 *  	 * @return<code>true</code> is the database instance is being initialized 	 */

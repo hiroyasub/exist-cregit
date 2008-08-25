@@ -1737,12 +1737,6 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
-name|int
-name|getPageSize
-parameter_list|()
-function_decl|;
-specifier|public
-specifier|abstract
 name|IndexSpec
 name|getIndexConfiguration
 parameter_list|()
