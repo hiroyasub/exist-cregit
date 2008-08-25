@@ -12037,7 +12037,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -12052,7 +12052,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|null
+literal|""
 return|;
 block|}
 comment|/**      * Recursive method to retrieve the string values of the root node      * and all its descendants.      */
