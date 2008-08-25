@@ -12810,11 +12810,6 @@ name|os
 operator|.
 name|write
 argument_list|(
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
 name|data
 argument_list|,
 name|readOffset
