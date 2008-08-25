@@ -13904,6 +13904,33 @@ decl_stmt|;
 if|if
 condition|(
 name|tid
+operator|<
+literal|0
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Invalid tid found: "
+operator|+
+name|tid
+operator|+
+literal|"; ignoring rest of page ..."
+argument_list|)
+expr_stmt|;
+name|ph
+operator|.
+name|setDataLength
+argument_list|(
+name|pos
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+if|if
+condition|(
+name|tid
 operator|>=
 name|offsets
 operator|.

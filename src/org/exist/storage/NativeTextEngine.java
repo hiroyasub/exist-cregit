@@ -1243,31 +1243,7 @@ operator|>
 name|MAX_TOKEN_LENGTH
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Token length exceeded "
-operator|+
-name|MAX_TOKEN_LENGTH
-operator|+
-literal|": "
-operator|+
-name|token
-operator|.
-name|getText
-argument_list|()
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-literal|20
-argument_list|)
-operator|+
-literal|"..."
-argument_list|)
-expr_stmt|;
+comment|//	            	LOG.warn("Token length exceeded " + MAX_TOKEN_LENGTH + ": " + token.getText().substring(0,20) + "...");
 continue|continue;
 block|}
 if|if
@@ -1490,31 +1466,7 @@ operator|>
 name|MAX_TOKEN_LENGTH
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Token length exceeded "
-operator|+
-name|MAX_TOKEN_LENGTH
-operator|+
-literal|": "
-operator|+
-name|token
-operator|.
-name|getText
-argument_list|()
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-literal|20
-argument_list|)
-operator|+
-literal|"..."
-argument_list|)
-expr_stmt|;
+comment|//	                	LOG.warn("Token length exceeded " + MAX_TOKEN_LENGTH + ": " + token.getText().substring(0,20) + "...");
 continue|continue;
 block|}
 if|if
@@ -6060,6 +6012,14 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|occurences
+operator|==
+literal|null
+condition|)
+continue|continue;
+comment|// may happen if the index is in an invalid state due to earlier errors
 comment|//Don't forget this one
 name|occurences
 operator|.
