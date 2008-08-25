@@ -2167,14 +2167,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : currentDocs can not be null here
-comment|//TODO : currentSet can not be null here
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -2183,8 +2177,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equalDocs
@@ -2677,14 +2679,8 @@ name|contextSet
 argument_list|)
 decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
-comment|//TODO : currentDocs can not be null here
-comment|//TODO : currentSet can not be null here
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -2693,6 +2689,10 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
 name|docs
@@ -3054,14 +3054,8 @@ name|contextSet
 argument_list|)
 decl_stmt|;
 comment|// TODO : understand why this one is different from the other ones
-comment|//TODO : currentDocs can not be null here
-comment|//TODO : currentSet can not be null here
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -3070,6 +3064,10 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
 name|docs
@@ -4887,14 +4885,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : currentDocs can not be null here
-comment|//TODO : currentSet can not be null here
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -4903,8 +4895,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equalDocs
@@ -5308,14 +5308,8 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-comment|//TODO : currentDocs can not be null here
-comment|//TODO : currentSet can not be null here
 if|if
 condition|(
-operator|!
-name|optimized
-operator|&&
-operator|(
 name|currentSet
 operator|==
 literal|null
@@ -5324,8 +5318,16 @@ name|currentDocs
 operator|==
 literal|null
 operator|||
+operator|(
+operator|!
+name|optimized
+operator|&&
 operator|!
 operator|(
+name|docs
+operator|==
+name|currentDocs
+operator|||
 name|docs
 operator|.
 name|equalDocs
