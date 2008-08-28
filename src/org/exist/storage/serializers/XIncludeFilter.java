@@ -1772,24 +1772,15 @@ operator|.
 name|getScheme
 argument_list|()
 decl_stmt|;
-comment|// If the URI uses the file: scheme (or no scheme is specified),
+comment|// If the URI has no scheme is specified,
 comment|// we have to check if it is a relative path, and if yes, try to
 comment|// interpret it relative to the moduleLoadPath property of the current
 comment|// XQuery context.
 if|if
 condition|(
-operator|(
 name|scheme
 operator|==
 literal|null
-operator|||
-name|scheme
-operator|.
-name|equals
-argument_list|(
-literal|"file"
-argument_list|)
-operator|)
 operator|&&
 name|context
 operator|!=
