@@ -6657,6 +6657,15 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+block|{
+return|return
+name|context
+return|;
+block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 specifier|public
 name|String
