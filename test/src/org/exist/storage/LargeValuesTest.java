@@ -386,7 +386,7 @@ specifier|final
 name|int
 name|KEY_COUNT
 init|=
-literal|5000
+literal|1000
 decl_stmt|;
 specifier|private
 specifier|static
@@ -1183,15 +1183,6 @@ operator|==
 literal|0
 condition|)
 break|break;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch
