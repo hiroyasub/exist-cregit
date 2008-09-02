@@ -2558,82 +2558,6 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>filterDocuments</code>      *      * @param other an<code>NewArrayNodeSet</code> value      * @return a<code>NodeSet</code> value      */
-specifier|public
-name|NodeSet
-name|filterDocuments
-parameter_list|(
-name|NewArrayNodeSet
-name|other
-parameter_list|)
-block|{
-name|NewArrayNodeSet
-name|result
-init|=
-operator|new
-name|NewArrayNodeSet
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|other
-operator|.
-name|size
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|int
-name|idx
-init|=
-name|findDoc
-argument_list|(
-name|other
-operator|.
-name|nodes
-index|[
-name|i
-index|]
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|idx
-operator|>
-operator|-
-literal|1
-condition|)
-name|result
-operator|.
-name|add
-argument_list|(
-name|other
-operator|.
-name|nodes
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
-return|;
-block|}
 specifier|private
 name|boolean
 name|isSorted
@@ -3264,7 +3188,7 @@ name|NodeSet
 name|selectPrecedingSiblings
 parameter_list|(
 name|NodeSet
-name|siblings
+name|contextSet
 parameter_list|,
 name|int
 name|contextId
@@ -3278,11 +3202,125 @@ name|super
 operator|.
 name|selectPrecedingSiblings
 argument_list|(
-name|siblings
+name|contextSet
 argument_list|,
 name|contextId
 argument_list|)
 return|;
+comment|//        if (isEmpty() || contextSet.isEmpty()) {
+comment|//            return NodeSet.EMPTY_SET;
+comment|//        }
+comment|//        NewArrayNodeSet result = new NewArrayNodeSet();
+comment|//        NodeSetIterator iReferences = contextSet.iterator();
+comment|//        int idxCandidates = 0;
+comment|//        NodeProxy reference = (NodeProxy) iReferences.next();
+comment|//        NodeProxy candidate = nodes[idxCandidates];
+comment|//        int firstCandidate = -1;
+comment|//        while (true) {
+comment|//            // first, try to find nodes belonging to the same doc
+comment|//            if (reference.getDocument().getDocId()< candidate.getDocument()
+comment|//                .getDocId()) {
+comment|//                firstCandidate = -1;
+comment|//                if (iReferences.hasNext())
+comment|//                    reference = (NodeProxy) iReferences.next();
+comment|//                else
+comment|//                    break;
+comment|//            } else if (reference.getDocument().getDocId()> candidate
+comment|//                       .getDocument().getDocId()) {
+comment|//                firstCandidate = -1;
+comment|//                if (idxCandidates< size)
+comment|//                    candidate = nodes[++idxCandidates];
+comment|//                else
+comment|//                    break;
+comment|//            } else {
+comment|//                // same document: check if the nodes have the same parent
+comment|//                int cmp = candidate.getNodeId().getParentId().compareTo(reference.getNodeId().getParentId());
+comment|//                if (cmp> 0&& candidate.getNodeId().getTreeLevel()<= reference.getNodeId().getTreeLevel()) {
+comment|//                    // wrong parent: proceed
+comment|//                    firstCandidate = -1;
+comment|//                    if (iReferences.hasNext())
+comment|//                        reference = (NodeProxy) iReferences.next();
+comment|//                    else
+comment|//                        break;
+comment|//                } else if (cmp< 0  || (cmp> 0&& candidate.getNodeId().getTreeLevel()>= reference.getNodeId().getTreeLevel())) {
+comment|//                	//Why did I have to invert the test ? ----------------------------^^^^^
+comment|//                    // wrong parent: proceed
+comment|//                    firstCandidate = -1;
+comment|//                    if (idxCandidates< size)
+comment|//                        candidate = nodes[++idxCandidates];
+comment|//                    else
+comment|//                        break;
+comment|//                } else {
+comment|//                    if (firstCandidate< 0)
+comment|//                        firstCandidate = idxCandidates;
+comment|//
+comment|//                    // found two nodes with the same parent
+comment|//                    // now, compare the ids: a node is a following sibling
+comment|//                    // if its id is greater than the id of the other node
+comment|//                    cmp = candidate.getNodeId().compareTo(reference.getNodeId());
+comment|//                    if (cmp< 0) {
+comment|//                        // found a preceding sibling
+comment|//                        NodeProxy t = result.get(candidate);
+comment|//                        if (t == null) {
+comment|//                            if (Expression.IGNORE_CONTEXT != contextId) {
+comment|//                                if (Expression.NO_CONTEXT_ID == contextId) {
+comment|//                                    candidate.copyContext(reference);
+comment|//                                } else {
+comment|//                                    candidate.addContextNode(contextId,
+comment|//                                                             reference);
+comment|//                                }
+comment|//                            }
+comment|//                            result.add(candidate);
+comment|//                        } else if (contextId> Expression.NO_CONTEXT_ID){
+comment|//                            t.addContextNode(contextId, reference);
+comment|//                        }
+comment|//                        if (idxCandidates< size)
+comment|//                            candidate = nodes[++idxCandidates];
+comment|//                        else
+comment|//                            break;
+comment|//                    } else if (cmp> 0) {
+comment|//                        // found a following sibling
+comment|//                        if (idxCandidates< size)
+comment|//                            candidate = nodes[++idxCandidates];
+comment|//                        else
+comment|//                            break;
+comment|//                        // equal nodes: proceed with next node
+comment|//                    } else {
+comment|//                        if (iReferences.hasNext()) {
+comment|//                            reference = (NodeProxy) iReferences.next();
+comment|//                            idxCandidates = firstCandidate;
+comment|//                            candidate = nodes[++idxCandidates];
+comment|//                        } else
+comment|//                            break;
+comment|//                    }
+comment|//                }
+comment|//            }
+comment|//        }
+comment|//        for (Iterator i = contextSet.iterator(); i.hasNext(); ) {
+comment|//            NodeProxy reference = (NodeProxy) i.next();
+comment|//            int docId = reference.getDocument().getDocId();
+comment|//            int docIdx = findDoc(docId);
+comment|//            if (docIdx> -1) {
+comment|//                NodeId referenceId = reference.getNodeId();
+comment|//                NodeId parentId = referenceId.getParentId();
+comment|//                for (int j = 0; j< documentLengths[docIdx]; j++) {
+comment|//                    NodeProxy candidate = nodes[documentOffsets[docIdx] + j];
+comment|//                    if (candidate.getNodeId().compareTo(referenceId)> 0)
+comment|//                        break;
+comment|//                    if (candidate.getNodeId().isChildOf(parentId)) {
+comment|//                        if (Expression.IGNORE_CONTEXT != contextId) {
+comment|//                            if (Expression.NO_CONTEXT_ID == contextId) {
+comment|//                                candidate.copyContext(reference);
+comment|//                            } else {
+comment|//                                candidate.addContextNode(contextId, reference);
+comment|//                            }
+comment|//                        }
+comment|//                        result.add(candidate);
+comment|//                    }
+comment|//                }
+comment|//            }
+comment|//        }
+comment|//        return result;
 block|}
 comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param siblings a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
@@ -4340,6 +4378,9 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|DocumentImpl
 name|d
 decl_stmt|;
@@ -4421,6 +4462,9 @@ name|boolean
 name|exclusive
 parameter_list|)
 block|{
+name|sort
+argument_list|()
+expr_stmt|;
 name|DocumentImpl
 name|d
 decl_stmt|;
