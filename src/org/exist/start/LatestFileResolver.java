@@ -263,6 +263,28 @@ decl_stmt|;
 if|if
 condition|(
 name|jars
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"ERROR: No jars found in "
+operator|+
+name|containerDir
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|jars
 operator|.
 name|length
 operator|>
