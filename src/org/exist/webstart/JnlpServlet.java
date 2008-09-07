@@ -19,6 +19,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -118,7 +128,7 @@ name|jh
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Initialize servlet.      */
+comment|/**      * Initialize servlet.cd      */
 specifier|public
 name|void
 name|init
@@ -131,11 +141,50 @@ argument_list|(
 literal|"Initializing JNLP servlet"
 argument_list|)
 expr_stmt|;
+name|String
+name|realPath
+init|=
+name|getServletContext
+argument_list|()
+operator|.
+name|getRealPath
+argument_list|(
+literal|"/"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|realPath
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"getServletContext().getRealPath() did not return a "
+operator|+
+literal|"value. Webstart is not available."
+argument_list|)
+expr_stmt|;
+block|}
+name|File
+name|contextRoot
+init|=
+operator|new
+name|File
+argument_list|(
+name|realPath
+argument_list|)
+decl_stmt|;
 name|jh
 operator|=
 operator|new
 name|JnlpHelper
-argument_list|()
+argument_list|(
+name|contextRoot
+argument_list|)
 expr_stmt|;
 name|jf
 operator|=
