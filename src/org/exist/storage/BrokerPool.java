@@ -3349,6 +3349,13 @@ operator|.
 name|incReferenceCount
 argument_list|()
 expr_stmt|;
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 return|return
 name|broker
 return|;
