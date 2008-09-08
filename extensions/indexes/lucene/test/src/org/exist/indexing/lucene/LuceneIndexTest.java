@@ -554,14 +554,14 @@ specifier|public
 class|class
 name|LuceneIndexTest
 block|{
-specifier|private
+specifier|protected
 specifier|static
 name|String
 name|XUPDATE_START
 init|=
 literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|static
 name|String
 name|XUPDATE_END
