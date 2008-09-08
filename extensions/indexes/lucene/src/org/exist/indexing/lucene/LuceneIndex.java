@@ -589,6 +589,19 @@ name|IndexWriter
 name|writer
 parameter_list|)
 block|{
+if|if
+condition|(
+name|writer
+operator|!=
+name|cachedWriter
+condition|)
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"IndexWriter was not obtained from getWriter()."
+argument_list|)
+throw|;
 try|try
 block|{
 name|cachedWriter
@@ -663,6 +676,19 @@ name|IndexReader
 name|reader
 parameter_list|)
 block|{
+if|if
+condition|(
+name|reader
+operator|!=
+name|cachedReader
+condition|)
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"IndexReader was not obtained from getReader()."
+argument_list|)
+throw|;
 try|try
 block|{
 name|cachedReader
