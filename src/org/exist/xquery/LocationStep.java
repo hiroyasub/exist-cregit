@@ -1431,11 +1431,7 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 case|:
-case|case
-name|Constants
-operator|.
-name|SELF_AXIS
-case|:
+comment|//            case Constants.SELF_AXIS:
 if|if
 condition|(
 name|nodeTestType
