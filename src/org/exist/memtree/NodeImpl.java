@@ -1181,6 +1181,14 @@ operator|==
 name|o
 operator|.
 name|nodeNumber
+operator|&&
+name|getNodeType
+argument_list|()
+operator|==
+name|o
+operator|.
+name|getNodeType
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#equals(org.exist.xquery.value.NodeValue) 	 */
@@ -1228,6 +1236,14 @@ operator|==
 name|o
 operator|.
 name|nodeNumber
+operator|&&
+name|getNodeType
+argument_list|()
+operator|==
+name|o
+operator|.
+name|getNodeType
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#after(org.exist.xquery.value.NodeValue) 	 */
@@ -1366,6 +1382,14 @@ operator|==
 name|n
 operator|.
 name|nodeNumber
+operator|&&
+name|getNodeType
+argument_list|()
+operator|==
+name|n
+operator|.
+name|getNodeType
+argument_list|()
 condition|)
 return|return
 name|Constants
