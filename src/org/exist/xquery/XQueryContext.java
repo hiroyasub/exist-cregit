@@ -10604,6 +10604,31 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|NoClassDefFoundError
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Module "
+operator|+
+name|uri
+operator|+
+literal|" could not be initialized due to a missing "
+operator|+
+literal|"dependancy (NoClassDefFoundError): "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
