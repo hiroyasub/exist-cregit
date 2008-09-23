@@ -325,6 +325,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 name|Sequence
 name|contentSeq
 init|=
@@ -337,6 +342,11 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
 name|context
 operator|.
 name|pushDocumentContext

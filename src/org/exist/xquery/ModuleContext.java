@@ -587,6 +587,23 @@ name|getDocumentBuilder
 argument_list|()
 return|;
 block|}
+specifier|public
+name|MemTreeBuilder
+name|getDocumentBuilder
+parameter_list|(
+name|boolean
+name|explicitCreation
+parameter_list|)
+block|{
+return|return
+name|parentContext
+operator|.
+name|getDocumentBuilder
+argument_list|(
+name|explicitCreation
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#pushDocumentContext() 	 */
 specifier|public
 name|void
