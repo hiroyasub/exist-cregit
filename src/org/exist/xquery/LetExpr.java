@@ -1028,6 +1028,11 @@ block|}
 comment|// Check if we can speed up the processing of the "order by" clause.
 name|fastOrderBy
 operator|=
+name|in
+operator|.
+name|isPersistentSet
+argument_list|()
+operator|&&
 name|checkOrderSpecs
 argument_list|(
 name|in
