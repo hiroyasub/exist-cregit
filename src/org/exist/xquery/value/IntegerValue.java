@@ -1115,6 +1115,34 @@ return|;
 comment|//return value.compareTo(ZERO_BIGINTEGER) == Constants.EQUAL;
 block|}
 empty_stmt|;
+specifier|public
+name|boolean
+name|isNegative
+parameter_list|()
+block|{
+return|return
+name|value
+operator|.
+name|signum
+argument_list|()
+operator|<
+literal|0
+return|;
+block|}
+specifier|public
+name|boolean
+name|isPositive
+parameter_list|()
+block|{
+return|return
+name|value
+operator|.
+name|signum
+argument_list|()
+operator|>
+literal|0
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
 specifier|public
 name|AtomicValue
