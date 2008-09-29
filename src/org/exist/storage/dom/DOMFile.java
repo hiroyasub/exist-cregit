@@ -191,6 +191,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|btree
 operator|.
 name|BTree
@@ -7452,6 +7464,9 @@ operator|)
 name|owner
 operator|)
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -7964,7 +7979,7 @@ comment|//			}
 comment|//		}
 comment|//		return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;
 comment|//	}
-comment|/**      * Find a node by searching for a known ancestor in the index. If an      * ancestor is found, it is traversed to locate the specified descendant      * node.      *      * @param lockObject      * @param node      * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found.      * @throws IOException      * @throws BTreeException      */
+comment|/**      * Find a node by searching for a known ancestor in the index. If an      * ancestor is found, it is traversed to locate the specified descendant      * node.      *      * @param node      * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found.      * @throws IOException      * @throws BTreeException      */
 comment|//	protected long findValue2(Object lockObject, NodeProxy node) throws IOException,
 comment|//			BTreeException {
 comment|//		if (!lock.hasLock())
@@ -8008,8 +8023,8 @@ specifier|protected
 name|long
 name|findValue
 parameter_list|(
-name|Object
-name|lockObject
+name|DBBroker
+name|broker
 parameter_list|,
 name|NodeProxy
 name|node
@@ -8226,10 +8241,7 @@ specifier|final
 name|EmbeddedXMLStreamReader
 name|cursor
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXMLStreamReader
 argument_list|(
@@ -8846,6 +8858,9 @@ specifier|public
 name|Value
 name|get
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|NodeProxy
 name|node
 parameter_list|)
@@ -8873,7 +8888,7 @@ name|p
 init|=
 name|findValue
 argument_list|(
-name|owner
+name|broker
 argument_list|,
 name|node
 argument_list|)
@@ -11815,6 +11830,9 @@ specifier|public
 name|String
 name|getNodeValue
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|StoredNode
 name|node
 parameter_list|,
@@ -11881,7 +11899,7 @@ name|address
 operator|=
 name|findValue
 argument_list|(
-name|this
+name|broker
 argument_list|,
 operator|new
 name|NodeProxy
@@ -11943,6 +11961,11 @@ decl_stmt|;
 comment|// now traverse the tree
 name|getNodeValue
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 operator|(
 name|DocumentImpl
 operator|)
@@ -12057,6 +12080,9 @@ specifier|private
 name|void
 name|getNodeValue
 parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -12469,13 +12495,7 @@ specifier|final
 name|int
 name|nodeIdLen
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getNodeFactory
 argument_list|()
@@ -12548,6 +12568,8 @@ block|{
 comment|//recursive call : we ignore attributes children
 name|getNodeValue
 argument_list|(
+name|pool
+argument_list|,
 name|doc
 argument_list|,
 name|os
@@ -12610,13 +12632,7 @@ specifier|final
 name|int
 name|nodeIdLen
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getNodeFactory
 argument_list|()
@@ -12733,13 +12749,7 @@ specifier|final
 name|int
 name|nodeIdLen
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getNodeFactory
 argument_list|()
@@ -12855,13 +12865,7 @@ specifier|final
 name|int
 name|nodeIdLen
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getNodeFactory
 argument_list|()

@@ -236,7 +236,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *   * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.DBBroker#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *   * @author wolf  *  */
+comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *   * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.BrokerPool#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *   * @author wolf  *  */
 end_comment
 
 begin_class

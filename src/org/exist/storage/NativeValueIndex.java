@@ -1813,6 +1813,8 @@ name|IndexUtils
 operator|.
 name|scanNode
 argument_list|(
+name|broker
+argument_list|,
 literal|null
 argument_list|,
 name|node
@@ -2286,6 +2288,9 @@ name|value
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -2639,6 +2644,9 @@ operator|.
 name|value
 argument_list|,
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -3556,6 +3564,9 @@ name|value
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -4365,6 +4376,9 @@ name|value
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -4384,6 +4398,9 @@ name|getType
 argument_list|()
 argument_list|,
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -5222,6 +5239,9 @@ name|startTerm
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -5250,6 +5270,9 @@ operator|.
 name|STRING
 argument_list|,
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -5919,6 +5942,9 @@ name|start
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -5966,6 +5992,9 @@ name|start
 argument_list|,
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 argument_list|)
@@ -5990,6 +6019,9 @@ name|getType
 argument_list|()
 argument_list|,
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

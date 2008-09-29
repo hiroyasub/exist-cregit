@@ -15,23 +15,13 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|BrokerPool
 import|;
 end_import
 
@@ -84,6 +74,16 @@ operator|.
 name|dom
 operator|.
 name|DocumentType
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -361,8 +361,8 @@ specifier|public
 name|void
 name|write
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|VariableByteOutputStream
 name|ostream
@@ -388,7 +388,7 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|broker
+name|pool
 operator|.
 name|getSymbols
 argument_list|()
@@ -488,8 +488,8 @@ specifier|public
 name|void
 name|read
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|VariableByteInput
 name|istream
@@ -513,7 +513,7 @@ argument_list|()
 expr_stmt|;
 name|mimeType
 operator|=
-name|broker
+name|pool
 operator|.
 name|getSymbols
 argument_list|()

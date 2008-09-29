@@ -5139,6 +5139,9 @@ operator|new
 name|DocumentImpl
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|this
 argument_list|,
@@ -6499,6 +6502,9 @@ operator|new
 name|BinaryDocument
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|this
 argument_list|,

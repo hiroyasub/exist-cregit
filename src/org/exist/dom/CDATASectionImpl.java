@@ -452,9 +452,6 @@ name|dln
 init|=
 name|doc
 operator|.
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.

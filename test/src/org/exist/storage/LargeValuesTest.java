@@ -1245,15 +1245,6 @@ operator|==
 literal|0
 condition|)
 break|break;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|s
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch

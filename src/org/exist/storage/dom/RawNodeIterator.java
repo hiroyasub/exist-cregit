@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|btree
 operator|.
 name|BTree
@@ -236,15 +248,15 @@ name|long
 name|page
 decl_stmt|;
 specifier|private
-name|Object
-name|lockKey
+name|DBBroker
+name|broker
 decl_stmt|;
-comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param lockKey the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param node the start node where the iterator will be positioned.      * @throws IOException      */
+comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param broker the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param node the start node where the iterator will be positioned.      * @throws IOException      */
 specifier|public
 name|RawNodeIterator
 parameter_list|(
-name|Object
-name|lockKey
+name|DBBroker
+name|broker
 parameter_list|,
 name|DOMFile
 name|db
@@ -263,17 +275,9 @@ name|db
 expr_stmt|;
 name|this
 operator|.
-name|lockKey
+name|broker
 operator|=
-operator|(
-name|lockKey
-operator|==
-literal|null
-condition|?
-name|this
-else|:
-name|lockKey
-operator|)
+name|broker
 expr_stmt|;
 name|seek
 argument_list|(
@@ -281,12 +285,12 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param lockKey the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param proxy the start node where the iterator will be positioned.      * @throws IOException      */
+comment|/**      * Construct the iterator. The iterator will be positioned before the specified      * start node.      *      * @param broker the owner object used to acquire a lock on the underlying data file (usually a DBBroker)      * @param db the underlying data file      * @param proxy the start node where the iterator will be positioned.      * @throws IOException      */
 specifier|public
 name|RawNodeIterator
 parameter_list|(
-name|Object
-name|lockKey
+name|DBBroker
+name|broker
 parameter_list|,
 name|DOMFile
 name|db
@@ -305,17 +309,9 @@ name|db
 expr_stmt|;
 name|this
 operator|.
-name|lockKey
+name|broker
 operator|=
-operator|(
-name|lockKey
-operator|==
-literal|null
-condition|?
-name|this
-else|:
-name|lockKey
-operator|)
+name|broker
 expr_stmt|;
 name|seek
 argument_list|(
@@ -397,7 +393,7 @@ name|db
 operator|.
 name|findValue
 argument_list|(
-name|lockKey
+name|broker
 argument_list|,
 operator|new
 name|NodeProxy
@@ -586,7 +582,7 @@ name|db
 operator|.
 name|findValue
 argument_list|(
-name|lockKey
+name|broker
 argument_list|,
 name|proxy
 argument_list|)
@@ -759,7 +755,7 @@ name|db
 operator|.
 name|setOwnerObject
 argument_list|(
-name|lockKey
+name|broker
 argument_list|)
 expr_stmt|;
 name|long

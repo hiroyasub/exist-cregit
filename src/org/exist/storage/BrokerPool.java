@@ -151,6 +151,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|SymbolTable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|management
 operator|.
 name|AgentFactory
@@ -1467,6 +1479,11 @@ specifier|private
 name|IndexManager
 name|indexManager
 decl_stmt|;
+comment|/**      * Global symbol table used to encode element and attribute qnames.      */
+specifier|private
+name|SymbolTable
+name|symbols
+decl_stmt|;
 comment|/** 	 * Cache synchronization on the database instance. 	 */
 specifier|private
 name|long
@@ -2498,6 +2515,41 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
+name|symbols
+operator|=
+operator|new
+name|SymbolTable
+argument_list|(
+name|this
+argument_list|,
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|BrokerPool
+operator|.
+name|PROPERTY_DATA_DIR
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|conf
+argument_list|)
+expr_stmt|;
+name|isReadOnly
+operator|=
+name|isReadOnly
+operator|||
+operator|!
+name|symbols
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|canWrite
+argument_list|()
+expr_stmt|;
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: I would rather tend to keep this broker reserved as a system broker.
 comment|// create a first broker to initialize the security manager
@@ -3017,6 +3069,15 @@ name|scheduler
 return|;
 block|}
 specifier|public
+name|SymbolTable
+name|getSymbols
+parameter_list|()
+block|{
+return|return
+name|symbols
+return|;
+block|}
+specifier|public
 name|NotificationService
 name|getNotificationService
 parameter_list|()
@@ -3319,6 +3380,10 @@ name|serviceModeUser
 operator|!=
 literal|null
 operator|&&
+name|user
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|user
 operator|.
@@ -3431,6 +3496,12 @@ operator|.
 name|incReferenceCount
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
 name|broker
 operator|.
 name|setUser

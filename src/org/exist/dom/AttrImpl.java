@@ -458,7 +458,9 @@ specifier|final
 name|short
 name|id
 init|=
-name|getBroker
+name|ownerDocument
+operator|.
+name|getBrokerPool
 argument_list|()
 operator|.
 name|getSymbols
@@ -711,7 +713,9 @@ specifier|final
 name|short
 name|nsId
 init|=
-name|getBroker
+name|ownerDocument
+operator|.
+name|getBrokerPool
 argument_list|()
 operator|.
 name|getSymbols
@@ -908,9 +912,6 @@ name|dln
 init|=
 name|doc
 operator|.
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
@@ -963,6 +964,9 @@ name|String
 name|name
 init|=
 name|doc
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -1071,6 +1075,9 @@ literal|""
 else|:
 name|doc
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -1137,6 +1144,9 @@ operator|.
 name|setNodeName
 argument_list|(
 name|doc
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -1346,6 +1356,9 @@ name|name
 init|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -1453,6 +1466,9 @@ literal|""
 else|:
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -1524,6 +1540,9 @@ operator|.
 name|addAttribute
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

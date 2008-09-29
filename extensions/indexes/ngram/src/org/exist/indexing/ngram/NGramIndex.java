@@ -506,6 +506,8 @@ return|return
 operator|new
 name|NGramIndexWorker
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|)
 return|;

@@ -6841,9 +6841,6 @@ comment|// TODO check XML/Binary resource
 comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.WRITE_LOCK);
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource

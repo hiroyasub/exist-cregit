@@ -628,14 +628,6 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-comment|// we now have a lock on the doc, change its broker
-name|doc
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 name|lockMap
 operator|.
 name|add
@@ -1497,13 +1489,6 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
-argument_list|)
-expr_stmt|;
-name|d
-operator|.
-name|setBroker
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}
