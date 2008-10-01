@@ -545,24 +545,13 @@ operator|==
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|cached
-operator|!=
-literal|null
-condition|)
-block|{
-name|result
-operator|=
-name|cached
-expr_stmt|;
-name|docs
-operator|=
-name|cachedDocs
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|// TODO: disabled cache for now as it may cause concurrency issues
+comment|// better use compile-time inspection and maybe a pragma to mark those
+comment|// sections in the query that can be safely cached
+comment|//	        if(cached != null) {
+comment|//	            result = cached;
+comment|//	            docs = cachedDocs;
+comment|//	        } else {
 name|docs
 operator|=
 operator|new
@@ -579,7 +568,7 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-block|}
+comment|//	        }
 block|}
 else|else
 block|{

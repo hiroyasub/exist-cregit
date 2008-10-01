@@ -567,24 +567,13 @@ operator|==
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|cached
-operator|!=
-literal|null
-condition|)
-block|{
-name|result
-operator|=
-name|cached
-expr_stmt|;
-name|docs
-operator|=
-name|cachedDocs
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|// TODO: disabled cache for now as it may cause concurrency issues
+comment|// better use compile-time inspection and maybe a pragma to mark those
+comment|// sections in the query that can be safely cached
+comment|//	        if(cached != null) {
+comment|//	            result = cached;
+comment|//	            docs = cachedDocs;
+comment|//	        } else {
 name|docs
 operator|=
 operator|new
@@ -601,7 +590,7 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-block|}
+comment|//	        }
 block|}
 else|else
 block|{
@@ -615,37 +604,12 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|cachedArgs
-operator|!=
-literal|null
-condition|)
-name|cacheIsValid
-operator|=
-name|compareArguments
-argument_list|(
-name|cachedArgs
-argument_list|,
-name|args
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|cacheIsValid
-condition|)
-block|{
-name|result
-operator|=
-name|cached
-expr_stmt|;
-name|docs
-operator|=
-name|cachedDocs
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//			if(cachedArgs != null)
+comment|//			    cacheIsValid = compareArguments(cachedArgs, args);
+comment|//			if(cacheIsValid) {
+comment|//			    result = cached;
+comment|//			    docs = cachedDocs;
+comment|//			} else {
 name|docs
 operator|=
 operator|new
@@ -862,7 +826,7 @@ name|cachedArgs
 operator|=
 name|args
 expr_stmt|;
-block|}
+comment|//			}
 block|}
 try|try
 block|{

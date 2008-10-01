@@ -373,24 +373,12 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-comment|// if the expression occurs in a nested context, we might have cached the
-comment|// document set
-if|if
-condition|(
-name|cachedDocs
-operator|!=
-literal|null
-operator|&&
-name|cachedDocs
-operator|.
-name|equals
-argument_list|(
-name|ds
-argument_list|)
-condition|)
-return|return
-name|cached
-return|;
+comment|//        // if the expression occurs in a nested context, we might have cached the
+comment|//        // document set
+comment|//        // TODO: disabled cache for now as it may cause concurrency issues
+comment|//        // better use compile-time inspection and maybe a pragma to mark those
+comment|//        // sections in the query that can be safely cached
+comment|//        if (cachedDocs != null&& cachedDocs.equals(ds)) return cached;
 comment|// check if the loaded documents should remain locked
 name|NodeSet
 name|result

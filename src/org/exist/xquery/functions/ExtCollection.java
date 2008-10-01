@@ -499,12 +499,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|DocumentSet
-name|cachedDocs
-init|=
-literal|null
-decl_stmt|;
-specifier|private
 name|UpdateListener
 name|listener
 init|=
@@ -676,61 +670,19 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-name|boolean
-name|cacheIsValid
-init|=
-literal|false
-decl_stmt|;
-if|if
-condition|(
-name|cachedArgs
-operator|!=
-literal|null
-condition|)
-name|cacheIsValid
-operator|=
-name|compareArguments
-argument_list|(
-name|cachedArgs
-argument_list|,
-name|args
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|cacheIsValid
-condition|)
-block|{
-comment|// if the expression occurs in a nested context, we might have cached the
-comment|// document set
-if|if
-condition|(
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|end
-argument_list|(
-name|this
-argument_list|,
-literal|"fn:collection: loading documents"
-argument_list|,
-name|cached
-argument_list|)
-expr_stmt|;
-return|return
-name|cached
-return|;
-block|}
+comment|// TODO: disabled cache for now as it may cause concurrency issues
+comment|// better use compile-time inspection and maybe a pragma to mark those
+comment|// sections in the query that can be safely cached
+comment|//		boolean cacheIsValid = false;
+comment|//		if(cachedArgs != null)
+comment|//		    cacheIsValid = compareArguments(cachedArgs, args);
+comment|//		if(cacheIsValid) {
+comment|//		    // if the expression occurs in a nested context, we might have cached the
+comment|//            // document set
+comment|//            if (context.getProfiler().isEnabled())
+comment|//                context.getProfiler().end(this, "fn:collection: loading documents", cached);
+comment|//		    return cached;
+comment|//        }
 comment|// build the document set
 name|DocumentSet
 name|docs
@@ -1054,10 +1006,6 @@ name|cachedArgs
 operator|=
 name|args
 expr_stmt|;
-name|cachedDocs
-operator|=
-name|docs
-expr_stmt|;
 name|registerUpdateListener
 argument_list|()
 expr_stmt|;
@@ -1305,10 +1253,6 @@ name|event
 parameter_list|)
 block|{
 comment|// clear all
-name|cachedDocs
-operator|=
-literal|null
-expr_stmt|;
 name|cached
 operator|=
 literal|null
@@ -1394,10 +1338,6 @@ name|postOptimization
 parameter_list|)
 block|{
 name|cached
-operator|=
-literal|null
-expr_stmt|;
-name|cachedDocs
 operator|=
 literal|null
 expr_stmt|;
