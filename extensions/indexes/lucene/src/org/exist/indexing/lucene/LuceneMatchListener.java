@@ -1069,7 +1069,7 @@ name|stream
 init|=
 name|index
 operator|.
-name|getAnalyzer
+name|getDefaultAnalyzer
 argument_list|()
 operator|.
 name|tokenStream
