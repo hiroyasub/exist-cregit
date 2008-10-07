@@ -960,6 +960,8 @@ name|LockException
 throws|,
 name|TriggerException
 block|{
+try|try
+block|{
 return|return
 name|collection
 operator|.
@@ -976,6 +978,23 @@ argument_list|,
 name|mimeType
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"Cannot add binary due to I/O error."
+argument_list|,
+name|ex
+argument_list|)
+throw|;
+block|}
 block|}
 specifier|public
 name|Lock

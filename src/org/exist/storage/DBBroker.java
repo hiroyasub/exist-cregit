@@ -1299,6 +1299,8 @@ name|byte
 index|[]
 name|data
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** 	 * Stores the given data under the given binary resource descriptor 	 * (BinaryDocument). 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @param is 	 *            the document binary data as input stream 	 */
 specifier|public
@@ -1315,6 +1317,8 @@ parameter_list|,
 name|InputStream
 name|is
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1326,16 +1330,7 @@ name|collection
 parameter_list|)
 function_decl|;
 comment|/** 	 * Retrieve the binary data stored under the resource descriptor 	 * BinaryDocument. 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @return the document binary data 	 */
-specifier|public
-specifier|abstract
-name|byte
-index|[]
-name|getBinaryResource
-parameter_list|(
-name|BinaryDocument
-name|blob
-parameter_list|)
-function_decl|;
+comment|/* 	public abstract byte[] getBinaryResource(BinaryDocument blob)            throws IOException;          */
 specifier|public
 specifier|abstract
 name|void
@@ -1349,6 +1344,32 @@ specifier|final
 name|OutputStream
 name|os
 parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+specifier|public
+specifier|abstract
+name|InputStream
+name|getBinaryResource
+parameter_list|(
+specifier|final
+name|BinaryDocument
+name|blob
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+specifier|public
+specifier|abstract
+name|long
+name|getBinaryResourceSize
+parameter_list|(
+specifier|final
+name|BinaryDocument
+name|blob
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1373,6 +1394,8 @@ name|blob
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 */
 specifier|public

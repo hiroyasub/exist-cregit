@@ -757,6 +757,11 @@ operator|.
 name|switchFiles
 argument_list|()
 expr_stmt|;
+name|logManager
+operator|.
+name|clearBackupFiles
+argument_list|()
+expr_stmt|;
 return|return
 name|recoveryRun
 return|;
