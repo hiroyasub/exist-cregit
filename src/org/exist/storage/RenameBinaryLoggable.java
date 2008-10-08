@@ -169,11 +169,9 @@ name|backup
 operator|=
 name|backup
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Rename binary created "
 operator|+
@@ -210,11 +208,9 @@ name|broker
 operator|=
 name|broker
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Rename binary created ..."
 argument_list|)
@@ -374,11 +370,9 @@ name|data
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Rename binary read: "
 operator|+
@@ -435,11 +429,9 @@ parameter_list|()
 throws|throws
 name|LogException
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Undo rename: "
 operator|+
