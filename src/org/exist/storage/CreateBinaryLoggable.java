@@ -145,21 +145,12 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"CreateBinaryLoggable created"
 argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|flush
-argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -193,21 +184,12 @@ argument_list|,
 name|transactionId
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|debug
 argument_list|(
 literal|"CreateBinaryLoggable created"
 argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|flush
-argument_list|()
 expr_stmt|;
 name|this
 operator|.
