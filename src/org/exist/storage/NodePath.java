@@ -83,7 +83,21 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * (Illegal) QName used as a marker for arbitrary path steps.      */
+comment|/**      * (Illegal) QNames used as a marker for arbitrary path steps.      */
+specifier|public
+specifier|final
+specifier|static
+name|QName
+name|SKIP
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|"//"
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -498,7 +512,7 @@ index|[
 name|i
 index|]
 operator|==
-name|WILDCARD
+name|SKIP
 condition|)
 block|{
 operator|++
@@ -511,6 +525,14 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|(
+name|components
+index|[
+name|i
+index|]
+operator|==
+name|WILDCARD
+operator|||
 name|other
 operator|.
 name|components
@@ -527,6 +549,7 @@ index|]
 argument_list|)
 operator|==
 literal|0
+operator|)
 operator|&&
 operator|(
 name|j
@@ -558,7 +581,6 @@ literal|0
 operator|)
 condition|)
 block|{
-comment|// if(other.components[j].compareTo(components[i]) == 0) {
 operator|++
 name|i
 expr_stmt|;
@@ -910,6 +932,25 @@ name|ch
 condition|)
 block|{
 case|case
+literal|'*'
+case|:
+name|addComponent
+argument_list|(
+name|WILDCARD
+argument_list|)
+expr_stmt|;
+name|token
+operator|.
+name|setLength
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|pos
+operator|++
+expr_stmt|;
+break|break;
+case|case
 literal|'/'
 case|:
 name|String
@@ -957,7 +998,7 @@ literal|'/'
 condition|)
 name|addComponent
 argument_list|(
-name|WILDCARD
+name|SKIP
 argument_list|)
 expr_stmt|;
 break|break;
