@@ -1587,6 +1587,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"REQUEST: "
+operator|+
+name|request
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|rewrite
@@ -2223,6 +2238,8 @@ argument_list|,
 literal|"UTF-8"
 argument_list|,
 literal|"UTF-8"
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|HttpResponseWrapper
