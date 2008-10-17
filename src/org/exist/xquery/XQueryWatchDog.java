@@ -777,6 +777,17 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+specifier|public
+name|boolean
+name|isTerminating
+parameter_list|()
+block|{
+return|return
+operator|(
+name|terminate
+operator|)
+return|;
+block|}
 block|}
 end_class
 
