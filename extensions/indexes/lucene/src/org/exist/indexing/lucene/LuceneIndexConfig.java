@@ -335,7 +335,7 @@ throw|throw
 operator|new
 name|DatabaseConfigurationException
 argument_list|(
-literal|"Configuration error: element "
+literal|"Lucene index configuration error: element "
 operator|+
 name|config
 operator|.
@@ -376,6 +376,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|String
 name|prefix
 init|=
@@ -469,6 +471,28 @@ expr_stmt|;
 return|return
 name|qname
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"Lucene index configuration error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 specifier|public
 name|boolean
