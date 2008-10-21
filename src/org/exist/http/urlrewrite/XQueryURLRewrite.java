@@ -2013,6 +2013,16 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|qpath
+operator|==
+literal|null
+condition|)
+name|qpath
+operator|=
+name|query
+expr_stmt|;
 name|File
 name|f
 init|=
