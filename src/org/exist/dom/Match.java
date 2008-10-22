@@ -171,7 +171,7 @@ specifier|private
 name|int
 name|context
 decl_stmt|;
-specifier|private
+specifier|protected
 name|NodeId
 name|nodeId
 decl_stmt|;
