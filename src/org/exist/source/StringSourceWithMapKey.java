@@ -42,13 +42,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple source object wrapping a single query string, but associating it with a specific  * set of namespace bindings.  This prevents two textually equal queries with different  * namespaces from getting aliased in the query pool.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * A simple source object wrapping a single query string, but associating it with a specific  * map (e.g., of namespace bindings).  This prevents two textually equal queries with different  * maps from getting aliased in the query pool.  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|NamespacedStringSource
+name|StringSourceWithMapKey
 extends|extends
 name|AbstractSource
 block|{
@@ -64,7 +64,7 @@ name|map
 decl_stmt|;
 comment|/** 	 * Create a new source for the given content and namespace map (string to string). 	 * The map will be taken over and modified by the source, so make a copy first if 	 * you're passing a shared one. 	 * 	 * @param content the content of the query 	 * @param namespaceMap the map of prefixes to namespace URIs 	 */
 specifier|public
-name|NamespacedStringSource
+name|StringSourceWithMapKey
 parameter_list|(
 name|String
 name|content
@@ -75,13 +75,17 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-name|namespaceMap
+name|map
 parameter_list|)
 block|{
+name|this
+operator|.
 name|map
 operator|=
-name|namespaceMap
+name|map
 expr_stmt|;
+name|this
+operator|.
 name|map
 operator|.
 name|put

@@ -512,6 +512,23 @@ name|getMimeType
 argument_list|()
 return|;
 block|}
+comment|/** 		 * Set the MIME type of this document. 		 * 		 * @param mimeType this document's desired MIME type 		 */
+specifier|public
+name|void
+name|setMimeType
+parameter_list|(
+name|String
+name|mimeType
+parameter_list|)
+block|{
+name|docMetadata
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|DocumentImpl

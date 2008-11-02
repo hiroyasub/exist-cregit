@@ -360,7 +360,7 @@ name|StringSource
 operator|||
 name|source
 operator|instanceof
-name|NamespacedStringSource
+name|StringSourceWithMapKey
 condition|)
 return|return
 operator|new
