@@ -1127,6 +1127,15 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
+specifier|protected
+name|DBBroker
+name|getBroker
+parameter_list|()
+block|{
+return|return
+name|broker
+return|;
+block|}
 specifier|public
 name|String
 name|getIndexId
@@ -1306,8 +1315,6 @@ argument_list|()
 operator|.
 name|getIndexConfiguration
 argument_list|(
-name|document
-operator|.
 name|getBroker
 argument_list|()
 argument_list|)
@@ -4319,7 +4326,13 @@ block|{
 comment|//Mmmh... doesn't flush since it is currently dependant from the
 comment|//number of nodes in the DOM file ; would need refactorings
 comment|//currentDoc.getBroker().checkAvailableMemory();
-name|currentDoc
+operator|(
+operator|(
+name|AbstractGMLJDBCIndexWorker
+operator|)
+name|getWorker
+argument_list|()
+operator|)
 operator|.
 name|getBroker
 argument_list|()
