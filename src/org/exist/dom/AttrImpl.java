@@ -458,8 +458,7 @@ specifier|final
 name|short
 name|id
 init|=
-name|getBroker
-argument_list|()
+name|ownerDocument
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -714,8 +713,7 @@ specifier|final
 name|short
 name|nsId
 init|=
-name|getBroker
-argument_list|()
+name|ownerDocument
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -914,9 +912,6 @@ name|dln
 init|=
 name|doc
 operator|.
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
@@ -969,6 +964,9 @@ name|String
 name|name
 init|=
 name|doc
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()
@@ -1077,6 +1075,9 @@ literal|""
 else|:
 name|doc
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getSymbols
 argument_list|()
 operator|.
@@ -1143,6 +1144,9 @@ operator|.
 name|setNodeName
 argument_list|(
 name|doc
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

@@ -3375,7 +3375,10 @@ name|attr
 operator|.
 name|setNodeName
 argument_list|(
-name|document
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getSymbols
 argument_list|()

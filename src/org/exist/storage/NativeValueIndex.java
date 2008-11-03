@@ -1816,6 +1816,8 @@ name|IndexUtils
 operator|.
 name|scanNode
 argument_list|(
+name|broker
+argument_list|,
 literal|null
 argument_list|,
 name|node

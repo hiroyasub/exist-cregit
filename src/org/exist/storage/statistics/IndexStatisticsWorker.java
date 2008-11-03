@@ -708,6 +708,9 @@ specifier|private
 name|void
 name|updateDocument
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -745,10 +748,7 @@ decl_stmt|;
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXMLStreamReader
 argument_list|(
@@ -1232,6 +1232,9 @@ operator|new
 name|DocumentImpl
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|doc
@@ -1243,6 +1246,8 @@ argument_list|)
 expr_stmt|;
 name|updateDocument
 argument_list|(
+name|broker
+argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;

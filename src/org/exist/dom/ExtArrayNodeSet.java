@@ -3104,13 +3104,6 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|d
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|public

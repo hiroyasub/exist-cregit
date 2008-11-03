@@ -11,16 +11,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -75,6 +65,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|NodePath
 import|;
 end_import
@@ -105,6 +107,16 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Various utility methods to be used by Index implementations.  */
 end_comment
@@ -119,6 +131,9 @@ specifier|static
 name|void
 name|scanNode
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
@@ -132,13 +147,7 @@ block|{
 name|Iterator
 name|iterator
 init|=
-name|node
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getNodeIterator
 argument_list|(

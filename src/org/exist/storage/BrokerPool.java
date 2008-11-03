@@ -1479,6 +1479,7 @@ specifier|private
 name|IndexManager
 name|indexManager
 decl_stmt|;
+comment|/**      * Global symbol table used to encode element and attribute qnames.      */
 specifier|private
 name|SymbolTable
 name|symbols
@@ -3011,15 +3012,6 @@ return|return
 name|conf
 return|;
 block|}
-specifier|public
-name|SymbolTable
-name|getSymbols
-parameter_list|()
-block|{
-return|return
-name|symbols
-return|;
-block|}
 comment|//TODO : rename as setShutdwonListener ?
 specifier|public
 name|void
@@ -3062,6 +3054,15 @@ parameter_list|()
 block|{
 return|return
 name|scheduler
+return|;
+block|}
+specifier|public
+name|SymbolTable
+name|getSymbols
+parameter_list|()
+block|{
+return|return
+name|symbols
 return|;
 block|}
 specifier|public
@@ -3349,13 +3350,7 @@ operator|.
 name|incReferenceCount
 argument_list|()
 expr_stmt|;
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
+comment|//            broker.setUser(user);
 return|return
 name|broker
 return|;
@@ -3371,6 +3366,10 @@ block|{
 while|while
 condition|(
 name|serviceModeUser
+operator|!=
+literal|null
+operator|&&
+name|user
 operator|!=
 literal|null
 operator|&&
@@ -3486,6 +3485,12 @@ operator|.
 name|incReferenceCount
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
 name|broker
 operator|.
 name|setUser

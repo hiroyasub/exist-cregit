@@ -746,6 +746,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+name|DBBroker
+name|broker
+decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|currentDoc
 init|=
@@ -798,6 +802,9 @@ name|LuceneIndexWorker
 parameter_list|(
 name|LuceneIndex
 name|parent
+parameter_list|,
+name|DBBroker
+name|broker
 parameter_list|)
 block|{
 name|this
@@ -805,6 +812,12 @@ operator|.
 name|index
 operator|=
 name|parent
+expr_stmt|;
+name|this
+operator|.
+name|broker
+operator|=
+name|broker
 expr_stmt|;
 block|}
 specifier|public
@@ -965,10 +978,7 @@ argument_list|()
 operator|.
 name|getIndexConfiguration
 argument_list|(
-name|document
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 argument_list|)
 decl_stmt|;
 if|if

@@ -21,7 +21,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|BrokerPool
 import|;
 end_import
 
@@ -361,8 +361,8 @@ specifier|public
 name|void
 name|write
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|VariableByteOutputStream
 name|ostream
@@ -388,10 +388,7 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getSymbols
 argument_list|()
@@ -491,8 +488,8 @@ specifier|public
 name|void
 name|read
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|VariableByteInput
 name|istream
@@ -516,10 +513,7 @@ argument_list|()
 expr_stmt|;
 name|mimeType
 operator|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
+name|pool
 operator|.
 name|getSymbols
 argument_list|()

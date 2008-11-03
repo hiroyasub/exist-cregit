@@ -806,13 +806,7 @@ condition|)
 return|return;
 name|reindexRoot
 operator|=
-name|reindexRoot
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|objectWith
 argument_list|(
@@ -848,6 +842,8 @@ name|IndexUtils
 operator|.
 name|scanNode
 argument_list|(
+name|broker
+argument_list|,
 name|transaction
 argument_list|,
 name|reindexRoot

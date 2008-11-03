@@ -1041,16 +1041,6 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|setBroker
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|lockAcquired
 operator|=
 literal|true

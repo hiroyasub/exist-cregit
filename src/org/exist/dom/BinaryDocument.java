@@ -15,26 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|EOFException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -89,7 +69,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|BrokerPool
 import|;
 end_import
 
@@ -149,6 +129,26 @@ name|XmldbURI
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|EOFException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a binary resource. Binary resources are just stored  * as binary data in a single overflow page. However, class BinaryDocument  * extends {@link org.exist.dom.DocumentImpl} and thus provides the   * same interface.  *   * @author wolf  */
 end_comment
@@ -177,13 +177,13 @@ decl_stmt|;
 specifier|public
 name|BinaryDocument
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|broker
+name|pool
 argument_list|,
 literal|null
 argument_list|,
@@ -194,8 +194,8 @@ block|}
 specifier|public
 name|BinaryDocument
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|Collection
 name|collection
@@ -203,7 +203,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|broker
+name|pool
 argument_list|,
 name|collection
 argument_list|)
@@ -212,8 +212,8 @@ block|}
 specifier|public
 name|BinaryDocument
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|XmldbURI
 name|fileURI
@@ -221,7 +221,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|broker
+name|pool
 argument_list|,
 literal|null
 argument_list|,
@@ -232,8 +232,8 @@ block|}
 specifier|public
 name|BinaryDocument
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|,
 name|Collection
 name|collection
@@ -244,7 +244,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|broker
+name|pool
 argument_list|,
 name|collection
 argument_list|,
@@ -349,9 +349,6 @@ expr_stmt|;
 name|SecurityManager
 name|secman
 init|=
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
@@ -455,7 +452,8 @@ argument_list|()
 operator|.
 name|write
 argument_list|(
-name|broker
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|ostream
 argument_list|)
@@ -505,9 +503,6 @@ specifier|final
 name|SecurityManager
 name|secman
 init|=
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
@@ -637,7 +632,8 @@ name|metadata
 operator|.
 name|read
 argument_list|(
-name|broker
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|istream
 argument_list|)

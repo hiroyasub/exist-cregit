@@ -769,9 +769,6 @@ name|rootId
 init|=
 name|newDoc
 operator|.
-name|getBroker
-argument_list|()
-operator|.
 name|getBrokerPool
 argument_list|()
 operator|.

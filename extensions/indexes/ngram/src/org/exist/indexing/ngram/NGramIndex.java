@@ -33,6 +33,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|backup
+operator|.
+name|RawDataBackup
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|indexing
 operator|.
 name|AbstractIndex
@@ -124,18 +136,6 @@ operator|.
 name|util
 operator|.
 name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|backup
-operator|.
-name|RawDataBackup
 import|;
 end_import
 
@@ -506,6 +506,8 @@ return|return
 operator|new
 name|NGramIndexWorker
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|)
 return|;

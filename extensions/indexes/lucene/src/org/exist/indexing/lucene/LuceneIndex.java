@@ -716,6 +716,8 @@ operator|new
 name|LuceneIndexWorker
 argument_list|(
 name|this
+argument_list|,
+name|broker
 argument_list|)
 return|;
 block|}

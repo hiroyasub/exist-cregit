@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -94,6 +84,16 @@ operator|.
 name|dom
 operator|.
 name|ProcessingInstruction
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
 import|;
 end_import
 
@@ -740,9 +740,6 @@ name|NodeId
 name|dln
 init|=
 name|doc
-operator|.
-name|getBroker
-argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()

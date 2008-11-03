@@ -880,10 +880,7 @@ operator|(
 operator|(
 name|NativeBroker
 operator|)
-name|doc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|)
 operator|.
 name|getDOMFile
@@ -905,10 +902,7 @@ decl_stmt|;
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
-name|doc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXMLStreamReader
 argument_list|(
@@ -1751,6 +1745,9 @@ operator|new
 name|BinaryDocument
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
@@ -1760,6 +1757,9 @@ operator|new
 name|DocumentImpl
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|doc
