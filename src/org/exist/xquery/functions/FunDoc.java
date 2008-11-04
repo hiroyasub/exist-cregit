@@ -466,25 +466,13 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+comment|// TODO: disabled cache for now as it may cause concurrency issues
+comment|// better use compile-time inspection and maybe a pragma to mark those
+comment|// sections in the query that can be safely cached.
 comment|// check if we can return a cached sequence
-if|if
-condition|(
-name|cached
-operator|!=
-literal|null
-operator|&&
-name|path
-operator|.
-name|equals
-argument_list|(
-name|cachedPath
-argument_list|)
-condition|)
-block|{
-return|return
-name|cached
-return|;
-block|}
+comment|//    		if (cached != null&& path.equals(cachedPath)) {
+comment|//    			return cached;
+comment|//    		}
 try|try
 block|{
 name|result

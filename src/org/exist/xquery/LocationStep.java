@@ -961,72 +961,26 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/*          * if(contextSequence == null) //Commented because this the high level          * result nodeset is *really* null result = NodeSet.EMPTY_SET; //Try to          * return cached results else          */
+comment|// TODO: disabled cache for now as it may cause concurrency issues
+comment|// better use compile-time inspection and maybe a pragma to mark those
+comment|// sections in the query that can be safely cached
+comment|//        if (cached != null&& cached.isValid(contextSequence, contextItem)) {
+comment|//
+comment|//            // WARNING : commented since predicates are *also* applied below !
+comment|//            // -pb
+comment|//            /*
+comment|//             * if (predicates.size()> 0) { applyPredicate(contextSequence,
+comment|//             * cached.getResult()); } else {
+comment|//             */
+comment|//            result = cached.getResult();
+comment|//            if (context.getProfiler().isEnabled()) {
+comment|//            	LOG.debug("Using cached results");
+comment|//            }
+comment|//            context.getProfiler().message(this, Profiler.OPTIMIZATIONS,
+comment|//                                          "Using cached results", result);
+comment|//
+comment|//            // }
 if|if
-condition|(
-name|cached
-operator|!=
-literal|null
-operator|&&
-name|cached
-operator|.
-name|isValid
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
-condition|)
-block|{
-comment|// WARNING : commented since predicates are *also* applied below !
-comment|// -pb
-comment|/*              * if (predicates.size()> 0) { applyPredicate(contextSequence,              * cached.getResult()); } else {              */
-name|result
-operator|=
-name|cached
-operator|.
-name|getResult
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|isEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Using cached results"
-argument_list|)
-expr_stmt|;
-block|}
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATIONS
-argument_list|,
-literal|"Using cached results"
-argument_list|,
-name|result
-argument_list|)
-expr_stmt|;
-comment|// }
-block|}
-if|else if
 condition|(
 name|needsComputation
 argument_list|()
@@ -2163,6 +2117,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -2321,6 +2280,7 @@ argument_list|(
 literal|"Unsupported axis specified"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 else|else
@@ -2674,6 +2634,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
@@ -2793,6 +2758,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -3049,6 +3015,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 comment|// TODO : understand why this one is different from the other ones
 if|if
 condition|(
@@ -3164,7 +3135,9 @@ name|Constants
 operator|.
 name|DESCENDANT_SELF_AXIS
 case|:
-return|return
+name|NodeSet
+name|tempSet
+init|=
 name|currentSet
 operator|.
 name|selectAncestorDescendant
@@ -3179,6 +3152,9 @@ literal|true
 argument_list|,
 name|contextId
 argument_list|)
+decl_stmt|;
+return|return
+name|tempSet
 return|;
 case|case
 name|Constants
@@ -3209,6 +3185,7 @@ argument_list|(
 literal|"Unsupported axis specified"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 else|else
@@ -3626,6 +3603,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -3764,6 +3746,7 @@ argument_list|(
 literal|"Unsupported axis specified"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -4134,6 +4117,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -4237,6 +4225,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>getFollowing</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
@@ -4370,6 +4359,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -4473,6 +4467,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>getAncestors</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      */
@@ -4881,6 +4876,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -5032,6 +5032,7 @@ argument_list|(
 literal|"Unsupported axis specified"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 else|else
@@ -5304,6 +5305,11 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 if|if
 condition|(
 name|currentSet
@@ -5420,6 +5426,7 @@ operator|.
 name|ANCESTOR
 argument_list|)
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -5599,10 +5606,34 @@ name|int
 name|event
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|context
+init|)
+block|{
 name|cached
 operator|=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+name|document
+operator|==
+literal|null
+operator|||
+name|event
+operator|==
+name|UpdateListener
+operator|.
+name|ADD
+operator|||
+name|event
+operator|==
+name|UpdateListener
+operator|.
+name|REMOVE
+condition|)
+block|{
 comment|// clear all
 name|currentDocs
 operator|=
@@ -5612,6 +5643,37 @@ name|currentSet
 operator|=
 literal|null
 expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|currentDocs
+operator|!=
+literal|null
+operator|&&
+name|currentDocs
+operator|.
+name|contains
+argument_list|(
+name|document
+operator|.
+name|getDocId
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|currentDocs
+operator|=
+literal|null
+expr_stmt|;
+name|currentSet
+operator|=
+literal|null
+expr_stmt|;
+block|}
+block|}
+block|}
 block|}
 specifier|public
 name|void
