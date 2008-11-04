@@ -51,6 +51,10 @@ operator|.
 name|SuiteClasses
 argument_list|(
 block|{
+name|NodePathTest
+operator|.
+name|class
+block|,
 name|RemoveCollectionTest
 operator|.
 name|class
