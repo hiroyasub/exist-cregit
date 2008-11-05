@@ -352,6 +352,16 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
+comment|//Always called as "invalidate") because the translation is made at compile time
+if|if
+condition|(
+operator|!
+name|isCalledAs
+argument_list|(
+literal|"invalidate"
+argument_list|)
+condition|)
 throw|throw
 operator|new
 name|XPathException
@@ -359,9 +369,19 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Session not set"
+name|SessionModule
+operator|.
+name|SESSION_VAR
+operator|+
+literal|" not set"
 argument_list|)
 throw|;
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 if|if
 condition|(
 name|var
@@ -383,7 +403,11 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Variable $session is not bound to an Java object."
+name|SessionModule
+operator|.
+name|SESSION_VAR
+operator|+
+literal|" is not bound to a Java object."
 argument_list|)
 throw|;
 name|JavaObjectValue
@@ -442,7 +466,11 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"Type error: variable $session is not bound to a session object"
+name|SessionModule
+operator|.
+name|SESSION_VAR
+operator|+
+literal|" is not bound to a session object"
 argument_list|)
 throw|;
 block|}
