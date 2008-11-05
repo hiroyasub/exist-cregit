@@ -2709,14 +2709,12 @@ name|p
 operator|.
 name|getNodeId
 argument_list|()
-operator|==
+operator|!=
 name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
-return|return
-literal|false
-return|;
+block|{
 name|NodeImpl
 name|n
 init|=
@@ -2749,6 +2747,7 @@ condition|)
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
