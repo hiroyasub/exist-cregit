@@ -2945,6 +2945,21 @@ name|getLength
 argument_list|()
 return|;
 block|}
+specifier|public
+name|int
+name|getItemType
+parameter_list|()
+block|{
+name|realize
+argument_list|()
+expr_stmt|;
+return|return
+name|realSet
+operator|.
+name|getItemType
+argument_list|()
+return|;
+block|}
 comment|/**      * The method<code>getItemCount</code>      *      * @return an<code>int</code> value      */
 specifier|public
 name|int
