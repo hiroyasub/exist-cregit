@@ -1298,8 +1298,10 @@ operator|)
 name|seq
 operator|)
 operator|.
-name|setSelfIsContext
-argument_list|()
+name|setInPredicate
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 operator|(
 operator|(
@@ -1308,10 +1310,8 @@ operator|)
 name|seq
 operator|)
 operator|.
-name|setInPredicate
-argument_list|(
-literal|true
-argument_list|)
+name|setSelfIsContext
+argument_list|()
 expr_stmt|;
 block|}
 else|else

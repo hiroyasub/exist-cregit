@@ -1644,8 +1644,10 @@ operator|)
 name|contextSet
 operator|)
 operator|.
-name|setSelfIsContext
-argument_list|()
+name|setContextId
+argument_list|(
+name|contextId
+argument_list|)
 expr_stmt|;
 operator|(
 operator|(
@@ -1654,10 +1656,8 @@ operator|)
 name|contextSet
 operator|)
 operator|.
-name|setContextId
-argument_list|(
-name|contextId
-argument_list|)
+name|setSelfIsContext
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
