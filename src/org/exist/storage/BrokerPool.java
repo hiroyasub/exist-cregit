@@ -3350,7 +3350,19 @@ operator|.
 name|incReferenceCount
 argument_list|()
 expr_stmt|;
-comment|//            broker.setUser(user);
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 return|return
 name|broker
 return|;
