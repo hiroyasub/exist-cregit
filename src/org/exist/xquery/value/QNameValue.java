@@ -252,55 +252,17 @@ name|getPrefix
 argument_list|()
 decl_stmt|;
 comment|//Not clear what to work with here...
-if|if
-condition|(
-operator|(
-name|prefix
-operator|==
-literal|null
-operator|||
-literal|""
-operator|.
-name|equals
-argument_list|(
-name|prefix
-argument_list|)
-operator|)
-operator|&&
-name|qname
-operator|.
-name|needsNamespaceDecl
-argument_list|()
-condition|)
-block|{
-name|prefix
-operator|=
-name|context
-operator|.
-name|getPrefixForURI
-argument_list|(
-name|qname
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|prefix
-operator|!=
-literal|null
-condition|)
-name|qname
-operator|.
-name|setPrefix
-argument_list|(
-name|prefix
-argument_list|)
-expr_stmt|;
-comment|//throw new XPathException(
-comment|//	"namespace " + qname.getNamespaceURI() + " is not defined");
-block|}
+comment|// WM: Changing the prefix is problematic (e.g. if a module
+comment|// defines different prefixes than the main module). We should
+comment|// keep the current in-scope prefix.
+comment|//	    if((prefix == null || "".equals(prefix))&& qname.needsNamespaceDecl()) {
+comment|//	    	prefix = context.getPrefixForURI(qname.getNamespaceURI());
+comment|//			if (prefix != null)
+comment|//				qname.setPrefix(prefix);
+comment|//				//throw new XPathException(
+comment|//				//	"namespace " + qname.getNamespaceURI() + " is not defined");
+comment|//
+comment|//	    }
 comment|//TODO : check that the prefix matches the URI in the current context ?
 if|if
 condition|(
