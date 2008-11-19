@@ -234,6 +234,10 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
+specifier|private
+name|boolean
+name|restartOnError
+decl_stmt|;
 specifier|public
 name|RecoveryManager
 parameter_list|(
@@ -242,6 +246,9 @@ name|broker
 parameter_list|,
 name|Journal
 name|log
+parameter_list|,
+name|boolean
+name|restartOnError
 parameter_list|)
 block|{
 name|this
@@ -255,6 +262,12 @@ operator|.
 name|logManager
 operator|=
 name|log
+expr_stmt|;
+name|this
+operator|.
+name|restartOnError
+operator|=
+name|restartOnError
 expr_stmt|;
 block|}
 comment|/** 	 * Checks if the database is in a consistent state. If not, start a recovery run. 	 *  	 * The method scans the last log file and tries to find the last checkpoint 	 * record. If the checkpoint record is the last record in the file, 	 * the database was closed cleanly and is in a consistent state. If not, a 	 * recovery run is started beginning at the last checkpoint found. 	 *   	 * @throws LogException 	 */
@@ -407,7 +420,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Reading last journal log entry failed: "
 operator|+
@@ -432,6 +445,13 @@ operator|!
 name|checkpointFound
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Scanning journal..."
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|position
@@ -657,9 +677,9 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
-literal|"Found dirty transactions: "
+literal|"Dirty transactions: "
 operator|+
 name|txnsStarted
 operator|.
@@ -705,8 +725,15 @@ name|recoveryRun
 operator|=
 literal|true
 expr_stmt|;
+try|try
+block|{
 name|doRecovery
 argument_list|(
+name|txnsStarted
+operator|.
+name|size
+argument_list|()
+argument_list|,
 name|last
 argument_list|,
 name|reader
@@ -714,6 +741,31 @@ argument_list|,
 name|lastLsn
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|LogException
+name|e
+parameter_list|)
+block|{
+comment|// if restartOnError == true, we try to bring up the database even if there
+comment|// are errors. Otherwise, an exception is thrown, which will stop the db initialization
+if|if
+condition|(
+name|restartOnError
+condition|)
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Errors during recovery. Database will start up, but corruptions are likely."
+argument_list|)
+expr_stmt|;
+else|else
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 if|else if
 condition|(
@@ -766,6 +818,9 @@ specifier|private
 name|void
 name|doRecovery
 parameter_list|(
+name|int
+name|txnCount
+parameter_list|,
 name|File
 name|last
 parameter_list|,
@@ -782,12 +837,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Running recovery ..."
 argument_list|)
@@ -799,6 +854,8 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|// map to track running transactions
 name|Long2ObjectHashMap
 name|runningTxns
@@ -812,14 +869,18 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
-literal|"First pass: redoing operations"
+literal|"First pass: redoing "
+operator|+
+name|txnCount
+operator|+
+literal|" transactions..."
 argument_list|)
 expr_stmt|;
 name|ProgressBar
@@ -838,7 +899,16 @@ argument_list|)
 decl_stmt|;
 name|Loggable
 name|next
+init|=
+literal|null
 decl_stmt|;
+name|int
+name|redoCnt
+init|=
+literal|0
+decl_stmt|;
+try|try
+block|{
 while|while
 condition|(
 operator|(
@@ -918,6 +988,9 @@ name|getTransactionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|redoCnt
+operator|++
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -977,17 +1050,77 @@ condition|)
 break|break;
 comment|// last readable entry reached. Stop here.
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception caught while redoing transactions. Aborting recovery."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Log entry that caused the exception: "
+operator|+
+name|next
+operator|.
+name|dump
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Recovery aborted"
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Redo processed "
+operator|+
+name|redoCnt
+operator|+
+literal|" out of "
+operator|+
+name|txnCount
+operator|+
+literal|" transactions."
+argument_list|)
+expr_stmt|;
+block|}
 comment|// ------- UNDO ---------
 if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Second pass: undoing dirty transactions. Uncommitted transactions: "
 operator|+
@@ -1009,6 +1142,8 @@ literal|0
 condition|)
 block|{
 comment|// do a reverse scan of the log, undoing all uncommitted transactions
+try|try
+block|{
 while|while
 condition|(
 operator|(
@@ -1127,6 +1262,58 @@ expr_stmt|;
 block|}
 block|}
 block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Exception caught while undoing dirty transactions. Remaining transactions "
+operator|+
+literal|"to be undone: "
+operator|+
+name|runningTxns
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Log entry that caused the exception: "
+operator|+
+name|next
+operator|.
+name|dump
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Recovery aborted"
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+finally|finally
+block|{
 name|broker
 operator|.
 name|sync
@@ -1143,6 +1330,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
