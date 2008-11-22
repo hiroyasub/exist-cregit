@@ -1081,109 +1081,22 @@ argument_list|,
 name|writer
 argument_list|)
 expr_stmt|;
-name|XQuery
-name|xquery
-init|=
-name|broker
+name|tempFile
 operator|.
-name|getXQueryService
+name|delete
 argument_list|()
-decl_stmt|;
-name|DocumentSet
-name|docs
-init|=
-name|broker
-operator|.
-name|getAllXMLResources
-argument_list|(
-operator|new
-name|DefaultDocumentSet
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|Sequence
-name|result
-init|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-literal|"//key/@id/string()"
-argument_list|,
-name|docs
-operator|.
-name|docsToNodeSet
-argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-name|KEY_COUNT
-argument_list|,
-name|result
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|SequenceIterator
-name|i
-init|=
-name|result
-operator|.
-name|iterate
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|Item
-name|item
-init|=
-name|i
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
-name|String
-name|s
-init|=
-name|item
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|s
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|s
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
-condition|)
-break|break;
-block|}
+comment|//            XQuery xquery = broker.getXQueryService();
+comment|//            DocumentSet docs = broker.getAllXMLResources(new DefaultDocumentSet());
+comment|//            Sequence result = xquery.execute("//key/@id/string()", docs.docsToNodeSet(), AccessContext.TEST);
+comment|//            assertEquals(KEY_COUNT, result.getItemCount());
+comment|//            for (SequenceIterator i = result.iterate(); i.hasNext();) {
+comment|//                Item item = i.nextItem();
+comment|//                String s = item.getStringValue();
+comment|//                assertTrue(s.length()> 0);
+comment|//                if (s.length() == 0)
+comment|//                    break;
+comment|//            }
 block|}
 catch|catch
 parameter_list|(
