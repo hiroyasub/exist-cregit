@@ -287,18 +287,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
-name|XmlRpc
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|memtree
@@ -1038,13 +1026,6 @@ return|return;
 case|case
 name|DEBUG_OPT
 case|:
-name|XmlRpc
-operator|.
-name|setDebug
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 break|break;
 case|case
 name|HTTP_PORT_OPT
@@ -1416,7 +1397,7 @@ name|database
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Configures a minimal Jetty webserver (no webapplication support,      * no file system access) and registers the WebDAV and REST servlets.      *       * @param httpPort      * @throws UnknownHostException      * @throws IllegalArgumentException      * @throws MultiException      */
+comment|/**      * Configures a minimal Jetty webserver (no webapplication support,      * no file system access) and registers the WebDAV and REST servlets.      *       * @throws UnknownHostException      * @throws IllegalArgumentException      * @throws MultiException      */
 specifier|private
 name|void
 name|startHttpServer

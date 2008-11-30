@@ -807,6 +807,16 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
 begin_comment
 comment|/**  * Serializer base class, used to serialize a document or document fragment   * back to XML. A serializer may be obtained by calling DBBroker.getSerializer().  *  *  The class basically offers two overloaded methods: serialize()  *  and toSAX(). serialize() returns the XML as a string, while  *  toSAX() generates a stream of SAX events. The stream of SAX  *  events is passed to the ContentHandler set by setContentHandler().  *    * Internally, both types of methods pass events to a {@link org.exist.util.serializer.Receiver}.  * Subclasses thus have to implement the various serializeToReceiver() methods.  *  *  Output can be configured through properties. Property keys are defined in classes  * {@link javax.xml.transform.OutputKeys} and {@link org.exist.storage.serializers.EXistOutputKeys}  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -1663,7 +1673,7 @@ specifier|public
 name|void
 name|setProperties
 parameter_list|(
-name|Hashtable
+name|HashMap
 name|table
 parameter_list|)
 throws|throws

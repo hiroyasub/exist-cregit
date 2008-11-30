@@ -125,11 +125,6 @@ name|XMLDBException
 function_decl|;
 specifier|public
 name|XmldbURI
-name|getURI
-parameter_list|()
-function_decl|;
-specifier|public
-name|XmldbURI
 name|getPathURI
 parameter_list|()
 function_decl|;
