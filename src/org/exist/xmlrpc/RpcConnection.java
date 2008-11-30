@@ -11731,20 +11731,6 @@ argument_list|(
 name|queryResult
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Factory: "
-operator|+
-name|factory
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ret
 operator|.
 name|put
@@ -13385,20 +13371,6 @@ operator|.
 name|get
 argument_list|(
 name|user
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Factory: "
-operator|+
-name|factory
-operator|.
-name|hashCode
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|QueryResult
