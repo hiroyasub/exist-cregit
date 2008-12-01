@@ -51,7 +51,7 @@ name|apache
 operator|.
 name|xmlrpc
 operator|.
-name|XmlRpcClient
+name|XmlRpcException
 import|;
 end_import
 
@@ -63,7 +63,9 @@ name|apache
 operator|.
 name|xmlrpc
 operator|.
-name|XmlRpcException
+name|client
+operator|.
+name|XmlRpcClient
 import|;
 end_import
 
@@ -414,9 +416,6 @@ name|res
 operator|.
 name|setContent
 argument_list|(
-operator|(
-name|Object
-operator|)
 operator|new
 name|String
 argument_list|(
