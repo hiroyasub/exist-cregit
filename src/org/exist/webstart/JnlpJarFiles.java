@@ -93,7 +93,11 @@ index|[]
 block|{
 literal|"xmldb"
 block|,
-literal|"xmlrpc-%latest%-patched"
+literal|"xmlrpc-common-%latest%"
+block|,
+literal|"xmlrpc-client-%latest%"
+block|,
+literal|"ws-commons-util-%latest%"
 block|,
 literal|"commons-pool-%latest%"
 block|,
