@@ -904,6 +904,12 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|report
+operator|!=
+literal|null
+condition|)
 name|report
 operator|.
 name|updateErrors
