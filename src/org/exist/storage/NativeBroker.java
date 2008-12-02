@@ -9266,7 +9266,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|4096
+literal|65536
 index|]
 decl_stmt|;
 name|OutputStream
@@ -9889,7 +9889,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|4096
+literal|65536
 index|]
 decl_stmt|;
 name|int
