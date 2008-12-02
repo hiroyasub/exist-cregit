@@ -1617,11 +1617,12 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|user
-operator|=
+name|setUser
+argument_list|(
 name|SecurityManager
 operator|.
 name|SYSTEM_USER
+argument_list|)
 expr_stmt|;
 name|readOnly
 operator|=
@@ -3179,12 +3180,13 @@ block|{
 name|User
 name|u
 init|=
-name|user
+name|getUser
+argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|user
-operator|=
+name|setUser
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -3195,6 +3197,7 @@ argument_list|(
 name|SecurityManager
 operator|.
 name|DBA_USER
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -3229,9 +3232,10 @@ return|;
 block|}
 finally|finally
 block|{
-name|user
-operator|=
+name|setUser
+argument_list|(
 name|u
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -3354,7 +3358,8 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|current
@@ -3364,7 +3369,8 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getPrimaryGroup
 argument_list|()
@@ -3511,7 +3517,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -3536,7 +3543,8 @@ name|PermissionDeniedException
 argument_list|(
 literal|"User '"
 operator|+
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -3578,7 +3586,8 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sub
@@ -3588,7 +3597,8 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getPrimaryGroup
 argument_list|()
@@ -4161,7 +4171,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -4236,7 +4247,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -4864,7 +4876,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -4893,7 +4906,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -5405,7 +5419,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -5418,7 +5433,8 @@ name|PermissionDeniedException
 argument_list|(
 literal|"User '"
 operator|+
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -5567,7 +5583,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -5580,7 +5597,8 @@ name|PermissionDeniedException
 argument_list|(
 literal|"User '"
 operator|+
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -7592,7 +7610,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -7789,7 +7808,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -8026,11 +8046,12 @@ comment|//store the currentUser
 name|User
 name|currentUser
 init|=
-name|user
+name|getUser
+argument_list|()
 decl_stmt|;
-comment|//elevate user to DBA_USER
-name|user
-operator|=
+comment|//elevate getUser() to DBA_USER
+name|setUser
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -8041,6 +8062,7 @@ argument_list|(
 name|SecurityManager
 operator|.
 name|DBA_USER
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//start a transaction
@@ -8362,10 +8384,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|//restore the user
-name|user
-operator|=
+comment|//restore the getUser()
+name|setUser
+argument_list|(
 name|currentUser
+argument_list|)
 expr_stmt|;
 block|}
 return|return
@@ -9473,7 +9496,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -9583,7 +9607,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//      if (!doc.getPermissions().validate(user, Permission.READ))
+comment|//      if (!doc.getPermissions().validate(getUser(), Permission.READ))
 comment|//          throw new PermissionDeniedException("not allowed to read document");
 return|return
 name|doc
@@ -9684,7 +9708,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -9728,7 +9753,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|//      if (!doc.getPermissions().validate(user, Permission.READ))
+comment|//      if (!doc.getPermissions().validate(getUser(), Permission.READ))
 comment|//          throw new PermissionDeniedException("not allowed to read document");
 if|if
 condition|(
@@ -10495,7 +10520,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -10509,7 +10535,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -10811,7 +10838,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -10840,7 +10868,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -10966,7 +10995,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -10992,7 +11022,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11058,7 +11089,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11472,7 +11504,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11501,7 +11534,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11539,7 +11573,8 @@ if|if
 condition|(
 operator|!
 operator|(
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -11564,7 +11599,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|+
-literal|" because is locked by user '"
+literal|" because is locked by getUser() '"
 operator|+
 name|docUser
 operator|.
@@ -11666,7 +11701,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11692,7 +11728,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.
@@ -11756,7 +11793,8 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|,
 name|Permission
 operator|.

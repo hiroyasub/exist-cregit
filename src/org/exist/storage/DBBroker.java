@@ -543,7 +543,7 @@ specifier|protected
 name|BrokerPool
 name|pool
 decl_stmt|;
-specifier|protected
+specifier|private
 name|User
 name|user
 init|=
