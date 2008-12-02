@@ -3303,6 +3303,7 @@ operator|!
 name|isInstanceConfigured
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -3314,6 +3315,12 @@ operator|+
 literal|"' is not available"
 argument_list|)
 throw|;
+block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 comment|//Try to get an active broker
 name|DBBroker
 name|broker
@@ -3370,11 +3377,6 @@ comment|//TODO : share the code with what is below (including notifyAll) ?
 comment|// WM: notifyAll is not necessary if we don't have to wait for a broker.
 block|}
 comment|//No active broker : get one ASAP
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 while|while
 condition|(
 name|serviceModeUser
@@ -3541,6 +3543,11 @@ operator|==
 literal|null
 condition|)
 return|return;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 comment|//TOUNDERSTAND (pb) : why maintain reference counters rather than pushing the brokers to the stack ?
 comment|//TODO : first check that the broker is active ! If not, return immediately.
 name|broker
@@ -3562,11 +3569,6 @@ comment|//it is still in use and thus can't be marked as inactive
 return|return;
 block|}
 comment|//Broker is no more used : inactivate it
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 for|for
 control|(
 name|int
