@@ -705,7 +705,10 @@ block|}
 specifier|public
 name|void
 name|shutdown
-parameter_list|()
+parameter_list|(
+name|boolean
+name|checkpoint
+parameter_list|)
 block|{
 if|if
 condition|(
@@ -723,6 +726,8 @@ operator|.
 name|shutdown
 argument_list|(
 name|txnId
+argument_list|,
+name|checkpoint
 argument_list|)
 expr_stmt|;
 block|}

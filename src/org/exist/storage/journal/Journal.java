@@ -1847,6 +1847,9 @@ name|shutdown
 parameter_list|(
 name|long
 name|txnId
+parameter_list|,
+name|boolean
+name|checkpoint
 parameter_list|)
 block|{
 if|if
@@ -1863,6 +1866,11 @@ operator|!
 name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
+condition|)
+block|{
+if|if
+condition|(
+name|checkpoint
 condition|)
 block|{
 try|try
@@ -1897,6 +1905,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|flushBuffer
 argument_list|()
