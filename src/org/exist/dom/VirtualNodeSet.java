@@ -2998,14 +2998,24 @@ name|int
 name|getItemType
 parameter_list|()
 block|{
-name|realize
-argument_list|()
-expr_stmt|;
+if|if
+condition|(
+name|realSet
+operator|!=
+literal|null
+operator|&&
+name|realSetIsComplete
+condition|)
 return|return
 name|realSet
 operator|.
 name|getItemType
 argument_list|()
+return|;
+return|return
+name|Type
+operator|.
+name|NODE
 return|;
 block|}
 comment|/**      * The method<code>getItemCount</code>      *      * @return an<code>int</code> value      */
