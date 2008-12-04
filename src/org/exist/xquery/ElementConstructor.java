@@ -563,6 +563,22 @@ literal|"."
 argument_list|)
 throw|;
 block|}
+name|addNamespaceDecl
+argument_list|(
+name|qn
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|addNamespaceDecl
+parameter_list|(
+name|QName
+name|qn
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
 if|if
 condition|(
 name|namespaceDecls
@@ -1368,6 +1384,7 @@ operator|+
 literal|"' is not a valid element name"
 argument_list|)
 throw|;
+comment|/* Temporarily commented out, till we can fix the duplicate default namespace generation bug that this code introduced             if (qn.needsNamespaceDecl()) {                 if (context.getInScopePrefix(qn.getNamespaceURI()) == null) {                     String prefix = qn.getPrefix();                     if (prefix == null || prefix.length() == 0)                         prefix = "";                     context.declareInScopeNamespace(prefix, qn.getNamespaceURI());                     addNamespaceDecl(new QName(prefix, qn.getNamespaceURI(), "xmlns"));                 }             } 			*/
 comment|// add namespace declaration nodes
 name|int
 name|nodeNr
