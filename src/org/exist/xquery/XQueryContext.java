@@ -6247,7 +6247,8 @@ name|getUser
 parameter_list|()
 block|{
 return|return
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getUser
 argument_list|()
