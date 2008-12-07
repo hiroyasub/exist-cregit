@@ -19,21 +19,11 @@ end_package
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|naming
+name|util
 operator|.
-name|Context
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|naming
-operator|.
-name|InitialContext
+name|Properties
 import|;
 end_import
 
@@ -68,16 +58,6 @@ operator|.
 name|directory
 operator|.
 name|InitialDirContext
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
 import|;
 end_import
 

@@ -279,7 +279,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Node
+name|Document
 import|;
 end_import
 
@@ -291,7 +291,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Document
+name|Node
 import|;
 end_import
 
@@ -304,42 +304,6 @@ operator|.
 name|sax
 operator|.
 name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilderFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
 import|;
 end_import
 

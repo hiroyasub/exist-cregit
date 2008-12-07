@@ -23,7 +23,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|DataInputStream
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|DataInputStream
+name|File
 import|;
 end_import
 
@@ -53,7 +53,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -96,18 +96,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Base64Encoder
 import|;
 end_import
 
@@ -210,20 +198,6 @@ operator|.
 name|value
 operator|.
 name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|StringValue
 import|;
 end_import
 
