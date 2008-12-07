@@ -1217,6 +1217,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -2145,6 +2147,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 for|for
 control|(

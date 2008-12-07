@@ -1283,6 +1283,8 @@ parameter_list|,
 name|Sequence
 name|seq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -1381,6 +1383,8 @@ parameter_list|,
 name|Sequence
 name|seq
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(

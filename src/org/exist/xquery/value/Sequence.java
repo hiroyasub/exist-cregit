@@ -146,6 +146,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/** 	 * Returns the number of items contained in the sequence.      * Call this method<strong>only</strong> when necessary,       * since it can be resource consuming.  	 *  	 * @return The number of items in the sequence 	 */
 specifier|public
@@ -290,6 +292,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 name|void
@@ -298,6 +302,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 name|boolean

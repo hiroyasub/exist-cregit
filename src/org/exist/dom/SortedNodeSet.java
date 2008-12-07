@@ -1213,6 +1213,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 return|return
 operator|new

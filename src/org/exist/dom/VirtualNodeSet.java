@@ -3184,6 +3184,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 name|realize
 argument_list|()
@@ -3255,6 +3257,8 @@ specifier|public
 name|void
 name|clearContext
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 comment|// ignored for a virtual set
 block|}

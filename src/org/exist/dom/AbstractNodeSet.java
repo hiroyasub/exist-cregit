@@ -297,6 +297,8 @@ specifier|abstract
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 specifier|public
@@ -2393,6 +2395,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|NodeProxy
 name|p

@@ -202,6 +202,8 @@ specifier|abstract
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -962,6 +964,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|Item
 name|next
@@ -1015,6 +1019,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 name|Item
 name|next

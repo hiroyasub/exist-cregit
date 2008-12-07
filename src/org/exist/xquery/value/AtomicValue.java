@@ -493,6 +493,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 return|return
 operator|new
@@ -1092,6 +1094,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 comment|// ignore
 block|}
@@ -1103,6 +1107,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */

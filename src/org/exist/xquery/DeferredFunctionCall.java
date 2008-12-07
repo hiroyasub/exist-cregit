@@ -301,6 +301,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -937,6 +939,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 try|try
 block|{
@@ -1031,9 +1035,10 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
-try|try
-block|{
+comment|//try {
 name|realize
 argument_list|()
 expr_stmt|;
@@ -1043,29 +1048,7 @@ operator|.
 name|unorderedIterator
 argument_list|()
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Exception in deferred function: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
+comment|/*} catch (XPathException e) {             LOG.error("Exception in deferred function: " + e.getMessage());             return null;         }*/
 block|}
 specifier|public
 name|void

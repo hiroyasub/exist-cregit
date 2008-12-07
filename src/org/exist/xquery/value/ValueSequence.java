@@ -748,6 +748,8 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 name|sortInDocumentOrder
 argument_list|()
@@ -2007,6 +2009,8 @@ parameter_list|(
 name|int
 name|contextId
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 for|for
 control|(
