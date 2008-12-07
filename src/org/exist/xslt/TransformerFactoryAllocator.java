@@ -83,6 +83,18 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_comment
 comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
@@ -153,14 +165,14 @@ name|TransformerFactoryAllocator
 parameter_list|()
 block|{
 block|}
-comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *      * @param broker A database broker, used for reading the conf.xml configuration      *      * @return  A SAXTransformerFactory, for which newInstance() can then be called      *      *      * Typical usage:      *      * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
+comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *      * @param pool A database broker pool, used for reading the conf.xml configuration      *      * @return  A SAXTransformerFactory, for which newInstance() can then be called      *      *      * Typical usage:      *      * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
 specifier|public
 specifier|static
 name|SAXTransformerFactory
 name|getTransformerFactory
 parameter_list|(
-name|DBBroker
-name|broker
+name|BrokerPool
+name|pool
 parameter_list|)
 block|{
 name|SAXTransformerFactory
@@ -173,7 +185,7 @@ init|=
 operator|(
 name|String
 operator|)
-name|broker
+name|pool
 operator|.
 name|getConfiguration
 argument_list|()
@@ -251,7 +263,7 @@ init|=
 operator|(
 name|Hashtable
 operator|)
-name|broker
+name|pool
 operator|.
 name|getConfiguration
 argument_list|()

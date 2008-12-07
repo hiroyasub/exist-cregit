@@ -691,8 +691,8 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|XQueryContext
-name|context
+name|String
+name|moduleLoadPath
 init|=
 literal|null
 decl_stmt|;
@@ -809,17 +809,17 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setXQueryContext
+name|setModuleLoadPath
 parameter_list|(
-name|XQueryContext
-name|context
+name|String
+name|path
 parameter_list|)
 block|{
 name|this
 operator|.
-name|context
+name|moduleLoadPath
 operator|=
-name|context
+name|path
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#characters(java.lang.CharSequence) 	 */
@@ -1782,7 +1782,7 @@ name|scheme
 operator|==
 literal|null
 operator|&&
-name|context
+name|moduleLoadPath
 operator|!=
 literal|null
 condition|)
@@ -1818,10 +1818,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-name|context
-operator|.
-name|getModuleLoadPath
-argument_list|()
+name|moduleLoadPath
 operator|+
 literal|'/'
 operator|+

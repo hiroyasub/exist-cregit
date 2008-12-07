@@ -1549,9 +1549,12 @@ argument_list|)
 decl_stmt|;
 name|xinclude
 operator|.
-name|setXQueryContext
+name|setModuleLoadPath
 argument_list|(
 name|context
+operator|.
+name|getModuleLoadPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|receiver
@@ -1928,9 +1931,12 @@ argument_list|)
 decl_stmt|;
 name|xinclude
 operator|.
-name|setXQueryContext
+name|setModuleLoadPath
 argument_list|(
 name|context
+operator|.
+name|getModuleLoadPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|receiver
@@ -2052,6 +2058,9 @@ argument_list|(
 name|context
 operator|.
 name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
