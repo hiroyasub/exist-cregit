@@ -145,7 +145,7 @@ specifier|static
 name|int
 name|CHECK_INTERVAL
 init|=
-literal|2000
+literal|400
 decl_stmt|;
 specifier|protected
 name|BrokerPool
