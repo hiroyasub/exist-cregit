@@ -518,6 +518,15 @@ literal|2
 index|]
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|items
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|ctx
 operator|.
 name|modifyAttributes
@@ -527,6 +536,7 @@ argument_list|,
 name|items
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -853,7 +863,7 @@ comment|// Scan the existing list of ModificationItems backwards for one that ma
 comment|// If the last such entry matches the opCode, then just add the value to the existing attribute (ModItem),
 comment|// Otherwise create a new ModificationItem.
 comment|//
-comment|// This basically collapses nearby identically named attributes that have the same opCode into one.
+comment|// This basically collapses nearby identically named attributes that have the same opCode into one, except for removes
 for|for
 control|(
 name|int
@@ -911,6 +921,10 @@ name|getModificationOp
 argument_list|()
 operator|==
 name|opCode
+operator|&&
+name|opCode
+operator|!=
+literal|3
 condition|)
 block|{
 name|existingAttr
