@@ -236,6 +236,8 @@ operator|+
 literal|" entry attributes to be set in $c in the"
 operator|+
 literal|" form<attributes><attribute name=\"\" value=\"\"/></attributes>. "
+operator|+
+literal|" You can also optionally specify ordered=\"true\" for an attribute."
 argument_list|,
 operator|new
 name|SequenceType
