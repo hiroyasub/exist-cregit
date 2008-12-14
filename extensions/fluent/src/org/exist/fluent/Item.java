@@ -559,6 +559,20 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * @param defaultValue the default value to return if the item is null (unbound) 	 * @return the string value of this item if atomic, or the concatenation of its text content if a node, 	 * 		or the given default value if this is a null item 	 */
+specifier|public
+name|String
+name|valueWithDefault
+parameter_list|(
+name|String
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|value
+argument_list|()
+return|;
+block|}
 comment|/** 	 * Return the converted boolean value following XQuery / XPath conversion rules. 	 * For numeric values, return false iff the value is 0.  For strings, return true if 	 * the value is 'true' or '1' and false if the value is 'false' or '0', fail otherwise.  For 	 * nodes, return the conversion of the effective string value. 	 * 	 * @return the boolean value of the item 	 * @throws DatabaseException if the conversion failed 	 */
 specifier|public
 name|boolean
@@ -1129,6 +1143,20 @@ parameter_list|()
 block|{
 return|return
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|valueWithDefault
+parameter_list|(
+name|String
+name|defaultValue
+parameter_list|)
+block|{
+return|return
+name|defaultValue
 return|;
 block|}
 annotation|@

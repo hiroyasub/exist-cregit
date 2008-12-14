@@ -362,6 +362,16 @@ name|tag
 argument_list|)
 return|;
 block|}
+comment|/** 	 * Get the XML tag for this qualified name, either prefix:localName or just localName if there 	 * is no prefix.  Be careful: this tag is dependent on namespace context for correct interpretation. 	 * @return the XML tag for this qname, based on the qualified name's prefix and localName  	 */
+specifier|public
+name|String
+name|getTag
+parameter_list|()
+block|{
+return|return
+name|tag
+return|;
+block|}
 comment|/** 	 * Return the qualified name of the given node. 	 * 	 * @param node the target node 	 * @return the node's qualified name 	 */
 specifier|public
 specifier|static
