@@ -1262,7 +1262,6 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|&&
-operator|!
 name|Type
 operator|.
 name|subTypeOf
@@ -1274,7 +1273,7 @@ argument_list|()
 argument_list|,
 name|Type
 operator|.
-name|NODE
+name|ATOMIC
 argument_list|)
 condition|)
 name|gotAtomicResult

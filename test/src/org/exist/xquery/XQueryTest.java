@@ -17333,7 +17333,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=2429093
 specifier|public
 name|void
-name|bugtestXPTY0018_mixedsequences_2429093
+name|testXPTY0018_mixedsequences_2429093
 parameter_list|()
 block|{
 try|try
@@ -17411,7 +17411,7 @@ name|result
 operator|.
 name|getResource
 argument_list|(
-literal|0
+literal|1
 argument_list|)
 operator|.
 name|getContent
