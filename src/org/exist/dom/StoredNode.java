@@ -189,6 +189,8 @@ extends|extends
 name|NodeImpl
 implements|implements
 name|Visitable
+implements|,
+name|NodeHandle
 block|{
 specifier|public
 specifier|final
