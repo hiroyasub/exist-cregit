@@ -787,6 +787,34 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+literal|"An error occurred: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 finally|finally
 block|{
 comment|// for debugging webdav

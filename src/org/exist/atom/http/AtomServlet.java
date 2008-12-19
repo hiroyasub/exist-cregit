@@ -2743,7 +2743,9 @@ name|response
 operator|.
 name|sendError
 argument_list|(
-literal|404
+name|HttpServletResponse
+operator|.
+name|SC_NOT_FOUND
 argument_list|,
 name|ex
 operator|.
@@ -2784,7 +2786,9 @@ name|response
 operator|.
 name|sendError
 argument_list|(
-literal|401
+name|HttpServletResponse
+operator|.
+name|SC_UNAUTHORIZED
 argument_list|,
 name|ex
 operator|.
@@ -2814,7 +2818,9 @@ name|response
 operator|.
 name|sendError
 argument_list|(
-literal|400
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
 argument_list|,
 name|ex
 operator|.
@@ -2847,11 +2853,41 @@ name|response
 operator|.
 name|sendError
 argument_list|(
-literal|500
+name|HttpServletResponse
+operator|.
+name|SC_INTERNAL_SERVER_ERROR
 argument_list|,
 literal|"Service is not available."
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+literal|"An error occurred: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{
@@ -2885,7 +2921,9 @@ name|response
 operator|.
 name|sendError
 argument_list|(
-literal|500
+name|HttpServletResponse
+operator|.
+name|SC_INTERNAL_SERVER_ERROR
 argument_list|,
 literal|"Service is not available."
 argument_list|)

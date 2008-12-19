@@ -259,6 +259,8 @@ name|request
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 name|super
 operator|.
 name|doPost
@@ -268,6 +270,35 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|log
+argument_list|(
+literal|"Problem during XmlRpc execution"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+literal|"An unknown error occurred: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 specifier|protected
 name|XmlRpcHandlerMapping
