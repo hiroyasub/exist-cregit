@@ -17499,7 +17499,34 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Proxy at address "
+literal|"Node "
+operator|+
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|+
+literal|" not found in document "
+operator|+
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"; docId = "
+operator|+
+name|p
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|StorageAddress
 operator|.
@@ -17511,29 +17538,14 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 operator|+
-literal|" in document "
-operator|+
-name|p
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getDocId
-argument_list|()
-operator|+
-literal|" has node id "
-operator|+
-name|p
-operator|.
-name|getNodeId
-argument_list|()
-operator|+
-literal|", but node retrieved has node id "
+literal|"; found node "
 operator|+
 name|node
 operator|.
 name|getNodeId
 argument_list|()
+operator|+
+literal|" instead"
 argument_list|)
 expr_stmt|;
 block|}
@@ -17555,6 +17567,12 @@ name|getNodeId
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|node
+operator|!=
+literal|null
+condition|)
 name|p
 operator|.
 name|setInternalAddress
