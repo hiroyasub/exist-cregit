@@ -535,6 +535,8 @@ operator|new
 name|Thread
 argument_list|(
 name|SWEEPER
+argument_list|,
+literal|"WeakMultiValueHashMap sweeper"
 argument_list|)
 decl_stmt|;
 name|thread

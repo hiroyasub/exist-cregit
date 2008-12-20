@@ -2315,6 +2315,8 @@ operator|new
 name|Thread
 argument_list|(
 name|defragmenter
+argument_list|,
+literal|"Database defragmenter"
 argument_list|)
 decl_stmt|;
 name|thread
@@ -2459,6 +2461,11 @@ block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
 try|try
 block|{
 name|DBBroker
@@ -2545,9 +2552,18 @@ argument_list|()
 operator|.
 name|getSplitCount
 argument_list|()
-operator|>
+operator|<=
 name|fragmentationLimit
-operator|&&
+condition|)
+block|{
+name|it
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
 operator|!
 name|docsInUse
 operator|.
@@ -2583,6 +2599,9 @@ name|getCollectionPath
 argument_list|()
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|count
+operator|++
 expr_stmt|;
 name|Transaction
 name|tx
@@ -2665,13 +2684,25 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"finished looking for documents to defragment, next cycle in "
-operator|+
+operator|new
+name|MessageFormat
+argument_list|(
+literal|"defragmented {0,choice,0#0 documents|1#1 document|1<{0,number,integer} documents}, next cycle in {1,number,integer}s"
+argument_list|)
+operator|.
+name|format
+argument_list|(
+operator|new
+name|Object
+index|[]
+block|{
+name|count
+block|,
 name|DEFRAG_INTERVAL
 operator|/
 literal|1000
-operator|+
-literal|"s"
+block|}
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
