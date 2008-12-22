@@ -185,7 +185,7 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|*
+name|TransactionManager
 import|;
 end_import
 
@@ -236,20 +236,6 @@ operator|.
 name|value
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|jgroups
-operator|.
-name|blocks
-operator|.
-name|DistributedLockManager
-operator|.
-name|AcquireLockDecree
 import|;
 end_import
 
@@ -728,8 +714,6 @@ operator|.
 name|ProgressCallback
 argument_list|()
 block|{
-annotation|@
-name|Override
 specifier|public
 name|void
 name|error
@@ -739,8 +723,6 @@ name|error
 parameter_list|)
 block|{
 block|}
-annotation|@
-name|Override
 specifier|public
 name|void
 name|startCollection
@@ -750,8 +732,6 @@ name|path
 parameter_list|)
 block|{
 block|}
-annotation|@
-name|Override
 specifier|public
 name|void
 name|startDocument
