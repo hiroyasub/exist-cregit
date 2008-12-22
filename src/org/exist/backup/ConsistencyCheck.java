@@ -393,19 +393,7 @@ operator|.
 name|getDefaultIndexDepth
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"DefaultIndexDepth = "
-operator|+
-name|this
-operator|.
-name|defaultIndexDepth
-argument_list|)
-expr_stmt|;
+comment|// System.out.println("DefaultIndexDepth = " + this.defaultIndexDepth);
 block|}
 comment|/**      * Combines {@link #checkCollectionTree(ConsistencyCheck.ProgressCallback)} and      * {@link #checkDocuments(ConsistencyCheck.ProgressCallback)}.      *       * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or      *  an empty list if no errors were found      */
 specifier|public
