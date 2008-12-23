@@ -3754,7 +3754,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|void
+name|DBBroker
 name|enterServiceMode
 parameter_list|(
 name|User
@@ -3851,6 +3851,10 @@ name|checkpoint
 operator|=
 literal|false
 expr_stmt|;
+comment|// Return a broker that can be used to perform system tasks
+return|return
+name|broker
+return|;
 block|}
 specifier|public
 name|void
