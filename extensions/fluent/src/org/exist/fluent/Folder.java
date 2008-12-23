@@ -4560,13 +4560,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|tx
-operator|.
-name|lockWrite
-argument_list|(
-name|dimpl
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|dimpl
