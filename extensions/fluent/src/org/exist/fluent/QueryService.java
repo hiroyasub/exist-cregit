@@ -2506,7 +2506,7 @@ name|params
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -2520,7 +2520,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -2793,14 +2793,14 @@ argument_list|)
 argument_list|,
 name|Collections
 operator|.
-name|unmodifiableCollection
+name|unmodifiableSet
 argument_list|(
 name|requiredVariables
 argument_list|)
 argument_list|,
 name|Collections
 operator|.
-name|unmodifiableCollection
+name|unmodifiableSet
 argument_list|(
 name|requiredFunctions
 argument_list|)
@@ -2904,7 +2904,7 @@ name|query
 decl_stmt|;
 specifier|private
 specifier|final
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -2912,7 +2912,7 @@ name|requiredVariables
 decl_stmt|;
 specifier|private
 specifier|final
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -2924,13 +2924,13 @@ parameter_list|(
 name|CompiledXQuery
 name|query
 parameter_list|,
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
 name|requiredVariables
 parameter_list|,
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -3150,7 +3150,7 @@ return|;
 block|}
 comment|/** 		 * Return a list of variables that are required to be defined by this query, excluding any 		 * positional variables that were provided to the {@link QueryService#analyze(String, Object[]) analyze} 		 * method.  The variable names will not include the leading '$'. 		 *  		 * @return a list of variables required by this query 		 */
 specifier|public
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
@@ -3163,7 +3163,7 @@ return|;
 block|}
 comment|/** 		 * Return a list of functions that are required to be defined by this query, beyond the 		 * standard XPath/XQuery ones. 		 * 		 * @return a list of functions required by this query 		 */
 specifier|public
-name|Collection
+name|Set
 argument_list|<
 name|QName
 argument_list|>
