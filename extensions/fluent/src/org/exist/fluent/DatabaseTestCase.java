@@ -148,15 +148,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-if|if
-condition|(
-operator|!
-name|Database
-operator|.
-name|isStarted
-argument_list|()
-condition|)
-block|{
 name|ConfigFile
 name|configFileAnnotation
 init|=
@@ -183,10 +174,9 @@ argument_list|(
 literal|"Missing ConfigFile annotation on DatabaseTestCase subclass"
 argument_list|)
 throw|;
-name|Database
-operator|.
-name|startup
-argument_list|(
+name|File
+name|configFile
+init|=
 operator|new
 name|File
 argument_list|(
@@ -195,6 +185,21 @@ operator|.
 name|value
 argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|Database
+operator|.
+name|isStarted
+argument_list|()
+condition|)
+block|{
+name|Database
+operator|.
+name|startup
+argument_list|(
+name|configFile
 argument_list|)
 expr_stmt|;
 name|db
@@ -221,11 +226,11 @@ expr_stmt|;
 name|wipeDatabase
 argument_list|()
 expr_stmt|;
-name|ListenerManager
+name|Database
 operator|.
-name|configureTriggerDispatcher
+name|configureRootCollection
 argument_list|(
-name|db
+name|configFile
 argument_list|)
 expr_stmt|;
 comment|// config file gets erased by wipeDatabase()
