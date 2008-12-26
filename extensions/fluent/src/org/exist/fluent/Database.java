@@ -1161,14 +1161,16 @@ name|dbName
 init|=
 literal|"exist"
 decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|String
 name|ROOT_PREFIX
 init|=
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 decl_stmt|;
-comment|// should match the root prefix in NativeBroker
 specifier|private
 specifier|static
 name|BrokerPool
