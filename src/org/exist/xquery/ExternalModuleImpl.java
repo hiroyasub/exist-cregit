@@ -687,14 +687,22 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+block|{
+return|return
+name|mContext
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.ExternalModule#moduleIsValid() 	 */
 specifier|public
 name|boolean
 name|moduleIsValid
 parameter_list|()
 block|{
-if|if
-condition|(
+return|return
 name|mSource
 operator|.
 name|isValid
@@ -704,20 +712,10 @@ operator|.
 name|getBroker
 argument_list|()
 argument_list|)
-operator|!=
+operator|==
 name|Source
 operator|.
 name|VALID
-condition|)
-return|return
-literal|false
-return|;
-comment|// check other modules imported from here
-return|return
-name|mContext
-operator|.
-name|checkModulesValid
-argument_list|()
 return|;
 block|}
 specifier|public

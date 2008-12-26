@@ -107,12 +107,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Is the compiled expression still valid? Returns false if, for example,      * the source code of one of the imported modules has changed.      */
-specifier|public
-name|boolean
-name|isValid
-parameter_list|()
-function_decl|;
 comment|/**      * Writes a diagnostic dump of the expression structure to the      * specified writer.      */
 specifier|public
 name|void

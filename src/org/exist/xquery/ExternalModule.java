@@ -97,6 +97,11 @@ name|Source
 name|source
 parameter_list|)
 function_decl|;
+specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+function_decl|;
 comment|/** 	 * Set the XQueryContext of this module. This will be a sub-context 	 * of the main context as parts of the static context are shared.  	 *  	 * @param context 	 */
 specifier|public
 name|void
