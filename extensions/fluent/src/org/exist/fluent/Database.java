@@ -884,6 +884,11 @@ name|boolean
 name|checkConsistency
 parameter_list|()
 block|{
+synchronized|synchronized
+init|(
+name|pool
+init|)
+block|{
 try|try
 block|{
 name|DBBroker
@@ -988,6 +993,7 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|private

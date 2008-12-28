@@ -3860,6 +3860,16 @@ init|=
 name|entries
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|list
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+literal|"<no queries executed>"
+return|;
 name|Collections
 operator|.
 name|sort
@@ -3912,7 +3922,17 @@ name|subList
 argument_list|(
 literal|0
 argument_list|,
+name|Math
+operator|.
+name|min
+argument_list|(
 name|n
+argument_list|,
+name|list
+operator|.
+name|size
+argument_list|()
+argument_list|)
 argument_list|)
 control|)
 name|out
