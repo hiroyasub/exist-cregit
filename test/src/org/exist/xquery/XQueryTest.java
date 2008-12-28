@@ -1856,7 +1856,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestConstructedNode1
+name|testConstructedNode1
 parameter_list|()
 block|{
 try|try
@@ -8541,7 +8541,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestDoubleDocNode_2078755
+name|testDoubleDocNode_2078755
 parameter_list|()
 block|{
 try|try
@@ -11566,7 +11566,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestAttributeNamespace
+name|testAttributeNamespace
 parameter_list|()
 block|{
 name|String
@@ -13082,7 +13082,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestDocumentNode_1730690
+name|testDocumentNode_1730690
 parameter_list|()
 block|{
 try|try
