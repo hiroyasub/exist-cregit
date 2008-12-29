@@ -697,7 +697,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|TerminatedException
+name|*
 import|;
 end_import
 
@@ -711,7 +711,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|*
 import|;
 end_import
 
@@ -11091,7 +11091,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//TODO : put a lock on newDoc ?
 name|DocumentImpl
 name|newDoc
 init|=
@@ -11134,6 +11133,20 @@ name|getPermissions
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|newDoc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|acquire
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|copyXMLResource
 argument_list|(
 name|transaction
@@ -11161,6 +11174,22 @@ argument_list|,
 name|newDoc
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|newDoc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|//          saveCollection(destination);
 block|}
