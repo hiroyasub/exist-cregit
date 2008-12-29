@@ -337,6 +337,9 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 decl_stmt|;
+comment|// TODO: I don't think modules should be able to access their parent context's modules,
+comment|// since that breaks lexical scoping.  However, it seems that some eXist modules rely on
+comment|// this so let's leave it for now.  (pkaminsk2)
 if|if
 condition|(
 name|module
@@ -450,19 +453,6 @@ block|}
 block|}
 return|return
 name|module
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getModules() 	 */
-specifier|public
-name|Iterator
-name|getModules
-parameter_list|()
-block|{
-return|return
-name|parentContext
-operator|.
-name|getModules
-argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getWatchDog() 	 */
