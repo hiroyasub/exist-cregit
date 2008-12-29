@@ -841,7 +841,7 @@ name|Properties
 name|properties
 parameter_list|)
 throws|throws
-name|IOException
+name|DiffException
 block|{
 name|changes
 operator|=
@@ -1004,7 +1004,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|DiffException
 argument_list|(
 literal|"error while serializing diff: "
 operator|+
