@@ -224,12 +224,16 @@ name|WRITE_LOCK
 case|:
 return|return
 name|writeLock
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 return|;
 default|default:
 return|return
 name|readLock
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 return|;
 block|}
 block|}
@@ -242,20 +246,53 @@ name|int
 name|mode
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+try|try
+block|{
+switch|switch
+condition|(
+name|mode
+condition|)
+block|{
+case|case
+name|Lock
+operator|.
+name|WRITE_LOCK
+case|:
+return|return
+name|writeLock
 argument_list|(
-literal|"Not implemented"
+literal|false
 argument_list|)
-throw|;
+return|;
+default|default:
+return|return
+name|readLock
+argument_list|(
+literal|false
+argument_list|)
+return|;
 block|}
-comment|/**      * Issue a read lock if there is no outstanding write lock or threads      * waiting to get a write lock. Caller of this method must be careful to      * avoid synchronizing the calling code so as to avoid deadlock.      */
+block|}
+catch|catch
+parameter_list|(
+name|LockException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
+comment|/**      * Issue a read lock if there is no outstanding write lock or threads      * waiting to get a write lock. Caller of this method must be careful to      * avoid synchronizing the calling code so as to avoid deadlock.     * @param waitIfNecessary whether to wait if the lock is not available right away      */
 specifier|private
 specifier|synchronized
 name|boolean
 name|readLock
-parameter_list|()
+parameter_list|(
+name|boolean
+name|waitIfNecessary
+parameter_list|)
 throws|throws
 name|LockException
 block|{
@@ -305,6 +342,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|waitIfNecessary
+condition|)
+return|return
+literal|false
+return|;
 name|WaitingThread
 name|waiter
 init|=
@@ -374,11 +419,14 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Issue a write lock if there are no outstanding read or write locks.      * Caller of this method must be careful to avoid synchronizing the calling      * code so as to avoid deadlock.      */
+comment|/**      * Issue a write lock if there are no outstanding read or write locks.      * Caller of this method must be careful to avoid synchronizing the calling      * code so as to avoid deadlock.     * @param waitIfNecessary whether to wait if the lock is not available right away      */
 specifier|private
 name|boolean
 name|writeLock
-parameter_list|()
+parameter_list|(
+name|boolean
+name|waitIfNecessary
+parameter_list|)
 throws|throws
 name|LockException
 block|{
@@ -435,6 +483,14 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+operator|!
+name|waitIfNecessary
+condition|)
+return|return
+literal|false
+return|;
 comment|//            if (writeLockedThread == thisThread) {
 comment|//                LOG.debug("nested write lock: " + outstandingWriteLocks);
 comment|//            }
