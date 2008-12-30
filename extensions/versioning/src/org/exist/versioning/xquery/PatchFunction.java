@@ -271,6 +271,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -423,7 +435,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|XMLStreamReader
+name|ExtendedXMLStreamReader
 name|reader
 decl_stmt|;
 name|NodeValue
