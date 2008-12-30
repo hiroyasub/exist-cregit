@@ -129,7 +129,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Extension functions for NGram search."
+literal|"Extension functions for Lucene search."
 return|;
 block|}
 block|}
