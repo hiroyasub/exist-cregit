@@ -422,6 +422,28 @@ name|nodeNumber
 index|]
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setNodeValue(java.lang.String) 	 */
+specifier|public
+name|void
+name|setNodeValue
+parameter_list|(
+name|String
+name|arg0
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+comment|// This method was added to enable the SQL XQuery Exztension Module to change the value of an attribute after the fact - Andrzej
+name|document
+operator|.
+name|attrValue
+index|[
+name|nodeNumber
+index|]
+operator|=
+name|arg0
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#setValue(java.lang.String) 	 */
 specifier|public
 name|void
