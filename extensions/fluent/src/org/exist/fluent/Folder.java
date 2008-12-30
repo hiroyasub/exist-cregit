@@ -1016,6 +1016,11 @@ name|Sequence
 name|convertToSequence
 parameter_list|()
 block|{
+name|staleMarker
+operator|.
+name|check
+argument_list|()
+expr_stmt|;
 return|return
 name|getDocsSequence
 argument_list|(
@@ -4326,6 +4331,11 @@ name|Sequence
 name|convertToSequence
 parameter_list|()
 block|{
+name|staleMarker
+operator|.
+name|check
+argument_list|()
+expr_stmt|;
 return|return
 name|getDocsSequence
 argument_list|(
