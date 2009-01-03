@@ -7637,9 +7637,7 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
-name|modules
-operator|.
-name|put
+name|setModule
 argument_list|(
 name|module
 operator|.
