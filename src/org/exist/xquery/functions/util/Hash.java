@@ -35,9 +35,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|security
 operator|.
-name|Cardinality
+name|MessageDigester
 import|;
 end_import
 
@@ -50,6 +50,18 @@ operator|.
 name|xquery
 operator|.
 name|BasicFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
 import|;
 end_import
 
@@ -142,28 +154,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|MessageDigester
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|security
-operator|.
-name|NoSuchAlgorithmException
 import|;
 end_import
 

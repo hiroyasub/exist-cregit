@@ -147,11 +147,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
+name|value
 operator|.
-name|request
-operator|.
-name|RequestModule
+name|IntegerValue
 import|;
 end_import
 
@@ -166,20 +164,6 @@ operator|.
 name|value
 operator|.
 name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|IntegerValue
 import|;
 end_import
 
