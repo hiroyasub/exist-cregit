@@ -1451,9 +1451,9 @@ name|this
 operator|.
 name|password
 operator|=
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|passwd
 argument_list|,
@@ -1545,9 +1545,9 @@ case|case
 name|MD5_ENCODING
 case|:
 return|return
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|user
 operator|+
@@ -1564,9 +1564,9 @@ argument_list|)
 return|;
 default|default:
 return|return
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|passwd
 argument_list|,
@@ -1945,9 +1945,9 @@ condition|)
 block|{
 if|if
 condition|(
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|passwd
 argument_list|,
