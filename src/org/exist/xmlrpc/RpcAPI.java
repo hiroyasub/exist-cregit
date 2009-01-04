@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -49,7 +59,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|List
 import|;
 end_import
 
@@ -59,17 +69,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
+name|Vector
 import|;
 end_import
 
@@ -80,18 +80,6 @@ operator|.
 name|exist
 operator|.
 name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
 import|;
 end_import
 
@@ -113,9 +101,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|util
 operator|.
-name|User
+name|LockException
 import|;
 end_import
 
