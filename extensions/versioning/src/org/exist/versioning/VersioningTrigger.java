@@ -936,15 +936,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|editscript
-argument_list|)
-expr_stmt|;
+comment|//                System.out.println(editscript);
 if|if
 condition|(
 name|removeLast
