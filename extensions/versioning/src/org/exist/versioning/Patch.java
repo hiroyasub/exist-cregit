@@ -1618,7 +1618,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"')/v:version/*"
+literal|"')/v:version/v:diff/*"
 argument_list|,
 name|Sequence
 operator|.
