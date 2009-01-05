@@ -378,6 +378,12 @@ init|=
 name|START_DOCUMENT
 decl_stmt|;
 specifier|private
+name|boolean
+name|beforeRoot
+init|=
+literal|false
+decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|document
 decl_stmt|;
@@ -624,6 +630,22 @@ index|]
 argument_list|)
 decl_stmt|;
 comment|// TODO: remove potential NPE
+if|if
+condition|(
+name|state
+operator|==
+name|START_DOCUMENT
+operator|&&
+name|type
+operator|!=
+name|Node
+operator|.
+name|ELEMENT_NODE
+condition|)
+name|beforeRoot
+operator|=
+literal|true
+expr_stmt|;
 switch|switch
 condition|(
 name|type
@@ -648,6 +670,10 @@ argument_list|(
 name|current
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|beforeRoot
+operator|=
+literal|false
 expr_stmt|;
 break|break;
 case|case
@@ -1066,6 +1092,9 @@ condition|(
 name|state
 operator|!=
 name|START_DOCUMENT
+operator|&&
+operator|!
+name|beforeRoot
 condition|)
 throw|throw
 operator|new
@@ -1372,6 +1401,8 @@ return|return
 name|state
 operator|==
 name|START_DOCUMENT
+operator|||
+name|beforeRoot
 operator|||
 operator|!
 name|elementStack

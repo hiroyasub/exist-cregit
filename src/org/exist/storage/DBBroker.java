@@ -1697,7 +1697,7 @@ specifier|abstract
 name|EmbeddedXMLStreamReader
 name|newXMLStreamReader
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|,
 name|boolean
