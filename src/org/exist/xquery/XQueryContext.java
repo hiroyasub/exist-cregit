@@ -1470,6 +1470,18 @@ init|=
 literal|false
 decl_stmt|;
 specifier|private
+name|String
+name|sourceKey
+init|=
+literal|"unknown"
+decl_stmt|;
+specifier|private
+name|String
+name|sourceType
+init|=
+literal|"unknown"
+decl_stmt|;
+specifier|private
 name|XQueryContext
 parameter_list|()
 block|{
@@ -2315,7 +2327,63 @@ return|return
 name|expressionCounter
 return|;
 block|}
-comment|/** 	 * Declare a user-defined prefix/namespace mapping. 	 *  	 * eXist internally keeps a table containing all prefix/namespace 	 * mappings it found in documents, which have been previously 	 * stored into the database. These default mappings need not to be 	 * declared explicitely. 	 *  	 * @param prefix 	 * @param uri 	 */
+comment|/** 	 * Called from the XQuery compiler to set the XQuery Source key value 	 * for this context. 	 *  	 * @param key 	 */
+specifier|public
+name|void
+name|setSourceKey
+parameter_list|(
+name|String
+name|key
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sourceKey
+operator|=
+name|key
+expr_stmt|;
+block|}
+comment|/** 	 * Returns the Source Key of the XQuery associated with 	 * this context. 	 *  	 * @return source key 	 */
+specifier|public
+name|String
+name|getSourceKey
+parameter_list|()
+block|{
+return|return
+operator|(
+name|sourceKey
+operator|)
+return|;
+block|}
+comment|/** 	 * Called from the XQuery compiler to set the XQuery Source type value 	 * for this context. 	 *  	 * @param type 	 */
+specifier|public
+name|void
+name|setSourceType
+parameter_list|(
+name|String
+name|type
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sourceType
+operator|=
+name|type
+expr_stmt|;
+block|}
+comment|/** 	 * Returns the Source Type of the XQuery associated with 	 * this context. 	 *  	 * @return source type 	 */
+specifier|public
+name|String
+name|getSourceType
+parameter_list|()
+block|{
+return|return
+operator|(
+name|sourceType
+operator|)
+return|;
+block|}
+comment|/** 	 * Declare a user-defined static prefix/namespace mapping. 	 * 	 * eXist internally keeps a table containing all prefix/namespace 	 * mappings it found in documents, which have been previously 	 * stored into the database. These default mappings need not to be 	 * declared explicitely. 	 *  	 * @param prefix 	 * @param uri 	 */
 specifier|public
 name|void
 name|declareNamespace

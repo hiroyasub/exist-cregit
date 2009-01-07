@@ -220,6 +220,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|Iterator
+name|getRunningXQueriesIterator
+parameter_list|()
+block|{
+return|return
+operator|(
+name|runningQueries
+operator|.
+name|iterator
+argument_list|()
+operator|)
+return|;
+block|}
 block|}
 end_class
 
