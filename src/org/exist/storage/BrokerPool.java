@@ -1605,8 +1605,8 @@ name|xQueryPool
 decl_stmt|;
 comment|/** 	 * The monitor in which the database instance's strong>running</strong> XQueries are managed. 	 */
 specifier|private
-name|XQueryMonitor
-name|xQueryMonitor
+name|ProcessMonitor
+name|processMonitor
 decl_stmt|;
 comment|/**      * The global manager for accessing collection configuration files from the database instance.      */
 specifier|private
@@ -2382,10 +2382,10 @@ name|conf
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
-name|xQueryMonitor
+name|processMonitor
 operator|=
 operator|new
-name|XQueryMonitor
+name|ProcessMonitor
 argument_list|()
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
@@ -3300,12 +3300,12 @@ return|;
 block|}
 comment|/**      * Returns a monitor in which the database instance's<strong>running</strong> XQueries are managed.      *       * @return The monitor      */
 specifier|public
-name|XQueryMonitor
-name|getXQueryMonitor
+name|ProcessMonitor
+name|getProcessMonitor
 parameter_list|()
 block|{
 return|return
-name|xQueryMonitor
+name|processMonitor
 return|;
 block|}
 comment|/**      * Returns a pool in which the database instance's readers are stored.      *       * @return The pool 	 */
@@ -4534,7 +4534,7 @@ block|{
 block|}
 block|}
 comment|//Notify all running XQueries that we are shutting down
-name|xQueryMonitor
+name|processMonitor
 operator|.
 name|killAll
 argument_list|(
@@ -4911,7 +4911,7 @@ name|xQueryPool
 operator|=
 literal|null
 expr_stmt|;
-name|xQueryMonitor
+name|processMonitor
 operator|=
 literal|null
 expr_stmt|;

@@ -1176,7 +1176,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
-name|getXQueryMonitor
+name|getProcessMonitor
 argument_list|()
 operator|.
 name|queryStarted
@@ -1262,7 +1262,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
-name|getXQueryMonitor
+name|getProcessMonitor
 argument_list|()
 operator|.
 name|queryCompleted
