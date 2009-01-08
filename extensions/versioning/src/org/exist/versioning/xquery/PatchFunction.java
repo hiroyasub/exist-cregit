@@ -296,8 +296,10 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+name|signatures
+index|[]
 init|=
+block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -315,7 +317,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Apply a patch to a document."
+literal|"Apply a patch to a document. The patch will be applied to the document of the node "
+operator|+
+literal|"passed in first parameter. The second parameter should contain a version document as generated "
+operator|+
+literal|"by eXist's VersioningTrigger. Note: though an arbitrary node can be passed in $a, the patch will "
+operator|+
+literal|"always be applied to the entire document to which this node belongs."
 argument_list|,
 operator|new
 name|SequenceType
@@ -358,12 +366,83 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"annotate"
+argument_list|,
+name|VersioningModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|VersioningModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Apply a patch to a document. The patch will be applied to the document of the node "
+operator|+
+literal|"passed in first parameter. The second parameter should contain a version document as generated "
+operator|+
+literal|"by eXist's VersioningTrigger. Note: though an arbitrary node can be passed in $a, the patch will "
+operator|+
+literal|"always be applied to the entire document to which this node belongs."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+argument_list|)
+block|}
 decl_stmt|;
 specifier|public
 name|PatchFunction
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|FunctionSignature
+name|signature
 parameter_list|)
 block|{
 name|super
@@ -575,6 +654,23 @@ argument_list|,
 name|diff
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"annotate"
+argument_list|)
+condition|)
+name|patch
+operator|.
+name|annotate
+argument_list|(
+name|reader
+argument_list|,
+name|receiver
+argument_list|)
+expr_stmt|;
+else|else
 name|patch
 operator|.
 name|patch

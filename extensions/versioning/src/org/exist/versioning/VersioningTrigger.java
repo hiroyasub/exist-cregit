@@ -1397,26 +1397,8 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"documentPath: "
-operator|+
-name|documentPath
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|editscript
-argument_list|)
-expr_stmt|;
+comment|//                    System.out.println("documentPath: " + documentPath);
+comment|//                    System.out.println(editscript);
 if|if
 condition|(
 name|removeLast
