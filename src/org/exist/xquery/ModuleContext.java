@@ -181,6 +181,16 @@ argument_list|)
 expr_stmt|;
 block|}
 name|void
+name|setModulesChanged
+parameter_list|()
+block|{
+name|parentContext
+operator|.
+name|setModulesChanged
+argument_list|()
+expr_stmt|;
+block|}
+name|void
 name|setParentContext
 parameter_list|(
 name|XQueryContext
@@ -213,6 +223,14 @@ name|parentContext
 operator|.
 name|moduleLoadPath
 expr_stmt|;
+block|}
+name|XQueryContext
+name|getParentContext
+parameter_list|()
+block|{
+return|return
+name|parentContext
+return|;
 block|}
 specifier|public
 name|boolean
@@ -357,6 +375,19 @@ argument_list|)
 expr_stmt|;
 return|return
 name|module
+return|;
+block|}
+comment|/** 	 * @return iterator over all modules registered in the root context 	 */
+specifier|public
+name|Iterator
+name|getRootModules
+parameter_list|()
+block|{
+return|return
+name|parentContext
+operator|.
+name|getRootModules
+argument_list|()
 return|;
 block|}
 comment|/**      * Overwritten method: the module will be loaded by the parent context, but      * we need to declare its namespace in the module context.       */

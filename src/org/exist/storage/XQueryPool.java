@@ -886,6 +886,44 @@ return|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|query
+operator|instanceof
+name|PathExpr
+condition|)
+try|try
+block|{
+comment|// This is necessary because eXist performs whole-expression analysis, so a function
+comment|// can only be analyzed as part of the expression it's called from.  It might be better
+comment|// to make module functions more stand-alone, so they only need to be analyzed
+comment|// once.
+name|context
+operator|.
+name|analyzeAndOptimizeIfModulesChanged
+argument_list|(
+operator|(
+name|PathExpr
+operator|)
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|remove
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 return|return
 name|query
 return|;

@@ -406,7 +406,7 @@ name|i
 init|=
 name|context
 operator|.
-name|getModules
+name|getRootModules
 argument_list|()
 init|;
 name|i
