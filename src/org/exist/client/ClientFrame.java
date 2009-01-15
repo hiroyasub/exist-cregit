@@ -261,16 +261,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -931,7 +921,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|ExtendedResource
+name|EXistResource
 import|;
 end_import
 
@@ -943,7 +933,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|EXistResource
+name|ExtendedResource
 import|;
 end_import
 
