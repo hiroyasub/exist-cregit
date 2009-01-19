@@ -977,7 +977,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"err:XPTY0004 in function '"
+literal|"err:XPTY0004: return type of function '"
 operator|+
 name|getSignature
 argument_list|()
