@@ -187,6 +187,12 @@ name|currentNode
 operator|=
 name|node
 expr_stmt|;
+if|if
+condition|(
+name|nextListener
+operator|!=
+literal|null
+condition|)
 name|getNextInChain
 argument_list|()
 operator|.

@@ -15,6 +15,18 @@ name|triggers
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -24,7 +36,7 @@ specifier|public
 class|class
 name|TriggerException
 extends|extends
-name|Exception
+name|SAXException
 block|{
 comment|/** 	 *  	 */
 specifier|public
@@ -53,7 +65,7 @@ comment|/** 	 * @param cause 	 */
 specifier|public
 name|TriggerException
 parameter_list|(
-name|Throwable
+name|Exception
 name|cause
 parameter_list|)
 block|{
@@ -70,7 +82,7 @@ parameter_list|(
 name|String
 name|message
 parameter_list|,
-name|Throwable
+name|Exception
 name|cause
 parameter_list|)
 block|{
