@@ -659,6 +659,13 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|parameters
+operator|!=
+literal|null
+condition|)
+block|{
 name|String
 name|allowOverwrite
 init|=
@@ -694,6 +701,7 @@ argument_list|(
 literal|"no"
 argument_list|)
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -1707,7 +1715,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+specifier|public
+specifier|static
 name|void
 name|writeProperties
 parameter_list|(
