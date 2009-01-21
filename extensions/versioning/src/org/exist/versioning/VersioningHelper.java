@@ -539,21 +539,6 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"base: "
-operator|+
-name|baseRev
-operator|+
-literal|"; key: "
-operator|+
-name|key
-argument_list|)
-expr_stmt|;
 name|context
 operator|.
 name|declareVariable
