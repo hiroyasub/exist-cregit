@@ -189,6 +189,10 @@ comment|// Check for add-parameter elements etc.
 if|if
 condition|(
 name|config
+operator|!=
+literal|null
+operator|&&
+name|config
 operator|.
 name|hasChildNodes
 argument_list|()
