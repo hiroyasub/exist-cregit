@@ -1118,7 +1118,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"sql:execute() Caught SQLException for SQL: \""
+literal|"sql:execute() Caught SQLException \""
+operator|+
+name|sqle
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"\" for SQL: \""
 operator|+
 name|sql
 operator|+
@@ -1135,7 +1142,14 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"sql:execute() Caught SQLException for SQL: \""
+literal|"sql:execute() Caught SQLException \""
+operator|+
+name|sqle
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"\" for SQL: \""
 operator|+
 name|sql
 operator|+
