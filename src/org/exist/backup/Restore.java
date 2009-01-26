@@ -1743,7 +1743,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-name|InputSource
+name|EXistInputSource
 name|is
 init|=
 name|contents
@@ -1829,6 +1829,16 @@ argument_list|(
 name|mimetype
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|is
+operator|.
+name|getByteStreamLength
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 name|res
 operator|.
 name|setContent
@@ -1836,6 +1846,17 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|res
+operator|.
+name|setContent
+argument_list|(
+literal|""
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Restoring name
 name|Date
 name|date_created
