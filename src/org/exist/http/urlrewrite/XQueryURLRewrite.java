@@ -1035,9 +1035,16 @@ parameter_list|)
 block|{
 block|}
 block|}
+if|if
+condition|(
 name|LOG
 operator|.
-name|debug
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
 argument_list|(
 name|request
 operator|.
@@ -1678,12 +1685,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"URLRewrite took "
 operator|+
