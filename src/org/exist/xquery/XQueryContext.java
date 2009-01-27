@@ -1427,9 +1427,7 @@ specifier|private
 name|NamePool
 name|sharedNamePool
 init|=
-operator|new
-name|NamePool
-argument_list|()
+literal|null
 decl_stmt|;
 comment|/** 	 * Stack for temporary document fragments 	 */
 specifier|private
@@ -6488,6 +6486,18 @@ name|NamePool
 name|getSharedNamePool
 parameter_list|()
 block|{
+if|if
+condition|(
+name|sharedNamePool
+operator|==
+literal|null
+condition|)
+name|sharedNamePool
+operator|=
+operator|new
+name|NamePool
+argument_list|()
+expr_stmt|;
 return|return
 name|sharedNamePool
 return|;
