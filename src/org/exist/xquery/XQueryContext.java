@@ -7295,17 +7295,12 @@ argument_list|)
 condition|)
 name|location
 operator|=
-operator|(
-operator|(
-name|XmldbURI
-operator|)
 name|mappedModules
 operator|.
 name|get
 argument_list|(
 name|location
 argument_list|)
-operator|)
 operator|.
 name|toString
 argument_list|()
@@ -7359,6 +7354,16 @@ operator|.
 name|XMLDB_URI_PREFIX
 argument_list|)
 operator|||
+operator|(
+name|location
+operator|.
+name|indexOf
+argument_list|(
+literal|':'
+argument_list|)
+operator|<
+literal|0
+operator|&&
 name|moduleLoadPath
 operator|.
 name|startsWith
@@ -7367,6 +7372,7 @@ name|XmldbURI
 operator|.
 name|XMLDB_URI_PREFIX
 argument_list|)
+operator|)
 condition|)
 block|{
 comment|// Is the module source stored in the database?
