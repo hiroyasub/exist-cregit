@@ -458,8 +458,26 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+comment|// util:eval will stuff non-module function declarations into a module context sometimes,
+comment|// so watch out for those and ignore them.
 if|if
 condition|(
+name|functionDef
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|modContext
+operator|.
+name|getModuleNamespace
+argument_list|()
+argument_list|)
+operator|&&
 name|modContext
 operator|.
 name|getParentContext

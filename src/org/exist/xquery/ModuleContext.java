@@ -180,6 +180,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|String
+name|getModuleNamespace
+parameter_list|()
+block|{
+return|return
+name|moduleNamespace
+return|;
+block|}
 name|void
 name|setModulesChanged
 parameter_list|()
