@@ -222,6 +222,16 @@ name|orderSpecs
 operator|=
 name|orderSpecs
 expr_stmt|;
+if|if
+condition|(
+name|size
+operator|==
+literal|0
+condition|)
+name|size
+operator|=
+literal|1
+expr_stmt|;
 name|this
 operator|.
 name|items
