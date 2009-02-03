@@ -3538,7 +3538,9 @@ argument_list|,
 name|reqw
 operator|.
 name|getSession
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
