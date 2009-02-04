@@ -208,6 +208,14 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
+name|int
+name|INCREMENTAL_OPT
+init|=
+literal|'i'
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|CLOptionDescriptor
 name|OPTIONS
 index|[]
@@ -272,6 +280,20 @@ argument_list|,
 name|EXPORT_OPT
 argument_list|,
 literal|"export database contents while preserving as much data as possible"
+argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"incremental"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_DISALLOWED
+argument_list|,
+name|INCREMENTAL_OPT
+argument_list|,
+literal|"create incremental backup (use with --export|-x)"
 argument_list|)
 block|}
 decl_stmt|;
@@ -428,6 +450,11 @@ name|export
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|incremental
+init|=
+literal|false
+decl_stmt|;
 name|String
 name|exportTarget
 init|=
@@ -564,6 +591,14 @@ case|case
 name|EXPORT_OPT
 case|:
 name|export
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+case|case
+name|INCREMENTAL_OPT
+case|:
+name|incremental
 operator|=
 literal|true
 expr_stmt|;
@@ -718,7 +753,7 @@ name|export
 argument_list|(
 name|exportTarget
 argument_list|,
-literal|false
+name|incremental
 argument_list|,
 literal|true
 argument_list|,

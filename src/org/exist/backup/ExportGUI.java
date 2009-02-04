@@ -2700,13 +2700,23 @@ argument_list|(
 literal|"Starting export ..."
 argument_list|)
 expr_stmt|;
-name|boolean
-name|incremental
+name|Object
+index|[]
+name|selected
 init|=
 name|incrementalBtn
 operator|.
 name|getSelectedObjects
 argument_list|()
+decl_stmt|;
+name|boolean
+name|incremental
+init|=
+name|selected
+operator|!=
+literal|null
+operator|&&
+name|selected
 index|[
 literal|0
 index|]
