@@ -4480,6 +4480,19 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+if|if
+condition|(
+operator|!
+name|Namespaces
+operator|.
+name|EXIST_NS
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
 name|Namespace
 name|ns
 init|=
@@ -4498,6 +4511,7 @@ argument_list|(
 name|ns
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|startPrefixMapping
