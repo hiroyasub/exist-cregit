@@ -1481,6 +1481,8 @@ operator|new
 name|DocumentBuilderReceiver
 argument_list|(
 name|builder
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|SAXResult
