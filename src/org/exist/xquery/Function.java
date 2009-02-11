@@ -201,6 +201,12 @@ name|Expression
 name|parent
 decl_stmt|;
 specifier|private
+name|boolean
+name|argumentsChecked
+init|=
+literal|false
+decl_stmt|;
+specifier|private
 name|XQueryAST
 name|astNode
 init|=
@@ -678,6 +684,10 @@ name|steps
 operator|=
 name|arguments
 expr_stmt|;
+name|argumentsChecked
+operator|=
+literal|false
+expr_stmt|;
 block|}
 comment|/**      * @throws XPathException      */
 specifier|protected
@@ -686,6 +696,12 @@ name|checkArguments
 parameter_list|()
 throws|throws
 name|XPathException
+block|{
+if|if
+condition|(
+operator|!
+name|argumentsChecked
+condition|)
 block|{
 name|SequenceType
 index|[]
@@ -765,6 +781,11 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+name|argumentsChecked
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/** 	 * Statically check an argument against the sequence type specified in 	 * the signature. 	 *  	 * @param expr 	 * @param type 	 * @return The passed expression 	 * @throws XPathException 	 */
 specifier|protected

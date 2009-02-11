@@ -154,6 +154,12 @@ name|inRecursion
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+name|boolean
+name|bodyAnalyzed
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|UserDefinedFunction
 parameter_list|(
@@ -345,6 +351,12 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|bodyAnalyzed
+condition|)
+block|{
 name|body
 operator|.
 name|analyze
@@ -352,6 +364,11 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+name|bodyAnalyzed
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// restore the local variable stack
 name|context
 operator|.
@@ -843,6 +860,10 @@ block|{
 name|inRecursion
 operator|=
 literal|true
+expr_stmt|;
+name|bodyAnalyzed
+operator|=
+literal|false
 expr_stmt|;
 name|body
 operator|.
