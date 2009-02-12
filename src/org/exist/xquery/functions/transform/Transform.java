@@ -219,6 +219,18 @@ name|xml
 operator|.
 name|transform
 operator|.
+name|ErrorListener
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
 name|dom
 operator|.
 name|DOMSource
@@ -837,7 +849,11 @@ literal|"may be passed in the third argument using an XML fragment with the foll
 operator|+
 literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
 operator|+
-literal|"</parameters>"
+literal|"</parameters>. There are two special parameters named \"exist:stop-on-warn\" and "
+operator|+
+literal|"\"exist:stop-on-error\". If set to value \"yes\", eXist will generate an XQuery error "
+operator|+
+literal|"if the XSL processor reports a warning or error."
 argument_list|,
 operator|new
 name|SequenceType
@@ -926,7 +942,15 @@ literal|"may be passed in the third argument using an XML fragment with the foll
 operator|+
 literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
 operator|+
-literal|"</parameters>"
+literal|"</parameters>. There are two special parameters named \"exist:stop-on-warn\" and "
+operator|+
+literal|"\"exist:stop-on-error\". If set to value \"yes\", eXist will generate an XQuery error "
+operator|+
+literal|"if the XSL processor reports a warning or error. The fourth argument specifies serialization "
+operator|+
+literal|"options in the same way as if they "
+operator|+
+literal|"were passed to \"declare option exist:serialize\" expression."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1173,6 +1197,26 @@ init|=
 operator|new
 name|HashMap
 argument_list|()
+decl_stmt|;
+specifier|private
+name|ErrorListener
+name|errorListener
+init|=
+operator|new
+name|TransformErrorListener
+argument_list|()
+decl_stmt|;
+specifier|private
+name|boolean
+name|stopOnError
+init|=
+literal|true
+decl_stmt|;
+specifier|private
+name|boolean
+name|stopOnWarn
+init|=
+literal|false
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
@@ -1445,6 +1489,16 @@ argument_list|,
 name|options
 argument_list|)
 decl_stmt|;
+name|handler
+operator|.
+name|getTransformer
+argument_list|()
+operator|.
+name|setErrorListener
+argument_list|(
+name|errorListener
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|isCalledAs
@@ -1594,7 +1648,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SAXException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -1605,7 +1659,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"SAX exception while transforming node: "
+literal|"Exception while transforming node: "
 operator|+
 name|e
 operator|.
@@ -1976,7 +2030,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|SAXException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -1987,7 +2041,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"SAX exception while transforming node: "
+literal|"Exception while transforming node: "
 operator|+
 name|e
 operator|.
@@ -2424,6 +2478,43 @@ argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"exist:stop-on-warn"
+argument_list|)
+condition|)
+name|stopOnWarn
+operator|=
+name|value
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+expr_stmt|;
+if|else if
+condition|(
+name|name
+operator|.
+name|equals
+argument_list|(
+literal|"exist:stop-on-error"
+argument_list|)
+condition|)
+name|stopOnError
+operator|=
+name|value
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+expr_stmt|;
+else|else
 name|handler
 operator|.
 name|setParameter
@@ -2443,6 +2534,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"stop-on-error: "
+operator|+
+name|stopOnError
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|Templates
@@ -3100,6 +3200,13 @@ name|stylesheet
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|factory
+operator|.
+name|setErrorListener
+argument_list|(
+name|errorListener
+argument_list|)
+expr_stmt|;
 name|TemplatesHandler
 name|handler
 init|=
@@ -3161,7 +3268,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|SAXException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -3172,7 +3279,7 @@ argument_list|(
 name|getASTNode
 argument_list|()
 argument_list|,
-literal|"A SAX exception occurred while compiling the stylesheet: "
+literal|"An exception occurred while compiling the stylesheet: "
 operator|+
 name|e
 operator|.
@@ -3469,6 +3576,105 @@ decl_stmt|;
 return|return
 name|source
 return|;
+block|}
+block|}
+specifier|private
+class|class
+name|TransformErrorListener
+implements|implements
+name|ErrorListener
+block|{
+specifier|public
+name|void
+name|warning
+parameter_list|(
+name|TransformerException
+name|exception
+parameter_list|)
+throws|throws
+name|TransformerException
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"XSL transform reports warning: "
+operator|+
+name|exception
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|stopOnWarn
+condition|)
+throw|throw
+name|exception
+throw|;
+block|}
+specifier|public
+name|void
+name|error
+parameter_list|(
+name|TransformerException
+name|exception
+parameter_list|)
+throws|throws
+name|TransformerException
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"XSL transform reports recoverable error: "
+operator|+
+name|exception
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|stopOnError
+condition|)
+throw|throw
+name|exception
+throw|;
+block|}
+specifier|public
+name|void
+name|fatalError
+parameter_list|(
+name|TransformerException
+name|exception
+parameter_list|)
+throws|throws
+name|TransformerException
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"XSL transform reports fatal error: "
+operator|+
+name|exception
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+throw|throw
+name|exception
+throw|;
 block|}
 block|}
 block|}
