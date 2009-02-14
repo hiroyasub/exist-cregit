@@ -1987,7 +1987,9 @@ name|conf
 operator|.
 name|getProperty
 argument_list|(
-literal|"db-connection.pool.shutdown-wait"
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
 argument_list|)
 expr_stmt|;
 if|if
@@ -4628,6 +4630,13 @@ name|SHUTDOWN
 condition|)
 comment|// we are already shut down
 return|return;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Database is shutting down ..."
+argument_list|)
+expr_stmt|;
 name|status
 operator|=
 name|SHUTDOWN
@@ -4687,6 +4696,23 @@ comment|//xQueryPool.something();
 comment|//collectionConfigurationManager.something();
 comment|//collectionCache.something();
 comment|//xmlReaderPool.close();
+name|transactionManager
+operator|.
+name|getJournal
+argument_list|()
+operator|.
+name|flushToLog
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|boolean
+name|hangingThreads
+init|=
+literal|false
+decl_stmt|;
 name|long
 name|waitStart
 init|=
@@ -4696,6 +4722,27 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//Are there active brokers ?
+if|if
+condition|(
+name|activeBrokers
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Waiting "
+operator|+
+name|maxShutdownWait
+operator|+
+literal|"ms for remaining threads to shut down..."
+argument_list|)
+expr_stmt|;
 while|while
 condition|(
 name|activeBrokers
@@ -4727,6 +4774,11 @@ block|}
 comment|//...or force the shutdown
 if|if
 condition|(
+name|maxShutdownWait
+operator|>
+operator|-
+literal|1
+operator|&&
 name|System
 operator|.
 name|currentTimeMillis
@@ -4744,14 +4796,19 @@ argument_list|(
 literal|"Not all threads returned. Forcing shutdown ..."
 argument_list|)
 expr_stmt|;
+name|hangingThreads
+operator|=
+literal|true
+expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"calling shutdown ..."
+literal|"Calling shutdown ..."
 argument_list|)
 expr_stmt|;
 comment|// closing down external indexes
@@ -4865,10 +4922,26 @@ argument_list|(
 name|collectionCache
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|hangingThreads
+condition|)
+comment|// do not write a checkpoint if some threads did not return before shutdown
+comment|// there might be dirty transactions
 name|transactionManager
 operator|.
 name|shutdown
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+else|else
+name|transactionManager
+operator|.
+name|shutdown
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 comment|// deregister JMX MBeans
 name|AgentFactory
