@@ -447,6 +447,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 literal|""
 operator|.
 name|equals
@@ -460,16 +461,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"Empty user collection"
-argument_list|)
-throw|;
+block|{
 try|try
 block|{
 name|userObj
@@ -511,6 +503,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 name|Collection
 name|collection
