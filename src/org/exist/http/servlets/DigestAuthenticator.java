@@ -87,7 +87,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|MD5
+name|MessageDigester
 import|;
 end_import
 
@@ -326,9 +326,9 @@ literal|"\", "
 operator|+
 literal|"opaque=\""
 operator|+
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|Integer
 operator|.
@@ -365,9 +365,9 @@ name|request
 parameter_list|)
 block|{
 return|return
-name|MD5
+name|MessageDigester
 operator|.
-name|md
+name|md5
 argument_list|(
 name|request
 operator|.
@@ -814,7 +814,7 @@ name|md
 operator|.
 name|update
 argument_list|(
-name|MD5
+name|MessageDigester
 operator|.
 name|byteArrayToHex
 argument_list|(
@@ -839,7 +839,7 @@ decl_stmt|;
 comment|// check digest
 return|return
 operator|(
-name|MD5
+name|MessageDigester
 operator|.
 name|byteArrayToHex
 argument_list|(

@@ -157,14 +157,24 @@ name|MessageDigester
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|security
+operator|.
+name|NoSuchAlgorithmException
+import|;
+end_import
+
 begin_comment
-comment|/**  * Generate an MD5 key from a string.  *   * @author wolf  */
+comment|/**  * Generate a massage digest (hashcode) from a string. Typically supported  * algorithms are MD5 and SHA1.  *  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|MD5
+name|Hash
 extends|extends
 name|BasicFunction
 block|{
@@ -172,7 +182,7 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|deprecated
+name|signatures
 index|[]
 init|=
 block|{
@@ -182,7 +192,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"md5"
+literal|"hash"
 argument_list|,
 name|UtilModule
 operator|.
@@ -193,7 +203,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generates an MD5 key from a string."
+literal|"Calculate an hashcode from string $a using alghorithm $b."
 argument_list|,
 operator|new
 name|SequenceType
@@ -210,7 +220,19 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
-block|, 				}
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,                     }
 argument_list|,
 operator|new
 name|SequenceType
@@ -223,10 +245,6 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
-argument_list|,
-literal|"Use the hash($a, \"MD5\") function instead. SHA-1 is supported as "
-operator|+
-literal|"more secure message digest algorithm."
 argument_list|)
 block|,
 operator|new
@@ -235,7 +253,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"md5"
+literal|"hash"
 argument_list|,
 name|UtilModule
 operator|.
@@ -246,7 +264,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generates an MD5 key from a string. $b specifies whether to return result Base64 encoded"
+literal|"Calculate an hashcode from string $a using alghorithm $b. $c specifies whether to return result Base64 encoded"
 argument_list|,
 operator|new
 name|SequenceType
@@ -258,6 +276,18 @@ argument_list|(
 name|Type
 operator|.
 name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
+block|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
@@ -288,15 +318,11 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
-argument_list|,
-literal|"Use the hash($a, \"MD5\") function instead. SHA-1 is supported as "
-operator|+
-literal|"more secure message digest algorithm."
 argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|MD5
+name|Hash
 parameter_list|(
 name|XQueryContext
 name|context
@@ -313,7 +339,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)       * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)       */
 specifier|public
 name|Sequence
 name|eval
@@ -334,11 +360,27 @@ init|=
 literal|false
 decl_stmt|;
 name|String
-name|arg
+name|message
 init|=
 name|args
 index|[
 literal|0
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+name|String
+name|algorithm
+init|=
+name|args
+index|[
+literal|1
 index|]
 operator|.
 name|itemAt
@@ -355,14 +397,14 @@ name|args
 operator|.
 name|length
 operator|>
-literal|1
+literal|2
 condition|)
 block|{
 name|base64
 operator|=
 name|args
 index|[
-literal|1
+literal|2
 index|]
 operator|.
 name|effectiveBooleanValue
@@ -372,15 +414,41 @@ block|}
 name|String
 name|md
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|md
+operator|=
 name|MessageDigester
 operator|.
-name|md5
+name|calculate
 argument_list|(
-name|arg
+name|message
+argument_list|,
+name|algorithm
 argument_list|,
 name|base64
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|ex
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 return|return
 operator|(
 operator|new
