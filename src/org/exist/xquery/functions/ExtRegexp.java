@@ -2110,7 +2110,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 * 	 * @param pattern 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 * 	 * @param pattern 	 * @return Translated regexp  	 * @throws XPathException 	 */
 specifier|protected
 name|String
 name|translateRegexp

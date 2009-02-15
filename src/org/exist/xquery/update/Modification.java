@@ -748,7 +748,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 * @return 	 * @throws LockException 	 */
+comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 * @throws LockException 	 */
 specifier|protected
 name|StoredNode
 index|[]

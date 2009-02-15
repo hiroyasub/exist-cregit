@@ -82,7 +82,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Constructor which calls {@link #getGZIPFile()} 	 * @param gzipFile 	 * The file passed to {@link #getGZIPFile()} 	 */
+comment|/** 	 * Constructor which calls {@link #getFile()} 	 * @param gzipFile 	 * The file passed to {@link #getFile()} 	 */
 specifier|public
 name|GZIPInputSource
 parameter_list|(

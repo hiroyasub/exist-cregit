@@ -1269,7 +1269,7 @@ name|implicitTimeZone
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * the watchdog object assigned to this query      *        * @uml.property name="watchdog"      * @uml.associationEnd multiplicity="(1 1)"      */
+comment|/**      * the watchdog object assigned to this query      */
 specifier|protected
 name|XQueryWatchDog
 name|watchdog
@@ -1732,7 +1732,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Returns true if this context has a parent context      * (means it is a module context).      *       * @return      */
+comment|/**      * Returns true if this context has a parent context      * (means it is a module context).      *       * @return False.      */
 specifier|public
 name|boolean
 name|hasParent

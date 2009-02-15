@@ -729,7 +729,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 *  	 * @param pattern 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 *  	 * @param pattern XPath regexp expression 	 * @return Java regexp expression 	 * @throws XPathException 	 */
 specifier|protected
 name|String
 name|translateRegexp

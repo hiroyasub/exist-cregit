@@ -32,7 +32,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used by {@link RpcServer} to cache query results. Each query result  * is identified by a unique integer id.  */
+comment|/**  * Used by {@link XmldbRequestProcessorFactory} to cache query results. Each query result  * is identified by a unique integer id.  */
 end_comment
 
 begin_class

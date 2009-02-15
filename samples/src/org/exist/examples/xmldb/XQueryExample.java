@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Reads an XQuery file and executes it. To run this example enter:   *   *  bin/run.sh org.exist.examples.xmldb.XQueryExample<xqueryfile>  *    *  in the root directory of the distribution.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@created    20. September 2002  */
+comment|/**  *  Reads an XQuery file and executes it. To run this example enter:   *   *  bin/run.sh org.exist.examples.xmldb.XQueryExample<xqueryfile>  *    *  in the root directory of the distribution.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *created    20. September 2002  */
 end_comment
 
 begin_class

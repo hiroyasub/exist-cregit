@@ -93,7 +93,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Constructor which calls {@link #setFile()} 	 * @param gzipFile 	 * The file passed to {@link #setFile()} 	 */
+comment|/** 	 * Constructor which calls {@link #setFile(File)} 	 * @param file 	 * The file passed to {@link #setFile(File)} 	 */
 specifier|public
 name|FileInputSource
 parameter_list|(
@@ -120,7 +120,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/** 	 * This method sets the File object used to get 	 * the uncompressed stream of data 	 * @param gzipFile 	 * The File object pointing to the GZIP file. 	 */
+comment|/** 	 * This method sets the File object used to get 	 * the uncompressed stream of data 	 * @param file 	 * The File object pointing to the GZIP file. 	 */
 specifier|public
 name|void
 name|setFile

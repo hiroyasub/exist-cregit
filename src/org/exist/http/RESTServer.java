@@ -7466,7 +7466,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @response 	 * @encoding 	 * @updateCount 	 */
+comment|/** 	 * @param response 	 * @param encoding 	 * @param updateCount 	 */
 specifier|private
 name|void
 name|writeXUpdateResult
@@ -7564,7 +7564,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @response 	 * @encoding 	 * @broker 	 * @collection 	 */
+comment|/** 	 * @param response 	 * @param encoding 	 * @param broker 	 * @param collection 	 */
 specifier|protected
 name|void
 name|writeCollection

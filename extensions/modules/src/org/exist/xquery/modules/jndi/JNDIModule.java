@@ -597,7 +597,7 @@ name|ctxID
 operator|)
 return|;
 block|}
-comment|/** 	 * Closes a specified JNDI Context for the specified XQueryContext 	 *  	 * @param xqueryContext 	The context to close JNDI Contexts for 	 * @param ctxID 			The ID of the JNDI Context to retrieve from the Context of the XQuery 	 */
+comment|/** 	 * Closes a specified JNDI Context for the specified XQueryContext 	 *  	 * @param context   	The context to close JNDI Contexts for 	 * @param ctxID 		The ID of the JNDI Context to retrieve from the Context of the XQuery 	 */
 specifier|public
 specifier|final
 specifier|static

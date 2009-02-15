@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Retrieve a document from the database using XMLRPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Retrieve<remotedoc>  *  *  @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *  @created    August 1, 2002  */
+comment|/**  *  Retrieve a document from the database using XMLRPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Retrieve<remotedoc>  *  *  @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *  created    August 1, 2002  */
 end_comment
 
 begin_class

@@ -8755,7 +8755,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @return      * @throws XMLDBException      */
+comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -9696,7 +9696,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @return      * @throws XMLDBException      */
+comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10213,7 +10213,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @return      * @throws XMLDBException      */
+comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10778,7 +10778,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *       * Method called by the store Dialog      *       * @param files  : selected      * @param upload : GUI object       * @return      * @throws XMLDBException      */
+comment|/**      *       * Method called by the store Dialog      *       * @param files  : selected      * @param upload : GUI object       * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -14820,7 +14820,7 @@ name|getMessage
 argument_list|()
 return|;
 block|}
-comment|/**      * @param queryHistoryFile      */
+comment|/**      * Read Query History file.      */
 specifier|protected
 name|void
 name|readQueryHistory

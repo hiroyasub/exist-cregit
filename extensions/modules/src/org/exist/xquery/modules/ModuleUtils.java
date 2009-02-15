@@ -625,7 +625,7 @@ return|return
 name|memtreeDoc
 return|;
 block|}
-comment|/** 	 * Parses a structure like<parameters><param name="a" value="1"/><param 	 * name="b" value="2"/></parameters> into a set of Properties 	 *  	 * @param parameters 	 *            The parameters Node 	 * @return a set of name value properties for representing the XML 	 *         parameters 	 */
+comment|/** 	 * Parses a structure like<parameters><param name="a" value="1"/><param 	 * name="b" value="2"/></parameters> into a set of Properties 	 *  	 * @param nParameters 	 *            The parameters Node 	 * @return a set of name value properties for representing the XML 	 *         parameters 	 */
 specifier|public
 specifier|static
 name|Properties

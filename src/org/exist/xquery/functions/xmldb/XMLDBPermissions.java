@@ -420,7 +420,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @param collection 	 * @param args 	 * @return 	 * @throws XMLDBException 	 * @throws XPathException 	 */
+comment|/** 	 * @param collection 	 * @param args 	 * @return permission 	 * @throws XMLDBException 	 * @throws XPathException 	 */
 specifier|protected
 name|Permission
 name|getPermissions

@@ -1208,7 +1208,7 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Retrieve the binary data stored under the resource descriptor 	 * BinaryDocument. 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @return the document binary data 	 */
+comment|/* * 	 * Retrieve the binary data stored under the resource descriptor 	 * BinaryDocument. 	 *  	 * @param blob 	 *            the binary document descriptor 	 * @return the document binary data 	 */
 comment|/* 	public abstract byte[] getBinaryResource(BinaryDocument blob)            throws IOException;          */
 specifier|public
 specifier|abstract
