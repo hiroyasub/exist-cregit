@@ -1665,7 +1665,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Returns true if this context has a parent context      * (means it is a module context).      *       * @return      */
+comment|/**      * Returns true if this context has a parent context      * (means it is a module context).      *       * @return TRUE is context has parent context.      */
 specifier|public
 name|boolean
 name|hasParent
