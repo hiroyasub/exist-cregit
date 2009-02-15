@@ -41,6 +41,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Option
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Sequence
@@ -67,8 +79,10 @@ name|Sequence
 name|result
 decl_stmt|;
 specifier|protected
-name|XQueryContext
-name|context
+name|Option
+name|serialization
+init|=
+literal|null
 decl_stmt|;
 specifier|protected
 name|long
@@ -118,9 +132,16 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|context
+name|serialization
 operator|=
 name|context
+operator|.
+name|getOption
+argument_list|(
+name|Option
+operator|.
+name|SERIALIZE_QNAME
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -174,16 +195,6 @@ parameter_list|()
 block|{
 return|return
 name|exception
-return|;
-block|}
-comment|/** 	 * @return Returns the context. 	 */
-specifier|public
-name|XQueryContext
-name|getContext
-parameter_list|()
-block|{
-return|return
-name|context
 return|;
 block|}
 comment|/** 	 * @return Returns the queryTime. 	 */
