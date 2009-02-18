@@ -736,7 +736,18 @@ argument_list|(
 name|ACCEPT_ENCODING
 argument_list|)
 decl_stmt|;
-comment|//        String clientContentType = request.getContentType();
+if|if
+condition|(
+name|acceptedEncoding
+operator|==
+literal|null
+condition|)
+block|{
+name|acceptedEncoding
+operator|=
+literal|""
+expr_stmt|;
+block|}
 name|String
 name|contentType
 init|=
