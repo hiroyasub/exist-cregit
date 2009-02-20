@@ -1035,7 +1035,7 @@ name|lock
 operator|.
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1374,7 +1374,7 @@ name|lock
 operator|.
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 name|transact
@@ -1463,7 +1463,7 @@ name|lock
 operator|.
 name|Lock
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
