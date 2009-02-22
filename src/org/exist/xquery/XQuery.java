@@ -1249,6 +1249,12 @@ literal|" ms"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|outputProperties
+operator|!=
+literal|null
+condition|)
 name|context
 operator|.
 name|checkOptions
