@@ -2538,13 +2538,7 @@ name|thread
 operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"defragmenter already started"
-argument_list|)
-throw|;
+return|return;
 name|thread
 operator|=
 operator|new
@@ -2590,13 +2584,7 @@ name|thread
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"defragmenter already stopped"
-argument_list|)
-throw|;
+return|return;
 name|thread
 operator|.
 name|interrupt
