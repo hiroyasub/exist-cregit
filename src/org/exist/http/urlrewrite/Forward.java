@@ -158,6 +158,11 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+name|setHeaders
+argument_list|(
+name|response
+argument_list|)
+expr_stmt|;
 name|dispatcher
 operator|.
 name|forward

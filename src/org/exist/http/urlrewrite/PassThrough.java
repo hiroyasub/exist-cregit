@@ -139,6 +139,11 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+name|setHeaders
+argument_list|(
+name|response
+argument_list|)
+expr_stmt|;
 name|chain
 operator|.
 name|doFilter
