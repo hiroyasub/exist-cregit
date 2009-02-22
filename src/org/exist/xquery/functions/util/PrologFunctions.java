@@ -565,7 +565,7 @@ argument_list|()
 decl_stmt|;
 name|context
 operator|.
-name|addOption
+name|addDynamicOption
 argument_list|(
 name|qname
 argument_list|,

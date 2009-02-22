@@ -6029,13 +6029,6 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-name|context
-operator|.
-name|checkOptions
-argument_list|(
-name|outputProperties
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|long
@@ -6056,6 +6049,8 @@ argument_list|(
 name|compiled
 argument_list|,
 literal|null
+argument_list|,
+name|outputProperties
 argument_list|)
 decl_stmt|;
 name|long
@@ -6591,13 +6586,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|context
-operator|.
-name|checkOptions
-argument_list|(
-name|outputProperties
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|Sequence
@@ -6610,6 +6598,8 @@ argument_list|(
 name|compiled
 argument_list|,
 literal|null
+argument_list|,
+name|outputProperties
 argument_list|)
 decl_stmt|;
 name|writeResults
