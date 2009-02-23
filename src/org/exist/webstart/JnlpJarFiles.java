@@ -111,7 +111,7 @@ literal|"log4j-%latest%"
 block|,
 literal|"stax-api-%latest%"
 block|,
-literal|"sunxacml-%latest%"
+literal|"sunxacml"
 block|}
 decl_stmt|;
 comment|// Resolves jar file patterns from jars[].
@@ -199,7 +199,7 @@ else|else
 block|{
 name|logger
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not resolve file pattern: "
 operator|+
