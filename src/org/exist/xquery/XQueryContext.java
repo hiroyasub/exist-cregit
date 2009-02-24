@@ -7271,11 +7271,35 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 decl_stmt|;
+comment|// getModule() may call into ModuleContext's overriden version which walks the ancestor
+comment|// contexts in search of the module, but when importing an external module we need to
+comment|// make sure it ends up in our own module map.  Yes, this means that if the same
+comment|// module is imported through multiple dependency paths, each import will get its own
+comment|// copy. This is necessary anyway since a module context must have a single parent
+comment|// context.
 if|if
 condition|(
 name|module
 operator|!=
 literal|null
+operator|&&
+operator|(
+operator|!
+operator|(
+name|module
+operator|instanceof
+name|ExternalModule
+operator|)
+operator|||
+name|modules
+operator|.
+name|get
+argument_list|(
+name|namespaceURI
+argument_list|)
+operator|!=
+literal|null
+operator|)
 condition|)
 block|{
 name|LOG
