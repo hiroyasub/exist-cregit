@@ -4217,6 +4217,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO(pkaminsk2): why replicate XQuery.compile here?
 name|XQueryLexer
 name|lexer
 init|=

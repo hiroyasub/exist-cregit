@@ -2094,6 +2094,7 @@ operator|.
 name|SOAP
 argument_list|)
 decl_stmt|;
+comment|// TODO(pkaminsk2): why replicate XQuery.compile here?
 name|XQueryLexer
 name|lexer
 init|=
