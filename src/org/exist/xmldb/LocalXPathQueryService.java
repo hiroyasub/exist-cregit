@@ -1059,13 +1059,8 @@ argument_list|(
 name|compiled
 argument_list|,
 literal|null
-argument_list|)
-expr_stmt|;
-comment|// check if serialization options have been set
-comment|// via pragma or 'declare option'
-name|checkPragmas
-argument_list|(
-name|context
+argument_list|,
+name|properties
 argument_list|)
 expr_stmt|;
 block|}
@@ -1321,11 +1316,7 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-name|checkPragmas
-argument_list|(
-name|context
-argument_list|)
-expr_stmt|;
+comment|//            checkPragmas(context);
 name|LOG
 operator|.
 name|debug
@@ -1676,142 +1667,21 @@ expr_stmt|;
 block|}
 comment|//context.setBackwardsCompatibility(xpathCompatible);
 block|}
-comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. 	 * If yes, copy the corresponding settings to the current set of output properties. 	 *  	 * @param context 	 */
-specifier|private
-name|void
-name|checkPragmas
-parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|Option
-name|pragma
-init|=
-name|context
-operator|.
-name|getOption
-argument_list|(
-name|Option
-operator|.
-name|SERIALIZE_QNAME
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pragma
-operator|==
-literal|null
-condition|)
-return|return;
-name|String
-index|[]
-name|contents
-init|=
-name|pragma
-operator|.
-name|tokenizeContents
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|contents
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|String
-index|[]
-name|pair
-init|=
-name|Option
-operator|.
-name|parseKeyValuePair
-argument_list|(
-name|contents
-index|[
-name|i
-index|]
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pair
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Unknown parameter found in "
-operator|+
-name|pragma
-operator|.
-name|getQName
-argument_list|()
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-literal|": '"
-operator|+
-name|contents
-index|[
-name|i
-index|]
-operator|+
-literal|"'"
-argument_list|)
-throw|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Setting serialization property from pragma: "
-operator|+
-name|pair
-index|[
-literal|0
-index|]
-operator|+
-literal|" = "
-operator|+
-name|pair
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-name|properties
-operator|.
-name|setProperty
-argument_list|(
-name|pair
-index|[
-literal|0
-index|]
-argument_list|,
-name|pair
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. 	 * If yes, copy the corresponding settings to the current set of output properties. 	 * 	 * @param context 	 */
+comment|//	private void checkPragmas(XQueryContext context) throws XPathException {
+comment|//		Option pragma = context.getOption(Option.SERIALIZE_QNAME);
+comment|//		if(pragma == null)
+comment|//			return;
+comment|//		String[] contents = pragma.tokenizeContents();
+comment|//		for(int i = 0; i< contents.length; i++) {
+comment|//			String[] pair = Option.parseKeyValuePair(contents[i]);
+comment|//			if(pair == null)
+comment|//				throw new XPathException("Unknown parameter found in " + pragma.getQName().getStringValue() +
+comment|//						": '" + contents[i] + "'");
+comment|//			LOG.debug("Setting serialization property from pragma: " + pair[0] + " = " + pair[1]);
+comment|//			properties.setProperty(pair[0], pair[1]);
+comment|//		}
+comment|//	}
 specifier|private
 name|ResourceSet
 name|doQuery
@@ -2204,11 +2074,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-name|checkPragmas
-argument_list|(
-name|context
-argument_list|)
-expr_stmt|;
+comment|//    		checkPragmas(context);
 name|XQuery
 name|xquery
 init|=
@@ -2226,6 +2092,8 @@ argument_list|(
 name|expr
 argument_list|,
 name|contextSet
+argument_list|,
+name|properties
 argument_list|)
 expr_stmt|;
 block|}
