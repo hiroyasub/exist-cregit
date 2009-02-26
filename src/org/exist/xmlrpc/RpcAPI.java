@@ -1447,7 +1447,7 @@ name|EXistException
 throws|,
 name|XPathException
 function_decl|;
-name|void
+name|boolean
 name|releaseQueryResult
 parameter_list|(
 name|int
