@@ -1283,7 +1283,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|20
+literal|30
 argument_list|,
 name|result
 operator|.
