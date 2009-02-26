@@ -450,7 +450,7 @@ name|myModule
 init|=
 name|context
 operator|.
-name|getModule
+name|getRootModule
 argument_list|(
 name|qn
 operator|.
