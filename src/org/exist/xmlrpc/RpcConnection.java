@@ -19912,7 +19912,7 @@ block|}
 block|}
 comment|/**      * The method<code>reindexCollection</code>      *      * @param collectionName a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
-name|void
+name|boolean
 name|reindexCollection
 parameter_list|(
 name|String
@@ -19935,6 +19935,9 @@ name|collectionName
 argument_list|)
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 comment|/**      * The method<code>reindexCollection</code>      *      * @param collUri a<code>XmldbURI</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|private
@@ -20015,7 +20018,7 @@ block|}
 block|}
 comment|/**      * The method<code>backup</code>      *      * @param userbackup a<code>String</code> value      * @param password a<code>String</code> value      * @param destcollection a<code>String</code> value      * @param collection a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
-name|void
+name|boolean
 name|backup
 parameter_list|(
 name|String
@@ -20088,6 +20091,9 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|true
+return|;
 block|}
 comment|/**      *   Validate if specified document is Valid.      *      * @param documentPath   Path to XML document in database      * @throws java.lang.Exception  Generic exception      * @throws PermissionDeniedException  User is not allowed to perform action.      * @return TRUE if document is valid, FALSE if not or errors or.....      */
 specifier|public

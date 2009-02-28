@@ -1670,7 +1670,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-name|void
+name|boolean
 name|reindexCollection
 parameter_list|(
 name|String
@@ -1683,7 +1683,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-name|void
+name|boolean
 name|backup
 parameter_list|(
 name|String
