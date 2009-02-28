@@ -2800,13 +2800,13 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|CollectionConfigurationException
+name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|error
 argument_list|(
 literal|"Found an error while initializing database: "
 operator|+
@@ -2817,7 +2817,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
