@@ -208,6 +208,14 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
+name|int
+name|DIRECT_ACCESS_OPT
+init|=
+literal|'D'
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|CLOptionDescriptor
 name|OPTIONS
 index|[]
@@ -258,6 +266,22 @@ argument_list|,
 literal|"the database configuration (conf.xml) file to use "
 operator|+
 literal|"for launching the db."
+argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"direct"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_DISALLOWED
+argument_list|,
+name|DIRECT_ACCESS_OPT
+argument_list|,
+literal|"use an (even more) direct access to the db, bypassing some "
+operator|+
+literal|"index structures"
 argument_list|)
 block|,
 operator|new
@@ -428,6 +452,11 @@ name|export
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|direct
+init|=
+literal|false
+decl_stmt|;
 name|String
 name|exportTarget
 init|=
@@ -550,6 +579,14 @@ argument_list|()
 expr_stmt|;
 break|break;
 case|case
+name|DIRECT_ACCESS_OPT
+case|:
+name|direct
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+case|case
 name|CONFIG_OPT
 case|:
 name|dbConfig
@@ -624,6 +661,8 @@ operator|new
 name|ConsistencyCheck
 argument_list|(
 name|broker
+argument_list|,
+name|direct
 argument_list|)
 decl_stmt|;
 name|List
@@ -727,6 +766,8 @@ argument_list|,
 operator|new
 name|Callback
 argument_list|()
+argument_list|,
+name|direct
 argument_list|)
 decl_stmt|;
 name|sysexport
@@ -880,6 +921,12 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|exception
+operator|!=
+literal|null
+condition|)
 name|exception
 operator|.
 name|printStackTrace

@@ -378,11 +378,20 @@ specifier|private
 name|int
 name|defaultIndexDepth
 decl_stmt|;
+specifier|private
+name|boolean
+name|directAccess
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|ConsistencyCheck
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|boolean
+name|directAccess
 parameter_list|)
 block|{
 name|this
@@ -405,21 +414,14 @@ operator|.
 name|getDefaultIndexDepth
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"DefaultIndexDepth = "
-operator|+
 name|this
 operator|.
-name|defaultIndexDepth
-argument_list|)
+name|directAccess
+operator|=
+name|directAccess
 expr_stmt|;
 block|}
-comment|/**      * Combines {@link #checkCollectionTree(ConsistencyCheck.ProgressCallback)} and      * {@link #checkDocuments(ConsistencyCheck.ProgressCallback)}.      *       * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or      *  an empty list if no errors were found      */
+comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and      * {@link #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *       * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or      *  an empty list if no errors were found      */
 specifier|public
 name|List
 name|checkAll
@@ -771,6 +773,8 @@ operator|.
 name|getResourcesFailsafe
 argument_list|(
 name|cb
+argument_list|,
+name|directAccess
 argument_list|)
 expr_stmt|;
 return|return
@@ -856,6 +860,8 @@ operator|.
 name|getResourcesFailsafe
 argument_list|(
 name|cb
+argument_list|,
+name|directAccess
 argument_list|)
 expr_stmt|;
 block|}
@@ -1815,6 +1821,9 @@ operator|==
 name|DocumentImpl
 operator|.
 name|XML_FILE
+operator|&&
+operator|!
+name|directAccess
 condition|)
 block|{
 name|ErrorReport

@@ -797,6 +797,9 @@ name|getResourcesFailsafe
 parameter_list|(
 name|BTreeCallback
 name|callback
+parameter_list|,
+name|boolean
+name|fullScan
 parameter_list|)
 function_decl|;
 specifier|public

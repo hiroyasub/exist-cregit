@@ -419,6 +419,7 @@ name|doBackup
 init|=
 name|createBackup
 decl_stmt|;
+comment|// TODO: don't use the direct access feature for now. needs more testing
 name|ConsistencyCheck
 name|check
 init|=
@@ -426,6 +427,8 @@ operator|new
 name|ConsistencyCheck
 argument_list|(
 name|broker
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|List
@@ -562,6 +565,8 @@ argument_list|(
 name|broker
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|sysexport
