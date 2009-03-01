@@ -694,6 +694,8 @@ operator|.
 name|getResourcesFailsafe
 argument_list|(
 name|cb
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|index

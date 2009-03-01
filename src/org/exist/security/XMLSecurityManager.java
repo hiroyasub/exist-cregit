@@ -569,6 +569,13 @@ operator|.
 name|SYSTEM_COLLECTION_URI
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sysCollection
+operator|==
+literal|null
+condition|)
+return|return;
 name|sysCollection
 operator|.
 name|setPermissions
@@ -1560,17 +1567,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"user with uid "
-operator|+
-name|uid
-operator|+
-literal|" not found"
-argument_list|)
-expr_stmt|;
+comment|//			LOG.debug("user with uid " + uid + " not found");
 block|}
 return|return
 name|user
