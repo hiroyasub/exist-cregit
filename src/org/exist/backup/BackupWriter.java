@@ -39,6 +39,16 @@ name|Writer
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
 comment|/**  * Helper interface for writing backups. Serves as an abstraction for writing  * to different targets like directories or zip files.  */
 end_comment
@@ -89,6 +99,15 @@ function_decl|;
 name|void
 name|close
 parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+name|void
+name|setProperties
+parameter_list|(
+name|Properties
+name|properties
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

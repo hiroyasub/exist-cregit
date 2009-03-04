@@ -7307,6 +7307,9 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+operator|new
+name|File
+argument_list|(
 name|properties
 operator|.
 name|getProperty
@@ -7325,6 +7328,7 @@ operator|.
 name|separatorChar
 operator|+
 literal|"eXist-backup.zip"
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -7629,8 +7633,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// re-enable later
-comment|//chooser.addChoosableFileFilter(new ZipFilter());
-comment|//chooser.setSelectedFile(new File("eXist-backup.zip"));
+name|chooser
+operator|.
+name|addChoosableFileFilter
+argument_list|(
+operator|new
+name|ZipFilter
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|chooser
+operator|.
+name|setSelectedFile
+argument_list|(
+operator|new
+name|File
+argument_list|(
+literal|"eXist-backup.zip"
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|chooser

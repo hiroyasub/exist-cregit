@@ -167,17 +167,6 @@ expr_stmt|;
 name|setupComponents
 argument_list|()
 expr_stmt|;
-name|setSize
-argument_list|(
-operator|new
-name|Dimension
-argument_list|(
-literal|350
-argument_list|,
-literal|200
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|pack
 argument_list|()
 expr_stmt|;
