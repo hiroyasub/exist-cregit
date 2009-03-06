@@ -243,7 +243,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Stores a value in the current session using the supplied attribute name."
+literal|"Stores a value in the current session using the supplied attribute name. If no session exists, then one will be created."
 argument_list|,
 operator|new
 name|SequenceType
@@ -316,6 +316,9 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|JavaObjectValue
+name|session
+decl_stmt|;
 if|if
 condition|(
 name|context
@@ -369,6 +372,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -387,12 +391,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -414,6 +420,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|SessionModule
 name|myModule
@@ -456,17 +463,21 @@ argument_list|()
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|XPathException
+block|{
+comment|// No saved session, so create one
+name|session
+operator|=
+name|SessionModule
+operator|.
+name|createSession
 argument_list|(
-name|getASTNode
-argument_list|()
+name|context
 argument_list|,
-literal|"Session not set"
+name|this
 argument_list|)
-throw|;
-if|if
+expr_stmt|;
+block|}
+if|else if
 condition|(
 name|var
 operator|.
@@ -480,7 +491,9 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -489,10 +502,13 @@ argument_list|()
 argument_list|,
 literal|"Variable $session is not bound to a Java object."
 argument_list|)
+operator|)
 throw|;
-name|JavaObjectValue
+block|}
+else|else
+block|{
 name|session
-init|=
+operator|=
 operator|(
 name|JavaObjectValue
 operator|)
@@ -505,7 +521,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 comment|// get attribute name parameter
 name|String
 name|attribName
@@ -549,6 +566,7 @@ argument_list|()
 operator|instanceof
 name|SessionWrapper
 condition|)
+block|{
 operator|(
 operator|(
 name|SessionWrapper
@@ -566,8 +584,11 @@ argument_list|,
 name|attribValue
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -576,11 +597,15 @@ argument_list|()
 argument_list|,
 literal|"Type error: variable $session is not bound to a session object"
 argument_list|)
+operator|)
 throw|;
+block|}
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}

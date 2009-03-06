@@ -410,16 +410,16 @@ argument_list|()
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"Session not set"
-argument_list|)
-throw|;
+block|{
+comment|// throw( new XPathException( getASTNode(), "Session not set" ) );
+return|return
+operator|(
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+operator|)
+return|;
+block|}
 if|if
 condition|(
 name|var
@@ -434,7 +434,9 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -443,7 +445,9 @@ argument_list|()
 argument_list|,
 literal|"Variable $session is not bound to a Java object."
 argument_list|)
+operator|)
 throw|;
+block|}
 name|JavaObjectValue
 name|session
 init|=
@@ -515,12 +519,17 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|XPathUtil
 operator|.
 name|javaObjectToXPath
@@ -529,6 +538,7 @@ name|o
 argument_list|,
 name|context
 argument_list|)
+operator|)
 return|;
 block|}
 catch|catch
@@ -546,14 +556,18 @@ comment|// - deliriumsky
 comment|//log.error(ise.getStackTrace());
 comment|//throw new XPathException(getASTNode(), "Session has an IllegalStateException for getAttribute() - " + ise.getStackTrace() + System.getProperty("line.separator") + System.getProperty("line.separator") + "Did you perhaps call session:invalidate() previously?");
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}
 else|else
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -562,7 +576,9 @@ argument_list|()
 argument_list|,
 literal|"Type error: variable $session is not bound to a session object"
 argument_list|)
+operator|)
 throw|;
+block|}
 block|}
 block|}
 end_class
