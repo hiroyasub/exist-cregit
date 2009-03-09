@@ -37,6 +37,16 @@ name|java
 operator|.
 name|awt
 operator|.
+name|Toolkit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|awt
+operator|.
 name|event
 operator|.
 name|ActionEvent
@@ -1251,7 +1261,17 @@ name|KeyStroke
 operator|.
 name|getKeyStroke
 argument_list|(
-literal|"ctrl S"
+name|KeyEvent
+operator|.
+name|VK_S
+argument_list|,
+name|Toolkit
+operator|.
+name|getDefaultToolkit
+argument_list|()
+operator|.
+name|getMenuShortcutKeyMask
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1297,7 +1317,17 @@ name|KeyStroke
 operator|.
 name|getKeyStroke
 argument_list|(
-literal|"ctrl W"
+name|KeyEvent
+operator|.
+name|VK_W
+argument_list|,
+name|Toolkit
+operator|.
+name|getDefaultToolkit
+argument_list|()
+operator|.
+name|getMenuShortcutKeyMask
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
