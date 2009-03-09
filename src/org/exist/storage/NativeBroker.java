@@ -4638,6 +4638,23 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// sourceDir must be known in advance, because once moveCollectionRecursive
+comment|// is called, both collection and destination can point to the same resource
+name|File
+name|sourceDir
+init|=
+name|getCollectionFile
+argument_list|(
+name|fsDir
+argument_list|,
+name|collection
+operator|.
+name|getURI
+argument_list|()
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
 comment|// Need to move each collection in the source tree individually, so recurse.
 name|moveCollectionRecursive
 argument_list|(
@@ -4655,7 +4672,7 @@ name|moveBinaryFork
 argument_list|(
 name|transaction
 argument_list|,
-name|collection
+name|sourceDir
 argument_list|,
 name|destination
 argument_list|,
@@ -4682,8 +4699,8 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|Collection
-name|collection
+name|File
+name|sourceDir
 parameter_list|,
 name|Collection
 name|destination
@@ -4694,21 +4711,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|File
-name|sourceDir
-init|=
-name|getCollectionFile
-argument_list|(
-name|fsDir
-argument_list|,
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
 name|File
 name|targetDir
 init|=
@@ -4737,6 +4739,14 @@ name|exists
 argument_list|()
 condition|)
 block|{
+name|targetDir
+operator|.
+name|getParentFile
+argument_list|()
+operator|.
+name|mkdirs
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|sourceDir
