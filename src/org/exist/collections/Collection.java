@@ -4218,15 +4218,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"could not reset input source"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|// mark is not supported: exception is expected, do nothing
 block|}
 name|XMLReader
 name|reader
