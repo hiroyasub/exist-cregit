@@ -2807,9 +2807,14 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|home
 operator|.
-name|getPrimaryGroup
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+operator|.
+name|getDefCollGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
