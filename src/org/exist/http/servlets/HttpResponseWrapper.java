@@ -401,6 +401,19 @@ name|getLocale
 argument_list|()
 return|;
 block|}
+comment|/** 	 * @return returns isCommitted 	 */
+specifier|public
+name|boolean
+name|isCommitted
+parameter_list|()
+block|{
+return|return
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+return|;
+block|}
 comment|/** 	 * @param arg0 	 * @throws java.io.IOException 	 */
 specifier|public
 name|void

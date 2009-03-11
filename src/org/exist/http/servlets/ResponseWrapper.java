@@ -173,6 +173,12 @@ name|Locale
 name|getLocale
 parameter_list|()
 function_decl|;
+comment|/** 	 * @return returns isCommitted 	 */
+specifier|public
+name|boolean
+name|isCommitted
+parameter_list|()
+function_decl|;
 comment|/** 	 * @param contentType Content Type of the response 	 */
 specifier|public
 name|void
