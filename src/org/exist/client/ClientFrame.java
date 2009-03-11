@@ -8426,14 +8426,8 @@ expr_stmt|;
 if|if
 condition|(
 name|resource
-operator|.
-name|getResourceType
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"BinaryResource"
-argument_list|)
+operator|instanceof
+name|ExtendedResource
 condition|)
 block|{
 operator|(
