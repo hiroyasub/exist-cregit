@@ -4805,6 +4805,24 @@ name|Module
 name|module
 parameter_list|)
 block|{
+if|if
+condition|(
+name|module
+operator|==
+literal|null
+condition|)
+block|{
+name|modules
+operator|.
+name|remove
+argument_list|(
+name|namespaceURI
+argument_list|)
+expr_stmt|;
+comment|// unbind the module
+block|}
+else|else
+block|{
 name|modules
 operator|.
 name|put
@@ -4844,6 +4862,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|setRootModule
 argument_list|(
 name|namespaceURI
@@ -4863,6 +4882,23 @@ name|Module
 name|module
 parameter_list|)
 block|{
+if|if
+condition|(
+name|module
+operator|==
+literal|null
+condition|)
+block|{
+name|allModules
+operator|.
+name|remove
+argument_list|(
+name|namespaceURI
+argument_list|)
+expr_stmt|;
+comment|// unbind the module
+return|return;
+block|}
 if|if
 condition|(
 name|allModules
