@@ -288,6 +288,33 @@ operator|=
 name|group
 expr_stmt|;
 block|}
+comment|/**      *  Set the owner group      *      *@param  group  The new group value      */
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+block|{
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|ownerGroup
+operator|=
+name|user
+operator|.
+name|getPrimaryGroup
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
 specifier|public
 name|void

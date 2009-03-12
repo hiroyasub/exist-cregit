@@ -169,6 +169,15 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
+comment|/**      *  Set the owner group      *      *@param  group  The primary group of user      */
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|User
+name|user
+parameter_list|)
+function_decl|;
 comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
 specifier|public
 name|void
