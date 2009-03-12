@@ -415,8 +415,6 @@ name|EXistException
 throws|,
 name|CollectionConfigurationException
 block|{
-name|this
-operator|.
 name|pool
 operator|=
 name|broker
@@ -424,8 +422,6 @@ operator|.
 name|getBrokerPool
 argument_list|()
 expr_stmt|;
-name|this
-operator|.
 name|latch
 operator|=
 name|pool
@@ -449,9 +445,6 @@ operator|new
 name|CollectionConfiguration
 argument_list|(
 name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|defaultConfig
@@ -883,9 +876,6 @@ operator|new
 name|CollectionConfiguration
 argument_list|(
 name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|conf
@@ -1283,9 +1273,6 @@ operator|new
 name|CollectionConfiguration
 argument_list|(
 name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// TODO DWES Temporary workaround for bug

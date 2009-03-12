@@ -21,6 +21,18 @@ name|XQException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|User
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *  */
 end_comment
@@ -187,7 +199,9 @@ block|{
 name|throwIfClosed
 argument_list|()
 expr_stmt|;
-return|return
+name|User
+name|user
+init|=
 name|connection
 operator|.
 name|getBroker
@@ -195,9 +209,24 @@ argument_list|()
 operator|.
 name|getUser
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|user
 operator|.
 name|getName
 argument_list|()
+return|;
+block|}
+comment|//TODO: may be needs return DBA?
+return|return
+literal|""
 return|;
 block|}
 specifier|public

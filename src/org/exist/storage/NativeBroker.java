@@ -3184,6 +3184,19 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|User
+name|user
+init|=
+name|getUser
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
 name|current
 operator|.
 name|getPermissions
@@ -3191,13 +3204,13 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|getUser
-argument_list|()
+name|user
 operator|.
 name|getPrimaryGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|current
 operator|.
 name|setId
@@ -3359,19 +3372,12 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to write to collection '" + current.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"User '"
-operator|+
-name|getUser
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' not allowed to write to collection '"
+literal|"Write is not allowed for collection '"
 operator|+
 name|current
 operator|.
@@ -3412,20 +3418,33 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|sub
+name|User
+name|user
+init|=
+name|getUser
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+name|current
 operator|.
 name|getPermissions
 argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|getUser
-argument_list|()
+name|user
 operator|.
 name|getPrimaryGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|sub
 operator|.
 name|setId
@@ -5400,19 +5419,12 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to remove collection '" + collection.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"User '"
-operator|+
-name|getUser
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' not allowed to remove collection '"
+literal|"Not allowed to remove collection '"
 operator|+
 name|collection
 operator|.
@@ -5564,19 +5576,12 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to remove collection '" + collection.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"User '"
-operator|+
-name|getUser
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' not allowed to remove collection '"
+literal|"Remove is not allowed for collection '"
 operator|+
 name|collection
 operator|.
@@ -11673,6 +11678,12 @@ operator|.
 name|getUserLock
 argument_list|()
 decl_stmt|;
+name|User
+name|user
+init|=
+name|getUser
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|docUser
@@ -11682,10 +11693,17 @@ condition|)
 block|{
 if|if
 condition|(
+name|user
+operator|==
+literal|null
+operator|||
+name|user
+operator|!=
+literal|null
+operator|&&
 operator|!
 operator|(
-name|getUser
-argument_list|()
+name|user
 operator|.
 name|getName
 argument_list|()
