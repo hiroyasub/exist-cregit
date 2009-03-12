@@ -1225,7 +1225,9 @@ name|ZipWriter
 argument_list|(
 name|backupFile
 argument_list|,
-literal|"/db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
 else|else
@@ -1239,7 +1241,9 @@ name|File
 argument_list|(
 name|backupFile
 argument_list|,
-literal|"db"
+name|DBBroker
+operator|.
+name|ROOT_COLLECTION_NAME
 argument_list|)
 argument_list|)
 expr_stmt|;
