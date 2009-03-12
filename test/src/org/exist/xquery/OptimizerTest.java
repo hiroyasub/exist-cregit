@@ -2167,6 +2167,20 @@ range|:
 name|files
 control|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Create resource from "
+operator|+
+name|file
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|resource
 operator|=
 operator|(
@@ -2243,6 +2257,20 @@ range|:
 name|files
 control|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Create resource from "
+operator|+
+name|file
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|resource
 operator|=
 operator|(
