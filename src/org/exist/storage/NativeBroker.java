@@ -3173,12 +3173,6 @@ argument_list|(
 literal|0777
 argument_list|)
 expr_stmt|;
-name|User
-name|user
-init|=
-name|getUser
-argument_list|()
-decl_stmt|;
 name|current
 operator|.
 name|getPermissions
@@ -3186,7 +3180,8 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|user
+name|getUser
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|current
@@ -3196,7 +3191,11 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|user
+name|getUser
+argument_list|()
+operator|.
+name|getPrimaryGroup
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|current
@@ -3400,6 +3399,41 @@ operator|new
 name|Collection
 argument_list|(
 name|path
+argument_list|)
+expr_stmt|;
+name|sub
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setOwner
+argument_list|(
+name|getUser
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sub
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setGroup
+argument_list|(
+name|getUser
+argument_list|()
+operator|.
+name|getPrimaryGroup
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|sub
+operator|.
+name|setId
+argument_list|(
+name|getNextCollectionId
+argument_list|(
+name|transaction
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|sub
@@ -4095,16 +4129,65 @@ expr_stmt|;
 block|}
 comment|//  check if another collection with the same name exists at the destination
 comment|//TODO : resolve URIs !!! (destination.getURI().resolve(newURI))
-comment|//Old collection must be saved!!!
-comment|//Collection old = openCollection(destination.getURI().append(newUri), Lock.WRITE_LOCK);
-comment|//if(old != null) {
-comment|//    LOG.debug("removing old collection: " + newUri);
-comment|//    try {
-comment|//        removeCollection(transaction, old);
-comment|//    } finally {
-comment|//        old.release(Lock.WRITE_LOCK);
-comment|//    }
-comment|//}
+name|Collection
+name|old
+init|=
+name|openCollection
+argument_list|(
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newUri
+argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|old
+operator|!=
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"removing old collection: "
+operator|+
+name|newUri
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|removeCollection
+argument_list|(
+name|transaction
+argument_list|,
+name|old
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|old
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|Collection
 name|destCollection
 init|=
@@ -4921,15 +5004,56 @@ argument_list|()
 argument_list|)
 throw|;
 comment|// check if another collection with the same name exists at the destination
-comment|//Old collection must be saved!
-comment|//Collection old = openCollection(destination.getURI().append(newName), Lock.WRITE_LOCK);
-comment|//if(old != null) {
-comment|//    try {
-comment|//        removeCollection(transaction, old);
-comment|//    } finally {
-comment|//        old.release(Lock.WRITE_LOCK);
-comment|//    }
-comment|//}
+name|Collection
+name|old
+init|=
+name|openCollection
+argument_list|(
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newName
+argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|old
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|removeCollection
+argument_list|(
+name|transaction
+argument_list|,
+name|old
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|old
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|XmldbURI
 name|uri
 init|=
@@ -5147,13 +5271,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|parent
-operator|!=
-name|destination
-condition|)
-block|{
 for|for
 control|(
 name|Iterator
@@ -5244,7 +5361,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -10850,8 +10966,30 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 comment|// check if the move would overwrite a collection
-comment|//if(getCollection(destination.getURI().append(newName)) != null)
-comment|//    throw new PermissionDeniedException("A resource can not replace an existing collection");
+if|if
+condition|(
+name|getCollection
+argument_list|(
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newName
+argument_list|)
+argument_list|)
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"A resource can not replace an existing collection"
+argument_list|)
+throw|;
 name|DocumentImpl
 name|oldDoc
 init|=
@@ -11015,16 +11153,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|CollectionConfiguration
-name|config
-init|=
-name|destination
-operator|.
-name|getConfiguration
-argument_list|(
-name|this
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|doc
@@ -11114,22 +11242,6 @@ argument_list|(
 name|doc
 operator|.
 name|getPermissions
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|newDoc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setGroup
-argument_list|(
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|getOwnerGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11522,12 +11634,6 @@ operator|.
 name|getUserLock
 argument_list|()
 decl_stmt|;
-name|User
-name|user
-init|=
-name|getUser
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|docUser
@@ -11537,17 +11643,10 @@ condition|)
 block|{
 if|if
 condition|(
-name|user
-operator|==
-literal|null
-operator|||
-name|user
-operator|!=
-literal|null
-operator|&&
 operator|!
 operator|(
-name|user
+name|getUser
+argument_list|()
 operator|.
 name|getName
 argument_list|()
@@ -11602,8 +11701,30 @@ try|try
 block|{
 comment|// check if the move would overwrite a collection
 comment|//TODO : resolve URIs : destination.getURI().resolve(newName)
-comment|//if(getCollection(destination.getURI().append(newName)) != null)
-comment|//    throw new PermissionDeniedException("A resource can not replace an existing collection");
+if|if
+condition|(
+name|getCollection
+argument_list|(
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newName
+argument_list|)
+argument_list|)
+operator|!=
+literal|null
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"A resource can not replace an existing collection"
+argument_list|)
+throw|;
 name|DocumentImpl
 name|oldDoc
 init|=
@@ -11791,44 +11912,6 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|renameOnly
-operator|&&
-name|oldDoc
-operator|!=
-literal|null
-condition|)
-block|{
-name|doc
-operator|.
-name|setPermissions
-argument_list|(
-name|oldDoc
-operator|.
-name|getPermissions
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setGroup
-argument_list|(
-name|oldDoc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|getOwnerGroup
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-empty_stmt|;
 name|doc
 operator|.
 name|setFileURI
