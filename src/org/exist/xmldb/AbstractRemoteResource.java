@@ -501,6 +501,17 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+specifier|protected
+name|Properties
+name|getProperties
+parameter_list|()
+block|{
+return|return
+name|parent
+operator|.
+name|properties
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Resource#getContent() 	 */
 specifier|public
 name|Object
@@ -1018,8 +1029,6 @@ decl_stmt|;
 name|Properties
 name|properties
 init|=
-name|parent
-operator|.
 name|getProperties
 argument_list|()
 decl_stmt|;
@@ -2551,8 +2560,6 @@ block|{
 name|Properties
 name|properties
 init|=
-name|parent
-operator|.
 name|getProperties
 argument_list|()
 decl_stmt|;

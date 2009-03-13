@@ -1876,7 +1876,7 @@ operator|=
 name|properties
 expr_stmt|;
 block|}
-specifier|private
+specifier|protected
 name|Properties
 name|getProperties
 parameter_list|()
