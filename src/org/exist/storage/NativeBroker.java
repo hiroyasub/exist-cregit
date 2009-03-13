@@ -3360,12 +3360,19 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to write to collection '" + current.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Write is not allowed for collection '"
+literal|"User '"
+operator|+
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to write to collection '"
 operator|+
 name|current
 operator|.
@@ -3393,32 +3400,6 @@ operator|new
 name|Collection
 argument_list|(
 name|path
-argument_list|)
-expr_stmt|;
-name|User
-name|user
-init|=
-name|getUser
-argument_list|()
-decl_stmt|;
-name|sub
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setOwner
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
-name|sub
-operator|.
-name|setId
-argument_list|(
-name|getNextCollectionId
-argument_list|(
-name|transaction
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|sub
@@ -5297,12 +5278,19 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
-comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to remove collection '" + collection.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Not allowed to remove collection '"
+literal|"User '"
+operator|+
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to remove collection '"
 operator|+
 name|collection
 operator|.
@@ -5454,12 +5442,19 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
-comment|//throw new PermissionDeniedException("User '"+ getUser().getName() + "' not allowed to remove collection '" + collection.getURI() + "'");
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Remove is not allowed for collection '"
+literal|"User '"
+operator|+
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' not allowed to remove collection '"
 operator|+
 name|collection
 operator|.
