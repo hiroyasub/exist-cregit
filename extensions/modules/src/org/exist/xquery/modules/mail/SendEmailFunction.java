@@ -430,7 +430,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * The email sending functionality of the eXist Mail Module Extension that  * allows email to be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Robert Walpole<robert.walpole@devon.gov.uk>  * @serial 2007-10-05  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * The email sending functionality of the eXist Mail Module Extension that  * allows email to be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Robert Walpole<robert.walpole@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -440,9 +440,7 @@ name|SendEmailFunction
 extends|extends
 name|BasicFunction
 block|{
-comment|//TODO: Feature - Add an option to execute the function Asynchronously as Socket operations for SMTP can be slow (Sendmail seems fast enough). Will require placing the SMTP code in a thread.
-comment|//TODO: Feature - Add a facility for the user to add their own message headers.
-comment|//TODO: Read the location of sendmail from the configuration file. Can vary from system to system
+comment|// This function has been deprecated, in favour of using the JavaMail version.
 specifier|private
 name|String
 name|charset
@@ -451,7 +449,7 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+name|deprecated
 init|=
 operator|new
 name|FunctionSignature
@@ -524,6 +522,8 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|)
+argument_list|,
+literal|"Deprecated. Use the new JavaMail-based send function instead. This function will be removed at some point in the future."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * SendEmail Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
@@ -538,7 +538,7 @@ name|super
 argument_list|(
 name|context
 argument_list|,
-name|signature
+name|deprecated
 argument_list|)
 expr_stmt|;
 block|}
