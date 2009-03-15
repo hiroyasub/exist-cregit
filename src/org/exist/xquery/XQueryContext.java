@@ -2211,6 +2211,12 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|module
+operator|!=
+literal|null
+condition|)
 name|ctx
 operator|.
 name|allModules
@@ -7969,6 +7975,8 @@ argument_list|(
 name|broker
 argument_list|,
 name|source
+argument_list|,
+name|this
 argument_list|)
 decl_stmt|;
 if|if
@@ -8027,6 +8035,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|importedModule
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|allModules
 operator|.
