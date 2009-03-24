@@ -1539,7 +1539,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|i
+name|o
 operator|instanceof
 name|FileItem
 condition|)
