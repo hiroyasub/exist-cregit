@@ -215,7 +215,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the angle (radians) from the X axis to a point ($b,$a)."
+literal|"Returns the angle theta from the conversion of rectangular coordinates (x, y) to polar coordinates (r, theta). $a is y and $b is x."
 argument_list|,
 operator|new
 name|SequenceType
@@ -531,12 +531,12 @@ name|Math
 operator|.
 name|atan2
 argument_list|(
-name|valueB
+name|valueA
 operator|.
 name|getDouble
 argument_list|()
 argument_list|,
-name|valueA
+name|valueB
 operator|.
 name|getDouble
 argument_list|()
