@@ -710,7 +710,7 @@ name|columnName
 init|=
 name|rsmd
 operator|.
-name|getColumnName
+name|getColumnLabel
 argument_list|(
 name|i
 operator|+
@@ -1566,7 +1566,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Unable to cleanup JDBC results"
 argument_list|,
