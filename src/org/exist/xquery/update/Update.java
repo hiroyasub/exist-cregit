@@ -1200,13 +1200,6 @@ name|UPDATE
 argument_list|)
 expr_stmt|;
 block|}
-name|checkFragmentation
-argument_list|(
-name|transaction
-argument_list|,
-name|modifiedDocuments
-argument_list|)
-expr_stmt|;
 name|finishTriggers
 argument_list|(
 name|transaction
