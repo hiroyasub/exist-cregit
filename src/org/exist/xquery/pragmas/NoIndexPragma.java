@@ -10,8 +10,22 @@ operator|.
 name|exist
 operator|.
 name|xquery
+operator|.
+name|pragmas
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|*
+import|;
+end_import
 
 begin_import
 import|import

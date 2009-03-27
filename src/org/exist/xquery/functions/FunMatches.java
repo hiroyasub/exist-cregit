@@ -309,6 +309,8 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|pragmas
+operator|.
 name|Optimize
 import|;
 end_import
