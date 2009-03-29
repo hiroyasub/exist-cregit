@@ -298,7 +298,7 @@ name|testCollection
 operator|.
 name|createResource
 argument_list|(
-literal|"test.xml"
+literal|"test1.xml"
 argument_list|,
 literal|"BinaryResource"
 argument_list|)
@@ -324,7 +324,7 @@ name|testCollection
 operator|.
 name|getResource
 argument_list|(
-literal|"test.xml"
+literal|"test1.xml"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -359,7 +359,7 @@ name|testCollection
 operator|.
 name|createResource
 argument_list|(
-literal|"test.xml"
+literal|"test2.xml"
 argument_list|,
 literal|"XMLResource"
 argument_list|)
@@ -384,7 +384,7 @@ name|testCollection
 operator|.
 name|getResource
 argument_list|(
-literal|"test.xml"
+literal|"test2.xml"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
