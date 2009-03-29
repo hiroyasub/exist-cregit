@@ -842,7 +842,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 for|for
@@ -1038,7 +1038,7 @@ name|NodeSet
 name|result
 init|=
 operator|new
-name|ExtArrayNodeSet
+name|NewArrayNodeSet
 argument_list|(
 literal|5
 argument_list|)
@@ -1086,6 +1086,12 @@ condition|(
 name|nodeId
 operator|!=
 literal|null
+operator|&&
+name|nodeId
+operator|!=
+name|NodeId
+operator|.
+name|DOCUMENT_NODE
 condition|)
 block|{
 name|nodeId
