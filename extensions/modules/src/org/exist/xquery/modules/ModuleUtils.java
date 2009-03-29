@@ -318,13 +318,17 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+name|XMLReader
+name|reader
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|// try and construct xml document from input stream, we use eXist's
 comment|// in-memory DOM implementation
-name|XMLReader
 name|reader
-init|=
+operator|=
 name|context
 operator|.
 name|getBroker
@@ -338,7 +342,7 @@ argument_list|()
 operator|.
 name|borrowXMLReader
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -432,6 +436,28 @@ name|context
 operator|.
 name|popDocumentContext
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getParserPool
+argument_list|()
+operator|.
+name|returnXMLReader
+argument_list|(
+name|reader
+argument_list|)
 expr_stmt|;
 block|}
 block|}
