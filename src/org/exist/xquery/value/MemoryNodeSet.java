@@ -35,6 +35,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
+import|;
+end_import
+
 begin_interface
 specifier|public
 interface|interface
@@ -169,6 +181,14 @@ name|test
 parameter_list|)
 throws|throws
 name|XPathException
+function_decl|;
+specifier|public
+name|Sequence
+name|getChildrenForParent
+parameter_list|(
+name|NodeImpl
+name|parent
+parameter_list|)
 function_decl|;
 block|}
 end_interface

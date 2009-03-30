@@ -236,6 +236,17 @@ name|axis
 parameter_list|)
 block|{
 block|}
+specifier|public
+name|int
+name|getPrimaryAxis
+parameter_list|()
+block|{
+return|return
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)      */
 specifier|public
 name|void

@@ -238,6 +238,11 @@ name|int
 name|axis
 parameter_list|)
 function_decl|;
+specifier|public
+name|int
+name|getPrimaryAxis
+parameter_list|()
+function_decl|;
 comment|/** 	 * The static return type of the expression. 	 * 	 * This method should return one of the type constants defined in class  	 * {@link org.exist.xquery.value.Type}. If the return type cannot be determined 	 * statically, return Type.ITEM. 	 */
 specifier|public
 name|int

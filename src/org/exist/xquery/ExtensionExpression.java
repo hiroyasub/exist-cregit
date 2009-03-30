@@ -645,7 +645,19 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
+specifier|public
+name|int
+name|getPrimaryAxis
+parameter_list|()
+block|{
+return|return
+name|innerExpression
+operator|.
+name|getPrimaryAxis
+argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc)     * @see org.exist.xquery.AbstractExpression#resetState()     */
 specifier|public
 name|void
 name|resetState

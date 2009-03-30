@@ -1914,31 +1914,103 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+comment|//        context = null;
+comment|//        return;
+if|if
+condition|(
+name|contextId
+operator|==
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+condition|)
+block|{
 name|context
 operator|=
 literal|null
 expr_stmt|;
 return|return;
-comment|//        if (contextId == Expression.IGNORE_CONTEXT) {
-comment|//            context = null;
-comment|//            return;
-comment|//        }
-comment|//        ContextItem newContext = null;
-comment|//        ContextItem last = null;
-comment|//        ContextItem next = context;
-comment|//        while (next != null) {
-comment|//            if (next.getContextId() != contextId) {
-comment|//                if (newContext == null) {
-comment|//                    newContext = next;
-comment|//                } else {
-comment|//                    last.setNextContextItem(next);
-comment|//                }
-comment|//                last = next;
-comment|//                last.setNextContextItem(null);
-comment|//            }
-comment|//            next = next.getNextDirect();
-comment|//        }
-comment|//        this.context = newContext;
+block|}
+name|ContextItem
+name|newContext
+init|=
+literal|null
+decl_stmt|;
+name|ContextItem
+name|last
+init|=
+literal|null
+decl_stmt|;
+name|ContextItem
+name|next
+init|=
+name|context
+decl_stmt|;
+while|while
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|next
+operator|.
+name|getContextId
+argument_list|()
+operator|!=
+name|contextId
+condition|)
+block|{
+if|if
+condition|(
+name|newContext
+operator|==
+literal|null
+condition|)
+block|{
+name|newContext
+operator|=
+name|next
+expr_stmt|;
+block|}
+else|else
+block|{
+name|last
+operator|.
+name|setNextContextItem
+argument_list|(
+name|next
+argument_list|)
+expr_stmt|;
+block|}
+name|last
+operator|=
+name|next
+expr_stmt|;
+name|last
+operator|.
+name|setNextContextItem
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+name|next
+operator|=
+name|next
+operator|.
+name|getNextDirect
+argument_list|()
+expr_stmt|;
+block|}
+name|this
+operator|.
+name|context
+operator|=
+name|newContext
+expr_stmt|;
 block|}
 comment|/**      * The method<code>getContext</code>      *      * @return a<code>ContextItem</code> value      */
 specifier|public

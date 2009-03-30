@@ -473,6 +473,18 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|int
+name|getPrimaryAxis
+parameter_list|()
+block|{
+return|return
+name|expression
+operator|.
+name|getPrimaryAxis
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

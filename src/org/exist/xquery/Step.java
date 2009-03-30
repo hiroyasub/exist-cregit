@@ -587,6 +587,17 @@ name|axis
 expr_stmt|;
 block|}
 specifier|public
+name|int
+name|getPrimaryAxis
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|axis
+return|;
+block|}
+specifier|public
 name|boolean
 name|isAbbreviated
 parameter_list|()

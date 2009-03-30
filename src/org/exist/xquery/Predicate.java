@@ -2220,6 +2220,14 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
+name|p
+operator|.
+name|clearContext
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//TODO : understand why we sort here...
 name|temp
 operator|.
