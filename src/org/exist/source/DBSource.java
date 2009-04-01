@@ -453,6 +453,22 @@ name|encoding
 argument_list|)
 return|;
 block|}
+specifier|public
+name|InputStream
+name|getInputStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|broker
+operator|.
+name|getBinaryResource
+argument_list|(
+name|doc
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.source.Source#getContent()      */
 specifier|public
 name|String

@@ -262,18 +262,6 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|private
-name|Sequence
-name|cached
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-name|String
-name|cachedPath
-init|=
-literal|null
-decl_stmt|;
-specifier|private
 name|UpdateListener
 name|listener
 init|=
@@ -541,14 +529,6 @@ name|docs
 condition|)
 block|{
 comment|// only cache node sets (which have a non-empty document set)
-name|cachedPath
-operator|=
-name|path
-expr_stmt|;
-name|cached
-operator|=
-name|result
-expr_stmt|;
 name|registerUpdateListener
 argument_list|()
 expr_stmt|;
@@ -571,6 +551,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -633,14 +615,6 @@ name|event
 parameter_list|)
 block|{
 comment|// clear all
-name|cachedPath
-operator|=
-literal|null
-expr_stmt|;
-name|cached
-operator|=
-literal|null
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -730,14 +704,6 @@ operator|!
 name|postOptimization
 condition|)
 block|{
-name|cached
-operator|=
-literal|null
-expr_stmt|;
-name|cachedPath
-operator|=
-literal|null
-expr_stmt|;
 name|listener
 operator|=
 literal|null

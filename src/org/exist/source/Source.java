@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -107,6 +117,13 @@ comment|/**      * Returns a {@link Reader} to read the contents      * of the s
 specifier|public
 name|Reader
 name|getReader
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+specifier|public
+name|InputStream
+name|getInputStream
 parameter_list|()
 throws|throws
 name|IOException

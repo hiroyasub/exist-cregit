@@ -154,6 +154,18 @@ argument_list|)
 return|;
 block|}
 specifier|public
+name|InputStream
+name|getInputStream
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// not implemented
+return|return
+literal|null
+return|;
+block|}
+specifier|public
 name|String
 name|getContent
 parameter_list|()
