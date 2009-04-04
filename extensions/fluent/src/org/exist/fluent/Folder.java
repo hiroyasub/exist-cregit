@@ -4742,7 +4742,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|copyXMLResource
+name|copyResource
 argument_list|(
 name|tx
 operator|.

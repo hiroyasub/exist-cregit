@@ -2794,7 +2794,7 @@ expr_stmt|;
 block|}
 name|broker
 operator|.
-name|copyXMLResource
+name|copyResource
 argument_list|(
 name|transaction
 argument_list|,

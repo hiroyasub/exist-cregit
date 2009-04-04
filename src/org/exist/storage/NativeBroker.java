@@ -10833,7 +10833,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|copyXMLResource
+name|copyResource
 parameter_list|(
 name|Txn
 name|transaction

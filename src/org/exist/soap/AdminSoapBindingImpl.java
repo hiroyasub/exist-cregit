@@ -5062,7 +5062,7 @@ comment|// TODO check XML/Binary resource
 comment|//                broker.copyResource(transaction, doc, destination, newName);
 name|broker
 operator|.
-name|copyXMLResource
+name|copyResource
 argument_list|(
 name|transaction
 argument_list|,

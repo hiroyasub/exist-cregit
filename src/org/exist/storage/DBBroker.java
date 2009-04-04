@@ -1358,7 +1358,7 @@ comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *
 specifier|public
 specifier|abstract
 name|void
-name|copyXMLResource
+name|copyResource
 parameter_list|(
 name|Txn
 name|transaction
