@@ -531,31 +531,9 @@ decl_stmt|;
 if|if
 condition|(
 name|replacementFunctionDef
-operator|==
+operator|!=
 literal|null
 condition|)
-throw|throw
-operator|new
-name|NoSuchElementException
-argument_list|(
-literal|"internal error:  unable to rebind cached function reference "
-operator|+
-name|functionDef
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|getStringValue
-argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|getArgumentCount
-argument_list|()
-operator|+
-literal|" to new instance of module"
-argument_list|)
-throw|;
 name|expression
 operator|=
 name|functionDef
