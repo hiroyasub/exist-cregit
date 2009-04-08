@@ -554,6 +554,12 @@ return|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
 name|reader
 operator|.
 name|close
