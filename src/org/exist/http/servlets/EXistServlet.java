@@ -1154,6 +1154,13 @@ name|l
 init|=
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|len
+operator|>
+literal|0
+condition|)
+block|{
 do|do
 block|{
 name|count
@@ -1194,6 +1201,7 @@ operator|<
 name|len
 condition|)
 do|;
+block|}
 name|os
 operator|.
 name|close
