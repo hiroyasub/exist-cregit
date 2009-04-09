@@ -87,6 +87,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Defines all built-in types and their relations.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -96,6 +108,21 @@ specifier|public
 class|class
 name|Type
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Type
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -1908,11 +1935,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|warn
 argument_list|(
 literal|"no supertype for "
 operator|+
@@ -1920,6 +1945,10 @@ name|getTypeName
 argument_list|(
 name|subtype
 argument_list|)
+argument_list|,
+operator|new
+name|Throwable
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
