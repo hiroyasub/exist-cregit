@@ -4508,6 +4508,15 @@ name|shared
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|isShared
+parameter_list|()
+block|{
+return|return
+name|isShared
+return|;
+block|}
+specifier|public
 name|void
 name|addModifiedDoc
 parameter_list|(

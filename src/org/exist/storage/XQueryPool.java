@@ -480,6 +480,16 @@ name|ExternalModule
 name|self
 parameter_list|)
 block|{
+comment|// a shared context - as used by util:eval - may reference modules from other contexts.
+comment|// don't return those modules to the pool to avoid access conflicts.
+if|if
+condition|(
+name|context
+operator|.
+name|isShared
+argument_list|()
+condition|)
+return|return;
 for|for
 control|(
 name|Iterator
