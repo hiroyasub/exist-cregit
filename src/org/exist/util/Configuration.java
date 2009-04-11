@@ -381,6 +381,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|DatabaseImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|FunctionFactory
@@ -1107,7 +1119,9 @@ name|DatabaseConfigurationException
 block|{
 name|this
 argument_list|(
-literal|"conf.xml"
+name|DatabaseImpl
+operator|.
+name|CONF_XML
 argument_list|,
 literal|null
 argument_list|)
@@ -1159,7 +1173,9 @@ block|{
 comment|// Default file name
 name|configFilename
 operator|=
-literal|"conf.xml"
+name|DatabaseImpl
+operator|.
+name|CONF_XML
 expr_stmt|;
 block|}
 comment|// firstly, try to read the configuration from a file within the
@@ -1236,7 +1252,9 @@ else|:
 name|ConfigurationHelper
 operator|.
 name|getExistHome
-argument_list|()
+argument_list|(
+name|configFilename
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

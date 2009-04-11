@@ -53,6 +53,18 @@ name|BrokerPool
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|DatabaseImpl
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -80,6 +92,25 @@ specifier|static
 name|File
 name|getExistHome
 parameter_list|()
+block|{
+return|return
+name|getExistHome
+argument_list|(
+name|DatabaseImpl
+operator|.
+name|CONF_XML
+argument_list|)
+return|;
+block|}
+comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the file handle or<code>null</code>      */
+specifier|public
+specifier|static
+name|File
+name|getExistHome
+parameter_list|(
+name|String
+name|config
+parameter_list|)
 block|{
 name|File
 name|existHome
@@ -115,6 +146,13 @@ operator|.
 name|getExistHome
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|existHome
+operator|!=
+literal|null
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -127,6 +165,7 @@ expr_stmt|;
 return|return
 name|existHome
 return|;
+block|}
 block|}
 block|}
 catch|catch
@@ -149,11 +188,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|String
-name|config
-init|=
-literal|"conf.xml"
-decl_stmt|;
 comment|// try exist.home
 if|if
 condition|(

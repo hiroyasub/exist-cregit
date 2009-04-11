@@ -1689,6 +1689,33 @@ argument_list|(
 literal|"/"
 argument_list|)
 expr_stmt|;
+comment|// Setting up resourceBase, if it is possible
+comment|// This one is needed by many Servlets which depend
+comment|// on a not null context.getResourceBase() value
+name|File
+name|eXistHome
+init|=
+name|ConfigurationHelper
+operator|.
+name|getExistHome
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|eXistHome
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|setResourceBase
+argument_list|(
+name|eXistHome
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|WebApplicationHandler
 name|webappHandler
 init|=
