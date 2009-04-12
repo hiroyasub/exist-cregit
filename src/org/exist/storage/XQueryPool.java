@@ -480,16 +480,6 @@ name|ExternalModule
 name|self
 parameter_list|)
 block|{
-comment|// a shared context - as used by util:eval - may reference modules from other contexts.
-comment|// don't return those modules to the pool to avoid access conflicts.
-if|if
-condition|(
-name|context
-operator|.
-name|isShared
-argument_list|()
-condition|)
-return|return;
 for|for
 control|(
 name|Iterator
@@ -635,6 +625,39 @@ operator|<
 name|maxStackSize
 condition|)
 block|{
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|stack
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+name|stack
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+operator|==
+name|o
+condition|)
+comment|// query already in pool. may happen for modules.
+comment|// don't add it a second time.
+return|return;
+block|}
 name|stack
 operator|.
 name|push

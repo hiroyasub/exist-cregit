@@ -1062,117 +1062,33 @@ name|uri
 argument_list|)
 return|;
 block|}
-specifier|public
-name|String
-name|getInScopeNamespace
-parameter_list|(
-name|String
-name|prefix
-parameter_list|)
-block|{
-return|return
-name|parentContext
-operator|.
-name|getInScopeNamespace
-argument_list|(
-name|prefix
-argument_list|)
-return|;
-block|}
-specifier|public
-name|String
-name|getInScopePrefix
-parameter_list|(
-name|String
-name|uri
-parameter_list|)
-block|{
-return|return
-name|parentContext
-operator|.
-name|getInScopePrefix
-argument_list|(
-name|uri
-argument_list|)
-return|;
-block|}
-specifier|public
-name|String
-name|getInheritedNamespace
-parameter_list|(
-name|String
-name|prefix
-parameter_list|)
-block|{
-return|return
-name|parentContext
-operator|.
-name|getInheritedNamespace
-argument_list|(
-name|prefix
-argument_list|)
-return|;
-block|}
-specifier|public
-name|String
-name|getInheritedPrefix
-parameter_list|(
-name|String
-name|uri
-parameter_list|)
-block|{
-return|return
-name|parentContext
-operator|.
-name|getInheritedPrefix
-argument_list|(
-name|uri
-argument_list|)
-return|;
-block|}
-specifier|public
-name|void
-name|declareInScopeNamespace
-parameter_list|(
-name|String
-name|prefix
-parameter_list|,
-name|String
-name|uri
-parameter_list|)
-block|{
-name|parentContext
-operator|.
-name|declareInScopeNamespace
-argument_list|(
-name|prefix
-argument_list|,
-name|uri
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|pushInScopeNamespaces
-parameter_list|()
-block|{
-name|parentContext
-operator|.
-name|pushInScopeNamespaces
-argument_list|()
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|popInScopeNamespaces
-parameter_list|()
-block|{
-name|parentContext
-operator|.
-name|popInScopeNamespaces
-argument_list|()
-expr_stmt|;
-block|}
+comment|//    public String getInScopeNamespace(String prefix) {
+comment|//        return parentContext.getInScopeNamespace(prefix);
+comment|//    }
+comment|//
+comment|//    public String getInScopePrefix(String uri) {
+comment|//        return parentContext.getInScopePrefix(uri);
+comment|//    }
+comment|//
+comment|//    public String getInheritedNamespace(String prefix) {
+comment|//        return parentContext.getInheritedNamespace(prefix);
+comment|//    }
+comment|//
+comment|//    public String getInheritedPrefix(String uri) {
+comment|//        return parentContext.getInheritedPrefix(uri);
+comment|//    }
+comment|//
+comment|//    public void declareInScopeNamespace(String prefix, String uri) {
+comment|//        parentContext.declareInScopeNamespace(prefix, uri);
+comment|//    }
+comment|//
+comment|//    public void pushInScopeNamespaces() {
+comment|//        parentContext.pushInScopeNamespaces();
+comment|//    }
+comment|//
+comment|//    public void popInScopeNamespaces() {
+comment|//        parentContext.popInScopeNamespaces();
+comment|//    }
 specifier|public
 name|void
 name|registerUpdateListener
