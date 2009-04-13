@@ -431,6 +431,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|QName
 name|qn
 init|=
@@ -571,6 +578,11 @@ literal|""
 argument_list|,
 name|seq
 argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
 expr_stmt|;
 name|context
 operator|.

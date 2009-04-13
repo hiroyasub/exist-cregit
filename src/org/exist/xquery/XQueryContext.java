@@ -7186,11 +7186,25 @@ return|return
 name|contextPosition
 return|;
 block|}
-comment|/** 	 * Push all in-scope namespace declarations onto the stack. 	 */
 specifier|public
 name|void
 name|pushInScopeNamespaces
 parameter_list|()
+block|{
+name|pushInScopeNamespaces
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** 	 * Push all in-scope namespace declarations onto the stack. 	 */
+specifier|public
+name|void
+name|pushInScopeNamespaces
+parameter_list|(
+name|boolean
+name|inherit
+parameter_list|)
 block|{
 comment|//TODO : push into an inheritedInScopeNamespaces HashMap... and return an empty HashMap
 name|HashMap
@@ -7244,6 +7258,11 @@ name|inScopePrefixes
 argument_list|)
 expr_stmt|;
 comment|//Current namespaces now become inherited just like the previous inherited ones
+if|if
+condition|(
+name|inherit
+condition|)
+block|{
 name|inheritedInScopeNamespaces
 operator|=
 operator|(
@@ -7278,6 +7297,22 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|inheritedInScopeNamespaces
+operator|=
+operator|new
+name|HashMap
+argument_list|()
+expr_stmt|;
+name|inheritedInScopePrefixes
+operator|=
+operator|new
+name|HashMap
+argument_list|()
+expr_stmt|;
+block|}
 comment|//TODO : consider dynamic instanciation
 name|inScopeNamespaces
 operator|=
@@ -8680,6 +8715,12 @@ finally|finally
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
 name|reader
 operator|.
 name|close
