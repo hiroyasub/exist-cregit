@@ -997,7 +997,15 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Illegal chartype"
+literal|"Illegal chartype. Choose one of "
+operator|+
+literal|"AreaChart BarChart BarChart3D LineChart LineChart3D "
+operator|+
+literal|"MultiplePieChart MultiplePieChart3D PieChart PieChart3D "
+operator|+
+literal|"RingChart StackedAreaChart StackedBarChart "
+operator|+
+literal|"StackedBarChart3D WaterfallChart"
 argument_list|)
 expr_stmt|;
 block|}
