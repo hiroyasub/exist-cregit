@@ -34,6 +34,11 @@ name|ProcessReportMBean
 block|{
 specifier|public
 name|TabularData
+name|getScheduledJobs
+parameter_list|()
+function_decl|;
+specifier|public
+name|TabularData
 name|getRunningJobs
 parameter_list|()
 function_decl|;

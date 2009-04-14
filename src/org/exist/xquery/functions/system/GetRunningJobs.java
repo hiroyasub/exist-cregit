@@ -175,17 +175,19 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|ProcessMonitor
+name|BrokerPool
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Iterator
+name|storage
+operator|.
+name|ProcessMonitor
 import|;
 end_import
 
@@ -358,8 +360,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|ProcessMonitor
-name|monitor
+name|BrokerPool
+name|brokerPool
 init|=
 name|context
 operator|.
@@ -368,6 +370,11 @@ argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
+decl_stmt|;
+name|ProcessMonitor
+name|monitor
+init|=
+name|brokerPool
 operator|.
 name|getProcessMonitor
 argument_list|()

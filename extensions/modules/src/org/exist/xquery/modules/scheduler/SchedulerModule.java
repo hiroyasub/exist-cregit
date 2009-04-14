@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension  *   * An extension module for the eXist Native XML Database that allows  * Jobs to be Scheduled with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-11-15  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Scheduler Module Extension  *   * An extension module for the eXist Native XML Database that allows  * Jobs to be Scheduled with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren.cahlander@gmail.com>  * @serial 2009-05-15  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -129,6 +129,36 @@ operator|.
 name|signatures
 index|[
 literal|3
+index|]
+argument_list|,
+name|ScheduleFunctions
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|ScheduleFunctions
+operator|.
+name|signatures
+index|[
+literal|4
+index|]
+argument_list|,
+name|ScheduleFunctions
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|ScheduleFunctions
+operator|.
+name|signatures
+index|[
+literal|5
 index|]
 argument_list|,
 name|ScheduleFunctions
