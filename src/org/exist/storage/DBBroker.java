@@ -1308,7 +1308,7 @@ comment|/** 	 * Move a resource to the destination collection and rename it. 	 *
 specifier|public
 specifier|abstract
 name|void
-name|moveXMLResource
+name|moveResource
 parameter_list|(
 name|Txn
 name|transaction

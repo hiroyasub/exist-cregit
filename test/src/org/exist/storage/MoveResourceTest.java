@@ -552,7 +552,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|moveXMLResource
+name|moveResource
 argument_list|(
 name|transaction
 argument_list|,
@@ -1132,7 +1132,7 @@ argument_list|()
 expr_stmt|;
 name|broker
 operator|.
-name|moveXMLResource
+name|moveResource
 argument_list|(
 name|transaction
 argument_list|,

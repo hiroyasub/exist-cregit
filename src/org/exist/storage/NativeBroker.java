@@ -11509,7 +11509,7 @@ block|}
 comment|/** move Resource to another collection, with possible rename */
 specifier|public
 name|void
-name|moveXMLResource
+name|moveResource
 parameter_list|(
 name|Txn
 name|transaction

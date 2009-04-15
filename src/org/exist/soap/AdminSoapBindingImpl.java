@@ -5046,7 +5046,7 @@ comment|// TODO check XML/Binary resource
 comment|//                broker.moveResource(transaction, doc, destination, newName);
 name|broker
 operator|.
-name|moveXMLResource
+name|moveResource
 argument_list|(
 name|transaction
 argument_list|,
