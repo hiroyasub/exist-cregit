@@ -2339,6 +2339,7 @@ operator|new
 name|ForwardHandler
 argument_list|()
 decl_stmt|;
+comment|//forward.setHandleQueries(true); //TODO needed if you wish to pass querystring parameters - should maybe be a server.xml option?
 for|for
 control|(
 name|Iterator
