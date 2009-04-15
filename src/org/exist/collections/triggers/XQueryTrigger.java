@@ -430,6 +430,14 @@ name|ContentHandler
 name|originalOutputHandler
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|String
+name|PEPARE_EXCEIPTION_MESSAGE
+init|=
+literal|"Error during trigger prepare"
+decl_stmt|;
+specifier|public
 name|XQueryTrigger
 parameter_list|()
 block|{
@@ -1151,7 +1159,7 @@ throw|throw
 operator|new
 name|TriggerException
 argument_list|(
-literal|"Error during trigger prepare"
+name|PEPARE_EXCEIPTION_MESSAGE
 argument_list|,
 name|e
 argument_list|)
@@ -1187,7 +1195,7 @@ throw|throw
 operator|new
 name|TriggerException
 argument_list|(
-literal|"Error during trigger prepare"
+name|PEPARE_EXCEIPTION_MESSAGE
 argument_list|,
 name|e
 argument_list|)
@@ -1252,7 +1260,7 @@ throw|throw
 operator|new
 name|TriggerException
 argument_list|(
-literal|"Error during trigger prepare"
+name|PEPARE_EXCEIPTION_MESSAGE
 argument_list|,
 name|e
 argument_list|)
@@ -1658,8 +1666,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Error during trigger finish "
-operator|+
+literal|"Error during trigger finish"
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
