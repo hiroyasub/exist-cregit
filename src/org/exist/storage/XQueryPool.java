@@ -1367,6 +1367,22 @@ return|;
 block|}
 else|else
 block|{
+comment|// check all modules imported by the borrowed module and update them
+if|if
+condition|(
+operator|!
+name|borrowModules
+argument_list|(
+name|broker
+argument_list|,
+name|context
+argument_list|)
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 operator|(
 operator|(
 name|ModuleContext
