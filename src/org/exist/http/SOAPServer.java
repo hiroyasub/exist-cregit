@@ -1392,6 +1392,34 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+comment|// Did we reached the length?
+if|if
+condition|(
+name|j
+operator|==
+name|nlInternalFunctionParams
+operator|.
+name|getLength
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Too many input parameters for "
+operator|+
+name|functionName
+operator|+
+literal|": expected="
+operator|+
+name|xqwsSOAPFunctionParams
+operator|.
+name|getLength
+argument_list|()
+argument_list|)
+throw|;
+block|}
 name|query
 operator|.
 name|append
@@ -1438,6 +1466,37 @@ name|j
 operator|++
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|j
+operator|!=
+name|xqwsSOAPFunctionParams
+operator|.
+name|getLength
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Input parameters number mismatch for "
+operator|+
+name|functionName
+operator|+
+literal|": expected="
+operator|+
+name|xqwsSOAPFunctionParams
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|" got="
+operator|+
+name|j
+argument_list|)
+throw|;
 block|}
 comment|//remove last superflurous seperator
 if|if
