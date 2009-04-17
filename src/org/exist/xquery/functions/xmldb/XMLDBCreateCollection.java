@@ -327,7 +327,7 @@ block|{
 name|Collection
 name|newCollection
 init|=
-name|createCollection
+name|createCollectionPath
 argument_list|(
 name|collection
 argument_list|,
