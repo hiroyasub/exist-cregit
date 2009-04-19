@@ -673,6 +673,18 @@ name|SimpleTimeZone
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeSet
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -893,6 +905,8 @@ operator|+
 literal|"\t<implicit-timezone value=\"duration\"/>\n"
 operator|+
 literal|"\t<variable name=\"qname\">variable value</variable>\n"
+operator|+
+literal|"\t<default-context>explicitly define default context here</default-context>\n"
 operator|+
 literal|"\t<mapModule namespace=\"uri\" uri=\"uri_to_module\"/>\n"
 operator|+
@@ -1372,6 +1386,11 @@ name|exprContext
 init|=
 literal|null
 decl_stmt|;
+name|Sequence
+name|initContextSequence
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|isCalledAs
@@ -1663,6 +1682,8 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|initContextSequence
+operator|=
 name|initContext
 argument_list|(
 name|contextInit
@@ -1784,6 +1805,25 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|initContextSequence
+operator|!=
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"there now"
+argument_list|)
+expr_stmt|;
+name|exprContext
+operator|=
+name|initContextSequence
+expr_stmt|;
 block|}
 name|sequence
 operator|=
@@ -2459,7 +2499,7 @@ return|;
 block|}
 comment|/** 	 * Read to optional static-context fragment to initialize 	 * the context. 	 *  	 * @param root 	 * @param innerContext 	 * @throws XPathException 	 */
 specifier|private
-name|void
+name|Sequence
 name|initContext
 parameter_list|(
 name|Node
@@ -2478,6 +2518,11 @@ name|root
 operator|.
 name|getChildNodes
 argument_list|()
+decl_stmt|;
+name|Sequence
+name|result
+init|=
+literal|null
 decl_stmt|;
 for|for
 control|(
@@ -3097,7 +3142,56 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|ELEMENT_NODE
+operator|&&
+literal|"default-context"
+operator|.
+name|equals
+argument_list|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|Element
+name|elem
+init|=
+operator|(
+name|Element
+operator|)
+name|child
+decl_stmt|;
+name|NodeValue
+name|nodevalue
+init|=
+operator|(
+name|NodeValue
+operator|)
+name|elem
+decl_stmt|;
+name|result
+operator|=
+name|nodevalue
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
 block|}
+block|}
+return|return
+name|result
+return|;
 block|}
 specifier|private
 name|NodeImpl
