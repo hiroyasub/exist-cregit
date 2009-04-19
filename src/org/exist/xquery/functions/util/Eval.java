@@ -906,7 +906,7 @@ literal|"\t<implicit-timezone value=\"duration\"/>\n"
 operator|+
 literal|"\t<variable name=\"qname\">variable value</variable>\n"
 operator|+
-literal|"\t<default-context>explicitly define default context here</default-context>\n"
+literal|"\t<default-context>explicitly provide default context here</default-context>\n"
 operator|+
 literal|"\t<mapModule namespace=\"uri\" uri=\"uri_to_module\"/>\n"
 operator|+
@@ -1016,6 +1016,8 @@ operator|+
 literal|"\t<implicit-timezone value=\"duration\"/>\n"
 operator|+
 literal|"\t<variable name=\"qname\">variable value</variable>\n"
+operator|+
+literal|"\t<default-context>explicitly provide default context here</default-context>\n"
 operator|+
 literal|"</static-context>.\n"
 operator|+
