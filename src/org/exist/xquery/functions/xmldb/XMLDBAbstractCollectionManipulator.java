@@ -247,7 +247,7 @@ decl_stmt|;
 comment|//collecton will be passed as parameter number 0 by default
 specifier|protected
 name|void
-name|setCollectionParameterNunmer
+name|setCollectionParameterNubmer
 parameter_list|(
 name|int
 name|paramNumber
@@ -259,6 +259,15 @@ name|paramNumber
 operator|=
 name|paramNumber
 expr_stmt|;
+block|}
+specifier|protected
+name|int
+name|getCollectionParameterNumber
+parameter_list|()
+block|{
+return|return
+name|paramNumber
+return|;
 block|}
 specifier|public
 name|XMLDBAbstractCollectionManipulator
