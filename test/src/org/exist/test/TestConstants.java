@@ -260,6 +260,20 @@ argument_list|(
 literal|"binary.txt"
 argument_list|)
 decl_stmt|;
+comment|/** 	 * XmldbURI representing the decoded path: testmodule.xqm 	 */
+specifier|public
+specifier|static
+specifier|final
+name|XmldbURI
+name|TEST_MODULE_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"testmodule.xqm"
+argument_list|)
+decl_stmt|;
 block|}
 end_class
 
