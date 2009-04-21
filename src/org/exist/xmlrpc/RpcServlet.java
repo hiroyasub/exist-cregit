@@ -226,6 +226,12 @@ name|descriptor
 operator|.
 name|allowRequestLogging
 argument_list|()
+operator|&&
+operator|!
+name|descriptor
+operator|.
+name|requestsFiltered
+argument_list|()
 condition|)
 block|{
 comment|// Wrap HttpServletRequest, because both request Logger and xmlrpc

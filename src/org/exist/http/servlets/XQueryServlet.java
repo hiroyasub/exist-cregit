@@ -1187,6 +1187,12 @@ condition|(
 name|descriptor
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|descriptor
+operator|.
+name|requestsFiltered
+argument_list|()
 condition|)
 block|{
 comment|//logs the request if specified in the descriptor
