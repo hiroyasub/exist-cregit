@@ -58,6 +58,10 @@ block|{
 name|DatabaseInsertResources_NoValidation_Test
 operator|.
 name|class
+block|,
+name|DatabaseInsertResources_WithValidation_Test
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
