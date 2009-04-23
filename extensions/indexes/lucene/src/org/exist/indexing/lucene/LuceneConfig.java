@@ -403,6 +403,10 @@ condition|(
 name|config
 operator|==
 literal|null
+operator|&&
+name|paths
+operator|!=
+literal|null
 condition|)
 block|{
 for|for
