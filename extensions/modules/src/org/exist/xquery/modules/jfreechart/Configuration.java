@@ -683,7 +683,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"HORIZONTAL"
+literal|"VERTICAL"
 operator|.
 name|equalsIgnoreCase
 argument_list|(
