@@ -3355,6 +3355,7 @@ operator|==
 literal|null
 condition|)
 return|return;
+comment|//TODO should throw an exception!!! Otherwise we dont know if the document was removed
 name|doc
 operator|.
 name|getUpdateLock
@@ -3854,6 +3855,7 @@ operator|==
 literal|null
 condition|)
 return|return;
+comment|//TODO should throw an exception!!! Otherwise we dont know if the document was removed
 try|try
 block|{
 name|broker
