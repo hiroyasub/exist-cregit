@@ -407,6 +407,125 @@ annotation|@
 name|Test
 specifier|public
 name|void
+name|testSerialize
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+name|ResourceSet
+name|result
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|r
+init|=
+literal|""
+decl_stmt|;
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"let $xml :=<test/>\n"
+operator|+
+literal|"return\n"
+operator|+
+literal|"util:serialize($xml,'method=xml')"
+decl_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertXMLEqual
+argument_list|(
+name|r
+argument_list|,
+literal|"<test/>"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXException
+name|sae
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|sae
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testSerialize(): "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
 name|testSerialize2
 parameter_list|()
 throws|throws
@@ -456,17 +575,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"here"
-operator|+
-name|r
-argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
@@ -533,6 +641,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//        @Test
+comment|//    public void testSerializeMoreOptions() throws XPathException {
+comment|//
+comment|//        ResourceSet result = null;
+comment|//        String r = "";
+comment|//        try {
+comment|//            String query = "let $xml :=<test><a>test1</a></test>" +
+comment|//                    "return\n" +
+comment|//                    "util:serialize($xml,'method=xml media-type=text/xml omit-xml-declaration=no indent=yes')";
+comment|//            result = service.query(query);
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            System.out.print(r);
+comment|//            assertXMLEqual(r,"<?xml version='1.0' encoding='UTF-8'?>"+
+comment|//                    "<test>"+
+comment|//                    "<a>test1</a>"+
+comment|//                    "</test>");
+comment|//
+comment|//        } catch (IOException ioe) {
+comment|//                fail(ioe.getMessage());
+comment|//        } catch (SAXException sae) {
+comment|//                fail(sae.getMessage());
+comment|//        } catch (XMLDBException e) {
+comment|//            System.out.println("testSerializeMoreOptions(): " + e);
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//
+comment|//    }
 block|}
 end_class
 
