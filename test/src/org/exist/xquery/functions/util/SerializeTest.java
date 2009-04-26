@@ -407,7 +407,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testSerialize
+name|testSerialize2
 parameter_list|()
 throws|throws
 name|XPathException
@@ -427,11 +427,11 @@ block|{
 name|String
 name|query
 init|=
-literal|"let $r := document{<test/>}'\n"
+literal|"let $xml :=<test><a/><b/></test>\n"
 operator|+
 literal|"return\n"
 operator|+
-literal|"util:serialize($r,'indent=no')"
+literal|"util:serialize($xml,'method=xml indent=no')"
 decl_stmt|;
 name|result
 operator|=
@@ -457,11 +457,22 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|print
+argument_list|(
+literal|"here"
+operator|+
+name|r
+argument_list|)
+expr_stmt|;
 name|assertXMLEqual
 argument_list|(
 name|r
 argument_list|,
-literal|"<test/>"
+literal|"<test><a/><b/></test>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -483,12 +494,12 @@ block|}
 catch|catch
 parameter_list|(
 name|SAXException
-name|e
+name|sae
 parameter_list|)
 block|{
 name|fail
 argument_list|(
-name|e
+name|sae
 operator|.
 name|getMessage
 argument_list|()
@@ -507,7 +518,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testSerialize(): "
+literal|"testSerialize2(): "
 operator|+
 name|e
 argument_list|)
