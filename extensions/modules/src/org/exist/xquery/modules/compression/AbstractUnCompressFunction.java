@@ -774,6 +774,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"entry"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 literal|null
@@ -787,6 +791,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"name"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 name|name
@@ -800,6 +808,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"type"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 name|type
@@ -820,6 +832,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"mime-type"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 argument_list|,
 name|mime
@@ -867,10 +883,7 @@ operator|)
 operator|.
 name|copyTo
 argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
+literal|null
 argument_list|,
 operator|new
 name|DocumentBuilderReceiver
@@ -905,11 +918,6 @@ block|}
 name|builder
 operator|.
 name|endElement
-argument_list|()
-expr_stmt|;
-name|builder
-operator|.
-name|endDocument
 argument_list|()
 expr_stmt|;
 return|return
