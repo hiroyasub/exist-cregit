@@ -451,7 +451,16 @@ name|CompiledXQuery
 name|xquery
 parameter_list|)
 block|{
-comment|//   	 returnModules(xquery.getContext(), null);
+name|returnModules
+argument_list|(
+name|xquery
+operator|.
+name|getContext
+argument_list|()
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|returnObject
 argument_list|(
 name|source
