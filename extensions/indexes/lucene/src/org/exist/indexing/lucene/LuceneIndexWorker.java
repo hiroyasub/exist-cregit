@@ -3499,18 +3499,6 @@ name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Boost: "
-operator|+
-name|doc
-operator|.
-name|getBoost
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// store the node id
 name|int
 name|nodeIdLen
