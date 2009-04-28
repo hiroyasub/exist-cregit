@@ -191,6 +191,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|mortbay
@@ -232,6 +242,8 @@ operator|.
 name|run
 argument_list|(
 name|args
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -253,6 +265,9 @@ parameter_list|(
 name|String
 index|[]
 name|args
+parameter_list|,
+name|Observer
+name|observer
 parameter_list|)
 block|{
 if|if
@@ -351,6 +366,19 @@ operator|=
 operator|new
 name|SingleInstanceConfiguration
 argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|observer
+operator|!=
+literal|null
+condition|)
+name|BrokerPool
+operator|.
+name|registerStatusObserver
+argument_list|(
+name|observer
+argument_list|)
 expr_stmt|;
 name|BrokerPool
 operator|.
