@@ -2872,6 +2872,15 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|sync
+argument_list|(
+name|broker
+argument_list|,
+name|Sync
+operator|.
+name|MAJOR_SYNC
+argument_list|)
+expr_stmt|;
 comment|//Create a default configuration file for the root collection
 comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
 comment|//TODO : understand why we get a test suite failure
