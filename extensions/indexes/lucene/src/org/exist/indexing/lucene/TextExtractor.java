@@ -81,6 +81,11 @@ name|value
 parameter_list|)
 function_decl|;
 specifier|public
+name|float
+name|getBoost
+parameter_list|()
+function_decl|;
+specifier|public
 name|XMLString
 name|getText
 parameter_list|()
