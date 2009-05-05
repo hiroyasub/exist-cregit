@@ -124,8 +124,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//	@Override
 specifier|public
 name|void
 name|run
