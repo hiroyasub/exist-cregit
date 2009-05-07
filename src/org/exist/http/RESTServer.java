@@ -6709,16 +6709,41 @@ comment|// binary resource
 if|if
 condition|(
 name|asMimeType
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
-comment|// was a mime-type specified?
+comment|// wasn't a mime-type specified?
+name|asMimeType
+operator|=
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|asMimeType
+operator|.
+name|startsWith
+argument_list|(
+literal|"text/"
+argument_list|)
+condition|)
+block|{
 name|response
 operator|.
 name|setContentType
 argument_list|(
 name|asMimeType
+operator|+
+literal|"; charset="
+operator|+
+name|encoding
 argument_list|)
 expr_stmt|;
 block|}
@@ -6728,13 +6753,7 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
+name|asMimeType
 argument_list|)
 expr_stmt|;
 block|}
@@ -7030,7 +7049,9 @@ name|setProperty
 argument_list|(
 literal|"media-type"
 argument_list|,
-literal|"text/html"
+literal|"text/html; charset="
+operator|+
+name|encoding
 argument_list|)
 expr_stmt|;
 name|outputProperties
