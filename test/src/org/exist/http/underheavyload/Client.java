@@ -122,13 +122,21 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+name|boolean
+name|running
+decl_stmt|;
+specifier|private
 name|ClientsManager
-name|clients
+name|manager
 decl_stmt|;
 specifier|public
 name|Client
 parameter_list|()
 block|{
+name|running
+operator|=
+literal|true
+expr_stmt|;
 block|}
 specifier|public
 name|Client
@@ -139,9 +147,13 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|clients
+name|manager
 operator|=
 name|clients
+expr_stmt|;
+name|running
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|//	@Override
@@ -231,16 +243,7 @@ block|{
 comment|// The response is invalid and did not provide the new location for
 comment|// the resource. Report an error or possibly handle the response
 comment|// like a 404 Not Found error.
-name|LOG
-operator|.
-name|info
-argument_list|(
-name|method
-operator|.
-name|getResponseBodyAsString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.debug(method.getResponseBodyAsString());
 block|}
 name|method
 operator|.
@@ -272,6 +275,12 @@ operator|.
 name|getResponseHeaders
 argument_list|()
 decl_stmt|;
+comment|//TODO: fetch links
+while|while
+condition|(
+name|running
+condition|)
+block|{
 name|Thread
 operator|.
 name|sleep
@@ -314,16 +323,8 @@ name|method
 argument_list|)
 expr_stmt|;
 comment|// log the page source
-name|LOG
-operator|.
-name|info
-argument_list|(
-name|method
-operator|.
-name|getResponseBodyAsString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//LOG.info(method.getResponseBodyAsString());
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -340,6 +341,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|protected
+name|void
+name|shutdown
+parameter_list|()
+block|{
+name|running
+operator|=
+literal|false
+expr_stmt|;
+block|}
 specifier|private
 name|String
 name|getURL
@@ -347,7 +358,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|clients
+name|manager
 operator|==
 literal|null
 condition|)
@@ -356,7 +367,7 @@ literal|"http://localhost:8080/exist/admin"
 return|;
 else|else
 return|return
-name|clients
+name|manager
 operator|.
 name|getURL
 argument_list|()

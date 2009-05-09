@@ -84,7 +84,7 @@ operator|=
 operator|new
 name|ClientsManager
 argument_list|(
-literal|20
+literal|5
 argument_list|,
 literal|"http://localhost:8080/exist/admin"
 argument_list|)
@@ -95,6 +95,8 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
+literal|60
+operator|*
 literal|60
 operator|*
 literal|1000
