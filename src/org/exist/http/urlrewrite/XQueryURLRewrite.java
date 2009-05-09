@@ -893,10 +893,6 @@ specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-specifier|private
-name|XQueryContext
-name|queryContext
-decl_stmt|;
 comment|// path to the query
 specifier|private
 name|String
@@ -2039,6 +2035,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// HTTP response code indicates an error
 name|byte
 index|[]
 name|data
@@ -2607,10 +2604,6 @@ name|config
 operator|=
 literal|null
 expr_stmt|;
-name|queryContext
-operator|=
-literal|null
-expr_stmt|;
 block|}
 specifier|private
 name|Sequence
@@ -2901,6 +2894,9 @@ name|broker
 argument_list|,
 name|source
 argument_list|)
+decl_stmt|;
+name|XQueryContext
+name|queryContext
 decl_stmt|;
 if|if
 condition|(
