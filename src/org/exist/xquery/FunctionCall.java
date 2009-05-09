@@ -480,10 +480,13 @@ argument_list|)
 operator|&&
 name|modContext
 operator|.
-name|getParentContext
+name|getRootContext
 argument_list|()
 operator|!=
 name|context
+operator|.
+name|getRootContext
+argument_list|()
 condition|)
 block|{
 name|ExternalModule

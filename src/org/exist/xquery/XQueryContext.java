@@ -1228,7 +1228,6 @@ literal|true
 decl_stmt|;
 comment|// Local namespace stack
 specifier|protected
-specifier|final
 name|Stack
 name|namespaceStack
 init|=
@@ -1270,7 +1269,6 @@ name|Stack
 argument_list|()
 decl_stmt|;
 specifier|protected
-specifier|final
 name|Stack
 name|callStack
 init|=
@@ -1287,7 +1285,6 @@ literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
 specifier|protected
-specifier|final
 name|Stack
 name|forwardReferences
 init|=
@@ -1807,6 +1804,15 @@ parameter_list|()
 block|{
 return|return
 literal|false
+return|;
+block|}
+specifier|public
+name|XQueryContext
+name|getRootContext
+parameter_list|()
+block|{
+return|return
+name|this
 return|;
 block|}
 specifier|public
@@ -4751,6 +4757,8 @@ operator|.
 name|reset
 argument_list|(
 name|this
+argument_list|,
+name|keepGlobals
 argument_list|)
 expr_stmt|;
 block|}
@@ -5107,11 +5115,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-name|modulesChanged
-condition|)
-block|{
 name|expr
 operator|.
 name|analyze
@@ -5178,7 +5181,6 @@ name|modulesChanged
 operator|=
 literal|false
 expr_stmt|;
-block|}
 block|}
 comment|/** 	 * Load a built-in module from the given class name and assign it to the 	 * namespace URI. The specified class should be a subclass of 	 * {@link Module}. The method will try to instantiate the class. If the 	 * class is not found or an exception is thrown, the method will silently  	 * fail. The namespace URI has to be equal to the namespace URI declared 	 * by the module class. Otherwise, the module is not loaded. 	 *  	 * @param namespaceURI 	 * @param moduleClass 	 */
 specifier|public

@@ -529,6 +529,7 @@ name|ExternalModule
 operator|)
 name|module
 decl_stmt|;
+comment|//             ((ModuleContext)extModule.getContext()).setParentContext(null);
 comment|// Don't return recursively, since all modules are listed in the top-level context
 name|returnObject
 argument_list|(
@@ -1398,6 +1399,33 @@ argument_list|(
 name|rootContext
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|module
+operator|.
+name|analyzeGlobalVars
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|module
 return|;

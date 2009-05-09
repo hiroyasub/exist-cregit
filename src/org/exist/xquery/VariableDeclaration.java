@@ -231,29 +231,9 @@ literal|null
 condition|)
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
-if|if
-condition|(
-name|myModule
-operator|.
-name|isVarDeclared
-argument_list|(
-name|qn
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"err:XQST0049: It is a static error if more than one "
-operator|+
-literal|"variable declared or imported by a module has the same expanded QName. Variable: "
-operator|+
-name|qn
-argument_list|)
-throw|;
+comment|//                if (myModule.isVarDeclared(qn))
+comment|//                    throw new XPathException(getASTNode(), "err:XQST0049: It is a static error if more than one " +
+comment|//                            "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
 name|myModule
 operator|.
 name|declareVariable
@@ -265,31 +245,10 @@ block|}
 else|else
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
-if|if
-condition|(
-name|context
-operator|.
-name|isVarDeclared
-argument_list|(
-name|qn
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|getASTNode
-argument_list|()
-argument_list|,
-literal|"err:XQST0049: It is a static error if more than one "
-operator|+
-literal|"variable declared or imported by a module has the same expanded QName. Variable: "
-operator|+
-name|qn
-argument_list|)
-throw|;
-block|}
+comment|//                if(context.isVarDeclared(qn)) {
+comment|//                    throw new XPathException(getASTNode(), "err:XQST0049: It is a static error if more than one " +
+comment|//                            "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
+comment|//                }
 name|context
 operator|.
 name|declareGlobalVariable

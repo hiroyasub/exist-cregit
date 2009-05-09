@@ -130,6 +130,9 @@ name|reset
 parameter_list|(
 name|XQueryContext
 name|xqueryContext
+parameter_list|,
+name|boolean
+name|keepGlobals
 parameter_list|)
 function_decl|;
 block|}

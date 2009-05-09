@@ -82,6 +82,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|void
+name|analyzeGlobalVars
+parameter_list|()
+throws|throws
+name|XPathException
+function_decl|;
 comment|/** 	 * Get the source object this module has been read from. 	 * 	 * This is required for query access control. 	 * @return The source object this module has been read from. 	 */
 specifier|public
 name|Source
