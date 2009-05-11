@@ -4757,8 +4757,6 @@ operator|.
 name|reset
 argument_list|(
 name|this
-argument_list|,
-name|keepGlobals
 argument_list|)
 expr_stmt|;
 block|}

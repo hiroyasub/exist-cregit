@@ -1340,7 +1340,9 @@ operator|!
 name|module
 operator|.
 name|moduleIsValid
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 condition|)
 block|{
 name|LOG

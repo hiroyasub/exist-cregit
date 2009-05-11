@@ -37,6 +37,18 @@ name|Source
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -122,7 +134,10 @@ comment|/** 	 * Is this module still valid or should it be reloaded from its sou
 specifier|public
 name|boolean
 name|moduleIsValid
-parameter_list|()
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 function_decl|;
 block|}
 end_interface
