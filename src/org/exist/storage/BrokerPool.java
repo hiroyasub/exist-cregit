@@ -49,87 +49,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
+name|*
 import|;
 end_import
 
@@ -176,6 +96,18 @@ operator|.
 name|management
 operator|.
 name|AgentFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
 import|;
 end_import
 
@@ -509,6 +441,36 @@ name|XmldbURI
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -521,6 +483,8 @@ begin_class
 specifier|public
 class|class
 name|BrokerPool
+extends|extends
+name|Observable
 block|{
 specifier|private
 specifier|final
@@ -546,6 +510,22 @@ init|=
 operator|new
 name|TreeMap
 argument_list|()
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_STARTUP
+init|=
+literal|"startup"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_SHUTDOWN
+init|=
+literal|"shutdown"
 decl_stmt|;
 comment|/** 	 * The name of a default database instance for those who are too lazy to provide parameters ;-).  	 */
 specifier|public
@@ -788,6 +768,13 @@ name|boolean
 name|registerShutdownHook
 init|=
 literal|true
+decl_stmt|;
+specifier|private
+specifier|static
+name|Observer
+name|statusObserver
+init|=
+literal|null
 decl_stmt|;
 comment|/**      * Whether of not the JVM should run the shutdown thread. 	 * @param register<code>true</code> if the JVM should run the thread 	 */
 comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
@@ -1323,6 +1310,35 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+specifier|static
+name|void
+name|registerStatusObserver
+parameter_list|(
+name|Observer
+name|observer
+parameter_list|)
+block|{
+name|statusObserver
+operator|=
+name|observer
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"registering observer: "
+operator|+
+name|observer
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/* END OF STATIC IMPLEMENTATION */
 comment|/** 	 * Default values 	 */
 comment|//TODO : make them static when we have 2 classes
@@ -1563,6 +1579,15 @@ name|notificationService
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|long
+name|nextSystemStatus
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 comment|/** 	 * The system maintenance tasks of the database instance. 	 */
 comment|//TODO : maybe not the most appropriate container...
 comment|// WM: yes, only used in initialization. Don't need a synchronized collection here
@@ -1696,6 +1721,17 @@ operator|.
 name|getNumberInstance
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|statusObserver
+operator|!=
+literal|null
+condition|)
+name|addObserver
+argument_list|(
+name|statusObserver
+argument_list|)
+expr_stmt|;
 comment|//TODO : ensure that the instance name is unique ?
 comment|//WM: needs to be done in the configure method.
 name|this
@@ -2362,6 +2398,11 @@ comment|//Flag to indicate that we are initializing
 name|status
 operator|=
 name|INITIALIZING
+expr_stmt|;
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_STARTUP
+argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then configure
 name|cacheManager
@@ -3032,6 +3073,43 @@ block|{
 return|return
 name|pageSize
 return|;
+block|}
+specifier|public
+name|void
+name|signalSystemStatus
+parameter_list|(
+name|String
+name|signal
+parameter_list|)
+block|{
+if|if
+condition|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|>
+name|nextSystemStatus
+condition|)
+block|{
+name|setChanged
+argument_list|()
+expr_stmt|;
+name|notifyObservers
+argument_list|(
+name|signal
+argument_list|)
+expr_stmt|;
+name|nextSystemStatus
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|+
+literal|10000
+expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Whether or not the database instance is being initialized.  	 *  	 * @return<code>true</code> is the database instance is being initialized 	 */
 comment|//	TODO : let's be positive and rename it as isInitialized ?
@@ -4532,6 +4610,11 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_SHUTDOWN
+argument_list|)
+expr_stmt|;
 block|}
 comment|//Notify all running XQueries that we are shutting down
 name|processMonitor
@@ -4627,6 +4710,11 @@ name|e
 parameter_list|)
 block|{
 block|}
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_SHUTDOWN
+argument_list|)
+expr_stmt|;
 comment|//...or force the shutdown
 if|if
 condition|(
@@ -4776,6 +4864,11 @@ operator|.
 name|deregisterCache
 argument_list|(
 name|collectionCache
+argument_list|)
+expr_stmt|;
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_SHUTDOWN
 argument_list|)
 expr_stmt|;
 if|if
