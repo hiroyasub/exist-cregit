@@ -23809,6 +23809,7 @@ literal|0
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated Use XmldbURI version instead */
 specifier|public
 name|HashMap
 name|querySummary
@@ -23828,6 +23829,7 @@ name|xquery
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated Use XmldbURI version instead */
 specifier|public
 name|byte
 index|[]

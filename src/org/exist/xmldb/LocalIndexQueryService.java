@@ -422,7 +422,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xmldb.IndexQueryService#reindexCollection(java.lang.String)      */
+comment|/* (non-Javadoc)      * @deprecated Use XmldbURI version instead      * @see org.exist.xmldb.IndexQueryService#reindexCollection(java.lang.String)      */
 specifier|public
 name|void
 name|reindexCollection

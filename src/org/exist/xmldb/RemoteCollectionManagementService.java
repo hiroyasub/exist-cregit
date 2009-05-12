@@ -173,6 +173,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|Collection
 name|createCollection
@@ -217,6 +218,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|Collection
 name|createCollection
@@ -392,7 +394,7 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**      *  Implements createCollection from interface CollectionManager. Gets      *  called by some applications based on Xindice.      *      *@param  path                Description of the Parameter      *@param  configuration       Description of the Parameter      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Implements createCollection from interface CollectionManager. Gets      *  called by some applications based on Xindice.      * 	 * @deprecated Use XmldbURI version instead      *      *@param  path                Description of the Parameter      *@param  configuration       Description of the Parameter      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Collection
 name|createCollection
@@ -447,6 +449,7 @@ return|return
 literal|"1.0"
 return|;
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|removeCollection
@@ -611,6 +614,7 @@ name|value
 parameter_list|)
 block|{
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|move
@@ -813,6 +817,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|moveResource
@@ -1019,6 +1024,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|copy
@@ -1221,6 +1227,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|copyResource

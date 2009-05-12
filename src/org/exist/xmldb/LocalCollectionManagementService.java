@@ -370,6 +370,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|Collection
 name|createCollection
@@ -414,6 +415,7 @@ literal|null
 argument_list|)
 return|;
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|Collection
 name|createCollection
@@ -687,7 +689,7 @@ name|accessCtx
 argument_list|)
 return|;
 block|}
-comment|/**      *  Creates a new collection in the database identified by name and using      *  the provided configuration.      *      *@param  path                the path of the new collection      *@param  configuration       the XML collection configuration to use for      *      creating this collection.      *@return                     The newly created collection      *@exception  XMLDBException      */
+comment|/**      *  Creates a new collection in the database identified by name and using      *  the provided configuration.      *      * @deprecated Use XmldbURI version instead      *      *@param  path                the path of the new collection      *@param  configuration       the XML collection configuration to use for      *      creating this collection.      *@return                     The newly created collection      *@exception  XMLDBException      */
 specifier|public
 name|Collection
 name|createCollection
@@ -742,6 +744,7 @@ return|return
 literal|"1.0"
 return|;
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void
 name|removeCollection
@@ -1048,6 +1051,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void
 name|move
@@ -1503,6 +1507,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void
 name|moveResource
@@ -2013,6 +2018,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void
 name|copy
@@ -2470,6 +2476,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
 specifier|public
 name|void
 name|copyResource
