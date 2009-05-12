@@ -1530,7 +1530,7 @@ name|isRequestedSessionIdFromURL
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromUrl 	 */
+comment|/** 	 * @deprecated use isRequestedSessionIdFromURL() instead.      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromUrl 	 */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromUrl
@@ -2254,7 +2254,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @see javax.servlet.http.HttpServletRequest#getRealPath 	 */
+comment|/**      * @deprecated use use ServletContext#getRealPath(java.lang.String) instead. 	 * @see javax.servlet.http.HttpServletRequest#getRealPath 	 */
 specifier|public
 name|String
 name|getRealPath

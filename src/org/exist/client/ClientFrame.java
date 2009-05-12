@@ -8760,8 +8760,10 @@ argument_list|)
 decl_stmt|;
 name|editor
 operator|.
-name|show
-argument_list|()
+name|setVisible
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 specifier|private

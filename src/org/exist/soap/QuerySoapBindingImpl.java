@@ -1999,6 +1999,7 @@ name|query
 argument_list|)
 return|;
 block|}
+comment|/**  @deprecated use {@link #xquery(String, byte[])} instead. */
 specifier|public
 name|org
 operator|.
