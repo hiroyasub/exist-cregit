@@ -1462,6 +1462,7 @@ literal|"0"
 return|;
 block|}
 comment|//WARNING : returning such a default value is dangerous IMHO ? -pb
+comment|/** @deprecated */
 specifier|public
 name|String
 name|getName

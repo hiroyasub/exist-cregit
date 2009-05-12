@@ -1439,6 +1439,7 @@ name|name
 argument_list|)
 return|;
 block|}
+comment|/** @deprecated */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -1492,7 +1493,7 @@ name|lockMode
 argument_list|)
 return|;
 block|}
-comment|/*       * @deprecated Use other method      * @see org.exist.collections.Collection#releaseDocument(org.exist.dom.DocumentImpl)      */
+comment|/**      * @deprecated Use other method      * @see org.exist.collections.Collection#releaseDocument(org.exist.dom.DocumentImpl)      */
 specifier|public
 name|void
 name|releaseDocument
