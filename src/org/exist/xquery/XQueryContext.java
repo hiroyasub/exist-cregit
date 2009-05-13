@@ -2418,11 +2418,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//Note that, for some reasons, an XQueryContext might be used without calling this method
-name|profiler
-operator|.
-name|configure
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 name|AccessContext

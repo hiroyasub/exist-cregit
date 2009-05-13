@@ -2358,7 +2358,9 @@ name|xqueryStats
 operator|=
 operator|new
 name|PerformanceStats
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
 name|xmlReaderPool
