@@ -252,6 +252,12 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|private
+name|File
+name|lastExportedBackup
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -706,9 +712,8 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|File
-name|exportFile
-init|=
+name|lastExportedBackup
+operator|=
 name|sysexport
 operator|.
 name|export
@@ -723,7 +728,7 @@ literal|true
 argument_list|,
 name|errors
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -737,7 +742,7 @@ name|debug
 argument_list|(
 literal|"Created backup to file: "
 operator|+
-name|exportFile
+name|lastExportedBackup
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -759,6 +764,16 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Gets the last exported backup      */
+specifier|public
+name|File
+name|getLastExportedBackup
+parameter_list|()
+block|{
+return|return
+name|lastExportedBackup
+return|;
 block|}
 specifier|private
 name|boolean
