@@ -41,6 +41,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xquery
+operator|.
+name|Profiler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|PerformanceStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -1529,6 +1553,11 @@ specifier|private
 name|ProcessMonitor
 name|processMonitor
 decl_stmt|;
+comment|/**      * Global performance stats to gather function execution statistics      * from all queries running on this database instance.      */
+specifier|private
+name|PerformanceStats
+name|xqueryStats
+decl_stmt|;
 comment|/**      * The global manager for accessing collection configuration files from the database instance.      */
 specifier|private
 name|CollectionConfigurationManager
@@ -2323,6 +2352,12 @@ name|processMonitor
 operator|=
 operator|new
 name|ProcessMonitor
+argument_list|()
+expr_stmt|;
+name|xqueryStats
+operator|=
+operator|new
+name|PerformanceStats
 argument_list|()
 expr_stmt|;
 comment|//REFACTOR : construct then... configure
@@ -3497,6 +3532,16 @@ parameter_list|()
 block|{
 return|return
 name|processMonitor
+return|;
+block|}
+comment|/**      * Returns the global profiler used to gather execution statistics      * from all XQueries running on this db instance.      *      * @return the profiler      */
+specifier|public
+name|PerformanceStats
+name|getPerformanceStats
+parameter_list|()
+block|{
+return|return
+name|xqueryStats
 return|;
 block|}
 comment|/**      * Returns a pool in which the database instance's readers are stored.      *       * @return The pool 	 */

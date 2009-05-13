@@ -810,6 +810,18 @@ name|getWatchDog
 argument_list|()
 return|;
 block|}
+specifier|public
+name|Profiler
+name|getProfiler
+parameter_list|()
+block|{
+return|return
+name|parentContext
+operator|.
+name|getProfiler
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getCalendar() 	 */
 specifier|public
 name|XMLGregorianCalendar
