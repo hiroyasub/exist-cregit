@@ -1760,25 +1760,6 @@ name|temp
 expr_stmt|;
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Union: "
-operator|+
-name|preselectResult
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" -> "
-operator|+
-name|temp
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|preselectResult
 operator|=
 name|preselectResult
