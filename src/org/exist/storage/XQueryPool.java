@@ -857,72 +857,27 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|borrowModules
-argument_list|(
-name|broker
-argument_list|,
-name|context
-argument_list|)
-condition|)
-block|{
-comment|// the compiled query is no longer valid: one of the imported
-comment|// modules may have changed
-name|remove
-argument_list|(
-name|source
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|query
-operator|instanceof
-name|PathExpr
-condition|)
-try|try
-block|{
-comment|// This is necessary because eXist performs whole-expression analysis, so a function
-comment|// can only be analyzed as part of the expression it's called from.  It might be better
-comment|// to make module functions more stand-alone, so they only need to be analyzed
-comment|// once.
-name|context
-operator|.
-name|analyzeAndOptimizeIfModulesChanged
-argument_list|(
-operator|(
-name|PathExpr
-operator|)
-name|query
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|remove
-argument_list|(
-name|source
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
 return|return
 name|query
 return|;
-block|}
+comment|//      if (!borrowModules(broker, context)) {
+comment|//          // the compiled query is no longer valid: one of the imported
+comment|//          // modules may have changed
+comment|//          remove(source);
+comment|//          return null;
+comment|//      } else {
+comment|//      	if (query instanceof PathExpr) try {
+comment|//      		// This is necessary because eXist performs whole-expression analysis, so a function
+comment|//      		// can only be analyzed as part of the expression it's called from.  It might be better
+comment|//      		// to make module functions more stand-alone, so they only need to be analyzed
+comment|//      		// once.
+comment|//      		context.analyzeAndOptimizeIfModulesChanged((PathExpr) query);
+comment|//      	} catch (XPathException e) {
+comment|//      		remove(source);
+comment|//      		return null;
+comment|//      	}
+comment|//          return query;
+comment|//      }
 block|}
 specifier|private
 specifier|synchronized
