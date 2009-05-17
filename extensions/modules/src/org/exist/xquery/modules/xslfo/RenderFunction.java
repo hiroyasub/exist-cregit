@@ -959,7 +959,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|te
+operator|.
+name|getMessageAndLocation
 argument_list|()
 argument_list|,
 name|te
@@ -976,7 +980,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|se
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|se

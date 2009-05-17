@@ -563,8 +563,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"jndi:modify() Modify failed for dn ["
 operator|+
@@ -842,8 +841,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"jndi:modify() - Invalid operation code: ["
 operator|+
