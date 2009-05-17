@@ -167,9 +167,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 name|te
 operator|.
@@ -213,9 +210,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 name|te
 operator|.

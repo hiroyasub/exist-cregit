@@ -244,8 +244,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XQST0049: It is a static error if more than one "
 operator|+
@@ -279,8 +278,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XQST0049: It is a static error if more than one "
 operator|+
@@ -618,8 +616,7 @@ name|display
 argument_list|(
 name|qname
 argument_list|,
-name|getASTNode
-argument_list|()
+name|line
 argument_list|)
 expr_stmt|;
 if|if

@@ -370,8 +370,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPST0080: cannot cast to "
 operator|+
@@ -421,8 +420,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPST0051: cannot cast to "
 operator|+
@@ -474,8 +472,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: empty sequence is not allowed here"
 argument_list|)
@@ -522,8 +519,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPTY0004: cardinality error: sequence with more than one item is not allowed here"
 argument_list|)
@@ -604,8 +600,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Cannot cast "
 operator|+
@@ -643,9 +638,16 @@ parameter_list|)
 block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
+name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
 argument_list|()
 argument_list|)
 expr_stmt|;

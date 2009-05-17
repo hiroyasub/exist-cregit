@@ -485,8 +485,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+
@@ -686,8 +685,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+
@@ -743,8 +741,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+

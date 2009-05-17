@@ -486,8 +486,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0089: bound variable and positional variable have the same name"
 argument_list|)
@@ -1375,8 +1374,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid cardinality for variable $"
 operator|+
@@ -1909,8 +1907,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid cardinality for variable $"
 operator|+
@@ -1987,8 +1984,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+
@@ -2101,8 +2097,7 @@ name|display
 argument_list|(
 literal|"for "
 argument_list|,
-name|getASTNode
-argument_list|()
+name|line
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -2195,7 +2190,7 @@ literal|"where"
 argument_list|,
 name|whereExpr
 operator|.
-name|getASTNode
+name|getLine
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2426,7 +2421,7 @@ literal|" "
 argument_list|,
 name|returnExpr
 operator|.
-name|getASTNode
+name|getLine
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2439,7 +2434,7 @@ literal|"return"
 argument_list|,
 name|returnExpr
 operator|.
-name|getASTNode
+name|getLine
 argument_list|()
 argument_list|)
 expr_stmt|;

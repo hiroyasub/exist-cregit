@@ -327,9 +327,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FOCH0002: Required type is "
 operator|+
@@ -413,9 +410,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FOCH0002: Required type is "
 operator|+
@@ -493,9 +487,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FOCH0002: Required type is "
 operator|+
@@ -572,9 +563,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FOCH0002: Required type is "
 operator|+
@@ -668,9 +656,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FORG0001: "
 operator|+
@@ -708,9 +693,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"FOCH0002: Required type is "
 operator|+
@@ -966,16 +948,27 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getASTNode() 	 */
 specifier|public
-name|XQueryAST
-name|getASTNode
+name|int
+name|getLine
 parameter_list|()
 block|{
 return|return
 name|expression
 operator|.
-name|getASTNode
+name|getLine
+argument_list|()
+return|;
+block|}
+specifier|public
+name|int
+name|getColumn
+parameter_list|()
+block|{
+return|return
+name|expression
+operator|.
+name|getColumn
 argument_list|()
 return|;
 block|}

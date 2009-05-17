@@ -791,8 +791,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Unable to authenticate user: target collection "
 operator|+
@@ -1110,8 +1109,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
@@ -1138,8 +1136,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)

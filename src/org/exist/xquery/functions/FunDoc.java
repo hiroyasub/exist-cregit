@@ -493,8 +493,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FODC0002: can not access '"
 operator|+
@@ -506,7 +505,7 @@ throw|;
 block|}
 comment|//			TODO: we still need a final decision about this. Also check base-uri.
 comment|//			if (result == Sequence.EMPTY_SEQUENCE)
-comment|//				throw new XPathException(getASTNode(), path + " is not an XML document");
+comment|//				throw new XPathException(this, path + " is not an XML document");
 name|DocumentSet
 name|docs
 init|=
@@ -544,8 +543,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|e
 operator|.
@@ -654,9 +652,6 @@ name|debug
 argument_list|(
 literal|"UpdateListener: Line: "
 operator|+
-name|getASTNode
-argument_list|()
-operator|.
 name|getLine
 argument_list|()
 operator|+

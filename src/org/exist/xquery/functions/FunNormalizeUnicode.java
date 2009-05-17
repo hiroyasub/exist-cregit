@@ -673,8 +673,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FOCH0003: unknown normalization form"
 argument_list|)
@@ -804,8 +803,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Can not find the ICU4J library in the classpath "
 operator|+

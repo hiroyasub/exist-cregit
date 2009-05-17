@@ -146,8 +146,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPDY0002 : variable '$"
 operator|+
@@ -168,8 +167,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0054: variable declaration of '$"
 operator|+
@@ -310,8 +308,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPDY0002 : variable '$"
 operator|+
@@ -338,8 +335,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPDY0002 : undefined value for variable '$"
 operator|+
@@ -407,10 +403,11 @@ parameter_list|)
 block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 throw|throw

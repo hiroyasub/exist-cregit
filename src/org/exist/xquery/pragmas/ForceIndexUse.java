@@ -194,9 +194,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"XQDYxxxx: Can not use index on expression '"
 operator|+
@@ -205,7 +202,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
-comment|/*     	if (expression instanceof PathExpr) {     		PathExpr pe = (PathExpr)expression;     		for (Iterator i = pe.steps.iterator(); i.hasNext();) {                 Expression expr = (Expression) i.next();                 if (expr instanceof GeneralComparison) {                 	if (!((GeneralComparison)expr).hasUsedIndex())                 		throw new XPathException(expression.getASTNode(), "XQDYxxxx: Can not use index");                	                 }                 if (expr instanceof FunMatches) {                 	if (!((FunMatches)expr).hasUsedIndex())                 		throw new XPathException(expression.getASTNode(), "XQDYxxxx: Can not use index");                	                 }              }     	}     	*/
+comment|/*     	if (expression instanceof PathExpr) {     		PathExpr pe = (PathExpr)expression;     		for (Iterator i = pe.steps.iterator(); i.hasNext();) {                 Expression expr = (Expression) i.next();                 if (expr instanceof GeneralComparison) {                 	if (!((GeneralComparison)expr).hasUsedIndex())                 		throw new XPathException(expression, "XQDYxxxx: Can not use index");                 }                 if (expr instanceof FunMatches) {                 	if (!((FunMatches)expr).hasUsedIndex())                 		throw new XPathException(expression, "XQDYxxxx: Can not use index");                	                 }              }     	}     	*/
 block|}
 block|}
 end_class

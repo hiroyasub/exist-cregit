@@ -462,8 +462,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"The name expression should evaluate to a single value"
 argument_list|)
@@ -539,8 +538,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004 '"
 operator|+
@@ -686,8 +684,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Error XQDY0025: element has more than one attribute '"
 operator|+

@@ -601,8 +601,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORX0003: regular expression could match empty string"
 argument_list|)
@@ -745,8 +744,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid regular expression: "
 operator|+

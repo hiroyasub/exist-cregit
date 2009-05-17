@@ -765,8 +765,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Conversion from XPath2 to Java regular expression "
 operator|+
@@ -785,7 +784,6 @@ return|return
 name|pattern
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param stringArg      * @return      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalGeneric
@@ -1054,8 +1052,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid regular expression: "
 operator|+

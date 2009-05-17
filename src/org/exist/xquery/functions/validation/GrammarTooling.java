@@ -936,8 +936,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Only XMLSchemas can be preparsed."
 argument_list|)
@@ -964,7 +963,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|ex
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|ex
@@ -991,7 +994,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|ex
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|ex
@@ -1097,8 +1104,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"function not found"
 argument_list|)

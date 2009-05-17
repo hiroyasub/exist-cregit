@@ -519,7 +519,12 @@ name|TerminatedException
 argument_list|(
 name|expr
 operator|.
-name|getASTNode
+name|getLine
+argument_list|()
+argument_list|,
+name|expr
+operator|.
+name|getColumn
 argument_list|()
 argument_list|,
 literal|"The query has been killed by the server."
@@ -599,7 +604,12 @@ name|TimeoutException
 argument_list|(
 name|expr
 operator|.
-name|getASTNode
+name|getLine
+argument_list|()
+argument_list|,
+name|expr
+operator|.
+name|getColumn
 argument_list|()
 argument_list|,
 literal|"The query exceeded the predefined timeout and has been killed."
@@ -694,7 +704,12 @@ name|SizeLimitException
 argument_list|(
 name|expr
 operator|.
-name|getASTNode
+name|getLine
+argument_list|()
+argument_list|,
+name|expr
+operator|.
+name|getColumn
 argument_list|()
 argument_list|,
 literal|"The constructed document fragment exceeded the predefined output-size-limit (current: "

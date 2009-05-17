@@ -949,11 +949,11 @@ init|=
 operator|new
 name|XPathException
 argument_list|(
-name|message
-argument_list|,
 name|line
 argument_list|,
 name|column
+argument_list|,
+name|message
 argument_list|)
 decl_stmt|;
 throw|throw
@@ -1058,11 +1058,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|message
-argument_list|,
 name|line
 argument_list|,
 name|column
+argument_list|,
+name|message
 argument_list|)
 throw|;
 block|}

@@ -1308,8 +1308,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid cardinality for variable $"
 operator|+
@@ -1390,8 +1389,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+
@@ -1464,8 +1462,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: Invalid type for variable $"
 operator|+
@@ -1750,8 +1747,7 @@ name|display
 argument_list|(
 literal|"let "
 argument_list|,
-name|getASTNode
-argument_list|()
+name|line
 argument_list|)
 expr_stmt|;
 name|dumper

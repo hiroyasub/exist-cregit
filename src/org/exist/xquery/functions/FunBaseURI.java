@@ -580,8 +580,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPDY0002: context sequence is empty and no argument specified"
 argument_list|)
@@ -617,8 +616,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPTY0004: context item is not a node"
 argument_list|)
@@ -795,8 +793,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|e
 operator|.
@@ -979,8 +976,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|e
 operator|.

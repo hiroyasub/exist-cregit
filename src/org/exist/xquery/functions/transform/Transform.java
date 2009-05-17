@@ -1410,8 +1410,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Found invalid serialization option: "
 operator|+
@@ -1685,8 +1684,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Exception while transforming node: "
 operator|+
@@ -1790,8 +1788,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"No response object found in the current XQuery context."
 argument_list|)
@@ -1814,8 +1811,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
@@ -1859,8 +1855,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|signatures
 index|[
@@ -2072,8 +2067,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Exception while transforming node: "
 operator|+
@@ -2113,8 +2107,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"IO exception while transforming node: "
 operator|+
@@ -2376,8 +2369,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Unable to set up transformer: "
 operator|+
@@ -2508,8 +2500,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
@@ -2837,8 +2828,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Malformed URL for stylesheet: "
 operator|+
@@ -2858,8 +2848,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"IO error while loading stylesheet: "
 operator|+
@@ -2936,8 +2925,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"A SAX exception occurred while compiling the stylesheet: "
 operator|+
@@ -3141,8 +3129,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|Transform
+operator|.
+name|this
 argument_list|,
 literal|"Permission denied to read stylesheet: "
 operator|+
@@ -3390,8 +3379,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|Transform
+operator|.
+name|this
 argument_list|,
 literal|"An exception occurred while compiling the stylesheet: "
 operator|+

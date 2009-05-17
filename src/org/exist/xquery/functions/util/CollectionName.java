@@ -417,8 +417,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Passed Java object should be of type org.xmldb.api.base.Collection"
 argument_list|)
@@ -454,8 +453,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Failed to retrieve collection name"
 argument_list|,
@@ -525,8 +523,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Illegal URI for resource path: "
 operator|+
@@ -607,8 +604,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"First argument to util:collection-name should be either "
 operator|+

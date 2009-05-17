@@ -690,8 +690,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid argument to fn:doc function: empty string is not allowed here."
 argument_list|)
@@ -770,8 +769,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Insufficient privileges to read resource "
 operator|+
@@ -796,10 +794,11 @@ block|{
 comment|//From AnyURIValue constructor
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -816,8 +815,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Permission denied: unable to load document "
 operator|+
@@ -951,8 +949,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Could not acquire lock on document set."
 argument_list|)
@@ -1259,9 +1256,6 @@ name|debug
 argument_list|(
 literal|"UpdateListener: Line: "
 operator|+
-name|getASTNode
-argument_list|()
-operator|.
 name|getLine
 argument_list|()
 operator|+

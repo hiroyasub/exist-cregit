@@ -384,8 +384,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: sequence with more than one item is not allowed here"
 argument_list|)
@@ -507,8 +506,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Context is missing for node set comparison"
 argument_list|)
@@ -553,8 +551,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)
@@ -633,8 +630,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)

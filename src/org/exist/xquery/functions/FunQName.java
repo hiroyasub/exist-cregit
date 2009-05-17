@@ -390,8 +390,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPTY0004: namespace URI is of type '"
 operator|+
@@ -491,8 +490,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FOCA0002: invalid lexical form of either prefix or local name."
 argument_list|)
@@ -530,8 +528,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FOCA0002: non-empty namespace prefix with empty namespace URI"
 argument_list|)

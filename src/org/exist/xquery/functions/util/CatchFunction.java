@@ -634,8 +634,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Error in exception handler: "
 operator|+
@@ -667,7 +666,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|e
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|e

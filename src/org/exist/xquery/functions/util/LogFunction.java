@@ -630,8 +630,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 operator|.
 name|getLine
 argument_list|()
@@ -722,8 +721,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"An exception occurred while serializing node to log: "
 operator|+

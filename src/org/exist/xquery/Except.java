@@ -345,8 +345,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Error XPTY0004 : except operand is not a node sequence"
 argument_list|)
@@ -395,8 +394,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Error XPTY0004 : except operand is not a node sequence"
 argument_list|)

@@ -397,8 +397,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FONC0001: undefined context item"
 argument_list|)
@@ -456,7 +455,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/*public Sequence eval(StaticContext context, DocumentSet docs, Sequence contextSequence, 		Item contextItem) throws XPathException { 			if(!Type.subTypeOf(contextItem.getType(), Type.NODE)) 				throw new XPathException(getASTNode(), "last() can only be applied to nodes"); 			NodeProxy contextNode = (NodeProxy)contextItem; 	   DocumentImpl doc = contextNode.getDoc(); 	   int level = doc.getTreeLevel(contextNode.getGID()); 	   long pid = (contextNode.getGID() - doc.getLevelStartPoint(level)) / 	     doc.getTreeLevelOrder(level) 	     + doc.getLevelStartPoint(level - 1); 	   long f_gid = (pid - doc.getLevelStartPoint(level -1)) * 	     doc.getTreeLevelOrder(level) + 	     doc.getLevelStartPoint(level); 	   long e_gid = f_gid + doc.getTreeLevelOrder(level); 	   NodeSet set = ((NodeSet)contextSequence).getRange(doc, f_gid, e_gid); 	   int len = set.getLength(); 	   return new IntegerValue(len); 	}*/
+comment|/*public Sequence eval(StaticContext context, DocumentSet docs, Sequence contextSequence, 		Item contextItem) throws XPathException { 			if(!Type.subTypeOf(contextItem.getType(), Type.NODE)) 				throw new XPathException(this, "last() can only be applied to nodes"); 			NodeProxy contextNode = (NodeProxy)contextItem; 	   DocumentImpl doc = contextNode.getDoc(); 	   int level = doc.getTreeLevel(contextNode.getGID()); 	   long pid = (contextNode.getGID() - doc.getLevelStartPoint(level)) / 	     doc.getTreeLevelOrder(level) 	     + doc.getLevelStartPoint(level - 1); 	   long f_gid = (pid - doc.getLevelStartPoint(level -1)) * 	     doc.getTreeLevelOrder(level) + 	     doc.getLevelStartPoint(level); 	   long e_gid = f_gid + doc.getTreeLevelOrder(level); 	   NodeSet set = ((NodeSet)contextSequence).getRange(doc, f_gid, e_gid); 	   int len = set.getLength(); 	   return new IntegerValue(len); 	}*/
 block|}
 end_class
 

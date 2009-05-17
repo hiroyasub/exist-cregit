@@ -468,9 +468,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|fn
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
@@ -498,9 +495,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|fn
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
@@ -608,9 +602,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|fn
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)

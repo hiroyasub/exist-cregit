@@ -201,7 +201,7 @@ throws|throws
 name|XPathException
 block|{
 comment|//TODO : static checks ?
-comment|/*     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, start.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 1st argument");     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, end.getCardinality())) 		    throw new XPathException(getASTNode(), "Invalid cardinality for 2nd argument");     	if (start.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 1st argument");     	if (end.returnsType() != Type.INTEGER) 		    throw new XPathException(getASTNode(), "Invalid type for 2nd argument");         */
+comment|/*     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, start.getCardinality())) 		    throw new XPathException(this, "Invalid cardinality for 1st argument");     	if (!Cardinality.checkCardinality(Cardinality.ZERO_OR_ONE, end.getCardinality())) 		    throw new XPathException(this, "Invalid cardinality for 2nd argument");     	if (start.returnsType() != Type.INTEGER) 		    throw new XPathException(this, "Invalid type for 1st argument");     	if (end.returnsType() != Type.INTEGER) 		    throw new XPathException(this, "Invalid type for 2nd argument");         */
 name|inPredicate
 operator|=
 operator|(
@@ -324,8 +324,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: the first operand must have at most one item"
 argument_list|)
@@ -341,8 +340,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: the second operand must have at most one item"
 argument_list|)
@@ -393,8 +391,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+
@@ -476,8 +473,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+
@@ -536,8 +532,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+
@@ -596,8 +591,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+
@@ -762,8 +756,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+
@@ -861,8 +854,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FORG0006: Required type is "
 operator|+

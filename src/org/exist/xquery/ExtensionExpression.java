@@ -238,8 +238,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Conflicting pragmas: only one should return a result for eval"
 argument_list|)
@@ -503,8 +502,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|getASTNode
-argument_list|()
+name|line
 argument_list|)
 expr_stmt|;
 if|if

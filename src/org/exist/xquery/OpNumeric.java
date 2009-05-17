@@ -655,8 +655,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: too many operands at the left of "
 operator|+
@@ -679,8 +678,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: too many operands at the right of "
 operator|+
@@ -820,8 +818,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+
@@ -862,8 +859,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+
@@ -922,8 +918,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+
@@ -972,8 +967,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+
@@ -1018,8 +1012,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FOAR0001: division by zero"
 argument_list|)
@@ -1041,8 +1034,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FOAR0002: division of "
 operator|+
@@ -1080,8 +1072,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FOAR0002: division of "
 operator|+
@@ -1119,8 +1110,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FOAR0002: division of "
 operator|+
@@ -1187,10 +1177,11 @@ parameter_list|)
 block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1340,8 +1331,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+
@@ -1383,8 +1373,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004: '"
 operator|+

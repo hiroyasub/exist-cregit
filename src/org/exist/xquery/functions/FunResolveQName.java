@@ -744,8 +744,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"No namespace found for prefix. No binding for prefix '"
 operator|+
@@ -833,8 +832,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid lexical value. '"
 operator|+

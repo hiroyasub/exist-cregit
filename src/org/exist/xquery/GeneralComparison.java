@@ -1576,8 +1576,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Cannot convert key to required index type"
 argument_list|)
@@ -1733,8 +1732,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Error during index lookup: "
 operator|+
@@ -2847,8 +2845,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Internal error: context node missing"
 argument_list|)
@@ -3954,8 +3951,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|e
 operator|.
@@ -4563,9 +4559,16 @@ parameter_list|)
 block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
+name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
 argument_list|()
 argument_list|)
 expr_stmt|;

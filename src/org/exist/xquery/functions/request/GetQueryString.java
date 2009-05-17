@@ -323,8 +323,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
@@ -400,8 +399,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)

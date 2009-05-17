@@ -481,8 +481,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"for security reasons, the function only allows "
 operator|+
@@ -525,8 +524,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"the file does not see to be a valid backup archive"
 argument_list|)
@@ -542,8 +540,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"the file does not see to be a valid backup archive"
 argument_list|)
@@ -588,8 +585,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"No response object found in the current XQuery context."
 argument_list|)
@@ -612,8 +608,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
@@ -657,8 +652,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|signature
 operator|.
@@ -773,8 +767,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"An IO error occurred while reading the backup archive"
 argument_list|)

@@ -404,8 +404,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"No module found matching namespace URI: "
 operator|+
@@ -517,7 +516,6 @@ return|return
 name|resultSeq
 return|;
 block|}
-comment|/** 	 * @param set 	 * @param resultSeq 	 * @param module 	 */
 specifier|private
 name|void
 name|addFunctionsFromModule

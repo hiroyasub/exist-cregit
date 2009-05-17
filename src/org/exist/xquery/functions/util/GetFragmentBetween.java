@@ -507,8 +507,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"your first argument delivers an empty node (no valid node position in document)"
 argument_list|)
@@ -1176,8 +1175,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"An error occurred while getFragmentBetween: "
 operator|+
@@ -1200,8 +1198,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"An error occurred while getFragmentBetween: "
 operator|+
@@ -1224,8 +1221,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"An error occurred while getFragmentBetween: "
 operator|+

@@ -492,8 +492,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0070 : can not redefine '"
 operator|+
@@ -517,8 +516,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0070 : can not redefine '"
 operator|+
@@ -552,8 +550,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0085 : cannot undeclare a prefix "
 operator|+
@@ -637,8 +634,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0071 : duplicate definition for '"
 operator|+
@@ -1186,8 +1182,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XQST0040 '"
 operator|+
@@ -1262,8 +1257,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
@@ -1371,8 +1365,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"XPTY0004 '"
 operator|+

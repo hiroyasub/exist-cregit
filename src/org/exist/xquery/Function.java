@@ -379,6 +379,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Class for function is null"
 argument_list|)
@@ -481,6 +489,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Constructor not found"
 argument_list|)
@@ -535,9 +551,17 @@ operator|)
 name|obj
 operator|)
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -553,6 +577,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Function object does not implement interface function"
 argument_list|)
@@ -581,6 +613,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Function implementation class "
 operator|+
@@ -655,8 +695,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"number of arguments to function "
 operator|+
@@ -885,8 +924,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|Messages
 operator|.
@@ -1475,8 +1513,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 name|Messages
 operator|.
@@ -2023,30 +2060,6 @@ name|result
 operator|.
 name|toString
 argument_list|()
-return|;
-block|}
-specifier|public
-name|void
-name|setASTNode
-parameter_list|(
-name|XQueryAST
-name|ast
-parameter_list|)
-block|{
-name|this
-operator|.
-name|astNode
-operator|=
-name|ast
-expr_stmt|;
-block|}
-specifier|public
-name|XQueryAST
-name|getASTNode
-parameter_list|()
-block|{
-return|return
-name|astNode
 return|;
 block|}
 specifier|public

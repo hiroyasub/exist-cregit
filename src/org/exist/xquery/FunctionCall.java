@@ -891,14 +891,17 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
+block|}
 comment|// append location of the function call to the exception message:
 name|e
 operator|.
@@ -906,8 +909,7 @@ name|addFunctionCall
 argument_list|(
 name|functionDef
 argument_list|,
-name|getASTNode
-argument_list|()
+name|this
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -984,8 +986,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:XPTY0004: return type of function '"
 operator|+
@@ -1241,8 +1242,7 @@ init|=
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Access to function '"
 operator|+
@@ -1260,8 +1260,7 @@ name|addFunctionCall
 argument_list|(
 name|functionDef
 argument_list|,
-name|getASTNode
-argument_list|()
+name|this
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1435,10 +1434,11 @@ literal|0
 condition|)
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 comment|// append location of the function call to the exception message:
@@ -1448,8 +1448,7 @@ name|addFunctionCall
 argument_list|(
 name|functionDef
 argument_list|,
-name|getASTNode
-argument_list|()
+name|this
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1652,10 +1651,11 @@ literal|0
 condition|)
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 comment|// append location of the function call to the exception message:
@@ -1665,8 +1665,9 @@ name|addFunctionCall
 argument_list|(
 name|functionDef
 argument_list|,
-name|getASTNode
-argument_list|()
+name|FunctionCall
+operator|.
+name|this
 argument_list|)
 expr_stmt|;
 throw|throw

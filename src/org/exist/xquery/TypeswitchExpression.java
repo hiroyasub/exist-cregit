@@ -893,8 +893,7 @@ name|display
 argument_list|(
 literal|"typeswitch("
 argument_list|,
-name|getASTNode
-argument_list|()
+name|line
 argument_list|)
 expr_stmt|;
 name|operand

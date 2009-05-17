@@ -809,8 +809,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FODC0002: can not access collection '"
 operator|+
@@ -883,18 +882,18 @@ block|{
 comment|//From AnyURIValue constructor
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
-name|getASTNode
-argument_list|()
+name|line
+argument_list|,
+name|column
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"FODC0002: "
 operator|+
@@ -1349,9 +1348,6 @@ name|debug
 argument_list|(
 literal|"UpdateListener: Line: "
 operator|+
-name|getASTNode
-argument_list|()
-operator|.
 name|getLine
 argument_list|()
 operator|+

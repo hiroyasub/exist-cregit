@@ -18927,9 +18927,17 @@ block|{
 comment|// throw exception with correct source location
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|name
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|name
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw

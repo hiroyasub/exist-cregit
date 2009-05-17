@@ -212,9 +212,17 @@ parameter_list|)
 block|{
 name|e
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -280,6 +288,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function near() requires two arguments"
 argument_list|)
@@ -311,6 +327,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Second argument to near is empty"
 argument_list|)
@@ -336,9 +360,17 @@ argument_list|)
 decl_stmt|;
 name|near
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|near
@@ -400,6 +432,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Max distance argument to near is empty"
 argument_list|)
@@ -449,6 +489,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Min distance argument to near is empty"
 argument_list|)
@@ -493,6 +541,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function phrase() requires two arguments"
 argument_list|)
@@ -524,6 +580,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Second argument to phrase is empty"
 argument_list|)
@@ -549,9 +613,17 @@ argument_list|)
 decl_stmt|;
 name|phrase
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|phrase
@@ -606,6 +678,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
@@ -624,6 +704,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
@@ -668,6 +756,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Second argument to starts-with is empty"
 argument_list|)
@@ -695,9 +791,17 @@ argument_list|)
 decl_stmt|;
 name|op
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//TODO : not sure for parent -pb
@@ -773,6 +877,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
@@ -791,6 +903,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
@@ -835,6 +955,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Second argument to ends-with is empty"
 argument_list|)
@@ -881,9 +1009,17 @@ argument_list|)
 expr_stmt|;
 name|op
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -940,6 +1076,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function contains() requires two or three arguments"
 argument_list|)
@@ -958,6 +1102,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"XPST0017: Function contains() requires two or three arguments"
 argument_list|)
@@ -1002,6 +1154,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Second argument to contains is empty"
 argument_list|)
@@ -1048,9 +1208,17 @@ argument_list|)
 expr_stmt|;
 name|op
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1120,6 +1288,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Wrong number of arguments for constructor function"
 argument_list|)
@@ -1166,9 +1342,17 @@ argument_list|)
 decl_stmt|;
 name|castExpr
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|step
@@ -1237,9 +1421,17 @@ argument_list|)
 decl_stmt|;
 name|call
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|call
@@ -1261,6 +1453,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Java binding is disabled in the current configuration (see conf.xml). Call to "
 operator|+
@@ -1281,6 +1481,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Java binding is disabled in the current configuration (see conf.xml). Call to "
 operator|+
@@ -1386,6 +1594,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Function "
 operator|+
@@ -1502,6 +1718,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 name|buf
 operator|.
@@ -1547,6 +1771,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Access to deprecated functions is not allowed. Call to '"
 operator|+
@@ -1631,6 +1863,14 @@ operator|new
 name|XPathException
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|,
 literal|"Function "
 operator|+
@@ -1669,9 +1909,17 @@ argument_list|)
 expr_stmt|;
 name|call
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|step
@@ -1719,9 +1967,17 @@ argument_list|)
 expr_stmt|;
 name|call
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|call
@@ -1749,9 +2005,17 @@ argument_list|)
 expr_stmt|;
 name|call
 operator|.
-name|setASTNode
+name|setLocation
 argument_list|(
 name|ast
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|ast
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|context

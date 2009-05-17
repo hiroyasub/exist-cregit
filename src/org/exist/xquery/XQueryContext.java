@@ -8694,6 +8694,16 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
+argument_list|()
+argument_list|,
 literal|"error found while loading module from "
 operator|+
 name|location
@@ -8703,16 +8713,6 @@ operator|+
 name|e
 operator|.
 name|getMessage
-argument_list|()
-argument_list|,
-name|e
-operator|.
-name|getLine
-argument_list|()
-argument_list|,
-name|e
-operator|.
-name|getColumn
 argument_list|()
 argument_list|)
 throw|;
@@ -8970,9 +8970,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|call
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"Call to undeclared function: "
 operator|+

@@ -553,9 +553,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|decl
-operator|.
-name|getASTNode
-argument_list|()
 argument_list|,
 literal|"err:XQST0048: It is a static error if a function "
 operator|+

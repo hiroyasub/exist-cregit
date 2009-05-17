@@ -411,7 +411,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// throw( new XPathException( getASTNode(), "Session not set" ) );
+comment|// throw( new XPathException( this, "Session not set" ) );
 return|return
 operator|(
 name|Sequence
@@ -440,8 +440,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $session is not bound to a Java object."
 argument_list|)
@@ -554,7 +553,7 @@ comment|//we can change this but we need to be aware of the consequences, the eX
 comment|//good example of what happens if you change this - try logging out of the webapp ;-)
 comment|// - deliriumsky
 comment|//log.error(ise.getStackTrace());
-comment|//throw new XPathException(getASTNode(), "Session has an IllegalStateException for getAttribute() - " + ise.getStackTrace() + System.getProperty("line.separator") + System.getProperty("line.separator") + "Did you perhaps call session:invalidate() previously?");
+comment|//throw new XPathException(this, "Session has an IllegalStateException for getAttribute() - " + ise.getStackTrace() + System.getProperty("line.separator") + System.getProperty("line.separator") + "Did you perhaps call session:invalidate() previously?");
 return|return
 operator|(
 name|Sequence
@@ -571,8 +570,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: variable $session is not bound to a session object"
 argument_list|)

@@ -482,8 +482,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Request not set"
 argument_list|)
@@ -510,8 +509,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Variable $request is not bound to a Java object."
 argument_list|)
@@ -603,8 +601,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Type error: variable $request is not bound to a request object"
 argument_list|)

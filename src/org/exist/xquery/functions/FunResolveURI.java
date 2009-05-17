@@ -485,8 +485,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FONS0005: base URI of the static context has not been assigned a value."
 argument_list|)
@@ -546,8 +545,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
 operator|+
@@ -634,8 +632,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
 operator|+
@@ -689,8 +686,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"err:FORG0009: unable to resolve a relative URI against a base URI in fn:resolve-uri(): "
 operator|+
