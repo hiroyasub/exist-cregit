@@ -450,8 +450,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"diff function only works on persistent documents stored in the db"
 argument_list|)
@@ -648,8 +647,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Caugt error while generating diff: "
 operator|+
@@ -672,8 +670,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Caugt error while generating diff: "
 operator|+
