@@ -432,8 +432,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid function name"
 argument_list|)
@@ -474,8 +473,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Session handle not specified"
 argument_list|)
@@ -528,8 +526,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid Session handle specified"
 argument_list|)
@@ -604,8 +601,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Failed to open mail store"
 argument_list|,
@@ -663,8 +659,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Store handle not specified"
 argument_list|)
@@ -717,8 +712,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Invalid Store handle specified"
 argument_list|)
@@ -744,8 +738,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Failed to close mail store"
 argument_list|,

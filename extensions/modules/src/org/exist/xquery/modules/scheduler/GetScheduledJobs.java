@@ -895,7 +895,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|se
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|se

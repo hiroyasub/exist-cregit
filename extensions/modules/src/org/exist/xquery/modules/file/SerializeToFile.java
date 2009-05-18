@@ -618,8 +618,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"A problem ocurred while serializing the node set: "
 operator|+
@@ -899,8 +898,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"A problem ocurred while serializing the node set: "
 operator|+
@@ -925,8 +923,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"A problem ocurred while serializing the node set: "
 operator|+

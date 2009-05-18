@@ -423,8 +423,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"The month of interest must be between 1 and 12"
 argument_list|)
@@ -443,8 +442,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"The week in the month of interest must be between 1 and 5"
 argument_list|)
@@ -463,8 +461,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"The day in the week of interest must be between 1 and 7"
 argument_list|)

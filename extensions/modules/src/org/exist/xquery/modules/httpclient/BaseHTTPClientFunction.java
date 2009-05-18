@@ -569,8 +569,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"Name or value attribute missing for request header parameter"
 argument_list|)
@@ -1356,8 +1355,7 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
-argument_list|()
+name|this
 argument_list|,
 literal|"HTTPClient response too large to be buffered: "
 operator|+
@@ -1635,7 +1633,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|getASTNode
+name|this
+argument_list|,
+name|ue
+operator|.
+name|getMessage
 argument_list|()
 argument_list|,
 name|ue
