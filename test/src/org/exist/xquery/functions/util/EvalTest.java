@@ -533,7 +533,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testEvalWithContext(): "
+literal|"testEvalInline(): "
 operator|+
 name|e
 argument_list|)
@@ -630,7 +630,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testEvalWithContext(): "
+literal|"testEvalWithContextVariable(): "
 operator|+
 name|e
 argument_list|)
@@ -727,7 +727,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testEvalWithContext(): "
+literal|"testEvalSupplyingContext(): "
 operator|+
 name|e
 argument_list|)
@@ -826,7 +826,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testEvalWithContext(): "
+literal|"testEvalSupplyingContextAndVariable(): "
 operator|+
 name|e
 argument_list|)

@@ -966,7 +966,15 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
-comment|//System.out.println(r);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
 name|assertXpathEvaluatesTo
 argument_list|(
 literal|"1.0"
@@ -1019,7 +1027,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"testSerializeIndent(): "
+literal|"testSerializeXincludes(): "
 operator|+
 name|e
 argument_list|)
