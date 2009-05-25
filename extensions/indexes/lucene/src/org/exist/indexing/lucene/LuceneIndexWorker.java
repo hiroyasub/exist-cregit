@@ -3654,6 +3654,16 @@ operator|.
 name|getWriter
 argument_list|()
 expr_stmt|;
+comment|// by default, Lucene only indexes the first 10,000 terms in a field
+name|writer
+operator|.
+name|setMaxFieldLength
+argument_list|(
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
