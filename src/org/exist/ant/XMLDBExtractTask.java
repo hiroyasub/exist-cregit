@@ -321,6 +321,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|String
+name|msg
+init|=
+literal|"Resource "
+operator|+
+name|resource
+operator|+
+literal|" not found."
+decl_stmt|;
 if|if
 condition|(
 name|failonerror
@@ -329,13 +338,19 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"Resource "
-operator|+
-name|resource
-operator|+
-literal|" not found."
+name|msg
 argument_list|)
 throw|;
+else|else
+name|log
+argument_list|(
+name|msg
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -378,6 +393,16 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|String
+name|msg
+init|=
+literal|"XMLDB exception caught while executing query: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|failonerror
@@ -386,16 +411,23 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"XMLDB exception caught while executing query: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|msg
 argument_list|,
 name|e
 argument_list|)
 throw|;
+else|else
+name|log
+argument_list|(
+name|msg
+argument_list|,
+name|e
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -403,6 +435,16 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|String
+name|msg
+init|=
+literal|"XMLDB exception caught while writing destination file: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|failonerror
@@ -411,16 +453,23 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"XMLDB exception caught while writing destination file: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|msg
 argument_list|,
 name|e
 argument_list|)
 throw|;
+else|else
+name|log
+argument_list|(
+name|msg
+argument_list|,
+name|e
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -775,7 +824,7 @@ condition|(
 name|dest
 operator|!=
 literal|null
-operator|||
+operator|&&
 operator|!
 name|dest
 operator|.
@@ -958,13 +1007,53 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|String
+name|msg
+init|=
+literal|"Destination target "
+operator|+
+operator|(
+operator|(
+name|dest
+operator|!=
+literal|null
+operator|)
+condition|?
+operator|(
+name|dest
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|" "
+operator|)
+else|:
+literal|""
+operator|)
+operator|+
+literal|"does not exist."
+decl_stmt|;
+if|if
+condition|(
+name|failonerror
+condition|)
 throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"Destionation target does not exist."
+name|msg
 argument_list|)
 throw|;
+else|else
+name|log
+argument_list|(
+name|msg
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**    * @param resource    */
