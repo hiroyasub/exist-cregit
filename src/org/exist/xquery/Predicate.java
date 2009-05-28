@@ -929,6 +929,11 @@ name|Type
 operator|.
 name|NODE
 argument_list|)
+operator|&&
+name|innerSeq
+operator|.
+name|isPersistentSet
+argument_list|()
 condition|)
 block|{
 name|recomputedExecutionMode
