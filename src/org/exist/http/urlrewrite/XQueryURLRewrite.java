@@ -1227,6 +1227,25 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Processing request URI: "
+operator|+
+name|request
+operator|.
+name|getRequestURI
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|RequestWrapper
 name|modifiedRequest
 init|=
