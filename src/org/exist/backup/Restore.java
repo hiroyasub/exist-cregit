@@ -1830,6 +1830,34 @@ argument_list|(
 name|filename
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|is
+operator|==
+literal|null
+condition|)
+name|listener
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to restore resource '"
+operator|+
+name|name
+operator|+
+literal|"'\nfrom file '"
+operator|+
+name|contents
+operator|.
+name|getSymbolicPath
+argument_list|(
+name|name
+argument_list|,
+literal|false
+argument_list|)
+operator|+
+literal|"'.\nReason: Unable to obtain its EXistInputSource"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if
