@@ -1111,7 +1111,10 @@ decl_stmt|;
 name|String
 name|group
 init|=
-literal|null
+name|user
+operator|.
+name|getPrimaryGroup
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
