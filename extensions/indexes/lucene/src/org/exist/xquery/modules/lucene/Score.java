@@ -389,14 +389,8 @@ operator|.
 name|getScore
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|currentScore
-operator|>
 name|score
-condition|)
-name|score
-operator|=
+operator|+=
 name|currentScore
 expr_stmt|;
 block|}
