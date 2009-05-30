@@ -54,6 +54,9 @@ name|configure
 parameter_list|(
 name|LuceneConfig
 name|config
+parameter_list|,
+name|LuceneIndexConfig
+name|idxConfig
 parameter_list|)
 function_decl|;
 specifier|public

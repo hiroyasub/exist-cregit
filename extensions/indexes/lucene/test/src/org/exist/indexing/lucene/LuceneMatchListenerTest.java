@@ -430,9 +430,7 @@ literal|"<article>"
 operator|+
 literal|"<head>The<b>title</b>of it</head>"
 operator|+
-literal|"<p>A simple paragraph with<hi>highlighted</hi> text<note>and a note</note> "
-operator|+
-literal|"       in it.</p>"
+literal|"<p>A simple<note>sic</note> paragraph with<hi>highlighted</hi> text<note>and a note</note> to be ignored.</p>"
 operator|+
 literal|"<p>Paragraphs with<s>mix</s><s>ed</s> content are<s>danger</s>ous.</p>"
 operator|+
@@ -512,13 +510,15 @@ literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
-literal|"<text qname=\"p\"/>"
+literal|"<text qname=\"p\">"
+operator|+
+literal|"<ignore qname=\"note\"/>"
+operator|+
+literal|"</text>"
 operator|+
 literal|"<text qname=\"head\"/>"
 operator|+
 literal|"<inline qname=\"s\"/>"
-operator|+
-literal|"<ignore qname=\"note\"/>"
 operator|+
 literal|"</lucene>"
 operator|+
@@ -1562,6 +1562,209 @@ operator|+
 name|MATCH_END
 operator|+
 literal|"</s><s>ed</s> content are<s>danger</s>ous.</p>"
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//p[ft:query(., 'ignored')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResult2String
+argument_list|(
+name|broker
+argument_list|,
+name|seq
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RESULT: "
+operator|+
+name|result
+argument_list|)
+expr_stmt|;
+name|XMLAssert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"<p>A simple<note>sic</note> paragraph with<hi>highlighted</hi> text<note>and a note</note> to be "
+operator|+
+name|MATCH_START
+operator|+
+literal|"ignored"
+operator|+
+name|MATCH_END
+operator|+
+literal|".</p>"
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//p[ft:query(., 'highlighted')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResult2String
+argument_list|(
+name|broker
+argument_list|,
+name|seq
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RESULT: "
+operator|+
+name|result
+argument_list|)
+expr_stmt|;
+name|XMLAssert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"<p>A simple<note>sic</note> paragraph with<hi>"
+operator|+
+name|MATCH_START
+operator|+
+literal|"highlighted"
+operator|+
+name|MATCH_END
+operator|+
+literal|"</hi> text<note>and a note</note> to be "
+operator|+
+literal|"ignored.</p>"
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"//p[ft:query(., 'highlighted')]/hi"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|queryResult2String
+argument_list|(
+name|broker
+argument_list|,
+name|seq
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"RESULT: "
+operator|+
+name|result
+argument_list|)
+expr_stmt|;
+name|XMLAssert
+operator|.
+name|assertEquals
+argument_list|(
+literal|"<hi>"
+operator|+
+name|MATCH_START
+operator|+
+literal|"highlighted"
+operator|+
+name|MATCH_END
+operator|+
+literal|"</hi>"
 argument_list|,
 name|result
 argument_list|)

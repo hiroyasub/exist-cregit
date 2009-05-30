@@ -40,6 +40,10 @@ name|LuceneConfig
 name|config
 decl_stmt|;
 specifier|protected
+name|LuceneIndexConfig
+name|idxConfig
+decl_stmt|;
+specifier|protected
 name|XMLString
 name|buffer
 init|=
@@ -53,6 +57,9 @@ name|configure
 parameter_list|(
 name|LuceneConfig
 name|config
+parameter_list|,
+name|LuceneIndexConfig
+name|idxConfig
 parameter_list|)
 block|{
 name|this
@@ -60,6 +67,12 @@ operator|.
 name|config
 operator|=
 name|config
+expr_stmt|;
+name|this
+operator|.
+name|idxConfig
+operator|=
+name|idxConfig
 expr_stmt|;
 block|}
 specifier|public

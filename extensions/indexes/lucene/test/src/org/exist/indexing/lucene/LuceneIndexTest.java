@@ -73,37 +73,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
+name|*
 import|;
 end_import
 
@@ -631,6 +601,8 @@ literal|"       in it.</p>"
 operator|+
 literal|"<p>Paragraphs with<s>mix</s><s>ed</s> content are<s>danger</s>ous.</p>"
 operator|+
+literal|"<p><note1>ignore</note1><s2>warn</s2>ings</p>"
+operator|+
 literal|"</article>"
 decl_stmt|;
 specifier|private
@@ -806,15 +778,27 @@ literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
-literal|"<text qname=\"article\"/>"
+literal|"<text qname=\"article\">"
 operator|+
-literal|"<text qname=\"p\"/>"
-operator|+
-literal|"<text qname=\"head\"/>"
+literal|"<ignore qname=\"note\"/>"
 operator|+
 literal|"<inline qname=\"s\"/>"
 operator|+
+literal|"</text>"
+operator|+
+literal|"<text qname=\"p\">"
+operator|+
 literal|"<ignore qname=\"note\"/>"
+operator|+
+literal|"<inline qname=\"s\"/>"
+operator|+
+literal|"</text>"
+operator|+
+literal|"<text qname=\"head\"/>"
+operator|+
+literal|"<ignore qname=\"note1\"/>"
+operator|+
+literal|"<inline qname=\"s2\"/>"
 operator|+
 literal|"</lucene>"
 operator|+
@@ -1708,6 +1692,54 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+name|checkIndex
+argument_list|(
+name|docs
+argument_list|,
+name|broker
+argument_list|,
+operator|new
+name|QName
+index|[]
+block|{
+operator|new
+name|QName
+argument_list|(
+literal|"p"
+argument_list|,
+literal|""
+argument_list|)
+block|}
+argument_list|,
+literal|"ignore"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|checkIndex
+argument_list|(
+name|docs
+argument_list|,
+name|broker
+argument_list|,
+operator|new
+name|QName
+index|[]
+block|{
+operator|new
+name|QName
+argument_list|(
+literal|"p"
+argument_list|,
+literal|""
+argument_list|)
+block|}
+argument_list|,
+literal|"warnings"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
 name|XQuery
 name|xquery
 init|=
@@ -2058,6 +2090,36 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+literal|"/article[ft:query(., 'warnings')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
 literal|"/article[ft:query(., 'danger')]"
 argument_list|,
 literal|null
@@ -2089,6 +2151,36 @@ operator|.
 name|execute
 argument_list|(
 literal|"/article[ft:query(., 'note')]"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"/article[ft:query(., 'ignore')]"
 argument_list|,
 literal|null
 argument_list|,
@@ -8801,11 +8893,21 @@ literal|0
 condition|)
 block|{
 name|List
-name|qnames
+argument_list|<
+name|QName
+argument_list|>
+name|qnlist
 init|=
 operator|new
 name|ArrayList
-argument_list|()
+argument_list|<
+name|QName
+argument_list|>
+argument_list|(
+name|qn
+operator|.
+name|length
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -8823,8 +8925,7 @@ condition|;
 name|i
 operator|++
 control|)
-block|{
-name|qnames
+name|qnlist
 operator|.
 name|add
 argument_list|(
@@ -8834,7 +8935,6 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 name|hints
 operator|.
 name|put
@@ -8843,7 +8943,7 @@ name|QNamedKeysIndex
 operator|.
 name|QNAMES_KEY
 argument_list|,
-name|qnames
+name|qnlist
 argument_list|)
 expr_stmt|;
 block|}
@@ -8882,6 +8982,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|occur
+operator|!=
+literal|null
+operator|&&
 name|expected
 operator|!=
 name|occur
