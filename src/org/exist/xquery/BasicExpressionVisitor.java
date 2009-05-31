@@ -144,6 +144,15 @@ block|{
 block|}
 specifier|public
 name|void
+name|visitIntersectionExpr
+parameter_list|(
+name|Intersection
+name|intersect
+parameter_list|)
+block|{
+block|}
+specifier|public
+name|void
 name|visitAndExpr
 parameter_list|(
 name|OpAnd

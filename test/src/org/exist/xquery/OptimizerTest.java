@@ -1268,6 +1268,26 @@ name|r
 operator|=
 name|execute
 argument_list|(
+literal|"//mods:mods[.//mods:title&= 'ethnic']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//mods:mods[.//mods:title&= 'ethnic']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
 literal|"//mods:mods[mods:physicalDescription/mods:internetMediaType = 'text/html']"
 argument_list|,
 literal|false
