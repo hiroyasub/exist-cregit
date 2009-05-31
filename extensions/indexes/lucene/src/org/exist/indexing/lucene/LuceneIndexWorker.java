@@ -1502,6 +1502,12 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
+name|mode
+operator|=
+name|StreamListener
+operator|.
+name|STORE
+expr_stmt|;
 block|}
 block|}
 specifier|public
