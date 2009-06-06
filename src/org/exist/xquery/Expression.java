@@ -147,6 +147,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|POSITIONAL_PREDICATE
+init|=
+literal|64
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DOT_TEST
 init|=
 literal|128

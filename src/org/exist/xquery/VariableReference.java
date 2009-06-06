@@ -178,6 +178,16 @@ operator|+
 literal|"be executed because of a circularity."
 argument_list|)
 throw|;
+name|contextInfo
+operator|.
+name|setStaticReturnType
+argument_list|(
+name|var
+operator|.
+name|getStaticType
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public

@@ -1667,6 +1667,15 @@ name|i
 operator|++
 control|)
 block|{
+name|AnalyzeContextInfo
+name|argContextInfo
+init|=
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
+name|contextInfo
+argument_list|)
+decl_stmt|;
 name|getArgument
 argument_list|(
 name|i
@@ -1674,7 +1683,7 @@ argument_list|)
 operator|.
 name|analyze
 argument_list|(
-name|contextInfo
+name|argContextInfo
 argument_list|)
 expr_stmt|;
 block|}

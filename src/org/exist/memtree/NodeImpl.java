@@ -4192,18 +4192,6 @@ name|int
 name|contextId
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call clearContext() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-throw|;
 block|}
 specifier|public
 name|int
