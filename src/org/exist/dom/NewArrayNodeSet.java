@@ -3201,138 +3201,370 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
-return|return
-name|super
-operator|.
-name|selectPrecedingSiblings
-argument_list|(
+name|NodeSet
+name|result
+init|=
+operator|new
+name|NewArrayNodeSet
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|it
+init|=
 name|contextSet
-argument_list|,
-name|contextId
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|NodeProxy
+name|reference
+init|=
+operator|(
+name|NodeProxy
+operator|)
+name|it
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|NodeId
+name|parentId
+init|=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getParentId
+argument_list|()
+decl_stmt|;
+name|int
+name|docIdx
+init|=
+name|findDoc
+argument_list|(
+name|reference
+operator|.
+name|getDocument
+argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docIdx
+operator|<
+literal|0
+condition|)
+return|return
+literal|null
 return|;
-comment|//        if (isEmpty() || contextSet.isEmpty()) {
-comment|//            return NodeSet.EMPTY_SET;
-comment|//        }
-comment|//        NewArrayNodeSet result = new NewArrayNodeSet();
-comment|//        NodeSetIterator iReferences = contextSet.iterator();
-comment|//        int idxCandidates = 0;
-comment|//        NodeProxy reference = (NodeProxy) iReferences.next();
-comment|//        NodeProxy candidate = nodes[idxCandidates];
-comment|//        int firstCandidate = -1;
-comment|//        while (true) {
-comment|//            // first, try to find nodes belonging to the same doc
-comment|//            if (reference.getDocument().getDocId()< candidate.getDocument()
-comment|//                .getDocId()) {
-comment|//                firstCandidate = -1;
-comment|//                if (iReferences.hasNext())
-comment|//                    reference = (NodeProxy) iReferences.next();
-comment|//                else
-comment|//                    break;
-comment|//            } else if (reference.getDocument().getDocId()> candidate
-comment|//                       .getDocument().getDocId()) {
-comment|//                firstCandidate = -1;
-comment|//                if (idxCandidates< size)
-comment|//                    candidate = nodes[++idxCandidates];
-comment|//                else
-comment|//                    break;
-comment|//            } else {
-comment|//                // same document: check if the nodes have the same parent
-comment|//                int cmp = candidate.getNodeId().getParentId().compareTo(reference.getNodeId().getParentId());
-comment|//                if (cmp> 0&& candidate.getNodeId().getTreeLevel()<= reference.getNodeId().getTreeLevel()) {
-comment|//                    // wrong parent: proceed
-comment|//                    firstCandidate = -1;
-comment|//                    if (iReferences.hasNext())
-comment|//                        reference = (NodeProxy) iReferences.next();
-comment|//                    else
-comment|//                        break;
-comment|//                } else if (cmp< 0  || (cmp> 0&& candidate.getNodeId().getTreeLevel()>= reference.getNodeId().getTreeLevel())) {
-comment|//                	//Why did I have to invert the test ? ----------------------------^^^^^
-comment|//                    // wrong parent: proceed
-comment|//                    firstCandidate = -1;
-comment|//                    if (idxCandidates< size)
-comment|//                        candidate = nodes[++idxCandidates];
-comment|//                    else
-comment|//                        break;
-comment|//                } else {
-comment|//                    if (firstCandidate< 0)
-comment|//                        firstCandidate = idxCandidates;
-comment|//
-comment|//                    // found two nodes with the same parent
-comment|//                    // now, compare the ids: a node is a following sibling
-comment|//                    // if its id is greater than the id of the other node
-comment|//                    cmp = candidate.getNodeId().compareTo(reference.getNodeId());
-comment|//                    if (cmp< 0) {
-comment|//                        // found a preceding sibling
-comment|//                        NodeProxy t = result.get(candidate);
-comment|//                        if (t == null) {
-comment|//                            if (Expression.IGNORE_CONTEXT != contextId) {
-comment|//                                if (Expression.NO_CONTEXT_ID == contextId) {
-comment|//                                    candidate.copyContext(reference);
-comment|//                                } else {
-comment|//                                    candidate.addContextNode(contextId,
-comment|//                                                             reference);
-comment|//                                }
-comment|//                            }
-comment|//                            result.add(candidate);
-comment|//                        } else if (contextId> Expression.NO_CONTEXT_ID){
-comment|//                            t.addContextNode(contextId, reference);
-comment|//                        }
-comment|//                        if (idxCandidates< size)
-comment|//                            candidate = nodes[++idxCandidates];
-comment|//                        else
-comment|//                            break;
-comment|//                    } else if (cmp> 0) {
-comment|//                        // found a following sibling
-comment|//                        if (idxCandidates< size)
-comment|//                            candidate = nodes[++idxCandidates];
-comment|//                        else
-comment|//                            break;
-comment|//                        // equal nodes: proceed with next node
-comment|//                    } else {
-comment|//                        if (iReferences.hasNext()) {
-comment|//                            reference = (NodeProxy) iReferences.next();
-comment|//                            idxCandidates = firstCandidate;
-comment|//                            candidate = nodes[++idxCandidates];
-comment|//                        } else
-comment|//                            break;
-comment|//                    }
-comment|//                }
-comment|//            }
-comment|//        }
-comment|//        for (Iterator i = contextSet.iterator(); i.hasNext(); ) {
-comment|//            NodeProxy reference = (NodeProxy) i.next();
-comment|//            int docId = reference.getDocument().getDocId();
-comment|//            int docIdx = findDoc(docId);
-comment|//            if (docIdx> -1) {
-comment|//                NodeId referenceId = reference.getNodeId();
-comment|//                NodeId parentId = referenceId.getParentId();
-comment|//                for (int j = 0; j< documentLengths[docIdx]; j++) {
-comment|//                    NodeProxy candidate = nodes[documentOffsets[docIdx] + j];
-comment|//                    if (candidate.getNodeId().compareTo(referenceId)> 0)
-comment|//                        break;
-comment|//                    if (candidate.getNodeId().isChildOf(parentId)) {
-comment|//                        if (Expression.IGNORE_CONTEXT != contextId) {
-comment|//                            if (Expression.NO_CONTEXT_ID == contextId) {
-comment|//                                candidate.copyContext(reference);
-comment|//                            } else {
-comment|//                                candidate.addContextNode(contextId, reference);
-comment|//                            }
-comment|//                        }
-comment|//                        result.add(candidate);
-comment|//                    }
-comment|//                }
-comment|//            }
-comment|//        }
-comment|//        return result;
+comment|// do a binary search to pick some node in the range of valid
+comment|// child ids
+name|int
+name|low
+init|=
+name|documentOffsets
+index|[
+name|docIdx
+index|]
+decl_stmt|;
+name|int
+name|high
+init|=
+name|low
+operator|+
+operator|(
+name|documentLengths
+index|[
+name|docIdx
+index|]
+operator|-
+literal|1
+operator|)
+decl_stmt|;
+name|int
+name|end
+init|=
+name|low
+operator|+
+name|documentLengths
+index|[
+name|docIdx
+index|]
+decl_stmt|;
+name|int
+name|mid
+init|=
+name|low
+decl_stmt|;
+name|int
+name|cmp
+decl_stmt|;
+name|NodeProxy
+name|p
+decl_stmt|;
+while|while
+condition|(
+name|low
+operator|<=
+name|high
+condition|)
+block|{
+name|mid
+operator|=
+operator|(
+name|low
+operator|+
+name|high
+operator|)
+operator|/
+literal|2
+expr_stmt|;
+name|p
+operator|=
+name|nodes
+index|[
+name|mid
+index|]
+expr_stmt|;
+if|if
+condition|(
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|parentId
+argument_list|)
+condition|)
+block|{
+break|break;
+comment|// found a child node, break out.
 block|}
-comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param siblings a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+name|cmp
+operator|=
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|parentId
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+name|high
+operator|=
+name|mid
+operator|-
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|low
+operator|=
+name|mid
+operator|+
+literal|1
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|low
+operator|>
+name|high
+condition|)
+block|{
+continue|continue;
+comment|// no node found
+block|}
+comment|// find the first child node in the range
+while|while
+condition|(
+name|mid
+operator|<
+name|end
+operator|&&
+name|nodes
+index|[
+name|mid
+index|]
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|parentId
+argument_list|)
+condition|)
+block|{
+operator|++
+name|mid
+expr_stmt|;
+block|}
+operator|--
+name|mid
+expr_stmt|;
+name|NodeId
+name|refId
+init|=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+name|mid
+init|;
+name|i
+operator|>=
+name|documentOffsets
+index|[
+name|docIdx
+index|]
+condition|;
+name|i
+operator|--
+control|)
+block|{
+name|NodeId
+name|currentId
+init|=
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|currentId
+operator|.
+name|isDescendantOf
+argument_list|(
+name|parentId
+argument_list|)
+condition|)
+break|break;
+if|if
+condition|(
+name|currentId
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|==
+name|refId
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|&&
+name|currentId
+operator|.
+name|compareTo
+argument_list|(
+name|refId
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+operator|!=
+name|contextId
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|==
+name|contextId
+condition|)
+block|{
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|copyContext
+argument_list|(
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|result
+operator|.
+name|add
+argument_list|(
+name|nodes
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|result
+return|;
+block|}
+comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param contextSet a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
 parameter_list|(
 name|NodeSet
-name|siblings
+name|contextSet
 parameter_list|,
 name|int
 name|contextId
@@ -3341,15 +3573,363 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
-return|return
-name|super
+name|NodeSet
+name|result
+init|=
+operator|new
+name|NewArrayNodeSet
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|it
+init|=
+name|contextSet
 operator|.
-name|selectFollowingSiblings
+name|iterator
+argument_list|()
+init|;
+name|it
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|NodeProxy
+name|reference
+init|=
+operator|(
+name|NodeProxy
+operator|)
+name|it
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|NodeId
+name|parentId
+init|=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getParentId
+argument_list|()
+decl_stmt|;
+name|int
+name|docIdx
+init|=
+name|findDoc
 argument_list|(
-name|siblings
-argument_list|,
-name|contextId
+name|reference
+operator|.
+name|getDocument
+argument_list|()
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docIdx
+operator|<
+literal|0
+condition|)
+return|return
+literal|null
+return|;
+comment|// do a binary search to pick some node in the range of valid
+comment|// child ids
+name|int
+name|low
+init|=
+name|documentOffsets
+index|[
+name|docIdx
+index|]
+decl_stmt|;
+name|int
+name|high
+init|=
+name|low
+operator|+
+operator|(
+name|documentLengths
+index|[
+name|docIdx
+index|]
+operator|-
+literal|1
+operator|)
+decl_stmt|;
+name|int
+name|end
+init|=
+name|low
+operator|+
+name|documentLengths
+index|[
+name|docIdx
+index|]
+decl_stmt|;
+name|int
+name|mid
+init|=
+name|low
+decl_stmt|;
+name|int
+name|cmp
+decl_stmt|;
+name|NodeProxy
+name|p
+decl_stmt|;
+while|while
+condition|(
+name|low
+operator|<=
+name|high
+condition|)
+block|{
+name|mid
+operator|=
+operator|(
+name|low
+operator|+
+name|high
+operator|)
+operator|/
+literal|2
+expr_stmt|;
+name|p
+operator|=
+name|nodes
+index|[
+name|mid
+index|]
+expr_stmt|;
+if|if
+condition|(
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|parentId
+argument_list|)
+condition|)
+block|{
+break|break;
+comment|// found a child node, break out.
+block|}
+name|cmp
+operator|=
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|parentId
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+name|high
+operator|=
+name|mid
+operator|-
+literal|1
+expr_stmt|;
+block|}
+else|else
+block|{
+name|low
+operator|=
+name|mid
+operator|+
+literal|1
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|low
+operator|>
+name|high
+condition|)
+block|{
+continue|continue;
+comment|// no node found
+block|}
+comment|// find the first child node in the range
+while|while
+condition|(
+name|mid
+operator|>
+name|documentOffsets
+index|[
+name|docIdx
+index|]
+operator|&&
+name|nodes
+index|[
+name|mid
+operator|-
+literal|1
+index|]
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|compareTo
+argument_list|(
+name|parentId
+argument_list|)
+operator|>
+operator|-
+literal|1
+condition|)
+block|{
+operator|--
+name|mid
+expr_stmt|;
+block|}
+name|NodeId
+name|refId
+init|=
+name|reference
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+name|mid
+init|;
+name|i
+operator|<
+name|end
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|NodeId
+name|currentId
+init|=
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|getNodeId
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|currentId
+operator|.
+name|isDescendantOf
+argument_list|(
+name|parentId
+argument_list|)
+condition|)
+break|break;
+if|if
+condition|(
+name|currentId
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|==
+name|refId
+operator|.
+name|getTreeLevel
+argument_list|()
+operator|&&
+name|currentId
+operator|.
+name|compareTo
+argument_list|(
+name|refId
+argument_list|)
+operator|>
+literal|0
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|IGNORE_CONTEXT
+operator|!=
+name|contextId
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|==
+name|contextId
+condition|)
+block|{
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|copyContext
+argument_list|(
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|nodes
+index|[
+name|i
+index|]
+operator|.
+name|addContextNode
+argument_list|(
+name|contextId
+argument_list|,
+name|reference
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|result
+operator|.
+name|add
+argument_list|(
+name|nodes
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+return|return
+name|result
 return|;
 block|}
 specifier|public
