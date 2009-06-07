@@ -225,6 +225,13 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+name|contextInfo
+operator|.
+name|setStaticReturnType
+argument_list|(
+name|requiredType
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
@@ -784,6 +791,7 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+comment|//        return expression.getDependencies();
 return|return
 name|Dependency
 operator|.

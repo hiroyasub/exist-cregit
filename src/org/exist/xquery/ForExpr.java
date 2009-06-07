@@ -535,6 +535,15 @@ argument_list|(
 name|POSITIONAL_VAR_TYPE
 argument_list|)
 expr_stmt|;
+name|posVar
+operator|.
+name|setStaticType
+argument_list|(
+name|Type
+operator|.
+name|INTEGER
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|declareVariableBinding
