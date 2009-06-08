@@ -1848,6 +1848,14 @@ name|int
 name|endOffset
 parameter_list|)
 block|{
+if|if
+condition|(
+name|startOffset
+operator|==
+name|offset
+condition|)
+comment|// duplicate match starts at same offset. ignore.
+return|return;
 name|Offset
 name|next
 init|=
