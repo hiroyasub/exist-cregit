@@ -224,7 +224,7 @@ name|COLUMN
 init|=
 literal|"column"
 decl_stmt|;
-comment|/** 	 * Shut down the database immediately. 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 */
+comment|/** 	 * Shut down the database immediatelye 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 */
 specifier|public
 name|boolean
 name|shutdown
@@ -1445,7 +1445,7 @@ name|EXistException
 throws|,
 name|XPathException
 function_decl|;
-name|void
+name|boolean
 name|releaseQueryResult
 parameter_list|(
 name|int
@@ -1668,7 +1668,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-name|void
+name|boolean
 name|reindexCollection
 parameter_list|(
 name|String
@@ -1681,7 +1681,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-name|void
+name|boolean
 name|backup
 parameter_list|(
 name|String
