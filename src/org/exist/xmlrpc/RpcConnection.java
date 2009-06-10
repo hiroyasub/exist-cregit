@@ -10590,6 +10590,12 @@ argument_list|)
 throw|;
 block|}
 comment|// keep the write lock in the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|transaction
 operator|.
 name|registerLock
@@ -13003,6 +13009,12 @@ argument_list|)
 throw|;
 block|}
 comment|// keep the write lock in the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|transaction
 operator|.
 name|registerLock
@@ -13250,6 +13262,12 @@ literal|false
 return|;
 block|}
 comment|// keep the write lock in the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|transaction
 operator|.
 name|registerLock
@@ -14867,6 +14885,12 @@ block|}
 else|else
 block|{
 comment|// keep the write lock in the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|transaction
 operator|.
 name|registerLock
@@ -15488,6 +15512,12 @@ argument_list|)
 throw|;
 block|}
 comment|//keep the write lock in the transaction
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|transaction
 operator|.
 name|registerLock
