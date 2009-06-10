@@ -516,6 +516,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
 name|contextInfo
 operator|.
 name|setStaticReturnType
