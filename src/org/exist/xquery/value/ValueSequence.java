@@ -2891,6 +2891,9 @@ name|getPreceding
 parameter_list|(
 name|NodeTest
 name|test
+parameter_list|,
+name|int
+name|position
 parameter_list|)
 throws|throws
 name|XPathException
@@ -2940,6 +2943,8 @@ argument_list|(
 name|test
 argument_list|,
 name|nodes
+argument_list|,
+name|position
 argument_list|)
 expr_stmt|;
 block|}
@@ -3015,6 +3020,9 @@ name|getFollowing
 parameter_list|(
 name|NodeTest
 name|test
+parameter_list|,
+name|int
+name|position
 parameter_list|)
 throws|throws
 name|XPathException
@@ -3064,6 +3072,8 @@ argument_list|(
 name|test
 argument_list|,
 name|nodes
+argument_list|,
+name|position
 argument_list|)
 expr_stmt|;
 block|}

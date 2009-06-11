@@ -158,6 +158,9 @@ name|getPreceding
 parameter_list|(
 name|NodeTest
 name|test
+parameter_list|,
+name|int
+name|position
 parameter_list|)
 throws|throws
 name|XPathException
@@ -178,6 +181,9 @@ name|getFollowing
 parameter_list|(
 name|NodeTest
 name|test
+parameter_list|,
+name|int
+name|position
 parameter_list|)
 throws|throws
 name|XPathException
