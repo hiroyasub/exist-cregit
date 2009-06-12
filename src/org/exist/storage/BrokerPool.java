@@ -819,6 +819,8 @@ operator|+
 literal|"'..."
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 comment|//Create the instance
 name|instance
 operator|=
@@ -897,6 +899,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|ex
+parameter_list|)
+block|{
+comment|// Catch all possible issues and report.
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unable to initialialize database instance '"
+operator|+
+name|instanceName
+operator|+
+literal|"': "
+operator|+
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|ex
+argument_list|)
+expr_stmt|;
 block|}
 comment|//TODO : throw an exception here rather than silently ignore an *explicit* parameter ?
 comment|// WM: maybe throw an exception. Users can check if a db is already configured.
