@@ -248,7 +248,7 @@ name|Predicate
 extends|extends
 name|PathExpr
 block|{
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -257,7 +257,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -265,7 +265,7 @@ name|NODE
 init|=
 literal|0
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -273,7 +273,7 @@ name|BOOLEAN
 init|=
 literal|1
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|int
@@ -2038,43 +2038,18 @@ operator|instanceof
 name|VirtualNodeSet
 condition|)
 block|{
+comment|// Looks like we don't need to treat VirtualNodeSet specially here.
 name|outerNodeSet
 operator|=
-operator|new
-name|NewArrayNodeSet
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
 name|outerSequence
 operator|.
-name|getItemCount
+name|toNodeSet
 argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|outerNodeSet
-operator|.
-name|add
-argument_list|(
-name|outerSequence
-operator|.
-name|itemAt
-argument_list|(
-name|i
-argument_list|)
-argument_list|)
 expr_stmt|;
-block|}
+comment|//        			outerNodeSet = new NewArrayNodeSet();
+comment|//        			for (int i = 0 ; i< outerSequence.getItemCount() ; i++) {
+comment|//        				outerNodeSet.add(outerSequence.itemAt(i));
+comment|//        			}
 block|}
 else|else
 name|outerNodeSet
@@ -2089,35 +2064,18 @@ comment|//TODO: in some cases, especially with in-memory nodes,
 comment|//outerSequence.toNodeSet() will generate a document
 comment|//which will be different from the one(s) in contextSet
 comment|//ancestors will thus be empty :-(
-if|if
-condition|(
-name|outerSequence
-operator|instanceof
-name|VirtualNodeSet
-condition|)
-operator|(
-operator|(
-name|VirtualNodeSet
-operator|)
-name|outerSequence
-operator|)
-operator|.
-name|realize
-argument_list|()
-expr_stmt|;
-comment|//                Sequence ancestors = outerNodeSet.selectAncestors(contextSet, true, getExpressionId());
+comment|// A special treatment of VirtualNodeSet does not seem to be required
+comment|// anymore, at least for trunk:
+comment|//            	if (outerSequence instanceof VirtualNodeSet)
+comment|//            		((VirtualNodeSet)outerSequence).realize();
 name|Sequence
 name|ancestors
 init|=
-name|contextSet
-operator|.
-name|selectAncestorDescendant
-argument_list|(
 name|outerNodeSet
-argument_list|,
-name|NodeSet
 operator|.
-name|ANCESTOR
+name|selectAncestors
+argument_list|(
+name|contextSet
 argument_list|,
 literal|true
 argument_list|,
@@ -2896,6 +2854,15 @@ argument_list|(
 name|contextSet
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getExecutionMode
+parameter_list|()
+block|{
+return|return
+name|executionMode
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
