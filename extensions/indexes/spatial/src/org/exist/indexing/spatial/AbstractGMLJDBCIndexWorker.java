@@ -1306,10 +1306,7 @@ argument_list|()
 operator|.
 name|getIndexConfiguration
 argument_list|(
-name|document
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 argument_list|)
 decl_stmt|;
 if|if
@@ -4319,10 +4316,7 @@ block|{
 comment|//Mmmh... doesn't flush since it is currently dependant from the
 comment|//number of nodes in the DOM file ; would need refactorings
 comment|//currentDoc.getBroker().checkAvailableMemory();
-name|currentDoc
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|flush
 argument_list|()
