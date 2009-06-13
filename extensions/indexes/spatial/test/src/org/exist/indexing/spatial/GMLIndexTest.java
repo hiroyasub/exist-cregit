@@ -2208,7 +2208,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getWKT(//gml:Polygon[1])"
+literal|"spatial:getWKT((//gml:Polygon)[1])"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -2249,7 +2249,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getWKB(//gml:Polygon[1])"
+literal|"spatial:getWKB((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2289,7 +2289,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getMinX(//gml:Polygon[1])"
+literal|"spatial:getMinX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2329,7 +2329,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getMaxX(//gml:Polygon[1])"
+literal|"spatial:getMaxX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2369,7 +2369,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getMinY(//gml:Polygon[1])"
+literal|"spatial:getMinY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2409,7 +2409,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getMaxY(//gml:Polygon[1])"
+literal|"spatial:getMaxY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2449,7 +2449,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getCentroidX(//gml:Polygon[1])"
+literal|"spatial:getCentroidX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2489,7 +2489,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getCentroidY(//gml:Polygon[1])"
+literal|"spatial:getCentroidY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2529,7 +2529,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getArea(//gml:Polygon[1])"
+literal|"spatial:getArea((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2569,7 +2569,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326WKT(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326WKT((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2609,7 +2609,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326WKB(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326WKB((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2649,7 +2649,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326MinX(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326MinX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2689,7 +2689,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326MaxX(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326MaxX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2729,7 +2729,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326MinY(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326MinY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2769,7 +2769,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326MaxY(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326MaxY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2809,7 +2809,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326CentroidX(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326CentroidX((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2849,7 +2849,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326CentroidY(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326CentroidY((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2889,7 +2889,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getEPSG4326Area(//gml:Polygon[1])"
+literal|"spatial:getEPSG4326Area((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2929,7 +2929,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getSRS(//gml:Polygon[1])"
+literal|"spatial:getSRS((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -2969,7 +2969,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getGeometryType(//gml:Polygon[1])"
+literal|"spatial:getGeometryType((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -3009,7 +3009,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:isClosed(//gml:Polygon[1])"
+literal|"spatial:isClosed((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -3049,7 +3049,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:isSimple(//gml:Polygon[1])"
+literal|"spatial:isSimple((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -3089,7 +3089,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:isValid(//gml:Polygon[1])"
+literal|"spatial:isValid((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4315,7 +4315,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:transform(//gml:Polygon[1], 'EPSG:4326')"
+literal|"spatial:transform((//gml:Polygon)[1], 'EPSG:4326')"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -4356,7 +4356,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getWKT(//gml:Polygon[1])"
+literal|"spatial:getWKT((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4396,7 +4396,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:buffer(//gml:Polygon[1], 100)"
+literal|"spatial:buffer((//gml:Polygon)[1], 100)"
 expr_stmt|;
 name|seq
 operator|=
@@ -4436,7 +4436,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:buffer(//gml:Polygon[1], 100, 1)"
+literal|"spatial:buffer((//gml:Polygon)[1], 100, 1)"
 expr_stmt|;
 name|seq
 operator|=
@@ -4476,7 +4476,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:getBbox(//gml:Polygon[1])"
+literal|"spatial:getBbox((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4516,7 +4516,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:convexHull(//gml:Polygon[1])"
+literal|"spatial:convexHull((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4556,7 +4556,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:boundary(//gml:Polygon[1])"
+literal|"spatial:boundary((//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4596,7 +4596,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:intersection(//gml:Polygon[1], //gml:Polygon[2])"
+literal|"spatial:intersection((//gml:Polygon)[1], (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4636,7 +4636,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:union(//gml:Polygon[1], //gml:Polygon[2])"
+literal|"spatial:union((//gml:Polygon)[1], (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4676,7 +4676,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:difference(//gml:Polygon[1], //gml:Polygon[2])"
+literal|"spatial:difference((//gml:Polygon)[1], (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -4716,7 +4716,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:symetricDifference(//gml:Polygon[1], //gml:Polygon[2])"
+literal|"spatial:symetricDifference((//gml:Polygon)[1], (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5077,7 +5077,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:union(//gml:Polygon[1], ())"
+literal|"spatial:union((//gml:Polygon)[1], ())"
 expr_stmt|;
 name|seq
 operator|=
@@ -5117,7 +5117,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:union((), //gml:Polygon[1])"
+literal|"spatial:union((), (//gml:Polygon)[1])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5426,7 +5426,7 @@ literal|"spatial:intersection("
 operator|+
 name|IN_MEMORY_GML
 operator|+
-literal|", //gml:Polygon[2])"
+literal|", (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5470,7 +5470,7 @@ literal|"spatial:union("
 operator|+
 name|IN_MEMORY_GML
 operator|+
-literal|", //gml:Polygon[2])"
+literal|", (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5514,7 +5514,7 @@ literal|"spatial:difference("
 operator|+
 name|IN_MEMORY_GML
 operator|+
-literal|", //gml:Polygon[2])"
+literal|", (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5558,7 +5558,7 @@ literal|"spatial:symetricDifference("
 operator|+
 name|IN_MEMORY_GML
 operator|+
-literal|", //gml:Polygon[2])"
+literal|", (//gml:Polygon)[2])"
 expr_stmt|;
 name|seq
 operator|=
@@ -5598,7 +5598,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:intersection(//gml:Polygon[1],"
+literal|"spatial:intersection((//gml:Polygon)[1],"
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -5642,7 +5642,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:union(//gml:Polygon[1],"
+literal|"spatial:union((//gml:Polygon)[1],"
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -5686,7 +5686,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:difference(//gml:Polygon[1],"
+literal|"spatial:difference((//gml:Polygon)[1],"
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -5730,7 +5730,7 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"spatial:symetricDifference(//gml:Polygon[1],"
+literal|"spatial:symetricDifference((//gml:Polygon)[1],"
 operator|+
 name|IN_MEMORY_GML
 operator|+
@@ -5868,7 +5868,7 @@ literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
 literal|"(# exist:force-index-use #) { "
 operator|+
-literal|"spatial:getArea(//gml:Polygon[1]) "
+literal|"spatial:getArea((//gml:Polygon)[1]) "
 operator|+
 literal|"}"
 decl_stmt|;
@@ -5919,11 +5919,11 @@ literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
-literal|"update value //gml:Polygon[1]/gml:outerBoundaryIs/gml:LinearRing/gml:coordinates "
+literal|"update value (//gml:Polygon)[1]/gml:outerBoundaryIs/gml:LinearRing/gml:coordinates "
 operator|+
 literal|"(: strip decimals :) "
 operator|+
-literal|"with fn:replace(//gml:Polygon[1], '(\\d+).(\\d+)', '$1')"
+literal|"with fn:replace((//gml:Polygon)[1], '(\\d+).(\\d+)', '$1')"
 expr_stmt|;
 name|seq
 operator|=
@@ -5965,7 +5965,7 @@ literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
 literal|"(# exist:force-index-use #) { "
 operator|+
-literal|"spatial:getArea(//gml:Polygon[1])"
+literal|"spatial:getArea((//gml:Polygon)[1])"
 operator|+
 literal|"}"
 expr_stmt|;
