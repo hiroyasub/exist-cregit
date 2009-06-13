@@ -49,6 +49,16 @@ name|java
 operator|.
 name|awt
 operator|.
+name|Toolkit
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|awt
+operator|.
 name|event
 operator|.
 name|ActionEvent
@@ -1359,11 +1369,20 @@ name|KeyStroke
 operator|.
 name|getKeyStroke
 argument_list|(
-literal|"control S"
+name|KeyEvent
+operator|.
+name|VK_S
+argument_list|,
+name|Toolkit
+operator|.
+name|getDefaultToolkit
+argument_list|()
+operator|.
+name|getMenuShortcutKeyMask
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//$NON-NLS-1$
 name|item
 operator|.
 name|addActionListener
@@ -1380,6 +1399,15 @@ name|ActionEvent
 name|e
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"SAVE"
+argument_list|)
+expr_stmt|;
 name|save
 argument_list|()
 expr_stmt|;
@@ -1394,7 +1422,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
-comment|/*         // Refresh         item = new JMenuItem("Refresh", KeyEvent.VK_R);         item.setAccelerator(KeyStroke.getKeyStroke("control R"));         item.addActionListener(new ActionListener() {             public void actionPerformed(ActionEvent e) {                 try {                     refresh() ;                 } catch (XMLDBException u) {                     u.printStackTrace();                 }             }         });         fileMenu.add(item);         */
+comment|/*         // Refresh         item = new JMenuItem("Refresh", KeyEvent.VK_R);         item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,         		Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));         item.addActionListener(new ActionListener() {             public void actionPerformed(ActionEvent e) {                 try {                     refresh() ;                 } catch (XMLDBException u) {                     u.printStackTrace();                 }             }         });         fileMenu.add(item);         */
 name|setJMenuBar
 argument_list|(
 name|menubar
