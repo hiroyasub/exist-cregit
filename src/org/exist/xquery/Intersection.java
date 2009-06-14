@@ -587,6 +587,22 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+name|visitor
+operator|.
+name|visitIntersectionExpr
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

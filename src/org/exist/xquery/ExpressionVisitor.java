@@ -102,6 +102,14 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|visitIntersectionExpr
+parameter_list|(
+name|Intersection
+name|intersect
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
 name|visitAndExpr
 parameter_list|(
 name|OpAnd
