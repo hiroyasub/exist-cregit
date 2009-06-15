@@ -257,7 +257,7 @@ name|getProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_INTERNAL_GRAMMARPOOL
+name|APACHE_PROPERTIES_INTERNAL_GRAMMARPOOL
 argument_list|)
 decl_stmt|;
 if|if

@@ -798,7 +798,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|systemCatalogResolver
 argument_list|)
@@ -851,7 +851,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -896,7 +896,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -931,7 +931,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -1142,7 +1142,7 @@ name|setProperty
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_INTERNAL_GRAMMARPOOL
+name|APACHE_PROPERTIES_INTERNAL_GRAMMARPOOL
 argument_list|,
 name|grammarPool
 argument_list|)
@@ -1175,7 +1175,7 @@ name|setFeature
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|FEATURES_VALIDATION_SCHEMA
+name|APACHE_FEATURES_VALIDATION_SCHEMA
 argument_list|,
 literal|true
 argument_list|)
@@ -1186,7 +1186,7 @@ name|setFeature
 argument_list|(
 name|XMLReaderObjectFactory
 operator|.
-name|PROPERTIES_LOAD_EXT_DTD
+name|APACHE_PROPERTIES_LOAD_EXT_DTD
 argument_list|,
 literal|true
 argument_list|)

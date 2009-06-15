@@ -273,7 +273,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|FEATURES_VALIDATION_SCHEMA
+name|APACHE_FEATURES_VALIDATION_SCHEMA
 init|=
 literal|"http://apache.org/xml/features/validation/schema"
 decl_stmt|;
@@ -281,7 +281,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTIES_INTERNAL_GRAMMARPOOL
+name|APACHE_PROPERTIES_INTERNAL_GRAMMARPOOL
 init|=
 literal|"http://apache.org/xml/properties/internal/grammar-pool"
 decl_stmt|;
@@ -289,7 +289,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTIES_LOAD_EXT_DTD
+name|APACHE_PROPERTIES_LOAD_EXT_DTD
 init|=
 literal|"http://apache.org/xml/features/nonvalidating/load-external-dtd"
 decl_stmt|;
@@ -297,7 +297,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 init|=
 literal|"http://apache.org/xml/properties/internal/entity-resolver"
 decl_stmt|;
@@ -505,7 +505,7 @@ name|xmlReader
 operator|.
 name|setProperty
 argument_list|(
-name|PROPERTIES_INTERNAL_GRAMMARPOOL
+name|APACHE_PROPERTIES_INTERNAL_GRAMMARPOOL
 argument_list|,
 name|grammarPool
 argument_list|)
@@ -523,7 +523,7 @@ name|xmlReader
 operator|.
 name|setProperty
 argument_list|(
-name|PROPERTIES_ENTITYRESOLVER
+name|APACHE_PROPERTIES_ENTITYRESOLVER
 argument_list|,
 name|resolver
 argument_list|)
@@ -674,7 +674,7 @@ name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
-name|FEATURES_VALIDATION_SCHEMA
+name|APACHE_FEATURES_VALIDATION_SCHEMA
 argument_list|,
 name|validation
 operator|==
@@ -689,7 +689,7 @@ name|xmlReader
 operator|.
 name|setFeature
 argument_list|(
-name|PROPERTIES_LOAD_EXT_DTD
+name|APACHE_PROPERTIES_LOAD_EXT_DTD
 argument_list|,
 name|validation
 operator|==
