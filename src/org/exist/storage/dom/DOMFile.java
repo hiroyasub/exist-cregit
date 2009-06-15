@@ -4906,7 +4906,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/* 	     * if the record has already been relocated, read the original 	     * storage address and update the link there. 	     */
+comment|/*             * if the record has already been relocated, read the original             * storage address and update the link there.             */
 if|if
 condition|(
 name|ItemId
@@ -5098,7 +5098,7 @@ name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/*              * save the record to the split page: 	     */
+comment|/*                 * save the record to the split page:             */
 if|if
 condition|(
 name|isTransactional
@@ -11060,8 +11060,8 @@ argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
-comment|//		 StringBuffer debug = new StringBuffer();
-comment|//		 debug.append("Removed pages: ");
+comment|//        		 StringBuffer debug = new StringBuffer();
+comment|//        		 debug.append("Removed pages: ");
 name|long
 name|pnum
 init|=
@@ -11277,7 +11277,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//		 LOG.debug(debug.toString());
+comment|//        		 LOG.debug(debug.toString());
 block|}
 specifier|public
 name|String
@@ -18129,16 +18129,6 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|loggable
-operator|.
-name|oldPrev
-operator|!=
-name|Page
-operator|.
-name|NO_PAGE
-condition|)
 name|ph
 operator|.
 name|setPrevDataPage
@@ -18148,16 +18138,6 @@ operator|.
 name|oldPrev
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|loggable
-operator|.
-name|oldNext
-operator|!=
-name|Page
-operator|.
-name|NO_PAGE
-condition|)
 name|ph
 operator|.
 name|setNextDataPage
