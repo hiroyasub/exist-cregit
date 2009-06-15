@@ -3867,16 +3867,28 @@ name|e
 parameter_list|)
 block|{
 comment|// Identifying old versions
-if|if
-condition|(
+name|String
+name|excMsg
+init|=
 name|e
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|excMsg
 operator|.
 name|contains
 argument_list|(
 literal|"No such handler"
+argument_list|)
+operator|||
+name|excMsg
+operator|.
+name|contains
+argument_list|(
+literal|"No method matching"
 argument_list|)
 condition|)
 block|{
