@@ -304,7 +304,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author jimfuller  */
+comment|/**  *  * @author jim.fuller@webcomposite.com  */
 end_comment
 
 begin_class
