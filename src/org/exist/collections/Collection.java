@@ -4227,6 +4227,8 @@ name|getReader
 argument_list|(
 name|broker
 argument_list|,
+literal|false
+argument_list|,
 name|info
 operator|.
 name|getCollectionConfig
@@ -4362,6 +4364,8 @@ init|=
 name|getReader
 argument_list|(
 name|broker
+argument_list|,
+literal|false
 argument_list|,
 name|colconf
 argument_list|)
@@ -5017,6 +5021,8 @@ init|=
 name|getReader
 argument_list|(
 name|broker
+argument_list|,
+literal|true
 argument_list|,
 name|colconf
 argument_list|)
@@ -7676,6 +7682,9 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+name|boolean
+name|validation
+parameter_list|,
 name|CollectionConfiguration
 name|colconfig
 parameter_list|)
@@ -7714,6 +7723,22 @@ decl_stmt|;
 comment|// If Collection configuration exists (try to) get validation mode
 comment|// and setup reader with this information.
 if|if
+condition|(
+operator|!
+name|validation
+condition|)
+name|XMLReaderObjectFactory
+operator|.
+name|setReaderValidationMode
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|VALIDATION_DISABLED
+argument_list|,
+name|reader
+argument_list|)
+expr_stmt|;
+if|else if
 condition|(
 name|colconfig
 operator|!=
