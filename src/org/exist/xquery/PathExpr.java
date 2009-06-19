@@ -2240,6 +2240,19 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#isValid() 	 */
+specifier|public
+name|boolean
+name|isValid
+parameter_list|()
+block|{
+return|return
+name|context
+operator|.
+name|checkModulesValid
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#dump(java.io.Writer)      */
 specifier|public
 name|void
