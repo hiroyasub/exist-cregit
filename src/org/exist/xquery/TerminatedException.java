@@ -13,20 +13,6 @@ name|xquery
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|parser
-operator|.
-name|XQueryAST
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment

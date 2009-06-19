@@ -77,30 +77,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionDef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|Function
 import|;
 end_import
@@ -113,9 +89,19 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
+name|FunctionDef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|JavaObjectValue
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Variable
 import|;
 end_import
 
@@ -169,7 +155,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|JavaObjectValue
 import|;
 end_import
 
@@ -181,7 +167,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Variable
+name|value
+operator|.
+name|Type
 import|;
 end_import
 

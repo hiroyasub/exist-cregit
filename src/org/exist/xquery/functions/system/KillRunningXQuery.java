@@ -157,16 +157,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Kill a running XQuery (must be dba)  *   * @author Andrzej Taramina (andrzej@chaeron.com)  */
 end_comment

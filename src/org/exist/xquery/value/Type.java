@@ -27,11 +27,13 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Arrays
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -94,18 +96,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
 import|;
 end_import
 

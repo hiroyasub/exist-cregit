@@ -11,15 +11,21 @@ end_package
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|sun
+name|io
 operator|.
-name|xacml
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|ctx
+name|util
 operator|.
-name|RequestCtx
+name|List
 import|;
 end_import
 
@@ -70,20 +76,6 @@ operator|.
 name|xacml
 operator|.
 name|ExistPDP
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|XACMLSource
 import|;
 end_import
 
@@ -145,21 +137,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|io
+name|sun
 operator|.
-name|Writer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|xacml
 operator|.
-name|util
+name|ctx
 operator|.
-name|List
+name|RequestCtx
 import|;
 end_import
 
