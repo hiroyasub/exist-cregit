@@ -673,6 +673,11 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
+operator|||
+name|contextSequence
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 return|return
 name|Sequence
@@ -975,6 +980,12 @@ init|;
 name|i
 operator|.
 name|hasNext
+argument_list|()
+operator|&&
+operator|!
+name|result
+operator|.
+name|isEmpty
 argument_list|()
 condition|;
 control|)

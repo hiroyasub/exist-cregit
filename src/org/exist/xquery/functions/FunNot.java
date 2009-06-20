@@ -612,20 +612,9 @@ block|{
 comment|// TODO: special treatment if the context sequence is empty:
 comment|// within a predicate, we just return the empty sequence
 comment|// otherwise evaluate the argument and return a boolean result
-if|if
-condition|(
-name|inPredicate
-operator|&&
-operator|!
-name|inWhereClause
-condition|)
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-else|else
+comment|//				if (inPredicate&& !inWhereClause)
+comment|//                    result = Sequence.EMPTY_SEQUENCE;
+comment|//				else
 name|result
 operator|=
 name|evalBoolean
