@@ -673,11 +673,6 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
-operator|||
-name|contextSequence
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 return|return
 name|Sequence
@@ -695,6 +690,11 @@ literal|0
 operator|||
 operator|!
 name|applyPredicate
+operator|||
+name|contextSequence
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 comment|// Nothing to apply
 return|return
