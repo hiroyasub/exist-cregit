@@ -13741,7 +13741,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * The method<code>retrieveFirstChunk</code> 	 * 	 * @param doc a<code>String</code> value 	 * @param id a<code>String</code> value 	 * @param parameters a<code>HashMap</code> value 	 * @return a<code>HashMap</code> value 	 * @exception Exception if an error occurs 	 */
+comment|/** 	 * The method<code>retrieveFirstChunk</code> 	 * 	 * @param docName a<code>String</code> value 	 * @param id a<code>String</code> value 	 * @param parameters a<code>HashMap</code> value 	 * @return a<code>HashMap</code> value 	 * @exception Exception if an error occurs 	 */
 specifier|public
 name|HashMap
 name|retrieveFirstChunk

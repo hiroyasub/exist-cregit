@@ -10979,7 +10979,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Read list of built-in modules from the configuration. This method will only make sure      * that the specified module class exists and is a subclass of {@link org.exist.xquery.Module}.      *      * @param xquery configuration root      * @return class name mapped to Class object.      * @throws DatabaseConfigurationException      */
+comment|/**      * Read list of built-in modules from the configuration. This method will only make sure      * that the specified module class exists and is a subclass of {@link org.exist.xquery.Module}.      *      * @param xquery configuration root      * @throws DatabaseConfigurationException      */
 specifier|public
 specifier|static
 name|void
