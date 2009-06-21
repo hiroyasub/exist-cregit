@@ -204,6 +204,9 @@ name|GrammarTooling
 operator|.
 name|class
 argument_list|)
+block|,
+comment|//       new FunctionDef(Jaxv.signatures[0], Jaxv.class),
+comment|//       new FunctionDef(Jaxv.signatures[1], Jaxv.class),
 block|}
 decl_stmt|;
 specifier|public
