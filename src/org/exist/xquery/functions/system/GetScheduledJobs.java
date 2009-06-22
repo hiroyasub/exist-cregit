@@ -228,7 +228,7 @@ specifier|final
 name|String
 name|DATE_TIME_FORMAT
 init|=
-literal|"yyyy-mm-dd HH:mm:ss.SSS Z"
+literal|"yyyy-MM-dd HH:mm:ss.SSS Z"
 decl_stmt|;
 specifier|final
 specifier|static
@@ -528,6 +528,7 @@ argument_list|()
 expr_stmt|;
 return|return
 operator|(
+operator|(
 name|NodeValue
 operator|)
 name|builder
@@ -537,6 +538,7 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|private
@@ -993,7 +995,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|returnValue
+operator|)
 return|;
 block|}
 specifier|private
@@ -1091,13 +1095,17 @@ operator|)
 condition|)
 block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 else|else
 block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
