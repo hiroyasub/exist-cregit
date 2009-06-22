@@ -691,10 +691,19 @@ operator|||
 operator|!
 name|applyPredicate
 operator|||
+operator|(
+operator|!
+operator|(
+name|contextSequence
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
 name|contextSequence
 operator|.
 name|isEmpty
 argument_list|()
+operator|)
 condition|)
 comment|// Nothing to apply
 return|return
@@ -982,11 +991,17 @@ operator|.
 name|hasNext
 argument_list|()
 operator|&&
+operator|(
+name|result
+operator|instanceof
+name|VirtualNodeSet
+operator|||
 operator|!
 name|result
 operator|.
 name|isEmpty
 argument_list|()
+operator|)
 condition|;
 control|)
 block|{
