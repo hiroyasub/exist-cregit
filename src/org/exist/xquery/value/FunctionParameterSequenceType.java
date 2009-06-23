@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  *   */
+comment|/*  *   */
 end_comment
 
 begin_package
@@ -15,20 +15,8 @@ name|value
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
 begin_comment
-comment|/**  * @author lcahlander  *  */
+comment|/**  * This class is used to specify the name and description of an XQuery function parameter.  * @author lcahlander  * @version 1.3  *  */
 end_comment
 
 begin_class
@@ -50,7 +38,7 @@ name|description
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param nodeName 	 * @param primaryType 	 * @param cardinality 	 * @param description 	 */
+comment|/** 	 * @param attributeName	The name of the parameter in the<strong>FunctionSignature</strong>. 	 * @param primaryType	The<strong>Type</strong> of the parameter. 	 * @param cardinality	The<strong>Cardinality</strong> of the parameter. 	 * @param description	A description of the parameter in the<strong>FunctionSignature</strong>. 	 * @see FunctionSignature, Type, Cardinality 	 */
 specifier|public
 name|FunctionParameterSequenceType
 parameter_list|(
