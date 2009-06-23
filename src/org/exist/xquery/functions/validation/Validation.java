@@ -713,7 +713,7 @@ init|=
 literal|null
 decl_stmt|;
 name|ValidationReport
-name|vr
+name|report
 init|=
 literal|null
 decl_stmt|;
@@ -890,7 +890,7 @@ literal|1
 condition|)
 block|{
 comment|// Validate using system catalog
-name|vr
+name|report
 operator|=
 name|validator
 operator|.
@@ -931,7 +931,7 @@ operator|+
 name|url
 expr_stmt|;
 block|}
-name|vr
+name|report
 operator|=
 name|validator
 operator|.
@@ -1081,7 +1081,7 @@ argument_list|(
 operator|new
 name|BooleanValue
 argument_list|(
-name|vr
+name|report
 operator|.
 name|isValid
 argument_list|()
@@ -1118,7 +1118,7 @@ name|result
 init|=
 name|writeReport
 argument_list|(
-name|vr
+name|report
 argument_list|,
 name|builder
 argument_list|)

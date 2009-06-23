@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: Validation.java 9042 2009-05-17 18:06:40Z wolfgang_m $  */
 end_comment
 
 begin_package
@@ -16,6 +16,68 @@ operator|.
 name|validation
 package|;
 end_package
+
+begin_import
+import|import
+name|com
+operator|.
+name|thaiopensource
+operator|.
+name|util
+operator|.
+name|PropertyMapBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|thaiopensource
+operator|.
+name|validate
+operator|.
+name|SchemaReader
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|thaiopensource
+operator|.
+name|validate
+operator|.
+name|ValidateProperty
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|thaiopensource
+operator|.
+name|validate
+operator|.
+name|ValidationDriver
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|thaiopensource
+operator|.
+name|validate
+operator|.
+name|rng
+operator|.
+name|CompactSchemaReader
+import|;
+end_import
 
 begin_import
 import|import
@@ -83,57 +145,11 @@ name|javax
 operator|.
 name|xml
 operator|.
-name|XMLConstants
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
 name|transform
 operator|.
 name|stream
 operator|.
 name|StreamSource
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|validation
-operator|.
-name|Schema
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|validation
-operator|.
-name|SchemaFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|validation
-operator|.
-name|Validator
 import|;
 end_import
 
@@ -389,6 +405,18 @@ name|xml
 operator|.
 name|sax
 operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
 name|helpers
 operator|.
 name|AttributesImpl
@@ -396,13 +424,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   xQuery function for validation of XML instance documents  * using grammars like XSDs and DTDs.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  *   xQuery function for validation of XML instance documents  * using jing for grammars like XSD, Relaxng, onvdl and schematron.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|Jaxv
+name|Jing
 extends|extends
 name|BasicFunction
 block|{
@@ -414,7 +442,7 @@ name|extendedFunctionTxt
 init|=
 literal|"Validate document specified by $a using grammar $b. "
 operator|+
-literal|"Heavily relies on javax.xml.validation.Validator"
+literal|"Heavily relies on com.thaiopensource.validate.ValidationDriver"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -436,7 +464,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"jaxv"
+literal|"jing"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -497,7 +525,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"jaxv-report"
+literal|"jing-report"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -556,7 +584,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|Jaxv
+name|Jing
 parameter_list|(
 name|XQueryContext
 name|context
@@ -806,78 +834,86 @@ operator|+
 name|grammarUrl
 expr_stmt|;
 block|}
-comment|// TODO add check .xsd extension
-comment|// Prepare
-name|String
-name|schemaLang
-init|=
-name|XMLConstants
-operator|.
-name|W3C_XML_SCHEMA_NS_URI
-decl_stmt|;
-name|SchemaFactory
-name|factory
-init|=
-name|SchemaFactory
-operator|.
-name|newInstance
-argument_list|(
-name|schemaLang
-argument_list|)
-decl_stmt|;
-comment|// Create grammar
-name|StreamSource
-name|grammar
-init|=
-operator|new
-name|StreamSource
-argument_list|(
-name|grammarUrl
-argument_list|)
-decl_stmt|;
-name|Schema
-name|schema
-init|=
-name|factory
-operator|.
-name|newSchema
-argument_list|(
-name|grammar
-argument_list|)
-decl_stmt|;
-comment|// Setup validator
-name|Validator
-name|validator
-init|=
-name|schema
-operator|.
-name|newValidator
-argument_list|()
-decl_stmt|;
-name|validator
-operator|.
-name|setErrorHandler
-argument_list|(
-name|report
-argument_list|)
-expr_stmt|;
-comment|// TODO add external resolver
 name|report
 operator|.
 name|start
 argument_list|()
 expr_stmt|;
-comment|// Perform validation
-name|StreamSource
+comment|// Setup validation properties. see Jing interface
+name|PropertyMapBuilder
+name|properties
+init|=
+operator|new
+name|PropertyMapBuilder
+argument_list|()
+decl_stmt|;
+name|ValidateProperty
+operator|.
+name|ERROR_HANDLER
+operator|.
+name|put
+argument_list|(
+name|properties
+argument_list|,
+name|report
+argument_list|)
+expr_stmt|;
+comment|// Special setup for compact notation
+name|SchemaReader
+name|schemaReader
+init|=
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".rnc"
+argument_list|)
+condition|?
+name|CompactSchemaReader
+operator|.
+name|getInstance
+argument_list|()
+else|:
+literal|null
+decl_stmt|;
+comment|// Setup driver
+name|ValidationDriver
+name|driver
+init|=
+operator|new
+name|ValidationDriver
+argument_list|(
+name|properties
+operator|.
+name|toPropertyMap
+argument_list|()
+argument_list|,
+name|schemaReader
+argument_list|)
+decl_stmt|;
+comment|// Load schema
+name|driver
+operator|.
+name|loadSchema
+argument_list|(
+operator|new
+name|InputSource
+argument_list|(
+name|grammarUrl
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Validate XML instance
+name|InputSource
 name|instance
 init|=
 operator|new
-name|StreamSource
+name|InputSource
 argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
-name|validator
+name|driver
 operator|.
 name|validate
 argument_list|(
@@ -968,12 +1004,12 @@ throw|;
 block|}
 finally|finally
 block|{
+comment|// Force release stream
 name|report
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-comment|// Force release stream
 try|try
 block|{
 if|if
@@ -1010,7 +1046,7 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"jaxv"
+literal|"jing"
 argument_list|)
 condition|)
 block|{
@@ -1043,7 +1079,7 @@ if|else if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"jaxv-report"
+literal|"jing-report"
 argument_list|)
 condition|)
 block|{
