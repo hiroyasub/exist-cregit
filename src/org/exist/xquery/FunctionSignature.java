@@ -35,6 +35,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -54,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Describes the signature of a built-in or user-defined function, i.e.  * its name, the type and cardinality of its arguments and its return type.  *    * @author wolf  */
+comment|/**  * Describes the signature of a built-in or user-defined function, i.e.  * its name, the type and cardinality of its arguments and its return type.  *    * @author wolf  * @author lcahlander  * @version 1.3  */
 end_comment
 
 begin_class
@@ -614,6 +628,37 @@ argument_list|(
 literal|'$'
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|arguments
+index|[
+name|i
+index|]
+operator|instanceof
+name|FunctionParameterSequenceType
+condition|)
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+operator|(
+operator|(
+name|FunctionParameterSequenceType
+operator|)
+name|arguments
+index|[
+name|i
+index|]
+operator|)
+operator|.
+name|getAttributeName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -628,6 +673,7 @@ name|i
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
