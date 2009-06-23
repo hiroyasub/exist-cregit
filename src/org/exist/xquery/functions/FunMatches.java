@@ -1510,7 +1510,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|AnalyzeContextInfo
+name|newContextInfo
+init|=
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|contextInfo
+argument_list|)
+decl_stmt|;
+name|newContextInfo
 operator|.
 name|setParent
 argument_list|(
@@ -1521,7 +1530,7 @@ comment|//  call analyze for each argument
 name|inPredicate
 operator|=
 operator|(
-name|contextInfo
+name|newContextInfo
 operator|.
 name|getFlags
 argument_list|()
@@ -1554,7 +1563,7 @@ argument_list|)
 operator|.
 name|analyze
 argument_list|(
-name|contextInfo
+name|newContextInfo
 argument_list|)
 expr_stmt|;
 block|}
