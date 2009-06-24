@@ -590,19 +590,7 @@ operator|+
 name|baseDir
 argument_list|)
 expr_stmt|;
-name|Sequence
-name|patterns
-init|=
-name|args
-index|[
-literal|2
-index|]
-decl_stmt|;
-name|String
-name|resourceType
-init|=
-literal|"XMLResource"
-decl_stmt|;
+comment|//determine resource type - xml or binary?
 name|String
 name|mimeType
 init|=
@@ -613,10 +601,10 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
-name|boolean
-name|keepDirStructure
+name|String
+name|resourceType
 init|=
-literal|false
+literal|"XMLResource"
 decl_stmt|;
 if|if
 condition|(
@@ -669,6 +657,12 @@ operator|=
 literal|"BinaryResource"
 expr_stmt|;
 block|}
+comment|//keep the directory structure?
+name|boolean
+name|keepDirStructure
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|getSignature
@@ -696,6 +690,15 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+comment|//store according to each pattern
+name|Sequence
+name|patterns
+init|=
+name|args
+index|[
+literal|2
+index|]
+decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -713,6 +716,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+comment|//get the files to store
 name|String
 name|pattern
 init|=
@@ -888,7 +892,7 @@ condition|)
 block|{
 name|col
 operator|=
-name|createCollection
+name|createCollectionPath
 argument_list|(
 name|collection
 argument_list|,
