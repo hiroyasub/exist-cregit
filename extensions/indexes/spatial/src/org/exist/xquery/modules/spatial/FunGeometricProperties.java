@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author Pierrick Brihaye<pierrick.brihaye@free.fr>  *  @author ljo  */
 end_comment
 
 begin_package
@@ -219,6 +219,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -395,8 +409,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -404,8 +420,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -444,8 +462,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -453,6 +473,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -493,8 +515,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -502,6 +526,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -542,8 +568,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -551,6 +579,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -591,8 +621,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -600,6 +632,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -640,8 +674,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -649,6 +685,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -689,8 +727,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -698,6 +738,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -738,8 +780,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -747,6 +791,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -787,8 +833,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -796,6 +844,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -836,8 +886,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -845,8 +897,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
-block|,                 }
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -885,8 +939,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -894,6 +950,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -934,8 +992,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -943,6 +1003,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -983,8 +1045,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -992,6 +1056,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1032,8 +1098,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1041,6 +1109,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1081,8 +1151,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1090,6 +1162,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1130,8 +1204,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1139,6 +1215,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1179,8 +1257,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1188,6 +1268,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1228,8 +1310,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1237,6 +1321,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1277,8 +1363,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1286,8 +1374,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -1326,8 +1416,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1335,8 +1427,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
 name|SequenceType
@@ -1368,15 +1462,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns if geometry $a is closed"
+literal|"Returns true() if geometry $a is closed, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1384,6 +1480,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|,             }
 argument_list|,
@@ -1417,15 +1515,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns if geometry $a is simple"
+literal|"Returns true() if geometry $a is simple, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1433,6 +1533,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|,             }
 argument_list|,
@@ -1466,15 +1568,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns if geometry $a is valid"
+literal|"Returns true() if geometry $a is valid, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"geometry"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1482,6 +1586,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"geometry"
 argument_list|)
 block|,             }
 argument_list|,
