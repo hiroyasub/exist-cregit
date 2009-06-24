@@ -145,6 +145,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -272,6 +286,128 @@ name|XMLDBLoadFromPattern
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|QName
+name|FUNCTION_NAME
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|"store-files-from-pattern"
+argument_list|,
+name|XMLDBModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Store new resources into the database. Resources are read from the server's "
+operator|+
+literal|"file system, using file patterns. "
+operator|+
+literal|"The function returns a sequence of all document paths added "
+operator|+
+literal|"to the db. These can be directly passed to fn:doc() to retrieve the document(s)."
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|SequenceType
+name|PARAM_COLLECTION
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collection"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The collection where resources should be stored. Specified either as a simple collection path or an XMLDB URI."
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|SequenceType
+name|PARAM_FS_DIRECTORY
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"fs-directory"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The directory in the file system from where the files are read."
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|SequenceType
+name|PARAM_FS_PATTERN
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"pattern"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ONE_OR_MORE
+argument_list|,
+literal|"The file matching pattern. Based on code from Apache's Ant, thus following the same conventions. For example: *.xml matches any file ending with .xml in the current directory, **/*.xml matches files in any directory below the current one"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|SequenceType
+name|PARAM_MIME_TYPE
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"mime-type"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"If the mime-type is something other than 'text/xml' or 'application/xml', the resource will be stored as a binary resource."
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -283,83 +419,19 @@ block|{
 operator|new
 name|FunctionSignature
 argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"store-files-from-pattern"
+name|FUNCTION_NAME
 argument_list|,
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|XMLDBModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Store new resources into the database. Resources are read from the server's "
-operator|+
-literal|"file system, using file patterns. "
-operator|+
-literal|"The first argument denotes the collection where resources should be stored. "
-operator|+
-literal|"The collection can be either specified as a simple collection path or "
-operator|+
-literal|"an XMLDB URI. "
-operator|+
-literal|"The second argument is the directory in the file system wherefrom the files are read."
-operator|+
-literal|"The third argument is the file pattern. File pattern matching is based "
-operator|+
-literal|"on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
-operator|+
-literal|"The function returns a sequence of all document paths added "
-operator|+
-literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_COLLECTION
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_FS_DIRECTORY
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|PARAM_FS_PATTERN
 block|}
 argument_list|,
 operator|new
@@ -378,101 +450,21 @@ block|,
 operator|new
 name|FunctionSignature
 argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"store-files-from-pattern"
+name|FUNCTION_NAME
 argument_list|,
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|XMLDBModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Store new resources into the database. Resources are read from the server's "
-operator|+
-literal|"file system, using file patterns. "
-operator|+
-literal|"The first argument denotes the collection where resources should be stored. "
-operator|+
-literal|"The collection can be either specified as a simple collection path or "
-operator|+
-literal|"an XMLDB URI. "
-operator|+
-literal|"The second argument is the directory in the file system wherefrom the files are read."
-operator|+
-literal|"The third argument is the file pattern. File pattern matching is based "
-operator|+
-literal|"on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
-operator|+
-literal|"The fourth argument $d is used to specify a mime-type.  If the mime-type "
-operator|+
-literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
-operator|+
-literal|"a binary resource."
-operator|+
-literal|"The function returns a sequence of all document paths added "
-operator|+
-literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_COLLECTION
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_FS_DIRECTORY
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|PARAM_FS_PATTERN
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_MIME_TYPE
 block|}
 argument_list|,
 operator|new
@@ -491,111 +483,27 @@ block|,
 operator|new
 name|FunctionSignature
 argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"store-files-from-pattern"
+name|FUNCTION_NAME
 argument_list|,
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|XMLDBModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Store new resources into the database. Resources are read from the server's "
-operator|+
-literal|"file system, using file patterns. "
-operator|+
-literal|"The first argument denotes the collection where resources should be stored. "
-operator|+
-literal|"The collection can be either specified as a simple collection path or "
-operator|+
-literal|"an XMLDB URI. "
-operator|+
-literal|"The second argument is the directory in the file system wherefrom the files are read."
-operator|+
-literal|"The third argument is the file pattern. File pattern matching is based "
-operator|+
-literal|"on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
-operator|+
-literal|"The fourth argument $d is used to specify a mime-type.  If the mime-type "
-operator|+
-literal|"is something other than 'text/xml' or 'application/xml', the resource will be stored as "
-operator|+
-literal|"a binary resource."
-operator|+
-literal|"If the final boolean argument is true(), the directory structure will be kept in the collection, "
-operator|+
-literal|"otherwise all the matching resources, including the ones in sub-directories, will be stored "
-operator|+
-literal|"in the collection given in the first argument flatly."
-operator|+
-literal|"The function returns a sequence of all document paths added "
-operator|+
-literal|"to the db. These can be directly passed to fn:doc() to retrieve the document."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PARAM_COLLECTION
+block|,
+name|PARAM_FS_DIRECTORY
+block|,
+name|PARAM_FS_PATTERN
+block|,
+name|PARAM_MIME_TYPE
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
-name|Type
-operator|.
-name|STRING
+literal|"preserve-structure"
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
 name|Type
 operator|.
 name|BOOLEAN
@@ -603,6 +511,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"If preserve-structure is true(), the filesystem directory structure will be mirrored in the collection. Otherwise all the matching resources, including the ones in sub-directories, will be stored in the collection given in the first argument flatly."
 argument_list|)
 block|}
 argument_list|,
