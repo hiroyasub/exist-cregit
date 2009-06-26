@@ -801,7 +801,7 @@ literal|"inner expression. "
 operator|+
 literal|"The function returns an empty sequence if a whitespace string is passed. "
 operator|+
-literal|"The third argument specifies if the compiled query expression "
+literal|"The second argument specifies if the compiled query expression "
 operator|+
 literal|"should be cached. The cached query will be globally available within the db instance."
 argument_list|,
