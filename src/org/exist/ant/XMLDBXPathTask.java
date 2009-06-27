@@ -705,7 +705,7 @@ decl_stmt|;
 name|String
 name|result
 init|=
-literal|null
+literal|""
 decl_stmt|;
 while|while
 condition|(
@@ -726,7 +726,7 @@ name|nextResource
 argument_list|()
 expr_stmt|;
 name|result
-operator|=
+operator|+=
 name|res
 operator|.
 name|getContent
@@ -734,6 +734,8 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"\n"
 expr_stmt|;
 block|}
 name|getProject
