@@ -377,7 +377,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"test/ant-tasks/build.xml"
+literal|"src/ant/build.xml"
 argument_list|)
 decl_stmt|;
 name|Project
