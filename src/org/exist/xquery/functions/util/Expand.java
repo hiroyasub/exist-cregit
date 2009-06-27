@@ -463,7 +463,7 @@ condition|(
 name|getArgumentCount
 argument_list|()
 operator|==
-literal|4
+literal|2
 condition|)
 block|{
 name|String
@@ -471,7 +471,7 @@ name|serOpts
 init|=
 name|args
 index|[
-literal|3
+literal|1
 index|]
 operator|.
 name|getStringValue
