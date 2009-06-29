@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension ExecuteFunction  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ExecuteFunction.java 4126 2006-09-18 21:20:17 +0000 (Mon, 18 Sep 2006) deliriumsky $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -133,6 +133,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -194,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryListFunction   *   * Enumerate a list of files found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryListFunction   *   * Enumerate a list of files, including their size and modification time, found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-06-29  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -243,7 +257,7 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"List all files found in a directory. Files are located in the server's "
+literal|"List all files, including their file size and modification time, found in a directory. Files are located in the server's "
 operator|+
 literal|"file system, using file patterns. "
 operator|+
@@ -257,15 +271,17 @@ literal|"*.xml matches any file ending with .xml in the current directory, **/*.
 operator|+
 literal|"in any directory below the current one. "
 operator|+
-literal|"The function returns a node fragment that shows all matching filenames and the subdirectory they were found in"
+literal|"The function returns a node fragment that shows all matching filenames, including their file size and modification time, and the subdirectory they were found in"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"directory"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -273,11 +289,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the base directory"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"pattern"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -285,6 +305,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the file glob pattern"
 argument_list|)
 block|}
 argument_list|,
@@ -617,6 +639,53 @@ name|j
 index|]
 operator|.
 name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|addAttribute
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"size"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+argument_list|,
+name|files
+index|[
+name|j
+index|]
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// FIXIT: return a dateTime instead of a long. /ljo
+name|builder
+operator|.
+name|addAttribute
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"modified"
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+argument_list|,
+name|files
+index|[
+name|j
+index|]
+operator|.
+name|lastModified
 argument_list|()
 argument_list|)
 expr_stmt|;
