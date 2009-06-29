@@ -19,11 +19,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
+name|output
+operator|.
+name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -33,7 +39,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
+name|ByteArrayInputStream
 import|;
 end_import
 

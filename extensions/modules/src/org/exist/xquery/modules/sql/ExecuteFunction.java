@@ -19,9 +19,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
+operator|.
+name|output
 operator|.
 name|ByteArrayOutputStream
 import|;
@@ -188,20 +194,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|parser
-operator|.
-name|XQueryAST
 import|;
 end_import
 

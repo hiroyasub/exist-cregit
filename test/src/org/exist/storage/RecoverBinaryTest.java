@@ -15,9 +15,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
+operator|.
+name|output
 operator|.
 name|ByteArrayOutputStream
 import|;
