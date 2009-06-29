@@ -466,6 +466,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Initialize servlet for log4j purposes in servlet container (war file).      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|init
@@ -744,6 +746,8 @@ name|retVal
 return|;
 block|}
 comment|/**      *  Empty method.      *      * @param req HTTP Request object      * @param res HTTP Response object      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doGet
