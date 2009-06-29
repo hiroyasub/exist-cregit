@@ -502,6 +502,9 @@ argument_list|)
 operator|)
 operator|)
 operator|.
+name|toURI
+argument_list|()
+operator|.
 name|toURL
 argument_list|()
 expr_stmt|;

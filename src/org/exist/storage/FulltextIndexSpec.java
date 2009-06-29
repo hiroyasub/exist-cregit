@@ -1904,7 +1904,7 @@ block|{
 return|return
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|" ["

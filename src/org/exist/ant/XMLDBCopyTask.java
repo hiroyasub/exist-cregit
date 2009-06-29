@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -50,6 +60,18 @@ operator|.
 name|xmldb
 operator|.
 name|CollectionManagementServiceImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -142,7 +164,7 @@ name|name
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
+comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
 name|execute
@@ -156,6 +178,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -163,6 +186,7 @@ argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|resource
@@ -173,6 +197,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -180,6 +205,7 @@ argument_list|(
 literal|"Missing parameter: either resource or collection should be specified"
 argument_list|)
 throw|;
+block|}
 name|registerDatabase
 argument_list|()
 expr_stmt|;
@@ -230,6 +256,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -237,7 +264,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -247,6 +276,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -327,6 +357,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -334,7 +365,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -345,17 +378,34 @@ name|MSG_ERR
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
+comment|//XmldbURI resource = XmldbURI.create(resource);
 name|service
 operator|.
 name|copyResource
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|resource
+argument_list|)
 argument_list|,
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|destination
+argument_list|)
 argument_list|,
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|name
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -377,11 +427,26 @@ name|service
 operator|.
 name|copy
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|collection
+argument_list|)
 argument_list|,
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|destination
+argument_list|)
 argument_list|,
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|name
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -407,6 +472,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -416,7 +482,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -430,7 +498,54 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param collection    */
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+name|String
+name|msg
+init|=
+literal|"URI syntax exception: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|failonerror
+condition|)
+block|{
+throw|throw
+operator|new
+name|BuildException
+argument_list|(
+name|msg
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+name|log
+argument_list|(
+name|msg
+argument_list|,
+name|e
+argument_list|,
+name|Project
+operator|.
+name|MSG_ERR
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|/**      * @param collection      */
 specifier|public
 name|void
 name|setCollection
@@ -446,7 +561,7 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
-comment|/**    * @param resource    */
+comment|/**      * @param resource      */
 specifier|public
 name|void
 name|setResource

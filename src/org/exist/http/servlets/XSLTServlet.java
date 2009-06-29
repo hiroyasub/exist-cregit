@@ -647,6 +647,16 @@ name|HashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|ServletContext
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -1445,7 +1455,8 @@ else|else
 block|{
 name|stylesheet
 operator|=
-name|request
+name|getServletContext
+argument_list|()
 operator|.
 name|getRealPath
 argument_list|(

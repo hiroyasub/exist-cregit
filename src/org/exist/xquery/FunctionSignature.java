@@ -568,7 +568,7 @@ name|append
 argument_list|(
 name|name
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;

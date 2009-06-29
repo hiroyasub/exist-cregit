@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -38,6 +48,18 @@ operator|.
 name|xmldb
 operator|.
 name|CollectionManagementServiceImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -365,7 +387,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|evalWithCollection
@@ -383,7 +405,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|String
+name|XmldbURI
 name|destination
 init|=
 operator|new
@@ -405,9 +427,6 @@ argument_list|)
 operator|.
 name|toXmldbURI
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -420,7 +439,7 @@ operator|==
 literal|3
 condition|)
 block|{
-name|String
+name|XmldbURI
 name|doc
 init|=
 operator|new
@@ -442,9 +461,6 @@ argument_list|)
 operator|.
 name|toXmldbURI
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 decl_stmt|;
 try|try
 block|{
@@ -456,6 +472,9 @@ operator|.
 name|getResource
 argument_list|(
 name|doc
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -464,6 +483,7 @@ name|resource
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -477,6 +497,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -551,10 +572,15 @@ name|service
 operator|.
 name|move
 argument_list|(
+name|XmldbURI
+operator|.
+name|xmldbUriFor
+argument_list|(
 name|collection
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|,
 name|destination
 argument_list|,
@@ -575,6 +601,29 @@ argument_list|(
 name|this
 argument_list|,
 literal|"Cannot move collection: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"URI exception: "
 operator|+
 name|e
 operator|.

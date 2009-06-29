@@ -1195,7 +1195,7 @@ name|stats
 operator|.
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;

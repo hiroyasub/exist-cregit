@@ -255,7 +255,7 @@ name|currentTag
 operator|=
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 expr_stmt|;
 block|}

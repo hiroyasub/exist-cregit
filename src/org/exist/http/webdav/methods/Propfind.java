@@ -3992,7 +3992,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|,
 operator|new
@@ -4015,7 +4015,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4051,7 +4051,7 @@ argument_list|()
 argument_list|,
 name|element
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|,
 operator|new
@@ -4081,7 +4081,7 @@ argument_list|()
 argument_list|,
 name|element
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;

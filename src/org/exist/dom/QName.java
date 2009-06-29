@@ -414,29 +414,9 @@ name|toString
 parameter_list|()
 block|{
 comment|//TODO : remove this copy of getStringValue()
-if|if
-condition|(
-name|prefix_
-operator|!=
-literal|null
-operator|&&
-name|prefix_
-operator|.
-name|length
+return|return
+name|getStringValue
 argument_list|()
-operator|>
-literal|0
-condition|)
-return|return
-name|prefix_
-operator|+
-literal|':'
-operator|+
-name|localName_
-return|;
-else|else
-return|return
-name|localName_
 return|;
 comment|//TODO : replace by something like this
 comment|/* 		if (prefix_ != null&& prefix_.length()> 0) 			return prefix_ + ':' + localName_; 		if (needsNamespaceDecl()) { 			if (prefix_ != null&& prefix_.length()> 0) 				return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_; 			return "{" + namespaceURI_ + "}" + localName_; 		} else  			return localName_; 		*/
