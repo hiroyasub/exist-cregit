@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -135,6 +125,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|IntegerValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -177,46 +181,18 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|ValueSequence
-import|;
-end_import
-
 begin_comment
-comment|/**  * @author Alain Pannetier<alain.m.pannetier@gmail.com>  *   * Adjusted and Committed by Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|GetHeaderNames
+name|GetRemotePort
 extends|extends
 name|BasicFunction
 block|{
@@ -232,7 +208,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-header-names"
+literal|"get-remote-port"
 argument_list|,
 name|RequestModule
 operator|.
@@ -243,7 +219,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a sequence containing the names of all headers passed in the current request"
+literal|"Returns the Internet Protocol (IP) source port of the client or last proxy that sent the current request."
 argument_list|,
 literal|null
 argument_list|,
@@ -252,17 +228,17 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|EXACTLY_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**          * @param context          */
+comment|/** 	 * @param context 	 */
 specifier|public
-name|GetHeaderNames
+name|GetRemotePort
 parameter_list|(
 name|XQueryContext
 name|context
@@ -276,7 +252,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)          */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -389,19 +365,10 @@ argument_list|()
 operator|instanceof
 name|RequestWrapper
 condition|)
-block|{
-name|ValueSequence
-name|result
-init|=
+return|return
 operator|new
-name|ValueSequence
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|Enumeration
-name|e
-init|=
+name|IntegerValue
+argument_list|(
 operator|(
 operator|(
 name|RequestWrapper
@@ -412,43 +379,10 @@ name|getObject
 argument_list|()
 operator|)
 operator|.
-name|getHeaderNames
+name|getRemotePort
 argument_list|()
-init|;
-name|e
-operator|.
-name|hasMoreElements
-argument_list|()
-condition|;
-control|)
-block|{
-name|String
-name|param
-init|=
-operator|(
-name|String
-operator|)
-name|e
-operator|.
-name|nextElement
-argument_list|()
-decl_stmt|;
-name|result
-operator|.
-name|add
-argument_list|(
-operator|new
-name|StringValue
-argument_list|(
-name|param
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|result
 return|;
-block|}
 else|else
 throw|throw
 operator|new

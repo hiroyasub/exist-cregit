@@ -232,6 +232,11 @@ name|getRemoteHost
 parameter_list|()
 function_decl|;
 specifier|public
+name|int
+name|getRemotePort
+parameter_list|()
+function_decl|;
+specifier|public
 name|String
 name|getRemoteUser
 parameter_list|()

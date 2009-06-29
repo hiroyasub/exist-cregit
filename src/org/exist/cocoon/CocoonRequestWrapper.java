@@ -594,6 +594,19 @@ name|getRemoteHost
 argument_list|()
 return|;
 block|}
+comment|/**@see org.apache.cocoon.environment.Request#getRemotePort() 	 */
+specifier|public
+name|int
+name|getRemotePort
+parameter_list|()
+block|{
+return|return
+name|cocoonRequest
+operator|.
+name|getRemotePort
+argument_list|()
+return|;
+block|}
 comment|/**@see org.apache.cocoon.environment.Request#getRemoteUser() 	 */
 specifier|public
 name|String
