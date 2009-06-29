@@ -407,7 +407,7 @@ return|return
 name|localName_
 return|;
 block|}
-comment|/** 	 * @deprecated : use for debugging purpose only,  	 * use getStringValue() for production 	 */
+comment|/** 	 * (deprecated) : use for debugging purpose only, 	 * use getStringValue() for production 	 */
 specifier|public
 name|String
 name|toString
