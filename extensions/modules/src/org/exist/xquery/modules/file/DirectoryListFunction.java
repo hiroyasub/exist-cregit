@@ -656,6 +656,10 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+name|Long
+operator|.
+name|toString
+argument_list|(
 name|files
 index|[
 name|j
@@ -663,6 +667,7 @@ index|]
 operator|.
 name|length
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// FIXIT: return a dateTime instead of a long. /ljo
@@ -680,6 +685,10 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+name|Long
+operator|.
+name|toString
+argument_list|(
 name|files
 index|[
 name|j
@@ -687,6 +696,7 @@ index|]
 operator|.
 name|lastModified
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
