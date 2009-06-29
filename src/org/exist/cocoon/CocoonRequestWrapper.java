@@ -594,7 +594,7 @@ name|getRemoteHost
 argument_list|()
 return|;
 block|}
-comment|/**@see org.apache.cocoon.environment.Request#getRemotePort() 	 */
+comment|/** 		As Cocoon does not implement the concept of remote port, 		give at least the server port. Beware, it could be wrong!!!! 	 */
 specifier|public
 name|int
 name|getRemotePort
@@ -603,7 +603,7 @@ block|{
 return|return
 name|cocoonRequest
 operator|.
-name|getRemotePort
+name|getServerPort
 argument_list|()
 return|;
 block|}
