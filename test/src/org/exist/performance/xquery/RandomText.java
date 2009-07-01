@@ -161,15 +161,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|""
+literal|"This function generates a string of random words."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"max-words"
+argument_list|,
 name|Type
 operator|.
 name|INT
@@ -177,6 +179,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The maximum number of random words to generate."
 argument_list|)
 block|}
 argument_list|,

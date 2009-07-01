@@ -81,6 +81,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -172,8 +186,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"seconds"
+argument_list|,
 name|Type
 operator|.
 name|INT
@@ -181,6 +197,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Seconds to pause."
 argument_list|)
 block|}
 argument_list|,
