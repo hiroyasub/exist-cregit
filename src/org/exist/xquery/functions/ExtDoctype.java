@@ -105,15 +105,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the document nodes of the documents whose DOCTYPE is given by $a."
+literal|"Returns the document nodes of the documents based on the DOCTYPE."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"doctype"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -121,6 +123,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"one or more DOCTYPE names"
 argument_list|)
 block|, 			}
 argument_list|,

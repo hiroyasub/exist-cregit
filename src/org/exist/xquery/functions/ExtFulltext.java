@@ -486,6 +486,8 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
+literal|""
+argument_list|,
 operator|new
 name|SequenceType
 index|[]

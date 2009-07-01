@@ -153,6 +153,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -256,8 +270,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"attribute-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -265,12 +281,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|""
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -278,6 +298,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"attribute value"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -313,8 +335,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"attribute-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -322,12 +346,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|""
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -335,6 +363,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"attribute value"
 argument_list|)
 argument_list|,
 literal|"Moved to 'session' module. Renamed to session:get-attribute"
