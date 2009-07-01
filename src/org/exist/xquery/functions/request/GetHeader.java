@@ -137,6 +137,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -217,7 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the HTTP request header identified by $a. The list of all "
+literal|"Returns the HTTP request header identified by $header-name. The list of all "
 operator|+
 literal|"headers included in the HTTP request are available through the "
 operator|+
@@ -228,8 +242,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"header-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -237,6 +253,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The HTTP request header name"
 argument_list|)
 block|}
 argument_list|,

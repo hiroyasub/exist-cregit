@@ -137,6 +137,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -219,9 +233,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the HTTP request parameter identified by $a. If the parameter could not be found, "
+literal|"Returns the HTTP request parameter identified by $parameter-name. If the parameter could not be found, "
 operator|+
-literal|"the default value specified in $b is returned instead. Note: this function will not try to expand "
+literal|"the default value is returned instead. Note: this function will not try to expand "
 operator|+
 literal|"predefined entities like&amp; or&lt;, so a&amp; passed through a parameter will indeed "
 operator|+
@@ -232,8 +246,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameter-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -241,11 +257,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"default-value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -253,6 +273,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -286,13 +308,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the HTTP request parameter identified by $a. If the parameter could not be found, "
+literal|"Returns the HTTP request parameter identified by $parameter-name. If the parameter could not be found, "
 operator|+
-literal|"the default value specified in $b is returned instead. Note: this function will not try to expand "
+literal|"the default value is returned instead. Note: this function will not try to expand "
 operator|+
 literal|"predefined entities like&amp; or&lt;, so a&amp; passed through a parameter will indeed "
 operator|+
-literal|"be treated as an&amp; character. If the  $c (failonerror) value is set to false, then the function "
+literal|"be treated as an&amp; character. If the $failonerror value is set to false, then the function "
 operator|+
 literal|"will not fail if there is no request in scope."
 argument_list|,
@@ -301,8 +323,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameter-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -310,11 +334,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"default-value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -322,11 +350,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"failonerror"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -334,6 +366,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -374,9 +408,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the HTTP request parameter identified by $a. If the parameter could not be found, "
+literal|"Returns the HTTP request parameter identified by $parameter-name. If the parameter could not be found, "
 operator|+
-literal|"the default value specified in $b is returned instead. Note: this function will not try to expand "
+literal|"the default value is returned instead. Note: this function will not try to expand "
 operator|+
 literal|"predefined entities like&amp; or&lt;, so a&amp; passed through a parameter will indeed "
 operator|+
@@ -387,8 +421,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameter-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -396,11 +432,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"default-value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -408,6 +448,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,

@@ -137,6 +137,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -231,15 +245,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the value of the Cookie named in $a."
+literal|"Returns the value of a named Cookie."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cookie-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -247,6 +263,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the cookie to retrieve the value from."
 argument_list|)
 block|}
 argument_list|,

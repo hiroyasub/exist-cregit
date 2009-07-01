@@ -193,7 +193,9 @@ argument_list|)
 argument_list|,
 literal|"Returns whether a request object exists."
 argument_list|,
-literal|null
+name|FunctionSignature
+operator|.
+name|NO_ARGS
 argument_list|,
 operator|new
 name|SequenceType

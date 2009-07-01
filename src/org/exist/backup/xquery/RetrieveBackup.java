@@ -109,6 +109,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -301,19 +315,17 @@ argument_list|)
 argument_list|,
 literal|"Retrieves a zipped backup archive and directly streams it to the HTTP response. "
 operator|+
-literal|"For security reasons, the function will not allow to read other files. The base directory "
-operator|+
-literal|"for the backup files is specified in the first parameter, the second parameter contains the "
-operator|+
-literal|"name of the file to retrieve."
+literal|"For security reasons, the function will not allow to read other files."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"exportDir"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -321,11 +333,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The base directory for the backup files."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -333,6 +349,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Name of the file to retrieve."
 argument_list|)
 block|}
 argument_list|,
