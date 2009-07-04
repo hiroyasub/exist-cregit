@@ -82,7 +82,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * @author wolf  * @author andrzej@chaeron.com  */
 end_comment
 
 begin_class
@@ -302,11 +302,6 @@ name|uri
 argument_list|)
 condition|)
 block|{
-name|log
-argument_list|(
-literal|"Database driver already registered."
-argument_list|)
-expr_stmt|;
 return|return;
 block|}
 block|}
@@ -350,6 +345,7 @@ name|configuration
 operator|!=
 literal|null
 condition|)
+block|{
 name|database
 operator|.
 name|setProperty
@@ -359,11 +355,17 @@ argument_list|,
 name|configuration
 argument_list|)
 expr_stmt|;
+block|}
 name|DatabaseManager
 operator|.
 name|registerDatabase
 argument_list|(
 name|database
+argument_list|)
+expr_stmt|;
+name|log
+argument_list|(
+literal|"Database driver registered."
 argument_list|)
 expr_stmt|;
 block|}
@@ -374,11 +376,13 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"failed to initialize XMLDB database driver"
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
