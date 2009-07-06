@@ -417,7 +417,7 @@ name|getProperty
 argument_list|(
 name|INCREMENTAL_PROP_NAME
 argument_list|,
-literal|"yes"
+literal|"no"
 argument_list|)
 decl_stmt|;
 name|incremental
