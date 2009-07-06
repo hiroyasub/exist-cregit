@@ -2284,8 +2284,6 @@ literal|"<index>"
 operator|+
 literal|"<fulltext default=\"none\" attributes=\"false\">"
 operator|+
-literal|"<include path=\"//node\"/>"
-operator|+
 literal|"<create qname=\"node\"/>"
 operator|+
 literal|"<create qname=\"@id\"/>"
@@ -2417,6 +2415,75 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+for|for
+control|(
+name|ResourceIterator
+name|i
+init|=
+name|result
+operator|.
+name|getIterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasMoreResources
+argument_list|()
+condition|;
+control|)
+block|{
+name|Resource
+name|resource
+init|=
+name|i
+operator|.
+name|nextResource
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|resource
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|assertEquals
+argument_list|(
+literal|5
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+name|queryBody
+operator|+
+literal|"t:index-terms(collection('"
+operator|+
+name|TEST_COLLECTION_PATH
+operator|+
+literal|"')//node, "
+operator|+
+literal|"xs:QName('node'), (), util:function(xs:QName(\'f:term-callback\'), 2), 1000)"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|ResourceIterator

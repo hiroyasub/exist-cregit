@@ -192,19 +192,19 @@ literal|"This function can be used to collect some information on the distributi
 operator|+
 literal|"of index terms within a set of nodes. The set of nodes is specified in the first "
 operator|+
-literal|"argument $a. The function returns term frequencies for all terms in the index found "
+literal|"argument $nodes. The function returns term frequencies for all terms in the index found "
 operator|+
-literal|"in descendants of the nodes in $a. The second argument $b specifies "
+literal|"in descendants of the nodes in $nodes. The second argument $start specifies "
 operator|+
 literal|"a start string. Only terms starting with the specified character sequence are returned. "
 operator|+
-literal|"If $a is the empty sequence, all terms in the index will be selected. "
+literal|"If $nodes is the empty sequence, all terms in the index will be selected. "
 operator|+
-literal|"$c is a function reference, which points to a callback function that will be called "
+literal|"$function is a function reference, which points to a callback function that will be called "
 operator|+
-literal|"for every term occurrence. $d defines the maximum number of terms that should be "
+literal|"for every term occurrence. $returnMax defines the maximum number of terms that should be "
 operator|+
-literal|"reported. The function reference for $c can be created with the util:function "
+literal|"reported. The function reference for $function can be created with the util:function "
 operator|+
 literal|"function. It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
@@ -221,8 +221,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -230,11 +232,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The set of nodes in which the returned tokens occur"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"start"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -242,11 +248,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"Optional start string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"function"
+argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
@@ -254,11 +264,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Callback function reference"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"returnMax"
+argument_list|,
 name|Type
 operator|.
 name|INT
@@ -266,6 +280,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Maximum number of terms to report"
 argument_list|)
 block|}
 argument_list|,
@@ -312,8 +328,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -321,11 +339,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The set of nodes in which the returned tokens occur"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"qnames"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -333,11 +355,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"One or more element or attribute names for which index terms are returned"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"start"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -345,11 +371,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"Optional start string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"function"
+argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
@@ -357,11 +387,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Callback function reference"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"returnMax"
+argument_list|,
 name|Type
 operator|.
 name|INT
@@ -369,6 +403,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Maximum number of terms to report"
 argument_list|)
 block|}
 argument_list|,
