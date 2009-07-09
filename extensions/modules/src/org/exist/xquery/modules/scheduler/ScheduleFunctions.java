@@ -173,6 +173,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -325,17 +339,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the Java Class named in $a (the class must extend org.exist.scheduler.UserJob) according "
+literal|"Schedules the Java Class named (the class must extend org.exist.scheduler.UserJavaJob) according "
 operator|+
-literal|"to the Cron expression in $b. The job will be registered using the name passed in $c."
+literal|"to the Cron expression. The job will be registered using the job name."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"java-classname"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -343,11 +359,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The full name of the class to be executed.  It must extend the org.exist.scheduler.UserJavaJob class."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cron-expression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -355,11 +375,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"A cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -367,12 +391,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -380,6 +408,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -406,25 +436,25 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the Java Class named in $a (the class must extend org.exist.scheduler.UserJob) according "
+literal|"Schedules the Java Class named (the class must extend org.exist.scheduler.UserJavaJob) according "
 operator|+
-literal|"to the Cron expression in $b. The job will be registered using the name passed in $c. The final "
+literal|"to the Cron expression. The job will be registered using the name passed in $c. The final "
 operator|+
 literal|"argument can be used to specify "
 operator|+
 literal|"parameters for the job, which will be passed to the query as external variables. Parameters are specified "
 operator|+
-literal|"in an XML fragment with the following structure: "
-operator|+
-literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>,"
+literal|"in an XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"java-classname"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -432,11 +462,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The full name of the class to be executed.  It must extend the org.exist.scheduler.UserJavaJob class."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cron-expression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -444,11 +478,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"A cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -456,11 +494,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-parameters"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
@@ -468,12 +510,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -481,6 +527,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -507,9 +555,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the Java Class named in $a (the class must extend org.exist.scheduler.UserJob) according "
+literal|"Schedules the Java Class named (the class must extend org.exist.scheduler.UserJavaJob) according "
 operator|+
-literal|"to the periodic value in $b. The job will be registered using the name passed in $c. The $d "
+literal|"to the periodic value. The job will be registered using the job name. The $job-parameters "
 operator|+
 literal|"argument can be used to specify "
 operator|+
@@ -517,15 +565,17 @@ literal|"parameters for the job, which will be passed to the query as external v
 operator|+
 literal|"in an XML fragment with the following structure: "
 operator|+
-literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>,  Given the delay passed in $e and the repeat value in $f"
+literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>,  Given the delay and the repeat."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"java-classname"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -533,11 +583,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The full name of the class to be executed.  It must extend the org.exist.scheduler.UserJavaJob class."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"period"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -545,11 +599,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Time in milliseconds between execution of the job"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -557,11 +615,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-parameters"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
@@ -569,11 +631,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"delay"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -581,11 +647,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Can be used with a period in milliseconds to delay the start of a job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"repeat"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -593,12 +663,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Number of times to repeat the job after the initial execution"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -606,6 +680,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -632,17 +708,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the XQuery resource named in $a (e.g. /db/foo.xql) according to the Cron expression in $b. "
+literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the Cron expression. "
 operator|+
-literal|"The job will be registered using the name passed in $c."
+literal|"The job will be registered using the job name."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"xquery-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -650,11 +728,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The path to the XQuery resource"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cron-expression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -662,11 +744,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"A cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -674,12 +760,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
-block|, 			}
+block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -687,6 +777,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -713,9 +805,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the XQuery resource named in $a (e.g. /db/foo.xql) according to the Cron expression in $b. "
+literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the Cron expression. "
 operator|+
-literal|"The job will be registered using the name passed in $c. The final argument can be used to specify "
+literal|"The job will be registered using the job name. The final argument can be used to specify "
 operator|+
 literal|"parameters for the job, which will be passed to the query as external variables. Parameters are specified "
 operator|+
@@ -728,8 +820,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"xquery-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -737,11 +831,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The path to the XQuery resource"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cron-expression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -749,11 +847,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"A cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -761,24 +863,32 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-parameters"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
+argument_list|,
+literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -786,6 +896,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -812,9 +924,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Schedules the XQuery resource named in $a (e.g. /db/foo.xql) according to the periodic in $b. "
+literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the period. "
 operator|+
-literal|"The job will be registered using the name passed in $c. The $d argument can be used to specify "
+literal|"The job will be registered using the job name. The job parameters argument can be used to specify "
 operator|+
 literal|"parameters for the job, which will be passed to the query as external variables. Parameters are specified "
 operator|+
@@ -822,15 +934,17 @@ literal|"in an XML fragment with the following structure: "
 operator|+
 literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 operator|+
-literal|",  Given the delay passed in $e and the repeat value in $f"
+literal|",  Given the delay passed and the repeat value."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"xquery-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -838,11 +952,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The path to the XQuery resource"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"period"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -850,11 +968,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Time in milliseconds between execution of the job"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -862,23 +984,31 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-parameters"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
+argument_list|,
+literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"delay"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -886,11 +1016,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Can be used with a period in milliseconds to delay the start of a job."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"repeat"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -898,12 +1032,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Number of times to repeat the job after the initial execution"
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -911,6 +1049,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;

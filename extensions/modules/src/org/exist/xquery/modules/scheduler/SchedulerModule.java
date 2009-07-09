@@ -249,7 +249,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"A module for Scheduling Jobs"
+literal|"A module for Scheduling Jobs using the Quartz Scheduler"
 return|;
 block|}
 block|}
