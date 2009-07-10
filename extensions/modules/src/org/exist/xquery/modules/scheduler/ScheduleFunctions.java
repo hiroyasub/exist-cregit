@@ -710,6 +710,8 @@ argument_list|)
 argument_list|,
 literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the Cron expression. "
 operator|+
+literal|"XQuery job's will be launched under the guest account initially, although the running XQuery may switch permissions through calls to xmldb:login(). "
+operator|+
 literal|"The job will be registered using the job name."
 argument_list|,
 operator|new
@@ -806,6 +808,8 @@ name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the Cron expression. "
+operator|+
+literal|"XQuery job's will be launched under the guest account initially, although the running XQuery may switch permissions through calls to xmldb:login(). "
 operator|+
 literal|"The job will be registered using the job name. The final argument can be used to specify "
 operator|+
@@ -925,6 +929,8 @@ name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the period. "
+operator|+
+literal|"XQuery job's will be launched under the guest account initially, although the running XQuery may switch permissions through calls to xmldb:login(). "
 operator|+
 literal|"The job will be registered using the job name. The job parameters argument can be used to specify "
 operator|+
