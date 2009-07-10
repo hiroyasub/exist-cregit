@@ -185,7 +185,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -199,7 +199,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
+name|Sequence
 import|;
 end_import
 
@@ -274,8 +274,10 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"scheduled-jobs"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -283,6 +285,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"returns the XML containing the list of jobs"
 argument_list|)
 argument_list|)
 decl_stmt|;

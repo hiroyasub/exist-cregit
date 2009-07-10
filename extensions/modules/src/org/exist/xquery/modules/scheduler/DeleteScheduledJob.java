@@ -149,6 +149,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -221,15 +235,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Delete the job named in $a from the Scheduler. Will only delete User Scheduled Jobs! Returns true() if the Job was deleted."
+literal|"Delete the named job named from the Scheduler. Will only delete User Scheduled Jobs! Returns true() if the Job was deleted."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"job-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -237,12 +253,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the job to be deleted"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"success"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -250,6 +270,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Returns boolean value indicating success or failure on deleting the named job."
 argument_list|)
 argument_list|)
 decl_stmt|;
