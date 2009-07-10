@@ -161,6 +161,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -257,15 +271,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Scale the image passed in $a. $b specifies the maximum dimensions of the scaled image, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value of $b is 'maxheight' and the second 'maxwidth'. $c specifies the mime-type of the image. The return value is the scaled image or an empty sequence if $a is invalid"
+literal|"Scale the image passed in $image. $dimension specifies the maximum dimensions of the scaled image, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value of $dimension is 'maxheight' and the second 'maxwidth'."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"image"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -273,11 +289,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|null
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"dimension"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -285,11 +305,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|null
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"mimeType"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -297,12 +321,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the mime-type of the image"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"image"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -310,6 +338,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"The scaled image or an empty sequence if $image is invalid"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006-2009 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -230,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retrieves details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-12-04  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retrieves details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren@syntactica.com>  * @serial 2007-12-04  * @serial 2009-07-09  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -269,7 +269,37 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's details of all Scheduled Jobs"
+literal|"Get's details of all Scheduled Jobs in the form: "
+operator|+
+literal|"<scheduler:jobs xmlns:scheduler=\"http://exist-db.org/xquery/scheduler\" count=\"iJobs\">"
+operator|+
+literal|"<scheduler:group name=\"group\">"
+operator|+
+literal|"<scheduler:job name=\"\">"
+operator|+
+literal|"<scheduler:trigger name=\"\">"
+operator|+
+literal|"<expression></expression>"
+operator|+
+literal|"<state></state>"
+operator|+
+literal|"<start></start>"
+operator|+
+literal|"<end></end>"
+operator|+
+literal|"<previous></previous>"
+operator|+
+literal|"<next></next>"
+operator|+
+literal|"<final></final>"
+operator|+
+literal|"</scheduler:trigger>"
+operator|+
+literal|"</scheduler:job>"
+operator|+
+literal|"</scheduler:group>"
+operator|+
+literal|"</scheduler:jobs>"
 argument_list|,
 literal|null
 argument_list|,
