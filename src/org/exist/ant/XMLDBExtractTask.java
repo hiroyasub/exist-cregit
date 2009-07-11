@@ -288,6 +288,12 @@ name|subcollections
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+name|boolean
+name|overwrite
+init|=
+literal|false
+decl_stmt|;
 comment|// output encoding
 specifier|private
 name|String
@@ -295,7 +301,7 @@ name|encoding
 init|=
 literal|"UTF-8"
 decl_stmt|;
-comment|/* (non-Javadoc)   * @see org.apache.tools.ant.Task#execute()   */
+comment|/* (non-Javadoc)     * @see org.apache.tools.ant.Task#execute()     */
 specifier|public
 name|void
 name|execute
@@ -318,7 +324,7 @@ throw|throw
 operator|new
 name|BuildException
 argument_list|(
-literal|"you have to specify an XMLDB collection URI"
+literal|"You need to specify an XMLDB collection URI"
 argument_list|)
 throw|;
 block|}
@@ -367,8 +373,13 @@ condition|(
 name|resource
 operator|!=
 literal|null
+operator|&&
+name|destDir
+operator|==
+literal|null
 condition|)
 block|{
+comment|// extraction of a single resource
 name|log
 argument_list|(
 literal|"Extracting resource: "
@@ -437,31 +448,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|res
-operator|instanceof
-name|ExtendedResource
-condition|)
-block|{
-name|writeBinaryResource
-argument_list|(
-operator|(
-name|Resource
-operator|)
-name|res
-argument_list|,
-name|destFile
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|writeResource
 argument_list|(
-operator|(
-name|XMLResource
-operator|)
 name|res
 argument_list|,
 name|destFile
@@ -469,9 +457,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 else|else
 block|{
+comment|// extraction of a collection
 name|extractResources
 argument_list|(
 name|base
@@ -580,6 +568,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**       * Create directory from a collection       *       */
 specifier|private
 name|void
 name|extractResources
@@ -595,7 +584,7 @@ name|XMLDBException
 throws|,
 name|IOException
 block|{
-name|XMLResource
+name|Resource
 name|res
 init|=
 literal|null
@@ -658,7 +647,7 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|1
 init|;
 name|i
 operator|<
@@ -672,9 +661,6 @@ control|)
 block|{
 name|res
 operator|=
-operator|(
-name|XMLResource
-operator|)
 name|base
 operator|.
 name|getResource
@@ -716,6 +702,8 @@ name|mkdirs
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
 name|writeResource
 argument_list|(
 name|res
@@ -726,6 +714,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+comment|/**       * Extract multiple resources from a collection       *       */
 specifier|private
 name|void
 name|extractSubCollections
@@ -911,12 +901,70 @@ block|}
 block|}
 block|}
 block|}
+comment|/**       * Extract single resource       *       */
 specifier|private
 name|void
 name|writeResource
 parameter_list|(
+name|Resource
+name|res
+parameter_list|,
+name|File
+name|dest
+parameter_list|)
+throws|throws
+name|XMLDBException
+throws|,
+name|FileNotFoundException
+throws|,
+name|UnsupportedEncodingException
+throws|,
+name|IOException
+block|{
+if|if
+condition|(
+name|res
+operator|instanceof
 name|XMLResource
-name|resource
+condition|)
+block|{
+name|writeXMLResource
+argument_list|(
+operator|(
+name|XMLResource
+operator|)
+name|res
+argument_list|,
+name|dest
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|res
+operator|instanceof
+name|ExtendedResource
+condition|)
+block|{
+name|writeBinaryResource
+argument_list|(
+name|res
+argument_list|,
+name|dest
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+block|}
+block|}
+comment|/**       * Extract XML resource       *       */
+specifier|private
+name|void
+name|writeXMLResource
+parameter_list|(
+name|XMLResource
+name|res
 parameter_list|,
 name|File
 name|dest
@@ -928,15 +976,21 @@ name|XMLDBException
 block|{
 if|if
 condition|(
+operator|(
+name|dest
+operator|!=
+literal|null
+operator|)
+operator|||
+operator|(
 name|dest
 operator|!=
 literal|null
 operator|&&
-operator|!
-name|dest
-operator|.
-name|exists
-argument_list|()
+name|overwrite
+operator|==
+literal|true
+operator|)
 condition|)
 block|{
 name|Properties
@@ -991,7 +1045,7 @@ block|{
 name|String
 name|fname
 init|=
-name|resource
+name|res
 operator|.
 name|getId
 argument_list|()
@@ -1063,7 +1117,7 @@ name|log
 argument_list|(
 literal|"Writing resource "
 operator|+
-name|resource
+name|res
 operator|.
 name|getId
 argument_list|()
@@ -1089,7 +1143,7 @@ argument_list|,
 name|outputProperties
 argument_list|)
 expr_stmt|;
-name|resource
+name|res
 operator|.
 name|getContentAsSAX
 argument_list|(
@@ -1117,7 +1171,7 @@ block|{
 name|String
 name|msg
 init|=
-literal|"Destination target "
+literal|"Destination xml file "
 operator|+
 operator|(
 operator|(
@@ -1138,7 +1192,9 @@ else|:
 literal|""
 operator|)
 operator|+
-literal|"does not exist."
+literal|"exists. Use "
+operator|+
+literal|"overwrite property to overwrite this file."
 decl_stmt|;
 if|if
 condition|(
@@ -1163,12 +1219,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**       * Extract single binary resource       *       */
 specifier|private
 name|void
 name|writeBinaryResource
 parameter_list|(
 name|Resource
-name|resource
+name|res
 parameter_list|,
 name|File
 name|dest
@@ -1184,6 +1241,7 @@ name|IOException
 block|{
 if|if
 condition|(
+operator|(
 name|dest
 operator|!=
 literal|null
@@ -1193,8 +1251,64 @@ name|dest
 operator|.
 name|exists
 argument_list|()
+operator|)
+operator|||
+operator|(
+name|dest
+operator|!=
+literal|null
+operator|||
+name|overwrite
+operator|==
+literal|true
+operator|)
 condition|)
 block|{
+if|if
+condition|(
+name|dest
+operator|.
+name|isDirectory
+argument_list|()
+condition|)
+block|{
+name|String
+name|fname
+init|=
+name|res
+operator|.
+name|getId
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|fname
+operator|.
+name|endsWith
+argument_list|(
+literal|"."
+operator|+
+name|type
+argument_list|)
+condition|)
+block|{
+name|fname
+operator|+=
+literal|""
+expr_stmt|;
+block|}
+name|dest
+operator|=
+operator|new
+name|File
+argument_list|(
+name|dest
+argument_list|,
+name|fname
+argument_list|)
+expr_stmt|;
+block|}
 name|FileOutputStream
 name|os
 decl_stmt|;
@@ -1203,14 +1317,14 @@ operator|=
 operator|new
 name|FileOutputStream
 argument_list|(
-name|destFile
+name|dest
 argument_list|)
 expr_stmt|;
 operator|(
 operator|(
 name|ExtendedResource
 operator|)
-name|resource
+name|res
 operator|)
 operator|.
 name|getContentIntoAStream
@@ -1224,7 +1338,7 @@ block|{
 name|String
 name|msg
 init|=
-literal|"Destination target "
+literal|"Destination binary file "
 operator|+
 operator|(
 operator|(
@@ -1245,7 +1359,9 @@ else|:
 literal|""
 operator|)
 operator|+
-literal|"does not exist."
+literal|"exists. Use "
+operator|+
+literal|"overwrite property to overwrite file."
 decl_stmt|;
 if|if
 condition|(
@@ -1270,7 +1386,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param resource    */
 specifier|public
 name|void
 name|setResource
@@ -1386,6 +1501,21 @@ operator|.
 name|subcollections
 operator|=
 name|subcollections
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setOverwrite
+parameter_list|(
+name|boolean
+name|createdirectories
+parameter_list|)
+block|{
+name|this
+operator|.
+name|overwrite
+operator|=
+name|overwrite
 expr_stmt|;
 block|}
 block|}
