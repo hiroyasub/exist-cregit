@@ -309,6 +309,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -541,15 +555,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Pre parse grammars specified by $a and add to grammar cache. Only for XML schemas (.xsd)."
+literal|"Pre parse grammars and add to grammar cache. Only XML schemas (.xsd)"
+operator|+
+literal|" are supported."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"grammar"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -557,6 +575,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"Reference to grammar."
 argument_list|)
 block|}
 argument_list|,

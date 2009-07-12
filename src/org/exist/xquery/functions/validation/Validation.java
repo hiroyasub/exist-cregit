@@ -287,6 +287,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -364,9 +378,7 @@ specifier|final
 name|String
 name|simpleFunctionTxt
 init|=
-literal|"Validate document specified by $a. "
-operator|+
-literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
+literal|"Validate xml. "
 operator|+
 literal|"The grammar files (DTD, XML Schema) are resolved using the global "
 operator|+
@@ -378,17 +390,7 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document specified by $a using $b. "
-operator|+
-literal|"$a is of type xs:anyURI, or a node (element or returned by fn:doc()). "
-operator|+
-literal|"$b can point to an OASIS catalog file (.xml), "
-operator|+
-literal|"a collection (path ends with '/') or a grammar document. "
-operator|+
-literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
-operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
+literal|"Validate document by using a specific grammar."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -433,8 +435,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"instance"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -442,6 +446,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|}
 argument_list|,
@@ -482,8 +488,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"instance"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -491,11 +499,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"grammar"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -503,6 +515,14 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Reference to an OASIS catalog file (.xml), "
+operator|+
+literal|"a collection (path ends with '/') or a grammar document. "
+operator|+
+literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
+operator|+
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 argument_list|)
 block|}
 argument_list|,
@@ -545,8 +565,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"instance"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -554,6 +576,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|}
 argument_list|,
@@ -596,8 +620,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"instance"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -605,11 +631,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"grammar"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -617,6 +647,14 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Reference to an OASIS catalog file (.xml), "
+operator|+
+literal|"a collection (path ends with '/') or a grammar document. "
+operator|+
+literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
+operator|+
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 argument_list|)
 block|}
 argument_list|,
