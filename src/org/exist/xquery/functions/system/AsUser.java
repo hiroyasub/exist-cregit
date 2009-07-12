@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -46,6 +58,20 @@ operator|.
 name|xquery
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -116,6 +142,21 @@ name|AsUser
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|AsUser
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -156,8 +197,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"username"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -165,11 +208,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The username of the user to run the code against"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -177,11 +224,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"The password of the user to run the code against"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"code-block"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -189,12 +240,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The code block to run as the identified user"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -202,6 +257,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The results of the code block executed"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -233,6 +290,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":as-user XQuery function"
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|userSeq
 init|=
@@ -270,7 +340,10 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-throw|throw
+block|{
+name|XPathException
+name|exception
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -278,7 +351,20 @@ name|this
 argument_list|,
 literal|"No user specified"
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"No user specified, throwing an exception!"
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+throw|throw
+name|exception
 throw|;
+block|}
 name|String
 name|userName
 init|=
@@ -331,7 +417,10 @@ name|user
 operator|==
 literal|null
 condition|)
-throw|throw
+block|{
+name|XPathException
+name|exception
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -339,7 +428,24 @@ name|this
 argument_list|,
 literal|"Authentication failed"
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Authentication failed for setting the user to ["
+operator|+
+name|userName
+operator|+
+literal|"] because user does not exist, throwing an exception!"
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+throw|throw
+name|exception
 throw|;
+block|}
 if|if
 condition|(
 name|user
@@ -363,6 +469,17 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Setting the authenticated user to: ["
+operator|+
+name|userName
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getBroker
@@ -389,6 +506,20 @@ return|;
 block|}
 finally|finally
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Returning the user to the original user: ["
+operator|+
+name|oldUser
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getBroker
@@ -402,7 +533,10 @@ expr_stmt|;
 block|}
 block|}
 else|else
-throw|throw
+block|{
+name|XPathException
+name|exception
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -410,7 +544,24 @@ name|this
 argument_list|,
 literal|"Authentication failed"
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Authentication failed for setting the user to ["
+operator|+
+name|userName
+operator|+
+literal|"] because of bad password, throwing an exception!"
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
+throw|throw
+name|exception
 throw|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
