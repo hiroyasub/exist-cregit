@@ -1205,7 +1205,9 @@ operator|!=
 literal|'"'
 operator|)
 condition|)
-empty_stmt|;
+block|{
+comment|// Do nothing
+block|}
 if|if
 condition|(
 name|p
@@ -1247,7 +1249,9 @@ operator|!=
 literal|'"'
 operator|)
 condition|)
-empty_stmt|;
+block|{
+comment|// Do nothing
+block|}
 if|if
 condition|(
 name|e
