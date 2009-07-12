@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -74,6 +86,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -156,6 +182,21 @@ name|PutFunction
 extends|extends
 name|CacheBasicFunction
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|PutFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -181,15 +222,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Put data in $c with key $b into cache $a. Returns the previous value associated with key"
+literal|"Put data with a key into the identified cache. Returns the previous value associated with the key"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cache-value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -197,11 +240,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"Either the Java cache object or the name of the cache"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"key"
+argument_list|,
 name|Type
 operator|.
 name|ANY_TYPE
@@ -209,11 +256,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"The key to the object within the cache"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"value"
+argument_list|,
 name|Type
 operator|.
 name|ANY_TYPE
@@ -221,6 +272,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The object to store within the cache"
 argument_list|)
 block|}
 argument_list|,
@@ -316,6 +369,24 @@ operator|.
 name|STRING
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"putting cache value ["
+operator|+
+name|item
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|key
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 return|return
 name|Cache
 operator|.
@@ -334,6 +405,31 @@ return|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"putting cache value ["
+operator|+
+name|item
+operator|.
+name|toJavaObject
+argument_list|(
+name|Cache
+operator|.
+name|class
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|key
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 operator|(
@@ -364,10 +460,14 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
-name|e
+name|logger
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+literal|"Error putting cache value"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 return|return

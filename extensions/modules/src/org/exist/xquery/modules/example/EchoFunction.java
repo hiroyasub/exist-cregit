@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -86,6 +98,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -174,7 +200,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * This is an example module showing how to create a function module.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Loren Cahlander (loren@syntactica.com)  */
 end_comment
 
 begin_class
@@ -184,6 +210,21 @@ name|EchoFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|EchoFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -214,8 +255,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"text"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -223,12 +266,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The text to echo"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -236,6 +283,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The echoed text"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -268,6 +317,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|ExampleModule
+operator|.
+name|NAMESPACE_URI
+operator|+
+literal|":echo function"
+argument_list|)
+expr_stmt|;
 comment|// is argument the empty sequence?
 if|if
 condition|(
@@ -279,11 +341,26 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Returning empty result from "
+operator|+
+name|ExampleModule
+operator|.
+name|NAMESPACE_URI
+operator|+
+literal|":echo function"
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|// iterate through the argument sequence and echo each item
 name|ValueSequence
 name|result
@@ -337,6 +414,19 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Returning result from "
+operator|+
+name|ExampleModule
+operator|.
+name|NAMESPACE_URI
+operator|+
+literal|":echo function"
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -227,15 +241,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the date for a given set of parameters. $a the year of interest. $b the month of interest (1 = January, 12 = December). $c The week in the month of interest (1 = first week, 4 or 5 = last week). $d The day in the week of interest (1 = Sunday, 7 = Saturday)."
+literal|"Returns the date for a given set of parameters."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"year"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -243,11 +259,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the year of interest"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"month"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -255,11 +275,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the month of interest (1 = January, 12 = December)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"week"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -267,11 +291,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The week in the month of interest (1 = first week, 4 or 5 = last week)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"weekday"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -279,12 +307,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The day in the week of interest (1 = Sunday, 7 = Saturday)"
 argument_list|)
 block|, 			}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date"
+argument_list|,
 name|Type
 operator|.
 name|DATE
@@ -292,6 +324,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The date generated from the parameters."
 argument_list|)
 argument_list|)
 decl_stmt|;

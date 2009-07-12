@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -213,15 +227,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the week in the month of the date given in $a."
+literal|"Returns the week in the month of the date."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date"
+argument_list|,
 name|Type
 operator|.
 name|DATE
@@ -229,12 +245,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The date to find the week in the month of."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"week-number"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -242,6 +262,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The number of the week in the month."
 argument_list|)
 argument_list|)
 decl_stmt|;

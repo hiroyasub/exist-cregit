@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -213,15 +227,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the day in the week of the date given in $a. Result is in the range 1 to 7 where 1 = Sunday, 7 = Saturday."
+literal|"Returns the day in the week of the given date. Result is in the range 1 to 7 where 1 = Sunday, 7 = Saturday."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date"
+argument_list|,
 name|Type
 operator|.
 name|DATE
@@ -229,12 +245,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The date that the day of the week is to be calculated."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"day-of-week"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -242,6 +262,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The day of the week in the range of 1 to 7."
 argument_list|)
 argument_list|)
 decl_stmt|;

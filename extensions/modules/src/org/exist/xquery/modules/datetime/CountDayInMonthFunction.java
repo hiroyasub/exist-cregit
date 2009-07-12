@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -223,15 +237,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the count of a specific day $a in a month for the date given in $b. $a in the range 1 to 7 where 1 = Sunday and 7 = Saturday. For example it can tell you there are 5 Fridays in February 2008."
+literal|"Returns the count of a specific weekday in a month from the given date.For example it can tell you there are 5 Fridays in February 2008."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"weekday"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -239,11 +255,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Day of the week in the range of 1 to 7 where 1 = Sunday and 7 = Saturday."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date"
+argument_list|,
 name|Type
 operator|.
 name|DATE
@@ -251,12 +271,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The day that will identify the month to get the count of the number of occurrences of a given weekday"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"count"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -264,6 +288,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Number of occurrences of the weekday in the selected month."
 argument_list|)
 argument_list|)
 decl_stmt|;

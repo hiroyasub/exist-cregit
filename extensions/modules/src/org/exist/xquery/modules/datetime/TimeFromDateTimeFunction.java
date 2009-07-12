@@ -99,6 +99,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -165,15 +179,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the xs:time portion of the xs:dateTime given in $a"
+literal|"Returns the xs:time portion of the xs:dateTime"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date-time"
+argument_list|,
 name|Type
 operator|.
 name|DATE_TIME
@@ -181,12 +197,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The xs:dateTime to extract the time from."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"time"
+argument_list|,
 name|Type
 operator|.
 name|TIME
@@ -194,6 +214,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The time extracted from the date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;

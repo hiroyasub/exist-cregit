@@ -113,6 +113,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -213,15 +227,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a xs:string of the xs:dateTime in $a formatted according to the specification in $b"
+literal|"Returns a xs:string of the xs:dateTime according to the SimpleDateFormat format string."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date-time"
+argument_list|,
 name|Type
 operator|.
 name|DATE_TIME
@@ -229,11 +245,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The dateTime to to be formatted."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"simple-date-format"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -241,12 +261,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Format string according to the Java java.text.SimpleDateFormat class"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"text"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -254,6 +278,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The formatted dateTime string"
 argument_list|)
 argument_list|)
 decl_stmt|;

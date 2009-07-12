@@ -127,6 +127,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -237,17 +251,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of $c items of xs:dateTime* "
+literal|"Returns a range of items of xs:dateTime* "
 operator|+
-literal|"starting at $a incremented by xs:duration $b "
+literal|"starting at $date-time incremented by the duration"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date-time"
+argument_list|,
 name|Type
 operator|.
 name|DATE_TIME
@@ -255,11 +271,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"dateTime at the beginning of the range(s)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"duration"
+argument_list|,
 name|Type
 operator|.
 name|DURATION
@@ -267,11 +287,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The xs:duration to generate the dateTime range"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"number-of-ranges"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -279,12 +303,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The number of ranges to generate"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|DATE_TIME
@@ -292,6 +320,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -312,17 +342,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of $c items of xs:date* "
+literal|"Returns a range of items of xs:date* "
 operator|+
-literal|"starting at $a incremented by xs:duration $b "
+literal|"starting at $date incremented by the duration "
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"date"
+argument_list|,
 name|Type
 operator|.
 name|DATE
@@ -330,11 +362,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"date at the beginning of the range(s)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"duration"
+argument_list|,
 name|Type
 operator|.
 name|DURATION
@@ -342,11 +378,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The xs:duration to generate the date range"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"number-of-ranges"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -354,19 +394,25 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The number of ranges to generate"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
-name|DATE
+name|DATE_TIME
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -387,17 +433,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of $c items of xs:time* "
+literal|"Returns a range of items of xs:time* "
 operator|+
-literal|"starting at $a incremented by xs:duration $b "
+literal|"starting at $time incremented by duration"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"time"
+argument_list|,
 name|Type
 operator|.
 name|TIME
@@ -405,11 +453,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"time at the beginning of the range(s)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"duration"
+argument_list|,
 name|Type
 operator|.
 name|DURATION
@@ -417,11 +469,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The xs:duration to generate the time range"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"number-of-ranges"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -429,19 +485,25 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The number of ranges to generate"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
-name|TIME
+name|DATE_TIME
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|}

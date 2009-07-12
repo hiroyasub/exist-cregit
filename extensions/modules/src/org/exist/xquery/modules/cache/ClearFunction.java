@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -99,6 +111,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -156,6 +182,21 @@ name|ClearFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ClearFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -215,15 +256,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Clear the cache $a"
+literal|"Clear the identified cache"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"cache-value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -231,6 +274,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"Either the Java cache object or the name of the cache"
 argument_list|)
 block|}
 argument_list|,
@@ -289,6 +334,13 @@ operator|==
 literal|0
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Clearing all caches"
+argument_list|)
+expr_stmt|;
 name|Cache
 operator|.
 name|clearGlobal
@@ -322,6 +374,20 @@ operator|.
 name|STRING
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Clearing cache ["
+operator|+
+name|item
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 name|Cache
 operator|.
 name|clear
@@ -335,6 +401,27 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Clearing cache ["
+operator|+
+name|item
+operator|.
+name|toJavaObject
+argument_list|(
+name|Cache
+operator|.
+name|class
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 operator|(
 operator|(
 name|Cache
@@ -354,6 +441,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Cache cleared"
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
