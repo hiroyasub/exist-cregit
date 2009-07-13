@@ -438,7 +438,7 @@ name|getProperty
 argument_list|(
 name|INCREMENTAL_CHECK_PROP_NAME
 argument_list|,
-literal|"no"
+literal|"yes"
 argument_list|)
 decl_stmt|;
 name|incrementalCheck
@@ -459,7 +459,7 @@ name|getProperty
 argument_list|(
 name|MAX_PROP_NAME
 argument_list|,
-literal|"-1"
+literal|"5"
 argument_list|)
 decl_stmt|;
 try|try
