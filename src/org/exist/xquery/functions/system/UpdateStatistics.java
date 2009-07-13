@@ -216,7 +216,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Internal function"
+literal|"This function is part of the unfinished index statistics module, which is not "
+operator|+
+literal|"yet usable in a normal eXist setup. update-statistics rebuilds index statistics "
+operator|+
+literal|"for the entire database."
 argument_list|,
 literal|null
 argument_list|,
