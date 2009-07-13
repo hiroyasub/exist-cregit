@@ -202,6 +202,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|data
 operator|=
 name|pi
@@ -238,6 +239,7 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
