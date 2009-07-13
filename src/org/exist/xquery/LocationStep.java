@@ -4166,6 +4166,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Deprecated
 specifier|private
 class|class
 name|SiblingVisitor

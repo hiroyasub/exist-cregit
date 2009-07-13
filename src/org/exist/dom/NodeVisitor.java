@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Visitor pattern: used for traversing the DOM tree  * implement to get notified of the current node.  *   * @author wolf  *  */
+comment|/**  * Visitor pattern: used for traversing the DOM tree  * implement to get notified of the current node.  *   * @author wolf  * @deprecated replaced by XMLStreamListener  */
 end_comment
 
 begin_interface
@@ -22,6 +22,8 @@ specifier|public
 interface|interface
 name|NodeVisitor
 block|{
+annotation|@
+name|Deprecated
 specifier|public
 name|boolean
 name|visit

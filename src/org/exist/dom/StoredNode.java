@@ -2016,6 +2016,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Deprecated
 specifier|private
 specifier|final
 specifier|static
