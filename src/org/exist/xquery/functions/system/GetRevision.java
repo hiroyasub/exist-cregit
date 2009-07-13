@@ -41,6 +41,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -119,7 +131,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -133,7 +145,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
+name|Sequence
 import|;
 end_import
 
@@ -176,6 +188,21 @@ name|GetRevision
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetRevision
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -206,8 +233,10 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -215,6 +244,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The SubVersion (SVN) revision ID of the eXist running this query."
 argument_list|)
 argument_list|)
 decl_stmt|;

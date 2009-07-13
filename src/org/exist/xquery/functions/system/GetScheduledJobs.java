@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -214,6 +226,21 @@ name|GetScheduledJobs
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetScheduledJobs
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -317,6 +344,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":get-scheduled-jobs"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -329,8 +369,9 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
-throw|throw
-operator|(
+name|XPathException
+name|xPathException
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -348,7 +389,24 @@ argument_list|()
 operator|+
 literal|"' must be a DBA to get the list of scheduled jobs"
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":get-scheduled-jobs"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
 throw|;
 block|}
 name|MemTreeBuilder
@@ -392,6 +450,18 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"brokerPool = "
+operator|+
+name|brokerPool
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|brokerPool
@@ -526,6 +596,19 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":get-scheduled-jobs"
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 operator|(
@@ -555,6 +638,13 @@ name|boolean
 name|isRunning
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Entring addRow"
+argument_list|)
+expr_stmt|;
 name|String
 name|name
 init|=
@@ -935,6 +1025,13 @@ name|builder
 operator|.
 name|endElement
 argument_list|()
+expr_stmt|;
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Exiting addRow"
+argument_list|)
 expr_stmt|;
 block|}
 specifier|private

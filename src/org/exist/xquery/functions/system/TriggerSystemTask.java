@@ -27,6 +27,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|EXistException
@@ -127,6 +139,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -208,6 +234,21 @@ name|TriggerSystemTask
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|TriggerSystemTask
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -244,8 +285,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"java-classname"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -253,11 +296,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The full name of the class to execute.  It must implement org.exist.storage.SystemTask"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"task-parameters"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -265,6 +312,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|}
 argument_list|,
@@ -310,6 +359,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":trigger-system-task"
+argument_list|)
+expr_stmt|;
 name|String
 name|className
 init|=
@@ -375,12 +437,9 @@ argument_list|(
 name|className
 argument_list|)
 decl_stmt|;
-name|SystemTask
-name|task
+name|Object
+name|taskObject
 init|=
-operator|(
-name|SystemTask
-operator|)
 name|clazz
 operator|.
 name|newInstance
@@ -390,12 +449,15 @@ if|if
 condition|(
 operator|!
 operator|(
-name|task
+name|taskObject
 operator|instanceof
 name|SystemTask
 operator|)
 condition|)
-throw|throw
+block|{
+name|XPathException
+name|xPathException
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -405,7 +467,28 @@ name|className
 operator|+
 literal|" is not an instance of org.exist.storage.SystemTask"
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Java classname is not a SystemTask"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
 throw|;
+block|}
+name|SystemTask
+name|task
+init|=
+operator|(
+name|SystemTask
+operator|)
+name|taskObject
+decl_stmt|;
 name|task
 operator|.
 name|configure
@@ -450,17 +533,31 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
+name|String
+name|message
+init|=
+literal|"system task class '"
+operator|+
+name|className
+operator|+
+literal|"' not found"
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+name|message
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"system task class '"
-operator|+
-name|className
-operator|+
-literal|"' not found"
+name|message
 argument_list|)
 throw|;
 block|}
@@ -470,17 +567,31 @@ name|InstantiationException
 name|e
 parameter_list|)
 block|{
+name|String
+name|message
+init|=
+literal|"system task '"
+operator|+
+name|className
+operator|+
+literal|"' can not be instantiated"
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+name|message
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"system task '"
-operator|+
-name|className
-operator|+
-literal|"' can not be instantiated"
+name|message
 argument_list|)
 throw|;
 block|}
@@ -490,17 +601,31 @@ name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
+name|String
+name|message
+init|=
+literal|"system task '"
+operator|+
+name|className
+operator|+
+literal|"' can not be accessed"
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+name|message
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"system task '"
-operator|+
-name|className
-operator|+
-literal|"' can not be accessed"
+name|message
 argument_list|)
 throw|;
 block|}
@@ -510,17 +635,31 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|String
+name|message
+init|=
+literal|"system task "
+operator|+
+name|className
+operator|+
+literal|" reported an error during initialization: "
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+name|message
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"system task "
-operator|+
-name|className
-operator|+
-literal|" reported an error during initialization: "
+name|message
 operator|+
 name|e
 operator|.
@@ -531,6 +670,19 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":trigger-system-task"
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
@@ -637,6 +789,21 @@ argument_list|(
 literal|"value"
 argument_list|)
 decl_stmt|;
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"parseParameters: name["
+operator|+
+name|name
+operator|+
+literal|"] value["
+operator|+
+name|value
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|name

@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -86,6 +98,21 @@ name|FunctionTrace
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunctionTrace
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -152,8 +179,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"enable"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -161,6 +190,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"boolean flag to enable/disable function tracing"
 argument_list|)
 block|}
 argument_list|,
@@ -199,8 +230,10 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"tracing-enabled"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -208,6 +241,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Returns true is tracing is enabled."
 argument_list|)
 argument_list|)
 block|,
@@ -286,6 +321,19 @@ literal|"clear-trace"
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":clear-trace XQuery function"
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|getBroker
@@ -309,6 +357,19 @@ literal|"enable-tracing"
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":enable-tracing XQuery function"
+argument_list|)
+expr_stmt|;
 name|boolean
 name|enable
 init|=
@@ -345,6 +406,19 @@ literal|"tracing-enabled"
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":tracing-enalbed XQuery function"
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -368,6 +442,19 @@ return|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering the "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":trace XQuery function"
+argument_list|)
+expr_stmt|;
 name|MemTreeBuilder
 name|builder
 init|=

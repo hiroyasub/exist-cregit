@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -111,6 +123,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NumericValue
 import|;
 end_import
@@ -168,6 +194,21 @@ name|KillRunningXQuery
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|KillRunningXQuery
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|final
 specifier|static
 name|String
@@ -211,15 +252,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Kill a running XQuey (dba role only). $a is the XQuery ID obtained from get-running-xqueries()"
+literal|"Kill a running XQuey (dba role only)."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"xquery-id"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -227,6 +270,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the XQuery ID obtained from get-running-xqueries()"
 argument_list|)
 block|}
 argument_list|,
@@ -260,15 +305,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Kill a running XQuey (dba role only). $a is the XQuery ID obtained from get-running-xqueries(), $b is the wait time in milliseconds"
+literal|"Kill a running XQuey (dba role only)."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"xquery-id"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -276,11 +323,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the XQuery ID obtained from get-running-xqueries()"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"wait-time"
+argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -288,6 +339,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the wait time in milliseconds before terminating the XQuery"
 argument_list|)
 block|}
 argument_list|,

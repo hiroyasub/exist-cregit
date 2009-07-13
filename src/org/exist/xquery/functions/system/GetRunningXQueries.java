@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -180,6 +192,21 @@ name|GetRunningXQueries
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetRunningXQueries
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|final
 specifier|static
 name|String
@@ -271,6 +298,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":get-scheduled-jobs"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -283,8 +323,9 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
-throw|throw
-operator|(
+name|XPathException
+name|xPathException
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -302,7 +343,24 @@ argument_list|()
 operator|+
 literal|"' must be a DBA to get the list of running xqueries"
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":get-scheduled-xqueries"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
 throw|;
 block|}
 return|return
@@ -317,6 +375,13 @@ name|Sequence
 name|getRunningXQueries
 parameter_list|()
 block|{
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Entering getRunningXQueries"
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|xmlResponse
 init|=
@@ -431,6 +496,13 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Exiting getRunningXQueries"
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|xmlResponse
@@ -451,6 +523,13 @@ name|XQueryWatchDog
 name|watchdog
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Entering getRunningXQuery"
+argument_list|)
+expr_stmt|;
 name|builder
 operator|.
 name|startElement
@@ -607,6 +686,13 @@ name|builder
 operator|.
 name|endElement
 argument_list|()
+expr_stmt|;
+name|logger
+operator|.
+name|trace
+argument_list|(
+literal|"Exiting getRunningXQuery"
+argument_list|)
 expr_stmt|;
 block|}
 block|}

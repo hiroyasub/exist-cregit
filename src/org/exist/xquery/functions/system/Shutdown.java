@@ -41,6 +41,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -131,6 +143,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NumericValue
 import|;
 end_import
@@ -188,6 +214,21 @@ name|Shutdown
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Shutdown
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -213,7 +254,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist (dba role only)."
+literal|"Shutdown eXist immediately (dba role only)."
 argument_list|,
 literal|null
 argument_list|,
@@ -247,15 +288,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist. $a is the delay in milliseconds. (dba role only)"
+literal|"Shutdown eXist. (dba role only)"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"delay"
+argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -263,6 +306,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Delay in milliseconds before eXist starts to shutdown."
 argument_list|)
 block|}
 argument_list|,
@@ -313,6 +358,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":shutdown"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|context
@@ -392,6 +450,17 @@ operator|>
 literal|0
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Shuttting down in "
+operator|+
+name|delay
+operator|+
+literal|" milliseconds."
+argument_list|)
+expr_stmt|;
 name|TimerTask
 name|task
 init|=
@@ -420,6 +489,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Shutting down now."
+argument_list|)
+expr_stmt|;
 name|pool
 operator|.
 name|shutdown
@@ -429,7 +505,9 @@ block|}
 block|}
 else|else
 block|{
-throw|throw
+name|XPathException
+name|xPathException
+init|=
 operator|new
 name|XPathException
 argument_list|(
@@ -447,8 +525,33 @@ argument_list|()
 operator|+
 literal|"' must be a DBA to shutdown the database"
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":shutdown"
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
@@ -489,6 +592,13 @@ name|void
 name|run
 parameter_list|()
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Shutting down now."
+argument_list|)
+expr_stmt|;
 name|pool
 operator|.
 name|shutdown
