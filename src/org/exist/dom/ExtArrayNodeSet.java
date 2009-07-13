@@ -1640,6 +1640,9 @@ name|mode
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 block|{
 name|sort
@@ -1721,6 +1724,8 @@ argument_list|,
 name|mode
 argument_list|,
 name|contextId
+argument_list|,
+name|copyMatches
 argument_list|)
 expr_stmt|;
 block|}
@@ -1830,6 +1835,8 @@ argument_list|,
 name|mode
 argument_list|,
 name|contextId
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
@@ -2193,6 +2200,9 @@ name|includeSelf
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 block|{
 name|sort
@@ -2217,6 +2227,8 @@ argument_list|,
 name|includeSelf
 argument_list|,
 name|contextId
+argument_list|,
+name|copyMatches
 argument_list|)
 return|;
 block|}
@@ -2232,6 +2244,8 @@ argument_list|,
 name|mode
 argument_list|,
 name|contextId
+argument_list|,
+name|copyMatches
 argument_list|)
 return|;
 block|}
@@ -4684,6 +4698,9 @@ name|mode
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 block|{
 name|NodeProxy
@@ -4824,6 +4841,10 @@ name|parent
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|copyMatches
+condition|)
 name|array
 index|[
 name|i
@@ -4886,6 +4907,10 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|copyMatches
+condition|)
 name|parent
 operator|.
 name|addMatches

@@ -676,6 +676,9 @@ name|includeSelf
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 block|{
 return|return

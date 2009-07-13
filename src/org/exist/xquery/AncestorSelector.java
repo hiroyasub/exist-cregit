@@ -98,6 +98,10 @@ specifier|private
 name|boolean
 name|includeSelf
 decl_stmt|;
+specifier|private
+name|boolean
+name|copyMatches
+decl_stmt|;
 specifier|public
 name|AncestorSelector
 parameter_list|(
@@ -109,6 +113,9 @@ name|contextId
 parameter_list|,
 name|boolean
 name|includeSelf
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 block|{
 name|super
@@ -125,6 +132,12 @@ operator|.
 name|includeSelf
 operator|=
 name|includeSelf
+expr_stmt|;
+name|this
+operator|.
+name|copyMatches
+operator|=
+name|copyMatches
 expr_stmt|;
 if|if
 condition|(
@@ -198,6 +211,8 @@ argument_list|,
 name|includeSelf
 argument_list|,
 name|contextId
+argument_list|,
+name|copyMatches
 argument_list|)
 return|;
 block|}

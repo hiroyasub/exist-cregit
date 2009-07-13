@@ -47,6 +47,9 @@ name|includeSelf
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|boolean
+name|copyMatches
 parameter_list|)
 function_decl|;
 specifier|public

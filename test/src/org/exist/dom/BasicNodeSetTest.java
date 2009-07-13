@@ -823,6 +823,8 @@ operator|-
 literal|1
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|set
@@ -928,6 +930,8 @@ name|ns
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -1405,6 +1409,8 @@ literal|false
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1459,6 +1465,8 @@ literal|true
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|assertEquals
