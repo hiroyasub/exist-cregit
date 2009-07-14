@@ -647,6 +647,18 @@ name|getLastModified
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|response
+operator|.
+name|addDateHeader
+argument_list|(
+literal|"Created"
+argument_list|,
+name|metadata
+operator|.
+name|getCreated
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//            response.setContentLength(resource.getContentLength());
 name|ServletOutputStream
 name|os
@@ -1070,6 +1082,18 @@ operator|.
 name|addDateHeader
 argument_list|(
 literal|"Last-Modified"
+argument_list|,
+name|collection
+operator|.
+name|getCreationTime
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|addDateHeader
+argument_list|(
+literal|"Created"
 argument_list|,
 name|collection
 operator|.
