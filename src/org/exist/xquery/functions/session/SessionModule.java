@@ -174,7 +174,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  */
+comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -239,6 +239,18 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|Clear
+operator|.
+name|signature
+argument_list|,
+name|Clear
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|EncodeURL
 operator|.
 name|signature
@@ -268,6 +280,18 @@ operator|.
 name|signature
 argument_list|,
 name|GetAttribute
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|RemoveAttribute
+operator|.
+name|signature
+argument_list|,
+name|RemoveAttribute
 operator|.
 name|class
 argument_list|)

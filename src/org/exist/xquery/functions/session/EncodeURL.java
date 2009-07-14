@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -232,7 +244,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * @author Wolfgang Meier  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -242,6 +254,21 @@ name|EncodeURL
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|EncodeURL
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -392,6 +419,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|ResponseModule
 name|myModule
 init|=
@@ -433,6 +479,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -442,6 +489,7 @@ argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -456,6 +504,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -465,6 +514,7 @@ argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
 comment|// get parameters
 name|String
 name|url
@@ -502,6 +552,26 @@ argument_list|()
 operator|instanceof
 name|ResponseWrapper
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|AnyURIValue
@@ -522,7 +592,9 @@ name|url
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -532,6 +604,7 @@ argument_list|,
 literal|"Variable $response is not bound to a Response object."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

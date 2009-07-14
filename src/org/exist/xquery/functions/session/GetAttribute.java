@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -228,7 +240,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns an attribute stored in the current session or an empty sequence  * if the attribute does not exist.  *   * @author wolf  */
+comment|/**  * Returns an attribute stored in the current session or an empty sequence  * if the attribute does not exist.  *   * @author Wolfgang Meier  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -238,6 +250,21 @@ name|GetAttribute
 extends|extends
 name|Function
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -399,6 +426,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|SessionModule
 name|myModule
 init|=
@@ -442,6 +488,25 @@ literal|null
 condition|)
 block|{
 comment|// throw( new XPathException( this, "Session not set" ) );
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|Sequence
@@ -542,6 +607,25 @@ argument_list|(
 name|attribName
 argument_list|)
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|o
@@ -584,6 +668,27 @@ comment|//good example of what happens if you change this - try logging out of t
 comment|// - deliriumsky
 comment|//log.error(ise.getStackTrace());
 comment|//throw new XPathException(this, "Session has an IllegalStateException for getAttribute() - " + ise.getStackTrace() + System.getProperty("line.separator") + System.getProperty("line.separator") + "Did you perhaps call session:invalidate() previously?");
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SessionModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|,
+name|ise
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|Sequence
