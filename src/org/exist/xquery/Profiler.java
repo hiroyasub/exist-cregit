@@ -543,6 +543,9 @@ parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|,
+name|String
+name|indexType
+parameter_list|,
 name|Expression
 name|expression
 parameter_list|,
@@ -558,6 +561,8 @@ operator|.
 name|recordIndexUse
 argument_list|(
 name|expression
+argument_list|,
+name|indexType
 argument_list|,
 name|context
 operator|.

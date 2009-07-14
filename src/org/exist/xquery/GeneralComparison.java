@@ -1797,6 +1797,10 @@ name|traceIndexUsage
 argument_list|(
 name|context
 argument_list|,
+name|PerformanceStats
+operator|.
+name|RANGE_IDX_TYPE
+argument_list|,
 name|this
 argument_list|,
 name|PerformanceStats
@@ -2791,6 +2795,10 @@ name|traceIndexUsage
 argument_list|(
 name|context
 argument_list|,
+name|PerformanceStats
+operator|.
+name|RANGE_IDX_TYPE
+argument_list|,
 name|this
 argument_list|,
 name|PerformanceStats
@@ -3174,6 +3182,10 @@ operator|.
 name|traceIndexUsage
 argument_list|(
 name|context
+argument_list|,
+name|PerformanceStats
+operator|.
+name|RANGE_IDX_TYPE
 argument_list|,
 name|this
 argument_list|,
@@ -4306,6 +4318,10 @@ operator|.
 name|traceIndexUsage
 argument_list|(
 name|context
+argument_list|,
+name|PerformanceStats
+operator|.
+name|RANGE_IDX_TYPE
 argument_list|,
 name|this
 argument_list|,
