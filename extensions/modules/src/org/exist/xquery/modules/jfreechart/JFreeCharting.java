@@ -303,6 +303,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -324,9 +338,11 @@ specifier|final
 name|String
 name|function1Txt
 init|=
-literal|"Render chart using JFreechart. Generate chart of type $a "
+literal|"Render chart using JFreechart. Check documentation on "
 operator|+
-literal|"with configuration $b the data in $c."
+literal|"http://www.jfree.org/jfreechart/ for details about chart types, "
+operator|+
+literal|"parameters and data structures."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -337,6 +353,36 @@ init|=
 name|function1Txt
 operator|+
 literal|" Output is directly streamed into the servlet output stream."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|chartText
+init|=
+literal|"Supported chart types: LineChart, LineChart3D, "
+operator|+
+literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, "
+operator|+
+literal|"RingChart, StackedAreaChart, StackedBarChart, StackedBarChart3D, "
+operator|+
+literal|"WaterfallChart."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|parametersText
+init|=
+literal|"Configuration formatted as<configuration>"
+operator|+
+literal|"<param1>Value1</param1><param2>Value2</param2>/<configuration>.  "
+operator|+
+literal|"Supported parameters: width height title categoryAxisLabel "
+operator|+
+literal|"valueAxisLabel domainAxisLabel rangeAxisLabel orientation "
+operator|+
+literal|"order legend tooltips urls."
 decl_stmt|;
 specifier|public
 specifier|final
@@ -370,8 +416,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"chart-type"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -379,11 +427,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+name|chartText
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"configuration"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -391,11 +443,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+name|parametersText
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"data"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -403,6 +459,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"JFreechart "
+operator|+
+literal|"XML formatted CategoryDataset or PieDataset."
 argument_list|)
 block|,             }
 argument_list|,
@@ -443,8 +503,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"chart-type"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -452,11 +514,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+name|chartText
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"configuration"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -464,11 +530,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+name|parametersText
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"data"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -476,6 +546,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"JFreechart "
+operator|+
+literal|"XML formatted CategoryDataset or PieDataset."
 argument_list|)
 block|,             }
 argument_list|,
