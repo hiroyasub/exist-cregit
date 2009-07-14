@@ -71,6 +71,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -149,6 +161,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -196,7 +222,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  *  */
+comment|/**  * @author Pierrick Brihaye  * @author Dizzzz  * @author Andrzej Taramina  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -206,6 +232,21 @@ name|FileRead
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FileRead
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -231,15 +272,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file. $a is a string representing a URL, eg file://etc. "
+literal|"Read content of file."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"url"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -247,12 +290,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a string representing a URL, eg file://etc."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"contents"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -260,6 +307,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"contents"
 argument_list|)
 argument_list|)
 block|,
@@ -280,15 +329,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file. $a is a string representing a URL, eg file://etc with the encoding specified in $b."
+literal|"Read content of file."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"url"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -296,11 +347,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a string representing a URL, eg file://etc."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"encoding"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -308,12 +363,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"encoding"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"contents"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -321,6 +380,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"contents"
 argument_list|)
 argument_list|)
 block|}
@@ -359,6 +420,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 name|arg
 init|=
@@ -542,6 +622,25 @@ argument_list|)
 operator|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//TODO : return an *Item* built with sw.toString()
 return|return
 operator|(

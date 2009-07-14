@@ -123,6 +123,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -283,6 +295,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -365,6 +391,21 @@ block|{
 specifier|private
 specifier|final
 specifier|static
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|SerializeToFile
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|String
 name|FN_SERIALIZE_LN
 init|=
@@ -403,9 +444,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Writes the node set passed in parameter $a into a file on the file system. The "
-operator|+
-literal|"full path to the file is specified in parameter $b. $c contains a "
+literal|"Writes the node set into a file on the file system. $parameters contains a "
 operator|+
 literal|"sequence of zero or more serialization parameters specified as key=value pairs. The "
 operator|+
@@ -424,8 +463,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"node-set"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -433,11 +474,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"filepath"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -445,11 +490,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"full path to the file"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameters"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -457,12 +506,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"serialization parameters specified as key-value pairs"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -470,6 +523,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"True for success."
 argument_list|)
 argument_list|)
 block|,
@@ -490,9 +545,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Writes binary data in parameter $a into a file on the file system. The "
-operator|+
-literal|"full path to the file is specified in parameter $b. False is returned if the "
+literal|"Writes binary data into a file on the file system. False is returned if the "
 operator|+
 literal|"specified file can not be created or is not writable, true on success."
 argument_list|,
@@ -501,8 +554,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"binarydata"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -510,11 +565,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"filepath"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -522,12 +581,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"full path to the file"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -535,6 +598,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 argument_list|)
 block|}
@@ -571,6 +636,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|args
@@ -581,11 +665,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//check the file output path
 name|String
 name|path
@@ -620,7 +706,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -652,7 +738,7 @@ name|canWrite
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
