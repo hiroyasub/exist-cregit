@@ -117,6 +117,28 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|DatabaseInstanceManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -203,6 +225,48 @@ name|Database
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ResourceSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XPathQueryService
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Tests for the Validation Service, e.g. used by InteractiveClient  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
@@ -242,18 +306,22 @@ decl_stmt|;
 specifier|private
 specifier|static
 name|ValidationService
-name|service
+name|validationService
 init|=
 literal|null
 decl_stmt|;
-comment|//    public ValidationServiceTest(String testName) {
-comment|//        super(testName);
-comment|//    }
-comment|//
-comment|//    public static Test suite() {
-comment|//        TestSuite suite = new TestSuite(ValidationServiceTest.class);
-comment|//        return suite;
-comment|//    }
+specifier|private
+specifier|static
+name|XPathQueryService
+name|service
+decl_stmt|;
+specifier|private
+specifier|static
+name|Database
+name|database
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 specifier|static
 name|void
@@ -297,14 +365,6 @@ block|{
 name|initLog4J
 argument_list|()
 expr_stmt|;
-block|}
-annotation|@
-name|Before
-specifier|public
-name|void
-name|setUp
-parameter_list|()
-block|{
 try|try
 block|{
 name|System
@@ -326,9 +386,8 @@ argument_list|(
 name|DRIVER
 argument_list|)
 decl_stmt|;
-name|Database
 name|database
-init|=
+operator|=
 operator|(
 name|Database
 operator|)
@@ -336,7 +395,7 @@ name|cl
 operator|.
 name|newInstance
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|database
 operator|.
 name|setProperty
@@ -373,10 +432,24 @@ argument_list|(
 literal|"Could not connect to database."
 argument_list|)
 expr_stmt|;
-name|service
+name|validationService
 operator|=
 name|getValidationService
 argument_list|()
+expr_stmt|;
+name|service
+operator|=
+operator|(
+name|XPathQueryService
+operator|)
+name|rootCollection
+operator|.
+name|getService
+argument_list|(
+literal|"XQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
 expr_stmt|;
 name|System
 operator|.
@@ -412,6 +485,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 name|ValidationService
 name|getValidationService
 parameter_list|()
@@ -458,6 +532,36 @@ return|return
 literal|null
 return|;
 block|}
+comment|// ===========================================================
+annotation|@
+name|Before
+specifier|public
+name|void
+name|clearGrammarCache
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Clearing grammar cache"
+argument_list|)
+expr_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"validation:clear-grammar-cache()"
+argument_list|)
+decl_stmt|;
+block|}
 annotation|@
 name|Test
 specifier|public
@@ -482,7 +586,7 @@ name|assertEquals
 argument_list|(
 literal|"ValidationService check"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|getName
 argument_list|()
@@ -538,7 +642,7 @@ name|assertEquals
 argument_list|(
 literal|"ValidationService check"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|getVersion
 argument_list|()
@@ -594,7 +698,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -608,7 +712,7 @@ name|assertTrue
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -624,7 +728,7 @@ name|assertTrue
 argument_list|(
 literal|"specified grammar"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -682,7 +786,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -696,7 +800,7 @@ name|assertFalse
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -712,7 +816,7 @@ name|assertFalse
 argument_list|(
 literal|"specified grammar"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -770,7 +874,7 @@ name|assertFalse
 argument_list|(
 literal|"non existing document"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -830,7 +934,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -844,7 +948,7 @@ name|assertTrue
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -909,7 +1013,7 @@ name|assertTrue
 argument_list|(
 literal|"specified grammar"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -967,7 +1071,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -981,7 +1085,7 @@ name|assertFalse
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -1041,7 +1145,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -1055,7 +1159,7 @@ name|assertFalse
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -1115,7 +1219,7 @@ name|assertFalse
 argument_list|(
 literal|"system catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -1129,7 +1233,7 @@ name|assertFalse
 argument_list|(
 literal|"specified catalog"
 argument_list|,
-name|service
+name|validationService
 operator|.
 name|validateResource
 argument_list|(
@@ -1196,6 +1300,53 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+annotation|@
+name|AfterClass
+specifier|public
+specifier|static
+name|void
+name|shutdown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"shutdown"
+argument_list|)
+expr_stmt|;
+name|DatabaseManager
+operator|.
+name|deregisterDatabase
+argument_list|(
+name|database
+argument_list|)
+expr_stmt|;
+name|DatabaseInstanceManager
+name|dim
+init|=
+operator|(
+name|DatabaseInstanceManager
+operator|)
+name|rootCollection
+operator|.
+name|getService
+argument_list|(
+literal|"DatabaseInstanceManager"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|dim
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

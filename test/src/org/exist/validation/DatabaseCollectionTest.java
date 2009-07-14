@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -15,31 +15,23 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
-operator|.
-name|Test
+name|*
 import|;
 end_import
 
 begin_import
-import|import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Assert
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
+name|*
 import|;
 end_import
 
@@ -129,8 +121,6 @@ begin_class
 specifier|public
 class|class
 name|DatabaseCollectionTest
-extends|extends
-name|TestCase
 block|{
 specifier|private
 specifier|final
@@ -165,40 +155,8 @@ name|database
 init|=
 literal|null
 decl_stmt|;
-specifier|public
-name|DatabaseCollectionTest
-parameter_list|(
-name|String
-name|testName
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|testName
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-specifier|static
-name|Test
-name|suite
-parameter_list|()
-block|{
-name|TestSuite
-name|suite
-init|=
-operator|new
-name|TestSuite
-argument_list|(
-name|DatabaseCollectionTest
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-return|return
-name|suite
-return|;
-block|}
+annotation|@
+name|Before
 specifier|public
 name|void
 name|setUp
@@ -296,7 +254,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+annotation|@
+name|After
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
@@ -344,6 +304,8 @@ literal|"tearDown PASSED"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testCreateCollections
@@ -355,10 +317,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-name|this
-operator|.
-name|getName
-argument_list|()
+literal|"testCreateCollections"
 argument_list|)
 expr_stmt|;
 try|try
