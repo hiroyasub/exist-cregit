@@ -61,6 +61,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -139,6 +151,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -186,7 +212,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction  *   * Get a connection to a SQL Database via JNDI  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction  *   * Get a connection to a SQL Database via JNDI  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -196,6 +222,21 @@ name|GetJNDIConnectionFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetJNDIConnectionFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -221,15 +262,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JNDI name in $a. Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JNDI name. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"jndi-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -237,12 +280,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"handle"
+argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -250,6 +297,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"handle"
 argument_list|)
 argument_list|)
 block|,
@@ -270,15 +319,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a connection to a SQL Database. Expects a JNDI name in $a, a username in $b and a password in $c. Returns an xs:long representing the connection handle."
+literal|"Open's a connection to a SQL Database. Expects a JNDI name, a username and a password. Returns an xs:long representing the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"jndi-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -286,11 +337,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"username"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -298,11 +353,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -310,12 +369,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"handle"
+argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -323,6 +386,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"handle"
 argument_list|)
 argument_list|)
 block|}
@@ -361,6 +426,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// was a JNDI name specified?
 if|if
 condition|(
@@ -372,11 +456,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 try|try
 block|{
 name|Connection
@@ -477,6 +582,25 @@ name|jndiPassword
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// store the connection and return the uid handle of the connection
 return|return
 operator|new

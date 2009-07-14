@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|external
@@ -227,6 +239,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -310,6 +336,21 @@ name|ExecuteFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ExecuteFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -335,15 +376,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Executes a SQL statement $b against a SQL db using the connection indicated by the connection handle in $a. $c indicates whether the xml nodes should be formed from the column names (in this mode a space in a Column Name will be replaced by an underscore!)"
+literal|"Executes a SQL statement against a SQL db using the connection "
+operator|+
+literal|"indicated by the connection handle."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"handle"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -351,11 +396,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"connection handle"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"sql-statement"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -363,11 +412,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"make-node-from-column-name"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -375,6 +428,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"indicates whether the xml nodes should be formed from the column names (in this mode a space in a Column Name will be replaced by an underscore!)"
 argument_list|)
 block|}
 argument_list|,
@@ -426,6 +481,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// was a connection and SQL statement specified?
 if|if
 condition|(
@@ -1137,6 +1211,25 @@ name|builder
 operator|.
 name|endDocument
 argument_list|()
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SQLModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// return the XML result set
 return|return
