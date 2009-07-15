@@ -174,7 +174,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * @author wolf  * @author ljo  */
 end_comment
 
 begin_class

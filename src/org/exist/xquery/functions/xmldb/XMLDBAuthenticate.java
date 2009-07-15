@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,18 @@ operator|.
 name|xmldb
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -221,6 +233,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -308,7 +334,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Andrzej Taramina (andrzej@chaeron.com)  */
+comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Andrzej Taramina (andrzej@chaeron.com)  * @author ljo  */
 end_comment
 
 begin_class
@@ -318,6 +344,21 @@ name|XMLDBAuthenticate
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|XMLDBAuthenticate
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -343,9 +384,9 @@ argument_list|)
 argument_list|,
 literal|"Check if a user is registered as database user. The function simply tries to "
 operator|+
-literal|"read the database collection specified in the first parameter $a, using the "
+literal|"read the database collection specified in the first parameter $collection, using the "
 operator|+
-literal|"supplied username in $b and password in $c. "
+literal|"supplied username in $user-id and password in $password. "
 operator|+
 literal|"It returns true if the attempt succeeds, false otherwise."
 argument_list|,
@@ -354,8 +395,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collection"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -363,11 +406,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collection path"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"user-id"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -375,11 +422,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the user-id"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -387,6 +438,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the password"
 argument_list|)
 block|}
 argument_list|,
@@ -432,9 +485,9 @@ literal|"Check if a user is registered as database user and change the user iden
 operator|+
 literal|"current XQuery script. The function simply tries to "
 operator|+
-literal|"read the database collection specified in the first parameter $a, using the "
+literal|"read the database collection specified in the first parameter $collection, using the "
 operator|+
-literal|"supplied username in $b and password in $c. "
+literal|"supplied username in $user-id and password in $password. "
 operator|+
 literal|"Contrary to the authenticate function,"
 operator|+
@@ -451,8 +504,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collection"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -460,11 +515,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collection path"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"user-id"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -472,11 +531,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the user-id"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -484,6 +547,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"password"
 argument_list|)
 block|}
 argument_list|,
@@ -521,9 +586,9 @@ literal|"Check if a user is registered as database user and change the user iden
 operator|+
 literal|"current XQuery script. The function simply tries to "
 operator|+
-literal|"read the database collection specified in the first parameter $a, using the "
+literal|"read the database collection specified in the first parameter $collection, using the "
 operator|+
-literal|"supplied username in $b and password in $c. $d specifies whether to create an HTTP session on successful login if one does not already exist (default false). "
+literal|"supplied username in $user-id and password in $password. $create-session specifies whether to create an HTTP session on successful login if one does not already exist (default false). "
 operator|+
 literal|"Contrary to the authenticate function,"
 operator|+
@@ -540,8 +605,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collection"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -549,11 +616,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collection path"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"user-id"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -561,11 +632,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the user-id"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -573,11 +648,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the password"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"create-session"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -585,6 +664,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"wether to create the seession or not on successful authentication, default false()"
 argument_list|)
 block|}
 argument_list|,
@@ -621,7 +702,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -636,6 +717,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|args
@@ -647,12 +747,29 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
-operator|(
 name|BooleanValue
 operator|.
 name|FALSE
-operator|)
 return|;
 block|}
 name|String
@@ -786,6 +903,17 @@ operator|==
 literal|null
 condition|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to authenticate user: target collection "
+operator|+
+name|targetColl
+operator|+
+literal|" does not exist"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|(
 operator|new
@@ -854,12 +982,29 @@ name|createSession
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
-operator|(
 name|BooleanValue
 operator|.
 name|TRUE
-operator|)
 return|;
 block|}
 catch|catch
@@ -868,36 +1013,29 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
-name|LOG
+name|logger
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|info
 argument_list|(
-literal|"Failed to authenticate user '"
+literal|"Exiting "
 operator|+
-name|userName
+name|XMLDBModule
+operator|.
+name|PREFIX
 operator|+
-literal|"' on "
+literal|":"
 operator|+
-name|uri
-argument_list|,
-name|e
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 return|return
-operator|(
 name|BooleanValue
 operator|.
 name|FALSE
-operator|)
 return|;
 block|}
 block|}
@@ -1104,6 +1242,32 @@ operator|==
 literal|null
 condition|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"No request object found in the current XQuery context."
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|(
 operator|new
@@ -1131,6 +1295,32 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Variable $request is not bound to an Java object."
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|(
 operator|new
