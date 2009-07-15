@@ -175,6 +175,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -280,6 +292,20 @@ operator|.
 name|value
 operator|.
 name|Base64Binary
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -402,6 +428,21 @@ name|RenderFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|RenderFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -427,9 +468,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Renders a given XSL-FO document. $a is the XSL-FO node, $b is the required mime-type, $c is parameters to the transformation. "
+literal|"Renders a given XSL-FO document. "
 operator|+
-literal|"Returns an xs:base64binary of the result."
+literal|"Returns an xs:base64binary of the result. "
 operator|+
 literal|"Parameters are specified with the structure: "
 operator|+
@@ -444,8 +485,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"document"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -453,11 +496,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"XSL-FO document"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"mime-type"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -465,11 +512,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameters"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -477,12 +528,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"parameters for the transform"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -490,6 +545,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"result"
 argument_list|)
 argument_list|)
 block|,
@@ -510,9 +567,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Renders a given XSL-FO document. $a is the XSL-FO node, $b is the required mime-type, $c is parameters to the transformation, $d is an Apache FOP Configuration file."
+literal|"Renders a given XSL-FO document. "
 operator|+
-literal|"Returns an xs:base64binary of the result."
+literal|"Returns an xs:base64binary of the result. "
 operator|+
 literal|"Parameters are specified with the structure: "
 operator|+
@@ -527,8 +584,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"document"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -536,11 +595,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"XSL-FO document"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"mime-type"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -548,11 +611,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameters"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -560,11 +627,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"parameters for the transform"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"config-file"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -572,12 +643,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"Apache FOP Configuration file"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -585,6 +660,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"result"
 argument_list|)
 argument_list|)
 block|}
@@ -623,6 +700,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|XSLFOModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// gather input XSL-FO document
 comment|// if no input document (empty), return empty result as we need data to
 comment|// process
@@ -636,11 +732,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XSLFOModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|Item
 name|inputNode
 init|=
@@ -948,6 +1065,25 @@ name|dh
 operator|.
 name|endDocument
 argument_list|()
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XSLFOModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// return the result
 return|return
