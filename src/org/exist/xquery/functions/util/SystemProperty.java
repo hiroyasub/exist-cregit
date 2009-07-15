@@ -41,6 +41,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -119,6 +131,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -166,7 +192,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Libary function to retrieve the value of a system property.  * @author wolf  */
+comment|/**  * Libary function to retrieve the value of a system property.  * @author Wolfgang Meier  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -176,6 +202,21 @@ name|SystemProperty
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|SystemProperty
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -210,8 +251,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"property-name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -219,6 +262,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the system property to retrieve the value of."
 argument_list|)
 block|}
 argument_list|,
@@ -269,6 +314,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Properties
 name|sysProperties
 init|=
@@ -302,7 +366,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -344,6 +408,25 @@ operator|.
 name|getProperty
 argument_list|(
 name|key
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

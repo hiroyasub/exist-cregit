@@ -31,6 +31,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -259,6 +271,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -320,7 +346,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author J.M. Vanel  */
+comment|/**  * @author J.M. Vanel  * @author Loren Cahlander  */
 end_comment
 
 begin_class
@@ -330,6 +356,21 @@ name|QNameIndexLookup
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|QNameIndexLookup
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -354,18 +395,16 @@ name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Can be used to query existing qname indexes defined on a set of nodes. "
-operator|+
-literal|"The qname is specified in the first argument. "
-operator|+
-literal|"The second argument specifies a comparison value. "
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"qname"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -373,11 +412,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the QName"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"comparison-value"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -385,12 +428,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -398,6 +445,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"result"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -605,6 +654,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|contextSequence
@@ -846,6 +914,25 @@ name|message
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

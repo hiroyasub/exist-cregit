@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|external
@@ -281,6 +293,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -374,6 +400,21 @@ name|Serialize
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Serialize
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -399,8 +440,6 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"DEPRECATED.  Use the file:serialize() function in the file extension module instead! "
-operator|+
 literal|"Writes the node set passed in parameter $a into a file on the file system. The "
 operator|+
 literal|"full path to the file is specified in parameter $b. $c contains a "
@@ -469,6 +508,8 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
+argument_list|,
+literal|"Use the file:serialize() function in the file extension module instead!"
 argument_list|)
 block|,
 operator|new
@@ -488,7 +529,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the Serialized node set passed in parameter $a. $b contains a "
+literal|"Returns the Serialized node set passed in parameter $node-set. $parameters contains a "
 operator|+
 literal|"sequence of zero or more serialization parameters specified as key=value pairs. The "
 operator|+
@@ -503,8 +544,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"node-set"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -512,11 +555,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"node set to serialize"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameters"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -524,12 +571,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"sequence of zero or more serialization parameters"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -537,6 +588,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"The string containing the serialized node set."
 argument_list|)
 argument_list|)
 block|}
@@ -573,6 +626,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|args
@@ -583,11 +655,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|Properties
 name|outputProperties
 init|=
@@ -607,6 +700,7 @@ operator|==
 literal|3
 condition|)
 block|{
+comment|// TODO: Remove this conditional in eXist 2.0 since the function has been deprecated.
 comment|/** serialize to disk **/
 comment|// check the file output path
 name|String
@@ -642,7 +736,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -651,6 +745,25 @@ operator|+
 name|file
 operator|.
 name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -674,7 +787,7 @@ name|canWrite
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -683,6 +796,25 @@ operator|+
 name|file
 operator|.
 name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -757,6 +889,25 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -819,6 +970,25 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|StringValue
