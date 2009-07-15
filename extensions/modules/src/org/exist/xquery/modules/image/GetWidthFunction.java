@@ -41,6 +41,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -133,6 +145,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -180,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-10  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  * @serial 2006-03-10  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -190,6 +216,21 @@ name|GetWidthFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetWidthFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -213,15 +254,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's the Width of the image passed in $a, returning an integer of the images width in pixels or an empty sequence if $a is invalid."
+literal|"Get's the Width of the image passed in, returning an integer of the images width in pixels or an empty sequence if the image is invalid."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"image"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -229,12 +272,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the image data"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"width"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -242,6 +289,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"width in pixels"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -276,6 +325,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//was an image speficifed
 if|if
 condition|(
@@ -287,11 +355,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//get the image
 name|Image
 name|image
@@ -327,13 +416,32 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
 literal|"Unable to read image data!"
 argument_list|,
 name|ioe
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -349,11 +457,30 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
 literal|"Unable to read image data!"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -383,11 +510,30 @@ literal|1
 condition|)
 block|{
 comment|//no, log the error
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
 literal|"Unable to read image data!"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -398,6 +544,25 @@ return|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//return the width of the image
 return|return
 operator|new

@@ -95,6 +95,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -225,6 +237,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -308,7 +334,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension GetMetadataFunction   *   * Get's the metadata of an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-02-27  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension GetMetadataFunction   *   * Get's the metadata of an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  * @serial 2007-02-27  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -318,6 +344,21 @@ name|GetMetadataFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetMetadataFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -341,15 +382,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's the metadta of the image passed in $a, returning the images XML metadata. When $b is true() metadata of the images native format is returned, otherwise common java ImageIO metadata is returned."
+literal|"Get's the metadta of the image passed in, returning the images XML metadata."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"image"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -357,11 +400,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"image data"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"native-format"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -369,12 +416,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"When true() metadata of the images native format is returned, otherwise common java ImageIO metadata is returned."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"metadata"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -382,6 +433,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"The image metadata"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -416,6 +469,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//was an image and format speficifed
 if|if
 condition|(
@@ -435,11 +507,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//get the images raw binary data
 name|byte
 index|[]
@@ -584,11 +677,32 @@ name|nMetadata
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//return the metadata
 name|context
 operator|.
@@ -643,6 +757,25 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|NodeValue
@@ -702,6 +835,25 @@ name|ioe
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.

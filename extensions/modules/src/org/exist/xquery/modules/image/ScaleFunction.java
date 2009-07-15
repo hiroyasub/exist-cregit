@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|external
@@ -228,7 +240,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension ScaleFunction   *   * Scale's an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2007-01-16  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension ScaleFunction   *   * Scale's an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  * @serial 2007-01-16  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -238,6 +250,21 @@ name|ScaleFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ScaleFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -380,6 +407,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//was an image and a mime-type speficifed
 if|if
 condition|(
@@ -399,11 +445,32 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//get the maximum dimensions to scale to
 name|int
 name|maxHeight
@@ -553,11 +620,30 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
 literal|"Unable to read image data!"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -597,6 +683,25 @@ argument_list|,
 name|formatName
 argument_list|,
 name|os
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|ImageModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//return the new scaled image data
