@@ -51,6 +51,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -219,6 +231,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -258,6 +284,21 @@ name|BinaryDoc
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|BinaryDoc
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -283,19 +324,21 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Retrieves the binary resource identified by $a and returns its contents as a "
+literal|"Retrieves the binary resource and returns its contents as a "
 operator|+
 literal|"value of type xs:base64Binary. An empty sequence is returned if the resource "
 operator|+
-literal|"could not be found or $a was empty."
+literal|"could not be found or $binary-resource was empty."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"binary-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -303,12 +346,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the path to the binary resource"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -316,6 +363,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the binary document"
 argument_list|)
 argument_list|)
 block|,
@@ -343,8 +392,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"binary-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -352,12 +403,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the path to the binary resource"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -365,6 +420,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"returns true() if the binary document is available"
 argument_list|)
 argument_list|)
 block|,
@@ -392,8 +449,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"binary-resource"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -401,12 +460,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the path to the binary resource"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"result"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -414,6 +477,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"returns true() if the resource is a binary document"
 argument_list|)
 argument_list|)
 block|}
@@ -452,6 +517,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|defaultReturn
 init|=
@@ -480,9 +564,30 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|defaultReturn
 return|;
+block|}
 name|String
 name|path
 init|=
@@ -529,6 +634,25 @@ operator|==
 literal|null
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|defaultReturn
 return|;
@@ -545,6 +669,25 @@ operator|.
 name|BINARY_FILE
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|defaultReturn
 return|;
@@ -611,6 +754,25 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|Base64Binary
@@ -621,6 +783,25 @@ return|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -634,6 +815,15 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid resource URI"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -652,6 +842,17 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+name|path
+operator|+
+literal|": permission denied to read resource"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -670,6 +871,17 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|path
+operator|+
+literal|": I/O error while reading resource"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
