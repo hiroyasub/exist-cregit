@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,18 @@ operator|.
 name|xmldb
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -74,6 +86,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -162,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * Implements eXist's xmldb:create-collection() function.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -172,6 +198,21 @@ name|XMLDBCreateCollection
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|XMLDBCreateCollection
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -195,13 +236,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new collection as a child of the collection specified in the "
+literal|"Create a new collection as a child of the collection specified in "
 operator|+
-literal|"first argument. The collection can be passed as a simple collection "
+literal|"$target-collection-uri. The collection can be passed as a simple collection "
 operator|+
 literal|"path or an XMLDB URI."
 operator|+
-literal|"The second argument specifies the name of the new "
+literal|"The second argument, $new-collection, specifies the name of the new "
 operator|+
 literal|"collection. The function returns the path to the new collection "
 operator|+
@@ -212,8 +253,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"target-collection-uri"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -221,11 +264,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the target collection uri"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"new-collection"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -233,6 +280,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the new collection to create"
 argument_list|)
 block|}
 argument_list|,
@@ -249,7 +298,7 @@ name|ZERO_OR_ONE
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|XMLDBCreateCollection
 parameter_list|(
@@ -265,7 +314,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, 	 *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,      *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|evalWithCollection
@@ -283,6 +332,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 name|collectionName
 init|=
@@ -306,6 +374,25 @@ argument_list|,
 name|collectionName
 argument_list|)
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|newCollection
@@ -335,6 +422,36 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to create new collection "
+operator|+
+name|collectionName
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
