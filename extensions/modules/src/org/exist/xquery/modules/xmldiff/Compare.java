@@ -211,7 +211,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the differences between XML documents"
+literal|"Returns true() if the two node sets $node-set-1 and $node-set-2 are equal, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
@@ -220,7 +220,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"xml1"
+literal|"node-set-1"
 argument_list|,
 name|Type
 operator|.
@@ -230,13 +230,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"the first node set"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"xml2"
+literal|"node-set-2"
 argument_list|,
 name|Type
 operator|.
@@ -246,7 +246,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"the second node set"
 argument_list|)
 block|}
 argument_list|,
