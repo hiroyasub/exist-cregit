@@ -869,6 +869,8 @@ name|exists
 argument_list|()
 operator|&&
 name|createdirectories
+operator|==
+literal|true
 condition|)
 block|{
 name|dir
@@ -887,6 +889,8 @@ expr_stmt|;
 if|if
 condition|(
 name|subcollections
+operator|==
+literal|true
 condition|)
 block|{
 name|extractSubCollections
@@ -974,6 +978,8 @@ block|{
 if|if
 condition|(
 name|createdirectories
+operator|==
+literal|true
 condition|)
 block|{
 name|File
@@ -1006,21 +1012,13 @@ block|}
 block|}
 if|if
 condition|(
-operator|(
 name|dest
 operator|!=
 literal|null
-operator|)
 operator|||
-operator|(
-name|dest
-operator|!=
-literal|null
-operator|&&
 name|overwrite
 operator|==
 literal|true
-operator|)
 condition|)
 block|{
 name|Properties
@@ -1272,6 +1270,8 @@ block|{
 if|if
 condition|(
 name|createdirectories
+operator|==
+literal|true
 condition|)
 block|{
 name|File
@@ -1302,29 +1302,16 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|//dest != null&& ( !dest.exists() ||
 if|if
 condition|(
-operator|(
 name|dest
 operator|!=
 literal|null
-operator|&&
-operator|!
-name|dest
-operator|.
-name|exists
-argument_list|()
-operator|)
 operator|||
-operator|(
-name|dest
-operator|!=
-literal|null
-operator|&&
 name|overwrite
 operator|==
 literal|true
-operator|)
 condition|)
 block|{
 if|if
@@ -1401,7 +1388,7 @@ block|{
 name|String
 name|msg
 init|=
-literal|"Destination binary file "
+literal|"Dest binary file "
 operator|+
 operator|(
 operator|(
