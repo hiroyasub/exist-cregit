@@ -284,7 +284,7 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"List all files, including their file size and modification time, found in a directory. Files are located in the server's "
+literal|"DO NOT USE! -- temporary only List all files, including their file size and modification time, found in a directory. Files are located in the server's "
 operator|+
 literal|"file system, using file patterns. "
 operator|+
