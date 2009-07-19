@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: Validation.java 9042 2009-05-17 18:06:40Z wolfgang_m $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -111,50 +111,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|stream
-operator|.
-name|StreamSource
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -162,18 +118,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|DocumentImpl
 import|;
 end_import
 
@@ -236,34 +180,6 @@ operator|.
 name|validation
 operator|.
 name|ValidationReport
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|ValidationReportItem
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|validation
-operator|.
-name|internal
-operator|.
-name|node
-operator|.
-name|NodeInputStream
 import|;
 end_import
 
@@ -423,20 +339,6 @@ name|InputSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|helpers
-operator|.
-name|AttributesImpl
-import|;
-end_import
-
 begin_comment
 comment|/**  *   xQuery function for validation of XML instance documents  * using jing for grammars like XSD, Relaxng, onvdl and schematron.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
@@ -518,7 +420,7 @@ literal|"grammar"
 argument_list|,
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -591,7 +493,7 @@ literal|"grammar"
 argument_list|,
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -690,6 +592,11 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|report
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 comment|// Get inputstream of XML instance document
 name|is
 operator|=
@@ -705,25 +612,58 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-comment|// Validate using resource speciefied in second parameter
-name|String
-name|grammarUrl
+comment|// Validate using resource specified in second parameter
+name|InputSource
+name|grammar
 init|=
 name|Shared
 operator|.
-name|getUrl
+name|getInputSource
 argument_list|(
 name|args
 index|[
 literal|1
 index|]
+argument_list|,
+name|context
 argument_list|)
 decl_stmt|;
-name|report
+comment|// Special setup for compact notation
+name|String
+name|grammarUrl
+init|=
+name|grammar
 operator|.
-name|start
+name|getSystemId
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|SchemaReader
+name|schemaReader
+init|=
+operator|(
+operator|(
+name|grammarUrl
+operator|!=
+literal|null
+operator|)
+operator|&&
+operator|(
+name|grammarUrl
+operator|.
+name|endsWith
+argument_list|(
+literal|".rnc"
+argument_list|)
+operator|)
+operator|)
+condition|?
+name|CompactSchemaReader
+operator|.
+name|getInstance
+argument_list|()
+else|:
+literal|null
+decl_stmt|;
 comment|// Setup validation properties. see Jing interface
 name|PropertyMapBuilder
 name|properties
@@ -743,24 +683,6 @@ argument_list|,
 name|report
 argument_list|)
 expr_stmt|;
-comment|// Special setup for compact notation
-name|SchemaReader
-name|schemaReader
-init|=
-name|grammarUrl
-operator|.
-name|endsWith
-argument_list|(
-literal|".rnc"
-argument_list|)
-condition|?
-name|CompactSchemaReader
-operator|.
-name|getInstance
-argument_list|()
-else|:
-literal|null
-decl_stmt|;
 comment|// Setup driver
 name|ValidationDriver
 name|driver
@@ -781,11 +703,7 @@ name|driver
 operator|.
 name|loadSchema
 argument_list|(
-operator|new
-name|InputSource
-argument_list|(
-name|grammarUrl
-argument_list|)
+name|grammar
 argument_list|)
 expr_stmt|;
 comment|// Validate XML instance
@@ -819,17 +737,14 @@ argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
+comment|//throw new XPathException(this, "Invalid resource URI", ex);
+name|report
+operator|.
+name|setException
 argument_list|(
-name|this
-argument_list|,
-literal|"Invalid resource URI"
-argument_list|,
 name|ex
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
