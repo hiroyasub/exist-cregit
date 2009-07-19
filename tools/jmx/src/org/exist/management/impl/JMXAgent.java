@@ -17,49 +17,41 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|management
-operator|.
-name|Agent
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
+name|java
 operator|.
 name|util
 operator|.
-name|DatabaseConfigurationException
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Stack
 import|;
 end_import
 
@@ -145,56 +137,66 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|ArrayList
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|HashMap
+name|management
+operator|.
+name|Agent
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|List
+name|management
+operator|.
+name|TaskStatus
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Map
+name|storage
+operator|.
+name|BrokerPool
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|exist
 operator|.
 name|util
 operator|.
-name|Stack
+name|DatabaseConfigurationException
 import|;
 end_import
 
 begin_comment
-comment|/**  * Real implementation of interface {@link org.exist.management.Agent}  * which registers MBeans with the MBeanServer.  */
+comment|/**  * Real implementation of interface {@link org.exist.management.Agent} which  * registers MBeans with the MBeanServer.  */
 end_comment
 
 begin_class
@@ -325,13 +327,16 @@ operator|.
 name|createMBeanServer
 argument_list|()
 expr_stmt|;
-comment|//        try {
-comment|//            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://127.0.0.1:9999/server");
-comment|//            JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
-comment|//            cs.start();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("ERROR: failed to initialize JMX connector: " + e.getMessage(), e);
-comment|//        }
+comment|// try {
+comment|// JMXServiceURL url = new
+comment|// JMXServiceURL("service:jmx:rmi:///jndi/rmi://127.0.0.1:9999/server");
+comment|// JMXConnectorServer cs =
+comment|// JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
+comment|// cs.start();
+comment|// } catch (IOException e) {
+comment|// LOG.warn("ERROR: failed to initialize JMX connector: " +
+comment|// e.getMessage(), e);
+comment|// }
 name|registerSystemMBeans
 argument_list|()
 expr_stmt|;
@@ -884,16 +889,13 @@ block|}
 specifier|public
 specifier|synchronized
 name|void
-name|updateErrors
+name|changeStatus
 parameter_list|(
 name|BrokerPool
 name|instance
 parameter_list|,
-name|List
-name|errorList
-parameter_list|,
-name|long
-name|startTime
+name|TaskStatus
+name|actualStatus
 parameter_list|)
 block|{
 try|try
@@ -935,11 +937,88 @@ literal|null
 condition|)
 name|report
 operator|.
-name|updateErrors
+name|changeStatus
 argument_list|(
-name|errorList
+name|actualStatus
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|MalformedObjectNameException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Problem calling mbean: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
-name|startTime
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+specifier|synchronized
+name|void
+name|updateStatus
+parameter_list|(
+name|BrokerPool
+name|instance
+parameter_list|,
+name|int
+name|percentage
+parameter_list|)
+block|{
+try|try
+block|{
+name|ObjectName
+name|name
+init|=
+operator|new
+name|ObjectName
+argument_list|(
+literal|"org.exist.management."
+operator|+
+name|instance
+operator|.
+name|getId
+argument_list|()
+operator|+
+literal|".tasks:type=SanityReport"
+argument_list|)
+decl_stmt|;
+name|SanityReport
+name|report
+init|=
+operator|(
+name|SanityReport
+operator|)
+name|beanInstances
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|report
+operator|!=
+literal|null
+condition|)
+name|report
+operator|.
+name|updateStatus
+argument_list|(
+name|percentage
 argument_list|)
 expr_stmt|;
 block|}
