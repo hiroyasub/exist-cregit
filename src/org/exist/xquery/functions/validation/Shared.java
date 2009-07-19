@@ -306,7 +306,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author wessels  */
+comment|/**  *  Shared methods for validation functions.  *  * @author dizzzz  */
 end_comment
 
 begin_class
@@ -403,6 +403,13 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Streaming Java object"
+argument_list|)
+expr_stmt|;
 name|Item
 name|item
 init|=
@@ -497,6 +504,13 @@ operator|.
 name|ANY_URI
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Streaming xs:anyURI"
+argument_list|)
+expr_stmt|;
 comment|// anyURI provided
 name|String
 name|url
@@ -572,6 +586,13 @@ operator|.
 name|DOCUMENT
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Streaming element or document node"
+argument_list|)
+expr_stmt|;
 comment|// Node provided
 name|InputStream
 name|is
@@ -697,6 +718,7 @@ return|return
 name|inputSource
 return|;
 block|}
+comment|/**      *  Get URL value of parameter.      */
 specifier|public
 specifier|static
 name|String
@@ -708,6 +730,37 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|s
+operator|.
+name|getItemType
+argument_list|()
+operator|!=
+name|Type
+operator|.
+name|ANY_URI
+operator|&&
+name|s
+operator|.
+name|getItemType
+argument_list|()
+operator|!=
+name|Type
+operator|.
+name|STRING
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Parameter should be of type xs:anyURI"
+operator|+
+literal|" or string"
+argument_list|)
+throw|;
+block|}
 name|String
 name|url
 init|=
@@ -737,6 +790,7 @@ return|return
 name|url
 return|;
 block|}
+comment|/**      * Create validation report.      */
 specifier|static
 specifier|public
 name|NodeImpl
