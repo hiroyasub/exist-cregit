@@ -2324,7 +2324,7 @@ operator|)
 operator|&&
 name|descriptor
 operator|.
-name|allowSourceXQuery
+name|allowSource
 argument_list|(
 name|path
 argument_list|)
