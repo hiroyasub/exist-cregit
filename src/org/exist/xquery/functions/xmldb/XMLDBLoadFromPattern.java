@@ -904,7 +904,7 @@ operator|=
 name|relDir
 expr_stmt|;
 block|}
-comment|//TODO  : these probably need to be encoded
+comment|//TODO  : these probably need to be encoded and checked for right mime type
 name|Resource
 name|resource
 init|=
@@ -933,15 +933,6 @@ name|j
 index|]
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-literal|"BinaryResource"
-operator|.
-name|equals
-argument_list|(
-name|resourceType
-argument_list|)
-condition|)
 operator|(
 operator|(
 name|EXistResource
