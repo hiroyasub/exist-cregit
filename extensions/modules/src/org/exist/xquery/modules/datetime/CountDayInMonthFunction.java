@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -204,7 +204,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * @author Adam Retter<adam@exist-db.org>  * @version 1.1  */
 end_comment
 
 begin_class
@@ -237,7 +237,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the count of a specific weekday in a month from the given date.For example it can tell you there are 5 Fridays in February 2008."
+literal|"Returns the count of a specific day in the month for a given date. For example it can tell you there were 5 Fridays in February 2008!"
 argument_list|,
 operator|new
 name|SequenceType
@@ -246,7 +246,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"weekday"
+literal|"day-in-week"
 argument_list|,
 name|Type
 operator|.
@@ -256,7 +256,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Day of the week in the range of 1 to 7 where 1 = Sunday and 7 = Saturday."
+literal|"An integer in the range 1 to 7, where 1 = Sunday and 7 = Saturday."
 argument_list|)
 block|,
 operator|new
@@ -272,15 +272,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The day that will identify the month to get the count of the number of occurrences of a given weekday"
+literal|"The date with month to count the day-in-week for."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|SequenceType
 argument_list|(
-literal|"count"
-argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -288,8 +286,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
-argument_list|,
-literal|"Number of occurrences of the weekday in the selected month."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -308,6 +304,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval

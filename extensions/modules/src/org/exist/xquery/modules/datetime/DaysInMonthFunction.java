@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: EchoFunction.java 3063 2006-04-05 20:49:44Z brihaye $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -194,7 +194,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * @author Adam Retter<adam.retter@exist-db.org>  * @version 1.1  */
 end_comment
 
 begin_class
@@ -227,7 +227,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the number of days in the month of the given date."
+literal|"Returns the number of days in the month of the date."
 argument_list|,
 operator|new
 name|SequenceType
@@ -246,15 +246,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The date that is within the month that the count of the number of days is to be given."
+literal|"The date for extracting the number of days in the month component."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|SequenceType
 argument_list|(
-literal|"count"
-argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -262,8 +260,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
-argument_list|,
-literal|"The number of days in the given month."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -282,6 +278,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval

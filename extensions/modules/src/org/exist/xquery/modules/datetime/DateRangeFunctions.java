@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-03 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -251,9 +251,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of items of xs:dateTime* "
-operator|+
-literal|"starting at $date-time incremented by the duration"
+literal|"Generates a range of xs:dateTime values, incremented cumulatively by a fixed duration from a start xs:dateTime"
 argument_list|,
 operator|new
 name|SequenceType
@@ -262,7 +260,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"date-time"
+literal|"start-date-time"
 argument_list|,
 name|Type
 operator|.
@@ -272,13 +270,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"dateTime at the beginning of the range(s)"
+literal|"The dateTime to start at."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"duration"
+literal|"increment"
 argument_list|,
 name|Type
 operator|.
@@ -288,13 +286,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The xs:duration to generate the dateTime range"
+literal|"The duration increment."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"number-of-ranges"
+literal|"iterations"
 argument_list|,
 name|Type
 operator|.
@@ -304,15 +302,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of ranges to generate"
+literal|"The number of increments to generate."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|SequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DATE_TIME
@@ -320,8 +316,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
-argument_list|,
-literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -342,9 +336,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of items of xs:date* "
-operator|+
-literal|"starting at $date incremented by the duration "
+literal|"Generates a range of xs:date values, incremented cumulatively by a fixed duration from a start xs:date"
 argument_list|,
 operator|new
 name|SequenceType
@@ -353,7 +345,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"date"
+literal|"start-date"
 argument_list|,
 name|Type
 operator|.
@@ -363,13 +355,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"date at the beginning of the range(s)"
+literal|"The date to start at."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"duration"
+literal|"increment"
 argument_list|,
 name|Type
 operator|.
@@ -379,13 +371,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The xs:duration to generate the date range"
+literal|"The duration increment."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"number-of-ranges"
+literal|"iterations"
 argument_list|,
 name|Type
 operator|.
@@ -395,24 +387,20 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of ranges to generate"
+literal|"The number of increments to generate."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|SequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
-name|DATE_TIME
+name|DATE
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
-argument_list|,
-literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -433,9 +421,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a range of items of xs:time* "
-operator|+
-literal|"starting at $time incremented by duration"
+literal|"Generates a range of xs:time values, incremented cumulatively by a fixed duration from a start xs:time"
 argument_list|,
 operator|new
 name|SequenceType
@@ -444,7 +430,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"time"
+literal|"start-time"
 argument_list|,
 name|Type
 operator|.
@@ -454,13 +440,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"time at the beginning of the range(s)"
+literal|"The time to start at."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"duration"
+literal|"increment"
 argument_list|,
 name|Type
 operator|.
@@ -470,13 +456,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The xs:duration to generate the time range"
+literal|"The duration increment."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"number-of-ranges"
+literal|"iterations"
 argument_list|,
 name|Type
 operator|.
@@ -486,24 +472,20 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of ranges to generate"
+literal|"The number of increments to generate."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|SequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
-name|DATE_TIME
+name|TIME
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
-argument_list|,
-literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|}
@@ -526,6 +508,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -565,7 +549,6 @@ operator|instanceof
 name|AbstractDateTimeValue
 operator|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|XPathException
@@ -573,7 +556,6 @@ argument_list|(
 literal|"Function requires one of xs:dateTime, xs:date, or xs:time as first parameter."
 argument_list|)
 throw|;
-block|}
 name|ValueSequence
 name|result
 init|=
