@@ -231,7 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a. DEPRECATED: Moved to the file extension module.  See file:read()"
+literal|"Read content of file $a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -261,6 +261,8 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
+argument_list|,
+literal|"Moved to the file extension module.  See file:read()"
 argument_list|)
 block|,
 operator|new
@@ -280,7 +282,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file $a with the encoding specified in $b. DEPRECATED: Moved to the file extension module.  See file:read()"
+literal|"Read content of file $a with the encoding specified in $b."
 argument_list|,
 operator|new
 name|SequenceType
@@ -322,6 +324,8 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
+argument_list|,
+literal|"Moved to the file extension module.  See file:read()"
 argument_list|)
 block|}
 decl_stmt|;

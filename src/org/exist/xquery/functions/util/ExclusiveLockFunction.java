@@ -75,6 +75,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -134,8 +148,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -143,11 +159,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"All nodes whose owning documents will have exclusive locks set."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"expression"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -155,12 +175,16 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The expression(s) that are to be evaluated before the acquired locks are released."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"results"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -168,6 +192,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The results of the evaluated expression(s)"
 argument_list|)
 argument_list|)
 decl_stmt|;
