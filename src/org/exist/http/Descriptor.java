@@ -364,7 +364,7 @@ literal|false
 decl_stmt|;
 specifier|private
 name|String
-name|allowSourceXQueryList
+name|allowSourceList
 index|[]
 init|=
 literal|null
@@ -824,7 +824,7 @@ literal|"xquery"
 argument_list|)
 decl_stmt|;
 comment|//Setup the hashmap to hold the xquery elements
-name|allowSourceXQueryList
+name|allowSourceList
 operator|=
 operator|new
 name|String
@@ -926,7 +926,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//store the path
-name|allowSourceXQueryList
+name|allowSourceList
 index|[
 name|i
 index|]
@@ -1145,7 +1145,7 @@ block|}
 comment|/** 	 * Determines whether it is permissible to show the source of an XQuery. 	 * Takes a path such as that from RESTServer.doGet() as an argument, 	 * if it finds a matching allowsourcexquery path in the descriptor then it returns true else it returns false 	 *    	 * @param path		The path of the XQuery (e.g. /db/MyCollection/query.xql) 	 * @return			The boolean value true or false indicating whether it is permissible to show the source 	 */
 specifier|public
 name|boolean
-name|allowSourceXQuery
+name|allowSource
 parameter_list|(
 name|String
 name|path
@@ -1153,7 +1153,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|allowSourceXQueryList
+name|allowSourceList
 operator|!=
 literal|null
 condition|)
@@ -1168,7 +1168,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|allowSourceXQueryList
+name|allowSourceList
 operator|.
 name|length
 condition|;
@@ -1192,7 +1192,7 @@ comment|//does the path match the<allow-source><xquery path=""/></allow-source> 
 if|if
 condition|(
 operator|(
-name|allowSourceXQueryList
+name|allowSourceList
 index|[
 name|i
 index|]
@@ -1208,7 +1208,7 @@ name|path
 operator|.
 name|indexOf
 argument_list|(
-name|allowSourceXQueryList
+name|allowSourceList
 index|[
 name|i
 index|]
