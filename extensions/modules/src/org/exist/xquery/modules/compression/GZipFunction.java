@@ -43,6 +43,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -135,6 +151,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -167,30 +197,8 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|external
-operator|.
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
 begin_comment
-comment|/**  * Compression into a GZip file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
+comment|/**  * Compression into a GZip file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.1  */
 end_comment
 
 begin_class
@@ -225,15 +233,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"GZip's the data provided in $a."
+literal|"GZip's data"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"data"
+argument_list|,
 name|Type
 operator|.
 name|BASE64_BINARY
@@ -241,6 +251,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The data to GZip"
 argument_list|)
 block|}
 argument_list|,
@@ -276,6 +288,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -301,13 +315,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
-block|}
 name|Base64Binary
 name|bin
 init|=

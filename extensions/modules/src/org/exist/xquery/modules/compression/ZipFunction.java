@@ -21,12 +21,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|external
-operator|.
-name|org
-operator|.
 name|apache
 operator|.
 name|commons
@@ -170,17 +164,12 @@ name|ZipFunction
 extends|extends
 name|AbstractCompressFunction
 block|{
-specifier|public
+specifier|private
 specifier|final
 specifier|static
-name|FunctionSignature
-name|signatures
-index|[]
+name|QName
+name|ZIP_FUNCTION_NAME
 init|=
-block|{
-operator|new
-name|FunctionSignature
-argument_list|(
 operator|new
 name|QName
 argument_list|(
@@ -194,45 +183,38 @@ name|CompressionModule
 operator|.
 name|PREFIX
 argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|ZIP_FUNCTION_DESCRIPTION
+init|=
+literal|"Zips nodes, resources and collections."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|signatures
+index|[]
+init|=
+block|{
+operator|new
+name|FunctionSignature
+argument_list|(
+name|ZIP_FUNCTION_NAME
 argument_list|,
-literal|"Zip's resources and/or collections. $a is a sequence of URI's and/or entries, if a URI points to a collection"
-operator|+
-literal|"then the collection, its resources and sub-collections are zipped recursively. "
-operator|+
-literal|"Entry is a XML fragment that can contain xml or binary content. "
-operator|+
-literal|"More detailed for entry look compression:unzip($a, $b). "
-operator|+
-literal|"$b indicates whether to use the collection hierarchy in the zip file."
+name|ZIP_FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ANY_TYPE
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|SOURCES_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|}
+name|COLLECTION_HIERARCHY_PARAM
+block|,             }
 argument_list|,
 operator|new
 name|SequenceType
@@ -250,71 +232,19 @@ block|,
 operator|new
 name|FunctionSignature
 argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"zip"
+name|ZIP_FUNCTION_NAME
 argument_list|,
-name|CompressionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|CompressionModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Zip's resources and/or collections. $a is a sequence of URI's and/or entries, if a URI points to a collection"
-operator|+
-literal|"then the collection, its resources and sub-collections are zipped recursively. "
-operator|+
-literal|"Entry is a XML fragment that can contain xml or binary content. "
-operator|+
-literal|"More detailed for entry look compression:unzip($a, $b). "
-operator|+
-literal|"$b indicates whether to use the collection hierarchy in the zip file."
-operator|+
-literal|"$c is removed from the beginning of each file path."
+name|ZIP_FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ANY_TYPE
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|SOURCES_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|COLLECTION_HIERARCHY_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|STRIP_PREFIX_PARAM
 block|}
 argument_list|,
 operator|new
@@ -349,6 +279,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|closeEntry
@@ -370,6 +302,8 @@ name|closeEntry
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|Object
 name|newEntry
@@ -386,6 +320,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|putEntry
@@ -415,6 +351,8 @@ name|entry
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|OutputStream
 name|stream
