@@ -9356,6 +9356,11 @@ condition|(
 name|mime
 operator|!=
 literal|null
+operator|&&
+name|mime
+operator|.
+name|isXMLType
+argument_list|()
 condition|)
 block|{
 name|info
