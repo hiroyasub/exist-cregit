@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -95,6 +107,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -134,6 +160,21 @@ name|PrologFunctions
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|PrologFunctions
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -159,11 +200,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically imports an XQuery module into the current context. The namespace "
-operator|+
-literal|"URI of the module is specified in argument $a, $b is the prefix that will be assigned "
-operator|+
-literal|"to that namespace, $c is the location of the module. The parameters have the same "
+literal|"Dynamically imports an XQuery module into the current context. The parameters have the same "
 operator|+
 literal|"meaning as in an 'import module ...' expression in the query prolog."
 argument_list|,
@@ -172,8 +209,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"module-uri"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -181,11 +220,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The namespace URI of the module"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"prefix"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -193,11 +236,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"prefix to be assigned to the namespace"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"location"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -205,6 +252,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"location of the module"
 argument_list|)
 block|}
 argument_list|,
@@ -238,17 +287,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically declares a namespace/prefix mapping for the current context. The "
-operator|+
-literal|"prefix is specified in $a, the namespace URI in $b."
+literal|"Dynamically declares a namespace/prefix mapping for the current context."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"prefix"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -256,11 +305,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"prefix to be assigned to the namespace"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"namespace-uri"
+argument_list|,
 name|Type
 operator|.
 name|ANY_URI
@@ -268,6 +321,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the namespace URI"
 argument_list|)
 block|}
 argument_list|,
@@ -308,8 +363,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"name"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -317,11 +374,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"option"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -329,6 +390,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -378,6 +441,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|isCalledAs
@@ -406,6 +488,25 @@ else|else
 name|importModule
 argument_list|(
 name|args
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|UtilModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
