@@ -3055,6 +3055,9 @@ name|params
 operator|.
 name|add
 argument_list|(
+operator|(
+name|Date
+operator|)
 name|res
 operator|.
 name|dateCreated
@@ -3064,6 +3067,9 @@ name|params
 operator|.
 name|add
 argument_list|(
+operator|(
+name|Date
+operator|)
 name|res
 operator|.
 name|dateModified
