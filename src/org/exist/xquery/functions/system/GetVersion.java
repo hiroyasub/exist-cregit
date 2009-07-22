@@ -147,6 +147,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -249,8 +263,10 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"version-string"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -258,6 +274,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the version string"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -291,8 +309,10 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"version-string"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -300,6 +320,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the version string"
 argument_list|)
 argument_list|,
 literal|"Moved to system module and renamed to system:get-version."

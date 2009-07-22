@@ -354,13 +354,15 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Directory name to show list of backus on."
+literal|"Directory name to show list of backups on."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"listing"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -368,6 +370,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"an XML fragment listing eXist backups"
 argument_list|)
 argument_list|)
 decl_stmt|;

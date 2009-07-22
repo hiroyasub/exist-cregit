@@ -318,7 +318,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the restore results"
 argument_list|)
 argument_list|)
 decl_stmt|;

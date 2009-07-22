@@ -109,7 +109,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -123,7 +123,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
+name|Sequence
 import|;
 end_import
 
@@ -203,8 +203,10 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"results"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -212,6 +214,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"a resource containing the index statistics"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -244,6 +248,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|IndexStatistics
 name|index
 init|=
@@ -274,12 +297,33 @@ name|index
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// module may not be enabled
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|SAXAdapter
 name|adapter
 init|=
@@ -343,6 +387,25 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|NodeImpl

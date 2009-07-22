@@ -279,6 +279,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Properties
 name|sysProperties
 init|=
@@ -320,7 +339,9 @@ literal|"Unable to load system.properties from class loader"
 argument_list|)
 expr_stmt|;
 block|}
-return|return
+name|StringValue
+name|stringValue
+init|=
 operator|new
 name|StringValue
 argument_list|(
@@ -333,6 +354,28 @@ argument_list|,
 literal|"unknown build"
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SystemModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|stringValue
 return|;
 block|}
 block|}
