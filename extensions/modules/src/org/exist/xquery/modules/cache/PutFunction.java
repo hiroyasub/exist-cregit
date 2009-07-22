@@ -278,8 +278,10 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"previous-value"
+argument_list|,
 name|Type
 operator|.
 name|ANY_TYPE
@@ -287,6 +289,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the previous value associated with the key"
 argument_list|)
 argument_list|)
 block|}

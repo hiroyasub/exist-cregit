@@ -222,7 +222,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get data from global cache $a by key $b"
+literal|"Get data from identified global cache by key"
 argument_list|,
 operator|new
 name|SequenceType
@@ -231,7 +231,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"cache-value"
+literal|"cache-identity"
 argument_list|,
 name|Type
 operator|.
@@ -262,8 +262,10 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"value"
+argument_list|,
 name|Type
 operator|.
 name|ANY_TYPE
@@ -271,6 +273,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the value that is associated with the key"
 argument_list|)
 argument_list|)
 block|}
