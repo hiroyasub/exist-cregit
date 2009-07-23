@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  Modifications Copyright (C) 2004 Luigi P. Bai  *  finder@users.sf.net  *  Licensed as below under the LGPL.  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -248,7 +248,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * @author wolf  * @author Luigi P. Bai, finder@users.sf.net, 2004  *  */
 end_comment
 
 begin_class
@@ -296,7 +296,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user in the database."
+literal|"Create a new user in the database. You must have appropriate permissions to do this. $user-id is the username, $password is the password, "
+operator|+
+literal|"$groups is the sequence of group memberships, "
+operator|+
+literal|"$home-collection is the home collection."
 argument_list|,
 operator|new
 name|SequenceType
@@ -305,7 +309,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"username"
+literal|"user-id"
 argument_list|,
 name|Type
 operator|.
@@ -315,7 +319,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"the user-id"
 argument_list|)
 block|,
 operator|new
@@ -331,7 +335,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"the password"
 argument_list|)
 block|,
 operator|new
@@ -565,6 +569,34 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid home collection-uri for user "
+operator|+
+name|user
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -642,6 +674,34 @@ name|XMLDBException
 name|xe
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Failed to create user: "
+operator|+
+name|user
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -680,6 +740,25 @@ parameter_list|)
 block|{
 comment|/* ignore */
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|logger
 operator|.

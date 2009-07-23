@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -36,6 +26,16 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
 import|;
 end_import
 
@@ -246,7 +246,7 @@ name|XMLDBCreated
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|Logger
@@ -259,116 +259,6 @@ argument_list|(
 name|XMLDBCreated
 operator|.
 name|class
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|RESOURCE_PARAM
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource-name"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"resource name"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|COLLECTION_PARAM
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"collection-path"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"collection path"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|COLLECTION_2_PARAM
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"collection"
-argument_list|,
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"a simple collection path or an XMLDB URI"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|DATETIME_RETURN
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"timestamp"
-argument_list|,
-name|Type
-operator|.
-name|DATE_TIME
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the timestamp"
-argument_list|)
-decl_stmt|;
-specifier|protected
-specifier|static
-specifier|final
-name|FunctionParameterSequenceType
-name|OPTIONAL_DATETIME_RETURN
-init|=
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"timestamp"
-argument_list|,
-name|Type
-operator|.
-name|DATE_TIME
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"the timestamp"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -396,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of a resource in the specified collection. "
+literal|"Returns the creation date of $resource located in $collection-uri. "
 operator|+
 literal|"The collection can be passed as a simple collection "
 operator|+
@@ -406,12 +296,50 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|RESOURCE_PARAM
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collection-uri"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the collection"
+argument_list|)
 block|,
-name|COLLECTION_PARAM
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"resource"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the resuource"
+argument_list|)
 block|}
 argument_list|,
-name|DATETIME_RETURN
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|DATE_TIME
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
 argument_list|)
 block|,
 operator|new
@@ -431,7 +359,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of a collection. The collection can be passed as a simple collection "
+literal|"Returns the creation date of $collection-uri. The collection can be passed as a simple collection "
 operator|+
 literal|"path or an XMLDB URI."
 argument_list|,
@@ -439,10 +367,34 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|COLLECTION_PARAM
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collection-uri"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the collection"
+argument_list|)
 block|}
 argument_list|,
-name|DATETIME_RETURN
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|DATE_TIME
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
@@ -469,9 +421,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the last-modification date of a resource, whose name is "
+literal|"Returns the last-modification date of $resource, located in "
 operator|+
-literal|"specified by $b, in the collection specified by $a. The collection "
+literal|"$collection-uri. The collection "
 operator|+
 literal|"can be passed as a simple collection path or an XMLDB URI."
 argument_list|,
@@ -479,12 +431,50 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|COLLECTION_2_PARAM
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collection-uri"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the collection"
+argument_list|)
 block|,
-name|RESOURCE_PARAM
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"resource"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the resource"
+argument_list|)
 block|}
 argument_list|,
-name|OPTIONAL_DATETIME_RETURN
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|DATE_TIME
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -687,6 +677,32 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Failed to retrieve creation date or modification time of specified resource or creation date of collection"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
