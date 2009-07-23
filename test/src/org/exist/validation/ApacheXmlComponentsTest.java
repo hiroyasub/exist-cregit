@@ -51,11 +51,11 @@ name|void
 name|parserVersion
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|xmlLibMessage
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -86,11 +86,11 @@ name|void
 name|transformerVersion
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|xmlLibMessage
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|boolean
