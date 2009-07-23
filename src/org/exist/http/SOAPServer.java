@@ -1624,11 +1624,11 @@ name|justOnce
 init|=
 literal|false
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|whiteContent
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 try|try

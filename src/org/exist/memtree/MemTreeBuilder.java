@@ -1119,11 +1119,11 @@ condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
 comment|// the concatenated text of both nodes
-name|StringBuffer
+name|StringBuilder
 name|s
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|doc
 operator|.

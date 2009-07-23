@@ -485,11 +485,11 @@ condition|(
 name|bmpCheck
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|value
 operator|.
@@ -2128,11 +2128,11 @@ condition|)
 return|return
 literal|""
 return|;
-name|StringBuffer
+name|StringBuilder
 name|copy
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|seq
 operator|.
@@ -2330,11 +2330,11 @@ name|toString
 argument_list|()
 return|;
 comment|// start to collapse whitespace
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|in
 operator|.
@@ -2599,11 +2599,11 @@ condition|)
 return|return
 literal|""
 return|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|seq
 operator|.
@@ -2611,7 +2611,7 @@ name|length
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|entityRef
 init|=
 literal|null
@@ -2663,7 +2663,7 @@ condition|)
 name|entityRef
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 else|else

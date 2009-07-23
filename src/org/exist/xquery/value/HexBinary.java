@@ -335,11 +335,11 @@ name|digits
 init|=
 literal|"0123456789ABCDEF"
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|data
 operator|.

@@ -339,7 +339,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 literal|null
@@ -393,7 +393,7 @@ condition|)
 name|buf
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 if|else if
@@ -674,11 +674,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|result

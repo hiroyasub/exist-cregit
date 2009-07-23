@@ -4880,11 +4880,11 @@ name|XmldbURI
 name|getURI
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|accessor
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|XmldbURI
 operator|.

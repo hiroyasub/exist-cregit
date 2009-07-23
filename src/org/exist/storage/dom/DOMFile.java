@@ -6444,11 +6444,11 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf
@@ -8552,11 +8552,11 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf
@@ -11096,7 +11096,7 @@ argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
-comment|//		 StringBuffer debug = new StringBuffer();
+comment|//		 StringBuilder debug = new StringBuilder();
 comment|//		 debug.append("Removed pages: ");
 name|long
 name|pnum
@@ -11326,11 +11326,11 @@ name|boolean
 name|showPageContents
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf

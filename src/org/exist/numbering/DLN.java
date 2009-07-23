@@ -91,11 +91,11 @@ index|[
 literal|1
 index|]
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|16
 argument_list|)

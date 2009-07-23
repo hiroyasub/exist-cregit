@@ -921,14 +921,14 @@ specifier|protected
 name|void
 name|dump
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|currentPath
 parameter_list|,
 name|List
 name|paths
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|newPath
 decl_stmt|;
 if|if
@@ -946,7 +946,7 @@ block|{
 name|newPath
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|currentPath
 argument_list|)

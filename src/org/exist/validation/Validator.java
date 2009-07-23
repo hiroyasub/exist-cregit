@@ -381,11 +381,11 @@ name|getConfiguration
 argument_list|()
 expr_stmt|;
 comment|// Check xerces version
-name|StringBuffer
+name|StringBuilder
 name|xmlLibMessage
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 if|if

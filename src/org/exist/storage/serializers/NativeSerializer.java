@@ -1940,7 +1940,7 @@ return|return
 name|data
 return|;
 comment|// prepare a regular expression to mark match-terms
-name|StringBuffer
+name|StringBuilder
 name|expr
 init|=
 literal|null
@@ -1980,7 +1980,7 @@ block|{
 name|expr
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 name|expr

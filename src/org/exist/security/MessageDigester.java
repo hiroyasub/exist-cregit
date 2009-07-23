@@ -382,7 +382,7 @@ specifier|static
 name|void
 name|byteToHex
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|,
 name|byte
@@ -453,11 +453,11 @@ index|[]
 name|b
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|b
 operator|.

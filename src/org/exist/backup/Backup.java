@@ -659,11 +659,11 @@ name|String
 name|enco
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|out
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|char
@@ -858,11 +858,11 @@ name|String
 name|enco
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|out
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|String

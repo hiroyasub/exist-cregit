@@ -14403,11 +14403,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|//                Pass buf to the following method to get a dump of all node ids in the document
@@ -16673,7 +16673,7 @@ parameter_list|,
 name|StoredNode
 name|node
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{

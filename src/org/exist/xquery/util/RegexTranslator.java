@@ -127,11 +127,11 @@ literal|false
 decl_stmt|;
 specifier|private
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 specifier|static
@@ -1833,11 +1833,11 @@ parameter_list|()
 throws|throws
 name|RegexSyntaxException
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 do|do
@@ -2147,7 +2147,7 @@ specifier|final
 name|void
 name|output
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -2692,11 +2692,11 @@ name|List
 name|ranges
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|highRanges
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -2842,11 +2842,11 @@ name|List
 name|ranges
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|lowRanges
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -3050,7 +3050,7 @@ specifier|abstract
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 function_decl|;
@@ -3058,7 +3058,7 @@ specifier|abstract
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 function_decl|;
@@ -3271,7 +3271,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3299,7 +3299,7 @@ comment|// must not call if containsBmp == ALL
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3344,7 +3344,7 @@ specifier|abstract
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 function_decl|;
@@ -3391,7 +3391,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3404,7 +3404,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3465,7 +3465,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3547,7 +3547,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3621,7 +3621,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3784,7 +3784,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3797,7 +3797,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3826,7 +3826,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3931,7 +3931,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -3974,7 +3974,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4388,7 +4388,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4483,7 +4483,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4884,7 +4884,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4897,7 +4897,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4910,7 +4910,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4964,7 +4964,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4977,7 +4977,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -4990,7 +4990,7 @@ block|}
 name|void
 name|inClassOutputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -5162,7 +5162,7 @@ block|}
 name|void
 name|outputBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{
@@ -5177,7 +5177,7 @@ block|}
 name|void
 name|outputComplementBmp
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 block|{

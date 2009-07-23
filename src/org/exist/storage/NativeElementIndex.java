@@ -5547,11 +5547,11 @@ name|ref
 argument_list|)
 decl_stmt|;
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|msg
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 specifier|final

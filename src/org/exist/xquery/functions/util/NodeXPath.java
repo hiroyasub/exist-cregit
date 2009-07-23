@@ -329,11 +329,11 @@ argument_list|)
 return|;
 block|}
 comment|/* walk up the node hierarchy 		 * - node names become path names  		 * - attributes become predicates 		 */
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|nodeToXPath
 argument_list|(
@@ -411,20 +411,20 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Creates an XPath for a Node 	 * The nodes attribute's become predicates 	 *  	 * @param n The Node to generate an XPath for 	 * @return StringBuffer containing the XPath 	 */
+comment|/** 	 * Creates an XPath for a Node 	 * The nodes attribute's become predicates 	 *  	 * @param n The Node to generate an XPath for 	 * @return StringBuilder containing the XPath 	 */
 specifier|public
-name|StringBuffer
+name|StringBuilder
 name|nodeToXPath
 parameter_list|(
 name|Node
 name|n
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|xpath
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"/"
 operator|+

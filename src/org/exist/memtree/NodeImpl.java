@@ -2201,7 +2201,7 @@ index|[
 name|nodeNumber
 index|]
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 literal|null
@@ -2260,7 +2260,7 @@ condition|)
 name|buf
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 name|buf
@@ -2299,7 +2299,7 @@ condition|)
 name|buf
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 name|buf

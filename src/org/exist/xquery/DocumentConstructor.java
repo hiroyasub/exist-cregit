@@ -382,7 +382,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 literal|null
@@ -489,7 +489,7 @@ condition|)
 name|buf
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 if|else if
@@ -656,7 +656,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//TODO : design like below ? -pb
-comment|/* 		         		         		        //TODO : wondering whether we shouldn't iterate over a nodeset as the specs would tend to say. -pb	         		         		        SequenceIterator i = contentSeq.iterate(); 		        Item next = i.nextItem(); 		        while(next != null) { 		            context.proceed(this, builder); 		             					if (Type.subTypeOf(next.getType(), Type.NODE)) { 						//flush any collected character data 						if (buf != null&& buf.length()> 0) { 							receiver.characters(buf); 							buf.setLength(0); 						}					 						// copy the node to the target doc 						if(next.getType() == Type.ATTRIBUTE) { 							throw new XPathException(getASTNode(), "XPTY0004 : Found a node of type " +  								Type.getTypeName(next.getType()) +  " inside a document constructor");							 						} else if (next.getType() == Type.DOCUMENT) {		 							//TODO : definitely broken, but that's the way to do 							for (int j = 0 ; j< ((DocumentImpl)next).getChildCount(); j++) {								 								((DocumentImpl)next).getNode(j).copyTo(context.getBroker(), receiver); 							}							 						} else if (Type.subTypeOf(next.getType(), Type.TEXT)) { 							//TODO 							buf.append("#text"); 						} else { 							next.copyTo(context.getBroker(), receiver); 						} 					} else {					 					    if(buf == null) 					        buf = new StringBuffer(); 						//else if (buf.length()> 0) 						//	buf.append(' '); 						buf.append(next.getStringValue());						 					} 					next = i.nextItem(); 					*/
+comment|/* 		         		         		        //TODO : wondering whether we shouldn't iterate over a nodeset as the specs would tend to say. -pb	         		         		        SequenceIterator i = contentSeq.iterate(); 		        Item next = i.nextItem(); 		        while(next != null) { 		            context.proceed(this, builder); 		             					if (Type.subTypeOf(next.getType(), Type.NODE)) { 						//flush any collected character data 						if (buf != null&& buf.length()> 0) { 							receiver.characters(buf); 							buf.setLength(0); 						}					 						// copy the node to the target doc 						if(next.getType() == Type.ATTRIBUTE) { 							throw new XPathException(getASTNode(), "XPTY0004 : Found a node of type " +  								Type.getTypeName(next.getType()) +  " inside a document constructor");							 						} else if (next.getType() == Type.DOCUMENT) {		 							//TODO : definitely broken, but that's the way to do 							for (int j = 0 ; j< ((DocumentImpl)next).getChildCount(); j++) {								 								((DocumentImpl)next).getNode(j).copyTo(context.getBroker(), receiver); 							}							 						} else if (Type.subTypeOf(next.getType(), Type.TEXT)) { 							//TODO 							buf.append("#text"); 						} else { 							next.copyTo(context.getBroker(), receiver); 						} 					} else {					 					    if(buf == null) 					        buf = new StringBuilder(); 						//else if (buf.length()> 0) 						//	buf.append(' '); 						buf.append(next.getStringValue());						 					} 					next = i.nextItem(); 					*/
 block|}
 comment|// flush remaining character data
 if|if
@@ -804,11 +804,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|result

@@ -940,11 +940,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|str
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|message
 argument_list|)

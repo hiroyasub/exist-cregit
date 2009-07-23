@@ -183,11 +183,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|recomputed
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|//XMLDB_URI_PREFIX);
@@ -527,11 +527,11 @@ name|oldWrappedURI
 init|=
 name|wrappedURI
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 if|if

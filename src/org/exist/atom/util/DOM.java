@@ -674,11 +674,11 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|builder
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|Node

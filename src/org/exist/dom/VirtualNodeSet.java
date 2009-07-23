@@ -3277,11 +3277,11 @@ condition|)
 return|return
 literal|"Virtual#unknown"
 return|;
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 comment|//        result.append("Virtual#").append(super.toString());

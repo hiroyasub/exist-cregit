@@ -452,11 +452,11 @@ name|XQException
 block|{
 try|try
 block|{
-name|StringBuffer
+name|StringBuilder
 name|bufQuery
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 while|while

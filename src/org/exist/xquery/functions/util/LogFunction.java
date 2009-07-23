@@ -709,11 +709,11 @@ return|;
 block|}
 block|}
 comment|// add line of the log statement
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf

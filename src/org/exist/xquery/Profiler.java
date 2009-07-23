@@ -170,11 +170,11 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|64
 argument_list|)
@@ -1729,11 +1729,11 @@ name|Sequence
 name|sequence
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|truncation
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 if|if

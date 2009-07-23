@@ -343,11 +343,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|Object
@@ -438,7 +438,7 @@ parameter_list|(
 name|Sequence
 name|seq
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|buf
 parameter_list|)
 throws|throws
@@ -662,11 +662,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|result

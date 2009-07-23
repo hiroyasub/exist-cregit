@@ -379,11 +379,11 @@ name|void
 name|check
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|message
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -446,7 +446,7 @@ block|}
 name|message
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 if|if
@@ -504,7 +504,7 @@ block|}
 name|message
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 expr_stmt|;
 if|if
@@ -630,7 +630,7 @@ name|ClassVersion
 index|[]
 name|validClasses
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|message
 parameter_list|)
 block|{
@@ -832,7 +832,7 @@ return|return
 name|hasValidParser
 argument_list|(
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 argument_list|)
 return|;
@@ -843,7 +843,7 @@ specifier|static
 name|boolean
 name|hasValidParser
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|message
 parameter_list|)
 block|{
@@ -869,7 +869,7 @@ return|return
 name|hasValidTransformer
 argument_list|(
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 argument_list|)
 return|;
@@ -880,7 +880,7 @@ specifier|static
 name|boolean
 name|hasValidTransformer
 parameter_list|(
-name|StringBuffer
+name|StringBuilder
 name|message
 parameter_list|)
 block|{
