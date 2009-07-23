@@ -286,8 +286,10 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"path"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -295,6 +297,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the path to the new collection"
 argument_list|)
 argument_list|)
 decl_stmt|;

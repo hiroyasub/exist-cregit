@@ -248,8 +248,10 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collections"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -257,6 +259,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the collections from the specified collection paths"
 argument_list|)
 argument_list|)
 decl_stmt|;

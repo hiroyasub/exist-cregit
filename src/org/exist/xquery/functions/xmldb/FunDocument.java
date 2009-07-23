@@ -502,8 +502,10 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"documents"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -511,9 +513,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the documents"
 argument_list|)
 argument_list|,
 literal|true
+argument_list|,
+literal|"See the standard doc() function"
 argument_list|)
 decl_stmt|;
 specifier|private
