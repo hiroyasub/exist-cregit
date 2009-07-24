@@ -159,6 +159,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -297,8 +311,6 @@ operator|+
 literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
 operator|+
 literal|"in any directory below the current one. "
-operator|+
-literal|"The function returns a node fragment that shows all matching filenames, including their file size and modification time, and the subdirectory they were found in"
 argument_list|,
 operator|new
 name|SequenceType
@@ -338,7 +350,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -347,6 +359,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"a node fragment that shows all matching filenames, including their file size and modification time, and the subdirectory they were found in"
 argument_list|)
 argument_list|)
 block|}

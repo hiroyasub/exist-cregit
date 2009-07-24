@@ -165,6 +165,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -286,10 +300,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -298,7 +310,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The contents of the file"
+literal|"the contents of the file"
 argument_list|)
 argument_list|)
 block|,
@@ -359,10 +371,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -371,7 +381,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The contents of the file"
+literal|"the contents of the file"
 argument_list|)
 argument_list|)
 block|}

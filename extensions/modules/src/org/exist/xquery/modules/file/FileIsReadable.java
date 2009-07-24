@@ -149,6 +149,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -241,7 +255,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"file"
+literal|"filepath"
 argument_list|,
 name|Type
 operator|.
@@ -251,15 +265,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"full path to the file"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"is-readable"
-argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -268,7 +280,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"File can be read"
+literal|"true if file can be read"
 argument_list|)
 argument_list|)
 block|}

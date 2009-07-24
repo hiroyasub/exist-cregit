@@ -309,6 +309,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -452,11 +466,7 @@ literal|"serialization options are the same as those recognized by \"declare opt
 operator|+
 literal|"The function does NOT automatically inherit the serialization options of the XQuery it is "
 operator|+
-literal|"called from. False is returned if the "
-operator|+
-literal|"specified file can not be created or is not writable, true on success. The empty "
-operator|+
-literal|"sequence is returned if the argument sequence is empty."
+literal|"called from."
 argument_list|,
 operator|new
 name|SequenceType
@@ -512,10 +522,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -524,7 +532,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"True for success."
+literal|"true on success - false if the specified file can not be created or is not writable.  The empty sequence is returned if the argument sequence is empty."
 argument_list|)
 argument_list|)
 block|,
@@ -545,9 +553,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Writes binary data into a file on the file system. False is returned if the "
-operator|+
-literal|"specified file can not be created or is not writable, true on success."
+literal|"Writes binary data into a file on the file system."
 argument_list|,
 operator|new
 name|SequenceType
@@ -587,10 +593,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -599,7 +603,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"true on success - false if the specified file can not be created or is not writable"
 argument_list|)
 argument_list|)
 block|}
@@ -666,6 +670,25 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
@@ -718,6 +741,25 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -747,6 +789,25 @@ operator|+
 name|file
 operator|.
 name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -835,6 +896,25 @@ literal|"Unknown function name"
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|FileModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.

@@ -149,6 +149,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -232,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if file $a is writeable"
+literal|"Tests if file is writeable"
 argument_list|,
 operator|new
 name|SequenceType
@@ -241,7 +255,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"file"
+literal|"filepath"
 argument_list|,
 name|Type
 operator|.
@@ -251,15 +265,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"full path to the file"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"is-writeable"
-argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -268,7 +280,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Has write permissions"
+literal|"true if the file has write permissions"
 argument_list|)
 argument_list|)
 block|}

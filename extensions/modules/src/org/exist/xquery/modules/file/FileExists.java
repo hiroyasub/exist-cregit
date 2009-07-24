@@ -241,7 +241,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"file"
+literal|"filepath"
 argument_list|,
 name|Type
 operator|.
@@ -251,7 +251,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"full path to the file"
 argument_list|)
 block|}
 argument_list|,
@@ -268,7 +268,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"True if the file exists"
+literal|"true if the file exists"
 argument_list|)
 argument_list|)
 block|}
