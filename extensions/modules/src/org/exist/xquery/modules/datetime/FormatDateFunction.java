@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -127,6 +139,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -204,6 +230,21 @@ name|FormatDateFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FormatDateFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -227,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Formats a date using a pattern."
+literal|"Returns a xs:string of the xs:date formatted according to the template specification as in java.text.SimpleDateFormat."
 argument_list|,
 operator|new
 name|SequenceType
@@ -246,13 +287,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The date to format"
+literal|"The date to to be formatted."
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"format-pattern"
+literal|"simple-date-format"
 argument_list|,
 name|Type
 operator|.
@@ -262,12 +303,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The pattern to use for formatting the date. See java.util.SimpleDateFormat for pattern details."
+literal|"Format string according to the Java java.text.SimpleDateFormat class"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -276,6 +317,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The formatted date string"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -310,6 +353,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|DateValue
 name|d
 init|=
@@ -374,6 +436,25 @@ name|getTime
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|StringValue

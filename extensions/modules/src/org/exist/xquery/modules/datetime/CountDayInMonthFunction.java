@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -127,6 +139,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -214,6 +240,21 @@ name|CountDayInMonthFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|CountDayInMonthFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -237,7 +278,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the count of a specific day in the month for a given date. For example it can tell you there were 5 Fridays in February 2008!"
+literal|"Returns the count of a specific weekday in a month from the given date.For example it can tell you there are 5 Fridays in February 2008."
 argument_list|,
 operator|new
 name|SequenceType
@@ -246,7 +287,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"day-in-week"
+literal|"weekday"
 argument_list|,
 name|Type
 operator|.
@@ -256,7 +297,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"An integer in the range 1 to 7, where 1 = Sunday and 7 = Saturday."
+literal|"Day of the week in the range of 1 to 7 where 1 = Sunday and 7 = Saturday."
 argument_list|)
 block|,
 operator|new
@@ -272,12 +313,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The date with month to count the day-in-week for."
+literal|"The day that will identify the month to get the count of the number of occurrences of a given weekday"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -286,6 +327,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"Number of occurrences of the weekday in the selected month."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -304,8 +347,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -320,6 +361,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|dayOfInterest
 init|=
@@ -476,6 +536,25 @@ literal|7
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|IntegerValue

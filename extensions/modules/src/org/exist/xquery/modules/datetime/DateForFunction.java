@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -127,6 +139,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -208,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@exist-db.org>  * @version 1.1  */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -218,6 +244,21 @@ name|DateForFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|DateForFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -241,7 +282,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the date for a given set of parameters. $c The week in the month of interest."
+literal|"Returns the date for a given set of parameters."
 argument_list|,
 operator|new
 name|SequenceType
@@ -260,7 +301,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The year of the date."
+literal|"the year of interest"
 argument_list|)
 block|,
 operator|new
@@ -276,13 +317,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The month of the date, where 1 = January and 12 = December."
+literal|"the month of interest (1 = January, 12 = December)"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"week-in-month"
+literal|"week"
 argument_list|,
 name|Type
 operator|.
@@ -292,13 +333,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The week in the month of the date, where 1 = first week and 4 or 5 = last week."
+literal|"The week in the month of interest (1 = first week, 4 or 5 = last week)"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"day-in-week"
+literal|"weekday"
 argument_list|,
 name|Type
 operator|.
@@ -308,12 +349,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The day in the week of the month of the date, where 1 = Sunday and 7 = Saturday."
+literal|"The day in the week of interest (1 = Sunday, 7 = Saturday)"
 argument_list|)
-block|}
+block|, 			}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -322,6 +363,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The date generated from the parameters."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -340,8 +383,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -356,6 +397,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|yearOfInterest
 init|=
@@ -550,6 +610,25 @@ operator|.
 name|DAY_OF_WEEK
 argument_list|,
 name|dayInWeek
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

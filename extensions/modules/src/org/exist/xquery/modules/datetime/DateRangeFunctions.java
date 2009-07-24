@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -141,6 +153,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -226,6 +252,21 @@ name|DateRangeFunctions
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|DateRangeFunctions
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -307,7 +348,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -316,6 +357,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -392,7 +435,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -401,6 +444,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -477,7 +522,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -486,6 +531,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"The range(s)"
 argument_list|)
 argument_list|)
 block|}
@@ -524,6 +571,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Item
 name|item
 init|=
@@ -666,6 +732,25 @@ name|diff
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|DateTimeModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
