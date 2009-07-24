@@ -2953,11 +2953,11 @@ return|;
 case|case
 literal|2
 case|:
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|String

@@ -4421,7 +4421,7 @@ name|TRUNC_LEFT
 case|:
 return|return
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 operator|.
 name|append
@@ -4441,7 +4441,7 @@ name|TRUNC_RIGHT
 case|:
 return|return
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 operator|.
 name|append
@@ -4959,11 +4959,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|result
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 if|if

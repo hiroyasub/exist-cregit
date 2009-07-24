@@ -480,11 +480,11 @@ name|escapeReserved
 parameter_list|)
 block|{
 comment|//TODO : use dedidated URIUtils... -pb
-name|StringBuffer
+name|StringBuilder
 name|sb
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|s
 operator|.
@@ -704,7 +704,7 @@ parameter_list|,
 name|char
 name|c2
 parameter_list|,
-name|StringBuffer
+name|StringBuilder
 name|sb
 parameter_list|)
 block|{

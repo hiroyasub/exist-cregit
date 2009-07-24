@@ -339,11 +339,11 @@ name|String
 name|toString
 parameter_list|()
 block|{
-name|StringBuffer
+name|StringBuilder
 name|cp
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|1024
 argument_list|)

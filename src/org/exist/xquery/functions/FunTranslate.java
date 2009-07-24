@@ -545,11 +545,11 @@ decl_stmt|;
 name|IntegerValue
 name|ch
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|arg
 operator|.

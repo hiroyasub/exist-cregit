@@ -699,7 +699,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// fetch the fragment between the two milestones
-name|StringBuffer
+name|StringBuilder
 name|fragment
 init|=
 name|getFragmentBetween
@@ -839,7 +839,7 @@ return|;
 block|}
 comment|/**    * Fetch the fragment between two nodes (normally milestones) in an XML document    * @param node1 first node from which down to the node node2 the XML fragment is delivered as a string    * @param node2 the node to which down the XML fragment is delivered as a string    * @return fragment between the two nodes    * @throws XPathException    */
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|getFragmentBetween
 parameter_list|(
 name|Node
@@ -923,11 +923,11 @@ name|dbBroker
 init|=
 literal|null
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|resultFragment
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|""
 argument_list|)
@@ -1818,11 +1818,11 @@ name|String
 name|inputStr
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|resultStrBuf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for
@@ -2261,11 +2261,11 @@ return|return
 literal|"/"
 return|;
 comment|/* walk up the node hierarchy      * - node names become path names       * - attributes become predicates      */
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|nodeToXPath
 argument_list|(
@@ -2320,20 +2320,20 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Creates an XPath for a Node    * The nodes attribute's become predicates    *     * @param n The Node to generate an XPath for    * @return StringBuffer containing the XPath    */
+comment|/**    * Creates an XPath for a Node    * The nodes attribute's become predicates    *     * @param n The Node to generate an XPath for    * @return StringBuilder containing the XPath    */
 specifier|private
-name|StringBuffer
+name|StringBuilder
 name|nodeToXPath
 parameter_list|(
 name|Node
 name|n
 parameter_list|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|xpath
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"/"
 operator|+

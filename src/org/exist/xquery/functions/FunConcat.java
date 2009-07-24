@@ -650,11 +650,11 @@ argument_list|,
 literal|"concat requires at least two arguments"
 argument_list|)
 throw|;
-name|StringBuffer
+name|StringBuilder
 name|concat
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

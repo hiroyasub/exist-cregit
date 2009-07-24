@@ -166,13 +166,13 @@ decl_stmt|;
 name|int
 name|ch
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|buffer
 decl_stmt|;
 name|buffer
 operator|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|2
 operator|*

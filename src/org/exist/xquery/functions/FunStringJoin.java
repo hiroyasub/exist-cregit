@@ -412,11 +412,11 @@ name|sep
 operator|=
 literal|null
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|out
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|Item
