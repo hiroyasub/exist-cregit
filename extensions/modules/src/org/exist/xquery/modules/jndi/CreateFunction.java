@@ -55,6 +55,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -133,6 +145,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -190,6 +216,21 @@ name|CreateFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|CreateFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -231,21 +272,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a JNDI Directory entry. $a is the directory context handle from a jndi:get-dir-context() call. $b is the DN. Expects "
-operator|+
-literal|" entry attributes to be set in $c in the"
-operator|+
-literal|" form<attributes><attribute name=\"\" value=\"\"/></attributes>. "
-operator|+
-literal|" You can also optionally specify ordered=\"true\" for an attribute."
+literal|"Create a JNDI Directory entry."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"directory-context"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -253,11 +290,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the directory context handle from a jndi:get-dir-context() call"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"dn"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -265,11 +306,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"attributes"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
@@ -277,6 +322,12 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"entry attributes to be set in the"
+operator|+
+literal|" form<attributes><attribute name=\"\" value=\"\"/></attributes>. "
+operator|+
+literal|" You can also optionally specify ordered=\"true\" for an attribute."
 argument_list|)
 block|}
 argument_list|,
@@ -328,6 +379,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|JNDIModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Was context handle or DN specified?
 if|if
 condition|(
@@ -410,7 +480,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
@@ -473,7 +543,7 @@ name|NamingException
 name|ne
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
@@ -482,7 +552,7 @@ operator|+
 name|dn
 operator|+
 literal|"]: "
-operator|+
+argument_list|,
 name|ne
 argument_list|)
 expr_stmt|;
@@ -505,6 +575,25 @@ operator|)
 throw|;
 block|}
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|JNDIModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|Sequence

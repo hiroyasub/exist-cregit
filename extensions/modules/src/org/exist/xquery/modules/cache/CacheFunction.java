@@ -258,7 +258,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"The Java cache object created with the given name."
+literal|"the Java cache object created with the given name."
 argument_list|)
 argument_list|)
 block|}

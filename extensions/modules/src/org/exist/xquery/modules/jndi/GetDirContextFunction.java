@@ -65,6 +65,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -157,6 +169,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -228,6 +268,21 @@ name|GetDirContextFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|GetDirContextFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -253,21 +308,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a JNDI Directory Context. Expects "
-operator|+
-literal|" JNDI Directory Context environment properties to be set in $a in the"
-operator|+
-literal|" form<properties><property name=\"\" value=\"\"/></properties>. "
-operator|+
-literal|"Returns an xs:long representing the directory context handle."
+literal|"Open's a JNDI Directory Context."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"properties"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
@@ -275,11 +326,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"JNDI Directory Context environment properties to be set in the form<properties><property name=\"\" value=\"\"/></properties>."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -288,6 +341,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the directory context handle"
 argument_list|)
 argument_list|)
 block|}
@@ -326,6 +381,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|JNDIModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Were properties specified
 if|if
 condition|(
@@ -338,6 +412,25 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|JNDIModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|Sequence
@@ -388,6 +481,25 @@ name|env
 argument_list|)
 expr_stmt|;
 comment|// store the JNDI Directory Context and return the uid handle of the context
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|JNDIModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 operator|new
@@ -411,12 +523,12 @@ name|NamingException
 name|ne
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
 literal|"jndi:get-dir-context() Cannot get JNDI directory context: "
-operator|+
+argument_list|,
 name|ne
 argument_list|)
 expr_stmt|;
