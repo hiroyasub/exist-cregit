@@ -354,7 +354,7 @@ specifier|public
 name|void
 name|setException
 parameter_list|(
-name|Exception
+name|Throwable
 name|ex
 parameter_list|)
 block|{
