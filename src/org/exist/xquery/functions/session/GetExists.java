@@ -137,7 +137,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -151,7 +151,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
+name|Sequence
 import|;
 end_import
 
@@ -223,7 +223,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -232,6 +232,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"true if the session object exists"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -163,6 +163,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|JavaObjectValue
 import|;
 end_import
@@ -178,20 +192,6 @@ operator|.
 name|value
 operator|.
 name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceType
 import|;
 end_import
 
@@ -293,7 +293,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -302,6 +302,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the list of attribute names"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -335,7 +337,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -344,6 +346,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the list of attribute names"
 argument_list|)
 argument_list|,
 literal|"Moved to session module and renamed to session:get-attribute-names."
