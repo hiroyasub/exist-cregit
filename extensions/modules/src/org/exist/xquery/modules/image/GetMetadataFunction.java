@@ -251,6 +251,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NodeValue
 import|;
 end_import
@@ -422,10 +436,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"metadata"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -434,7 +446,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The image metadata"
+literal|"the image metadata"
 argument_list|)
 argument_list|)
 decl_stmt|;
