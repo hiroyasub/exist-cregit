@@ -235,6 +235,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -440,6 +452,21 @@ name|SendEmailFunction
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|SendEmailFunction
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|// This function has been deprecated, in favour of using the JavaMail version.
 specifier|private
 name|String
@@ -523,7 +550,7 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|,
-literal|"Deprecated. Use the new JavaMail-based send function instead. This function will be removed at some point in the future."
+literal|"Use the new JavaMail-based send function instead. This function will be removed at some point in the future."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * SendEmail Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
@@ -557,6 +584,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|//get the charset parameter, default to UTF-8
@@ -645,6 +691,25 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue
@@ -665,6 +730,25 @@ name|theMail
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|BooleanValue
@@ -674,6 +758,25 @@ operator|)
 return|;
 block|}
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//Failed to send email
 return|return
 operator|(

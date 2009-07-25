@@ -91,6 +91,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -194,6 +206,34 @@ operator|.
 name|modules
 operator|.
 name|ModuleUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -430,6 +470,21 @@ name|MessageListFunctions
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|MessageListFunctions
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -455,15 +510,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a message list of all messages in a folder. $a is a mail folder handle. Returns an xs:long representing the message list handle."
+literal|"Returns a message list of all messages in a folder."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"mail-folder-handle"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -471,11 +528,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the mail folder handle retrieved from mail:get-mail-folder()"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -484,6 +543,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"an xs:long representing the message list handle."
 argument_list|)
 argument_list|)
 block|,
@@ -504,7 +565,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Searches messages in a folder. $a is a mail folder handle. $b is an xml fragment defining the search terms. Returns an xs:long representing the message list handle. "
+literal|"Searches messages in a folder. "
 operator|+
 literal|"Search terms are of the form<searchTerm type=\"xxx\">...</searchTerm>.  Valid types include: not, and, or, from, subject, body, recipient, header, flag, sent, received. "
 operator|+
@@ -527,8 +588,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"mail-folder-handle"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -536,11 +599,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the mail folder handle retrieved from mail:get-mail-folder()"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"search-parameters"
+argument_list|,
 name|Type
 operator|.
 name|ELEMENT
@@ -548,11 +615,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"an xml fragment defining the search terms"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -561,6 +630,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"an xs:long representing the message list handle."
 argument_list|)
 argument_list|)
 block|,
@@ -581,15 +652,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a message list of all messages in a folder as xml. $a is a message list handle. $b is a boolean specifying whether to include message headers. If there are no messages in the list, an empty sequence will be returned"
+literal|"Returns a message list of all messages in a folder as XML.  If there are no messages in the list, an empty sequence will be returned"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"message-list-handle"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -597,11 +670,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"message list handle retrieved from mail:get-message-list() or mail:search-message-list()"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"include-headers"
+argument_list|,
 name|Type
 operator|.
 name|BOOLEAN
@@ -609,11 +686,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a boolean specifying whether to include message headers"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -622,6 +701,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the list of all messages in a folder as XML"
 argument_list|)
 argument_list|)
 block|,
@@ -642,15 +723,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Closes's a message list. $a is a message list handle."
+literal|"Closes's a message list."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"message-list-handle"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -658,6 +741,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"message list handle retrieved from mail:get-message-list() or mail:search-message-list()"
 argument_list|)
 block|}
 argument_list|,
@@ -752,6 +837,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|isCalledAs
@@ -760,15 +864,37 @@ literal|"get-message-list"
 argument_list|)
 condition|)
 block|{
-return|return
-operator|(
+name|Sequence
+name|messageList
+init|=
 name|getMessageList
 argument_list|(
 name|args
 argument_list|,
 name|contextSequence
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|messageList
 return|;
 block|}
 if|else if
@@ -779,15 +905,37 @@ literal|"search-message-list"
 argument_list|)
 condition|)
 block|{
-return|return
-operator|(
+name|Sequence
+name|searchMessageList
+init|=
 name|searchMessageList
 argument_list|(
 name|args
 argument_list|,
 name|contextSequence
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|searchMessageList
 return|;
 block|}
 if|else if
@@ -798,15 +946,37 @@ literal|"get-message-list-as-xml"
 argument_list|)
 condition|)
 block|{
-return|return
-operator|(
+name|Sequence
+name|messageListAsXML
+init|=
 name|getMessageListAsXML
 argument_list|(
 name|args
 argument_list|,
 name|contextSequence
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|messageListAsXML
 return|;
 block|}
 if|else if
@@ -817,15 +987,37 @@ literal|"close-message-list"
 argument_list|)
 condition|)
 block|{
-return|return
-operator|(
+name|Sequence
+name|closeMessageList
+init|=
 name|closeMessageList
 argument_list|(
 name|args
 argument_list|,
 name|contextSequence
 argument_list|)
-operator|)
+decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|MailModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|closeMessageList
 return|;
 block|}
 throw|throw
