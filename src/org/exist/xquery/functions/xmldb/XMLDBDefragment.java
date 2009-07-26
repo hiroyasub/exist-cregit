@@ -111,6 +111,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -174,7 +188,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|Defragment
+name|XMLDBDefragment
 extends|extends
 name|BasicFunction
 block|{
@@ -188,7 +202,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|Defragment
+name|XMLDBDefragment
 operator|.
 name|class
 argument_list|)
@@ -272,7 +286,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -281,6 +295,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
+argument_list|,
+literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -335,7 +351,7 @@ argument_list|)
 block|,                     }
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -344,12 +360,14 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
+argument_list|,
+literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|Defragment
+name|XMLDBDefragment
 parameter_list|(
 name|XQueryContext
 name|context
@@ -366,6 +384,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval

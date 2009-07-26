@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -305,6 +305,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -416,7 +430,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|FunDocument
+name|XMLDBDocument
 extends|extends
 name|Function
 block|{
@@ -430,7 +444,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|FunDocument
+name|XMLDBDocument
 operator|.
 name|class
 argument_list|)
@@ -502,10 +516,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"documents"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -548,7 +560,7 @@ literal|null
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|FunDocument
+name|XMLDBDocument
 parameter_list|(
 name|XQueryContext
 name|context
@@ -1471,7 +1483,7 @@ name|void
 name|unsubscribe
 parameter_list|()
 block|{
-name|FunDocument
+name|XMLDBDocument
 operator|.
 name|this
 operator|.
@@ -1509,7 +1521,7 @@ argument_list|()
 operator|+
 literal|": "
 operator|+
-name|FunDocument
+name|XMLDBDocument
 operator|.
 name|this
 operator|.
