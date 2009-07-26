@@ -329,6 +329,52 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|simplereportText
+init|=
+literal|"Returns true() if the "
+operator|+
+literal|"document is valid and no single problem occured, false() for "
+operator|+
+literal|"all other situations. Check corresponding report function "
+operator|+
+literal|"for details."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|xmlreportText
+init|=
+literal|"Validation report formatted as\n<report>\n"
+operator|+
+literal|"\t<status>valid</status>\n"
+operator|+
+literal|"\t<namespace>...\n"
+operator|+
+literal|"\t<time>...\n"
+operator|+
+literal|"\t<exception>\n"
+operator|+
+literal|"\t\t<class>...\n"
+operator|+
+literal|"\t\t<message>...\n"
+operator|+
+literal|"\t\t<stacktrace>...\n"
+operator|+
+literal|"\t</exception>\n"
+operator|+
+literal|"\t<message level=\"\" line=\"\"> column=\"\" repeat=\"\">...\n"
+operator|+
+literal|"\t....\n"
+operator|+
+literal|"\t....\n"
+operator|+
+literal|"</report>"
+decl_stmt|;
 comment|/**      *  Get input stream for specified resource.      */
 specifier|public
 specifier|static
@@ -906,17 +952,39 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// validation duration
+name|AttributesImpl
+name|durationAttribs
+init|=
+operator|new
+name|AttributesImpl
+argument_list|()
+decl_stmt|;
+name|durationAttribs
+operator|.
+name|addAttribute
+argument_list|(
+literal|""
+argument_list|,
+literal|"unit"
+argument_list|,
+literal|"unit"
+argument_list|,
+literal|"CDATA"
+argument_list|,
+literal|"msec"
+argument_list|)
+expr_stmt|;
 name|builder
 operator|.
 name|startElement
 argument_list|(
 literal|""
 argument_list|,
-literal|"time"
+literal|"duration"
 argument_list|,
-literal|"time"
+literal|"duration"
 argument_list|,
-literal|null
+name|durationAttribs
 argument_list|)
 expr_stmt|;
 name|builder
@@ -1033,7 +1101,7 @@ literal|""
 argument_list|,
 literal|"message"
 argument_list|,
-literal|"exception"
+literal|"message"
 argument_list|,
 literal|null
 argument_list|)
