@@ -323,6 +323,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -461,6 +475,32 @@ specifier|final
 name|Configuration
 name|config
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|cacheReport
+init|=
+literal|"<report>\n"
+operator|+
+literal|"\t<grammar type=\"...\">\n"
+operator|+
+literal|"\t\t<Namespace>....\n"
+operator|+
+literal|"\t\t<BaseSystemId>...\n"
+operator|+
+literal|"\t\t<LiteralSystemId>...\n"
+operator|+
+literal|"\t\t<ExpandedSystemId>....\n"
+operator|+
+literal|"\t</grammar>\n"
+operator|+
+literal|"\t...\n"
+operator|+
+literal|"\t...\n"
+operator|+
+literal|"</report>\n"
+decl_stmt|;
 comment|// Setup function signature
 specifier|public
 specifier|final
@@ -526,7 +566,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -535,6 +575,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"XML document formatted as\n"
+operator|+
+name|cacheReport
 argument_list|)
 argument_list|)
 block|,
@@ -581,7 +625,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -590,6 +634,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"Sequence of namespaces of preparsed grammars."
 argument_list|)
 argument_list|)
 block|,                               }
