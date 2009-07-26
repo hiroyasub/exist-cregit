@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -203,6 +215,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -356,6 +382,21 @@ name|BasicFunction
 implements|implements
 name|IndexUseReporter
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunGMLProducers
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 name|boolean
 name|hasUsedIndex
 init|=
@@ -386,7 +427,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of geometry $a with the SRS $b"
+literal|"Returns the GML representation of geometry $geometry with the SRS $srs"
 argument_list|,
 operator|new
 name|SequenceType
@@ -426,7 +467,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -435,6 +476,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of geometry $geometry with the SRS $srs"
 argument_list|)
 argument_list|)
 block|,
@@ -455,7 +498,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of WKT $a with the SRS $b"
+literal|"Returns the GML representation of WKT $wkt with the SRS $srs"
 argument_list|,
 operator|new
 name|SequenceType
@@ -495,7 +538,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -504,6 +547,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of WKT $wkt with the SRS $srs"
 argument_list|)
 argument_list|)
 block|,
@@ -524,7 +569,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of a buffer around geometry $a having width $b in its CRS. "
+literal|"Returns the GML representation of a buffer around geometry $geometry having width $width in its CRS. "
 operator|+
 literal|"Curves will be represented by 8 segments per circle quadrant."
 argument_list|,
@@ -566,7 +611,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -575,6 +620,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of a buffer around geometry $geometry having width $width in its CRS."
 argument_list|)
 argument_list|)
 block|,
@@ -595,7 +642,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of a buffer around geometry $a having width $b in its CRS. "
+literal|"Returns the GML representation of a buffer around geometry $geometry having width $width in its CRS. "
 operator|+
 literal|"Curves will be represented by $c segments per circle quadrant."
 argument_list|,
@@ -653,7 +700,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -662,6 +709,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of a buffer around geometry $geometry having width $width in its CRS."
 argument_list|)
 argument_list|)
 block|,
@@ -682,7 +731,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of a buffer around geometry $a having width $b in its CRS. "
+literal|"Returns the GML representation of a buffer around geometry $geometry having width $width in its CRS. "
 operator|+
 literal|"Curves will be represented by $c segments per circle quadrant. The fourth argument denotes the line end style (round, butt or square) as an integer constant."
 argument_list|,
@@ -756,7 +805,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -765,6 +814,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of a buffer around geometry $geometry having width $width in its CRS."
 argument_list|)
 argument_list|)
 block|,
@@ -785,7 +836,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the bounding box of geometry $a."
+literal|"Returns the GML representation of the bounding box of geometry $geometry."
 argument_list|,
 operator|new
 name|SequenceType
@@ -809,7 +860,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -818,6 +869,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the bounding box of geometry $geometry."
 argument_list|)
 argument_list|)
 block|,
@@ -838,7 +891,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the convex hull of geometry $a."
+literal|"Returns the GML representation of the convex hull of geometry $geometry."
 argument_list|,
 operator|new
 name|SequenceType
@@ -862,7 +915,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -871,6 +924,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the convex hull of geometry $geometry."
 argument_list|)
 argument_list|)
 block|,
@@ -891,7 +946,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the boundary of geometry $a."
+literal|"Returns the GML representation of the boundary of geometry $geometry."
 argument_list|,
 operator|new
 name|SequenceType
@@ -915,7 +970,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -924,6 +979,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the boundary of geometry $geometry."
 argument_list|)
 argument_list|)
 block|,
@@ -944,7 +1001,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the intersection of geometry $a and geometry $b in the SRS of $a."
+literal|"Returns the GML representation of the intersection of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -953,7 +1010,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-a"
 argument_list|,
 name|Type
 operator|.
@@ -963,13 +1020,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-a"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-b"
 argument_list|,
 name|Type
 operator|.
@@ -979,12 +1036,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-b"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -993,6 +1050,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the intersection of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|)
 argument_list|)
 block|,
@@ -1013,7 +1072,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the union of geometry $a and geometry $b in the SRS of $a."
+literal|"Returns the GML representation of the union of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1022,7 +1081,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-a"
 argument_list|,
 name|Type
 operator|.
@@ -1032,13 +1091,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-a"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-b"
 argument_list|,
 name|Type
 operator|.
@@ -1048,12 +1107,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-b"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1062,6 +1121,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the union of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|)
 argument_list|)
 block|,
@@ -1082,7 +1143,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the difference of geometry $a and geometry $b in the SRS of $a."
+literal|"Returns the GML representation of the difference of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1091,7 +1152,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-a"
 argument_list|,
 name|Type
 operator|.
@@ -1101,13 +1162,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-a"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-b"
 argument_list|,
 name|Type
 operator|.
@@ -1117,12 +1178,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-b"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1131,6 +1192,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the difference of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|)
 argument_list|)
 block|,
@@ -1151,7 +1214,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the GML representation of the symetric difference of geometry $a and geometry $b in the SRS of $a."
+literal|"Returns the GML representation of the symetric difference of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1160,7 +1223,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-a"
 argument_list|,
 name|Type
 operator|.
@@ -1170,13 +1233,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-a"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+literal|"geometry-b"
 argument_list|,
 name|Type
 operator|.
@@ -1186,12 +1249,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"the geometry-b"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1200,6 +1263,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the GML representation of the symetric difference of geometry $geometry-a and geometry $geometry-b in the SRS of $geometry-a."
 argument_list|)
 argument_list|)
 block|}
@@ -1241,6 +1306,25 @@ name|result
 init|=
 literal|null
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|AbstractGMLJDBCIndexWorker
@@ -1270,6 +1354,33 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to find a spatial index worker"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1277,6 +1388,7 @@ argument_list|(
 literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;
+block|}
 name|Geometry
 name|geometry
 init|=
@@ -1439,6 +1551,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1446,6 +1585,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|targetSRS
 operator|=
 name|args
@@ -1546,6 +1686,35 @@ name|ParseException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1560,6 +1729,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1567,6 +1763,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|targetSRS
 operator|=
 name|args
@@ -1734,6 +1931,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1741,6 +1965,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|double
 name|distance
 init|=
@@ -1895,6 +2120,33 @@ case|:
 comment|//OK
 break|break;
 default|default:
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid line end style"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1902,6 +2154,7 @@ argument_list|(
 literal|"Invalid line end style"
 argument_list|)
 throw|;
+block|}
 block|}
 name|geometry
 operator|=
@@ -2065,6 +2318,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2072,6 +2352,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|geometry
 operator|=
 name|geometry
@@ -2228,6 +2509,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2235,6 +2543,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|geometry
 operator|=
 name|geometry
@@ -2391,6 +2700,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2398,6 +2734,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|geometry
 operator|=
 name|geometry
@@ -2757,6 +3094,33 @@ name|geometry1
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the first node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2764,12 +3128,40 @@ argument_list|(
 literal|"Unable to get a geometry from the first node"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|geometry2
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the second node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2777,6 +3169,7 @@ argument_list|(
 literal|"Unable to get a geometry from the second node"
 argument_list|)
 throw|;
+block|}
 comment|//Transform the second geometry in the SRS of the first one if necessary
 if|if
 condition|(
@@ -2906,6 +3299,37 @@ name|gmlPrefix
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"namespace is not defined:"
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2919,6 +3343,7 @@ operator|+
 literal|"' namespace is not defined"
 argument_list|)
 throw|;
+block|}
 name|context
 operator|.
 name|pushDocumentContext
@@ -2976,6 +3401,35 @@ name|SpatialIndexException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2984,6 +3438,25 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

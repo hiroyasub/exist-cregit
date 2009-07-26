@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -219,6 +231,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -356,10 +382,41 @@ name|BasicFunction
 implements|implements
 name|IndexUseReporter
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunGeometricProperties
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 name|boolean
 name|hasUsedIndex
 init|=
 literal|false
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|paramNameGeometry
+init|=
+literal|"geometry"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|paramNameGeometryDesc
+init|=
+literal|"the geometry"
 decl_stmt|;
 specifier|protected
 name|WKTWriter
@@ -402,7 +459,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the WKT representation of geometry $a"
+literal|"Returns the WKT representation of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -411,7 +468,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -421,12 +478,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -435,6 +492,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the WKT representation of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -455,7 +514,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the WKB representation of geometry $a"
+literal|"Returns the WKB representation of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -464,7 +523,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -474,12 +533,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -488,6 +547,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the WKB representation of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -508,7 +569,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal X of geometry $a"
+literal|"Returns the minimal X of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -517,7 +578,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -527,12 +588,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -541,6 +602,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimal X of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -570,7 +633,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -580,12 +643,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -594,6 +657,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the maxmal X of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -614,7 +679,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal Y of geometry $a"
+literal|"Returns the minimal Y of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -623,7 +688,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -633,12 +698,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -647,6 +712,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimal Y of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -667,7 +734,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximal Y of geometry $a"
+literal|"Returns the maximal Y of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -676,7 +743,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -686,12 +753,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -700,6 +767,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the maximal Y of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -720,7 +789,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the X of centroid of geometry $a"
+literal|"Returns the X of centroid of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -729,7 +798,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -739,12 +808,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -753,6 +822,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the X of centroid of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -773,7 +844,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the Y of centroid of geometry $a"
+literal|"Returns the Y of centroid of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -782,7 +853,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -792,12 +863,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -806,6 +877,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the Y of centroid of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -826,7 +899,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the area of geometry $a"
+literal|"Returns the area of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -835,7 +908,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -845,12 +918,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -859,6 +932,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the area of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -879,7 +954,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the WKT representation of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the WKT representation of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -888,7 +963,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -898,12 +973,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -912,6 +987,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the WKT representation of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -932,7 +1009,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the WKB representation of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the WKB representation of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -941,7 +1018,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -951,12 +1028,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -965,6 +1042,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the WKB representation of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -985,7 +1064,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal X of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the minimal X of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -994,7 +1073,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1004,12 +1083,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1018,6 +1097,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimal X of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1038,7 +1119,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximal X of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the maximal X of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1047,7 +1128,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1057,12 +1138,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1071,6 +1152,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the maximal X of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1091,7 +1174,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the minimal Y of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the minimal Y of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1100,7 +1183,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1110,12 +1193,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1124,6 +1207,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimal Y of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1144,7 +1229,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximal Y of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the maximal Y of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1153,7 +1238,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1163,12 +1248,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1177,6 +1262,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the maximal Y of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1197,7 +1284,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the X of centroid of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the X of centroid of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1206,7 +1293,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1216,12 +1303,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1230,6 +1317,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the X of centroid of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1250,7 +1339,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the Y of centroid of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the Y of centroid of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1259,7 +1348,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1269,12 +1358,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1283,6 +1372,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the Y of centroid of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1303,7 +1394,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the area of geometry $a in the EPSG:4326 SRS"
+literal|"Returns the area of geometry $geometry in the EPSG:4326 SRS"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1312,7 +1403,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1322,12 +1413,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1336,6 +1427,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the area of geometry $geometry in the EPSG:4326 SRS"
 argument_list|)
 argument_list|)
 block|,
@@ -1356,7 +1449,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the spatial reference system of geometry $a"
+literal|"Returns the spatial reference system of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1365,7 +1458,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1375,12 +1468,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1389,6 +1482,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|" the spatial reference system of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -1409,7 +1504,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the type of geometry $a"
+literal|"Returns the type of geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1418,7 +1513,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1428,12 +1523,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1442,6 +1537,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the type of geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -1462,7 +1559,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true() if geometry $a is closed, otherwise false()"
+literal|"Returns true() if geometry $geometry is closed, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1471,7 +1568,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1481,12 +1578,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|,             }
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1495,6 +1592,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"true() if geometry $geometry is closed, otherwise false()"
 argument_list|)
 argument_list|)
 block|,
@@ -1515,7 +1614,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true() if geometry $a is simple, otherwise false()"
+literal|"Returns true() if geometry $geometry is simple, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1524,7 +1623,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1534,12 +1633,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|,             }
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1548,6 +1647,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"true() if geometry $geometry is simple, otherwise false()"
 argument_list|)
 argument_list|)
 block|,
@@ -1568,7 +1669,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true() if geometry $a is valid, otherwise false()"
+literal|"Returns true() if geometry $geometry is valid, otherwise false()"
 argument_list|,
 operator|new
 name|SequenceType
@@ -1577,7 +1678,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"geometry"
+name|paramNameGeometry
 argument_list|,
 name|Type
 operator|.
@@ -1587,12 +1688,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+name|paramNameGeometryDesc
 argument_list|)
 block|,             }
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -1601,6 +1702,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"true() if geometry $geometry is valid, otherwise false()"
 argument_list|)
 argument_list|)
 block|}
@@ -1650,6 +1753,25 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|nodes
@@ -1657,12 +1779,33 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
@@ -1704,6 +1847,33 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to find a spatial index worker"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1711,6 +1881,7 @@ argument_list|(
 literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;
+block|}
 name|String
 name|propertyName
 init|=
@@ -2017,6 +2188,40 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unknown spatial property: "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2131,6 +2336,33 @@ name|geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2138,6 +2370,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 comment|//Transform the geometry to EPSG:4326 if relevant
 if|if
 condition|(
@@ -2681,6 +2914,40 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unknown spatial property: "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2705,6 +2972,35 @@ name|SpatialIndexException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -2714,6 +3010,25 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;

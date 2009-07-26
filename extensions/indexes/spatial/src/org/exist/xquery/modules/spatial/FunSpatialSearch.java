@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -181,6 +193,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -276,6 +302,21 @@ name|BasicFunction
 implements|implements
 name|IndexUseReporter
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunSpatialSearch
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 name|boolean
 name|hasUsedIndex
 init|=
@@ -306,7 +347,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which is equal to geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which is equal to geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -346,7 +387,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -355,6 +396,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which is equal to geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -375,7 +418,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which is disjoint with geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which is disjoint with geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -415,7 +458,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -424,6 +467,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which is disjoint with geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -444,7 +489,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which instersects with geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which instersects with geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -484,7 +529,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -493,6 +538,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which instersects with geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -513,7 +560,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which touches geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which touches geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -553,7 +600,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -562,6 +609,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which touches geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -582,7 +631,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which crosses geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which crosses geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -622,7 +671,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -631,6 +680,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which touches geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -651,7 +702,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which is within geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which is within geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -691,7 +742,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -700,6 +751,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which is within geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -720,7 +773,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which contains geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which contains geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -760,7 +813,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -769,6 +822,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which contains geometry $geometry"
 argument_list|)
 argument_list|)
 block|,
@@ -789,7 +844,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the nodes in $a that contain a geometry which overlaps geometry $b"
+literal|"Returns the nodes in $nodes that contain a geometry which overlaps geometry $geometry"
 argument_list|,
 operator|new
 name|SequenceType
@@ -829,7 +884,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -838,6 +893,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the nodes in $nodes that contain a geometry which overlaps geometry $geometry"
 argument_list|)
 argument_list|)
 block|}
@@ -887,6 +944,25 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|nodes
@@ -894,12 +970,33 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|args
@@ -946,6 +1043,33 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to find a spatial index worker"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -953,6 +1077,7 @@ argument_list|(
 literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;
+block|}
 name|Geometry
 name|EPSG4326_geometry
 init|=
@@ -1065,6 +1190,33 @@ name|EPSG4326_geometry
 operator|==
 literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to get a geometry from the node"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1072,6 +1224,7 @@ argument_list|(
 literal|"Unable to get a geometry from the node"
 argument_list|)
 throw|;
+block|}
 name|int
 name|spatialOp
 init|=
@@ -1216,6 +1369,35 @@ name|SpatialIndexException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1225,6 +1407,25 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|SpatialModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
