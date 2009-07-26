@@ -870,7 +870,7 @@ if|if
 condition|(
 name|returnType
 operator|instanceof
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 condition|)
 block|{
 name|description
@@ -887,11 +887,11 @@ argument_list|(
 literal|"Result:\n"
 argument_list|)
 expr_stmt|;
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 name|fp
 init|=
 operator|(
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 operator|)
 name|returnType
 decl_stmt|;
