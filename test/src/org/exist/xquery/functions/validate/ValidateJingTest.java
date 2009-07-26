@@ -489,6 +489,153 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|testValidateRNGwithJing
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+name|ResourceSet
+name|result
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|r
+init|=
+literal|""
+decl_stmt|;
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"let $v :=<doc>\n"
+operator|+
+literal|"\t<title>Title</title>\n"
+operator|+
+literal|"\t<p>Some paragraph.</p>\n"
+operator|+
+literal|"</doc>\n"
+operator|+
+literal|"let $schema :=<grammar xmlns=\"http://relaxng.org/ns/structure/1.0\">\n"
+operator|+
+literal|"<start>\n"
+operator|+
+literal|"<ref name=\"doc\"/>\n"
+operator|+
+literal|"</start>\n"
+operator|+
+literal|"<define name=\"doc\">\n"
+operator|+
+literal|"<element name=\"doc\">\n"
+operator|+
+literal|"<optional>\n"
+operator|+
+literal|"<ref name=\"title\"/>\n"
+operator|+
+literal|"</optional>\n"
+operator|+
+literal|"<zeroOrMore>\n"
+operator|+
+literal|"<ref name=\"p\"/>\n"
+operator|+
+literal|"</zeroOrMore>\n"
+operator|+
+literal|"</element>\n"
+operator|+
+literal|"</define>\n"
+operator|+
+literal|"<define name=\"title\">\n"
+operator|+
+literal|"<element name=\"title\">\n"
+operator|+
+literal|"<text/>\n"
+operator|+
+literal|"</element>\n"
+operator|+
+literal|"</define>\n"
+operator|+
+literal|"<define name=\"p\">\n"
+operator|+
+literal|"<element name=\"p\">\n"
+operator|+
+literal|"<text/>\n"
+operator|+
+literal|"</element>\n"
+operator|+
+literal|"</define>\n"
+operator|+
+literal|"</grammar>\n"
+operator|+
+literal|"return\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"\tvalidation:jing($v,$schema)"
+decl_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+operator|(
+name|String
+operator|)
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"true"
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"testValidateRNGwithJing(): "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 end_class
 
