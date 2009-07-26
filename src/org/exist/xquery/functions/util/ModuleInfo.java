@@ -161,6 +161,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -299,7 +313,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -308,6 +322,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"a sequence of all of the active function modules namespace URIs"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -344,7 +360,7 @@ name|NAMESPACE_URI_PARAMETER
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -353,6 +369,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"true if the namespace URI is registered as an active function module"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -389,7 +407,7 @@ name|NAMESPACE_URI_PARAMETER
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -398,6 +416,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the description of the active function module identified by the namespace URI"
 argument_list|)
 argument_list|)
 decl_stmt|;

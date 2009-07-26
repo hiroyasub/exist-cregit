@@ -101,6 +101,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|SequenceType
 import|;
 end_import
@@ -164,9 +178,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Puts a shared lock on the owner documents of all nodes in the first argument $a. "
+literal|"Puts a shared lock on the owner documents of all nodes in the first argument $nodes. "
 operator|+
-literal|"Then evaluates the expressions in the second argument $b and releases the acquired locks after"
+literal|"Then evaluates the expressions in the second argument $expression and releases the acquired locks after"
 operator|+
 literal|"their completion."
 argument_list|,
@@ -208,7 +222,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -217,6 +231,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the results of the evaluation of the expression(s)"
 argument_list|)
 argument_list|)
 decl_stmt|;

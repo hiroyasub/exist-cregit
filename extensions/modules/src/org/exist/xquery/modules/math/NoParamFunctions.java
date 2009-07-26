@@ -149,7 +149,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Sequence
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -163,7 +163,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
+name|Sequence
 import|;
 end_import
 
@@ -233,7 +233,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -242,6 +242,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the value of e"
 argument_list|)
 argument_list|)
 block|,
@@ -263,7 +265,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -272,6 +274,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the value of pi"
 argument_list|)
 argument_list|)
 block|,
@@ -293,7 +297,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -302,6 +306,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a random value"
 argument_list|)
 argument_list|)
 block|}
