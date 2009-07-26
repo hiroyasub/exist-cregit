@@ -372,7 +372,7 @@ name|extendedFunctionTxt
 init|=
 literal|"Validate document using Jing. "
 operator|+
-literal|"Based on functionality provided by  com.thaiopensource.validate.ValidationDriver"
+literal|"Based on functionality provided by com.thaiopensource.validate.ValidationDriver"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -482,7 +482,7 @@ argument_list|)
 argument_list|,
 name|extendedFunctionTxt
 operator|+
-literal|" A simple report is returned."
+literal|" An xml report is returned."
 argument_list|,
 operator|new
 name|SequenceType

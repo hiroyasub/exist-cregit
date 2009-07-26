@@ -466,7 +466,7 @@ argument_list|)
 argument_list|,
 name|extendedFunctionTxt
 operator|+
-literal|" A simple report is returned."
+literal|" An xml report is returned."
 argument_list|,
 operator|new
 name|SequenceType
