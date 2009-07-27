@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  Modifications Copyright (C) 2004 Luigi P. Bai  *  finder@users.sf.net  *  Licensed as below under the LGPL.  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,18 @@ operator|.
 name|xmldb
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -135,6 +147,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -209,6 +249,10 @@ name|XMLDBException
 import|;
 end_import
 
+begin_comment
+comment|/**  * @author Luigi P. Bai, finder@users.sf.net, 2004  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -216,6 +260,21 @@ name|XMLDBSetCollectionPermissions
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|XMLDBSetCollectionPermissions
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -239,11 +298,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the permissions of the specified collection. $a is the collection, which can be specified "
+literal|"Sets the permissions of the specified collection. $collection-uri is the collection, which can be specified "
 operator|+
-literal|"as a simple collection path or an XMLDB URI. $b specifies the user which "
+literal|"as a simple collection path or an XMLDB URI. $user-id specifies the user which "
 operator|+
-literal|"will become the owner of the resource, $c the group. "
+literal|"will become the owner of the resource, $group-id the group. "
 operator|+
 literal|"The final argument contains the permissions, specified as an xs:integer value. "
 operator|+
@@ -254,8 +313,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collection-uri"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -263,11 +324,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collection-uri"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"user-id"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -275,11 +340,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the user-id"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"group-id"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -287,11 +356,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the group-id"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"permissions"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -299,11 +372,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the permissions"
 argument_list|)
 block|, 			}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -312,6 +387,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
+argument_list|,
+literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -348,6 +425,25 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Entering "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|UserManagementService
@@ -423,6 +519,35 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Needs a valid user name, not: "
+operator|+
+name|user
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -434,6 +559,7 @@ operator|+
 name|user
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 literal|null
@@ -447,6 +573,35 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Needs a valid group name, not: "
+operator|+
+name|group
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -458,9 +613,10 @@ operator|+
 name|group
 argument_list|)
 throw|;
+block|}
 comment|// Must actually get a User object for the Permission...
 name|Permission
-name|p
+name|perms
 init|=
 name|PermissionFactory
 operator|.
@@ -474,7 +630,7 @@ name|mode
 argument_list|)
 decl_stmt|;
 name|User
-name|u
+name|usr
 init|=
 name|ums
 operator|.
@@ -485,10 +641,39 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|null
+name|usr
 operator|==
-name|u
+literal|null
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Needs a valid user name, not: "
+operator|+
+name|user
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -500,11 +685,12 @@ operator|+
 name|user
 argument_list|)
 throw|;
-name|p
+block|}
+name|perms
 operator|.
 name|setOwner
 argument_list|(
-name|u
+name|usr
 argument_list|)
 expr_stmt|;
 name|ums
@@ -513,7 +699,7 @@ name|setPermissions
 argument_list|(
 name|collection
 argument_list|,
-name|p
+name|perms
 argument_list|)
 expr_stmt|;
 block|}
@@ -523,6 +709,32 @@ name|XMLDBException
 name|xe
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to change collection permissions"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -535,6 +747,25 @@ name|xe
 argument_list|)
 throw|;
 block|}
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Exiting "
+operator|+
+name|XMLDBModule
+operator|.
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|Sequence
 operator|.
