@@ -321,13 +321,19 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Entering the "
+literal|"Entering "
 operator|+
 name|ExampleModule
 operator|.
 name|NAMESPACE_URI
 operator|+
-literal|":echo function"
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// is argument the empty sequence?
@@ -346,13 +352,19 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Returning empty result from "
+literal|"Exiting "
 operator|+
 name|ExampleModule
 operator|.
 name|NAMESPACE_URI
 operator|+
-literal|":echo function"
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -418,13 +430,19 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Returning result from "
+literal|"Exiting "
 operator|+
 name|ExampleModule
 operator|.
 name|NAMESPACE_URI
 operator|+
-literal|":echo function"
+literal|":"
+operator|+
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

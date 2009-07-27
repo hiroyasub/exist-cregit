@@ -318,7 +318,7 @@ specifier|private
 specifier|final
 specifier|static
 name|Logger
-name|LOG
+name|logger
 init|=
 name|Logger
 operator|.
@@ -367,7 +367,7 @@ literal|"\t\t<stacktrace>...\n"
 operator|+
 literal|"\t</exception>\n"
 operator|+
-literal|"\t<message level=\"\" line=\"\"> column=\"\" repeat=\"\">...\n"
+literal|"\t<message level=\"\" line=\"\" column=\"\" repeat=\"\">...</message>\n"
 operator|+
 literal|"\t....\n"
 operator|+
@@ -449,7 +449,7 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -550,7 +550,7 @@ operator|.
 name|ANY_URI
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -632,7 +632,7 @@ operator|.
 name|DOCUMENT
 condition|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
@@ -665,7 +665,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(

@@ -262,7 +262,7 @@ operator|.
 name|ZERO_OR_ONE
 argument_list|)
 argument_list|,
-literal|"Moved to the file extension module.  See file:read()"
+literal|"Moved to the file extension module.  See file:read() in the file extension module"
 argument_list|)
 block|,
 operator|new
@@ -325,7 +325,7 @@ operator|.
 name|ZERO_OR_ONE
 argument_list|)
 argument_list|,
-literal|"Moved to the file extension module.  See file:read()"
+literal|"Moved to the file extension module.  See file:read() in the file extension module"
 argument_list|)
 block|}
 decl_stmt|;
