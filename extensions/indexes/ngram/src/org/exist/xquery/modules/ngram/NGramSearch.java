@@ -177,7 +177,7 @@ literal|"Searches the given $queryString in the index defined on the input node 
 operator|+
 literal|"The string may appear at any position within the node content. String comparison "
 operator|+
-literal|"is case insensitive."
+literal|"is case insensitive. Nodes need to have an ngram index to be searched."
 argument_list|,
 operator|new
 name|SequenceType
@@ -256,7 +256,7 @@ literal|"Searches the given $queryString in the index defined on the input node 
 operator|+
 literal|"The string has to appear at the end of the node's content. String comparison "
 operator|+
-literal|"is case insensitive."
+literal|"is case insensitive. Nodes need to have an ngram index to be searched."
 argument_list|,
 operator|new
 name|SequenceType
@@ -335,7 +335,7 @@ literal|"Searches the given $queryString in the index defined on the input node 
 operator|+
 literal|"The string may appear at any position within the node content. String comparison "
 operator|+
-literal|"is case insensitive."
+literal|"is case insensitive. Nodes need to have an ngram index to be searched."
 argument_list|,
 operator|new
 name|SequenceType

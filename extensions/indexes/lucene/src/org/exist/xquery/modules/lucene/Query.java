@@ -402,7 +402,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"INSERT DESCRIPTION HERE"
+literal|"Query the node set in $nodes using a Lucene full text index which is defined "
+operator|+
+literal|"on those nodes. Parameter $query specifies the query, either as a query string "
+operator|+
+literal|"based on Lucene's default query syntax or as an XML fragment. The context of the "
+operator|+
+literal|"Lucene query is determined by the given input node set in $nodes. The Lucene indexes should "
+operator|+
+literal|"be defined on the nodes in $nodes. Indexes on descendant nodes are not used. If no index "
+operator|+
+literal|"is available on a node, nothing will be found."
+operator|+
+literal|"See http://exist-db.org/lucene.html#N1029E"
 argument_list|,
 operator|new
 name|SequenceType
@@ -411,7 +423,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
@@ -427,7 +439,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"item"
+literal|"query"
 argument_list|,
 name|Type
 operator|.
@@ -442,10 +454,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -454,7 +464,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"result"
+literal|"all nodes from the input node set matching the query. match highlighting information "
+operator|+
+literal|"will be available for all returned nodes. Lucene's match score can be retrieved via "
+operator|+
+literal|"the ft:score function."
 argument_list|)
 argument_list|)
 decl_stmt|;
