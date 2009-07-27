@@ -499,6 +499,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -684,6 +712,211 @@ name|Eval
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|EVAL_CONTEXT_ITEM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"eval-context-item"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the context item against which the expression will be evaluated"
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|evalArgumentText
+init|=
+literal|"If the first argument is of type xs:string, the function "
+operator|+
+literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
+operator|+
+literal|"the function will try to load the query from the resource to which the URI resolves. "
+operator|+
+literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
+operator|+
+literal|"URI is interpreted as a database path. This is the same as calling "
+operator|+
+literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
+operator|+
+comment|//TODO : to be discussed ; until now, it's been used with a null context
+literal|"The query inherits the current execution context, i.e. all "
+operator|+
+literal|"namespace declarations and variable declarations are visible from within the "
+operator|+
+literal|"inner expression. "
+operator|+
+literal|"The function returns an empty sequence if a whitespace string is passed."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|contextArgumentText
+init|=
+literal|"The query inherits the context described by the XML fragment in this parameter. "
+operator|+
+literal|"It should have the format:\n"
+operator|+
+literal|"<static-context>\n"
+operator|+
+literal|"\t<output-size-limit value=\"-1\">\n"
+operator|+
+literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
+operator|+
+literal|"\t<current-dateTime value=\"dateTime\"/>\n"
+operator|+
+literal|"\t<implicit-timezone value=\"duration\"/>\n"
+operator|+
+literal|"\t<variable name=\"qname\">variable value</variable>\n"
+operator|+
+literal|"\t<default-context>explicitly provide default context here</default-context>\n"
+operator|+
+literal|"\t<mapModule namespace=\"uri\" uri=\"uri_to_module\"/>\n"
+operator|+
+literal|"</static-context>.\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|EVAL_ARGUMENT
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"expression"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+name|evalArgumentText
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|INLINE_CONTEXT
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"inline-context"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|CONTEXT_ARGUMENT
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"context"
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+name|contextArgumentText
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|CACHE_FLAG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"cache-flag"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"sets whether the compiled query should be cached.  The cached query will be globally available within the db instance."
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_NODE_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the results of the evaluated XPath/XQuery expression"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_ITEM_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the results of the evaluated XPath/XQuery expression"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -710,56 +943,15 @@ name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Dynamically evaluates an XPath/XQuery expression. "
-operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
-operator|+
-comment|//TODO : to be discussed ; until now, it's been used with a null context
-literal|"The query inherits the current execution context, i.e. all "
-operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. "
-operator|+
-literal|"The function returns an empty sequence if a whitespace string is passed."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
+name|EVAL_ARGUMENT
+block|}
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|, 				}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_NODE_TYPE
 argument_list|)
 block|,
 operator|new
@@ -780,71 +972,17 @@ name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Dynamically evaluates an XPath/XQuery expression. "
-operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
-operator|+
-literal|"The query inherits the current execution context, i.e. all "
-operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. "
-operator|+
-literal|"The function returns an empty sequence if a whitespace string is passed. "
-operator|+
-literal|"The second argument specifies if the compiled query expression "
-operator|+
-literal|"should be cached. The cached query will be globally available within the db instance."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|EVAL_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|CACHE_FLAG
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_NODE_TYPE
 argument_list|)
 block|,
 operator|new
@@ -866,96 +1004,20 @@ argument_list|)
 argument_list|,
 literal|"Dynamically evaluates an XPath/XQuery expression. "
 operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')).\n"
-operator|+
-literal|"The query inherits the context described by the XML fragment in the second parameter. "
-operator|+
-literal|"It should have the format:\n"
-operator|+
-literal|"<static-context>\n"
-operator|+
-literal|"\t<output-size-limit value=\"-1\">\n"
-operator|+
-literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
-operator|+
-literal|"\t<current-dateTime value=\"dateTime\"/>\n"
-operator|+
-literal|"\t<implicit-timezone value=\"duration\"/>\n"
-operator|+
-literal|"\t<variable name=\"qname\">variable value</variable>\n"
-operator|+
-literal|"\t<default-context>explicitly provide default context here</default-context>\n"
-operator|+
-literal|"\t<mapModule namespace=\"uri\" uri=\"uri_to_module\"/>\n"
-operator|+
-literal|"</static-context>.\n"
-operator|+
-literal|"The third argument specifies if the compiled query expression "
-operator|+
-literal|"should be cached. The cached query will be globally available within the db instance."
+literal|""
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|EVAL_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|CONTEXT_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|CACHE_FLAG
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_NODE_TYPE
 argument_list|)
 block|,
 operator|new
@@ -975,110 +1037,22 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates an XPath/XQuery expression. "
-operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')).\n"
-operator|+
-literal|"The query inherits the context described by the XML fragment in the second parameter. "
-operator|+
-literal|"It should have the format:\n"
-operator|+
-literal|"<static-context>\n"
-operator|+
-literal|"\t<output-size-limit value=\"-1\">\n"
-operator|+
-literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
-operator|+
-literal|"\t<current-dateTime value=\"dateTime\"/>\n"
-operator|+
-literal|"\t<implicit-timezone value=\"duration\"/>\n"
-operator|+
-literal|"\t<variable name=\"qname\">variable value</variable>\n"
-operator|+
-literal|"\t<default-context>explicitly provide default context here</default-context>\n"
-operator|+
-literal|"</static-context>.\n"
-operator|+
-literal|"The third argument specifies if the compiled query expression "
-operator|+
-literal|"should be cached. The cached query will be globally available within the db instance."
-operator|+
-literal|"The fourth argument specifies the context item against which the expression will be evaluated."
+literal|"Dynamically evaluates an XPath/XQuery expression."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|EVAL_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|CONTEXT_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|CACHE_FLAG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|EVAL_CONTEXT_ITEM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_NODE_TYPE
 argument_list|)
 block|,
 operator|new
@@ -1098,68 +1072,18 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates an XPath/XQuery expression. "
-operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval(xs:anyURI('xmldb:exist:///db/test/test.xq')). "
-operator|+
-literal|"The query inherits the first argument's context, i.e. all "
-operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. "
-operator|+
-literal|"The function returns an empty sequence if a whitespace string is passed."
+literal|"Dynamically evaluates an XPath/XQuery expression."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|INLINE_CONTEXT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|EVAL_ARGUMENT
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_ITEM_TYPE
 argument_list|)
 block|,
 operator|new
@@ -1179,84 +1103,20 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Dynamically evaluates an XPath/XQuery expression. "
-operator|+
-literal|"If the first argument is of type xs:string, the function "
-operator|+
-literal|"tries to execute this string as the query. If the first argument is of type xs:anyURI, "
-operator|+
-literal|"the function will try to load the query from the resource to which the URI resolves. "
-operator|+
-literal|"If the URI has no scheme, it is assumed that the query is stored in the db and the "
-operator|+
-literal|"URI is interpreted as a database path. This is the same as calling "
-operator|+
-literal|"util:eval('xmldb:exist:///db/test/test.xq'). "
-operator|+
-literal|"The query inherits the first argument's context, i.e. all "
-operator|+
-literal|"namespace declarations and variable declarations are visible from within the "
-operator|+
-literal|"inner expression. "
-operator|+
-literal|"The function returns an empty sequence if a whitespace string is passed."
-operator|+
-literal|"The third argument specifies if the compiled query expression "
-operator|+
-literal|"should be cached. The cached query will be globally available within the db instance."
+literal|"Dynamically evaluates an XPath/XQuery expression."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|INLINE_CONTEXT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|EVAL_ARGUMENT
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|CACHE_FLAG
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_ITEM_TYPE
 argument_list|)
 block|}
 decl_stmt|;

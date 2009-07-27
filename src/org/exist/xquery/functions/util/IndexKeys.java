@@ -21,6 +21,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -184,6 +196,21 @@ name|IndexKeys
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|IndexKeys
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -214,14 +241,57 @@ operator|+
 literal|"All index keys defined for the given node set are reported to a callback function. "
 operator|+
 literal|"The function will check for indexes defined on path as well as indexes defined by QName. "
-operator|+
-literal|"The node set is specified in the first argument. The second argument specifies a start "
-operator|+
-literal|"value. Only index keys of the same type but being greater than $b will be reported for non-string"
-operator|+
-literal|"types. For string types, only keys starting with the given prefix are reported. "
-operator|+
-literal|"The third arguments is a function reference as created by the util:function function. "
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"node-set"
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|null
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"start-value"
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"Only index keys of the same type but being greater than $start-value will be reported for non-string types. For string types, only keys starting with the given prefix are reported."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"function-reference"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"a function reference as created by the util:function function. "
 operator|+
 literal|"It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
@@ -231,53 +301,14 @@ literal|"containing three int values: a) the overall frequency of the key within
 operator|+
 literal|"b) the number of distinct documents in the node set the key occurs in, "
 operator|+
-literal|"c) the current position of the key in the whole list of keys returned. "
-operator|+
-literal|"The fourth argument is the maximum number of returned keys"
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
+literal|"c) the current position of the key in the whole list of keys returned."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
-name|Type
-operator|.
-name|ATOMIC
+literal|"max-number-returned"
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
 name|Type
 operator|.
 name|INT
@@ -285,11 +316,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the maximum number of returned keys"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -298,6 +331,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the results of the eval of the $function-reference"
 argument_list|)
 argument_list|)
 block|,
@@ -323,14 +358,57 @@ operator|+
 literal|"All index keys defined for the given node set are reported to a callback function. "
 operator|+
 literal|"The function will check for indexes defined on path as well as indexes defined by QName. "
-operator|+
-literal|"The node set is specified in the first argument. The second argument specifies a start "
-operator|+
-literal|"value. Only index keys of the same type but being greater than $b will be reported for non-string"
-operator|+
-literal|"types. For string types, only keys starting with the given prefix are reported. "
-operator|+
-literal|"The third arguments is a function reference as created by the util:function function. "
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"node-set"
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|null
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"start-value"
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"Only index keys of the same type but being greater than $start-value will be reported for non-string types. For string types, only keys starting with the given prefix are reported."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"function-reference"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"a function reference as created by the util:function function. "
 operator|+
 literal|"It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
@@ -340,55 +418,14 @@ literal|"containing three int values: a) the overall frequency of the key within
 operator|+
 literal|"b) the number of distinct documents in the node set the key occurs in, "
 operator|+
-literal|"c) the current position of the key in the whole list of keys returned. "
-operator|+
-literal|"The fourth argument is the maximum number of returned keys"
-operator|+
-literal|"The fifth argument specifies the index in which the search is made"
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
+literal|"c) the current position of the key in the whole list of keys returned."
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
-name|Type
-operator|.
-name|ATOMIC
+literal|"max-number-returned"
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
-block|,
-operator|new
-name|SequenceType
-argument_list|(
 name|Type
 operator|.
 name|INT
@@ -396,11 +433,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the maximum number of returned keys"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"index"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -408,11 +449,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the index in which the search is made"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -421,6 +464,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the results of the eval of the $function-reference"
 argument_list|)
 argument_list|)
 block|}
@@ -655,7 +700,7 @@ index|]
 argument_list|)
 expr_stmt|;
 else|else
-name|LOG
+name|logger
 operator|.
 name|warn
 argument_list|(
@@ -1182,14 +1227,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(
