@@ -669,6 +669,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -923,7 +937,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"source-document (nodes tree)"
 argument_list|)
 block|,
 operator|new
@@ -939,7 +953,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"xsl stylesheet"
 argument_list|)
 block|,
 operator|new
@@ -955,15 +969,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"transformer parameters"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -972,7 +984,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"result"
+literal|"tranfromed result (nodes tree)"
 argument_list|)
 argument_list|)
 block|,
@@ -1036,7 +1048,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"source-document (nodes tree)"
 argument_list|)
 block|,
 operator|new
@@ -1052,7 +1064,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"xsl stylesheet"
 argument_list|)
 block|,
 operator|new
@@ -1068,7 +1080,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"transformer parameters"
 argument_list|)
 block|,
 operator|new
@@ -1084,15 +1096,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"serailization options"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -1101,7 +1111,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"result"
+literal|"tranfromed result (nodes tree)"
 argument_list|)
 argument_list|)
 block|,
@@ -1147,7 +1157,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"source-document (nodes tree)"
 argument_list|)
 block|,
 operator|new
@@ -1163,7 +1173,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"xsl stylesheet"
 argument_list|)
 block|,
 operator|new
@@ -1179,7 +1189,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"transformer parameters"
 argument_list|)
 block|}
 argument_list|,
@@ -1238,7 +1248,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"source-document (nodes tree)"
 argument_list|)
 block|,
 operator|new
@@ -1254,7 +1264,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"xsl stylesheet"
 argument_list|)
 block|,
 operator|new
@@ -1270,7 +1280,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"transformer parameters"
 argument_list|)
 block|,
 operator|new
@@ -1286,7 +1296,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"serailization options"
 argument_list|)
 block|}
 argument_list|,
