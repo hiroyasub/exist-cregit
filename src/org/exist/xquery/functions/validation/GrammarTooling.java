@@ -483,7 +483,7 @@ name|cacheReport
 init|=
 literal|"<report>\n"
 operator|+
-literal|"\t<grammar type=\"...\">\n"
+literal|"\t<grammar type=\"...\"\n"
 operator|+
 literal|"\t\t<Namespace>....\n"
 operator|+
