@@ -173,6 +173,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -372,7 +386,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -381,6 +395,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
+argument_list|,
+literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
