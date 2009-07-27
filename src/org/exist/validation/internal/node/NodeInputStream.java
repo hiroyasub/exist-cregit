@@ -83,9 +83,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|storage
 operator|.
-name|XQueryContext
+name|serializers
+operator|.
+name|Serializer
 import|;
 end_import
 
@@ -145,8 +147,8 @@ comment|/** Creates a new instance of NodeInputStream */
 specifier|public
 name|NodeInputStream
 parameter_list|(
-name|XQueryContext
-name|context
+name|Serializer
+name|serializer
 parameter_list|,
 name|SequenceIterator
 name|siNode
@@ -177,7 +179,7 @@ operator|=
 operator|new
 name|NodeSerializerThread
 argument_list|(
-name|context
+name|serializer
 argument_list|,
 name|siNode
 argument_list|,
