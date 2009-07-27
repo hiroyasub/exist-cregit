@@ -113,49 +113,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
+name|*
 import|;
 end_import
 
@@ -213,15 +171,23 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|""
+literal|"Similar to the standard XQuery fn:contains function, but based on the NGram index. "
+operator|+
+literal|"Searches the given $queryString in the index defined on the input node set $nodes. "
+operator|+
+literal|"The string may appear at any position within the node content. String comparison "
+operator|+
+literal|"is case insensitive."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -229,11 +195,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the input node set to search"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"queryString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -241,11 +211,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the exact string to search for"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -254,6 +226,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"set of nodes from the input node set $nodes containing the query string "
+operator|+
+literal|"or the empty sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -274,15 +250,23 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|""
+literal|"Similar to the standard XQuery fn:ends-with function, but based on the NGram index. "
+operator|+
+literal|"Searches the given $queryString in the index defined on the input node set $nodes. "
+operator|+
+literal|"The string has to appear at the end of the node's content. String comparison "
+operator|+
+literal|"is case insensitive."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -290,11 +274,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the input node set to search"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"queryString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -302,11 +290,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the exact string to search for"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -315,6 +305,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"set of nodes from the input node set $nodes ending with the query string "
+operator|+
+literal|"or the empty sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -335,15 +329,23 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|""
+literal|"Similar to the standard XQuery fn:starts-with function, but based on the NGram index. "
+operator|+
+literal|"Searches the given $queryString in the index defined on the input node set $nodes. "
+operator|+
+literal|"The string may appear at any position within the node content. String comparison "
+operator|+
+literal|"is case insensitive."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -351,11 +353,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the input node set to search"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"queryString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -363,11 +369,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the exact string to search for"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -376,6 +384,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"set of nodes from the input node set $nodes starting with the query string "
+operator|+
+literal|"or the empty sequence"
 argument_list|)
 argument_list|)
 block|}
