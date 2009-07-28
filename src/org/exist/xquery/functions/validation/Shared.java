@@ -662,7 +662,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getSerializer
+name|newSerializer
 argument_list|()
 decl_stmt|;
 name|InputStream

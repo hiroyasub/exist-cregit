@@ -306,8 +306,10 @@ argument_list|)
 expr_stmt|;
 name|serializer
 operator|.
-name|setReceiver
+name|setSAXHandlers
 argument_list|(
+name|sax
+argument_list|,
 name|sax
 argument_list|)
 expr_stmt|;
