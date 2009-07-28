@@ -15838,7 +15838,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1884403
 specifier|public
 name|void
-name|bugtestAtomization_1884403
+name|testAtomization_1884403
 parameter_list|()
 block|{
 try|try
