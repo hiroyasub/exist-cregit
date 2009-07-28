@@ -21,19 +21,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|Properties
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|javax
 operator|.
-name|util
+name|mail
 operator|.
-name|Properties
+name|Session
 import|;
 end_import
 
@@ -229,31 +229,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|BooleanValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|mail
-operator|.
-name|Session
 import|;
 end_import
 
@@ -327,7 +303,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"optional JavaMail session properties in the form<properties><property name=\"\" value=\"\"/></properties>."
+literal|"optional JavaMail session properties in the form<properties><property name=\"\" value=\"\"/></properties>.  The JavaMail properties are spelled out in Appendix A of the JavaMail specifications."
 argument_list|)
 block|}
 argument_list|,

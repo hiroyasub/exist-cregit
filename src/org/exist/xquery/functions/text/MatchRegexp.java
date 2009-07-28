@@ -333,6 +333,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -436,6 +464,92 @@ name|Function
 implements|implements
 name|Optimizable
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|SOURCE_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"source"
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the node set that is to be searched for the keyword set"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|REGEX_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"regular-expression"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ONE_OR_MORE
+argument_list|,
+literal|"the regular expressions to be matched against the fulltext index"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FLAGS_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"flag"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"With 'w' specified, the regular expression is matched against the entire keyword, i.e. 'explain.*' will match 'explained' , but not 'unexplained'."
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"a sequence of all of the matching nodes"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -463,9 +577,9 @@ argument_list|)
 argument_list|,
 literal|"Tries to match each of the regular expression "
 operator|+
-literal|"strings passed in $b against the keywords contained in "
+literal|"strings against the keywords contained in "
 operator|+
-literal|"the fulltext index. The keywords found are then compared to the node set in $a. Every "
+literal|"the fulltext index. The keywords found are then compared to the node set in $source. Every "
 operator|+
 literal|"node containing ALL of the keywords is copied to the result sequence. By default, a keyword "
 operator|+
@@ -479,42 +593,12 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|SOURCE_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|REGEX_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -536,9 +620,9 @@ argument_list|)
 argument_list|,
 literal|"Tries to match each of the regular expression "
 operator|+
-literal|"strings passed in $b against the keywords contained in "
+literal|"strings against the keywords contained in "
 operator|+
-literal|"the fulltext index. The keywords found are then compared to the node set in $a. Every "
+literal|"the fulltext index. The keywords found are then compared to the node set in $source. Every "
 operator|+
 literal|"node containing ALL of the keywords is copied to the result sequence. By default, a keyword "
 operator|+
@@ -552,54 +636,14 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|SOURCE_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|REGEX_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|FLAGS_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -621,9 +665,9 @@ argument_list|)
 argument_list|,
 literal|"Tries to match each of the regular expression "
 operator|+
-literal|"strings passed in $b against the keywords contained in "
+literal|"strings against the keywords contained in "
 operator|+
-literal|"the fulltext index. The keywords found are then compared to the node set in $a. Every "
+literal|"the fulltext index. The keywords found are then compared to the node set in $source. Every "
 operator|+
 literal|"node containing ANY of the keywords is copied to the result sequence. By default, a keyword "
 operator|+
@@ -637,42 +681,12 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|SOURCE_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|REGEX_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -694,9 +708,9 @@ argument_list|)
 argument_list|,
 literal|"Tries to match each of the regular expression "
 operator|+
-literal|"strings passed in $b against the keywords contained in "
+literal|"strings against the keywords contained in "
 operator|+
-literal|"the fulltext index. The keywords found are then compared to the node set in $a. Every "
+literal|"the fulltext index. The keywords found are then compared to the node set in $source. Every "
 operator|+
 literal|"node containing ANY of the keywords is copied to the result sequence. By default, a keyword "
 operator|+
@@ -710,54 +724,14 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|SOURCE_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE_OR_MORE
-argument_list|)
+name|REGEX_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|FLAGS_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;

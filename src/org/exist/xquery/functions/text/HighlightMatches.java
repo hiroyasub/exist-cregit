@@ -203,6 +203,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionReference
 import|;
 end_import
@@ -361,9 +389,9 @@ literal|"to post-process the serialized output, the "
 operator|+
 literal|"highlight-matches function provides direct access to the matching portions of the text within XQuery. "
 operator|+
-literal|"The function takes a sequence of text nodes as first argument $a and a callback function (defined with "
+literal|"The function takes a sequence of text nodes as first argument $source and a callback function (defined with "
 operator|+
-literal|"util:function) as second parameter $b. $c may contain a sequence of additional values that will be passed "
+literal|"util:function) as second parameter. $parameters may contain a sequence of additional values that will be passed "
 operator|+
 literal|"to the callback functions third parameter. Text nodes without matches will be returned as they are. However, "
 operator|+
@@ -378,8 +406,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"source"
+argument_list|,
 name|Type
 operator|.
 name|TEXT
@@ -387,11 +417,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"sequence of text nodes"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"callback-function-ref"
+argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
@@ -399,11 +433,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a callback function (defined with util:function)"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"parameters"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -411,11 +449,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a sequence of additional values that will be passed to the callback functions third parameter."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -424,6 +464,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the source with the added highlights"
 argument_list|)
 argument_list|)
 decl_stmt|;

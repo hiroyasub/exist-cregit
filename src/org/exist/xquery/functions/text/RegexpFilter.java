@@ -165,6 +165,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -262,15 +290,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Filter substrings that match the regular expression $b in text $a."
+literal|"Filter substrings that match the regular expression in the text."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"text"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -278,11 +308,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the text to filter"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"regularexpression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -290,11 +324,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the regular expression to perform against the text"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -303,6 +339,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the substrings"
 argument_list|)
 argument_list|)
 block|,
@@ -323,7 +361,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tries to match the string in $a to the regular expression in $b. "
+literal|"Tries to match the string in $text to the regular expression. "
 operator|+
 literal|"Returns an empty sequence if the string does not match, or a sequence whose "
 operator|+
@@ -334,8 +372,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"text"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -343,11 +383,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the text to filter"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"regularexpression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -355,11 +399,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the regular expression to perform against the text"
 argument_list|)
-block|, 				}
+block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -368,6 +414,10 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"an empty sequence if the string does not match, or a sequence whose "
+operator|+
+literal|"first item is the entire string, and whose following items are the matched groups."
 argument_list|)
 argument_list|)
 block|,
@@ -388,9 +438,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tries to match the string in $a to the regular expression in $b, using "
+literal|"Tries to match the string in $text to the regular expression, using "
 operator|+
-literal|"the flags specified in $c. Returns an empty sequence if the string does "
+literal|"the flags specified. Returns an empty sequence if the string does "
 operator|+
 literal|"not match, or a sequence whose first item is the entire string, and whose "
 operator|+
@@ -401,8 +451,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"text"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -410,11 +462,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the text to filter"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"regularexpression"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -422,11 +478,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the regular expression to perform against the text"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"flags"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -434,11 +494,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|, 				}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -447,6 +509,12 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"an empty sequence if the string does "
+operator|+
+literal|"not match, or a sequence whose first item is the entire string, and whose "
+operator|+
+literal|"following items are the matched groups."
 argument_list|)
 argument_list|)
 block|}

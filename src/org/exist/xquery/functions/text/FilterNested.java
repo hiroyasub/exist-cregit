@@ -145,6 +145,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -207,7 +235,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Filters out all nodes in the node set $a, which do have descendant nodes in the same node set.  "
+literal|"Filters out all nodes in the node set, which do have descendant nodes in the same node set.  "
 operator|+
 literal|"This is useful if you do a combined query like //(a|b)[.&= $terms] and some 'b' nodes are nested "
 operator|+
@@ -220,8 +248,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"node-set"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -229,11 +259,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the node set"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -242,6 +274,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a node set containing nodes that do not have descendent nodes."
 argument_list|)
 argument_list|)
 decl_stmt|;

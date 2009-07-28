@@ -147,6 +147,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -217,15 +245,17 @@ literal|"Fuzzy keyword search, which compares strings based on the Levenshtein d
 operator|+
 literal|"(or edit distance). The function tries to match each of the keywords specified in the "
 operator|+
-literal|"keyword string $b against the string value of each item in the sequence $a."
+literal|"keyword string against the string value of each item in the sequence $source."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"source"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -233,11 +263,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"keyword"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -245,11 +279,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the keyword string"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -258,6 +294,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the sequence of nodes that match the keywords"
 argument_list|)
 argument_list|,
 literal|true
