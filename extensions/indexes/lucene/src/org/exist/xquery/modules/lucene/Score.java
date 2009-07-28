@@ -239,7 +239,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|null
+literal|"the context node"
 argument_list|)
 block|}
 argument_list|,
