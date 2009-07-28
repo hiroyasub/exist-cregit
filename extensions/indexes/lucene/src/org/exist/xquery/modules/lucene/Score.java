@@ -99,77 +99,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionParameterSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|NodeValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|FloatValue
+name|*
 import|;
 end_import
 
@@ -282,7 +212,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"INSERT DESCRIPTION HERE"
+literal|"Returns a computed relevance score for the given node. The score is the sum of all "
+operator|+
+literal|"relevance scores provided by Lucene for the node and its descendants. In general, the score "
+operator|+
+literal|"will be a number between 0.0 and 1.0 if the query had $node as context. If the query targeted "
+operator|+
+literal|"multiple descendants of $node (e.g. 'title' and 'author' within a 'book'), the score will be the "
+operator|+
+literal|"sum of all sub-scores and may thus be greater than 1."
 argument_list|,
 operator|new
 name|SequenceType
@@ -306,10 +244,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|FLOAT
@@ -318,7 +254,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the score"
+literal|"sum of all relevance scores provided by Lucene for all matches below the given context node"
 argument_list|)
 argument_list|)
 decl_stmt|;
