@@ -145,6 +145,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -251,9 +279,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"This function breaks the input string $a into a sequence of strings, "
+literal|"This function breaks the input string $input into a sequence of strings, "
 operator|+
-literal|"treating any substring that matches pattern $b as a separator. The "
+literal|"treating any substring that matches pattern $pattern as a separator. The "
 operator|+
 literal|"separators themselves are not returned."
 argument_list|,
@@ -262,8 +290,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"input"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -271,11 +301,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the input string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"pattern"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -283,11 +317,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -296,6 +332,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"the token sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -312,9 +350,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"This function breaks the input string $a into a sequence of strings, "
+literal|"This function breaks the input string $input into a sequence of strings, "
 operator|+
-literal|"treating any substring that matches pattern $b as a separator. The "
+literal|"treating any substring that matches pattern $pattern as a separator. The "
 operator|+
 literal|"separators themselves are not returned."
 argument_list|,
@@ -323,8 +361,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"input"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -332,11 +372,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the input string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"pattern"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -344,11 +388,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"flags"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -356,11 +404,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"see http://www.w3.org/TR/xpath-functions/#flags"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -369,6 +419,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
+argument_list|,
+literal|"the token sequence"
 argument_list|)
 argument_list|)
 block|}

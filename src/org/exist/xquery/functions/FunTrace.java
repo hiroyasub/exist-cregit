@@ -109,6 +109,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -215,21 +243,23 @@ argument_list|)
 argument_list|,
 literal|"This function is intended to be used in debugging queries by "
 operator|+
-literal|"providing a trace of their execution. The input $a is "
+literal|"providing a trace of their execution. The input $value is "
 operator|+
 literal|"returned, unchanged, as the result of the function. "
 operator|+
-literal|"In addition, the inputs $a, converted to an xs:string, "
+literal|"In addition, the inputs $value, converted to an xs:string, "
 operator|+
-literal|"and $b is directed to a trace data set in the eXist log files."
+literal|"and $label is directed to a trace data set in the eXist log files."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"value"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -237,11 +267,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"label"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -249,11 +283,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -262,6 +298,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"$value"
 argument_list|)
 argument_list|)
 decl_stmt|;
