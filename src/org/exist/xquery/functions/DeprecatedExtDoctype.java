@@ -122,7 +122,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ExtDoctype
+name|DeprecatedExtDoctype
 extends|extends
 name|Function
 block|{
@@ -136,7 +136,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|ExtDoctype
+name|DeprecatedExtDoctype
 operator|.
 name|class
 argument_list|)
@@ -199,12 +199,12 @@ argument_list|)
 argument_list|,
 literal|"This function is eXist-specific and deprecated. It should not be in the standard functions namespace. Please "
 operator|+
-literal|"use util:doctype instead."
+literal|"use util:doctype() instead."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|ExtDoctype
+name|DeprecatedExtDoctype
 parameter_list|(
 name|XQueryContext
 name|context
