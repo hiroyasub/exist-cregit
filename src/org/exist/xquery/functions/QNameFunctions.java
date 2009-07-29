@@ -147,6 +147,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|QNameValue
 import|;
 end_import
@@ -237,7 +265,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:NCName representing the prefix of $a. If $a is the empty "
+literal|"Returns an xs:NCName representing the prefix of $arg. If $arg is the empty "
 operator|+
 literal|"sequence, returns the empty sequence."
 argument_list|,
@@ -246,8 +274,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -255,11 +285,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the QName"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -268,6 +300,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the prefix"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -290,7 +324,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:NCName representing the local part of $a. If $a is the empty "
+literal|"Returns an xs:NCName representing the local part of $arg. If $arg is the empty "
 operator|+
 literal|"sequence, returns the empty sequence."
 argument_list|,
@@ -299,8 +333,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -308,11 +344,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the QName"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -321,6 +359,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the local name"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -343,7 +383,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the namespace URI for $a. If $a is the empty "
+literal|"Returns the namespace URI for $arg. If $arg is the empty "
 operator|+
 literal|"sequence, returns the empty sequence."
 argument_list|,
@@ -352,8 +392,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -361,11 +403,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the QName"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -374,6 +418,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the namespace URI"
 argument_list|)
 argument_list|)
 decl_stmt|;
