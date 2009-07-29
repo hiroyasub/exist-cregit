@@ -246,7 +246,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generate a Universally Unique Identifier string."
+literal|"Generate a version 4 (random) Universally Unique Identifier string, e.g. "
+operator|+
+literal|"154ad200-9c79-44f3-8cff-9780d91552a6"
 argument_list|,
 name|FunctionSignature
 operator|.
