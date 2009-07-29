@@ -133,6 +133,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -267,15 +295,25 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the portion of the value of $a beginning at the position indicated by the value of $b and continuing to the end of $a. The characters returned do not extend beyond the end of $a. If $b is zero or negative, only those characters in positions greater than zero are returned. If the value of $a is the empty sequence, the zero-length string is returned."
+literal|"Returns the portion of the value of $sourceString beginning at the position indicated "
+operator|+
+literal|"by the value of $startingLoc and continuing to the end of $sourceString. "
+operator|+
+literal|"The characters returned do not extend beyond the end of $sourceString. If $startingLoc "
+operator|+
+literal|"is zero or negative, only those characters in positions greater than zero are returned."
+operator|+
+literal|"If the value of $sourceString is the empty sequence, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"sourceString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -283,11 +321,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the source string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"startingLoc"
+argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -295,11 +337,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"beginning position"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -308,6 +352,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 argument_list|)
 block|,
@@ -324,15 +370,23 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the portion of the value of $a beginning at the position indicated by the value of $b and continuing for the number of characters indicated by the value of $c. The characters returned do not extend beyond the end of $a. If $b is zero or negative, only those characters in positions greater than zero are returned. If the value of $a is the empty sequence, the zero-length string is returned."
+literal|"Returns the portion of the value of $sourceString beginning at the position indicated by the value of $startingLoc "
+operator|+
+literal|"and continuing for the number of characters indicated by the value of $length. The characters returned do not extend "
+operator|+
+literal|"beyond the end of $sourceString. If $startingLoc is zero or negative, only those characters in positions greater "
+operator|+
+literal|"than zero are returned. If the value of $sourceString is the empty sequence, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"sourceString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -340,11 +394,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the source string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"startingLoc"
+argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -352,11 +410,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"beginning position"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"length"
+argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -364,11 +426,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the number of characters in the substring"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -377,6 +441,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 argument_list|)
 block|}
