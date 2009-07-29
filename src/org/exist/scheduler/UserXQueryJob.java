@@ -306,7 +306,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a User's XQuery Job  * Extends UserJob  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a User's XQuery Job  * Extends UserJob  *   * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -547,6 +547,26 @@ literal|"BrokerPool or XQueryResource or User was null!"
 argument_list|)
 expr_stmt|;
 block|}
+name|DocumentImpl
+name|resource
+init|=
+literal|null
+decl_stmt|;
+name|Source
+name|source
+init|=
+literal|null
+decl_stmt|;
+name|XQueryPool
+name|xqPool
+init|=
+literal|null
+decl_stmt|;
+name|CompiledXQuery
+name|compiled
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|//get the xquery
@@ -569,9 +589,8 @@ argument_list|(
 name|xqueryresource
 argument_list|)
 decl_stmt|;
-name|DocumentImpl
 name|resource
-init|=
+operator|=
 name|broker
 operator|.
 name|getXMLResource
@@ -582,7 +601,7 @@ name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|resource
@@ -590,9 +609,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Source
 name|source
-init|=
+operator|=
 operator|new
 name|DBSource
 argument_list|(
@@ -605,7 +623,7 @@ name|resource
 argument_list|,
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//execute the xquery
 name|XQuery
 name|xquery
@@ -615,21 +633,19 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
-name|XQueryPool
 name|xqPool
-init|=
+operator|=
 name|xquery
 operator|.
 name|getXQueryPool
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|XQueryContext
 name|context
 decl_stmt|;
 comment|//try and get a pre-compiled query from the pool
-name|CompiledXQuery
 name|compiled
-init|=
+operator|=
 name|xqPool
 operator|.
 name|borrowCompiledXQuery
@@ -638,7 +654,7 @@ name|broker
 argument_list|,
 name|source
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|compiled
@@ -835,8 +851,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-try|try
-block|{
 name|xquery
 operator|.
 name|execute
@@ -846,20 +860,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|//return the compiled query to the pool
-name|xqPool
-operator|.
-name|returnCompiledXQuery
-argument_list|(
-name|source
-argument_list|,
-name|compiled
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -928,6 +928,49 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+comment|//return the compiled query to the pool
+if|if
+condition|(
+name|xqPool
+operator|!=
+literal|null
+operator|&&
+name|source
+operator|!=
+literal|null
+operator|&&
+name|compiled
+operator|!=
+literal|null
+condition|)
+name|xqPool
+operator|.
+name|returnCompiledXQuery
+argument_list|(
+name|source
+argument_list|,
+name|compiled
+argument_list|)
+expr_stmt|;
+comment|//release the lock on the xquery resource
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+name|resource
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 comment|// Release the DBBroker
 if|if
 condition|(
