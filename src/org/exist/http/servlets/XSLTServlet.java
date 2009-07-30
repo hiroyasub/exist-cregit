@@ -1053,16 +1053,7 @@ argument_list|(
 name|templates
 argument_list|)
 decl_stmt|;
-name|setParameters
-argument_list|(
-name|request
-argument_list|,
-name|handler
-operator|.
-name|getTransformer
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//                setParameters(request, handler.getTransformer());
 name|handler
 operator|.
 name|setResult
