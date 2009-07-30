@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -163,6 +175,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -262,6 +302,21 @@ name|FunAvg
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunAvg
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|//Used to detect overflows : currently not used.
 specifier|private
 name|boolean
@@ -288,7 +343,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the average of the values in the input sequence $a, that is, the "
+literal|"Returns the average of the values in the input sequence $values, that is, the "
 operator|+
 literal|"sum of the values divided by the number of values."
 argument_list|,
@@ -297,8 +352,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"values"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -306,11 +363,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the values"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -319,6 +378,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the average of the values in the input sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -540,6 +601,30 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|value
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|value
+operator|+
+literal|")' can not be an operand in a sum"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -565,6 +650,7 @@ operator|+
 literal|")' can not be an operand in a sum"
 argument_list|)
 throw|;
+block|}
 comment|//Set the first value
 name|ComputableValue
 name|sum
@@ -628,6 +714,30 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"XPTY0004: '"
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|value
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+operator|+
+literal|"("
+operator|+
+name|value
+operator|+
+literal|")' can not be an operand in a sum"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -653,6 +763,7 @@ operator|+
 literal|")' can not be an operand in a sum"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|Type
@@ -742,6 +853,18 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"FORG0006: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
