@@ -1080,7 +1080,16 @@ argument_list|()
 operator|+
 literal|" has a storage format incompatible with this "
 operator|+
-literal|"version of eXist. Please do a backup/restore of your data first."
+literal|"version of eXist. Please do a backup/restore of your data first. Software version is: "
+operator|+
+name|expectedVersion
+operator|+
+literal|"; db version is "
+operator|+
+name|fileHeader
+operator|.
+name|getVersion
+argument_list|()
 argument_list|)
 throw|;
 return|return
