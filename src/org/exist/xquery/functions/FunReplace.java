@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -205,6 +205,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -276,6 +304,166 @@ name|FunReplace
 extends|extends
 name|FunMatches
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"The function returns the xs:string that is obtained by replacing each non-overlapping substring "
+operator|+
+literal|"of $input that matches the given $pattern with an occurrence of the $replacement string.\n\n"
+operator|+
+literal|"The effect of calling the first version of this function (omitting the argument $flags) is the "
+operator|+
+literal|"same as the effect of calling the second version with the $flags argument set to a zero-length "
+operator|+
+literal|"string.\n\nThe $flags argument is interpreted in the same manner as for the fn:matches() function.\n\n"
+operator|+
+literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\nIf two overlapping "
+operator|+
+literal|"substrings of $input both match the $pattern, then only the first one (that is, the one whose first "
+operator|+
+literal|"character comes first in the $input string) is replaced.\n\nWithin the $replacement string, a variable "
+operator|+
+literal|"$N may be used to refer to the substring captured by the Nth parenthesized sub-expression in the "
+operator|+
+literal|"regular expression. For each match of the pattern, these variables are assigned the value of the "
+operator|+
+literal|"content matched by the relevant sub-expression, and the modified replacement string is then "
+operator|+
+literal|"substituted for the characters in $input that matched the pattern. $0 refers to the substring "
+operator|+
+literal|"captured by the regular expression as a whole.\n\nMore specifically, the rules are as follows, "
+operator|+
+literal|"where S is the number of parenthesized sub-expressions in the regular expression, and N is the "
+operator|+
+literal|"decimal number formed by taking all the digits that consecutively follow the $ character:\n\n"
+operator|+
+literal|"1.  If N=0, then the variable is replaced by the substring matched by the regular expression as a whole.\n\n"
+operator|+
+literal|"2.  If 1<=N<=S, then the variable is replaced by the substring captured by the Nth parenthesized "
+operator|+
+literal|"sub-expression. If the Nth parenthesized sub-expression was not matched, then the variable "
+operator|+
+literal|"is replaced by the zero-length string.\n\n"
+operator|+
+literal|"3.  If S<N<=9, then the variable is replaced by the zero-length string.\n\n"
+operator|+
+literal|"4.  Otherwise (if N>S and N>9), the last digit of N is taken to be a literal character to be "
+operator|+
+literal|"included \"as is\" in the replacement string, and the rules are reapplied using the number N "
+operator|+
+literal|"formed by stripping off this last digit."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|INPUT_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"input"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the input string"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|PATTERN_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"pattern"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the pattern to match"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|REPLACEMENT_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"replacement"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the string to replace the pattern with"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FLAGS_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"flags"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the altered string"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -297,62 +485,20 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"The function returns the xs:string that is obtained by replacing all non-overlapping "
-operator|+
-literal|"substrings of $a that match the given pattern $b with an occurrence of the $c replacement string."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|INPUT_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PATTERN_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|REPLACEMENT_ARG
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -368,74 +514,22 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"The function returns the xs:string that is obtained by replacing all non-overlapping "
-operator|+
-literal|"substrings of $a that match the given pattern $b with an occurrence of the $c replacement string."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|INPUT_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PATTERN_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|REPLACEMENT_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|FLAGS_ARG
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;

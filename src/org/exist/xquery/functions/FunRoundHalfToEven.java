@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-2009,  The eXist team  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -117,6 +121,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -198,6 +230,124 @@ name|FunRoundHalfToEven
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"The value returned is the nearest (that is, numerically closest) "
+operator|+
+literal|"value to $arg that is a multiple of ten to the power of minus "
+operator|+
+literal|"$precision. If two such values are equally near (e.g. if the "
+operator|+
+literal|"fractional part in $arg is exactly .500...), the function returns "
+operator|+
+literal|"the one whose least significant digit is even.\n\nIf the type of "
+operator|+
+literal|"$arg is one of the four numeric types xs:float, xs:double, "
+operator|+
+literal|"xs:decimal or xs:integer the type of the result is the same as "
+operator|+
+literal|"the type of $arg. If the type of $arg is a type derived from one "
+operator|+
+literal|"of the numeric types, the result is an instance of the "
+operator|+
+literal|"base numeric type.\n\n"
+operator|+
+literal|"The first signature of this function produces the same result "
+operator|+
+literal|"as the second signature with $precision=0.\n\n"
+operator|+
+literal|"For arguments of type xs:float and xs:double, if the argument is "
+operator|+
+literal|"NaN, positive or negative zero, or positive or negative infinity, "
+operator|+
+literal|"then the result is the same as the argument. In all other cases, "
+operator|+
+literal|"the argument is cast to xs:decimal, the function is applied to this "
+operator|+
+literal|"xs:decimal value, and the resulting xs:decimal is cast back to "
+operator|+
+literal|"xs:float or xs:double as appropriate to form the function result. "
+operator|+
+literal|"If the resulting xs:decimal value is zero, then positive or negative "
+operator|+
+literal|"zero is returned according to the sign of the original argument.\n\n"
+operator|+
+literal|"Note that the process of casting to xs:decimal "
+operator|+
+literal|"may result in an error [err:FOCA0001].\n\n"
+operator|+
+literal|"If $arg is of type xs:float or xs:double, rounding occurs on the "
+operator|+
+literal|"value of the mantissa computed with exponent = 0."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg"
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the input number"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|PRECISION_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"precision"
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the precision factor"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|NUMBER
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the rounded value"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -219,38 +369,16 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"The first signature of this function produces the same "
-operator|+
-literal|"result as the second signature with $b=0."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -266,56 +394,18 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"The value returned is the nearest (that is, numerically closest) "
-operator|+
-literal|"numeric to $a that is a multiple of ten to the power of minus "
-operator|+
-literal|"$b. If two such values are equally near (e.g. if the "
-operator|+
-literal|"fractional part in $a is exactly .500...), returns the one whose "
-operator|+
-literal|"least significant digit is even."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|PRECISION_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NUMBER
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;

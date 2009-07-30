@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    * $Id$  */
 end_comment
 
 begin_package
@@ -121,6 +121,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -207,15 +235,53 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the number with no fractional part that is closest to the value of $a. Always returns the number closest to +INF if there are two such numbers."
+literal|"Returns the number with no fractional part that is closest "
+operator|+
+literal|"to the argument. If there are two such numbers, then the one "
+operator|+
+literal|"that is closest to positive infinity is returned. If type of "
+operator|+
+literal|"$arg is one of the four numeric types xs:float, xs:double, "
+operator|+
+literal|"xs:decimal or xs:integer the type of the result is the same "
+operator|+
+literal|"as the type of $arg. If the type of $arg is a type derived "
+operator|+
+literal|"from one of the numeric types, the result is an instance of "
+operator|+
+literal|"the base numeric type.\n\n"
+operator|+
+literal|"For xs:float and xs:double arguments, if the argument is "
+operator|+
+literal|"positive infinity, then positive infinity is returned. "
+operator|+
+literal|"If the argument is negative infinity, then negative infinity "
+operator|+
+literal|"is returned. If the argument is positive zero, then positive "
+operator|+
+literal|"zero is returned. If the argument is negative zero, then "
+operator|+
+literal|"negative zero is returned. If the argument is less than zero, "
+operator|+
+literal|"but greater than or equal to -0.5, then negative zero is returned. "
+operator|+
+literal|"In the cases where positive zero or negative zero is returned, "
+operator|+
+literal|"negative zero or positive zero may be returned as "
+operator|+
+literal|"[XML Schema Part 2: Datatypes Second Edition] does not "
+operator|+
+literal|"distinguish between the values positive zero and negative zero."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|NUMBER
@@ -223,11 +289,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -236,6 +304,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the rounded value"
 argument_list|)
 argument_list|)
 decl_stmt|;
