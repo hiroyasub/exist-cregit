@@ -167,6 +167,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -259,25 +287,27 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the substring of the value of $a that follows the first occurrence "
+literal|"Returns the substring of the value of $sourceString that follows the first occurrence "
 operator|+
-literal|"of a sequence of the value of $b. If the value of $a or $b is the empty "
+literal|"of a sequence of the value of $searchString. If the value of $sourceString or $searchString is the empty "
 operator|+
 literal|"sequence it is interpreted as the zero-length string. If the value of "
 operator|+
-literal|"$b is the zero-length string, the zero-length string is returned. "
+literal|"$searchString is the zero-length string, the zero-length string is returned. "
 operator|+
-literal|"If the value of $a does not contain a string that is equal to the value "
+literal|"If the value of $sourceString does not contain a string that is equal to the value "
 operator|+
-literal|"of $b, the zero-length string is returned."
+literal|"of $searchString, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"sourceString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -285,11 +315,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"searchString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -297,11 +331,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -310,6 +346,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 argument_list|)
 block|,
@@ -326,25 +364,27 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the substring of the value of $a that follows the first occurrence "
+literal|"Returns the substring of the value of $sourceString that follows the first occurrence "
 operator|+
-literal|"of a sequence of the value of $b in the collation $c. If the value of $a or $b is the empty "
+literal|"of a sequence of the value of $searchString in the collation $collation. If the value of $sourceString or $searchString is the empty "
 operator|+
 literal|"sequence it is interpreted as the zero-length string. If the value of "
 operator|+
-literal|"$b is the zero-length string, the zero-length string is returned. "
+literal|"$searchString is the zero-length string, the zero-length string is returned. "
 operator|+
-literal|"If the value of $a does not contain a string that is equal to the value "
+literal|"If the value of $sourceString does not contain a string that is equal to the value "
 operator|+
-literal|"of $b, the zero-length string is returned."
+literal|"of $searchString, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"sourceString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -352,11 +392,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"searchString"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -364,11 +408,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collator"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -376,11 +424,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"A collation is a specification of the manner in which character strings are compared and, by extension, ordered."
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -389,6 +439,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 argument_list|)
 block|}

@@ -163,6 +163,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -286,7 +314,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a value obtained by adding together the values in $a. If the "
+literal|"Returns a value obtained by adding together the values in $arg. If the "
 operator|+
 literal|"single-argument form of the function is used, then the value returned for "
 operator|+
@@ -297,8 +325,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -306,11 +336,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a sequence of numbers to be summed up"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -319,6 +351,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the sum of all numbers in $arg"
 argument_list|)
 argument_list|)
 block|,
@@ -335,7 +369,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a value obtained by adding together the values in $a. If the "
+literal|"Returns a value obtained by adding together the values in $arg. If the "
 operator|+
 literal|"single-argument form of the function is used, then the value returned for "
 operator|+
@@ -343,15 +377,17 @@ literal|"an empty sequence is the xs:double value 0.0e0. If the two-argument for
 operator|+
 literal|"is used, then the value returned for an empty sequence is the value of "
 operator|+
-literal|"the $b argument."
+literal|"the $default argument."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -359,11 +395,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a sequence of numbers to be summed up"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"default"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -371,11 +411,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the default value if $arg is an empty sequence"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -383,7 +425,9 @@ name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
+argument_list|,
+literal|"the sum of all numbers in $arg"
 argument_list|)
 argument_list|)
 block|}
