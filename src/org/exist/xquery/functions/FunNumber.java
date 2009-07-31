@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2006 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2009 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    * $Id$  */
 end_comment
 
 begin_package
@@ -135,6 +135,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -192,6 +220,78 @@ name|FunNumber
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns the value indicated by $arg or, if $arg is not specified, "
+operator|+
+literal|"the context item after atomization, converted to an xs:double\n\n"
+operator|+
+literal|"Calling the zero-argument version of the function is defined to "
+operator|+
+literal|"give the same result as calling the single-argument version with "
+operator|+
+literal|"the context item (.). That is, fn:number() is equivalent to fn:number(.).\n\n"
+operator|+
+literal|"If $arg is the empty sequence or if $arg or the context item cannot be "
+operator|+
+literal|"converted to an xs:double, the xs:double value NaN is returned. If the "
+operator|+
+literal|"context item is undefined an error is raised: [err:XPDY0002]XP.\n\n"
+operator|+
+literal|"If $arg is the empty sequence, NaN is returned. Otherwise, $arg, or "
+operator|+
+literal|"the context item after atomization, is converted to an xs:double "
+operator|+
+literal|"following the rules of 17.1.3.2 Casting to xs:double. If the conversion "
+operator|+
+literal|"to xs:double fails, the xs:double value NaN is returned."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg"
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the numerical value converted from $arg"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -213,9 +313,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the context item as a xs:double. "
-operator|+
-literal|"If the context item cannot be converted to a xs:double, NaN is returned."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
@@ -223,17 +321,7 @@ index|[
 literal|0
 index|]
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -249,38 +337,16 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of $a as a xs:double. "
-operator|+
-literal|"If the value of $a is the empty sequence or cannot be converted to a xs:double, NaN is returned."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ATOMIC
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DOUBLE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;

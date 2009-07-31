@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-2006, The eXist Project  * http://exist-db.org/  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/* eXist Native XML Database  * Copyright (C) 2000-2009, The eXist Project  * http://exist-db.org/  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -108,6 +108,34 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -271,6 +299,130 @@ name|method
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns the value of $arg normalized according to the "
+operator|+
+literal|"normalization criteria for a normalization form identified "
+operator|+
+literal|"by the value of $normalizationForm. The effective value of "
+operator|+
+literal|"the $normalizationForm is computed by removing leading and "
+operator|+
+literal|"trailing blanks, if present, and converting to upper case.\n\n"
+operator|+
+literal|"If the value of $arg is the empty sequence, returns the zero-length string.\n\n"
+operator|+
+literal|"See [Character Model for the World Wide Web 1.0: Normalization] "
+operator|+
+literal|"for a description of the normalization forms.\n\n"
+operator|+
+literal|"If the $normalizationForm is absent, as in the first format above, "
+operator|+
+literal|"it shall be assumed to be \"NFC\"\n\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is \"NFC\", then the value "
+operator|+
+literal|"returned by the function is the value of $arg in Unicode Normalization Form C (NFC).\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is \"NFD\", then the value "
+operator|+
+literal|"returned by the function is the value of $arg in Unicode Normalization Form D (NFD).\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is \"NFKC\", then the value "
+operator|+
+literal|"returned by the function is the value of $arg in Unicode Normalization Form KC (NFKC).\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is \"NFKD\", then the value "
+operator|+
+literal|"returned by the function is the value of $arg in Unicode Normalization Form KD (NFKD).\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is \"FULLY-NORMALIZED\", then the value "
+operator|+
+literal|"returned by the function is the value of $arg in the fully normalized form.\n"
+operator|+
+literal|"- If the effective value of $normalizationForm is the zero-length string, "
+operator|+
+literal|"no normalization is performed and $arg is returned.\n\n"
+operator|+
+literal|"Conforming implementations must support normalization form \"NFC\" and may "
+operator|+
+literal|"support normalization forms \"NFD\", \"NFKC\", \"NFKD\", \"FULLY-NORMALIZED\". "
+operator|+
+literal|"They may also support other normalization forms with implementation-defined semantics. "
+operator|+
+literal|"If the effective value of the $normalizationForm is other than one of the values "
+operator|+
+literal|"supported by the implementation, then an error is raised [err:FOCH0003]."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the unicode string to normalize"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|NF_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"normalizationForm"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ONE
+argument_list|,
+literal|"the normalization form"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ONE
+argument_list|,
+literal|"the normalized text"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -292,36 +444,16 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of $a normalized according to the normalization form NFC. "
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -337,52 +469,20 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of $a normalized according to the normalization criteria for a "
-operator|+
-literal|"normalization form identified by the value of $b. "
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE
-argument_list|)
+name|NF_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|ONE
+name|RETURN_TYPE
 argument_list|)
-argument_list|)
-block|, 	}
+block|}
 decl_stmt|;
 specifier|public
 name|FunNormalizeUnicode
