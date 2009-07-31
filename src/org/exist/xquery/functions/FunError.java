@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -110,6 +122,34 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -230,6 +270,21 @@ name|FunError
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunError
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -253,12 +308,12 @@ argument_list|)
 argument_list|,
 literal|"Indicates that an irrecoverable error has occurred. The "
 operator|+
-literal|"script will terminate immediately with an exception."
+literal|"script will terminate immediately with an exception using the default qname, 'http://www.w3.org/2004/07/xqt-errors#err:FOER0000', and the default error message, 'An error has been raised by the query'."
 argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -267,6 +322,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
+argument_list|,
+literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -285,15 +342,17 @@ argument_list|)
 argument_list|,
 literal|"Indicates that an irrecoverable error has occurred. The "
 operator|+
-literal|"script will terminate immediately with an exception."
+literal|"script will terminate immediately with an exception using $qname and the default message,'An error has been raised by the query'."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"qname"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -301,11 +360,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the qname"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -314,6 +375,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
+argument_list|,
+literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -332,15 +395,17 @@ argument_list|)
 argument_list|,
 literal|"Indicates that an irrecoverable error has occurred. The "
 operator|+
-literal|"script will terminate immediately with an exception."
+literal|"script will terminate immediately with an exception using $qname and $message."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"qname"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -348,11 +413,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the qname"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"message"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -360,11 +429,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the message"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -373,6 +444,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
+argument_list|,
+literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -391,15 +464,17 @@ argument_list|)
 argument_list|,
 literal|"Indicates that an irrecoverable error has occurred. The "
 operator|+
-literal|"script will terminate immediately with an exception."
+literal|"script will terminate immediately with an exception using $qname and $message with $error-object appended."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"qname"
+argument_list|,
 name|Type
 operator|.
 name|QNAME
@@ -407,11 +482,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the qname"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"message"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -419,11 +498,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the message"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"error-object"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -431,11 +514,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the error-object"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -444,6 +529,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
+argument_list|,
+literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|, 	}
@@ -596,6 +683,29 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|logger
+operator|.
+name|error
+argument_list|(
+name|message
+operator|+
+literal|" ("
+operator|+
+name|errQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|+
+literal|'#'
+operator|+
+name|errQName
+operator|.
+name|getLocalName
+argument_list|()
+operator|+
+literal|')'
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -721,6 +831,18 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"An exception occurred while serializing node to log: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
