@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -145,6 +157,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NumericValue
 import|;
 end_import
@@ -219,6 +259,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  *  * @author wolf  *   */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -226,6 +270,21 @@ name|FunCodepointsToString
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunCodepointsToString
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -251,7 +310,7 @@ argument_list|)
 argument_list|,
 literal|"Creates an xs:string from a sequence of code points. Returns the zero-length string if "
 operator|+
-literal|"$a is the empty sequence. If any of the code points in $a is not a legal XML character, "
+literal|"$codepoints is the empty sequence. If any of the code points in $codepoints is not a legal XML character, "
 operator|+
 literal|"an error is raised"
 argument_list|,
@@ -260,8 +319,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"codepoints"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -269,11 +330,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the codepoints as a sequence of xs:integer values"
 argument_list|)
 block|, 				}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -282,6 +345,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the string constructed from the codepoints if valid"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -474,6 +539,17 @@ name|next
 argument_list|)
 condition|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:FOCH0001: Codepoint "
+operator|+
+name|next
+operator|+
+literal|" is not a valid character."
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
