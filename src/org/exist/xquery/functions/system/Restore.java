@@ -451,19 +451,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":restore"
-argument_list|)
-expr_stmt|;
 name|String
 name|dirOrFile
 init|=
@@ -648,19 +635,6 @@ name|builder
 operator|.
 name|endDocument
 argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":restore"
-argument_list|)
 expr_stmt|;
 return|return
 operator|(

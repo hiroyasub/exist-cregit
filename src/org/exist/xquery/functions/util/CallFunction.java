@@ -370,25 +370,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|UtilModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|arg0
 init|=
@@ -541,25 +522,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|UtilModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|call
 operator|.

@@ -248,25 +248,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|IndexStatistics
 name|index
 init|=
@@ -298,25 +279,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// module may not be enabled
 return|return
 name|Sequence
@@ -387,25 +349,6 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|NodeImpl

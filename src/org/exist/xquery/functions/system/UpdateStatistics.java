@@ -266,19 +266,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":update-statistics"
-argument_list|)
-expr_stmt|;
 name|IndexStatisticsWorker
 name|index
 init|=
@@ -328,19 +315,6 @@ literal|"The module may not be enabled!"
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":update-statistics"
-argument_list|)
-expr_stmt|;
 return|return
 name|Sequence
 operator|.

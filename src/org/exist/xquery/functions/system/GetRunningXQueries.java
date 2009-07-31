@@ -316,19 +316,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":get-scheduled-jobs"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -393,13 +380,6 @@ name|Sequence
 name|getRunningXQueries
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|trace
-argument_list|(
-literal|"Entering getRunningXQueries"
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|xmlResponse
 init|=
@@ -514,13 +494,6 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
-name|logger
-operator|.
-name|trace
-argument_list|(
-literal|"Exiting getRunningXQueries"
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|xmlResponse
@@ -541,13 +514,6 @@ name|XQueryWatchDog
 name|watchdog
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|trace
-argument_list|(
-literal|"Entering getRunningXQuery"
-argument_list|)
-expr_stmt|;
 name|builder
 operator|.
 name|startElement
@@ -704,13 +670,6 @@ name|builder
 operator|.
 name|endElement
 argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|trace
-argument_list|(
-literal|"Exiting getRunningXQuery"
-argument_list|)
 expr_stmt|;
 block|}
 block|}

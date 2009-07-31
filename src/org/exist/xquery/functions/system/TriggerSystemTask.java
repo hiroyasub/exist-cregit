@@ -359,19 +359,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":trigger-system-task"
-argument_list|)
-expr_stmt|;
 name|String
 name|className
 init|=
@@ -670,19 +657,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":trigger-system-task"
-argument_list|)
-expr_stmt|;
 return|return
 name|Sequence
 operator|.

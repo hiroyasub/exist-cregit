@@ -358,19 +358,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":shutdown"
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|context
@@ -539,19 +526,6 @@ throw|throw
 name|xPathException
 throw|;
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SystemModule
-operator|.
-name|PREFIX
-operator|+
-literal|":shutdown"
-argument_list|)
-expr_stmt|;
 return|return
 name|Sequence
 operator|.
