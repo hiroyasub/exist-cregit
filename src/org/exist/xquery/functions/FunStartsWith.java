@@ -157,6 +157,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -210,6 +238,132 @@ name|FunStartsWith
 extends|extends
 name|CollatingFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns an xs:boolean indicating whether or not "
+operator|+
+literal|"the value of $arg1 starts with a sequence of collation "
+operator|+
+literal|"units that provides a minimal match to the collation "
+operator|+
+literal|"units of $arg2 according to the collation that is used.\n\n"
+operator|+
+literal|"Note:\n\n"
+operator|+
+literal|"\"Minimal match\" is defined in [Unicode Collation Algorithm].\n\n"
+operator|+
+literal|"If the value of $arg1 or $arg2 is the empty sequence, or "
+operator|+
+literal|"contains only ignorable collation units, it is interpreted "
+operator|+
+literal|"as the zero-length string.\n\nIf the value of $arg2 is the "
+operator|+
+literal|"zero-length string, then the function returns true. If the "
+operator|+
+literal|"value of $arg1 is the zero-length string and the value of "
+operator|+
+literal|"$arg2 is not the zero-length string, then the function "
+operator|+
+literal|"returns false.\n\n"
+operator|+
+literal|"The collation used by the invocation of this function is "
+operator|+
+literal|"determined according to the rules in 7.3.1 Collations. "
+operator|+
+literal|"If the specified collation does not support collation "
+operator|+
+literal|"units an error may be raised [err:FOCH0004]."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG1_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg1"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the input test string"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG2_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg2"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the string to deterine if it is at the beginning of $arg1"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|COLLATION_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collation"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"true if $arg2 is at the beginning of the string $arg1"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -231,52 +385,18 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the string value of $b is a prefix of the "
-operator|+
-literal|"string value of $a, false otherwise. If either $a or $b is the empty "
-operator|+
-literal|"sequence, the empty sequence is returned."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG1_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG2_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -292,68 +412,20 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the string value of $b is a prefix of the "
-operator|+
-literal|"string value of $a using collation $c, "
-operator|+
-literal|" false otherwise. If "
-operator|+
-literal|"either $a or $b is the empty sequence, the empty sequence"
-operator|+
-literal|" is returned."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG1_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|ARG2_PARAM
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|COLLATION_PARAM
 block|}
 argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
