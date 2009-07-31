@@ -362,15 +362,7 @@ literal|"to $string-2, 1 if $string-1 is superior to $string-2. "
 operator|+
 literal|"If either comparand is the empty sequence, the empty sequence is returned. "
 operator|+
-literal|"The third argument $collation-uri is relative so you only need to "
-operator|+
-literal|"specify the last part of a valid full collation-uri, e.g. "
-operator|+
-literal|"'?lang=sv-SE', "
-operator|+
-literal|"'lang=sv-SE;strength=primary;decomposition=standard' "
-operator|+
-literal|"or 'swedish'."
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType

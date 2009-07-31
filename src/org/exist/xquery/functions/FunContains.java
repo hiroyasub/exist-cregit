@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -169,6 +169,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -243,21 +271,23 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $arg1 "
+literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
 operator|+
 literal|"contains (at the beginning, at the end, or anywhere within) at least "
 operator|+
 literal|"one sequence of collation units that provides a minimal match to the "
 operator|+
-literal|"collation units in the value of $arg2, according to the default collation."
+literal|"collation units in the value of $substring, according to the default collation."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"source-string"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -265,11 +295,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the source-string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"substring"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -277,11 +311,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -290,6 +326,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true() if $source-string contains $substring, false() otherwise"
 argument_list|)
 argument_list|)
 block|,
@@ -306,23 +344,27 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $arg1 "
+literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
 operator|+
 literal|"contains (at the beginning, at the end, or anywhere within) at least "
 operator|+
 literal|"one sequence of collation units that provides a minimal match to the "
 operator|+
-literal|"collation units in the value of $arg2, according to the collation that is "
+literal|"collation units in the value of $substring, according to the collation that is "
 operator|+
-literal|"specified in $arg3."
+literal|"specified in $collation-uri."
+operator|+
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"source-string"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -330,11 +372,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the source-string"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"substring"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -342,11 +388,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the substring"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collation-uri"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -354,11 +404,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collation-uri"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -367,6 +419,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true() if $source-string contains $substring, false() otherwise"
 argument_list|)
 argument_list|)
 block|}

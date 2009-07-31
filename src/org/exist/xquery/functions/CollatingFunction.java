@@ -113,6 +113,22 @@ name|CollatingFunction
 extends|extends
 name|Function
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
+init|=
+literal|"The third argument $collation-uri is relative so you only need to "
+operator|+
+literal|"specify the last part of a valid full collation-uri, e.g. "
+operator|+
+literal|"'?lang=sv-SE', "
+operator|+
+literal|"'lang=sv-SE;strength=primary;decomposition=standard' "
+operator|+
+literal|"or 'swedish'."
+decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|CollatingFunction
