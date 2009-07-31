@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -199,6 +199,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -298,6 +326,74 @@ name|FunMin
 extends|extends
 name|CollatingFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"selects an item from the input sequence $arg whose value is "
+operator|+
+literal|"less than or equal to the value of every other item in the "
+operator|+
+literal|"input sequence. If there are two or more such items, then "
+operator|+
+literal|"the specific item whose value is returned is implementation dependent.\n\n"
+operator|+
+literal|"The following rules are applied to the input sequence:\n\n"
+operator|+
+literal|"- Values of type xs:untypedAtomic in $arg are cast to xs:double.\n"
+operator|+
+literal|"- Numeric and xs:anyURI values are converted to the least common "
+operator|+
+literal|"type that supports the le operator by a combination of type promotion "
+operator|+
+literal|"and subtype substitution. See Section B.1 Type PromotionXP and "
+operator|+
+literal|"Section B.2 Operator MappingXP.\n\n"
+operator|+
+literal|"The items in the resulting sequence may be reordered in an arbitrary "
+operator|+
+literal|"order. The resulting sequence is referred to below as the converted "
+operator|+
+literal|"sequence. This function returns an item from the converted sequence "
+operator|+
+literal|"rather than the input sequence.\n\n"
+operator|+
+literal|"If the converted sequence is empty, the empty sequence is returned.\n\n"
+operator|+
+literal|"All items in $arg must be numeric or derived from a single base type "
+operator|+
+literal|"for which the le operator is defined. In addition, the values in the "
+operator|+
+literal|"sequence must have a total order. If date/time values do not have a "
+operator|+
+literal|"timezone, they are considered to have the implicit timezone provided "
+operator|+
+literal|"by the dynamic context for the purpose of comparison. Duration values "
+operator|+
+literal|"must either all be xs:yearMonthDuration values or must all be "
+operator|+
+literal|"xs:dayTimeDuration values.\n\n"
+operator|+
+literal|"If any of these conditions is not met, a type error is raised [err:FORG0006].\n\n"
+operator|+
+literal|"If the converted sequence contains the value NaN, the value NaN is returned.\n\n"
+operator|+
+literal|"If the items in the value of $arg are of type xs:string or types derived "
+operator|+
+literal|"by restriction from xs:string, then the determination of the item with "
+operator|+
+literal|"the smallest value is made according to the collation that is used. If "
+operator|+
+literal|"the type of the items in $arg is not xs:string and $collation is "
+operator|+
+literal|"specified, the collation is ignored.\n\n"
+operator|+
+literal|"The collation used by the invocation of this function is determined "
+operator|+
+literal|"according to the rules in 7.3.1 Collations."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -319,17 +415,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Selects an item from the input sequence $a whose value is less than or equal to "
-operator|+
-literal|"the value of every other item in the input sequence."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -337,11 +433,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -350,6 +448,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimum value"
 argument_list|)
 argument_list|)
 block|,
@@ -366,19 +466,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Selects an item from the input sequence $a whose value is less than or equal to "
-operator|+
-literal|"the value of every other item in the input sequence. The collation specified in $b is "
-operator|+
-literal|"used for string comparisons."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -386,11 +484,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collation"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -398,11 +500,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -411,6 +515,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minimum value"
 argument_list|)
 argument_list|)
 block|}

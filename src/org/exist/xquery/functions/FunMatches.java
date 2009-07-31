@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -215,6 +215,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -332,6 +360,120 @@ name|Optimizable
 implements|,
 name|IndexUseReporter
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"The function returns true if $input matches the regular expression "
+operator|+
+literal|"supplied as $pattern as influenced by the value of $flags, if present; "
+operator|+
+literal|"otherwise, it returns false.\n\n"
+operator|+
+literal|"The effect of calling the first version of this function (omitting the "
+operator|+
+literal|"argument $flags) is the same as the effect of calling the second version "
+operator|+
+literal|"with the $flags argument set to a zero-length string. "
+operator|+
+literal|"Flags are defined in 7.6.1.1 Flags.\n\n"
+operator|+
+literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\n"
+operator|+
+literal|"Unless the metacharacters ^ and $ are used as anchors, the string is considered "
+operator|+
+literal|"to match the pattern if any substring matches the pattern. But if anchors are used, "
+operator|+
+literal|"the anchors must match the start/end of the string (in string mode), or the "
+operator|+
+literal|"start/end of a line (in multiline mode).\n\n"
+operator|+
+literal|"Note:\n\n"
+operator|+
+literal|"This is different from the behavior of patterns in [XML Schema Part 2: Datatypes "
+operator|+
+literal|"Second Edition], where regular expressions are implicitly anchored.\n\n"
+operator|+
+literal|"Please note that - in contrast - with the "
+operator|+
+literal|"specification - this method allows zero or more items for the string argument.\n\n"
+operator|+
+literal|"An error is raised [err:FORX0002] if the value of $pattern is invalid "
+operator|+
+literal|"according to the rules described in section 7.6.1 Regular Expression Syntax.\n\n"
+operator|+
+literal|"An error is raised [err:FORX0001] if the value of $flags is invalid "
+operator|+
+literal|"according to the rules described in section 7.6.1 Regular Expression Syntax."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|INPUT_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"input"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the input string"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|PATTERN_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"pattern"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the pattern"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FLAGS_ARG
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"flags"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -353,45 +495,19 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the first argument string matches the regular expression specified "
-operator|+
-literal|"by the second argument. This function is optimized internally if a range index of type xs:string "
-operator|+
-literal|"is defined on the nodes passed to the first argument. Please note that - in contrast - with the "
-operator|+
-literal|"specification - this method allows zero or more items for the string argument."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|INPUT_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PATTERN_ARG
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -400,6 +516,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"true if the pattern is a match"
 argument_list|)
 argument_list|)
 block|,
@@ -416,57 +534,21 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the first argument string matches the regular expression specified "
-operator|+
-literal|"by the second argument. This function is optimized internally if a range index of type xs:string "
-operator|+
-literal|"is defined on the nodes passed to the first argument. Please note that - in contrast - with the "
-operator|+
-literal|"specification - this method allows zero or more items for the string argument."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|INPUT_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|PATTERN_ARG
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|)
+name|FLAGS_ARG
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -475,6 +557,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"true if the pattern is a match"
 argument_list|)
 argument_list|)
 block|}

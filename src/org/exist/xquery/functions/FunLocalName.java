@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-2006,  the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.   *  * $Id$  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-2009,  the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.   *  * $Id$  */
 end_comment
 
 begin_package
@@ -121,6 +121,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -218,6 +246,40 @@ name|FunLocalName
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns the local part of the name of $arg as an xs:string that "
+operator|+
+literal|"will either be the zero-length string or will have the lexical form of an xs:NCName.\n\n"
+operator|+
+literal|"If the argument is omitted, it defaults to the context item (.). "
+operator|+
+literal|"The behavior of the function if the argument is omitted is exactly "
+operator|+
+literal|"the same as if the context item had been passed as the argument.\n\n"
+operator|+
+literal|"The following errors may be raised: if the context item is undefined "
+operator|+
+literal|"[err:XPDY0002]XP; if the context item is not a node [err:XPTY0004]XP.\n\n"
+operator|+
+literal|"If the argument is supplied and is the empty sequence, the function "
+operator|+
+literal|"returns the zero-length string.\n\n"
+operator|+
+literal|"If the target node has no name (that is, if it is a document node, a "
+operator|+
+literal|"comment, or a text node), the function returns the zero-length string.\n\n"
+operator|+
+literal|"Otherwise, the value returned will be the local part of the expanded-QName "
+operator|+
+literal|"of the target node (as determined by the dm:node-name accessor in Section "
+operator|+
+literal|"5.11 node-name AccessorDM. This will be an xs:string whose lexical form is an xs:NCName."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -239,11 +301,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the local part of the name of the context item as an xs:string "
-operator|+
-literal|"that will either be the zero-length string or will have the lexical "
-operator|+
-literal|"form of an xs:NCName."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
@@ -252,7 +310,7 @@ literal|0
 index|]
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -261,6 +319,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the local name"
 argument_list|)
 argument_list|)
 block|,
@@ -277,19 +337,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the local part of the name of the value of $a as an xs:string "
-operator|+
-literal|"that will either be the zero-length string or will have the lexical "
-operator|+
-literal|"form of an xs:NCName."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -297,11 +355,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -310,6 +370,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the local name"
 argument_list|)
 argument_list|)
 block|}

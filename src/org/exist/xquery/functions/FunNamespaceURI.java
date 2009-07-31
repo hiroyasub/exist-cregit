@@ -135,6 +135,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -218,6 +246,34 @@ name|FunNamespaceURI
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns the namespace URI of the xs:QName of $arg.\n\n"
+operator|+
+literal|"If the argument is omitted, it defaults to the context node (.). "
+operator|+
+literal|"The behavior of the function if the argument is omitted is exactly "
+operator|+
+literal|"the same as if the context item had been passed as the argument.\n\n"
+operator|+
+literal|"The following errors may be raised: if the context item is undefined "
+operator|+
+literal|"[err:XPDY0002]XP; if the context item is not a node [err:XPTY0004]XP.\n\n"
+operator|+
+literal|"If $arg is neither an element nor an attribute node, or if it is an "
+operator|+
+literal|"element or attribute node whose expanded-QName (as determined by the "
+operator|+
+literal|"dm:node-name accessor in the Section 5.11 node-name AccessorDM) is "
+operator|+
+literal|"in no namespace, then the function returns the xs:anyURI "
+operator|+
+literal|"corresponding to the zero-length string."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -239,13 +295,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the namespace URI of the xs:QName of the context item. "
-operator|+
-literal|"If the context item is in no namespace or is neither an element nor attribute node, "
-operator|+
-literal|"returns the xs:anyURI equivalent to the zero-length string."
-operator|+
-literal|" Raises an error if the context item is undefined or not a node."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
@@ -254,7 +304,7 @@ literal|0
 index|]
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -263,6 +313,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the namespace URI"
 argument_list|)
 argument_list|,
 literal|false
@@ -281,21 +333,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the namespace URI of the xs:QName value of $a. "
-operator|+
-literal|"If $a is in no namespace or is neither an element nor attribute node, "
-operator|+
-literal|"returns the xs:anyURI eqvivalent to the zero-length string."
-operator|+
-literal|" Raises an error if the context item is undefined or not a node."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"arg"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -303,11 +351,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -316,6 +366,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the namespace URI"
 argument_list|)
 argument_list|,
 literal|false
