@@ -365,25 +365,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|user
 init|=
@@ -514,25 +495,6 @@ block|{
 comment|/* ignore */
 block|}
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|Sequence
 operator|.

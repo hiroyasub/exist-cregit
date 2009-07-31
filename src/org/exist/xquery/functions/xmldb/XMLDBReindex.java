@@ -339,25 +339,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// this is "/db"
 name|String
 name|ROOTCOLLECTION
@@ -399,25 +380,6 @@ operator|+
 literal|"' must be a DBA to reindex the database"
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -455,25 +417,6 @@ argument_list|(
 literal|"Collection should start with "
 operator|+
 name|ROOTCOLLECTION
-argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -527,25 +470,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
@@ -582,50 +506,12 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
 name|FALSE
 return|;
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 name|BooleanValue
 operator|.

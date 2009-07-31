@@ -444,25 +444,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|Permission
@@ -475,25 +456,6 @@ argument_list|,
 name|args
 argument_list|)
 decl_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|IntegerValue
@@ -520,25 +482,6 @@ operator|.
 name|error
 argument_list|(
 literal|"Unable to retrieve resource permissions"
-argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw

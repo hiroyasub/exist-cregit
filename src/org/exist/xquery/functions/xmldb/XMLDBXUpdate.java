@@ -449,7 +449,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//logger.info("Entering " + XMLDBModule.PREFIX + ":" + getName().getLocalName());
 name|NodeValue
 name|data
 init|=
@@ -634,7 +633,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//logger.info("Exiting " + XMLDBModule.PREFIX + ":" + getName().getLocalName());
 return|return
 operator|new
 name|IntegerValue
