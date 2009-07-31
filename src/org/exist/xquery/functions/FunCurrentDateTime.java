@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -135,6 +147,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -192,6 +218,21 @@ name|FunCurrentDateTime
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunCurrentDateTime
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -220,7 +261,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -229,6 +270,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the date-time current within query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -260,7 +303,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -269,6 +312,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the time current within query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -300,7 +345,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -309,6 +354,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the date current within the query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -329,6 +376,17 @@ argument_list|,
 name|signature
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|CONTEXT_SET
+return|;
 block|}
 specifier|public
 name|Sequence
@@ -506,6 +564,21 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"can't handle function "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|Error
@@ -548,17 +621,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|result
-return|;
-block|}
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
 return|;
 block|}
 block|}

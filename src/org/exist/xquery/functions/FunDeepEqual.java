@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2001-2006 The eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation   * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -229,6 +241,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -338,6 +378,21 @@ name|FunDeepEqual
 extends|extends
 name|CollatingFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunDeepEqual
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -359,17 +414,19 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true iff every item in $a is deep-equal to the item at the same position in $b, "
+literal|"Returns true iff every item in $items-1 is deep-equal to the item at the same position in $items-2, "
 operator|+
-literal|"false otherwise. If both $a and $b are the empty sequence, returns true. "
+literal|"false otherwise. If both $items-1 and $items-2 are the empty sequence, returns true(). "
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"items-1"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -377,11 +434,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the first item sequence"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"items-2"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -389,11 +450,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the second item sequence"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -402,6 +465,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true() if the sequences are deep-equal, false() otherwise"
 argument_list|)
 argument_list|)
 block|,
@@ -418,19 +483,23 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true iff every item in $a is deep-equal to the item at the same position in $b, "
+literal|"Returns true iff every item in $items-1 is deep-equal to the item at the same position in $items-2, "
 operator|+
-literal|"false otherwise. If both $a and $b are the empty sequence, returns true. "
+literal|"false otherwise. If both $items-1 and $items-2 are the empty sequence, returns true(). "
 operator|+
-literal|"Comparison collation is specified by $c"
+literal|"Comparison collation is specified by $collation-uri. "
+operator|+
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"items-1"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -438,11 +507,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the first item sequence"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"items-2"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -450,11 +523,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the second item sequence"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collation-uri"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -462,11 +539,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the collation-uri"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -475,6 +554,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true() if the sequences are deep-equal, false() otherwise"
 argument_list|)
 argument_list|)
 block|}
@@ -1234,6 +1315,24 @@ argument_list|()
 argument_list|)
 return|;
 default|default:
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"unexpected item type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|a
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
@@ -1253,12 +1352,23 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|XPathException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -1560,6 +1670,16 @@ literal|false
 return|;
 break|break;
 default|default:
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"unexpected node type "
+operator|+
+name|nodeTypeA
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
@@ -1569,6 +1689,7 @@ operator|+
 name|nodeTypeA
 argument_list|)
 throw|;
+block|}
 block|}
 name|a
 operator|=
