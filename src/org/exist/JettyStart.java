@@ -327,6 +327,73 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Running with Java "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.version"
+argument_list|,
+literal|"(unknown java.version)"
+argument_list|)
+operator|+
+literal|" ["
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.vendor"
+argument_list|,
+literal|"(unknown java.vendor)"
+argument_list|)
+operator|+
+literal|" ("
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.vm.name"
+argument_list|,
+literal|"(unknown java.vm.name)"
+argument_list|)
+operator|+
+literal|") in "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.home"
+argument_list|,
+literal|"(unknown java.home)"
+argument_list|)
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 comment|// we register our own shutdown hook
@@ -499,6 +566,13 @@ operator|.
 name|getListeners
 argument_list|()
 decl_stmt|;
+name|StringBuilder
+name|ports
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|listeners
@@ -507,16 +581,45 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
+for|for
+control|(
+name|HttpListener
+name|listener
+range|:
+name|listeners
+control|)
+block|{
 name|port
 operator|=
-name|listeners
-index|[
-literal|0
-index|]
+name|listener
 operator|.
 name|getPort
 argument_list|()
 expr_stmt|;
+name|ports
+operator|.
+name|append
+argument_list|(
+literal|" "
+operator|+
+name|port
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+name|ports
+operator|.
+name|append
+argument_list|(
+literal|" "
+operator|+
+name|port
+argument_list|)
+expr_stmt|;
+block|}
 name|HttpContext
 index|[]
 name|contexts
@@ -532,7 +635,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"-----------------------------------------------------"
+literal|"----------------------------------------------------------------"
 argument_list|)
 expr_stmt|;
 name|System
@@ -541,9 +644,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Server has started on port "
+literal|"eXist-db has started on port"
 operator|+
-name|port
+name|ports
 operator|+
 literal|". Configured contexts:"
 argument_list|)
@@ -591,7 +694,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"-----------------------------------------------------"
+literal|"----------------------------------------------------------------"
 argument_list|)
 expr_stmt|;
 if|if
