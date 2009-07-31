@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -131,6 +135,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -202,6 +234,38 @@ name|FunInsertBefore
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns a new sequence constructed from the value "
+operator|+
+literal|"of $target with the value of $inserts inserted at "
+operator|+
+literal|"the position specified by the value of $position. "
+operator|+
+literal|"(The value of $target is not affected by the sequence construction.)\n\n"
+operator|+
+literal|"If $target is the empty sequence, $inserts is returned. If $inserts is the empty sequence, $target is returned.\n\n"
+operator|+
+literal|"The value returned by the function consists of all items "
+operator|+
+literal|"of $target whose index is less than $position, followed "
+operator|+
+literal|"by all items of $inserts, followed by the remaining elements "
+operator|+
+literal|"of $target, in that sequence.\n\n"
+operator|+
+literal|"If $position is less than one (1), the first position, the effective "
+operator|+
+literal|"value of $position is one (1). If $position is greater than the number "
+operator|+
+literal|"of items in $target, then the effective value of $position is "
+operator|+
+literal|"equal to the number of items in $target plus 1."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -221,17 +285,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a new sequence constructed from the value of the target sequence"
-operator|+
-literal|"with the value of the sequence to insert inserted at the position specified."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"target"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -239,11 +303,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"position"
+argument_list|,
 name|Type
 operator|.
 name|INTEGER
@@ -251,11 +319,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"inserts"
+argument_list|,
 name|Type
 operator|.
 name|ITEM
@@ -263,11 +335,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -276,6 +350,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the new sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

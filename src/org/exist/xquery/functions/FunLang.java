@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -171,6 +171,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -239,6 +267,38 @@ specifier|public
 name|CompiledXQuery
 name|query
 decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"This function tests whether the language of $node, or the context item if "
+operator|+
+literal|"the second argument is omitted, as specified by xml:lang attributes is the "
+operator|+
+literal|"same as, or is a sublanguage of, the language specified by $testlang. The "
+operator|+
+literal|"behavior of the function if the second argument is omitted is exactly the "
+operator|+
+literal|"same as if the context item (.) had been passed as the second argument. The "
+operator|+
+literal|"language of the argument node, or the context item if the second argument is "
+operator|+
+literal|"omitted, is determined by the value of the xml:lang attribute on the node, "
+operator|+
+literal|"or, if the node has no such attribute, by the value of the xml:lang attribute "
+operator|+
+literal|"on the nearest ancestor of the node that has an xml:lang attribute. If there "
+operator|+
+literal|"is no such ancestor, then the function returns false\n\n"
+operator|+
+literal|"The following errors may be raised: if the context item is undefined [err:XPDY0002]XP; "
+operator|+
+literal|"if the context item is not a node [err:XPTY0004]XP.\n\n"
+operator|+
+literal|"If $testlang is the empty sequence it is interpreted as the zero-length string."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -260,17 +320,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the context items xml:lang attribute is equal "
-operator|+
-literal|"to the value of $a, false otherwise."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"testLang"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -278,11 +338,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the language code"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -291,6 +353,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true if the language code matches"
 argument_list|)
 argument_list|)
 block|,
@@ -307,17 +371,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the context items xml:lang attribute is equal "
-operator|+
-literal|"to the value of $a, false otherwise."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"testLang"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -325,11 +389,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the language code"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"node"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -337,11 +405,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -350,6 +420,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ONE
+argument_list|,
+literal|"true if the language code matches"
 argument_list|)
 argument_list|)
 block|}

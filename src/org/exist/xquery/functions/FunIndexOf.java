@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -181,6 +181,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -266,6 +294,50 @@ name|FunIndexOf
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION
+init|=
+literal|"Returns a sequence of positive integers giving the "
+operator|+
+literal|"positions within the sequence $seqParam of items "
+operator|+
+literal|"that are equal to $srchParam.\n\n"
+operator|+
+literal|"The collation used by the invocation of this function "
+operator|+
+literal|"is determined according to the rules in 7.3.1 Collations. "
+operator|+
+literal|"The collation is used when string comparison is required.\n\n"
+operator|+
+literal|"The items in the sequence $seqParam are compared with "
+operator|+
+literal|"$srchParam under the rules for the eq operator. Values of "
+operator|+
+literal|"type xs:untypedAtomic are compared as if they were of "
+operator|+
+literal|"type xs:string. Values that cannot be compared, i.e. "
+operator|+
+literal|"the eq operator is not defined for their types, are "
+operator|+
+literal|"considered to be distinct. If an item compares equal, "
+operator|+
+literal|"then the position of that item in the sequence "
+operator|+
+literal|"$seqParam is included in the result.\n\n"
+operator|+
+literal|"If the value of $seqParam is the empty sequence, or "
+operator|+
+literal|"if no item in $seqParam matches $srchParam, then the "
+operator|+
+literal|"empty sequence is returned.\n\n"
+operator|+
+literal|"The first item in a sequence is at position 1, not position 0.\n\n"
+operator|+
+literal|"The result sequence is in ascending numeric order."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -287,19 +359,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a sequence of positive integers giving the positions within the sequence "
-operator|+
-literal|"$a of items that are equal to $b. If the value of $a is the empty sequence, or if "
-operator|+
-literal|"no item in $a matches $b, then the empty sequence is returned."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"seqParam"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -307,11 +377,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"srchParam"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -319,11 +393,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -332,6 +408,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"a sequence of positive integers giving the positions within the sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -348,21 +426,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a sequence of positive integers giving the positions within the sequence "
-operator|+
-literal|"$a of items that are equal to $b. If the value of $a is the empty sequence, or if "
-operator|+
-literal|"no item in $a matches $b, then the empty sequence is returned. Values are compared "
-operator|+
-literal|"according to the collation specified in $c."
+name|FUNCTION_DESCRIPTION
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"seqParam"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -370,11 +444,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"srchParam"
+argument_list|,
 name|Type
 operator|.
 name|ATOMIC
@@ -382,11 +460,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"collation"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -394,11 +476,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|""
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -407,6 +491,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"a sequence of positive integers giving the positions within the sequence"
 argument_list|)
 argument_list|)
 block|}
