@@ -91,6 +91,15 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|hasChildNodes
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+specifier|public
 name|String
 name|getStringValue
 parameter_list|()
