@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -191,6 +203,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -274,6 +314,21 @@ name|FunBaseURI
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunBaseURI
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -300,7 +355,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -309,6 +364,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the base-uri from the context item"
 argument_list|)
 argument_list|)
 block|,
@@ -325,7 +382,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the base-uri property for $a. If $a is the empty "
+literal|"Returns the value of the base-uri property for $uri. If $uri is the empty "
 operator|+
 literal|"sequence, the empty sequence is returned."
 argument_list|,
@@ -334,8 +391,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"uri"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -343,11 +402,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the uri"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -356,6 +417,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the base-uri from $uri"
 argument_list|)
 argument_list|)
 block|,
@@ -379,7 +442,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -388,6 +451,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the base-uri from the static context"
 argument_list|)
 argument_list|)
 block|}
@@ -564,6 +629,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:XPDY0002: context sequence is empty and no argument specified"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -573,6 +646,7 @@ argument_list|,
 literal|"err:XPDY0002: context sequence is empty and no argument specified"
 argument_list|)
 throw|;
+block|}
 name|Item
 name|item
 init|=
@@ -600,6 +674,14 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:XPTY0004: context item is not a node"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -609,6 +691,7 @@ argument_list|,
 literal|"err:XPTY0004: context item is not a node"
 argument_list|)
 throw|;
+block|}
 name|node
 operator|=
 operator|(
@@ -777,6 +860,16 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -960,6 +1053,16 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
