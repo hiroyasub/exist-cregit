@@ -583,25 +583,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SQLModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// was a db driver and url specified?
 if|if
 condition|(
@@ -781,25 +762,6 @@ name|dbPassword
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Exiting "
-operator|+
-name|SQLModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// store the connection and return the uid handle of the connection
 return|return
 operator|new
@@ -822,7 +784,7 @@ name|IllegalAccessException
 name|iae
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
@@ -853,7 +815,7 @@ name|ClassNotFoundException
 name|cnfe
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
@@ -884,7 +846,7 @@ name|InstantiationException
 name|ie
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
@@ -915,7 +877,7 @@ name|SQLException
 name|sqle
 parameter_list|)
 block|{
-name|LOG
+name|logger
 operator|.
 name|error
 argument_list|(
