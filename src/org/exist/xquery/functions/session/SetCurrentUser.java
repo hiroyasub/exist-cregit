@@ -509,25 +509,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Entering "
-operator|+
-name|SessionModule
-operator|.
-name|PREFIX
-operator|+
-literal|":"
-operator|+
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|RequestModule
 name|myModule
 init|=
@@ -758,7 +739,7 @@ return|;
 block|}
 else|else
 block|{
-name|LOG
+name|logger
 operator|.
 name|warn
 argument_list|(
