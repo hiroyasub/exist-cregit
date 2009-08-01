@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -188,10 +200,25 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|FunItemAt
+name|DeprecatedFunItemAt
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|DeprecatedFunItemAt
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -249,18 +276,20 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|BOOLEAN
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|)
 argument_list|,
+literal|"This function is eXist-specific and deprecated. It should not be in the standard functions namespace. "
+operator|+
 literal|"Use $x[1] instead"
 argument_list|)
 decl_stmt|;
 specifier|public
-name|FunItemAt
+name|DeprecatedFunItemAt
 parameter_list|(
 name|XQueryContext
 name|context
@@ -300,6 +329,17 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Use of deprecated, since 2008-04-02, function fn:item-at(). "
+operator|+
+literal|"It will be removed really soon. Please "
+operator|+
+literal|"use $x[1] instead."
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|context
@@ -497,7 +537,7 @@ literal|null
 condition|)
 block|{
 comment|//TODO : throw an exception ? -pb
-name|LOG
+name|logger
 operator|.
 name|debug
 argument_list|(

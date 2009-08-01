@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2006 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: FunId.java 5378 2007-02-21 14:33:35Z brihaye $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2007-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -229,6 +241,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Item
 import|;
 end_import
@@ -373,6 +413,10 @@ name|TreeSet
 import|;
 end_import
 
+begin_comment
+comment|/**  *  * @author perig  * @author piotr kaminski  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -380,6 +424,21 @@ name|FunIdRef
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunIdRef
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -403,17 +462,19 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element or attributes nodes with an IDREF value matching the "
 operator|+
-literal|"value of one or more of the ID values supplied in $a. "
+literal|"value of one or more of the ID values supplied in $id-sequence. "
 operator|+
-literal|"If none is matching or $a is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $ied-sequence is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"id-sequence"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -421,11 +482,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the id-sequence"
 argument_list|)
-block|}
+block|,             }
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -434,6 +497,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"elements with matching IDREF values from IDs in $id-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -452,17 +517,19 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element or attributes nodes with an IDREF value matching the "
 operator|+
-literal|"value of one or more of the ID values supplied in $a. "
+literal|"value of one or more of the ID values supplied in $id-sequence. "
 operator|+
-literal|"If none is matching or $a is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $id-sequence is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"id-sequence"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -470,11 +537,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"the id-sequence"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"node-in-document"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -482,11 +553,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the node-in-document"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -495,6 +568,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"elements with matching IDREF values from IDs in $id-sequence in the same document as $node-in-document"
 argument_list|)
 argument_list|)
 block|}
