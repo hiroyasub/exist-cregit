@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -34,6 +34,18 @@ operator|.
 name|datatype
 operator|.
 name|DatatypeConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -183,6 +195,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -229,6 +269,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  *  * @author wolf  * @author piotr kaminski  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -236,6 +280,65 @@ name|FunGetDurationComponent
 extends|extends
 name|BasicFunction
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunGetDurationComponent
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionParameterSequenceType
+name|DAYTIME_DURA_01_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"duration"
+argument_list|,
+name|Type
+operator|.
+name|DAY_TIME_DURATION
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the duration as xs:dayTimeDuration"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionParameterSequenceType
+name|YEARMONTH_DURA_01_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"duration"
+argument_list|,
+name|Type
+operator|.
+name|YEAR_MONTH_DURATION
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"the duration as xs:yearMonthDuration"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -257,27 +360,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the days component in the canonical lexical "
 operator|+
-literal|"representation of the value of $a. The result may be negative."
+literal|"representation of the value of $duaration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DAY_TIME_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|DAYTIME_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -286,6 +379,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the days component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -310,27 +405,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the hours component in the canonical lexical "
 operator|+
-literal|"representation of the value of $a. The result may be negative."
+literal|"representation of the value of $duration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DAY_TIME_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|DAYTIME_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -339,6 +424,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the hours component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -363,27 +450,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the minutes component in the canonical "
 operator|+
-literal|"lexical representation of the value of $a. The result may be negative."
+literal|"lexical representation of the value of $duration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DAY_TIME_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|DAYTIME_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -392,6 +469,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the minutes component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -416,27 +495,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:decimal representing the seconds component in the canonical lexical "
 operator|+
-literal|"representation of the value of $a. The result may be negative"
+literal|"representation of the value of $duration. The result may be negative"
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|DAY_TIME_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|DAYTIME_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -445,6 +514,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the seconds component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -469,27 +540,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the months component in the canonical lexical "
 operator|+
-literal|"representation of the value of $a. The result may be negative."
+literal|"representation of the value of $duration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|YEAR_MONTH_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|YEARMONTH_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -498,6 +559,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the months component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -522,27 +585,17 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the years component in the canonical lexical "
 operator|+
-literal|"representation of the value of $a. The result may be negative."
+literal|"representation of the value of $duration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|YEAR_MONTH_DURATION
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|)
+name|YEARMONTH_DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -551,6 +604,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"the years component of $duaration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -918,6 +973,21 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"can't handle function "
+operator|+
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|Error
