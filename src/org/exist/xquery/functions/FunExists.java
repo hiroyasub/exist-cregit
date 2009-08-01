@@ -239,7 +239,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the argument, $item-sequence, is the empty sequence, "
+literal|"Returns true if the argument, $item-sequence, is not the empty sequence, "
 operator|+
 literal|"false otherwise."
 argument_list|,
@@ -275,7 +275,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() if empty-sequence, false() otherwise"
+literal|"true() if not empty-sequence, false() otherwise"
 argument_list|)
 argument_list|)
 decl_stmt|;
