@@ -140,6 +140,10 @@ block|,
 name|DuplicateAttributesTest
 operator|.
 name|class
+block|,
+name|StoredModuleTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
