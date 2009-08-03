@@ -993,15 +993,7 @@ argument_list|,
 name|module2
 argument_list|)
 expr_stmt|;
-name|writeModule
-argument_list|(
-name|c2
-argument_list|,
-literal|"module3.xqm"
-argument_list|,
-name|module3b
-argument_list|)
-expr_stmt|;
+comment|//writeModule(c2, "module3.xqm", module3b);
 name|Collection
 name|c3
 init|=
