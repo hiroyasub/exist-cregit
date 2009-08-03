@@ -156,6 +156,9 @@ operator|)
 operator|.
 name|compareTo
 argument_list|(
+operator|(
+name|NodeProxy
+operator|)
 name|o2
 argument_list|)
 return|;

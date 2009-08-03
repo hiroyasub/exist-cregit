@@ -169,10 +169,16 @@ block|}
 specifier|public
 specifier|final
 specifier|static
+parameter_list|<
+name|C
+parameter_list|>
 name|void
 name|swap
 parameter_list|(
 name|List
+argument_list|<
+name|C
+argument_list|>
 name|a
 parameter_list|,
 name|int
@@ -183,7 +189,7 @@ name|j
 parameter_list|)
 comment|//-----------------------------------------------
 block|{
-name|Object
+name|C
 name|T
 decl_stmt|;
 name|T
@@ -219,52 +225,16 @@ name|T
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|swap
-parameter_list|(
-name|Comparable
-index|[]
-name|a
-parameter_list|,
-name|int
-name|i
-parameter_list|,
-name|int
-name|j
-parameter_list|)
-comment|//-----------------------------------------------
-block|{
-name|Comparable
-name|T
-decl_stmt|;
-name|T
-operator|=
-name|a
-index|[
-name|i
-index|]
-expr_stmt|;
-name|a
-index|[
-name|i
-index|]
-operator|=
-name|a
-index|[
-name|j
-index|]
-expr_stmt|;
-name|a
-index|[
-name|j
-index|]
-operator|=
-name|T
-expr_stmt|;
-block|}
+comment|//
+comment|//	public final static<C extends Comparable<C>>void swap(C[] a, int i, int j)
+comment|//	//-----------------------------------------------
+comment|//	{
+comment|//		Comparable T;
+comment|//
+comment|//		T = a[i];
+comment|//		a[i] = a[j];
+comment|//		a[j] = T;
+comment|//	}
 block|}
 end_class
 

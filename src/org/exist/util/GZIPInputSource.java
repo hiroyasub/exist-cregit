@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class extends InputSource to be able to deal with  * GZIP compressed files. Its main feature is that each time  * {@link #getByteStream()} is called, a new uncompressed  * stream is created from the compressed GZIP file.  * This is very useful for eXist, which works in two steps:  * validation and insertion.  *   * @author jmfernandez  *  */
+comment|/**  * This class extends InputSource to be able to deal with  * GZIP compressed files. Its main feature is that each time  * {@link #getByteStream()} is called, a new uncompressed  * stream is created from the compressed GZIP file.  * This is very useful for eXist, which works in two steps:  * validation and insertion.  *   * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  *  */
 end_comment
 
 begin_class

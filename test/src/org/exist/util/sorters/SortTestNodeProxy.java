@@ -1,10 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/**  *   */
-end_comment
-
-begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -77,7 +73,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|SortTestNodeProxy
+name|NodeProxy
 name|o
 parameter_list|)
 block|{
@@ -94,49 +90,33 @@ argument_list|(
 literal|"Sort ought not be looking at the value"
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+operator|(
+name|o
+operator|instanceof
+name|SortTestNodeProxy
+operator|)
+condition|)
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Test implementation limitation hit"
+argument_list|)
+throw|;
 return|return
 name|val
 operator|-
+operator|(
+operator|(
+name|SortTestNodeProxy
+operator|)
 name|o
+operator|)
 operator|.
 name|val
-return|;
-block|}
-empty_stmt|;
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|NodeProxy
-name|o
-parameter_list|)
-block|{
-return|return
-name|compareTo
-argument_list|(
-operator|(
-name|SortTestNodeProxy
-operator|)
-name|o
-argument_list|)
-return|;
-block|}
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
-return|return
-name|compareTo
-argument_list|(
-operator|(
-name|SortTestNodeProxy
-operator|)
-name|o
-argument_list|)
 return|;
 block|}
 empty_stmt|;
