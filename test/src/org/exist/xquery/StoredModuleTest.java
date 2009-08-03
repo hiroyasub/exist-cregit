@@ -929,11 +929,7 @@ literal|"module namespace mod2 = 'urn:module2'; "
 operator|+
 literal|"import module namespace mod3 = 'urn:module3' "
 operator|+
-literal|"at  '"
-operator|+
-name|collection3Name
-operator|+
-literal|"/module3.xqm'; "
+literal|"at  'module3/module3.xqm'; "
 operator|+
 literal|"declare function mod2:showMe() as xs:string {"
 operator|+
@@ -957,11 +953,7 @@ name|query
 init|=
 literal|"import module namespace mod2 = 'urn:module2' "
 operator|+
-literal|"at  'xmldb:exist:/"
-operator|+
-name|collection2Name
-operator|+
-literal|"/module2.xqm'; "
+literal|"at  'module2/module2.xqm'; "
 operator|+
 literal|"mod2:showMe()"
 decl_stmt|;
