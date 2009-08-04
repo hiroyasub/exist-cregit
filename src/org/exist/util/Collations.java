@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -164,7 +164,7 @@ specifier|private
 specifier|final
 specifier|static
 name|Logger
-name|LOG
+name|logger
 init|=
 name|Logger
 operator|.
@@ -298,15 +298,6 @@ return|;
 block|}
 else|else
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Loading collation: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 name|String
 name|lang
 init|=
@@ -492,6 +483,14 @@ argument_list|(
 name|collatorClass
 argument_list|)
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"The specified collator class is not a subclass of java.text.Collator"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -499,6 +498,7 @@ argument_list|(
 literal|"The specified collator class is not a subclass of java.text.Collator"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|(
 name|Collator
@@ -515,6 +515,17 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:XQST0038: The specified collator class "
+operator|+
+name|uri
+operator|+
+literal|" could not be found"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -545,6 +556,18 @@ literal|null
 return|;
 block|}
 else|else
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:XQST0038: Unknown collation : '"
+operator|+
+name|uri
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -556,6 +579,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -1423,18 +1447,6 @@ argument_list|(
 name|lang
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Using locale: "
-operator|+
-name|locale
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|collator
 operator|=
 name|Collator
@@ -1533,6 +1545,14 @@ name|IDENTICAL
 argument_list|)
 expr_stmt|;
 else|else
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Collation strength should be either 'primary', 'secondary', 'tertiary' or 'identical"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1540,6 +1560,7 @@ argument_list|(
 literal|"Collation strength should be either 'primary', 'secondary', 'tertiary' or 'identical"
 argument_list|)
 throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -1611,6 +1632,14 @@ name|CANONICAL_DECOMPOSITION
 argument_list|)
 expr_stmt|;
 else|else
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Collation decomposition should be either 'none', 'full' or 'standard"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1618,6 +1647,7 @@ argument_list|(
 literal|"Collation decomposition should be either 'none', 'full' or 'standard"
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|collator
