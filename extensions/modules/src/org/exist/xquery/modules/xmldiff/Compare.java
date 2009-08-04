@@ -251,7 +251,7 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -260,6 +260,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_ONE
+argument_list|,
+literal|"true() if the two node sets $node-set-1 and $node-set-2 are equal, otherwise false()"
 argument_list|)
 argument_list|)
 decl_stmt|;
