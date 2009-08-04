@@ -2561,6 +2561,10 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|showId
+operator|=
+name|EXIST_ID_NONE
+expr_stmt|;
 name|httpContext
 operator|=
 literal|null
