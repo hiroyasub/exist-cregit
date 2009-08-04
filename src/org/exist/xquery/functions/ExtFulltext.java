@@ -995,6 +995,14 @@ name|terms
 argument_list|)
 decl_stmt|;
 comment|// walk through the matches and compute the combined node set
+if|if
+condition|(
+name|hits
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
 name|preselectResult
 operator|=
 name|hits
