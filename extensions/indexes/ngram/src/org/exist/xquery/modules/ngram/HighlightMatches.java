@@ -237,6 +237,34 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|FunctionReference
 import|;
 end_import
@@ -401,17 +429,17 @@ argument_list|)
 argument_list|,
 literal|"Highlight matching strings within text nodes that resulted from a ngram search. "
 operator|+
-literal|"The function takes a sequence of nodes as first argument $a and a callback function (defined with "
+literal|"The function takes a sequence of nodes as first argument $nodes and a callback function (defined with "
 operator|+
-literal|"util:function) as second parameter $b. Each node in $a will be copied into a new document fragment. "
+literal|"util:function) as second parameter $function-reference. Each node in $nodes will be copied into a new document fragment. "
 operator|+
-literal|"For each ngram match found while copying a node, the callback function in $b will be called once. The "
+literal|"For each ngram match found while copying a node, the callback function in $function-reference will be called once. The "
 operator|+
-literal|"callback function should take 2 arguments: 1) the matching text string as xs:string, 2) the node to which this "
+literal|"callback function should take 2 arguments:\n\n1) the matching text string as xs:string,\n2) the node to which this "
 operator|+
-literal|"text string belongs. The callback function should return zero or more nodes, which will be inserted into the "
+literal|"text string belongs.\n\nThe callback function should return zero or more nodes, which will be inserted into the "
 operator|+
-literal|"resulting node set at the place where the matching text sequence occurred. "
+literal|"resulting node set at the place where the matching text sequence occurred.\n\n"
 operator|+
 literal|"Note: a ngram match on mixed content may span multiple nodes. In this case, the callback function is called "
 operator|+
@@ -422,8 +450,10 @@ name|SequenceType
 index|[]
 block|{
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"nodes"
+argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -431,11 +461,15 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a sequence of nodes"
 argument_list|)
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"function-reference"
+argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
@@ -443,11 +477,13 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"a callback function"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -456,6 +492,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO_OR_MORE
+argument_list|,
+literal|"a resulting node set"
 argument_list|)
 argument_list|)
 decl_stmt|;
