@@ -296,10 +296,8 @@ operator|new
 name|FastQSortTester
 argument_list|()
 block|,
-operator|new
-name|HSortTester
-argument_list|()
-block|, 		}
+comment|//			new HSortTester(),
+block|}
 return|;
 block|}
 block|}
