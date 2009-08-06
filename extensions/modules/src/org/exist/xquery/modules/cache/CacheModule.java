@@ -254,6 +254,15 @@ return|return
 literal|"A module for accessing a global cache for stored/shared data between sessions"
 return|;
 block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
+return|;
+block|}
 block|}
 end_class
 

@@ -246,6 +246,15 @@ literal|"A module for performing HTTP requests as a client"
 operator|)
 return|;
 block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
+return|;
+block|}
 block|}
 end_class
 

@@ -786,6 +786,15 @@ return|return
 literal|"Functions to perform spatial operations on GML 2D geometries."
 return|;
 block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
+return|;
+block|}
 block|}
 end_class
 

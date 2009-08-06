@@ -327,6 +327,15 @@ return|return
 literal|"A module for performing SQL queries against Databases, returning XML representations of the result sets."
 return|;
 block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
+return|;
+block|}
 comment|/** 	 * Retrieves a previously stored Connection from the Context of an XQuery 	 *  	 * @param context 	 *            The Context of the XQuery containing the Connection 	 * @param connectionUID 	 *            The UID of the Connection to retrieve from the Context of the 	 *            XQuery 	 */
 specifier|public
 specifier|final
