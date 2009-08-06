@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2006-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -174,7 +174,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author Loren Cahlander  */
+comment|/**  * Module function definitions for transform module.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author Loren Cahlander  * @author ljo  */
 end_comment
 
 begin_class
@@ -199,6 +199,22 @@ name|String
 name|PREFIX
 init|=
 literal|"session"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2006-04-09"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.0"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -384,9 +400,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-operator|(
-literal|"Functions dealing with the HTTP session"
-operator|)
+literal|"A module for dealing with the HTTP session."
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
@@ -411,6 +425,15 @@ return|return
 operator|(
 name|PREFIX
 operator|)
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 comment|/** 	 * Utility method to create a session and store it in the context as a variable 	  	 * @param context 	 */

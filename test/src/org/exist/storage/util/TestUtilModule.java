@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -36,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: wolf  * Date: Dec 2, 2008  * Time: 11:35:39 AM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Module function definitions for xquery test module.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  */
 end_comment
 
 begin_class
@@ -61,6 +65,22 @@ name|String
 name|PREFIX
 init|=
 literal|"test"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2008-12-03"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"trunk"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -117,7 +137,16 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Utility modules used by the test suite."
+literal|"A module for utilities used by the test suite."
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Luigi P. Bai, finder@users.sf.net, 2004  */
+comment|/**  * Module function definitions for xmldb module.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Luigi P. Bai, finder@users.sf.net, 2004  * @author ljo  */
 end_comment
 
 begin_class
@@ -77,6 +77,22 @@ name|String
 name|PREFIX
 init|=
 literal|"xmldb"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2004-09-12"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"&lt; eXist-1.0"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -897,7 +913,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Database manipulation functions"
+literal|"A module for database manipulation functions."
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getNamespaceURI()          */
@@ -918,6 +934,15 @@ parameter_list|()
 block|{
 return|return
 name|PREFIX
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

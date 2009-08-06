@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Module function definitions for validation module.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  * @author ljo  */
 end_comment
 
 begin_class
@@ -91,6 +91,22 @@ name|String
 name|PREFIX
 init|=
 literal|"validation"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2005-11-17"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.0"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -360,6 +376,15 @@ parameter_list|()
 block|{
 return|return
 name|PREFIX
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Module function definitions for xpath-functions module.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  */
 end_comment
 
 begin_class
@@ -79,6 +79,22 @@ name|String
 name|PREFIX
 init|=
 literal|""
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2004-01-29"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"&lt; eXist-1.0"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -2231,7 +2247,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"XQuery/XPath Core Library Functions"
+literal|"A module with the XQuery/XPath Core Library Functions"
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
@@ -2254,6 +2270,15 @@ parameter_list|()
 block|{
 return|return
 name|PREFIX
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}
