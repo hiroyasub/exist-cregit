@@ -872,11 +872,7 @@ block|}
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"rnc is binary file"
-argument_list|)
+comment|//@Ignore("rnc is binary file")
 specifier|public
 name|void
 name|rnc_stored_valid
@@ -885,7 +881,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing( doc('/db/personal/personal-valid.xml'), doc('/db/personal/personal.rnc') )"
+literal|"validation:jing( doc('/db/personal/personal-valid.xml'), xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
 decl_stmt|;
 try|try
 block|{
@@ -953,11 +949,7 @@ block|}
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"rnc is binary file"
-argument_list|)
+comment|//@Ignore("rnc is binary file")
 specifier|public
 name|void
 name|rnc_stored_invalid
@@ -966,7 +958,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing( doc('/db/personal/personal-invalid.xml'), doc('/db/personal/personal.rnc') )"
+literal|"validation:jing( doc('/db/personal/personal-invalid.xml'), xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
 decl_stmt|;
 try|try
 block|{
