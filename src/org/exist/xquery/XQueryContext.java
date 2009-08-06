@@ -8516,6 +8516,8 @@ argument_list|,
 name|prefix
 argument_list|,
 name|namespaceURI
+argument_list|,
+name|location
 argument_list|)
 decl_stmt|;
 name|XQueryLexer
