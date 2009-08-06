@@ -321,7 +321,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Closes's a mail store."
+literal|"Closes a mail store."
 argument_list|,
 operator|new
 name|SequenceType

@@ -301,7 +301,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the year of interest"
+literal|"The year of interest"
 argument_list|)
 block|,
 operator|new
@@ -317,7 +317,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the month of interest (1 = January, 12 = December)"
+literal|"The month of interest (1 = January, 12 = December)"
 argument_list|)
 block|,
 operator|new
@@ -364,7 +364,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The date generated from the parameters."
+literal|"the date generated from the parameters."
 argument_list|)
 argument_list|)
 decl_stmt|;

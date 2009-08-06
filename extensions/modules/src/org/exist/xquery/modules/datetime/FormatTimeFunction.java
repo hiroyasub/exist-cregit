@@ -268,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a xs:string of the xs:time formatted according to the template specification as in java.text.SimpleDateFormat."
+literal|"Returns a xs:string of the xs:time formatted according to the SimpleDateFormat format."
 argument_list|,
 operator|new
 name|SequenceType
@@ -308,10 +308,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"text"
-argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -320,7 +318,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The formatted time string"
+literal|"the formatted time string"
 argument_list|)
 argument_list|)
 decl_stmt|;

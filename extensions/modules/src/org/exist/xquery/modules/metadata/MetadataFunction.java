@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -38,30 +48,6 @@ operator|.
 name|collections
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
 import|;
 end_import
 
@@ -109,7 +95,31 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
 import|;
 end_import
 
@@ -223,31 +233,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -300,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Retrieves metadata for the dynamic context."
+literal|"Retrieves metadata for the dynamic context. "
 operator|+
 literal|"If the context item is undefined an error is raised."
 argument_list|,
@@ -320,7 +306,7 @@ argument_list|,
 literal|"the metadata documents"
 argument_list|)
 argument_list|,
-literal|"an orphaned experiment.  This will be removed in the next release after 1.4."
+literal|"an orphaned experiment."
 argument_list|)
 decl_stmt|;
 specifier|public

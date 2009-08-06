@@ -278,7 +278,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the count of a specific weekday in a month from the given date.For example it can tell you there are 5 Fridays in February 2008."
+literal|"Returns the count of a specific weekday in a month from the given date. For example it can tell you there are 5 Fridays in February 2008."
 argument_list|,
 operator|new
 name|SequenceType

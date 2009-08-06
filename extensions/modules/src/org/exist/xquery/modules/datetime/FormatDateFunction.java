@@ -268,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a xs:string of the xs:date formatted according to the template specification as in java.text.SimpleDateFormat."
+literal|"Returns a xs:string of the xs:date formatted according to the SimpleDateFormat format."
 argument_list|,
 operator|new
 name|SequenceType
@@ -318,7 +318,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The formatted date string"
+literal|"the formatted date string"
 argument_list|)
 argument_list|)
 decl_stmt|;

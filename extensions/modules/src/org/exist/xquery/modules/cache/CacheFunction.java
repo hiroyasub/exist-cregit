@@ -222,7 +222,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get/create named cache"
+literal|"Get/create a cache using the specified name."
 argument_list|,
 operator|new
 name|SequenceType
@@ -241,7 +241,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"The name of the cache to create"
+literal|"The name of the cache to get/create"
 argument_list|)
 block|}
 argument_list|,
@@ -258,7 +258,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the Java cache object created with the given name."
+literal|"the Java cache object with the given name."
 argument_list|)
 argument_list|)
 block|}
@@ -313,7 +313,7 @@ argument_list|()
 decl_stmt|;
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Get/create cache ["
 operator|+

@@ -787,7 +787,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Closes's a message list."
+literal|"Closes a message list."
 argument_list|,
 operator|new
 name|SequenceType

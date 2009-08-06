@@ -203,7 +203,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"JFreeChart wrapper."
+literal|"A module for generating charts using the JFreeChart library."
 return|;
 block|}
 specifier|public

@@ -351,7 +351,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Closes's a mail folder."
+literal|"Closes a mail folder."
 argument_list|,
 operator|new
 name|SequenceType

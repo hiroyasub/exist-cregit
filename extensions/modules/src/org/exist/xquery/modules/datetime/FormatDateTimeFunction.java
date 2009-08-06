@@ -268,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a xs:string of the xs:dateTime according to the SimpleDateFormat format string."
+literal|"Returns a xs:string of the xs:dateTime according to the SimpleDateFormat format."
 argument_list|,
 operator|new
 name|SequenceType
@@ -308,10 +308,8 @@ argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"text"
-argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -320,7 +318,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The formatted dateTime string"
+literal|"the formatted dateTime string"
 argument_list|)
 argument_list|)
 decl_stmt|;

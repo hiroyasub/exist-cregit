@@ -411,7 +411,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Functions for mathematical operations."
+literal|"A module containing functions for common mathematical operations."
 return|;
 block|}
 block|}

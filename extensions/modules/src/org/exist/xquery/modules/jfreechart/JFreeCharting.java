@@ -415,7 +415,7 @@ specifier|final
 name|String
 name|chartText
 init|=
-literal|"Supported chart types: LineChart, LineChart3D, "
+literal|"The type of chart to render.  Supported chart types: LineChart, LineChart3D, "
 operator|+
 literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, "
 operator|+
@@ -429,7 +429,7 @@ specifier|final
 name|String
 name|parametersText
 init|=
-literal|"Configuration formatted as<configuration>"
+literal|"The configuration for the chart.  The configuration should be supplied as follows:<configuration>"
 operator|+
 literal|"<param1>Value1</param1><param2>Value2</param2>/<configuration>.  "
 operator|+
@@ -515,11 +515,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"JFreechart "
-operator|+
-literal|"XML formatted CategoryDataset or PieDataset."
+literal|"The CategoryDataset or PieDataset, supplied as JFreechart XML."
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -604,11 +602,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"JFreechart "
-operator|+
-literal|"XML formatted CategoryDataset or PieDataset."
+literal|"The CategoryDataset or PieDataset, supplied as JFreechart XML."
 argument_list|)
-block|,             }
+block|}
 argument_list|,
 operator|new
 name|SequenceType
