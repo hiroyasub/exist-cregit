@@ -300,17 +300,13 @@ argument_list|)
 argument_list|,
 literal|"List all files, including their file size and modification time, found in a directory. Files are located in the server's "
 operator|+
-literal|"file system, using file patterns. "
+literal|"file system, using filename patterns.  File pattern matching is based "
 operator|+
-literal|"The first argument is the directory in the file system where the files are located."
+literal|"on code from Apache's Ant, thus following the same conventions. For example:\n\n"
 operator|+
-literal|"The second argument is the file pattern. File pattern matching is based "
+literal|"'*.xml' matches any file ending with .xml in the current directory,\n- '**/*.xml' matches files "
 operator|+
-literal|"on code from Apache's Ant, thus following the same conventions. For example: "
-operator|+
-literal|"*.xml matches any file ending with .xml in the current directory, **/*.xml matches files "
-operator|+
-literal|"in any directory below the current one. "
+literal|"in any directory below the specified directory. "
 argument_list|,
 operator|new
 name|SequenceType
@@ -329,7 +325,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the base directory"
+literal|"The base directory path in the file system where the files are located."
 argument_list|)
 block|,
 operator|new
@@ -345,7 +341,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the file glob pattern"
+literal|"The file name pattern"
 argument_list|)
 block|}
 argument_list|,

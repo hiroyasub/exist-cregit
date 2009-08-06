@@ -308,7 +308,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Open's a JNDI Directory Context."
+literal|"Opens a JNDI Directory Context."
 argument_list|,
 operator|new
 name|SequenceType
@@ -327,7 +327,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"JNDI Directory Context environment properties to be set in the form<properties><property name=\"\" value=\"\"/></properties>."
+literal|"The JNDI Directory Context environment properties to be set in the form<properties><property name=\"\" value=\"\"/></properties>."
 argument_list|)
 block|}
 argument_list|,

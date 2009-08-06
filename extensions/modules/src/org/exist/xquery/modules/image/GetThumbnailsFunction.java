@@ -518,7 +518,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get or generate thumbnails from the given database collection"
+literal|"Generate thumbnails from the given database collection"
 argument_list|,
 operator|new
 name|SequenceType
@@ -553,7 +553,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"point to a location where the thumbnails should be created, this can be a local path, with the prefix 'xmldb:' a absolute path within the database or with 'rel:' path relative to the given $collection.  You can leave this empty then the default is 'rel:/thumbs'. "
+literal|"The location in the database where the thumbnails should be created, this can be a local path, with the prefix 'xmldb:' a absolute path within the database or with 'rel:' path relative to the given $collection.  You can leave this empty then the default is 'rel:/thumbs'. "
 argument_list|)
 block|,
 operator|new
@@ -569,7 +569,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"specifies the dimension of the thumbnails, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value is 'maxheight' and the second 'maxwidth'. "
+literal|"The dimension of the thumbnails, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value is 'maxheight' and the second 'maxwidth'. "
 argument_list|)
 block|,
 operator|new
@@ -585,7 +585,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the prefix (if any) for the thumbnails"
+literal|"The prefix to append to the thumbnail filenames"
 argument_list|)
 block|}
 argument_list|,

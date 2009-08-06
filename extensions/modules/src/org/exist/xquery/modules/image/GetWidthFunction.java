@@ -268,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's the Width of the image passed in, returning an integer of the images width in pixels or an empty sequence if the image is invalid."
+literal|"Gets the width of the image passed in, returning an integer of the images width in pixels or an empty sequence if the image is invalid."
 argument_list|,
 operator|new
 name|SequenceType

@@ -279,7 +279,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the directory context handle from a jndi:get-dir-context() call"
+literal|"The directory context handle from a jndi:get-dir-context() call"
 argument_list|)
 block|,
 operator|new
@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The Distinguished Name"
 argument_list|)
 block|}
 argument_list|,

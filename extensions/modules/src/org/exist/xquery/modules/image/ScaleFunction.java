@@ -318,7 +318,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Scale the image passed in $image. $dimension specifies the maximum dimensions of the scaled image, if empty then the default values are 'maxheight = 100' and 'maxwidth = 100', the first value of $dimension is 'maxheight' and the second 'maxwidth'."
+literal|"Scale the image image to a specified dimension.  If no dimensions are specified, then the default values are 'maxheight = 100' and 'maxwidth = 100'."
 argument_list|,
 operator|new
 name|SequenceType
@@ -337,7 +337,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|null
+literal|"The image data"
 argument_list|)
 block|,
 operator|new
@@ -353,7 +353,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|null
+literal|"The maximum dimension of the scaled image. expressed in pixels (maxheight, maxwidth).  If empty, then the default values are 'maxheight = 100' and 'maxwidth = 100'."
 argument_list|)
 block|,
 operator|new

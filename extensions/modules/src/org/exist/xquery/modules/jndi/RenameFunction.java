@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"DN to rename"
+literal|"The Distinguished Name to rename"
 argument_list|)
 block|,
 operator|new
@@ -311,7 +311,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the new DN"
+literal|"The new Distinguished Name"
 argument_list|)
 block|}
 argument_list|,

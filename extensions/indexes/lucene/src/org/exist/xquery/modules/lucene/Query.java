@@ -402,19 +402,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Query the node set in $nodes using a Lucene full text index which is defined "
+literal|"Queries a node set using a Lucene full text index; a lucene index "
 operator|+
-literal|"on those nodes. Parameter $query specifies the query, either as a query string "
+literal|"must already be defined on the nodes, because if no index is available "
 operator|+
-literal|"based on Lucene's default query syntax or as an XML fragment. The context of the "
+literal|"on a node, nothing will be found. Indexes on descendant nodes are not "
 operator|+
-literal|"Lucene query is determined by the given input node set in $nodes. The Lucene indexes should "
+literal|"used. The context of the Lucene query is determined by the given input "
 operator|+
-literal|"be defined on the nodes in $nodes. Indexes on descendant nodes are not used. If no index "
+literal|"node set. The query is specified either as a query string based on "
 operator|+
-literal|"is available on a node, nothing will be found."
+literal|"Lucene's default query syntax or as an XML fragment. "
 operator|+
-literal|"See http://exist-db.org/lucene.html#N1029E"
+literal|"See http://exist-db.org/lucene.html#N1029E for complete documentation."
 argument_list|,
 operator|new
 name|SequenceType
@@ -433,7 +433,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"node"
+literal|"The node set to search using a Lucene full text index which is defined on those nodes"
 argument_list|)
 block|,
 operator|new
@@ -449,7 +449,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"item"
+literal|"The query to search for, provided either as a string or text in Lucene's default query "
+operator|+
+literal|"syntax or as an XML fragment to bypass Lucene's default query parser"
 argument_list|)
 block|}
 argument_list|,

@@ -246,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if file is a directory"
+literal|"Tests if a path is a directory"
 argument_list|,
 operator|new
 name|SequenceType
@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"full path to the file"
+literal|"The full path to the file or directory"
 argument_list|)
 block|}
 argument_list|,
@@ -280,7 +280,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true if the file is a directory"
+literal|"true if the path is a directory"
 argument_list|)
 argument_list|)
 block|}
