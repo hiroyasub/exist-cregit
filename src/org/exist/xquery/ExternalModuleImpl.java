@@ -182,6 +182,16 @@ return|return
 literal|"User defined module"
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getReleaseVersion() 	 */
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+literal|"user-defined"
+return|;
+block|}
 specifier|public
 name|UserDefinedFunction
 name|getFunction

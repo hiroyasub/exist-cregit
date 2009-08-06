@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -102,7 +102,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for an {@link org.exist.xquery.InternalModule}.   * Functions are defined in an array of {@link org.exist.xquery.FunctionDef}, which  * is passed to the constructor. A single implementation class  * can be registered for more than one function signature, given that the signatures differ  * in name or the number of expected arguments. It is thus possible to implement  * similar XQuery functions in one single class.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for an {@link org.exist.xquery.InternalModule}.   * Functions are defined in an array of {@link org.exist.xquery.FunctionDef}, which  * is passed to the constructor. A single implementation class  * can be registered for more than one function signature, given that the signatures differ  * in name or the number of expected arguments. It is thus possible to implement  * similar XQuery functions in one single class.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  *  */
 end_comment
 
 begin_class
@@ -269,6 +269,20 @@ specifier|public
 specifier|abstract
 name|String
 name|getDefaultPrefix
+parameter_list|()
+function_decl|;
+comment|/**      * Module description for the documentation.      * This is a short phrase describing the module, starting with:      * A module for.       */
+specifier|public
+specifier|abstract
+name|String
+name|getDescription
+parameter_list|()
+function_decl|;
+comment|/**      * Module release version for the documentation. Since a module can live       * in trunk a long time before it is included in a release,      * this is neccessary for the documentation.      */
+specifier|public
+specifier|abstract
+name|String
+name|getReleaseVersion
 parameter_list|()
 function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#listFunctions() 	 */
