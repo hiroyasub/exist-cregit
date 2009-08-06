@@ -51,6 +51,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|ConnectException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|HttpURLConnection
 import|;
 end_import
@@ -670,6 +680,30 @@ name|document
 operator|=
 name|memtreeDoc
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ConnectException
+name|e
+parameter_list|)
+block|{
+comment|// prevent long stacktraces
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" ("
+operator|+
+name|path
+operator|+
+literal|")"
+argument_list|)
+throw|;
 block|}
 catch|catch
 parameter_list|(
