@@ -152,11 +152,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension  *   * An extension module for the eXist Native XML Database that allows operations  * on images stored in the eXist database.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-10  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
-end_comment
-
-begin_comment
-comment|/*  * TODO: metadata extraction from images, especially JPEG's  */
+comment|/**  * eXist Image Module Extension  *   * An extension module for the eXist Native XML Database that allows operations  * on images stored in the eXist database.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author ljo  * @serial 2006-03-10  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -166,6 +162,7 @@ name|ImageModule
 extends|extends
 name|AbstractInternalModule
 block|{
+comment|/*  * TODO: metadata extraction from images, especially JPEG's  */
 specifier|public
 specifier|final
 specifier|static
@@ -181,6 +178,22 @@ name|String
 name|PREFIX
 init|=
 literal|"image"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2006-03-13"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -286,6 +299,15 @@ parameter_list|()
 block|{
 return|return
 literal|"A module for performing operations on Images stored in the eXist db"
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 comment|/** 	 * Get's an the raw binary data from base64 binary encoded image data 	 *  	 * @param imgBase64Data	The base64 encoded image data 	 *  	 * @return The raw binary data 	 */

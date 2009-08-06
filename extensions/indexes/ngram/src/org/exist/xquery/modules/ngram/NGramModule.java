@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module function definitions for NGram module.  */
+comment|/**  * Module function definitions for NGram module.  *  * @author wolf  * @author ljo  *  */
 end_comment
 
 begin_class
@@ -67,6 +67,22 @@ name|String
 name|PREFIX
 init|=
 literal|"ngram"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2007-05-19"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -170,7 +186,16 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Extension functions for NGram search."
+literal|"A module for NGram-based indexed searching."
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Craig Goodyer<craiggoodyer@gmail.com>  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * @author Craig Goodyer<craiggoodyer@gmail.com>  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author ljo  */
 end_comment
 
 begin_class
@@ -67,6 +67,22 @@ name|String
 name|PREFIX
 init|=
 literal|"xslfo"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2007-10-04"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -141,7 +157,16 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Module for performing XSL-FO transformations"
+literal|"A module for performing XSL-FO transformations"
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

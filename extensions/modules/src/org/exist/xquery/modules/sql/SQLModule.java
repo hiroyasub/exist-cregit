@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam@exist-db.org>  * @serial 2008-05-19  * @version 1.1  *   * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam@exist-db.org>  * @author ljo  * @serial 2008-05-19  * @version 1.1  *   * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class

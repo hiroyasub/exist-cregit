@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 20070905  * @version 1.2  */
+comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 20070905  * @version 1.2  */
 end_comment
 
 begin_class

@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension  *   * An extension module for the eXist Native XML Database that allows  * Jobs to be Scheduled with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren.cahlander@gmail.com>  * @serial 2009-05-15  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Scheduler Module Extension  *   * An extension module for the eXist Native XML Database that allows  * Jobs to be Scheduled with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren.cahlander@gmail.com>  * @author ljo  * @serial 2009-05-15  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -67,6 +67,22 @@ name|String
 name|PREFIX
 init|=
 literal|"scheduler"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2006-11-16, 2009-02-06"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2 (job-name argument-version in trunk)"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -250,6 +266,15 @@ parameter_list|()
 block|{
 return|return
 literal|"A module for Scheduling Jobs using the Quartz Scheduler"
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

@@ -54,7 +54,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for store data in global cache  *   * @author Evgeny Gazdovsky<gazdovsky@gmail.com>  * @version 1.0  */
+comment|/**  * XQuery Extension module for store data in global cache  *   * @author Evgeny Gazdovsky<gazdovsky@gmail.com>  * @author ljo  * @version 1.0  */
 end_comment
 
 begin_class

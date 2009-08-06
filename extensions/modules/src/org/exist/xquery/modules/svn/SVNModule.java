@@ -41,6 +41,10 @@ name|FunctionDef
 import|;
 end_import
 
+begin_comment
+comment|/**  * Module function definitions for subversion (svn) module.  *  * @author wolf  * @author ljo  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -135,7 +139,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Functions to retrieve information from an SVN repository"
+literal|"a module for interaction with subversion (svn) repositories."
 return|;
 block|}
 specifier|public

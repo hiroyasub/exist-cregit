@@ -146,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -186,6 +186,24 @@ name|String
 name|PREFIX
 init|=
 literal|"mail"
+decl_stmt|;
+comment|// JavaMail-based from 2009-03-14
+comment|// makes the need for versioning of the functions obvious too /ljo
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2005-05-12, 2009-03-14"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2 (JavaMail-based in trunk)"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -435,6 +453,15 @@ return|return
 operator|(
 literal|"A module for performing email related functions"
 operator|)
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 comment|//***************************************************************************

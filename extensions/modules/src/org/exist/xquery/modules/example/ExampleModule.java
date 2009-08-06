@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author ljo  */
 end_comment
 
 begin_class
@@ -67,6 +67,22 @@ name|String
 name|PREFIX
 init|=
 literal|"example"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|INCLUSION_DATE
+init|=
+literal|"2005-04-20"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.2"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -123,7 +139,16 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"A simple example module"
+literal|"A module for showing good examples of module usage"
+return|;
+block|}
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}
