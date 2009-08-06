@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Image Module Extension GetMetadataFunction  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: GetWidthFunction.java 5201 2007-01-16 17:40:10Z deliriumsky $  */
+comment|/*  *  eXist Image Module Extension GetMetadataFunction  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -726,6 +726,7 @@ name|se
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -738,6 +739,7 @@ argument_list|()
 argument_list|,
 name|se
 argument_list|)
+operator|)
 throw|;
 block|}
 finally|finally
@@ -757,6 +759,7 @@ name|ioe
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -769,6 +772,7 @@ argument_list|()
 argument_list|,
 name|ioe
 argument_list|)
+operator|)
 throw|;
 block|}
 return|return
