@@ -219,8 +219,8 @@ parameter_list|(
 name|Serializer
 name|serializer
 parameter_list|,
-name|SequenceIterator
-name|siNode
+name|NodeValue
+name|node
 parameter_list|,
 name|Properties
 name|outputProperties
@@ -318,33 +318,17 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
-while|while
-condition|(
-name|siNode
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-name|NodeValue
-name|next
-init|=
-operator|(
-name|NodeValue
-operator|)
-name|siNode
-operator|.
-name|nextItem
-argument_list|()
-decl_stmt|;
 name|serializer
 operator|.
 name|toSAX
 argument_list|(
-name|next
+name|node
 argument_list|)
 expr_stmt|;
-block|}
+comment|//            while(node.hasNext()) {
+comment|//                NodeValue next = (NodeValue)node.nextItem();
+comment|//                serializer.toSAX(next);
+comment|//            }
 name|sax
 operator|.
 name|endDocument

@@ -49,6 +49,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -293,7 +303,35 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|SequenceIterator
 import|;
 end_import
 
@@ -424,7 +462,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ONE_OR_MORE
 argument_list|,
 literal|"Location of XML Schema (.xsd) document."
 argument_list|)
@@ -499,7 +537,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ONE_OR_MORE
 argument_list|,
 literal|"Location of XML Schema (.xsd) document."
 argument_list|)
@@ -612,13 +650,19 @@ name|args
 index|[
 literal|0
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
 comment|// Validate using resource speciefied in second parameter
 name|StreamSource
-name|grammar
+name|grammars
+index|[]
 init|=
 name|Shared
 operator|.
@@ -632,6 +676,14 @@ argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
+for|for
+control|(
+name|StreamSource
+name|grammar
+range|:
+name|grammars
+control|)
+block|{
 name|String
 name|grammarUrl
 init|=
@@ -663,6 +715,7 @@ literal|"Only XML schemas (.xsd) are supported."
 argument_list|)
 throw|;
 block|}
+block|}
 comment|// Prepare
 name|String
 name|schemaLang
@@ -689,7 +742,7 @@ name|factory
 operator|.
 name|newSchema
 argument_list|(
-name|grammar
+name|grammars
 argument_list|)
 decl_stmt|;
 comment|// Setup validator
