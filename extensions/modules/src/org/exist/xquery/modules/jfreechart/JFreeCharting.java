@@ -737,6 +737,22 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
+name|NodeValue
+name|node
+init|=
+operator|(
+name|NodeValue
+operator|)
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 name|InputStream
 name|is
 init|=
@@ -745,13 +761,7 @@ name|NodeInputStream
 argument_list|(
 name|serializer
 argument_list|,
-name|args
-index|[
-literal|2
-index|]
-operator|.
-name|iterate
-argument_list|()
+name|node
 argument_list|)
 decl_stmt|;
 comment|// get chart
