@@ -527,7 +527,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"<j2se version=\"1.4+\"/>"
+literal|"<j2se version=\"1.5+\"/>"
 argument_list|)
 expr_stmt|;
 name|out
