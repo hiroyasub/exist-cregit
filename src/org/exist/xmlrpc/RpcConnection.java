@@ -10814,6 +10814,11 @@ argument_list|,
 literal|".xml"
 argument_list|)
 expr_stmt|;
+name|file
+operator|.
+name|deleteOnExit
+argument_list|()
+expr_stmt|;
 name|fileName
 operator|=
 name|file
@@ -23057,6 +23062,11 @@ argument_list|,
 literal|".xml"
 argument_list|)
 expr_stmt|;
+name|file
+operator|.
+name|deleteOnExit
+argument_list|()
+expr_stmt|;
 name|FileOutputStream
 name|os
 init|=
@@ -23112,11 +23122,6 @@ name|length
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|file
-operator|.
-name|deleteOnExit
-argument_list|()
 expr_stmt|;
 return|return
 name|result
