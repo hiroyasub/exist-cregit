@@ -95,6 +95,20 @@ name|ResourceSet
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|XMLAssert
+operator|.
+name|assertXpathEvaluatesTo
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author wessels  */
 end_comment
@@ -573,7 +587,10 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing( doc('/db/personal/personal-valid.xml'), xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
+literal|"validation:jing-report( doc('/db/personal/personal-valid.xml'), "
+operator|+
+comment|//"util:binary-doc('/db/personal/personal.rnc') )";
+literal|"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
 decl_stmt|;
 try|try
 block|{
@@ -595,12 +612,12 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|query
-argument_list|,
-literal|"true"
-argument_list|,
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
 name|results
 operator|.
 name|getResource
@@ -610,9 +627,23 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+decl_stmt|;
+name|System
 operator|.
-name|toString
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"valid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -650,7 +681,10 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing( doc('/db/personal/personal-invalid.xml'), xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
+literal|"validation:jing-report( doc('/db/personal/personal-invalid.xml'), "
+operator|+
+comment|//"util:binary-doc('/db/personal/personal.rnc') )";
+literal|"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
 decl_stmt|;
 try|try
 block|{
@@ -672,12 +706,12 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|query
-argument_list|,
-literal|"false"
-argument_list|,
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
 name|results
 operator|.
 name|getResource
@@ -687,9 +721,23 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+decl_stmt|;
+name|System
 operator|.
-name|toString
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"invalid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
