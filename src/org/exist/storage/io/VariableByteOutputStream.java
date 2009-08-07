@@ -113,6 +113,7 @@ index|]
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -123,9 +124,6 @@ argument_list|(
 name|VariableByteArrayInput
 operator|.
 name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|public
