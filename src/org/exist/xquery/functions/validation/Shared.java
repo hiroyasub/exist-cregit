@@ -620,7 +620,7 @@ name|StreamSource
 name|getStreamSource
 parameter_list|(
 name|Item
-name|s
+name|item
 parameter_list|,
 name|XQueryContext
 name|context
@@ -641,7 +641,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -665,7 +665,7 @@ operator|(
 operator|(
 name|JavaObjectValue
 operator|)
-name|s
+name|item
 operator|)
 operator|.
 name|getObject
@@ -732,7 +732,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -753,7 +753,7 @@ comment|// anyURI provided
 name|String
 name|url
 init|=
-name|s
+name|item
 operator|.
 name|getStringValue
 argument_list|()
@@ -805,7 +805,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -814,7 +814,7 @@ name|Type
 operator|.
 name|ELEMENT
 operator|||
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -833,7 +833,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|s
+name|item
 operator|instanceof
 name|NodeProxy
 condition|)
@@ -844,7 +844,7 @@ init|=
 operator|(
 name|NodeProxy
 operator|)
-name|s
+name|item
 decl_stmt|;
 name|String
 name|url
@@ -894,7 +894,7 @@ init|=
 operator|(
 name|NodeValue
 operator|)
-name|s
+name|item
 decl_stmt|;
 name|InputStream
 name|is
@@ -917,7 +917,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -933,7 +933,7 @@ init|=
 operator|(
 name|Base64Binary
 operator|)
-name|s
+name|item
 decl_stmt|;
 name|byte
 index|[]
@@ -971,7 +971,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|s
+name|item
 operator|instanceof
 name|Base64BinaryDocument
 condition|)
@@ -982,7 +982,7 @@ init|=
 operator|(
 name|Base64BinaryDocument
 operator|)
-name|s
+name|item
 decl_stmt|;
 name|String
 name|url
@@ -1024,7 +1024,7 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -1041,7 +1041,7 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|s
+name|item
 operator|.
 name|getType
 argument_list|()
@@ -1113,13 +1113,59 @@ return|return
 name|inputSource
 return|;
 block|}
+specifier|public
+specifier|static
+name|StreamSource
+name|getStreamSource
+parameter_list|(
+name|InputSource
+name|in
+parameter_list|)
+throws|throws
+name|XPathException
+throws|,
+name|MalformedURLException
+throws|,
+name|IOException
+block|{
+name|StreamSource
+name|streamSource
+init|=
+operator|new
+name|StreamSource
+argument_list|()
+decl_stmt|;
+name|streamSource
+operator|.
+name|setInputStream
+argument_list|(
+name|in
+operator|.
+name|getByteStream
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|streamSource
+operator|.
+name|setSystemId
+argument_list|(
+name|in
+operator|.
+name|getSystemId
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|streamSource
+return|;
+block|}
 comment|/**      *  Get URL value of parameter.      */
 specifier|public
 specifier|static
 name|String
 name|getUrl
 parameter_list|(
-name|Sequence
+name|Item
 name|s
 parameter_list|)
 throws|throws
@@ -1129,7 +1175,7 @@ if|if
 condition|(
 name|s
 operator|.
-name|getItemType
+name|getType
 argument_list|()
 operator|!=
 name|Type
@@ -1138,7 +1184,7 @@ name|ANY_URI
 operator|&&
 name|s
 operator|.
-name|getItemType
+name|getType
 argument_list|()
 operator|!=
 name|Type

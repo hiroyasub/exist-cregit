@@ -280,7 +280,10 @@ name|Jing
 operator|.
 name|class
 argument_list|)
-block|,     }
+block|,
+comment|//       new FunctionDef(Parse.signatures[0], Parse.class),
+comment|//       new FunctionDef(Parse.signatures[1], Parse.class),
+block|}
 decl_stmt|;
 specifier|public
 specifier|final

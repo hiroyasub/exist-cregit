@@ -745,7 +745,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Validate using resource speciefied in second parameter
+comment|// Validate using resource specified in second parameter
 name|String
 name|url
 init|=
@@ -757,6 +757,11 @@ name|args
 index|[
 literal|1
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|report

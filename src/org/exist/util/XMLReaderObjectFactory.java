@@ -301,6 +301,14 @@ name|APACHE_PROPERTIES_ENTITYRESOLVER
 init|=
 literal|"http://apache.org/xml/properties/internal/entity-resolver"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|APACHE_PROPERTIES_NONAMESPACESCHEMALOCATION
+init|=
+literal|"http://apache.org/xml/properties/schema/external-noNamespaceSchemaLocation"
+decl_stmt|;
 specifier|private
 name|BrokerPool
 name|pool
