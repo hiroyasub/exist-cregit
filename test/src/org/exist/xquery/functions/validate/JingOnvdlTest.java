@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -17,31 +21,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|test
-operator|.
-name|EmbeddedExistTester
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
-name|Before
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
+name|*
 import|;
 end_import
 
@@ -54,6 +36,46 @@ operator|.
 name|Assert
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|XMLAssert
+operator|.
+name|assertXpathEvaluatesTo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|exceptions
+operator|.
+name|XpathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
+name|EmbeddedExistTester
 import|;
 end_import
 
@@ -98,30 +120,12 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|XMLAssert
-operator|.
-name|assertXpathEvaluatesTo
-import|;
-end_import
-
-begin_import
 import|import
-name|org
+name|java
 operator|.
-name|custommonkey
+name|io
 operator|.
-name|xmlunit
-operator|.
-name|exceptions
-operator|.
-name|XpathException
+name|IOException
 import|;
 end_import
 
@@ -137,18 +141,8 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
-comment|/**  *  * @author jim.fuller@webcomposite.com  */
+comment|/**  * Tests for the validation:jing() function with NVDLs  *  * @author jim.fuller@webcomposite.com  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_class
@@ -560,7 +554,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing-report( doc('/db/validate-test/valid.xml'), doc('/db/validate-test/test.nvdl') )"
+literal|"validation:jing-report( doc('/db/validate-test/valid.xml'), "
+operator|+
+literal|"doc('/db/validate-test/test.nvdl') )"
 decl_stmt|;
 try|try
 block|{
@@ -655,7 +651,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jing-report( doc('/db/validate-test/invalid.xml'), doc('/db/validate-test/test.nvdl') )"
+literal|"validation:jing-report( doc('/db/validate-test/invalid.xml'), "
+operator|+
+literal|"doc('/db/validate-test/test.nvdl') )"
 decl_stmt|;
 try|try
 block|{
