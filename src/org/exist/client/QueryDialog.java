@@ -2656,6 +2656,11 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|gc
+argument_list|()
+expr_stmt|;
 block|}
 specifier|private
 name|void
@@ -3202,7 +3207,7 @@ if|if
 condition|(
 name|select
 operator|==
-literal|2
+literal|3
 condition|)
 break|break;
 block|}
