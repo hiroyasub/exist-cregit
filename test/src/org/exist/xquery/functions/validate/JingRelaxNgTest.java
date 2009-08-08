@@ -589,9 +589,9 @@ name|query
 init|=
 literal|"validation:jing-report( doc('/db/personal/personal-valid.xml'), "
 operator|+
-comment|//"util:binary-doc('/db/personal/personal.rnc') )";
-literal|"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
+literal|"util:binary-doc('/db/personal/personal.rnc') )"
 decl_stmt|;
+comment|//"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )";
 try|try
 block|{
 name|ResourceSet
@@ -683,9 +683,9 @@ name|query
 init|=
 literal|"validation:jing-report( doc('/db/personal/personal-invalid.xml'), "
 operator|+
-comment|//"util:binary-doc('/db/personal/personal.rnc') )";
-literal|"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )"
+literal|"util:binary-doc('/db/personal/personal.rnc') )"
 decl_stmt|;
+comment|//"xs:anyURI('xmldb:exist:///db/personal/personal.rnc') )";
 try|try
 block|{
 name|ResourceSet
