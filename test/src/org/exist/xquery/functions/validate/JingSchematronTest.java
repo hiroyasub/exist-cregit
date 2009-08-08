@@ -210,7 +210,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|// Store schematron 1.5
+comment|// Store schematron 1.5 test files
 name|Collection
 name|col15
 init|=
@@ -282,7 +282,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Store schematron iso
+comment|// Store schematron iso testfiles
 name|Collection
 name|colISO
 init|=
