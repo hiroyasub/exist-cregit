@@ -19,26 +19,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|sun
-operator|.
-name|xml
-operator|.
-name|internal
-operator|.
-name|messaging
-operator|.
-name|saaj
-operator|.
-name|util
-operator|.
-name|ByteInputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -913,7 +893,6 @@ argument_list|,
 name|node
 argument_list|)
 decl_stmt|;
-comment|// new NodeInputStream()
 name|streamSource
 operator|.
 name|setInputStream
