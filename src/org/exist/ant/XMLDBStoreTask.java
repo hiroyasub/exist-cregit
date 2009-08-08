@@ -796,6 +796,20 @@ argument_list|,
 name|resourceType
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|srcFile
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// note: solves bug id 2429889 when this task hits empty files
+block|}
+else|else
+block|{
 name|res
 operator|.
 name|setContent
@@ -825,6 +839,7 @@ argument_list|(
 name|res
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
