@@ -506,7 +506,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The filter.  The format and interpretation of filter follows RFC 2254 with the following interpretations for \'attr\' and \'value\'  mentioned in the RFC. \'attr\' is the attribute's identifier. \'value\' is the string represention the attribute's value. The translation of this string representation into the attribute's value is directory-specific. "
 argument_list|)
 block|,
 operator|new
