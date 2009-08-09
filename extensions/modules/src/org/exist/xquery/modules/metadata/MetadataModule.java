@@ -139,7 +139,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Metadata module"
+literal|"A module for accessing the metadata for the dynamic context."
 return|;
 block|}
 specifier|public
