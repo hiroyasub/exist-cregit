@@ -306,6 +306,26 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|deprecated1
+init|=
+literal|"Use the validation:parse(), "
+operator|+
+literal|"validation:jaxv() or valation:jing() functions."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|deprecated2
+init|=
+literal|"Use the validation:parse-report(), "
+operator|+
+literal|"validation:jaxv-report() or valation:jing-report() functions."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|simpleFunctionTxt
 init|=
 literal|"Validate xml. "
@@ -337,7 +357,7 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
+name|deprecated
 index|[]
 init|=
 block|{
@@ -396,6 +416,8 @@ name|Shared
 operator|.
 name|simplereportText
 argument_list|)
+argument_list|,
+name|deprecated1
 argument_list|)
 block|,
 operator|new
@@ -475,6 +497,8 @@ name|Shared
 operator|.
 name|simplereportText
 argument_list|)
+argument_list|,
+name|deprecated1
 argument_list|)
 block|,
 operator|new
@@ -534,6 +558,8 @@ name|Shared
 operator|.
 name|xmlreportText
 argument_list|)
+argument_list|,
+name|deprecated2
 argument_list|)
 block|,
 operator|new
@@ -615,6 +641,8 @@ name|Shared
 operator|.
 name|xmlreportText
 argument_list|)
+argument_list|,
+name|deprecated2
 argument_list|)
 block|}
 decl_stmt|;
