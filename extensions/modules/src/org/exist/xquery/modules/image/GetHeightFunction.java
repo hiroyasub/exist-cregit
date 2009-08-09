@@ -268,7 +268,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's the Height of the image passed in, returning an integer of the images Height in pixels or an empty sequence if the image is invalid."
+literal|"Gets the Height of the image passed in, returning an integer of the images Height in pixels or an empty sequence if the image is invalid."
 argument_list|,
 operator|new
 name|SequenceType
@@ -287,7 +287,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"image data"
+literal|"The image data"
 argument_list|)
 block|}
 argument_list|,
