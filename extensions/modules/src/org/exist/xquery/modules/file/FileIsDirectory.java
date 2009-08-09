@@ -255,7 +255,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.

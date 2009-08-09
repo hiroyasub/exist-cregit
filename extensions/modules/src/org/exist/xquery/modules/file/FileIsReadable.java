@@ -246,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if file is readable"
+literal|"Tests if a file is readable"
 argument_list|,
 operator|new
 name|SequenceType
@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"full path to the file"
+literal|"The full path to the file"
 argument_list|)
 block|}
 argument_list|,

@@ -339,7 +339,7 @@ parameter_list|()
 block|{
 return|return
 operator|(
-literal|"A module for performing various operations on files and directories stored in the file system."
+literal|"A module for performing various operations on files and directories stored in the server file system."
 operator|)
 return|;
 block|}

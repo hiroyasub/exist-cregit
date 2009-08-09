@@ -276,7 +276,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file.  Unicode BOM (Byte Order Marker) will be stripped off if found"
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found"
 argument_list|,
 operator|new
 name|SequenceType
@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"URL to the file, e.g. file://etc."
+literal|"The URL to the file, e.g. file://etc."
 argument_list|)
 block|}
 argument_list|,
@@ -331,7 +331,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file.  Unicode BOM (Byte Order Marker) will be stripped off if found"
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found"
 argument_list|,
 operator|new
 name|SequenceType
@@ -350,7 +350,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"URL to the file, e.g. file://etc."
+literal|"The URL to the file, e.g. file://etc."
 argument_list|)
 block|,
 operator|new

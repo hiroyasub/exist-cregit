@@ -232,7 +232,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if file exists"
+literal|"Tests if a file exists"
 argument_list|,
 operator|new
 name|SequenceType
@@ -251,7 +251,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"full path to the file"
+literal|"The full path to the file"
 argument_list|)
 block|}
 argument_list|,

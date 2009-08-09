@@ -485,7 +485,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"The contents to write to the file system."
 argument_list|)
 block|,
 operator|new
@@ -501,7 +501,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"full path to the file"
+literal|"The full path to the file"
 argument_list|)
 block|,
 operator|new
@@ -517,7 +517,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"serialization parameters specified as key-value pairs"
+literal|"The serialization parameters specified as key-value pairs"
 argument_list|)
 block|}
 argument_list|,
@@ -572,7 +572,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The contents to write to the file system."
 argument_list|)
 block|,
 operator|new
@@ -588,7 +588,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"full path to the file"
+literal|"The full path to the file"
 argument_list|)
 block|}
 argument_list|,

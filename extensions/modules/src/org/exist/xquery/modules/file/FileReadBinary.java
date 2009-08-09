@@ -306,7 +306,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of a binary file."
+literal|"Reads the contents of a binary file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -325,7 +325,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a string representing a URL, eg file://etc."
+literal|"A string representing a URL, eg file://etc."
 argument_list|)
 block|}
 argument_list|,

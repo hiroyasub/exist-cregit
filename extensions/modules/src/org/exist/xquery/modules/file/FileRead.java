@@ -286,7 +286,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file."
+literal|"Reads the content of file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -305,7 +305,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a string representing a URL, eg file://etc."
+literal|"A string representing a URL, eg file://etc."
 argument_list|)
 block|}
 argument_list|,
@@ -341,7 +341,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Read content of file."
+literal|"Reads the content of file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -360,7 +360,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a string representing a URL, eg file://etc."
+literal|"A string representing a URL, eg file://etc."
 argument_list|)
 block|,
 operator|new
@@ -376,7 +376,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"encoding"
+literal|"The encoding type for the file"
 argument_list|)
 block|}
 argument_list|,
