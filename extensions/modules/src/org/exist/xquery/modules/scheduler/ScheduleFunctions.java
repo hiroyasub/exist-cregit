@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension ScheduleFunctions  *  Copyright (C) 2006 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension ScheduleFunctions  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -376,7 +376,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A cron expression.  Please see the scheduler documentation."
+literal|"The cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
@@ -409,7 +409,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Flag indicating successful execution"
+literal|"a flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -438,7 +438,7 @@ argument_list|)
 argument_list|,
 literal|"Schedules the Java Class named (the class must extend org.exist.scheduler.UserJavaJob) according "
 operator|+
-literal|"to the Cron expression. The job will be registered using the name passed in $c. The final "
+literal|"to the Cron expression. The job will be registered using the name passed in $job-name. The final "
 operator|+
 literal|"argument can be used to specify "
 operator|+
@@ -479,7 +479,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A cron expression.  Please see the scheduler documentation."
+literal|"The cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
@@ -511,7 +511,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
+literal|"The XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|}
 argument_list|,
@@ -528,7 +528,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Flag indicating successful execution"
+literal|"a flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -632,7 +632,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
+literal|"The XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|,
 operator|new
@@ -648,7 +648,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Can be used with a period in milliseconds to delay the start of a job."
+literal|"The period in milliseconds to delay the start of a job."
 argument_list|)
 block|,
 operator|new
@@ -664,7 +664,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Number of times to repeat the job after the initial execution"
+literal|"The number of times to repeat the job after the initial execution"
 argument_list|)
 block|}
 argument_list|,
@@ -681,7 +681,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Flag indicating successful execution"
+literal|"a flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -747,7 +747,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A cron expression.  Please see the scheduler documentation."
+literal|"The cron expression.  Please see the scheduler documentation."
 argument_list|)
 block|,
 operator|new
@@ -780,7 +780,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Flag indicating successful execution"
+literal|"a flag indicating successful execution"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006-2009 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -45,18 +45,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|scheduler
 operator|.
 name|ScheduledJobInfo
@@ -84,6 +72,18 @@ operator|.
 name|scheduler
 operator|.
 name|UserJob
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|User
 import|;
 end_import
 
@@ -185,7 +185,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -269,7 +269,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Get's details of all Scheduled Jobs in the form: "
+literal|"Gets the details of all scheduled jobs in the form: "
 operator|+
 literal|"<scheduler:jobs xmlns:scheduler=\"http://exist-db.org/xquery/scheduler\" count=\"iJobs\">"
 operator|+
@@ -304,10 +304,8 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"scheduled-jobs"
-argument_list|,
 name|Type
 operator|.
 name|NODE
@@ -316,7 +314,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"returns the XML containing the list of jobs"
+literal|"the XML containing the list of jobs"
 argument_list|)
 argument_list|)
 decl_stmt|;
