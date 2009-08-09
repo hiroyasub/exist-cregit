@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -163,6 +163,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|NumericValue
 import|;
 end_import
@@ -256,7 +270,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the absolute value of a number."
+literal|"Calculates the absolute value (distance from zero) of a value or expression"
 argument_list|,
 operator|new
 name|SequenceType
@@ -275,15 +289,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Value to return the absolute value of"
+literal|"The value to return the absolute value of"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -292,7 +304,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the absolute value (distance from zero) of a value or expression"
 argument_list|)
 argument_list|)
 block|,
@@ -309,7 +321,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the arccosine value of a number in radians."
+literal|"Returns the arc cosine of an angle, in the range of 0.0 through pi."
 argument_list|,
 operator|new
 name|SequenceType
@@ -328,15 +340,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -345,7 +355,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the result"
 argument_list|)
 argument_list|)
 block|,
@@ -362,7 +372,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the arcsine value of a number in radians."
+literal|"Returns the arc sine of an angle, in the range of -pi/2 through pi/2."
 argument_list|,
 operator|new
 name|SequenceType
@@ -381,15 +391,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -415,7 +423,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the arctangent value of a number in radians."
+literal|"Returns the arc tangent of an angle, in the range of -pi/2 through pi/2."
 argument_list|,
 operator|new
 name|SequenceType
@@ -434,15 +442,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -451,7 +457,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the result"
 argument_list|)
 argument_list|)
 block|,
@@ -487,15 +493,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -521,7 +525,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns e (the base of natural logarithms) raised to a power."
+literal|"Returns the trigonometric cosine of an angle."
 argument_list|,
 operator|new
 name|SequenceType
@@ -540,15 +544,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -557,7 +559,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the cosine"
 argument_list|)
 argument_list|)
 block|,
@@ -574,7 +576,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the absolute value of a number."
+literal|"Calculates e (the Euler Constant) raised to the power of a value or expression"
 argument_list|,
 operator|new
 name|SequenceType
@@ -593,15 +595,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -610,7 +610,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
 argument_list|)
 block|,
@@ -646,15 +646,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -663,7 +661,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the floor value"
 argument_list|)
 argument_list|)
 block|,
@@ -680,7 +678,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the natural logarithm of a number."
+literal|"Returns the natural logarithm (base e) of a number."
 argument_list|,
 operator|new
 name|SequenceType
@@ -699,15 +697,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -716,7 +712,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the log"
 argument_list|)
 argument_list|)
 block|,
@@ -752,15 +748,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -769,7 +763,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the rounded value"
 argument_list|)
 argument_list|)
 block|,
@@ -786,7 +780,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the sine of the number in radians."
+literal|"Returns the trigonometric sine of an angle."
 argument_list|,
 operator|new
 name|SequenceType
@@ -805,15 +799,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -822,7 +814,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the sine"
 argument_list|)
 argument_list|)
 block|,
@@ -839,7 +831,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Returns the square root of a number."
+literal|"Returns the correctly rounded positive square root of a number."
 argument_list|,
 operator|new
 name|SequenceType
@@ -858,15 +850,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -875,7 +865,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"square root of $x"
+literal|"the square root of $x"
 argument_list|)
 argument_list|)
 block|,
@@ -901,7 +891,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"x"
+literal|"radians"
 argument_list|,
 name|Type
 operator|.
@@ -911,15 +901,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The radians"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -928,7 +916,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"result"
+literal|"the tangent"
 argument_list|)
 argument_list|)
 block|,
@@ -964,15 +952,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The radians"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"degrees"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -981,7 +967,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"degrees"
+literal|"the degrees"
 argument_list|)
 argument_list|)
 block|,
@@ -1017,15 +1003,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The degrees"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"radians"
-argument_list|,
 name|Type
 operator|.
 name|DOUBLE
@@ -1034,7 +1018,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"radians"
+literal|"the radians"
 argument_list|)
 argument_list|)
 block|}
