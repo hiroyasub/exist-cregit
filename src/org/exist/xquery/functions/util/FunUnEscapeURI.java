@@ -281,7 +281,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the encoding scheme to use in the un-escaping of the string"
+literal|"The encoding scheme to use in the un-escaping of the string"
 argument_list|)
 block|}
 argument_list|,
@@ -360,7 +360,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the encoding scheme to use in the un-escaping of the string"
+literal|"The encoding scheme to use in the un-escaping of the string"
 argument_list|)
 block|}
 argument_list|,
