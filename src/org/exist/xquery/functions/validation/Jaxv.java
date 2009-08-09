@@ -49,16 +49,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -303,35 +293,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceIterator
 import|;
 end_import
 
@@ -394,7 +356,7 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document specified by $a using grammar $b. "
+literal|"Validate document specified by $instance using the schema(a) $grammars. "
 operator|+
 literal|"Based on functionality provided by javax.xml.validation.Validator"
 decl_stmt|;
@@ -454,7 +416,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"grammar"
+literal|"grammars"
 argument_list|,
 name|Type
 operator|.
@@ -529,7 +491,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"grammar"
+literal|"grammars"
 argument_list|,
 name|Type
 operator|.
