@@ -570,7 +570,7 @@ specifier|final
 name|String
 name|documentTxt
 init|=
-literal|"Document referenced as xs:anyURI() or a node (element or fn:doc())."
+literal|"Document referenced as xs:anyURI() or a node (element or result of fn:doc())."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -578,7 +578,7 @@ specifier|final
 name|String
 name|catalogTxt
 init|=
-literal|"Catalog referenced as xs:anyURI(), doc() or collection()."
+literal|"Catalog referenced as xs:anyURI() or result of fn:doc()."
 decl_stmt|;
 specifier|private
 specifier|static
