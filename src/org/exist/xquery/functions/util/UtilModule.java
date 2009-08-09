@@ -1114,22 +1114,6 @@ operator|.
 name|class
 argument_list|)
 block|,
-comment|//temp xproc required function
-operator|new
-name|FunctionDef
-argument_list|(
-name|DirectoryListFunction
-operator|.
-name|signatures
-index|[
-literal|0
-index|]
-argument_list|,
-name|DirectoryListFunction
-operator|.
-name|class
-argument_list|)
-block|,
 comment|// deprecated functions
 operator|new
 name|FunctionDef
