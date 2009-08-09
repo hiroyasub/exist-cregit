@@ -33,27 +33,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
 import|;
 end_import
 
@@ -300,6 +280,18 @@ operator|.
 name|util
 operator|.
 name|XMLReaderObjectFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|GrammarPool
 import|;
 end_import
 
@@ -566,11 +558,35 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document by parsing $instance. Optionally"
+literal|"Validate document by parsing $instance. Optionally "
 operator|+
-literal|"a location of a grammar file (xsd, dtd) can be set and"
+literal|"grammar caching can be uses and "
 operator|+
-literal|"a xml catalog."
+literal|"an XML catalog can be specified."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|documentTxt
+init|=
+literal|"Document referenced as xs:anyURI() or a node (element or fn:doc())."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|catalogTxt
+init|=
+literal|"Catalog referenced as xs:anyURI(), doc() or collection()."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|cacheTxt
+init|=
+literal|"Set true() to use grammar cache."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -622,9 +638,25 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|documentTxt
 argument_list|)
-block|,                 }
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"enable-grammar-cache"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+name|cacheTxt
+argument_list|)
+block|}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -679,7 +711,23 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|documentTxt
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"enable-grammar-cache"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+name|cacheTxt
 argument_list|)
 block|,
 operator|new
@@ -695,7 +743,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"Catalog or location of XML catalog."
+name|catalogTxt
 argument_list|)
 block|,                 }
 argument_list|,
@@ -754,7 +802,23 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|documentTxt
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"enable-grammar-cache"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+name|cacheTxt
 argument_list|)
 block|,                 }
 argument_list|,
@@ -813,7 +877,23 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|documentTxt
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"enable-grammar-cache"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+name|cacheTxt
 argument_list|)
 block|,
 operator|new
@@ -829,7 +909,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"Catalog or location of XML catalog."
+name|catalogTxt
 argument_list|)
 block|,                 }
 argument_list|,
@@ -896,6 +976,11 @@ name|XPathException
 block|{
 name|XMLEntityResolver
 name|entityResolver
+init|=
+literal|null
+decl_stmt|;
+name|GrammarPool
+name|grammarPool
 init|=
 literal|null
 decl_stmt|;
@@ -968,8 +1053,6 @@ argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
-comment|// Prepare grammar ; does not work
-comment|/*             if (args[1].hasOne()) {                 // Get URL for grammar                 grammarUrl = Shared.getUrl(args[1].itemAt(0));                  // Special case for DTD, the document needs to be rewritten.                 if (grammarUrl.endsWith(".dtd")) {                     StreamSource newInstance = Shared.getStreamSource(instance);                     tmpFile = preparseDTD(newInstance, grammarUrl);                     instance = new InputSource(new FileInputStream(tmpFile));                  } else if (grammarUrl.endsWith(".xsd")) {                     xmlReader.setProperty(XMLReaderObjectFactory.APACHE_PROPERTIES_NONAMESPACESCHEMALOCATION, grammarUrl);                  } else {                     throw new XPathException("Grammar type not supported.");                 }             }             */
 comment|// Handle catalog
 if|if
 condition|(
@@ -977,14 +1060,14 @@ name|args
 operator|.
 name|length
 operator|==
-literal|1
+literal|2
 condition|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No Catalog found"
+literal|"No Catalog specified"
 argument_list|)
 expr_stmt|;
 block|}
@@ -992,7 +1075,7 @@ if|else if
 condition|(
 name|args
 index|[
-literal|1
+literal|2
 index|]
 operator|.
 name|isEmpty
@@ -1036,7 +1119,7 @@ name|getUrls
 argument_list|(
 name|args
 index|[
-literal|1
+literal|2
 index|]
 argument_list|)
 decl_stmt|;
@@ -1156,12 +1239,94 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|boolean
+name|useCache
+init|=
+operator|(
+operator|(
+name|BooleanValue
+operator|)
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+comment|// Use grammarpool
+if|if
+condition|(
+name|useCache
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Grammar caching enabled."
+argument_list|)
+expr_stmt|;
+name|Configuration
+name|config
+init|=
+name|brokerPool
+operator|.
+name|getConfiguration
+argument_list|()
+decl_stmt|;
+name|grammarPool
+operator|=
+operator|(
+name|GrammarPool
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|GRAMMER_POOL
+argument_list|)
+expr_stmt|;
+name|xmlReader
+operator|.
+name|setProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|APACHE_PROPERTIES_INTERNAL_GRAMMARPOOL
+argument_list|,
+name|grammarPool
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Parse document
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Start parsing document"
+argument_list|)
+expr_stmt|;
 name|xmlReader
 operator|.
 name|parse
 argument_list|(
 name|instance
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Stopped parsing document"
 argument_list|)
 expr_stmt|;
 comment|// Distill namespace from document
@@ -1582,6 +1747,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/*      *           // Prepare grammar ; does not work             /*             if (args[1].hasOne()) {                 // Get URL for grammar                 grammarUrl = Shared.getUrl(args[1].itemAt(0));                  // Special case for DTD, the document needs to be rewritten.                 if (grammarUrl.endsWith(".dtd")) {                     StreamSource newInstance = Shared.getStreamSource(instance);                     tmpFile = preparseDTD(newInstance, grammarUrl);                     instance = new InputSource(new FileInputStream(tmpFile));                  } else if (grammarUrl.endsWith(".xsd")) {                     xmlReader.setProperty(XMLReaderObjectFactory.APACHE_PROPERTIES_NONAMESPACESCHEMALOCATION, grammarUrl);                  } else {                     throw new XPathException("Grammar type not supported.");                 }             }             */
 block|}
 end_class
 
