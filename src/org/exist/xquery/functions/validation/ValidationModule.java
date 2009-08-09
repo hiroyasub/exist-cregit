@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -254,6 +264,36 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|Parse
+operator|.
+name|signatures
+index|[
+literal|2
+index|]
+argument_list|,
+name|Parse
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Parse
+operator|.
+name|signatures
+index|[
+literal|3
+index|]
+argument_list|,
+name|Parse
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|Validation
 operator|.
 name|deprecated
@@ -312,6 +352,9 @@ name|class
 argument_list|)
 block|,     }
 decl_stmt|;
+comment|//    static {
+comment|//        Arrays.sort(functions, new FunctionComparator());
+comment|//    }
 specifier|public
 specifier|final
 specifier|static

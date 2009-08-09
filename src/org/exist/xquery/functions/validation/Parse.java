@@ -693,7 +693,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"Catalog or location of XML catalog."
 argument_list|)
@@ -827,7 +827,7 @@ name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"Catalog or location of XML catalog."
 argument_list|)
@@ -849,7 +849,7 @@ operator|.
 name|xmlreportText
 argument_list|)
 argument_list|)
-block|,     }
+block|}
 decl_stmt|;
 specifier|public
 name|Parse
@@ -974,6 +974,23 @@ comment|// Handle catalog
 if|if
 condition|(
 name|args
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"No Catalog found"
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|args
 index|[
 literal|1
 index|]
@@ -1019,7 +1036,7 @@ name|getUrls
 argument_list|(
 name|args
 index|[
-literal|2
+literal|1
 index|]
 argument_list|)
 decl_stmt|;
@@ -1092,7 +1109,10 @@ name|debug
 argument_list|(
 literal|"Using catalogs "
 operator|+
+name|getStrings
+argument_list|(
 name|catalogUrls
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|entityResolver
@@ -1513,6 +1533,53 @@ argument_list|)
 expr_stmt|;
 return|return
 name|tmp
+return|;
+block|}
+specifier|private
+specifier|static
+name|String
+name|getStrings
+parameter_list|(
+name|String
+index|[]
+name|data
+parameter_list|)
+block|{
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|String
+name|field
+range|:
+name|data
+control|)
+block|{
+name|sb
+operator|.
+name|append
+argument_list|(
+name|field
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|sb
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
