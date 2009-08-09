@@ -601,7 +601,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The URL to process"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -623,7 +623,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"XML PUT payload/content. If it is an XML Node it will be serialized, any other type will be atomized into a string."
+literal|"The XML PUT payload/content. If it is an XML Node it will be serialized, any other type will be atomized into a string."
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -645,7 +645,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"XML POST payload/content. If it is an XML Node it will be serialized, any other type will be atomized into a string."
+literal|"The XML POST payload/content. If it is an XML Node it will be serialized, any other type will be atomized into a string."
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -667,7 +667,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the form data in the format<httpclient:fields><httpclient:field name=\"\" value=\"\"/>...</httpclient:fields>.  If the field values will be suitably URLEncoded and sent with the mime type application/x-www-form-urlencoded."
+literal|"The form data in the format<httpclient:fields><httpclient:field name=\"\" value=\"\"/>...</httpclient:fields>.  If the field values will be suitably URLEncoded and sent with the mime type application/x-www-form-urlencoded."
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -689,7 +689,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"cookies persist for the query lifetime"
+literal|"The to indicate if the cookies persist for the query lifetime"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -711,7 +711,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>"
+literal|"Any HTTP Request Headers to set in the form<headers><header name=\"\" value=\"\"/></headers>"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -731,7 +731,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"XML body content"
+literal|"the XML body content"
 argument_list|)
 decl_stmt|;
 specifier|final
