@@ -254,7 +254,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The extracted date."
+literal|"the extracted date."
 argument_list|)
 argument_list|)
 decl_stmt|;

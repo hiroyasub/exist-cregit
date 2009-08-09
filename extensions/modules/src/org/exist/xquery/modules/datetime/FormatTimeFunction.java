@@ -303,7 +303,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Format string according to the Java java.text.SimpleDateFormat class"
+literal|"The format string according to the Java java.text.SimpleDateFormat class"
 argument_list|)
 block|}
 argument_list|,

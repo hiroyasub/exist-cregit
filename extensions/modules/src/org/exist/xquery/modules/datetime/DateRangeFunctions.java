@@ -358,7 +358,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The range(s)"
+literal|"the range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -445,7 +445,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The range(s)"
+literal|"the range(s)"
 argument_list|)
 argument_list|)
 block|,
@@ -532,7 +532,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The range(s)"
+literal|"the range(s)"
 argument_list|)
 argument_list|)
 block|}

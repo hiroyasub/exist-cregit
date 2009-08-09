@@ -302,7 +302,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of days in the given month."
+literal|"the number of days in the given month."
 argument_list|)
 argument_list|)
 decl_stmt|;

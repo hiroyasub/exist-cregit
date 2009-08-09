@@ -297,7 +297,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Day of the week in the range of 1 to 7 where 1 = Sunday and 7 = Saturday."
+literal|"The day of the week in the range of 1 to 7 where 1 = Sunday and 7 = Saturday."
 argument_list|)
 block|,
 operator|new
@@ -328,7 +328,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Number of occurrences of the weekday in the selected month."
+literal|"The number of occurrences of the weekday in the selected month."
 argument_list|)
 argument_list|)
 decl_stmt|;
