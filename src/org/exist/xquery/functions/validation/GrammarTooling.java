@@ -532,7 +532,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|SequenceType
+name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
@@ -541,6 +541,8 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"the number of deleted grammars."
 argument_list|)
 argument_list|)
 block|,
@@ -635,7 +637,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"Sequence of namespaces of preparsed grammars."
+literal|"sequence of namespaces of preparsed grammars."
 argument_list|)
 argument_list|)
 block|,                               }

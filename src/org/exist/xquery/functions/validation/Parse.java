@@ -578,7 +578,7 @@ specifier|final
 name|String
 name|catalogTxt
 init|=
-literal|"Catalog referenced as xs:anyURI() or result of fn:doc()."
+literal|"Catalogs referenced as xs:anyURI() or result of fn:doc()."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -733,7 +733,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"catalog"
+literal|"catalogs"
 argument_list|,
 name|Type
 operator|.
@@ -899,7 +899,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"catalog"
+literal|"catalogs"
 argument_list|,
 name|Type
 operator|.

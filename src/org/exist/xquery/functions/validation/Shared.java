@@ -437,9 +437,9 @@ specifier|static
 name|String
 name|simplereportText
 init|=
-literal|"Returns true() if the "
+literal|"value true() if the "
 operator|+
-literal|"document is valid and no single problem occured, false() for "
+literal|"document is valid and no single problem occured, value false() for "
 operator|+
 literal|"all other situations. Check corresponding report function "
 operator|+
@@ -451,7 +451,7 @@ specifier|static
 name|String
 name|xmlreportText
 init|=
-literal|"Validation report formatted as\n<report>\n"
+literal|"a validation report formatted as\n<report>\n"
 operator|+
 literal|"\t<status>valid</status>\n"
 operator|+

@@ -356,7 +356,7 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document specified by $instance using the schema(a) $grammars. "
+literal|"Validate document specified by $instance using the schemas in $grammars. "
 operator|+
 literal|"Based on functionality provided by javax.xml.validation.Validator"
 decl_stmt|;
