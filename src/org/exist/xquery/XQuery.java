@@ -1174,14 +1174,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|// closed bug ID: 2828589
-comment|//context.getWatchDog().reset();
 name|context
 operator|.
+name|getWatchDog
+argument_list|()
+operator|.
 name|reset
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|//do any preparation before execution

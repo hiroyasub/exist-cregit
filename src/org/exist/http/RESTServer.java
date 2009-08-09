@@ -6224,6 +6224,7 @@ name|source
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|compiled
 operator|.
 name|getContext
@@ -6234,6 +6235,15 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
 try|try
 block|{
 name|long
