@@ -258,7 +258,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryListFunction   *   * Enumerate a list of files, including their size and modification time, found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-06-29  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryListFunction   *   * Enumerate a list of files, including their size and modification time, found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -322,9 +322,9 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"List all files, including their file size and modification time, found in a directory. Files are located in the server's "
+literal|"List all files, including their file size and modification time, found in or below a directory, $directory. Files are located in the server's "
 operator|+
-literal|"file system, using filename patterns.  File pattern matching is based "
+literal|"file system, using filename patterns, $pattern.  File pattern matching is based "
 operator|+
 literal|"on code from Apache's Ant, thus following the same conventions. For example:\n\n"
 operator|+
