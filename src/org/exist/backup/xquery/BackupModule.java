@@ -151,7 +151,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"A module for access to database backups available on the server"
+literal|"A module for access to database backups available on the server file system"
 return|;
 block|}
 specifier|public

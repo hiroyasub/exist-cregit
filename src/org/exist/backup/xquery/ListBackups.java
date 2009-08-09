@@ -324,6 +324,36 @@ name|ListBackups
 extends|extends
 name|BasicFunction
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|returnText
+init|=
+literal|"an XML fragment listing all eXist backups found in the specified backup directory: "
+operator|+
+literal|"<directory> "
+operator|+
+literal|"<backup file=\"filename\"> "
+operator|+
+literal|"<key>value</key>"
+operator|+
+literal|"<key>value</key>"
+operator|+
+literal|"</backup> "
+operator|+
+literal|"<backup file=\"filename\"> "
+operator|+
+literal|"<key>value</key>"
+operator|+
+literal|"<key>value</key>"
+operator|+
+literal|"</backup> "
+operator|+
+literal|"</directory> "
+operator|+
+literal|"Where key is a property name and value is a property value for the given .zip file."
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -347,7 +377,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns an XML fragment listing all eXist backups found in a specified backup directory, $directory."
+literal|"Returns an XML fragment listing all eXist backups found in a specified backup directory."
 argument_list|,
 operator|new
 name|SequenceType
@@ -366,7 +396,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Directory name to show list of backups on."
+literal|"The path to the directory to show the list of backups on."
 argument_list|)
 block|}
 argument_list|,
@@ -379,9 +409,9 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|EXACTLY_ONE
 argument_list|,
-literal|"an XML fragment listing all eXist backups found in the specified backup birectory"
+name|returnText
 argument_list|)
 argument_list|)
 decl_stmt|;

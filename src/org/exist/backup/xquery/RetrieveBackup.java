@@ -334,7 +334,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Directory where the backup file is located."
+literal|"The path to the directory where the backup file is located."
 argument_list|)
 block|,
 operator|new
@@ -350,7 +350,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Name of the file to retrieve."
+literal|"The name of the file to retrieve."
 argument_list|)
 block|}
 argument_list|,
