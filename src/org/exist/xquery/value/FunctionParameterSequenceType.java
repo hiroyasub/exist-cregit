@@ -32,7 +32,7 @@ name|attributeName
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param attributeName	The name of the parameter in the<strong>FunctionSignature</strong>. 	 * @param primaryType	The<strong>Type</strong> of the parameter. 	 * @param cardinality	The<strong>Cardinality</strong> of the parameter. 	 * @param description	A description of the parameter in the<strong>FunctionSignature</strong>. 	 * @see FunctionSignature, Type, Cardinality 	 */
+comment|/** 	 * @param attributeName	The name of the parameter in the<strong>FunctionSignature</strong>. 	 * @param primaryType	The<strong>Type</strong> of the parameter. 	 * @param cardinality	The<strong>Cardinality</strong> of the parameter. 	 * @param description	A description of the parameter in the<strong>FunctionSignature</strong>. 	 * @see org.exist.xquery.FunctionSignature @see Type @see org.exist.xquery.Cardinality 	 */
 specifier|public
 name|FunctionParameterSequenceType
 parameter_list|(

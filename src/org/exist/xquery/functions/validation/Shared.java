@@ -1159,7 +1159,7 @@ return|return
 name|streamSource
 return|;
 block|}
-comment|/**      *  Get URL value of parameter.      */
+comment|/**      *  Get URL value of item.      */
 specifier|public
 specifier|static
 name|String
@@ -1231,7 +1231,7 @@ return|return
 name|url
 return|;
 block|}
-comment|/**      *  Get URLs value of sequence.      */
+comment|/**      *  Get URL values of sequence.      */
 specifier|public
 specifier|static
 name|String

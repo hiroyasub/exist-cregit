@@ -71,7 +71,7 @@ name|getUUIDversion4
 argument_list|()
 return|;
 block|}
-comment|/**      *  Return version 4 UUID code (random).      * @see http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29      */
+comment|/**      *  Return version 4 UUID code (random).      * Check<a href="http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_4_.28random.29">Wikipedia</a>      */
 specifier|public
 specifier|static
 name|String
@@ -88,7 +88,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Return version 3 UUID code (derived from value)      * @see http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29      * @param value Initialization value.      */
+comment|/**      * Return version 3 UUID code (derived from value).      * Check<a href="http://en.wikipedia.org/wiki/Universally_Unique_Identifier#Version_3_.28MD5_hash.29">Wikipedia</a>      * @param value Initialization value.      */
 specifier|public
 specifier|static
 name|String

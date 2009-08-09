@@ -222,7 +222,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the xpath-functions for timezone adjustment   *  * @author  *  */
+comment|/**  * Implements the xpath-functions for timezone adjustment   *  */
 end_comment
 
 begin_class
