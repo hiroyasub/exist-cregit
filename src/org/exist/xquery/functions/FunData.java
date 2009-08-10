@@ -272,7 +272,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the items"
+literal|"The items"
 argument_list|)
 block|}
 argument_list|,
@@ -287,7 +287,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"atomic values of the items in $items"
+literal|"the atomic values of the items in $items"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -313,7 +313,7 @@ argument_list|,
 literal|null
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -322,8 +322,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
-argument_list|,
-literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -361,12 +359,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the qname"
+literal|"The qname"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -375,8 +373,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
-argument_list|,
-literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -414,7 +410,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the qname"
+literal|"The qname"
 argument_list|)
 block|,
 operator|new
@@ -430,12 +426,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the message"
+literal|"The message"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -444,8 +440,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
-argument_list|,
-literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -483,7 +477,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the qname"
+literal|"The qname"
 argument_list|)
 block|,
 operator|new
@@ -499,7 +493,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the message"
+literal|"The message"
 argument_list|)
 block|,
 operator|new
@@ -515,12 +509,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the error-object"
+literal|"The error object"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -529,8 +523,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|ZERO
-argument_list|,
-literal|"empty-sequence"
 argument_list|)
 argument_list|)
 block|, 	}

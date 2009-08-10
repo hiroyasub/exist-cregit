@@ -508,7 +508,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the node set that is to be searched for the keyword set"
+literal|"The node set that is to be searched for the keyword set"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -530,7 +530,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"the regular expressions to be matched against the fulltext index"
+literal|"The regular expressions to be matched against the fulltext index"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -550,7 +550,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"a sequence of all of the matching nodes"
+literal|"the sequence of all of the matching nodes"
 argument_list|)
 decl_stmt|;
 specifier|public

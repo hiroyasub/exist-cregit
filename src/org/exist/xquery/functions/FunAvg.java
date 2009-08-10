@@ -364,7 +364,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the values"
+literal|"The values"
 argument_list|)
 block|}
 argument_list|,

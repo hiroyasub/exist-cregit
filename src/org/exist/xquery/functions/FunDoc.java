@@ -303,7 +303,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the document-uri"
+literal|"The document URI"
 argument_list|)
 block|}
 argument_list|,

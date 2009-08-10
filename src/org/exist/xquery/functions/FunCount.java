@@ -254,7 +254,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the items"
+literal|"The items"
 argument_list|)
 block|}
 argument_list|,

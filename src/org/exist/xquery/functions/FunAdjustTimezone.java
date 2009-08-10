@@ -251,7 +251,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the date-time"
+literal|"The date-time"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -273,7 +273,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the date"
+literal|"The date"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the time"
+literal|"The time"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -317,7 +317,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the duration"
+literal|"The duration"
 argument_list|)
 decl_stmt|;
 specifier|public

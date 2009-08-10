@@ -276,7 +276,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the html-uri"
+literal|"The html URI"
 argument_list|)
 block|}
 argument_list|,

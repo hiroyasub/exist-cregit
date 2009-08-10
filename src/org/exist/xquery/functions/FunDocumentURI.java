@@ -312,7 +312,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the document-node"
+literal|"The document node"
 argument_list|)
 block|}
 argument_list|,
@@ -327,7 +327,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"document-uri of $document-node"
+literal|"the document URI of $document-node"
 argument_list|)
 argument_list|)
 decl_stmt|;

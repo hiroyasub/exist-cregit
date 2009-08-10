@@ -284,7 +284,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the uri"
+literal|"The URI"
 argument_list|)
 block|,
 operator|new
@@ -300,7 +300,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the escaped-reserved"
+literal|"The escaped-reserved"
 argument_list|)
 block|}
 argument_list|,
@@ -315,7 +315,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"identified characters in $uri encoded with escape sequences"
+literal|"the identified characters in $uri encoded with escape sequences"
 argument_list|)
 argument_list|)
 decl_stmt|;

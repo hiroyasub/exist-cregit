@@ -260,7 +260,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the number"
+literal|"The number"
 argument_list|)
 block|}
 argument_list|,

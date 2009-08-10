@@ -314,7 +314,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the date as xs:date"
+literal|"The date as xs:date"
 argument_list|)
 block|,
 operator|new
@@ -330,7 +330,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the time as xs:time"
+literal|"The time as xs:time"
 argument_list|)
 block|}
 argument_list|,

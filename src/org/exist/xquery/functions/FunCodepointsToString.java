@@ -331,7 +331,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the codepoints as a sequence of xs:integer values"
+literal|"The codepoints as a sequence of xs:integer values"
 argument_list|)
 block|, 				}
 argument_list|,

@@ -532,7 +532,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the collection-uris for which to include the documents"
+literal|"The collection-uris for which to include the documents"
 argument_list|)
 block|}
 argument_list|,

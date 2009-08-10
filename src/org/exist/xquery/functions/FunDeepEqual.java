@@ -435,7 +435,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the first item sequence"
+literal|"The first item sequence"
 argument_list|)
 block|,
 operator|new
@@ -451,7 +451,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the second item sequence"
+literal|"The second item sequence"
 argument_list|)
 block|}
 argument_list|,
@@ -508,7 +508,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the first item sequence"
+literal|"The first item sequence"
 argument_list|)
 block|,
 operator|new
@@ -524,7 +524,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the second item sequence"
+literal|"The second item sequence"
 argument_list|)
 block|,
 operator|new
@@ -540,7 +540,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collation-uri"
+literal|"The collation URI"
 argument_list|)
 block|}
 argument_list|,

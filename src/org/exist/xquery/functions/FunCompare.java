@@ -306,7 +306,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the first string"
+literal|"The first string"
 argument_list|)
 block|,
 operator|new
@@ -322,7 +322,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the second string"
+literal|"The second string"
 argument_list|)
 block|}
 argument_list|,
@@ -381,7 +381,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the first string"
+literal|"The first string"
 argument_list|)
 block|,
 operator|new
@@ -397,7 +397,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the second string"
+literal|"The second string"
 argument_list|)
 block|,
 operator|new
@@ -413,7 +413,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a relative collation-uri"
+literal|"The relative collation URI"
 argument_list|)
 block|}
 argument_list|,

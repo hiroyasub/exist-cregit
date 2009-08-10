@@ -238,7 +238,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"default collation from context"
+literal|"the default collation from context"
 argument_list|)
 argument_list|)
 decl_stmt|;

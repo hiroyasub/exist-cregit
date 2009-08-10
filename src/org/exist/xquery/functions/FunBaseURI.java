@@ -350,7 +350,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the base-uri property for the context item."
+literal|"Returns the value of the base URI property for the context item."
 argument_list|,
 literal|null
 argument_list|,
@@ -365,7 +365,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the base-uri from the context item"
+literal|"the base URI from the context item"
 argument_list|)
 argument_list|)
 block|,
@@ -382,7 +382,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the base-uri property for $uri. If $uri is the empty "
+literal|"Returns the value of the base URI property for $uri. If $uri is the empty "
 operator|+
 literal|"sequence, the empty sequence is returned."
 argument_list|,
@@ -403,7 +403,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the uri"
+literal|"The URI"
 argument_list|)
 block|}
 argument_list|,
@@ -418,7 +418,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the base-uri from $uri"
+literal|"the base URI from $uri"
 argument_list|)
 argument_list|)
 block|,
@@ -435,7 +435,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the base-uri property from the static context. "
+literal|"Returns the value of the base URI property from the static context. "
 operator|+
 literal|"If the base-uri property is undefined, the empty sequence is returned."
 argument_list|,
@@ -452,7 +452,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the base-uri from the static context"
+literal|"the base URI from the static context"
 argument_list|)
 argument_list|)
 block|}

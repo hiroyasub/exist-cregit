@@ -282,7 +282,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the source-string"
+literal|"The source-string"
 argument_list|)
 block|,
 operator|new
@@ -298,7 +298,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the suffix"
+literal|"The suffix"
 argument_list|)
 block|}
 argument_list|,
@@ -359,7 +359,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the source-string"
+literal|"The source-string"
 argument_list|)
 block|,
 operator|new
@@ -375,7 +375,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the suffix"
+literal|"The suffix"
 argument_list|)
 block|,
 operator|new
@@ -391,7 +391,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collation-uri"
+literal|"The collation URI"
 argument_list|)
 block|}
 argument_list|,

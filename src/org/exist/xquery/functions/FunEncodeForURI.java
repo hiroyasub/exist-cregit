@@ -272,7 +272,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the uri-part to encode"
+literal|"The URI part to encode"
 argument_list|)
 block|}
 argument_list|,
@@ -287,7 +287,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"uri-part with reserved characters precent-encoded"
+literal|"the URI part with reserved characters percent encoded"
 argument_list|)
 argument_list|)
 decl_stmt|;
