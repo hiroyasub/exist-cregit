@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author Pierrick Brihaye<pierrick.brihaye@free.fr>  *  @author ljo  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  *    *  @author Pierrick Brihaye<pierrick.brihaye@free.fr>  *  @author ljo  */
 end_comment
 
 begin_package
@@ -446,7 +446,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|,
 operator|new
@@ -462,7 +462,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"srs"
+literal|"The srs"
 argument_list|)
 block|}
 argument_list|,
@@ -517,7 +517,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"wkt"
+literal|"The wkt"
 argument_list|)
 block|,
 operator|new
@@ -533,7 +533,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"srs"
+literal|"The srs"
 argument_list|)
 block|}
 argument_list|,
@@ -590,7 +590,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|,
 operator|new
@@ -606,7 +606,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"width"
+literal|"The width"
 argument_list|)
 block|}
 argument_list|,
@@ -663,7 +663,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|,
 operator|new
@@ -679,7 +679,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"width"
+literal|"The width"
 argument_list|)
 block|,
 operator|new
@@ -695,7 +695,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"segments"
+literal|"The segments"
 argument_list|)
 block|}
 argument_list|,
@@ -752,7 +752,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|,
 operator|new
@@ -768,7 +768,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"width"
+literal|"The width"
 argument_list|)
 block|,
 operator|new
@@ -784,7 +784,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"segments"
+literal|"The segments"
 argument_list|)
 block|,
 operator|new
@@ -800,7 +800,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"line-end-style"
+literal|"The line-end-style"
 argument_list|)
 block|}
 argument_list|,
@@ -855,7 +855,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -910,7 +910,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -965,7 +965,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"geometry"
+literal|"The geometry"
 argument_list|)
 block|}
 argument_list|,
@@ -1020,7 +1020,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-a"
+literal|"The geometry-a"
 argument_list|)
 block|,
 operator|new
@@ -1036,7 +1036,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-b"
+literal|"The geometry-b"
 argument_list|)
 block|}
 argument_list|,
@@ -1091,7 +1091,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-a"
+literal|"The geometry-a"
 argument_list|)
 block|,
 operator|new
@@ -1107,7 +1107,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-b"
+literal|"The geometry-b"
 argument_list|)
 block|}
 argument_list|,
@@ -1162,7 +1162,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-a"
+literal|"The geometry-a"
 argument_list|)
 block|,
 operator|new
@@ -1178,7 +1178,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-b"
+literal|"The geometry-b"
 argument_list|)
 block|}
 argument_list|,
@@ -1233,7 +1233,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-a"
+literal|"The geometry-a"
 argument_list|)
 block|,
 operator|new
@@ -1249,7 +1249,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the geometry-b"
+literal|"The geometry-b"
 argument_list|)
 block|}
 argument_list|,
