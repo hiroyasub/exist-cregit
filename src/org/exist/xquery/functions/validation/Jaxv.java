@@ -21,26 +21,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -358,7 +338,7 @@ name|extendedFunctionTxt
 init|=
 literal|"Validate document specified by $instance using the schemas in $grammars. "
 operator|+
-literal|"Based on functionality provided by javax.xml.validation.Validator"
+literal|"Based on functionality provided by 'javax.xml.validation.Validator'."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -426,7 +406,9 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The location of XML Schema documents (.xsd), referenced as xs:anyURI or a by fn:doc())."
+literal|"One of more XML Schema documents (.xsd), "
+operator|+
+literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
 argument_list|)
 block|}
 argument_list|,
@@ -466,7 +448,7 @@ argument_list|)
 argument_list|,
 name|extendedFunctionTxt
 operator|+
-literal|" An xml report is returned."
+literal|" An XML report is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -501,7 +483,9 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The location of XML Schema documents (.xsd), referenced as xs:anyURI or a by fn:doc())."
+literal|"One of more XML Schema documents (.xsd), "
+operator|+
+literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
 argument_list|)
 block|}
 argument_list|,

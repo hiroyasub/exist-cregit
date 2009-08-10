@@ -556,11 +556,21 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|simpleFunctionTxt
+init|=
+literal|"Validate document by parsing $instance. Optionally "
+operator|+
+literal|"grammar caching can be used."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|extendedFunctionTxt
 init|=
 literal|"Validate document by parsing $instance. Optionally "
 operator|+
-literal|"grammar caching can be uses and "
+literal|"grammar caching can be used and "
 operator|+
 literal|"an XML catalog can be specified."
 decl_stmt|;
@@ -586,7 +596,7 @@ specifier|final
 name|String
 name|cacheTxt
 init|=
-literal|"The flag set to true() to use grammar cache."
+literal|"The flag set to true() to use grammar caching."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -608,7 +618,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"parse"
+literal|"jaxp"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -619,7 +629,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|extendedFunctionTxt
+name|simpleFunctionTxt
 argument_list|,
 operator|new
 name|SequenceType
@@ -681,7 +691,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"parse"
+literal|"jaxp"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -770,7 +780,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"parse-report"
+literal|"jaxp-report"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -781,9 +791,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|extendedFunctionTxt
+name|simpleFunctionTxt
 operator|+
-literal|" An xml report is returned."
+literal|" An XML report is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -845,7 +855,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"parse-report"
+literal|"jaxp-report"
 argument_list|,
 name|ValidationModule
 operator|.
@@ -858,7 +868,7 @@ argument_list|)
 argument_list|,
 name|extendedFunctionTxt
 operator|+
-literal|" An xml report is returned."
+literal|" An XML report is returned."
 argument_list|,
 operator|new
 name|SequenceType

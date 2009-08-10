@@ -334,7 +334,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   xQuery function for validation of XML instance documents  * using jing for grammars like XSD, Relaxng, onvdl and schematron.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  *   xQuery function for validation of XML instance documents  * using jing for grammars like XSD, Relaxng, nvdl and schematron.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -350,9 +350,9 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document using Jing. "
+literal|"Validate document using 'Jing'. "
 operator|+
-literal|"Based on functionality provided by com.thaiopensource.validate.ValidationDriver"
+literal|"Based on functionality provided by 'com.thaiopensource.validate.ValidationDriver'."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -420,7 +420,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The supported grammar documents extensions are \".xsd\" "
+literal|"The grammar file documents extensions are \".xsd\" "
 operator|+
 literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 argument_list|)
@@ -462,7 +462,7 @@ argument_list|)
 argument_list|,
 name|extendedFunctionTxt
 operator|+
-literal|" An xml report is returned."
+literal|" An XML report is returned."
 argument_list|,
 operator|new
 name|SequenceType

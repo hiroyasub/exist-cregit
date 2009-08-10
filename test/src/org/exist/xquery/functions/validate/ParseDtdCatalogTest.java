@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for the validation:parse() function with Catalog (resolvers).  *   * @author dizzzz@exist-db.org  */
+comment|/**  * Tests for the validation:jaxp() function with Catalog (resolvers).  *   * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_class
@@ -466,7 +466,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/valid-dtd.xml'), false(),"
 operator|+
@@ -490,7 +490,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/invalid-dtd.xml'), false(),"
 operator|+
@@ -515,7 +515,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/valid-dtd.xml'), false(),"
 operator|+
@@ -539,7 +539,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/invalid-dtd.xml'), false(),"
 operator|+
@@ -564,7 +564,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/valid-dtd.xml'), false(),"
 operator|+
@@ -588,7 +588,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/parse/instance/invalid-dtd.xml'), false(),"
 operator|+

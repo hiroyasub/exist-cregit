@@ -293,7 +293,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"doc('/db/addressbook/addressbook_valid.xml'), "
 operator|+
@@ -397,7 +397,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( doc('/db/tournament/1.5/Tournament-invalid.xml'), "
+literal|"validation:jaxp-report( doc('/db/tournament/1.5/Tournament-invalid.xml'), "
 operator|+
 literal|"doc('/db/tournament/1.5/tournament-schema.sch') )"
 decl_stmt|;
@@ -499,7 +499,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( xs:anyURI('xmldb:exist:///db/tournament/1.5/Tournament-valid.xml'), "
+literal|"validation:jaxp-report( xs:anyURI('xmldb:exist:///db/tournament/1.5/Tournament-valid.xml'), "
 operator|+
 literal|"xs:anyURI('xmldb:exist:///db/tournament/1.5/tournament-schema.sch') )"
 decl_stmt|;
@@ -601,7 +601,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( xs:anyURI('xmldb:exist:///db/tournament/1.5/Tournament-invalid.xml'), "
+literal|"validation:jaxp-report( xs:anyURI('xmldb:exist:///db/tournament/1.5/Tournament-invalid.xml'), "
 operator|+
 literal|"xs:anyURI('xmldb:exist:///db/tournament/1.5/tournament-schema.sch') )"
 decl_stmt|;

@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for the validation:parse() function with DTDss.  *   * @author dizzzz@exist-db.org  */
+comment|/**  * Tests for the validation:jaxp() function with DTDss.  *   * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_class
@@ -325,7 +325,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"doc('/db/hamlet/hamlet_valid.xml'), "
 operator|+
@@ -424,7 +424,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report(doc('/db/hamlet/hamlet_invalid.xml'), "
+literal|"validation:jaxp-report(doc('/db/hamlet/hamlet_invalid.xml'), "
 operator|+
 literal|"xs:anyURI('/db/hamlet/dtd/hamlet.dtd'), () )"
 decl_stmt|;
@@ -521,7 +521,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/hamlet/hamlet_valid.xml'), "
 operator|+
@@ -620,7 +620,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:parse-report( "
+literal|"validation:jaxp-report( "
 operator|+
 literal|"xs:anyURI('/db/hamlet/hamlet_invalid.xml'), "
 operator|+
