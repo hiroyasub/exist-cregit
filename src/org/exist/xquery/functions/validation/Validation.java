@@ -397,7 +397,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|}
 argument_list|,
@@ -456,7 +456,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -472,7 +472,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Reference to an OASIS catalog file (.xml), "
+literal|"The reference to an OASIS catalog file (.xml), "
 operator|+
 literal|"a collection (path ends with '/') or a grammar document. "
 operator|+
@@ -539,7 +539,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|}
 argument_list|,
@@ -600,7 +600,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -616,7 +616,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Reference to an OASIS catalog file (.xml), "
+literal|"The reference to an OASIS catalog file (.xml), "
 operator|+
 literal|"a collection (path ends with '/') or a grammar document. "
 operator|+

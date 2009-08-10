@@ -437,7 +437,7 @@ specifier|static
 name|String
 name|simplereportText
 init|=
-literal|"value true() if the "
+literal|"true() if the "
 operator|+
 literal|"document is valid and no single problem occured, value false() for "
 operator|+

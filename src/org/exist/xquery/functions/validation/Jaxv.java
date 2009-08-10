@@ -410,7 +410,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -426,7 +426,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"Location of XML Schema (.xsd) document."
+literal|"The location of XML Schema (.xsd) document."
 argument_list|)
 block|}
 argument_list|,
@@ -485,7 +485,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -501,7 +501,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"Location of XML Schema (.xsd) document."
+literal|"The location of XML Schema (.xsd) document."
 argument_list|)
 block|}
 argument_list|,

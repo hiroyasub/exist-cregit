@@ -424,7 +424,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -440,7 +440,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Supported grammar documents extensions are \".xsd\" "
+literal|"The supported grammar documents extensions are \".xsd\" "
 operator|+
 literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 argument_list|)
@@ -501,7 +501,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
 argument_list|)
 block|,
 operator|new
@@ -517,7 +517,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Supported grammar documents extensions are \".xsd\" "
+literal|"The supported grammar documents extensions are \".xsd\" "
 operator|+
 literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
 argument_list|)

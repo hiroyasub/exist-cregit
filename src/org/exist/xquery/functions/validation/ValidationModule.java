@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -428,7 +418,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"XML validation and grammars functions."
+literal|"A module for XML validation and grammars functions."
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.ValidationModule#getNamespaceURI()          */

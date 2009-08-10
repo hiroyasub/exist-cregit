@@ -570,7 +570,7 @@ specifier|final
 name|String
 name|documentTxt
 init|=
-literal|"Document referenced as xs:anyURI() or a node (element or result of fn:doc())."
+literal|"The document referenced as xs:anyURI() or a node (element or result of fn:doc())."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -578,7 +578,7 @@ specifier|final
 name|String
 name|catalogTxt
 init|=
-literal|"Catalogs referenced as xs:anyURI() or result of fn:doc()."
+literal|"The catalogs referenced as xs:anyURI() or result of fn:doc()."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -586,7 +586,7 @@ specifier|final
 name|String
 name|cacheTxt
 init|=
-literal|"Set true() to use grammar cache."
+literal|"The flag set to true() to use grammar cache."
 decl_stmt|;
 specifier|private
 specifier|final
