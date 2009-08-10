@@ -137,6 +137,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -272,20 +286,18 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"specifies whether to return the result as Base64 encoded"
+literal|"The flag that specifies whether to return the result as Base64 encoded"
 argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 name|result
 init|=
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|STRING

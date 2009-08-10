@@ -253,6 +253,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|IntegerValue
 import|;
 end_import
@@ -344,7 +358,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the nodes whose content is indexed"
+literal|"The nodes whose content is indexed"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -366,7 +380,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the indexed value to search for"
+literal|"The indexed value to search for"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -388,20 +402,18 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the index in which the search is made"
+literal|"The index in which the search is made"
 argument_list|)
 decl_stmt|;
 specifier|protected
 specifier|static
 specifier|final
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 name|result
 init|=
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|INTEGER

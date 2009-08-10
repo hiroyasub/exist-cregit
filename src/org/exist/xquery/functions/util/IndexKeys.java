@@ -259,7 +259,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|null
+literal|"The node set"
 argument_list|)
 block|,
 operator|new
@@ -291,7 +291,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a function reference as created by the util:function function. "
+literal|"The function reference as created by the util:function function. "
 operator|+
 literal|"It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
@@ -317,7 +317,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the maximum number of returned keys"
+literal|"The maximum number of returned keys"
 argument_list|)
 block|}
 argument_list|,
@@ -376,7 +376,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|null
+literal|"The node set"
 argument_list|)
 block|,
 operator|new
@@ -408,7 +408,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a function reference as created by the util:function function. "
+literal|"The function reference as created by the util:function function. "
 operator|+
 literal|"It can be an arbitrary user-defined function, but it should take exactly 2 arguments: "
 operator|+
@@ -434,7 +434,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the maximum number of returned keys"
+literal|"The maximum number of returned keys"
 argument_list|)
 block|,
 operator|new
@@ -450,7 +450,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the index in which the search is made"
+literal|"The index in which the search is made"
 argument_list|)
 block|}
 argument_list|,
