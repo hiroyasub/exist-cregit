@@ -255,7 +255,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the logging priority: 'error', 'warn', 'debug', 'info', 'trace'"
+literal|"The logging priority: 'error', 'warn', 'debug', 'info', 'trace'"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -277,7 +277,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the name of the logger, eg: my.app.log"
+literal|"The name of the logger, eg: my.app.log"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -299,7 +299,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the message to log"
+literal|"The message to log"
 argument_list|)
 decl_stmt|;
 specifier|protected

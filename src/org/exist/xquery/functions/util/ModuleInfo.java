@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the namespace URI of the module"
+literal|"The namespace URI of the module"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -323,7 +323,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"a sequence of all of the active function modules namespace URIs"
+literal|"the sequence of all of the active function modules namespace URIs"
 argument_list|)
 argument_list|)
 decl_stmt|;
