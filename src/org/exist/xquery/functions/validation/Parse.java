@@ -984,11 +984,6 @@ name|grammarPool
 init|=
 literal|null
 decl_stmt|;
-name|File
-name|tmpFile
-init|=
-literal|null
-decl_stmt|;
 name|ValidationReport
 name|report
 init|=
@@ -1083,6 +1078,13 @@ argument_list|()
 condition|)
 block|{
 comment|// Use system catalog
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using system catalog."
+argument_list|)
+expr_stmt|;
 name|Configuration
 name|config
 init|=
@@ -1417,31 +1419,6 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|tmpFile
-operator|!=
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Remove tmp file "
-operator|+
-name|tmpFile
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|tmpFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|// Create response
 if|if

@@ -60,6 +60,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|custommonkey
+operator|.
+name|xmlunit
+operator|.
+name|XMLAssert
+operator|.
+name|assertXpathEvaluatesTo
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -268,7 +282,11 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jaxv( doc('/db/personal/personal-valid.xml'), doc('/db/personal/personal.xsd') )"
+literal|"validation:jaxv( "
+operator|+
+literal|"doc('/db/personal/personal-valid.xml'), "
+operator|+
+literal|"doc('/db/personal/personal.xsd') )"
 decl_stmt|;
 try|try
 block|{
@@ -308,6 +326,100 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|xsd_stored_report_valid
+parameter_list|()
+block|{
+name|String
+name|query
+init|=
+literal|"validation:jaxv-report( "
+operator|+
+literal|"doc('/db/personal/personal-valid.xml'), "
+operator|+
+literal|"doc('/db/personal/personal.xsd') )"
+decl_stmt|;
+try|try
+block|{
+name|ResourceSet
+name|results
+init|=
+name|executeQuery
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|results
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
+name|results
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"valid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -344,7 +456,11 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jaxv( doc('/db/personal/personal-invalid.xml'), doc('/db/personal/personal.xsd') )"
+literal|"validation:jaxv-report( "
+operator|+
+literal|"doc('/db/personal/personal-invalid.xml'), "
+operator|+
+literal|"doc('/db/personal/personal.xsd') )"
 decl_stmt|;
 try|try
 block|{
@@ -366,12 +482,12 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|query
-argument_list|,
-literal|"false"
-argument_list|,
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
 name|results
 operator|.
 name|getResource
@@ -381,9 +497,23 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+decl_stmt|;
+name|System
 operator|.
-name|toString
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"invalid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -420,7 +550,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jaxv( xs:anyURI('xmldb:exist:///db/personal/personal-valid.xml'), "
+literal|"validation:jaxv-report( "
+operator|+
+literal|"xs:anyURI('xmldb:exist:///db/personal/personal-valid.xml'), "
 operator|+
 literal|"xs:anyURI('xmldb:exist:///db/personal/personal.xsd') )"
 decl_stmt|;
@@ -444,12 +576,12 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|query
-argument_list|,
-literal|"true"
-argument_list|,
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
 name|results
 operator|.
 name|getResource
@@ -459,9 +591,23 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+decl_stmt|;
+name|System
 operator|.
-name|toString
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"valid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -498,7 +644,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"validation:jaxv( xs:anyURI('xmldb:exist:///db/personal/personal-invalid.xml'), "
+literal|"validation:jaxv-report( "
+operator|+
+literal|"xs:anyURI('xmldb:exist:///db/personal/personal-invalid.xml'), "
 operator|+
 literal|"xs:anyURI('xmldb:exist:///db/personal/personal.xsd') )"
 decl_stmt|;
@@ -522,12 +670,12 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-name|query
-argument_list|,
-literal|"false"
-argument_list|,
+name|String
+name|r
+init|=
+operator|(
+name|String
+operator|)
 name|results
 operator|.
 name|getResource
@@ -537,9 +685,23 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+decl_stmt|;
+name|System
 operator|.
-name|toString
-argument_list|()
+name|out
+operator|.
+name|println
+argument_list|(
+name|r
+argument_list|)
+expr_stmt|;
+name|assertXpathEvaluatesTo
+argument_list|(
+literal|"invalid"
+argument_list|,
+literal|"//status/text()"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}

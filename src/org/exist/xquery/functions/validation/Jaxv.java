@@ -410,7 +410,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
 argument_list|)
 block|,
 operator|new
@@ -426,7 +426,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The location of XML Schema (.xsd) document."
+literal|"The location of XML Schema documents (.xsd), referenced as xs:anyURI or a by fn:doc())."
 argument_list|)
 block|}
 argument_list|,
@@ -485,7 +485,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
 argument_list|)
 block|,
 operator|new
@@ -501,7 +501,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The location of XML Schema (.xsd) document."
+literal|"The location of XML Schema documents (.xsd), referenced as xs:anyURI or a by fn:doc())."
 argument_list|)
 block|}
 argument_list|,
@@ -582,11 +582,6 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-name|InputStream
-name|is
-init|=
-literal|null
-decl_stmt|;
 name|ValidationReport
 name|report
 init|=
@@ -602,11 +597,12 @@ name|start
 argument_list|()
 expr_stmt|;
 comment|// Get inputstream for instance document
+name|StreamSource
 name|is
-operator|=
+init|=
 name|Shared
 operator|.
-name|getInputStream
+name|getStreamSource
 argument_list|(
 name|args
 index|[
@@ -620,7 +616,7 @@ argument_list|)
 argument_list|,
 name|context
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Validate using resource speciefied in second parameter
 name|StreamSource
 name|grammars
@@ -723,22 +719,12 @@ argument_list|(
 name|report
 argument_list|)
 expr_stmt|;
-comment|// TODO add external resolver
 comment|// Perform validation
-name|StreamSource
-name|instance
-init|=
-operator|new
-name|StreamSource
-argument_list|(
-name|is
-argument_list|)
-decl_stmt|;
 name|validator
 operator|.
 name|validate
 argument_list|(
-name|instance
+name|is
 argument_list|)
 expr_stmt|;
 block|}
@@ -818,37 +804,6 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-comment|// Force release stream
-try|try
-block|{
-if|if
-condition|(
-name|is
-operator|!=
-literal|null
-condition|)
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Attemted to close stream. ignore."
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// Create response
 if|if

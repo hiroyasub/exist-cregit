@@ -439,11 +439,11 @@ name|simplereportText
 init|=
 literal|"true() if the "
 operator|+
-literal|"document is valid and no single problem occured, value false() for "
+literal|"document is valid and no single problem occured, false() for "
 operator|+
-literal|"all other situations. Check corresponding report function "
+literal|"all other conditions. For detailed validation information "
 operator|+
-literal|"for details."
+literal|"use the corresponding -report() function."
 decl_stmt|;
 specifier|public
 specifier|final

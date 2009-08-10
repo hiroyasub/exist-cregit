@@ -83,26 +83,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -600,11 +580,6 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-name|InputStream
-name|is
-init|=
-literal|null
-decl_stmt|;
 name|ValidationReport
 name|report
 init|=
@@ -620,11 +595,12 @@ name|start
 argument_list|()
 expr_stmt|;
 comment|// Get inputstream of XML instance document
-name|is
-operator|=
+name|InputSource
+name|instance
+init|=
 name|Shared
 operator|.
-name|getInputStream
+name|getInputSource
 argument_list|(
 name|args
 index|[
@@ -638,7 +614,7 @@ argument_list|)
 argument_list|,
 name|context
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Validate using resource specified in second parameter
 name|InputSource
 name|grammar
@@ -739,15 +715,6 @@ name|grammar
 argument_list|)
 expr_stmt|;
 comment|// Validate XML instance
-name|InputSource
-name|instance
-init|=
-operator|new
-name|InputSource
-argument_list|(
-name|is
-argument_list|)
-decl_stmt|;
 name|driver
 operator|.
 name|validate
@@ -827,42 +794,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// Force release stream
 name|report
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-try|try
-block|{
-if|if
-condition|(
-name|is
-operator|!=
-literal|null
-condition|)
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Attemted to close stream. ignore."
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// Create response
 if|if
