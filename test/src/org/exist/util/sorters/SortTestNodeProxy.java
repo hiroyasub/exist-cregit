@@ -73,7 +73,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|NodeProxy
+name|Object
 name|o
 parameter_list|)
 block|{
@@ -119,7 +119,6 @@ operator|.
 name|val
 return|;
 block|}
-empty_stmt|;
 specifier|public
 name|SortTestNodeId
 name|getNodeId

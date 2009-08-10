@@ -94,6 +94,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -163,6 +165,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -314,6 +318,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -515,6 +521,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -825,6 +833,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -1541,6 +1551,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -2565,6 +2577,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -2607,6 +2621,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>
@@ -2700,6 +2716,8 @@ name|C
 extends|extends
 name|Comparable
 argument_list|<
+name|?
+super|super
 name|C
 argument_list|>
 parameter_list|>

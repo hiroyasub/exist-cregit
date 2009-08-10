@@ -478,7 +478,7 @@ name|DocumentSet
 implements|,
 name|Comparable
 argument_list|<
-name|NodeProxy
+name|Object
 argument_list|>
 block|{
 comment|/*      * Special values for nodes gid :      * Chosen in order to facilitate fast arithmetic computations      */
@@ -848,6 +848,40 @@ argument_list|(
 name|other
 operator|.
 name|nodeId
+argument_list|)
+return|;
+block|}
+comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
+specifier|public
+name|int
+name|compareTo
+parameter_list|(
+name|Object
+name|other
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|other
+operator|instanceof
+name|NodeProxy
+operator|)
+condition|)
+comment|//Always superior...
+return|return
+name|Constants
+operator|.
+name|SUPERIOR
+return|;
+return|return
+name|compareTo
+argument_list|(
+operator|(
+name|NodeProxy
+operator|)
+name|other
 argument_list|)
 return|;
 block|}
