@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -272,13 +276,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Trigger a system task. The first argument specifies the name of the Java class to be executed. The "
-operator|+
-literal|"class has to implement org.exist.storage.SystemTask. An XML fragment may be passed as second "
-operator|+
-literal|"argument. It should have the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
-operator|+
-literal|"</parameters>. The parameters are transformed into Java properties and passed to the system task."
+literal|"Trigger a system task."
 argument_list|,
 operator|new
 name|SequenceType
@@ -297,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full name of the class to execute.  It must implement org.exist.storage.SystemTask"
+literal|"The full name of the Java class to execute.  It must implement org.exist.storage.SystemTask"
 argument_list|)
 block|,
 operator|new
@@ -313,7 +311,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
+literal|"The XML fragment with the following structure:<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 argument_list|)
 block|}
 argument_list|,

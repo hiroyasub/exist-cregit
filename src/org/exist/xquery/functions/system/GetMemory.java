@@ -111,7 +111,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -213,10 +213,8 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -259,10 +257,8 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|LONG
@@ -305,10 +301,8 @@ operator|.
 name|NO_ARGS
 argument_list|,
 operator|new
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 argument_list|(
-literal|"result"
-argument_list|,
 name|Type
 operator|.
 name|LONG
