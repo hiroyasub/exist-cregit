@@ -1111,7 +1111,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the tranfromed result (nodes tree)"
+literal|"the transformed result (nodes tree)"
 argument_list|)
 argument_list|)
 block|,
