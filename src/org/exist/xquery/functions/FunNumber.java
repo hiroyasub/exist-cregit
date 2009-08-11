@@ -269,7 +269,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"The input item"
 argument_list|)
 decl_stmt|;
 specifier|protected

@@ -332,7 +332,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"The input item"
 argument_list|)
 block|}
 argument_list|,

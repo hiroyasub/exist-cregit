@@ -246,7 +246,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"The input sequence"
 argument_list|)
 block|}
 argument_list|,
@@ -261,7 +261,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"the Sequence passed in by $arg"
+literal|"the sequence passed in by $arg"
 argument_list|)
 argument_list|)
 decl_stmt|;

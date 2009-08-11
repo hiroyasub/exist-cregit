@@ -378,7 +378,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the unicode string to normalize"
+literal|"The unicode string to normalize"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -400,7 +400,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the normalization form"
+literal|"The normalization form"
 argument_list|)
 decl_stmt|;
 specifier|protected

@@ -346,7 +346,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the string to normalize"
+literal|"The string to normalize"
 argument_list|)
 block|}
 argument_list|,

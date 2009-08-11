@@ -427,7 +427,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the input string"
+literal|"The input string"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -449,7 +449,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the pattern"
+literal|"The pattern"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -471,7 +471,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The flag"
 argument_list|)
 decl_stmt|;
 specifier|public

@@ -352,7 +352,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|""
+literal|"The input node"
 argument_list|)
 block|}
 argument_list|,
