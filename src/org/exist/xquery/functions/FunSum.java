@@ -337,7 +337,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"a sequence of numbers to be summed up"
+literal|"The sequence of numbers to be summed up"
 argument_list|)
 block|}
 argument_list|,
@@ -396,7 +396,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"a sequence of numbers to be summed up"
+literal|"The sequence of numbers to be summed up"
 argument_list|)
 block|,
 operator|new
@@ -412,7 +412,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the default value if $arg is an empty sequence"
+literal|"The default value if $arg is an empty sequence"
 argument_list|)
 block|}
 argument_list|,

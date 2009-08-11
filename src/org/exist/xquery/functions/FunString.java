@@ -302,7 +302,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"any sequence to get the vaule of as an xs:string"
+literal|"The sequence to get the vaule of as an xs:string"
 argument_list|)
 block|}
 argument_list|,

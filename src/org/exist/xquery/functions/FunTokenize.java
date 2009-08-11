@@ -302,7 +302,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input string"
+literal|"The input string"
 argument_list|)
 block|,
 operator|new
@@ -318,7 +318,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The tokenization pattern"
 argument_list|)
 block|}
 argument_list|,
@@ -373,7 +373,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input string"
+literal|"The input string"
 argument_list|)
 block|,
 operator|new
@@ -389,7 +389,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The tokenization pattern"
 argument_list|)
 block|,
 operator|new
@@ -405,7 +405,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"see http://www.w3.org/TR/xpath-functions/#flags"
+literal|"The flag.  See http://www.w3.org/TR/xpath-functions/#flags"
 argument_list|)
 block|}
 argument_list|,

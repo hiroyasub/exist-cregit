@@ -304,7 +304,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input string"
+literal|"The input string"
 argument_list|)
 block|}
 argument_list|,

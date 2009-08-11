@@ -288,7 +288,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the sequence to be joined to form the string"
+literal|"The sequence to be joined to form the string"
 argument_list|)
 block|,
 operator|new
@@ -304,7 +304,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the separator to be placed in the string between the elements of $arg"
+literal|"The separator to be placed in the string between the elements of $arg"
 argument_list|)
 block|}
 argument_list|,

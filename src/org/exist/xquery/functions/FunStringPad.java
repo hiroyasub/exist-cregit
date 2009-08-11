@@ -276,7 +276,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the string to be replecated"
+literal|"The string to be replecated"
 argument_list|)
 block|,
 operator|new
@@ -292,7 +292,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the number of copies of $arg to be returned"
+literal|"The number of copies of $arg to be returned"
 argument_list|)
 block|}
 argument_list|,
