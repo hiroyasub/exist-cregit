@@ -256,7 +256,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the number"
+literal|"The number"
 argument_list|)
 block|}
 argument_list|,
@@ -271,7 +271,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"largets number without fraction part not greater than the value of $number"
+literal|"the largets number without fraction part not greater than the value of $number"
 argument_list|)
 argument_list|)
 decl_stmt|;

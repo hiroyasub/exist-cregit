@@ -374,7 +374,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The element"
 argument_list|)
 block|}
 argument_list|,

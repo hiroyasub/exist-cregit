@@ -483,7 +483,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the id-sequence"
+literal|"The id sequence"
 argument_list|)
 block|,             }
 argument_list|,
@@ -498,7 +498,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"elements with matching IDREF values from IDs in $id-sequence"
+literal|"the elements with matching IDREF values from IDs in $id-sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -538,7 +538,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the id-sequence"
+literal|"The id sequence"
 argument_list|)
 block|,
 operator|new
@@ -554,7 +554,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the node-in-document"
+literal|"The node in document"
 argument_list|)
 block|}
 argument_list|,
@@ -569,7 +569,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"elements with matching IDREF values from IDs in $id-sequence in the same document as $node-in-document"
+literal|"the elements with matching IDREF values from IDs in $id-sequence in the same document as $node-in-document"
 argument_list|)
 argument_list|)
 block|}

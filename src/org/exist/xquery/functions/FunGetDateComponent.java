@@ -306,7 +306,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the date as xs:date"
+literal|"The date as xs:date"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -328,7 +328,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the time as xs:time"
+literal|"The time as xs:time"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -350,7 +350,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the date-time as xs:dateTime"
+literal|"The date-time as xs:dateTime"
 argument_list|)
 decl_stmt|;
 comment|// ----- fromDate
@@ -395,7 +395,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"day component from $date"
+literal|"the day component from $date"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -440,7 +440,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"month component from $date"
+literal|"the month component from $date"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -483,7 +483,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"year component from $date"
+literal|"the year component from $date"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -528,7 +528,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"timezone component from $date"
+literal|"the timezone component from $date"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -574,7 +574,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"hours component from $time"
+literal|"the hours component from $time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -619,7 +619,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"minutes component from $time"
+literal|"the minutes component from $time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -668,7 +668,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"seconds component from $time"
+literal|"the seconds component from $time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -715,7 +715,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"timezone component from $time"
+literal|"the timezone component from $time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -761,7 +761,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"day component from $date-time"
+literal|"the day component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -806,7 +806,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"month component from $date-time"
+literal|"the month component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -849,7 +849,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"year component from $date-time"
+literal|"the year component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -894,7 +894,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"hours component from $date-time"
+literal|"the hours component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -939,7 +939,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"minutes component from $date-time"
+literal|"the minutes component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -988,7 +988,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"seconds component from $date-time"
+literal|"the seconds component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1035,7 +1035,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"timezone component from $date-time"
+literal|"the timezone component from $date-time"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -273,7 +273,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the item-sequence"
+literal|"The item sequence"
 argument_list|)
 block|}
 argument_list|,
@@ -288,7 +288,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"$item-sequence if it contains exactly one item. Otherwise, an error is raised."
+literal|"the $item-sequence if it contains exactly one item. Otherwise, an error is raised."
 argument_list|)
 argument_list|)
 decl_stmt|;

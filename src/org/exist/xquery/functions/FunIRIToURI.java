@@ -334,7 +334,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"an IRI"
+literal|"The IRI"
 argument_list|)
 block|}
 argument_list|,

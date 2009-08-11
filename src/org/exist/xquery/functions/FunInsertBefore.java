@@ -304,7 +304,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"The target"
 argument_list|)
 block|,
 operator|new
@@ -320,7 +320,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|""
+literal|"The position to insert before"
 argument_list|)
 block|,
 operator|new
@@ -336,7 +336,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|""
+literal|"The data to insert"
 argument_list|)
 block|}
 argument_list|,

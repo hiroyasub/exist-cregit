@@ -314,7 +314,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the duration as xs:dayTimeDuration"
+literal|"The duration as xs:dayTimeDuration"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -336,7 +336,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the duration as xs:yearMonthDuration"
+literal|"The duration as xs:yearMonthDuration"
 argument_list|)
 decl_stmt|;
 specifier|public
