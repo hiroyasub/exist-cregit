@@ -350,9 +350,11 @@ specifier|final
 name|String
 name|extendedFunctionTxt
 init|=
-literal|"Validate document using 'Jing'. "
+literal|"Validate document using 'Jing'. Supported grammar documents extensions are \".xsd\" "
 operator|+
-literal|"Based on functionality provided by 'com.thaiopensource.validate.ValidationDriver'."
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". Based on functionality provided by "
+operator|+
+literal|"'com.thaiopensource.validate.ValidationDriver'."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -420,9 +422,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The grammar file documents extensions are \".xsd\" "
+literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI "
 operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
+literal|"or returned by util:binary-doc()."
 argument_list|)
 block|}
 argument_list|,
@@ -497,9 +499,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The supported grammar documents extensions are \".xsd\" "
+literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI, "
 operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
+literal|"or returned by util:binary-doc()."
 argument_list|)
 block|}
 argument_list|,

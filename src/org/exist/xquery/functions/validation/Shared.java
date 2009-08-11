@@ -451,31 +451,7 @@ specifier|static
 name|String
 name|xmlreportText
 init|=
-literal|"a validation report formatted as\n<report>\n"
-operator|+
-literal|"\t<status>valid</status>\n"
-operator|+
-literal|"\t<namespace>...\n"
-operator|+
-literal|"\t<time>...\n"
-operator|+
-literal|"\t<exception>\n"
-operator|+
-literal|"\t\t<class>...\n"
-operator|+
-literal|"\t\t<message>...\n"
-operator|+
-literal|"\t\t<stacktrace>...\n"
-operator|+
-literal|"\t</exception>\n"
-operator|+
-literal|"\t<message level=\"\" line=\"\" column=\"\" repeat=\"\">...</message>\n"
-operator|+
-literal|"\t....\n"
-operator|+
-literal|"\t....\n"
-operator|+
-literal|"</report>"
+literal|"a validation report."
 decl_stmt|;
 comment|/**      *  Get input stream for specified resource.      */
 specifier|public

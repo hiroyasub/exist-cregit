@@ -548,7 +548,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|Parse
+name|Jaxp
 extends|extends
 name|BasicFunction
 block|{
@@ -560,7 +560,9 @@ name|simpleFunctionTxt
 init|=
 literal|"Validate document by parsing $instance. Optionally "
 operator|+
-literal|"grammar caching can be used."
+literal|"grammar caching can be enabled. Supported grammars types "
+operator|+
+literal|"are '.xsd' and '.dtd'."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -570,9 +572,11 @@ name|extendedFunctionTxt
 init|=
 literal|"Validate document by parsing $instance. Optionally "
 operator|+
-literal|"grammar caching can be used and "
+literal|"grammar caching can be enabled and "
 operator|+
-literal|"an XML catalog can be specified."
+literal|"an XML catalog can be specified. Supported grammars types "
+operator|+
+literal|"are '.xsd' and '.dtd'."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -588,7 +592,7 @@ specifier|final
 name|String
 name|catalogTxt
 init|=
-literal|"The catalogs referenced as xs:anyURI() or result of fn:doc()."
+literal|"The catalogs referenced as xs:anyURI()."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -596,7 +600,7 @@ specifier|final
 name|String
 name|cacheTxt
 init|=
-literal|"The flag set to true() to use grammar caching."
+literal|"Set the flag to true() to use grammar caching."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -942,7 +946,7 @@ argument_list|)
 block|}
 decl_stmt|;
 specifier|public
-name|Parse
+name|Jaxp
 parameter_list|(
 name|XQueryContext
 name|context
@@ -1319,7 +1323,7 @@ name|grammarPool
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Parse document
+comment|// Jaxp document
 name|LOG
 operator|.
 name|debug

@@ -338,7 +338,9 @@ name|extendedFunctionTxt
 init|=
 literal|"Validate document specified by $instance using the schemas in $grammars. "
 operator|+
-literal|"Based on functionality provided by 'javax.xml.validation.Validator'."
+literal|"Based on functionality provided by 'javax.xml.validation.Validator'. Only "
+operator|+
+literal|"'.xsd' grammars are supported."
 decl_stmt|;
 specifier|private
 specifier|final
