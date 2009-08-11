@@ -297,7 +297,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input test string"
+literal|"The input test string"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -319,7 +319,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the string to deterine if it is at the beginning of $arg1"
+literal|"The string to deterine if it is at the beginning of $arg1"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -341,7 +341,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The collation"
 argument_list|)
 decl_stmt|;
 specifier|protected

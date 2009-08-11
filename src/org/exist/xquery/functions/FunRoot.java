@@ -368,7 +368,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input tree"
+literal|"The input tree"
 argument_list|)
 block|}
 argument_list|,

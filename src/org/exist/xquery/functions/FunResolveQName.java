@@ -386,7 +386,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the QName name"
+literal|"The QName name"
 argument_list|)
 block|,
 operator|new
@@ -402,7 +402,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The element"
 argument_list|)
 block|}
 argument_list|,

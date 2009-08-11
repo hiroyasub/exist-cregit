@@ -303,7 +303,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input number"
+literal|"The input number"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -325,7 +325,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the precision factor"
+literal|"The precision factor"
 argument_list|)
 decl_stmt|;
 specifier|protected

@@ -375,7 +375,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input string"
+literal|"The input string"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -397,7 +397,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the pattern to match"
+literal|"The pattern to match"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -419,7 +419,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the string to replace the pattern with"
+literal|"The string to replace the pattern with"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -441,7 +441,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The flag"
 argument_list|)
 decl_stmt|;
 specifier|protected

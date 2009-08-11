@@ -270,7 +270,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"namespace URI"
+literal|"The namespace URI"
 argument_list|)
 block|,
 operator|new
@@ -286,7 +286,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the prefix"
+literal|"The prefix"
 argument_list|)
 block|}
 argument_list|,
@@ -301,7 +301,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"an xs:QName with the namespace URI given in $paramURI"
+literal|"the xs:QName with the namespace URI given in $paramURI"
 argument_list|)
 argument_list|)
 decl_stmt|;

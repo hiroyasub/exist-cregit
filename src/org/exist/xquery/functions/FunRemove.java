@@ -308,7 +308,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the input sequence"
+literal|"The input sequence"
 argument_list|)
 block|,
 operator|new
@@ -324,7 +324,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the position of the value to be removed"
+literal|"The position of the value to be removed"
 argument_list|)
 block|}
 argument_list|,

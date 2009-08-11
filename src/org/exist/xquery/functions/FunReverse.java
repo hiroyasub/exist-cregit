@@ -202,7 +202,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the sequence to reverse"
+literal|"The sequence to reverse"
 argument_list|)
 block|}
 argument_list|,

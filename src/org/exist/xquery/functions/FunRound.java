@@ -290,7 +290,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the input number"
+literal|"The input number"
 argument_list|)
 block|}
 argument_list|,
