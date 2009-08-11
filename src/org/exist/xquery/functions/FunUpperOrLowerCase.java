@@ -258,7 +258,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the text to be converted to all upper-case characters"
+literal|"The text to be converted to all upper-case characters"
 argument_list|)
 block|}
 argument_list|,
@@ -315,7 +315,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the text to be converted to all lower-case characters"
+literal|"The text to be converted to all lower-case characters"
 argument_list|)
 block|}
 argument_list|,

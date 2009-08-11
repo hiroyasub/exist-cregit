@@ -246,7 +246,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"a sequence"
+literal|"The input sequence"
 argument_list|)
 block|}
 argument_list|,

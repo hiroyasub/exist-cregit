@@ -246,7 +246,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the sequence to be tested for cardinality"
+literal|"The sequence to be tested for cardinality"
 argument_list|)
 block|}
 argument_list|,
@@ -261,7 +261,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"$arg"
+literal|"the input sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
