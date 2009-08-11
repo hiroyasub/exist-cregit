@@ -584,7 +584,7 @@ specifier|final
 name|String
 name|documentTxt
 init|=
-literal|"The document referenced as xs:anyURI() or a node (element or result of fn:doc())."
+literal|"The document referenced as xs:anyURI or a node (element or result of fn:doc())."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -592,7 +592,7 @@ specifier|final
 name|String
 name|catalogTxt
 init|=
-literal|"The catalogs referenced as xs:anyURI()."
+literal|"The catalogs referenced as xs:anyURI's."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -600,7 +600,7 @@ specifier|final
 name|String
 name|cacheTxt
 init|=
-literal|"Set the flag to true() to use grammar caching."
+literal|"Set the flag to true() to enable grammar caching."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -658,7 +658,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"enable-grammar-cache"
+literal|"cache-grammars"
 argument_list|,
 name|Type
 operator|.
@@ -731,7 +731,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"enable-grammar-cache"
+literal|"cache-grammars"
 argument_list|,
 name|Type
 operator|.

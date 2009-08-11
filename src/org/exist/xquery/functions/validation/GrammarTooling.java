@@ -578,9 +578,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"XML document formatted as\n"
-operator|+
-name|cacheReport
+literal|"an XML document containing details on all cached grammars."
 argument_list|)
 argument_list|)
 block|,
