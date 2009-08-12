@@ -396,13 +396,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Check if a user is registered as database user. The function simply tries to "
+literal|"Check if the user, $user-id, can authenticate against the database collection $collection-uri. The function simply tries to "
 operator|+
-literal|"read the database collection specified in the first parameter $collection, using the "
+literal|"read the collection $collection-uri, using the credentials "
 operator|+
-literal|"supplied username in $user-id and password in $password. "
+literal|"$user-id and $password. "
 operator|+
-literal|"It returns true if the attempt succeeds, false otherwise."
+literal|"It returns true if the authentication succeeds, false otherwise."
 argument_list|,
 operator|new
 name|SequenceType
@@ -411,7 +411,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -421,7 +421,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection path"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -468,7 +468,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() on success, false() otherwise"
+literal|"true() on successful authentication, false() otherwise"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -497,23 +497,19 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Check if a user is registered as database user and change the user identity for the "
+literal|"Login the user, $user-id, and set it as the owner "
 operator|+
-literal|"current XQuery script. The function simply tries to "
+literal|"of the currently executing XQuery. "
 operator|+
-literal|"read the database collection specified in the first parameter $collection, using the "
+literal|"It returns true if the authentication succeeds, false otherwise. "
 operator|+
-literal|"supplied username in $user-id and password in $password. "
+literal|"If called from a HTTP context the login is cached for the "
 operator|+
-literal|"Contrary to the authenticate function,"
+literal|"lifetime of the HTTP session and may be used for any XQuery "
 operator|+
-literal|"login will set the current user for the xquery script to the authenticated user. "
+literal|"run in that session. "
 operator|+
-literal|"It returns true if the attempt succeeds, false otherwise. If called from a HTTP context"
-operator|+
-literal|"then the login is cached for the lifetime of the HTTP session and may be used for all XQuery"
-operator|+
-literal|"scripts in that session."
+literal|"If an HTTP session does not already exist, none will be created."
 argument_list|,
 operator|new
 name|SequenceType
@@ -522,7 +518,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -532,7 +528,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection path"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -579,7 +575,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() on success, false() otherwise"
+literal|"true() on successful authentication and owner elevation, false() otherwise"
 argument_list|)
 argument_list|)
 block|,
@@ -600,23 +596,27 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Check if a user is registered as database user and change the user identity for the "
+literal|"Login the user, $user-id, and set it as the owner "
 operator|+
-literal|"current XQuery script. The function simply tries to "
+literal|"of the currently executing XQuery. "
 operator|+
-literal|"read the database collection specified in the first parameter $collection, using the "
+literal|"It returns true() if the authentication succeeds, "
 operator|+
-literal|"supplied username in $user-id and password in $password. $create-session specifies whether to create an HTTP session on successful login if one does not already exist (default false). "
+literal|"false() otherwise. "
 operator|+
-literal|"Contrary to the authenticate function,"
+literal|"If called from a HTTP context the login is cached for the "
 operator|+
-literal|"login will set the current user for the xquery script to the authenticated user. "
+literal|"lifetime of the HTTP session and may be used for any XQuery"
 operator|+
-literal|"It returns true if the attempt succeeds, false otherwise. If called from a HTTP context"
+literal|"run in that session. "
 operator|+
-literal|"then the login is cached for the lifetime of the HTTP session and may be used for all XQuery"
+literal|"$create-session specifies whether to create an HTTP session on "
 operator|+
-literal|"scripts in that session."
+literal|"successful authentication or not. "
+operator|+
+literal|"If $create-session is false() or the empty sequence no session "
+operator|+
+literal|"will be created if one does not already exist."
 argument_list|,
 operator|new
 name|SequenceType
@@ -625,7 +625,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -635,7 +635,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection path"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -651,7 +651,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the user-id"
+literal|"The user-id"
 argument_list|)
 block|,
 operator|new
@@ -667,7 +667,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the password"
+literal|"The password"
 argument_list|)
 block|,
 operator|new
@@ -683,7 +683,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"wether to create the seession or not on successful authentication, default false()"
+literal|"whether to create the session or not on successful authentication, default false()"
 argument_list|)
 block|}
 argument_list|,
@@ -698,7 +698,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() on success, false() otherwise"
+literal|"true() on successful authentication and owner elevation, false() otherwise"
 argument_list|)
 argument_list|)
 block|}
