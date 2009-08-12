@@ -433,21 +433,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|,
 operator|new
 name|FunctionParameterSequenceType
@@ -577,21 +565,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|,
 operator|new
 name|FunctionParameterSequenceType
@@ -644,27 +620,15 @@ argument_list|)
 argument_list|,
 literal|"Returns the GML representation of a buffer around geometry $geometry having width $width in its CRS. "
 operator|+
-literal|"Curves will be represented by $c segments per circle quadrant."
+literal|"Curves will be represented by $segments segments per circle quadrant."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|,
 operator|new
 name|FunctionParameterSequenceType
@@ -733,27 +697,15 @@ argument_list|)
 argument_list|,
 literal|"Returns the GML representation of a buffer around geometry $geometry having width $width in its CRS. "
 operator|+
-literal|"Curves will be represented by $c segments per circle quadrant. The fourth argument denotes the line end style (round, butt or square) as an integer constant."
+literal|"Curves will be represented by $segments segments per circle quadrant. The fourth argument denotes the line end style (round, butt or square) as an integer constant."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|,
 operator|new
 name|FunctionParameterSequenceType
@@ -842,21 +794,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|}
 argument_list|,
 operator|new
@@ -897,21 +837,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|}
 argument_list|,
 operator|new
@@ -952,21 +880,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"geometry"
-argument_list|,
-name|Type
+name|FunSpatialSearch
 operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The geometry"
-argument_list|)
+name|GEOMETRY_PARAMETER
 block|}
 argument_list|,
 operator|new
