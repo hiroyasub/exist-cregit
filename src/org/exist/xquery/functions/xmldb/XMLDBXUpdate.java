@@ -381,7 +381,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection as a simple collection path or an XMLDB URI"
+literal|"The collection as a simple collection path or an XMLDB URI"
 argument_list|)
 block|,
 operator|new
@@ -397,7 +397,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the XUpdate modifications to be processed"
+literal|"The XUpdate modifications to be processed"
 argument_list|)
 block|}
 argument_list|,

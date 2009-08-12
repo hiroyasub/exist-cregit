@@ -329,7 +329,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource-uri"
+literal|"The resource URI"
 argument_list|)
 block|}
 argument_list|,
@@ -344,7 +344,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"mime-type if available, otherwise the empty sequence"
+literal|"the mime-type if available, otherwise the empty sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

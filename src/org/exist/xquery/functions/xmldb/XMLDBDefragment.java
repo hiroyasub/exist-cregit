@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|DocumentSet
 import|;
 end_import
 
@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentSet
+name|QName
 import|;
 end_import
 
@@ -83,7 +83,55 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|BasicFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -98,20 +146,6 @@ operator|.
 name|update
 operator|.
 name|Modification
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|FunctionReturnSequenceType
 import|;
 end_import
 
@@ -265,7 +299,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"nodes from ducuments to defragment"
+literal|"The nodes from the documents to defragment"
 argument_list|)
 block|,
 operator|new
@@ -281,12 +315,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"min number of fragmented pages required before defragmenting"
+literal|"The minimum number of fragmented pages required before defragmenting"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -295,8 +329,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -346,12 +378,12 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"nodes from ducuments to defragment"
+literal|"The nodes from the documents to defragment"
 argument_list|)
 block|,                     }
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -360,8 +392,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|}

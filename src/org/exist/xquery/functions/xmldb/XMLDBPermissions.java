@@ -253,6 +253,50 @@ block|{
 specifier|protected
 specifier|static
 specifier|final
+name|FunctionParameterSequenceType
+name|ARG_COLLECTION
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"collection-uri"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the collection-uri"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|ARG_RESOURCE
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"resource"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the resource"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
 name|Logger
 name|logger
 init|=
@@ -300,21 +344,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"collection-uri"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the collection-uri"
-argument_list|)
+name|ARG_COLLECTION
 block|}
 argument_list|,
 operator|new
@@ -328,7 +358,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"collection permissions"
+literal|"the collection permissions"
 argument_list|)
 argument_list|)
 block|,
@@ -359,37 +389,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"collection-uri"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the collection-uri"
-argument_list|)
+name|ARG_COLLECTION
 block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the resource"
-argument_list|)
+name|ARG_RESOURCE
 block|}
 argument_list|,
 operator|new
@@ -403,7 +405,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"resource persissions"
+literal|"the resource persissions"
 argument_list|)
 argument_list|)
 block|}

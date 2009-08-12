@@ -511,7 +511,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"the set of paths or uris of the documents"
+literal|"The set of paths or URIs of the documents"
 argument_list|)
 block|}
 argument_list|,

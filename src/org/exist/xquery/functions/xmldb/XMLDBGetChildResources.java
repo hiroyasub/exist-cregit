@@ -279,7 +279,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the specified collection"
+literal|"The specified collection"
 argument_list|)
 block|}
 argument_list|,
@@ -294,7 +294,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"a sequence of resource names"
+literal|"the sequence of resource names"
 argument_list|)
 argument_list|)
 decl_stmt|;

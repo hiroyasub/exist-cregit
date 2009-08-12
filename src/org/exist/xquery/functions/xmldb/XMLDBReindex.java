@@ -290,7 +290,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-path"
+literal|"The collection path"
 argument_list|)
 block|}
 argument_list|,

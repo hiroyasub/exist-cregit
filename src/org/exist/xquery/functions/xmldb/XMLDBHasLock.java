@@ -315,7 +315,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-uri"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -331,7 +331,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|}
 argument_list|,
@@ -346,7 +346,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"user-id of the lock owner, otherwise if not locked the empty sequence"
+literal|"the user id of the lock owner, otherwise if not locked the empty sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

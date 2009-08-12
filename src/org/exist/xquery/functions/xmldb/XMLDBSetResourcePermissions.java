@@ -353,7 +353,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-uri"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -369,7 +369,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|,
 operator|new
@@ -385,7 +385,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the user-id"
+literal|"The user id"
 argument_list|)
 block|,
 operator|new
@@ -401,7 +401,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the group-id"
+literal|"The group id"
 argument_list|)
 block|,
 operator|new
@@ -417,12 +417,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the permissions as xs:integer"
+literal|"The permissions as xs:integer"
 argument_list|)
 block|, 			}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -431,8 +431,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

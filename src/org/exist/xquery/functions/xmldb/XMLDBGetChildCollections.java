@@ -279,7 +279,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a simple collection path or an XMLDB URI"
+literal|"The collection path or an XMLDB URI"
 argument_list|)
 block|}
 argument_list|,
@@ -294,7 +294,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"sequence of path names to the child collections"
+literal|"the sequence of path names to the child collections"
 argument_list|)
 argument_list|)
 decl_stmt|;

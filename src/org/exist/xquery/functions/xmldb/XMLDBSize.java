@@ -319,7 +319,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-uri"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -335,7 +335,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|}
 argument_list|,

@@ -327,7 +327,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -347,7 +347,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|String
@@ -361,7 +361,7 @@ literal|"The function returns a sequence of all document paths added "
 operator|+
 literal|"to the db. These can be directly passed to fn:doc() to retrieve the document(s)."
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|SequenceType
@@ -383,7 +383,7 @@ argument_list|,
 literal|"The collection where resources should be stored. Specified either as a simple collection path or an XMLDB URI."
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|SequenceType
@@ -405,7 +405,7 @@ argument_list|,
 literal|"The directory in the file system from where the files are read."
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|SequenceType
@@ -427,7 +427,7 @@ argument_list|,
 literal|"The file matching pattern. Based on code from Apache's Ant, thus following the same conventions. For example: *.xml matches any file ending with .xml in the current directory, **/*.xml matches files in any directory below the current one"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|SequenceType
@@ -447,6 +447,48 @@ operator|.
 name|EXACTLY_ONE
 argument_list|,
 literal|"If the mime-type is something other than 'text/xml' or 'application/xml', the resource will be stored as a binary resource."
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|SequenceType
+name|PARAM_PRESERVE_STRUCTURE
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"preserve-structure"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"If preserve-structure is true(), the filesystem directory structure will be mirrored in the collection. Otherwise all the matching resources, including the ones in sub-directories, will be stored in the collection given in the first argument flatly."
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|FunctionReturnSequenceType
+name|RETURN_TYPE
+init|=
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the sequence of document paths"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -475,19 +517,7 @@ block|,
 name|PARAM_FS_PATTERN
 block|}
 argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"document paths"
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -510,19 +540,7 @@ block|,
 name|PARAM_MIME_TYPE
 block|}
 argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"document paths"
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|,
 operator|new
@@ -544,36 +562,10 @@ name|PARAM_FS_PATTERN
 block|,
 name|PARAM_MIME_TYPE
 block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"preserve-structure"
-argument_list|,
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"If preserve-structure is true(), the filesystem directory structure will be mirrored in the collection. Otherwise all the matching resources, including the ones in sub-directories, will be stored in the collection given in the first argument flatly."
-argument_list|)
+name|PARAM_PRESERVE_STRUCTURE
 block|}
 argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"document paths"
-argument_list|)
+name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;

@@ -257,7 +257,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"the set of collection paths to operate on"
+literal|"The set of collection paths to operate on"
 argument_list|)
 block|}
 argument_list|,

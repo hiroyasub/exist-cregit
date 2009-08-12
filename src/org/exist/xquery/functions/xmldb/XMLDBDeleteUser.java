@@ -159,20 +159,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionReturnSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -296,7 +282,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Deletes an existing user in the database. Requires username. Does not delete the user's home collection."
+literal|"Deletes an existing user in the database. Requires username. This does not delete the user's home collection."
 argument_list|,
 operator|new
 name|SequenceType
@@ -315,12 +301,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the name of the user account to delete"
+literal|"The name of the user account to delete"
 argument_list|)
 block|,             }
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -329,8 +315,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

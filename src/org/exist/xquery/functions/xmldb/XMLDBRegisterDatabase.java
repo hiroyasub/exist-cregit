@@ -283,7 +283,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the DB driver"
+literal|"The DB driver"
 argument_list|)
 block|,
 operator|new
@@ -299,7 +299,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"create the db if not exists"
+literal|"The flag to create the db if not exists"
 argument_list|)
 block|}
 argument_list|,

@@ -323,7 +323,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -339,7 +339,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resuource"
+literal|"The resource"
 argument_list|)
 block|}
 argument_list|,
@@ -354,7 +354,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"creation date"
+literal|"the creation date"
 argument_list|)
 argument_list|)
 block|,
@@ -396,7 +396,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection"
+literal|"The collection URI"
 argument_list|)
 block|}
 argument_list|,
@@ -411,7 +411,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"creation date"
+literal|"the creation date"
 argument_list|)
 argument_list|)
 block|}
@@ -462,7 +462,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -478,7 +478,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|}
 argument_list|,
@@ -493,7 +493,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"last-modification date"
+literal|"the last modification date"
 argument_list|)
 argument_list|)
 decl_stmt|;

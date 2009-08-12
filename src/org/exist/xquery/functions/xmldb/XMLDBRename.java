@@ -321,7 +321,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the source-collection-uri"
+literal|"The source collection URI"
 argument_list|)
 block|,
 operator|new
@@ -337,12 +337,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the target-collection-uri"
+literal|"The target collection URI"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -351,8 +351,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|,
@@ -396,7 +394,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-uri"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new
@@ -412,7 +410,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|,
 operator|new
@@ -428,12 +426,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the new-resource-name"
+literal|"The new resource name"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -442,8 +440,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 block|}

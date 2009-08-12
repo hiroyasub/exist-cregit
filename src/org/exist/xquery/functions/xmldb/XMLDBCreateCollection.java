@@ -279,7 +279,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the target collection uri"
+literal|"The target collection URI"
 argument_list|)
 block|,
 operator|new
@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the new collection to create"
+literal|"The new collection to create"
 argument_list|)
 block|}
 argument_list|,

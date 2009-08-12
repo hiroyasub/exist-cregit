@@ -296,7 +296,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the string"
+literal|"The input string"
 argument_list|)
 block|, 				}
 argument_list|,
@@ -311,7 +311,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"url-encoded string"
+literal|"the URL encoded string"
 argument_list|)
 argument_list|)
 block|,
@@ -351,7 +351,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the string"
+literal|"The input string"
 argument_list|)
 block|, 				}
 argument_list|,
@@ -366,7 +366,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"XmldbURI encoded from $string"
+literal|"the XmldbURI encoded from $string"
 argument_list|)
 argument_list|)
 block|,
@@ -406,7 +406,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the string"
+literal|"The input string"
 argument_list|)
 block|, 				}
 argument_list|,
@@ -421,7 +421,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"url-encoded string"
+literal|"the decoded string"
 argument_list|)
 argument_list|)
 block|,
@@ -461,7 +461,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the uri"
+literal|"The URI"
 argument_list|)
 block|, 				}
 argument_list|,
@@ -476,7 +476,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"decoded string from $uri"
+literal|"the decoded string from $uri"
 argument_list|)
 argument_list|)
 block|}

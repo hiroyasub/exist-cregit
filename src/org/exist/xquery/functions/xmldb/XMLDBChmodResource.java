@@ -111,20 +111,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionReturnSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -297,7 +283,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection path"
+literal|"The collection path"
 argument_list|)
 block|,
 operator|new
@@ -313,7 +299,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 block|,
 operator|new
@@ -329,12 +315,12 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the mode as xs:integer"
+literal|"The mode as xs:integer"
 argument_list|)
 block|, 			      }
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -343,8 +329,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

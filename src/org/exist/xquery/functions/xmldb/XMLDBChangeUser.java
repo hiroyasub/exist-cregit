@@ -341,7 +341,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the user-id"
+literal|"The user-id"
 argument_list|)
 block|,
 operator|new
@@ -357,7 +357,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the password"
+literal|"The password"
 argument_list|)
 block|,
 operator|new
@@ -373,7 +373,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the set of groups ths user is member of"
+literal|"The set of groups ths user is member of"
 argument_list|)
 block|,
 operator|new
@@ -389,12 +389,12 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the home collection of the user"
+literal|"The home collection of the user"
 argument_list|)
 block|}
 argument_list|,
 operator|new
-name|FunctionReturnSequenceType
+name|SequenceType
 argument_list|(
 name|Type
 operator|.
@@ -403,8 +403,6 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EMPTY
-argument_list|,
-literal|"empty item sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

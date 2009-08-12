@@ -329,7 +329,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the user-id"
+literal|"The user ID"
 argument_list|)
 block|,             }
 argument_list|,

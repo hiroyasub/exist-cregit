@@ -301,7 +301,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the permissions in xs:integer format"
+literal|"The permissions in xs:integer format"
 argument_list|)
 block|}
 argument_list|,
@@ -316,7 +316,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"permissions as string 'rwu' for, user, group and other"
+literal|"the permissions as string 'rwu' for, user, group and other"
 argument_list|)
 argument_list|)
 decl_stmt|;

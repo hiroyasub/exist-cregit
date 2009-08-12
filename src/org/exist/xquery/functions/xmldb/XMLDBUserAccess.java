@@ -317,6 +317,28 @@ block|{
 specifier|protected
 specifier|static
 specifier|final
+name|FunctionParameterSequenceType
+name|ARG_USER_ID
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"user-id"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the user-id"
+argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
 name|Logger
 name|logger
 init|=
@@ -358,22 +380,8 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"user-id"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the user-id"
-argument_list|)
-block|,             }
+name|ARG_USER_ID
+block|}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -419,22 +427,8 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"user-id"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the user-id"
-argument_list|)
-block|,             }
+name|ARG_USER_ID
+block|}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -447,7 +441,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"group memberships"
+literal|"the group memberships"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -483,22 +477,8 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"user-id"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the user-id"
-argument_list|)
-block|,             }
+name|ARG_USER_ID
+block|}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -511,7 +491,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"home collection of user"
+literal|"the home collection of user"
 argument_list|)
 argument_list|)
 decl_stmt|;
