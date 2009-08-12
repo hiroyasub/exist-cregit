@@ -343,6 +343,24 @@ operator|+
 literal|"'.xsd' grammars are supported."
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|instanceText
+init|=
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|grammarText
+init|=
+literal|"One of more XML Schema documents (.xsd), "
+operator|+
+literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
+decl_stmt|;
+specifier|private
 specifier|final
 name|BrokerPool
 name|brokerPool
@@ -392,7 +410,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
+name|instanceText
 argument_list|)
 block|,
 operator|new
@@ -408,9 +426,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"One of more XML Schema documents (.xsd), "
-operator|+
-literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
+name|grammarText
 argument_list|)
 block|}
 argument_list|,
@@ -469,7 +485,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
+name|instanceText
 argument_list|)
 block|,
 operator|new
@@ -485,9 +501,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"One of more XML Schema documents (.xsd), "
-operator|+
-literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
+name|grammarText
 argument_list|)
 block|}
 argument_list|,

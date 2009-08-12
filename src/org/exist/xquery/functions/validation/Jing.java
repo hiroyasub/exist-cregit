@@ -357,6 +357,24 @@ operator|+
 literal|"'com.thaiopensource.validate.ValidationDriver'."
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|instanceText
+init|=
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|grammarText
+init|=
+literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI "
+operator|+
+literal|"or returned by util:binary-doc()."
+decl_stmt|;
+specifier|private
 specifier|final
 name|BrokerPool
 name|brokerPool
@@ -406,7 +424,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|instanceText
 argument_list|)
 block|,
 operator|new
@@ -422,9 +440,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI "
-operator|+
-literal|"or returned by util:binary-doc()."
+name|grammarText
 argument_list|)
 block|}
 argument_list|,
@@ -483,7 +499,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|instanceText
 argument_list|)
 block|,
 operator|new
@@ -499,9 +515,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI, "
-operator|+
-literal|"or returned by util:binary-doc()."
+name|grammarText
 argument_list|)
 block|}
 argument_list|,
