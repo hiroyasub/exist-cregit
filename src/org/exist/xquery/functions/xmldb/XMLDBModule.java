@@ -97,6 +97,38 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|String
+name|NEED_PRIV_USER
+init|=
+literal|"The XQuery owner must have appropriate privileges to do this, e.g. having DBA role."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|NEED_PRIV_USER_NOT_CURRENT
+init|=
+literal|"The XQuery owner must have appropriate privileges to do this, e.g. having DBA role, and not being the owner of the currently running XQuery."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|REMEMBER_OCTAL_CALC
+init|=
+literal|"PLEASE REMEMBER that octal number 0755 is 7*64+5*8+5 i.e. 493 in decimal NOT 755."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COLLECTION_URI
+init|=
+literal|"Collection URIs can be specified either as a simple collection path or an XMLDB URI."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|FunctionDef
 index|[]
 name|functions
