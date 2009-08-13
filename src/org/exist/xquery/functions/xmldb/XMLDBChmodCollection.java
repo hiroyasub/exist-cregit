@@ -248,9 +248,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the mode of the specified Collection. $collection-path is the collection path, $mode is the mode as xs:integer. "
+literal|"Sets the mode of collection $collection. $mode is the mode as xs:integer. "
 operator|+
-literal|"PLEASE REMEMBER that 0755 is 7*64+5*8+5, NOT decimal 755."
+name|XMLDBModule
+operator|.
+name|REMEMBER_OCTAL_CALC
 argument_list|,
 operator|new
 name|SequenceType
@@ -259,7 +261,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection-path"
+literal|"collection"
 argument_list|,
 name|Type
 operator|.

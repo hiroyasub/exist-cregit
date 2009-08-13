@@ -116,7 +116,7 @@ specifier|static
 name|String
 name|REMEMBER_OCTAL_CALC
 init|=
-literal|"PLEASE REMEMBER that octal number 0755 is 7*64+5*8+5 i.e. 493 in decimal NOT 755."
+literal|"PLEASE REMEMBER that octal number 0755 is 7*64+5*8+5 i.e. 493 in decimal NOT 755. You can use util:base-to-integer(0755, 8) as argument for convenience."
 decl_stmt|;
 specifier|public
 specifier|final
