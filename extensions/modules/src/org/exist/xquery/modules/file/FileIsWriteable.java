@@ -246,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if a file is writeable"
+literal|"Tests if a file is writeable.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -319,6 +319,52 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+operator|!
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+name|XPathException
+name|xPathException
+init|=
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Permission denied, calling user '"
+operator|+
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must be a DBA to call this function."
+argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
+throw|;
+block|}
 name|Sequence
 name|writeable
 init|=

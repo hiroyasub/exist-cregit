@@ -300,7 +300,7 @@ literal|"Create a new user in the database. You must have appropriate permission
 operator|+
 literal|"$groups is the sequence of group memberships, "
 operator|+
-literal|"$home-collection is the home collection."
+literal|"$home-collection is the home collection.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -457,6 +457,52 @@ operator|+
 name|user
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+name|XPathException
+name|xPathException
+init|=
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Permission denied, calling user '"
+operator|+
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must be a DBA to call this function."
+argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
+throw|;
+block|}
 comment|// changed by wolf: the first group is always the primary group, so we don't need
 comment|// an additional argument
 name|Sequence

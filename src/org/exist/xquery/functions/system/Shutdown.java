@@ -254,7 +254,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist immediately (dba role only)."
+literal|"Shutdown eXist immediately.  This method is only available to the DBA role."
 argument_list|,
 literal|null
 argument_list|,
@@ -288,7 +288,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Shutdown eXist. (dba role only)"
+literal|"Shutdown eXist.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType

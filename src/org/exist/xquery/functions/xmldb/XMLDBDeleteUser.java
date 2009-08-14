@@ -282,7 +282,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Deletes an existing user in the database. Requires username. This does not delete the user's home collection."
+literal|"Deletes an existing user in the database. Requires username. This does not delete the user's home collection.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -360,6 +360,71 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+name|User
+name|contextUser
+init|=
+name|context
+operator|.
+name|getUser
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|contextUser
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|contextUser
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|user
+argument_list|)
+condition|)
+block|{
+name|XPathException
+name|xPathException
+init|=
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Permission denied, calling user '"
+operator|+
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must not be deleting itself"
+argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
+throw|;
+block|}
+else|else
+block|{
 name|Collection
 name|collection
 init|=
@@ -372,10 +437,7 @@ operator|=
 operator|new
 name|LocalCollection
 argument_list|(
-name|context
-operator|.
-name|getUser
-argument_list|()
+name|contextUser
 argument_list|,
 name|context
 operator|.
@@ -478,6 +540,44 @@ parameter_list|)
 block|{
 comment|/* ignore */
 block|}
+block|}
+block|}
+block|}
+else|else
+block|{
+name|XPathException
+name|xPathException
+init|=
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Permission denied, calling user '"
+operator|+
+name|context
+operator|.
+name|getUser
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must be a DBA to delete a user"
+argument_list|)
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Invalid user"
+argument_list|,
+name|xPathException
+argument_list|)
+expr_stmt|;
+throw|throw
+name|xPathException
+throw|;
 block|}
 return|return
 name|Sequence
