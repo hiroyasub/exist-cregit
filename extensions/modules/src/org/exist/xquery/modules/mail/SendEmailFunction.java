@@ -495,7 +495,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|// This function has been deprecated, in favour of using the JavaMail version.
 specifier|private
 name|String
 name|charset
@@ -591,8 +590,6 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true if the email message was successfully sent"
 argument_list|)
-argument_list|,
-literal|"The JavaMail send function will be released in the maintenance release 1.4.1."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * SendEmail Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
