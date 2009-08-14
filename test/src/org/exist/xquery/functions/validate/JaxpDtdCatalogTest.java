@@ -120,7 +120,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ParseDtdCatalogTest
+name|JaxpDtdCatalogTest
 extends|extends
 name|EmbeddedExistTester
 block|{

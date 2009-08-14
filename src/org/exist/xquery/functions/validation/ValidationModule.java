@@ -281,6 +281,7 @@ operator|.
 name|class
 argument_list|)
 block|,
+comment|//new FunctionDef(Jaxp.signatures[4], Jaxp.class),
 operator|new
 name|FunctionDef
 argument_list|(
