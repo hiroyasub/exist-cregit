@@ -300,11 +300,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of $resource located in $collection-uri. "
+literal|"Returns the creation date of the resource $resource in $collection-uri. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -375,9 +375,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the creation date of $collection-uri. The collection can be passed as a simple collection "
+literal|"Returns the creation date of the collection $collection-uri. "
 operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

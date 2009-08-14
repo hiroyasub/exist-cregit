@@ -472,23 +472,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the documents specified in the input sequence. "
+literal|"Returns the documents $document-uris in the input sequence. "
 operator|+
-literal|"The arguments are either document paths like '"
-operator|+
-name|DBBroker
+name|XMLDBModule
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/shakespeare/plays/hamlet.xml' or "
-operator|+
-literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/shakespeare/plays/hamlet.xml'. "
+name|COLLECTION_URI
 operator|+
 literal|"If the input sequence is empty, "
 operator|+
@@ -511,7 +499,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The set of paths or URIs of the documents"
+literal|"The document URIs"
 argument_list|)
 block|}
 argument_list|,
@@ -531,7 +519,7 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|,
-literal|"See the standard doc() function"
+literal|"See the standard fn:doc() function"
 argument_list|)
 decl_stmt|;
 specifier|private

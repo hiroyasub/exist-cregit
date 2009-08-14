@@ -262,9 +262,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the mode of the specified Resource. $collection-path is the collection path, $resource is the resource name, $mode is the mode as xs:integer. "
+literal|"Sets the mode of the resource $resource in collection $collection, $mode is the mode as xs:integer. "
 operator|+
-literal|"PLEASE REMEMBER that 0755 is 7*64+5*8+5, NOT decimal 755."
+name|XMLDBModule
+operator|.
+name|REMEMBER_OCTAL_CALC
 argument_list|,
 operator|new
 name|SequenceType
@@ -273,7 +275,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection-path"
+literal|"collection"
 argument_list|,
 name|Type
 operator|.
@@ -283,7 +285,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection path"
+literal|"The collection"
 argument_list|)
 block|,
 operator|new
@@ -479,7 +481,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Unable to change  resource permissions"
+literal|"Unable to change resource permissions"
 argument_list|,
 name|xe
 argument_list|)

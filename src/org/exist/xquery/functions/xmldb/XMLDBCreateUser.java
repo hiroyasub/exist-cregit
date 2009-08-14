@@ -296,11 +296,23 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user in the database. You must have appropriate permissions to do this. $user-id is the username, $password is the password, "
+literal|"Create a new user, $user-id, in the database. "
 operator|+
-literal|"$groups is the sequence of group memberships, "
+name|XMLDBModule
+operator|.
+name|NEED_PRIV_USER
 operator|+
-literal|"$home-collection is the home collection.  This method is only available to the DBA role."
+literal|" $user-id is the username, $password is the password, "
+operator|+
+literal|"$groups is the sequence of group memberships. "
+operator|+
+literal|"The first group in the sequence is the primary group."
+operator|+
+literal|"$home-collection-uri is the home collection URI."
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -357,7 +369,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"home-collection"
+literal|"home-collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -367,7 +379,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The home collection for the user"
+literal|"The home collection URI"
 argument_list|)
 block|}
 argument_list|,

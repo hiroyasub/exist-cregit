@@ -238,9 +238,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true() if there is a collection "
+literal|"Returns true() if the collection "
 operator|+
-literal|"with the same name as $collection-path, otherwise false()."
+literal|"$collection exists and is available, otherwise false()."
 argument_list|,
 operator|new
 name|SequenceType
@@ -274,7 +274,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() if the collection exists, false() otherwise"
+literal|"true() if the collection exists and is available, false() otherwise"
 argument_list|)
 argument_list|,
 literal|true
@@ -306,9 +306,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true() if there is a collection "
+literal|"Returns true() if the collection "
 operator|+
-literal|"with the same name as $collection-path, otherwise false()."
+literal|"$collection exists and is available, otherwise false()."
 argument_list|,
 operator|new
 name|SequenceType

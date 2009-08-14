@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Encodes the string provided in $string such that it will be a valid collection or resource path.  Provides similar functionality to java's URLEncoder.encode() function, with some enhancements"
+literal|"Encodes the string $string such that it will be a valid collection or resource path. Provides similar functionality to java's URLEncoder.encode() function, with some enhancements."
 argument_list|,
 operator|new
 name|SequenceType
@@ -332,7 +332,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Encodes the string provided in $string such that it will be a valid collection or resource path.  Provides similar functionality to java's URLEncoder.encode() function, with some enhancements.  Returns an xs:anyURI object representing a valid XmldbURI"
+literal|"Encodes the string $string such that it will be a valid collection or resource path. Provides similar functionality to java's URLEncoder.encode() function, with some enhancements. Returns an xs:anyURI object representing a valid XmldbURI"
 argument_list|,
 operator|new
 name|SequenceType
@@ -387,7 +387,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Decodes the string provided in $string such that any percent encoded octets will be translated to their decoded UTF-8 representation."
+literal|"Decodes the string $string such that any percent encoded octets will be translated to their decoded UTF-8 representation."
 argument_list|,
 operator|new
 name|SequenceType
@@ -442,7 +442,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Decodes the URI provided in $uri such that any percent encoded octets will be translated to their decoded UTF-8 representation."
+literal|"Decodes the URI $uri such that any percent encoded octets will be translated to their decoded UTF-8 representation."
 argument_list|,
 operator|new
 name|SequenceType
@@ -476,7 +476,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the decoded string from $uri"
+literal|"the decoded $uri as xs:string"
 argument_list|)
 argument_list|)
 block|}

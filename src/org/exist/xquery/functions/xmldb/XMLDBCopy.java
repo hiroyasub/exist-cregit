@@ -300,9 +300,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Copy a collection $source-collection-uri to the collection $target-collection-uri. The collections can be specified either as "
+literal|"Copy the collection $source-collection-uri to the collection $target-collection-uri. "
 operator|+
-literal|"a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -371,11 +373,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Copy a resource $resource from the collection specified in $source-collection-uri to collection in $target-collection-uri. "
+literal|"Copy the resource $resource in $source-collection-uri to collection $target-collection-uri. "
 operator|+
-literal|"The collections can be either specified as a simple collection path "
-operator|+
-literal|"or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

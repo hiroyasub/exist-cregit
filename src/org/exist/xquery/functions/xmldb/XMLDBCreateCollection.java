@@ -250,17 +250,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new collection as a child of the collection specified in "
+literal|"Create a new collection with name $new-collection as a child of "
 operator|+
-literal|"$target-collection-uri. The collection can be passed as a simple collection "
+literal|"$target-collection-uri. "
 operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 operator|+
-literal|"The second argument, $new-collection, specifies the name of the new "
+literal|"Returns the path to the new collection if successfully created, "
 operator|+
-literal|"collection. The function returns the path to the new collection "
-operator|+
-literal|"as an xs:string or - if the collection could not be created - the empty sequence."
+literal|"otherwise the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -295,7 +295,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The new collection to create"
+literal|"The name of the new collection to create"
 argument_list|)
 block|}
 argument_list|,
@@ -310,7 +310,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the path to the new collection if created, otherwise the empty sequence"
+literal|"the path to the new collection if successfully created, otherwise the empty sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

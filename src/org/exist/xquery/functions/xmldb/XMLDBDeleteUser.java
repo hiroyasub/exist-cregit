@@ -282,7 +282,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Deletes an existing user in the database. Requires username. This does not delete the user's home collection.  This method is only available to the DBA role."
+literal|"Deletes an existing user, $user-id, in the database. "
+operator|+
+literal|"This does not delete the user's home collection. "
+operator|+
+name|XMLDBModule
+operator|.
+name|NEED_PRIV_USER
+operator|+
+literal|" You cannot delete the owner of the currently running XQuery."
 argument_list|,
 operator|new
 name|SequenceType
@@ -291,7 +299,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"username"
+literal|"user-id"
 argument_list|,
 name|Type
 operator|.
@@ -301,7 +309,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The name of the user account to delete"
+literal|"The user-id to delete"
 argument_list|)
 block|,             }
 argument_list|,

@@ -219,6 +219,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implments the xmldb:defragment() function.   *  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -266,7 +270,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Start a defragmentation run on each document for which a node is passed in the first argument. "
+literal|"Start a defragmentation run on each document which has a node in $nodes. "
 operator|+
 literal|"Fragmentation may occur if nodes are inserted into a document using XQuery update "
 operator|+
@@ -280,7 +284,7 @@ literal|"Please note that defragmenting a document changes its internal structur
 operator|+
 literal|"references to this document will become invalid, in particular, variables pointing to "
 operator|+
-literal|"some nodes in the doc."
+literal|"some nodes in the document."
 argument_list|,
 operator|new
 name|SequenceType
@@ -299,7 +303,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The nodes from the documents to defragment"
+literal|"The sequence of nodes from the documents to defragment"
 argument_list|)
 block|,
 operator|new
@@ -349,7 +353,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Start a defragmentation run on each document for which a node is passed in the first argument. "
+literal|"Start a defragmentation run on each document which has a node in $nodes. "
 operator|+
 literal|"Fragmentation may occur if nodes are inserted into a document using XQuery update "
 operator|+
@@ -359,7 +363,7 @@ literal|"Please note that defragmenting a document changes its internal structur
 operator|+
 literal|"references to this document will become invalid, in particular, variables pointing to "
 operator|+
-literal|"some nodes in the doc."
+literal|"some nodes in the document."
 argument_list|,
 operator|new
 name|SequenceType
@@ -378,7 +382,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The nodes from the documents to defragment"
+literal|"The sequence of nodes from the documents to defragment"
 argument_list|)
 block|,                     }
 argument_list|,
@@ -489,6 +493,18 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"An error occurred while defragmenting documents: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
