@@ -584,7 +584,9 @@ specifier|final
 name|String
 name|documentTxt
 init|=
-literal|"The document referenced as xs:anyURI or a node (element or result of fn:doc())."
+literal|"The document referenced as xs:anyURI, a node (element or result of fn:doc()) "
+operator|+
+literal|"or as a Java file object."
 decl_stmt|;
 specifier|private
 specifier|static

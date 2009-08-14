@@ -362,7 +362,9 @@ specifier|final
 name|String
 name|instanceText
 init|=
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+literal|"The document referenced as xs:anyURI, a node (element or returned by fn:doc()) "
+operator|+
+literal|"or as a Java file object."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -370,9 +372,9 @@ specifier|final
 name|String
 name|grammarText
 init|=
-literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI "
+literal|"The grammar document as node (element of returned by fn:doc()), xs:anyURI, "
 operator|+
-literal|"or returned by util:binary-doc()."
+literal|"returned by util:binary-doc() or as a Java file object."
 decl_stmt|;
 specifier|private
 specifier|final

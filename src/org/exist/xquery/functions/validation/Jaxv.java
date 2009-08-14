@@ -348,7 +348,9 @@ specifier|final
 name|String
 name|instanceText
 init|=
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())."
+literal|"The document referenced as xs:anyURI, a node (element or returned by fn:doc()) "
+operator|+
+literal|"or as a Java file object."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -358,7 +360,9 @@ name|grammarText
 init|=
 literal|"One of more XML Schema documents (.xsd), "
 operator|+
-literal|"referenced as xs:anyURI or a node (element or returned by fn:doc())."
+literal|"referenced as xs:anyURI, a node (element or returned by fn:doc()) "
+operator|+
+literal|"or as Java file objects."
 decl_stmt|;
 specifier|private
 specifier|final
