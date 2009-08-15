@@ -350,17 +350,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Process an XUpdate request against a collection. The first "
+literal|"Processes an XUpdate request, $modifications, against a collection $collection-uri. "
 operator|+
-literal|"argument specifies the collection as a simple collection "
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 operator|+
-literal|"path or an XMLDB URI. "
-operator|+
-literal|"The second argument specifies the XUpdate "
-operator|+
-literal|"modifications to be processed. Modifications are passed in a "
+literal|"The modifications are passed in a "
 operator|+
 literal|"document conforming to the XUpdate specification. "
+operator|+
+literal|"http://rx4rdf.liminalzone.org/xupdate-wd.html#N1a32e0"
 operator|+
 literal|"The function returns the number of modifications caused by the XUpdate."
 argument_list|,
@@ -371,7 +371,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -381,7 +381,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection as a simple collection path or an XMLDB URI"
+literal|"The collection URI"
 argument_list|)
 block|,
 operator|new

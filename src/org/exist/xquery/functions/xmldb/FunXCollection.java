@@ -236,9 +236,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Works like fn:collection(), but does not include documents "
+literal|"Returns the document nodes in the collections $collection-uris "
 operator|+
-literal|"found in sub-collections of the specified collections."
+literal|"non-recursively, i.e. does not include document nodes found in "
+operator|+
+literal|"sub-collections. "
+operator|+
+literal|"C.f. fn:collection(). "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -257,7 +265,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The set of collection paths to operate on"
+literal|"The collection URIs"
 argument_list|)
 block|}
 argument_list|,
@@ -272,7 +280,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the document nodes from the specified collections"
+literal|"the document nodes from the specified collections excluding sub-collections"
 argument_list|)
 argument_list|)
 decl_stmt|;
