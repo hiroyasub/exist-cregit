@@ -333,7 +333,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the user-id"
+literal|"The user-id"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -374,7 +374,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true if user exists. Requires username."
+literal|"Returns true if the user $user-id exists."
 argument_list|,
 operator|new
 name|SequenceType
@@ -394,7 +394,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true() if user exists, false() otherwise"
+literal|"true() if the user exists, false() otherwise"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -421,7 +421,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Receives the sequence of groups the specified user is a member of."
+literal|"Returns the sequence of groups the user $user-id is a member of."
 argument_list|,
 operator|new
 name|SequenceType
@@ -469,9 +469,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the home collection of the specified user or the empty sequence "
+literal|"Returns the user's home collection URI or the empty sequence "
 operator|+
-literal|"if no home collection is assigned to the user."
+literal|"if no home collection is assigned to the user $user-id."
 argument_list|,
 operator|new
 name|SequenceType
@@ -491,7 +491,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the home collection of user"
+literal|"the home collection URI of user $user-id if one is assigned, otherwise the empty sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

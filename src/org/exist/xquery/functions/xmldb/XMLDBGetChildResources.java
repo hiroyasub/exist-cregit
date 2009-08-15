@@ -260,7 +260,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns all child resources in the specified collection."
+literal|"Returns the names of the child resources in collection $collection-uri. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -269,7 +273,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -279,7 +283,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The specified collection"
+literal|"The collection URI"
 argument_list|)
 block|}
 argument_list|,

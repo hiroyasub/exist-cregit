@@ -290,13 +290,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the name of the user that holds a write lock on the resource specified in $resource in the collection $collection-uri.  "
+literal|"Returns the user-id of the user that holds a write lock on the "
+operator|+
+literal|"resource $resource in the collection $collection-uri.  "
 operator|+
 literal|"If no lock is in place, the empty sequence is returned. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

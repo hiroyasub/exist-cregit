@@ -288,7 +288,7 @@ literal|"This does not delete the user's home collection. "
 operator|+
 name|XMLDBModule
 operator|.
-name|NEED_PRIV_USER
+name|NEED_PRIV_USER_NOT_CURRENT
 operator|+
 literal|" You cannot delete the owner of the currently running XQuery."
 argument_list|,
