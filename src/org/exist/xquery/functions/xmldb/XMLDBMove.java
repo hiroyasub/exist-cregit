@@ -338,7 +338,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -366,9 +366,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a collection $source-collection-uri. The collection can be specified either as "
+literal|"Moves the collection $source-collection-uri into the collection "
 operator|+
-literal|"a simple collection path or an XMLDB URI."
+literal|"$target-collection-uri. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -409,11 +413,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Move a resource $resource from the collection specified in $source-collection-uri to collection in $target-collection-uri. "
+literal|"Moves the resource $resource from the collection $source-collection-uri "
 operator|+
-literal|"The collection can be either specified as a simple collection path or "
+literal|"into collection $target-collection-uri. "
 operator|+
-literal|"an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

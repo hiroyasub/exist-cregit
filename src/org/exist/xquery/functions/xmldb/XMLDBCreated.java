@@ -441,11 +441,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the last-modification date of $resource, located in "
+literal|"Returns the last-modification date of resource $resource in "
 operator|+
-literal|"$collection-uri. The collection "
+literal|"collection $collection-uri. "
 operator|+
-literal|"can be passed as a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
