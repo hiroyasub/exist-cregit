@@ -260,7 +260,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Register an XMLDB driver class with the XMLDB Database Manager. "
+literal|"Registers an XMLDB driver class with the XMLDB Database Manager. "
 operator|+
 literal|"This is only required if you want to access a database instance different "
 operator|+
@@ -299,7 +299,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The flag to create the db if not exists"
+literal|"The flag to create the db if it does not exist"
 argument_list|)
 block|}
 argument_list|,

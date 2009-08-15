@@ -266,9 +266,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Remove a collection $collection-uri. The collection can be specified either as "
+literal|"Removes the collection $collection-uri and its contents from the database. "
 operator|+
-literal|"a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -321,9 +323,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Remove a resource from the collection specified in $collection-uri. The collection "
+literal|"Removes the resource $resource from the collection $collection-uri. "
 operator|+
-literal|"can be either specified as a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

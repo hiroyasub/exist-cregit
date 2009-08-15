@@ -272,17 +272,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Format the resource or collection permissions passed as an integer "
+literal|"Formats the resource or collection permissions, $permissions, passed as an integer "
 operator|+
 literal|"value into a string. The returned string shows the permissions following "
 operator|+
-literal|"the usual Unix conventions, i.e. all permissions set is returned as "
+literal|"the Unix conventions, i.e. all permissions set is returned as "
 operator|+
 literal|"rwurwurwu, where the first three chars are for user permissions, "
 operator|+
-literal|"followed by group and world. 'r' denotes read, 'w' write and 'u' update "
+literal|"followed by group and other users. 'r' denotes read, 'w' write and 'u' update "
 operator|+
-literal|"permissions"
+literal|"permissions."
 argument_list|,
 operator|new
 name|SequenceType

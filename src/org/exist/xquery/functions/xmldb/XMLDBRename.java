@@ -300,9 +300,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Rename a collection $source-collection-uri. The collection can be specified either as "
+literal|"Renames the collection $source-collection-uri with new name $new-collection-name. "
 operator|+
-literal|"a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -327,7 +329,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"target-collection-uri"
+literal|"new-collection-name"
 argument_list|,
 name|Type
 operator|.
@@ -337,7 +339,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The target collection URI"
+literal|"The new collection name"
 argument_list|)
 block|}
 argument_list|,
@@ -371,11 +373,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Rename a resource $resource in the collection specified in $collection-uri with name in $new-resource-name. "
+literal|"Renames the resource $resource in collection $collection-uri with new name $new-resource-name. "
 operator|+
-literal|"The collection can be either specified as a simple collection path or "
-operator|+
-literal|"an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

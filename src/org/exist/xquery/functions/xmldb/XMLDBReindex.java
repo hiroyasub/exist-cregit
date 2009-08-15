@@ -271,7 +271,11 @@ name|PREFIX
 argument_list|)
 argument_list|,
 comment|// yes, only a path not an uri /ljo
-literal|"Reindex collection $collection-path. DBA only"
+literal|"Reindex collection $collection-path. "
+operator|+
+name|XMLDBModule
+operator|.
+name|NEED_PRIV_USER
 argument_list|,
 operator|new
 name|SequenceType
