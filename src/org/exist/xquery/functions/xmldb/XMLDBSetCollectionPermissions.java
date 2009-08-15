@@ -284,15 +284,21 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Sets the permissions of the specified collection. $collection-uri is the collection, which can be specified "
+literal|"Sets the permissions of the collection $collection-uri. "
 operator|+
-literal|"as a simple collection path or an XMLDB URI. $user-id specifies the user which "
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 operator|+
-literal|"will become the owner of the resource, $group-id the group. "
+literal|" $user-id specifies the user which "
 operator|+
-literal|"The final argument contains the permissions, specified as an xs:integer value. "
+literal|"will become the owner of the resource, $group-id the group, and "
 operator|+
-literal|"PLEASE REMEMBER that 0755 is 7*64+5*8+5, NOT decimal 755."
+literal|"$permissons the permissions as an xs:integer value. "
+operator|+
+name|XMLDBModule
+operator|.
+name|REMEMBER_OCTAL_CALC
 argument_list|,
 operator|new
 name|SequenceType
@@ -327,7 +333,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The user id"
+literal|"The user-id"
 argument_list|)
 block|,
 operator|new
@@ -343,7 +349,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The group id"
+literal|"The group-id"
 argument_list|)
 block|,
 operator|new

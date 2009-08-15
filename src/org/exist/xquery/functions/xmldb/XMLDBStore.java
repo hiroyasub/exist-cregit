@@ -566,7 +566,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the path to new resource"
+literal|"the path to new resource if sucessfully stored, otherwise emtpty sequence"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -594,23 +594,30 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Store a new resource into the database. The first "
+literal|"Stores a new resource into the database. The resource is stored  "
 operator|+
-literal|"argument denotes the collection where the resource should be stored. "
+literal|"in the collection $collection-uri with the name $resource-name. "
 operator|+
-literal|"The collection can be either specified as a simple collection path or "
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 operator|+
-literal|"an XMLDB URI. The second argument is the name of the new "
-operator|+
-literal|"resource. The third argument, $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
+comment|// fixit! - security -  if URI and possibly also file object
+comment|// DBA role should be required/ljo
+comment|// Of course we need to think of the node case too but it has at
+comment|// least been passed throught fn:doc() but since the retrieval
+comment|// happens firstly who knows ...
+literal|" The contents $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+
 literal|"A node will be serialized to SAX. It becomes the root node of the new "
 operator|+
-literal|"document. If the argument is of type xs:anyURI, the resource is loaded "
+literal|"document. If $contents is of type xs:anyURI, the resource is loaded "
 operator|+
-literal|"from that URI. The functions returns the path to the new document as an xs:string or "
+literal|"from that URI. "
 operator|+
-literal|" - if the document could not be stored - the empty sequence."
+literal|"Returns the path to the new document if successfully stored, "
+operator|+
+literal|"otherwise the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -643,27 +650,34 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Store a new resource into the database. The first "
+literal|"Stores a new resource into the database. The resource is stored  "
 operator|+
-literal|"argument denotes the collection where the resource should be stored. "
+literal|"in the collection $collection-uri with the name $resource-name. "
 operator|+
-literal|"The collection can be either specified as a simple collection path or "
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 operator|+
-literal|"an XMLDB URI. The second argument is the name of the new "
-operator|+
-literal|"resource. The third argument, $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
+comment|// fixit! - security -  if URI and possibly also file object
+comment|// DBA role should be required/ljo
+comment|// Of course we need to think of the node case too but it has at
+comment|// least been passed through fn:doc() but since the retrieval
+comment|// happens firstly who knows ...
+literal|" The contents $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+
 literal|"A node will be serialized to SAX. It becomes the root node of the new "
 operator|+
-literal|"document. If the argument is of type xs:anyURI, the resource is loaded "
+literal|"document. If $contents is of type xs:anyURI, the resource is loaded "
 operator|+
-literal|"from that URI. The final argument $mime-type is used to specify a mime-type.  If the mime-type "
+literal|"from that URI. The final argument $mime-type is used to specify "
 operator|+
-literal|"is not a xml based type, the resource will be stored as "
+literal|"a mime type.  If the mime-type is not a xml based type, the "
 operator|+
-literal|"a binary resource. The functions returns the path to the new document as an xs:string or "
+literal|"resource will be stored as a binary resource."
 operator|+
-literal|"- if the document could not be stored - the empty sequence."
+literal|"Returns the path to the new document if successfully stored, "
+operator|+
+literal|"otherwise the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType

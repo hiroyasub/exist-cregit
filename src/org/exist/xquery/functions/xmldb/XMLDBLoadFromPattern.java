@@ -353,7 +353,7 @@ specifier|static
 name|String
 name|FUNCTION_DESCRIPTION
 init|=
-literal|"Store new resources into the database. Resources are read from the server's "
+literal|"Stores new resources into the database. Resources are read from the server's "
 operator|+
 literal|"file system, using file patterns. "
 operator|+
@@ -370,7 +370,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -380,7 +380,11 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection where resources should be stored. Specified either as a simple collection path or an XMLDB URI."
+literal|"The collection-uri where resources should be stored. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -392,7 +396,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"fs-directory"
+literal|"directory"
 argument_list|,
 name|Type
 operator|.
@@ -405,6 +409,9 @@ argument_list|,
 literal|"The directory in the file system from where the files are read."
 argument_list|)
 decl_stmt|;
+comment|// fixit! - security - we should say some words about sanity
+comment|// DBA role should be required for anything short of chroot/jail
+comment|// easily setup per installation/execution host for each function. /ljo
 specifier|protected
 specifier|final
 specifier|static

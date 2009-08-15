@@ -290,17 +290,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the estimated size of a resource $resource (in bytes) in the collection specified by $collection-uri. "
+literal|"Returns the estimated size of the resource $resource (in bytes) in the collection $collection-uri. "
 operator|+
-literal|"The estimation is based on the number of pages occupied by a resource. If the "
+literal|"The estimation is based on the number of pages occupied by the resource. If the "
 operator|+
-literal|"document is serialized back to a string, it's size may be different, as parts of the "
+literal|"document is serialized back to a string, its size may be different, since parts of the "
 operator|+
 literal|"structural information are stored in compressed form. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
