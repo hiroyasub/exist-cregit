@@ -310,7 +310,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the MIME Type of the resource indicated in $resource-uri or an empty sequence otherwise."
+literal|"Returns the MIME type if available of the resource $resource-uri, otherwise the empty sequence. "
+operator|+
+name|XMLDBModule
+operator|.
+name|ANY_URI
 argument_list|,
 operator|new
 name|SequenceType

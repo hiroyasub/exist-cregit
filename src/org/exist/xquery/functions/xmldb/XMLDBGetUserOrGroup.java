@@ -307,7 +307,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the user id"
+literal|"the user-id"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -370,9 +370,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the owner group of the collection $collection-uri. The collection can be passed as a simple collection "
+literal|"Returns the owner group of the collection $collection-uri. "
 operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -401,11 +403,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the owner group of a resource in the collection specified by $collection-uri. "
+literal|"Returns the owner group of the resource $resource in the collection $collection-uri. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -445,11 +447,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the owner of a collection $collection-uri. "
+literal|"Returns the owner user-id of the collection $collection-uri. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -478,11 +480,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the owner of the specified resource $resource in collection $collection-uri. "
+literal|"Returns the owner user-id of the resource $resource in collection $collection-uri. "
 operator|+
-literal|"The collection can be passed as a simple collection "
-operator|+
-literal|"path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType

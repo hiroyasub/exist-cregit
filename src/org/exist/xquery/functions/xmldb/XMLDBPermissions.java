@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -240,7 +240,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author gvalentino  *  */
 end_comment
 
 begin_class
@@ -269,7 +269,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the collection-uri"
+literal|"The collection-uri"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -291,7 +291,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the resource"
+literal|"The resource"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -336,9 +336,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the permissions assigned to the collection $collection-uri. "
 operator|+
-literal|"The collection can be specified as a simple collection path or "
-operator|+
-literal|"an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -379,11 +379,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the permissions assigned to the resource specified in $resource "
+literal|"Returns the permissions assigned to the resource $resource "
 operator|+
-literal|"which is a child of the collection $collection-uri. The collection can be specified "
+literal|"in collection $collection-uri. "
 operator|+
-literal|"as a simple collection path or an XMLDB URI."
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -405,7 +407,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the resource persissions"
+literal|"the resource permissions"
 argument_list|)
 argument_list|)
 block|}

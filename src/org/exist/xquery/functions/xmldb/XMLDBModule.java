@@ -129,6 +129,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|String
+name|ANY_URI
+init|=
+literal|"Resource URIs can be specified either as a simple collection path, an XMLDB URI or any URI."
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|FunctionDef
 index|[]
 name|functions
