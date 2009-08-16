@@ -566,7 +566,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the path to new resource if sucessfully stored, otherwise emtpty sequence"
+literal|"the path to new resource if sucessfully stored, otherwise the emtpty sequence"
 argument_list|)
 decl_stmt|;
 specifier|public
