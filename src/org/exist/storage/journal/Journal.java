@@ -1897,7 +1897,7 @@ name|name
 operator|.
 name|endsWith
 argument_list|(
-literal|"_index."
+literal|"_index"
 operator|+
 name|suffix
 argument_list|)
