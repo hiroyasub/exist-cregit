@@ -1867,9 +1867,7 @@ operator|new
 name|File
 argument_list|(
 name|moduleLoadPath
-operator|+
-literal|'/'
-operator|+
+argument_list|,
 name|path
 argument_list|)
 expr_stmt|;

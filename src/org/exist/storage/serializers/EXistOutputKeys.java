@@ -92,6 +92,14 @@ name|ADD_EXIST_ID
 init|=
 literal|"add-exist-id"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XINCLUDE_PATH
+init|=
+literal|"xinclude-path"
+decl_stmt|;
 block|}
 end_class
 

@@ -202,13 +202,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the module load path from the current context. The module load path "
+literal|"Returns the module load path from the current query context. The module load path "
 operator|+
 literal|"corresponds to the location on the file system from where modules are loaded "
 operator|+
 literal|"into an XQuery. This is usually the directory from which the main XQuery was "
 operator|+
-literal|"compiled."
+literal|"compiled, or - when executing a stored XQuery - the collection in which the main "
+operator|+
+literal|"query resides. The module load path "
+operator|+
+literal|"is also used to resolve relative XInclude paths."
 argument_list|,
 name|FunctionSignature
 operator|.

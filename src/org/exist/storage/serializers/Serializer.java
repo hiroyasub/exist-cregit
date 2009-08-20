@@ -2543,6 +2543,13 @@ name|xinclude
 expr_stmt|;
 name|xinclude
 operator|.
+name|setModuleLoadPath
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|xinclude
+operator|.
 name|setReceiver
 argument_list|(
 literal|null
