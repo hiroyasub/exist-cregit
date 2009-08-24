@@ -253,7 +253,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"fn:data takes a sequence of items, $items, and returns a sequence of atomic values."
+literal|"Returns the sequence of atomic values from the items in $items."
 argument_list|,
 operator|new
 name|SequenceType

@@ -71,6 +71,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|xmldb
+operator|.
+name|XMLDBModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|DocUtils
@@ -222,23 +238,9 @@ argument_list|)
 argument_list|,
 literal|"Returns whether or not the document, $document-uri, specified in the input sequence is available. "
 operator|+
-literal|"The arguments are either document pathes like '"
-operator|+
-name|DBBroker
+name|XMLDBModule
 operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/shakespeare/plays/hamlet.xml' or "
-operator|+
-literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/shakespeare/plays/hamlet.xml' or "
-operator|+
-literal|"standard URLs, starting with http://, file://, etc."
+name|ANY_URI
 argument_list|,
 operator|new
 name|SequenceType

@@ -360,7 +360,7 @@ argument_list|)
 argument_list|,
 literal|"Returns an xs:integer representing the days component in the canonical lexical "
 operator|+
-literal|"representation of the value of $duaration. The result may be negative."
+literal|"representation of the value of $duration. The result may be negative."
 argument_list|,
 operator|new
 name|SequenceType
@@ -380,7 +380,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the days component of $duaration"
+literal|"the days component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -425,7 +425,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the hours component of $duaration"
+literal|"the hours component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -470,7 +470,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the minutes component of $duaration"
+literal|"the minutes component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -515,7 +515,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the seconds component of $duaration"
+literal|"the seconds component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -560,7 +560,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the months component of $duaration"
+literal|"the months component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -605,7 +605,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the years component of $duaration"
+literal|"the years component of $duration"
 argument_list|)
 argument_list|)
 decl_stmt|;

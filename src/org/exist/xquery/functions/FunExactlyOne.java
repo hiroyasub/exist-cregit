@@ -252,7 +252,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the argument sequence, $item-sequence, if it contains exactly one item. Otherwise, "
+literal|"Returns the argument sequence, $items, if it contains exactly one item. Otherwise, "
 operator|+
 literal|"raises an error."
 argument_list|,
@@ -263,7 +263,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"item-sequence"
+literal|"items"
 argument_list|,
 name|Type
 operator|.
@@ -288,7 +288,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the $item-sequence if it contains exactly one item. Otherwise, an error is raised."
+literal|"the sole item in $items if it contains exactly one item. Otherwise, an error is raised."
 argument_list|)
 argument_list|)
 decl_stmt|;

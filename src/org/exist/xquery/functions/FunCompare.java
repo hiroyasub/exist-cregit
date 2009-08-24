@@ -285,9 +285,9 @@ literal|"If either comparand is the empty sequence, the empty sequence is "
 operator|+
 literal|"returned. "
 operator|+
-literal|"Remember to specify the collation in the context or as third "
+literal|"Please remember to specify the collation in the context or use "
 operator|+
-literal|"argument if you dont want the system default."
+literal|"the three argument version if you don't want the system default."
 argument_list|,
 operator|new
 name|SequenceType
@@ -354,7 +354,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the collatable comparison between $string-1 and $string-2, "
+literal|"Returns the collatable comparison using $collation-uri between $string-1 and $string-2, "
 operator|+
 literal|"-1 if $string-1 is inferior to $string-2, 0 if $string-1 is equal "
 operator|+

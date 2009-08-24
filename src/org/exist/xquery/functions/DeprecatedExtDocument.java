@@ -476,23 +476,11 @@ literal|"This function is specific to eXist and "
 operator|+
 literal|"will be replaced with the corresponding fn:doc function. "
 operator|+
-literal|"The arguments are either document pathes like '"
-operator|+
-name|DBBroker
+name|XMLDBModule
 operator|.
-name|ROOT_COLLECTION
+name|COLLECTION_URI
 operator|+
-literal|"/shakespeare/plays/hamlet.xml' or "
-operator|+
-literal|"XMLDB URIs like 'xmldb:exist://localhost:8081/"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/shakespeare/plays/hamlet.xml'. "
-operator|+
-literal|"If the input sequence is empty, "
+literal|" If the input sequence is empty, "
 operator|+
 literal|"the function will load all documents in the database."
 argument_list|,
@@ -513,7 +501,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The set of paths or uris of the documents"
+literal|"The document URIs"
 argument_list|)
 block|}
 argument_list|,

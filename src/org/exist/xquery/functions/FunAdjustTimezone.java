@@ -401,7 +401,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:dateTime value to the implicit timezone of the current locale."
+literal|"Adjusts the xs:dateTime value $date-time to the implicit timezone of the current locale."
 argument_list|,
 operator|new
 name|SequenceType
@@ -426,7 +426,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:dateTime value to a specific timezone, or to no timezone at all. "
+literal|"Adjusts the xs:dateTime value $date-time to a specific timezone, or to no timezone at all. "
 operator|+
 literal|"If $duration is the empty sequence, returns an xs:dateTime without a timezone."
 argument_list|,
@@ -464,7 +464,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:date value to the implicit timezone of the current locale."
+literal|"Adjusts the xs:date value $date to the implicit timezone of the current locale."
 argument_list|,
 operator|new
 name|SequenceType
@@ -489,7 +489,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:date value to a specific timezone, or to no timezone at all. "
+literal|"Adjusts the xs:date value $date to a specific timezone, or to no timezone at all. "
 operator|+
 literal|"If $duration is the empty sequence, returns an xs:date without a timezone."
 argument_list|,
@@ -527,7 +527,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:time value to the implicit timezone of the current locale."
+literal|"Adjusts the xs:time value $time to the implicit timezone of the current locale."
 argument_list|,
 operator|new
 name|SequenceType
@@ -552,7 +552,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Adjusts an xs:time value to a specific timezone, or to no timezone at all. "
+literal|"Adjusts the xs:time value $time to a specific timezone, or to no timezone at all. "
 operator|+
 literal|"If $duration is the empty sequence, returns an xs:time without a timezone."
 argument_list|,

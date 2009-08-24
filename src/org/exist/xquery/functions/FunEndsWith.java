@@ -338,7 +338,7 @@ literal|" false otherwise. If "
 operator|+
 literal|"either $source-string or $suffix is the empty sequence, the empty sequence"
 operator|+
-literal|" is returned."
+literal|" is returned. "
 operator|+
 name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,

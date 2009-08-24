@@ -235,7 +235,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the largets number not greater than the value of $number."
+literal|"Returns the largets number not greater than the value of $number. "
 operator|+
 literal|"If $number is the empty sequence, returns the empty sequence."
 argument_list|,

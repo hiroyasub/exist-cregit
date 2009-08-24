@@ -223,7 +223,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the context's default collation. E.g. http://www.w3.org/2005/xpath-functions/collation/codepoint"
+literal|"Returns the context's default collation. E.g. http://www.w3.org/2005/xpath-functions/collation/codepoint."
 argument_list|,
 literal|null
 argument_list|,
@@ -238,7 +238,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the default collation from context"
+literal|"the default collation from the context"
 argument_list|)
 argument_list|)
 decl_stmt|;

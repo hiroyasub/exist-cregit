@@ -340,7 +340,7 @@ argument_list|)
 argument_list|,
 literal|"Indicates that an irrecoverable error has occurred. The "
 operator|+
-literal|"script will terminate immediately with an exception using $qname and the default message,'An error has been raised by the query'."
+literal|"script will terminate immediately with an exception using $qname and the default message, 'An error has been raised by the query'."
 argument_list|,
 operator|new
 name|SequenceType

@@ -267,7 +267,7 @@ argument_list|)
 argument_list|,
 literal|"Returns true or false depending on whether the value of $string-1 is equal to the value of $string-2, "
 operator|+
-literal|"according to the Unicode code point collation"
+literal|"according to the Unicode code point collation."
 argument_list|,
 operator|new
 name|SequenceType

@@ -239,7 +239,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Computes the xs:boolean value of the sequence argument."
+literal|"Computes the xs:boolean value of the sequence $items."
 argument_list|,
 operator|new
 name|SequenceType
