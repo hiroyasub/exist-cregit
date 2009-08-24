@@ -350,7 +350,7 @@ literal|"let $b := xs:anyURI('/db/validate-test/test.nvdl')"
 operator|+
 literal|"return "
 operator|+
-literal|"validation:validate-report($a,$b)"
+literal|"validation:jing-report($a,$b)"
 decl_stmt|;
 name|executeAndEvaluate
 argument_list|(
@@ -384,7 +384,7 @@ literal|"let $b := xs:anyURI('/db/validate-test/test.nvdl')"
 operator|+
 literal|"return "
 operator|+
-literal|"validation:validate-report($a,$b)"
+literal|"validation:jing-report($a,$b)"
 decl_stmt|;
 name|executeAndEvaluate
 argument_list|(
