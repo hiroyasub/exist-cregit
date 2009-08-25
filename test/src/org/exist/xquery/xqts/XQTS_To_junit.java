@@ -909,14 +909,14 @@ name|allTests
 operator|.
 name|write
 argument_list|(
-literal|"		suite.addTestSuite("
+literal|"		"
 operator|+
 name|adoptString
 argument_list|(
 name|groupName
 argument_list|)
 operator|+
-literal|".class);\n"
+literal|".class,\n"
 argument_list|)
 expr_stmt|;
 name|testCases
