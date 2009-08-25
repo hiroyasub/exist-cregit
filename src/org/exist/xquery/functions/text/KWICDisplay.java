@@ -515,6 +515,10 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
+literal|"Deprecated: kwic functionality is now provided by an XQuery module, see "
+operator|+
+literal|"http://exist-org/kwic.html."
+operator|+
 literal|"This function takes a sequence of text nodes in $a, containing matches from a fulltext search. "
 operator|+
 literal|"It highlights matching strings within those text nodes in the same way as the text:highlight-matches "
@@ -575,6 +579,10 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"the results"
 argument_list|)
+argument_list|,
+literal|"Improved kwic functionality is now provided by a separate XQuery module, see "
+operator|+
+literal|"http://exist-org/kwic.html."
 argument_list|)
 block|,
 operator|new
@@ -656,6 +664,10 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"the results"
 argument_list|)
+argument_list|,
+literal|"Improved kwic functionality is now provided by a separate XQuery module, see "
+operator|+
+literal|"http://exist-org/kwic.html."
 argument_list|)
 block|}
 decl_stmt|;
