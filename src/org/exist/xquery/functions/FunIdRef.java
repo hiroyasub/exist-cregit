@@ -462,9 +462,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element or attributes nodes with an IDREF value matching the "
 operator|+
-literal|"value of one or more of the ID values supplied in $id-sequence. "
+literal|"value of one or more of the ID values supplied in $ids. "
 operator|+
-literal|"If none is matching or $ied-sequence is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $ids is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -473,7 +473,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"id-sequence"
+literal|"ids"
 argument_list|,
 name|Type
 operator|.
@@ -483,7 +483,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The id sequence"
+literal|"The ID sequence"
 argument_list|)
 block|,             }
 argument_list|,
@@ -498,7 +498,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the elements with matching IDREF values from IDs in $id-sequence"
+literal|"the elements with matching IDREF values from IDs in $ids"
 argument_list|)
 argument_list|)
 block|,
@@ -517,9 +517,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element or attributes nodes with an IDREF value matching the "
 operator|+
-literal|"value of one or more of the ID values supplied in $id-sequence. "
+literal|"value of one or more of the ID values supplied in $ids. "
 operator|+
-literal|"If none is matching or $id-sequence is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $ids is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -528,7 +528,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"id-sequence"
+literal|"ids"
 argument_list|,
 name|Type
 operator|.
@@ -538,7 +538,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The id sequence"
+literal|"The ID sequence"
 argument_list|)
 block|,
 operator|new
@@ -569,7 +569,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the elements with matching IDREF values from IDs in $id-sequence in the same document as $node-in-document"
+literal|"the elements with matching IDREF values from IDs in $ids in the same document as $node-in-document"
 argument_list|)
 argument_list|)
 block|}

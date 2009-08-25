@@ -240,7 +240,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the daytime-duration from implicit timezone in dynamic context"
+literal|"the implicit timezone daytime-duration from the dynamic context"
 argument_list|)
 argument_list|)
 decl_stmt|;

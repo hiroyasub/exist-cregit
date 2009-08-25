@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -284,7 +284,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  * TODO To change the template for this generated type comment go to  * Window - Preferences - Java - Code Style - Code Templates  */
+comment|/**  * @author wolf  *  */
 end_comment
 
 begin_class
@@ -323,7 +323,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collation"
+literal|"collation-uri"
 argument_list|,
 name|Type
 operator|.
@@ -333,7 +333,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collation"
+literal|"The collation URI"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -345,7 +345,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"srchParam"
+literal|"search"
 argument_list|,
 name|Type
 operator|.
@@ -367,7 +367,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"seqParam"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -377,7 +377,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The sequence"
+literal|"The source sequence"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -388,9 +388,9 @@ name|FUNCTION_DESCRIPTION
 init|=
 literal|"Returns a sequence of positive integers giving the "
 operator|+
-literal|"positions within the sequence $seqParam of items "
+literal|"positions within the sequence of atomic values $source "
 operator|+
-literal|"that are equal to $srchParam.\n\n"
+literal|"that are equal to $search.\n\n"
 operator|+
 literal|"The collation used by the invocation of this function "
 operator|+
@@ -398,25 +398,25 @@ literal|"is determined according to the rules in 7.3.1 Collations. "
 operator|+
 literal|"The collation is used when string comparison is required.\n\n"
 operator|+
-literal|"The items in the sequence $seqParam are compared with "
+literal|"The items in the sequence $source are compared with "
 operator|+
-literal|"$srchParam under the rules for the eq operator. Values of "
+literal|"$search under the rules for the 'eq' operator. Values of "
 operator|+
 literal|"type xs:untypedAtomic are compared as if they were of "
 operator|+
 literal|"type xs:string. Values that cannot be compared, i.e. "
 operator|+
-literal|"the eq operator is not defined for their types, are "
+literal|"the 'eq' operator is not defined for their types, are "
 operator|+
 literal|"considered to be distinct. If an item compares equal, "
 operator|+
 literal|"then the position of that item in the sequence "
 operator|+
-literal|"$seqParam is included in the result.\n\n"
+literal|"$source is included in the result.\n\n"
 operator|+
-literal|"If the value of $seqParam is the empty sequence, or "
+literal|"If the value of $source is the empty sequence, or "
 operator|+
-literal|"if no item in $seqParam matches $srchParam, then the "
+literal|"if no item in $source matches $search, then the "
 operator|+
 literal|"empty sequence is returned.\n\n"
 operator|+
@@ -473,6 +473,12 @@ name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 name|FUNCTION_DESCRIPTION
+operator|+
+literal|" "
+operator|+
+name|CollatingFunction
+operator|.
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType

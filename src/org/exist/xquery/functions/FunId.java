@@ -496,9 +496,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element nodes that have an ID value "
 operator|+
-literal|"matching the value of one or more of the IDREF values supplied in $id-sequence. "
+literal|"matching the value of one or more of the IDREF values supplied in $idrefs. "
 operator|+
-literal|"If none is matching or $id-sequence is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $idrefs is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -507,7 +507,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"idref-sequence"
+literal|"idrefs"
 argument_list|,
 name|Type
 operator|.
@@ -517,7 +517,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The idref sequence"
+literal|"The IDREF sequence"
 argument_list|)
 block|}
 argument_list|,
@@ -551,9 +551,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the sequence of element nodes that have an ID value "
 operator|+
-literal|"matching the value of one or more of the IDREF values supplied in $idref-sequence and is in the same document as $node-in-document. "
+literal|"matching the value of one or more of the IDREF values supplied in $idrefs and is in the same document as $node-in-document. "
 operator|+
-literal|"If none is matching or $idref-sequence is the empty sequence, returns the empty sequence."
+literal|"If none is matching or $idrefs is the empty sequence, returns the empty sequence."
 argument_list|,
 operator|new
 name|SequenceType
@@ -562,7 +562,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"idref-sequence"
+literal|"idrefs"
 argument_list|,
 name|Type
 operator|.
@@ -572,7 +572,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The idref sequence"
+literal|"The IDREF sequence"
 argument_list|)
 block|,
 operator|new
@@ -603,7 +603,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the elements with IDs matching IDREFs from $idref-sequence in the same document as $node-in-document"
+literal|"the elements with IDs matching IDREFs from $idrefs in the same document as $node-in-document"
 argument_list|)
 argument_list|)
 block|}
