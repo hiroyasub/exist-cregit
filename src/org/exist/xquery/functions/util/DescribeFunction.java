@@ -883,7 +883,7 @@ name|description
 operator|.
 name|append
 argument_list|(
-literal|"Result:\n"
+literal|"Returns "
 argument_list|)
 expr_stmt|;
 name|FunctionReturnSequenceType
