@@ -1567,6 +1567,16 @@ name|int
 name|handle
 parameter_list|)
 function_decl|;
+name|boolean
+name|releaseQueryResult
+parameter_list|(
+name|int
+name|handle
+parameter_list|,
+name|int
+name|hash
+parameter_list|)
+function_decl|;
 name|int
 name|xupdate
 parameter_list|(
