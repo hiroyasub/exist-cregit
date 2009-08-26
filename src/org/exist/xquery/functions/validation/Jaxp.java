@@ -1023,7 +1023,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Parse document in validating more, all defaults are filled in according to the "
+literal|"Parse document in validating mode, all defaults are filled in according to the "
 operator|+
 literal|"grammar (xsd)."
 argument_list|,
@@ -1091,7 +1091,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Parsed document"
+literal|"the parsed document."
 argument_list|)
 argument_list|)
 block|}
