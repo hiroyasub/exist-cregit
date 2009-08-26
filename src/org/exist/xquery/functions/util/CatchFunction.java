@@ -276,11 +276,15 @@ argument_list|)
 argument_list|,
 literal|"This function corresponds to a try-catch statement in Java. The code block "
 operator|+
-literal|"in $b will be put inside a try-catch statement. If an exception is thrown while executing "
+literal|"in $try-code-blocks will be put inside a try-catch statement. If an exception "
 operator|+
-literal|"$b, the function checks the name of the exception and calls $c if it matches one of "
+literal|"is thrown while executing $try-code-blocks, the function checks the name of "
 operator|+
-literal|"the fully qualified Java class names specified in $a.  A value of \"*\" in $a will catch all java exceptions"
+literal|"the exception and calls $catch-code-blocks if it matches one of "
+operator|+
+literal|"the fully qualified Java class names specified in $java-classnames.  "
+operator|+
+literal|"A value of \"*\" in $java-classnames will catch all java exceptions"
 argument_list|,
 operator|new
 name|SequenceType
