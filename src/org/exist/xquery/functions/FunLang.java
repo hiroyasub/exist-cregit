@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 the eXist team  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -271,13 +271,27 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
-literal|"This function tests whether the language of $node, or the context item if "
+literal|"Tests whether the language of the context item "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAMS
+init|=
+literal|"Tests whether the language of $node "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_BOTH
+init|=
+literal|"as specified by xml:lang attributes is the "
 operator|+
-literal|"the second argument is omitted, as specified by xml:lang attributes is the "
-operator|+
-literal|"same as, or is a sublanguage of, the language specified by $testlang. The "
+literal|"same as, or is a sublanguage of, the language specified by $lang. The "
 operator|+
 literal|"behavior of the function if the second argument is omitted is exactly the "
 operator|+
@@ -291,13 +305,13 @@ literal|"or, if the node has no such attribute, by the value of the xml:lang att
 operator|+
 literal|"on the nearest ancestor of the node that has an xml:lang attribute. If there "
 operator|+
-literal|"is no such ancestor, then the function returns false\n\n"
+literal|"is no such ancestor, then the function returns false().\n\n"
 operator|+
 literal|"The following errors may be raised: if the context item is undefined [err:XPDY0002]XP; "
 operator|+
 literal|"if the context item is not a node [err:XPTY0004]XP.\n\n"
 operator|+
-literal|"If $testlang is the empty sequence it is interpreted as the zero-length string."
+literal|"If $lang is the empty sequence it is interpreted as the zero-length string."
 decl_stmt|;
 specifier|public
 specifier|final
@@ -320,7 +334,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_BOTH
 argument_list|,
 operator|new
 name|SequenceType
@@ -329,7 +345,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"testLang"
+literal|"lang"
 argument_list|,
 name|Type
 operator|.
@@ -354,7 +370,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"true if the language code matches"
+literal|"true if the language code matches, false otherwise"
 argument_list|)
 argument_list|)
 block|,
@@ -371,7 +387,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_2_PARAMS
+operator|+
+name|FUNCTION_DESCRIPTION_BOTH
 argument_list|,
 operator|new
 name|SequenceType
@@ -380,7 +398,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"testLang"
+literal|"lang"
 argument_list|,
 name|Type
 operator|.
@@ -421,7 +439,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"true if the language code matches"
+literal|"true if the language code matches, false otherwise"
 argument_list|)
 argument_list|)
 block|}

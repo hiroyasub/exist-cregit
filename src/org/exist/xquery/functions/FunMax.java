@@ -330,7 +330,7 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
 init|=
 literal|"Selects an item from the input sequence $arg whose value is "
 operator|+
@@ -346,7 +346,7 @@ literal|"- Values of type xs:untypedAtomic in $arg are cast to xs:double.\n"
 operator|+
 literal|"- Numeric and xs:anyURI values are converted to the least common "
 operator|+
-literal|"type that supports the ge operator by a combination of type "
+literal|"type that supports the 'ge' operator by a combination of type "
 operator|+
 literal|"promotion and subtype substitution. See Section B.1 Type "
 operator|+
@@ -364,7 +364,7 @@ literal|"If the converted sequence is empty, the empty sequence is returned.\n\n
 operator|+
 literal|"All items in $arg must be numeric or derived from a single base type "
 operator|+
-literal|"for which the ge operator is defined. In addition, the values in the "
+literal|"for which the 'ge' operator is defined. In addition, the values in the "
 operator|+
 literal|"sequence must have a total order. If date/time values do not have a "
 operator|+
@@ -386,10 +386,24 @@ literal|"derived by restriction from xs:string, then the determination of "
 operator|+
 literal|"the item with the largest value is made according to the collation "
 operator|+
-literal|"that is used. If the type of the items in $arg is not xs:string "
+literal|"that is used."
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM
+init|=
+literal|"If the type of the items in $arg is not xs:string "
 operator|+
-literal|"and $collation is specified, the collation is ignored.\n\n"
-operator|+
+literal|"and $collation-uri is specified, the collation is ignored.\n\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON_2
+init|=
 literal|"The collation used by the invocation of this function is "
 operator|+
 literal|"determined according to the rules in 7.3.1 Collations."
@@ -415,7 +429,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -466,7 +482,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_2_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -491,7 +511,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collation"
+literal|"collation-uri"
 argument_list|,
 name|Type
 operator|.
@@ -501,7 +521,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collation"
+literal|"The collation URI"
 argument_list|)
 block|}
 argument_list|,

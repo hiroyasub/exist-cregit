@@ -266,9 +266,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the item in the first argument sequence that is located at the position "
+literal|"Returns the item in $source that is located at the position "
 operator|+
-literal|"specified by the second argument."
+literal|"specified by $index."
 argument_list|,
 operator|new
 name|SequenceType
@@ -277,7 +277,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"sequence"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -287,7 +287,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The sequence to get the item from"
+literal|"The source sequence"
 argument_list|)
 block|,
 operator|new
@@ -303,7 +303,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of the item in the sequence to return"
+literal|"The index of the item in the source sequence to return"
 argument_list|)
 block|}
 argument_list|,
@@ -323,7 +323,7 @@ argument_list|)
 argument_list|,
 literal|"This function is eXist-specific and deprecated. It should not be in the standard functions namespace. "
 operator|+
-literal|"Use $x[1] instead"
+literal|"Use e.g. $x[1] instead. "
 argument_list|)
 decl_stmt|;
 specifier|public

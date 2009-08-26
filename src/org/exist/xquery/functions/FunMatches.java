@@ -364,7 +364,17 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+init|=
+literal|"The function returns true if $input matches the regular expression "
+operator|+
+literal|"supplied as $pattern, if present; otherwise, it returns false.\n\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM
 init|=
 literal|"The function returns true if $input matches the regular expression "
 operator|+
@@ -372,14 +382,16 @@ literal|"supplied as $pattern as influenced by the value of $flags, if present; 
 operator|+
 literal|"otherwise, it returns false.\n\n"
 operator|+
-literal|"The effect of calling the first version of this function (omitting the "
-operator|+
-literal|"argument $flags) is the same as the effect of calling the second version "
-operator|+
-literal|"with the $flags argument set to a zero-length string. "
+literal|"The effect of calling this version of the function with the $flags argument set to a zero-length string is the same as using the other two argument version. "
 operator|+
 literal|"Flags are defined in 7.6.1.1 Flags.\n\n"
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON
+init|=
 literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\n"
 operator|+
 literal|"Unless the metacharacters ^ and $ are used as anchors, the string is considered "
@@ -403,7 +415,13 @@ operator|+
 literal|"An error is raised [err:FORX0002] if the value of $pattern is invalid "
 operator|+
 literal|"according to the rules described in section 7.6.1 Regular Expression Syntax.\n\n"
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM_2
+init|=
 literal|"An error is raised [err:FORX0001] if the value of $flags is invalid "
 operator|+
 literal|"according to the rules described in section 7.6.1 Regular Expression Syntax."
@@ -471,7 +489,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The flag"
+literal|"The flags"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -495,7 +513,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
@@ -517,7 +537,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true if the pattern is a match"
+literal|"true if the pattern is a match, false otherwise"
 argument_list|)
 argument_list|)
 block|,
@@ -534,7 +554,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_2_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
+operator|+
+name|FUNCTION_DESCRIPTION_2_PARAM_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -558,7 +582,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true if the pattern is a match"
+literal|"true if the pattern is a match, false otherwise"
 argument_list|)
 argument_list|)
 block|}
