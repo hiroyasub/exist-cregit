@@ -151,11 +151,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Puts an exclusive lock on the owner documents of all nodes in the first argument $a. "
+literal|"Puts an exclusive lock on the owner documents of all nodes in the first argument $nodes. "
 operator|+
-literal|"Then evaluates the expressions in the second argument $b and releases the acquired locks after"
+literal|"Then evaluates the expressions in the second argument $expression and releases "
 operator|+
-literal|"their completion."
+literal|"the acquired locks after their completion."
 argument_list|,
 operator|new
 name|SequenceType

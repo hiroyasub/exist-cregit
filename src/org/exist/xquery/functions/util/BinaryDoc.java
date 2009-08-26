@@ -397,7 +397,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Checks if the binary resource identified by $a is available."
+literal|"Checks if the binary resource identified by $binary-resource is available."
 argument_list|,
 operator|new
 name|SequenceType
@@ -452,7 +452,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Checks if the resource identified by $a is a binary resource."
+literal|"Checks if the resource identified by $binary-resource is a binary resource."
 argument_list|,
 operator|new
 name|SequenceType
