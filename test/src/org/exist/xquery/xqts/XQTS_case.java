@@ -487,15 +487,7 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUpBeforeClass PASSED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("setUpBeforeClass PASSED");
 block|}
 annotation|@
 name|AfterClass
@@ -510,15 +502,7 @@ block|{
 name|inUse
 operator|--
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDownAfterClass PASSED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("tearDownAfterClass PASSED");
 block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@

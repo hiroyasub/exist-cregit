@@ -615,7 +615,7 @@ name|setUserProperty
 argument_list|(
 literal|"config.basedir"
 argument_list|,
-literal|"../../test/external/XQTS"
+literal|"../../test/external/XQTS_1_0_2"
 argument_list|)
 expr_stmt|;
 name|DefaultLogger
