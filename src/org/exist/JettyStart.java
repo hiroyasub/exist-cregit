@@ -552,8 +552,6 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"exist.home"
-argument_list|,
-literal|"(unknown java.version)"
 argument_list|)
 operator|+
 literal|"]"
@@ -632,8 +630,6 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"jetty.home"
-argument_list|,
-literal|"(unknown java.version)"
 argument_list|)
 operator|+
 literal|"]"
@@ -654,8 +650,6 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"log4j.configuration"
-argument_list|,
-literal|"(unknown java.version)"
 argument_list|)
 operator|+
 literal|"]"
