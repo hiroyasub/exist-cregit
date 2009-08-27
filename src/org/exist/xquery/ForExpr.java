@@ -1031,6 +1031,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// Check if we can speed up the processing of the "order by" clause.
+name|boolean
+name|fastOrderBy
+init|=
+literal|false
+decl_stmt|;
+comment|// checkOrderSpecs(in);
+name|LocalVariable
+name|var
+decl_stmt|;
+name|Sequence
+name|in
+decl_stmt|;
 comment|// Save the local variable stack
 name|LocalVariable
 name|mark
@@ -1045,9 +1058,8 @@ decl_stmt|;
 try|try
 block|{
 comment|// Evaluate the "in" expression
-name|Sequence
 name|in
-init|=
+operator|=
 name|inputSequence
 operator|.
 name|eval
@@ -1056,7 +1068,7 @@ name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|clearContext
 argument_list|(
 name|getExpressionId
@@ -1066,9 +1078,8 @@ name|in
 argument_list|)
 expr_stmt|;
 comment|// Declare the iteration variable
-name|LocalVariable
 name|var
-init|=
+operator|=
 operator|new
 name|LocalVariable
 argument_list|(
@@ -1083,7 +1094,7 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|var
 operator|.
 name|setSequenceType
@@ -1186,13 +1197,6 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// Check if we can speed up the processing of the "order by" clause.
-name|boolean
-name|fastOrderBy
-init|=
-literal|false
-decl_stmt|;
-comment|// checkOrderSpecs(in);
 comment|// See if we can process the "where" clause in a single step (instead of
 comment|// calling the where expression for each item in the input sequence)
 comment|// This is possible if the input sequence is a node set and has no
@@ -1738,6 +1742,18 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+finally|finally
+block|{
+comment|// restore the local variable stack
+name|context
+operator|.
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
+expr_stmt|;
+block|}
 comment|// bv : Special processing for groupBy : one return per group in groupedSequence
 comment|//TODO : positional variable !
 if|if
@@ -1847,15 +1863,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//evaluate real return expression
+name|Sequence
 name|val
-operator|=
+init|=
 name|groupReturnExpr
 operator|.
 name|eval
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|resultSequence
 operator|.
 name|addAll
@@ -2059,18 +2076,6 @@ operator|.
 name|getItemType
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|// restore the local variable stack
-name|context
-operator|.
-name|popLocalVariables
-argument_list|(
-name|mark
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|context
