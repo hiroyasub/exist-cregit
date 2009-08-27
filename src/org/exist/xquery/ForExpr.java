@@ -417,6 +417,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|contextInfo
 operator|.
 name|setParent
@@ -736,6 +738,9 @@ name|newContextInfo
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 comment|// restore the local variable stack
 name|context
 operator|.
@@ -744,6 +749,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * This implementation tries to process the "where" clause in advance, i.e. in one single 	 * step. This is possible if the input sequence is a node set and the where expression 	 * has no dependencies on other variables than those declared in this "for" statement. 	 *  	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
@@ -1036,6 +1042,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// Evaluate the "in" expression
 name|Sequence
 name|in
@@ -1299,7 +1307,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Otherwise, if there's an order by clause, wrap the result into
-comment|// an OrderedValueSequence. OrderedValueSequence will compute
+comment|// zan OrderedValueSequence. OrderedValueSequence will compute
 comment|// order expressions for every item when it is added to the result sequence.
 if|if
 condition|(
@@ -1479,7 +1487,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-comment|//			atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
+comment|//				atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
 if|if
 condition|(
 name|positionalVariable
@@ -1675,7 +1683,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/* bv : special processing for groupby :                   if returnExpr is a Binding expression, pass the groupedSequence.                   Else, add item to groupedSequence and don't evaluate here !                   */
+comment|/* bv : special processing for groupby :                 	if returnExpr is a Binding expression, pass the groupedSequence.                   	Else, add item to groupedSequence and don't evaluate here !                   */
 if|if
 condition|(
 name|returnExpr
@@ -1730,14 +1738,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// restore the local variable stack
-name|context
-operator|.
-name|popLocalVariables
-argument_list|(
-name|mark
-argument_list|)
-expr_stmt|;
 comment|// bv : Special processing for groupBy : one return per group in groupedSequence
 comment|//TODO : positional variable !
 if|if
@@ -2059,6 +2059,18 @@ operator|.
 name|getItemType
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// restore the local variable stack
+name|context
+operator|.
+name|popLocalVariables
+argument_list|(
+name|mark
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|context

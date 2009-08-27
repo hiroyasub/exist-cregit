@@ -336,6 +336,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -516,6 +518,9 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popLocalVariables
@@ -523,6 +528,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -716,6 +722,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -744,6 +752,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|Case
 name|next
 init|=
@@ -803,6 +813,9 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popLocalVariables
@@ -810,6 +823,7 @@ argument_list|(
 name|mark1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -848,6 +862,9 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popLocalVariables
@@ -855,6 +872,7 @@ argument_list|(
 name|mark0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

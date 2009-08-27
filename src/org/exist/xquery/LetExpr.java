@@ -321,6 +321,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|contextInfo
 operator|.
 name|setParent
@@ -535,6 +537,9 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 comment|// restore the local variable stack
 name|context
 operator|.
@@ -543,6 +548,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public

@@ -295,6 +295,8 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|QName
 name|varName
 decl_stmt|;
@@ -369,6 +371,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 comment|// restore the local variable stack
 name|context
 operator|.
@@ -377,6 +382,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 name|inRecursion
 operator|=
 literal|false
@@ -408,6 +414,8 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|QName
 name|varName
 decl_stmt|;
@@ -610,6 +618,12 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+return|return
+name|result
+return|;
+block|}
+finally|finally
+block|{
 comment|// restore the local variable stack
 name|context
 operator|.
@@ -618,9 +632,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
-return|return
-name|result
-return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public

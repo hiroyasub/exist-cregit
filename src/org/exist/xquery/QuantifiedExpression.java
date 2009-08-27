@@ -228,6 +228,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|context
 operator|.
 name|declareVariableBinding
@@ -269,6 +271,9 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popLocalVariables
@@ -276,6 +281,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|Sequence
@@ -595,6 +601,9 @@ name|checkType
 argument_list|()
 expr_stmt|;
 comment|//... because is makes some conversions
+name|Sequence
+name|satisfiesSeq
+decl_stmt|;
 comment|//Binds the variable : now in scope
 name|LocalVariable
 name|mark
@@ -606,6 +615,8 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|context
 operator|.
 name|declareVariableBinding
@@ -614,9 +625,8 @@ name|var
 argument_list|)
 expr_stmt|;
 comment|//Evaluate the return clause for the current value of the variable
-name|Sequence
 name|satisfiesSeq
-init|=
+operator|=
 name|returnExpr
 operator|.
 name|eval
@@ -625,7 +635,10 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+finally|finally
+block|{
 comment|//Unbind the variable until the next iteration : now out of scope
 name|context
 operator|.
@@ -634,6 +647,7 @@ argument_list|(
 name|mark
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|sequenceType
