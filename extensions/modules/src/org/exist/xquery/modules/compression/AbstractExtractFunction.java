@@ -365,6 +365,11 @@ name|args
 index|[
 literal|1
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 operator|instanceof
 name|FunctionReference
 operator|)
@@ -528,6 +533,11 @@ name|args
 index|[
 literal|2
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 operator|instanceof
 name|FunctionReference
 operator|)
