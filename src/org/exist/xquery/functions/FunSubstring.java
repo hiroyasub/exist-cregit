@@ -295,15 +295,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the portion of the value of $sourceString beginning at the position indicated "
+literal|"Returns the portion of the value of $source beginning at the position indicated "
 operator|+
-literal|"by the value of $startingLoc and continuing to the end of $sourceString. "
+literal|"by the value of $starting-at and continuing to the end of $source. "
 operator|+
-literal|"The characters returned do not extend beyond the end of $sourceString. If $startingLoc "
+literal|"The characters returned do not extend beyond the end of $source. If $starting-at "
 operator|+
 literal|"is zero or negative, only those characters in positions greater than zero are returned."
 operator|+
-literal|"If the value of $sourceString is the empty sequence, the zero-length string is returned."
+literal|"If the value of $source is the empty sequence, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -312,7 +312,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"sourceString"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -328,7 +328,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"startingLoc"
+literal|"starting-at"
 argument_list|,
 name|Type
 operator|.
@@ -338,7 +338,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The beginning position"
+literal|"The starting position"
 argument_list|)
 block|}
 argument_list|,
@@ -370,13 +370,13 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the portion of the value of $sourceString beginning at the position indicated by the value of $startingLoc "
+literal|"Returns the portion of the value of $source beginning at the position indicated by the value of $starting-at "
 operator|+
 literal|"and continuing for the number of characters indicated by the value of $length. The characters returned do not extend "
 operator|+
-literal|"beyond the end of $sourceString. If $startingLoc is zero or negative, only those characters in positions greater "
+literal|"beyond the end of $source. If $starting-at is zero or negative, only those characters in positions greater "
 operator|+
-literal|"than zero are returned. If the value of $sourceString is the empty sequence, the zero-length string is returned."
+literal|"than zero are returned. If the value of $source is the empty sequence, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -385,7 +385,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"sourceString"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -401,7 +401,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"startingLoc"
+literal|"starting-at"
 argument_list|,
 name|Type
 operator|.
@@ -411,7 +411,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The beginning position"
+literal|"The starting position"
 argument_list|)
 block|,
 operator|new

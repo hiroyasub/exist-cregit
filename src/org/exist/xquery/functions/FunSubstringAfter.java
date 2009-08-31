@@ -275,7 +275,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collator"
+literal|"collation-uri"
 argument_list|,
 name|Type
 operator|.
@@ -285,7 +285,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collation is a specification of the manner in which character strings are compared and, by extension, ordered."
+literal|"The collation URI"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -297,7 +297,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"searchString"
+literal|"search"
 argument_list|,
 name|Type
 operator|.
@@ -319,7 +319,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"sourceString"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -353,17 +353,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the substring of the value of $sourceString that follows the first occurrence "
+literal|"Returns the substring of the value of $source that follows the first occurrence "
 operator|+
-literal|"of a sequence of the value of $searchString. If the value of $sourceString or $searchString is the empty "
+literal|"of a sequence of the value of $search. If the value of $source or $search is the empty "
 operator|+
 literal|"sequence it is interpreted as the zero-length string. If the value of "
 operator|+
-literal|"$searchString is the zero-length string, the zero-length string is returned. "
+literal|"$search is the zero-length string, the zero-length string is returned. "
 operator|+
-literal|"If the value of $sourceString does not contain a string that is equal to the value "
+literal|"If the value of $source does not contain a string that is equal to the value "
 operator|+
-literal|"of $searchString, the zero-length string is returned."
+literal|"of $search, the zero-length string is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -385,7 +385,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the substring"
+literal|"the substring after $search"
 argument_list|)
 argument_list|)
 block|,
@@ -402,17 +402,19 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the substring of the value of $sourceString that follows the first occurrence "
+literal|"Returns the substring of the value of $source that follows the first occurrence "
 operator|+
-literal|"of a sequence of the value of $searchString in the collation $collation. If the value of $sourceString or $searchString is the empty "
+literal|"of a sequence of the value of $search in the collation $collation-uri. If the value of $source or $search is the empty "
 operator|+
 literal|"sequence it is interpreted as the zero-length string. If the value of "
 operator|+
-literal|"$searchString is the zero-length string, the zero-length string is returned. "
+literal|"$search is the zero-length string, the zero-length string is returned. "
 operator|+
-literal|"If the value of $sourceString does not contain a string that is equal to the value "
+literal|"If the value of $source does not contain a string that is equal to the value "
 operator|+
-literal|"of $searchString, the zero-length string is returned."
+literal|"of $search, the zero-length string is returned. "
+operator|+
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType
@@ -436,7 +438,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the substring"
+literal|"the substring after $search"
 argument_list|)
 argument_list|)
 block|}

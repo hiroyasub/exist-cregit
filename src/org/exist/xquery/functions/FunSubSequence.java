@@ -234,7 +234,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"source-sequence"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -260,7 +260,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The starting position in the $source-sequence"
+literal|"The starting position in the $source"
 argument_list|)
 block|}
 argument_list|,
@@ -292,7 +292,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns a subsequence of the items in $source-sequence, "
+literal|"Returns a subsequence of the items in $source, "
 operator|+
 literal|"starting at the position, $starting-at,  "
 operator|+
@@ -305,7 +305,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"source-sequence"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -331,7 +331,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The starting position in the $source-sequence"
+literal|"The starting position in the $source"
 argument_list|)
 block|,
 operator|new
