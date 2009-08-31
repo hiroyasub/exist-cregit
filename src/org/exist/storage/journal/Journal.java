@@ -1258,11 +1258,6 @@ name|currentBuffer
 argument_list|)
 expr_stmt|;
 block|}
-name|currentBuffer
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|inFilePos
 operator|+=
 name|size
@@ -1287,6 +1282,14 @@ literal|"Flushing log file failed!"
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|currentBuffer
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 block|}
