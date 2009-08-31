@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -330,9 +330,9 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
 init|=
-literal|"selects an item from the input sequence $arg whose value is "
+literal|"Selects an item from the input sequence $arg whose value is "
 operator|+
 literal|"less than or equal to the value of every other item in the "
 operator|+
@@ -346,7 +346,7 @@ literal|"- Values of type xs:untypedAtomic in $arg are cast to xs:double.\n"
 operator|+
 literal|"- Numeric and xs:anyURI values are converted to the least common "
 operator|+
-literal|"type that supports the le operator by a combination of type promotion "
+literal|"type that supports the 'le' operator by a combination of type promotion "
 operator|+
 literal|"and subtype substitution. See Section B.1 Type PromotionXP and "
 operator|+
@@ -364,7 +364,7 @@ literal|"If the converted sequence is empty, the empty sequence is returned.\n\n
 operator|+
 literal|"All items in $arg must be numeric or derived from a single base type "
 operator|+
-literal|"for which the le operator is defined. In addition, the values in the "
+literal|"for which the 'le' operator is defined. In addition, the values in the "
 operator|+
 literal|"sequence must have a total order. If date/time values do not have a "
 operator|+
@@ -384,12 +384,24 @@ literal|"If the items in the value of $arg are of type xs:string or types derive
 operator|+
 literal|"by restriction from xs:string, then the determination of the item with "
 operator|+
-literal|"the smallest value is made according to the collation that is used. If "
-operator|+
-literal|"the type of the items in $arg is not xs:string and $collation is "
+literal|"the smallest value is made according to the collation that is used. "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM
+init|=
+literal|"If the type of the items in $arg is not xs:string and $collation is "
 operator|+
 literal|"specified, the collation is ignored.\n\n"
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON_2
+init|=
 literal|"The collation used by the invocation of this function is determined "
 operator|+
 literal|"according to the rules in 7.3.1 Collations."
@@ -415,7 +427,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -466,7 +480,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_2_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -491,7 +509,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collation"
+literal|"collation-uri"
 argument_list|,
 name|Type
 operator|.
@@ -501,7 +519,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collation"
+literal|"The collation URI"
 argument_list|)
 block|}
 argument_list|,

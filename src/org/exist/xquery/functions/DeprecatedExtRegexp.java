@@ -572,7 +572,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"eXist-specific extension function. Tries to match each of the regular expression "
+literal|"Tries to match each of the regular expression "
 operator|+
 literal|"strings passed in $regular-expression and all following parameters against the keywords contained in "
 operator|+

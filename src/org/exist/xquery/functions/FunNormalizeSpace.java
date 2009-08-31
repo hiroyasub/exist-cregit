@@ -234,10 +234,24 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
+init|=
+literal|"Returns the calculated string value of the context item with whitespace normalized by stripping leading "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
 literal|"Returns the value of $arg with whitespace normalized by stripping leading "
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON_1
+init|=
 literal|"and trailing whitespace and replacing sequences of one or more than one "
 operator|+
 literal|"whitespace character with a single space, #x20.\n\n"
@@ -251,9 +265,21 @@ operator|+
 literal|"The definition of the metasymbol S (Production 3), is "
 operator|+
 literal|"unchanged in [Extensible Markup Language (XML) 1.1 Recommendation].\n\n"
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_1_PARAM_1
+init|=
 literal|"If the value of $arg is the empty sequence, returns the zero-length string.\n\n"
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON_2
+init|=
 literal|"If no argument is supplied, $arg defaults to the string value (calculated "
 operator|+
 literal|"using fn:string()) of the context item (.). If no argument is supplied or "
@@ -303,7 +329,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType
@@ -327,7 +357,13 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_1
+operator|+
+name|FUNCTION_DESCRIPTION_1_PARAM_1
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON_2
 argument_list|,
 operator|new
 name|SequenceType

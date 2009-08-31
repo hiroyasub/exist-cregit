@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2009 The eXist team  *    * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -224,11 +224,29 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
+init|=
+literal|"Returns the value of the context item after atomization, "
+operator|+
+literal|"converted to an xs:double.\n\n"
+operator|+
+literal|"If the context item cannot be "
+operator|+
+literal|"converted to an xs:double, the xs:double value NaN is returned. "
+operator|+
+literal|"If the context item is undefined an error is raised: "
+operator|+
+literal|"[err:XPDY0002]XP.\n\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
 literal|"Returns the value indicated by $arg or, if $arg is not specified, "
 operator|+
-literal|"the context item after atomization, converted to an xs:double\n\n"
+literal|"the context item after atomization, converted to an xs:double.\n\n"
 operator|+
 literal|"Calling the zero-argument version of the function is defined to "
 operator|+
@@ -238,7 +256,9 @@ literal|"the context item (.). That is, fn:number() is equivalent to fn:number(.
 operator|+
 literal|"If $arg is the empty sequence or if $arg or the context item cannot be "
 operator|+
-literal|"converted to an xs:double, the xs:double value NaN is returned. If the "
+literal|"converted to an xs:double, the xs:double value NaN is returned. "
+operator|+
+literal|"If the "
 operator|+
 literal|"context item is undefined an error is raised: [err:XPDY0002]XP.\n\n"
 operator|+
@@ -289,7 +309,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the numerical value converted from $arg"
+literal|"the numerical value"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -313,7 +333,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
 argument_list|,
 operator|new
 name|SequenceType
@@ -337,7 +357,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
 argument_list|,
 operator|new
 name|SequenceType

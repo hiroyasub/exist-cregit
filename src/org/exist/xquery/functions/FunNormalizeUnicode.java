@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-2009, The eXist Project  * http://exist-db.org/  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/* eXist Native XML Database  * Copyright (C) 2006-2009, The eXist Project  * http://exist-db.org/  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation,  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|functions
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -245,6 +257,10 @@ name|Method
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements fn:normalize-unicode()  * Uses icu4j by introspection  *  * @author perig  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -252,6 +268,21 @@ name|FunNormalizeUnicode
 extends|extends
 name|Function
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|logger
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunNormalizeUnicode
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|String
 name|normalizationForm
@@ -303,15 +334,25 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
+init|=
+literal|"Returns the value of the context item normalized according to the "
+operator|+
+literal|"nomalization form \"NFC\"\n\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
 literal|"Returns the value of $arg normalized according to the "
 operator|+
 literal|"normalization criteria for a normalization form identified "
 operator|+
-literal|"by the value of $normalizationForm. The effective value of "
+literal|"by the value of $normalization-form. The effective value of "
 operator|+
-literal|"the $normalizationForm is computed by removing leading and "
+literal|"the $normalization-form is computed by removing leading and "
 operator|+
 literal|"trailing blanks, if present, and converting to upper case.\n\n"
 operator|+
@@ -321,31 +362,27 @@ literal|"See [Character Model for the World Wide Web 1.0: Normalization] "
 operator|+
 literal|"for a description of the normalization forms.\n\n"
 operator|+
-literal|"If the $normalizationForm is absent, as in the first format above, "
-operator|+
-literal|"it shall be assumed to be \"NFC\"\n\n"
-operator|+
-literal|"- If the effective value of $normalizationForm is \"NFC\", then the value "
+literal|"- If the effective value of $normalization-form is \"NFC\", then the value "
 operator|+
 literal|"returned by the function is the value of $arg in Unicode Normalization Form C (NFC).\n"
 operator|+
-literal|"- If the effective value of $normalizationForm is \"NFD\", then the value "
+literal|"- If the effective value of $normalization-form is \"NFD\", then the value "
 operator|+
 literal|"returned by the function is the value of $arg in Unicode Normalization Form D (NFD).\n"
 operator|+
-literal|"- If the effective value of $normalizationForm is \"NFKC\", then the value "
+literal|"- If the effective value of $normalization-form is \"NFKC\", then the value "
 operator|+
 literal|"returned by the function is the value of $arg in Unicode Normalization Form KC (NFKC).\n"
 operator|+
-literal|"- If the effective value of $normalizationForm is \"NFKD\", then the value "
+literal|"- If the effective value of $normalization-form is \"NFKD\", then the value "
 operator|+
 literal|"returned by the function is the value of $arg in Unicode Normalization Form KD (NFKD).\n"
 operator|+
-literal|"- If the effective value of $normalizationForm is \"FULLY-NORMALIZED\", then the value "
+literal|"- If the effective value of $normalization-form is \"FULLY-NORMALIZED\", then the value "
 operator|+
 literal|"returned by the function is the value of $arg in the fully normalized form.\n"
 operator|+
-literal|"- If the effective value of $normalizationForm is the zero-length string, "
+literal|"- If the effective value of $normalization-form is the zero-length string, "
 operator|+
 literal|"no normalization is performed and $arg is returned.\n\n"
 operator|+
@@ -355,7 +392,7 @@ literal|"support normalization forms \"NFD\", \"NFKC\", \"NFKD\", \"FULLY-NORMAL
 operator|+
 literal|"They may also support other normalization forms with implementation-defined semantics. "
 operator|+
-literal|"If the effective value of the $normalizationForm is other than one of the values "
+literal|"If the effective value of the $normalization-form is other than one of the values "
 operator|+
 literal|"supported by the implementation, then an error is raised [err:FOCH0003]."
 decl_stmt|;
@@ -390,7 +427,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"normalizationForm"
+literal|"normalization-form"
 argument_list|,
 name|Type
 operator|.
@@ -444,7 +481,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
 argument_list|,
 operator|new
 name|SequenceType
@@ -469,7 +506,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
 argument_list|,
 operator|new
 name|SequenceType
@@ -769,6 +806,13 @@ name|NoSuchFieldException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"err:FOCH0003: unknown normalization form"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -899,6 +943,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Can not find the ICU4J library in the classpath "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException

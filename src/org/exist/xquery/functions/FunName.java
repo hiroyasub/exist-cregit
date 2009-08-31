@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-09,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -248,7 +248,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: string(object)  *  */
+comment|/**  * xpath-library function: name()  *  */
 end_comment
 
 begin_class
@@ -262,14 +262,30 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
 init|=
-literal|"Returns the name of a node, as an xs:string that is either "
+literal|"Returns the name of the context item as an xs:string that is either "
+operator|+
+literal|"the zero-length string, or has the lexical form of an xs:QName.\n\n"
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_1_PARAM
+init|=
+literal|"Returns the name of $arg as an xs:string that is either "
 operator|+
 literal|"the zero-length string, or has the lexical form of an xs:QName.\n\n"
 operator|+
 literal|"If the argument is omitted, it defaults to the context item (.). "
-operator|+
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON
+init|=
 literal|"The behavior of the function if the argument is omitted is exactly "
 operator|+
 literal|"the same as if the context item had been passed as the argument.\n\n"
@@ -311,7 +327,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_0_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
@@ -347,7 +365,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
