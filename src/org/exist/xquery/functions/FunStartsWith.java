@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-2009,  The eXist team  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -246,27 +246,27 @@ name|FUNCTION_DESCRIPTION
 init|=
 literal|"Returns an xs:boolean indicating whether or not "
 operator|+
-literal|"the value of $arg1 starts with a sequence of collation "
+literal|"the value of $source starts with a sequence of collation "
 operator|+
 literal|"units that provides a minimal match to the collation "
 operator|+
-literal|"units of $arg2 according to the collation that is used.\n\n"
+literal|"units of $prefix according to the collation that is used.\n\n"
 operator|+
 literal|"Note:\n\n"
 operator|+
 literal|"\"Minimal match\" is defined in [Unicode Collation Algorithm].\n\n"
 operator|+
-literal|"If the value of $arg1 or $arg2 is the empty sequence, or "
+literal|"If the value of $source or $prefix is the empty sequence, or "
 operator|+
 literal|"contains only ignorable collation units, it is interpreted "
 operator|+
-literal|"as the zero-length string.\n\nIf the value of $arg2 is the "
+literal|"as the zero-length string.\n\nIf the value of $prefix is the "
 operator|+
 literal|"zero-length string, then the function returns true. If the "
 operator|+
-literal|"value of $arg1 is the zero-length string and the value of "
+literal|"value of $source is the zero-length string and the value of "
 operator|+
-literal|"$arg2 is not the zero-length string, then the function "
+literal|"$prefix is not the zero-length string, then the function "
 operator|+
 literal|"returns false.\n\n"
 operator|+
@@ -276,7 +276,7 @@ literal|"determined according to the rules in 7.3.1 Collations. "
 operator|+
 literal|"If the specified collation does not support collation "
 operator|+
-literal|"units an error may be raised [err:FOCH0004]."
+literal|"units an error may be raised [err:FOCH0004]. "
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -287,7 +287,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"arg1"
+literal|"source"
 argument_list|,
 name|Type
 operator|.
@@ -297,7 +297,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The input test string"
+literal|"The source string"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -309,7 +309,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"arg2"
+literal|"prefix"
 argument_list|,
 name|Type
 operator|.
@@ -319,7 +319,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The string to deterine if it is at the beginning of $arg1"
+literal|"The string to determine if is a prefix of $source"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -331,7 +331,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collation"
+literal|"collation-uri"
 argument_list|,
 name|Type
 operator|.
@@ -341,7 +341,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collation"
+literal|"The collation URI"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -361,7 +361,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"true if $arg2 is at the beginning of the string $arg1"
+literal|"true if $prefix is a prefix of the string $source"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -413,6 +413,8 @@ name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
 name|FUNCTION_DESCRIPTION
+operator|+
+name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
 operator|new
 name|SequenceType

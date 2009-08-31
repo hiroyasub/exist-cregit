@@ -417,7 +417,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the QName"
+literal|"the QName of $element with lexical form $qname"
 argument_list|)
 argument_list|)
 decl_stmt|;

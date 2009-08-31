@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2000-2009,  The eXist team  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -223,6 +223,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements the fn:roud-half-to-even() function.  *  * @author wolf  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -234,13 +238,31 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+init|=
+literal|"The value returned is the nearest (that is, numerically closest) "
+operator|+
+literal|"value to $arg that is a multiple of ten to the power of minus 0. "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM
 init|=
 literal|"The value returned is the nearest (that is, numerically closest) "
 operator|+
 literal|"value to $arg that is a multiple of ten to the power of minus "
 operator|+
-literal|"$precision. If two such values are equally near (e.g. if the "
+literal|"$precision. "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON
+init|=
+literal|"If two such values are equally near (e.g. if the "
 operator|+
 literal|"fractional part in $arg is exactly .500...), the function returns "
 operator|+
@@ -256,9 +278,9 @@ literal|"of the numeric types, the result is an instance of the "
 operator|+
 literal|"base numeric type.\n\n"
 operator|+
-literal|"The first signature of this function produces the same result "
+literal|"The three argument version of the function with $precision = 0 "
 operator|+
-literal|"as the second signature with $precision=0.\n\n"
+literal|"produces the same result as the two argument version.\n\n"
 operator|+
 literal|"For arguments of type xs:float and xs:double, if the argument is "
 operator|+
@@ -369,7 +391,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
@@ -394,7 +418,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_2_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType

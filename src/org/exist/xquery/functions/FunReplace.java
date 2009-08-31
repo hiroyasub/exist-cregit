@@ -308,18 +308,34 @@ specifier|private
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_3_PARAM
+init|=
+literal|"The function returns the xs:string that is obtained by replacing each non-overlapping substring "
+operator|+
+literal|"of $input that matches the given $pattern with an occurrence of the $replacement string.\n\n"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_4_PARAM
 init|=
 literal|"The function returns the xs:string that is obtained by replacing each non-overlapping substring "
 operator|+
 literal|"of $input that matches the given $pattern with an occurrence of the $replacement string.\n\n"
 operator|+
-literal|"The effect of calling the first version of this function (omitting the argument $flags) is the "
+literal|"The $flags argument is interpreted in the same manner as for the fn:matches() function.\n\n"
 operator|+
-literal|"same as the effect of calling the second version with the $flags argument set to a zero-length "
+literal|"Calling the four argument version with the $flags argument set to a "
 operator|+
-literal|"string.\n\nThe $flags argument is interpreted in the same manner as for the fn:matches() function.\n\n"
-operator|+
+literal|"zero-length string gives the same effect as using the three argument version.\n\n"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON
+init|=
 literal|"If $input is the empty sequence, it is interpreted as the zero-length string.\n\nIf two overlapping "
 operator|+
 literal|"substrings of $input both match the $pattern, then only the first one (that is, the one whose first "
@@ -441,7 +457,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The flag"
+literal|"The flags"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -485,7 +501,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_3_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
@@ -514,7 +532,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_4_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType

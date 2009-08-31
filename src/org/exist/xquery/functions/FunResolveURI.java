@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2006-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -229,6 +229,10 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements the fn:resolve-uri() function.  *  * @author perig  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -240,25 +244,27 @@ specifier|protected
 specifier|static
 specifier|final
 name|String
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
-literal|"The purpose of this function is to enable a relative URI "
+literal|"Resolves $relative against the value of "
 operator|+
-literal|"to be resolved against an absolute URI.\n\nThe first form "
-operator|+
-literal|"of this function resolves $relative against the value of "
-operator|+
-literal|"the base-uri property from the static context. If the "
-operator|+
-literal|"base-uri property is not initialized in the static context "
-operator|+
-literal|"an error is raised [err:FONS0005].\n\n"
-operator|+
-literal|"If $relative is a relative URI reference, it is resolved "
-operator|+
-literal|"against $base, or the base-uri property from the static "
-operator|+
-literal|"context, using an algorithm such as the ones described "
+literal|"the base-uri property from the static context "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_2_PARAM
+init|=
+literal|"Resolves $relative against $base "
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_DESCRIPTION_COMMON
+init|=
+literal|"using an algorithm such as the ones described "
 operator|+
 literal|"in [RFC 2396] or [RFC 3986], and the resulting absolute "
 operator|+
@@ -361,7 +367,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_1_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType
@@ -386,7 +394,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-name|FUNCTION_DESCRIPTION
+name|FUNCTION_DESCRIPTION_2_PARAM
+operator|+
+name|FUNCTION_DESCRIPTION_COMMON
 argument_list|,
 operator|new
 name|SequenceType

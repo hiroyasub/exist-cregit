@@ -237,17 +237,17 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:QName with the namespace URI given in $paramURI. If $paramURI is "
+literal|"Returns an xs:QName with the namespace URI given in $uri. If $uri is "
 operator|+
 literal|"the zero-length string or the empty sequence, it represents \"no namespace\"; in "
 operator|+
-literal|"this case, if the value of $paramQName contains a colon (:), an error is "
+literal|"this case, if the value of $qname contains a colon (:), an error is "
 operator|+
-literal|"raised [err:FOCA0002]. The prefix (or absence of a prefix) in $paramQName is "
+literal|"raised [err:FOCA0002]. The prefix (or absence of a prefix) in $qname is "
 operator|+
 literal|"retained in the returned xs:QName value. The local name in the result is "
 operator|+
-literal|"taken from the local part of $paramQName.\n\nIf $paramQName does not have "
+literal|"taken from the local part of $qname.\n\nIf $qname does not have "
 operator|+
 literal|"the correct lexical form for xs:QName an error is raised [err:FOCA0002].\n\n"
 operator|+
@@ -260,7 +260,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"paramURI"
+literal|"uri"
 argument_list|,
 name|Type
 operator|.
@@ -276,7 +276,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"paramQName"
+literal|"qname"
 argument_list|,
 name|Type
 operator|.
@@ -301,7 +301,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the xs:QName with the namespace URI given in $paramURI"
+literal|"the xs:QName with the namespace URI given in $uri"
 argument_list|)
 argument_list|)
 decl_stmt|;
