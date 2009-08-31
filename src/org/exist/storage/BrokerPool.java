@@ -3164,49 +3164,13 @@ block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
 comment|//TODO : make it protected ?
 comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJob(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJob(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
-comment|/**      * Initialise system collections, if it doesnt exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param txn The transaction      * @param sysCollectionUri XmldbURI of the collection to create      */
+comment|/**      * Initialise system collections, if it doesnt exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions The persmissions to set on the created collection      */
 specifier|private
 name|void
 name|initialiseSystemCollection
 parameter_list|(
 name|DBBroker
 name|sysBroker
-parameter_list|,
-name|Txn
-name|txn
-parameter_list|,
-name|XmldbURI
-name|sysCollectionUri
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-throws|,
-name|LockException
-throws|,
-name|IOException
-block|{
-name|initialiseSystemCollection
-argument_list|(
-name|sysBroker
-argument_list|,
-name|txn
-argument_list|,
-name|sysCollectionUri
-argument_list|,
-literal|0770
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Initialise system collections, if it doesnt exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param txn The transaction      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions The persmissions to set on the created collection      */
-specifier|private
-name|void
-name|initialiseSystemCollection
-parameter_list|(
-name|DBBroker
-name|sysBroker
-parameter_list|,
-name|Txn
-name|txn
 parameter_list|,
 name|XmldbURI
 name|sysCollectionUri
@@ -3215,11 +3179,7 @@ name|int
 name|permissions
 parameter_list|)
 throws|throws
-name|PermissionDeniedException
-throws|,
-name|LockException
-throws|,
-name|IOException
+name|EXistException
 block|{
 comment|//create /db/system
 name|Collection
@@ -3238,6 +3198,22 @@ name|sysCollection
 operator|==
 literal|null
 condition|)
+block|{
+name|TransactionManager
+name|transact
+init|=
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+name|Txn
+name|txn
+init|=
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
+decl_stmt|;
+try|try
 block|{
 name|sysCollection
 operator|=
@@ -3279,47 +3255,6 @@ argument_list|(
 name|txn
 argument_list|,
 name|sysCollection
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**      * Initialise required system collections, if they dont exist yet      *      * @param sysBroker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
-specifier|private
-name|void
-name|initialiseSystemCollections
-parameter_list|(
-name|DBBroker
-name|sysBroker
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-name|TransactionManager
-name|transact
-init|=
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|Txn
-name|txn
-init|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-comment|//create /db/system
-name|initialiseSystemCollection
-argument_list|(
-name|sysBroker
-argument_list|,
-name|txn
-argument_list|,
-name|XmldbURI
-operator|.
-name|SYSTEM_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 name|transact
@@ -3377,6 +3312,31 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+block|}
+comment|/**      * Initialise required system collections, if they dont exist yet      *      * @param sysBroker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
+specifier|private
+name|void
+name|initialiseSystemCollections
+parameter_list|(
+name|DBBroker
+name|sysBroker
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+comment|//create /db/system
+name|initialiseSystemCollection
+argument_list|(
+name|sysBroker
+argument_list|,
+name|XmldbURI
+operator|.
+name|SYSTEM_COLLECTION_URI
+argument_list|,
+literal|0770
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|long
