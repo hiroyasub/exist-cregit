@@ -5615,9 +5615,20 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-throw|throw
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Warning while applying stylesheet: "
+operator|+
 name|exception
-throw|;
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|exception
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
