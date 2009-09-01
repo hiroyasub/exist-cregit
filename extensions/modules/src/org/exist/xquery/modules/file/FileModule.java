@@ -94,7 +94,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"trunk"
+literal|"eXist-1.4"
 decl_stmt|;
 specifier|private
 specifier|final
