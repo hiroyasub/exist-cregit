@@ -593,6 +593,17 @@ operator|new
 name|ValidationReport
 argument_list|()
 decl_stmt|;
+name|StreamSource
+name|instance
+init|=
+literal|null
+decl_stmt|;
+name|StreamSource
+name|grammars
+index|[]
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|report
@@ -601,9 +612,8 @@ name|start
 argument_list|()
 expr_stmt|;
 comment|// Get inputstream for instance document
-name|StreamSource
-name|is
-init|=
+name|instance
+operator|=
 name|Shared
 operator|.
 name|getStreamSource
@@ -620,12 +630,10 @@ argument_list|)
 argument_list|,
 name|context
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// Validate using resource speciefied in second parameter
-name|StreamSource
 name|grammars
-index|[]
-init|=
+operator|=
 name|Shared
 operator|.
 name|getStreamSource
@@ -637,7 +645,7 @@ index|]
 argument_list|,
 name|context
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 for|for
 control|(
 name|StreamSource
@@ -728,7 +736,7 @@ name|validator
 operator|.
 name|validate
 argument_list|(
-name|is
+name|instance
 argument_list|)
 expr_stmt|;
 block|}
@@ -807,6 +815,20 @@ name|report
 operator|.
 name|stop
 argument_list|()
+expr_stmt|;
+name|Shared
+operator|.
+name|closeStreamSource
+argument_list|(
+name|instance
+argument_list|)
+expr_stmt|;
+name|Shared
+operator|.
+name|closeStreamSources
+argument_list|(
+name|grammars
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Create response

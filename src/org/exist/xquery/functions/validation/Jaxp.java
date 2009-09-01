@@ -1166,6 +1166,11 @@ name|instanceBuilder
 init|=
 literal|null
 decl_stmt|;
+name|InputSource
+name|instance
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|isCalledAs
@@ -1232,9 +1237,8 @@ name|report
 argument_list|)
 expr_stmt|;
 comment|// Get inputstream for instance document
-name|InputSource
 name|instance
-init|=
+operator|=
 name|Shared
 operator|.
 name|getInputSource
@@ -1251,7 +1255,7 @@ argument_list|)
 argument_list|,
 name|context
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// Handle catalog
 if|if
 condition|(
@@ -1634,6 +1638,13 @@ name|report
 operator|.
 name|stop
 argument_list|()
+expr_stmt|;
+name|Shared
+operator|.
+name|closeInputSource
+argument_list|(
+name|instance
+argument_list|)
 expr_stmt|;
 block|}
 comment|// Create response
