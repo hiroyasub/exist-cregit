@@ -1333,7 +1333,7 @@ specifier|private
 name|boolean
 name|caching
 init|=
-literal|false
+literal|true
 decl_stmt|;
 specifier|private
 name|boolean
