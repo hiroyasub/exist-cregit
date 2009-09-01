@@ -1027,6 +1027,13 @@ block|}
 finally|finally
 block|{
 comment|// Force release stream
+if|if
+condition|(
+name|is
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|is
@@ -1037,7 +1044,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Exception
 name|ex
 parameter_list|)
 block|{
@@ -1050,6 +1057,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// Create response
