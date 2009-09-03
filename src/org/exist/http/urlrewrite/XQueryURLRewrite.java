@@ -1992,6 +1992,21 @@ decl_stmt|;
 if|if
 condition|(
 name|status
+operator|==
+name|HttpServletResponse
+operator|.
+name|SC_NOT_MODIFIED
+condition|)
+block|{
+name|response
+operator|.
+name|flushBuffer
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|status
 operator|<
 literal|400
 condition|)
