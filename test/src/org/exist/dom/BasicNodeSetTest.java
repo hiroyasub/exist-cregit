@@ -65,6 +65,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionConfigurationManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|SecurityManager
@@ -443,6 +455,29 @@ operator|+
 literal|"</section>"
 operator|+
 literal|"</section>"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
+name|COLLECTION_CONFIG1
+init|=
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
+operator|+
+literal|"<index>"
+operator|+
+literal|"<fulltext default=\"none\">"
+operator|+
+literal|"<create qname=\"LINE\"/>"
+operator|+
+literal|"<create qname=\"SPEAKER\"/>"
+operator|+
+literal|"<create qname=\"TITLE\"/>"
+operator|+
+literal|"</fulltext>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -2940,28 +2975,6 @@ name|executeQuery
 argument_list|(
 name|broker
 argument_list|,
-literal|"//SPEECH[*&= 'the']"
-argument_list|,
-literal|1008
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|executeQuery
-argument_list|(
-name|broker
-argument_list|,
-literal|"//*[.&= 'me']"
-argument_list|,
-literal|584
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|executeQuery
-argument_list|(
-name|broker
-argument_list|,
 literal|"//SPEECH[LINE&= 'spirit']/ancestor::*"
 argument_list|,
 literal|30
@@ -3353,6 +3366,27 @@ argument_list|(
 name|transaction
 argument_list|,
 name|root
+argument_list|)
+expr_stmt|;
+name|CollectionConfigurationManager
+name|mgr
+init|=
+name|pool
+operator|.
+name|getConfigurationManager
+argument_list|()
+decl_stmt|;
+name|mgr
+operator|.
+name|addConfiguration
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|root
+argument_list|,
+name|COLLECTION_CONFIG1
 argument_list|)
 expr_stmt|;
 name|File

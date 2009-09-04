@@ -1939,7 +1939,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"/t:test/*:section[.&= 'comment']"
+literal|"/t:test/*:section[contains(., 'comment')]"
 expr_stmt|;
 name|result
 operator|=
@@ -1982,7 +1982,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"/t:test/t:*[.&= 'comment']"
+literal|"/t:test/t:*[contains(., 'comment')]"
 expr_stmt|;
 name|result
 operator|=
@@ -2025,7 +2025,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"/t:test/t:section[.&= 'comment']"
+literal|"/t:test/t:section[contains(., 'comment')]"
 expr_stmt|;
 name|result
 operator|=
@@ -2068,7 +2068,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"/t:test/t:section/*[.&= 'comment']"
+literal|"/t:test/t:section/*[contains(., 'comment')]"
 expr_stmt|;
 name|result
 operator|=
@@ -2470,49 +2470,6 @@ expr_stmt|;
 name|query
 operator|=
 literal|"// * [ . = 'Test Document' ]"
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|queryResource
-argument_list|(
-literal|"namespaces.xml"
-argument_list|,
-name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints3 : ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"XPath: "
-operator|+
-name|query
-argument_list|,
-literal|1
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"// * [ .&= 'Test Document' ]"
 expr_stmt|;
 name|result
 operator|=
