@@ -11505,7 +11505,7 @@ literal|"doc('"
 operator|+
 name|file_name
 operator|+
-literal|"') / details/metadata[ @docid&= '"
+literal|"') / details/metadata[ @docid = '"
 operator|+
 name|large
 operator|+

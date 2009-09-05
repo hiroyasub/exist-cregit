@@ -525,7 +525,7 @@ literal|"for $a in collection('"
 operator|+
 name|testColl
 operator|+
-literal|"')/test/fruit[@name&= 'apple'] return $a"
+literal|"')/test/fruit[@name = 'apple'] return $a"
 decl_stmt|;
 name|assertEquals
 argument_list|(
