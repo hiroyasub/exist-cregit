@@ -1766,23 +1766,7 @@ literal|"\n"
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"\nWARN: The following JAR file entries from '"
-operator|+
-name|startConfigFileName
-operator|+
-literal|"' aren't available (this may NOT be a "
-operator|+
-literal|"problem):\n"
-operator|+
-name|nonexistentJars
-argument_list|)
-expr_stmt|;
+comment|/*             System.err.println(                 "\nWARN: The following JAR file entries from '"                 + startConfigFileName + "' aren't available (this may NOT be a "                 + "problem):\n"                 + nonexistentJars             ); 			*/
 block|}
 block|}
 specifier|public
