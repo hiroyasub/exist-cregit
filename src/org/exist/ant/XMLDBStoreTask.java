@@ -547,16 +547,12 @@ condition|)
 block|{
 name|log
 argument_list|(
-literal|"Storing single file "
+literal|"Storing "
 operator|+
 name|srcFile
 operator|.
-name|getAbsolutePath
+name|getName
 argument_list|()
-argument_list|,
-name|Project
-operator|.
-name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 name|MimeType
