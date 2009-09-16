@@ -284,6 +284,22 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
+literal|"entry-filter-param"
+argument_list|,
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"A sequence with an additional parameters for filtering function."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
 literal|"entry-data"
 argument_list|,
 name|Type
@@ -295,6 +311,22 @@ operator|.
 name|EXACTLY_ONE
 argument_list|,
 literal|"A user defined function for storing an extracted resource from the zip file. The function takes 3 parameters e.g. user:unzip-entry-data($path as xs:anyURI, $data-type as xs:string, $data as item()?). $type may be 'resource' or 'folder'"
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"entry-data-param"
+argument_list|,
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"A sequence with an additional parameters for storing function."
 argument_list|)
 block|,             }
 argument_list|,
@@ -406,6 +438,10 @@ name|isDirectory
 argument_list|()
 argument_list|,
 name|zis
+argument_list|,
+name|filterParam
+argument_list|,
+name|storeParam
 argument_list|)
 decl_stmt|;
 name|results

@@ -291,9 +291,21 @@ name|entryFilterFunction
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+name|Sequence
+name|filterParam
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 name|FunctionCall
 name|entryDataFunction
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
+name|Sequence
+name|storeParam
 init|=
 literal|null
 decl_stmt|;
@@ -419,13 +431,13 @@ operator|.
 name|getArgumentCount
 argument_list|()
 operator|<
-literal|2
+literal|3
 condition|)
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"entry-filter function must take at least 2 arguments."
+literal|"entry-filter function must take at least 3 arguments."
 argument_list|)
 throw|;
 name|SequenceType
@@ -499,6 +511,36 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 operator|||
+name|argTypes
+index|[
+literal|2
+index|]
+operator|.
+name|getCardinality
+argument_list|()
+operator|!=
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+operator|||
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|argTypes
+index|[
+literal|2
+index|]
+operator|.
+name|getPrimaryType
+argument_list|()
+argument_list|)
+operator|||
 operator|!
 name|Type
 operator|.
@@ -524,6 +566,13 @@ argument_list|(
 literal|"entry-filter function does not match the expected function signature."
 argument_list|)
 throw|;
+name|filterParam
+operator|=
+name|args
+index|[
+literal|2
+index|]
+expr_stmt|;
 comment|//get the entry-data function and check its types
 if|if
 condition|(
@@ -531,7 +580,7 @@ operator|!
 operator|(
 name|args
 index|[
-literal|2
+literal|3
 index|]
 operator|.
 name|itemAt
@@ -557,7 +606,7 @@ name|FunctionReference
 operator|)
 name|args
 index|[
-literal|2
+literal|3
 index|]
 operator|.
 name|itemAt
@@ -587,13 +636,13 @@ operator|.
 name|getArgumentCount
 argument_list|()
 operator|<
-literal|3
+literal|4
 condition|)
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"entry-data function must take at least 3 arguments"
+literal|"entry-data function must take at least 4 arguments"
 argument_list|)
 throw|;
 name|argTypes
@@ -694,6 +743,36 @@ operator|.
 name|getPrimaryType
 argument_list|()
 argument_list|)
+operator|||
+name|argTypes
+index|[
+literal|3
+index|]
+operator|.
+name|getCardinality
+argument_list|()
+operator|!=
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+operator|||
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|argTypes
+index|[
+literal|3
+index|]
+operator|.
+name|getPrimaryType
+argument_list|()
+argument_list|)
 condition|)
 throw|throw
 operator|new
@@ -702,6 +781,13 @@ argument_list|(
 literal|"entry-data function does not match the expected function signature."
 argument_list|)
 throw|;
+name|storeParam
+operator|=
+name|args
+index|[
+literal|4
+index|]
+expr_stmt|;
 name|Base64Binary
 name|compressedData
 init|=
@@ -739,7 +825,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Processes a compressed entry from an archive      *      * @param name The name of the entry      * @param isDirectory true if the entry is a directory, false otherwise      * @param is An InputStream for reading the uncompressed data of the entry      */
+comment|/**      * Processes a compressed entry from an archive      *      * @param name The name of the entry      * @param isDirectory true if the entry is a directory, false otherwise      * @param is an InputStream for reading the uncompressed data of the entry      * @param filterParam is an additional param for entry filtering function        * @param storeParam is an additional param for entry storing function      */
 specifier|protected
 name|Sequence
 name|processCompressedEntry
@@ -752,6 +838,12 @@ name|isDirectory
 parameter_list|,
 name|InputStream
 name|is
+parameter_list|,
+name|Sequence
+name|filterParam
+parameter_list|,
+name|Sequence
+name|storeParam
 parameter_list|)
 throws|throws
 name|IOException
@@ -775,7 +867,7 @@ init|=
 operator|new
 name|Sequence
 index|[
-literal|2
+literal|3
 index|]
 decl_stmt|;
 name|filterParams
@@ -799,6 +891,13 @@ name|StringValue
 argument_list|(
 name|dataType
 argument_list|)
+expr_stmt|;
+name|filterParams
+index|[
+literal|2
+index|]
+operator|=
+name|filterParam
 expr_stmt|;
 name|Sequence
 name|entryFilterFunctionResult
@@ -955,7 +1054,7 @@ init|=
 operator|new
 name|Sequence
 index|[
-literal|3
+literal|4
 index|]
 decl_stmt|;
 name|System
@@ -979,6 +1078,13 @@ literal|2
 index|]
 operator|=
 name|uncompressedData
+expr_stmt|;
+name|dataParams
+index|[
+literal|3
+index|]
+operator|=
+name|storeParam
 expr_stmt|;
 name|Sequence
 name|entryDataFunctionResult
