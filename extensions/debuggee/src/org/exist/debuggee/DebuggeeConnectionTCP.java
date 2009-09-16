@@ -77,6 +77,22 @@ name|apache
 operator|.
 name|mina
 operator|.
+name|filter
+operator|.
+name|codec
+operator|.
+name|ProtocolCodecFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|mina
+operator|.
 name|transport
 operator|.
 name|socket
@@ -84,6 +100,20 @@ operator|.
 name|nio
 operator|.
 name|NioSocketConnector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|dgbp
+operator|.
+name|DGBPCodecFactory
 import|;
 end_import
 
@@ -162,6 +192,7 @@ name|NioSocketConnector
 argument_list|()
 expr_stmt|;
 comment|// Set connect timeout for 30 seconds.
+comment|//XXX: find the best timeout ???
 name|connector
 operator|.
 name|setConnectTimeoutMillis
@@ -169,6 +200,24 @@ argument_list|(
 literal|30
 operator|*
 literal|1000L
+argument_list|)
+expr_stmt|;
+name|connector
+operator|.
+name|getFilterChain
+argument_list|()
+operator|.
+name|addLast
+argument_list|(
+literal|"protocol"
+argument_list|,
+operator|new
+name|ProtocolCodecFilter
+argument_list|(
+operator|new
+name|DGBPCodecFactory
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Start communication.
