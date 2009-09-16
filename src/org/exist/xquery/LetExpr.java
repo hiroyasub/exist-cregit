@@ -695,6 +695,13 @@ expr_stmt|;
 block|}
 name|context
 operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
@@ -1731,6 +1738,13 @@ name|context
 operator|.
 name|popDocumentContext
 argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|expressionEnd
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 block|}

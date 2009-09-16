@@ -1009,6 +1009,8 @@ begin_class
 specifier|public
 class|class
 name|XQueryContext
+implements|implements
+name|DebuggeeJoint
 block|{
 specifier|public
 specifier|static
@@ -6991,6 +6993,34 @@ expr_stmt|;
 return|return
 name|sharedNamePool
 return|;
+block|}
+comment|/* DebuggeeJoint methods */
+specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|void
+name|expressionStart
+parameter_list|(
+name|Expression
+name|expr
+parameter_list|)
+block|{
+block|}
+specifier|public
+name|void
+name|expressionEnd
+parameter_list|(
+name|Expression
+name|expr
+parameter_list|)
+block|{
 block|}
 comment|/* Methods delegated to the watchdog */
 specifier|public
