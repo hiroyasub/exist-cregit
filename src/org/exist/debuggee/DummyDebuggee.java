@@ -17,12 +17,25 @@ begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
-begin_interface
+begin_class
 specifier|public
-interface|interface
-name|DebuggeeConnection
-block|{  }
-end_interface
+class|class
+name|DummyDebuggee
+implements|implements
+name|Debuggee
+block|{
+comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.Debuggee#joint() 	 */
+specifier|public
+name|DebuggeeJoint
+name|joint
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
+end_class
 
 end_unit
 
