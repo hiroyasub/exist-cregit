@@ -91,6 +91,22 @@ name|dgbp
 operator|.
 name|packets
 operator|.
+name|Command
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|dgbp
+operator|.
+name|packets
+operator|.
 name|Init
 import|;
 end_import
@@ -116,9 +132,10 @@ name|IoSession
 name|session
 parameter_list|)
 block|{
-comment|// Set reader idle time to 20 seconds.
+comment|// Set reader idle time to 30 seconds.
 comment|// sessionIdle(...) method will be invoked when no data is read
-comment|// for 20 seconds.
+comment|// for 30 seconds.
+comment|//XXX: fix -> 30 ???
 name|session
 operator|.
 name|getConfig
@@ -130,7 +147,7 @@ name|IdleStatus
 operator|.
 name|READER_IDLE
 argument_list|,
-literal|20
+literal|3000
 argument_list|)
 expr_stmt|;
 name|session
@@ -184,24 +201,10 @@ name|IdleStatus
 name|status
 parameter_list|)
 block|{
-comment|// Close the connection if reader is idle.
-if|if
-condition|(
-name|status
-operator|==
-name|IdleStatus
-operator|.
-name|READER_IDLE
-condition|)
-block|{
-name|session
-operator|.
-name|close
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
+comment|//		// Close the connection if reader is idle.
+comment|//		if (status == IdleStatus.READER_IDLE) {
+comment|//			session.close(true);
+comment|//		}
 block|}
 annotation|@
 name|Override
@@ -216,45 +219,25 @@ name|Object
 name|message
 parameter_list|)
 block|{
-name|IoBuffer
-name|buf
+name|Command
+name|command
 init|=
 operator|(
-name|IoBuffer
+name|Command
 operator|)
 name|message
 decl_stmt|;
-comment|// Print out read buffer content.
-while|while
-condition|(
-name|buf
+name|command
 operator|.
-name|hasRemaining
+name|exec
 argument_list|()
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-operator|(
-name|char
-operator|)
-name|buf
-operator|.
-name|get
-argument_list|()
-argument_list|)
 expr_stmt|;
-block|}
-name|System
+name|session
 operator|.
-name|out
-operator|.
-name|flush
-argument_list|()
+name|write
+argument_list|(
+name|command
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public

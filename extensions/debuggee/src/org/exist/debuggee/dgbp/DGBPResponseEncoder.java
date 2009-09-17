@@ -194,15 +194,6 @@ operator|.
 name|flip
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|packet
-argument_list|)
-expr_stmt|;
 name|out
 operator|.
 name|write
