@@ -41,6 +41,10 @@ begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
+begin_comment
+comment|//TODO: rename DebuggeeRuntime ?
+end_comment
+
 begin_interface
 specifier|public
 interface|interface
@@ -66,6 +70,11 @@ parameter_list|(
 name|Expression
 name|expr
 parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|reset
+parameter_list|()
 function_decl|;
 block|}
 end_interface

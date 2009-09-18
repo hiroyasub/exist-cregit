@@ -13,6 +13,18 @@ name|debuggee
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|CompiledXQuery
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -28,7 +40,10 @@ comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.Debuggee#joint() 	 */
 specifier|public
 name|DebuggeeJoint
 name|joint
-parameter_list|()
+parameter_list|(
+name|CompiledXQuery
+name|compiledXQuery
+parameter_list|)
 block|{
 return|return
 literal|null

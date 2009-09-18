@@ -131,6 +131,20 @@ name|DGBPProtocolHandler
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|XACMLSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -182,7 +196,10 @@ argument_list|()
 decl_stmt|;
 specifier|public
 name|DebuggeeConnectionTCP
-parameter_list|()
+parameter_list|(
+name|XACMLSource
+name|source
+parameter_list|)
 block|{
 comment|// Create TCP/IP connector.
 name|connector
@@ -219,7 +236,9 @@ name|setHandler
 argument_list|(
 operator|new
 name|DGBPProtocolHandler
-argument_list|()
+argument_list|(
+name|source
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

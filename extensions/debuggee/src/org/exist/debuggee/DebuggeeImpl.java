@@ -45,6 +45,18 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|CompiledXQuery
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -206,7 +218,10 @@ block|}
 specifier|public
 name|DebuggeeJoint
 name|joint
-parameter_list|()
+parameter_list|(
+name|CompiledXQuery
+name|compiledXQuery
+parameter_list|)
 block|{
 name|DebuggeeJoint
 name|joint
@@ -229,7 +244,12 @@ name|connection
 operator|=
 operator|new
 name|DebuggeeConnectionTCP
+argument_list|(
+name|compiledXQuery
+operator|.
+name|getSource
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -246,6 +266,16 @@ name|DebuggeeJointImpl
 argument_list|()
 expr_stmt|;
 block|}
+name|compiledXQuery
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|setDebuggeeJoint
+argument_list|(
+name|joint
+argument_list|)
+expr_stmt|;
 return|return
 name|joint
 return|;

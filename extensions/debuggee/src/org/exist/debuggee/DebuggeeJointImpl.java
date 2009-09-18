@@ -130,6 +130,13 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|void
+name|reset
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 block|}
 end_class
 
