@@ -1208,6 +1208,16 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//XXX: limit what to debug
+if|if
+condition|(
+name|context
+operator|.
+name|getDebuggeeJoint
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
 name|Debuggee
 name|debuggee
 init|=
@@ -1247,6 +1257,7 @@ argument_list|(
 name|joint
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//do any preparation before execution
 name|context
