@@ -6816,13 +6816,6 @@ condition|(
 name|xdebug
 operator|!=
 literal|null
-operator|&&
-name|xdebug
-operator|.
-name|equals
-argument_list|(
-literal|"1"
-argument_list|)
 condition|)
 name|compiled
 operator|.
