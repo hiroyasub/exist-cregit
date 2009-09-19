@@ -145,6 +145,9 @@ operator|.
 name|getType
 argument_list|()
 operator|.
+name|toLowerCase
+argument_list|()
+operator|.
 name|equals
 argument_list|(
 literal|"file"
