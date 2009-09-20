@@ -77,6 +77,20 @@ name|XACMLSource
 name|source
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Init: source = "
+operator|+
+name|source
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|fileuri
 operator|=
 name|source

@@ -2919,32 +2919,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|String
-name|xdebug
-init|=
-name|request
-operator|.
-name|getParameter
-argument_list|(
-literal|"XDEBUG_SESSION_START"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|xdebug
-operator|!=
-literal|null
-condition|)
-name|compiled
-operator|.
-name|getContext
-argument_list|()
-operator|.
-name|setDebugMode
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+comment|//		This used by controller.xql only ?
+comment|//		String xdebug = request.getParameter("XDEBUG_SESSION_START");
+comment|//		if (xdebug != null)
+comment|//			compiled.getContext().setDebugMode(true);
 try|try
 block|{
 return|return

@@ -390,6 +390,11 @@ operator|(
 name|status
 operator|==
 literal|2
+operator|&&
+name|connector
+operator|.
+name|isActive
+argument_list|()
 operator|)
 return|;
 block|}
