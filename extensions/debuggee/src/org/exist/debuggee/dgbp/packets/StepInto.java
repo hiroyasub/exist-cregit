@@ -43,6 +43,8 @@ block|{
 specifier|private
 name|String
 name|status
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|StepInto
@@ -66,10 +68,25 @@ comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec()
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|exec
 parameter_list|()
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"StepInto.exec thread = "
+operator|+
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|status
 operator|=
 name|joint
@@ -82,6 +99,7 @@ comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toByte
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|byte
 index|[]
 name|toBytes
