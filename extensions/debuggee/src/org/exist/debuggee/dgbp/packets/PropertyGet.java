@@ -17,6 +17,18 @@ name|packets
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|DebuggeeJoint
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -72,12 +84,17 @@ decl_stmt|;
 specifier|public
 name|PropertyGet
 parameter_list|(
+name|DebuggeeJoint
+name|joint
+parameter_list|,
 name|String
 name|args
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|joint
+argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -218,7 +235,7 @@ name|void
 name|exec
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+comment|//		joint.getProperty();
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@

@@ -17,6 +17,18 @@ name|packets
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|DebuggeeJoint
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -42,12 +54,17 @@ decl_stmt|;
 specifier|public
 name|FeatureSet
 parameter_list|(
+name|DebuggeeJoint
+name|joint
+parameter_list|,
 name|String
 name|args
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|joint
+argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -185,7 +202,14 @@ parameter_list|()
 block|{
 name|success
 operator|=
-literal|true
+name|joint
+operator|.
+name|featureSet
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|)
 expr_stmt|;
 block|}
 block|}

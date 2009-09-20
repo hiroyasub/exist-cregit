@@ -185,6 +185,8 @@ name|Command
 operator|.
 name|parse
 argument_list|(
+name|session
+argument_list|,
 name|sCommand
 argument_list|)
 argument_list|)

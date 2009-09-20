@@ -197,6 +197,9 @@ decl_stmt|;
 specifier|public
 name|DebuggeeConnectionTCP
 parameter_list|(
+name|DebuggeeJoint
+name|joint
+parameter_list|,
 name|XACMLSource
 name|source
 parameter_list|)
@@ -237,6 +240,8 @@ argument_list|(
 operator|new
 name|DGBPProtocolHandler
 argument_list|(
+name|joint
+argument_list|,
 name|source
 argument_list|)
 argument_list|)

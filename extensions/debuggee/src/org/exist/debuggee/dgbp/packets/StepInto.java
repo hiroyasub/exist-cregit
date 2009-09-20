@@ -17,6 +17,18 @@ name|packets
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|DebuggeeJoint
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -28,15 +40,24 @@ name|StepInto
 extends|extends
 name|Command
 block|{
+specifier|private
+name|String
+name|status
+decl_stmt|;
 specifier|public
 name|StepInto
 parameter_list|(
+name|DebuggeeJoint
+name|joint
+parameter_list|,
 name|String
 name|args
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|joint
+argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
@@ -49,7 +70,13 @@ name|void
 name|exec
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+name|status
+operator|=
+name|joint
+operator|.
+name|stepInto
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@
@@ -67,7 +94,11 @@ literal|"<response "
 operator|+
 literal|"command=\"step_into\" "
 operator|+
-literal|"status=\"starting\" "
+literal|"status=\""
+operator|+
+name|status
+operator|+
+literal|"\" "
 operator|+
 literal|"reason=\"ok\" "
 operator|+
