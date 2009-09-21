@@ -154,6 +154,11 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|String
+name|run
+parameter_list|()
+function_decl|;
+specifier|public
+name|String
 name|stepInto
 parameter_list|()
 function_decl|;

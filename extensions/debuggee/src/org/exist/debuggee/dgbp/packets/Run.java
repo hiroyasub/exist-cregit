@@ -10,61 +10,113 @@ operator|.
 name|exist
 operator|.
 name|debuggee
+operator|.
+name|dgbp
+operator|.
+name|packets
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|DebuggeeJoint
+import|;
+end_import
 
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
-begin_interface
+begin_class
 specifier|public
-interface|interface
-name|Status
+class|class
+name|Run
+extends|extends
+name|Command
 block|{
-specifier|public
+specifier|private
 name|String
-name|FIRST_RUN
-init|=
-literal|"FIRST_RUN"
+name|status
 decl_stmt|;
-comment|/** 	 * State prior to execution of any code 	 */
 specifier|public
+name|Run
+parameter_list|(
+name|DebuggeeJoint
+name|joint
+parameter_list|,
 name|String
-name|STARTING
-init|=
-literal|"starting"
-decl_stmt|;
-comment|/** 	 * State after completion of code execution. This typically happens at the end of code execution, allowing the IDE to further interact with the debugger engine (for example, to collect performance data, or use other extended commands). 	 */
-specifier|public
-name|String
-name|STOPPING
-init|=
-literal|"stopping"
-decl_stmt|;
-comment|/** 	 * IDE is detached from process, no further interaction is possible. 	 */
-specifier|public
-name|String
-name|STOPPED
-init|=
-literal|"stopped"
-decl_stmt|;
-comment|/** 	 * Code is currently executing. Note that this state would only be seen with async support turned on, otherwise the typical state during IDE/debugger interaction would be 'break' 	 */
-specifier|public
-name|String
-name|RUNNING
-init|=
-literal|"running"
-decl_stmt|;
-comment|/** 	 * Code execution is paused, for whatever reason (see below), and the IDE/debugger can pass information back and forth. 	 */
-specifier|public
-name|String
-name|BREAK
-init|=
-literal|"break"
-decl_stmt|;
+name|args
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|joint
+argument_list|,
+name|args
+argument_list|)
+expr_stmt|;
 block|}
-end_interface
+comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|exec
+parameter_list|()
+block|{
+name|status
+operator|=
+name|joint
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|toBytes
+parameter_list|()
+block|{
+name|String
+name|responce
+init|=
+literal|"<response "
+operator|+
+literal|"command=\"run\" "
+operator|+
+literal|"status=\""
+operator|+
+name|status
+operator|+
+literal|"\" "
+operator|+
+literal|"reason=\"ok\" "
+operator|+
+literal|"transaction_id=\""
+operator|+
+name|transactionID
+operator|+
+literal|"\"/>"
+decl_stmt|;
+return|return
+name|responce
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+block|}
+end_class
 
 end_unit
 

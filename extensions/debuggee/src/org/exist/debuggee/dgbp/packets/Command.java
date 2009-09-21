@@ -383,6 +383,26 @@ name|command
 operator|.
 name|equals
 argument_list|(
+literal|"run"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|Run
+argument_list|(
+name|joint
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
 literal|"step_into"
 argument_list|)
 condition|)
