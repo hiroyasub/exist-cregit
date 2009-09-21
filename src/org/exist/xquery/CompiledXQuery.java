@@ -122,20 +122,11 @@ name|Writer
 name|writer
 parameter_list|)
 function_decl|;
-comment|/**      * Gets the source of this query.      *       * @return This query's source      */
+comment|/**      * Gets the source of this query.      *      * @return This query's source      */
 specifier|public
 name|XACMLSource
 name|getSource
 parameter_list|()
-function_decl|;
-comment|/**      * Sets the source of this query.      *       * @param source This query's source      */
-specifier|public
-name|void
-name|setSource
-parameter_list|(
-name|XACMLSource
-name|source
-parameter_list|)
 function_decl|;
 block|}
 end_interface

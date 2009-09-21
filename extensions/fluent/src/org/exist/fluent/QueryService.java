@@ -1715,16 +1715,7 @@ name|expr
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|wrapper
-operator|.
-name|setSource
-argument_list|(
-name|expr
-operator|.
-name|getSource
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		wrapper.setSource(expr.getSource());
 return|return
 name|wrapper
 return|;

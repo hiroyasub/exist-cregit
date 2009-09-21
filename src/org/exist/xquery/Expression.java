@@ -81,6 +81,20 @@ name|Sequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|xacml
+operator|.
+name|XACMLSource
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base interface implemented by all classes which are part  * of an XQuery/XPath expression. The main method is   * {@link #eval(Sequence, Item)}. Please  * read the description there.  */
 end_comment
@@ -341,6 +355,11 @@ function_decl|;
 specifier|public
 name|int
 name|getColumn
+parameter_list|()
+function_decl|;
+specifier|public
+name|XACMLSource
+name|getSource
 parameter_list|()
 function_decl|;
 block|}
