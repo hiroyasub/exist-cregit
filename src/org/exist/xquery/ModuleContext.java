@@ -153,6 +153,16 @@ name|HashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
 end_comment
@@ -1390,9 +1400,6 @@ literal|null
 condition|)
 name|var
 operator|=
-operator|(
-name|Variable
-operator|)
 name|globalVariables
 operator|.
 name|get
@@ -1404,6 +1411,23 @@ comment|//if (var == null)
 comment|//	throw new XPathException("variable $" + qname + " is not bound");
 return|return
 name|var
+return|;
+block|}
+specifier|public
+name|Map
+argument_list|<
+name|QName
+argument_list|,
+name|Variable
+argument_list|>
+name|getVariables
+parameter_list|()
+block|{
+return|return
+name|parentContext
+operator|.
+name|getVariables
+argument_list|()
 return|;
 block|}
 specifier|public
