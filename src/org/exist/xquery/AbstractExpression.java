@@ -395,6 +395,15 @@ name|getSource
 argument_list|()
 return|;
 block|}
+specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

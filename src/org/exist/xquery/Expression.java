@@ -358,6 +358,11 @@ name|getColumn
 parameter_list|()
 function_decl|;
 specifier|public
+name|XQueryContext
+name|getContext
+parameter_list|()
+function_decl|;
+specifier|public
 name|XACMLSource
 name|getSource
 parameter_list|()
