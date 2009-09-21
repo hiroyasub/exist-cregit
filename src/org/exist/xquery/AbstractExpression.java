@@ -401,7 +401,7 @@ name|getContext
 parameter_list|()
 block|{
 return|return
-literal|null
+name|context
 return|;
 block|}
 block|}
