@@ -298,11 +298,7 @@ name|Command
 operator|)
 name|message
 decl_stmt|;
-name|command
-operator|.
-name|exec
-argument_list|()
-expr_stmt|;
+comment|//		command.exec();
 name|session
 operator|.
 name|write

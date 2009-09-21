@@ -164,7 +164,7 @@ literal|"transaction_id=\""
 operator|+
 name|transactionID
 operator|+
-literal|"\">"
+literal|"\">\n"
 operator|+
 name|stackToString
 argument_list|()
@@ -223,7 +223,7 @@ literal|"\" "
 operator|+
 literal|"type=\"file\" "
 operator|+
-literal|"filename=\"file://"
+literal|"filename=\""
 operator|+
 name|getFileuri
 argument_list|(
@@ -242,7 +242,7 @@ operator|.
 name|getLine
 argument_list|()
 operator|+
-literal|"\" "
+literal|"\" />"
 return|;
 comment|//					+
 comment|//					"where=\"\" " +
