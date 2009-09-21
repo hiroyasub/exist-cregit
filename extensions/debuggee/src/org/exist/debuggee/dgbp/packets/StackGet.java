@@ -83,7 +83,7 @@ decl_stmt|;
 specifier|private
 name|List
 argument_list|<
-name|PathExpr
+name|Expression
 argument_list|>
 name|stacks
 decl_stmt|;
@@ -199,7 +199,7 @@ condition|)
 return|return
 literal|""
 return|;
-name|PathExpr
+name|Expression
 name|expr
 init|=
 name|stacks
@@ -223,7 +223,7 @@ literal|"\" "
 operator|+
 literal|"type=\"file\" "
 operator|+
-literal|"filename=\""
+literal|"filename=\"file://"
 operator|+
 name|getFileuri
 argument_list|(
@@ -243,47 +243,11 @@ name|getLine
 argument_list|()
 operator|+
 literal|"\" "
-operator|+
-literal|"where=\"\" "
-operator|+
-literal|"cmdbegin=\""
-operator|+
-name|expr
-operator|.
-name|getLine
-argument_list|()
-operator|+
-literal|":"
-operator|+
-name|expr
-operator|.
-name|getColumn
-argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"cmdend=\""
-operator|+
-operator|(
-name|expr
-operator|.
-name|getLine
-argument_list|()
-operator|)
-operator|+
-literal|":"
-operator|+
-operator|(
-name|expr
-operator|.
-name|getColumn
-argument_list|()
-operator|+
-literal|1
-operator|)
-operator|+
-literal|"\"/>"
 return|;
+comment|//					+
+comment|//					"where=\"\" " +
+comment|//					"cmdbegin=\""+expr.getLine()+":"+expr.getColumn()+"\" " +
+comment|//					"cmdend=\""+(expr.getLine())+":"+(expr.getColumn()+1)+"\"/>";
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
 annotation|@

@@ -23,16 +23,45 @@ interface|interface
 name|Status
 block|{
 specifier|public
-name|int
+name|String
 name|FIRST_RUN
 init|=
-literal|0
+literal|""
 decl_stmt|;
+comment|/** 	 * State prior to execution of any code 	 */
 specifier|public
-name|int
-name|DEBUGGING
+name|String
+name|STARTING
 init|=
-literal|0
+literal|"starting"
+decl_stmt|;
+comment|/** 	 * State after completion of code execution. This typically happens at the end of code execution, allowing the IDE to further interact with the debugger engine (for example, to collect performance data, or use other extended commands). 	 */
+specifier|public
+name|String
+name|STOPPING
+init|=
+literal|"stopping"
+decl_stmt|;
+comment|/** 	 * IDE is detached from process, no further interaction is possible. 	 */
+specifier|public
+name|String
+name|STOPPED
+init|=
+literal|"stopped"
+decl_stmt|;
+comment|/** 	 * Code is currently executing. Note that this state would only be seen with async support turned on, otherwise the typical state during IDE/debugger interaction would be 'break' 	 */
+specifier|public
+name|String
+name|RUNNING
+init|=
+literal|"running"
+decl_stmt|;
+comment|/** 	 * Code execution is paused, for whatever reason (see below), and the IDE/debugger can pass information back and forth. 	 */
+specifier|public
+name|String
+name|BREAK
+init|=
+literal|"break"
 decl_stmt|;
 block|}
 end_interface
