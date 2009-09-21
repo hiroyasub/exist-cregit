@@ -70,55 +70,35 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|PropertyGet
+name|ContextGet
 extends|extends
 name|Command
 block|{
-comment|/** 	 * -d stack depth (optional, debugger engine should assume zero if not provided) 	 */
+comment|/** 	 * stack depth (optional) 	 */
 specifier|private
 name|int
 name|stackDepth
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * -c context id (optional, retrieved by context-names, debugger engine should assume zero if not provided) 	 */
+comment|/** 	 * context id (optional, retrieved by context-names) 	 */
 specifier|private
-name|int
+name|String
 name|contextID
 init|=
-literal|0
-decl_stmt|;
-comment|/** 	 * -n property long name (required) 	 */
-specifier|private
-name|String
-name|nameLong
-decl_stmt|;
-comment|/** 	 * -m max data size to retrieve (optional) 	 */
-specifier|private
-name|int
-name|maxDataSize
-decl_stmt|;
-comment|/** 	 * -p data page (property_get, property_value: optional for arrays, hashes, objects, etc.; property_set: not required; debugger engine should assume zero if not provided) 	 */
-specifier|private
-name|String
-name|dataPage
-decl_stmt|;
-comment|/** 	 * -k property key as retrieved in a property element, optional, used for property_get of children and property_value, required if it was provided by the debugger engine. 	 */
-specifier|private
-name|String
-name|propertyKey
-decl_stmt|;
-comment|/** 	 * -a property address as retrieved in a property element, optional, used for property_set/value 	 */
-specifier|private
-name|String
-name|propertyAddress
+literal|""
 decl_stmt|;
 specifier|private
+name|Map
+argument_list|<
+name|QName
+argument_list|,
 name|Variable
-name|variable
+argument_list|>
+name|variables
 decl_stmt|;
 specifier|public
-name|PropertyGet
+name|ContextGet
 parameter_list|(
 name|DebuggeeJoint
 name|joint
@@ -155,6 +135,7 @@ argument_list|(
 literal|"d"
 argument_list|)
 condition|)
+block|{
 name|stackDepth
 operator|=
 name|Integer
@@ -164,6 +145,7 @@ argument_list|(
 name|val
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|arg
@@ -173,86 +155,14 @@ argument_list|(
 literal|"c"
 argument_list|)
 condition|)
+block|{
 name|contextID
 operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|val
-argument_list|)
-expr_stmt|;
-if|else if
-condition|(
-name|arg
-operator|.
-name|equals
-argument_list|(
-literal|"n"
-argument_list|)
-condition|)
-name|nameLong
-operator|=
 name|val
 expr_stmt|;
-if|else if
-condition|(
-name|arg
-operator|.
-name|equals
-argument_list|(
-literal|"m"
-argument_list|)
-condition|)
-name|maxDataSize
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|val
-argument_list|)
-expr_stmt|;
-if|else if
-condition|(
-name|arg
-operator|.
-name|equals
-argument_list|(
-literal|"p"
-argument_list|)
-condition|)
-name|dataPage
-operator|=
-name|val
-expr_stmt|;
-if|else if
-condition|(
-name|arg
-operator|.
-name|equals
-argument_list|(
-literal|"k"
-argument_list|)
-condition|)
-name|propertyKey
-operator|=
-name|val
-expr_stmt|;
-if|else if
-condition|(
-name|arg
-operator|.
-name|equals
-argument_list|(
-literal|"a"
-argument_list|)
-condition|)
-name|propertyAddress
-operator|=
-name|val
-expr_stmt|;
+block|}
 else|else
+block|{
 name|super
 operator|.
 name|setArgument
@@ -263,6 +173,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
 annotation|@
 name|Override
@@ -271,17 +182,14 @@ name|void
 name|exec
 parameter_list|()
 block|{
-name|variable
+name|variables
 operator|=
 name|joint
 operator|.
-name|getVariable
-argument_list|(
-name|nameLong
-argument_list|)
+name|getVariables
+argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -291,27 +199,31 @@ name|toBytes
 parameter_list|()
 block|{
 name|String
-name|responce
+name|response
 init|=
-literal|""
-operator|+
 literal|"<response "
 operator|+
-literal|"command=\"property_get\" "
+literal|"command=\"context_get\" "
+operator|+
+literal|"context=\""
+operator|+
+name|contextID
+operator|+
+literal|"\" "
 operator|+
 literal|"transaction_id=\""
 operator|+
 name|transactionID
 operator|+
-literal|"\">"
+literal|"\"> "
 operator|+
-name|getPropertyString
+name|getPropertiesString
 argument_list|()
 operator|+
 literal|"</response>"
 decl_stmt|;
 return|return
-name|responce
+name|response
 operator|.
 name|getBytes
 argument_list|()
@@ -319,24 +231,35 @@ return|;
 block|}
 specifier|private
 name|String
-name|getPropertyString
+name|getPropertiesString
 parameter_list|()
 block|{
 name|String
-name|property
+name|properties
 init|=
 literal|""
 decl_stmt|;
 if|if
 condition|(
-name|variable
+name|variables
 operator|==
 literal|null
 condition|)
 return|return
-name|property
+name|properties
 return|;
 comment|//XXX: error?
+for|for
+control|(
+name|Variable
+name|variable
+range|:
+name|variables
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
 name|String
 name|value
 init|=
@@ -348,7 +271,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|property
+name|properties
 operator|+=
 literal|"<property "
 operator|+
@@ -379,8 +302,9 @@ name|value
 operator|+
 literal|"</property>"
 expr_stmt|;
+block|}
 return|return
-name|property
+name|properties
 return|;
 block|}
 block|}

@@ -178,6 +178,9 @@ name|substring
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|trim
+argument_list|()
 decl_stmt|;
 name|setArgument
 argument_list|(
@@ -374,7 +377,7 @@ name|args
 argument_list|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|command
 operator|.
@@ -394,7 +397,7 @@ name|args
 argument_list|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|command
 operator|.
@@ -414,7 +417,7 @@ name|args
 argument_list|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|command
 operator|.
@@ -434,7 +437,7 @@ name|args
 argument_list|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|command
 operator|.
@@ -447,6 +450,46 @@ block|{
 return|return
 operator|new
 name|StackGet
+argument_list|(
+name|joint
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"property_get"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|PropertyGet
+argument_list|(
+name|joint
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"context_get"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|ContextGet
 argument_list|(
 name|joint
 argument_list|,
