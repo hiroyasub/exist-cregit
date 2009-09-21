@@ -10,6 +10,8 @@ operator|.
 name|exist
 operator|.
 name|debugger
+operator|.
+name|model
 package|;
 end_package
 
@@ -20,15 +22,17 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|Debugger
+name|Variable
 block|{
 specifier|public
-name|DebuggingSource
-name|source
-parameter_list|(
 name|String
-name|fileURI
-parameter_list|)
+name|getName
+parameter_list|()
+function_decl|;
+specifier|public
+name|String
+name|getValue
+parameter_list|()
 function_decl|;
 block|}
 end_interface
