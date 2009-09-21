@@ -192,6 +192,19 @@ name|String
 name|exception
 parameter_list|)
 function_decl|;
+specifier|public
+name|int
+name|getId
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|setId
+parameter_list|(
+name|int
+name|breakpointNo
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

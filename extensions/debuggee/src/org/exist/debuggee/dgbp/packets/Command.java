@@ -497,6 +497,26 @@ name|args
 argument_list|)
 return|;
 block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"breakpoint_set"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|BreakpointSet
+argument_list|(
+name|joint
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
 throw|throw
 operator|new
 name|ParsingCommandException
