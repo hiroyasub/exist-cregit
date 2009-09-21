@@ -66,6 +66,19 @@ name|TYPE_WATCH
 init|=
 literal|"watch"
 decl_stmt|;
+specifier|public
+name|String
+name|getType
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|setType
+parameter_list|(
+name|String
+name|type
+parameter_list|)
+function_decl|;
 comment|/** 	 * The file the breakpoint is effective in. This must be a "file://" or "dbgp:" (See 6.7 Dynamic code and virtual files) URI. 	 * @return 	 */
 specifier|public
 name|String
