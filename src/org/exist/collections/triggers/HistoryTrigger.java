@@ -186,7 +186,7 @@ name|HistoryTrigger
 extends|extends
 name|FilteringTrigger
 implements|implements
-name|DocumentTriggerUnary
+name|DocumentTrigger
 block|{
 specifier|protected
 name|XmldbURI

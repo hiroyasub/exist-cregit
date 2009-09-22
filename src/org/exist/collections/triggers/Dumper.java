@@ -131,8 +131,6 @@ class|class
 name|Dumper
 extends|extends
 name|FilteringTrigger
-implements|implements
-name|DocumentTriggerUnary
 block|{
 comment|/* (non-Javadoc) 	 * @see org.exist.collections.FilteringTrigger#configure(java.util.Map) 	 */
 specifier|public
@@ -357,6 +355,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc)      * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
 specifier|public
 name|void
 name|finish

@@ -18,10 +18,6 @@ specifier|public
 enum|enum
 name|Trigger
 block|{
-name|BEFORE_STORE
-block|,
-name|AFTER_STORE
-block|,
 name|BEFORE_CREATE
 block|,
 name|AFTER_CREATE
@@ -30,17 +26,9 @@ name|BEFORE_UPDATE
 block|,
 name|AFTER_UPDATE
 block|,
-name|BEFORE_RENAME
+name|BEFORE_DELETE
 block|,
-name|AFTER_RENAME
-block|,
-name|BEFORE_MOVE
-block|,
-name|AFTER_MOVE
-block|,
-name|BEFORE_REMOVE
-block|,
-name|AFTER_REMOVE
+name|AFTER_DELETE
 block|}
 end_enum
 
