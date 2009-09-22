@@ -770,7 +770,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|docPath
 argument_list|,
@@ -832,7 +832,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -921,7 +921,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -979,7 +979,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1052,7 +1052,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1141,7 +1141,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1191,7 +1191,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1250,7 +1250,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1331,7 +1331,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1386,7 +1386,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1456,7 +1456,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1537,7 +1537,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_CREATE
+name|AFTER_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2044,7 +2044,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2103,7 +2103,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_CREATE
+name|BEFORE_STORE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2365,7 +2365,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2427,7 +2427,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2495,7 +2495,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2563,7 +2563,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2619,7 +2619,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2681,7 +2681,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2745,7 +2745,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2804,7 +2804,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2857,7 +2857,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2916,7 +2916,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2969,7 +2969,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -3028,7 +3028,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -3081,7 +3081,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -3140,7 +3140,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -3193,7 +3193,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -3242,7 +3242,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_DELETE
+name|BEFORE_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -3311,7 +3311,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|docPath
 argument_list|,
@@ -3360,7 +3360,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_DELETE
+name|AFTER_REMOVE
 argument_list|,
 name|documentListener
 argument_list|)

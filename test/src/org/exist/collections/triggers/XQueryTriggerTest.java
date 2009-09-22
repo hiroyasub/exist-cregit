@@ -297,7 +297,7 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='store'"
+literal|"<exist:trigger event='store-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -325,7 +325,7 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='update'"
+literal|"<exist:trigger event='update-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -353,7 +353,7 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='remove'"
+literal|"<exist:trigger event='remove-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -506,15 +506,15 @@ literal|"module namespace log='log'; "
 operator|+
 literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"declare variable $log:eventType external;"
+literal|"import module namespace util='http://exist-db.org/xquery/util'; "
 operator|+
-literal|"declare variable $log:collectionName external;"
+literal|"declare variable $log:type external;"
 operator|+
-literal|"declare variable $log:documentName external;"
+literal|"declare variable $log:collection external;"
 operator|+
-literal|"declare variable $log:triggerEvent external;"
+literal|"declare variable $log:uri external;"
 operator|+
-literal|"declare variable $log:document external;"
+literal|"declare variable $log:event external;"
 operator|+
 literal|"declare function log:log($id as xs:string?) {"
 operator|+
@@ -550,15 +550,15 @@ literal|"<xu:attribute name='id'>{$id}</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
 operator|+
-literal|"<xu:attribute name='type'>{$log:eventType}</xu:attribute>"
+literal|"<xu:attribute name='type'>{$log:type}</xu:attribute>"
 operator|+
-literal|"<xu:element name='collectionName'>{$log:collectionName}</xu:element>"
+literal|"<xu:element name='collection'>{$log:collection}</xu:element>"
 operator|+
-literal|"<xu:element name='documentName'>{$log:documentName}</xu:element>"
+literal|"<xu:element name='uri'>{$log:uri}</xu:element>"
 operator|+
-literal|"<xu:element name='triggerEvent'>{$log:triggerEvent}</xu:element>"
+literal|"<xu:element name='event'>{$log:event}</xu:element>"
 operator|+
-literal|"<xu:element name='document'>{$log:document}</xu:element>"
+literal|"<xu:element name='document'>{if (util:is-binary-doc($log:uri)) then util:binary-doc($log:uri) else doc($log:uri)}</xu:element>"
 operator|+
 literal|"</xu:element>"
 operator|+
@@ -586,15 +586,13 @@ literal|"module namespace log='log'; "
 operator|+
 literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"declare variable $log:eventType external;"
+literal|"declare variable $log:type external;"
 operator|+
-literal|"declare variable $log:collectionName external;"
+literal|"declare variable $log:collection external;"
 operator|+
-literal|"declare variable $log:documentName external;"
+literal|"declare variable $log:uri external;"
 operator|+
-literal|"declare variable $log:triggerEvent external;"
-operator|+
-literal|"declare variable $log:document external;"
+literal|"declare variable $log:event external;"
 operator|+
 literal|"declare function log:log($id as xs:string?) {"
 operator|+
@@ -1067,7 +1065,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1097,7 +1095,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][documentName = '"
+literal|"/events/event[@id = 'trigger1'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1131,7 +1129,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][triggerEvent = 'STORE']"
+literal|"/events/event[@id = 'trigger1'][event = 'STORE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1329,7 +1327,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][collectionName = '"
+literal|"/events/event[@id = 'trigger2'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1359,7 +1357,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][documentName = '"
+literal|"/events/event[@id = 'trigger2'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1393,7 +1391,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][triggerEvent = 'UPDATE']"
+literal|"/events/event[@id = 'trigger2'][event = 'UPDATE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1585,7 +1583,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1615,7 +1613,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][documentName = '"
+literal|"/events/event[@id = 'trigger3'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1649,7 +1647,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][triggerEvent = 'REMOVE']"
+literal|"/events/event[@id = 'trigger3'][event = 'REMOVE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1844,7 +1842,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1854,7 +1852,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1868,7 +1866,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'STORE']"
+literal|"'][event = 'STORE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1888,7 +1886,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][@type = 'finish'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][@type = 'finish'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1898,7 +1896,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1912,7 +1910,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'STORE']/document"
+literal|"'][event = 'STORE-DOCUMENT']/document"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2056,7 +2054,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2066,7 +2064,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2080,7 +2078,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'REMOVE']"
+literal|"'][event = 'REMOVE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2100,7 +2098,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][@type = 'prepare'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][@type = 'prepare'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2110,7 +2108,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2124,7 +2122,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'REMOVE']/document"
+literal|"'][event = 'REMOVE-DOCUMENT']/document"
 argument_list|)
 expr_stmt|;
 name|assertEquals

@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -71,7 +81,7 @@ name|collections
 operator|.
 name|triggers
 operator|.
-name|DocumentTrigger
+name|DocumentTriggerUnary
 import|;
 end_import
 
@@ -532,16 +542,6 @@ operator|.
 name|sax
 operator|.
 name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -1573,7 +1573,7 @@ name|getBroker
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|DocumentTrigger
+name|DocumentTriggerUnary
 name|trigger
 init|=
 literal|null
@@ -1591,7 +1591,7 @@ block|{
 name|trigger
 operator|=
 operator|(
-name|DocumentTrigger
+name|DocumentTriggerUnary
 operator|)
 name|config
 operator|.
@@ -1780,11 +1780,11 @@ block|}
 else|else
 block|{
 comment|//finish the trigger
-name|DocumentTrigger
+name|DocumentTriggerUnary
 name|trigger
 init|=
 operator|(
-name|DocumentTrigger
+name|DocumentTriggerUnary
 operator|)
 name|triggers
 operator|.

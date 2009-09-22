@@ -53,18 +53,30 @@ name|Txn
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
-comment|/**  * Interface for triggers that can be registered with collection-related events.  *   * @author wolf  */
+comment|/**  * Interface for triggers that can be registered with collection-related events.  *   * @author wolf  * @author gev  */
 end_comment
 
 begin_interface
 specifier|public
 interface|interface
-name|CollectionTrigger
+name|CollectionTriggerBinary
 extends|extends
 name|Trigger
 block|{
-comment|/**      * This method is called once before the database will actually create, remove or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param collection the {@link Collection} which fired this event.      * @param newName optional: if event is a {@link Trigger#RENAME_COLLECTION_EVENT},      *  this parameter contains the new name of the collection. It is null otherwise.      * @throws TriggerException throwing a TriggerException will abort the current action.      */
+comment|/**      * This method is called once before the database will actually move or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param collectionPath the {@link Collection} which fired this event.      * @param newName optional: if event is a {@link Trigger#RENAME_COLLECTION_EVENT},      *  this parameter contains the new name of the collection. It is null otherwise.      * @throws TriggerException throwing a TriggerException will abort the current action.      */
 specifier|public
 name|void
 name|prepare
@@ -77,6 +89,9 @@ name|broker
 parameter_list|,
 name|Txn
 name|transaction
+parameter_list|,
+name|XmldbURI
+name|collectionPath
 parameter_list|,
 name|Collection
 name|collection
@@ -100,6 +115,9 @@ name|broker
 parameter_list|,
 name|Txn
 name|transaction
+parameter_list|,
+name|XmldbURI
+name|collectionPath
 parameter_list|,
 name|Collection
 name|collection

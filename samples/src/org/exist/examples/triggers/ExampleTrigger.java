@@ -91,6 +91,20 @@ name|collections
 operator|.
 name|triggers
 operator|.
+name|DocumentTriggerUnary
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
 name|FilteringTrigger
 import|;
 end_import
@@ -231,6 +245,8 @@ class|class
 name|ExampleTrigger
 extends|extends
 name|FilteringTrigger
+implements|implements
+name|DocumentTriggerUnary
 block|{
 specifier|private
 name|DocumentImpl
@@ -690,7 +706,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class
