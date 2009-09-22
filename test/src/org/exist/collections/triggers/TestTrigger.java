@@ -203,8 +203,6 @@ class|class
 name|TestTrigger
 extends|extends
 name|FilteringTrigger
-implements|implements
-name|DocumentTriggerUnary
 block|{
 specifier|private
 specifier|final
@@ -466,7 +464,7 @@ literal|"<xu:append select='/events'>"
 operator|+
 literal|"<xu:element name='event'>"
 operator|+
-literal|"<xu:attribute name='id'>STORE-DOCUMENT</xu:attribute>"
+literal|"<xu:attribute name='id'>STORE</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='collection'>"
 operator|+
@@ -506,7 +504,7 @@ literal|"<xu:append select='/events'>"
 operator|+
 literal|"<xu:element name='event'>"
 operator|+
-literal|"<xu:attribute name='id'>REMOVE-DOCUMENT</xu:attribute>"
+literal|"<xu:attribute name='id'>REMOVE</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='collection'>"
 operator|+
@@ -681,6 +679,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

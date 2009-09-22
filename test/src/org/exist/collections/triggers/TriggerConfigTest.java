@@ -318,7 +318,7 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='store-document,remove-document' class='org.exist.collections.triggers.TestTrigger'/>"
+literal|"<exist:trigger event='store,remove' class='org.exist.collections.triggers.TestTrigger'/>"
 operator|+
 literal|"</exist:triggers>"
 operator|+
@@ -785,7 +785,7 @@ literal|"/messages.xml')) then doc('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE-DOCUMENT'] else ()"
+literal|"/messages.xml')/events/event[@id = 'STORE'] else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -968,7 +968,7 @@ literal|"/messages.xml')) then doc('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE-DOCUMENT']/string(@collection) else ()"
+literal|"/messages.xml')/events/event[@id = 'STORE']/string(@collection) else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals
