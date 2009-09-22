@@ -7190,6 +7190,8 @@ parameter_list|(
 name|Expression
 name|expr
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 if|if
 condition|(

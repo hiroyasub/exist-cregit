@@ -241,6 +241,24 @@ name|IoSession
 name|session
 parameter_list|)
 block|{
+name|DebuggeeJoint
+name|joint
+init|=
+operator|(
+name|DebuggeeJoint
+operator|)
+name|session
+operator|.
+name|getAttribute
+argument_list|(
+literal|"joint"
+argument_list|)
+decl_stmt|;
+name|joint
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
 comment|// Print out total number of bytes read from the remote peer.
 name|System
 operator|.

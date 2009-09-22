@@ -58,6 +58,12 @@ name|STEP_OVER
 init|=
 literal|5
 decl_stmt|;
+specifier|public
+name|int
+name|STOP
+init|=
+literal|8
+decl_stmt|;
 block|}
 end_interface
 
