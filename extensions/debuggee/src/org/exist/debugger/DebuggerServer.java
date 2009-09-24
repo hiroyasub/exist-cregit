@@ -116,7 +116,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|DebuggeeServer
+name|DebuggerServer
 extends|extends
 name|IoHandlerAdapter
 block|{
@@ -130,7 +130,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|DebuggeeServer
+name|DebuggerServer
 operator|.
 name|class
 argument_list|)
@@ -149,7 +149,7 @@ name|Debugger
 name|debuger
 decl_stmt|;
 specifier|public
-name|DebuggeeServer
+name|DebuggerServer
 parameter_list|(
 name|Debugger
 name|debuger
