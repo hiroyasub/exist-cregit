@@ -31,23 +31,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|debuggee
+name|mina
 operator|.
-name|CommandContinuation
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|core
 operator|.
-name|exist
+name|session
 operator|.
-name|debuggee
-operator|.
-name|DebuggeeJoint
+name|IoSession
 import|;
 end_import
 
@@ -60,18 +52,6 @@ operator|.
 name|xquery
 operator|.
 name|Expression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|PathExpr
 import|;
 end_import
 
@@ -102,8 +82,8 @@ decl_stmt|;
 specifier|public
 name|StackGet
 parameter_list|(
-name|DebuggeeJoint
-name|joint
+name|IoSession
+name|session
 parameter_list|,
 name|String
 name|args
@@ -111,7 +91,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|joint
+name|session
 argument_list|,
 name|args
 argument_list|)

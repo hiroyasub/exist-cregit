@@ -25,22 +25,6 @@ name|mina
 operator|.
 name|core
 operator|.
-name|buffer
-operator|.
-name|IoBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|mina
-operator|.
-name|core
-operator|.
 name|service
 operator|.
 name|IoHandlerAdapter
@@ -212,20 +196,7 @@ comment|// Set reader idle time to 30 seconds.
 comment|// sessionIdle(...) method will be invoked when no data is read
 comment|// for 30 seconds.
 comment|//XXX: fix -> 30 ???
-name|session
-operator|.
-name|getConfig
-argument_list|()
-operator|.
-name|setIdleTime
-argument_list|(
-name|IdleStatus
-operator|.
-name|READER_IDLE
-argument_list|,
-literal|3000
-argument_list|)
-expr_stmt|;
+comment|//session.getConfig().setIdleTime(IdleStatus.READER_IDLE, 3000);
 name|session
 operator|.
 name|setAttribute
@@ -277,7 +248,7 @@ argument_list|(
 operator|new
 name|Stop
 argument_list|(
-name|joint
+name|session
 argument_list|,
 literal|""
 argument_list|)

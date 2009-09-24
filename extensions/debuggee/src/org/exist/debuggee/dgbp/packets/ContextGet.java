@@ -31,11 +31,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|debuggee
+name|mina
 operator|.
-name|DebuggeeJoint
+name|core
+operator|.
+name|session
+operator|.
+name|IoSession
 import|;
 end_import
 
@@ -100,8 +104,8 @@ decl_stmt|;
 specifier|public
 name|ContextGet
 parameter_list|(
-name|DebuggeeJoint
-name|joint
+name|IoSession
+name|session
 parameter_list|,
 name|String
 name|args
@@ -109,7 +113,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|joint
+name|session
 argument_list|,
 name|args
 argument_list|)
