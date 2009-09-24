@@ -48,7 +48,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|Run
+name|Stop
 extends|extends
 name|Command
 implements|implements
@@ -59,7 +59,7 @@ name|String
 name|status
 decl_stmt|;
 specifier|public
-name|Run
+name|Stop
 parameter_list|(
 name|DebuggeeJoint
 name|joint
@@ -106,7 +106,7 @@ name|responce
 init|=
 literal|"<response "
 operator|+
-literal|"command=\"run\" "
+literal|"command=\"stop\" "
 operator|+
 literal|"status=\""
 operator|+
