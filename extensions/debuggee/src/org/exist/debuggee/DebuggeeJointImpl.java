@@ -264,6 +264,13 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|stack
+operator|.
+name|add
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -273,6 +280,18 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|stack
+operator|.
+name|remove
+argument_list|(
+name|stack
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.DebuggeeJoint#expressionStart(org.exist.xquery.Expression) 	 */
 specifier|public
@@ -371,6 +390,7 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|//didn't receive any command, wait for any
 if|if
 condition|(
 name|command
@@ -383,6 +403,23 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
+comment|//the status is break, wait for changes
+if|if
+condition|(
+name|command
+operator|.
+name|isStatus
+argument_list|(
+name|BREAK
+argument_list|)
+condition|)
+block|{
+name|waitCommand
+argument_list|()
+expr_stmt|;
+continue|continue;
+block|}
+comment|//stop command, terminate
 if|if
 condition|(
 name|command
@@ -428,6 +465,7 @@ literal|"Debuggee STOP command."
 argument_list|)
 throw|;
 block|}
+comment|//checking breakpoints
 if|if
 condition|(
 name|breakpoints
@@ -497,6 +535,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//break on first line
 if|if
 condition|(
 name|command
@@ -516,6 +555,7 @@ name|FIRST_RUN
 argument_list|)
 condition|)
 empty_stmt|;
+comment|//step-into is done
 if|else if
 condition|(
 name|command
@@ -541,6 +581,7 @@ argument_list|(
 name|BREAK
 argument_list|)
 expr_stmt|;
+comment|//RUS command with status RUNNING can be break only on breakpoints
 if|else if
 condition|(
 name|command
@@ -560,6 +601,7 @@ name|RUNNING
 argument_list|)
 condition|)
 break|break;
+comment|//any continuation command with status RUNNING
 if|else if
 condition|(
 name|command
