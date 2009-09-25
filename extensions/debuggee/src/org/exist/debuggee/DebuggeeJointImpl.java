@@ -329,7 +329,14 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"expressionStart expr = "
+literal|"expressionStart "
+operator|+
+name|expr
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|" expr = "
 operator|+
 name|expr
 operator|.
