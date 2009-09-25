@@ -213,6 +213,15 @@ argument_list|)
 operator|+
 literal|"\" "
 operator|+
+literal|"lineno=\""
+operator|+
+name|expr
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|"\" "
+operator|+
 literal|"type=\"file\" "
 operator|+
 literal|"filename=\""
@@ -224,15 +233,6 @@ operator|.
 name|getSource
 argument_list|()
 argument_list|)
-operator|+
-literal|"\" "
-operator|+
-literal|"lineno=\""
-operator|+
-name|expr
-operator|.
-name|getLine
-argument_list|()
 operator|+
 literal|"\" />"
 return|;
