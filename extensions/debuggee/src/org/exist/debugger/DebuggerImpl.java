@@ -37,6 +37,20 @@ name|DebuggingSource
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|Breakpoint
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -61,6 +75,26 @@ comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|Breakpoint
+name|addBreakpoint
+parameter_list|(
+name|Breakpoint
+name|breakpoint
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|void
+name|sessionClosed
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

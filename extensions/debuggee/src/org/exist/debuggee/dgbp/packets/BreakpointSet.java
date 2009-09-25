@@ -47,6 +47,20 @@ name|Breakpoint
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|BreakpointImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -60,59 +74,12 @@ name|Command
 implements|implements
 name|Breakpoint
 block|{
-comment|/** 	 * breakpoint type, see above for valid values [required] 	 */
-specifier|private
-name|String
-name|type
-decl_stmt|;
-comment|/** 	 * breakpoint state [optional, defaults to "enabled"] 	 */
-specifier|private
-name|boolean
-name|state
+name|BreakpointImpl
+name|breakpoint
 init|=
-literal|true
-decl_stmt|;
-comment|/** 	 * the filename to which the breakpoint belongs [optional] 	 */
-specifier|private
-name|String
-name|fileName
-decl_stmt|;
-comment|/** 	 * the line number (lineno) of the breakpoint [optional] 	 */
-specifier|private
-name|int
-name|lineNo
-decl_stmt|;
-comment|/** 	 * function name [required for call or return breakpoint types] 	 */
-specifier|private
-name|String
-name|function
-decl_stmt|;
-comment|/** 	 * EXCEPTION exception name [required for exception breakpoint types]  	 */
-specifier|private
-name|String
-name|exception
-decl_stmt|;
-comment|/** 	 * hit value (hit_value) used with the hit condition to determine if should break; a value of zero indicates hit count processing is disabled for this breakpoint [optional, defaults to zero (i.e. disabled)] 	 */
-specifier|private
-name|int
-name|hitValue
-decl_stmt|;
-comment|/** 	 * hit condition string (hit_condition); see HIT_CONDITION hit_condition documentation above; BTW 'o' stands for 'operator' [optional, defaults to '>='] 	 */
-specifier|private
-name|String
-name|hitCondition
-decl_stmt|;
-comment|/** 	 * Boolean value indicating if this breakpoint is temporary. [optional, defaults to false] 	 */
-specifier|private
-name|boolean
-name|temporary
-init|=
-literal|false
-decl_stmt|;
-comment|/** 	 * code expression, in the language of the debugger engine. The breakpoint should activate when the evaluated code evaluates to true. [required for conditional breakpoint types] 	 */
-specifier|private
-name|String
-name|expression
+operator|new
+name|BreakpointImpl
+argument_list|()
 decl_stmt|;
 specifier|private
 name|int
@@ -160,9 +127,12 @@ literal|"t"
 argument_list|)
 condition|)
 block|{
-name|type
-operator|=
+name|breakpoint
+operator|.
+name|setType
+argument_list|(
 name|val
+argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -175,9 +145,12 @@ literal|"s"
 argument_list|)
 condition|)
 block|{
-name|state
-operator|=
+name|breakpoint
+operator|.
+name|setState
+argument_list|(
 literal|true
+argument_list|)
 expr_stmt|;
 comment|//TODO: parsing required
 block|}
@@ -191,9 +164,12 @@ literal|"f"
 argument_list|)
 condition|)
 block|{
-name|fileName
-operator|=
+name|breakpoint
+operator|.
+name|setFilename
+argument_list|(
 name|val
+argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -206,13 +182,16 @@ literal|"n"
 argument_list|)
 condition|)
 block|{
-name|lineNo
-operator|=
+name|breakpoint
+operator|.
+name|setLineno
+argument_list|(
 name|Integer
 operator|.
 name|parseInt
 argument_list|(
 name|val
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -226,9 +205,12 @@ literal|"m"
 argument_list|)
 condition|)
 block|{
-name|function
-operator|=
+name|breakpoint
+operator|.
+name|setFunction
+argument_list|(
 name|val
+argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -241,9 +223,12 @@ literal|"x"
 argument_list|)
 condition|)
 block|{
-name|exception
-operator|=
+name|breakpoint
+operator|.
+name|setException
+argument_list|(
 name|val
+argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -256,13 +241,16 @@ literal|"h"
 argument_list|)
 condition|)
 block|{
-name|hitValue
-operator|=
+name|breakpoint
+operator|.
+name|setHitValue
+argument_list|(
 name|Integer
 operator|.
 name|parseInt
 argument_list|(
 name|val
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -276,9 +264,12 @@ literal|"o"
 argument_list|)
 condition|)
 block|{
-name|hitCondition
-operator|=
+name|breakpoint
+operator|.
+name|setHitCondition
+argument_list|(
 name|val
+argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -291,9 +282,12 @@ literal|"r"
 argument_list|)
 condition|)
 block|{
-name|temporary
-operator|=
+name|breakpoint
+operator|.
+name|setTemporary
+argument_list|(
 literal|true
+argument_list|)
 expr_stmt|;
 comment|//TODO: parsing required
 block|}
@@ -364,7 +358,8 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|id
+name|getId
+argument_list|()
 argument_list|)
 operator|+
 literal|"\" "
@@ -402,7 +397,10 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|state
+name|breakpoint
+operator|.
+name|getState
+argument_list|()
 condition|)
 return|return
 literal|"enabled"
@@ -414,19 +412,16 @@ block|}
 comment|///////////////////////////////////////////////////////////////////
 comment|// Breakpoint's methods
 comment|///////////////////////////////////////////////////////////////////
-specifier|private
-name|int
-name|hitCount
-init|=
-literal|0
-decl_stmt|;
 specifier|public
 name|String
 name|getException
 parameter_list|()
 block|{
 return|return
-name|exception
+name|breakpoint
+operator|.
+name|getException
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -435,7 +430,10 @@ name|getFilename
 parameter_list|()
 block|{
 return|return
-name|fileName
+name|breakpoint
+operator|.
+name|getFilename
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -444,7 +442,10 @@ name|getFunction
 parameter_list|()
 block|{
 return|return
-name|function
+name|breakpoint
+operator|.
+name|getFunction
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -453,7 +454,10 @@ name|getHitCondition
 parameter_list|()
 block|{
 return|return
-name|hitCondition
+name|breakpoint
+operator|.
+name|getHitCondition
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -462,7 +466,10 @@ name|getHitCount
 parameter_list|()
 block|{
 return|return
-name|hitCount
+name|breakpoint
+operator|.
+name|getHitCount
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -471,7 +478,10 @@ name|getHitValue
 parameter_list|()
 block|{
 return|return
-literal|0
+name|breakpoint
+operator|.
+name|getHitValue
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -480,7 +490,10 @@ name|getLineno
 parameter_list|()
 block|{
 return|return
-name|lineNo
+name|breakpoint
+operator|.
+name|getLineno
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -489,7 +502,10 @@ name|getState
 parameter_list|()
 block|{
 return|return
-name|state
+name|breakpoint
+operator|.
+name|getState
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -498,7 +514,10 @@ name|getTemporary
 parameter_list|()
 block|{
 return|return
-name|temporary
+name|breakpoint
+operator|.
+name|getTemporary
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -509,11 +528,12 @@ name|String
 name|exception
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
+name|setException
+argument_list|(
 name|exception
-operator|=
-name|exception
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -524,9 +544,12 @@ name|String
 name|filename
 parameter_list|)
 block|{
-name|fileName
-operator|=
+name|breakpoint
+operator|.
+name|setFilename
+argument_list|(
 name|filename
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -537,11 +560,12 @@ name|String
 name|function
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
+name|setFunction
+argument_list|(
 name|function
-operator|=
-name|function
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -552,9 +576,12 @@ name|String
 name|condition
 parameter_list|)
 block|{
-name|hitCondition
-operator|=
+name|breakpoint
+operator|.
+name|setHitCondition
+argument_list|(
 name|condition
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -565,9 +592,12 @@ name|int
 name|count
 parameter_list|)
 block|{
-name|hitCount
-operator|=
+name|breakpoint
+operator|.
+name|setHitCount
+argument_list|(
 name|count
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -578,9 +608,12 @@ name|int
 name|value
 parameter_list|)
 block|{
-name|hitValue
-operator|=
+name|breakpoint
+operator|.
+name|setHitValue
+argument_list|(
 name|value
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -591,9 +624,12 @@ name|int
 name|lineno
 parameter_list|)
 block|{
-name|lineNo
-operator|=
+name|breakpoint
+operator|.
+name|setLineno
+argument_list|(
 name|lineno
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -604,11 +640,12 @@ name|boolean
 name|state
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
+name|setState
+argument_list|(
 name|state
-operator|=
-name|state
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -619,24 +656,24 @@ name|boolean
 name|temporary
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
+name|setTemporary
+argument_list|(
 name|temporary
-operator|=
-name|temporary
+argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|int
-name|id
-decl_stmt|;
 specifier|public
 name|int
 name|getId
 parameter_list|()
 block|{
 return|return
-name|id
+name|breakpoint
+operator|.
+name|getId
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -647,11 +684,12 @@ name|int
 name|breakpointNo
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
-name|id
-operator|=
+name|setId
+argument_list|(
 name|breakpointNo
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -660,7 +698,10 @@ name|getType
 parameter_list|()
 block|{
 return|return
-name|type
+name|breakpoint
+operator|.
+name|getType
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -671,12 +712,34 @@ name|String
 name|type
 parameter_list|)
 block|{
-name|this
+name|breakpoint
 operator|.
+name|setType
+argument_list|(
 name|type
-operator|=
-name|type
+argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|String
+name|getExpression
+parameter_list|()
+block|{
+comment|//TODO: implement
+return|return
+literal|""
+return|;
+block|}
+specifier|public
+name|void
+name|setExpression
+parameter_list|(
+name|String
+name|expression
+parameter_list|)
+block|{
+comment|//TODO: implement
+empty_stmt|;
 block|}
 specifier|public
 name|String
@@ -692,26 +755,30 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|id
+name|getId
+argument_list|()
 argument_list|)
 operator|+
 literal|"\" "
 operator|+
 literal|"type=\""
 operator|+
-name|type
+name|getType
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
 literal|"state=\""
 operator|+
-name|state
+name|getStateString
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
 literal|"filename=\""
 operator|+
-name|fileName
+name|getFilename
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
@@ -721,20 +788,23 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|lineNo
+name|getLineno
+argument_list|()
 argument_list|)
 operator|+
 literal|"\" "
 operator|+
 literal|"function=\""
 operator|+
-name|function
+name|getFunction
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
 literal|"exception=\""
 operator|+
-name|exception
+name|getException
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
@@ -744,14 +814,16 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|hitValue
+name|getHitValue
+argument_list|()
 argument_list|)
 operator|+
 literal|"\" "
 operator|+
 literal|"hit_condition=\""
 operator|+
-name|hitCondition
+name|getHitCondition
+argument_list|()
 operator|+
 literal|"\" "
 operator|+
@@ -761,14 +833,16 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|hitCount
+name|getHitCount
+argument_list|()
 argument_list|)
 operator|+
 literal|"\">"
 operator|+
 literal|"<expression>"
 operator|+
-name|expression
+name|getExpression
+argument_list|()
 operator|+
 literal|"</expression>"
 operator|+

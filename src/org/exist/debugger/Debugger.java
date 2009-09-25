@@ -13,6 +13,20 @@ name|debugger
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|Breakpoint
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -28,6 +42,19 @@ name|source
 parameter_list|(
 name|String
 name|fileURI
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|sessionClosed
+parameter_list|()
+function_decl|;
+specifier|public
+name|Breakpoint
+name|addBreakpoint
+parameter_list|(
+name|Breakpoint
+name|breakpoint
 parameter_list|)
 function_decl|;
 block|}
