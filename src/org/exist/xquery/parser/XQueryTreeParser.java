@@ -3529,7 +3529,7 @@ name|clause
 operator|.
 name|ast
 operator|=
-name|f
+name|varName
 expr_stmt|;
 name|PathExpr
 name|inputSequence
@@ -4521,7 +4521,7 @@ name|clause
 operator|.
 name|ast
 operator|=
-name|l
+name|letVarName
 expr_stmt|;
 name|clause
 operator|.

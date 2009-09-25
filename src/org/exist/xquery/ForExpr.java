@@ -894,6 +894,13 @@ name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 comment|// bv - Declare grouping variables and initiate grouped sequence
 name|LocalVariable
 name|groupVar
@@ -2075,6 +2082,13 @@ name|resultSequence
 operator|.
 name|getItemType
 argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|expressionEnd
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
