@@ -1188,6 +1188,20 @@ return|return
 name|breakpoint
 return|;
 block|}
+specifier|public
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Breakpoint
+argument_list|>
+name|getBreakpoints
+parameter_list|()
+block|{
+return|return
+name|breakpoints
+return|;
+block|}
 block|}
 end_class
 

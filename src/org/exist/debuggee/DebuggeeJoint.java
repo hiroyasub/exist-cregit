@@ -201,6 +201,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|//breakpoints methods
 specifier|public
 name|int
 name|setBreakpoint
@@ -216,6 +217,16 @@ parameter_list|(
 name|int
 name|breakpointID
 parameter_list|)
+function_decl|;
+specifier|public
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Breakpoint
+argument_list|>
+name|getBreakpoints
+parameter_list|()
 function_decl|;
 specifier|public
 name|Breakpoint

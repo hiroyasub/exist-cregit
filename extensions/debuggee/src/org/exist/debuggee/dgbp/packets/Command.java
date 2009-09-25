@@ -632,6 +632,26 @@ name|args
 argument_list|)
 return|;
 block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"breakpoint_list"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|BreakpointList
+argument_list|(
+name|session
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
 return|return
 operator|new
 name|Error
