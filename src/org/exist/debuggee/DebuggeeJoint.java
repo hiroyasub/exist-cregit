@@ -217,6 +217,14 @@ name|int
 name|breakpointID
 parameter_list|)
 function_decl|;
+specifier|public
+name|Breakpoint
+name|removeBreakpoint
+parameter_list|(
+name|int
+name|breakpointID
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
