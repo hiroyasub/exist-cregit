@@ -218,6 +218,11 @@ name|int
 name|breakpointNo
 parameter_list|)
 function_decl|;
+specifier|public
+name|String
+name|toXMLString
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

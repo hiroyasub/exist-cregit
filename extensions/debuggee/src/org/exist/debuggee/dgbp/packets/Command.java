@@ -279,9 +279,50 @@ name|transactionID
 operator|+
 literal|"\">"
 operator|+
-literal|"<error code=\"error_code\" apperr=\"app_specific_error_code\">"
+literal|"<error code=\"999\">"
 operator|+
-literal|"<message>UI Usable Message</message>"
+literal|"<message>Unknown error</message>"
+operator|+
+literal|"</error>"
+operator|+
+literal|"</response>"
+decl_stmt|;
+return|return
+name|response
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+specifier|public
+name|byte
+index|[]
+name|errorBytes
+parameter_list|(
+name|String
+name|commandName
+parameter_list|)
+block|{
+name|String
+name|response
+init|=
+literal|"<response "
+operator|+
+literal|"command=\""
+operator|+
+name|commandName
+operator|+
+literal|"\" "
+operator|+
+literal|"transaction_id=\""
+operator|+
+name|transactionID
+operator|+
+literal|"\">"
+operator|+
+literal|"<error code=\"999\">"
+operator|+
+literal|"<message>Unknown error</message>"
 operator|+
 literal|"</error>"
 operator|+
@@ -524,6 +565,26 @@ block|{
 return|return
 operator|new
 name|BreakpointSet
+argument_list|(
+name|session
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"breakpoint_get"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|BreakpointGet
 argument_list|(
 name|session
 argument_list|,

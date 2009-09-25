@@ -678,6 +678,103 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|toXMLString
+parameter_list|()
+block|{
+return|return
+literal|"<breakpoint "
+operator|+
+literal|"id=\""
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|id
+argument_list|)
+operator|+
+literal|"\" "
+operator|+
+literal|"type=\""
+operator|+
+name|type
+operator|+
+literal|"\" "
+operator|+
+literal|"state=\""
+operator|+
+name|state
+operator|+
+literal|"\" "
+operator|+
+literal|"filename=\""
+operator|+
+name|fileName
+operator|+
+literal|"\" "
+operator|+
+literal|"lineno=\""
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|lineNo
+argument_list|)
+operator|+
+literal|"\" "
+operator|+
+literal|"function=\""
+operator|+
+name|function
+operator|+
+literal|"\" "
+operator|+
+literal|"exception=\""
+operator|+
+name|exception
+operator|+
+literal|"\" "
+operator|+
+literal|"hit_value=\""
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|hitValue
+argument_list|)
+operator|+
+literal|"\" "
+operator|+
+literal|"hit_condition=\""
+operator|+
+name|hitCondition
+operator|+
+literal|"\" "
+operator|+
+literal|"hit_count=\""
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|hitCount
+argument_list|)
+operator|+
+literal|"\">"
+operator|+
+literal|"<expression>"
+operator|+
+name|expression
+operator|+
+literal|"</expression>"
+operator|+
+literal|"</breakpoint>"
+return|;
+block|}
 block|}
 end_class
 

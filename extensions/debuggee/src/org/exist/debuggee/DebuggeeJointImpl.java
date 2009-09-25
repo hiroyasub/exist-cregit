@@ -235,7 +235,7 @@ argument_list|,
 name|Breakpoint
 argument_list|>
 argument_list|>
-name|breakpoints
+name|filesBreakpoints
 init|=
 operator|new
 name|HashMap
@@ -248,6 +248,25 @@ name|Integer
 argument_list|,
 name|Breakpoint
 argument_list|>
+argument_list|>
+argument_list|()
+decl_stmt|;
+comment|//id, breakpoint
+specifier|private
+name|Map
+argument_list|<
+name|Integer
+argument_list|,
+name|Breakpoint
+argument_list|>
+name|breakpoints
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Breakpoint
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -468,7 +487,7 @@ block|}
 comment|//checking breakpoints
 if|if
 condition|(
-name|breakpoints
+name|filesBreakpoints
 operator|.
 name|containsKey
 argument_list|(
@@ -478,7 +497,7 @@ condition|)
 block|{
 name|fileBreakpoints
 operator|=
-name|breakpoints
+name|filesBreakpoints
 operator|.
 name|get
 argument_list|(
@@ -933,6 +952,15 @@ argument_list|(
 name|breakpointNo
 argument_list|)
 expr_stmt|;
+name|breakpoints
+operator|.
+name|put
+argument_list|(
+name|breakpointNo
+argument_list|,
+name|breakpoint
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|Integer
@@ -951,7 +979,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|breakpoints
+name|filesBreakpoints
 operator|.
 name|containsKey
 argument_list|(
@@ -960,7 +988,7 @@ argument_list|)
 condition|)
 name|fileBreakpoints
 operator|=
-name|breakpoints
+name|filesBreakpoints
 operator|.
 name|get
 argument_list|(
@@ -980,7 +1008,7 @@ name|Breakpoint
 argument_list|>
 argument_list|()
 expr_stmt|;
-name|breakpoints
+name|filesBreakpoints
 operator|.
 name|put
 argument_list|(
@@ -1006,6 +1034,23 @@ return|return
 literal|1
 return|;
 comment|//TODO: do throw constant
+block|}
+specifier|public
+name|Breakpoint
+name|getBreakpoint
+parameter_list|(
+name|int
+name|breakpointID
+parameter_list|)
+block|{
+return|return
+name|breakpoints
+operator|.
+name|get
+argument_list|(
+name|breakpointID
+argument_list|)
+return|;
 block|}
 block|}
 end_class
