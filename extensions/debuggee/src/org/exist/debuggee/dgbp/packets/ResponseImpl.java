@@ -31,6 +31,18 @@ name|DGBPPacket
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|Response
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -38,12 +50,14 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|Response
+name|ResponseImpl
 extends|extends
 name|DGBPPacket
+implements|implements
+name|Response
 block|{
 specifier|public
-name|Response
+name|ResponseImpl
 parameter_list|()
 block|{
 block|}

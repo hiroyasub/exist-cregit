@@ -61,7 +61,7 @@ name|dgbp
 operator|.
 name|packets
 operator|.
-name|Response
+name|ResponseImpl
 import|;
 end_import
 
@@ -303,7 +303,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Response
+name|ResponseImpl
 argument_list|>
 name|responses
 init|=
@@ -312,7 +312,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|Response
+name|ResponseImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -321,7 +321,7 @@ specifier|synchronized
 name|void
 name|addResponse
 parameter_list|(
-name|Response
+name|ResponseImpl
 name|response
 parameter_list|)
 block|{
@@ -343,7 +343,7 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|synchronized
-name|Response
+name|ResponseImpl
 name|getResponse
 parameter_list|(
 name|String
@@ -390,7 +390,7 @@ name|transactionID
 argument_list|)
 condition|)
 block|{
-name|Response
+name|ResponseImpl
 name|response
 init|=
 name|responses
