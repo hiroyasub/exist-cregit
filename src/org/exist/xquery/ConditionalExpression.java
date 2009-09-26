@@ -277,6 +277,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|Sequence
 name|testSeq
 init|=
@@ -351,6 +358,16 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|expressionEnd
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet) 	 */

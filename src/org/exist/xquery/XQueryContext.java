@@ -7180,13 +7180,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|debuggeeJoint
-operator|.
-name|stackEnter
-argument_list|(
-name|expr
-argument_list|)
-expr_stmt|;
+comment|//            debuggeeJoint.stackEnter(expr);
 block|}
 block|}
 specifier|public
@@ -7204,13 +7198,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|debuggeeJoint
-operator|.
-name|stackLeave
-argument_list|(
-name|expr
-argument_list|)
-expr_stmt|;
+comment|//            debuggeeJoint.stackLeave(expr);
 block|}
 block|}
 comment|/* Methods delegated to the watchdog */
