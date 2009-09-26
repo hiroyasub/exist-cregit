@@ -403,6 +403,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
 name|variable
 operator|.
 name|isInitialized
