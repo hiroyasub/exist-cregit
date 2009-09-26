@@ -192,11 +192,27 @@ name|IoSession
 name|session
 parameter_list|)
 block|{
-comment|// Set reader idle time to 30 seconds.
+comment|// Set reader idle time to 10 minutes.
 comment|// sessionIdle(...) method will be invoked when no data is read
-comment|// for 30 seconds.
-comment|//XXX: fix -> 30 ???
-comment|//session.getConfig().setIdleTime(IdleStatus.READER_IDLE, 3000);
+comment|// for 10 minutes.
+name|session
+operator|.
+name|getConfig
+argument_list|()
+operator|.
+name|setIdleTime
+argument_list|(
+name|IdleStatus
+operator|.
+name|READER_IDLE
+argument_list|,
+literal|10
+operator|*
+literal|60
+operator|*
+literal|1000
+argument_list|)
+expr_stmt|;
 name|session
 operator|.
 name|setAttribute
@@ -285,10 +301,24 @@ name|IdleStatus
 name|status
 parameter_list|)
 block|{
-comment|//		// Close the connection if reader is idle.
-comment|//		if (status == IdleStatus.READER_IDLE) {
-comment|//			session.close(true);
-comment|//		}
+comment|// Close the connection if reader is idle.
+if|if
+condition|(
+name|status
+operator|==
+name|IdleStatus
+operator|.
+name|READER_IDLE
+condition|)
+block|{
+name|session
+operator|.
+name|close
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
