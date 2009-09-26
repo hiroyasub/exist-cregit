@@ -45,6 +45,20 @@ name|Variable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -272,6 +286,18 @@ index|[]
 name|toBytes
 parameter_list|()
 block|{
+if|if
+condition|(
+name|variable
+operator|==
+literal|null
+condition|)
+return|return
+name|errorBytes
+argument_list|(
+literal|"property_get"
+argument_list|)
+return|;
 name|String
 name|responce
 init|=
@@ -305,21 +331,6 @@ name|getPropertyString
 parameter_list|()
 block|{
 name|String
-name|property
-init|=
-literal|""
-decl_stmt|;
-if|if
-condition|(
-name|variable
-operator|==
-literal|null
-condition|)
-return|return
-name|property
-return|;
-comment|//XXX: error?
-name|String
 name|value
 init|=
 name|variable
@@ -330,8 +341,9 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+name|String
 name|property
-operator|+=
+init|=
 literal|"<property "
 operator|+
 literal|"name=\""
@@ -342,6 +354,25 @@ name|getQName
 argument_list|()
 operator|.
 name|toString
+argument_list|()
+operator|+
+literal|"\" "
+operator|+
+literal|"fullname=\""
+operator|+
+name|variable
+operator|.
+name|getQName
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"\" "
+operator|+
+literal|"type=\""
+operator|+
+name|getTypeString
 argument_list|()
 operator|+
 literal|"\" "
@@ -360,9 +391,36 @@ operator|+
 name|value
 operator|+
 literal|"</property>"
-expr_stmt|;
+decl_stmt|;
 return|return
 name|property
+return|;
+block|}
+specifier|private
+name|String
+name|getTypeString
+parameter_list|()
+block|{
+if|if
+condition|(
+name|variable
+operator|.
+name|isInitialized
+argument_list|()
+condition|)
+return|return
+literal|"uninitialized"
+return|;
+return|return
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|variable
+operator|.
+name|getType
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
