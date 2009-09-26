@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class
@@ -122,6 +122,11 @@ decl_stmt|;
 name|byte
 index|[]
 name|source
+decl_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
 decl_stmt|;
 specifier|public
 name|Source
@@ -187,6 +192,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+comment|//TODO: rewrite to handle REST source url (dbgp:database or something)
 name|URL
 name|url
 init|=
@@ -268,6 +274,10 @@ operator|.
 name|toByteArray
 argument_list|()
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -318,7 +328,12 @@ literal|"<response "
 operator|+
 literal|"command=\"source\" "
 operator|+
-literal|"success=\"1\" "
+literal|"success=\""
+operator|+
+name|getSuccessString
+argument_list|()
+operator|+
+literal|"\" "
 operator|+
 literal|"transaction_id=\""
 operator|+
@@ -424,6 +439,22 @@ literal|"source"
 argument_list|)
 return|;
 block|}
+block|}
+specifier|private
+name|String
+name|getSuccessString
+parameter_list|()
+block|{
+if|if
+condition|(
+name|success
+condition|)
+return|return
+literal|"1"
+return|;
+return|return
+literal|"0"
+return|;
 block|}
 block|}
 end_class
