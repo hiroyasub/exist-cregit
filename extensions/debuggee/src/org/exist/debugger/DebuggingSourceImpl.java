@@ -328,6 +328,26 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|String
+name|getData
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+specifier|public
+name|void
+name|setData
+parameter_list|(
+name|String
+name|text
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 block|}
 end_class
 

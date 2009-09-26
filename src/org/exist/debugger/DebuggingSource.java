@@ -127,6 +127,19 @@ name|Breakpoint
 name|newBreakpoint
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|getData
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|setData
+parameter_list|(
+name|String
+name|text
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -193,8 +193,6 @@ name|session
 parameter_list|)
 block|{
 comment|// Set reader idle time to 10 minutes.
-comment|// sessionIdle(...) method will be invoked when no data is read
-comment|// for 10 minutes.
 name|session
 operator|.
 name|getConfig
