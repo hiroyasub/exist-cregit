@@ -62,6 +62,11 @@ name|DebuggerImpl
 implements|implements
 name|Debugger
 block|{
+specifier|public
+name|DebuggerImpl
+parameter_list|()
+block|{
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.Debugger#source(java.lang.String) 	 */
 specifier|public
 name|DebuggingSource

@@ -15,6 +15,18 @@ name|model
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|Debugger
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -445,6 +457,25 @@ literal|"</expression>"
 operator|+
 literal|"</breakpoint>"
 return|;
+block|}
+specifier|private
+name|Debugger
+name|debugger
+decl_stmt|;
+specifier|public
+name|void
+name|setDebuggingSource
+parameter_list|(
+name|Debugger
+name|debugger
+parameter_list|)
+block|{
+name|this
+operator|.
+name|debugger
+operator|=
+name|debugger
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -109,6 +109,20 @@ name|DGBPCodecFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|dgbp
+operator|.
+name|DGBPProtocolHandler
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -191,7 +205,11 @@ name|acceptor
 operator|.
 name|setHandler
 argument_list|(
-name|this
+operator|new
+name|DGBPProtocolHandler
+argument_list|(
+name|debuger
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|acceptor

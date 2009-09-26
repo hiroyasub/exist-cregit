@@ -177,7 +177,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|Breakpoint
-name|newBreakpoint
+name|Debugger
 parameter_list|()
 block|{
 name|BreakpointImpl
@@ -192,6 +192,13 @@ operator|.
 name|setFilename
 argument_list|(
 name|fileURI
+argument_list|)
+expr_stmt|;
+name|breakpoint
+operator|.
+name|setDebuggingSource
+argument_list|(
+name|debugger
 argument_list|)
 expr_stmt|;
 return|return
@@ -310,6 +317,16 @@ name|stop
 parameter_list|()
 block|{
 comment|// TODO Auto-generated method stub
+block|}
+specifier|public
+name|Breakpoint
+name|newBreakpoint
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class
