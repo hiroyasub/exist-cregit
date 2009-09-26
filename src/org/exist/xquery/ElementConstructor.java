@@ -899,6 +899,13 @@ name|XPathException
 block|{
 name|context
 operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
 name|pushInScopeNamespaces
 argument_list|()
 expr_stmt|;
@@ -950,7 +957,7 @@ comment|//if ("".equals(namespaceDecls[i].getNamespaceURI())) {
 comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
 comment|//	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
 comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
-comment|//		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+comment|//		        		throw new XPathException(getAS      TNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 comment|//} else
 name|context
 operator|.
@@ -1562,6 +1569,13 @@ name|context
 operator|.
 name|popDocumentContext
 argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|expressionEnd
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 block|}
