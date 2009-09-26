@@ -65,6 +65,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|debuggee
+operator|.
+name|dgbp
+operator|.
+name|Errors
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|debugger
 operator|.
 name|Debugger
@@ -273,37 +287,34 @@ name|length
 return|;
 block|}
 specifier|public
+specifier|abstract
 name|byte
 index|[]
 name|toBytes
 parameter_list|()
-block|{
+function_decl|;
+specifier|public
+name|byte
+index|[]
+name|errorBytes
+parameter_list|(
 name|String
-name|response
-init|=
-literal|"<response "
-operator|+
-literal|"command=\"command_name\" "
-operator|+
-literal|"transaction_id=\""
-operator|+
-name|transactionID
-operator|+
-literal|"\">"
-operator|+
-literal|"<error code=\"999\">"
-operator|+
-literal|"<message>Unknown error</message>"
-operator|+
-literal|"</error>"
-operator|+
-literal|"</response>"
-decl_stmt|;
+name|commandName
+parameter_list|)
+block|{
 return|return
-name|response
+name|errorBytes
+argument_list|(
+name|commandName
+argument_list|,
+name|Errors
 operator|.
-name|getBytes
-argument_list|()
+name|ERR_999
+argument_list|,
+name|Errors
+operator|.
+name|ERR_999_STR
+argument_list|)
 return|;
 block|}
 specifier|public
@@ -313,6 +324,12 @@ name|errorBytes
 parameter_list|(
 name|String
 name|commandName
+parameter_list|,
+name|int
+name|errorCode
+parameter_list|,
+name|String
+name|errorMessage
 parameter_list|)
 block|{
 name|String
@@ -332,9 +349,22 @@ name|transactionID
 operator|+
 literal|"\">"
 operator|+
-literal|"<error code=\"999\">"
+literal|"<error code=\""
 operator|+
-literal|"<message>Unknown error</message>"
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|errorCode
+argument_list|)
+operator|+
+literal|"\">"
+operator|+
+literal|"<message>"
+operator|+
+name|errorMessage
+operator|+
+literal|"</message>"
 operator|+
 literal|"</error>"
 operator|+

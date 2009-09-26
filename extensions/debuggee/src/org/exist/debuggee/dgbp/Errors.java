@@ -75,6 +75,12 @@ name|ERR_100
 init|=
 literal|100
 decl_stmt|;
+specifier|public
+name|String
+name|ERR_100_STR
+init|=
+literal|"can not open file (as a reply to a \"source\" command if the requested source file can't be opened)"
+decl_stmt|;
 comment|/** 	 * stream redirect failed 	 */
 specifier|public
 name|int
@@ -169,6 +175,12 @@ name|ERR_900
 init|=
 literal|900
 decl_stmt|;
+specifier|public
+name|String
+name|ERR_900_STR
+init|=
+literal|"Encoding not supported"
+decl_stmt|;
 comment|/** 	 * An internal exception in the debugger occurred 	 */
 specifier|public
 name|int
@@ -176,12 +188,24 @@ name|ERR_998
 init|=
 literal|998
 decl_stmt|;
+specifier|public
+name|String
+name|ERR_998_STR
+init|=
+literal|"An internal exception in the debugger occurred"
+decl_stmt|;
 comment|/** 	 * Unknown error 	 */
 specifier|public
 name|int
 name|ERR_999
 init|=
 literal|999
+decl_stmt|;
+specifier|public
+name|String
+name|ERR_999_STR
+init|=
+literal|"Unknown error"
 decl_stmt|;
 block|}
 end_interface
