@@ -238,7 +238,8 @@ parameter_list|()
 block|{
 name|breakpoint
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|getBreakpoint
 argument_list|(

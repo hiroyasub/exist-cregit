@@ -199,7 +199,8 @@ parameter_list|()
 block|{
 name|value
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|featureGet
 argument_list|(

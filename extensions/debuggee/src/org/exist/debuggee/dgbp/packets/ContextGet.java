@@ -188,7 +188,8 @@ parameter_list|()
 block|{
 name|variables
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|getVariables
 argument_list|()

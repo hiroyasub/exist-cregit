@@ -88,7 +88,8 @@ name|void
 name|exec
 parameter_list|()
 block|{
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|continuation
 argument_list|(
@@ -200,6 +201,12 @@ name|status
 operator|=
 name|status
 expr_stmt|;
+if|if
+condition|(
+name|session
+operator|!=
+literal|null
+condition|)
 name|session
 operator|.
 name|write

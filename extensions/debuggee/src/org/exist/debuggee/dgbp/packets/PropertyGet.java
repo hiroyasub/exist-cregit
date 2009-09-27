@@ -269,7 +269,8 @@ parameter_list|()
 block|{
 name|variable
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|getVariable
 argument_list|(

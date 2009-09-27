@@ -251,7 +251,8 @@ parameter_list|()
 block|{
 name|stacks
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|stackGet
 argument_list|()

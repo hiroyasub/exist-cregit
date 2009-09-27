@@ -280,7 +280,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
+if|if
 condition|(
 name|connection
 operator|.
@@ -302,10 +302,22 @@ operator|.
 name|connect
 argument_list|()
 condition|)
+block|{
 name|joint
 operator|=
 literal|null
 expr_stmt|;
+block|}
+else|else
+block|{
+name|joint
+operator|=
+name|connection
+operator|.
+name|getJoint
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|compiledXQuery
 operator|.

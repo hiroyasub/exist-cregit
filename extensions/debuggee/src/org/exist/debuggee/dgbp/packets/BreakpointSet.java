@@ -314,7 +314,8 @@ parameter_list|()
 block|{
 name|status
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|setBreakpoint
 argument_list|(

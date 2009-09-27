@@ -257,16 +257,8 @@ argument_list|)
 decl_stmt|;
 name|joint
 operator|.
-name|continuation
-argument_list|(
-operator|new
-name|Stop
-argument_list|(
-name|session
-argument_list|,
-literal|""
-argument_list|)
-argument_list|)
+name|sessionClosed
+argument_list|()
 expr_stmt|;
 comment|// Print out total number of bytes read from the remote peer.
 name|System

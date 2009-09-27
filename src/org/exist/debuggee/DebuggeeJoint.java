@@ -244,6 +244,11 @@ name|int
 name|breakpointID
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|sessionClosed
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

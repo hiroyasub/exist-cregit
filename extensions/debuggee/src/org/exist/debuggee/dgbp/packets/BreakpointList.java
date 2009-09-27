@@ -126,7 +126,8 @@ parameter_list|()
 block|{
 name|breakpoints
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|getBreakpoints
 argument_list|()

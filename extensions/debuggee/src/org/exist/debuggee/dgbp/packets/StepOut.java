@@ -88,7 +88,8 @@ name|void
 name|exec
 parameter_list|()
 block|{
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|continuation
 argument_list|(

@@ -206,7 +206,8 @@ parameter_list|()
 block|{
 name|success
 operator|=
-name|joint
+name|getJoint
+argument_list|()
 operator|.
 name|featureSet
 argument_list|(
