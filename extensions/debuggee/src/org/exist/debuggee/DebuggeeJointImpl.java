@@ -775,6 +775,42 @@ argument_list|(
 name|RUNNING
 argument_list|)
 condition|)
+block|{
+name|command
+operator|.
+name|setStatus
+argument_list|(
+name|BREAK
+argument_list|)
+expr_stmt|;
+comment|//step-over should stop on same call's stack depth
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|is
+argument_list|(
+name|CommandContinuation
+operator|.
+name|STEP_OVER
+argument_list|)
+operator|&&
+name|command
+operator|.
+name|getCallStackDepth
+argument_list|()
+operator|==
+name|stackDepth
+operator|&&
+name|command
+operator|.
+name|isStatus
+argument_list|(
+name|RUNNING
+argument_list|)
+condition|)
+block|{
 name|command
 operator|.
 name|setStatus
@@ -783,6 +819,7 @@ name|BREAK
 argument_list|)
 expr_stmt|;
 comment|//RUS command with status RUNNING can be break only on breakpoints
+block|}
 if|else if
 condition|(
 name|command
@@ -801,8 +838,10 @@ argument_list|(
 name|RUNNING
 argument_list|)
 condition|)
+block|{
 break|break;
 comment|//any continuation command with status RUNNING
+block|}
 if|else if
 condition|(
 name|command
