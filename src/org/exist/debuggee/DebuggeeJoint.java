@@ -161,6 +161,14 @@ name|value
 parameter_list|)
 function_decl|;
 specifier|public
+name|String
+name|featureGet
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
+specifier|public
 name|void
 name|continuation
 parameter_list|(
