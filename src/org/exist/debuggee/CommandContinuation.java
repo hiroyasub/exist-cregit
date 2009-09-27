@@ -98,6 +98,11 @@ name|String
 name|status
 parameter_list|)
 function_decl|;
+specifier|public
+name|int
+name|getCallStackDepth
+parameter_list|()
+function_decl|;
 comment|//close session
 specifier|public
 name|void
