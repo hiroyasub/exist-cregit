@@ -1166,27 +1166,6 @@ name|isDebugMode
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|context
-operator|.
-name|getDebuggeeJoint
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
-name|context
-operator|.
-name|getDebuggeeJoint
-argument_list|()
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
 name|Debuggee
 name|debuggee
 init|=
@@ -1212,7 +1191,6 @@ argument_list|(
 name|expression
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|//do any preparation before execution
