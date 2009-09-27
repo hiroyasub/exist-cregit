@@ -254,6 +254,15 @@ operator|=
 name|val
 expr_stmt|;
 block|}
+specifier|public
+name|IoSession
+name|getSession
+parameter_list|()
+block|{
+return|return
+name|session
+return|;
+block|}
 specifier|protected
 name|DebuggeeJoint
 name|getJoint

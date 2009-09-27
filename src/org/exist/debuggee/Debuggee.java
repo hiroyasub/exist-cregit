@@ -51,7 +51,7 @@ init|=
 literal|"dbgp"
 decl_stmt|;
 specifier|public
-name|DebuggeeJoint
+name|void
 name|joint
 parameter_list|(
 name|CompiledXQuery

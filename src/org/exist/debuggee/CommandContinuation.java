@@ -30,7 +30,7 @@ literal|0
 decl_stmt|;
 specifier|public
 name|int
-name|STOP_ON_FIRST_LINE
+name|INIT
 init|=
 literal|1
 decl_stmt|;
@@ -97,6 +97,12 @@ parameter_list|(
 name|String
 name|status
 parameter_list|)
+function_decl|;
+comment|//close session
+specifier|public
+name|void
+name|disconnect
+parameter_list|()
 function_decl|;
 block|}
 end_interface

@@ -62,6 +62,8 @@ block|{
 specifier|private
 name|String
 name|status
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|AbstractCommandContinuation
@@ -122,6 +124,14 @@ name|status
 operator|=
 name|status
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|session
+operator|.
+name|isClosing
+argument_list|()
+condition|)
 name|session
 operator|.
 name|write

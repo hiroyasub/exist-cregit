@@ -38,16 +38,13 @@ name|Debuggee
 block|{
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.Debuggee#joint() 	 */
 specifier|public
-name|DebuggeeJoint
+name|void
 name|joint
 parameter_list|(
 name|CompiledXQuery
 name|compiledXQuery
 parameter_list|)
 block|{
-return|return
-literal|null
-return|;
 block|}
 block|}
 end_class
