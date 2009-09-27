@@ -320,6 +320,27 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"stackEnter "
+operator|+
+name|expr
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|" expr = "
+operator|+
+name|expr
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|stack
 operator|.
 name|add
@@ -336,6 +357,27 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"stackLeave "
+operator|+
+name|expr
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|" expr = "
+operator|+
+name|expr
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|stack
 operator|.
 name|remove
@@ -828,9 +870,11 @@ name|XQueryContext
 name|getContext
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|compiledXQuery
+operator|.
+name|getContext
+argument_list|()
 return|;
 block|}
 specifier|public

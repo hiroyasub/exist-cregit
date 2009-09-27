@@ -173,8 +173,15 @@ name|NioSocketConnector
 argument_list|()
 expr_stmt|;
 comment|// Set connect timeout for 30 seconds.
-comment|//XXX: find the best timeout ???
-comment|//		connector.setConnectTimeoutMillis(3000*1000L);
+name|connector
+operator|.
+name|setConnectTimeoutMillis
+argument_list|(
+literal|30
+operator|*
+literal|1000L
+argument_list|)
+expr_stmt|;
 name|connector
 operator|.
 name|getFilterChain
