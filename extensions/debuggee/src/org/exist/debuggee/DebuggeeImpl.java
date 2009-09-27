@@ -280,7 +280,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
+if|else if
+condition|(
+name|connection
+operator|.
+name|isConnected
+argument_list|()
+condition|)
+block|{
+comment|//debugging session is active, for now only one debugging session possible
+name|joint
+operator|=
+literal|null
+expr_stmt|;
+block|}
+if|else if
 condition|(
 operator|!
 name|connection
