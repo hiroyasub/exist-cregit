@@ -67,6 +67,18 @@ name|Variable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -254,6 +266,15 @@ return|return
 name|properties
 return|;
 comment|//XXX: error?
+name|XQueryContext
+name|ctx
+init|=
+name|getJoint
+argument_list|()
+operator|.
+name|getContext
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Variable
@@ -272,6 +293,8 @@ operator|.
 name|getPropertyString
 argument_list|(
 name|variable
+argument_list|,
+name|ctx
 argument_list|)
 expr_stmt|;
 block|}
