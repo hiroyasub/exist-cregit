@@ -1820,6 +1820,13 @@ argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
+name|func
+operator|.
+name|setASTNode
+argument_list|(
+name|ast
+argument_list|)
+expr_stmt|;
 name|step
 operator|=
 operator|new

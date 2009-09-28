@@ -314,6 +314,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 return|return
@@ -357,6 +364,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|expressionEnd
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|context
