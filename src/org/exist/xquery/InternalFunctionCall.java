@@ -316,7 +316,7 @@ argument_list|)
 expr_stmt|;
 name|context
 operator|.
-name|expressionStart
+name|stackEnter
 argument_list|(
 name|this
 argument_list|)
@@ -366,7 +366,7 @@ finally|finally
 block|{
 name|context
 operator|.
-name|expressionEnd
+name|stackLeave
 argument_list|(
 name|this
 argument_list|)

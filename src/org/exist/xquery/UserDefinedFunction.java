@@ -403,13 +403,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|context
-operator|.
-name|expressionStart
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
+comment|//        context.expressionStart(this);
 name|context
 operator|.
 name|stackEnter
@@ -653,13 +647,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|context
-operator|.
-name|expressionEnd
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
+comment|//            context.expressionEnd(this);
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Function#dump(org.exist.xquery.util.ExpressionDumper)      */
