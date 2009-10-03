@@ -74,12 +74,9 @@ name|Command
 implements|implements
 name|Breakpoint
 block|{
+specifier|private
 name|BreakpointImpl
 name|breakpoint
-init|=
-operator|new
-name|BreakpointImpl
-argument_list|()
 decl_stmt|;
 specifier|private
 name|int
@@ -105,6 +102,29 @@ argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"breakpoint = "
+operator|+
+name|breakpoint
+argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|breakpoint
+operator|=
+operator|new
+name|BreakpointImpl
+argument_list|()
+expr_stmt|;
 block|}
 specifier|protected
 name|void
@@ -127,8 +147,6 @@ literal|"t"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setType
 argument_list|(
 name|val
@@ -145,14 +163,12 @@ literal|"s"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//TODO: parsing required
+comment|//TODO: parsing required ("enabled" or "disabled")
 block|}
 if|else if
 condition|(
@@ -164,8 +180,6 @@ literal|"f"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setFilename
 argument_list|(
 name|val
@@ -182,8 +196,6 @@ literal|"n"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setLineno
 argument_list|(
 name|Integer
@@ -205,8 +217,6 @@ literal|"m"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setFunction
 argument_list|(
 name|val
@@ -223,8 +233,6 @@ literal|"x"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setException
 argument_list|(
 name|val
@@ -241,8 +249,6 @@ literal|"h"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setHitValue
 argument_list|(
 name|Integer
@@ -264,8 +270,6 @@ literal|"o"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setHitCondition
 argument_list|(
 name|val
@@ -282,14 +286,12 @@ literal|"r"
 argument_list|)
 condition|)
 block|{
-name|breakpoint
-operator|.
 name|setTemporary
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//TODO: parsing required
+comment|//TODO: parsing required ("0" or "?")
 block|}
 else|else
 block|{
@@ -303,6 +305,15 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|private
+name|BreakpointImpl
+name|getBreakpoint
+parameter_list|()
+block|{
+return|return
+name|breakpoint
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
 annotation|@
@@ -398,7 +409,8 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getState
 argument_list|()
@@ -419,7 +431,8 @@ name|getException
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getException
 argument_list|()
@@ -431,7 +444,8 @@ name|getFilename
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getFilename
 argument_list|()
@@ -443,7 +457,8 @@ name|getFunction
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getFunction
 argument_list|()
@@ -455,7 +470,8 @@ name|getHitCondition
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getHitCondition
 argument_list|()
@@ -467,7 +483,8 @@ name|getHitCount
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getHitCount
 argument_list|()
@@ -479,7 +496,8 @@ name|getHitValue
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getHitValue
 argument_list|()
@@ -491,7 +509,8 @@ name|getLineno
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getLineno
 argument_list|()
@@ -503,7 +522,8 @@ name|getState
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getState
 argument_list|()
@@ -515,7 +535,8 @@ name|getTemporary
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getTemporary
 argument_list|()
@@ -529,7 +550,8 @@ name|String
 name|exception
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setException
 argument_list|(
@@ -545,7 +567,8 @@ name|String
 name|filename
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setFilename
 argument_list|(
@@ -561,7 +584,8 @@ name|String
 name|function
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setFunction
 argument_list|(
@@ -577,7 +601,8 @@ name|String
 name|condition
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setHitCondition
 argument_list|(
@@ -593,7 +618,8 @@ name|int
 name|count
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setHitCount
 argument_list|(
@@ -609,7 +635,8 @@ name|int
 name|value
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setHitValue
 argument_list|(
@@ -625,7 +652,8 @@ name|int
 name|lineno
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setLineno
 argument_list|(
@@ -641,7 +669,8 @@ name|boolean
 name|state
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setState
 argument_list|(
@@ -657,7 +686,8 @@ name|boolean
 name|temporary
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setTemporary
 argument_list|(
@@ -671,7 +701,8 @@ name|getId
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getId
 argument_list|()
@@ -685,7 +716,8 @@ name|int
 name|breakpointNo
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setId
 argument_list|(
@@ -699,7 +731,8 @@ name|getType
 parameter_list|()
 block|{
 return|return
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|getType
 argument_list|()
@@ -713,7 +746,8 @@ name|String
 name|type
 parameter_list|)
 block|{
-name|breakpoint
+name|getBreakpoint
+argument_list|()
 operator|.
 name|setType
 argument_list|(

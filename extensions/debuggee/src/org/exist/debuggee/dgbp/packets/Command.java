@@ -148,6 +148,9 @@ name|session
 operator|=
 name|session
 expr_stmt|;
+name|init
+argument_list|()
+expr_stmt|;
 name|String
 index|[]
 name|splited
@@ -228,6 +231,12 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
 block|}
 specifier|protected
 name|void
@@ -884,7 +893,7 @@ name|args
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 specifier|static
 name|String
 name|getFileuri

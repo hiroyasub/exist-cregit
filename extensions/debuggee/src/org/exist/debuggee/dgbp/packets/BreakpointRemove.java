@@ -160,7 +160,7 @@ block|{
 if|if
 condition|(
 name|breakpoint
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
