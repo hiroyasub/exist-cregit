@@ -2087,6 +2087,13 @@ operator|.
 name|getCookies
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|cookies
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -2141,6 +2148,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 block|}
