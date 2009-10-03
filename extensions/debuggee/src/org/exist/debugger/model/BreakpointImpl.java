@@ -207,6 +207,8 @@ name|String
 name|filename
 parameter_list|)
 block|{
+name|this
+operator|.
 name|fileName
 operator|=
 name|filename
@@ -235,6 +237,8 @@ name|String
 name|condition
 parameter_list|)
 block|{
+name|this
+operator|.
 name|hitCondition
 operator|=
 name|condition
@@ -248,6 +252,8 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|this
+operator|.
 name|hitCount
 operator|=
 name|count
@@ -261,6 +267,8 @@ name|int
 name|value
 parameter_list|)
 block|{
+name|this
+operator|.
 name|hitValue
 operator|=
 name|value
@@ -274,6 +282,8 @@ name|int
 name|lineno
 parameter_list|)
 block|{
+name|this
+operator|.
 name|lineNo
 operator|=
 name|lineno
