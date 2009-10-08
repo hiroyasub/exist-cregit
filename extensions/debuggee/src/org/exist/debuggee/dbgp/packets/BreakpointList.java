@@ -145,7 +145,7 @@ block|{
 if|if
 condition|(
 name|breakpoints
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
