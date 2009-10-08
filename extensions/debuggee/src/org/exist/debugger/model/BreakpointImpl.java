@@ -57,7 +57,7 @@ name|fileName
 decl_stmt|;
 comment|/** 	 * the line number (lineno) of the breakpoint [optional] 	 */
 specifier|private
-name|int
+name|Integer
 name|lineNo
 decl_stmt|;
 comment|/** 	 * function name [required for call or return breakpoint types] 	 */
@@ -70,15 +70,19 @@ specifier|private
 name|String
 name|exception
 decl_stmt|;
-comment|/** 	 * hit value (hit_value) used with the hit condition to determine if should break; a value of zero indicates hit count processing is disabled for this breakpoint [optional, defaults to zero (i.e. disabled)] 	 */
+comment|/** 	 * hit value (hit_value) used with the hit condition to determine if should break;  	 * a value of zero indicates hit count processing is disabled for this breakpoint  	 * [optional, defaults to zero (i.e. disabled)] 	 */
 specifier|private
 name|int
 name|hitValue
+init|=
+literal|0
 decl_stmt|;
-comment|/** 	 * hit condition string (hit_condition); see HIT_CONDITION hit_condition documentation above; BTW 'o' stands for 'operator' [optional, defaults to '>='] 	 */
+comment|/** 	 * hit condition string (hit_condition);  	 * see HIT_CONDITION hit_condition documentation above;  	 * BTW 'o' stands for 'operator' [optional, defaults to '>='] 	 */
 specifier|private
 name|String
 name|hitCondition
+init|=
+literal|">="
 decl_stmt|;
 comment|/** 	 * Boolean value indicating if this breakpoint is temporary. [optional, defaults to false] 	 */
 specifier|private
@@ -158,7 +162,7 @@ literal|0
 return|;
 block|}
 specifier|public
-name|int
+name|Integer
 name|getLineno
 parameter_list|()
 block|{
@@ -278,7 +282,7 @@ specifier|public
 name|void
 name|setLineno
 parameter_list|(
-name|int
+name|Integer
 name|lineno
 parameter_list|)
 block|{

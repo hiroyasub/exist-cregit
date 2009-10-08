@@ -88,7 +88,7 @@ function_decl|;
 comment|//	public void setFilename(String filename);
 comment|/** 	 * Line number on which breakpoint is effective. Line numbers are 1-based. If an implementation requires a numeric value to indicate that lineno is not set, it is suggested that -1 be used, although this is not enforced. 	 * @return 	 */
 specifier|public
-name|int
+name|Integer
 name|getLineno
 parameter_list|()
 function_decl|;
@@ -96,7 +96,7 @@ specifier|public
 name|void
 name|setLineno
 parameter_list|(
-name|int
+name|Integer
 name|lineno
 parameter_list|)
 function_decl|;
