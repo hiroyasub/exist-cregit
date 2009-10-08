@@ -120,7 +120,7 @@ name|getLength
 parameter_list|()
 block|{
 return|return
-name|toBytes
+name|responseBytes
 argument_list|()
 operator|.
 name|length
@@ -131,7 +131,7 @@ name|Override
 specifier|public
 name|byte
 index|[]
-name|toBytes
+name|responseBytes
 parameter_list|()
 block|{
 name|String

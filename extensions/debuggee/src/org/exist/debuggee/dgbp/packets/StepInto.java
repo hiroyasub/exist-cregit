@@ -87,7 +87,7 @@ specifier|public
 specifier|synchronized
 name|byte
 index|[]
-name|toBytes
+name|responseBytes
 parameter_list|()
 block|{
 name|String

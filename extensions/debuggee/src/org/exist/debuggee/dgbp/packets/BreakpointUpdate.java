@@ -312,7 +312,7 @@ name|Override
 specifier|public
 name|byte
 index|[]
-name|toBytes
+name|responseBytes
 parameter_list|()
 block|{
 if|if

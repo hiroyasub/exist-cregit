@@ -120,7 +120,7 @@ name|response
 init|=
 name|packet
 operator|.
-name|toBytes
+name|responseBytes
 argument_list|()
 decl_stmt|;
 name|String

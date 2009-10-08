@@ -304,7 +304,7 @@ name|getLength
 parameter_list|()
 block|{
 return|return
-name|toBytes
+name|responseBytes
 argument_list|()
 operator|.
 name|length
@@ -314,7 +314,7 @@ specifier|public
 specifier|abstract
 name|byte
 index|[]
-name|toBytes
+name|responseBytes
 parameter_list|()
 function_decl|;
 specifier|public

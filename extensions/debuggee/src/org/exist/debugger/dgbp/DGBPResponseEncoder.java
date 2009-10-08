@@ -151,7 +151,7 @@ name|put
 argument_list|(
 name|packet
 operator|.
-name|toBytes
+name|responseBytes
 argument_list|()
 argument_list|)
 expr_stmt|;
