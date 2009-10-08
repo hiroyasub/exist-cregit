@@ -111,9 +111,9 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|dgbp
+name|dbgp
 operator|.
-name|DGBPCodecFactory
+name|CodecFactory
 import|;
 end_import
 
@@ -125,9 +125,9 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|dgbp
+name|dbgp
 operator|.
-name|DGBPProtocolHandler
+name|ProtocolHandler
 import|;
 end_import
 
@@ -195,7 +195,7 @@ operator|new
 name|ProtocolCodecFilter
 argument_list|(
 operator|new
-name|DGBPCodecFactory
+name|CodecFactory
 argument_list|()
 argument_list|)
 argument_list|)
@@ -206,7 +206,7 @@ operator|.
 name|setHandler
 argument_list|(
 operator|new
-name|DGBPProtocolHandler
+name|ProtocolHandler
 argument_list|(
 name|debuggee
 argument_list|)
