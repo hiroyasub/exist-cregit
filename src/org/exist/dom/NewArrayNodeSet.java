@@ -3684,6 +3684,7 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//BUG: can't be null, make trouble @LocationStep line 388 -shabanovd
 comment|// do a binary search to pick some node in the range of valid
 comment|// child ids
 name|int
