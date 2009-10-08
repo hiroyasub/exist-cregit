@@ -1650,6 +1650,15 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|CommandContinuation
+name|getCurrentCommand
+parameter_list|()
+block|{
+return|return
+name|command
+return|;
+block|}
 block|}
 end_class
 

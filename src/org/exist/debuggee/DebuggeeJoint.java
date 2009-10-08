@@ -39,6 +39,22 @@ name|org
 operator|.
 name|exist
 operator|.
+name|debuggee
+operator|.
+name|dbgp
+operator|.
+name|packets
+operator|.
+name|Command
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|debugger
 operator|.
 name|model
@@ -192,6 +208,11 @@ parameter_list|(
 name|CommandContinuation
 name|command
 parameter_list|)
+function_decl|;
+specifier|public
+name|CommandContinuation
+name|getCurrentCommand
+parameter_list|()
 function_decl|;
 comment|//	public String run();
 comment|//

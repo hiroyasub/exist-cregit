@@ -33,6 +33,18 @@ name|IoSession
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|CommandContinuation
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *  */
 end_comment
@@ -44,6 +56,12 @@ name|Status
 extends|extends
 name|Command
 block|{
+specifier|private
+name|CommandContinuation
+name|command
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|Status
 parameter_list|(
@@ -69,6 +87,15 @@ name|void
 name|exec
 parameter_list|()
 block|{
+comment|//XXX: get values @responseBytes time?
+name|command
+operator|=
+name|getJoint
+argument_list|()
+operator|.
+name|getCurrentCommand
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -78,6 +105,13 @@ index|[]
 name|responseBytes
 parameter_list|()
 block|{
+if|if
+condition|(
+name|command
+operator|!=
+literal|null
+condition|)
+block|{
 name|String
 name|response
 init|=
@@ -85,7 +119,14 @@ literal|"<response "
 operator|+
 literal|"command=\"status\" "
 operator|+
-literal|"status=\"break\" "
+literal|"status=\""
+operator|+
+name|command
+operator|.
+name|getStatus
+argument_list|()
+operator|+
+literal|"\" "
 operator|+
 literal|"reason=\"ok\" "
 operator|+
@@ -100,6 +141,13 @@ name|response
 operator|.
 name|getBytes
 argument_list|()
+return|;
+block|}
+return|return
+name|errorBytes
+argument_list|(
+literal|"status"
+argument_list|)
 return|;
 block|}
 block|}
