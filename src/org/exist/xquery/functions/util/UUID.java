@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -262,7 +262,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generate a version 4 (random) Universally Unique Identifier string, e.g. 154ad200-9c79-44f3-8cff-9780d91552a6"
+literal|"Generate a version 4 (random) universally unique identifier (UUID) string, e.g. 154ad200-9c79-44f3-8cff-9780d91552a6"
 argument_list|,
 name|FunctionSignature
 operator|.
@@ -279,7 +279,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a generated Universally Unique IDentifier string"
+literal|"a generated UUID string"
 argument_list|)
 argument_list|)
 block|,
@@ -300,7 +300,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Generate a version 3 Universally Unique Identifier string, e.g. 154ad200-9c79-44f3-8cff-9780d91552a6"
+literal|"Generate a version 3 universally unique identifier (UUID) string, e.g. 154ad200-9c79-44f3-8cff-9780d91552a6"
 argument_list|,
 operator|new
 name|SequenceType
@@ -334,7 +334,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"a generated Universally Unique IDentifier string"
+literal|"a generated UUID string"
 argument_list|)
 argument_list|)
 block|}
@@ -454,11 +454,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Not a supported number of parameters"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Not supported nr of parameters"
+literal|"Not a supported number of parameters"
 argument_list|)
 throw|;
 block|}
