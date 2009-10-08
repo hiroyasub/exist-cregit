@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2005-09 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -216,11 +216,13 @@ literal|"function is a function that takes another function as argument. "
 operator|+
 literal|"The first argument represents the name of the function, which should be"
 operator|+
-literal|"a valid QName. The second argument is the arity (number of parameters) of the function. If no"
+literal|"a valid QName. The second argument is the arity (number of parameters) of "
 operator|+
-literal|"function can be found that matches the name and arity, an error is thrown. "
+literal|"the function. If no function can be found that matches the name and arity, "
 operator|+
-literal|"Please note: due to the special character of util:function, the arguments to this function "
+literal|"an error is thrown. "
+operator|+
+literal|"Please note: the arguments to this function "
 operator|+
 literal|"have to be literals or need to be resolvable at compile time at least."
 argument_list|,
@@ -539,6 +541,14 @@ operator|.
 name|isInternalModule
 argument_list|()
 condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Cannot create a reference to an internal Java function"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -548,6 +558,7 @@ argument_list|,
 literal|"Cannot create a reference to an internal Java function"
 argument_list|)
 throw|;
+block|}
 name|func
 operator|=
 operator|(
