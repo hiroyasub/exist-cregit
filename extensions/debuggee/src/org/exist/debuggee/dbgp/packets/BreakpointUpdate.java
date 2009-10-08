@@ -349,6 +349,83 @@ literal|"breakpoint_update"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+if|if
+condition|(
+name|breakpoint
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|responce
+init|=
+literal|"breakpoint_update"
+operator|+
+literal|" -i "
+operator|+
+name|transactionID
+operator|+
+comment|//					" -t " + getType() +
+comment|//					" -s " + getStateString() +
+comment|//					" -f " + getFilename() +
+literal|" -h "
+operator|+
+name|breakpoint
+operator|.
+name|getHitValue
+argument_list|()
+operator|+
+literal|" -o "
+operator|+
+name|breakpoint
+operator|.
+name|getHitCondition
+argument_list|()
+decl_stmt|;
+comment|//					" -r " + getTemporaryString();
+if|if
+condition|(
+name|breakpoint
+operator|.
+name|getLineno
+argument_list|()
+operator|!=
+literal|null
+condition|)
+name|responce
+operator|+=
+literal|" -s "
+operator|+
+name|breakpoint
+operator|.
+name|getLineno
+argument_list|()
+expr_stmt|;
+comment|//			if (getFunction() != null)
+comment|//				responce += " -m " + getFunction();
+comment|//
+comment|//			if (getException() != null)
+comment|//				responce += " -x " + getException();
+comment|//TODO: EXPRESSION
+return|return
+name|responce
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

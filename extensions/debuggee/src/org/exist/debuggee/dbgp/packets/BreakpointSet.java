@@ -163,12 +163,35 @@ literal|"s"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|val
+operator|.
+name|equals
+argument_list|(
+literal|"enabled"
+argument_list|)
+condition|)
 name|setState
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//TODO: parsing required ("enabled" or "disabled")
+if|else if
+condition|(
+name|val
+operator|.
+name|equals
+argument_list|(
+literal|"disabled"
+argument_list|)
+condition|)
+name|setState
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|//TODO: exception???
 block|}
 if|else if
 condition|(
@@ -286,12 +309,35 @@ literal|"r"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|val
+operator|.
+name|equals
+argument_list|(
+literal|"1"
+argument_list|)
+condition|)
 name|setTemporary
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//TODO: parsing required ("0" or "?")
+if|else if
+condition|(
+name|val
+operator|.
+name|equals
+argument_list|(
+literal|"0"
+argument_list|)
+condition|)
+name|setTemporary
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|//TODO: exception???
 block|}
 else|else
 block|{
@@ -334,7 +380,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -389,17 +434,11 @@ name|getBytes
 argument_list|()
 return|;
 block|}
-comment|//error
-name|String
-name|responce
-init|=
-literal|"<error/>"
-decl_stmt|;
 return|return
-name|responce
-operator|.
-name|getBytes
-argument_list|()
+name|errorBytes
+argument_list|(
+literal|"breakpoint_set"
+argument_list|)
 return|;
 block|}
 specifier|private
@@ -420,6 +459,131 @@ literal|"enabled"
 return|;
 return|return
 literal|"disabled"
+return|;
+block|}
+specifier|private
+name|String
+name|getTemporaryString
+parameter_list|()
+block|{
+if|if
+condition|(
+name|getTemporary
+argument_list|()
+condition|)
+return|return
+literal|"1"
+return|;
+return|return
+literal|"0"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+if|if
+condition|(
+name|breakpoint
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|responce
+init|=
+literal|"breakpoint_set"
+operator|+
+literal|" -i "
+operator|+
+name|transactionID
+operator|+
+literal|" -t "
+operator|+
+name|getType
+argument_list|()
+operator|+
+literal|" -s "
+operator|+
+name|getStateString
+argument_list|()
+operator|+
+literal|" -f "
+operator|+
+name|getFilename
+argument_list|()
+operator|+
+literal|" -h "
+operator|+
+name|getHitValue
+argument_list|()
+operator|+
+literal|" -o "
+operator|+
+name|getHitCondition
+argument_list|()
+operator|+
+literal|" -r "
+operator|+
+name|getTemporaryString
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|getLineno
+argument_list|()
+operator|!=
+literal|null
+condition|)
+name|responce
+operator|+=
+literal|" -s "
+operator|+
+name|getLineno
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|getFunction
+argument_list|()
+operator|!=
+literal|null
+condition|)
+name|responce
+operator|+=
+literal|" -m "
+operator|+
+name|getFunction
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|getException
+argument_list|()
+operator|!=
+literal|null
+condition|)
+name|responce
+operator|+=
+literal|" -x "
+operator|+
+name|getException
+argument_list|()
+expr_stmt|;
+comment|//TODO: EXPRESSION
+return|return
+name|responce
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 comment|///////////////////////////////////////////////////////////////////
@@ -504,7 +668,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|int
+name|Integer
 name|getLineno
 parameter_list|()
 block|{
@@ -648,7 +812,7 @@ specifier|public
 name|void
 name|setLineno
 parameter_list|(
-name|int
+name|Integer
 name|lineno
 parameter_list|)
 block|{

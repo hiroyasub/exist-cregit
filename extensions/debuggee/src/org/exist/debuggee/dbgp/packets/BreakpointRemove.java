@@ -148,7 +148,6 @@ name|breakpointID
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -189,6 +188,46 @@ name|errorBytes
 argument_list|(
 literal|"breakpoint_remove"
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+if|if
+condition|(
+name|breakpoint
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|responce
+init|=
+literal|"breakpoint_remove -i "
+operator|+
+name|transactionID
+operator|+
+literal|" -d "
+operator|+
+name|breakpoint
+operator|.
+name|getId
+argument_list|()
+decl_stmt|;
+return|return
+name|responce
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 block|}

@@ -133,7 +133,6 @@ name|getBreakpoints
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -195,6 +194,28 @@ name|errorBytes
 argument_list|(
 literal|"breakpoint_list"
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|responce
+init|=
+literal|"breakpoint_list -i "
+operator|+
+name|transactionID
+decl_stmt|;
+return|return
+name|responce
+operator|.
+name|getBytes
+argument_list|()
 return|;
 block|}
 block|}
