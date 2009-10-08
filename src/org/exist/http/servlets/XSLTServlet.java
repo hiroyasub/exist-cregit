@@ -1069,7 +1069,19 @@ argument_list|(
 name|mediaType
 argument_list|)
 expr_stmt|;
-else|else
+comment|//check, do mediaType have "charset"
+if|else if
+condition|(
+name|mediaType
+operator|.
+name|indexOf
+argument_list|(
+literal|"charset"
+argument_list|)
+operator|==
+operator|-
+literal|1
+condition|)
 name|response
 operator|.
 name|setContentType
@@ -1079,6 +1091,14 @@ operator|+
 literal|"; charset="
 operator|+
 name|encoding
+argument_list|)
+expr_stmt|;
+else|else
+name|response
+operator|.
+name|setContentType
+argument_list|(
+name|mediaType
 argument_list|)
 expr_stmt|;
 block|}
