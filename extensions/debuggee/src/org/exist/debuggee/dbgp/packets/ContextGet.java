@@ -92,10 +92,10 @@ name|Command
 block|{
 comment|/** 	 * stack depth (optional) 	 */
 specifier|private
-name|int
+name|Integer
 name|stackDepth
 init|=
-literal|0
+literal|null
 decl_stmt|;
 comment|/** 	 * context id (optional, retrieved by context-names) 	 */
 specifier|private
@@ -198,6 +198,7 @@ name|void
 name|exec
 parameter_list|()
 block|{
+comment|//TODO: different stack depth& context id
 name|variables
 operator|=
 name|getJoint
@@ -300,6 +301,69 @@ expr_stmt|;
 block|}
 return|return
 name|properties
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|command
+init|=
+literal|"context_get -i "
+operator|+
+name|transactionID
+decl_stmt|;
+if|if
+condition|(
+name|stackDepth
+operator|!=
+literal|null
+condition|)
+name|command
+operator|+=
+literal|" -d "
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|stackDepth
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextID
+operator|!=
+literal|null
+operator|&&
+name|contextID
+operator|.
+name|equals
+argument_list|(
+literal|""
+argument_list|)
+condition|)
+name|command
+operator|+=
+literal|" -c "
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|contextID
+argument_list|)
+expr_stmt|;
+return|return
+name|command
+operator|.
+name|getBytes
+argument_list|()
 return|;
 block|}
 block|}

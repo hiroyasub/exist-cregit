@@ -217,6 +217,36 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|command
+init|=
+literal|"feature_set -i "
+operator|+
+name|transactionID
+operator|+
+literal|" -n "
+operator|+
+name|name
+operator|+
+literal|" -v "
+operator|+
+name|value
+decl_stmt|;
+return|return
+name|command
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

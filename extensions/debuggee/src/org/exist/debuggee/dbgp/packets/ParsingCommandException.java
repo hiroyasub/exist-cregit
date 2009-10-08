@@ -21,6 +21,10 @@ begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
+begin_comment
+comment|//TODO: delete?
+end_comment
+
 begin_class
 specifier|public
 class|class

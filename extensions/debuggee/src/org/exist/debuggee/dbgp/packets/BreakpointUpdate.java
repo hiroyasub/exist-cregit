@@ -365,7 +365,7 @@ literal|null
 condition|)
 block|{
 name|String
-name|responce
+name|command
 init|=
 literal|"breakpoint_update"
 operator|+
@@ -400,7 +400,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
-name|responce
+name|command
 operator|+=
 literal|" -s "
 operator|+
@@ -416,7 +416,7 @@ comment|//			if (getException() != null)
 comment|//				responce += " -x " + getException();
 comment|//TODO: EXPRESSION
 return|return
-name|responce
+name|command
 operator|.
 name|getBytes
 argument_list|()

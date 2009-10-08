@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  *  */
+comment|/**  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class
@@ -44,6 +44,11 @@ name|StdOut
 extends|extends
 name|Command
 block|{
+comment|/** 	 * [0|1|2] 0 - disable, 1 - copy data, 2 - redirection 	 * 0 (disable)   stdout/stderr output goes to regular place, but not to IDE 	 * 1 (copy)      stdout/stderr output goes to both regular destination and IDE 	 * 2 (redirect)  stdout/stderr output goes to IDE only. 	 */
+specifier|private
+name|Short
+name|outputGoes
+decl_stmt|;
 specifier|public
 name|StdOut
 parameter_list|(
@@ -59,6 +64,48 @@ argument_list|(
 name|session
 argument_list|,
 name|args
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|protected
+name|void
+name|setArgument
+parameter_list|(
+name|String
+name|arg
+parameter_list|,
+name|String
+name|val
+parameter_list|)
+block|{
+if|if
+condition|(
+name|arg
+operator|.
+name|equals
+argument_list|(
+literal|"c"
+argument_list|)
+condition|)
+name|outputGoes
+operator|=
+name|Short
+operator|.
+name|valueOf
+argument_list|(
+name|val
+argument_list|)
+expr_stmt|;
+else|else
+name|super
+operator|.
+name|setArgument
+argument_list|(
+name|arg
+argument_list|,
+name|val
 argument_list|)
 expr_stmt|;
 block|}
@@ -95,6 +142,39 @@ literal|"\"/>"
 decl_stmt|;
 return|return
 name|response
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|command
+init|=
+literal|"stdout"
+operator|+
+literal|" -i "
+operator|+
+name|transactionID
+operator|+
+literal|" -c "
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|outputGoes
+argument_list|)
+decl_stmt|;
+return|return
+name|command
 operator|.
 name|getBytes
 argument_list|()

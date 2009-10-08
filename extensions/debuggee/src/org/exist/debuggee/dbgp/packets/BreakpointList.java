@@ -205,14 +205,14 @@ name|commandBytes
 parameter_list|()
 block|{
 name|String
-name|responce
+name|command
 init|=
 literal|"breakpoint_list -i "
 operator|+
 name|transactionID
 decl_stmt|;
 return|return
-name|responce
+name|command
 operator|.
 name|getBytes
 argument_list|()

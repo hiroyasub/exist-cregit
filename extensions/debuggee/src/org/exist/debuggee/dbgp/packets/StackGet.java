@@ -341,6 +341,43 @@ name|stackGet
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|command
+init|=
+literal|"stack_get -i "
+operator|+
+name|transactionID
+decl_stmt|;
+if|if
+condition|(
+name|stackDepth
+operator|!=
+literal|null
+condition|)
+name|command
+operator|+=
+literal|" -d "
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|stackDepth
+argument_list|)
+expr_stmt|;
+return|return
+name|command
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

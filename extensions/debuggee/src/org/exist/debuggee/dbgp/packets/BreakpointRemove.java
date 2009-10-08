@@ -206,7 +206,7 @@ literal|null
 condition|)
 block|{
 name|String
-name|responce
+name|command
 init|=
 literal|"breakpoint_remove -i "
 operator|+
@@ -220,7 +220,7 @@ name|getId
 argument_list|()
 decl_stmt|;
 return|return
-name|responce
+name|command
 operator|.
 name|getBytes
 argument_list|()

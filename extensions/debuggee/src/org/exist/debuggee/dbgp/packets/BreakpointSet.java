@@ -494,7 +494,7 @@ literal|null
 condition|)
 block|{
 name|String
-name|responce
+name|command
 init|=
 literal|"breakpoint_set"
 operator|+
@@ -539,7 +539,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
-name|responce
+name|command
 operator|+=
 literal|" -s "
 operator|+
@@ -553,7 +553,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
-name|responce
+name|command
 operator|+=
 literal|" -m "
 operator|+
@@ -567,7 +567,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
-name|responce
+name|command
 operator|+=
 literal|" -x "
 operator|+
@@ -576,7 +576,7 @@ argument_list|()
 expr_stmt|;
 comment|//TODO: EXPRESSION
 return|return
-name|responce
+name|command
 operator|.
 name|getBytes
 argument_list|()

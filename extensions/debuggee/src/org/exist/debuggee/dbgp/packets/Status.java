@@ -150,6 +150,28 @@ literal|"status"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+name|String
+name|command
+init|=
+literal|"status -i "
+operator|+
+name|transactionID
+decl_stmt|;
+return|return
+name|command
+operator|.
+name|getBytes
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
