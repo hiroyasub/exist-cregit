@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|dgbp
+name|dbgp
 operator|.
 name|packets
 operator|.
@@ -73,7 +73,7 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|dgbp
+name|dbgp
 operator|.
 name|packets
 operator|.
