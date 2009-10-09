@@ -617,7 +617,7 @@ literal|"from that URI. "
 operator|+
 literal|"Returns the path to the new document if successfully stored, "
 operator|+
-literal|"otherwise the empty sequence."
+literal|"otherwise an XPathException is thrown."
 argument_list|,
 operator|new
 name|SequenceType
@@ -677,7 +677,7 @@ literal|"resource will be stored as a binary resource."
 operator|+
 literal|"Returns the path to the new document if successfully stored, "
 operator|+
-literal|"otherwise the empty sequence."
+literal|"otherwise an XPathException is thrown."
 argument_list|,
 operator|new
 name|SequenceType
