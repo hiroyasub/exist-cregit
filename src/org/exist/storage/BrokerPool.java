@@ -1242,6 +1242,18 @@ literal|"' is not available"
 argument_list|)
 throw|;
 block|}
+comment|/** Returns the class that exposes the API for creating, destroying and incrementing counters. 	 * @return Counters 	 */
+specifier|public
+name|Counters
+name|getCounters
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|counters
+return|;
+block|}
 comment|/** Returns an iterator over the database instances. 	 * @return The iterator 	 */
 specifier|public
 specifier|final
@@ -1590,6 +1602,10 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
+specifier|private
+name|Counters
+name|counters
+decl_stmt|;
 comment|/** The configuration object for the database instance      */
 specifier|protected
 name|Configuration
@@ -1892,6 +1908,15 @@ operator|.
 name|transactionsEnabled
 operator|=
 literal|true
+expr_stmt|;
+name|this
+operator|.
+name|counters
+operator|=
+name|Counters
+operator|.
+name|getInstance
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
