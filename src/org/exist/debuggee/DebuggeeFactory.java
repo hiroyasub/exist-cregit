@@ -142,7 +142,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Class not found for JMX agent: "
+literal|"Class not found for debuggee: "
 operator|+
 name|className
 argument_list|)
@@ -158,7 +158,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to instantiate class for JMX agent: "
+literal|"Failed to instantiate class for debuggee: "
 operator|+
 name|className
 argument_list|)
@@ -174,7 +174,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to instantiate class for JMX agent: "
+literal|"Failed to instantiate class for debuggee: "
 operator|+
 name|className
 argument_list|)
