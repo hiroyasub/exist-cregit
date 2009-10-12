@@ -1281,6 +1281,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//XXX: should we have it? org.exist.xquery.UserDefinedFunction do a call -shabanovd
 name|context
 operator|.
 name|stackEnter
