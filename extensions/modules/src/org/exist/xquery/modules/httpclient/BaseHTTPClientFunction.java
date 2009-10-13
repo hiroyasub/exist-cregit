@@ -667,7 +667,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The form data in the format<httpclient:fields><httpclient:field name=\"\" value=\"\"/>...</httpclient:fields>.  If the field values will be suitably URLEncoded and sent with the mime type application/x-www-form-urlencoded."
+literal|"The form data in the format<httpclient:fields><httpclient:field name=\"\" value=\"\" type=\"string|file\"/>...</httpclient:fields>.  If the field values will be suitably URLEncoded and sent with the mime type application/x-www-form-urlencoded."
 argument_list|)
 decl_stmt|;
 specifier|protected
