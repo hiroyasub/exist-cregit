@@ -2830,6 +2830,12 @@ argument_list|(
 name|param
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|opt
+operator|!=
+literal|null
+condition|)
 name|outputProperties
 operator|.
 name|setProperty
