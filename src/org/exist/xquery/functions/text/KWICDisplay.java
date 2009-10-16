@@ -582,7 +582,7 @@ argument_list|)
 argument_list|,
 literal|"Improved kwic functionality is now provided by a separate XQuery module, see "
 operator|+
-literal|"http://exist-org/kwic.html."
+literal|"http://exist-db.org/kwic.html."
 argument_list|)
 block|,
 operator|new
@@ -667,7 +667,7 @@ argument_list|)
 argument_list|,
 literal|"Improved kwic functionality is now provided by a separate XQuery module, see "
 operator|+
-literal|"http://exist-org/kwic.html."
+literal|"http://exist-db.org/kwic.html."
 argument_list|)
 block|}
 decl_stmt|;
