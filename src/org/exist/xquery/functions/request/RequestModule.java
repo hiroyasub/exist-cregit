@@ -180,7 +180,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"&lt; eXist-1.0 (Split into  three modules - request, response and session in 2006)"
+literal|"pre eXist-1.0 (Many functions originally in this module have been moved into new modules response and session.)"
 decl_stmt|;
 specifier|public
 specifier|static
