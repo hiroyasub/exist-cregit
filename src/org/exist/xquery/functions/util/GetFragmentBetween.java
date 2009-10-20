@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -436,17 +436,17 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"A function which delivers the xml fragment between two elements (normally milestone elements)"
+literal|"Returns an xml fragment or a sequence of nodes between two elements (normally milestone elements). "
 operator|+
-literal|"The first argument represents the first node/milestone element, the second argument the second"
+literal|"The $beginning-node represents the first node/milestone element, $ending-node, the second one. "
 operator|+
-literal|"node/milestone element between which the fragment should be determined. The third argument is "
+literal|"The third argument, $make-fragment, is "
 operator|+
-literal|"a boolean value for the path completion. If the third argument is set to true() open and "
+literal|"a boolean value for the path completion. If it is set to true() the "
 operator|+
-literal|"closing tags before and after the two nodes/milestones are appended. "
+literal|"result sequence is wrapped into a parent element node. "
 operator|+
-literal|"Example call of the function for getting the fragment between two page breaks: "
+literal|"Example call of the function for getting the fragment between two TEI page break element nodes: "
 operator|+
 literal|"  let $fragment := util:get-fragment-between(//pb[1], //pb[2], true())"
 argument_list|,
@@ -489,7 +489,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"add-open-close-tags"
+literal|"make-fragment"
 argument_list|,
 name|Type
 operator|.
@@ -499,7 +499,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The flag indicating if open and closing tags before and after the two node/milestones are appended."
+literal|"The flag make a fragment."
 argument_list|)
 block|}
 argument_list|,
