@@ -88,7 +88,7 @@ name|void
 name|stepOut
 parameter_list|()
 function_decl|;
-comment|/** 	 * Ends execution of the script immediately, the debugger engine may not respond, though if possible should be designed to do so. The script will be terminated right away and be followed by a disconnection of the network connection from the IDE (and debugger engine if required in multi request apache processes). 	 * @return 	 */
+comment|/** 	 * Ends execution of the script immediately, the debugger engine may not respond, though if possible should be designed to do so. The script will be terminated right away and be followed by a disconnection of the network connection from the IDE (and debugger engine if required in multi request apache processes). 	 */
 specifier|public
 name|void
 name|stop
@@ -129,16 +129,8 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|String
-name|getData
+name|getText
 parameter_list|()
-function_decl|;
-specifier|public
-name|void
-name|setData
-parameter_list|(
-name|String
-name|text
-parameter_list|)
 function_decl|;
 block|}
 end_interface

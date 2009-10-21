@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -38,7 +48,19 @@ name|Debugger
 block|{
 specifier|public
 name|DebuggingSource
-name|source
+name|init
+parameter_list|(
+name|String
+name|url
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|ExceptionTimeout
+function_decl|;
+specifier|public
+name|DebuggingSource
+name|getSource
 parameter_list|(
 name|String
 name|fileURI
@@ -57,14 +79,7 @@ name|Breakpoint
 name|breakpoint
 parameter_list|)
 function_decl|;
-specifier|public
-name|Response
-name|getResponse
-parameter_list|(
-name|String
-name|transactionID
-parameter_list|)
-function_decl|;
+comment|//public Response getResponse(String transactionID);
 block|}
 end_interface
 
