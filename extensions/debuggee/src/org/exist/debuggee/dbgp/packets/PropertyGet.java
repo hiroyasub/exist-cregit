@@ -336,9 +336,6 @@ name|nameLong
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]
@@ -809,8 +806,6 @@ argument_list|()
 return|;
 block|}
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]

@@ -618,8 +618,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]
@@ -787,8 +785,6 @@ return|return
 literal|"0"
 return|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]

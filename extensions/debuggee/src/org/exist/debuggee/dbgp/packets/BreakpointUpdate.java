@@ -306,9 +306,6 @@ name|hitCondition
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]
@@ -349,8 +346,6 @@ literal|"breakpoint_update"
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]

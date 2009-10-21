@@ -208,8 +208,6 @@ name|getVariables
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]
@@ -303,8 +301,6 @@ return|return
 name|properties
 return|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]

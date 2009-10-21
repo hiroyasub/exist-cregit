@@ -84,9 +84,6 @@ name|exec
 parameter_list|()
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#toBytes() 	 */
-annotation|@
-name|Override
 specifier|public
 name|byte
 index|[]
@@ -119,6 +116,20 @@ name|responce
 operator|.
 name|getBytes
 argument_list|()
+return|;
+block|}
+specifier|public
+name|byte
+index|[]
+name|commandBytes
+parameter_list|()
+block|{
+return|return
+operator|new
+name|byte
+index|[
+literal|0
+index|]
 return|;
 block|}
 block|}
