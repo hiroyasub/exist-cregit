@@ -177,7 +177,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|Breakpoint
-name|Debugger
+name|getBreakpoint
 parameter_list|()
 block|{
 name|BreakpointImpl
@@ -328,25 +328,33 @@ return|return
 literal|null
 return|;
 block|}
+specifier|private
+name|String
+name|code
+init|=
+literal|null
+decl_stmt|;
 specifier|public
 name|String
-name|getData
+name|getText
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|code
 return|;
 block|}
 specifier|public
 name|void
-name|setData
+name|setText
 parameter_list|(
 name|String
 name|text
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+name|code
+operator|=
+name|text
+expr_stmt|;
 block|}
 block|}
 end_class
