@@ -216,7 +216,31 @@ operator|>=
 name|length
 condition|)
 block|{
-comment|//TODO: parsing response
+name|ResponseImpl
+name|response
+init|=
+operator|new
+name|ResponseImpl
+argument_list|(
+name|in
+operator|.
+name|asOutputStream
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"got response"
+argument_list|)
+expr_stmt|;
+name|length
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 block|}

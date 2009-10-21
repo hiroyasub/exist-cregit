@@ -87,8 +87,6 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|dbgp
-operator|.
 name|Packet
 import|;
 end_import
