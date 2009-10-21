@@ -937,7 +937,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The source-document (nodes tree)"
+literal|"The source-document (node tree)"
 argument_list|)
 block|,
 operator|new
@@ -984,7 +984,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the tranfromed result (nodes tree)"
+literal|"the transformed result (node tree)"
 argument_list|)
 argument_list|)
 block|,
@@ -1054,7 +1054,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The source-document (nodes tree)"
+literal|"The source-document (node tree)"
 argument_list|)
 block|,
 operator|new
@@ -1092,7 +1092,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"serailization-options"
+literal|"serialization-options"
 argument_list|,
 name|Type
 operator|.
@@ -1102,7 +1102,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The serailization options"
+literal|"The serialization options"
 argument_list|)
 block|}
 argument_list|,
@@ -1117,7 +1117,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the transformed result (nodes tree)"
+literal|"the transformed result (node tree)"
 argument_list|)
 argument_list|)
 block|,
@@ -1163,7 +1163,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The source-document (nodes tree)"
+literal|"The source-document (node tree)"
 argument_list|)
 block|,
 operator|new
@@ -1254,7 +1254,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The source-document (nodes tree)"
+literal|"The source-document (node tree)"
 argument_list|)
 block|,
 operator|new
@@ -1292,7 +1292,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"serailization-options"
+literal|"serialization-options"
 argument_list|,
 name|Type
 operator|.
@@ -1302,7 +1302,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The serailization options"
+literal|"The serialization options"
 argument_list|)
 block|}
 argument_list|,
