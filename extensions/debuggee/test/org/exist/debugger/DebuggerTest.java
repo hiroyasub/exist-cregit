@@ -223,19 +223,7 @@ name|assertNotNull
 argument_list|(
 literal|"Debugging source can't be NULL."
 argument_list|,
-name|test
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|source
-operator|.
-name|getText
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
