@@ -445,6 +445,18 @@ name|name
 argument_list|)
 return|;
 block|}
+specifier|public
+name|Enumeration
+name|getAttributeNames
+parameter_list|()
+block|{
+return|return
+name|servletRequest
+operator|.
+name|getAttributeNames
+argument_list|()
+return|;
+block|}
 comment|/**      * Returns an array of Cookies      */
 specifier|public
 name|Cookie

@@ -105,6 +105,11 @@ name|name
 parameter_list|)
 function_decl|;
 specifier|public
+name|Enumeration
+name|getAttributeNames
+parameter_list|()
+function_decl|;
+specifier|public
 name|String
 name|getCharacterEncoding
 parameter_list|()
