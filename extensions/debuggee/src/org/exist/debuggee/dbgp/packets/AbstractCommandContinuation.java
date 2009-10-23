@@ -59,7 +59,7 @@ name|Command
 implements|implements
 name|CommandContinuation
 block|{
-specifier|private
+specifier|protected
 name|String
 name|status
 init|=
