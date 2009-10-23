@@ -79,14 +79,14 @@ name|String
 name|type
 parameter_list|)
 function_decl|;
-comment|/** 	 * The file the breakpoint is effective in. This must be a "file://" or "dbgp:" (See 6.7 Dynamic code and virtual files) URI. 	 * @return 	 */
+comment|/** 	 * The file the breakpoint is effective in. This must be a "file://" or "dbgp:" (See 6.7 Dynamic code and virtual files) URI. 	 * @return the source URI 	 */
 specifier|public
 name|String
 name|getFilename
 parameter_list|()
 function_decl|;
 comment|//	public void setFilename(String filename);
-comment|/** 	 * Line number on which breakpoint is effective. Line numbers are 1-based. If an implementation requires a numeric value to indicate that lineno is not set, it is suggested that -1 be used, although this is not enforced. 	 * @return 	 */
+comment|/** 	 * Line number on which breakpoint is effective. Line numbers are 1-based. If an implementation requires a numeric value to indicate that lineno is not set, it is suggested that -1 be used, although this is not enforced. 	 * @return line number 	 */
 specifier|public
 name|Integer
 name|getLineno
@@ -100,7 +100,7 @@ name|Integer
 name|lineno
 parameter_list|)
 function_decl|;
-comment|/** 	 * Current state of the breakpoint. This must be one of enabled, disabled. 	 * @return 	 */
+comment|/** 	 * Current state of the breakpoint. This must be one of enabled, disabled. 	 * @return current state: true = enabled, false = disabled 	 */
 specifier|public
 name|boolean
 name|getState
@@ -114,7 +114,7 @@ name|boolean
 name|state
 parameter_list|)
 function_decl|;
-comment|/** 	 * Function name for call or return type breakpoints. 	 * @return 	 */
+comment|/** 	 * Function name for call or return type breakpoints. 	 * @return function name 	 */
 specifier|public
 name|String
 name|getFunction
@@ -128,7 +128,7 @@ name|String
 name|function
 parameter_list|)
 function_decl|;
-comment|/** 	 * Flag to define if breakpoint is temporary. A temporary breakpoint is one that is deleted after its first use. This is useful for features like "Run to Cursor". Once the debugger engine uses a temporary breakpoint, it should automatically remove the breakpoint from it's list of valid breakpoints. 	 * @return 	 */
+comment|/** 	 * Flag to define if breakpoint is temporary. A temporary breakpoint is one that is deleted after its first use. This is useful for features like "Run to Cursor". Once the debugger engine uses a temporary breakpoint, it should automatically remove the breakpoint from it's list of valid breakpoints. 	 * @return true if it's temporary 	 */
 specifier|public
 name|boolean
 name|getTemporary
@@ -142,7 +142,7 @@ name|boolean
 name|temporary
 parameter_list|)
 function_decl|;
-comment|/** 	 * Number of effective hits for the breakpoint in the current session. This value is maintained by the debugger engine (a.k.a. DBGP client). A breakpoint's hit count should be increment whenever it is considered to break execution (i.e. whenever debugging comes to this line). If the breakpoint is disabled then the hit count should NOT be incremented. 	 * @return 	 */
+comment|/** 	 * Number of effective hits for the breakpoint in the current session. This value is maintained by the debugger engine (a.k.a. DBGP client). A breakpoint's hit count should be increment whenever it is considered to break execution (i.e. whenever debugging comes to this line). If the breakpoint is disabled then the hit count should NOT be incremented. 	 * @return number of effective hits 	 */
 specifier|public
 name|int
 name|getHitCount
@@ -156,7 +156,7 @@ name|int
 name|count
 parameter_list|)
 function_decl|;
-comment|/** 	 * A numeric value used together with the hit_condition to determine if the breakpoint should pause execution or be skipped. 	 * @return 	 */
+comment|/** 	 * A numeric value used together with the hit_condition to determine if the breakpoint should pause execution or be skipped. 	 * @return numeric of hit to pause execution 	 */
 specifier|public
 name|int
 name|getHitValue
@@ -170,7 +170,7 @@ name|int
 name|value
 parameter_list|)
 function_decl|;
-comment|/** 	 * A string indicating a condition to use to compare hit_count and hit_value. The following values are legal:  	 *>= break if hit_count is greater than or equal to hit_value [default]  	 * == break if hit_count is equal to hit_value  	 * %  break if hit_count is a multiple of hit_value 	 *   	 * @return 	 */
+comment|/** 	 * A string indicating a condition to use to compare hit_count and hit_value. The following values are legal:  	 *>= break if hit_count is greater than or equal to hit_value [default]  	 * == break if hit_count is equal to hit_value  	 * %  break if hit_count is a multiple of hit_value 	 *   	 * @return hit condition string 	 */
 specifier|public
 name|String
 name|getHitCondition
@@ -184,7 +184,7 @@ name|String
 name|condition
 parameter_list|)
 function_decl|;
-comment|/** 	 * Exception name for exception type breakpoints. 	 * @return 	 */
+comment|/** 	 * Exception name for exception type breakpoints. 	 * @return exception name 	 */
 specifier|public
 name|String
 name|getException
