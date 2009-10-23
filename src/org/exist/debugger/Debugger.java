@@ -79,6 +79,11 @@ name|Breakpoint
 name|breakpoint
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|run
+parameter_list|()
+function_decl|;
 comment|//public Response getResponse(String transactionID);
 block|}
 end_interface

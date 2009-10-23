@@ -45,6 +45,18 @@ name|CommandContinuation
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|Response
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -182,6 +194,25 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|putResponse
+parameter_list|(
+name|Response
+name|response
+parameter_list|)
+block|{
+name|status
+operator|=
+name|response
+operator|.
+name|getAttribute
+argument_list|(
+literal|"status"
+argument_list|)
+expr_stmt|;
+comment|//TODO: Listeners
 block|}
 block|}
 end_class

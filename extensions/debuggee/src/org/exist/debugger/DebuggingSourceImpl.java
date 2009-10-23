@@ -29,33 +29,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|debuggee
-operator|.
-name|dbgp
-operator|.
-name|packets
-operator|.
-name|BreakpointSet
 import|;
 end_import
 
@@ -284,7 +258,11 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+name|debugger
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepInto() 	 */
 specifier|public

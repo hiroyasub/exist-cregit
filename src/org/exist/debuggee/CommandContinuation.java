@@ -13,6 +13,18 @@ name|debuggee
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|Response
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -102,6 +114,15 @@ specifier|public
 name|int
 name|getCallStackDepth
 parameter_list|()
+function_decl|;
+comment|//debugger side methods
+specifier|public
+name|void
+name|putResponse
+parameter_list|(
+name|Response
+name|response
+parameter_list|)
 function_decl|;
 comment|//close session
 specifier|public

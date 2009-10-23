@@ -127,6 +127,38 @@ name|dbgp
 operator|.
 name|packets
 operator|.
+name|AbstractCommandContinuation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|dbgp
+operator|.
+name|packets
+operator|.
+name|Run
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debuggee
+operator|.
+name|dbgp
+operator|.
+name|packets
+operator|.
 name|Source
 import|;
 end_import
@@ -224,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -263,7 +295,7 @@ specifier|private
 name|IoSession
 name|session
 decl_stmt|;
-comment|//uri -> source
+comment|// uri -> source
 specifier|private
 name|Map
 argument_list|<
@@ -402,6 +434,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// 30s timeout
 name|ResponseImpl
 name|response
 init|=
@@ -417,7 +450,6 @@ operator|*
 literal|1000
 argument_list|)
 decl_stmt|;
-comment|// 30s timeout
 name|this
 operator|.
 name|session
@@ -427,6 +459,7 @@ operator|.
 name|getSession
 argument_list|()
 expr_stmt|;
+comment|// TODO: fileuri as constant???
 return|return
 name|getSource
 argument_list|(
@@ -438,9 +471,8 @@ literal|"fileuri"
 argument_list|)
 argument_list|)
 return|;
-comment|//TODO: fileuri as constant???
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.debugger.Debugger#source(java.lang.String) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.debugger.Debugger#source(java.lang.String) 	 */
 specifier|public
 name|DebuggingSource
 name|getSource
@@ -487,13 +519,21 @@ argument_list|(
 name|fileURI
 argument_list|)
 expr_stmt|;
-name|Response
-name|response
-init|=
 name|command
 operator|.
 name|toDebuggee
 argument_list|()
+expr_stmt|;
+name|Response
+name|response
+init|=
+name|getResponse
+argument_list|(
+name|command
+operator|.
+name|getTransactionId
+argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -600,7 +640,7 @@ parameter_list|()
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|//weak map???
+comment|// weak map???
 specifier|private
 name|Map
 argument_list|<
@@ -628,6 +668,34 @@ name|Response
 name|response
 parameter_list|)
 block|{
+if|if
+condition|(
+name|currentCommand
+operator|!=
+literal|null
+operator|&&
+name|currentCommand
+operator|.
+name|getTransactionId
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|response
+operator|.
+name|getTransactionID
+argument_list|()
+argument_list|)
+condition|)
+name|currentCommand
+operator|.
+name|putResponse
+argument_list|(
+name|response
+argument_list|)
+expr_stmt|;
+else|else
+comment|//it should be commands map, this implementation is dangerous
 name|responses
 operator|.
 name|put
@@ -776,10 +844,41 @@ return|return
 name|response
 return|;
 block|}
-comment|//throw error???
+comment|// throw error???
 return|return
 literal|null
 return|;
+block|}
+specifier|private
+name|AbstractCommandContinuation
+name|currentCommand
+init|=
+literal|null
+decl_stmt|;
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|Run
+name|command
+init|=
+operator|new
+name|Run
+argument_list|(
+name|session
+argument_list|,
+literal|" -i "
+operator|+
+name|getNextTransaction
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|command
+operator|.
+name|toDebuggee
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
