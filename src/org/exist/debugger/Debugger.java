@@ -84,6 +84,26 @@ name|void
 name|run
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|stepInto
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|stepOut
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|stepOver
+parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|stop
+parameter_list|()
+function_decl|;
 comment|//public Response getResponse(String transactionID);
 block|}
 end_interface
