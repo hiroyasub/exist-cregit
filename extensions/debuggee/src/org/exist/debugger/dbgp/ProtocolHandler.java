@@ -21,6 +21,18 @@ name|org
 operator|.
 name|apache
 operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|mina
 operator|.
 name|core
@@ -86,6 +98,21 @@ name|ProtocolHandler
 extends|extends
 name|IoHandlerAdapter
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|ProtocolHandler
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|Debugger
 name|debugger
@@ -155,12 +182,16 @@ operator|.
 name|sessionClosed
 argument_list|()
 expr_stmt|;
-comment|// Print out total number of bytes read from the remote peer.
-name|System
+if|if
+condition|(
+name|LOG
 operator|.
-name|err
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
 operator|.
-name|println
+name|debug
 argument_list|(
 literal|"Total "
 operator|+
@@ -169,7 +200,7 @@ operator|.
 name|getReadBytes
 argument_list|()
 operator|+
-literal|" byte(s)"
+literal|" byte(s) readed."
 argument_list|)
 expr_stmt|;
 block|}

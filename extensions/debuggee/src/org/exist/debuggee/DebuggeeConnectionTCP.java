@@ -160,10 +160,7 @@ name|connector
 decl_stmt|;
 specifier|public
 name|DebuggeeConnectionTCP
-parameter_list|(
-name|Debuggee
-name|debuggee
-parameter_list|)
+parameter_list|()
 block|{
 comment|// Create TCP/IP connector.
 name|connector
@@ -207,9 +204,7 @@ name|setHandler
 argument_list|(
 operator|new
 name|ProtocolHandler
-argument_list|(
-name|debuggee
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

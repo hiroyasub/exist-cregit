@@ -39,51 +39,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|tools
-operator|.
-name|ant
-operator|.
-name|taskdefs
-operator|.
-name|Sleep
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
-name|storage
+name|debuggee
 operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|CollectionImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|DatabaseInstanceManager
+name|CommandContinuation
 import|;
 end_import
 
@@ -117,74 +77,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|DatabaseManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Database
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -193,13 +85,9 @@ begin_class
 specifier|public
 class|class
 name|DebuggerTest
+implements|implements
+name|ResponseListener
 block|{
-specifier|static
-name|Collection
-name|test
-init|=
-literal|null
-decl_stmt|;
 annotation|@
 name|Test
 specifier|public
@@ -263,22 +151,30 @@ block|}
 name|source
 operator|.
 name|stepInto
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|source
 operator|.
 name|stepOver
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|source
 operator|.
 name|stepOut
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 name|source
 operator|.
 name|run
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -338,21 +234,6 @@ name|void
 name|initDB
 parameter_list|()
 block|{
-comment|//        // initialize XML:DB driver
-comment|//        try {
-comment|//            Class cl = Class.forName("org.exist.xmldb.DatabaseImpl");
-comment|//            Database database = (Database) cl.newInstance();
-comment|//            database.setProperty("create-database", "true");
-comment|//            DatabaseManager.registerDatabase(database);
-comment|//
-comment|//            org.xmldb.api.base.Collection root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
-comment|//            CollectionManagementService mgmt = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
-comment|//            test = mgmt.createCollection("test");
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
 name|database
 operator|=
 operator|new
@@ -388,21 +269,33 @@ name|void
 name|closeDB
 parameter_list|()
 block|{
-comment|//        try {
-comment|//            Collection root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
-comment|//            CollectionManagementService cmgr = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
-comment|//            cmgr.removeCollection("test");
-comment|//
-comment|//            DatabaseInstanceManager mgr = (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//            mgr.shutdown();
-comment|//        } catch (XMLDBException e) {
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
 name|database
 operator|.
 name|shutdown
 argument_list|()
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|responseEvent
+parameter_list|(
+name|CommandContinuation
+name|command
+parameter_list|,
+name|Response
+name|response
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"getResponse command = "
+operator|+
+name|command
+argument_list|)
 expr_stmt|;
 block|}
 block|}
