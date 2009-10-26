@@ -1909,6 +1909,20 @@ name|transactionsEnabled
 operator|=
 literal|true
 expr_stmt|;
+comment|// Setup counters
+name|String
+name|counterDir
+init|=
+operator|(
+name|String
+operator|)
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_DATA_DIR
+argument_list|)
+decl_stmt|;
 name|this
 operator|.
 name|counters
@@ -1916,7 +1930,9 @@ operator|=
 name|Counters
 operator|.
 name|getInstance
-argument_list|()
+argument_list|(
+name|counterDir
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
