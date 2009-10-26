@@ -146,10 +146,15 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
+name|Counters
+name|instance
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String
-name|counterStore
+name|COUNTERSTORE
 init|=
 literal|"counters"
 decl_stmt|;
@@ -157,7 +162,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|delimiter
+name|DELIMITER
 init|=
 literal|";"
 decl_stmt|;
@@ -175,18 +180,15 @@ argument_list|,
 name|Long
 argument_list|>
 name|counters
-decl_stmt|;
-specifier|private
-specifier|static
-name|boolean
-name|initialized
 init|=
-literal|false
-decl_stmt|;
-specifier|private
-specifier|static
-name|Counters
-name|me
+operator|new
+name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|Long
+argument_list|>
+argument_list|()
 decl_stmt|;
 specifier|private
 name|Counters
@@ -197,17 +199,6 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-name|counters
-operator|=
-operator|new
-name|Hashtable
-argument_list|<
-name|String
-argument_list|,
-name|Long
-argument_list|>
-argument_list|()
-expr_stmt|;
 name|store
 operator|=
 operator|new
@@ -215,7 +206,7 @@ name|File
 argument_list|(
 name|dataDir
 argument_list|,
-name|counterStore
+name|COUNTERSTORE
 argument_list|)
 expr_stmt|;
 name|BufferedReader
@@ -314,7 +305,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//Use ; as a delimiter, counter names must be tested and rejected when they contain this character!
+comment|//Use ; as a DELIMITER, counter names must be tested and rejected when they contain this character!
 name|String
 index|[]
 name|tokens
@@ -323,7 +314,7 @@ name|line
 operator|.
 name|split
 argument_list|(
-name|delimiter
+name|DELIMITER
 argument_list|)
 decl_stmt|;
 name|counters
@@ -406,11 +397,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|initialized
-operator|=
-literal|true
-expr_stmt|;
 block|}
+comment|/**      *  Get singleton of Counters object.      */
 specifier|public
 specifier|static
 name|Counters
@@ -424,9 +412,9 @@ name|EXistException
 block|{
 if|if
 condition|(
-operator|!
-name|isInitialized
-argument_list|()
+name|instance
+operator|==
+literal|null
 condition|)
 block|{
 name|LOG
@@ -436,7 +424,7 @@ argument_list|(
 literal|"Initializing counters."
 argument_list|)
 expr_stmt|;
-name|me
+name|instance
 operator|=
 operator|new
 name|Counters
@@ -444,29 +432,12 @@ argument_list|(
 name|dataDir
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-name|me
+name|instance
 return|;
 block|}
-else|else
-block|{
-return|return
-name|me
-return|;
-block|}
-block|}
-comment|/** 	 *  	 * @return true if the counters are initialized 	 */
-specifier|public
-specifier|static
-name|boolean
-name|isInitialized
-parameter_list|()
-block|{
-return|return
-name|initialized
-return|;
-block|}
-comment|/**      * Creates a new Counter, initializes it to 0 and returns the current value in a long.      *       * @param counterName      * @return the initial value of the newly created counter 	 * @throws EXistException       */
+comment|/**      * Creates a new Counter, initializes it to 0 and returns the current value in a long.      *       * @param counterName      * @return the initial value of the newly created counter      * @throws EXistException      */
 specifier|public
 name|long
 name|createCounter
@@ -624,7 +595,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Retrieves the next value of a counter (specified by name).      *       * @param counterName      * @return the next counter value or -1 if the counter does not exist.      * @throws Exception       */
+comment|/**      * Retrieves the next value of a counter (specified by name).      *       * @param counterName      * @return the next counter value or -1 if the counter does not exist.      * @throws EXistException      */
 specifier|public
 specifier|synchronized
 name|long
@@ -646,10 +617,12 @@ argument_list|(
 name|counterName
 argument_list|)
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 name|long
 name|c
 init|=
@@ -787,7 +760,7 @@ name|println
 argument_list|(
 name|k
 operator|+
-name|delimiter
+name|DELIMITER
 operator|+
 name|v
 argument_list|)
