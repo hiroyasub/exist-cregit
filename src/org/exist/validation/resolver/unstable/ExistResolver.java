@@ -285,6 +285,8 @@ expr_stmt|;
 return|return
 name|resolveInputSource
 argument_list|(
+name|brokerPool
+argument_list|,
 name|systemId
 argument_list|)
 return|;
@@ -323,6 +325,8 @@ expr_stmt|;
 return|return
 name|resolveInputSource
 argument_list|(
+name|brokerPool
+argument_list|,
 name|baseURI
 argument_list|)
 return|;
@@ -372,6 +376,8 @@ expr_stmt|;
 return|return
 name|resolveInputSource
 argument_list|(
+name|brokerPool
+argument_list|,
 name|systemId
 argument_list|)
 return|;
@@ -454,6 +460,8 @@ block|}
 return|return
 name|resolveStreamSource
 argument_list|(
+name|brokerPool
+argument_list|,
 name|href
 argument_list|)
 return|;
@@ -465,6 +473,9 @@ specifier|private
 name|InputSource
 name|resolveInputSource
 parameter_list|(
+name|BrokerPool
+name|bPool
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -525,6 +536,8 @@ init|=
 operator|new
 name|EmbeddedInputStream
 argument_list|(
+name|bPool
+argument_list|,
 name|url
 argument_list|)
 decl_stmt|;
@@ -580,6 +593,9 @@ specifier|private
 name|StreamSource
 name|resolveStreamSource
 parameter_list|(
+name|BrokerPool
+name|bPool
+parameter_list|,
 name|String
 name|path
 parameter_list|)
@@ -642,6 +658,8 @@ init|=
 operator|new
 name|EmbeddedInputStream
 argument_list|(
+name|bPool
+argument_list|,
 name|url
 argument_list|)
 decl_stmt|;

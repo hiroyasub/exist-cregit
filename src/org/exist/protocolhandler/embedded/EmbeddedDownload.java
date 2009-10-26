@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: EmbeddedDownload.java 223 2007-04-21 22:13:05Z dizzzz $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: EmbeddedDownload.java 223 2007-04-21 22:13:05Z dizzzz $  */
 end_comment
 
 begin_package
@@ -245,6 +245,26 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+name|BrokerPool
+name|pool
+decl_stmt|;
+comment|/**      * Set brokerpool for in database resolve of resource.      * @param brokerPool       */
+specifier|public
+name|void
+name|setBrokerPool
+parameter_list|(
+name|BrokerPool
+name|brokerPool
+parameter_list|)
+block|{
+name|this
+operator|.
+name|pool
+operator|=
+name|brokerPool
+expr_stmt|;
+block|}
 comment|/**      *   Write document referred by URL to an (output)stream.      *      * @param xmldbURL Document location in database.      * @param os Stream to which the document is written.      * @throws IOException      */
 specifier|public
 name|void
@@ -303,11 +323,6 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-name|BrokerPool
-name|pool
-init|=
-literal|null
-decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -328,6 +343,13 @@ name|getPath
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|pool
+operator|==
+literal|null
+condition|)
+block|{
 name|pool
 operator|=
 name|BrokerPool
@@ -335,6 +357,7 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|user
