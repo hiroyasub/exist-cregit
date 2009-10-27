@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -1242,18 +1242,6 @@ literal|"' is not available"
 argument_list|)
 throw|;
 block|}
-comment|/** Returns the class that exposes the API for creating, destroying and incrementing counters. 	 * @return Counters 	 */
-specifier|public
-name|Counters
-name|getCounters
-parameter_list|()
-block|{
-return|return
-name|this
-operator|.
-name|counters
-return|;
-block|}
 comment|/** Returns an iterator over the database instances. 	 * @return The iterator 	 */
 specifier|public
 specifier|final
@@ -1602,11 +1590,7 @@ operator|new
 name|HashMap
 argument_list|()
 decl_stmt|;
-specifier|private
-name|Counters
-name|counters
-decl_stmt|;
-comment|/** The configuration object for the database instance      */
+comment|/**      * The configuration object for the database instance      */
 specifier|protected
 name|Configuration
 name|conf
@@ -1908,31 +1892,6 @@ operator|.
 name|transactionsEnabled
 operator|=
 literal|true
-expr_stmt|;
-comment|// Setup counters
-name|String
-name|counterDir
-init|=
-operator|(
-name|String
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|PROPERTY_DATA_DIR
-argument_list|)
-decl_stmt|;
-name|this
-operator|.
-name|counters
-operator|=
-name|Counters
-operator|.
-name|getInstance
-argument_list|(
-name|counterDir
-argument_list|)
 expr_stmt|;
 name|this
 operator|.

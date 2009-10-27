@@ -5,7 +5,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xquery
+operator|.
+name|modules
+operator|.
+name|counters
 package|;
 end_package
 
