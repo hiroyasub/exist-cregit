@@ -99,8 +99,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|DocumentAtExist
 import|;
 end_import
@@ -112,8 +110,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|i
 operator|.
 name|ElementAtExist
 import|;

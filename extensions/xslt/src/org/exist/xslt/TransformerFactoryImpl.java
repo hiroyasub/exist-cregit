@@ -171,8 +171,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|ElementAtExist
 import|;
 end_import

@@ -271,8 +271,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|ElementAtExist
 import|;
 end_import
@@ -285,8 +283,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|NamespaceNodeAtExist
 import|;
 end_import
@@ -298,8 +294,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|i
 operator|.
 name|NodeAtExist
 import|;

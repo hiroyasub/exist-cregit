@@ -777,8 +777,6 @@ throw|throw
 operator|new
 name|StaticXQueryException
 argument_list|(
-name|msg
-argument_list|,
 name|e
 operator|.
 name|getLine
@@ -788,6 +786,8 @@ name|e
 operator|.
 name|getColumn
 argument_list|()
+argument_list|,
+name|msg
 argument_list|)
 throw|;
 block|}

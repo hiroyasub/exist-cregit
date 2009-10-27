@@ -66,6 +66,14 @@ name|PREFIX
 init|=
 literal|"xslt"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|RELEASED_IN_VERSION
+init|=
+literal|"eXist-1.5.0"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -433,6 +441,17 @@ parameter_list|()
 block|{
 return|return
 literal|"XSLT Module"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getReleaseVersion
+parameter_list|()
+block|{
+return|return
+name|RELEASED_IN_VERSION
 return|;
 block|}
 block|}

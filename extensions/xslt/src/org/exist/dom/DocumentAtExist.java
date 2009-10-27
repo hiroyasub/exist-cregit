@@ -55,9 +55,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|interpreter
 operator|.
-name|SecurityManager
+name|ContextAtExist
 import|;
 end_import
 
@@ -84,34 +84,6 @@ operator|.
 name|lock
 operator|.
 name|Lock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|MultiReadReentrantLock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|i
-operator|.
-name|ContextAtExist
 import|;
 end_import
 
