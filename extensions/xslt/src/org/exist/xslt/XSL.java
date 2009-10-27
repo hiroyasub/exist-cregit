@@ -227,7 +227,7 @@ name|xslt
 operator|.
 name|compiler
 operator|.
-name|Element
+name|XSLElement
 import|;
 end_import
 
@@ -315,11 +315,11 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|Element
+name|XSLElement
 name|stylesheet
 init|=
 operator|new
-name|Element
+name|XSLElement
 argument_list|(
 name|source
 argument_list|)

@@ -225,8 +225,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|DocumentAtExist
 import|;
 end_import
@@ -239,8 +237,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|i
-operator|.
 name|ElementAtExist
 import|;
 end_import
@@ -252,8 +248,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|i
 operator|.
 name|NodeAtExist
 import|;
@@ -414,7 +408,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|Element
+name|XSLElement
 implements|implements
 name|ElementAtExist
 implements|,
@@ -431,7 +425,7 @@ name|ElementAtExist
 name|element
 decl_stmt|;
 specifier|public
-name|Element
+name|XSLElement
 parameter_list|(
 name|ElementAtExist
 name|element
@@ -1318,11 +1312,11 @@ name|child
 argument_list|)
 condition|)
 block|{
-name|Element
+name|XSLElement
 name|xslElement
 init|=
 operator|(
-name|Element
+name|XSLElement
 operator|)
 name|child
 decl_stmt|;
@@ -1508,11 +1502,11 @@ name|child
 argument_list|)
 condition|)
 block|{
-name|Element
+name|XSLElement
 name|xslElement
 init|=
 operator|(
-name|Element
+name|XSLElement
 operator|)
 name|child
 decl_stmt|;
@@ -1721,7 +1715,7 @@ block|{
 name|n
 operator|=
 operator|new
-name|Element
+name|XSLElement
 argument_list|(
 operator|(
 name|ElementAtExist
