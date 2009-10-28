@@ -77,6 +77,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|modules
+operator|.
+name|counters
+operator|.
+name|CountersModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -194,6 +210,22 @@ specifier|public
 class|class
 name|CounterTest
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|IMPORT
+init|=
+literal|"import module namespace counter=\""
+operator|+
+name|CountersModule
+operator|.
+name|NAMESPACE_URI
+operator|+
+literal|"\" "
+operator|+
+literal|"at \"java:org.exist.xquery.modules.counters.CountersModule\"; "
+decl_stmt|;
 specifier|private
 name|XPathQueryService
 name|service
@@ -363,7 +395,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"util:create-counter('jasper1')"
+name|IMPORT
+operator|+
+literal|"counter:create('jasper1')"
 decl_stmt|;
 name|result
 operator|=
@@ -398,7 +432,9 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"util:next-value('jasper1')"
+name|IMPORT
+operator|+
+literal|"counter:next-value('jasper1')"
 expr_stmt|;
 name|result
 operator|=
@@ -433,7 +469,9 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"util:destroy-counter('jasper1')"
+name|IMPORT
+operator|+
+literal|"counter:destroy('jasper1')"
 expr_stmt|;
 name|result
 operator|=
@@ -521,7 +559,9 @@ block|{
 name|String
 name|query
 init|=
-literal|"util:create-counter('jasper3',xs:long(1200))"
+name|IMPORT
+operator|+
+literal|"counter:create('jasper3',xs:long(1200))"
 decl_stmt|;
 name|result
 operator|=
@@ -556,7 +596,9 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"util:next-value('jasper3')"
+name|IMPORT
+operator|+
+literal|"counter:next-value('jasper3')"
 expr_stmt|;
 name|result
 operator|=
@@ -591,7 +633,9 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"util:destroy-counter('jasper3')"
+name|IMPORT
+operator|+
+literal|"counter:destroy('jasper3')"
 expr_stmt|;
 name|result
 operator|=
@@ -685,7 +729,9 @@ expr_stmt|;
 name|String
 name|query
 init|=
-literal|"util:create-counter('jasper2')"
+name|IMPORT
+operator|+
+literal|"counter:create('jasper2')"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -701,9 +747,6 @@ name|assertEquals
 argument_list|(
 literal|"0"
 argument_list|,
-operator|(
-name|String
-operator|)
 name|result
 operator|.
 name|getResource
@@ -768,7 +811,9 @@ argument_list|()
 expr_stmt|;
 name|query
 operator|=
-literal|"util:next-value('jasper2')"
+name|IMPORT
+operator|+
+literal|"counter:next-value('jasper2')"
 expr_stmt|;
 name|ResourceSet
 name|valueAfter
@@ -782,7 +827,9 @@ argument_list|)
 decl_stmt|;
 name|query
 operator|=
-literal|"util:destroy-counter('jasper2')"
+name|IMPORT
+operator|+
+literal|"counter:destroy('jasper2')"
 expr_stmt|;
 name|result
 operator|=
@@ -865,7 +912,9 @@ control|)
 block|{
 name|query
 operator|=
-literal|"util:next-value('jasper2')"
+name|IMPORT
+operator|+
+literal|"counter:next-value('jasper2')"
 expr_stmt|;
 name|result
 operator|=
