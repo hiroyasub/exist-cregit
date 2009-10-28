@@ -429,7 +429,12 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"configuration error"
+literal|"configuration error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
