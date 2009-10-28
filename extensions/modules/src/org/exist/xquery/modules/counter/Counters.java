@@ -9,7 +9,7 @@ name|xquery
 operator|.
 name|modules
 operator|.
-name|counters
+name|counter
 package|;
 end_package
 

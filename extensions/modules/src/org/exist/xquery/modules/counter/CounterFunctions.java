@@ -9,7 +9,7 @@ name|xquery
 operator|.
 name|modules
 operator|.
-name|counters
+name|counter
 package|;
 end_package
 
@@ -263,16 +263,16 @@ name|QName
 argument_list|(
 literal|"create"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Creates a unique counter by the name specified"
+literal|"Create a unique counter named $counter-name."
 argument_list|,
 operator|new
 name|SequenceType
@@ -291,7 +291,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The node or a string path pointing to a resource in the database."
+literal|"Name of the counter."
 argument_list|)
 block|}
 argument_list|,
@@ -306,7 +306,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the value of the newly created counter"
+literal|"the value of the newly created counter."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -324,16 +324,16 @@ name|QName
 argument_list|(
 literal|"create"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Creates a unique counter by the name specified and initializes it to 'init-value'."
+literal|"Create a unique counter named $counter-name and initialize it with value $init-value."
 argument_list|,
 operator|new
 name|SequenceType
@@ -352,7 +352,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The node or a string path pointing to a resource in the database."
+literal|"Name of the counter."
 argument_list|)
 block|,
 operator|new
@@ -383,7 +383,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the value of the newly created counter"
+literal|"the value of the newly created counter."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -401,16 +401,16 @@ name|QName
 argument_list|(
 literal|"next-value"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Increments the specified counter and returns its' new value afterwards"
+literal|"Increment the counter $counter-name and return its new value."
 argument_list|,
 operator|new
 name|SequenceType
@@ -429,7 +429,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The node or a string path pointing to a resource in the database."
+literal|"Name of the counter."
 argument_list|)
 block|}
 argument_list|,
@@ -444,7 +444,9 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the new value of the specified counter"
+literal|"the new value of the specified counter,"
+operator|+
+literal|" or -1 if the counter does not exist."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -462,16 +464,16 @@ name|QName
 argument_list|(
 literal|"destroy"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Destroys the specified counter"
+literal|"Destroy the counter named $counter-name."
 argument_list|,
 operator|new
 name|SequenceType
@@ -490,7 +492,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The node or a string path pointing to a resource in the database."
+literal|"Name of the counter."
 argument_list|)
 block|}
 argument_list|,
@@ -505,7 +507,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"Boolean value containing true if removal succeeded. False if removal failed."
+literal|"boolean value true() if removal as successful, otherwise return value false()."
 argument_list|)
 argument_list|)
 decl_stmt|;

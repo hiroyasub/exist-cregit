@@ -13,7 +13,7 @@ name|xquery
 operator|.
 name|modules
 operator|.
-name|counters
+name|counter
 package|;
 end_package
 
@@ -82,7 +82,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|CountersModule
+name|CounterModule
 extends|extends
 name|AbstractInternalModule
 block|{
@@ -92,7 +92,7 @@ specifier|static
 name|String
 name|NAMESPACE_URI
 init|=
-literal|"http://exist-db.org/xquery/counters"
+literal|"http://exist-db.org/xquery/counter"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -200,11 +200,11 @@ name|QName
 argument_list|(
 literal|"exception"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -220,17 +220,17 @@ name|QName
 argument_list|(
 literal|"exception-message"
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|CountersModule
+name|CounterModule
 operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
 specifier|public
-name|CountersModule
+name|CounterModule
 parameter_list|()
 throws|throws
 name|XPathException
