@@ -83,9 +83,9 @@ name|xquery
 operator|.
 name|modules
 operator|.
-name|counters
+name|counter
 operator|.
-name|CountersModule
+name|CounterModule
 import|;
 end_import
 
@@ -218,13 +218,13 @@ name|IMPORT
 init|=
 literal|"import module namespace counter=\""
 operator|+
-name|CountersModule
+name|CounterModule
 operator|.
 name|NAMESPACE_URI
 operator|+
 literal|"\" "
 operator|+
-literal|"at \"java:org.exist.xquery.modules.counters.CountersModule\"; "
+literal|"at \"java:org.exist.xquery.modules.counter.CounterModule\"; "
 decl_stmt|;
 specifier|private
 name|XPathQueryService
