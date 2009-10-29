@@ -183,6 +183,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|DBBroker
 import|;
 end_import
@@ -526,6 +538,23 @@ literal|"collection created."
 argument_list|)
 expr_stmt|;
 block|}
+name|BrokerPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|setProperty
+argument_list|(
+name|TransformerFactoryAllocator
+operator|.
+name|PROPERTY_TRANSFORMER_CLASS
+argument_list|,
+literal|"org.exist.xslt.TransformerFactoryImpl"
+argument_list|)
+expr_stmt|;
 name|loadBench
 argument_list|(
 literal|"test/src/org/exist/xslt/test/bench/v1_0"
@@ -980,7 +1009,8 @@ throws|throws
 name|Exception
 block|{
 block|}
-comment|//	@Test
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testSimpleTransform
@@ -1120,7 +1150,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//	@Test
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testComplexTransform
