@@ -1764,6 +1764,13 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
