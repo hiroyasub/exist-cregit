@@ -549,6 +549,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|namespaces
+operator|==
+literal|null
+operator|||
 operator|!
 name|namespaces
 operator|.
