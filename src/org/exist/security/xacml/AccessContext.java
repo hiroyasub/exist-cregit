@@ -73,6 +73,19 @@ argument_list|(
 literal|"XML:DB"
 argument_list|)
 decl_stmt|;
+comment|/** 	 * This represents when access is made through XSLT 	 */
+specifier|public
+specifier|static
+specifier|final
+name|AccessContext
+name|XSLT
+init|=
+operator|new
+name|AccessContext
+argument_list|(
+literal|"XSLT"
+argument_list|)
+decl_stmt|;
 comment|/** 	 * This represents when access is made through XQJ 	 */
 specifier|public
 specifier|static
