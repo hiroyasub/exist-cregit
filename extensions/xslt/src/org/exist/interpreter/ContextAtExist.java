@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XQueryWatchDog
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -148,6 +160,19 @@ name|getBaseURI
 parameter_list|()
 throws|throws
 name|XPathException
+function_decl|;
+specifier|public
+name|void
+name|setWatchDog
+parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|)
+function_decl|;
+specifier|public
+name|XQueryWatchDog
+name|getWatchDog
+parameter_list|()
 function_decl|;
 comment|//	public TraceListener getTraceListener();
 comment|//	public void getTraceListener(TraceListener listener);

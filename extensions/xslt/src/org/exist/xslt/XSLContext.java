@@ -19,6 +19,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|xacml
@@ -85,6 +97,8 @@ class|class
 name|XSLContext
 extends|extends
 name|XQueryContext
+implements|implements
+name|ContextAtExist
 block|{
 specifier|private
 name|XSLStylesheet
