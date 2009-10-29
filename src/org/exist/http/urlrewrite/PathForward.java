@@ -29,6 +29,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -214,9 +226,26 @@ argument_list|(
 name|servletName
 argument_list|)
 return|;
-else|else
+if|else if
+condition|(
+name|request
+operator|!=
+literal|null
+condition|)
 return|return
 name|request
+operator|.
+name|getRequestDispatcher
+argument_list|(
+name|target
+argument_list|)
+return|;
+else|else
+return|return
+name|filterConfig
+operator|.
+name|getServletContext
+argument_list|()
 operator|.
 name|getRequestDispatcher
 argument_list|(
