@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|CharacterDataImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|NodePath
@@ -174,7 +186,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|TextImpl
+name|CharacterDataImpl
 name|text
 parameter_list|,
 name|NodePath
