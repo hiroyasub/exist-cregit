@@ -2765,6 +2765,12 @@ operator|)
 name|node
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|urw
+operator|!=
+literal|null
+condition|)
 name|modelView
 operator|.
 name|addView
