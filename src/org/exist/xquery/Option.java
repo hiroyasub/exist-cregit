@@ -196,7 +196,7 @@ specifier|static
 name|String
 name|paramPattern
 init|=
-literal|"\\s*([\\w\\.-]+)\\s*=\\s*('[^']*'|\"[^\"]*\"|[^\\s]+)"
+literal|"\\s*([\\w\\.-]+)\\s*=\\s*('[^']*'|\"[^\"]*\"|[^\"\'\\s][^\\s]*)"
 decl_stmt|;
 specifier|private
 specifier|final
