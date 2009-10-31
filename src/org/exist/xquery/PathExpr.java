@@ -1264,6 +1264,11 @@ name|size
 argument_list|()
 operator|>
 literal|1
+operator|&&
+name|getLastExpression
+argument_list|()
+operator|instanceof
+name|Step
 condition|)
 comment|// remove duplicate nodes if this is a path
 comment|// expression with more than one step
