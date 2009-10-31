@@ -2719,6 +2719,12 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|broker
+operator|=
+name|broker
+expr_stmt|;
+name|this
+operator|.
 name|doc
 operator|=
 name|myDoc
