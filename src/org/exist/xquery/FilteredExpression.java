@@ -821,6 +821,11 @@ operator|.
 name|DESCENDANT_SELF_AXIS
 argument_list|)
 expr_stmt|;
+comment|//subsequent predicates operate on the result of the previous one
+name|contextSequence
+operator|=
+literal|null
+expr_stmt|;
 block|}
 return|return
 name|seq
