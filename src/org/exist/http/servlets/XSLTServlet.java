@@ -1658,6 +1658,22 @@ name|base
 operator|=
 name|stylesheet
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Loading stylesheet from "
+operator|+
+name|stylesheet
+argument_list|)
+expr_stmt|;
 name|CachedStylesheet
 name|cached
 init|=
