@@ -201,7 +201,14 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid content found for pragma exist:optimize: "
+literal|"Invalid content found for pragma "
+operator|+
+name|TIMER_PRAGMA
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|contents
 argument_list|)
