@@ -479,6 +479,8 @@ literal|"COMP_DOC_CONSTRUCTOR"
 block|,
 literal|"PRAGMA"
 block|,
+literal|"GTEQ"
+block|,
 literal|"\"xpointer\""
 block|,
 literal|"opening parenthesis '('"
@@ -665,11 +667,9 @@ literal|"\"gt\""
 block|,
 literal|"\"ge\""
 block|,
-literal|"!="
-block|,
 literal|">"
 block|,
-literal|">="
+literal|"!="
 block|,
 literal|"<"
 block|,
