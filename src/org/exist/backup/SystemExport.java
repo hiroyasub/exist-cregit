@@ -2295,7 +2295,7 @@ name|docsCount
 init|=
 name|current
 operator|.
-name|getDocumentCount
+name|getDocumentCountNoLock
 argument_list|()
 decl_stmt|;
 name|int
@@ -2310,7 +2310,7 @@ name|i
 init|=
 name|current
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -2417,7 +2417,7 @@ name|i
 init|=
 name|current
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|()
 init|;
 name|i

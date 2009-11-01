@@ -596,7 +596,7 @@ name|i
 init|=
 name|collection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|()
 init|;
 name|i
