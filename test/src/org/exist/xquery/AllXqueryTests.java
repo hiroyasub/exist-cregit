@@ -144,6 +144,10 @@ block|,
 name|StoredModuleTest
 operator|.
 name|class
+block|,
+name|TransformTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
