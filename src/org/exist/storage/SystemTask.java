@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface to be implemented by tasks used for system  * maintenance. System tasks require the database to be in  * a consistent state. All database operations will be stopped   * until the {@link #execute(DBBroker)} method returned  * or throws an exception. Any exception will be caught and a warning  * written to the log.  *   * A task can be scheduled for execution   * via {@link BrokerPool#triggerSystemTask(SystemTask)}  *   * @author wolf  */
+comment|/**  * Interface to be implemented by tasks used for system  * maintenance. System tasks require the database to be in  * a consistent state. All database operations will be stopped   * until the {@link #execute(DBBroker)} method returned  * or throws an exception. Any exception will be caught and a warning  * written to the log.  *   * A task can be scheduled for execution   * via {@link BrokerPool#triggerSystemTask(SystemTask)}.  *  * IMPORTANT: SystemTask implementations should avoid to acquire  * locks on collections! Doing so may lead to a deadlock situation.  * The system task runs in a privileged mode. Locking a collection is  * not required since no writing transactions will be allowed.  *   * @author wolf  */
 end_comment
 
 begin_interface

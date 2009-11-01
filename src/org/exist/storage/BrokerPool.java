@@ -564,7 +564,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<wolfgang@exist-db.org>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_comment
@@ -1707,28 +1707,6 @@ init|=
 name|System
 operator|.
 name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-comment|/** 	 * The system maintenance tasks of the database instance. 	 */
-comment|//TODO : maybe not the most appropriate container...
-comment|// WM: yes, only used in initialization. Don't need a synchronized collection here
-specifier|private
-name|List
-name|systemTasks
-init|=
-operator|new
-name|ArrayList
-argument_list|()
-decl_stmt|;
-comment|//TODO : remove when SystemTask has a getPeriodicity() method
-comment|//private Vector systemTasksPeriods = new Vector();
-comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
-specifier|private
-name|Stack
-name|waitingSystemTasks
-init|=
-operator|new
-name|Stack
 argument_list|()
 decl_stmt|;
 comment|/** 	 * The cache in which the database instance may store items. 	 */
@@ -4236,11 +4214,6 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-name|processWaitingTasks
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|serviceModeUser
@@ -4479,7 +4452,7 @@ comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and rel
 comment|// WM: the method will always be under control of the BrokerPool. It is guaranteed that no
 comment|// other brokers are active when it is called. That's why we don't need to synchronize here.
 comment|//TODO : make it protected ?
-specifier|private
+specifier|protected
 name|void
 name|sync
 parameter_list|(
@@ -4703,91 +4676,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Executes a system maintenance task for the database instance. The database will be stopped      * during its execution (TODO : how ?).      * @param broker A broker responsible for executing the task       * @param task The task      */
-comment|//TODO : rename as executeSystemTask ?
-comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ?
-comment|// WM: no other brokers will be running when this method is called, so there's no need to synchronize.
-comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done ?
-comment|// WM: get/release may lead to deadlock!
-comment|//TODO : make it protected ?
-specifier|private
-name|void
-name|runSystemTask
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|,
-name|SystemTask
-name|task
-parameter_list|)
-block|{
-comment|//dont run the task if we are shutting down
-if|if
-condition|(
-name|status
-operator|==
-name|SHUTDOWN
-condition|)
-return|return;
-try|try
-block|{
-comment|//Flush everything
-comment|//TOUNDERSTAND (pb) : are we sure that this sync will be executed (see comments above) ?
-comment|// WM: tried to fix it
-name|sync
-argument_list|(
-name|broker
-argument_list|,
-name|Sync
-operator|.
-name|MAJOR_SYNC
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Running system maintenance task: "
-operator|+
-name|task
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|task
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"System maintenance task reported error: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|/** 	 * Schedules a system maintenance task for the database instance. If the database is idle, 	 * the task will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned.         * @param task The task      */
 comment|//TOUNDERSTAND (pb) : synchronized, so... "schedules" or, rather, "executes" ?
 specifier|public
@@ -4798,108 +4686,13 @@ name|SystemTask
 name|task
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-comment|//Are there available brokers ?
-comment|// TOUNDERSTAND (pb) : the trigger is ignored !
-comment|// WM: yes, commented out
-comment|//    		if(inactiveBrokers.size() == 0)
-comment|//    			return;
-comment|//TODO : check task and throw an exception if inaccurate
-comment|//Is the database instance idle ?
-if|if
-condition|(
-name|inactiveBrokers
+name|transactionManager
 operator|.
-name|size
-argument_list|()
-operator|==
-name|brokersCount
-condition|)
-block|{
-comment|//Borrow a broker
-comment|//TODO : this broker is *not* marked as active and may be reused by another process !
-comment|// WM: No other broker will be running at this point
-comment|//TODO : use get() then release the broker ? WM: deadlock risk here!
-name|DBBroker
-name|broker
-init|=
-operator|(
-name|DBBroker
-operator|)
-name|inactiveBrokers
-operator|.
-name|peek
-argument_list|()
-decl_stmt|;
-comment|//Do the job
-name|runSystemTask
-argument_list|(
-name|broker
-argument_list|,
-name|task
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-comment|//Put the task into the queue
-name|waitingSystemTasks
-operator|.
-name|push
+name|triggerSystemTask
 argument_list|(
 name|task
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-comment|/**      * Executes waiting system maintenance tasks for the database instance.      * @param broker A broker responsible for executing the task      */
-comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ?
-comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done ?
-comment|// WM: same as above: no other broker is active while we are calling this
-comment|//TODO : make it protected ?
-specifier|private
-name|void
-name|processWaitingTasks
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-while|while
-condition|(
-name|waitingSystemTasks
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|waitingSystemTasks
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|SystemTask
-name|task
-init|=
-operator|(
-name|SystemTask
-operator|)
-name|waitingSystemTasks
-operator|.
-name|pop
-argument_list|()
-decl_stmt|;
-name|runSystemTask
-argument_list|(
-name|broker
-argument_list|,
-name|task
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/** 	 * Shuts downs the database instance 	 */
 specifier|public
@@ -4929,7 +4722,6 @@ return|;
 block|}
 comment|/** 	 * Shuts downs the database instance 	 * @param killed<code>true</code> when the JVM is (cleanly) exiting 	 */
 specifier|public
-specifier|synchronized
 name|void
 name|shutdown
 parameter_list|(
@@ -4952,6 +4744,35 @@ argument_list|(
 literal|"Database is shutting down ..."
 argument_list|)
 expr_stmt|;
+comment|// wait for currently running system tasks before we shutdown
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|Lock
+name|lock
+init|=
+name|transactionManager
+operator|.
+name|getLock
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|lock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|status
 operator|=
 name|SHUTDOWN
@@ -5016,6 +4837,11 @@ comment|//xQueryPool.something();
 comment|//collectionConfigurationManager.something();
 comment|//collectionCache.something();
 comment|//xmlReaderPool.close();
+if|if
+condition|(
+name|isTransactional
+argument_list|()
+condition|)
 name|transactionManager
 operator|.
 name|getJournal
@@ -5367,6 +5193,15 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|lock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
 comment|// clear instance variables, just to be sure they will be garbage collected
 comment|// the test suite restarts the db a few hundred times
 name|transactionManager
@@ -5405,17 +5240,6 @@ name|scheduler
 operator|=
 literal|null
 expr_stmt|;
-name|systemTasks
-operator|=
-literal|null
-expr_stmt|;
-comment|/* TODO: adam */
-comment|//systemTasksPeriods = null;
-name|waitingSystemTasks
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|xmlReaderPool
 operator|=
 literal|null
@@ -5432,6 +5256,7 @@ name|notificationService
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : move this elsewhere
 specifier|public
