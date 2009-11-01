@@ -1011,18 +1011,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"cannot compare values"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//throw new IllegalArgumentException("cannot compare values");
 comment|//Values that cannot be compared, i.e. the eq operator is not defined for their types, are considered to be distinct
 return|return
