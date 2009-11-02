@@ -741,9 +741,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|inSeq
-operator|.
-name|toNodeSet
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|IndexListener
