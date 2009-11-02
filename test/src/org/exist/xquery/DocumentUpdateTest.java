@@ -380,7 +380,9 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"let $doc := "
+name|imports
+operator|+
+literal|"let $doc := xdb:store('/db', 'test1.xml', "
 operator|+
 literal|"<test> "
 operator|+
@@ -390,9 +392,9 @@ literal|"(: it works with only 1 link :) "
 operator|+
 literal|"<link href=\"features/test\"/> "
 operator|+
-literal|"</test> "
+literal|"</test>) "
 operator|+
-literal|"let $links := $doc/link/@href "
+literal|"let $links := doc($doc)/test/link/@href "
 operator|+
 literal|"return "
 operator|+
