@@ -753,23 +753,6 @@ operator|.
 name|LENGTH_LOCAL_NAME
 decl_stmt|;
 comment|//7
-specifier|private
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|NativeElementIndex
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-decl_stmt|;
 comment|/** The datastore for this node index */
 specifier|protected
 name|BFile
