@@ -242,6 +242,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+name|boolean
+name|doOptimize
+init|=
+name|optimize
+decl_stmt|;
 if|if
 condition|(
 name|contextSequence
@@ -254,7 +259,7 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
-name|optimize
+name|doOptimize
 operator|=
 literal|false
 expr_stmt|;
@@ -275,7 +280,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|optimize
+name|doOptimize
 condition|)
 block|{
 name|NodeSet
