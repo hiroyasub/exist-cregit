@@ -59,11 +59,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|tools
+name|commons
+operator|.
+name|compress
+operator|.
+name|archivers
 operator|.
 name|tar
 operator|.
-name|TarEntry
+name|TarArchiveEntry
 import|;
 end_import
 
@@ -73,11 +77,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|tools
+name|commons
+operator|.
+name|compress
+operator|.
+name|archivers
 operator|.
 name|tar
 operator|.
-name|TarOutputStream
+name|TarArchiveOutputStream
 import|;
 end_import
 
@@ -297,12 +305,12 @@ name|IOException
 block|{
 operator|(
 operator|(
-name|TarOutputStream
+name|TarArchiveOutputStream
 operator|)
 name|os
 operator|)
 operator|.
-name|closeEntry
+name|closeArchiveEntry
 argument_list|()
 expr_stmt|;
 block|}
@@ -318,7 +326,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TarEntry
+name|TarArchiveEntry
 argument_list|(
 name|name
 argument_list|)
@@ -341,15 +349,15 @@ name|IOException
 block|{
 operator|(
 operator|(
-name|TarOutputStream
+name|TarArchiveOutputStream
 operator|)
 name|os
 operator|)
 operator|.
-name|putNextEntry
+name|putArchiveEntry
 argument_list|(
 operator|(
-name|TarEntry
+name|TarArchiveEntry
 operator|)
 name|entry
 argument_list|)
@@ -367,7 +375,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|TarOutputStream
+name|TarArchiveOutputStream
 argument_list|(
 name|baos
 argument_list|)

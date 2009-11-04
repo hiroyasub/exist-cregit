@@ -43,11 +43,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|tools
+name|commons
+operator|.
+name|compress
+operator|.
+name|archivers
 operator|.
 name|tar
 operator|.
-name|TarEntry
+name|TarArchiveEntry
 import|;
 end_import
 
@@ -57,11 +61,15 @@ name|org
 operator|.
 name|apache
 operator|.
-name|tools
+name|commons
+operator|.
+name|compress
+operator|.
+name|archivers
 operator|.
 name|tar
 operator|.
-name|TarInputStream
+name|TarArchiveInputStream
 import|;
 end_import
 
@@ -282,7 +290,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A user defined function for filtering resources from the tar file. The function takes 3 parameters e.g. user:untar-entry-filter($path as xs:anyURI, $data-type as xs:string, $param as item()?) as xs:boolean. $type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files.If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped."
+literal|"A user defined function for filtering resources from the tar file. The function takes 3 parameters e.g. user:untar-entry-filter($path as xs:anyURI, $data-type as xs:string, $param as item()*) as xs:boolean. $type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files.If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped."
 argument_list|)
 block|,
 operator|new
@@ -314,7 +322,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A user defined function for storing an extracted resource from the tar file. The function takes 4 parameters e.g. user:untar-entry-data($path as xs:anyURI, $data-type as xs:string, $data as item()?, $param as item()?). $type may be 'resource' or 'folder'. $param is a sequence with any additional parameters"
+literal|"A user defined function for storing an extracted resource from the tar file. The function takes 4 parameters e.g. user:untar-entry-data($path as xs:anyURI, $data-type as xs:string, $data as item()?, $param as item()*). $type may be 'resource' or 'folder'. $param is a sequence with any additional parameters"
 argument_list|)
 block|,
 operator|new
@@ -378,7 +386,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|TarInputStream
+name|TarArchiveInputStream
 name|tis
 init|=
 literal|null
@@ -388,7 +396,7 @@ block|{
 name|tis
 operator|=
 operator|new
-name|TarInputStream
+name|TarArchiveInputStream
 argument_list|(
 operator|new
 name|ByteArrayInputStream
@@ -400,7 +408,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|TarEntry
+name|TarArchiveEntry
 name|entry
 init|=
 literal|null
@@ -419,7 +427,7 @@ name|entry
 operator|=
 name|tis
 operator|.
-name|getNextEntry
+name|getNextTarEntry
 argument_list|()
 operator|)
 operator|!=
