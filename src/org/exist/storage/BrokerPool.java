@@ -4696,7 +4696,6 @@ expr_stmt|;
 block|}
 comment|/** 	 * Shuts downs the database instance 	 */
 specifier|public
-specifier|synchronized
 name|void
 name|shutdown
 parameter_list|()
@@ -4744,7 +4743,10 @@ argument_list|(
 literal|"Database is shutting down ..."
 argument_list|)
 expr_stmt|;
-comment|// wait for currently running system tasks before we shutdown
+name|status
+operator|=
+name|SHUTDOWN
+expr_stmt|;
 name|java
 operator|.
 name|util
@@ -4763,6 +4765,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// wait for currently running system tasks before we shutdown
+comment|// they will have a lock on the transactionManager
 name|lock
 operator|.
 name|lock
@@ -4773,9 +4777,12 @@ init|(
 name|this
 init|)
 block|{
-name|status
-operator|=
-name|SHUTDOWN
+comment|// release transaction log to allow remaining brokers to complete
+comment|// their job
+name|lock
+operator|.
+name|unlock
+argument_list|()
 expr_stmt|;
 name|notificationService
 operator|.
@@ -5197,11 +5204,6 @@ block|}
 block|}
 finally|finally
 block|{
-name|lock
-operator|.
-name|unlock
-argument_list|()
-expr_stmt|;
 comment|// clear instance variables, just to be sure they will be garbage collected
 comment|// the test suite restarts the db a few hundred times
 name|transactionManager
