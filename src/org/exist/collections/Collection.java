@@ -909,6 +909,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|volatile
 name|boolean
 name|collectionConfEnabled
 init|=
@@ -7717,10 +7718,6 @@ name|configuration
 init|=
 literal|null
 decl_stmt|;
-name|collectionConfEnabled
-operator|=
-literal|false
-expr_stmt|;
 try|try
 block|{
 comment|//TODO: AR: if a Trigger throws CollectionConfigurationException from its configure() method, is the rest of the collection configurartion (indexes etc.) ignored even though they might be fine?
@@ -7746,6 +7743,10 @@ name|CollectionConfigurationException
 name|e
 parameter_list|)
 block|{
+name|collectionConfEnabled
+operator|=
+literal|false
+expr_stmt|;
 name|LOG
 operator|.
 name|warn
