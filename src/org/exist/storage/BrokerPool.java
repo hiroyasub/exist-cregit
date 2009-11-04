@@ -726,6 +726,14 @@ name|SHUTDOWN_DELAY_ATTRIBUTE
 init|=
 literal|"wait-before-shutdown"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|NODES_BUFFER_ATTRIBUTE
+init|=
+literal|"nodesBuffer"
+decl_stmt|;
 comment|//Various configuration property keys (set by the configuration manager)
 specifier|public
 specifier|static
@@ -816,6 +824,14 @@ name|String
 name|PROPERTY_SYSTEM_TASK_CONFIG
 init|=
 literal|"db-connection.system-task-config"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_NODES_BUFFER
+init|=
+literal|"db-connection.nodes-buffer"
 decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
@@ -2613,6 +2629,21 @@ operator|.
 name|getRuntime
 argument_list|()
 decl_stmt|;
+name|long
+name|maxMem
+init|=
+name|rt
+operator|.
+name|maxMemory
+argument_list|()
+decl_stmt|;
+name|long
+name|minFree
+init|=
+name|maxMem
+operator|/
+literal|5
+decl_stmt|;
 name|reservedMem
 operator|=
 name|cacheManager
@@ -2625,14 +2656,24 @@ operator|.
 name|getMaxTotal
 argument_list|()
 operator|+
-operator|(
-name|rt
+name|minFree
+expr_stmt|;
+name|LOG
 operator|.
-name|maxMemory
-argument_list|()
-operator|/
-literal|5
-operator|)
+name|debug
+argument_list|(
+literal|"Reserved memory: "
+operator|+
+name|reservedMem
+operator|+
+literal|"; max: "
+operator|+
+name|maxMem
+operator|+
+literal|"; min: "
+operator|+
+name|minFree
+argument_list|)
 expr_stmt|;
 name|notificationService
 operator|=
