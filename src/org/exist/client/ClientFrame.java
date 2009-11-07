@@ -3630,78 +3630,16 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
-name|item
-operator|=
-operator|new
-name|JMenuItem
-argument_list|(
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.59"
-argument_list|)
-argument_list|,
-name|KeyEvent
-operator|.
-name|VK_I
-argument_list|)
-expr_stmt|;
-comment|//$NON-NLS-1$
-name|item
-operator|.
-name|setAccelerator
-argument_list|(
-name|KeyStroke
-operator|.
-name|getKeyStroke
-argument_list|(
-name|KeyEvent
-operator|.
-name|VK_I
-argument_list|,
-name|Toolkit
-operator|.
-name|getDefaultToolkit
-argument_list|()
-operator|.
-name|getMenuShortcutKeyMask
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|item
-operator|.
-name|addActionListener
-argument_list|(
-operator|new
-name|ActionListener
-argument_list|()
-block|{
-specifier|public
-name|void
-name|actionPerformed
-parameter_list|(
-name|ActionEvent
-name|e
-parameter_list|)
-block|{
-name|editIndexesAction
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-argument_list|)
-expr_stmt|;
-name|toolsMenu
-operator|.
-name|add
-argument_list|(
-name|item
-argument_list|)
-expr_stmt|;
+comment|// Disable "Edit Indexes" menu item.
+comment|//        item = new JMenuItem(Messages.getString("ClientFrame.59"), KeyEvent.VK_I); //$NON-NLS-1$
+comment|//        item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,
+comment|//        		Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
+comment|//        item.addActionListener(new ActionListener() {
+comment|//            public void actionPerformed(ActionEvent e) {
+comment|//                editIndexesAction(e);
+comment|//            }
+comment|//        });
+comment|//        toolsMenu.add(item);
 name|item
 operator|=
 operator|new
