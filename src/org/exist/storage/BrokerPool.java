@@ -2607,7 +2607,7 @@ name|this
 argument_list|,
 name|bufferSize
 argument_list|,
-literal|0.001
+literal|0.0001
 argument_list|)
 expr_stmt|;
 name|collectionCacheMgr
@@ -2615,7 +2615,7 @@ operator|=
 operator|new
 name|CollectionCacheManager
 argument_list|(
-name|conf
+name|this
 argument_list|,
 name|collectionCache
 argument_list|)
