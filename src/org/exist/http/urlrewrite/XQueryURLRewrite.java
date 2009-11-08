@@ -830,7 +830,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * XQueryURLrewrite is configured in web.xml as follows:  *<pre>  *&lt;filter>  *&lt;filter-name>XQueryURLRewrite&lt;/filter-name>  *&lt;filter-class>org.exist.http.urlrewrite.XQueryURLRewrite&lt;/filter-class>  *&lt;init-param>  *&lt;param-name>base&lt;/param-name>  *&lt;param-value>.&lt;/param-value>  *&lt;!--param-value>xmldb:exist:///db&lt;/param-value-->  *&lt;/init-param>  *&lt;!--init-param>  *&lt;param-name>xquery&lt;/param-name>  *&lt;param-value>controller.xql&lt;/param-value>  *&lt;/init-param-->  *&lt;/filter>  *</pre>  *  * Parameter "xquery" directly points to the controller XQuery which should be used for  *<b>all</b> requests. The query may reside on the file system or can be stored in the  * database. If it is stored in the db, the parameter value for "xquery" should be a valid  * XML:DB URI, containing the complete path to the resource in the db.  *  * Alternatively, XQueryURLRewrite can try to search for a controller  * matching the current request path. As above, it can either search the database collection  * hierarchy or the file system. The starting point for the search is determined by parameter  * "base".  *  * If neither "xquery" nor "base" are present, XQueryURLRewrite sets base to point to the current  * webapp root directory.  */
+comment|/**  * A filter to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * Please read the<a href="http://exist-db.org/urlrewrite.html">documentation</a> for further information.   */
 end_comment
 
 begin_class
@@ -941,11 +941,11 @@ name|ModelAndView
 argument_list|>
 argument_list|()
 decl_stmt|;
-specifier|private
+specifier|protected
 name|User
 name|user
 decl_stmt|;
-specifier|private
+specifier|protected
 name|BrokerPool
 name|pool
 decl_stmt|;
@@ -1001,6 +1001,9 @@ operator|.
 name|config
 operator|=
 name|filterConfig
+expr_stmt|;
+name|configure
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -2860,8 +2863,6 @@ name|void
 name|configure
 parameter_list|()
 throws|throws
-name|EXistException
-throws|,
 name|ServletException
 block|{
 if|if
@@ -2911,6 +2912,8 @@ name|password
 operator|=
 name|DEFAULT_PASS
 expr_stmt|;
+try|try
+block|{
 name|pool
 operator|=
 name|BrokerPool
@@ -2957,6 +2960,28 @@ operator|new
 name|ServletException
 argument_list|(
 literal|"Invalid password specified for XQueryURLRewrite user"
+argument_list|)
+throw|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+literal|"Could not intialize db: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -4489,6 +4514,18 @@ argument_list|(
 literal|"exist:root"
 argument_list|,
 name|basePath
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+literal|"exist:context"
+argument_list|,
+name|request
+operator|.
+name|getContextPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String
