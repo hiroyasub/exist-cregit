@@ -896,6 +896,12 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
 name|parse
 argument_list|(
 name|doc
@@ -1010,6 +1016,14 @@ argument_list|,
 name|controllerConfig
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|configFile
+operator|.
+name|canRead
+argument_list|()
+condition|)
+block|{
 name|Document
 name|doc
 init|=
@@ -1023,6 +1037,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
