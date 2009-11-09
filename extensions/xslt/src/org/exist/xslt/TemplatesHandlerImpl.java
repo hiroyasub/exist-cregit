@@ -141,15 +141,10 @@ literal|null
 decl_stmt|;
 specifier|protected
 name|TemplatesHandlerImpl
-parameter_list|(
-name|XSLContext
-name|context
-parameter_list|)
+parameter_list|()
 block|{
 name|super
-argument_list|(
-name|context
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.transform.sax.TemplatesHandler#getSystemId() 	 */
@@ -229,7 +224,7 @@ name|getDetailMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO: remove after debug
+comment|//TODO: remove
 block|}
 block|}
 return|return

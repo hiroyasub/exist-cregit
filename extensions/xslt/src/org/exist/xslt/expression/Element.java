@@ -21,6 +21,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|ElementConstructor
@@ -48,6 +60,18 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -245,6 +269,9 @@ specifier|public
 name|void
 name|prepareAttribute
 parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|,
 name|Attr
 name|attr
 parameter_list|)
@@ -283,6 +310,9 @@ argument_list|(
 operator|new
 name|LiteralValue
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|,
 operator|new

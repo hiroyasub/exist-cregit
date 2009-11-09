@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -438,22 +450,10 @@ operator|=
 name|element
 expr_stmt|;
 block|}
-specifier|protected
-name|XQueryContext
-name|getContext
-parameter_list|()
-block|{
-return|return
-operator|(
-name|XQueryContext
-operator|)
-name|getDocument
-argument_list|()
-operator|.
-name|getContext
-argument_list|()
-return|;
-block|}
+comment|//	protected XQueryContext getContext() {
+comment|//		return (XQueryContext) getDocument().getContext();
+comment|//	}
+comment|//
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -462,7 +462,10 @@ argument_list|)
 specifier|protected
 name|XSLPathExpr
 name|getExpressionInstance
-parameter_list|()
+parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|)
 throws|throws
 name|XPathException
 block|{
@@ -532,8 +535,7 @@ name|constructor
 operator|.
 name|newInstance
 argument_list|(
-name|getContext
-argument_list|()
+name|context
 argument_list|)
 expr_stmt|;
 return|return
@@ -640,7 +642,10 @@ block|}
 specifier|public
 name|Expression
 name|compile
-parameter_list|()
+parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|)
 throws|throws
 name|XPathException
 block|{
@@ -672,8 +677,7 @@ argument_list|(
 operator|(
 name|XSLContext
 operator|)
-name|getContext
-argument_list|()
+name|context
 argument_list|,
 literal|true
 argument_list|)
@@ -683,6 +687,8 @@ name|constructer
 init|=
 name|getNodeConstructor
 argument_list|(
+name|context
+argument_list|,
 name|this
 argument_list|,
 name|expr
@@ -704,6 +710,8 @@ argument_list|)
 expr_stmt|;
 name|compileNode
 argument_list|(
+name|context
+argument_list|,
 name|expr
 argument_list|,
 name|this
@@ -718,15 +726,21 @@ block|}
 else|else
 block|{
 name|preprocess
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|exec
 operator|=
 name|getExpressionInstance
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|compileNode
 argument_list|(
+name|context
+argument_list|,
 operator|(
 name|PathExpr
 operator|)
@@ -750,6 +764,9 @@ specifier|private
 name|NodeConstructor
 name|getNodeConstructor
 parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|,
 name|NodeAtExist
 name|node
 parameter_list|,
@@ -782,8 +799,10 @@ init|=
 operator|new
 name|ElementConstructor
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|,
 name|node
 operator|.
@@ -804,8 +823,10 @@ init|=
 operator|new
 name|PathExpr
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|)
 decl_stmt|;
 name|elementConstructer
@@ -925,8 +946,10 @@ init|=
 operator|new
 name|AttributeConstructor
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|,
 name|attr
 operator|.
@@ -981,8 +1004,10 @@ init|=
 operator|new
 name|PathExpr
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|)
 decl_stmt|;
 name|org
@@ -997,8 +1022,7 @@ name|Pattern
 operator|.
 name|parse
 argument_list|(
-name|getContext
-argument_list|()
+name|context
 argument_list|,
 name|value
 argument_list|,
@@ -1033,6 +1057,8 @@ expr_stmt|;
 block|}
 name|compileNode
 argument_list|(
+name|context
+argument_list|,
 name|content_sub
 argument_list|,
 name|node
@@ -1056,8 +1082,10 @@ operator|=
 operator|new
 name|CommentConstructor
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|,
 name|node
 operator|.
@@ -1110,8 +1138,10 @@ operator|=
 operator|new
 name|TextConstructor
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|,
 name|node
 operator|.
@@ -1137,8 +1167,10 @@ operator|=
 operator|new
 name|CDATAConstructor
 argument_list|(
-name|getContext
-argument_list|()
+operator|(
+name|XQueryContext
+operator|)
+name|context
 argument_list|,
 name|node
 operator|.
@@ -1179,6 +1211,9 @@ specifier|public
 name|void
 name|compileNode
 parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|,
 name|PathExpr
 name|content
 parameter_list|,
@@ -1229,8 +1264,7 @@ argument_list|()
 control|)
 block|{
 comment|//getContext().declareInScopeNamespace(name, namespaceMap.get(name));
-name|getContext
-argument_list|()
+name|context
 operator|.
 name|declareNamespace
 argument_list|(
@@ -1327,7 +1361,9 @@ argument_list|(
 name|xslElement
 operator|.
 name|compile
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1337,6 +1373,8 @@ name|constructer
 operator|=
 name|getNodeConstructor
 argument_list|(
+name|context
+argument_list|,
 name|child
 argument_list|,
 name|content
@@ -1359,6 +1397,8 @@ argument_list|)
 expr_stmt|;
 name|compileNode
 argument_list|(
+name|context
+argument_list|,
 name|content
 argument_list|,
 name|child
@@ -1370,7 +1410,10 @@ block|}
 specifier|protected
 name|void
 name|prepareAttributes
-parameter_list|()
+parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|)
 throws|throws
 name|XPathException
 block|{
@@ -1378,7 +1421,9 @@ name|XSLExpression
 name|exec
 init|=
 name|getExpressionInstance
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 decl_stmt|;
 name|NamedNodeMap
 name|attrs
@@ -1407,6 +1452,8 @@ name|exec
 operator|.
 name|prepareAttribute
 argument_list|(
+literal|null
+argument_list|,
 operator|(
 name|Attr
 operator|)
@@ -1422,16 +1469,23 @@ block|}
 specifier|protected
 name|void
 name|preprocess
-parameter_list|()
+parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|)
 throws|throws
 name|XPathException
 block|{
 comment|//		XSLPathExpr exec = getExpressionInstance();
 name|prepareAttributes
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 name|preprocessNode
 argument_list|(
+name|context
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
@@ -1440,6 +1494,9 @@ specifier|protected
 name|void
 name|preprocessNode
 parameter_list|(
+name|ContextAtExist
+name|context
+parameter_list|,
 name|Node
 name|node
 parameter_list|)
@@ -1513,13 +1570,17 @@ decl_stmt|;
 name|xslElement
 operator|.
 name|preprocess
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
 name|preprocessNode
 argument_list|(
+name|context
+argument_list|,
 name|child
 argument_list|)
 expr_stmt|;
@@ -2759,26 +2820,12 @@ name|o
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#matchChildren(org.exist.xquery.NodeTest) 	 */
-specifier|public
-name|Boolean
-name|matchChildren
-parameter_list|(
-name|NodeTest
-name|test
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|element
-operator|.
-name|matchChildren
-argument_list|(
-name|test
-argument_list|)
-return|;
-block|}
+comment|//	/* (non-Javadoc)
+comment|//	 * @see org.exist.dom.i.NodeAtExist#matchChildren(org.exist.xquery.NodeTest)
+comment|//	 */
+comment|//	public Boolean matchChildren(NodeTest test) throws XPathException {
+comment|//		return element.matchChildren(test);
+comment|//	}
 specifier|public
 name|String
 name|toString

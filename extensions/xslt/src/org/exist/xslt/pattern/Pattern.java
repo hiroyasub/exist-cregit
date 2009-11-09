@@ -63,6 +63,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|source
 operator|.
 name|Source
@@ -126,18 +138,6 @@ operator|.
 name|xquery
 operator|.
 name|LocationStep
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Optimizer
 import|;
 end_import
 
@@ -247,20 +247,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xslt
-operator|.
-name|functions
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|antlr
 operator|.
 name|RecognitionException
@@ -342,7 +328,7 @@ specifier|static
 name|void
 name|parse
 parameter_list|(
-name|XQueryContext
+name|ContextAtExist
 name|context
 parameter_list|,
 name|String
@@ -377,6 +363,9 @@ argument_list|(
 operator|new
 name|LocationStep
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|,
 name|Constants
@@ -408,6 +397,9 @@ argument_list|(
 operator|new
 name|LocationStep
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|,
 name|Constants
@@ -467,6 +459,9 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|,
 name|reader
@@ -487,6 +482,9 @@ init|=
 operator|new
 name|XQueryTreeParser
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|)
 decl_stmt|;
@@ -563,6 +561,9 @@ init|=
 operator|new
 name|PathExpr
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|)
 decl_stmt|;
