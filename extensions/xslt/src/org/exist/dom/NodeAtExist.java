@@ -103,16 +103,7 @@ name|NodeId
 name|getNodeId
 parameter_list|()
 function_decl|;
-specifier|public
-name|Boolean
-name|matchChildren
-parameter_list|(
-name|NodeTest
-name|test
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
+comment|//	public Boolean matchChildren(NodeTest test) throws XPathException;
 block|}
 end_interface
 

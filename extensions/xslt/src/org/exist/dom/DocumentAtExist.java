@@ -100,19 +100,8 @@ name|Document
 extends|,
 name|Comparable
 block|{
-specifier|public
-name|void
-name|setContext
-parameter_list|(
-name|ContextAtExist
-name|context
-parameter_list|)
-function_decl|;
-specifier|public
-name|ContextAtExist
-name|getContext
-parameter_list|()
-function_decl|;
+comment|//	public void setContext(ContextAtExist context);
+comment|//	public ContextAtExist getContext();
 specifier|public
 name|int
 name|getFirstChildFor
@@ -131,6 +120,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 function_decl|;
+comment|//???
 specifier|public
 name|int
 name|getNextNodeNumber
@@ -141,36 +131,18 @@ parameter_list|)
 throws|throws
 name|DOMException
 function_decl|;
+comment|//memory
 specifier|public
 name|boolean
-name|isLockedForWrite
+name|hasReferenceNodes
 parameter_list|()
 function_decl|;
-comment|//synchronized
-specifier|public
-name|Lock
-name|getUpdateLock
-parameter_list|()
-function_decl|;
-comment|//final synchronized
-specifier|public
-name|void
-name|setUserLock
-parameter_list|(
-name|User
-name|user
-parameter_list|)
-function_decl|;
-specifier|public
-name|User
-name|getUserLock
-parameter_list|()
-function_decl|;
-specifier|public
-name|Collection
-name|getCollection
-parameter_list|()
-function_decl|;
+comment|//    public boolean isLockedForWrite(); //synchronized
+comment|//    public Lock getUpdateLock(); //final synchronized
+comment|//
+comment|//	public void setUserLock(User user);
+comment|//	public User getUserLock();
+comment|//	public Collection getCollection();
 block|}
 end_interface
 
