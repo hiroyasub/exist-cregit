@@ -873,11 +873,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"ERROR: "
 operator|+
@@ -1021,13 +1019,13 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"option -t requires a numeric argument"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1101,7 +1099,14 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"\nServer launched ..."
+literal|""
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Server launched ..."
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -3676,11 +3681,9 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"An exception occurred while launching the server: "
 operator|+
@@ -3688,12 +3691,9 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
-expr_stmt|;
+argument_list|,
 name|e
-operator|.
-name|printStackTrace
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}
