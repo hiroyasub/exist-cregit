@@ -1035,11 +1035,9 @@ block|}
 break|break;
 block|}
 block|}
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Loading configuration ..."
 argument_list|)
@@ -1099,29 +1097,23 @@ argument_list|,
 name|props
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"\nServer launched ..."
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Installed services:"
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"-----------------------------------------------"
 argument_list|)
@@ -1245,11 +1237,9 @@ argument_list|(
 literal|"port"
 argument_list|)
 decl_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 name|name
 operator|+
@@ -2399,11 +2389,9 @@ name|void
 name|printHelp
 parameter_list|()
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Usage: java "
 operator|+
@@ -2417,11 +2405,9 @@ operator|+
 literal|" [options]"
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 name|CLUtil
 operator|.
@@ -2441,29 +2427,23 @@ name|void
 name|printNotice
 parameter_list|()
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
-literal|"eXist version 1.3, Copyright (C) 2001-2008 The eXist Project"
+literal|"eXist version 1.4, Copyright (C) 2001-2009 The eXist Project"
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"eXist comes with ABSOLUTELY NO WARRANTY."
 argument_list|)
 expr_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"This is free software, and you are welcome to "
 operator|+
@@ -2565,11 +2545,9 @@ argument_list|(
 literal|"Server configuration not found!"
 argument_list|)
 throw|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Reading server configuration from exist.jar"
 argument_list|)
@@ -2577,11 +2555,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"Reading server configuration from: "
 operator|+
@@ -3622,11 +3598,9 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"killing threads ..."
 argument_list|)
