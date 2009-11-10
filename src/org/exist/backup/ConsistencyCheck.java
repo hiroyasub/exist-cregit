@@ -153,6 +153,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|management
+operator|.
+name|Agent
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|management
+operator|.
+name|AgentFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -355,6 +379,13 @@ name|Stack
 argument_list|()
 decl_stmt|;
 specifier|private
+name|int
+name|documentCount
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|private
 specifier|static
 class|class
 name|ElementNode
@@ -437,7 +468,7 @@ operator|=
 name|directAccess
 expr_stmt|;
 block|}
-comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and      * {@link #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *       * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or      *  an empty list if no errors were found      */
+comment|/**      * Combines      * {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)}      * and      * {@link #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *       * @param callback      *            the callback object to report to      * @return a list of {@link ErrorReport} objects or an empty list if no      *         errors were found      */
 specifier|public
 name|List
 name|checkAll
@@ -465,7 +496,7 @@ return|return
 name|errors
 return|;
 block|}
-comment|/**      * Run some tests on the collection hierarchy, starting at      * the root collection /db.      *      * @param callback callback object      * @return a list of {@link ErrorReport} instances describing the errors found      */
+comment|/**      * Run some tests on the collection hierarchy, starting at the root      * collection /db.      *       * @param callback      *            callback object      * @return a list of {@link ErrorReport} instances describing the errors      *         found      */
 specifier|public
 name|List
 name|checkCollectionTree
@@ -762,6 +793,14 @@ name|int
 name|getDocumentCount
 parameter_list|()
 block|{
+if|if
+condition|(
+name|documentCount
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
 name|User
 operator|.
 name|enablePasswordChecks
@@ -793,11 +832,12 @@ argument_list|,
 name|directAccess
 argument_list|)
 expr_stmt|;
-return|return
+name|documentCount
+operator|=
 name|cb
 operator|.
 name|docCount
-return|;
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -810,7 +850,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Run some tests on all documents stored in the database. The method      * checks if a document is readable and if its DOM representation is      * consistent.      *       * @param progress progress callback      * @return a list of {@link ErrorReport} instances describing the errors found      */
+return|return
+name|documentCount
+return|;
+block|}
+comment|/**      * Run some tests on all documents stored in the database. The method checks      * if a document is readable and if its DOM representation is consistent.      *       * @param progress      *            progress callback      * @return a list of {@link ErrorReport} instances describing the errors      *         found      */
 specifier|public
 name|List
 name|checkDocuments
@@ -837,7 +881,7 @@ return|return
 name|errors
 return|;
 block|}
-comment|/**      * Run some tests on all documents stored in the database. The method      * checks if a document is readable and if its DOM representation is      * consistent.      *      * @param progress progress callback      * @param errorList error reports will be added to this list, using instances      *  of class {@link ErrorReport}.      */
+comment|/**      * Run some tests on all documents stored in the database. The method checks      * if a document is readable and if its DOM representation is consistent.      *       * @param progress      *            progress callback      * @param errorList      *            error reports will be added to this list, using instances of      *            class {@link ErrorReport}.      */
 specifier|public
 name|void
 name|checkDocuments
@@ -892,7 +936,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Check the persistent DOM of a document. The method traverses the entire node      * tree and checks it for consistency, including node relationships, child and      * attribute counts etc.      *      * @param doc the document to check      * @return null if the document is consistent, an error report otherwise.      */
+comment|/**      * Check the persistent DOM of a document. The method traverses the entire      * node tree and checks it for consistency, including node relationships,      * child and attribute counts etc.      *       * @param doc      *            the document to check      * @return null if the document is consistent, an error report otherwise.      */
 specifier|public
 name|ErrorReport
 name|checkXMLTree
@@ -1268,8 +1312,10 @@ operator|<=
 name|defaultIndexDepth
 condition|)
 block|{
-comment|// check dom.dbx btree, which maps the node id to the node's storage address
-comment|// look up the node id and check if the returned storage address is correct
+comment|// check dom.dbx btree, which maps the node
+comment|// id to the node's storage address
+comment|// look up the node id and check if the
+comment|// returned storage address is correct
 name|NativeBroker
 operator|.
 name|NodeRef
@@ -1471,7 +1517,7 @@ name|getAttributeCount
 argument_list|()
 expr_stmt|;
 break|break;
-default|default :
+default|default:
 if|if
 condition|(
 name|attribsAllowed
@@ -1661,6 +1707,22 @@ decl_stmt|;
 specifier|private
 name|boolean
 name|checkDocs
+decl_stmt|;
+specifier|private
+name|int
+name|lastPercentage
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|private
+name|Agent
+name|jmxAgent
+init|=
+name|AgentFactory
+operator|.
+name|getInstance
+argument_list|()
 decl_stmt|;
 specifier|private
 name|DocumentCallback
@@ -1853,8 +1915,63 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+argument_list|,
+name|docCount
+argument_list|,
+name|getDocumentCount
+argument_list|()
 argument_list|)
 expr_stmt|;
+name|int
+name|percentage
+init|=
+literal|100
+operator|*
+operator|(
+name|docCount
+operator|+
+literal|1
+operator|)
+operator|/
+operator|(
+name|getDocumentCount
+argument_list|()
+operator|+
+literal|1
+operator|)
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|jmxAgent
+operator|!=
+literal|null
+operator|)
+operator|&&
+operator|(
+name|percentage
+operator|!=
+name|lastPercentage
+operator|)
+condition|)
+block|{
+name|lastPercentage
+operator|=
+name|percentage
+expr_stmt|;
+name|jmxAgent
+operator|.
+name|updateStatus
+argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|percentage
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|type
@@ -2033,7 +2150,13 @@ name|void
 name|startDocument
 parameter_list|(
 name|String
-name|path
+name|name
+parameter_list|,
+name|int
+name|current
+parameter_list|,
+name|int
+name|count
 parameter_list|)
 function_decl|;
 specifier|public

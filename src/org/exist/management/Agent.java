@@ -37,18 +37,8 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
-comment|/**  * Interface to allow the JMX classes to be plugged in on systems which  * support it. A dummy implementation will be used if JMX is not available.  */
+comment|/**  * Interface to allow the JMX classes to be plugged in on systems which support  * it. A dummy implementation will be used if JMX is not available.  */
 end_comment
 
 begin_interface
@@ -86,16 +76,23 @@ throws|throws
 name|DatabaseConfigurationException
 function_decl|;
 name|void
-name|updateErrors
+name|changeStatus
 parameter_list|(
 name|BrokerPool
 name|instance
 parameter_list|,
-name|List
-name|errorList
+name|TaskStatus
+name|actualStatus
+parameter_list|)
+function_decl|;
+name|void
+name|updateStatus
+parameter_list|(
+name|BrokerPool
+name|instance
 parameter_list|,
-name|long
-name|startTime
+name|int
+name|percentage
 parameter_list|)
 function_decl|;
 block|}

@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|BinaryDocument
+name|*
 import|;
 end_import
 
@@ -65,9 +65,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|management
 operator|.
-name|DefaultDocumentSet
+name|Agent
 import|;
 end_import
 
@@ -77,9 +77,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|management
 operator|.
-name|DocumentImpl
+name|AgentFactory
 import|;
 end_import
 
@@ -89,57 +89,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|security
 operator|.
-name|DocumentMetadata
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|MutableDocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
+name|User
 import|;
 end_import
 
@@ -389,7 +341,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|NodeList
+name|Node
 import|;
 end_import
 
@@ -401,19 +353,7 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
+name|NodeList
 import|;
 end_import
 
@@ -426,6 +366,18 @@ operator|.
 name|sax
 operator|.
 name|Attributes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
 import|;
 end_import
 
@@ -453,7 +405,7 @@ name|sax
 operator|.
 name|helpers
 operator|.
-name|NamespaceSupport
+name|DefaultHandler
 import|;
 end_import
 
@@ -467,7 +419,7 @@ name|sax
 operator|.
 name|helpers
 operator|.
-name|DefaultHandler
+name|NamespaceSupport
 import|;
 end_import
 
@@ -513,57 +465,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|BufferedWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStreamWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Writer
+name|*
 import|;
 end_import
 
@@ -593,62 +495,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeSet
+name|*
 import|;
 end_import
 
 begin_comment
-comment|/**  * Embedded database export tool class. Tries to export as much data as  * possible, even if parts of the collection hierarchy are corrupted or  * documents are no longer readable. Features:  *  *<ul>  *<li>Descendant collections will be exported properly even if their ancestor  *  collection is corrupted.</li>  *<li>Documents which are intact but belong to a destroyed collection will be  *  stored into a special collection /db/__lost_and_found__.  *<li>Damaged documents are detected by ConsistencyCheck and are removed from  *  the backup.</li>  *<li>The format of the exported data is compatible with backups generated  *  via the standard backup tool (Java admin client).</li>  *</ul>  *  * The class should be used in combination with {@link ConsistencyCheck}.  * The error lists returned by ConsistencyCheck can be passed to  * {@link #export(org.exist.collections.Collection, BackupWriter, java.util.Date, BackupDescriptor, java.util.List, org.exist.dom.MutableDocumentSet)}.  */
+comment|/**  * Embedded database export tool class. Tries to export as much data as  * possible, even if parts of the collection hierarchy are corrupted or  * documents are no longer readable. Features:  *   *<ul>  *<li>Descendant collections will be exported properly even if their ancestor  * collection is corrupted.</li>  *<li>Documents which are intact but belong to a destroyed collection will be  * stored into a special collection /db/__lost_and_found__.  *<li>Damaged documents are detected by ConsistencyCheck and are removed from  * the backup.</li>  *<li>The format of the exported data is compatible with backups generated via  * the standard backup tool (Java admin client).</li>  *</ul>  *   * The class should be used in combination with {@link ConsistencyCheck}. The  * error lists returned by ConsistencyCheck can be passed to  * {@link #export(org.exist.collections.Collection, BackupWriter, java.util.Date, BackupDescriptor, java.util.List, org.exist.dom.MutableDocumentSet)}.  */
 end_comment
 
 begin_class
@@ -682,6 +534,13 @@ name|SimpleDateFormat
 argument_list|(
 literal|"yyyyMMdd-HHmm"
 argument_list|)
+decl_stmt|;
+specifier|private
+name|int
+name|collectionCount
+init|=
+operator|-
+literal|1
 decl_stmt|;
 specifier|public
 name|Properties
@@ -899,7 +758,7 @@ name|errorList
 argument_list|)
 return|;
 block|}
-comment|/**      * Export the contents of the database, trying to preserve      * as much data as possible. To be effective, this method      * should be used in combination with class      * {@link ConsistencyCheck}.      *      * @param targetDir the output directory or file to which data will be written.      *  Output will be written to a zip file if target ends with .zip.      * @param errorList a list of {@link ErrorReport} objects as returned by      *   methods in {@link ConsistencyCheck}.      */
+comment|/**      * Export the contents of the database, trying to preserve as much data as      * possible. To be effective, this method should be used in combination with      * class {@link ConsistencyCheck}.      *       * @param targetDir      *            the output directory or file to which data will be written.      *            Output will be written to a zip file if target ends with .zip.      * @param errorList      *            a list of {@link ErrorReport} objects as returned by methods      *            in {@link ConsistencyCheck}.      */
 specifier|public
 name|File
 name|export
@@ -1247,6 +1106,8 @@ argument_list|,
 name|prevBackup
 argument_list|,
 name|errorList
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -1651,7 +1512,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Scan all document records in collections.dbx and try to find orphaned documents      * whose parent collection got destroyed or is damaged.      *      * @param output the backup writer      * @param docs a document set containing all the documents which were exported regularily.      *  the method will ignore those.      * @param errorList a list of {@link org.exist.backup.ErrorReport} objects as returned by      *   methods in {@link ConsistencyCheck}      */
+comment|/**      * Scan all document records in collections.dbx and try to find orphaned      * documents whose parent collection got destroyed or is damaged.      *       * @param output      *            the backup writer      * @param docs      *            a document set containing all the documents which were      *            exported regularily. the method will ignore those.      * @param errorList      *            a list of {@link org.exist.backup.ErrorReport} objects as      *            returned by methods in {@link ConsistencyCheck}      */
 specifier|private
 name|void
 name|exportOrphans
@@ -1953,7 +1814,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Export a collection. Write out the collection metadata and save the resources stored in      * the collection.      *      * @param current the collection      * @param output the output writer      * @param date      *@param errorList a list of {@link org.exist.backup.ErrorReport} objects as returned by      *   methods in {@link org.exist.backup.ConsistencyCheck}      * @param docs a document set to keep track of all written documents. @throws IOException      * @throws SAXException      */
+comment|/**      * Export a collection. Write out the collection metadata and save the      * resources stored in the collection.      *       * @param current      *            the collection      * @param output      *            the output writer      * @param date      * @param errorList      *            a list of {@link org.exist.backup.ErrorReport} objects as      *            returned by methods in      *            {@link org.exist.backup.ConsistencyCheck}      * @param docs      *            a document set to keep track of all written documents.      * @throws IOException      * @throws SAXException      */
 specifier|private
 name|void
 name|export
@@ -2553,7 +2414,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Check which collections and resources have been deleted since the
+comment|// Check which collections and resources have been deleted since
+comment|// the
 comment|// last backup
 name|CheckDeletedHandler
 name|check
@@ -2884,7 +2746,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//store permissions
+comment|// store permissions
 name|AttributesImpl
 name|attr
 init|=
@@ -3040,7 +2902,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// be careful when accessing document metadata: it is stored in a different place than the
+comment|// be careful when accessing document metadata: it is stored in a
+comment|// different place than the
 comment|// main document info and could thus be damaged
 name|DocumentMetadata
 name|metadata
@@ -3063,7 +2926,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//            LOG.warn(e.getMessage(), e);
+comment|// LOG.warn(e.getMessage(), e);
 block|}
 try|try
 block|{
@@ -3423,7 +3286,7 @@ literal|"resource"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Serialize a document to XML, based on {@link XMLStreamReader}.      *      * @param doc the document to serialize      * @param receiver the output handler      */
+comment|/**      * Serialize a document to XML, based on {@link XMLStreamReader}.      *       * @param doc      *            the document to serialize      * @param receiver      *            the output handler      */
 specifier|private
 name|void
 name|writeXML
@@ -3980,6 +3843,74 @@ name|file
 return|;
 block|}
 specifier|public
+name|int
+name|getCollectionCount
+parameter_list|()
+block|{
+if|if
+condition|(
+name|collectionCount
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+name|User
+operator|.
+name|enablePasswordChecks
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|CollectionCallback
+name|cb
+init|=
+operator|new
+name|CollectionCallback
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|broker
+operator|.
+name|getCollectionsFailsafe
+argument_list|(
+name|cb
+argument_list|)
+expr_stmt|;
+name|collectionCount
+operator|=
+name|cb
+operator|.
+name|collectionCount
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|User
+operator|.
+name|enablePasswordChecks
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|collectionCount
+return|;
+block|}
+specifier|public
 specifier|static
 interface|interface
 name|StatusCallback
@@ -4049,6 +3980,32 @@ name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
 specifier|private
+name|int
+name|collectionCount
+init|=
+literal|0
+decl_stmt|;
+specifier|private
+name|boolean
+name|exportCollection
+decl_stmt|;
+specifier|private
+name|int
+name|lastPercentage
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|private
+name|Agent
+name|jmxAgent
+init|=
+name|AgentFactory
+operator|.
+name|getInstance
+argument_list|()
+decl_stmt|;
+specifier|private
 name|CollectionCallback
 parameter_list|(
 name|BackupWriter
@@ -4062,6 +4019,9 @@ name|prevBackup
 parameter_list|,
 name|List
 name|errorList
+parameter_list|,
+name|boolean
+name|exportCollection
 parameter_list|)
 block|{
 name|this
@@ -4088,6 +4048,12 @@ name|prevBackup
 operator|=
 name|prevBackup
 expr_stmt|;
+name|this
+operator|.
+name|exportCollection
+operator|=
+name|exportCollection
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
@@ -4108,6 +4074,14 @@ init|=
 literal|null
 decl_stmt|;
 try|try
+block|{
+name|collectionCount
+operator|++
+expr_stmt|;
+if|if
+condition|(
+name|exportCollection
+condition|)
 block|{
 name|CollectionStore
 name|store
@@ -4273,6 +4247,56 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
+name|int
+name|percentage
+init|=
+literal|100
+operator|*
+operator|(
+name|collectionCount
+operator|+
+literal|1
+operator|)
+operator|/
+operator|(
+name|getCollectionCount
+argument_list|()
+operator|+
+literal|1
+operator|)
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|jmxAgent
+operator|!=
+literal|null
+operator|)
+operator|&&
+operator|(
+name|percentage
+operator|!=
+name|lastPercentage
+operator|)
+condition|)
+block|{
+name|lastPercentage
+operator|=
+name|percentage
+expr_stmt|;
+name|jmxAgent
+operator|.
+name|updateStatus
+argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|percentage
+argument_list|)
+expr_stmt|;
+block|}
 name|export
 argument_list|(
 name|collection
@@ -4288,6 +4312,7 @@ argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(

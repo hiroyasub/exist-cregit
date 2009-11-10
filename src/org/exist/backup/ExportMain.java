@@ -15,6 +15,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -147,32 +167,12 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
 name|ExportMain
 block|{
-comment|//  command-line options
+comment|// command-line options
 specifier|private
 specifier|final
 specifier|static
@@ -973,7 +973,13 @@ name|void
 name|startDocument
 parameter_list|(
 name|String
-name|path
+name|name
+parameter_list|,
+name|int
+name|current
+parameter_list|,
+name|int
+name|count
 parameter_list|)
 block|{
 block|}

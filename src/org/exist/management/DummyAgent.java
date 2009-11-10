@@ -37,16 +37,6 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  * A dummy agent which will be used if JMX is disabled. It just acts as an empty  * placeholder.  */
 end_comment
@@ -98,16 +88,26 @@ comment|// just do nothing
 block|}
 specifier|public
 name|void
-name|updateErrors
+name|changeStatus
 parameter_list|(
 name|BrokerPool
-name|pool
+name|instance
 parameter_list|,
-name|List
-name|errorList
+name|TaskStatus
+name|actualStatus
+parameter_list|)
+block|{
+comment|// nothing to do
+block|}
+specifier|public
+name|void
+name|updateStatus
+parameter_list|(
+name|BrokerPool
+name|instance
 parameter_list|,
-name|long
-name|startTime
+name|int
+name|percentage
 parameter_list|)
 block|{
 comment|// nothing to do
