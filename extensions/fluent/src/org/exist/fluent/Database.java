@@ -1043,7 +1043,13 @@ name|void
 name|startDocument
 parameter_list|(
 name|String
-name|path
+name|name
+parameter_list|,
+name|int
+name|current
+parameter_list|,
+name|int
+name|count
 parameter_list|)
 block|{
 block|}
