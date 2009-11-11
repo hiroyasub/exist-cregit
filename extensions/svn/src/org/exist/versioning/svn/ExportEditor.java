@@ -83,6 +83,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|OutputStream
 import|;
 end_import
@@ -126,6 +136,18 @@ operator|.
 name|collections
 operator|.
 name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|IndexInfo
 import|;
 end_import
 
@@ -254,6 +276,18 @@ operator|.
 name|util
 operator|.
 name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|MimeTable
 import|;
 end_import
 
@@ -607,8 +641,32 @@ name|SVNLogType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -1028,7 +1086,7 @@ parameter_list|)
 throws|throws
 name|SVNException
 block|{
-comment|//UNDERSTAND: should check path?
+comment|// UNDERSTAND: should check path?
 if|if
 condition|(
 name|SVNProperty
@@ -1095,7 +1153,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
-comment|//TODO: check parent for that resource.
+comment|// TODO: check parent for that resource.
 comment|// create child resource.
 name|currentFile
 operator|=
@@ -1108,8 +1166,8 @@ argument_list|,
 literal|".tmp"
 argument_list|)
 expr_stmt|;
-comment|//prefix???
-comment|//TODO: "COPY"
+comment|// prefix???
+comment|// TODO: "COPY"
 name|fileProperties
 operator|=
 operator|new
@@ -1160,7 +1218,7 @@ parameter_list|)
 throws|throws
 name|SVNException
 block|{
-comment|//UNDERSTAND: should check path?
+comment|// UNDERSTAND: should check path?
 name|fileProperties
 operator|.
 name|put
@@ -1171,7 +1229,7 @@ name|property
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* *************************************         ************* text part *************         *************************************/
+comment|/* ************************************* 	 * ************ text part ************************************************ 	 */
 specifier|private
 name|String
 name|checksum
@@ -1284,7 +1342,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|" closeFile"
+literal|" closeFile path = "
+operator|+
+name|path
 argument_list|)
 expr_stmt|;
 if|if
@@ -1440,13 +1500,18 @@ name|keywordsMap
 init|=
 literal|null
 decl_stmt|;
-comment|//            if (keywords != null) {
-comment|//                String url = SVNPathUtil.append(myURL, SVNEncodingUtil.uriEncode(currentPath));
-comment|//                url = SVNPathUtil.append(url, SVNEncodingUtil.uriEncode(currentFile.getName()));
-comment|//                String author = fileProperties.getStringValue(SVNProperty.LAST_AUTHOR);
-comment|//                String revStr = fileProperties.getStringValue(SVNProperty.COMMITTED_REVISION);
-comment|//                keywordsMap = SVNTranslator.computeKeywords(keywords, url, author, date, revStr, options);
-comment|//            }
+comment|// if (keywords != null) {
+comment|// String url = SVNPathUtil.append(myURL,
+comment|// SVNEncodingUtil.uriEncode(currentPath));
+comment|// url = SVNPathUtil.append(url,
+comment|// SVNEncodingUtil.uriEncode(currentFile.getName()));
+comment|// String author =
+comment|// fileProperties.getStringValue(SVNProperty.LAST_AUTHOR);
+comment|// String revStr =
+comment|// fileProperties.getStringValue(SVNProperty.COMMITTED_REVISION);
+comment|// keywordsMap = SVNTranslator.computeKeywords(keywords, url,
+comment|// author, date, revStr, options);
+comment|// }
 name|String
 name|charset
 init|=
@@ -1683,11 +1748,163 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|XmldbURI
+name|fileName
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|path
+argument_list|)
+operator|.
+name|lastSegment
+argument_list|()
+decl_stmt|;
+name|MimeType
+name|mimeType
+init|=
+name|MimeTable
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getContentTypeFor
+argument_list|(
+name|fileName
+argument_list|)
+decl_stmt|;
+comment|// unknown mime type, here preferred is to do nothing
+if|if
+condition|(
+name|mimeType
+operator|==
+literal|null
+condition|)
+block|{
+comment|// TODO: report error? path +
+comment|// " - unknown suffix. No matching mime-type found in : " +
+comment|// MimeTable.getInstance().getSrc());
+comment|// if some one prefers to store it as binary by default, but
+comment|// dangerous
+name|mimeType
+operator|=
+name|MimeType
+operator|.
+name|BINARY_TYPE
+expr_stmt|;
+block|}
 name|InputStream
 name|is
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|mimeType
+operator|.
+name|isXMLType
+argument_list|()
+condition|)
+block|{
+comment|// store as xml resource
+name|is
+operator|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|currentFile
+argument_list|)
+expr_stmt|;
+name|IndexInfo
+name|info
+init|=
+name|currentDirectory
+operator|.
+name|validateXMLResource
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|fileName
+argument_list|,
+operator|new
+name|InputSource
+argument_list|(
+operator|new
+name|InputStreamReader
+argument_list|(
+name|is
+argument_list|)
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|//									new InputStreamReader(is, charset)));
+name|is
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|info
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|is
+operator|=
+operator|new
+name|FileInputStream
+argument_list|(
+name|currentFile
+argument_list|)
+expr_stmt|;
+name|currentDirectory
+operator|.
+name|store
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|info
+argument_list|,
+operator|new
+name|InputSource
+argument_list|(
+operator|new
+name|InputStreamReader
+argument_list|(
+name|is
+argument_list|)
+argument_list|)
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+comment|//									new InputStreamReader(is, charset)), false);
+name|is
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// store as binary resource
 name|is
 operator|=
 operator|new
@@ -1707,18 +1924,11 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-name|path
-argument_list|)
+name|fileName
 argument_list|,
 name|is
 argument_list|,
-name|MimeType
-operator|.
-name|BINARY_TYPE
+name|mimeType
 operator|.
 name|getName
 argument_list|()
@@ -1740,16 +1950,7 @@ name|Date
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|currentFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1771,7 +1972,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1800,7 +2002,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1829,7 +2032,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1858,7 +2062,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1887,7 +2092,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1916,7 +2122,8 @@ argument_list|,
 literal|"error: ."
 argument_list|)
 decl_stmt|;
-comment|//TODO: error description
+comment|// TODO: error
+comment|// description
 throw|throw
 operator|new
 name|SVNException
@@ -1924,6 +2131,65 @@ argument_list|(
 name|err
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|SAXException
+name|e
+parameter_list|)
+block|{
+name|SVNErrorMessage
+name|err
+init|=
+name|SVNErrorMessage
+operator|.
+name|create
+argument_list|(
+name|SVNErrorCode
+operator|.
+name|IO_ERROR
+argument_list|,
+literal|"error: ."
+argument_list|)
+decl_stmt|;
+comment|// TODO: error
+comment|// description
+throw|throw
+operator|new
+name|SVNException
+argument_list|(
+name|err
+argument_list|)
+throw|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|is
+operator|!=
+literal|null
+condition|)
+try|try
+block|{
+name|is
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+block|}
+name|currentFile
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 finally|finally
