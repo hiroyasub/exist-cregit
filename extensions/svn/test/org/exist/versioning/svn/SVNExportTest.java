@@ -376,28 +376,8 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|CollectionManagementService
-name|cmgr
-init|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|cmgr
-operator|.
-name|removeCollection
-argument_list|(
-literal|"test"
-argument_list|)
-expr_stmt|;
+comment|//            CollectionManagementService cmgr = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
+comment|//            cmgr.removeCollection("test");
 name|DatabaseInstanceManager
 name|mgr
 init|=
@@ -416,7 +396,9 @@ decl_stmt|;
 name|mgr
 operator|.
 name|shutdown
-argument_list|()
+argument_list|(
+literal|2
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
