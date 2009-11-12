@@ -163,6 +163,14 @@ name|PROPERTY_CACHING_ATTRIBUTE
 init|=
 literal|"transformer.caching"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROPERTY_BROKER_POOL
+init|=
+literal|"transformer.brokerPool"
+decl_stmt|;
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
