@@ -3695,6 +3695,13 @@ name|this
 argument_list|,
 literal|"An exception occurred while compiling the stylesheet: "
 operator|+
+name|stylesheet
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -3875,7 +3882,15 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"normalizePath may only be applied to an absolute path"
+literal|"normalizePath may only be applied to an absolute path; "
+operator|+
+literal|"argument was: "
+operator|+
+name|path
+operator|+
+literal|"; base: "
+operator|+
+name|basePath
 argument_list|)
 throw|;
 name|String
@@ -4101,6 +4116,13 @@ condition|(
 name|base
 operator|==
 literal|null
+operator|||
+name|base
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 name|path
