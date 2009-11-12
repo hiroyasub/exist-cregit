@@ -404,6 +404,39 @@ return|return
 name|context
 return|;
 block|}
+specifier|public
+name|int
+name|getSubExpressionCount
+parameter_list|()
+block|{
+comment|//default value
+return|return
+literal|0
+return|;
+block|}
+specifier|public
+name|Expression
+name|getSubExpression
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IndexOutOfBoundsException
+argument_list|(
+literal|"Index: "
+operator|+
+name|index
+operator|+
+literal|", Size: "
+operator|+
+name|getSubExpressionCount
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

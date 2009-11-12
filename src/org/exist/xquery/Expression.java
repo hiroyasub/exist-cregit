@@ -367,6 +367,20 @@ name|XACMLSource
 name|getSource
 parameter_list|()
 function_decl|;
+comment|//Expression is the part of tree, next methods allow to walk down the tree
+specifier|public
+name|int
+name|getSubExpressionCount
+parameter_list|()
+function_decl|;
+specifier|public
+name|Expression
+name|getSubExpression
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
