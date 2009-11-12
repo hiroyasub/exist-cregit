@@ -2330,21 +2330,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|server
-operator|.
-name|stop
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-block|}
 block|}
 specifier|private
 name|List
@@ -3474,33 +3459,17 @@ literal|0
 condition|)
 block|{
 comment|// give the server a 1s chance to complete pending requests
-name|Timer
-name|timer
-init|=
-operator|new
-name|Timer
-argument_list|()
-decl_stmt|;
-name|timer
-operator|.
-name|schedule
-argument_list|(
-operator|new
-name|TimerTask
-argument_list|()
-block|{
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
+comment|//                Timer timer = new Timer();
+comment|//                timer.schedule(new TimerTask() {
+comment|//
+comment|//                    public void run() {
 name|System
 operator|.
 name|out
 operator|.
 name|println
 argument_list|(
-literal|"killing threads ..."
+literal|"killing jetty threads ..."
 argument_list|)
 expr_stmt|;
 try|try
@@ -3523,19 +3492,9 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-argument_list|,
-literal|1000
-argument_list|)
-expr_stmt|;
+comment|//                        System.exit(0);
+comment|//                    }
+comment|//                }, 1000);
 block|}
 block|}
 block|}
