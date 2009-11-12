@@ -328,7 +328,7 @@ specifier|static
 name|void
 name|parse
 parameter_list|(
-name|ContextAtExist
+name|XQueryContext
 name|context
 parameter_list|,
 name|String
@@ -363,9 +363,6 @@ argument_list|(
 operator|new
 name|LocationStep
 argument_list|(
-operator|(
-name|XQueryContext
-operator|)
 name|context
 argument_list|,
 name|Constants
@@ -397,9 +394,6 @@ argument_list|(
 operator|new
 name|LocationStep
 argument_list|(
-operator|(
-name|XQueryContext
-operator|)
 name|context
 argument_list|,
 name|Constants
@@ -459,9 +453,6 @@ init|=
 operator|new
 name|XQueryLexer
 argument_list|(
-operator|(
-name|XQueryContext
-operator|)
 name|context
 argument_list|,
 name|reader
@@ -482,9 +473,6 @@ init|=
 operator|new
 name|XQueryTreeParser
 argument_list|(
-operator|(
-name|XQueryContext
-operator|)
 name|context
 argument_list|)
 decl_stmt|;
@@ -561,9 +549,6 @@ init|=
 operator|new
 name|PathExpr
 argument_list|(
-operator|(
-name|XQueryContext
-operator|)
 name|context
 argument_list|)
 decl_stmt|;
@@ -620,7 +605,9 @@ name|analyze
 argument_list|(
 operator|new
 name|AnalyzeContextInfo
-argument_list|()
+argument_list|(
+name|context
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//            if (context.optimizationsEnabled()) {

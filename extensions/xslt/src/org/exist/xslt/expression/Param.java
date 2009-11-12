@@ -472,6 +472,8 @@ name|Pattern
 operator|.
 name|parse
 argument_list|(
+name|contextInfo
+operator|.
 name|getContext
 argument_list|()
 argument_list|,

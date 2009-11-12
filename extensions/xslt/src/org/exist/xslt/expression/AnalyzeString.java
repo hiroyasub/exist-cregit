@@ -235,6 +235,9 @@ name|Pattern
 operator|.
 name|parse
 argument_list|(
+operator|(
+name|XQueryContext
+operator|)
 name|context
 argument_list|,
 name|attr
