@@ -480,7 +480,7 @@ name|i
 init|=
 name|e
 operator|.
-name|getExceptions
+name|getThrowables
 argument_list|()
 operator|.
 name|iterator
