@@ -437,6 +437,22 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|public
+name|boolean
+name|match
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|item
+parameter_list|)
+block|{
+comment|//default
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

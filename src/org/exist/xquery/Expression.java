@@ -381,6 +381,18 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
+comment|//check will item process by the expression
+specifier|public
+name|boolean
+name|match
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|item
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
