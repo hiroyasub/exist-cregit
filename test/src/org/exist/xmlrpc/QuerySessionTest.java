@@ -1011,6 +1011,26 @@ name|void
 name|stopServer
 parameter_list|()
 block|{
+comment|//waiting to finish 10s
+try|try
+block|{
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|10
+operator|*
+literal|1000
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e1
+parameter_list|)
+block|{
+block|}
 try|try
 block|{
 name|Collection
