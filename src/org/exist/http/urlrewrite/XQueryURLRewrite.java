@@ -2651,11 +2651,11 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Forwarding to target: "
+literal|"Forwarding to : "
 operator|+
 name|action
 operator|.
-name|getTarget
+name|toString
 argument_list|()
 operator|+
 literal|" url: "
@@ -3386,9 +3386,6 @@ argument_list|,
 name|sourceInfo
 argument_list|,
 name|staticRewrite
-operator|.
-name|getPrefix
-argument_list|()
 argument_list|,
 name|basePath
 argument_list|,
@@ -4544,8 +4541,8 @@ parameter_list|,
 name|SourceInfo
 name|sourceInfo
 parameter_list|,
-name|String
-name|prefix
+name|URLRewrite
+name|staticRewrite
 parameter_list|,
 name|String
 name|basePath
@@ -4661,6 +4658,20 @@ name|getContextPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|String
+name|prefix
+init|=
+name|staticRewrite
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|staticRewrite
+operator|.
+name|getPrefix
+argument_list|()
+decl_stmt|;
 name|context
 operator|.
 name|declareVariable
