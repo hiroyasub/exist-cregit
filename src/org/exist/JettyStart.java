@@ -740,6 +740,9 @@ name|SingleInstanceConfiguration
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO lost during merge?
+comment|//            if (observer != null)
+comment|//                BrokerPool.registerStatusObserver(observer);
 name|BrokerPool
 operator|.
 name|configure
@@ -787,11 +790,9 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
+name|logger
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"configuration error: "
 operator|+
@@ -947,6 +948,7 @@ operator|.
 name|getHandlers
 argument_list|()
 decl_stmt|;
+comment|// todo make Java5 style
 for|for
 control|(
 name|int
@@ -1001,15 +1003,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//            HttpContext[] contexts = server.getContexts();
-comment|//            for (int i = 0; i< contexts.length; i++) {
-comment|//                System.out.println("http://localhost:" + port + contexts[i].getContextPath());
-comment|//            }
-name|System
+name|logger
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
 literal|"-----------------------------------------------------"
 argument_list|)
@@ -1250,11 +1246,9 @@ name|int
 name|remainingInstances
 parameter_list|)
 block|{
-name|System
+name|logger
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Database shutdown: stopping server in 1sec ..."
 argument_list|)
