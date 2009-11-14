@@ -81,6 +81,26 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -133,6 +153,22 @@ argument_list|(
 literal|"<exist:redirect> needs an attribute 'url'."
 argument_list|)
 throw|;
+if|if
+condition|(
+name|redirectTo
+operator|.
+name|matches
+argument_list|(
+literal|"^\\w+://.*"
+argument_list|)
+condition|)
+name|setTarget
+argument_list|(
+name|redirectTo
+argument_list|)
+expr_stmt|;
+comment|// do not touch URIs pointing to other server
+else|else
 name|setTarget
 argument_list|(
 name|URLRewrite
