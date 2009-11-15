@@ -405,65 +405,6 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
-specifier|static
-name|FunctionSignature
-name|deprecated
-init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"stream-binary"
-argument_list|,
-name|RequestModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|RequestModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Streams the binary data to the current servlet response output stream. The ContentType "
-operator|+
-literal|"HTTP header is set to the value given in $content-type."
-operator|+
-literal|"This function only works within a servlet context, not within "
-operator|+
-literal|"Cocoon. Note: the servlet output stream will be closed afterwards and mime-type settings in the prolog "
-operator|+
-literal|"will not be passed."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-name|BINARY_DATA_PARAM
-block|,
-name|CONTENT_TYPE_PARAM
-block|}
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|EMPTY
-argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-literal|"Renamed to response:stream-binary."
-argument_list|)
-decl_stmt|;
-specifier|public
 name|StreamBinary
 parameter_list|(
 name|XQueryContext

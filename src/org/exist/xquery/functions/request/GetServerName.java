@@ -279,50 +279,6 @@ literal|"the server nodename of the current request"
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|FunctionSignature
-name|deprecated
-init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"request-servername"
-argument_list|,
-name|RequestModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|RequestModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Returns the server nodename of the current request."
-argument_list|,
-literal|null
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"the server nodename of the current request"
-argument_list|)
-argument_list|,
-literal|"Renamed to request:get-server-name."
-argument_list|)
-decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|GetServerName
