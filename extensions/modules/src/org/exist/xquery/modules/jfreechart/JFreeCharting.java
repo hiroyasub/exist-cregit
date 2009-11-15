@@ -77,6 +77,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|http
+operator|.
+name|servlets
+operator|.
+name|ResponseWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|serializers
+operator|.
+name|Serializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|internal
@@ -84,6 +112,48 @@ operator|.
 name|node
 operator|.
 name|NodeInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Base64Binary
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|FunctionParameterSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|NodeValue
 import|;
 end_import
 
@@ -291,76 +361,6 @@ name|JFreeChart
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|http
-operator|.
-name|servlets
-operator|.
-name|ResponseWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|serializers
-operator|.
-name|Serializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Base64Binary
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|FunctionParameterSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|NodeValue
-import|;
-end_import
-
 begin_comment
 comment|/**  * JFreechart extension functions.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
@@ -415,7 +415,9 @@ specifier|final
 name|String
 name|chartText
 init|=
-literal|"The type of chart to render.  Supported chart types: LineChart, LineChart3D, "
+literal|"The type of chart to render.  Supported chart types: "
+operator|+
+literal|"LineChart, LineChart3D, "
 operator|+
 literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, "
 operator|+
@@ -429,11 +431,11 @@ specifier|final
 name|String
 name|parametersText
 init|=
-literal|"The configuration for the chart.  The configuration should be "
+literal|"The configuration for the chart.  The "
 operator|+
-literal|"supplied as follows:<configuration>"
+literal|"configuration should be supplied as follows:<configuration>"
 operator|+
-literal|"<param1>Value1</param1><param2>Value2</param2></configuration>.  "
+literal|"<param1>Value1</param1><param2>Value2</param2>/<configuration>.  "
 operator|+
 literal|"Supported parameters: width height title categoryAxisLabel "
 operator|+
