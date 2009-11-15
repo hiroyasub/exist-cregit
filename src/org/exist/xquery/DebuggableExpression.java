@@ -530,7 +530,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|boolean
+name|Boolean
 name|match
 parameter_list|(
 name|Sequence
@@ -539,6 +539,8 @@ parameter_list|,
 name|Item
 name|item
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
 return|return
 name|expression

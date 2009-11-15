@@ -411,7 +411,7 @@ name|nodeTestType
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates a new<code>LocationStep</code> instance.      *      * @param context a<code>XQueryContext</code> value      * @param axis an<code>int</code> value      */
+comment|/** 	 * Creates a new<code>LocationStep</code> instance. 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param axis 	 *            an<code>int</code> value 	 */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -430,7 +430,7 @@ name|axis
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>LocationStep</code> instance.      *      * @param context a<code>XQueryContext</code> value      * @param axis an<code>int</code> value      * @param test a<code>NodeTest</code> value      */
+comment|/** 	 * Creates a new<code>LocationStep</code> instance. 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param axis 	 *            an<code>int</code> value 	 * @param test 	 *            a<code>NodeTest</code> value 	 */
 specifier|public
 name|LocationStep
 parameter_list|(
@@ -454,7 +454,7 @@ name|test
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -467,10 +467,11 @@ name|Dependency
 operator|.
 name|CONTEXT_SET
 decl_stmt|;
-comment|//self axis has an obvious dependency on the context item
-comment|//TODO : I guess every other axis too... so we might consider using Constants.UNKNOWN_AXIS here
-comment|//BUT
-comment|//in a predicate, the expression can't depend on... itself
+comment|// self axis has an obvious dependency on the context item
+comment|// TODO : I guess every other axis too... so we might consider using
+comment|// Constants.UNKNOWN_AXIS here
+comment|// BUT
+comment|// in a predicate, the expression can't depend on... itself
 if|if
 condition|(
 operator|!
@@ -494,8 +495,8 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 expr_stmt|;
-comment|//TODO : normally, we should call this one...
-comment|//int deps = super.getDependencies(); ???
+comment|// TODO : normally, we should call this one...
+comment|// int deps = super.getDependencies(); ???
 for|for
 control|(
 name|Iterator
@@ -529,13 +530,14 @@ name|getDependencies
 argument_list|()
 expr_stmt|;
 block|}
-comment|//TODO : should we remove the CONTEXT_ITEM dependency returned by the predicates ? See the comment above.
-comment|//consider nested predicates however...
+comment|// TODO : should we remove the CONTEXT_ITEM dependency returned by the
+comment|// predicates ? See the comment above.
+comment|// consider nested predicates however...
 return|return
 name|deps
 return|;
 block|}
-comment|/**      * If the current path expression depends on local variables from a for      * expression, we can optimize by preloading entire element or attribute      * sets.      *       * @return Whether or not we can optimize       */
+comment|/** 	 * If the current path expression depends on local variables from a for 	 * expression, we can optimize by preloading entire element or attribute 	 * sets. 	 *  	 * @return Whether or not we can optimize 	 */
 specifier|protected
 name|boolean
 name|hasPreloadedData
@@ -617,7 +619,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * The method<code>setPreloadedData</code>      *      * @param docs a<code>DocumentSet</code> value      * @param nodes a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>setPreloadedData</code> 	 *  	 * @param docs 	 *            a<code>DocumentSet</code> value 	 * @param nodes 	 *            a<code>NodeSet</code> value 	 */
 specifier|public
 name|void
 name|setPreloadedData
@@ -654,7 +656,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * The method<code>applyPredicate</code>      *      * @param outerSequence a<code>Sequence</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>Sequence</code> value      * @exception XPathException if an error occurs      */
+comment|/** 	 * The method<code>applyPredicate</code> 	 *  	 * @param outerSequence 	 *            a<code>Sequence</code> value 	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @return a<code>Sequence</code> value 	 * @exception XPathException 	 *                if an error occurs 	 */
 specifier|protected
 name|Sequence
 name|applyPredicate
@@ -725,11 +727,14 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// If the current step is an // abbreviated step, we have to treat the predicate
-comment|// specially to get the context position right. //a[1] translates to /descendant-or-self::node()/a[1],
+comment|// If the current step is an // abbreviated step, we have to treat the
+comment|// predicate
+comment|// specially to get the context position right. //a[1] translates to
+comment|// /descendant-or-self::node()/a[1],
 comment|// so we need to return the 1st a from any parent of a.
 comment|//
-comment|// If the predicate is known to return a node set, no special treatment is required.
+comment|// If the predicate is known to return a node set, no special treatment
+comment|// is required.
 if|if
 condition|(
 name|abbreviatedStep
@@ -1037,7 +1042,7 @@ argument_list|,
 name|axis
 argument_list|)
 expr_stmt|;
-comment|//subsequent predicates operate on the result of the previous one
+comment|// subsequent predicates operate on the result of the previous one
 name|outerSequence
 operator|=
 literal|null
@@ -1047,7 +1052,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Step#analyze(org.exist.xquery.Expression) 	 */
 specifier|public
 name|void
 name|analyze
@@ -1149,7 +1154,7 @@ literal|true
 expr_stmt|;
 block|}
 comment|// Mark ".", which is expanded as self::node() by the parser
-comment|//even though it may *also* be relevant with atomic sequences
+comment|// even though it may *also* be relevant with atomic sequences
 if|if
 condition|(
 name|this
@@ -1187,7 +1192,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>eval</code>      *      * @param contextSequence a<code>Sequence</code> value      * @param contextItem an<code>Item</code> value      * @return a<code>Sequence</code> value      * @exception XPathException if an error occurs      */
+comment|/** 	 * The method<code>eval</code> 	 *  	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @param contextItem 	 *            an<code>Item</code> value 	 * @return a<code>Sequence</code> value 	 * @exception XPathException 	 *                if an error occurs 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -1318,26 +1323,26 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*          * if(contextSequence == null) //Commented because this the high level          * result nodeset is *really* null result = NodeSet.EMPTY_SET; //Try to          * return cached results else          */
+comment|/* 		 * if(contextSequence == null) //Commented because this the high level 		 * result nodeset is *really* null result = NodeSet.EMPTY_SET; //Try to 		 * return cached results else 		 */
 comment|// TODO: disabled cache for now as it may cause concurrency issues
 comment|// better use compile-time inspection and maybe a pragma to mark those
 comment|// sections in the query that can be safely cached
-comment|//        if (cached != null&& cached.isValid(contextSequence, contextItem)) {
+comment|// if (cached != null&& cached.isValid(contextSequence, contextItem)) {
 comment|//
-comment|//            // WARNING : commented since predicates are *also* applied below !
-comment|//            // -pb
-comment|//            /*
-comment|//             * if (predicates.size()> 0) { applyPredicate(contextSequence,
-comment|//             * cached.getResult()); } else {
-comment|//             */
-comment|//            result = cached.getResult();
-comment|//            if (context.getProfiler().isEnabled()) {
-comment|//            	LOG.debug("Using cached results");
-comment|//            }
-comment|//            context.getProfiler().message(this, Profiler.OPTIMIZATIONS,
-comment|//                                          "Using cached results", result);
+comment|// // WARNING : commented since predicates are *also* applied below !
+comment|// // -pb
+comment|// /*
+comment|// * if (predicates.size()> 0) { applyPredicate(contextSequence,
+comment|// * cached.getResult()); } else {
+comment|// */
+comment|// result = cached.getResult();
+comment|// if (context.getProfiler().isEnabled()) {
+comment|// LOG.debug("Using cached results");
+comment|// }
+comment|// context.getProfiler().message(this, Profiler.OPTIMIZATIONS,
+comment|// "Using cached results", result);
 comment|//
-comment|//            // }
+comment|// // }
 if|if
 condition|(
 name|needsComputation
@@ -1396,8 +1401,9 @@ name|Constants
 operator|.
 name|CHILD_AXIS
 case|:
-comment|//VirtualNodeSets may have modified the axis ; checking the type
-comment|//TODO : further checks ?
+comment|// VirtualNodeSets may have modified the axis ; checking the
+comment|// type
+comment|// TODO : further checks ?
 if|if
 condition|(
 name|this
@@ -1507,7 +1513,8 @@ name|ATOMIC
 argument_list|)
 condition|)
 block|{
-comment|//This test is copied from the legacy method getSelfAtomic()
+comment|// This test is copied from the legacy method
+comment|// getSelfAtomic()
 if|if
 condition|(
 operator|!
@@ -1713,7 +1720,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-comment|//actualReturnType = result.getItemType();
+comment|// actualReturnType = result.getItemType();
 return|return
 name|result
 return|;
@@ -1741,7 +1748,7 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 case|:
-comment|//            case Constants.SELF_AXIS:
+comment|// case Constants.SELF_AXIS:
 if|if
 condition|(
 name|nodeTestType
@@ -1826,7 +1833,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * The method<code>getSelf</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>NodeSet</code> value      * @return a<code>Sequence</code> value      */
+comment|/** 	 * The method<code>getSelf</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>NodeSet</code> value 	 * @return a<code>Sequence</code> value 	 */
 specifier|protected
 name|Sequence
 name|getSelf
@@ -2214,7 +2221,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * The method<code>getAttributes</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getAttributes</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>NodeSet</code> value 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getAttributes
@@ -2376,7 +2383,7 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-comment|//TODO : why only the first node ?
+comment|// TODO : why only the first node ?
 name|NodeProxy
 name|proxy
 init|=
@@ -2810,7 +2817,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>getChildren</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence the context sequence      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getChildren</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            the context sequence 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getChildren
@@ -2858,7 +2865,8 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|//TODO : understand this. I guess comments should be treated in a similar way ? -pb
+comment|// TODO : understand this. I guess comments should be treated in a
+comment|// similar way ? -pb
 if|if
 condition|(
 name|test
@@ -2876,7 +2884,8 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
-comment|// test is one out of *, text(), node() including processing-instruction(targetname)
+comment|// test is one out of *, text(), node() including
+comment|// processing-instruction(targetname)
 name|VirtualNodeSet
 name|vset
 init|=
@@ -2912,10 +2921,11 @@ return|return
 name|vset
 return|;
 block|}
-comment|//        IndexStatistics stats = (IndexStatistics) context.getBroker().getBrokerPool().
-comment|//            getIndexManager().getIndexById(IndexStatistics.ID);
-comment|//        int parentDepth = stats.getMaxParentDepth(test.getName());
-comment|//        LOG.debug("parentDepth for " + test.getName() + ": " + parentDepth);
+comment|// IndexStatistics stats = (IndexStatistics)
+comment|// context.getBroker().getBrokerPool().
+comment|// getIndexManager().getIndexById(IndexStatistics.ID);
+comment|// int parentDepth = stats.getMaxParentDepth(test.getName());
+comment|// LOG.debug("parentDepth for " + test.getName() + ": " + parentDepth);
 if|if
 condition|(
 name|useDirectChildSelect
@@ -2997,7 +3007,8 @@ init|(
 name|context
 init|)
 block|{
-comment|// TODO : understand why this one is different from the other ones
+comment|// TODO : understand why this one is different from the other
+comment|// ones
 if|if
 condition|(
 name|currentSet
@@ -3216,8 +3227,8 @@ return|;
 block|}
 else|else
 block|{
-comment|//            	if (contextSet instanceof VirtualNodeSet)
-comment|//            		((VirtualNodeSet)contextSet).realize();
+comment|// if (contextSet instanceof VirtualNodeSet)
+comment|// ((VirtualNodeSet)contextSet).realize();
 name|NodeSelector
 name|selector
 init|=
@@ -3251,7 +3262,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>getDescendants</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence the context sequence      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getDescendants</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            the context sequence 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getDescendants
@@ -3305,7 +3316,8 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|//TODO : understand this. I guess comments should be treated in a similar way ? -pb
+comment|// TODO : understand this. I guess comments should be treated in a
+comment|// similar way ? -pb
 if|if
 condition|(
 name|test
@@ -3323,7 +3335,8 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
-comment|// test is one out of *, text(), node() including processing-instruction(targetname)
+comment|// test is one out of *, text(), node() including
+comment|// processing-instruction(targetname)
 name|VirtualNodeSet
 name|vset
 init|=
@@ -3378,7 +3391,8 @@ init|(
 name|context
 init|)
 block|{
-comment|// TODO : understand why this one is different from the other ones
+comment|// TODO : understand why this one is different from the other
+comment|// ones
 if|if
 condition|(
 name|currentSet
@@ -3715,7 +3729,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>getSiblings</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getSiblings</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>NodeSet</code> value 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getSiblings
@@ -3780,7 +3794,8 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|//TODO : understand this. I guess comments should be treated in a similar way ? -pb
+comment|// TODO : understand this. I guess comments should be treated in a
+comment|// similar way ? -pb
 if|if
 condition|(
 name|test
@@ -4010,7 +4025,7 @@ return|;
 block|}
 else|else
 block|{
-comment|//TODO : no test on preloaded data ?
+comment|// TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -4413,7 +4428,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * The method<code>getPreceding</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
+comment|/** 	 * The method<code>getPreceding</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @return a<code>NodeSet</code> value 	 * @exception XPathException 	 *                if an error occurs 	 */
 specifier|protected
 name|Sequence
 name|getPreceding
@@ -4472,7 +4487,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -4546,7 +4561,8 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|//TODO : understand this. I guess comments should be treated in a similar way ? -pb
+comment|// TODO : understand this. I guess comments should be treated in a
+comment|// similar way ? -pb
 if|if
 condition|(
 name|test
@@ -4778,7 +4794,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//TODO : no test on preloaded data ?
+comment|// TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -4943,7 +4959,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>getFollowing</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
+comment|/** 	 * The method<code>getFollowing</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @return a<code>NodeSet</code> value 	 * @exception XPathException 	 *                if an error occurs 	 */
 specifier|protected
 name|Sequence
 name|getFollowing
@@ -5002,7 +5018,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -5076,7 +5092,8 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|//TODO : understand this. I guess comments should be treated in a similar way ? -pb
+comment|// TODO : understand this. I guess comments should be treated in a
+comment|// similar way ? -pb
 if|if
 condition|(
 name|test
@@ -5318,7 +5335,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//TODO : no test on preloaded data ?
+comment|// TODO : no test on preloaded data ?
 name|DocumentSet
 name|docs
 init|=
@@ -5483,7 +5500,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>getAncestors</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getAncestors</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getAncestors
@@ -6182,7 +6199,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * The method<code>getParents</code>      *      * @param context a<code>XQueryContext</code> value      * @param contextSequence a<code>Sequence</code> value      * @return a<code>NodeSet</code> value      */
+comment|/** 	 * The method<code>getParents</code> 	 *  	 * @param context 	 *            a<code>XQueryContext</code> value 	 * @param contextSequence 	 *            a<code>Sequence</code> value 	 * @return a<code>NodeSet</code> value 	 */
 specifier|protected
 name|Sequence
 name|getParents
@@ -6533,7 +6550,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * The method<code>getDocumentSet</code>      *      * @param contextSet a<code>NodeSet</code> value      * @return a<code>DocumentSet</code> value      */
+comment|/** 	 * The method<code>getDocumentSet</code> 	 *  	 * @param contextSet 	 *            a<code>NodeSet</code> value 	 * @return a<code>DocumentSet</code> value 	 */
 specifier|protected
 name|DocumentSet
 name|getDocumentSet
@@ -6565,7 +6582,7 @@ return|return
 name|ds
 return|;
 block|}
-comment|/**      * The method<code>getParent</code>      *      * @return an<code>Expression</code> value      */
+comment|/** 	 * The method<code>getParent</code> 	 *  	 * @return an<code>Expression</code> value 	 */
 specifier|public
 name|Expression
 name|getParentExpression
@@ -6577,7 +6594,7 @@ operator|.
 name|parent
 return|;
 block|}
-comment|/**      * The method<code>setUseDirectAttrSelect</code>      *      * @param useDirectAttrSelect a<code>boolean</code> value      */
+comment|/** 	 * The method<code>setUseDirectAttrSelect</code> 	 *  	 * @param useDirectAttrSelect 	 *            a<code>boolean</code> value 	 */
 specifier|public
 name|void
 name|setUseDirectAttrSelect
@@ -6593,7 +6610,7 @@ operator|=
 name|useDirectAttrSelect
 expr_stmt|;
 block|}
-comment|/**      * The method<code>registerUpdateListener</code>      *      */
+comment|/** 	 * The method<code>registerUpdateListener</code> 	 *  	 */
 specifier|protected
 name|void
 name|registerUpdateListener
@@ -6758,7 +6775,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>accept</code>      *      * @param visitor an<code>ExpressionVisitor</code> value      */
+comment|/** 	 * The method<code>accept</code> 	 *  	 * @param visitor 	 *            an<code>ExpressionVisitor</code> value 	 */
 specifier|public
 name|void
 name|accept
@@ -6775,7 +6792,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.Step#resetState()      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Step#resetState() 	 */
 specifier|public
 name|void
 name|resetState
@@ -6797,9 +6814,9 @@ operator|!
 name|postOptimization
 condition|)
 block|{
-comment|//TODO : preloadedData = false ?
-comment|//No : introduces a regression in testMatchCount
-comment|//TODO : Investigate...
+comment|// TODO : preloadedData = false ?
+comment|// No : introduces a regression in testMatchCount
+comment|// TODO : Investigate...
 name|currentSet
 operator|=
 literal|null
@@ -7839,6 +7856,939 @@ expr_stmt|;
 block|}
 return|return
 literal|true
+return|;
+block|}
+block|}
+specifier|public
+name|Boolean
+name|match
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+block|{
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|start
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|DEPENDENCIES
+argument_list|,
+literal|"DEPENDENCIES"
+argument_list|,
+name|Dependency
+operator|.
+name|getDependenciesName
+argument_list|(
+name|this
+operator|.
+name|getDependencies
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|START_SEQUENCES
+argument_list|,
+literal|"CONTEXT SEQUENCE"
+argument_list|,
+name|contextSequence
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|START_SEQUENCES
+argument_list|,
+literal|"CONTEXT ITEM"
+argument_list|,
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|Boolean
+name|result
+decl_stmt|;
+if|if
+condition|(
+name|needsComputation
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|contextSequence
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"XPDY0002 : undefined context sequence for '"
+operator|+
+name|this
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+switch|switch
+condition|(
+name|axis
+condition|)
+block|{
+case|case
+name|Constants
+operator|.
+name|DESCENDANT_AXIS
+case|:
+case|case
+name|Constants
+operator|.
+name|DESCENDANT_SELF_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getDescendants(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|CHILD_AXIS
+case|:
+comment|// VirtualNodeSets may have modified the axis ; checking the
+comment|// type
+comment|// TODO : further checks ?
+if|if
+condition|(
+name|this
+operator|.
+name|test
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|ATTRIBUTE
+condition|)
+block|{
+name|this
+operator|.
+name|axis
+operator|=
+name|Constants
+operator|.
+name|ATTRIBUTE_AXIS
+expr_stmt|;
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getAttributes(context, contextSequence);
+block|}
+else|else
+block|{
+name|result
+operator|=
+name|matchSelf
+argument_list|(
+name|context
+argument_list|,
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//matchChildren(context, contextSequence);
+block|}
+break|break;
+case|case
+name|Constants
+operator|.
+name|ANCESTOR_SELF_AXIS
+case|:
+case|case
+name|Constants
+operator|.
+name|ANCESTOR_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getAncestors(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|PARENT_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getParents(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|SELF_AXIS
+case|:
+if|if
+condition|(
+operator|!
+operator|(
+name|contextSequence
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|)
+condition|)
+block|{
+comment|// This test is copied from the legacy method
+comment|// getSelfAtomic()
+if|if
+condition|(
+operator|!
+name|test
+operator|.
+name|isWildcardTest
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|test
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" cannot be applied to an atomic value."
+argument_list|)
+throw|;
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//contextSequence;
+block|}
+else|else
+block|{
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getSelf(context, contextSequence);
+block|}
+break|break;
+case|case
+name|Constants
+operator|.
+name|ATTRIBUTE_AXIS
+case|:
+case|case
+name|Constants
+operator|.
+name|DESCENDANT_ATTRIBUTE_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getAttributes(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|PRECEDING_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getPreceding(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|FOLLOWING_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getFollowing(context, contextSequence);
+break|break;
+case|case
+name|Constants
+operator|.
+name|PRECEDING_SIBLING_AXIS
+case|:
+case|case
+name|Constants
+operator|.
+name|FOLLOWING_SIBLING_AXIS
+case|:
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//getSiblings(context, contextSequence);
+break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unsupported axis specified"
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+name|result
+operator|=
+literal|null
+expr_stmt|;
+comment|//NodeSet.EMPTY_SET;
+block|}
+name|result
+operator|=
+name|matchPredicate
+argument_list|(
+name|contextSequence
+argument_list|,
+operator|(
+name|Node
+operator|)
+name|contextItem
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// actualReturnType = result.getItemType();
+return|return
+name|result
+return|;
+block|}
+specifier|private
+name|Boolean
+name|matchPredicate
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Node
+name|contextItem
+parameter_list|,
+name|Boolean
+name|result
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+if|if
+condition|(
+operator|!
+name|result
+condition|)
+return|return
+name|result
+return|;
+if|if
+condition|(
+name|contextSequence
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|predicates
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return
+name|result
+return|;
+name|Predicate
+name|pred
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|predicates
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+comment|//&& (result instanceof VirtualNodeSet || !result.isEmpty());) {
+comment|// TODO : log and/or profile ?
+name|pred
+operator|=
+operator|(
+name|Predicate
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+name|pred
+operator|.
+name|setContextDocSet
+argument_list|(
+name|getContextDocSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//result = pred.evalPredicate(outerSequence, result, axis);
+name|result
+operator|=
+name|pred
+operator|.
+name|matchPredicate
+argument_list|(
+name|contextSequence
+argument_list|,
+operator|(
+name|Item
+operator|)
+name|contextItem
+argument_list|,
+name|axis
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|result
+condition|)
+return|return
+literal|false
+return|;
+comment|// subsequent predicates operate on the result of the previous one
+comment|//			outerSequence = null;
+block|}
+return|return
+name|result
+return|;
+block|}
+specifier|private
+name|Boolean
+name|matchSelf
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
+name|Sequence
+name|contextSequence
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+if|if
+condition|(
+operator|!
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+block|{
+name|MemoryNodeSet
+name|nodes
+init|=
+name|contextSequence
+operator|.
+name|toMemNodeSet
+argument_list|()
+decl_stmt|;
+return|return
+name|nodes
+operator|.
+name|matchSelf
+argument_list|(
+name|test
+argument_list|)
+return|;
+block|}
+name|NodeSet
+name|contextSet
+init|=
+name|contextSequence
+operator|.
+name|toNodeSet
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|test
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|PROCESSING_INSTRUCTION
+condition|)
+block|{
+name|VirtualNodeSet
+name|vset
+init|=
+operator|new
+name|VirtualNodeSet
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+name|axis
+argument_list|,
+name|test
+argument_list|,
+name|contextId
+argument_list|,
+name|contextSet
+argument_list|)
+decl_stmt|;
+name|vset
+operator|.
+name|setInPredicate
+argument_list|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
+argument_list|)
+expr_stmt|;
+return|return
+operator|!
+name|vset
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+if|if
+condition|(
+name|test
+operator|.
+name|isWildcardTest
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|nodeTestType
+operator|==
+literal|null
+condition|)
+block|{
+name|nodeTestType
+operator|=
+operator|new
+name|Integer
+argument_list|(
+name|test
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|nodeTestType
+operator|.
+name|intValue
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
+condition|)
+block|{
+if|if
+condition|(
+name|contextSet
+operator|instanceof
+name|VirtualNodeSet
+condition|)
+block|{
+operator|(
+operator|(
+name|VirtualNodeSet
+operator|)
+name|contextSet
+operator|)
+operator|.
+name|setInPredicate
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+operator|(
+operator|(
+name|VirtualNodeSet
+operator|)
+name|contextSet
+operator|)
+operator|.
+name|setContextId
+argument_list|(
+name|contextId
+argument_list|)
+expr_stmt|;
+operator|(
+operator|(
+name|VirtualNodeSet
+operator|)
+name|contextSet
+operator|)
+operator|.
+name|setSelfIsContext
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSet
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
+name|NodeProxy
+name|p
+decl_stmt|;
+for|for
+control|(
+name|Iterator
+name|i
+init|=
+name|contextSet
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+name|p
+operator|=
+operator|(
+name|NodeProxy
+operator|)
+name|i
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|test
+operator|.
+name|matches
+argument_list|(
+name|p
+argument_list|)
+condition|)
+return|return
+literal|true
+return|;
+block|}
+block|}
+block|}
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
+name|VirtualNodeSet
+name|vset
+init|=
+operator|new
+name|VirtualNodeSet
+argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+name|axis
+argument_list|,
+name|test
+argument_list|,
+name|contextId
+argument_list|,
+name|contextSet
+argument_list|)
+decl_stmt|;
+name|vset
+operator|.
+name|setInPredicate
+argument_list|(
+name|Expression
+operator|.
+name|NO_CONTEXT_ID
+operator|!=
+name|contextId
+argument_list|)
+expr_stmt|;
+return|return
+operator|!
+name|vset
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
+block|}
+else|else
+block|{
+name|DocumentSet
+name|docs
+init|=
+name|getDocumentSet
+argument_list|(
+name|contextSet
+argument_list|)
+decl_stmt|;
+name|ElementIndex
+name|index
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getElementIndex
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATIONS
+argument_list|,
+literal|"OPTIMIZATION"
+argument_list|,
+literal|"Using structural index '"
+operator|+
+name|index
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+name|NodeSelector
+name|selector
+init|=
+operator|new
+name|SelfSelector
+argument_list|(
+name|contextSet
+argument_list|,
+name|contextId
+argument_list|)
+decl_stmt|;
+return|return
+name|index
+operator|.
+name|matchElementsByTagName
+argument_list|(
+name|ElementValue
+operator|.
+name|ELEMENT
+argument_list|,
+name|docs
+argument_list|,
+name|test
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|selector
+argument_list|)
 return|;
 block|}
 block|}

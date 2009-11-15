@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Handles predicate expressions.  *  *@author     Wolfgang Meier  */
+comment|/**  * Handles predicate expressions.  *   *@author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -302,7 +302,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
 specifier|public
 name|int
 name|getDependencies
@@ -346,7 +346,7 @@ return|return
 name|deps
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo) 	 */
 specifier|public
 name|void
 name|analyze
@@ -447,7 +447,8 @@ name|executionMode
 operator|=
 name|NODE
 expr_stmt|;
-comment|// Case 2: predicate expression returns a unique number and has no dependency with the context item.
+comment|// Case 2: predicate expression returns a unique number and has no
+comment|// dependency with the context item.
 block|}
 if|else if
 condition|(
@@ -492,7 +493,8 @@ name|executionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
-comment|// Case 3: all other cases, boolean evaluation (that can be "promoted" later)
+comment|// Case 3: all other cases, boolean evaluation (that can be "promoted"
+comment|// later)
 else|else
 name|executionMode
 operator|=
@@ -586,7 +588,9 @@ argument_list|(
 name|IN_PREDICATE
 argument_list|)
 expr_stmt|;
-comment|// set flag to signal subexpression that we are in a predicate
+comment|// set flag to signal
+comment|// subexpression that we are in
+comment|// a predicate
 name|newContextInfo
 operator|.
 name|removeFlag
@@ -669,6 +673,560 @@ name|eval
 argument_list|(
 literal|null
 argument_list|)
+return|;
+block|}
+specifier|public
+name|Boolean
+name|matchPredicate
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
+parameter_list|,
+name|int
+name|mode
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+block|{
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|start
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|DEPENDENCIES
+argument_list|,
+literal|"DEPENDENCIES"
+argument_list|,
+name|Dependency
+operator|.
+name|getDependenciesName
+argument_list|(
+name|this
+operator|.
+name|getDependencies
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|START_SEQUENCES
+argument_list|,
+literal|"CONTEXT SEQUENCE"
+argument_list|,
+name|contextSequence
+argument_list|)
+expr_stmt|;
+block|}
+name|boolean
+name|result
+init|=
+literal|false
+decl_stmt|;
+name|Expression
+name|inner
+init|=
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+condition|?
+name|getExpression
+argument_list|(
+literal|0
+argument_list|)
+else|:
+name|this
+decl_stmt|;
+if|if
+condition|(
+name|inner
+operator|==
+literal|null
+condition|)
+name|result
+operator|=
+literal|false
+expr_stmt|;
+else|else
+block|{
+name|int
+name|recomputedExecutionMode
+init|=
+name|executionMode
+decl_stmt|;
+name|Sequence
+name|innerSeq
+init|=
+literal|null
+decl_stmt|;
+comment|// Atomic context sequences :
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|ATOMIC
+argument_list|)
+condition|)
+block|{
+comment|// We can't have a node set operation : reconsider depending of
+comment|// the inner sequence
+if|if
+condition|(
+name|executionMode
+operator|==
+name|NODE
+operator|&&
+operator|!
+operator|(
+name|contextSequence
+operator|instanceof
+name|VirtualNodeSet
+operator|)
+condition|)
+block|{
+comment|// (1,2,2,4)[.]
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|contextSequence
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|POSITIONAL
+expr_stmt|;
+block|}
+else|else
+block|{
+name|recomputedExecutionMode
+operator|=
+name|BOOLEAN
+expr_stmt|;
+block|}
+block|}
+comment|// If there is no dependency on the context item, try a
+comment|// positional promotion
+if|if
+condition|(
+name|executionMode
+operator|==
+name|BOOLEAN
+operator|&&
+operator|!
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|inner
+argument_list|,
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+argument_list|)
+comment|// Hack : GeneralComparison lies on its dependencies
+comment|// TODO : try to remove this since our dependency
+comment|// computation should now be better
+operator|&&
+operator|!
+operator|(
+operator|(
+name|inner
+operator|instanceof
+name|GeneralComparison
+operator|)
+operator|&&
+operator|(
+operator|(
+name|GeneralComparison
+operator|)
+name|inner
+operator|)
+operator|.
+name|invalidNodeEvaluation
+operator|)
+condition|)
+block|{
+name|innerSeq
+operator|=
+name|inner
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+expr_stmt|;
+comment|// Only if we have an actual *singleton* of numeric items
+if|if
+condition|(
+name|innerSeq
+operator|.
+name|hasOne
+argument_list|()
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|innerSeq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|POSITIONAL
+expr_stmt|;
+block|}
+block|}
+block|}
+if|else if
+condition|(
+name|executionMode
+operator|==
+name|NODE
+operator|&&
+operator|!
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|BOOLEAN
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|executionMode
+operator|==
+name|BOOLEAN
+operator|&&
+operator|!
+name|Dependency
+operator|.
+name|dependsOn
+argument_list|(
+name|inner
+argument_list|,
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+argument_list|)
+condition|)
+block|{
+comment|/* 					 *  					 * WARNING : this sequence will be evaluated with 					 * preloadable nodesets ! 					 */
+name|innerSeq
+operator|=
+name|inner
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+expr_stmt|;
+comment|// Try to promote a boolean evaluation to a nodeset one
+comment|// We are now sure of the inner sequence return type
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|innerSeq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+operator|&&
+name|innerSeq
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|NODE
+expr_stmt|;
+comment|// Try to promote a boolean evaluation to a positional
+comment|// one
+comment|// Only if we have an actual *singleton* of numeric
+comment|// items
+block|}
+if|else if
+condition|(
+name|innerSeq
+operator|.
+name|hasOne
+argument_list|()
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|innerSeq
+operator|.
+name|getItemType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|NUMBER
+argument_list|)
+condition|)
+block|{
+name|recomputedExecutionMode
+operator|=
+name|POSITIONAL
+expr_stmt|;
+block|}
+block|}
+block|}
+switch|switch
+condition|(
+name|recomputedExecutionMode
+condition|)
+block|{
+case|case
+name|NODE
+case|:
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"Node selection"
+argument_list|)
+expr_stmt|;
+comment|//TODO:				result = selectByNodeSet(contextSequence);
+break|break;
+case|case
+name|BOOLEAN
+case|:
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"Boolean evaluation"
+argument_list|)
+expr_stmt|;
+comment|//TODO:				result = evalBoolean(contextSequence, inner);
+break|break;
+case|case
+name|POSITIONAL
+case|:
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|OPTIMIZATION_FLAGS
+argument_list|,
+literal|"OPTIMIZATION CHOICE"
+argument_list|,
+literal|"Positional evaluation"
+argument_list|)
+expr_stmt|;
+comment|// In case it hasn't been evaluated above
+if|if
+condition|(
+name|innerSeq
+operator|==
+literal|null
+condition|)
+block|{
+name|innerSeq
+operator|=
+name|inner
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|)
+expr_stmt|;
+block|}
+comment|//TODO:				result = selectByPosition(outerSequence, contextSequence, mode,
+comment|//						innerSeq);
+break|break;
+default|default:
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Unsupported execution mode: '"
+operator|+
+name|recomputedExecutionMode
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
+block|}
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|end
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 specifier|public
@@ -803,7 +1361,7 @@ name|innerSeq
 init|=
 literal|null
 decl_stmt|;
-comment|//Atomic context sequences :
+comment|// Atomic context sequences :
 if|if
 condition|(
 name|Type
@@ -821,7 +1379,8 @@ name|ATOMIC
 argument_list|)
 condition|)
 block|{
-comment|//We can't have a node set operation : reconsider depending of the inner sequence
+comment|// We can't have a node set operation : reconsider depending of
+comment|// the inner sequence
 if|if
 condition|(
 name|executionMode
@@ -836,7 +1395,7 @@ name|VirtualNodeSet
 operator|)
 condition|)
 block|{
-comment|//(1,2,2,4)[.]
+comment|// (1,2,2,4)[.]
 if|if
 condition|(
 name|Type
@@ -867,7 +1426,8 @@ name|BOOLEAN
 expr_stmt|;
 block|}
 block|}
-comment|//If there is no dependency on the context item, try a positional promotion
+comment|// If there is no dependency on the context item, try a
+comment|// positional promotion
 if|if
 condition|(
 name|executionMode
@@ -885,8 +1445,9 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
-comment|//Hack : GeneralComparison lies on its dependencies
-comment|//TODO : try to remove this since our dependency computation should now be better
+comment|// Hack : GeneralComparison lies on its dependencies
+comment|// TODO : try to remove this since our dependency
+comment|// computation should now be better
 operator|&&
 operator|!
 operator|(
@@ -916,7 +1477,7 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
-comment|//Only if we have an actual *singleton* of numeric items
+comment|// Only if we have an actual *singleton* of numeric items
 if|if
 condition|(
 name|innerSeq
@@ -985,7 +1546,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-comment|/* 	            	 * 	            	 * WARNING : this sequence will be evaluated with preloadable nodesets ! 	            	 * 	            	 */
+comment|/* 					 *  					 * WARNING : this sequence will be evaluated with 					 * preloadable nodesets ! 					 */
 name|innerSeq
 operator|=
 name|inner
@@ -995,8 +1556,8 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
-comment|//Try to promote a boolean evaluation to a nodeset one
-comment|//We are now sure of the inner sequence return type
+comment|// Try to promote a boolean evaluation to a nodeset one
+comment|// We are now sure of the inner sequence return type
 if|if
 condition|(
 name|Type
@@ -1023,8 +1584,10 @@ name|recomputedExecutionMode
 operator|=
 name|NODE
 expr_stmt|;
-comment|//Try to promote a boolean evaluation to a positional one
-comment|//Only if we have an actual *singleton* of numeric items
+comment|// Try to promote a boolean evaluation to a positional
+comment|// one
+comment|// Only if we have an actual *singleton* of numeric
+comment|// items
 block|}
 if|else if
 condition|(
@@ -1171,7 +1734,7 @@ argument_list|,
 literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
-comment|//In case it hasn't been evaluated above
+comment|// In case it hasn't been evaluated above
 if|if
 condition|(
 name|innerSeq
@@ -1286,7 +1849,7 @@ name|getProcessInReverseOrder
 argument_list|()
 condition|)
 block|{
-comment|//This one may be expensive...
+comment|// This one may be expensive...
 name|p
 operator|=
 name|contextSequence
@@ -1313,7 +1876,7 @@ name|p
 operator|--
 control|)
 block|{
-comment|//0-based
+comment|// 0-based
 name|context
 operator|.
 name|setContextPosition
@@ -1361,14 +1924,14 @@ block|}
 block|}
 else|else
 block|{
-comment|//0-based
+comment|// 0-based
 name|p
 operator|=
 literal|0
 expr_stmt|;
-comment|//TODO : is this block also accurate in reverse-order processing ?
-comment|//Compute each position in the boolean-like way...
-comment|//... but grab some context positions ! -<8-P
+comment|// TODO : is this block also accurate in reverse-order processing ?
+comment|// Compute each position in the boolean-like way...
+comment|// ... but grab some context positions ! -<8-P
 if|if
 condition|(
 name|Type
@@ -1450,7 +2013,7 @@ argument_list|,
 name|item
 argument_list|)
 decl_stmt|;
-comment|//TODO : introduce a check in innerSeq.hasOne() ?
+comment|// TODO : introduce a check in innerSeq.hasOne() ?
 name|NumericValue
 name|nv
 init|=
@@ -1464,7 +2027,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -1520,7 +2083,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
-comment|//TODO : move this test above ?
+comment|// TODO : move this test above ?
 if|if
 condition|(
 name|position
@@ -1623,7 +2186,7 @@ name|NUMBER
 argument_list|)
 condition|)
 block|{
-comment|//TODO : introduce a check in innerSeq.hasOne() ?
+comment|// TODO : introduce a check in innerSeq.hasOne() ?
 name|NumericValue
 name|nv
 init|=
@@ -1632,7 +2195,7 @@ name|NumericValue
 operator|)
 name|innerSeq
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -1703,7 +2266,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
-comment|//TODO : move this test above ?
+comment|// TODO : move this test above ?
 if|if
 condition|(
 name|position
@@ -1767,8 +2330,8 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 decl_stmt|;
-comment|/* 		//Uncomment the lines below which are intended to work around a VirtualNodeSet bug 		//No need to say that performance can suffer ! 		NodeSet nodes; 		if (contextIsVirtual) { 			ArraySet copy = new ArraySet(contextSet.getLength()); 			for (Iterator i = contextSet.iterator(); i.hasNext();) { 				copy.add((Item)i.next()); 			} 			nodes =	super.eval(copy, null).toNodeSet(); 		} else 			nodes =	super.eval(contextSet, null).toNodeSet(); 		//End of work-around 		*/
-comment|//Comment the line below if you have uncommented the lines above :-)
+comment|/* 		 * //Uncomment the lines below which are intended to work around a 		 * VirtualNodeSet bug //No need to say that performance can suffer ! 		 * NodeSet nodes; if (contextIsVirtual) { ArraySet copy = new 		 * ArraySet(contextSet.getLength()); for (Iterator i = 		 * contextSet.iterator(); i.hasNext();) { copy.add((Item)i.next()); } 		 * nodes = super.eval(copy, null).toNodeSet(); } else nodes = 		 * super.eval(contextSet, null).toNodeSet(); //End of work-around 		 */
+comment|// Comment the line below if you have uncommented the lines above :-)
 name|NodeSet
 name|nodes
 init|=
@@ -1784,7 +2347,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|/* if the predicate expression returns results from the cache 		 * we can also return the cached result. 		 */
+comment|/* 		 * if the predicate expression returns results from the cache we can 		 * also return the cached result. 		 */
 if|if
 condition|(
 name|cached
@@ -1944,7 +2507,7 @@ literal|" !"
 argument_list|)
 throw|;
 block|}
-comment|//TODO : review to consider transverse context
+comment|// TODO : review to consider transverse context
 while|while
 condition|(
 name|contextItem
@@ -2141,8 +2704,8 @@ block|{
 name|NodeSet
 name|outerNodeSet
 decl_stmt|;
-comment|//Ugly and costly processing of VirtualNodeSets
-comment|//TODO : CORRECT THIS !!!
+comment|// Ugly and costly processing of VirtualNodeSets
+comment|// TODO : CORRECT THIS !!!
 if|if
 condition|(
 name|outerSequence
@@ -2150,7 +2713,8 @@ operator|instanceof
 name|VirtualNodeSet
 condition|)
 block|{
-comment|// Looks like we don't need to treat VirtualNodeSet specially here.
+comment|// Looks like we don't need to treat VirtualNodeSet
+comment|// specially here.
 name|outerNodeSet
 operator|=
 name|outerSequence
@@ -2158,10 +2722,11 @@ operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
-comment|//        			outerNodeSet = new NewArrayNodeSet();
-comment|//        			for (int i = 0 ; i< outerSequence.getItemCount() ; i++) {
-comment|//        				outerNodeSet.add(outerSequence.itemAt(i));
-comment|//        			}
+comment|// outerNodeSet = new NewArrayNodeSet();
+comment|// for (int i = 0 ; i< outerSequence.getItemCount() ; i++)
+comment|// {
+comment|// outerNodeSet.add(outerSequence.itemAt(i));
+comment|// }
 block|}
 else|else
 name|outerNodeSet
@@ -2171,15 +2736,17 @@ operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
-comment|//Comment the line below if you have uncommented the lines above :-)
-comment|//TODO: in some cases, especially with in-memory nodes,
-comment|//outerSequence.toNodeSet() will generate a document
-comment|//which will be different from the one(s) in contextSet
-comment|//ancestors will thus be empty :-(
-comment|// A special treatment of VirtualNodeSet does not seem to be required
+comment|// Comment the line below if you have uncommented the lines
+comment|// above :-)
+comment|// TODO: in some cases, especially with in-memory nodes,
+comment|// outerSequence.toNodeSet() will generate a document
+comment|// which will be different from the one(s) in contextSet
+comment|// ancestors will thus be empty :-(
+comment|// A special treatment of VirtualNodeSet does not seem to be
+comment|// required
 comment|// anymore, at least for trunk:
-comment|//            	if (outerSequence instanceof VirtualNodeSet)
-comment|//            		((VirtualNodeSet)outerSequence).realize();
+comment|// if (outerSequence instanceof VirtualNodeSet)
+comment|// ((VirtualNodeSet)outerSequence).realize();
 name|Sequence
 name|ancestors
 init|=
@@ -2315,7 +2882,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : understand why we sort here...
+comment|// TODO : understand why we sort here...
 name|temp
 operator|.
 name|sortInDocumentOrder
@@ -2349,7 +2916,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -2365,8 +2932,9 @@ name|isZero
 argument_list|()
 condition|)
 block|{
-comment|//... whereas we don't want a sorted array here
-comment|//TODO : rename this method as getInDocumentOrder ? -pb
+comment|// ... whereas we don't want a sorted array here
+comment|// TODO : rename this method as getInDocumentOrder ?
+comment|// -pb
 name|p
 operator|=
 name|temp
@@ -2388,8 +2956,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//Commented out : but this is probably more complicated (see test case in the same commit)
-comment|//p.clearContext(Expression.IGNORE_CONTEXT);
+comment|// Commented out : but this is probably more
+comment|// complicated (see test case in the same
+comment|// commit)
+comment|// p.clearContext(Expression.IGNORE_CONTEXT);
 name|result
 operator|.
 name|add
@@ -2398,7 +2968,8 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : does null make sense here ? Well... sometimes ;-)
+comment|// TODO : does null make sense here ? Well...
+comment|// sometimes ;-)
 block|}
 block|}
 block|}
@@ -2493,9 +3064,10 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 case|:
-comment|//TODO : understand why the contextSet is not involved here
-comment|//NodeProxy.getParent returns a *theoretical* parent
-comment|//which is *not* guaranteed to be in the context set !
+comment|// TODO : understand why the contextSet is not involved
+comment|// here
+comment|// NodeProxy.getParent returns a *theoretical* parent
+comment|// which is *not* guaranteed to be in the context set !
 name|temp
 operator|=
 name|p
@@ -2607,8 +3179,9 @@ literal|false
 expr_stmt|;
 break|break;
 default|default:
-comment|//temp = contextSet.selectAncestorDescendant(p, NodeSet.DESCENDANT, false, false);
-comment|//break;
+comment|// temp = contextSet.selectAncestorDescendant(p,
+comment|// NodeSet.DESCENDANT, false, false);
+comment|// break;
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -2654,7 +3227,8 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error
+comment|// !
 if|if
 condition|(
 operator|!
@@ -2694,7 +3268,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
-comment|//Other positions are ignored
+comment|// Other positions are ignored
 if|if
 condition|(
 name|pos
@@ -2722,7 +3296,8 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
-comment|// for the current context: filter out those context items
+comment|// for the current context: filter out those
+comment|// context items
 comment|// not selected by the positional predicate
 name|ContextItem
 name|ctx
@@ -2923,7 +3498,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|//Non integers return... nothing, not even an error !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -2963,7 +3538,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
-comment|//Other positions are ignored
+comment|// Other positions are ignored
 if|if
 condition|(
 name|pos
@@ -3055,7 +3630,7 @@ return|return
 name|executionMode
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState

@@ -349,6 +349,24 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+specifier|public
+specifier|abstract
+name|Boolean
+name|matchElementsByTagName
+parameter_list|(
+name|byte
+name|type
+parameter_list|,
+name|DocumentSet
+name|docs
+parameter_list|,
+name|QName
+name|qname
+parameter_list|,
+name|NodeSelector
+name|selector
+parameter_list|)
+function_decl|;
 block|}
 end_class
 
