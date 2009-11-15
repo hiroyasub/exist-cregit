@@ -225,6 +225,16 @@ name|int
 name|which
 parameter_list|)
 function_decl|;
+specifier|public
+name|Boolean
+name|matchSelf
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 block|}
 end_interface
 
