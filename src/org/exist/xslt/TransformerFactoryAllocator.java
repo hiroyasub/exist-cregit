@@ -387,6 +387,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|factory
+operator|.
+name|setAttribute
+argument_list|(
+name|PROPERTY_BROKER_POOL
+argument_list|,
+name|pool
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
