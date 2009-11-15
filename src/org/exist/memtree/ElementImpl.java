@@ -31,6 +31,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|ElementAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NamedNodeMapImpl
 import|;
 end_import
@@ -56,18 +68,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QNameable
 import|;
 end_import
 
@@ -144,18 +144,6 @@ operator|.
 name|dom
 operator|.
 name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
 import|;
 end_import
 
@@ -254,9 +242,7 @@ name|ElementImpl
 extends|extends
 name|NodeImpl
 implements|implements
-name|Element
-implements|,
-name|QNameable
+name|ElementAtExist
 block|{
 specifier|public
 name|ElementImpl

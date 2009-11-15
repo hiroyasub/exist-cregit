@@ -21,6 +21,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -418,7 +430,7 @@ name|DocumentImpl
 extends|extends
 name|NodeImpl
 implements|implements
-name|Document
+name|DocumentAtExist
 block|{
 specifier|private
 specifier|static

@@ -90,7 +90,7 @@ name|Comparable
 block|{
 specifier|public
 name|DocumentAtExist
-name|getDocument
+name|getDocumentAtExist
 parameter_list|()
 function_decl|;
 specifier|public

@@ -121,16 +121,7 @@ throws|throws
 name|DOMException
 function_decl|;
 comment|//???
-specifier|public
-name|int
-name|getNextNodeNumber
-parameter_list|(
-name|int
-name|nodeNr
-parameter_list|)
-throws|throws
-name|DOMException
-function_decl|;
+comment|//    public int getNextNodeNumber(int nodeNr) throws DOMException;
 comment|//memory
 specifier|public
 name|boolean
