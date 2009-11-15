@@ -429,7 +429,12 @@ name|info
 init|=
 operator|new
 name|AnalyzeContextInfo
-argument_list|()
+argument_list|(
+operator|(
+name|XQueryContext
+operator|)
+name|context
+argument_list|)
 decl_stmt|;
 name|info
 operator|.
