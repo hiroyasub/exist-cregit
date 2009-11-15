@@ -161,6 +161,14 @@ name|other
 operator|.
 name|staticType
 expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|other
+operator|.
+name|context
+expr_stmt|;
 block|}
 specifier|public
 name|AnalyzeContextInfo
