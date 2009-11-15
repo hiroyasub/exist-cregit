@@ -3508,10 +3508,26 @@ literal|0
 condition|)
 block|{
 comment|// give the server a 1s chance to complete pending requests
-comment|//                Timer timer = new Timer();
-comment|//                timer.schedule(new TimerTask() {
-comment|//
-comment|//                    public void run() {
+name|Timer
+name|timer
+init|=
+operator|new
+name|Timer
+argument_list|()
+decl_stmt|;
+name|timer
+operator|.
+name|schedule
+argument_list|(
+operator|new
+name|TimerTask
+argument_list|()
+block|{
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
 comment|//XXX: how to wait a little ??? -shabanovd
 name|LOG
 operator|.
@@ -3540,9 +3556,19 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                        System.exit(0);
-comment|//                    }
-comment|//                }, 1000);
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+argument_list|,
+literal|1000
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
