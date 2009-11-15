@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -38,6 +38,16 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observer
 import|;
 end_import
 
@@ -355,6 +365,8 @@ operator|.
 name|run
 argument_list|(
 name|args
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -376,6 +388,9 @@ parameter_list|(
 name|String
 index|[]
 name|args
+parameter_list|,
+name|Observer
+name|observer
 parameter_list|)
 block|{
 if|if
@@ -740,9 +755,21 @@ name|SingleInstanceConfiguration
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO lost during merge?
-comment|//            if (observer != null)
-comment|//                BrokerPool.registerStatusObserver(observer);
+if|if
+condition|(
+name|observer
+operator|!=
+literal|null
+condition|)
+block|{
+name|BrokerPool
+operator|.
+name|registerStatusObserver
+argument_list|(
+name|observer
+argument_list|)
+expr_stmt|;
+block|}
 name|BrokerPool
 operator|.
 name|configure
@@ -948,30 +975,17 @@ operator|.
 name|getHandlers
 argument_list|()
 decl_stmt|;
-comment|// todo make Java5 style
 for|for
 control|(
-name|int
-name|index
-init|=
-literal|0
-init|;
-name|index
-operator|<
+name|Handler
+name|handler
+range|:
 name|handlers
-operator|.
-name|length
-condition|;
-name|index
-operator|++
 control|)
 block|{
 if|if
 condition|(
-name|handlers
-index|[
-name|index
-index|]
+name|handler
 operator|instanceof
 name|ContextHandler
 condition|)
@@ -982,10 +996,7 @@ init|=
 operator|(
 name|ContextHandler
 operator|)
-name|handlers
-index|[
-name|index
-index|]
+name|handler
 decl_stmt|;
 name|logger
 operator|.
