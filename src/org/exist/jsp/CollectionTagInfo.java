@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @deprecated it'll removed after 1.6  */
 end_comment
 
 begin_class
