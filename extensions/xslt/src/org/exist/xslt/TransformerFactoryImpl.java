@@ -693,7 +693,7 @@ name|exist
 operator|.
 name|xslt
 operator|.
-name|Transformer
+name|TransformerImpl
 argument_list|()
 return|;
 block|}
