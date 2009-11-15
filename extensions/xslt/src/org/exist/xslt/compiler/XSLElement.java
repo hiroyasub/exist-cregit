@@ -1612,16 +1612,16 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getDocument() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getDocumentAtExist() 	 */
 specifier|public
 name|DocumentAtExist
-name|getDocument
+name|getDocumentAtExist
 parameter_list|()
 block|{
 return|return
 name|element
 operator|.
-name|getDocument
+name|getDocumentAtExist
 argument_list|()
 return|;
 block|}
@@ -1731,7 +1731,7 @@ return|;
 name|DocumentAtExist
 name|document
 init|=
-name|getDocument
+name|getDocumentAtExist
 argument_list|()
 decl_stmt|;
 name|nl

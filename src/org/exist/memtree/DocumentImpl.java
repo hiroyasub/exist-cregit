@@ -6797,6 +6797,25 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|int
+name|getNextNodeNumber
+parameter_list|(
+name|int
+name|nextNode
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+return|return
+name|document
+operator|.
+name|next
+index|[
+name|nextNode
+index|]
+return|;
+block|}
 block|}
 end_class
 
