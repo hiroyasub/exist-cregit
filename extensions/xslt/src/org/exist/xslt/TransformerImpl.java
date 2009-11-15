@@ -192,12 +192,6 @@ specifier|public
 class|class
 name|TransformerImpl
 extends|extends
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
 name|Transformer
 block|{
 specifier|public
