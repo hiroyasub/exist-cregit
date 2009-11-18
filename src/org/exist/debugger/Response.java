@@ -13,6 +13,18 @@ name|debugger
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -39,6 +51,14 @@ specifier|public
 name|String
 name|getText
 parameter_list|()
+function_decl|;
+specifier|public
+name|NodeList
+name|getElemetsByName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
 function_decl|;
 block|}
 end_interface

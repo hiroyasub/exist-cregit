@@ -25,6 +25,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -34,6 +44,20 @@ operator|.
 name|model
 operator|.
 name|Breakpoint
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|Variable
 import|;
 end_import
 
@@ -120,6 +144,14 @@ name|listener
 parameter_list|)
 function_decl|;
 comment|//public Response getResponse(String transactionID);
+specifier|public
+name|List
+argument_list|<
+name|Variable
+argument_list|>
+name|getVariables
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

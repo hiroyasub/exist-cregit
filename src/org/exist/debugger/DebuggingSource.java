@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -126,8 +136,10 @@ name|isTerminated
 parameter_list|()
 function_decl|;
 specifier|public
+name|List
+argument_list|<
 name|Variable
-index|[]
+argument_list|>
 name|getVariables
 parameter_list|()
 function_decl|;

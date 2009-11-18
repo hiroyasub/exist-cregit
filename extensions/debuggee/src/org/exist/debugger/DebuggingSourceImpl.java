@@ -29,6 +29,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -201,14 +211,18 @@ return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#getVariables() 	 */
 specifier|public
+name|List
+argument_list|<
 name|Variable
-index|[]
+argument_list|>
 name|getVariables
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|debugger
+operator|.
+name|getVariables
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#isSuspended() 	 */
