@@ -56,7 +56,7 @@ specifier|final
 name|String
 name|PREFIX
 init|=
-literal|"xqdoc"
+literal|"xqdm"
 decl_stmt|;
 specifier|public
 specifier|final
