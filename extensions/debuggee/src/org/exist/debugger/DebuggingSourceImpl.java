@@ -199,14 +199,18 @@ comment|// TODO Auto-generated method stub
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#getStackFrames() 	 */
 specifier|public
+name|List
+argument_list|<
 name|Location
-index|[]
+argument_list|>
 name|getStackFrames
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|debugger
+operator|.
+name|getStackFrames
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#getVariables() 	 */

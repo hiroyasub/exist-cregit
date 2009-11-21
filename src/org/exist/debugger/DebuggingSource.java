@@ -144,8 +144,10 @@ name|getVariables
 parameter_list|()
 function_decl|;
 specifier|public
+name|List
+argument_list|<
 name|Location
-index|[]
+argument_list|>
 name|getStackFrames
 parameter_list|()
 function_decl|;
