@@ -8501,7 +8501,8 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+comment|/**      * Returns the static location mapped to an XQuery source module, if known.      *      * @param namespaceURI      * @return      */
+specifier|public
 name|String
 name|getModuleLocation
 parameter_list|(
@@ -8721,6 +8722,29 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"failed to load module '"
+operator|+
+name|namespaceURI
+operator|+
+literal|"' from '"
+operator|+
+name|source
+operator|+
+literal|". Source not found. "
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
