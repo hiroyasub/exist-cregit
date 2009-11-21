@@ -344,6 +344,12 @@ condition|(
 name|module
 operator|==
 literal|null
+operator|||
+operator|!
+name|module
+operator|.
+name|isInternalModule
+argument_list|()
 condition|)
 block|{
 return|return
