@@ -351,7 +351,7 @@ name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract
-name|Boolean
+name|boolean
 name|matchElementsByTagName
 parameter_list|(
 name|byte
