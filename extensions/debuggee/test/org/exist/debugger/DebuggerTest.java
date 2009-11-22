@@ -308,6 +308,24 @@ operator|.
 name|getStackFrames
 argument_list|()
 decl_stmt|;
+for|for
+control|(
+name|Location
+name|loc
+range|:
+name|stack
+control|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|loc
+argument_list|)
+expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|1
@@ -398,7 +416,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"sending step-into"
+literal|"sending step-into& waiting stop status"
 argument_list|)
 expr_stmt|;
 for|for
@@ -428,28 +446,8 @@ expr_stmt|;
 name|source
 operator|.
 name|stepInto
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 expr_stmt|;
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-comment|//TODO: query current stage or wait for STOP status ???
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-block|}
 block|}
 name|System
 operator|.

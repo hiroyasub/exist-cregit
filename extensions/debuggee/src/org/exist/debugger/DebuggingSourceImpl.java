@@ -287,6 +287,18 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#run() 	 */
+specifier|public
+name|void
+name|run
+parameter_list|()
+block|{
+name|debugger
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepInto() 	 */
 specifier|public
 name|void
@@ -302,6 +314,18 @@ name|stepInto
 argument_list|(
 name|listener
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepInto() 	 */
+specifier|public
+name|void
+name|stepInto
+parameter_list|()
+block|{
+name|debugger
+operator|.
+name|stepInto
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOut() 	 */
@@ -321,6 +345,18 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOut() 	 */
+specifier|public
+name|void
+name|stepOut
+parameter_list|()
+block|{
+name|debugger
+operator|.
+name|stepOut
+argument_list|()
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOver() 	 */
 specifier|public
 name|void
@@ -338,6 +374,18 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOver() 	 */
+specifier|public
+name|void
+name|stepOver
+parameter_list|()
+block|{
+name|debugger
+operator|.
+name|stepOver
+argument_list|()
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stop() 	 */
 specifier|public
 name|void
@@ -353,6 +401,18 @@ name|stop
 argument_list|(
 name|listener
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stop() 	 */
+specifier|public
+name|void
+name|stop
+parameter_list|()
+block|{
+name|debugger
+operator|.
+name|stop
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

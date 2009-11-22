@@ -248,6 +248,12 @@ name|ResponseListener
 name|listener
 parameter_list|)
 block|{
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
 name|listeners
 operator|.
 name|add
@@ -264,6 +270,12 @@ name|ResponseListener
 name|listener
 parameter_list|)
 block|{
+if|if
+condition|(
+name|listener
+operator|!=
+literal|null
+condition|)
 name|listeners
 operator|.
 name|remove

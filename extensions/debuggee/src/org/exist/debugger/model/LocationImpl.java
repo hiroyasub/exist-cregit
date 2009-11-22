@@ -218,6 +218,25 @@ return|return
 name|beginLine
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|""
+operator|+
+name|beginLine
+operator|+
+literal|":"
+operator|+
+name|beginColumn
+operator|+
+literal|"@"
+operator|+
+name|fileURI
+return|;
+block|}
 block|}
 end_class
 
