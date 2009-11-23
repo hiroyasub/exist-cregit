@@ -1656,13 +1656,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
-name|context
-operator|.
-name|stackEnter
-argument_list|(
-name|expression
-argument_list|)
-expr_stmt|;
+comment|//            context.stackEnter(expression);
 name|context
 operator|.
 name|functionStart
@@ -1756,13 +1750,7 @@ operator|.
 name|functionEnd
 argument_list|()
 expr_stmt|;
-name|context
-operator|.
-name|stackLeave
-argument_list|(
-name|expression
-argument_list|)
-expr_stmt|;
+comment|//                context.stackLeave(expression);
 name|context
 operator|.
 name|popDocumentContext
