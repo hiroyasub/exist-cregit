@@ -1208,11 +1208,11 @@ name|void
 name|run
 parameter_list|()
 block|{
-name|StepInto
+name|Run
 name|command
 init|=
 operator|new
-name|StepInto
+name|Run
 argument_list|(
 name|session
 argument_list|,
@@ -1246,11 +1246,11 @@ name|ResponseListener
 name|listener
 parameter_list|)
 block|{
-name|Run
+name|StepInto
 name|command
 init|=
 operator|new
-name|Run
+name|StepInto
 argument_list|(
 name|session
 argument_list|,
