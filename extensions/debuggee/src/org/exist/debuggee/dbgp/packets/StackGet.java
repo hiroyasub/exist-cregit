@@ -317,11 +317,26 @@ name|getSource
 argument_list|()
 argument_list|)
 operator|+
-literal|"\" />"
-return|;
+literal|"\" "
+operator|+
 comment|//					+
 comment|//					"where=\"\" " +
-comment|//					"cmdbegin=\""+expr.getLine()+":"+expr.getColumn()+"\" " +
+literal|"cmdbegin=\""
+operator|+
+name|expr
+operator|.
+name|getLine
+argument_list|()
+operator|+
+literal|":"
+operator|+
+name|expr
+operator|.
+name|getColumn
+argument_list|()
+operator|+
+literal|"\"  />"
+return|;
 comment|//					"cmdend=\""+(expr.getLine())+":"+(expr.getColumn()+1)+"\"/>";
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
