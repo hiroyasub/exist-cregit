@@ -174,6 +174,17 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+name|reader
+operator|.
+name|setEntityResolver
+argument_list|(
+operator|new
+name|SpecialEntityResolver
+argument_list|(
+literal|"test/external/XSLTS_1_1_0/"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|SAXAdapter
 name|adapter
 init|=
