@@ -283,7 +283,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|""
+literal|"Scan and extract function documentation from an external XQuery function module according to the"
+operator|+
+literal|"XQDoc specification. The single argument URI may either point to an XQuery module stored in the "
+operator|+
+literal|"db (URI starts with xmldb:exist:...) or a module in the file system. A file system module is "
+operator|+
+literal|"searched in the same way as if it were loaded through an \"import module\" statement. Static "
+operator|+
+literal|"mappings defined in conf.xml are searched first."
 argument_list|,
 operator|new
 name|SequenceType
