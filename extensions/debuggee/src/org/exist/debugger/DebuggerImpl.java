@@ -1234,7 +1234,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|,
-name|STOPPED
+name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1304,7 +1304,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|,
-name|STOPPED
+name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1374,7 +1374,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|,
-name|STOPPED
+name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1444,7 +1444,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|,
-name|STOPPED
+name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
@@ -1514,7 +1514,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|,
-name|STOPPED
+name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
