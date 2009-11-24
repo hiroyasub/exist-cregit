@@ -289,6 +289,9 @@ block|}
 specifier|public
 specifier|static
 name|List
+argument_list|<
+name|LocationStep
+argument_list|>
 name|findLocationSteps
 parameter_list|(
 name|Expression
@@ -297,10 +300,16 @@ parameter_list|)
 block|{
 specifier|final
 name|List
+argument_list|<
+name|LocationStep
+argument_list|>
 name|steps
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|LocationStep
+argument_list|>
 argument_list|(
 literal|5
 argument_list|)
@@ -316,6 +325,9 @@ name|steps
 operator|.
 name|add
 argument_list|(
+operator|(
+name|LocationStep
+operator|)
 name|expr
 argument_list|)
 expr_stmt|;

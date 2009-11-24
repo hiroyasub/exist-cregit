@@ -729,6 +729,9 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|LocationStep
+argument_list|>
 name|steps
 init|=
 name|BasicExpressionVisitor
@@ -753,9 +756,6 @@ block|{
 name|LocationStep
 name|firstStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
@@ -766,9 +766,6 @@ decl_stmt|;
 name|LocationStep
 name|lastStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
@@ -1003,17 +1000,12 @@ literal|1
 condition|)
 name|axis
 operator|=
-operator|(
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
 argument_list|(
 literal|1
 argument_list|)
-operator|)
 operator|.
 name|getAxis
 argument_list|()
@@ -1084,6 +1076,9 @@ literal|null
 expr_stmt|;
 comment|// get the search terms
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1389,6 +1384,9 @@ name|toNodeSet
 argument_list|()
 decl_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1504,6 +1502,9 @@ name|nextItem
 argument_list|()
 expr_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1750,6 +1751,9 @@ name|NodeSet
 name|nodes
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|)
 throws|throws
@@ -1897,6 +1901,9 @@ name|QName
 name|qname
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|)
 throws|throws
@@ -2004,6 +2011,9 @@ return|;
 block|}
 specifier|protected
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|getSearchTerms
 parameter_list|(
 name|Sequence
@@ -2029,10 +2039,16 @@ literal|"function requires at least 2 arguments"
 argument_list|)
 throw|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Expression

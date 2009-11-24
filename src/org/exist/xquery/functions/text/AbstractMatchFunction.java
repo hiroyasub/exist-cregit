@@ -183,6 +183,9 @@ name|NodeSet
 name|nodes
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|)
 throws|throws
@@ -282,6 +285,9 @@ return|;
 block|}
 specifier|protected
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|getSearchTerms
 parameter_list|(
 name|XQueryContext
@@ -310,10 +316,16 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|tokens
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Tokenizer

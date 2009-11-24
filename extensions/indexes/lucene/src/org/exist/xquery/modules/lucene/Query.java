@@ -637,6 +637,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|LocationStep
+argument_list|>
 name|steps
 init|=
 name|BasicExpressionVisitor
@@ -661,9 +664,6 @@ block|{
 name|LocationStep
 name|firstStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
@@ -674,9 +674,6 @@ decl_stmt|;
 name|LocationStep
 name|lastStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get

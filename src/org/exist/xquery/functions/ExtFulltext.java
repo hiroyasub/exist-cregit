@@ -547,6 +547,9 @@ name|newContextInfo
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|LocationStep
+argument_list|>
 name|steps
 init|=
 name|BasicExpressionVisitor
@@ -568,9 +571,6 @@ block|{
 name|LocationStep
 name|firstStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
@@ -581,9 +581,6 @@ decl_stmt|;
 name|LocationStep
 name|lastStep
 init|=
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
@@ -818,17 +815,12 @@ literal|1
 condition|)
 name|axis
 operator|=
-operator|(
-operator|(
-name|LocationStep
-operator|)
 name|steps
 operator|.
 name|get
 argument_list|(
 literal|1
 argument_list|)
-operator|)
 operator|.
 name|getAxis
 argument_list|()
