@@ -1,7 +1,11 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_package
 package|package
-name|xquery
+name|org
+operator|.
+name|exist
+operator|.
+name|xqdoc
 package|;
 end_package
 
@@ -265,6 +269,24 @@ class|class
 name|RunTests
 block|{
 specifier|private
+specifier|final
+specifier|static
+name|String
+name|TEST_DIR
+init|=
+literal|"extensions/xqdoc/test/src/org/exist/xqdoc"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|TEST_QUERY
+init|=
+name|TEST_DIR
+operator|+
+literal|"/runTests.xql"
+decl_stmt|;
+specifier|private
 specifier|static
 name|File
 index|[]
@@ -308,7 +330,7 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
-literal|"test/src/xquery/runTests.xql"
+name|TEST_QUERY
 argument_list|)
 argument_list|,
 literal|"UTF-8"
@@ -597,7 +619,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"test/src/xquery"
+name|TEST_DIR
 argument_list|)
 decl_stmt|;
 name|files
