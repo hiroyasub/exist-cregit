@@ -354,6 +354,9 @@ block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getSignatureForFunction(org.exist.dom.QName) 	 */
 specifier|public
 name|Iterator
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|getSignaturesForFunction
 parameter_list|(
 name|QName
@@ -361,10 +364,16 @@ name|qname
 parameter_list|)
 block|{
 name|ArrayList
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|signatures
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|FunctionSignature
+argument_list|>
 argument_list|(
 literal|2
 argument_list|)

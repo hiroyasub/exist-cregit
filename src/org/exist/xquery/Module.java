@@ -84,6 +84,9 @@ function_decl|;
 comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname 	 * @return the function signature or null if the function is not defined. 	 */
 specifier|public
 name|Iterator
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|getSignaturesForFunction
 parameter_list|(
 name|QName

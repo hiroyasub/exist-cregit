@@ -61,6 +61,9 @@ function_decl|;
 comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return all functions defined in this module 	 */
 specifier|public
 name|List
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|getFunctionsByName
 parameter_list|(
 name|QName
