@@ -146,6 +146,11 @@ name|Configuration
 name|conf
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|IndexStats
+argument_list|>
 name|indexStats
 parameter_list|)
 block|{
