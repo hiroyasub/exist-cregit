@@ -124,6 +124,14 @@ name|HttpServlet
 block|{
 specifier|private
 specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1238966115449192258L
+decl_stmt|;
+specifier|private
+specifier|static
 name|Logger
 name|logger
 init|=
