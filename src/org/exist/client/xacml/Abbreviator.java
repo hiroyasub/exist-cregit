@@ -1027,6 +1027,9 @@ block|}
 comment|//TODO: not valid for date-related conversions
 specifier|public
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|getAbbreviatedTargetFunctions
 parameter_list|(
 name|URI
@@ -1055,10 +1058,16 @@ name|getSupportedFunctions
 argument_list|()
 decl_stmt|;
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|ret
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String

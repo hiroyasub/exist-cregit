@@ -75,6 +75,9 @@ name|void
 name|filterFunctions
 parameter_list|(
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|functions
 parameter_list|,
 name|AttributeDesignator
@@ -86,6 +89,9 @@ name|boolean
 name|getAllowedValues
 parameter_list|(
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|values
 parameter_list|,
 name|AttributeDesignator

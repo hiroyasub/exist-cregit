@@ -146,6 +146,9 @@ name|void
 name|filterFunctions
 parameter_list|(
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|functions
 parameter_list|,
 name|AttributeDesignator
@@ -173,10 +176,16 @@ argument_list|)
 condition|)
 block|{
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|retain
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 literal|2
 argument_list|)
@@ -241,6 +250,9 @@ name|boolean
 name|getAllowedValues
 parameter_list|(
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|values
 parameter_list|,
 name|AttributeDesignator
@@ -439,6 +451,9 @@ name|void
 name|addInternal
 parameter_list|(
 name|Set
+argument_list|<
+name|Object
+argument_list|>
 name|values
 parameter_list|,
 name|int
