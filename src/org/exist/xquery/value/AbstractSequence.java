@@ -897,10 +897,16 @@ argument_list|)
 condition|)
 block|{
 name|List
+argument_list|<
+name|Item
+argument_list|>
 name|l
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Item
+argument_list|>
 argument_list|(
 name|getItemCount
 argument_list|()

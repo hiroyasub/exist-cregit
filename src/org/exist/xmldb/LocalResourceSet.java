@@ -410,10 +410,16 @@ name|collection
 decl_stmt|;
 specifier|protected
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 name|resources
 init|=
 operator|new
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -878,6 +884,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Object
+argument_list|>
 name|i
 init|=
 name|resources
