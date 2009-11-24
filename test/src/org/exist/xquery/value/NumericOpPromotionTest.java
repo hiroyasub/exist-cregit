@@ -125,10 +125,16 @@ decl_stmt|;
 static|static
 block|{
 name|Collection
+argument_list|<
+name|String
+argument_list|>
 name|names
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Method
