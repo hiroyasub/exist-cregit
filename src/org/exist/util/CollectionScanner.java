@@ -96,10 +96,16 @@ throws|throws
 name|XMLDBException
 block|{
 name|List
+argument_list|<
+name|Resource
+argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Resource
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|scan
@@ -146,6 +152,9 @@ name|void
 name|scan
 parameter_list|(
 name|List
+argument_list|<
+name|Resource
+argument_list|>
 name|list
 parameter_list|,
 name|Collection
