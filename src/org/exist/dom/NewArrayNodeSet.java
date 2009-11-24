@@ -6167,7 +6167,7 @@ return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see java.util.Iterator#next()          */
 specifier|public
-name|Object
+name|NodeProxy
 name|next
 parameter_list|()
 block|{

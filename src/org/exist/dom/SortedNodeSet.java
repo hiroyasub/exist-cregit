@@ -1266,7 +1266,7 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|Object
+name|NodeProxy
 name|next
 parameter_list|()
 block|{

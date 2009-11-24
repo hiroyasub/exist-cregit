@@ -33,6 +33,9 @@ interface|interface
 name|NodeSetIterator
 extends|extends
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 block|{
 comment|/**      * Look ahead: returns the node at the iterator's current position but      * does not move the iterator to the next node.      */
 specifier|public

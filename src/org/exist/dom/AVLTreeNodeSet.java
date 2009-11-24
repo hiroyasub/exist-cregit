@@ -148,6 +148,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|other
@@ -163,9 +166,6 @@ condition|;
 control|)
 name|add
 argument_list|(
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -216,6 +216,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|it
 init|=
 name|iterator
@@ -233,9 +236,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|it
 operator|.
 name|next
@@ -351,6 +351,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|it
 init|=
 name|iterator
@@ -368,9 +371,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|it
 operator|.
 name|next
@@ -1746,6 +1746,9 @@ name|SequenceIterator
 block|{
 specifier|private
 name|Stack
+argument_list|<
+name|Node
+argument_list|>
 name|nodes
 decl_stmt|;
 specifier|public
@@ -1756,6 +1759,9 @@ name|nodes
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|Node
+argument_list|>
 argument_list|()
 expr_stmt|;
 if|if
@@ -1818,7 +1824,7 @@ literal|true
 return|;
 block|}
 specifier|public
-name|Object
+name|NodeProxy
 name|next
 parameter_list|()
 block|{
@@ -1835,9 +1841,6 @@ return|;
 name|Node
 name|currentNode
 init|=
-operator|(
-name|Node
-operator|)
 name|nodes
 operator|.
 name|peek
@@ -1912,9 +1915,6 @@ return|;
 name|Node
 name|currentNode
 init|=
-operator|(
-name|Node
-operator|)
 name|nodes
 operator|.
 name|peek
@@ -2018,9 +2018,6 @@ return|;
 name|Node
 name|currentNode
 init|=
-operator|(
-name|Node
-operator|)
 name|nodes
 operator|.
 name|peek
@@ -2376,6 +2373,11 @@ return|return
 name|tempNode
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 name|int
 name|degree
@@ -2442,6 +2444,11 @@ name|leftChild
 operator|)
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 name|boolean
 name|isRightChild
@@ -2505,6 +2512,11 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 name|int
 name|height

@@ -2656,6 +2656,9 @@ class|class
 name|CollectionIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 block|{
 name|Collection
 name|nextCollection
@@ -2714,7 +2717,7 @@ literal|null
 return|;
 block|}
 specifier|public
-name|Object
+name|Collection
 name|next
 parameter_list|()
 block|{
