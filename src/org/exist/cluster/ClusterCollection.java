@@ -1375,7 +1375,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|Collection
 name|obj
 parameter_list|)
 block|{
