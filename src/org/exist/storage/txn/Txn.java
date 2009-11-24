@@ -76,10 +76,16 @@ name|id
 decl_stmt|;
 specifier|private
 name|List
+argument_list|<
+name|LockInfo
+argument_list|>
 name|locksHeld
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|LockInfo
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -192,9 +198,6 @@ block|{
 name|LockInfo
 name|info
 init|=
-operator|(
-name|LockInfo
-operator|)
 name|locksHeld
 operator|.
 name|get
