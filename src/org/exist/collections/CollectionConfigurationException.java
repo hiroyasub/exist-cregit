@@ -24,6 +24,14 @@ name|CollectionConfigurationException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|2646147244407222955L
+decl_stmt|;
 comment|/** 	 *  	 */
 specifier|public
 name|CollectionConfigurationException
