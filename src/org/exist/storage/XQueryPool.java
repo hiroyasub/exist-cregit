@@ -947,6 +947,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Module
+argument_list|>
 name|it
 init|=
 name|context
@@ -964,9 +967,6 @@ block|{
 name|Module
 name|module
 init|=
-operator|(
-name|Module
-operator|)
 name|it
 operator|.
 name|next
@@ -1166,6 +1166,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Module
+argument_list|>
 name|it2
 init|=
 name|module
@@ -1186,9 +1189,6 @@ block|{
 name|Module
 name|nestedModule
 init|=
-operator|(
-name|Module
-operator|)
 name|it2
 operator|.
 name|next

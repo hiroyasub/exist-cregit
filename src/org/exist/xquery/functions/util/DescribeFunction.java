@@ -491,6 +491,9 @@ literal|null
 condition|)
 block|{
 name|Iterator
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|i
 init|=
 name|module
@@ -510,9 +513,6 @@ condition|)
 block|{
 name|signature
 operator|=
-operator|(
-name|FunctionSignature
-operator|)
 name|i
 operator|.
 name|next
@@ -530,6 +530,9 @@ block|}
 else|else
 block|{
 name|Iterator
+argument_list|<
+name|FunctionSignature
+argument_list|>
 name|i
 init|=
 name|context
@@ -549,9 +552,6 @@ condition|)
 block|{
 name|signature
 operator|=
-operator|(
-name|FunctionSignature
-operator|)
 name|i
 operator|.
 name|next

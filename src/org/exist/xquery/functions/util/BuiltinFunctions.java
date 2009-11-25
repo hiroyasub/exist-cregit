@@ -487,6 +487,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Module
+argument_list|>
 name|i
 init|=
 name|context
@@ -504,9 +507,6 @@ block|{
 name|Module
 name|module
 init|=
-operator|(
-name|Module
-operator|)
 name|i
 operator|.
 name|next
@@ -524,6 +524,9 @@ comment|// Add all functions declared in the local module
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|UserDefinedFunction
+argument_list|>
 name|i
 init|=
 name|context
@@ -541,9 +544,6 @@ block|{
 name|UserDefinedFunction
 name|func
 init|=
-operator|(
-name|UserDefinedFunction
-operator|)
 name|i
 operator|.
 name|next
