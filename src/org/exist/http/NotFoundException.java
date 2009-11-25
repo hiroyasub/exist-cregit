@@ -20,6 +20,15 @@ name|NotFoundException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|8399138517913514619L
+decl_stmt|;
 specifier|public
 name|NotFoundException
 parameter_list|(

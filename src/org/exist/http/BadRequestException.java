@@ -20,6 +20,14 @@ name|BadRequestException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|8663399057134424372L
+decl_stmt|;
 specifier|public
 name|BadRequestException
 parameter_list|(

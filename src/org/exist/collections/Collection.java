@@ -1406,6 +1406,9 @@ block|}
 comment|/**      * Load all collections below this collections      * and return them in a List.      *      * @return List      */
 specifier|public
 name|List
+argument_list|<
+name|Collection
+argument_list|>
 name|getDescendants
 parameter_list|(
 name|DBBroker
@@ -1417,10 +1420,16 @@ parameter_list|)
 block|{
 specifier|final
 name|ArrayList
+argument_list|<
+name|Collection
+argument_list|>
 name|cl
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Collection
+argument_list|>
 argument_list|(
 name|subcollections
 operator|.
