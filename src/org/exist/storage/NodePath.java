@@ -377,10 +377,10 @@ index|]
 operator|=
 name|component
 expr_stmt|;
+block|}
 name|pos
 operator|++
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|void
