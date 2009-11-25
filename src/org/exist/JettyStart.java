@@ -1259,7 +1259,7 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|error
+name|info
 argument_list|(
 literal|"Database shutdown: stopping server in 1sec ..."
 argument_list|)
