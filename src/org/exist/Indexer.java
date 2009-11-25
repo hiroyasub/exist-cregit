@@ -516,7 +516,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a given input document via SAX, stores it to  * the database and handles index-creation.  *   * @author wolf  *  */
+comment|/**  * Parses a given input document via SAX, stores it to the database and handles  * index-creation.  *   * @author wolf  *   */
 end_comment
 
 begin_class
@@ -723,10 +723,20 @@ name|SUPPRESS_BOTH
 decl_stmt|;
 specifier|protected
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|nsMappings
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -735,18 +745,30 @@ name|rootNode
 decl_stmt|;
 specifier|protected
 name|Stack
+argument_list|<
+name|ElementImpl
+argument_list|>
 name|stack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|ElementImpl
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
 name|Stack
+argument_list|<
+name|XMLString
+argument_list|>
 name|nodeContentStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|XMLString
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -777,7 +799,7 @@ name|docSize
 init|=
 literal|0
 decl_stmt|;
-comment|/* used to record the number of children of an element during       * validation phase. later, when storing the nodes, we already      * know the child count and don't need to update the element      * a second time.      */
+comment|/* 	 * used to record the number of children of an element during validation 	 * phase. later, when storing the nodes, we already know the child count and 	 * don't need to update the element a second time. 	 */
 specifier|private
 name|int
 name|childCnt
@@ -814,13 +836,19 @@ argument_list|()
 decl_stmt|;
 specifier|private
 name|Stack
+argument_list|<
+name|ElementImpl
+argument_list|>
 name|usedElements
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|ElementImpl
+argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/**      *  Create a new parser using the given database broker and      * user to store the document.      *      *@param  broker      *@exception  EXistException        */
+comment|/** 	 * Create a new parser using the given database broker and user to store the 	 * document. 	 *  	 *@param broker 	 *@exception EXistException 	 */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -843,7 +871,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Create a new parser using the given database broker and      * user to store the document.      *      *@param  broker              The database broker to use.      *@param  transaction         The transaction to use for indexing      *@param  priv		      used by the security manager to      *							  indicate that it needs privileged      *                            access to the db.      *@exception  EXistException        */
+comment|/** 	 * Create a new parser using the given database broker and user to store the 	 * document. 	 *  	 *@param broker 	 *            The database broker to use. 	 *@param transaction 	 *            The transaction to use for indexing 	 *@param priv 	 *            used by the security manager to indicate that it needs 	 *            privileged access to the db. 	 *@exception EXistException 	 */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -871,7 +899,8 @@ name|transaction
 operator|=
 name|transaction
 expr_stmt|;
-comment|//TODO : move the configuration in the constructor or in a dedicated method
+comment|// TODO : move the configuration in the constructor or in a dedicated
+comment|// method
 name|Configuration
 name|config
 init|=
@@ -1021,7 +1050,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Prepare the indexer for parsing a new document. This will      * reset the internal state of the Indexer object.      *      * @param doc      */
+comment|/** 	 * Prepare the indexer for parsing a new document. This will reset the 	 * internal state of the Indexer object. 	 *  	 * @param doc 	 */
 specifier|public
 name|void
 name|setDocument
@@ -1064,6 +1093,9 @@ name|stack
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|ElementImpl
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|docSize
@@ -1089,7 +1121,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the document object to be used by this Indexer. This      * method doesn't reset the internal state.      *       * @param doc      */
+comment|/** 	 * Set the document object to be used by this Indexer. This method doesn't 	 * reset the internal state. 	 *  	 * @param doc 	 */
 specifier|public
 name|void
 name|setDocumentObject
@@ -1278,9 +1310,6 @@ block|{
 name|ElementImpl
 name|last
 init|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -1397,9 +1426,6 @@ block|{
 name|ElementImpl
 name|last
 init|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -1499,35 +1525,12 @@ condition|)
 block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nodeContentStack
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|XMLString
 name|next
-init|=
-operator|(
-name|XMLString
-operator|)
+range|:
 name|nodeContentStack
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 name|next
 operator|.
 name|append
@@ -1584,7 +1587,7 @@ name|progress
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        LOG.debug("elementCnt = " + childCnt.length);
+comment|// LOG.debug("elementCnt = " + childCnt.length);
 block|}
 specifier|public
 name|void
@@ -1604,9 +1607,6 @@ specifier|final
 name|ElementImpl
 name|last
 init|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -1782,9 +1782,6 @@ condition|)
 block|{
 name|elemContent
 operator|=
-operator|(
-name|XMLString
-operator|)
 name|nodeContentStack
 operator|.
 name|pop
@@ -1930,7 +1927,7 @@ operator|--
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param last      */
+comment|/** 	 * @param last 	 */
 specifier|private
 name|void
 name|setChildCount
@@ -2271,9 +2268,6 @@ block|{
 name|ElementImpl
 name|last
 init|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -2313,8 +2307,8 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//TextImpl text =
-comment|//    new TextImpl( normalized );
+comment|// TextImpl text =
+comment|// new TextImpl( normalized );
 name|text
 operator|.
 name|setData
@@ -2411,7 +2405,12 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|/**      *  set SAX parser feature. This method will catch (and ignore) exceptions      *  if the used parser does not support a feature.      *      *@param  factory        *@param  feature        *@param  value          */
+comment|/** 	 * set SAX parser feature. This method will catch (and ignore) exceptions if 	 * the used parser does not support a feature. 	 *  	 *@param factory 	 *@param feature 	 *@param value 	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|void
 name|setFeature
@@ -2507,9 +2506,6 @@ block|{
 name|ElementImpl
 name|last
 init|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -2822,9 +2818,6 @@ condition|)
 block|{
 name|last
 operator|=
-operator|(
-name|ElementImpl
-operator|)
 name|stack
 operator|.
 name|peek
@@ -2916,7 +2909,8 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// mixed element content: don't normalize the text node, just check
+comment|// mixed element content: don't normalize the text node,
+comment|// just check
 comment|// if there is any text at all
 name|text
 operator|.
@@ -2972,9 +2966,6 @@ condition|)
 block|{
 name|node
 operator|=
-operator|(
-name|ElementImpl
-operator|)
 name|usedElements
 operator|.
 name|pop
@@ -3548,7 +3539,8 @@ name|XML_ID_QNAME
 argument_list|)
 condition|)
 block|{
-comment|// an xml:id attribute. Normalize the attribute and set its type to ID
+comment|// an xml:id attribute. Normalize the attribute and set its
+comment|// type to ID
 name|attr
 operator|.
 name|setValue
@@ -3771,35 +3763,12 @@ condition|)
 block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nodeContentStack
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|XMLString
 name|next
-init|=
-operator|(
-name|XMLString
-operator|)
+range|:
 name|nodeContentStack
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 name|next
 operator|.
 name|append
@@ -3937,10 +3906,10 @@ name|uri
 parameter_list|)
 block|{
 comment|// skip the eXist namespace
-comment|//		if (uri.equals(Namespaces.EXIST_NS)) {
-comment|//			ignorePrefix = prefix;
-comment|//			return;
-comment|//		}
+comment|// if (uri.equals(Namespaces.EXIST_NS)) {
+comment|// ignorePrefix = prefix;
+comment|// return;
+comment|// }
 name|nsMappings
 operator|.
 name|put
@@ -4050,6 +4019,9 @@ name|usedElements
 operator|.
 name|push
 argument_list|(
+operator|(
+name|ElementImpl
+operator|)
 name|prevNode
 argument_list|)
 expr_stmt|;
