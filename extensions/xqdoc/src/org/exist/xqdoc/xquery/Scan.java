@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|source
 operator|.
+name|BinarySource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
 name|DBSource
 import|;
 end_import
@@ -264,8 +276,10 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+index|[]
+name|signatures
 init|=
+block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -328,12 +342,79 @@ argument_list|,
 literal|"the function docs."
 argument_list|)
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"scan-data"
+argument_list|,
+name|XQDocModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|XQDocModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Scan and extract function documentation from an external XQuery function module according to the"
+operator|+
+literal|"XQDoc specification. The single argument URI may either point to an XQuery module stored in the "
+operator|+
+literal|"db (URI starts with xmldb:exist:...) or a module in the file system. A file system module is "
+operator|+
+literal|"searched in the same way as if it were loaded through an \"import module\" statement. Static "
+operator|+
+literal|"mappings defined in conf.xml are searched first."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"data"
+argument_list|,
+name|Type
+operator|.
+name|BASE64_BINARY
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The base64 encoded source data of the module"
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"the function docs."
+argument_list|)
+argument_list|)
+block|}
 decl_stmt|;
 specifier|public
 name|Scan
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|FunctionSignature
+name|signature
 parameter_list|)
 block|{
 name|super
@@ -365,6 +446,49 @@ name|source
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"scan-data"
+argument_list|)
+condition|)
+block|{
+name|byte
+index|[]
+name|data
+init|=
+operator|(
+operator|(
+name|Base64Binary
+operator|)
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|)
+operator|.
+name|getBinaryData
+argument_list|()
+decl_stmt|;
+name|source
+operator|=
+operator|new
+name|BinarySource
+argument_list|(
+name|data
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|String
 name|uri
 init|=
@@ -720,6 +844,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 try|try
 block|{
 name|XQDocHelper
@@ -791,10 +916,6 @@ name|this
 argument_list|,
 literal|"error while scanning module: "
 operator|+
-name|uri
-operator|+
-literal|": "
-operator|+
 name|e
 operator|.
 name|getMessage
@@ -818,10 +939,6 @@ name|this
 argument_list|,
 literal|"IO error while scanning module: "
 operator|+
-name|uri
-operator|+
-literal|": "
-operator|+
 name|e
 operator|.
 name|getMessage
@@ -844,10 +961,6 @@ argument_list|(
 name|this
 argument_list|,
 literal|"error while scanning module: "
-operator|+
-name|uri
-operator|+
-literal|": "
 operator|+
 name|e
 operator|.
