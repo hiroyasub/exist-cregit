@@ -106,6 +106,9 @@ name|scan
 parameter_list|(
 name|Source
 name|source
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 throws|throws
 name|XQDocException
@@ -124,13 +127,7 @@ operator|.
 name|getReader
 argument_list|()
 argument_list|,
-name|source
-operator|.
-name|getKey
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+name|name
 argument_list|)
 decl_stmt|;
 return|return

@@ -276,19 +276,21 @@ literal|"declare namespace xqdoc=\"http://www.xqdoc.org/1.0\"\n;"
 operator|+
 literal|"declare variable $uri external;\n"
 operator|+
+literal|"declare variable $name external;\n"
+operator|+
 literal|"declare variable $collection external;\n"
 operator|+
 literal|"declare variable $data external;\n"
 operator|+
 literal|"let $xml :=\n"
 operator|+
-literal|"if ($uri eq '') then\n"
+literal|"if ($uri) then\n"
 operator|+
-literal|"   xqdm:scan-data($data)\n"
+literal|"   xqdm:scan(xs:anyURI($uri))\n"
 operator|+
 literal|"else\n"
 operator|+
-literal|"   xqdm:scan(xs:anyURI($uri))\n"
+literal|"   xqdm:scan($data, $name)\n"
 operator|+
 literal|"let $moduleURI := $xml//xqdoc:module/xqdoc:uri\n"
 operator|+
@@ -526,6 +528,15 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
+name|declareVariable
+argument_list|(
+literal|"data"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|service
+operator|.
 name|execute
 argument_list|(
 name|source
@@ -640,6 +651,18 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+name|service
+operator|.
+name|declareVariable
+argument_list|(
+literal|"name"
+argument_list|,
+name|file
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|service
 operator|.
 name|declareVariable
