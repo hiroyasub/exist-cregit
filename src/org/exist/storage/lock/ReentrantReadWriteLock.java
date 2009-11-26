@@ -143,10 +143,16 @@ literal|null
 decl_stmt|;
 specifier|protected
 name|Stack
+argument_list|<
+name|SuspendedWaiter
+argument_list|>
 name|suspendedThreads
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|SuspendedWaiter
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -166,10 +172,16 @@ decl_stmt|;
 comment|//	private long timeOut_ = 240000L;
 specifier|private
 name|Stack
+argument_list|<
+name|Integer
+argument_list|>
 name|modeStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -186,6 +198,10 @@ literal|false
 decl_stmt|;
 specifier|private
 name|Stack
+argument_list|<
+name|StackTraceElement
+index|[]
+argument_list|>
 name|seStack
 decl_stmt|;
 specifier|private
@@ -213,6 +229,10 @@ name|seStack
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|StackTraceElement
+index|[]
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -522,14 +542,7 @@ return|;
 block|}
 else|else
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//				long start = System.currentTimeMillis();
 name|DeadlockDetection
 operator|.
 name|addCollectionWaiter
@@ -1158,10 +1171,6 @@ name|StackTraceElement
 index|[]
 name|se
 init|=
-operator|(
-name|StackTraceElement
-index|[]
-operator|)
 name|seStack
 operator|.
 name|pop
@@ -1185,9 +1194,6 @@ block|}
 name|Integer
 name|top
 init|=
-operator|(
-name|Integer
-operator|)
 name|modeStack
 operator|.
 name|pop
@@ -1253,10 +1259,6 @@ name|StackTraceElement
 index|[]
 name|se
 init|=
-operator|(
-name|StackTraceElement
-index|[]
-operator|)
 name|seStack
 operator|.
 name|pop
@@ -1288,9 +1290,6 @@ block|{
 name|SuspendedWaiter
 name|suspended
 init|=
-operator|(
-name|SuspendedWaiter
-operator|)
 name|suspendedThreads
 operator|.
 name|pop
