@@ -379,6 +379,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/* TODO uncomment below for testing eXist-XSLT or once the eXist-XSLT is ready for general consumption                  at the moment the XSLT extension is not on the classpath, which make compilation fail for everyone                  else otherwise!                 */
+comment|/*                 if(factory instanceof org.exist.xslt.TransformerFactoryImpl)                     factory.setAttribute(PROPERTY_BROKER_POOL, pool);                  */
 block|}
 catch|catch
 parameter_list|(
