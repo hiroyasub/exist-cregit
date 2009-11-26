@@ -5018,6 +5018,9 @@ comment|// copy parameters
 for|for
 control|(
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|e
 init|=
 name|request
@@ -5035,9 +5038,6 @@ block|{
 name|String
 name|key
 init|=
-operator|(
-name|String
-operator|)
 name|e
 operator|.
 name|nextElement
@@ -5477,6 +5477,12 @@ return|;
 block|}
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+index|[]
+argument_list|>
 name|getParameterMap
 parameter_list|()
 block|{
@@ -5486,6 +5492,9 @@ return|;
 block|}
 specifier|public
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|getParameterNames
 parameter_list|()
 block|{
@@ -5795,6 +5804,11 @@ name|CachingResponseWrapper
 extends|extends
 name|HttpServletResponseWrapper
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|protected
 name|HttpServletResponse
 name|origResponse

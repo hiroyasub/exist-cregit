@@ -1511,6 +1511,11 @@ block|}
 block|}
 block|}
 comment|/**      *  Get LOCK information from HttpRequest      *      * @param request    Http Object      * @param response   Http Object      * @throws ServletException      * @throws IOException      * @return NULL if error is send to response object, or locktoken with      *         details about scope, depth and owner      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|LockToken
 name|getLockParameters

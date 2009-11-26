@@ -650,6 +650,11 @@ name|username
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|realm
 init|=
