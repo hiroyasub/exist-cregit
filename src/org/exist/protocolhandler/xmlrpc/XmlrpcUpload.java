@@ -41,16 +41,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|ArrayList
 import|;
 end_import
@@ -336,10 +326,16 @@ expr_stmt|;
 block|}
 comment|// Initialize xmlrpc parameters
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|params
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 literal|5
 argument_list|)

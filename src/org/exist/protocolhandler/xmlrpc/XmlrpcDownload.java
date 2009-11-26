@@ -261,10 +261,20 @@ argument_list|)
 expr_stmt|;
 comment|// Setup xml serializer
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|options
 init|=
 operator|new
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|options
@@ -287,10 +297,16 @@ argument_list|)
 expr_stmt|;
 comment|// Setup client parameters
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 name|params
 init|=
 operator|new
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|params
