@@ -224,6 +224,11 @@ name|EchoFunction
 extends|extends
 name|BasicFunction
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static

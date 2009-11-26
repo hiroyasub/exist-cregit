@@ -2351,6 +2351,11 @@ operator|.
 name|util
 operator|.
 name|HashMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Cookie
+argument_list|>
 name|replacements
 init|=
 operator|new
@@ -2359,6 +2364,11 @@ operator|.
 name|util
 operator|.
 name|HashMap
+argument_list|<
+name|Integer
+argument_list|,
+name|Cookie
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|java
@@ -2366,6 +2376,9 @@ operator|.
 name|util
 operator|.
 name|Vector
+argument_list|<
+name|Cookie
+argument_list|>
 name|additions
 init|=
 operator|new
@@ -2374,6 +2387,9 @@ operator|.
 name|util
 operator|.
 name|Vector
+argument_list|<
+name|Cookie
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -2527,9 +2543,6 @@ index|[
 name|c
 index|]
 operator|=
-operator|(
-name|Cookie
-operator|)
 name|replacements
 operator|.
 name|get
@@ -2590,9 +2603,6 @@ index|[
 name|offset
 index|]
 operator|=
-operator|(
-name|Cookie
-operator|)
 name|additions
 operator|.
 name|get

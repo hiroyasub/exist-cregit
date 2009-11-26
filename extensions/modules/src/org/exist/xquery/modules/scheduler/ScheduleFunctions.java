@@ -1360,6 +1360,9 @@ try|try
 block|{
 comment|//Check if the Class is a UserJob
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|jobClass
 init|=
 name|Class

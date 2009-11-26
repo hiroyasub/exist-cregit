@@ -55,6 +55,14 @@ argument_list|>
 block|{
 specifier|private
 specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|2560835928124595024L
+decl_stmt|;
+specifier|private
+specifier|static
 name|HashMap
 argument_list|<
 name|String

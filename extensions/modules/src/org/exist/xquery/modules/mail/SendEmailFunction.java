@@ -1196,6 +1196,14 @@ name|SMTPException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|4859093648476395159L
+decl_stmt|;
 specifier|public
 name|SMTPException
 parameter_list|(

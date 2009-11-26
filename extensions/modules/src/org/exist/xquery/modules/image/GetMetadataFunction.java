@@ -358,6 +358,11 @@ name|GetMetadataFunction
 extends|extends
 name|BasicFunction
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 specifier|final
@@ -561,6 +566,9 @@ argument_list|)
 decl_stmt|;
 comment|//get an image reader
 name|Iterator
+argument_list|<
+name|ImageReader
+argument_list|>
 name|readers
 init|=
 name|ImageIO
@@ -581,9 +589,6 @@ block|{
 name|ImageReader
 name|imageReader
 init|=
-operator|(
-name|ImageReader
-operator|)
 name|readers
 operator|.
 name|next
