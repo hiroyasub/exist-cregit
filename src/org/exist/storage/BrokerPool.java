@@ -1600,10 +1600,20 @@ decl_stmt|;
 comment|/** 	 * The number of active brokers for the database instance  	 */
 specifier|private
 name|Map
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 name|activeBrokers
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**      * The configuration object for the database instance      */
@@ -3481,12 +3491,22 @@ return|;
 block|}
 specifier|public
 name|Map
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 name|getActiveBrokers
 parameter_list|()
 block|{
 return|return
 operator|new
 name|HashMap
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 argument_list|(
 name|activeBrokers
 argument_list|)
@@ -3864,9 +3884,6 @@ comment|//Try to get an active broker
 name|DBBroker
 name|broker
 init|=
-operator|(
-name|DBBroker
-operator|)
 name|activeBrokers
 operator|.
 name|get
