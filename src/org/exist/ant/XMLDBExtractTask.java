@@ -1580,14 +1580,14 @@ name|void
 name|setOverwrite
 parameter_list|(
 name|boolean
-name|createdirectories
+name|overwrite
 parameter_list|)
 block|{
 name|this
 operator|.
 name|overwrite
 operator|=
-name|createdirectories
+name|overwrite
 expr_stmt|;
 block|}
 block|}
