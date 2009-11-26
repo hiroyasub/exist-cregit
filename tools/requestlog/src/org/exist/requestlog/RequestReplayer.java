@@ -232,6 +232,11 @@ name|txtAlternateHost
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|JLabel
 name|lblWaitTimeRequest

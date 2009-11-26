@@ -106,6 +106,9 @@ name|Observer
 block|{
 specifier|private
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|klazz
 decl_stmt|;
 specifier|private
@@ -254,6 +257,9 @@ argument_list|)
 expr_stmt|;
 comment|// find the run() method in the class
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|methodParamTypes
 init|=
