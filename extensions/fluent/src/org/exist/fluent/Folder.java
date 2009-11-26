@@ -889,11 +889,6 @@ argument_list|<
 name|Document
 argument_list|>
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 specifier|private
 name|ListenersFacet
 name|listeners

@@ -20,6 +20,14 @@ name|DiffException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|2294067063976070362L
+decl_stmt|;
 specifier|public
 name|DiffException
 parameter_list|(

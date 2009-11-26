@@ -1658,6 +1658,11 @@ name|IOException
 throws|,
 name|XPathException
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|boolean
 name|parsed
 init|=

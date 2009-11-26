@@ -66,6 +66,15 @@ name|QName
 argument_list|>
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|7374508115268644368L
+decl_stmt|;
+specifier|private
 specifier|final
 name|String
 name|tag

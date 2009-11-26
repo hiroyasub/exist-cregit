@@ -20,6 +20,15 @@ name|DatabaseException
 extends|extends
 name|RuntimeException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|5795305208413473870L
+decl_stmt|;
 name|DatabaseException
 parameter_list|()
 block|{

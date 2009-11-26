@@ -2386,11 +2386,6 @@ block|}
 return|;
 block|}
 comment|/** 	 * A null node, used as a placeholder where an actual<code>null</code> would be inappropriate. 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"hiding"
-argument_list|)
 specifier|static
 specifier|final
 name|Node

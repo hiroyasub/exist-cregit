@@ -1279,6 +1279,11 @@ name|binImage
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|BinaryDocument
 name|doc
 init|=
@@ -1289,6 +1294,11 @@ name|bImage
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|byte
 index|[]
 name|imgData

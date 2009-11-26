@@ -2040,6 +2040,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Object
+argument_list|>
 name|i
 init|=
 name|properties
