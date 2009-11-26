@@ -8486,7 +8486,8 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+comment|/**      * Returns the static location mapped to an XQuery source module, if known.      *      * @param namespaceURI the URI of the module      * @return the location string      */
+specifier|public
 name|String
 name|getModuleLocation
 parameter_list|(
@@ -8520,6 +8521,38 @@ name|get
 argument_list|(
 name|namespaceURI
 argument_list|)
+return|;
+block|}
+comment|/**      * Returns an iterator over all module namespace URIs which are statically      * mapped to a known location.      * @return an iterator      */
+specifier|public
+name|Iterator
+name|getMappedModuleURIs
+parameter_list|()
+block|{
+name|Map
+name|moduleMap
+init|=
+operator|(
+name|Map
+operator|)
+name|broker
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_STATIC_MODULE_MAP
+argument_list|)
+decl_stmt|;
+return|return
+name|moduleMap
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
 return|;
 block|}
 specifier|private
@@ -8706,6 +8739,29 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|reader
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"failed to load module '"
+operator|+
+name|namespaceURI
+operator|+
+literal|"' from '"
+operator|+
+name|source
+operator|+
+literal|". Source not found. "
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
