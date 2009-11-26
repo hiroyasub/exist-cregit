@@ -117,6 +117,9 @@ name|XACMLSource
 name|getInstance
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|source
 parameter_list|)
 block|{

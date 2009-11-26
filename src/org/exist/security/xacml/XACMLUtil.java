@@ -649,6 +649,11 @@ specifier|private
 specifier|static
 specifier|final
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|AbstractPolicy
+argument_list|>
 name|POLICY_CACHE
 init|=
 name|Collections
@@ -657,6 +662,11 @@ name|synchronizedMap
 argument_list|(
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|AbstractPolicy
+argument_list|>
 argument_list|(
 literal|8
 argument_list|)
@@ -703,6 +713,11 @@ specifier|private
 name|ExistPDP
 name|pdp
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|XACMLUtil
 parameter_list|()
@@ -920,6 +935,9 @@ argument_list|(
 name|document
 operator|.
 name|getURI
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

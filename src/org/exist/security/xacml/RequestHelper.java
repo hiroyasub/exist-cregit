@@ -235,6 +235,9 @@ name|source
 parameter_list|)
 block|{
 name|Set
+argument_list|<
+name|Subject
+argument_list|>
 name|subjects
 init|=
 name|createQuerySubjects
@@ -248,6 +251,9 @@ literal|null
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|resourceAttributes
 init|=
 name|createQueryResource
@@ -256,6 +262,9 @@ name|source
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|actionAttributes
 init|=
 name|createBasicAction
@@ -266,6 +275,9 @@ name|EXECUTE_QUERY_ACTION
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|environmentAttributes
 init|=
 name|createEnvironment
@@ -317,6 +329,9 @@ name|getUser
 argument_list|()
 decl_stmt|;
 name|Set
+argument_list|<
+name|Subject
+argument_list|>
 name|subjects
 init|=
 name|createQuerySubjects
@@ -327,6 +342,9 @@ name|contextModule
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|resourceAttributes
 init|=
 name|createReflectionResource
@@ -337,6 +355,9 @@ name|methodName
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|actionAttributes
 init|=
 name|createBasicAction
@@ -347,6 +368,9 @@ name|INVOKE_METHOD_ACTION
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|environmentAttributes
 init|=
 name|createEnvironment
@@ -425,6 +449,9 @@ name|getUser
 argument_list|()
 decl_stmt|;
 name|Set
+argument_list|<
+name|Subject
+argument_list|>
 name|subjects
 init|=
 name|createQuerySubjects
@@ -435,10 +462,16 @@ name|contextModule
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|resourceAttributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|8
 argument_list|)
@@ -511,6 +544,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|actionAttributes
 init|=
 name|createBasicAction
@@ -521,6 +557,9 @@ name|CALL_FUNCTION_ACTION
 argument_list|)
 decl_stmt|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|environmentAttributes
 init|=
 name|createEnvironment
@@ -603,6 +642,9 @@ block|}
 comment|/** 	* Creates the basic attributes needed to describe a simple action 	* in a request.  The<code>action</code> parameter is the value of 	* the {@link XACMLConstants#ACTION_ID_ATTRIBUTE action-id} attribute and the  	* {@link XACMLConstants#ACTION_NS_ATTRIBUTE namespace} attribute for the 	* action-id is eXist's XACML 	* {@link XACMLConstants#ACTION_NS action namespace}. 	* 	* @param action The {@link XACMLConstants#ACTION_ID_ATTRIBUTE action-id} 	*	of the action. 	* @return A<code>Set</code> that contains attributes describing the 	*	action for use in a<code>RequestCtx</code> 	*/
 specifier|public
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|createBasicAction
 parameter_list|(
 name|String
@@ -619,10 +661,16 @@ return|return
 literal|null
 return|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)
@@ -674,10 +722,16 @@ return|return
 literal|null
 return|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|8
 argument_list|)
@@ -754,6 +808,9 @@ block|}
 comment|/** 	* Creates a<code>Set</code> of<code>Attribute</code>s for a resource 	* representing Java reflection in an XQuery. 	* The {@link XACMLConstants#RESOURCE_CATEGORY_ATTRIBUTE resource-category} 	* attribute is {@link XACMLConstants#METHOD_RESOURCE method}. 	* The {@link XACMLConstants#SOURCE_TYPE_ATTRIBUTE source-type} attribute is 	* {@link XACMLConstants#CLASS_SOURCE_TYPE class} and the 	* {@link XACMLConstants#SOURCE_KEY_ATTRIBUTE source-key} attribute is the 	* name of the class.  The 	* {@link XACMLConstants#RESOURCE_ID_ATTRIBUTE resource-id} attribute is the  	* method name. 	* 	* @param className The name of the Java class 	* @param methodName The name of the method being invoked 	* @return A<code>Set</code> containing the<code>Attribute</code>s 	* describing access to Java code by reflection. 	*/
 specifier|public
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|createReflectionResource
 parameter_list|(
 name|String
@@ -790,10 +847,16 @@ literal|"Method name cannot be null"
 argument_list|)
 throw|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|resourceAttributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|8
 argument_list|)
@@ -846,6 +909,9 @@ block|}
 comment|/** 	 * Creates the Resource section of a request for a main module. 	 *  	 * @param source The source of the query. 	 * @return A<code>Set</code> containing attributes for the specified 	 * query. 	 */
 specifier|public
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|createQueryResource
 parameter_list|(
 name|XACMLSource
@@ -866,10 +932,16 @@ literal|"Query source cannot be null"
 argument_list|)
 throw|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|resourceAttributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)
@@ -915,6 +987,9 @@ block|}
 comment|/** 	* Creates<code>Subject</code>s for the specified user and module.  This is 	* equivalent to putting the<code>Subject</code>s created by the 	*<code>createUserSubject(User user)</code> and 	*<code>createModuleSubject(Module contextModule)</code> methods.  The 	* context module may be null if there is no context module. 	* 	* @param user The user making the access 	* @param contextModule The module involved in the access, if any.  It may 	* be null to indicate the is not an intermediary XQuery module. 	* @return A<code>Set</code> containing a<code>Subject</code> for each 	* the context module if there is one and the user. 	*/
 specifier|public
 name|Set
+argument_list|<
+name|Subject
+argument_list|>
 name|createQuerySubjects
 parameter_list|(
 name|User
@@ -938,10 +1013,16 @@ literal|"User cannot be null"
 argument_list|)
 throw|;
 name|Set
+argument_list|<
+name|Subject
+argument_list|>
 name|subjects
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Subject
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)
@@ -991,6 +1072,9 @@ block|}
 comment|/** 	 * Creates the environment section of a request for the given 	 *<code>AccessContext</code>. 	 *  	 * @param accessCtx The context 	 * @return A<code>Set</code> containing one attribute, the 	 * {@link XACMLConstants#ACCESS_CONTEXT_ATTRIBUTE access context} 	 * attribute with the value of the specified access context. 	 */
 specifier|public
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|createEnvironment
 parameter_list|(
 name|AccessContext
@@ -1009,10 +1093,16 @@ name|NullAccessContextException
 argument_list|()
 throw|;
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|environment
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Attribute
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)
@@ -1134,6 +1224,9 @@ name|void
 name|addSourceAttributes
 parameter_list|(
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 parameter_list|,
 name|XACMLSource
@@ -1189,6 +1282,9 @@ name|void
 name|addStringAttribute
 parameter_list|(
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 parameter_list|,
 name|URI
@@ -1270,6 +1366,9 @@ name|void
 name|addURIAttribute
 parameter_list|(
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 parameter_list|,
 name|URI
@@ -1363,6 +1462,9 @@ name|void
 name|addValidURIAttribute
 parameter_list|(
 name|Set
+argument_list|<
+name|Attribute
+argument_list|>
 name|attributes
 parameter_list|,
 name|URI

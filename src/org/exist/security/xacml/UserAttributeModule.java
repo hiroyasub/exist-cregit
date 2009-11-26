@@ -215,6 +215,11 @@ specifier|private
 name|ExistPDP
 name|pdp
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|UserAttributeModule
 parameter_list|()
@@ -586,10 +591,16 @@ operator|.
 name|length
 decl_stmt|;
 name|Set
+argument_list|<
+name|StringAttribute
+argument_list|>
 name|groupAttributes
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|StringAttribute
+argument_list|>
 argument_list|(
 name|size
 argument_list|)
@@ -695,6 +706,9 @@ block|}
 comment|/** 	* Returns a<code>Set</code> containing 	*<code>AttributeDesignator.SUBJECT_TARGET</code> 	* to indicate that this module only supports 	*<code>Subject</code>s. 	* 	* @return A<code>Set</code> indicating the supported 	* designator type. 	*/
 specifier|public
 name|Set
+argument_list|<
+name|Integer
+argument_list|>
 name|getSupportedDesignatorTypes
 parameter_list|()
 block|{
@@ -716,14 +730,23 @@ block|}
 comment|/** 	* A<code>Set</code> containing the<code>URI</code>s 	* {@link XACMLConstants#USER_NAME_ATTRIBUTE user name} and 	* {@link XACMLConstants#GROUP_ATTRIBUTE groups} to indicate that 	* these are the only attributes supported by this module. 	* 	* @return A<code>Set</code> indicating the supported 	* attribute ids. 	*/
 specifier|public
 name|Set
+argument_list|<
+name|URI
+argument_list|>
 name|getSupportedIds
 parameter_list|()
 block|{
 name|Set
+argument_list|<
+name|URI
+argument_list|>
 name|set
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|URI
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)

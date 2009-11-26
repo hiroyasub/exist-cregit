@@ -120,6 +120,11 @@ parameter_list|)
 block|{
 comment|/**        * @param user         * @param passwd        */
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|env
 init|=
 name|getDirectoryEnvironment
