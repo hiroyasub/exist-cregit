@@ -209,10 +209,20 @@ name|pool
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Index
+argument_list|>
 name|indexers
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Index
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**      * Constructs a new IndexManager and registers the indexes specified in      * the global configuration object, i.e. in the :      *<pre>      *&lt;modules&gt;      *&lt;module id="foo" class="bar" foo1="bar1" ... /&gt;      *&lt;/modules&gt;      *</pre>      * section of the configuration file.      *      * @param pool the BrokerPool representing the current database instance      * @param config the configuration object      * @throws DatabaseConfigurationException      */
@@ -306,6 +316,9 @@ decl_stmt|;
 try|try
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 name|Class
@@ -506,6 +519,9 @@ block|}
 comment|/**      * Returns an iterator over the registered indexes.      *       * @return the iterator      */
 specifier|protected
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
@@ -532,6 +548,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -547,9 +566,6 @@ block|{
 name|Index
 name|indexer
 init|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
@@ -586,9 +602,6 @@ name|indexName
 parameter_list|)
 block|{
 return|return
-operator|(
-name|Index
-operator|)
 name|indexers
 operator|.
 name|get
@@ -633,6 +646,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|indexers
@@ -654,9 +670,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
@@ -693,6 +706,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -736,6 +752,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -750,9 +769,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
@@ -779,6 +795,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -793,9 +812,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
@@ -822,6 +838,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -836,9 +855,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
@@ -867,6 +883,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Index
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -881,9 +900,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next

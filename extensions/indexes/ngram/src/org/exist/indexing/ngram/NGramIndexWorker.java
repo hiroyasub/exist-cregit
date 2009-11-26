@@ -943,6 +943,11 @@ name|NodeList
 name|configNodes
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|)
 throws|throws
