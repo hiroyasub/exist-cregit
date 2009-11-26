@@ -47,6 +47,9 @@ interface|interface
 name|NodeId
 extends|extends
 name|Comparable
+argument_list|<
+name|NodeId
+argument_list|>
 block|{
 specifier|public
 specifier|static
