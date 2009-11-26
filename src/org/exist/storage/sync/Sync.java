@@ -135,6 +135,11 @@ name|BrokerPool
 name|pool
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|?
+argument_list|>
 name|params
 parameter_list|)
 throws|throws

@@ -34,6 +34,14 @@ name|JobException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1567438994821964637L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static

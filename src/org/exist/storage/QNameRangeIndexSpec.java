@@ -88,6 +88,11 @@ specifier|public
 name|QNameRangeIndexSpec
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String
@@ -192,9 +197,6 @@ condition|)
 block|{
 name|namespaceURI
 operator|=
-operator|(
-name|String
-operator|)
 name|namespaces
 operator|.
 name|get
