@@ -255,6 +255,9 @@ name|int
 name|conversionPreference
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|javaClass
 parameter_list|)
 function_decl|;
@@ -264,6 +267,9 @@ name|Object
 name|toJavaObject
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|target
 parameter_list|)
 throws|throws
