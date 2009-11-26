@@ -47,6 +47,20 @@ name|Breakpoint
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|BreakpointImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -225,6 +239,21 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|void
+name|setBreakpoint
+parameter_list|(
+name|BreakpointImpl
+name|breakpoint
+parameter_list|)
+block|{
+name|this
+operator|.
+name|breakpoint
+operator|=
+name|breakpoint
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -74,6 +74,11 @@ specifier|public
 interface|interface
 name|DebuggingSource
 block|{
+specifier|public
+name|Debugger
+name|getDebugger
+parameter_list|()
+function_decl|;
 comment|/** 	 * Starts or resumes the script until a new breakpoint is reached, or the end of the script is reached. 	 */
 specifier|public
 name|void

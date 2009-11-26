@@ -412,6 +412,28 @@ argument_list|)
 return|;
 block|}
 specifier|public
+name|boolean
+name|hasAttribute
+parameter_list|(
+name|String
+name|attr
+parameter_list|)
+block|{
+return|return
+name|parsedResponse
+operator|.
+name|getAttributes
+argument_list|()
+operator|.
+name|getNamedItem
+argument_list|(
+name|attr
+argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
+specifier|public
 name|String
 name|getAttribute
 parameter_list|(
@@ -419,6 +441,7 @@ name|String
 name|attr
 parameter_list|)
 block|{
+comment|//XXX: NPE???
 return|return
 name|parsedResponse
 operator|.

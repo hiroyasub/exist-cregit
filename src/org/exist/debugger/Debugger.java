@@ -109,14 +109,7 @@ name|void
 name|sessionClosed
 parameter_list|()
 function_decl|;
-specifier|public
-name|Breakpoint
-name|addBreakpoint
-parameter_list|(
-name|Breakpoint
-name|breakpoint
-parameter_list|)
-function_decl|;
+comment|//	public boolean setBreakpoint(Breakpoint breakpoint);
 specifier|public
 name|void
 name|run

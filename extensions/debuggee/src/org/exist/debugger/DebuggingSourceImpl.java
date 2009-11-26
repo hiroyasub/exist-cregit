@@ -160,8 +160,17 @@ name|fileURI
 expr_stmt|;
 block|}
 specifier|public
+name|Debugger
+name|getDebugger
+parameter_list|()
+block|{
+return|return
+name|debugger
+return|;
+block|}
+specifier|public
 name|Breakpoint
-name|getBreakpoint
+name|newBreakpoint
 parameter_list|()
 block|{
 name|BreakpointImpl
@@ -182,7 +191,7 @@ name|breakpoint
 operator|.
 name|setDebuggingSource
 argument_list|(
-name|debugger
+name|this
 argument_list|)
 expr_stmt|;
 return|return
@@ -414,16 +423,6 @@ operator|.
 name|stop
 argument_list|()
 expr_stmt|;
-block|}
-specifier|public
-name|Breakpoint
-name|newBreakpoint
-parameter_list|()
-block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
 block|}
 specifier|private
 name|String

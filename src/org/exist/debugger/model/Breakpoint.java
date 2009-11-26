@@ -216,6 +216,17 @@ name|String
 name|toXMLString
 parameter_list|()
 function_decl|;
+comment|//Synchronize changes
+specifier|public
+name|boolean
+name|sync
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|remove
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

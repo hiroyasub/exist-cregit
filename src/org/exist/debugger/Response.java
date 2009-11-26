@@ -40,6 +40,14 @@ name|getTransactionID
 parameter_list|()
 function_decl|;
 specifier|public
+name|boolean
+name|hasAttribute
+parameter_list|(
+name|String
+name|attr
+parameter_list|)
+function_decl|;
+specifier|public
 name|String
 name|getAttribute
 parameter_list|(

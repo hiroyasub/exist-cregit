@@ -421,6 +421,21 @@ return|return
 literal|null
 return|;
 block|}
+specifier|public
+name|void
+name|setBreakpoint
+parameter_list|(
+name|Breakpoint
+name|breakpoint
+parameter_list|)
+block|{
+name|this
+operator|.
+name|breakpoint
+operator|=
+name|breakpoint
+expr_stmt|;
+block|}
 block|}
 end_class
 

@@ -1002,6 +1002,13 @@ name|command
 operator|.
 name|setStatus
 argument_list|(
+name|BREAK
+argument_list|)
+expr_stmt|;
+name|command
+operator|.
+name|setStatus
+argument_list|(
 name|STOPPED
 argument_list|)
 expr_stmt|;
@@ -1561,7 +1568,7 @@ block|}
 return|return
 literal|1
 return|;
-comment|//TODO: do throw constant
+comment|//TODO: create constant
 block|}
 specifier|public
 name|Breakpoint
