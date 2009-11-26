@@ -133,6 +133,15 @@ implements|implements
 name|ClipboardOwner
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|3740034384422578150L
+decl_stmt|;
+specifier|private
 name|JTree
 name|tree
 decl_stmt|;
@@ -140,6 +149,11 @@ specifier|private
 name|XACMLTreeNode
 name|contextNode
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|NodeCopyAction
 parameter_list|()

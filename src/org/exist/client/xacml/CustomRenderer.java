@@ -147,6 +147,15 @@ block|{
 specifier|private
 specifier|static
 specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|1610799020547073755L
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|Icon
 name|targetIcon
 init|=
@@ -259,6 +268,11 @@ specifier|private
 name|TreeMutator
 name|mutator
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|CustomRenderer
 parameter_list|()

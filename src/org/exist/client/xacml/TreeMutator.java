@@ -568,6 +568,11 @@ specifier|private
 name|XACMLTreeNode
 name|contextNode
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|TreeMutator
 parameter_list|()

@@ -120,6 +120,14 @@ name|ResizingTable
 extends|extends
 name|JTable
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|6344436107939184687L
+decl_stmt|;
 specifier|public
 name|ResizingTable
 parameter_list|()

@@ -52,6 +52,11 @@ specifier|private
 name|Target
 name|target
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|TargetNode
 parameter_list|()

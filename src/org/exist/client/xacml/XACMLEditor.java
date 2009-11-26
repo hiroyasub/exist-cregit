@@ -443,6 +443,14 @@ block|{
 specifier|private
 specifier|static
 specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7029748734913443907L
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|String
 name|DEFAULT_DESCRIPTION
 init|=
@@ -542,6 +550,11 @@ specifier|private
 name|JSplitPane
 name|split
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|XACMLEditor
 parameter_list|()
@@ -1046,6 +1059,9 @@ literal|"DenyAll"
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|Rule
+argument_list|>
 name|rules
 init|=
 name|Collections

@@ -27,6 +27,11 @@ specifier|private
 name|boolean
 name|modified
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|AbstractTreeNode
 parameter_list|()
