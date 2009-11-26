@@ -16,7 +16,7 @@ comment|/*  * dbXML License, Version 1.0  *  *  * Copyright (c) 1999-2001 The db
 end_comment
 
 begin_comment
-comment|/**  * A DBException is thrown by the database if an exception occurs in the  * managing (creating, dropping) database objects such as Collections,  * Indexes, and XMLObjects.  */
+comment|/**  * A DBException is thrown by the database if an exception occurs in the  * managing (creating, dropping) database objects such as Collections, Indexes,  * and XMLObjects.  */
 end_comment
 
 begin_class
@@ -26,6 +26,14 @@ name|DBException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|952318931514282901L
+decl_stmt|;
 specifier|public
 name|int
 name|faultCode

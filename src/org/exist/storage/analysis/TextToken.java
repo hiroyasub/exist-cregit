@@ -29,6 +29,9 @@ class|class
 name|TextToken
 implements|implements
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 block|{
 specifier|public
 specifier|final

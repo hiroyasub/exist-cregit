@@ -16,7 +16,7 @@ comment|/*  * dbXML License, Version 1.0  *  *  * Copyright (c) 1999-2001 The db
 end_comment
 
 begin_comment
-comment|/**  * A BTreeException is thrown by the BTree if an exception occurs  * in the managing of the BTree.  */
+comment|/**  * A BTreeException is thrown by the BTree if an exception occurs in the  * managing of the BTree.  */
 end_comment
 
 begin_class
@@ -26,6 +26,15 @@ name|BTreeException
 extends|extends
 name|DBException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|9164807722775875790L
+decl_stmt|;
 specifier|public
 name|BTreeException
 parameter_list|()
