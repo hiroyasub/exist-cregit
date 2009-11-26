@@ -349,7 +349,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"scan-data"
+literal|"scan"
 argument_list|,
 name|XQDocModule
 operator|.
@@ -360,15 +360,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Scan and extract function documentation from an external XQuery function module according to the"
+literal|"Scan and extract function documentation from an external XQuery function module according to the "
 operator|+
-literal|"XQDoc specification. The single argument URI may either point to an XQuery module stored in the "
+literal|"XQDoc specification. The two parameter version of the function expects to get the source code of "
 operator|+
-literal|"db (URI starts with xmldb:exist:...) or a module in the file system. A file system module is "
-operator|+
-literal|"searched in the same way as if it were loaded through an \"import module\" statement. Static "
-operator|+
-literal|"mappings defined in conf.xml are searched first."
+literal|"the module in the first argument and a name for the module in the second."
 argument_list|,
 operator|new
 name|SequenceType
@@ -388,6 +384,22 @@ operator|.
 name|EXACTLY_ONE
 argument_list|,
 literal|"The base64 encoded source data of the module"
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"name"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The name of the module"
 argument_list|)
 block|}
 argument_list|,
@@ -446,12 +458,15 @@ name|source
 init|=
 literal|null
 decl_stmt|;
+name|String
+name|name
+decl_stmt|;
 if|if
 condition|(
-name|isCalledAs
-argument_list|(
-literal|"scan-data"
-argument_list|)
+name|getArgumentCount
+argument_list|()
+operator|==
+literal|2
 condition|)
 block|{
 name|byte
@@ -476,6 +491,16 @@ operator|.
 name|getBinaryData
 argument_list|()
 decl_stmt|;
+name|name
+operator|=
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+expr_stmt|;
 name|source
 operator|=
 operator|new
@@ -670,6 +695,16 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|name
+operator|=
+name|doc
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -802,6 +837,16 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|name
+operator|=
+name|source
+operator|.
+name|getKey
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -862,6 +907,8 @@ operator|.
 name|scan
 argument_list|(
 name|source
+argument_list|,
+name|name
 argument_list|)
 decl_stmt|;
 name|NodeValue
