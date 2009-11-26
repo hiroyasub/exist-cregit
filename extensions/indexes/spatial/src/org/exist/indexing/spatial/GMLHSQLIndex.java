@@ -384,12 +384,9 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 name|worker
 init|=
-operator|(
-name|GMLHSQLIndexWorker
-operator|)
 name|workers
 operator|.
 name|get

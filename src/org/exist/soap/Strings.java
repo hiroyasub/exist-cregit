@@ -35,6 +35,15 @@ operator|.
 name|Serializable
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4950143157744257740L
+decl_stmt|;
+specifier|private
 name|java
 operator|.
 name|lang

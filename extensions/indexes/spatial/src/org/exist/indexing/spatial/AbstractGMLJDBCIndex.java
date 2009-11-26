@@ -191,6 +191,11 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -209,10 +214,20 @@ decl_stmt|;
 comment|/**      * An IndexWorker "pool"      */
 specifier|protected
 name|HashMap
+argument_list|<
+name|DBBroker
+argument_list|,
+name|AbstractGMLJDBCIndexWorker
+argument_list|>
 name|workers
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|DBBroker
+argument_list|,
+name|AbstractGMLJDBCIndexWorker
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**      * The connection to the DB that will be needed for global operations       */
@@ -397,6 +412,9 @@ throws|throws
 name|DBException
 block|{
 name|Iterator
+argument_list|<
+name|AbstractGMLJDBCIndexWorker
+argument_list|>
 name|i
 init|=
 name|workers
@@ -418,9 +436,6 @@ block|{
 name|AbstractGMLJDBCIndexWorker
 name|worker
 init|=
-operator|(
-name|AbstractGMLJDBCIndexWorker
-operator|)
 name|i
 operator|.
 name|next
@@ -468,6 +483,9 @@ throws|throws
 name|DBException
 block|{
 name|Iterator
+argument_list|<
+name|AbstractGMLJDBCIndexWorker
+argument_list|>
 name|i
 init|=
 name|workers
@@ -489,9 +507,6 @@ block|{
 name|AbstractGMLJDBCIndexWorker
 name|worker
 init|=
-operator|(
-name|AbstractGMLJDBCIndexWorker
-operator|)
 name|i
 operator|.
 name|next

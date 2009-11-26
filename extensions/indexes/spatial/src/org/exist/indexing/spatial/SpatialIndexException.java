@@ -22,6 +22,14 @@ name|SpatialIndexException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7991787594779565819L
+decl_stmt|;
 name|SpatialIndexException
 parameter_list|(
 name|String
