@@ -215,6 +215,11 @@ name|Element
 name|config
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|AnalyzerConfig
@@ -418,6 +423,11 @@ name|Element
 name|root
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|)
 throws|throws
@@ -711,6 +721,11 @@ name|Element
 name|config
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|)
 throws|throws
@@ -773,6 +788,11 @@ name|String
 name|name
 parameter_list|,
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|)
 throws|throws
@@ -843,9 +863,6 @@ condition|)
 block|{
 name|namespaceURI
 operator|=
-operator|(
-name|String
-operator|)
 name|namespaces
 operator|.
 name|get

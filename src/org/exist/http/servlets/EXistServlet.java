@@ -409,6 +409,15 @@ extends|extends
 name|HttpServlet
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|3563999345725645647L
+decl_stmt|;
+specifier|private
 name|String
 name|formEncoding
 init|=

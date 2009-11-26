@@ -198,6 +198,14 @@ name|DatabaseAdminServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|866427121174932091L
+decl_stmt|;
 specifier|protected
 name|String
 name|confFile
@@ -935,6 +943,9 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 name|Class

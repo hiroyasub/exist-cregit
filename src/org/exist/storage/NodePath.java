@@ -198,6 +198,11 @@ specifier|public
 name|NodePath
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String
@@ -216,6 +221,11 @@ specifier|public
 name|NodePath
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String
@@ -765,6 +775,11 @@ name|void
 name|addComponent
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String
@@ -834,9 +849,6 @@ condition|)
 block|{
 name|namespaceURI
 operator|=
-operator|(
-name|String
-operator|)
 name|namespaces
 operator|.
 name|get
@@ -907,6 +919,11 @@ name|void
 name|init
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String

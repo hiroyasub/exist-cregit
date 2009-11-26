@@ -590,10 +590,16 @@ expr_stmt|;
 block|}
 comment|// Accumulate the list of roles for this user
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String
@@ -742,6 +748,9 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

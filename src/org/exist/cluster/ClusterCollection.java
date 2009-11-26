@@ -1280,6 +1280,9 @@ return|;
 block|}
 specifier|public
 name|List
+argument_list|<
+name|Collection
+argument_list|>
 name|getDescendants
 parameter_list|(
 name|DBBroker

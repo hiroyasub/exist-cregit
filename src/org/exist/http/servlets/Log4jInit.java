@@ -215,6 +215,14 @@ extends|extends
 name|HttpServlet
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|2358611360404852183L
+decl_stmt|;
+specifier|private
 name|String
 name|getTimestamp
 parameter_list|()

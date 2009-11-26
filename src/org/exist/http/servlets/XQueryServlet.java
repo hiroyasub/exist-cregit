@@ -523,6 +523,14 @@ block|{
 specifier|private
 specifier|static
 specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|5266794852401553015L
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -854,6 +862,9 @@ expr_stmt|;
 try|try
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|driver
 init|=
 name|Class

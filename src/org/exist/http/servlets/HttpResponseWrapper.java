@@ -436,10 +436,20 @@ block|}
 comment|/** used the feature "Guess last modification time for an XQuery result" */
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Long
+argument_list|>
 name|dateHeaders
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Long
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** 	 * @param name 	 * @param arg1 	 */
@@ -494,9 +504,6 @@ decl_stmt|;
 name|Long
 name|val
 init|=
-operator|(
-name|Long
-operator|)
 name|dateHeaders
 operator|.
 name|get

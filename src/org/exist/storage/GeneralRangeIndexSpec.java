@@ -80,6 +80,11 @@ specifier|public
 name|GeneralRangeIndexSpec
 parameter_list|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|namespaces
 parameter_list|,
 name|String
