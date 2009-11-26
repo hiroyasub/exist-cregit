@@ -35,16 +35,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|StringTokenizer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -212,20 +202,6 @@ operator|.
 name|base
 operator|.
 name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
 import|;
 end_import
 
