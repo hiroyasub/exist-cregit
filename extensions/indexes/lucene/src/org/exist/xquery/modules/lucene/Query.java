@@ -1261,6 +1261,9 @@ name|contextItem
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|QName
+argument_list|>
 name|qnames
 init|=
 literal|null
@@ -1276,6 +1279,9 @@ name|qnames
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|QName
+argument_list|>
 argument_list|(
 literal|1
 argument_list|)

@@ -31,7 +31,15 @@ class|class
 name|TermInPhrase
 implements|implements
 name|Comparable
+argument_list|<
+name|TermInPhrase
+argument_list|>
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|Query
 name|query
@@ -91,7 +99,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|TermInPhrase
 name|obj
 parameter_list|)
 block|{
@@ -100,12 +108,7 @@ name|term
 operator|.
 name|compareTo
 argument_list|(
-operator|(
-operator|(
-name|TermInPhrase
-operator|)
 name|obj
-operator|)
 operator|.
 name|term
 argument_list|)

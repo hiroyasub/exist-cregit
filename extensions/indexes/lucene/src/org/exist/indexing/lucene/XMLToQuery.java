@@ -1535,10 +1535,16 @@ name|getReader
 argument_list|()
 expr_stmt|;
 name|List
+argument_list|<
+name|Term
+argument_list|>
 name|termList
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Term
+argument_list|>
 argument_list|(
 literal|8
 argument_list|)
@@ -1625,10 +1631,6 @@ argument_list|()
 index|]
 decl_stmt|;
 return|return
-operator|(
-name|Term
-index|[]
-operator|)
 name|termList
 operator|.
 name|toArray
