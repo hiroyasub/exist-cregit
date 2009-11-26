@@ -701,6 +701,9 @@ name|direct
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 name|checker

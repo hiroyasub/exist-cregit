@@ -372,10 +372,16 @@ name|ConsistencyCheck
 block|{
 specifier|private
 name|Stack
+argument_list|<
+name|ElementNode
+argument_list|>
 name|elementStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|ElementNode
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -471,6 +477,9 @@ block|}
 comment|/**      * Combines      * {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)}      * and      * {@link #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *       * @param callback      *            the callback object to report to      * @return a list of {@link ErrorReport} objects or an empty list if no      *         errors were found      */
 specifier|public
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|checkAll
 parameter_list|(
 name|ProgressCallback
@@ -478,6 +487,9 @@ name|callback
 parameter_list|)
 block|{
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 name|checkCollectionTree
@@ -499,6 +511,9 @@ block|}
 comment|/**      * Run some tests on the collection hierarchy, starting at the root      * collection /db.      *       * @param callback      *            callback object      * @return a list of {@link ErrorReport} instances describing the errors      *         found      */
 specifier|public
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|checkCollectionTree
 parameter_list|(
 name|ProgressCallback
@@ -515,10 +530,16 @@ expr_stmt|;
 try|try
 block|{
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|ErrorReport
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Collection
@@ -565,6 +586,9 @@ name|Collection
 name|collection
 parameter_list|,
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 parameter_list|,
 name|ProgressCallback
@@ -857,6 +881,9 @@ block|}
 comment|/**      * Run some tests on all documents stored in the database. The method checks      * if a document is readable and if its DOM representation is consistent.      *       * @param progress      *            progress callback      * @return a list of {@link ErrorReport} instances describing the errors      *         found      */
 specifier|public
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|checkDocuments
 parameter_list|(
 name|ProgressCallback
@@ -864,10 +891,16 @@ name|progress
 parameter_list|)
 block|{
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|ErrorReport
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|checkDocuments
@@ -890,6 +923,9 @@ name|ProgressCallback
 name|progress
 parameter_list|,
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errorList
 parameter_list|)
 block|{
@@ -1078,9 +1114,6 @@ condition|)
 block|{
 name|parent
 operator|=
-operator|(
-name|ElementNode
-operator|)
 name|elementStack
 operator|.
 name|peek
@@ -1243,9 +1276,6 @@ return|;
 name|ElementNode
 name|lastElem
 init|=
-operator|(
-name|ElementNode
-operator|)
 name|elementStack
 operator|.
 name|pop
@@ -1692,6 +1722,9 @@ name|BTreeCallback
 block|{
 specifier|private
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 decl_stmt|;
 specifier|private
@@ -1728,6 +1761,9 @@ specifier|private
 name|DocumentCallback
 parameter_list|(
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 parameter_list|,
 name|ProgressCallback

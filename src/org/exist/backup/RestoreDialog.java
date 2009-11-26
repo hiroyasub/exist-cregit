@@ -206,6 +206,14 @@ name|RestoreDialog
 extends|extends
 name|JDialog
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|3773486348231766907L
+decl_stmt|;
 name|JTextField
 name|currentCollection
 decl_stmt|;

@@ -472,10 +472,16 @@ name|current
 decl_stmt|;
 specifier|private
 name|Stack
+argument_list|<
+name|BackupDescriptor
+argument_list|>
 name|stack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|BackupDescriptor
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -933,9 +939,6 @@ try|try
 block|{
 name|contents
 operator|=
-operator|(
-name|BackupDescriptor
-operator|)
 name|stack
 operator|.
 name|pop
@@ -1081,9 +1084,6 @@ condition|)
 block|{
 name|contents
 operator|=
-operator|(
-name|BackupDescriptor
-operator|)
 name|stack
 operator|.
 name|pop

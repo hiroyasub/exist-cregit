@@ -120,6 +120,15 @@ name|BackupDialog
 extends|extends
 name|JDialog
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4960002499478536048L
+decl_stmt|;
 name|JTextField
 name|currentCollection
 decl_stmt|;

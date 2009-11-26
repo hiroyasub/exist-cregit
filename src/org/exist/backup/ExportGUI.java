@@ -243,6 +243,15 @@ operator|.
 name|JFrame
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|8104424554660744639L
+decl_stmt|;
+specifier|private
 name|BrokerPool
 name|pool
 init|=
@@ -2213,6 +2222,9 @@ literal|"Checking database consistency ..."
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 name|checkDB
@@ -2574,6 +2586,9 @@ name|String
 name|exportTarget
 parameter_list|,
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errorList
 parameter_list|)
 block|{
@@ -2882,6 +2897,9 @@ block|}
 block|}
 specifier|private
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|checkDB
 parameter_list|()
 block|{
@@ -3057,6 +3075,9 @@ literal|"Checking collections ..."
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 name|checker
