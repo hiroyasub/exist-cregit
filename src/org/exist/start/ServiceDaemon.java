@@ -211,6 +211,9 @@ name|cl
 argument_list|)
 expr_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|brokerPoolClass
 init|=
 name|cl
@@ -225,6 +228,9 @@ comment|//Method stopAll = brokerPoolClass.getDeclaredMethod("stopAll",java.lang
 comment|//stopAll.invoke(null,Boolean.TRUE);
 comment|// This is the ugly Java 1.4 version
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|paramTypes
 init|=

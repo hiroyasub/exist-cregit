@@ -900,6 +900,11 @@ argument_list|(
 name|tmp
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|DocumentImpl
 name|doc
 init|=

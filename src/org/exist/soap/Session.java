@@ -56,6 +56,15 @@ name|Session
 implements|implements
 name|Serializable
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|5863393640379705401L
+decl_stmt|;
 specifier|public
 specifier|static
 class|class

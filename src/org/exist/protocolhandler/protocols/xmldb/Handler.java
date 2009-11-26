@@ -259,6 +259,11 @@ argument_list|,
 literal|3
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|instance
 init|=
