@@ -578,6 +578,9 @@ name|void
 name|setArguments
 parameter_list|(
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 parameter_list|)
 throws|throws
@@ -586,9 +589,6 @@ block|{
 name|Expression
 name|arg
 init|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -658,9 +658,6 @@ argument_list|)
 expr_stmt|;
 name|arg
 operator|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -730,9 +727,6 @@ argument_list|)
 expr_stmt|;
 name|arg
 operator|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -812,9 +806,6 @@ condition|)
 block|{
 name|arg
 operator|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get

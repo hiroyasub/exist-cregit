@@ -93,6 +93,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -475,10 +487,16 @@ argument_list|()
 decl_stmt|;
 comment|// pass the remaining parameters to the function call
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|params
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Expression
+argument_list|>
 argument_list|(
 name|getArgumentCount
 argument_list|()
