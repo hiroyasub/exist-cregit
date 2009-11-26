@@ -489,6 +489,11 @@ literal|null
 decl_stmt|;
 comment|// get the existing sessions map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Session
+argument_list|>
 name|sessions
 init|=
 operator|(
@@ -512,9 +517,6 @@ condition|)
 block|{
 name|session
 operator|=
-operator|(
-name|Session
-operator|)
 name|sessions
 operator|.
 name|get
@@ -549,6 +551,11 @@ parameter_list|)
 block|{
 comment|// get the existing sessions map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Session
+argument_list|>
 name|sessions
 init|=
 operator|(
@@ -575,6 +582,11 @@ name|sessions
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Session
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -642,6 +654,11 @@ literal|null
 decl_stmt|;
 comment|// get the existing stores map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Store
+argument_list|>
 name|stores
 init|=
 operator|(
@@ -665,9 +682,6 @@ condition|)
 block|{
 name|store
 operator|=
-operator|(
-name|Store
-operator|)
 name|stores
 operator|.
 name|get
@@ -702,6 +716,11 @@ parameter_list|)
 block|{
 comment|// get the existing stores map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Store
+argument_list|>
 name|stores
 init|=
 operator|(
@@ -728,6 +747,11 @@ name|stores
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Store
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -786,6 +810,11 @@ parameter_list|)
 block|{
 comment|// get the existing stores map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Store
+argument_list|>
 name|stores
 init|=
 operator|(
@@ -846,6 +875,11 @@ parameter_list|)
 block|{
 comment|// get the existing stores map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Store
+argument_list|>
 name|stores
 init|=
 operator|(
@@ -869,6 +903,9 @@ condition|)
 block|{
 comment|// iterate over each store
 name|Set
+argument_list|<
+name|Long
+argument_list|>
 name|keys
 init|=
 name|stores
@@ -879,6 +916,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|itKeys
 init|=
 name|keys
@@ -897,9 +937,6 @@ comment|// get the store
 name|Long
 name|storeHandle
 init|=
-operator|(
-name|Long
-operator|)
 name|itKeys
 operator|.
 name|next
@@ -908,9 +945,6 @@ decl_stmt|;
 name|Store
 name|store
 init|=
-operator|(
-name|Store
-operator|)
 name|stores
 operator|.
 name|get
@@ -991,6 +1025,11 @@ literal|null
 decl_stmt|;
 comment|// get the existing folders map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Folder
+argument_list|>
 name|folders
 init|=
 operator|(
@@ -1014,9 +1053,6 @@ condition|)
 block|{
 name|folder
 operator|=
-operator|(
-name|Folder
-operator|)
 name|folders
 operator|.
 name|get
@@ -1051,6 +1087,11 @@ parameter_list|)
 block|{
 comment|// get the existing stores map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Folder
+argument_list|>
 name|folders
 init|=
 operator|(
@@ -1077,6 +1118,11 @@ name|folders
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Folder
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1135,6 +1181,11 @@ parameter_list|)
 block|{
 comment|// get the existing folders map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Folder
+argument_list|>
 name|folders
 init|=
 operator|(
@@ -1181,6 +1232,16 @@ argument_list|)
 expr_stmt|;
 comment|// get the existing folderMsgLists map from the context and remove all the folder's message lists
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Object
+argument_list|>
+argument_list|>
 name|folderMsgLists
 init|=
 operator|(
@@ -1219,6 +1280,11 @@ condition|)
 block|{
 comment|// get the folders message list
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Object
+argument_list|>
 name|folderMsgList
 init|=
 operator|(
@@ -1244,6 +1310,9 @@ condition|)
 block|{
 comment|// iterate over each message list in this folder
 name|Set
+argument_list|<
+name|Long
+argument_list|>
 name|keys
 init|=
 name|folderMsgList
@@ -1254,6 +1323,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|itKeys
 init|=
 name|keys
@@ -1271,9 +1343,6 @@ block|{
 name|Long
 name|msgList
 init|=
-operator|(
-name|Long
-operator|)
 name|itKeys
 operator|.
 name|next
@@ -1336,6 +1405,11 @@ parameter_list|)
 block|{
 comment|// get the existing folders map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Folder
+argument_list|>
 name|folders
 init|=
 operator|(
@@ -1359,6 +1433,9 @@ condition|)
 block|{
 comment|// iterate over each folder
 name|Set
+argument_list|<
+name|Long
+argument_list|>
 name|keys
 init|=
 name|folders
@@ -1369,6 +1446,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|itKeys
 init|=
 name|keys
@@ -1387,9 +1467,6 @@ comment|// get the folder
 name|Long
 name|folderHandle
 init|=
-operator|(
-name|Long
-operator|)
 name|itKeys
 operator|.
 name|next
@@ -1398,9 +1475,6 @@ decl_stmt|;
 name|Folder
 name|folder
 init|=
-operator|(
-name|Folder
-operator|)
 name|folders
 operator|.
 name|get
@@ -1485,6 +1559,12 @@ literal|null
 decl_stmt|;
 comment|// get the existing msgLists map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 name|msgLists
 init|=
 operator|(
@@ -1508,10 +1588,6 @@ condition|)
 block|{
 name|msgList
 operator|=
-operator|(
-name|Message
-index|[]
-operator|)
 name|msgLists
 operator|.
 name|get
@@ -1550,6 +1626,12 @@ parameter_list|)
 block|{
 comment|// get the existing msgLists map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 name|msgLists
 init|=
 operator|(
@@ -1576,6 +1658,12 @@ name|msgLists
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1614,6 +1702,17 @@ argument_list|)
 expr_stmt|;
 comment|// get the existing folderMsgLists map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
+argument_list|>
 name|folderMsgLists
 init|=
 operator|(
@@ -1640,11 +1739,28 @@ name|folderMsgLists
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
 comment|// get the folders message list
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 name|folderMsgList
 init|=
 operator|(
@@ -1672,6 +1788,12 @@ name|folderMsgList
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|folderMsgLists
@@ -1736,6 +1858,12 @@ parameter_list|)
 block|{
 comment|// get the existing msgLists map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 name|msgLists
 init|=
 operator|(
@@ -1796,6 +1924,12 @@ parameter_list|)
 block|{
 comment|// get the existing msgLists map from the context
 name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|Message
+index|[]
+argument_list|>
 name|msgLists
 init|=
 operator|(
@@ -1819,6 +1953,9 @@ condition|)
 block|{
 comment|// iterate over each msgList
 name|Set
+argument_list|<
+name|Long
+argument_list|>
 name|keys
 init|=
 name|msgLists
@@ -1829,6 +1966,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|itKeys
 init|=
 name|keys

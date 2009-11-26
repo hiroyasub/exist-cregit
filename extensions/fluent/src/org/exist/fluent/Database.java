@@ -881,11 +881,6 @@ throw|;
 block|}
 block|}
 comment|/** 	 * Verify the internal consistency of the database's data structures.  Log a fatal message if the 	 * database is corrupted, as well as error-level messages for all the problems found.  If the 	 * database is corrupted, you can try using admin tools to reindex it, or back it up and restore 	 * it.  However, there's a good chance it's unrecoverable. 	 *  	 * @return<code>true</code> if the database's internal data structures are consistent, 	 *<code>false</code> if the database is corrupted 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|public
 specifier|static
 name|boolean
