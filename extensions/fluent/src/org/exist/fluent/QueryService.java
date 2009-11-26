@@ -1663,11 +1663,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|private
 name|CompiledXQuery
 name|wrap
@@ -1711,6 +1706,9 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
+operator|(
+name|Expression
+operator|)
 name|expr
 argument_list|)
 argument_list|)

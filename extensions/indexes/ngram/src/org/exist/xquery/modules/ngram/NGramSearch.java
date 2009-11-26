@@ -451,6 +451,9 @@ name|void
 name|setArguments
 parameter_list|(
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 parameter_list|)
 throws|throws
@@ -459,9 +462,6 @@ block|{
 name|Expression
 name|path
 init|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -479,9 +479,6 @@ expr_stmt|;
 name|Expression
 name|arg
 init|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get

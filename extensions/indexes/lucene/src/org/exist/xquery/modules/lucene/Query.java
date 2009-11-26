@@ -526,6 +526,9 @@ name|void
 name|setArguments
 parameter_list|(
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 parameter_list|)
 throws|throws
@@ -534,9 +537,6 @@ block|{
 name|Expression
 name|path
 init|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -554,9 +554,6 @@ expr_stmt|;
 name|Expression
 name|arg
 init|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -985,10 +982,16 @@ literal|null
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|QName
+argument_list|>
 name|qnames
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|QName
+argument_list|>
 argument_list|(
 literal|1
 argument_list|)
