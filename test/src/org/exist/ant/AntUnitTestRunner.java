@@ -37,18 +37,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After
@@ -248,6 +236,9 @@ name|Exception
 block|{
 comment|// initialize driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

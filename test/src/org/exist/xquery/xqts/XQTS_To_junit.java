@@ -581,15 +581,7 @@ argument_list|(
 literal|"webapp/xqts/build.xml"
 argument_list|)
 decl_stmt|;
-name|File
-name|xqtsFile
-init|=
-operator|new
-name|File
-argument_list|(
-literal|"webapp/xqts/build.xml"
-argument_list|)
-decl_stmt|;
+comment|//		File xqtsFile = new File("webapp/xqts/build.xml");
 name|Project
 name|p
 init|=

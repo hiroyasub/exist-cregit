@@ -880,6 +880,9 @@ name|registerDatabase
 parameter_list|()
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|driver
 init|=
 literal|null

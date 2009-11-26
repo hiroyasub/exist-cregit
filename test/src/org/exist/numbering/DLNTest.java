@@ -79,6 +79,9 @@ class|class
 name|TestItem
 implements|implements
 name|Comparable
+argument_list|<
+name|TestItem
+argument_list|>
 block|{
 name|int
 name|id
@@ -156,7 +159,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|TestItem
 name|other
 parameter_list|)
 block|{
@@ -165,12 +168,7 @@ name|dln
 operator|.
 name|compareTo
 argument_list|(
-operator|(
-operator|(
-name|TestItem
-operator|)
 name|other
-operator|)
 operator|.
 name|dln
 argument_list|)

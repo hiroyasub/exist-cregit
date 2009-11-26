@@ -1365,6 +1365,9 @@ argument_list|)
 expr_stmt|;
 comment|// initialize XML:DB driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

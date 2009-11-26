@@ -93,20 +93,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
-
-begin_import
-import|import
 name|junit
 operator|.
 name|framework

@@ -286,6 +286,9 @@ throws|throws
 name|Exception
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class
@@ -963,10 +966,16 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String

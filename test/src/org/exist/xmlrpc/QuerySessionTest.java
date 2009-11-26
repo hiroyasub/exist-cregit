@@ -801,6 +801,9 @@ throw|;
 block|}
 comment|// initialize XML:DB driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

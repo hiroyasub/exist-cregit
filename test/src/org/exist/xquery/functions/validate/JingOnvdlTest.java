@@ -107,20 +107,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io

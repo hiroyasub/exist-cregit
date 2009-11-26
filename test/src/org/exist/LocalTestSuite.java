@@ -39,18 +39,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|fulltext
-operator|.
-name|FTMatchListenerTest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbLocalTests
@@ -78,18 +66,6 @@ operator|.
 name|xquery
 operator|.
 name|OptimizerTest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xupdate
-operator|.
-name|AllXupdateTests
 import|;
 end_import
 

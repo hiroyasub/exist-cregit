@@ -282,6 +282,9 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

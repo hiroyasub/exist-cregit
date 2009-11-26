@@ -40,20 +40,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|XMLAssert
-operator|.
-name|assertXpathEvaluatesTo
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -70,18 +56,6 @@ operator|.
 name|io
 operator|.
 name|FilenameFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|Diff
 import|;
 end_import
 

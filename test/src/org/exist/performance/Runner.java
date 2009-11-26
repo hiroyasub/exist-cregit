@@ -405,8 +405,17 @@ decl_stmt|;
 try|try
 block|{
 name|Class
+argument_list|<
+name|Action
+argument_list|>
 name|clazz
 init|=
+operator|(
+name|Class
+argument_list|<
+name|Action
+argument_list|>
+operator|)
 name|Class
 operator|.
 name|forName

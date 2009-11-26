@@ -1224,6 +1224,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|a
 init|=
 name|Arrays
@@ -1234,10 +1237,16 @@ name|expected
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|r
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 operator|(
 name|int

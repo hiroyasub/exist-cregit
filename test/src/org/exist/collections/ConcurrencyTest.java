@@ -183,20 +183,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XQueryService
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -580,6 +566,9 @@ comment|// initialize XML:DB driver
 try|try
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

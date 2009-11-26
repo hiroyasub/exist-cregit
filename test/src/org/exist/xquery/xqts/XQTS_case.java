@@ -707,9 +707,7 @@ name|String
 name|testCase
 parameter_list|)
 block|{
-name|BrokerPool
-name|pool
-decl_stmt|;
+comment|//		BrokerPool pool;
 try|try
 block|{
 name|XQueryService

@@ -157,20 +157,6 @@ name|api
 operator|.
 name|modules
 operator|.
-name|BinaryResource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
 name|CollectionManagementService
 import|;
 end_import
@@ -460,6 +446,9 @@ try|try
 block|{
 comment|// initialize driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

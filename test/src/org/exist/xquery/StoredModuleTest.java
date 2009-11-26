@@ -376,6 +376,9 @@ name|configure
 argument_list|()
 expr_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class

@@ -280,6 +280,9 @@ try|try
 block|{
 comment|// initialize driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class
@@ -691,10 +694,16 @@ argument_list|)
 expr_stmt|;
 block|}
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 name|fileNamesJustStored
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for
@@ -795,10 +804,16 @@ name|resourceCount
 argument_list|)
 expr_stmt|;
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 name|fileNamesPresentInDatabase
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for

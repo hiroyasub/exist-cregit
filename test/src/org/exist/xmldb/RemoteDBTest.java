@@ -125,20 +125,6 @@ name|xmldb
 operator|.
 name|api
 operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
 name|modules
 operator|.
 name|CollectionManagementService
@@ -387,6 +373,9 @@ try|try
 block|{
 comment|//Connect to the DB
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class
