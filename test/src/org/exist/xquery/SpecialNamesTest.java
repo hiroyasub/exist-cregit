@@ -280,6 +280,11 @@ specifier|private
 name|Collection
 name|testCollection
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|String
 name|query
@@ -422,6 +427,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|private
 name|void
 name|initServer
@@ -664,6 +674,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Helper that performs an XQuery and does JUnit assertion on result size.      * @see #queryResource(XQueryService, String, String, int, String)      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|ResourceSet
 name|queryResource
@@ -859,6 +874,11 @@ name|service
 return|;
 block|}
 comment|/** stores XML String and get Query Service      * @param documentName to be stored in the DB      * @param content to be stored in the DB      * @return the XQuery Service      * @throws XMLDBException      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|XQueryService
 name|storeXMLStringAndGetQueryService
@@ -921,6 +941,11 @@ name|service
 return|;
 block|}
 comment|/**      * @param result      * @throws XMLDBException      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|void
 name|printResult
@@ -983,6 +1008,11 @@ init|=
 name|getQueryService
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|ResourceSet
 name|result
 decl_stmt|;

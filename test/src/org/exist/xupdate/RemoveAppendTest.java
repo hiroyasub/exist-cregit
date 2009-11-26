@@ -212,6 +212,11 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -228,6 +233,11 @@ literal|"\" version=\"1.0\">"
 operator|+
 literal|"<xu:insert-before select=\"/test/item[@id='5']\">"
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -256,6 +266,11 @@ literal|"<xu:remove select=\"/test/item[@id='5'][2]\"/>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 specifier|final
@@ -654,6 +669,11 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|xu
 init|=

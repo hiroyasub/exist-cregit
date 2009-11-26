@@ -176,6 +176,11 @@ name|CollectionTest
 extends|extends
 name|TestCase
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 name|String
@@ -204,6 +209,11 @@ argument_list|(
 literal|"test"
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 name|String

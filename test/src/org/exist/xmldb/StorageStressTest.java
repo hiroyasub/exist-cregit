@@ -223,6 +223,11 @@ name|COLLECTION_NAME
 init|=
 literal|"unit-testing-collection"
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -415,6 +420,11 @@ name|setUpRemoteDatabase
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|private
 name|void
 name|initServer

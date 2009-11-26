@@ -536,6 +536,11 @@ literal|"return update insert attribute AAA {\"BBB\"} into $elem, $doc) "
 decl_stmt|;
 try|try
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|result1
 init|=
@@ -567,6 +572,11 @@ expr_stmt|;
 block|}
 try|try
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|result2
 init|=

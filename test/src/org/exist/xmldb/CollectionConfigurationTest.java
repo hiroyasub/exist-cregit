@@ -7557,6 +7557,11 @@ name|void
 name|testMissingRangeIndexes
 parameter_list|()
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|ResourceSet
 name|result
 decl_stmt|;
@@ -7568,6 +7573,11 @@ decl_stmt|;
 try|try
 block|{
 comment|//Configure collection automatically
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|IndexQueryService
 name|idxConf
 init|=

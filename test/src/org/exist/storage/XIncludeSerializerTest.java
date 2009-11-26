@@ -1875,6 +1875,11 @@ block|}
 comment|// @TODO create reader for xml
 comment|/*      * SetUp / TearDown functions      *      */
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
 name|BeforeClass
 specifier|public
 specifier|static
@@ -2063,6 +2068,11 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultColl1
 init|=
@@ -2093,6 +2103,11 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultColl2
 init|=
@@ -2147,6 +2162,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile1
 init|=
@@ -2192,6 +2212,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile3
 init|=
@@ -2237,6 +2262,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile4
 init|=
@@ -2282,6 +2312,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile5
 init|=
@@ -2327,6 +2362,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile6
 init|=
@@ -2372,6 +2412,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile7
 init|=
@@ -2417,6 +2462,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile8
 init|=
@@ -2462,6 +2512,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile9
 init|=
@@ -2507,6 +2562,11 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultFile10
 init|=
@@ -2582,6 +2642,11 @@ argument_list|(
 literal|"/db/xinclude_test"
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Boolean
 name|resultRemove
 init|=

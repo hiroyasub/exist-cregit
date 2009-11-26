@@ -610,6 +610,11 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|DocumentSet
 name|docs
 init|=

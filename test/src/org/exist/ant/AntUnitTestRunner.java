@@ -204,6 +204,11 @@ specifier|public
 class|class
 name|AntUnitTestRunner
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|XPathQueryService
 name|service

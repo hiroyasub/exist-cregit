@@ -626,6 +626,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Updates the given xml fragment in the database using XUpdate. 	 *  	 * @param service the xquery service	  	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 name|void
@@ -740,6 +745,11 @@ expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Loads the xml document identified by<code>document</code> from the database. 	 *  	 * @param service the xquery service 	 * @param document the document to load	  	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 name|Node

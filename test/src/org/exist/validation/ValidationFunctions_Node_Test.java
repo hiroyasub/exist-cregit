@@ -379,6 +379,11 @@ argument_list|(
 literal|"Clearing grammar cache"
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|ResourceSet
 name|result
 init|=

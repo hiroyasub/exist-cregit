@@ -513,6 +513,11 @@ operator|.
 name|getBytes
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|long
 name|addr
 init|=

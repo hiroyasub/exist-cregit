@@ -628,6 +628,11 @@ argument_list|()
 condition|;
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|content
 init|=

@@ -295,14 +295,7 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|DRIVER
-init|=
-literal|"org.exist.xmldb.DatabaseImpl"
-decl_stmt|;
+comment|//    private final static String DRIVER = "org.exist.xmldb.DatabaseImpl";
 specifier|private
 specifier|final
 specifier|static

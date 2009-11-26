@@ -607,6 +607,11 @@ literal|"\"/>"
 operator|+
 literal|"</xupdate:modifications>"
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|long
 name|mods
 init|=

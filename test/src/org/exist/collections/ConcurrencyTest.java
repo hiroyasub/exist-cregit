@@ -416,6 +416,11 @@ name|start
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|boolean
 name|protect
 init|=

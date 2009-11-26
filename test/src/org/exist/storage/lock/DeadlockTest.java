@@ -1391,6 +1391,11 @@ name|StoreTask
 implements|implements
 name|Runnable
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|String
 name|id

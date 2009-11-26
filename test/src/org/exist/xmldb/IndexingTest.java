@@ -328,13 +328,7 @@ specifier|private
 name|Random
 name|random
 decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|driver
-init|=
-literal|"org.exist.xmldb.DatabaseImpl"
-decl_stmt|;
+comment|//	private static String driver = "org.exist.xmldb.DatabaseImpl";
 specifier|private
 specifier|static
 name|String
@@ -379,6 +373,11 @@ specifier|private
 name|int
 name|effectiveSiblingCount
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|effectiveDepth
@@ -1159,6 +1158,11 @@ name|childrenCount
 return|;
 block|}
 comment|/** This one doesn't provoke the Exception */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|populateOK
@@ -1696,6 +1700,11 @@ return|return
 name|rlength
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|void
 name|dumpCatabaseContent

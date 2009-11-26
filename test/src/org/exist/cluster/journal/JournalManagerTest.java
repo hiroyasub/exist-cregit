@@ -2147,6 +2147,9 @@ literal|3
 argument_list|)
 expr_stmt|;
 name|ArrayList
+argument_list|<
+name|ClusterEvent
+argument_list|>
 name|events
 init|=
 name|journal
@@ -2205,17 +2208,12 @@ expr_stmt|;
 name|int
 name|idR
 init|=
-operator|(
-operator|(
-name|ClusterEvent
-operator|)
 name|events
 operator|.
 name|get
 argument_list|(
 literal|0
 argument_list|)
-operator|)
 operator|.
 name|getId
 argument_list|()
@@ -2277,9 +2275,6 @@ expr_stmt|;
 name|ClusterEvent
 name|ev
 init|=
-operator|(
-name|ClusterEvent
-operator|)
 name|events
 operator|.
 name|get

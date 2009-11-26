@@ -152,6 +152,11 @@ name|HttpClient
 argument_list|()
 decl_stmt|;
 annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
 name|BeforeClass
 specifier|public
 specifier|static

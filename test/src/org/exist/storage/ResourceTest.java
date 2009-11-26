@@ -372,6 +372,11 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|BinaryDocument
 name|doc
 init|=

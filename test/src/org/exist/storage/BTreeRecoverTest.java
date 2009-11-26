@@ -634,6 +634,11 @@ argument_list|(
 literal|"Recover and read the data ...\n"
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|TransactionManager
 name|mgr
 init|=

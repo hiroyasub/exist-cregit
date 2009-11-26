@@ -498,6 +498,11 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|org
 operator|.
 name|exist

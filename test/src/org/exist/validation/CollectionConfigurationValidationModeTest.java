@@ -427,6 +427,11 @@ name|xconf_auto
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\"><validation mode=\"auto\"/></collection>"
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 specifier|final
@@ -622,6 +627,11 @@ argument_list|(
 literal|"Clear grammar cache"
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|ResourceSet
 name|result
 init|=
@@ -651,6 +661,11 @@ argument_list|(
 literal|"Clear grammar cache"
 argument_list|)
 expr_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|ResourceSet
 name|result
 init|=
