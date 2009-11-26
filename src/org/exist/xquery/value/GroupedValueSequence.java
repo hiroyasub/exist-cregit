@@ -135,10 +135,12 @@ specifier|private
 name|Sequence
 name|groupKey
 decl_stmt|;
-specifier|private
-name|XQueryContext
-name|context
-decl_stmt|;
+comment|//    private XQueryContext context;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|groupKeyLength
@@ -191,12 +193,7 @@ name|groupKey
 operator|=
 name|keySequence
 expr_stmt|;
-name|this
-operator|.
-name|context
-operator|=
-name|aContext
-expr_stmt|;
+comment|//        this.context = aContext; //UNDERSTAND: do we need context here??? -shabanovd
 name|this
 operator|.
 name|groupKeyLength
@@ -794,6 +791,9 @@ class|class
 name|Entry
 implements|implements
 name|Comparable
+argument_list|<
+name|Entry
+argument_list|>
 block|{
 name|Item
 name|item
@@ -935,18 +935,10 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
-name|o
-parameter_list|)
-block|{
 name|Entry
 name|other
-init|=
-operator|(
-name|Entry
-operator|)
-name|o
-decl_stmt|;
+parameter_list|)
+block|{
 name|int
 name|cmp
 init|=

@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** * An Hashtable that containts a GroupedValueSequence for each group. * Groups are specified by the group specs of a "group by" clause. Used by * {@link org.exist.xquery.ForExpr} et al. * * WARNING : don't use except for experimental "group by" clause * * @author Boris Verhaegen (boris.verhaegen@gmail.com) */
+comment|/**  * An Hashtable that containts a GroupedValueSequence for each group. Groups are  * specified by the group specs of a "group by" clause. Used by  * {@link org.exist.xquery.ForExpr} et al.  *   * WARNING : don't use except for experimental "group by" clause  *   * @author Boris Verhaegen (boris.verhaegen@gmail.com)  */
 end_comment
 
 begin_class
@@ -81,7 +81,20 @@ class|class
 name|GroupedValueSequenceTable
 extends|extends
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|GroupedValueSequence
+argument_list|>
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1324942298919800292L
+decl_stmt|;
 specifier|private
 name|GroupSpec
 name|groupSpecs
@@ -119,7 +132,7 @@ operator|)
 literal|0.75
 argument_list|)
 expr_stmt|;
-comment|//Hashtable parameters
+comment|// Hashtable parameters
 name|this
 operator|.
 name|groupSpecs
@@ -138,6 +151,7 @@ name|context
 operator|=
 name|aContext
 expr_stmt|;
+comment|//UNDERSTAND: do we need context here??? -shabanovd
 block|}
 specifier|public
 name|void
@@ -163,10 +177,16 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|iterate
 parameter_list|()
 block|{
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|it
 init|=
 name|this
@@ -181,7 +201,7 @@ return|return
 name|it
 return|;
 block|}
-comment|/**  	     * Add<code>item</code> in the correct<code>GroupedValueSequence</code>.  	     * Create correct GroupedValueSequence if needed. Insertion based on   	     * the group specs of a "group by" clause.  	     *    	     * @throws     XPathException  	     */
+comment|/** 	 * Add<code>item</code> in the correct<code>GroupedValueSequence</code>. 	 * Create correct GroupedValueSequence if needed. Insertion based on the 	 * group specs of a "group by" clause. 	 *  	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|add
@@ -228,7 +248,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|//evaluates the values of the grouping keys
+comment|// evaluates the values of the grouping keys
 name|specEvaluation
 index|[
 name|i
@@ -250,7 +270,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : too early evaluation !
+comment|// TODO : too early evaluation !
 name|keySequence
 operator|.
 name|add
@@ -308,7 +328,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//this group doesn't exists, then creates this group
+comment|// this group doesn't exists, then creates this group
 name|GroupedValueSequence
 name|newGroup
 init|=
@@ -342,7 +362,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**  	     * Add all items of a sequence  	     *   	     * @param sequence  	     * @throws XPathException  	     */
+comment|/** 	 * Add all items of a sequence 	 *  	 * @param sequence 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|addAll

@@ -131,6 +131,7 @@ name|context
 operator|=
 name|context
 expr_stmt|;
+comment|//UNDERSTAND: do we need context here??? -shabanovd
 try|try
 block|{
 name|this
@@ -583,6 +584,9 @@ name|int
 name|conversionPreference
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|javaClass
 parameter_list|)
 block|{
@@ -634,6 +638,9 @@ name|Object
 name|toJavaObject
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|target
 parameter_list|)
 throws|throws

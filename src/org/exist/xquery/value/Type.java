@@ -1965,10 +1965,16 @@ comment|//TODO : optimize by swapping the arguments based on their numeric value
 comment|//Processing lower value first *should* reduce the size of the Set
 comment|//Collect type1's super-types
 name|HashSet
+argument_list|<
+name|Integer
+argument_list|>
 name|t1
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Integer
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//Don't introduce a shortcut (starting at getSuperType(type1) here

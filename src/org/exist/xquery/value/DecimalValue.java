@@ -131,6 +131,11 @@ block|{
 comment|// i Ã 10^-n where i, n = integers  and n>= 0
 comment|// All Â·minimally conformingÂ· processors Â·mustÂ· support decimal numbers
 comment|// with a minimum of 18 decimal digits (i.e., with a Â·totalDigitsÂ· of 18)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 specifier|final
@@ -2270,6 +2275,9 @@ name|int
 name|conversionPreference
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|javaClass
 parameter_list|)
 block|{
@@ -2451,6 +2459,9 @@ name|Object
 name|toJavaObject
 parameter_list|(
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|target
 parameter_list|)
 throws|throws
@@ -2776,6 +2787,9 @@ literal|null
 condition|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|argTypes
 init|=
