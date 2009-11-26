@@ -603,14 +603,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//        long start = System.currentTimeMillis();
 name|PrintWriter
 name|report
 init|=
@@ -626,6 +619,9 @@ decl_stmt|;
 comment|// TODO: don't use the direct access feature for now. needs more
 comment|// testing
 name|List
+argument_list|<
+name|ErrorReport
+argument_list|>
 name|errors
 init|=
 literal|null
