@@ -4187,6 +4187,20 @@ name|destCollection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|collectionsCache
+init|)
+block|{
 name|Lock
 name|lock
 init|=
@@ -4396,7 +4410,7 @@ name|destination
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/*                         byte[] data = getBinaryResource((BinaryDocument) child);                         storeBinaryResource(transaction, newDoc, data);                          */
+comment|/*                             byte[] data = getBinaryResource((BinaryDocument) child);                             storeBinaryResource(transaction, newDoc, data);                              */
 name|InputStream
 name|is
 init|=
@@ -4461,6 +4475,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|XmldbURI
 name|name
@@ -10973,6 +10988,20 @@ name|getFileURI
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
+name|CollectionCache
+name|collectionsCache
+init|=
+name|pool
+operator|.
+name|getCollectionsCache
+argument_list|()
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|collectionsCache
+init|)
+block|{
 name|Lock
 name|lock
 init|=
@@ -11413,6 +11442,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
