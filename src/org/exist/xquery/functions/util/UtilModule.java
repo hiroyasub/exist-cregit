@@ -1155,7 +1155,7 @@ name|BaseConverter
 operator|.
 name|class
 argument_list|)
-block|,     }
+block|}
 decl_stmt|;
 static|static
 block|{

@@ -385,6 +385,14 @@ name|TRUNC_BOTH
 init|=
 literal|2
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|TRUNC_EQUALS
+init|=
+literal|3
+decl_stmt|;
 comment|/**      * Arithmetic operators      */
 specifier|public
 specifier|final

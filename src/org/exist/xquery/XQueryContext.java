@@ -8850,15 +8850,19 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"failed to load module '"
+literal|"failed to load module: '"
 operator|+
 name|namespaceURI
 operator|+
-literal|"' from '"
+literal|"' from: '"
 operator|+
 name|source
 operator|+
-literal|". Source not found. "
+literal|"', location: '"
+operator|+
+name|location
+operator|+
+literal|"'. Source not found. "
 argument_list|)
 throw|;
 block|}
