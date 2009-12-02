@@ -728,7 +728,7 @@ name|name
 operator|=
 name|doc
 operator|.
-name|getFileURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
