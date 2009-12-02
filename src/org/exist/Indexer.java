@@ -2488,6 +2488,17 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Skipped entity: "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -3893,6 +3904,17 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Start entity: "
+operator|+
+name|name
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void

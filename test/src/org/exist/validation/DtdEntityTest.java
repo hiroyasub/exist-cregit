@@ -190,11 +190,6 @@ block|}
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"Enitiy resolve bug"
-argument_list|)
 specifier|public
 name|void
 name|bugloadWithEntities
