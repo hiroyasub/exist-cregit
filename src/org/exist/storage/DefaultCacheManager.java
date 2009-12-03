@@ -158,12 +158,12 @@ name|SHRINK_FACTOR
 init|=
 literal|0.7
 decl_stmt|;
-comment|/**      * The minimum number of pages that must be read from a      * cache between check intervals to be not considered for       * shrinking. This is a measure for the "load" of the cache. Caches      * with high load will never be shrinked.      */
+comment|/**      * The minimum number of pages that must be read from a      * cache between check intervals to be not considered for       * shrinking. This is a measure for the "load" of the cache. Caches      * with high load will never be shrinked. A negative value means that 	 * shrinkage will not be performed.      */
 specifier|public
 specifier|final
 specifier|static
 name|int
-name|SHRINK_THRESHOLD
+name|DEFAULT_SHRINK_THRESHOLD
 init|=
 literal|10000
 decl_stmt|;
@@ -189,6 +189,22 @@ name|String
 name|PROPERTY_CACHE_SIZE
 init|=
 literal|"db-connection.cache-size"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHRINK_THRESHOLD_ATTRIBUTE
+init|=
+literal|"cacheShrinkThreshold"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SHRINK_THRESHOLD_PROPERTY
+init|=
+literal|"db-connection.cache-shrink-threshold"
 decl_stmt|;
 comment|/** Caches maintained by this class */
 specifier|private
@@ -223,6 +239,13 @@ decl_stmt|;
 specifier|private
 name|int
 name|pageSize
+decl_stmt|;
+comment|/**      * The minimum number of pages that must be read from a      * cache between check intervals to be not considered for       * shrinking. This is a measure for the "load" of the cache. Caches      * with high load will never be shrinked. A negative value means that 	 * shrinkage will not be performed.      */
+specifier|private
+name|int
+name|shrinkThreshold
+init|=
+name|DEFAULT_SHRINK_THRESHOLD
 decl_stmt|;
 comment|/**      * Signals that a resize had been requested by a cache, but      * the request could not be accepted during normal operations.      * The manager might try to shrink the largest cache during the      * next sync event.      */
 specifier|private
@@ -305,6 +328,18 @@ operator|=
 name|DEFAULT_CACHE_SIZE
 expr_stmt|;
 block|}
+name|shrinkThreshold
+operator|=
+name|pool
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getInteger
+argument_list|(
+name|SHRINK_THRESHOLD_PROPERTY
+argument_list|)
+expr_stmt|;
 name|totalMem
 operator|=
 name|cacheSize
@@ -454,6 +489,15 @@ operator|.
 name|format
 argument_list|(
 name|maxCacheSize
+argument_list|)
+operator|+
+literal|"; cacheShrinkThreshold: "
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|shrinkThreshold
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -772,7 +816,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      * Called from the global major sync event to check if caches can      * be shrinked. To be shrinked, the size of a cache needs to be      * larger than the factor defined by {@link #MIN_SHRINK_FACTOR}      * and its load needs to be lower than {@link #SHRINK_THRESHOLD}.      *      * If shrinked, the cache will be reset to the default initial cache size.      */
+comment|/**      * Called from the global major sync event to check if caches can      * be shrinked. To be shrinked, the size of a cache needs to be      * larger than the factor defined by {@link #MIN_SHRINK_FACTOR}      * and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      * If shrinked, the cache will be reset to the default initial cache size.      */
 specifier|public
 name|void
 name|checkCaches
@@ -796,6 +840,13 @@ decl_stmt|;
 name|int
 name|load
 decl_stmt|;
+if|if
+condition|(
+name|shrinkThreshold
+operator|>=
+literal|0
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -854,7 +905,7 @@ name|minSize
 operator|&&
 name|load
 operator|<
-name|SHRINK_THRESHOLD
+name|shrinkThreshold
 condition|)
 block|{
 if|if
@@ -928,6 +979,7 @@ operator|+=
 name|getDefaultInitialSize
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
