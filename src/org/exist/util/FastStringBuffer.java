@@ -48,6 +48,15 @@ implements|,
 name|Serializable
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|504264698052799896L
+decl_stmt|;
+specifier|private
 name|char
 index|[]
 name|array

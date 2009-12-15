@@ -20,6 +20,15 @@ name|DeadlockException
 extends|extends
 name|LockException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4851225988714944368L
+decl_stmt|;
 specifier|public
 name|DeadlockException
 parameter_list|()

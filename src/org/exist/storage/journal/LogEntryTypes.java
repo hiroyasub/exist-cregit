@@ -143,6 +143,11 @@ operator|.
 name|class
 block|}
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|byte
 name|type
@@ -154,6 +159,11 @@ name|Loggable
 argument_list|>
 name|clazz
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|LogEntry
 parameter_list|(
@@ -317,6 +327,9 @@ name|byte
 name|type
 parameter_list|,
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 parameter_list|)
 block|{

@@ -925,6 +925,9 @@ name|StringBuilder
 name|currentPath
 parameter_list|,
 name|List
+argument_list|<
+name|StringBuilder
+argument_list|>
 name|paths
 parameter_list|)
 block|{

@@ -154,6 +154,11 @@ name|CharSequence
 name|pattern
 parameter_list|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|boolean
 name|inCharSet
 decl_stmt|,
@@ -507,6 +512,11 @@ argument_list|(
 name|str
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|boolean
 name|match
 init|=

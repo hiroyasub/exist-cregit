@@ -356,6 +356,11 @@ block|{
 name|LockedDocument
 name|d
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Lock
 name|dlock
 decl_stmt|;
@@ -419,6 +424,11 @@ block|{
 name|LockedDocument
 name|d
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Lock
 name|dlock
 decl_stmt|;

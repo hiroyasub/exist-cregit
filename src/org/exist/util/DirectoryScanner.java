@@ -267,10 +267,16 @@ name|separatorChar
 argument_list|)
 expr_stmt|;
 name|ArrayList
+argument_list|<
+name|File
+argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|File
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|scanDir
@@ -317,6 +323,9 @@ name|void
 name|scanDir
 parameter_list|(
 name|ArrayList
+argument_list|<
+name|File
+argument_list|>
 name|list
 parameter_list|,
 name|File

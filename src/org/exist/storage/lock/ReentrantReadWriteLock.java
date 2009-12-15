@@ -1255,6 +1255,11 @@ condition|(
 name|DEBUG
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|StackTraceElement
 index|[]
 name|se

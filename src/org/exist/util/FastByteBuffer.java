@@ -411,6 +411,11 @@ name|chunk
 decl_stmt|;
 comment|// We may have preallocated chunks. If so, all but last should
 comment|// be at full size.
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|boolean
 name|lastchunk
 init|=

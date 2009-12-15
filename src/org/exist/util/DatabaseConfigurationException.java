@@ -16,6 +16,14 @@ name|DatabaseConfigurationException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|5583749487314182182L
+decl_stmt|;
 specifier|public
 name|DatabaseConfigurationException
 parameter_list|()

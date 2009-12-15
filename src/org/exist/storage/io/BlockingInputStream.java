@@ -523,6 +523,11 @@ name|head
 return|;
 block|}
 comment|// DWES Never called?
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|availablePart2
@@ -1057,6 +1062,11 @@ name|tail
 return|;
 block|}
 comment|// DWES Never called?
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|freePart2
