@@ -175,6 +175,9 @@ class|class
 name|XmldbURI
 implements|implements
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 block|{
 specifier|protected
 specifier|final

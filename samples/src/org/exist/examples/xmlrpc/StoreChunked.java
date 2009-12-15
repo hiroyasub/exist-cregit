@@ -263,10 +263,16 @@ argument_list|)
 expr_stmt|;
 comment|// Initialize xmlrpc parameters
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 name|params
 init|=
 operator|new
 name|Vector
+argument_list|<
+name|Object
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|String

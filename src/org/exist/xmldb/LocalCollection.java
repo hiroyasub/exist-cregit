@@ -4909,27 +4909,8 @@ literal|""
 argument_list|)
 expr_stmt|;
 comment|//No port ;-)
-if|if
-condition|(
-operator|-
-literal|1
-operator|!=
-operator|-
-literal|1
-condition|)
-name|accessor
-operator|.
-name|append
-argument_list|(
-literal|":"
-argument_list|)
-operator|.
-name|append
-argument_list|(
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//        if (-1 != -1)
+comment|//            accessor.append(":").append(-1);
 comment|//No context ;-)
 comment|//accessor.append(getContext());
 try|try
