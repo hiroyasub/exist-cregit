@@ -279,6 +279,25 @@ operator|)
 name|message
 decl_stmt|;
 comment|//		command.exec();
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|""
+operator|+
+name|command
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|session
 operator|.
 name|write

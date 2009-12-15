@@ -421,7 +421,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"stackEnter "
+literal|""
 operator|+
 name|expr
 operator|.
@@ -466,7 +466,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"stackLeave "
+literal|""
 operator|+
 name|expr
 operator|.
@@ -553,7 +553,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"expressionStart "
+literal|""
 operator|+
 name|expr
 operator|.
@@ -979,7 +979,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"expressionEnd expr = "
+literal|"expr = "
 operator|+
 name|expr
 operator|.
@@ -1016,6 +1016,33 @@ name|sessionClosed
 argument_list|(
 literal|true
 argument_list|)
+expr_stmt|;
+comment|//TODO: check this values
+name|stackDepth
+operator|=
+literal|0
+expr_stmt|;
+name|stack
+operator|=
+operator|new
+name|ArrayList
+argument_list|<
+name|Expression
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|command
+operator|=
+literal|null
+expr_stmt|;
+name|commands
+operator|=
+operator|new
+name|Stack
+argument_list|<
+name|CommandContinuation
+argument_list|>
+argument_list|()
 expr_stmt|;
 block|}
 block|}
