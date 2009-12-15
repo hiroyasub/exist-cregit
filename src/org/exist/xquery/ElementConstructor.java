@@ -1759,6 +1759,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Expression
+argument_list|>
 name|i
 init|=
 name|content
@@ -1778,9 +1781,6 @@ block|{
 name|Expression
 name|expr
 init|=
-operator|(
-name|Expression
-operator|)
 name|i
 operator|.
 name|next
@@ -1943,6 +1943,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Expression
+argument_list|>
 name|i
 init|=
 name|content
@@ -1962,9 +1965,6 @@ block|{
 name|Expression
 name|expr
 init|=
-operator|(
-name|Expression
-operator|)
 name|i
 operator|.
 name|next

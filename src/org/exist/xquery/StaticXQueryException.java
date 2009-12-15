@@ -9,20 +9,6 @@ name|xquery
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|parser
-operator|.
-name|XQueryAST
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -30,6 +16,15 @@ name|StaticXQueryException
 extends|extends
 name|XPathException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|8229758099980343418L
+decl_stmt|;
 specifier|public
 name|StaticXQueryException
 parameter_list|(

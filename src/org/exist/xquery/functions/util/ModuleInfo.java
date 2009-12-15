@@ -642,6 +642,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 name|context
@@ -690,6 +693,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Module
+argument_list|>
 name|i
 init|=
 name|context
@@ -707,9 +713,6 @@ block|{
 name|Module
 name|module
 init|=
-operator|(
-name|Module
-operator|)
 name|i
 operator|.
 name|next

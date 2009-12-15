@@ -351,6 +351,9 @@ name|NodeSet
 name|nodes
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|)
 throws|throws
@@ -483,9 +486,6 @@ control|)
 block|{
 name|term
 operator|=
-operator|(
-name|String
-operator|)
 name|terms
 operator|.
 name|get

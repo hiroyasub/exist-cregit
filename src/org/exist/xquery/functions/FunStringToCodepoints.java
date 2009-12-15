@@ -844,6 +844,11 @@ decl_stmt|;
 name|int
 name|ch
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|IntegerValue
 name|next
 decl_stmt|;
@@ -1111,6 +1116,11 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|char
 name|ch
 decl_stmt|;

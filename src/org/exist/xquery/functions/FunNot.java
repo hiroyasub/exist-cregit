@@ -351,6 +351,11 @@ literal|"the negated effective boolean value (ebv) of $arg"
 argument_list|)
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|boolean
 name|inWhereClause

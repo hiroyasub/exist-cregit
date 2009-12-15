@@ -1586,6 +1586,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|contextSequence
@@ -1603,9 +1606,6 @@ block|{
 name|Collection
 name|collection
 init|=
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next
@@ -1912,10 +1912,16 @@ throws|throws
 name|EXistException
 block|{
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|tokens
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Tokenizer
@@ -1998,10 +2004,6 @@ argument_list|()
 index|]
 decl_stmt|;
 return|return
-operator|(
-name|String
-index|[]
-operator|)
 name|tokens
 operator|.
 name|toArray

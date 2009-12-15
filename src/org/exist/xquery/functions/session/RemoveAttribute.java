@@ -17,17 +17,9 @@ name|session
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Logger;
+end_comment
 
 begin_import
 import|import
@@ -246,21 +238,7 @@ name|RemoveAttribute
 extends|extends
 name|Function
 block|{
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|RemoveAttribute
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//	private static final Logger logger = Logger.getLogger(RemoveAttribute.class);
 specifier|public
 specifier|final
 specifier|static

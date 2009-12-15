@@ -291,6 +291,9 @@ literal|null
 decl_stmt|;
 specifier|private
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 literal|null
@@ -320,6 +323,9 @@ argument_list|)
 decl_stmt|;
 specifier|private
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 name|constructor
 init|=
 literal|null

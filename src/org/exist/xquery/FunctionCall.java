@@ -197,6 +197,9 @@ literal|null
 decl_stmt|;
 specifier|private
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 init|=
 literal|null
@@ -222,6 +225,9 @@ name|QName
 name|name
 parameter_list|,
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 parameter_list|)
 block|{

@@ -652,6 +652,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|ancestors
@@ -668,9 +671,6 @@ control|)
 block|{
 name|proxy
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -959,6 +959,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 name|element
@@ -976,9 +979,6 @@ block|{
 name|String
 name|elementPrefix
 init|=
-operator|(
-name|String
-operator|)
 name|i
 operator|.
 name|next

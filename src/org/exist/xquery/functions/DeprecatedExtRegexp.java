@@ -1462,6 +1462,11 @@ block|{
 name|Item
 name|current
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|arg
 decl_stmt|;
@@ -1591,6 +1596,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|contextSequence
@@ -1608,9 +1616,6 @@ block|{
 name|Collection
 name|collection
 init|=
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next

@@ -211,6 +211,9 @@ name|name
 decl_stmt|;
 specifier|private
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|myClass
 init|=
 literal|null
@@ -557,6 +560,9 @@ argument_list|)
 condition|)
 block|{
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 index|[]
 name|constructors
 init|=
@@ -599,6 +605,9 @@ argument_list|)
 condition|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|paramTypes
 index|[]
 init|=
@@ -741,6 +750,9 @@ argument_list|)
 condition|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|paramTypes
 index|[]
 init|=
@@ -1212,6 +1224,9 @@ block|}
 block|}
 comment|//		LOG.debug("calling method " + bestMethod.toString());
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|paramTypes
 index|[]
 init|=
@@ -1227,12 +1242,18 @@ condition|(
 name|bestMethod
 operator|instanceof
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 condition|)
 name|paramTypes
 operator|=
 operator|(
 operator|(
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|bestMethod
 operator|)
@@ -1385,6 +1406,9 @@ condition|(
 name|bestMethod
 operator|instanceof
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 condition|)
 block|{
 try|try
@@ -1395,6 +1419,9 @@ init|=
 operator|(
 operator|(
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|bestMethod
 operator|)
@@ -1706,6 +1733,9 @@ name|length
 index|]
 decl_stmt|;
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|paramTypes
 index|[]
 init|=
@@ -1721,12 +1751,18 @@ condition|(
 name|method
 operator|instanceof
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 condition|)
 name|paramTypes
 operator|=
 operator|(
 operator|(
 name|Constructor
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|method
 operator|)
@@ -1772,6 +1808,9 @@ name|isStatic
 condition|)
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|nonStaticTypes
 index|[]
 init|=

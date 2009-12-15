@@ -885,6 +885,11 @@ name|NodeValue
 name|node
 decl_stmt|;
 name|List
+argument_list|<
+name|Match
+operator|.
+name|Offset
+argument_list|>
 name|offsets
 init|=
 literal|null
@@ -1016,6 +1021,11 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Match
+operator|.
+name|Offset
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|int
@@ -1266,11 +1276,6 @@ operator|.
 name|Offset
 name|firstMatch
 init|=
-operator|(
-name|Match
-operator|.
-name|Offset
-operator|)
 name|offsets
 operator|.
 name|get
@@ -1691,11 +1696,6 @@ control|)
 block|{
 name|offset
 operator|=
-operator|(
-name|Match
-operator|.
-name|Offset
-operator|)
 name|offsets
 operator|.
 name|get

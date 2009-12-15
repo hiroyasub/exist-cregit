@@ -1222,6 +1222,9 @@ name|contextSequence
 argument_list|)
 decl_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1555,6 +1558,9 @@ name|toNodeSet
 argument_list|()
 decl_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1634,9 +1640,7 @@ block|{
 name|Item
 name|current
 decl_stmt|;
-name|String
-name|arg
-decl_stmt|;
+comment|//			String arg;
 name|NodeSet
 name|nodes
 decl_stmt|;
@@ -1674,6 +1678,9 @@ name|nextItem
 argument_list|()
 expr_stmt|;
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 name|getSearchTerms
@@ -1764,6 +1771,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|contextSequence
@@ -1781,9 +1791,6 @@ block|{
 name|Collection
 name|collection
 init|=
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next
@@ -1875,6 +1882,9 @@ return|;
 block|}
 specifier|protected
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|getSearchTerms
 parameter_list|(
 name|Expression
@@ -1887,10 +1897,16 @@ throws|throws
 name|XPathException
 block|{
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Sequence
@@ -2072,6 +2088,9 @@ name|NodeSet
 name|nodes
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|,
 name|boolean
@@ -2224,6 +2243,9 @@ name|QName
 name|qname
 parameter_list|,
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|terms
 parameter_list|,
 name|boolean
@@ -2288,9 +2310,6 @@ name|axis
 argument_list|,
 name|qname
 argument_list|,
-operator|(
-name|String
-operator|)
 name|terms
 operator|.
 name|get
@@ -2305,6 +2324,13 @@ argument_list|,
 name|matchAll
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug

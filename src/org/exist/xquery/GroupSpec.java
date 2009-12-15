@@ -36,6 +36,11 @@ specifier|public
 class|class
 name|GroupSpec
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 name|XQueryContext

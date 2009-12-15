@@ -63,17 +63,9 @@ name|TreeMap
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Logger;
+end_comment
 
 begin_import
 import|import
@@ -113,21 +105,7 @@ name|AbstractInternalModule
 implements|implements
 name|InternalModule
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|AbstractInternalModule
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//	private final static Logger LOG = Logger.getLogger(AbstractInternalModule.class);
 specifier|public
 specifier|static
 class|class
@@ -242,6 +220,11 @@ operator|=
 name|functionsOrdered
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|AbstractInternalModule
 parameter_list|()

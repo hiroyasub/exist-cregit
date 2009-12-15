@@ -462,6 +462,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|nodes
@@ -479,9 +482,6 @@ block|{
 name|NodeProxy
 name|current
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -651,6 +651,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|nodes
@@ -668,9 +671,6 @@ block|{
 name|NodeProxy
 name|current
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next

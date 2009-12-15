@@ -406,6 +406,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|docs
@@ -427,9 +430,6 @@ argument_list|(
 operator|new
 name|NodeProxy
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next

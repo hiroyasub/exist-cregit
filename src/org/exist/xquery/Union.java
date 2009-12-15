@@ -13,17 +13,9 @@ name|xquery
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Logger;
+end_comment
 
 begin_import
 import|import
@@ -102,21 +94,7 @@ name|Union
 extends|extends
 name|CombiningExpression
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|Union
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//	private final static Logger LOG = Logger.getLogger(Union.class);
 specifier|public
 name|Union
 parameter_list|(

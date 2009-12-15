@@ -30,6 +30,11 @@ decl_stmt|;
 specifier|protected
 specifier|final
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|Function
+argument_list|>
 name|implementingClass
 decl_stmt|;
 specifier|public
@@ -39,6 +44,11 @@ name|FunctionSignature
 name|signature
 parameter_list|,
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|Function
+argument_list|>
 name|implementingClass
 parameter_list|)
 block|{
@@ -66,6 +76,11 @@ return|;
 block|}
 specifier|public
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|Function
+argument_list|>
 name|getImplementingClass
 parameter_list|()
 block|{

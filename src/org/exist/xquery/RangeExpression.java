@@ -160,6 +160,9 @@ name|void
 name|setArguments
 parameter_list|(
 name|List
+argument_list|<
+name|Expression
+argument_list|>
 name|arguments
 parameter_list|)
 throws|throws
@@ -167,9 +170,6 @@ name|XPathException
 block|{
 name|start
 operator|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get
@@ -179,9 +179,6 @@ argument_list|)
 expr_stmt|;
 name|end
 operator|=
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get

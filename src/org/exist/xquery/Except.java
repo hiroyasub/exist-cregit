@@ -435,10 +435,16 @@ name|ValueSequence
 argument_list|()
 expr_stmt|;
 name|Set
+argument_list|<
+name|Item
+argument_list|>
 name|set
 init|=
 operator|new
 name|TreeSet
+argument_list|<
+name|Item
+argument_list|>
 argument_list|()
 decl_stmt|;
 for|for

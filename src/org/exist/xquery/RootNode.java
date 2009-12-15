@@ -420,6 +420,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|ds
@@ -436,9 +439,6 @@ control|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
