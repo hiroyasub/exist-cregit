@@ -62,6 +62,8 @@ specifier|public
 interface|interface
 name|DocumentAtExist
 extends|extends
+name|NodeAtExist
+extends|,
 name|Document
 extends|,
 name|Comparable
