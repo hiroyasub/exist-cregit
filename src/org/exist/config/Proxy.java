@@ -33,7 +33,11 @@ name|E
 name|object
 parameter_list|)
 function_decl|;
-comment|//	public E getProxyObject();
+specifier|public
+name|E
+name|getProxyObject
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

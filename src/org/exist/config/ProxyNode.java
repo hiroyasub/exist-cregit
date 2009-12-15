@@ -61,9 +61,6 @@ implements|implements
 name|NodeAtExist
 implements|,
 name|Proxy
-argument_list|<
-name|Object
-argument_list|>
 block|{
 specifier|private
 name|NodeAtExist
