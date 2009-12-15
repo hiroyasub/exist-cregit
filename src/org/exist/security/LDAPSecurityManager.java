@@ -1121,6 +1121,9 @@ name|ONELEVEL_SCOPE
 argument_list|)
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|users
 init|=
 name|context
@@ -1153,9 +1156,6 @@ block|{
 name|SearchResult
 name|result
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|users
 operator|.
 name|next
@@ -1224,6 +1224,9 @@ name|ONELEVEL_SCOPE
 argument_list|)
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|groups
 init|=
 name|context
@@ -1256,9 +1259,6 @@ block|{
 name|SearchResult
 name|result
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|groups
 operator|.
 name|next
@@ -1488,6 +1488,9 @@ name|ONELEVEL_SCOPE
 argument_list|)
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|groups
 init|=
 name|context
@@ -1524,9 +1527,6 @@ block|{
 name|SearchResult
 name|result
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|groups
 operator|.
 name|next
@@ -2220,6 +2220,9 @@ name|ONELEVEL_SCOPE
 argument_list|)
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|groups
 init|=
 name|context
@@ -2261,9 +2264,6 @@ block|{
 name|SearchResult
 name|result
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|groups
 operator|.
 name|next
@@ -2566,6 +2566,9 @@ name|ONELEVEL_SCOPE
 argument_list|)
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|users
 init|=
 name|context
@@ -2607,9 +2610,6 @@ block|{
 name|SearchResult
 name|result
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|users
 operator|.
 name|next

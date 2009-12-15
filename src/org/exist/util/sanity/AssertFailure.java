@@ -26,6 +26,15 @@ name|AssertFailure
 extends|extends
 name|RuntimeException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4753385398634599386L
+decl_stmt|;
 comment|/**      *       */
 specifier|public
 name|AssertFailure

@@ -34,6 +34,11 @@ specifier|public
 specifier|abstract
 class|class
 name|AbstractHashtable
+parameter_list|<
+name|K
+parameter_list|,
+name|V
+parameter_list|>
 block|{
 specifier|private
 specifier|final
@@ -157,12 +162,18 @@ block|}
 specifier|public
 specifier|abstract
 name|Iterator
+argument_list|<
+name|K
+argument_list|>
 name|iterator
 parameter_list|()
 function_decl|;
 specifier|public
 specifier|abstract
 name|Iterator
+argument_list|<
+name|V
+argument_list|>
 name|valueIterator
 parameter_list|()
 function_decl|;
@@ -389,6 +400,15 @@ name|HashtableOverflowException
 extends|extends
 name|Exception
 block|{
+comment|/** 		 *  		 */
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|5786963685159736475L
+decl_stmt|;
 specifier|public
 name|HashtableOverflowException
 parameter_list|()
