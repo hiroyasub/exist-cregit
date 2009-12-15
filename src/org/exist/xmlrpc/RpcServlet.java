@@ -194,6 +194,15 @@ name|RpcServlet
 extends|extends
 name|XmlRpcServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|1003413291835771186L
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
