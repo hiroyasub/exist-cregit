@@ -1587,10 +1587,6 @@ operator|.
 name|warn
 argument_list|(
 literal|"document not locked for write !"
-argument_list|,
-operator|new
-name|Throwable
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
