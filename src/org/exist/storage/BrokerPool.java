@@ -197,6 +197,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|debuggee
 operator|.
 name|Debuggee
@@ -540,6 +568,11 @@ comment|//TODO : in the future, separate the design between the Map of DBInstanc
 end_comment
 
 begin_class
+annotation|@
+name|ConfigurationClass
+argument_list|(
+literal|"pool"
+argument_list|)
 specifier|public
 class|class
 name|BrokerPool
@@ -1482,6 +1515,7 @@ specifier|private
 name|String
 name|instanceName
 decl_stmt|;
+comment|//TODO: change 0 = initializing, 1 = operating, -1 = shutdown  (shabanovd)
 specifier|private
 specifier|final
 specifier|static
@@ -1520,11 +1554,21 @@ init|=
 literal|0
 decl_stmt|;
 comment|/** 	 * The minimal number of brokers for the database instance  	 */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"min"
+argument_list|)
 specifier|private
 name|int
 name|minBrokers
 decl_stmt|;
 comment|/** 	 * The maximal number of brokers for the database instance  	 */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"max"
+argument_list|)
 specifier|private
 name|int
 name|maxBrokers
@@ -1599,6 +1643,11 @@ specifier|private
 name|boolean
 name|isReadOnly
 decl_stmt|;
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"pageSize"
+argument_list|)
 specifier|private
 name|int
 name|pageSize
@@ -1615,11 +1664,21 @@ init|=
 literal|null
 decl_stmt|;
 comment|/** 	 * Delay (in ms) for running jobs to return when the database instance shuts down. 	 */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"wait-before-shutdown"
+argument_list|)
 specifier|private
 name|long
 name|maxShutdownWait
 decl_stmt|;
 comment|/** 	 * The scheduler for the database instance. 	 */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"scheduler"
+argument_list|)
 specifier|private
 name|Scheduler
 name|scheduler
@@ -1635,6 +1694,11 @@ name|SymbolTable
 name|symbols
 decl_stmt|;
 comment|/** 	 * Cache synchronization on the database instance. 	 */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"sync-period"
+argument_list|)
 specifier|private
 name|long
 name|majorSyncPeriod

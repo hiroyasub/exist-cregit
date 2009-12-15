@@ -135,6 +135,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -226,6 +254,12 @@ comment|/**  * Manages the journalling log. The database uses one central journa
 end_comment
 
 begin_class
+annotation|@
+name|ConfigurationClass
+argument_list|(
+literal|"journal"
+argument_list|)
+comment|//TODO: conf.xml refactoring<recovery> =><recovery><journal/></recovery>
 specifier|public
 class|class
 name|Journal
@@ -363,6 +397,12 @@ operator|*
 literal|1024
 decl_stmt|;
 comment|/**       * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"size"
+argument_list|)
+comment|//TODO: conf.xml refactoring<recovery size=""> =><journal size="">
 specifier|private
 name|int
 name|journalSizeLimit
@@ -389,6 +429,12 @@ name|Object
 argument_list|()
 decl_stmt|;
 comment|/** the data directory where journal files are written to */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"journal-dir"
+argument_list|)
+comment|//TODO: conf.xml refactoring<recovery journal-dir=""> =><journal dir="">
 specifier|private
 name|File
 name|dir
@@ -456,6 +502,12 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 comment|/** if set to true, a sync will be triggered on the log file after every commit */
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"sync-on-commit"
+argument_list|)
+comment|//TODO: conf.xml refactoring<recovery sync-on-commit=""> =><journal sync-on-commit="">
 specifier|private
 name|boolean
 name|syncOnCommit
