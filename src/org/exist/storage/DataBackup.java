@@ -379,14 +379,7 @@ operator|+
 literal|"with the native storage backend"
 argument_list|)
 throw|;
-name|NativeBroker
-name|nbroker
-init|=
-operator|(
-name|NativeBroker
-operator|)
-name|broker
-decl_stmt|;
+comment|//		NativeBroker nbroker = (NativeBroker) broker;
 name|LOG
 operator|.
 name|debug

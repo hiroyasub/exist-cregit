@@ -661,10 +661,16 @@ block|}
 comment|/** Observer Design Pattern: List of ContentLoadingObserver objects */
 specifier|protected
 name|List
+argument_list|<
+name|ContentLoadingObserver
+argument_list|>
 name|contentLoadingObservers
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|ContentLoadingObserver
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** Remove all observers */
@@ -821,6 +827,9 @@ block|}
 comment|/** 	 * Return a {@link org.exist.storage.dom.NodeIterator} starting at the 	 * specified node. 	 *  	 * @param node 	 * @return NodeIterator of node. 	 */
 specifier|public
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|getNodeIterator
 parameter_list|(
 name|StoredNode

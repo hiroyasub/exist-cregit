@@ -79,10 +79,16 @@ comment|/** 	 * The pending system maintenance tasks of the database instance. 	
 specifier|private
 specifier|final
 name|Stack
+argument_list|<
+name|SystemTask
+argument_list|>
 name|waitingSystemTasks
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|SystemTask
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -199,9 +205,6 @@ expr_stmt|;
 name|SystemTask
 name|task
 init|=
-operator|(
-name|SystemTask
-operator|)
 name|waitingSystemTasks
 operator|.
 name|pop
