@@ -641,6 +641,11 @@ specifier|private
 name|AccessContext
 name|accessCtx
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|LocalCollection
 parameter_list|()
@@ -2813,6 +2818,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|collection
@@ -2833,15 +2841,10 @@ index|[
 name|j
 index|]
 operator|=
-operator|(
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
 argument_list|()
-operator|)
 operator|.
 name|toString
 argument_list|()
@@ -2977,6 +2980,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|collection
@@ -2995,9 +3001,6 @@ control|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next

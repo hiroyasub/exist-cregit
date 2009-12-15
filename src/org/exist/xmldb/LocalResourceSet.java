@@ -430,6 +430,11 @@ specifier|private
 name|User
 name|user
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|LocalResourceSet
 parameter_list|()
