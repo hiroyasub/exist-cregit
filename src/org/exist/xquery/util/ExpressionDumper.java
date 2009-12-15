@@ -117,6 +117,11 @@ specifier|private
 name|PrintWriter
 name|out
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|int
 name|indentAmount

@@ -21,6 +21,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentSet
@@ -246,6 +258,9 @@ function_decl|;
 comment|/**      * Return an iterator on all collections referenced by documents      * contained in this sequence..      */
 specifier|public
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|getCollectionIterator
 parameter_list|()
 function_decl|;
