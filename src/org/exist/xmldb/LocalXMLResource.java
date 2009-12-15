@@ -3016,10 +3016,7 @@ name|EXistException
 argument_list|(
 literal|"Resource "
 operator|+
-name|document
-operator|.
-name|getFileURI
-argument_list|()
+name|docId
 operator|+
 literal|" not found"
 argument_list|)
