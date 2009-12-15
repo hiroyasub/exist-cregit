@@ -509,6 +509,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Represents a persistent document object in the database;  *  it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *    *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -523,6 +533,14 @@ implements|implements
 name|Document
 implements|,
 name|Comparable
+argument_list|<
+name|DocumentImpl
+argument_list|>
+implements|,
+name|Iterable
+argument_list|<
+name|NodeImpl
+argument_list|>
 block|{
 specifier|public
 specifier|final
@@ -2097,7 +2115,7 @@ specifier|final
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|DocumentImpl
 name|other
 parameter_list|)
 block|{
@@ -2105,12 +2123,7 @@ specifier|final
 name|long
 name|otherId
 init|=
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|other
-operator|)
 operator|.
 name|docId
 decl_stmt|;
@@ -4838,6 +4851,19 @@ literal|null
 operator|)
 operator|+
 literal|">"
+return|;
+block|}
+specifier|public
+name|Iterator
+argument_list|<
+name|NodeImpl
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+comment|//XXX: implement
+return|return
+literal|null
 return|;
 block|}
 block|}
