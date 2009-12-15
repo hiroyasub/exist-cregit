@@ -444,6 +444,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|it
 init|=
 name|mainPolicyDocs
@@ -464,9 +467,6 @@ name|util
 operator|.
 name|getPolicyDocument
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next

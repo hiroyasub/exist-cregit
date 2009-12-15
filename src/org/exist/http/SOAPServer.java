@@ -942,10 +942,20 @@ literal|".xqws"
 decl_stmt|;
 specifier|private
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|XQWSDescription
+argument_list|>
 name|XQWSDescriptionsCache
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|XQWSDescription
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//TODO: SHARE THIS FUNCTION WITH RESTServer (copied at the moment)
@@ -2293,9 +2303,6 @@ block|{
 comment|//get the description from the cache
 name|description
 operator|=
-operator|(
-name|XQWSDescription
-operator|)
 name|XQWSDescriptionsCache
 operator|.
 name|get
@@ -4013,10 +4020,22 @@ literal|0
 decl_stmt|;
 specifier|private
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|byte
+index|[]
+argument_list|>
 name|descriptionFunction
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|byte
+index|[]
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|//key: functionName as String, value: byte[]
@@ -4601,10 +4620,6 @@ expr_stmt|;
 block|}
 comment|//return the result of the transformation from the cache
 return|return
-operator|(
-name|byte
-index|[]
-operator|)
 name|descriptionFunction
 operator|.
 name|get

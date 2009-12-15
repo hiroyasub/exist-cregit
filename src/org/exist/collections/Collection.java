@@ -1333,6 +1333,9 @@ block|}
 comment|/**      *  Return an iterator over all subcollections.      *      * The list of subcollections is copied first, so modifications      * via the iterator have no affect.      *      *@return    Description of the Return Value      */
 specifier|public
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|collectionIterator
 parameter_list|()
 block|{
@@ -1393,6 +1396,9 @@ block|}
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|collectionIteratorNoLock
 parameter_list|()
 block|{
@@ -3118,6 +3124,9 @@ block|}
 comment|/**      *  Returns an iterator on the child-documents in this collection.      *      *@return A iterator of all the documents in the collection.      */
 specifier|public
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|iterator
 parameter_list|(
 name|DBBroker
@@ -3142,6 +3151,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|iteratorNoLock
 parameter_list|(
 name|DBBroker

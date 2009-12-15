@@ -145,6 +145,9 @@ name|listener
 parameter_list|)
 block|{
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker
@@ -190,6 +193,9 @@ name|Txn
 name|transaction
 parameter_list|,
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|StoredNode
@@ -271,9 +277,6 @@ block|{
 name|StoredNode
 name|child
 init|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next
