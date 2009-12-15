@@ -1834,6 +1834,9 @@ init|=
 literal|true
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|e

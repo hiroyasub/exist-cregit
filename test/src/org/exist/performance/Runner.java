@@ -276,6 +276,11 @@ name|nextId
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|Runner
 parameter_list|(

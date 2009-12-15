@@ -906,6 +906,11 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|final
 name|byte
 index|[]

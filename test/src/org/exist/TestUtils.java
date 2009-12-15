@@ -259,6 +259,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|root
@@ -278,9 +281,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -316,6 +316,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|root
@@ -333,9 +336,6 @@ block|{
 name|XmldbURI
 name|childName
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next

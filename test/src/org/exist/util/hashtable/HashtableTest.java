@@ -426,6 +426,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|table
@@ -442,6 +445,11 @@ name|c
 operator|++
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Integer
 name|v
 init|=
@@ -1007,6 +1015,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|table
@@ -1159,6 +1170,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|table
@@ -1509,6 +1523,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|table
@@ -1525,6 +1542,11 @@ name|c
 operator|++
 control|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|Long
 name|v
 init|=
@@ -1581,6 +1603,9 @@ name|gc
 argument_list|()
 expr_stmt|;
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|iter
 init|=
 name|table

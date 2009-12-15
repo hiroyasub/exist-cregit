@@ -428,6 +428,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|test
@@ -447,9 +450,6 @@ block|{
 name|DocumentImpl
 name|next
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1026,6 +1026,9 @@ literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|test
@@ -1038,9 +1041,6 @@ decl_stmt|;
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next

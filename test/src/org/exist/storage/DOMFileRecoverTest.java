@@ -951,6 +951,9 @@ name|query
 argument_list|)
 expr_stmt|;
 name|List
+argument_list|<
+name|?
+argument_list|>
 name|keys
 init|=
 name|domDb
@@ -973,6 +976,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|keys
