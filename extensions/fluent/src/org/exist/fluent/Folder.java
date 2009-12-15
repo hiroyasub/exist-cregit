@@ -774,11 +774,6 @@ name|Folder
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|private
 name|Iterator
 argument_list|<
@@ -2237,11 +2232,6 @@ block|}
 return|;
 block|}
 comment|/** 		 * Return an iterator over the folder's immediate documents.  This iterator can be used 		 * to selectively delete documents as well. 		 *  		 * @return an iterator over the folder's immediate documents 		 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|public
 name|Iterator
 argument_list|<
@@ -3599,11 +3589,6 @@ expr_stmt|;
 comment|// reset stale marker
 block|}
 comment|/** 	 * Delete this folder, including all documents and descendants.  If invoked on the root folder, 	 * deletes all documents and descendants but does not delete the root folder itself. 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 annotation|@
 name|Override
 specifier|public
