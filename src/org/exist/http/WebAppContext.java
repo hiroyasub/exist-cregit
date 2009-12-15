@@ -38,7 +38,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"eXist-db"
+literal|"eXist XML Database"
 return|;
 block|}
 block|}
