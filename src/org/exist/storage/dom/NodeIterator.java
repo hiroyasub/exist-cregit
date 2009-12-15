@@ -210,6 +210,9 @@ class|class
 name|NodeIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 block|{
 specifier|private
 specifier|final
@@ -533,7 +536,7 @@ return|;
 block|}
 comment|/** 	 *  Returns the next node in document order.  	 */
 specifier|public
-name|Object
+name|StoredNode
 name|next
 parameter_list|()
 block|{

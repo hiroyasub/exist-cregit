@@ -32,6 +32,14 @@ name|LogException
 extends|extends
 name|EXistException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|555708654980577412L
+decl_stmt|;
 specifier|public
 name|LogException
 parameter_list|(

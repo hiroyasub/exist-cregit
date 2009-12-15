@@ -497,6 +497,9 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|domIter
 init|=
 name|broker
@@ -530,6 +533,9 @@ argument_list|()
 argument_list|,
 operator|new
 name|TreeSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -645,6 +651,9 @@ literal|null
 argument_list|,
 operator|new
 name|TreeSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -683,6 +692,9 @@ name|i
 argument_list|)
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|domIter
 init|=
 name|broker
@@ -729,6 +741,9 @@ argument_list|()
 argument_list|,
 operator|new
 name|TreeSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -788,6 +803,9 @@ name|StoredNode
 name|node
 parameter_list|,
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iter
 parameter_list|,
 name|DocumentImpl
@@ -816,9 +834,6 @@ literal|null
 condition|)
 name|node
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|iter
 operator|.
 name|next
@@ -875,6 +890,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 operator|(
@@ -896,9 +914,6 @@ control|)
 block|{
 name|prefix
 operator|=
-operator|(
-name|String
-operator|)
 name|i
 operator|.
 name|next
@@ -1311,6 +1326,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 operator|(
@@ -1332,9 +1350,6 @@ control|)
 block|{
 name|prefix
 operator|=
-operator|(
-name|String
-operator|)
 name|i
 operator|.
 name|next

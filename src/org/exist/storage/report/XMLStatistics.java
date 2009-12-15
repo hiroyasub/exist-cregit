@@ -279,6 +279,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|BrokerPool
+argument_list|>
 name|i
 init|=
 name|BrokerPool
@@ -295,9 +298,6 @@ control|)
 block|{
 name|instance
 operator|=
-operator|(
-name|BrokerPool
-operator|)
 name|i
 operator|.
 name|next

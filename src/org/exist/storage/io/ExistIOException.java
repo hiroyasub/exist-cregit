@@ -30,6 +30,14 @@ name|io
 operator|.
 name|IOException
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7720766386860855917L
+decl_stmt|;
 comment|/**      * Constructs an<code>ExistIOException</code> with<code>null</code>      * as its error detail message.  No underlying cause is set;      *<code>getCause</code> will return<code>null</code>.      */
 specifier|public
 name|ExistIOException

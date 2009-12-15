@@ -152,6 +152,11 @@ return|return
 literal|"eXist.internal"
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|void
 name|execute
@@ -175,6 +180,11 @@ name|getJobDataMap
 argument_list|()
 decl_stmt|;
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|FileLock
+argument_list|>
 name|params
 init|=
 operator|(
@@ -190,9 +200,6 @@ decl_stmt|;
 name|FileLock
 name|lock
 init|=
-operator|(
-name|FileLock
-operator|)
 name|params
 operator|.
 name|get

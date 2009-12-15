@@ -127,6 +127,9 @@ block|{
 specifier|private
 specifier|static
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|constructorArgs
 index|[]
 init|=
@@ -146,6 +149,9 @@ name|type
 decl_stmt|;
 specifier|private
 name|Class
+argument_list|<
+name|Loggable
+argument_list|>
 name|clazz
 decl_stmt|;
 specifier|public
@@ -185,6 +191,9 @@ throws|throws
 name|Exception
 block|{
 name|Constructor
+argument_list|<
+name|Loggable
+argument_list|>
 name|constructor
 init|=
 name|clazz
@@ -195,9 +204,6 @@ name|constructorArgs
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
-name|Loggable
-operator|)
 name|constructor
 operator|.
 name|newInstance
