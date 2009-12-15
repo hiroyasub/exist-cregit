@@ -24,6 +24,14 @@ name|XSLExceptions
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7803214101131815784L
+decl_stmt|;
 comment|//Static errors
 comment|/** 	 * A static error is signaled if an XSLT-defined element is used in a context where it is not permitted, if a required attribute is omitted, or if the content of the element does not correspond to the content that is allowed for the element.  	 */
 specifier|public
