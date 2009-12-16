@@ -1476,6 +1476,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|collection
@@ -1495,9 +1498,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -2594,6 +2594,9 @@ operator|.
 name|util
 operator|.
 name|Collection
+argument_list|<
+name|?
+argument_list|>
 name|fields
 init|=
 name|reader
@@ -2610,6 +2613,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|?
+argument_list|>
 name|i
 init|=
 name|fields
@@ -2700,6 +2706,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|docs
@@ -2717,9 +2726,6 @@ block|{
 name|Collection
 name|collection
 init|=
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next
@@ -4741,6 +4747,15 @@ name|NodeFieldSelector
 implements|implements
 name|FieldSelector
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4899170629980829109L
+decl_stmt|;
 specifier|public
 name|FieldSelectorResult
 name|accept
