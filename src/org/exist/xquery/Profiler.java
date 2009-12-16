@@ -1910,6 +1910,11 @@ expr_stmt|;
 block|}
 comment|//TODO : find a way to preview "abstract" sequences
 comment|// never used locally
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|String
 name|sequencePreview

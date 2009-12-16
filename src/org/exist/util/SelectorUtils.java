@@ -149,6 +149,9 @@ literal|false
 return|;
 block|}
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|patDirs
 init|=
 name|tokenizePath
@@ -157,6 +160,9 @@ name|pattern
 argument_list|)
 decl_stmt|;
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|strDirs
 init|=
 name|tokenizePath
@@ -209,9 +215,6 @@ block|{
 name|String
 name|patDir
 init|=
-operator|(
-name|String
-operator|)
 name|patDirs
 operator|.
 name|elementAt
@@ -238,9 +241,6 @@ name|match
 argument_list|(
 name|patDir
 argument_list|,
-operator|(
-name|String
-operator|)
 name|strDirs
 operator|.
 name|elementAt
@@ -366,6 +366,9 @@ literal|false
 return|;
 block|}
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|patDirs
 init|=
 name|tokenizePath
@@ -374,6 +377,9 @@ name|pattern
 argument_list|)
 decl_stmt|;
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|strDirs
 init|=
 name|tokenizePath
@@ -426,9 +432,6 @@ block|{
 name|String
 name|patDir
 init|=
-operator|(
-name|String
-operator|)
 name|patDirs
 operator|.
 name|elementAt
@@ -455,9 +458,6 @@ name|match
 argument_list|(
 name|patDir
 argument_list|,
-operator|(
-name|String
-operator|)
 name|strDirs
 operator|.
 name|elementAt
@@ -558,9 +558,6 @@ block|{
 name|String
 name|patDir
 init|=
-operator|(
-name|String
-operator|)
 name|patDirs
 operator|.
 name|elementAt
@@ -587,9 +584,6 @@ name|match
 argument_list|(
 name|patDir
 argument_list|,
-operator|(
-name|String
-operator|)
 name|strDirs
 operator|.
 name|elementAt
@@ -798,9 +792,6 @@ block|{
 name|String
 name|subPat
 init|=
-operator|(
-name|String
-operator|)
 name|patDirs
 operator|.
 name|elementAt
@@ -815,9 +806,6 @@ decl_stmt|;
 name|String
 name|subStr
 init|=
-operator|(
-name|String
-operator|)
 name|strDirs
 operator|.
 name|elementAt
@@ -1676,6 +1664,9 @@ comment|/**      * Breaks a path up into a Vector of path elements, tokenizing o
 specifier|public
 specifier|static
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|tokenizePath
 parameter_list|(
 name|String
@@ -1683,10 +1674,16 @@ name|path
 parameter_list|)
 block|{
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 name|ret
 init|=
 operator|new
 name|Vector
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|StringTokenizer

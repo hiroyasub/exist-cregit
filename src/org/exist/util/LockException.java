@@ -20,6 +20,15 @@ name|LockException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|6273549212242606084L
+decl_stmt|;
 comment|/** 	 * Constructor for LockException. 	 */
 specifier|public
 name|LockException

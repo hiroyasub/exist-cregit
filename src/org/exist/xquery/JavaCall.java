@@ -537,9 +537,6 @@ name|steps
 operator|.
 name|add
 argument_list|(
-operator|(
-name|Expression
-operator|)
 name|arguments
 operator|.
 name|get

@@ -674,6 +674,9 @@ expr_stmt|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|getDocumentIterator
 parameter_list|()
 block|{
@@ -684,6 +687,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|getCollectionIterator
 parameter_list|()
 block|{
@@ -724,6 +730,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+comment|//UNDERSTAND: do we need that list??? (shabanovd)
 if|if
 condition|(
 name|list
@@ -743,9 +750,12 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
-name|valueIterator
+name|getDocumentIterator
 argument_list|()
 init|;
 name|i
@@ -758,9 +768,6 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -823,6 +830,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -890,6 +900,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -904,9 +917,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -935,6 +945,9 @@ block|}
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|other
@@ -951,9 +964,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1022,6 +1032,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -1036,9 +1049,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1096,6 +1106,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|other
@@ -1112,9 +1125,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1175,6 +1185,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -1189,9 +1202,6 @@ control|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1249,6 +1259,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -1263,9 +1276,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1325,6 +1335,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|getDocumentIterator
@@ -1339,9 +1352,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next

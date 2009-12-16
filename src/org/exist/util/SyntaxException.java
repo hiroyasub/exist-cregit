@@ -24,6 +24,15 @@ name|SyntaxException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4603471595319223797L
+decl_stmt|;
 comment|/**  Constructor for the PermissionDeniedException object */
 specifier|public
 name|SyntaxException

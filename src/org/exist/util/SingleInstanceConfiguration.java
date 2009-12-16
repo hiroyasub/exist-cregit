@@ -53,6 +53,11 @@ extends|extends
 name|Configuration
 block|{
 comment|/* FIXME:  It's not clear whether this class is meant to be a singleton (due to the static          * file and existHome fields and static methods), or if we should allow many instances to          * run around in the system.  Right now, any attempts to create multiple instances will          * likely get the system confused.  Let's decide which one it should be and fix it properly.          *          * This class cannot be a singleton as it is possible to run multiple instances of the database          * on the same system.          */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -312,6 +317,11 @@ name|webappFolder
 return|;
 block|}
 comment|/**      * Returns<code>true</code> if the directory<code>dir</code> contains a file      * named<tt>conf.xml</tt>.      *      * @param dir the directory      * @return<code>true</code> if the directory contains a configuration file      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 specifier|static
 name|boolean

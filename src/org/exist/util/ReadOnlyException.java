@@ -16,6 +16,14 @@ name|ReadOnlyException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7077941517830242672L
+decl_stmt|;
 comment|/** 	 * Constructor for ReadOnlyException. 	 */
 specifier|public
 name|ReadOnlyException

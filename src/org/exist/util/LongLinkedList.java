@@ -42,6 +42,9 @@ class|class
 name|ListItem
 implements|implements
 name|Comparable
+argument_list|<
+name|ListItem
+argument_list|>
 block|{
 specifier|public
 name|long
@@ -101,7 +104,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|ListItem
 name|o
 parameter_list|)
 block|{
@@ -109,12 +112,7 @@ specifier|final
 name|long
 name|ol
 init|=
-operator|(
-operator|(
-name|ListItem
-operator|)
 name|o
-operator|)
 operator|.
 name|l
 decl_stmt|;

@@ -910,6 +910,9 @@ block|}
 comment|/**      * Return the functions parameters list      *       * @return List of function parameters      */
 specifier|public
 name|List
+argument_list|<
+name|QName
+argument_list|>
 name|getParameters
 parameter_list|()
 block|{

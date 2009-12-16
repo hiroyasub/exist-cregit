@@ -400,7 +400,6 @@ name|HashtableOverflowException
 extends|extends
 name|Exception
 block|{
-comment|/** 		 *  		 */
 specifier|private
 specifier|static
 specifier|final

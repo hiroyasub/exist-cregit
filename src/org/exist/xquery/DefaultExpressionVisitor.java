@@ -56,10 +56,16 @@ name|BasicExpressionVisitor
 block|{
 specifier|private
 name|Stack
+argument_list|<
+name|UserDefinedFunction
+argument_list|>
 name|functionStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|UserDefinedFunction
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -457,6 +463,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Object
+argument_list|>
 name|i
 init|=
 name|constructor
