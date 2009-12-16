@@ -557,6 +557,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -571,9 +574,6 @@ control|)
 block|{
 name|p
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -596,6 +596,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|getCollectionIterator
 parameter_list|()
 block|{
@@ -1056,6 +1059,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1071,9 +1077,6 @@ block|{
 name|NodeProxy
 name|current
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1285,6 +1288,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1300,9 +1306,6 @@ block|{
 name|NodeProxy
 name|current
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1495,6 +1498,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1509,9 +1515,6 @@ control|)
 block|{
 name|l
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1588,6 +1591,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1602,9 +1608,6 @@ control|)
 block|{
 name|l
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1668,6 +1671,9 @@ block|}
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|other
@@ -1684,9 +1690,6 @@ control|)
 block|{
 name|l
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1773,6 +1776,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1787,9 +1793,6 @@ control|)
 block|{
 name|l
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1845,6 +1848,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1860,9 +1866,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -1948,6 +1951,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -1962,9 +1968,6 @@ control|)
 block|{
 name|p
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -2048,6 +2051,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -2062,9 +2068,6 @@ control|)
 block|{
 name|current
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -2262,6 +2265,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -2277,9 +2283,6 @@ block|{
 name|NodeProxy
 name|node
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -2459,6 +2462,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -2473,9 +2479,6 @@ control|)
 block|{
 name|p
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -2685,9 +2688,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|nodeIterator
 operator|.
 name|next
@@ -2741,9 +2741,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|nodeIterator
 operator|.
 name|next

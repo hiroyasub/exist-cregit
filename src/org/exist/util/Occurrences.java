@@ -55,6 +55,9 @@ class|class
 name|Occurrences
 implements|implements
 name|Comparable
+argument_list|<
+name|Occurrences
+argument_list|>
 block|{
 specifier|private
 name|Comparable
@@ -190,7 +193,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|Occurrences
 name|o
 parameter_list|)
 block|{
@@ -199,12 +202,7 @@ name|term
 operator|.
 name|compareTo
 argument_list|(
-operator|(
-operator|(
-name|Occurrences
-operator|)
 name|o
-operator|)
 operator|.
 name|term
 argument_list|)
