@@ -374,9 +374,17 @@ operator|.
 name|STRING
 condition|)
 block|{
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Clearing cache ["
 operator|+
@@ -388,6 +396,7 @@ operator|+
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 name|Cache
 operator|.
 name|clear
@@ -401,9 +410,17 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Clearing cache ["
 operator|+
@@ -422,6 +439,7 @@ operator|+
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 operator|(
 operator|(
 name|Cache
@@ -441,13 +459,22 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Cache cleared"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Sequence
 operator|.

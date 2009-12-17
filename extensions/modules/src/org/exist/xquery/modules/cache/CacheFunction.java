@@ -311,6 +311,14 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -322,6 +330,7 @@ operator|+
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|JavaObjectValue

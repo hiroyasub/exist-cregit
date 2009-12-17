@@ -373,9 +373,17 @@ operator|.
 name|STRING
 condition|)
 block|{
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"putting cache value ["
 operator|+
@@ -391,6 +399,7 @@ operator|+
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Cache
 operator|.
@@ -409,9 +418,17 @@ return|;
 block|}
 else|else
 block|{
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"putting cache value ["
 operator|+
@@ -434,6 +451,7 @@ operator|+
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|(
 operator|(
