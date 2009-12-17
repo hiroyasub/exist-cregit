@@ -168,6 +168,14 @@ init|=
 literal|10000
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|String
+name|DEFAULT_SHRINK_THRESHOLD_STRING
+init|=
+literal|"10000"
+decl_stmt|;
+specifier|public
 specifier|static
 name|int
 name|DEFAULT_CACHE_SIZE
