@@ -395,6 +395,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|boolean
+name|allowMixNodesInReturn
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
