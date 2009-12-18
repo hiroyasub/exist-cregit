@@ -587,7 +587,7 @@ argument_list|(
 name|name
 argument_list|)
 operator|+
-literal|"() {\n"
+literal|"() throws Exception {\n"
 operator|+
 literal|"		testCase(\""
 operator|+
@@ -718,11 +718,14 @@ try|try
 block|{
 name|newTestFile
 argument_list|(
+name|adoptString
+argument_list|(
 name|atts
 operator|.
 name|getValue
 argument_list|(
 literal|"name"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -886,6 +889,8 @@ literal|"package org.exist.xslt.xslts;\n\n"
 operator|+
 comment|//   	    		"import org.exist.xquery.xqts.XQTS_case;\n" +
 comment|//   	    		"import static org.junit.Assert.*;\n" +
+literal|"import org.exist.xslt.XSLTS_case;\n"
+operator|+
 literal|"import org.junit.Test;\n\n"
 operator|+
 literal|"public class "
@@ -938,6 +943,30 @@ name|String
 name|caseName
 parameter_list|)
 block|{
+if|if
+condition|(
+name|caseName
+operator|.
+name|equals
+argument_list|(
+literal|"for"
+argument_list|)
+condition|)
+return|return
+literal|"_for_"
+return|;
+if|else if
+condition|(
+name|caseName
+operator|.
+name|equals
+argument_list|(
+literal|"if"
+argument_list|)
+condition|)
+return|return
+literal|"_if_"
+return|;
 name|String
 name|result
 init|=
