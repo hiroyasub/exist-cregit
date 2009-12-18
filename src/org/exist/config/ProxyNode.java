@@ -57,13 +57,21 @@ begin_class
 specifier|public
 class|class
 name|ProxyNode
+parameter_list|<
+name|E
+extends|extends
+name|NodeAtExist
+parameter_list|>
 implements|implements
 name|NodeAtExist
 implements|,
 name|Proxy
+argument_list|<
+name|E
+argument_list|>
 block|{
 specifier|private
-name|NodeAtExist
+name|E
 name|node
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
@@ -795,7 +803,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|NodeAtExist
+name|E
 name|getProxyObject
 parameter_list|()
 block|{
@@ -807,7 +815,7 @@ specifier|public
 name|void
 name|setProxyObject
 parameter_list|(
-name|Object
+name|E
 name|object
 parameter_list|)
 block|{
@@ -823,7 +831,7 @@ operator|.
 name|node
 operator|=
 operator|(
-name|NodeAtExist
+name|E
 operator|)
 name|object
 expr_stmt|;

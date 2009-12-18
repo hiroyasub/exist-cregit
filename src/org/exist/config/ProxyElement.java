@@ -91,13 +91,21 @@ begin_class
 specifier|public
 class|class
 name|ProxyElement
+parameter_list|<
+name|E
+extends|extends
+name|ElementAtExist
+parameter_list|>
 extends|extends
 name|ProxyNode
+argument_list|<
+name|E
+argument_list|>
 implements|implements
 name|ElementAtExist
 block|{
 specifier|private
-name|ElementAtExist
+name|E
 name|element
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.exist.i.dom.ElementAteXist#getNamespaceMap() 	 */
@@ -552,7 +560,7 @@ expr_stmt|;
 block|}
 comment|/** 	 * @return the element 	 */
 specifier|public
-name|ElementAtExist
+name|E
 name|getProxyObject
 parameter_list|()
 block|{
@@ -564,7 +572,7 @@ specifier|public
 name|void
 name|setProxyObject
 parameter_list|(
-name|Object
+name|E
 name|object
 parameter_list|)
 block|{
@@ -580,7 +588,7 @@ operator|.
 name|element
 operator|=
 operator|(
-name|ElementAtExist
+name|E
 operator|)
 name|object
 expr_stmt|;

@@ -57,11 +57,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
 name|dom
 operator|.
-name|Element
+name|ElementAtExist
 import|;
 end_import
 
@@ -99,6 +99,9 @@ class|class
 name|ConfigElementImpl
 extends|extends
 name|ProxyElement
+argument_list|<
+name|ElementAtExist
+argument_list|>
 block|{
 specifier|private
 name|Map
@@ -150,7 +153,7 @@ block|}
 specifier|protected
 name|ConfigElementImpl
 parameter_list|(
-name|Element
+name|ElementAtExist
 name|element
 parameter_list|)
 block|{
@@ -293,7 +296,7 @@ operator|new
 name|ConfigElementImpl
 argument_list|(
 operator|(
-name|Element
+name|ElementAtExist
 operator|)
 name|nodes
 operator|.
