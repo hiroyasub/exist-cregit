@@ -226,7 +226,42 @@ name|which
 parameter_list|)
 function_decl|;
 specifier|public
-name|Boolean
+name|boolean
+name|matchAttributes
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+specifier|public
+name|boolean
+name|matchDescendantAttributes
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+specifier|public
+name|boolean
+name|matchChildren
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+comment|//    public Sequence matchDescendants(boolean includeSelf, NodeTest test) throws XPathException;
+comment|//
+comment|//    public Sequence matchAncestors(boolean includeSelf, NodeTest test) throws XPathException;
+comment|//
+comment|//    public Sequence matchParents(NodeTest test) throws XPathException;
+specifier|public
+name|boolean
 name|matchSelf
 parameter_list|(
 name|NodeTest
@@ -235,6 +270,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|//    public Sequence matchPrecedingSiblings(NodeTest test) throws XPathException;
+comment|//
+comment|//    public Sequence matchPreceding(NodeTest test, int position) throws XPathException;
+comment|//
+comment|//    public Sequence matchFollowingSiblings(NodeTest test) throws XPathException;
+comment|//
+comment|//    public Sequence matchFollowing(NodeTest test, int position) throws XPathException;
+comment|//
+comment|//    public Sequence matchChildrenForParent(NodeImpl parent);
 block|}
 end_interface
 
