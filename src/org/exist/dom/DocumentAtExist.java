@@ -65,8 +65,6 @@ extends|extends
 name|NodeAtExist
 extends|,
 name|Document
-extends|,
-name|Comparable
 block|{
 comment|//	public void setContext(ContextAtExist context);
 comment|//	public ContextAtExist getContext();
