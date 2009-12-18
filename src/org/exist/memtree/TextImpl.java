@@ -90,15 +90,9 @@ name|nodeNumber
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|boolean
-name|hasChildNodes
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
+comment|//    public boolean hasChildNodes() {
+comment|//        return false;
+comment|//    }
 specifier|public
 name|String
 name|getStringValue
