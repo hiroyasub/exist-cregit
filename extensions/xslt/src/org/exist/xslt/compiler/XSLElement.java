@@ -85,29 +85,13 @@ name|AttributeConstructor
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|CDATAConstructor
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.CDATAConstructor;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|CommentConstructor
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.CommentConstructor;
+end_comment
 
 begin_import
 import|import
@@ -145,17 +129,9 @@ name|NodeConstructor
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|NodeTest
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.NodeTest;
+end_comment
 
 begin_import
 import|import
@@ -1080,22 +1056,7 @@ operator|.
 name|COMMENT_NODE
 condition|)
 block|{
-name|constructer
-operator|=
-operator|new
-name|CommentConstructor
-argument_list|(
-operator|(
-name|XQueryContext
-operator|)
-name|context
-argument_list|,
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//UNDERSTAND:			constructer = new CommentConstructor((XQueryContext) context, node.getNodeName());
 block|}
 if|else if
 condition|(
@@ -1165,22 +1126,20 @@ operator|.
 name|CDATA_SECTION_NODE
 condition|)
 block|{
-name|constructer
-operator|=
-operator|new
-name|CDATAConstructor
-argument_list|(
-operator|(
-name|XQueryContext
-operator|)
-name|context
-argument_list|,
+comment|//UNDERSTAND:			constructer = new CDATAConstructor((XQueryContext) context, node.getNodeName());
+block|}
+if|else if
+condition|(
 name|node
 operator|.
-name|getNodeName
+name|getNodeType
 argument_list|()
-argument_list|)
-expr_stmt|;
+operator|==
+name|Node
+operator|.
+name|PROCESSING_INSTRUCTION_NODE
+condition|)
+block|{
 block|}
 else|else
 block|{
@@ -1200,7 +1159,6 @@ comment|//	    	ATTRIBUTE_NODE            = 2;
 comment|//	    	CDATA_SECTION_NODE        = 4;
 comment|//	    	ENTITY_REFERENCE_NODE     = 5;
 comment|//	    	ENTITY_NODE               = 6;
-comment|//	    	PROCESSING_INSTRUCTION_NODE = 7;
 comment|//	    	DOCUMENT_NODE             = 9;
 comment|//	    	DOCUMENT_TYPE_NODE        = 10;
 comment|//	    	DOCUMENT_FRAGMENT_NODE    = 11;

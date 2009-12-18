@@ -902,7 +902,7 @@ argument_list|,
 name|prefix
 argument_list|)
 argument_list|,
-name|Sequence
+name|SequenceConstructor
 operator|.
 name|class
 argument_list|)

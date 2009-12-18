@@ -385,30 +385,6 @@ name|Attr
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Text
-import|;
-end_import
-
 begin_comment
 comment|/**  *<(xsl:stylesheet|xsl:transform)  *   id? = id  *   extension-element-prefixes? = tokens  *   exclude-result-prefixes? = tokens  *   version = number  *   xpath-default-namespace? = uri  *   default-validation? = "preserve" | "strip"  *   default-collation? = uri-list  *   input-type-annotations? = "preserve" | "strip" | "unspecified">  *<!-- Content: (xsl:import*, other-declarations) -->  *</(xsl:stylesheet|xsl:transform)>  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment

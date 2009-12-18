@@ -572,15 +572,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|text
-operator|=
-name|StringValue
-operator|.
-name|trimWhitespace
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
+comment|//UNDERSTAND: what is whitespace?		text = StringValue.trimWhitespace(text);
 name|TextConstructor
 name|constructer
 init|=

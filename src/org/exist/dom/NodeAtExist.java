@@ -37,29 +37,13 @@ name|NodeId
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|NodeTest
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.NodeTest;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.XPathException;
+end_comment
 
 begin_import
 import|import
@@ -87,6 +71,9 @@ extends|,
 name|QNameable
 extends|,
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 block|{
 specifier|public
 name|DocumentAtExist
