@@ -1676,19 +1676,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|input
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-name|result
-operator|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-expr_stmt|;
-if|else if
-condition|(
 name|inPredicate
 operator|&&
 operator|!
@@ -1729,6 +1716,20 @@ argument_list|,
 literal|"Index evaluation"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|input
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
+else|else
 name|result
 operator|=
 name|evalWithIndex
@@ -1805,6 +1806,20 @@ argument_list|,
 literal|"Generic evaluation"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|input
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+name|result
+operator|=
+name|BooleanValue
+operator|.
+name|FALSE
+expr_stmt|;
+else|else
 name|result
 operator|=
 name|evalGeneric
