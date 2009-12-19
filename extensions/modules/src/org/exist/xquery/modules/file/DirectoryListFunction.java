@@ -488,15 +488,24 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Listing matching files in directory: "
 operator|+
 name|baseDir
 argument_list|)
 expr_stmt|;
+block|}
 name|Sequence
 name|xmlResponse
 init|=
@@ -598,9 +607,17 @@ name|relDir
 init|=
 literal|null
 decl_stmt|;
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Found: "
 operator|+
@@ -609,6 +626,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -626,9 +644,17 @@ name|j
 operator|++
 control|)
 block|{
+if|if
+condition|(
 name|logger
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
 argument_list|(
 literal|"Found: "
 operator|+
@@ -641,6 +667,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|relPath
 init|=
