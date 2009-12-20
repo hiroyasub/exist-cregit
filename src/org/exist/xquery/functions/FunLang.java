@@ -851,18 +851,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
-return|;
-block|}
 block|}
 end_class
 

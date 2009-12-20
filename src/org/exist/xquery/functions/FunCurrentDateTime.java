@@ -364,17 +364,6 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
-return|;
-block|}
-specifier|public
 name|Sequence
 name|eval
 parameter_list|(

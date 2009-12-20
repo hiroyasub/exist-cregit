@@ -292,22 +292,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#getDependencies() 	 */
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
-operator||
-name|Dependency
-operator|.
-name|CONTEXT_ITEM
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
