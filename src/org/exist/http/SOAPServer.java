@@ -4791,6 +4791,11 @@ literal|null
 return|;
 block|}
 comment|/**     	 * Returns the parameters for a function from the internal description     	 *      	 * @param functionName	The name of the function to return parameters for     	 *      	 * @return NodeList of parameter's     	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 name|NodeList
 name|getFunctionParameters
@@ -4896,6 +4901,11 @@ literal|null
 return|;
 block|}
 comment|/**     	 * Returns the Name for the function parameter     	 *      	 * @param internalFunctionParameter The internal function parameter to return the Name for     	 *      	 * @return The Name of the parameter     	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 name|String
 name|getFunctionParameterName
@@ -6920,6 +6930,9 @@ name|getTransformer
 argument_list|()
 decl_stmt|;
 name|Enumeration
+argument_list|<
+name|?
+argument_list|>
 name|parameterKeys
 init|=
 name|parameters

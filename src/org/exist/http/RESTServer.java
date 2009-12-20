@@ -2673,6 +2673,11 @@ argument_list|(
 name|defaultOutputKeysProperties
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|mimeType
 init|=
@@ -3469,6 +3474,11 @@ name|cache
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|mime
 init|=
@@ -4052,6 +4062,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|String
 name|result
 decl_stmt|;
@@ -8783,6 +8798,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|collection
@@ -8800,9 +8818,6 @@ block|{
 name|XmldbURI
 name|child
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
@@ -8985,6 +9000,9 @@ block|}
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|collection
@@ -9004,9 +9022,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
