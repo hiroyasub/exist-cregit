@@ -28,6 +28,11 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|boolean
 name|stem
