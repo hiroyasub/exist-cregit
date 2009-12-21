@@ -363,15 +363,6 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 operator|!
