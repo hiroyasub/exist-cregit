@@ -8,6 +8,8 @@ package|package
 name|org
 operator|.
 name|exist
+operator|.
+name|installer
 package|;
 end_package
 
