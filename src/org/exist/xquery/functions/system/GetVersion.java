@@ -279,7 +279,7 @@ name|XPathException
 block|{
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Entering the "
 operator|+
