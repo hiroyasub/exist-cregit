@@ -8,6 +8,8 @@ package|package
 name|org
 operator|.
 name|exist
+operator|.
+name|jetty
 package|;
 end_package
 
@@ -498,6 +500,8 @@ comment|/**  * Starts eXist in standalone server mode. In this mode, only the XM
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|StandaloneServer

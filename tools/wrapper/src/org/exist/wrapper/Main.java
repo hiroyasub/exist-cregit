@@ -242,7 +242,7 @@ name|cl
 operator|.
 name|loadClass
 argument_list|(
-literal|"org.exist.JettyStart"
+literal|"org.exist.jetty.JettyStart"
 argument_list|)
 expr_stmt|;
 else|else
@@ -252,7 +252,7 @@ name|cl
 operator|.
 name|loadClass
 argument_list|(
-literal|"org.exist.StandaloneServer"
+literal|"org.exist.jetty.StandaloneServer"
 argument_list|)
 expr_stmt|;
 comment|// find the run() method in the class

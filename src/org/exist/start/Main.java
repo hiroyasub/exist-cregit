@@ -1851,7 +1851,7 @@ block|{
 comment|//_classname = "org.mortbay.jetty.Server";
 name|_classname
 operator|=
-literal|"org.exist.JettyStart"
+literal|"org.exist.jetty.JettyStart"
 expr_stmt|;
 name|_mode
 operator|=
@@ -1876,7 +1876,7 @@ condition|)
 block|{
 name|_classname
 operator|=
-literal|"org.exist.ServerShutdown"
+literal|"org.exist.jetty.ServerShutdown"
 expr_stmt|;
 name|_mode
 operator|=

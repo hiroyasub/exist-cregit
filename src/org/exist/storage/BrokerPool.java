@@ -898,7 +898,7 @@ decl_stmt|;
 comment|/**      * Whether of not the JVM should run the shutdown thread. 	 * @param register<code>true</code> if the JVM should run the thread 	 */
 comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
 comment|// WM: it is probably not necessary to allow users to register their own hook. This method
-comment|// is only used once, by class org.exist.JettyStart, which registers its own hook.
+comment|// is only used once, by class org.exist.jetty.JettyStart, which registers its own hook.
 specifier|public
 specifier|final
 specifier|static
