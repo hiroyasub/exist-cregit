@@ -109,8 +109,6 @@ literal|"jline-%latest%"
 block|,
 literal|"log4j-%latest%"
 block|,
-literal|"stax-api-%latest%"
-block|,
 literal|"sunxacml-%latest%"
 block|}
 decl_stmt|;
