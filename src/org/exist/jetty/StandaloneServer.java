@@ -2469,7 +2469,7 @@ argument_list|()
 operator|.
 name|getResourceAsStream
 argument_list|(
-literal|"org/exist/server.xml"
+literal|"org/exist/jetty/server.xml"
 argument_list|)
 expr_stmt|;
 if|if
