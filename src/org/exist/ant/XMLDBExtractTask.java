@@ -301,7 +301,7 @@ name|encoding
 init|=
 literal|"UTF-8"
 decl_stmt|;
-comment|/* (non-Javadoc)     * @see org.apache.tools.ant.Task#execute()     */
+comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
 name|execute
@@ -320,6 +320,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -327,6 +328,7 @@ argument_list|(
 literal|"You need to specify an XMLDB collection URI"
 argument_list|)
 throw|;
+block|}
 block|}
 else|else
 block|{
@@ -428,6 +430,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -435,7 +438,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -445,6 +450,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -502,6 +508,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -511,7 +518,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -523,6 +532,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -544,6 +554,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -553,7 +564,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -568,7 +581,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**       * Create directory from a collection       *       */
+block|}
+comment|/**      * Create directory from a collection      *      */
 specifier|private
 name|void
 name|extractResources
@@ -715,7 +729,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**       * Extract multiple resources from a collection       *       */
+comment|/**      * Extract multiple resources from a collection      *      */
 specifier|private
 name|void
 name|extractSubCollections
@@ -905,7 +919,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**       * Extract single resource       *       */
+comment|/**      * Extract single resource      *      */
 specifier|private
 name|void
 name|writeResource
@@ -959,7 +973,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**       * Extract XML resource       *       */
+comment|/**      * Extract XML resource      *      */
 specifier|private
 name|void
 name|writeXMLResource
@@ -1228,6 +1242,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -1235,7 +1250,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -1247,7 +1264,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**       * Extract single binary resource       *       */
+block|}
+comment|/**      * Extract single binary resource      *      */
 specifier|private
 name|void
 name|writeBinaryResource
@@ -1417,6 +1435,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -1424,7 +1443,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -1434,6 +1455,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1565,7 +1587,7 @@ name|this
 operator|.
 name|overwrite
 operator|=
-name|overwrite
+name|createdirectories
 expr_stmt|;
 block|}
 block|}
