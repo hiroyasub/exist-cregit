@@ -111,7 +111,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -157,7 +157,7 @@ name|pool
 expr_stmt|;
 block|}
 specifier|public
-name|User
+name|UserImpl
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -224,7 +224,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|secman

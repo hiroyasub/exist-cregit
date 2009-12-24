@@ -191,7 +191,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -520,7 +520,7 @@ name|ProgressCallback
 name|callback
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -569,7 +569,7 @@ return|;
 block|}
 finally|finally
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -825,7 +825,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -865,7 +865,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -929,7 +929,7 @@ argument_list|>
 name|errorList
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -963,7 +963,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(

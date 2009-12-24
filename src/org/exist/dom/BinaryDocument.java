@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -380,7 +380,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|secman

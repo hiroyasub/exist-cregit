@@ -203,7 +203,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -934,7 +934,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|User
+name|UserImpl
 name|u
 init|=
 name|pool

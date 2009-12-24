@@ -405,7 +405,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -633,7 +633,7 @@ block|{
 name|int
 name|authMethod
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 decl_stmt|;
 name|UserXmldbPrincipal
@@ -641,7 +641,7 @@ parameter_list|(
 name|int
 name|authMethod
 parameter_list|,
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{
@@ -859,7 +859,7 @@ name|Authenticator
 name|authenticator
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|defaultUser
 decl_stmt|;
 comment|/* (non-Javadoc)     * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)     */
@@ -2623,7 +2623,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|User
+name|UserImpl
 name|user
 init|=
 literal|null
@@ -2992,7 +2992,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-name|User
+name|UserImpl
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -3062,7 +3062,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool
@@ -3174,7 +3174,7 @@ argument_list|)
 return|;
 block|}
 specifier|private
-name|User
+name|UserImpl
 name|getDefaultUser
 parameter_list|()
 block|{
@@ -3185,7 +3185,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool

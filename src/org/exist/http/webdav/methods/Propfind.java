@@ -135,7 +135,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1129,7 +1129,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -1971,7 +1971,7 @@ specifier|private
 name|void
 name|writeCollectionProperties
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|DBBroker
@@ -2685,7 +2685,7 @@ specifier|private
 name|void
 name|writeResourceProperties
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|DAVProperties

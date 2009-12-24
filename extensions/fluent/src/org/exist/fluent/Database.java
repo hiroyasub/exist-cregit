@@ -1063,7 +1063,7 @@ name|String
 name|password
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool
@@ -1236,7 +1236,7 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|User
+name|UserImpl
 name|user
 decl_stmt|;
 specifier|private
@@ -1251,7 +1251,7 @@ literal|"UTF-8"
 decl_stmt|;
 name|Database
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{

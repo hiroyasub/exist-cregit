@@ -3028,7 +3028,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 block|{
-name|User
+name|UserImpl
 name|u
 init|=
 name|getUser
@@ -8095,7 +8095,7 @@ throws|,
 name|LockException
 block|{
 comment|//store the currentUser
-name|User
+name|UserImpl
 name|currentUser
 init|=
 name|getUser
@@ -11704,7 +11704,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 throw|;
-name|User
+name|UserImpl
 name|docUser
 init|=
 name|doc

@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -142,7 +142,7 @@ argument_list|)
 throw|;
 try|try
 block|{
-name|User
+name|UserImpl
 name|usr
 init|=
 name|service

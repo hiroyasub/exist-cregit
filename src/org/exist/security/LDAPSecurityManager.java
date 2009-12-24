@@ -266,7 +266,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|User
+name|UserImpl
 argument_list|>
 name|userByNameCache
 init|=
@@ -275,7 +275,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|User
+name|UserImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -284,7 +284,7 @@ name|Map
 argument_list|<
 name|Integer
 argument_list|,
-name|User
+name|UserImpl
 argument_list|>
 name|userByIdCache
 init|=
@@ -293,7 +293,7 @@ name|HashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|User
+name|UserImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1028,7 +1028,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|protected
-name|User
+name|UserImpl
 name|getUserByName
 parameter_list|(
 name|DirContext
@@ -1075,7 +1075,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|User
+name|UserImpl
 name|getUserById
 parameter_list|(
 name|DirContext
@@ -1396,7 +1396,7 @@ literal|null
 return|;
 block|}
 specifier|protected
-name|User
+name|UserImpl
 name|newUserFromAttributes
 parameter_list|(
 name|DirContext
@@ -1617,11 +1617,11 @@ name|mainGroup
 operator|)
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|username
 argument_list|,
@@ -1899,7 +1899,7 @@ name|user
 return|;
 block|}
 specifier|protected
-name|User
+name|UserImpl
 name|getUser
 parameter_list|(
 name|DirContext
@@ -2009,7 +2009,7 @@ specifier|public
 name|void
 name|deleteUser
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws
@@ -2374,7 +2374,7 @@ name|DEFAULT_PERM
 return|;
 block|}
 specifier|public
-name|User
+name|UserImpl
 name|getUser
 parameter_list|(
 name|int
@@ -2390,7 +2390,7 @@ argument_list|(
 name|uid
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|userByIdCache
@@ -2462,14 +2462,14 @@ name|user
 return|;
 block|}
 specifier|public
-name|User
+name|UserImpl
 name|getUser
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|userByNameCache
@@ -2542,7 +2542,7 @@ return|;
 block|}
 comment|// This needs to be an enumeration
 specifier|public
-name|User
+name|UserImpl
 index|[]
 name|getUsers
 parameter_list|()
@@ -2588,14 +2588,14 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|User
+name|UserImpl
 argument_list|>
 name|userList
 init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|User
+name|UserImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -2631,12 +2631,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|User
+name|UserImpl
 index|[]
 name|retval
 init|=
 operator|new
-name|User
+name|UserImpl
 index|[
 name|userList
 operator|.
@@ -2694,7 +2694,7 @@ specifier|synchronized
 name|boolean
 name|hasAdminPrivileges
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{
@@ -2804,7 +2804,7 @@ specifier|public
 name|void
 name|setUser
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{

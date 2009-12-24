@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -405,7 +405,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|security
@@ -460,7 +460,7 @@ name|passwd
 argument_list|)
 condition|)
 block|{
-name|User
+name|UserImpl
 name|oldUser
 init|=
 name|context

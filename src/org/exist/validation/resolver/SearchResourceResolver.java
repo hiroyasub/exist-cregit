@@ -137,7 +137,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -321,7 +321,7 @@ argument_list|(
 name|brokerPool
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|brokerPool

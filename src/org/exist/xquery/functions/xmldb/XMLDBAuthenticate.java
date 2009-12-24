@@ -77,7 +77,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -935,7 +935,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|ums
@@ -988,7 +988,7 @@ specifier|private
 name|void
 name|cacheUserInHttpSession
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|boolean

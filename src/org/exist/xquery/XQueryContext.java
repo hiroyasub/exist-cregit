@@ -315,7 +315,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -2586,7 +2586,7 @@ parameter_list|()
 block|{
 comment|//if there is an existing user in the current http session
 comment|//then set the DBBroker user
-name|User
+name|UserImpl
 name|user
 init|=
 name|getUserFromHttpSession
@@ -6913,7 +6913,7 @@ expr_stmt|;
 block|}
 comment|/** 	 * Get the user which executes the current query. 	 *  	 * @return user 	 */
 specifier|public
-name|User
+name|UserImpl
 name|getUser
 parameter_list|()
 block|{
@@ -6927,7 +6927,7 @@ return|;
 block|}
 comment|/** 	 * If there is a HTTP Session, and a User has been stored in the session then this will 	 * return the user object from the session 	 *  	 * @return The user or null if there is no session or no user 	 */
 specifier|private
-name|User
+name|UserImpl
 name|getUserFromHttpSession
 parameter_list|()
 block|{
@@ -7044,7 +7044,7 @@ try|try
 block|{
 return|return
 operator|(
-name|User
+name|UserImpl
 operator|)
 operator|(
 operator|(

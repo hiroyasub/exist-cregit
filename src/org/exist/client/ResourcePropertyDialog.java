@@ -253,7 +253,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1135,7 +1135,7 @@ operator|new
 name|Vector
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|users
 index|[]
 init|=

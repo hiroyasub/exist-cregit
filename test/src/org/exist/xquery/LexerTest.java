@@ -75,7 +75,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -393,7 +393,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool

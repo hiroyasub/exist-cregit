@@ -127,7 +127,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -496,7 +496,7 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|user
 init|=
 literal|null
@@ -602,7 +602,7 @@ specifier|public
 name|void
 name|setUser
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{
@@ -617,7 +617,7 @@ comment|// debugging user escalation permissions problem - deliriumsky.
 block|}
 comment|/** 	 * @return The user that is currently using this DBBroker object 	 */
 specifier|public
-name|User
+name|UserImpl
 name|getUser
 parameter_list|()
 block|{

@@ -900,7 +900,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
-name|User
+name|UserImpl
 name|user
 decl_stmt|;
 specifier|protected

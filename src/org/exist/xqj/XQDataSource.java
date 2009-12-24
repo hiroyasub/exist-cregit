@@ -187,7 +187,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -420,7 +420,7 @@ name|getInstance
 argument_list|()
 decl_stmt|;
 comment|//get the user
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool

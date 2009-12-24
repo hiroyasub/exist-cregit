@@ -313,7 +313,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{
@@ -789,7 +789,7 @@ specifier|public
 name|boolean
 name|validate
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|int

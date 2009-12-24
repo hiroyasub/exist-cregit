@@ -643,7 +643,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -4785,11 +4785,11 @@ argument_list|(
 literal|"home collection [none]: "
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|args
 index|[
@@ -4958,7 +4958,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|users
 index|[]
 init|=
@@ -5155,7 +5155,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|mgtService
@@ -5634,7 +5634,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|u
 init|=
 name|mgtService
@@ -5730,7 +5730,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|u
 init|=
 name|mgtService
@@ -5877,7 +5877,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|mgtService

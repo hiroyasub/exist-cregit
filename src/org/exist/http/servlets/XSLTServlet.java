@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -909,7 +909,7 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|pool
@@ -1493,7 +1493,7 @@ specifier|private
 name|Templates
 name|getSource
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -2116,7 +2116,7 @@ parameter_list|(
 name|SAXTransformerFactory
 name|factory
 parameter_list|,
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|String
@@ -2171,7 +2171,7 @@ specifier|public
 name|Templates
 name|getTemplates
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws

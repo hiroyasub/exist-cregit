@@ -628,7 +628,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|guest
 init|=
 name|ums
@@ -708,7 +708,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
-name|User
+name|UserImpl
 name|test2
 init|=
 name|ums
@@ -1197,7 +1197,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
-name|User
+name|UserImpl
 name|test2
 init|=
 name|ums
@@ -1296,7 +1296,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
-name|User
+name|UserImpl
 name|test2
 init|=
 name|ums
@@ -1358,11 +1358,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 literal|"test1"
 argument_list|,
@@ -1381,7 +1381,7 @@ expr_stmt|;
 name|user
 operator|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 literal|"test2"
 argument_list|,
@@ -1438,7 +1438,7 @@ literal|"1.0"
 argument_list|)
 expr_stmt|;
 comment|// pass ownership to test1
-name|User
+name|UserImpl
 name|test1
 init|=
 name|ums
@@ -1610,7 +1610,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|test1
 init|=
 name|ums
@@ -1627,7 +1627,7 @@ argument_list|(
 name|test1
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 name|test2
 init|=
 name|ums

@@ -129,7 +129,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -5471,7 +5471,7 @@ literal|"db-connection.security.password-encoding"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 operator|.
 name|setPasswordEncoding
 argument_list|(
@@ -5530,7 +5530,7 @@ literal|"db-connection.security.password-realm"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 operator|.
 name|setPasswordRealm
 argument_list|(

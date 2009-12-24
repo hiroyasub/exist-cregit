@@ -83,7 +83,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -812,7 +812,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|User
+name|UserImpl
 name|u
 init|=
 name|getUser
@@ -1232,7 +1232,7 @@ return|;
 block|}
 comment|/**    * @param user    * @param pool    * @return the User object corresponding to the username in<code>user</code>    * @throws XMLDBException    */
 specifier|private
-name|User
+name|UserImpl
 name|getUser
 parameter_list|(
 name|String
@@ -1271,7 +1271,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|u
 init|=
 name|securityManager

@@ -323,7 +323,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -2054,11 +2054,11 @@ operator|==
 literal|0
 condition|)
 return|return;
-name|User
+name|UserImpl
 name|user
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|name
 argument_list|)
@@ -2270,11 +2270,11 @@ operator|==
 literal|0
 condition|)
 return|return;
-name|User
+name|UserImpl
 name|user
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|name
 argument_list|)
@@ -2569,7 +2569,7 @@ name|i
 operator|++
 control|)
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|userModel
@@ -2683,7 +2683,7 @@ name|getPoint
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|userModel
@@ -2819,7 +2819,7 @@ literal|"Home"
 block|}
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|users
 index|[]
 init|=

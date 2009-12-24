@@ -137,7 +137,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -410,7 +410,7 @@ name|pool
 operator|.
 name|get
 argument_list|(
-name|User
+name|UserImpl
 operator|.
 name|DEFAULT
 argument_list|)

@@ -83,7 +83,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -253,13 +253,13 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|user
 decl_stmt|;
 specifier|public
 name|LocalUserManagementService
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|BrokerPool
@@ -292,7 +292,7 @@ specifier|public
 name|void
 name|addUser
 parameter_list|(
-name|User
+name|UserImpl
 name|u
 parameter_list|)
 throws|throws
@@ -2072,7 +2072,7 @@ specifier|public
 name|void
 name|chown
 parameter_list|(
-name|User
+name|UserImpl
 name|u
 parameter_list|,
 name|String
@@ -2382,7 +2382,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|User
+name|UserImpl
 name|u
 parameter_list|,
 name|String
@@ -2668,7 +2668,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 name|lockOwner
 init|=
 name|doc
@@ -2746,7 +2746,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|User
+name|UserImpl
 name|u
 parameter_list|)
 throws|throws
@@ -2900,7 +2900,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|User
+name|UserImpl
 name|lockOwner
 init|=
 name|doc
@@ -3145,7 +3145,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|lockOwner
 init|=
 name|doc
@@ -3872,7 +3872,7 @@ literal|null
 return|;
 block|}
 specifier|public
-name|User
+name|UserImpl
 name|getUser
 parameter_list|(
 name|String
@@ -3905,7 +3905,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|User
+name|UserImpl
 index|[]
 name|getUsers
 parameter_list|()
@@ -3975,7 +3975,7 @@ specifier|public
 name|void
 name|removeUser
 parameter_list|(
-name|User
+name|UserImpl
 name|u
 parameter_list|)
 throws|throws
@@ -4090,7 +4090,7 @@ specifier|public
 name|void
 name|updateUser
 parameter_list|(
-name|User
+name|UserImpl
 name|u
 parameter_list|)
 throws|throws
@@ -4146,7 +4146,7 @@ argument_list|,
 literal|" you are not allowed to change this user"
 argument_list|)
 throw|;
-name|User
+name|UserImpl
 name|old
 init|=
 name|manager
@@ -4265,7 +4265,7 @@ specifier|public
 name|void
 name|addUserGroup
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws
@@ -4276,7 +4276,7 @@ specifier|public
 name|void
 name|removeGroup
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|,
 name|String

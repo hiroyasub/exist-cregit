@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id:$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -136,13 +140,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents a user within the database.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  *  Represents a user within the database.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|User
+name|UserImpl
 block|{
 specifier|private
 specifier|final
@@ -154,7 +158,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|User
+name|UserImpl
 operator|.
 name|class
 argument_list|)
@@ -162,11 +166,11 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|User
+name|UserImpl
 name|DEFAULT
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 literal|"guest"
 argument_list|,
@@ -281,7 +285,7 @@ name|props
 operator|.
 name|load
 argument_list|(
-name|User
+name|UserImpl
 operator|.
 name|class
 operator|.
@@ -484,7 +488,7 @@ literal|false
 decl_stmt|;
 comment|/**      *  Create a new user with name and password      *      *@param  user      Description of the Parameter      *@param  password  Description of the Parameter      */
 specifier|public
-name|User
+name|UserImpl
 parameter_list|(
 name|String
 name|user
@@ -507,7 +511,7 @@ expr_stmt|;
 block|}
 comment|/**      *  Create a new user with name      *      *@param  user  Description of the Parameter      */
 specifier|public
-name|User
+name|UserImpl
 parameter_list|(
 name|String
 name|user
@@ -522,7 +526,7 @@ expr_stmt|;
 block|}
 comment|/**      *  Create a new user with name, password and primary group      *      *@param  user          Description of the Parameter      *@param  password      Description of the Parameter      *@param  primaryGroup  Description of the Parameter      */
 specifier|public
-name|User
+name|UserImpl
 parameter_list|(
 name|String
 name|user
@@ -549,7 +553,7 @@ expr_stmt|;
 block|}
 comment|/**      *  Read a new user from the given DOM node      *      *@param  node                                Description of the Parameter      *@exception  DatabaseConfigurationException  Description of the Exception      */
 specifier|public
-name|User
+name|UserImpl
 parameter_list|(
 name|int
 name|majorVersion
@@ -2079,11 +2083,11 @@ name|Object
 name|obj
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 name|other
 init|=
 operator|(
-name|User
+name|UserImpl
 operator|)
 name|obj
 decl_stmt|;

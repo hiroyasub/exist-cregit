@@ -103,7 +103,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1152,7 +1152,7 @@ specifier|public
 name|void
 name|setUserLock
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 block|{
@@ -1176,7 +1176,7 @@ expr_stmt|;
 block|}
 comment|/**      * The method<code>getUserLock</code>      *      * @return an<code>User</code> value      */
 specifier|public
-name|User
+name|UserImpl
 name|getUserLock
 parameter_list|()
 block|{
@@ -1641,7 +1641,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 name|secman

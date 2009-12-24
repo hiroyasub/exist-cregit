@@ -91,7 +91,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -3794,7 +3794,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -3836,7 +3836,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|User
+name|UserImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(

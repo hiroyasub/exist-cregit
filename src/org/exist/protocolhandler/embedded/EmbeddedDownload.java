@@ -125,7 +125,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -300,7 +300,7 @@ parameter_list|,
 name|OutputStream
 name|os
 parameter_list|,
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws

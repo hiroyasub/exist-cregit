@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -248,7 +248,7 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|authenticate
@@ -275,7 +275,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|User
+name|UserImpl
 name|authenticate
 parameter_list|(
 name|String
@@ -306,7 +306,7 @@ literal|"guest"
 expr_stmt|;
 block|}
 comment|// check user
-name|User
+name|UserImpl
 name|u
 init|=
 name|brokerPool

@@ -51,7 +51,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1407,11 +1407,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|u
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|owner
 argument_list|,
@@ -2126,11 +2126,11 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|u
 init|=
 operator|new
-name|User
+name|UserImpl
 argument_list|(
 name|owner
 argument_list|,
@@ -2683,7 +2683,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|UserImpl
 name|dba
 init|=
 name|mgmt

@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1891,7 +1891,7 @@ block|}
 else|else
 block|{
 comment|//create an XQuery job
-name|User
+name|UserImpl
 name|guestUser
 init|=
 name|brokerpool

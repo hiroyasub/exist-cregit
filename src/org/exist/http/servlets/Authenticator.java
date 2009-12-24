@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|Authenticator
 block|{
 comment|/**      * Try to authenticate the user specified in the HTTP request.      *       * @param request      * @param response      * @return The authenticated user or null if the user isn't autenticated      * @throws IOException      */
 specifier|public
-name|User
+name|UserImpl
 name|authenticate
 parameter_list|(
 name|HttpServletRequest

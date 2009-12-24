@@ -347,7 +347,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -1812,7 +1812,7 @@ literal|"xupdate"
 argument_list|)
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|serviceModeUser
 init|=
 literal|null
@@ -3864,7 +3864,7 @@ specifier|public
 name|DBBroker
 name|get
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws
@@ -4319,7 +4319,7 @@ specifier|public
 name|DBBroker
 name|enterServiceMode
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws
@@ -4419,7 +4419,7 @@ specifier|public
 name|void
 name|exitServiceMode
 parameter_list|(
-name|User
+name|UserImpl
 name|user
 parameter_list|)
 throws|throws
@@ -4536,7 +4536,7 @@ argument_list|(
 name|syncEvent
 argument_list|)
 expr_stmt|;
-name|User
+name|UserImpl
 name|user
 init|=
 name|broker

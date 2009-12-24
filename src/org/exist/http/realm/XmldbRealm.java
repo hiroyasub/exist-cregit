@@ -139,7 +139,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UserImpl
 import|;
 end_import
 
@@ -319,7 +319,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|User
+name|UserImpl
 name|defaultUser
 init|=
 literal|null
@@ -552,7 +552,7 @@ name|String
 name|username
 parameter_list|)
 block|{
-name|User
+name|UserImpl
 name|user
 init|=
 literal|null
@@ -835,7 +835,7 @@ condition|(
 name|admin
 condition|)
 block|{
-name|User
+name|UserImpl
 name|adminUser
 init|=
 name|service
