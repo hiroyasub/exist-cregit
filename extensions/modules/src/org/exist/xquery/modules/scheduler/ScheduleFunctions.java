@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -1210,7 +1210,7 @@ name|getInt
 argument_list|()
 expr_stmt|;
 block|}
-name|UserImpl
+name|User
 name|user
 init|=
 name|context

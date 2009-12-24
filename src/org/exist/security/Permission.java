@@ -183,7 +183,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 function_decl|;
@@ -245,7 +245,7 @@ specifier|public
 name|boolean
 name|validate
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|int

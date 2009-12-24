@@ -235,7 +235,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -4853,7 +4853,7 @@ throws|throws
 name|PermissionDeniedException
 block|{
 specifier|final
-name|UserImpl
+name|User
 name|user
 init|=
 name|broker

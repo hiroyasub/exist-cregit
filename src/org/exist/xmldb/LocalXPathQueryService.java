@@ -67,7 +67,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -348,7 +348,7 @@ name|LocalCollection
 name|collection
 decl_stmt|;
 specifier|protected
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 specifier|protected
@@ -440,7 +440,7 @@ block|}
 specifier|public
 name|LocalXPathQueryService
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|BrokerPool

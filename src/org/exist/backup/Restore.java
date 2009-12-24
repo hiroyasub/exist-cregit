@@ -51,6 +51,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -1407,7 +1419,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|u
 init|=
 operator|new
@@ -2126,7 +2138,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|u
 init|=
 operator|new

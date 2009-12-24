@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -471,7 +471,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|pdp
@@ -562,7 +562,7 @@ specifier|private
 name|EvaluationResult
 name|getGroups
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{

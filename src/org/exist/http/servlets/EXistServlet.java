@@ -141,6 +141,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -481,7 +493,7 @@ name|Authenticator
 name|authenticator
 decl_stmt|;
 specifier|private
-name|UserImpl
+name|User
 name|defaultUser
 decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
@@ -1017,7 +1029,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//third, authenticate the user
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -1548,7 +1560,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//third, authenticate the user
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -1909,7 +1921,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//third, authenticate the user
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -2221,7 +2233,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//third, authenticate the user
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -2561,7 +2573,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//third, authenticate the user
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -2875,7 +2887,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-name|UserImpl
+name|User
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -3059,7 +3071,7 @@ return|;
 comment|/* 		byte[] c = Base64.decode(auth.substring(6).getBytes()); 		String s = new String(c); 		int p = s.indexOf(':'); 		if (p == Constants.STRING_NOT_FOUND) { 			 return null; 			 } 		String username = s.substring(0, p); 		String password = s.substring(p + 1); 		 		User user = pool.getSecurityManager().getUser(username); 		if (user == null) 			return null; 		if (!user.validate(password)) 			return null; 		return user;                  */
 block|}
 specifier|private
-name|UserImpl
+name|User
 name|getDefaultUser
 parameter_list|()
 block|{

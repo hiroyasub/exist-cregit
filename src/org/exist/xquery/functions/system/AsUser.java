@@ -49,6 +49,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -460,7 +472,7 @@ name|passwd
 argument_list|)
 condition|)
 block|{
-name|UserImpl
+name|User
 name|oldUser
 init|=
 name|context

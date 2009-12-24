@@ -2009,7 +2009,7 @@ specifier|public
 name|void
 name|deleteUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -2374,7 +2374,7 @@ name|DEFAULT_PERM
 return|;
 block|}
 specifier|public
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|int
@@ -2542,7 +2542,7 @@ return|;
 block|}
 comment|// This needs to be an enumeration
 specifier|public
-name|UserImpl
+name|User
 index|[]
 name|getUsers
 parameter_list|()
@@ -2631,12 +2631,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|UserImpl
+name|User
 index|[]
 name|retval
 init|=
 operator|new
-name|UserImpl
+name|User
 index|[
 name|userList
 operator|.
@@ -2694,7 +2694,7 @@ specifier|synchronized
 name|boolean
 name|hasAdminPrivileges
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{

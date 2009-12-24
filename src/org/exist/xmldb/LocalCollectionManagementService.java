@@ -97,7 +97,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -279,7 +279,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 specifier|protected
@@ -313,7 +313,7 @@ block|}
 specifier|public
 name|LocalCollectionManagementService
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|BrokerPool

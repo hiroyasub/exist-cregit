@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -189,7 +189,7 @@ name|BrokerPool
 name|brokerPool
 decl_stmt|;
 specifier|private
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 specifier|private
@@ -203,7 +203,7 @@ decl_stmt|;
 specifier|public
 name|LocalValidationService
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|BrokerPool

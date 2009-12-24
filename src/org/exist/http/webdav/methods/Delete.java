@@ -141,7 +141,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -264,7 +264,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|HttpServletRequest

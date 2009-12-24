@@ -415,7 +415,7 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|UserImpl
+name|User
 name|SYSTEM_USER
 init|=
 operator|new
@@ -855,7 +855,7 @@ decl_stmt|;
 name|Element
 name|next
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 name|NodeList
@@ -1346,7 +1346,7 @@ specifier|synchronized
 name|void
 name|deleteUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -1362,7 +1362,7 @@ return|return;
 name|user
 operator|=
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|users
 operator|.
@@ -1551,7 +1551,7 @@ return|;
 block|}
 specifier|public
 specifier|synchronized
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|int
@@ -1559,11 +1559,11 @@ name|uid
 parameter_list|)
 block|{
 specifier|final
-name|UserImpl
+name|User
 name|user
 init|=
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|users
 operator|.
@@ -1587,17 +1587,17 @@ return|;
 block|}
 specifier|public
 specifier|synchronized
-name|UserImpl
+name|User
 index|[]
 name|getUsers
 parameter_list|()
 block|{
-name|UserImpl
+name|User
 name|u
 index|[]
 init|=
 operator|new
-name|UserImpl
+name|User
 index|[
 name|users
 operator|.
@@ -1634,7 +1634,7 @@ name|j
 index|]
 operator|=
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|i
 operator|.
@@ -1997,7 +1997,7 @@ specifier|synchronized
 name|boolean
 name|hasAdminPrivileges
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{
@@ -2017,7 +2017,7 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 for|for
@@ -2040,7 +2040,7 @@ block|{
 name|user
 operator|=
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|i
 operator|.
@@ -2242,7 +2242,7 @@ name|append
 argument_list|(
 operator|(
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|i
 operator|.
@@ -2754,7 +2754,7 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws

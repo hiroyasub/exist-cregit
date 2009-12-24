@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -139,7 +139,7 @@ specifier|synchronized
 name|String
 name|createSession
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{

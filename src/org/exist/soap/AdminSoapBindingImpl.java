@@ -159,6 +159,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -5402,7 +5414,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -5872,7 +5884,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -6173,7 +6185,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|UserImpl
+name|User
 name|u
 init|=
 name|pool
@@ -6288,7 +6300,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|getSession
@@ -6382,7 +6394,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|UserImpl
+name|User
 name|users
 index|[]
 init|=
@@ -6877,7 +6889,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -7031,7 +7043,7 @@ operator|+
 name|userName
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -7077,7 +7089,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|lo
 init|=
 name|manager
@@ -7258,7 +7270,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -7357,7 +7369,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -7592,7 +7604,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -7692,7 +7704,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|u
 init|=
 name|doc
@@ -7863,7 +7875,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -8188,7 +8200,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -8569,7 +8581,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session
@@ -8940,7 +8952,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|session

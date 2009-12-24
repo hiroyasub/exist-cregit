@@ -672,7 +672,7 @@ name|XmldbRequestProcessorFactory
 name|factory
 decl_stmt|;
 specifier|protected
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 comment|/**      * Creates a new<code>RpcConnection</code> instance.      *      * @exception EXistException if an error occurs      */
@@ -682,7 +682,7 @@ parameter_list|(
 name|XmldbRequestProcessorFactory
 name|factory
 parameter_list|,
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{
@@ -8828,7 +8828,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
-name|UserImpl
+name|User
 name|u
 init|=
 name|factory
@@ -8993,7 +8993,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
-name|UserImpl
+name|User
 name|users
 index|[]
 init|=
@@ -19051,7 +19051,7 @@ operator|+
 name|userName
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -19296,7 +19296,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|u
 init|=
 name|doc
@@ -19495,7 +19495,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc

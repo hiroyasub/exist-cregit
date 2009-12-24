@@ -83,6 +83,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -253,13 +265,13 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 specifier|public
 name|LocalUserManagementService
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|BrokerPool
@@ -2072,7 +2084,7 @@ specifier|public
 name|void
 name|chown
 parameter_list|(
-name|UserImpl
+name|User
 name|u
 parameter_list|,
 name|String
@@ -2382,7 +2394,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|UserImpl
+name|User
 name|u
 parameter_list|,
 name|String
@@ -2668,7 +2680,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -2746,7 +2758,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|UserImpl
+name|User
 name|u
 parameter_list|)
 throws|throws
@@ -2900,7 +2912,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -3145,7 +3157,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|lockOwner
 init|=
 name|doc
@@ -3905,7 +3917,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|UserImpl
+name|User
 index|[]
 name|getUsers
 parameter_list|()
@@ -3975,7 +3987,7 @@ specifier|public
 name|void
 name|removeUser
 parameter_list|(
-name|UserImpl
+name|User
 name|u
 parameter_list|)
 throws|throws
@@ -4146,7 +4158,7 @@ argument_list|,
 literal|" you are not allowed to change this user"
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|old
 init|=
 name|manager
@@ -4265,7 +4277,7 @@ specifier|public
 name|void
 name|addUserGroup
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -4276,7 +4288,7 @@ specifier|public
 name|void
 name|removeGroup
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|String

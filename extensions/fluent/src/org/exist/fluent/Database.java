@@ -1236,7 +1236,7 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 specifier|private
@@ -1251,7 +1251,7 @@ literal|"UTF-8"
 decl_stmt|;
 name|Database
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{

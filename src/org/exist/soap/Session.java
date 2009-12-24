@@ -31,7 +31,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -89,7 +89,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-name|UserImpl
+name|User
 name|user_
 decl_stmt|;
 specifier|private
@@ -111,7 +111,7 @@ comment|/** 	 *  	 */
 specifier|public
 name|Session
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{
@@ -121,7 +121,7 @@ name|user
 expr_stmt|;
 block|}
 specifier|public
-name|UserImpl
+name|User
 name|getUser
 parameter_list|()
 block|{

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -147,6 +147,8 @@ begin_class
 specifier|public
 class|class
 name|UserImpl
+implements|implements
+name|User
 block|{
 specifier|private
 specifier|final
@@ -166,7 +168,7 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|UserImpl
+name|User
 name|DEFAULT
 init|=
 operator|new
@@ -233,30 +235,6 @@ name|String
 name|realm
 init|=
 literal|"exist"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|PLAIN_ENCODING
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|SIMPLE_MD5_ENCODING
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|MD5_ENCODING
-init|=
-literal|2
 decl_stmt|;
 specifier|public
 specifier|static
@@ -923,7 +901,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Add the user to a group      *      *@param  group  The feature to be added to the Group attribute      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1020,7 +998,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      *  Remove the user to a group      *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it        *      *@param  group  The feature to be removed to the Group attribute      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1209,6 +1187,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1260,7 +1239,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      *  Get all groups this user belongs to      *      *@return    The groups value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1282,6 +1261,7 @@ else|:
 name|groups
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
 specifier|public
 specifier|final
 name|boolean
@@ -1292,7 +1272,7 @@ return|return
 name|hasDbaRole
 return|;
 block|}
-comment|/**      *  Get the user name      *      *@return    The user value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getName() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1303,6 +1283,7 @@ return|return
 name|user
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getUID() 	 */
 specifier|public
 specifier|final
 name|int
@@ -1334,7 +1315,7 @@ return|return
 name|digestPassword
 return|;
 block|}
-comment|/**      *  Get the primary group this user belongs to      *      *@return    The primaryGroup value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1363,7 +1344,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**      *  Is the user a member of group?      *      *@param  group  Description of the Parameter      *@return        Description of the Return Value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|boolean
@@ -1419,7 +1400,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      *  Sets the password attribute of the User object      *      *@param  passwd  The new password value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -2052,6 +2033,7 @@ operator|=
 name|uid
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
 specifier|public
 name|void
 name|setHome
@@ -2065,6 +2047,7 @@ operator|=
 name|homeCollection
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
 specifier|public
 name|XmldbURI
 name|getHome

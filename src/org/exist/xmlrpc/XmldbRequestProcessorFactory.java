@@ -95,6 +95,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -248,7 +260,7 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -275,7 +287,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|UserImpl
+name|User
 name|authenticate
 parameter_list|(
 name|String

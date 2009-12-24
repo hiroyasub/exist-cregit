@@ -151,7 +151,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -1288,7 +1288,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{

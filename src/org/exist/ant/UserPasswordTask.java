@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -121,7 +121,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
-name|UserImpl
+name|User
 name|usr
 init|=
 name|service

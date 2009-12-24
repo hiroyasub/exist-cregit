@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -496,7 +496,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|UserImpl
+name|User
 name|guest
 init|=
 name|pool

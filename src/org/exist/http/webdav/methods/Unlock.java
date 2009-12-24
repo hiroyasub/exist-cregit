@@ -129,7 +129,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -252,7 +252,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -439,7 +439,7 @@ block|}
 comment|//TODO : release collection lock here ?
 comment|//It is used below though...
 block|}
-name|UserImpl
+name|User
 name|lock
 init|=
 name|resource

@@ -53,6 +53,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -968,7 +980,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|UserImpl
+name|User
 name|u
 parameter_list|)
 throws|throws
@@ -1288,7 +1300,7 @@ specifier|public
 name|void
 name|chown
 parameter_list|(
-name|UserImpl
+name|User
 name|u
 parameter_list|,
 name|String
@@ -1393,7 +1405,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|UserImpl
+name|User
 name|u
 parameter_list|,
 name|String
@@ -2527,7 +2539,7 @@ block|}
 block|}
 comment|/** 	 *  Get a list of all users currently defined 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
-name|UserImpl
+name|User
 index|[]
 name|getUsers
 parameter_list|()
@@ -2561,12 +2573,12 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 index|[]
 name|u
 init|=
 operator|new
-name|UserImpl
+name|User
 index|[
 name|users
 operator|.
@@ -2758,7 +2770,7 @@ specifier|public
 name|void
 name|removeUser
 parameter_list|(
-name|UserImpl
+name|User
 name|u
 parameter_list|)
 throws|throws
@@ -3020,7 +3032,7 @@ specifier|public
 name|void
 name|addUserGroup
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -3130,7 +3142,7 @@ specifier|public
 name|void
 name|removeGroup
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|String

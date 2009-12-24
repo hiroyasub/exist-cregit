@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -186,7 +186,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|UserImpl
+name|User
 name|usr
 init|=
 name|service

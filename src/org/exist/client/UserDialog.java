@@ -323,6 +323,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|UserImpl
 import|;
 end_import
@@ -2569,7 +2581,7 @@ name|i
 operator|++
 control|)
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|userModel
@@ -2683,7 +2695,7 @@ name|getPoint
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|userModel
@@ -2819,7 +2831,7 @@ literal|"Home"
 block|}
 decl_stmt|;
 specifier|private
-name|UserImpl
+name|User
 name|users
 index|[]
 init|=

@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -114,7 +114,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
-name|UserImpl
+name|User
 index|[]
 name|users
 init|=

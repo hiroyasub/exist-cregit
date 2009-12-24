@@ -239,7 +239,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -1087,7 +1087,7 @@ condition|(
 name|isNew
 condition|)
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|broker
@@ -1420,7 +1420,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{
@@ -6215,7 +6215,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|broker
@@ -6349,7 +6349,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// check if the document is locked by another user
-name|UserImpl
+name|User
 name|lockUser
 init|=
 name|oldDoc
@@ -7559,7 +7559,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|secman

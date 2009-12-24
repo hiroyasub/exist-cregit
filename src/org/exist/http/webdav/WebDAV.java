@@ -163,7 +163,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -552,7 +552,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-name|UserImpl
+name|User
 name|user
 init|=
 name|authenticate
@@ -848,7 +848,7 @@ block|}
 block|}
 block|}
 specifier|private
-name|UserImpl
+name|User
 name|authenticate
 parameter_list|(
 name|HttpServletRequest

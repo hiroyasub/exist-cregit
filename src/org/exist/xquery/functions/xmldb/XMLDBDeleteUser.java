@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -368,7 +368,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|User
 name|contextUser
 init|=
 name|context
@@ -480,7 +480,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|userObj
 init|=
 name|ums

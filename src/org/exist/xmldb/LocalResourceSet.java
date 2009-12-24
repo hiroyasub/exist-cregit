@@ -105,7 +105,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -427,7 +427,7 @@ name|Properties
 name|outputProperties
 decl_stmt|;
 specifier|private
-name|UserImpl
+name|User
 name|user
 decl_stmt|;
 annotation|@
@@ -443,7 +443,7 @@ block|}
 specifier|public
 name|LocalResourceSet
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|,
 name|BrokerPool

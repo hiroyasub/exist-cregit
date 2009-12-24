@@ -826,7 +826,7 @@ name|documentPath
 operator|=
 name|documentPath
 expr_stmt|;
-name|UserImpl
+name|User
 name|activeUser
 init|=
 name|broker
@@ -1172,7 +1172,7 @@ name|VERSIONS_COLLECTION
 argument_list|)
 condition|)
 return|return;
-name|UserImpl
+name|User
 name|activeUser
 init|=
 name|broker

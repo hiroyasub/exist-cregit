@@ -128,7 +128,7 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|UserImpl
+name|User
 name|SYSTEM_USER
 init|=
 operator|new
@@ -171,7 +171,7 @@ function_decl|;
 name|void
 name|deleteUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -184,14 +184,14 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|int
 name|uid
 parameter_list|)
 function_decl|;
-name|UserImpl
+name|User
 index|[]
 name|getUsers
 parameter_list|()
@@ -232,7 +232,7 @@ function_decl|;
 name|boolean
 name|hasAdminPrivileges
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 function_decl|;
