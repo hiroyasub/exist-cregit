@@ -864,7 +864,7 @@ decl_stmt|;
 name|String
 name|lastId
 decl_stmt|;
-name|GroupImpl
+name|Group
 name|group
 decl_stmt|;
 for|for
@@ -1653,7 +1653,7 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|GroupImpl
+name|Group
 name|group
 init|=
 operator|new
@@ -1778,7 +1778,7 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|GroupImpl
+name|Group
 name|group
 decl_stmt|;
 for|for
@@ -1801,7 +1801,7 @@ block|{
 name|group
 operator|=
 operator|(
-name|GroupImpl
+name|Group
 operator|)
 name|i
 operator|.
@@ -1830,14 +1830,14 @@ return|;
 block|}
 specifier|public
 specifier|synchronized
-name|GroupImpl
+name|Group
 name|getGroup
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-name|GroupImpl
+name|Group
 name|group
 decl_stmt|;
 for|for
@@ -1860,7 +1860,7 @@ block|{
 name|group
 operator|=
 operator|(
-name|GroupImpl
+name|Group
 operator|)
 name|i
 operator|.
@@ -1889,7 +1889,7 @@ return|;
 block|}
 specifier|public
 specifier|synchronized
-name|GroupImpl
+name|Group
 name|getGroup
 parameter_list|(
 name|int
@@ -1898,7 +1898,7 @@ parameter_list|)
 block|{
 return|return
 operator|(
-name|GroupImpl
+name|Group
 operator|)
 name|groups
 operator|.
@@ -1927,7 +1927,7 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|GroupImpl
+name|Group
 name|group
 decl_stmt|;
 for|for
@@ -1950,7 +1950,7 @@ block|{
 name|group
 operator|=
 operator|(
-name|GroupImpl
+name|Group
 operator|)
 name|i
 operator|.
@@ -2167,7 +2167,7 @@ name|append
 argument_list|(
 operator|(
 operator|(
-name|GroupImpl
+name|Group
 operator|)
 name|i
 operator|.

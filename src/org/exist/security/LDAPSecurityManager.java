@@ -2028,7 +2028,7 @@ name|DEFAULT_PERM
 return|;
 block|}
 specifier|public
-name|GroupImpl
+name|Group
 name|getGroup
 parameter_list|(
 name|int
@@ -2116,7 +2116,7 @@ name|group
 return|;
 block|}
 specifier|public
-name|GroupImpl
+name|Group
 name|getGroup
 parameter_list|(
 name|String

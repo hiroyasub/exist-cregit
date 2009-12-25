@@ -179,7 +179,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|GroupImpl
+name|Group
 import|;
 end_import
 
@@ -3336,7 +3336,7 @@ name|uid
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|GroupImpl
+name|Group
 name|group
 init|=
 name|secman
@@ -7572,7 +7572,7 @@ name|getOwner
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|GroupImpl
+name|Group
 name|group
 init|=
 name|secman
