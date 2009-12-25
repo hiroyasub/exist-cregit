@@ -210,14 +210,14 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-name|Group
+name|GroupImpl
 name|getGroup
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 function_decl|;
-name|Group
+name|GroupImpl
 name|getGroup
 parameter_list|(
 name|int

@@ -302,7 +302,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Group
+name|GroupImpl
 argument_list|>
 name|groupByNameCache
 init|=
@@ -311,7 +311,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|Group
+name|GroupImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -320,7 +320,7 @@ name|Map
 argument_list|<
 name|Integer
 argument_list|,
-name|Group
+name|GroupImpl
 argument_list|>
 name|groupByIdCache
 init|=
@@ -329,7 +329,7 @@ name|HashMap
 argument_list|<
 name|Integer
 argument_list|,
-name|Group
+name|GroupImpl
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1178,7 +1178,7 @@ literal|null
 return|;
 block|}
 specifier|protected
-name|Group
+name|GroupImpl
 name|getGroupById
 parameter_list|(
 name|DirContext
@@ -1288,7 +1288,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|Group
+name|GroupImpl
 argument_list|(
 name|cn
 argument_list|,
@@ -1301,7 +1301,7 @@ literal|null
 return|;
 block|}
 specifier|protected
-name|Group
+name|GroupImpl
 name|getGroupByName
 parameter_list|(
 name|DirContext
@@ -1376,7 +1376,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|Group
+name|GroupImpl
 argument_list|(
 name|cn
 argument_list|,
@@ -2028,7 +2028,7 @@ name|DEFAULT_PERM
 return|;
 block|}
 specifier|public
-name|Group
+name|GroupImpl
 name|getGroup
 parameter_list|(
 name|int
@@ -2044,7 +2044,7 @@ argument_list|(
 name|gid
 argument_list|)
 decl_stmt|;
-name|Group
+name|GroupImpl
 name|group
 init|=
 name|groupByIdCache
@@ -2116,14 +2116,14 @@ name|group
 return|;
 block|}
 specifier|public
-name|Group
+name|GroupImpl
 name|getGroup
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
-name|Group
+name|GroupImpl
 name|group
 init|=
 name|groupByNameCache
