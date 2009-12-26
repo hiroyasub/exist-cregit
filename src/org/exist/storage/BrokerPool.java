@@ -802,7 +802,7 @@ specifier|static
 name|String
 name|DEFAULT_SECURITY_CLASS
 init|=
-literal|"org.exist.security.XMLSecurityManager"
+literal|"org.exist.security.internal.SecurityManagerImpl"
 decl_stmt|;
 specifier|public
 specifier|final
