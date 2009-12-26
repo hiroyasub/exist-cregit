@@ -10,6 +10,8 @@ operator|.
 name|exist
 operator|.
 name|security
+operator|.
+name|ldap
 package|;
 end_package
 
@@ -76,6 +78,18 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
