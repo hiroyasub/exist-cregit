@@ -141,7 +141,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|XMLSecurityManager
+name|internal
+operator|.
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -5788,7 +5790,7 @@ name|con
 operator|.
 name|getElementsByTagName
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|CONFIGURATION_ELEMENT_NAME
 argument_list|)
@@ -6308,7 +6310,7 @@ name|defaultPermission
 operator|.
 name|getAttribute
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|COLLECTION_ATTRIBUTE
 argument_list|)
@@ -6347,7 +6349,7 @@ argument_list|)
 decl_stmt|;
 name|setProperty
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_COLLECTIONS
 argument_list|,
@@ -6358,7 +6360,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_COLLECTIONS
 operator|+
@@ -6368,7 +6370,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_COLLECTIONS
 argument_list|)
@@ -6398,7 +6400,7 @@ name|defaultPermission
 operator|.
 name|getAttribute
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|RESOURCE_ATTRIBUTE
 argument_list|)
@@ -6437,7 +6439,7 @@ argument_list|)
 decl_stmt|;
 name|setProperty
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_RESOURCES
 argument_list|,
@@ -6448,7 +6450,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_RESOURCES
 operator|+
@@ -6458,7 +6460,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|PROPERTY_PERMISSIONS_RESOURCES
 argument_list|)

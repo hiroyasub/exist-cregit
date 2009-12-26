@@ -251,7 +251,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|XMLSecurityManager
+name|internal
+operator|.
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -4900,7 +4902,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|ACL_FILE_URI
 argument_list|)

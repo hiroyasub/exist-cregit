@@ -427,7 +427,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|XMLSecurityManager
+name|internal
+operator|.
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -783,7 +785,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|SYSTEM_USER
 argument_list|)

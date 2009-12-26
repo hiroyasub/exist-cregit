@@ -27,9 +27,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|xacml
+name|internal
 operator|.
-name|AccessContext
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -41,7 +41,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|XMLSecurityManager
+name|xacml
+operator|.
+name|AccessContext
 import|;
 end_import
 
@@ -215,7 +217,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|XMLSecurityManager
+name|SecurityManagerImpl
 operator|.
 name|SYSTEM_USER
 argument_list|)
