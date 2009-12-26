@@ -844,7 +844,7 @@ init|=
 literal|0
 init|;
 name|index
-operator|<=
+operator|<
 name|attrs
 operator|.
 name|getLength
