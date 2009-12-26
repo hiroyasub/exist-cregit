@@ -328,7 +328,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|LDAPSecurityManager
+name|SecurityManagerImpl
 implements|implements
 name|SecurityManager
 block|{
@@ -654,9 +654,9 @@ name|pdp
 init|=
 literal|null
 decl_stmt|;
-comment|/** Creates a new instance of LDAPSecurityManager */
+comment|/** Creates a new instance of LDAP SecurityManager */
 specifier|public
-name|LDAPSecurityManager
+name|SecurityManagerImpl
 parameter_list|()
 block|{
 name|setUserByNamePattern

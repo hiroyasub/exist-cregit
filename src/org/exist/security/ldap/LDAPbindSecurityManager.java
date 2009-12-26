@@ -102,7 +102,7 @@ specifier|public
 class|class
 name|LDAPbindSecurityManager
 extends|extends
-name|LDAPSecurityManager
+name|SecurityManagerImpl
 implements|implements
 name|SecurityManager
 block|{
