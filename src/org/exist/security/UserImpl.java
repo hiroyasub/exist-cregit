@@ -154,7 +154,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents a user within the database.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  * Represents a user within the database.  *   * @author Wolfgang Meier<wolfgang@exist-db.org> Modified by {Marco.Tampucci,  *         Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_class
@@ -179,6 +179,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Deprecated
 specifier|public
 specifier|final
 specifier|static
@@ -471,14 +473,14 @@ name|home
 init|=
 literal|null
 decl_stmt|;
-comment|/**       * Indicates if the user belongs to the dba group,      * i.e. is a superuser.      */
+comment|/** 	 * Indicates if the user belongs to the dba group, i.e. is a superuser. 	 */
 specifier|private
 name|boolean
 name|hasDbaRole
 init|=
 literal|false
 decl_stmt|;
-comment|/**      *  Create a new user with name and password      *      *@param  user      Description of the Parameter      *@param  password  Description of the Parameter      */
+comment|/** 	 * Create a new user with name and password 	 *  	 *@param user 	 *            Description of the Parameter 	 *@param password 	 *            Description of the Parameter 	 */
 specifier|public
 name|UserImpl
 parameter_list|(
@@ -501,7 +503,7 @@ name|password
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Create a new user with name      *      *@param  user  Description of the Parameter      */
+comment|/** 	 * Create a new user with name 	 *  	 *@param user 	 *            Description of the Parameter 	 */
 specifier|public
 name|UserImpl
 parameter_list|(
@@ -516,7 +518,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      *  Create a new user with name, password and primary group      *      *@param  user          Description of the Parameter      *@param  password      Description of the Parameter      *@param  primaryGroup  Description of the Parameter      */
+comment|/** 	 * Create a new user with name, password and primary group 	 *  	 *@param user 	 *            Description of the Parameter 	 *@param password 	 *            Description of the Parameter 	 *@param primaryGroup 	 *            Description of the Parameter 	 */
 specifier|public
 name|UserImpl
 parameter_list|(
@@ -543,7 +545,7 @@ name|primaryGroup
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Read a new user from the given DOM node      *      *@param  node                                Description of the Parameter      *@exception  DatabaseConfigurationException  Description of the Exception      */
+comment|/** 	 * Read a new user from the given DOM node 	 *  	 *@param node 	 *            Description of the Parameter 	 *@exception DatabaseConfigurationException 	 *                Description of the Exception 	 */
 specifier|public
 name|UserImpl
 parameter_list|(
@@ -915,7 +917,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1012,7 +1014,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1201,7 +1203,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1253,7 +1255,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#getGroups() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1275,7 +1277,7 @@ else|:
 name|groups
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#hasDbaRole() 	 */
 specifier|public
 specifier|final
 name|boolean
@@ -1286,7 +1288,7 @@ return|return
 name|hasDbaRole
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getName() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#getName() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1297,7 +1299,7 @@ return|return
 name|user
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getUID() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#getUID() 	 */
 specifier|public
 specifier|final
 name|int
@@ -1308,7 +1310,7 @@ return|return
 name|uid
 return|;
 block|}
-comment|/**      *  Get the user's password      *      *@return    Description of the Return Value      */
+comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
 specifier|public
 specifier|final
 name|String
@@ -1319,6 +1321,8 @@ return|return
 name|password
 return|;
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 specifier|final
 name|String
@@ -1329,7 +1333,7 @@ return|return
 name|digestPassword
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#getPrimaryGroup() 	 */
 specifier|public
 specifier|final
 name|String
@@ -1358,7 +1362,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|boolean
@@ -1414,7 +1418,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
 specifier|public
 specifier|final
 name|void
@@ -1470,7 +1474,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Sets the digest passwod value of the User object      *      *@param  passwd  The new passwordDigest value      */
+comment|/** 	 * Sets the digest passwod value of the User object 	 *  	 * @param passwd 	 *            The new passwordDigest value 	 * @deprecated 	 */
 specifier|public
 specifier|final
 name|void
@@ -1495,7 +1499,7 @@ else|:
 name|passwd
 expr_stmt|;
 block|}
-comment|/**      *  Sets the encoded passwod value of the User object      *      *@param  passwd  The new passwordDigest value      */
+comment|/** 	 * Sets the encoded passwod value of the User object 	 *  	 * @param passwd 	 *            The new passwordDigest value 	 * @deprecated 	 */
 specifier|public
 specifier|final
 name|void
@@ -1793,7 +1797,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Split up the validate method into two, to make       * it possible to authenticate users, which are not      * defined in the instance named "exist" without      * having impact on the standard functionality.      *       * @param passwd      * @return true if the password was correct, false if not,       * or if there was a problem.      */
+comment|/** 	 * Split up the validate method into two, to make it possible to 	 * authenticate users, which are not defined in the instance named "exist" 	 * without having impact on the standard functionality. 	 *  	 * @param passwd 	 * @return true if the password was correct, false if not, or if there was a 	 *         problem. 	 */
 specifier|public
 specifier|final
 name|boolean
@@ -1895,7 +1899,7 @@ literal|false
 return|;
 block|}
 comment|// [ 1557095 ] LDAP passwords patch
-comment|//Try to authenticate using LDAP
+comment|// Try to authenticate using LDAP
 if|if
 condition|(
 name|sm
@@ -2032,6 +2036,7 @@ name|digestPassword
 argument_list|)
 return|;
 block|}
+comment|//switch to protected
 specifier|public
 name|void
 name|setUID
@@ -2047,7 +2052,7 @@ operator|=
 name|uid
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
 specifier|public
 name|void
 name|setHome
@@ -2061,7 +2066,7 @@ operator|=
 name|homeCollection
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#getHome() 	 */
 specifier|public
 name|XmldbURI
 name|getHome
@@ -2071,7 +2076,7 @@ return|return
 name|home
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.lang.Object#equals(java.lang.Object) 	 */
 specifier|public
 name|boolean
 name|equals
