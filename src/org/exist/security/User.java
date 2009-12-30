@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|security
+operator|.
+name|Principal
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -29,6 +39,8 @@ begin_interface
 specifier|public
 interface|interface
 name|User
+extends|extends
+name|Principal
 block|{
 specifier|public
 specifier|final
@@ -93,12 +105,6 @@ name|boolean
 name|hasDbaRole
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Get the user name 	 * 	 *@return    The user value 	 */
-specifier|public
-name|String
-name|getName
-parameter_list|()
-function_decl|;
 specifier|public
 name|int
 name|getUID
@@ -119,7 +125,7 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Sets the password attribute of the User object 	 * 	 *@param  passwd  The new password value 	 */
+comment|/** 	 *  Sets the password attribute of the User object 	 * 	 * @param  passwd  The new password value 	 */
 specifier|public
 name|void
 name|setPassword
