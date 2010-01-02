@@ -75,6 +75,14 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+specifier|public
+name|Boolean
+name|getPropertyBoolean
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

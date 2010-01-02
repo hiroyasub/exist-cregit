@@ -139,12 +139,24 @@ block|{
 name|String
 name|config1
 init|=
-literal|"<instance value1=\"a\" value2=\"5\"></instance>"
+literal|"<instance "
+operator|+
+literal|"valueString=\"a\" "
+operator|+
+literal|"valueInteger=\"5\" "
+operator|+
+literal|"valueInt=\"5\" "
+operator|+
+literal|"valueboolean=\"true\" "
+operator|+
+literal|"valueBoolean=\"false\" "
+operator|+
+literal|"></instance>"
 decl_stmt|;
 name|String
 name|config2
 init|=
-literal|"<config value1=\"b\"><instance value1=\"a\" value2=\"5\"></instance></config>"
+literal|"<config valueString=\"b\"><instance valueString=\"a\" valueInteger=\"5\"></instance></config>"
 decl_stmt|;
 annotation|@
 name|Test
@@ -281,6 +293,38 @@ argument_list|,
 name|object
 operator|.
 name|someInteger
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|object
+operator|.
+name|simpleInteger
+operator|==
+literal|5
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|object
+operator|.
+name|defaultInteger
+operator|==
+literal|3
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|object
+operator|.
+name|someboolean
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|object
+operator|.
+name|someBoolean
 argument_list|)
 expr_stmt|;
 block|}
