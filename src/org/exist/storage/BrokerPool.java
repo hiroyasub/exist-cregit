@@ -5231,6 +5231,8 @@ argument_list|(
 literal|"removing shutdown hook"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|Runtime
 operator|.
 name|getRuntime
@@ -5241,6 +5243,15 @@ argument_list|(
 name|shutdownHook
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|e
+parameter_list|)
+block|{
+comment|//ignore IllegalStateException("Shutdown in progress");
+block|}
 block|}
 if|if
 condition|(
