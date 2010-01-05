@@ -567,6 +567,15 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|fileURI
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+if|if
+condition|(
 name|sources
 operator|.
 name|containsKey

@@ -441,8 +441,9 @@ name|String
 name|attr
 parameter_list|)
 block|{
-comment|//XXX: NPE???
-return|return
+name|Node
+name|item
+init|=
 name|parsedResponse
 operator|.
 name|getAttributes
@@ -452,6 +453,19 @@ name|getNamedItem
 argument_list|(
 name|attr
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|item
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+comment|//raise error?
+return|return
+name|item
 operator|.
 name|getNodeValue
 argument_list|()
