@@ -708,6 +708,11 @@ name|fileProperties
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|dirProperties
 decl_stmt|;
 specifier|private
