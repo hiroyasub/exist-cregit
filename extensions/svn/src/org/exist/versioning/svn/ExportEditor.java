@@ -1238,7 +1238,7 @@ name|property
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* ************************************* 	 * ************ text part ************************************************ 	 */
+comment|/* ************************************* 	 * ************ text part ************** 	 * ************************************* 	 */
 specifier|private
 name|String
 name|checksum
