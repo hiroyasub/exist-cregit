@@ -2253,6 +2253,21 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+literal|"Stylesheet not found: "
+operator|+
+name|docPath
+argument_list|)
+throw|;
+if|if
+condition|(
 operator|!
 name|isCaching
 argument_list|()
@@ -2347,6 +2362,12 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
 name|doc
 operator|.
 name|getUpdateLock
