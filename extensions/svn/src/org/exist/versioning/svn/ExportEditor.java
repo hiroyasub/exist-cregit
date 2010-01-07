@@ -909,6 +909,10 @@ name|err
 argument_list|)
 throw|;
 block|}
+name|currentPath
+operator|=
+literal|""
+expr_stmt|;
 block|}
 specifier|public
 name|void
