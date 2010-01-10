@@ -147,6 +147,24 @@ name|XmldbURI
 name|getHome
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|authenticate
+parameter_list|(
+name|Object
+name|credentials
+parameter_list|)
+function_decl|;
+specifier|public
+name|boolean
+name|isAuthenticated
+parameter_list|()
+function_decl|;
+specifier|public
+name|XMLUserRealm
+name|getUserRealm
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

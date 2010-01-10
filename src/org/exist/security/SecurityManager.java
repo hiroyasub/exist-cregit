@@ -258,6 +258,19 @@ name|int
 name|getCollectionDefaultPerms
 parameter_list|()
 function_decl|;
+specifier|public
+name|User
+name|authenticate
+parameter_list|(
+name|String
+name|username
+parameter_list|,
+name|Object
+name|credentials
+parameter_list|)
+throws|throws
+name|AuthenticationException
+function_decl|;
 block|}
 end_interface
 
