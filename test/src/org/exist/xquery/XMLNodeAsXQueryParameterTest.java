@@ -1268,7 +1268,7 @@ name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|"admin"
+literal|""
 argument_list|)
 decl_stmt|;
 if|if
