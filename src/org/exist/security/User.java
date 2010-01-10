@@ -161,8 +161,8 @@ name|isAuthenticated
 parameter_list|()
 function_decl|;
 specifier|public
-name|XMLUserRealm
-name|getUserRealm
+name|Realm
+name|getRealm
 parameter_list|()
 function_decl|;
 block|}
