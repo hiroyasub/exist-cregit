@@ -280,6 +280,9 @@ specifier|public
 name|User
 name|authenticate
 parameter_list|(
+name|Realm
+name|realm
+parameter_list|,
 name|String
 name|username
 parameter_list|,

@@ -197,6 +197,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Realm
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -2918,6 +2930,9 @@ specifier|synchronized
 name|User
 name|authenticate
 parameter_list|(
+name|Realm
+name|realm
+parameter_list|,
 name|String
 name|username
 parameter_list|,
@@ -2973,6 +2988,8 @@ return|return
 operator|new
 name|UserImpl
 argument_list|(
+name|realm
+argument_list|,
 operator|(
 name|UserImpl
 operator|)

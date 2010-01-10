@@ -75,7 +75,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Realm
 import|;
 end_import
 
@@ -87,7 +87,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -178,6 +178,8 @@ specifier|public
 class|class
 name|XMLUserRealm
 implements|implements
+name|Realm
+implements|,
 name|UserRealm
 implements|,
 name|SSORealm
@@ -259,6 +261,8 @@ argument_list|()
 operator|.
 name|authenticate
 argument_list|(
+name|this
+argument_list|,
 name|username
 argument_list|,
 name|credentials
@@ -285,17 +289,6 @@ return|return
 literal|null
 return|;
 block|}
-operator|(
-operator|(
-name|UserImpl
-operator|)
-name|user
-operator|)
-operator|.
-name|userRealm
-operator|=
-name|this
-expr_stmt|;
 name|users
 operator|.
 name|put
@@ -403,7 +396,7 @@ operator|)
 name|user
 operator|)
 operator|.
-name|getUserRealm
+name|getRealm
 argument_list|()
 operator|!=
 name|this

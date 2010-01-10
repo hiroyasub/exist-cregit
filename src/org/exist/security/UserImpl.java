@@ -948,6 +948,9 @@ block|}
 specifier|public
 name|UserImpl
 parameter_list|(
+name|Realm
+name|realm
+parameter_list|,
 name|UserImpl
 name|from_user
 parameter_list|,
@@ -1005,9 +1008,7 @@ name|_cred
 expr_stmt|;
 name|_realm
 operator|=
-name|from_user
-operator|.
-name|_realm
+name|realm
 expr_stmt|;
 name|authenticate
 argument_list|(
