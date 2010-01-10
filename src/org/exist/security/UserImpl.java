@@ -947,7 +947,7 @@ if|if
 condition|(
 name|uid
 operator|==
-literal|0
+literal|1
 operator|&&
 name|password
 operator|==
@@ -2006,6 +2006,22 @@ block|{
 return|return
 literal|true
 return|;
+block|}
+if|else if
+condition|(
+name|uid
+operator|==
+literal|1
+operator|&&
+name|passwd
+operator|==
+literal|null
+condition|)
+block|{
+name|passwd
+operator|=
+literal|""
+expr_stmt|;
 block|}
 if|if
 condition|(
