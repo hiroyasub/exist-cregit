@@ -942,6 +942,22 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO: workaround for 'null' admin's password. It should be removed after 6 months (@ 10 July 2010)
+if|if
+condition|(
+name|uid
+operator|==
+literal|0
+operator|&&
+name|password
+operator|==
+literal|null
+condition|)
+name|setPassword
+argument_list|(
+literal|""
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|UserImpl
