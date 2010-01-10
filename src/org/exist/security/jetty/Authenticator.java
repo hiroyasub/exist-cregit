@@ -11,7 +11,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|internal
+name|jetty
 package|;
 end_package
 
