@@ -268,7 +268,14 @@ name|URI
 init|=
 literal|"org.exist.jetty.URI"
 decl_stmt|;
-comment|//    public final static String SECURITY_CHECK="/exist_security_check";
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|LOGOUT_REQUEST
+init|=
+literal|"/exist_logout"
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -334,18 +341,57 @@ name|pathInContext
 operator|.
 name|endsWith
 argument_list|(
+name|LOGOUT_REQUEST
+argument_list|)
+condition|)
+block|{
+name|session
+operator|.
+name|setAttribute
+argument_list|(
+name|AUTHENTICATED
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+if|else if
+condition|(
+name|pathInContext
+operator|.
+name|endsWith
+argument_list|(
 name|__J_SECURITY_CHECK
 argument_list|)
 condition|)
 block|{
-comment|// Check the session object for login info.
 name|EXistCredential
 name|cred
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|request
+operator|.
+name|getParameter
+argument_list|(
+name|USERNAME
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Check the session object for login info.
+name|cred
+operator|=
 operator|new
 name|EXistCredential
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|cred
 operator|.
 name|authenticate
@@ -369,6 +415,7 @@ argument_list|,
 name|request
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|nuri
 init|=
@@ -398,6 +445,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|cred
+operator|!=
+literal|null
+operator|&&
 name|cred
 operator|.
 name|user
@@ -534,6 +585,14 @@ name|response
 operator|!=
 literal|null
 condition|)
+block|{
+name|request
+operator|.
+name|setRequestURI
+argument_list|(
+name|nuri
+argument_list|)
+expr_stmt|;
 name|response
 operator|.
 name|sendError
@@ -543,6 +602,7 @@ operator|.
 name|SC_FORBIDDEN
 argument_list|)
 expr_stmt|;
+block|}
 comment|//                } else {
 comment|//                    if (response != null)
 comment|//                        response.setContentLength(0);
