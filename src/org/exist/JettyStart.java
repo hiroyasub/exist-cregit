@@ -1081,11 +1081,17 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"ERROR: Could not start jetty, port "
+literal|"ERROR: Could not bind to port because "
 operator|+
-name|port
-operator|+
-literal|" is already in use.   "
+operator|(
+operator|(
+name|Exception
+operator|)
+name|t
+operator|)
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|logger
