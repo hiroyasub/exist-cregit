@@ -707,6 +707,9 @@ name|args
 index|[
 literal|1
 index|]
+operator|.
+name|getStringValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 else|else
@@ -910,14 +913,6 @@ block|}
 block|}
 else|else
 block|{
-name|int
-name|idxType
-init|=
-name|nodes
-operator|.
-name|getIndexType
-argument_list|()
-decl_stmt|;
 name|Indexable
 name|indexable
 init|=
