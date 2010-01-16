@@ -10909,31 +10909,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|// check if the move would overwrite a collection
-if|if
-condition|(
-name|getCollection
-argument_list|(
-name|destination
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|append
-argument_list|(
-name|newName
-argument_list|)
-argument_list|)
-operator|!=
-literal|null
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"A resource can not replace an existing collection"
-argument_list|)
-throw|;
 name|DocumentImpl
 name|oldDoc
 init|=
@@ -11688,30 +11663,6 @@ try|try
 block|{
 comment|// check if the move would overwrite a collection
 comment|//TODO : resolve URIs : destination.getURI().resolve(newName)
-if|if
-condition|(
-name|getCollection
-argument_list|(
-name|destination
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|append
-argument_list|(
-name|newName
-argument_list|)
-argument_list|)
-operator|!=
-literal|null
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"A resource can not replace an existing collection"
-argument_list|)
-throw|;
 name|DocumentImpl
 name|oldDoc
 init|=
