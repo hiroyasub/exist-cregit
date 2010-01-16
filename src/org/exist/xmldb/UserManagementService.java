@@ -273,7 +273,7 @@ specifier|public
 name|void
 name|addUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws
@@ -284,7 +284,7 @@ specifier|public
 name|void
 name|updateUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 throws|throws

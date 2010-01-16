@@ -261,10 +261,11 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|// TODO: this should be addUser
 name|void
 name|setUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 function_decl|;
@@ -276,6 +277,20 @@ name|int
 name|getCollectionDefaultPerms
 parameter_list|()
 function_decl|;
+specifier|public
+name|User
+name|authenticate
+parameter_list|(
+name|String
+name|username
+parameter_list|,
+name|Object
+name|credentials
+parameter_list|)
+throws|throws
+name|AuthenticationException
+function_decl|;
+empty_stmt|;
 specifier|public
 name|User
 name|authenticate

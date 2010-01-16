@@ -165,6 +165,29 @@ name|Realm
 name|getRealm
 parameter_list|()
 function_decl|;
+annotation|@
+name|Deprecated
+specifier|public
+name|void
+name|setUID
+parameter_list|(
+name|int
+name|uid
+parameter_list|)
+function_decl|;
+comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
+specifier|public
+name|String
+name|getPassword
+parameter_list|()
+function_decl|;
+annotation|@
+name|Deprecated
+specifier|public
+name|String
+name|getDigestPassword
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

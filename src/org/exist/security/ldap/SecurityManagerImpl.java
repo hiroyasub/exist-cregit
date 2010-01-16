@@ -2914,7 +2914,7 @@ specifier|public
 name|void
 name|setUser
 parameter_list|(
-name|UserImpl
+name|User
 name|user
 parameter_list|)
 block|{
@@ -2928,6 +2928,26 @@ parameter_list|(
 name|Realm
 name|realm
 parameter_list|,
+name|String
+name|username
+parameter_list|,
+name|Object
+name|credentials
+parameter_list|)
+throws|throws
+name|AuthenticationException
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|User
+name|authenticate
+parameter_list|(
 name|String
 name|username
 parameter_list|,
