@@ -464,6 +464,16 @@ throw|;
 block|}
 if|if
 condition|(
+name|passwd
+operator|.
+name|equals
+argument_list|(
+name|user
+operator|.
+name|getDigestPassword
+argument_list|()
+argument_list|)
+operator|||
 name|user
 operator|.
 name|validate
