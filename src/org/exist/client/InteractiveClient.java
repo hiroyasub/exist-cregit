@@ -5167,7 +5167,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 name|mgtService
