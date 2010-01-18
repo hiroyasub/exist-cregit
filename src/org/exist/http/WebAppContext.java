@@ -24,7 +24,7 @@ name|WebAppContext
 extends|extends
 name|org
 operator|.
-name|mortbay
+name|eclipse
 operator|.
 name|jetty
 operator|.
