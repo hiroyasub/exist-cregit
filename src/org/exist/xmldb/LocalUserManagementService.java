@@ -3884,7 +3884,7 @@ literal|null
 return|;
 block|}
 specifier|public
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|String

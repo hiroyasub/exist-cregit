@@ -37,18 +37,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UserImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -292,7 +280,7 @@ name|XMLDBException
 function_decl|;
 comment|/**      *  Get a user record from the database      *      *@param  name                Description of the Parameter      *@return                     The user value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|String

@@ -2365,7 +2365,7 @@ return|;
 block|}
 comment|/** 	 *  Get user information for specified user 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
-name|UserImpl
+name|User
 name|getUser
 parameter_list|(
 name|String
