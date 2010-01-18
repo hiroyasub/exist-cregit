@@ -79,16 +79,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|BindException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|HttpURLConnection
 import|;
 end_import
@@ -110,16 +100,6 @@ operator|.
 name|net
 operator|.
 name|URLEncoder
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -594,11 +574,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|protected
 name|void
 name|setUp
@@ -629,12 +604,6 @@ argument_list|(
 literal|"Starting standalone server..."
 argument_list|)
 expr_stmt|;
-name|String
-index|[]
-name|args
-init|=
-block|{}
-decl_stmt|;
 name|server
 operator|.
 name|run
