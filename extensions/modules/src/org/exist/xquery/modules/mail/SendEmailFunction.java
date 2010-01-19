@@ -473,6 +473,10 @@ begin_comment
 comment|/**  * eXist Mail Module Extension SendEmailFunction  *   * The email sending functionality of the eXist Mail Module Extension that  * allows email to be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam@exist-db.org>  * @author Robert Walpole<robert.walpole@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2009-11-04  * @version 1.4  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
+begin_comment
+comment|/* TODO according to RFC 821, SMTP commands must end with<CR><LF>, Java uses platform native end-of-line characters for .println(...) functions and so this function may have issues on non-Windows platforms */
+end_comment
+
 begin_class
 specifier|public
 class|class
