@@ -694,6 +694,8 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|broker
 operator|.
 name|getResourcesFailsafe
@@ -703,6 +705,15 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+comment|// thrown when the db shuts down. ignore.
+block|}
 name|index
 operator|.
 name|updateStats

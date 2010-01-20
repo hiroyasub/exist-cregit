@@ -4810,6 +4810,11 @@ name|status
 operator|=
 name|SHUTDOWN
 expr_stmt|;
+name|processMonitor
+operator|.
+name|stopRunningJobs
+argument_list|()
+expr_stmt|;
 name|java
 operator|.
 name|util

@@ -229,6 +229,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|TerminatedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQuery
 import|;
 end_import
@@ -759,6 +771,8 @@ parameter_list|,
 name|boolean
 name|fullScan
 parameter_list|)
+throws|throws
+name|TerminatedException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -768,6 +782,8 @@ parameter_list|(
 name|BTreeCallback
 name|callback
 parameter_list|)
+throws|throws
+name|TerminatedException
 function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public abstract Collection getCollection(String name); 	 */
 comment|/** 	 * Returns the database collection identified by the specified path. The 	 * path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 */

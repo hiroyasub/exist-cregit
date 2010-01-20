@@ -227,6 +227,18 @@ name|MimeType
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|TerminatedException
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @author wolf  */
 end_comment
@@ -2810,6 +2822,8 @@ name|broker
 argument_list|,
 name|callback
 argument_list|,
+literal|null
+argument_list|,
 name|directAccess
 argument_list|)
 decl_stmt|;
@@ -3227,6 +3241,22 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARN: Check terminated by db."
 argument_list|)
 expr_stmt|;
 block|}

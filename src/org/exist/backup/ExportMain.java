@@ -167,6 +167,18 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|TerminatedException
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -788,6 +800,8 @@ operator|new
 name|Callback
 argument_list|()
 argument_list|,
+literal|null
+argument_list|,
 name|direct
 argument_list|)
 decl_stmt|;
@@ -829,6 +843,26 @@ expr_stmt|;
 name|retval
 operator|=
 literal|2
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"WARN: Export was terminated by db."
+argument_list|)
+expr_stmt|;
+name|retval
+operator|=
+literal|3
 expr_stmt|;
 block|}
 finally|finally

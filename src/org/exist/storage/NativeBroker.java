@@ -10159,6 +10159,8 @@ parameter_list|,
 name|boolean
 name|fullScan
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|Lock
 name|lock
@@ -10279,22 +10281,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|TerminatedException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Exception while reading document data"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 finally|finally
 block|{
 name|lock
@@ -10315,6 +10301,8 @@ parameter_list|(
 name|BTreeCallback
 name|callback
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|Lock
 name|lock
@@ -10408,22 +10396,6 @@ block|}
 catch|catch
 parameter_list|(
 name|BTreeException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Exception while reading document data"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|TerminatedException
 name|e
 parameter_list|)
 block|{

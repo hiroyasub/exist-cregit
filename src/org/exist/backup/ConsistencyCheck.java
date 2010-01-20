@@ -485,6 +485,8 @@ parameter_list|(
 name|ProgressCallback
 name|callback
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|List
 argument_list|<
@@ -519,6 +521,8 @@ parameter_list|(
 name|ProgressCallback
 name|callback
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|UserImpl
 operator|.
@@ -594,6 +598,8 @@ parameter_list|,
 name|ProgressCallback
 name|callback
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|XmldbURI
 name|uri
@@ -816,6 +822,8 @@ specifier|public
 name|int
 name|getDocumentCount
 parameter_list|()
+throws|throws
+name|TerminatedException
 block|{
 if|if
 condition|(
@@ -889,6 +897,8 @@ parameter_list|(
 name|ProgressCallback
 name|progress
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|List
 argument_list|<
@@ -928,6 +938,8 @@ name|ErrorReport
 argument_list|>
 name|errorList
 parameter_list|)
+throws|throws
+name|TerminatedException
 block|{
 name|UserImpl
 operator|.
@@ -2089,6 +2101,16 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+name|TerminatedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|Exception
 name|e
 parameter_list|)
@@ -2194,6 +2216,8 @@ parameter_list|,
 name|int
 name|count
 parameter_list|)
+throws|throws
+name|TerminatedException
 function_decl|;
 specifier|public
 name|void
@@ -2202,6 +2226,8 @@ parameter_list|(
 name|String
 name|path
 parameter_list|)
+throws|throws
+name|TerminatedException
 function_decl|;
 specifier|public
 name|void
