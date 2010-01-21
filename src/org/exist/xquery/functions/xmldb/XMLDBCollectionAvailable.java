@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -199,73 +199,6 @@ name|signatures
 index|[]
 init|=
 block|{
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"collection-exists"
-argument_list|,
-name|XMLDBModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|XMLDBModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Returns true() if the collection "
-operator|+
-literal|"$collection exists and is available, otherwise false()."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"collection-path"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The collection path"
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"true() if the collection exists and is available, false() otherwise"
-argument_list|)
-argument_list|,
-literal|true
-argument_list|,
-literal|"Use "
-operator|+
-name|XMLDBModule
-operator|.
-name|PREFIX
-operator|+
-literal|":collection-available() instead."
-argument_list|)
-block|,
 comment|//Just to mimic doc-available()
 operator|new
 name|FunctionSignature
@@ -286,7 +219,11 @@ argument_list|)
 argument_list|,
 literal|"Returns true() if the collection "
 operator|+
-literal|"$collection exists and is available, otherwise false()."
+literal|"$collection-uri exists and is available, otherwise false(). "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
 argument_list|,
 operator|new
 name|SequenceType
@@ -295,7 +232,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection-path"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -305,7 +242,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection path"
+literal|"The collection URI"
 argument_list|)
 block|}
 argument_list|,

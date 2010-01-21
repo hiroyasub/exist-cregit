@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * Created on 17.03.2005 - $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for various standard XQuery functions  * @author jens  */
+comment|/** Tests for various standard XQuery functions  * @author jens  * @author perig  * @author wolf  * @author adam  * @author dannes  * @author dmitriy  * @author ljo  * @author chrisdutz  * @author harrah  * @author gvalentino  * @author jmvanel   */
 end_comment
 
 begin_class
@@ -265,6 +265,14 @@ name|Database
 name|database
 init|=
 literal|null
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|ROOT_COLLECTION_URI
+init|=
+literal|"xmldb:exist:///db"
 decl_stmt|;
 specifier|public
 specifier|static
@@ -5102,14 +5110,14 @@ comment|//ensure the test collection is removed and call collection-available,
 comment|//which should return false, no exception thrown
 specifier|public
 name|void
-name|testCollectionExists1
+name|testCollectionAvailable1
 parameter_list|()
 block|{
 comment|//remove the test collection if it already exists
 name|String
 name|collectionName
 init|=
-literal|"testCollectionExists"
+literal|"testCollectionAvailable"
 decl_stmt|;
 name|String
 name|collectionPath
@@ -5117,6 +5125,15 @@ init|=
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|collectionName
+decl_stmt|;
+name|String
+name|collectionURI
+init|=
+name|ROOT_COLLECTION_URI
 operator|+
 literal|"/"
 operator|+
@@ -5194,9 +5211,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|runCollectionExistsTest
+name|runCollectionAvailableTest
 argument_list|(
 name|collectionPath
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|runCollectionAvailableTest
+argument_list|(
+name|collectionURI
 argument_list|,
 literal|false
 argument_list|)
@@ -5206,14 +5230,14 @@ comment|//create a collection and call collection-available, which should return
 comment|//no exception thrown
 specifier|public
 name|void
-name|testCollectionExists2
+name|testCollectionAvailable2
 parameter_list|()
 block|{
 comment|//add the test collection
 name|String
 name|collectionName
 init|=
-literal|"testCollectionExists"
+literal|"testCollectionAvailable"
 decl_stmt|;
 name|String
 name|collectionPath
@@ -5221,6 +5245,15 @@ init|=
 name|DBBroker
 operator|.
 name|ROOT_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|collectionName
+decl_stmt|;
+name|String
+name|collectionURI
+init|=
+name|ROOT_COLLECTION_URI
 operator|+
 literal|"/"
 operator|+
@@ -5298,9 +5331,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|runCollectionExistsTest
+name|runCollectionAvailableTest
 argument_list|(
 name|collectionPath
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|runCollectionAvailableTest
+argument_list|(
+name|collectionURI
 argument_list|,
 literal|true
 argument_list|)
@@ -5308,7 +5348,7 @@ expr_stmt|;
 block|}
 specifier|private
 name|void
-name|runCollectionExistsTest
+name|runCollectionAvailableTest
 parameter_list|(
 name|String
 name|collectionPath
@@ -5321,12 +5361,12 @@ comment|//collection-available should not throw an exception and should return e
 name|String
 name|importXMLDB
 init|=
-literal|"import module namespace xmldb=\"http://exist-db.org/xquery/xmldb\";"
+literal|"import module namespace xdb=\"http://exist-db.org/xquery/xmldb\";\n"
 decl_stmt|;
 name|String
-name|collectionExists
+name|collectionAvailable
 init|=
-literal|"xmldb:collection-available('"
+literal|"xdb:collection-available('"
 operator|+
 name|collectionPath
 operator|+
@@ -5337,7 +5377,7 @@ name|query
 init|=
 name|importXMLDB
 operator|+
-name|collectionExists
+name|collectionAvailable
 decl_stmt|;
 try|try
 block|{
@@ -5425,7 +5465,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"Error calling xmldb:collection-available:"
+literal|"Error calling xdb:collection-available:"
 argument_list|)
 expr_stmt|;
 name|xe
