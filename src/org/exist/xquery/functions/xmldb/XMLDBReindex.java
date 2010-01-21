@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -35,18 +35,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|QName
@@ -62,6 +50,18 @@ operator|.
 name|security
 operator|.
 name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|IndexQueryService
 import|;
 end_import
 
@@ -221,6 +221,34 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Reindex a collection in the database.  *   * @author dizzzz  * @author ljo  *  */
 end_comment
@@ -230,7 +258,7 @@ specifier|public
 class|class
 name|XMLDBReindex
 extends|extends
-name|BasicFunction
+name|XMLDBAbstractCollectionManipulator
 block|{
 specifier|protected
 specifier|static
@@ -270,8 +298,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-comment|// yes, only a path not an uri /ljo
-literal|"Reindex collection $collection-path. "
+literal|"Reindex collection $collection-uri. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
+operator|+
+literal|" "
 operator|+
 name|XMLDBModule
 operator|.
@@ -284,7 +317,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"collection-path"
+literal|"collection-uri"
 argument_list|,
 name|Type
 operator|.
@@ -294,7 +327,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The collection path"
+literal|"The collection URI"
 argument_list|)
 block|}
 argument_list|,
@@ -326,13 +359,18 @@ argument_list|(
 name|context
 argument_list|,
 name|signature
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
 specifier|public
 name|Sequence
-name|eval
+name|evalWithCollection
 parameter_list|(
+name|Collection
+name|collection
+parameter_list|,
 name|Sequence
 index|[]
 name|args
@@ -343,17 +381,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// this is "/db"
-name|String
-name|ROOTCOLLECTION
-init|=
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-operator|.
-name|toString
-argument_list|()
-decl_stmt|;
 comment|// Check for DBA user
 if|if
 condition|(
@@ -390,72 +417,10 @@ operator|.
 name|FALSE
 return|;
 block|}
-comment|// Get collection path
-name|String
-name|collectionArg
-init|=
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
-comment|// Collection should start with /db
-if|if
-condition|(
-operator|!
-name|collectionArg
-operator|.
-name|startsWith
-argument_list|(
-name|ROOTCOLLECTION
-argument_list|)
-condition|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Collection should start with "
-operator|+
-name|ROOTCOLLECTION
-argument_list|)
-expr_stmt|;
-return|return
-name|BooleanValue
-operator|.
-name|FALSE
-return|;
-block|}
 comment|// Check if collection does exist
-name|XmldbURI
-name|colName
-init|=
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-name|collectionArg
-argument_list|)
-decl_stmt|;
-name|Collection
-name|coll
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getCollection
-argument_list|(
-name|colName
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|coll
+name|collection
 operator|==
 literal|null
 condition|)
@@ -466,9 +431,12 @@ name|error
 argument_list|(
 literal|"Collection "
 operator|+
-name|colName
+name|args
+index|[
+literal|0
+index|]
 operator|.
-name|toString
+name|getStringValue
 argument_list|()
 operator|+
 literal|" does not exist."
@@ -483,31 +451,40 @@ block|}
 comment|// Reindex
 try|try
 block|{
-name|context
+name|IndexQueryService
+name|iqs
+init|=
+operator|(
+name|IndexQueryService
+operator|)
+name|collection
 operator|.
-name|getBroker
-argument_list|()
+name|getService
+argument_list|(
+literal|"IndexQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|iqs
 operator|.
 name|reindexCollection
-argument_list|(
-name|colName
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|PermissionDeniedException
-name|ex
+name|XMLDBException
+name|xe
 parameter_list|)
 block|{
 name|logger
 operator|.
 name|error
 argument_list|(
-name|ex
-operator|.
-name|getMessage
-argument_list|()
+literal|"Unable to reindex collection"
+argument_list|,
+name|xe
 argument_list|)
 expr_stmt|;
 return|return
