@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -402,6 +402,12 @@ literal|"read the collection $collection-uri, using the credentials "
 operator|+
 literal|"$user-id and $password. "
 operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
+operator|+
+literal|" "
+operator|+
 literal|"It returns true if the authentication succeeds, false otherwise."
 argument_list|,
 operator|new
@@ -501,6 +507,12 @@ literal|"Login the user, $user-id, and set it as the owner "
 operator|+
 literal|"of the currently executing XQuery. "
 operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
+operator|+
+literal|" "
+operator|+
 literal|"It returns true if the authentication succeeds, false otherwise. "
 operator|+
 literal|"If called from a HTTP context the login is cached for the "
@@ -599,6 +611,12 @@ argument_list|,
 literal|"Login the user, $user-id, and set it as the owner "
 operator|+
 literal|"of the currently executing XQuery. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
+operator|+
+literal|" "
 operator|+
 literal|"It returns true() if the authentication succeeds, "
 operator|+
