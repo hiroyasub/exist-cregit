@@ -3682,7 +3682,9 @@ operator|<
 literal|0
 condition|)
 return|return
-literal|null
+name|NodeSet
+operator|.
+name|EMPTY_SET
 return|;
 comment|//BUG: can't be null, make trouble @LocationStep line 388 -shabanovd
 comment|// do a binary search to pick some node in the range of valid
