@@ -8340,7 +8340,7 @@ operator|.
 name|getNodeId
 argument_list|()
 operator|+
-literal|" could not be found. Giving up."
+literal|" could not be found. Giving up. This is usually not an error."
 argument_list|)
 expr_stmt|;
 return|return

@@ -17472,7 +17472,7 @@ literal|"Node "
 operator|+
 name|nodeId
 operator|+
-literal|" not found"
+literal|" not found. This is usually not an error."
 argument_list|)
 expr_stmt|;
 return|return
