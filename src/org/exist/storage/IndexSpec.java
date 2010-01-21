@@ -532,21 +532,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Unable to process index configuration element :"
-operator|+
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|// configure custom indexes, but not if broker is null (which means we are reading
