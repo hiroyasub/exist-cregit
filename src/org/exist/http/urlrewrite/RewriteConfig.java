@@ -863,7 +863,7 @@ name|get
 argument_list|(
 name|urlRewrite
 operator|.
-name|user
+name|defaultUser
 argument_list|)
 expr_stmt|;
 name|doc
