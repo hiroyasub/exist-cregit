@@ -1018,6 +1018,15 @@ name|e
 parameter_list|)
 block|{
 comment|// present error to the user
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"OpenIDException"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
