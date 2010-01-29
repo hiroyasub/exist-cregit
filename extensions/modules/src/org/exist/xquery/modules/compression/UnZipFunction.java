@@ -278,7 +278,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped."
+literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped."
 argument_list|)
 block|,
 operator|new
@@ -424,7 +424,22 @@ condition|)
 block|{
 name|Sequence
 name|processCompressedEntryResults
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|entry
+operator|.
+name|getMethod
+argument_list|()
+operator|==
+name|ZipEntry
+operator|.
+name|STORED
+condition|)
+block|{
+block|}
+name|processCompressedEntryResults
+operator|=
 name|processCompressedEntry
 argument_list|(
 name|entry
@@ -443,7 +458,7 @@ name|filterParam
 argument_list|,
 name|storeParam
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|results
 operator|.
 name|addAll
