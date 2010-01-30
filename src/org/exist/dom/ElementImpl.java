@@ -4958,6 +4958,13 @@ argument_list|,
 name|ns
 argument_list|)
 decl_stmt|;
+name|attr
+operator|.
+name|setOwnerDocument
+argument_list|(
+name|ownerDocument
+argument_list|)
+expr_stmt|;
 name|map
 operator|.
 name|setNamedItem
