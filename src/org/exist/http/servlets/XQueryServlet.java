@@ -2328,19 +2328,19 @@ name|xdebug
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
 argument_list|(
 name|Debuggee
 operator|.
-name|PREFIX
-operator|+
-literal|":session"
+name|SESSION
 argument_list|,
 name|xdebug
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//if have session
@@ -2366,9 +2366,7 @@ name|declareVariable
 argument_list|(
 name|Debuggee
 operator|.
-name|PREFIX
-operator|+
-literal|":session"
+name|SESSION
 argument_list|,
 name|xdebug
 argument_list|)
@@ -2433,9 +2431,7 @@ name|declareVariable
 argument_list|(
 name|Debuggee
 operator|.
-name|PREFIX
-operator|+
-literal|":session"
+name|SESSION
 argument_list|,
 name|cookies
 index|[
