@@ -1780,13 +1780,6 @@ argument_list|()
 decl_stmt|;
 name|context
 operator|.
-name|setDebugMode
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
 name|setDebuggeeJoint
 argument_list|(
 literal|null

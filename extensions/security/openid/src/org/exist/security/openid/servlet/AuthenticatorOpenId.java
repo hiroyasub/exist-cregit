@@ -649,6 +649,7 @@ name|Subject
 argument_list|()
 decl_stmt|;
 comment|//TODO: hardcoded to jetty - rewrite
+comment|//*******************************************************
 name|DefaultIdentityService
 name|_identityService
 init|=
@@ -711,6 +712,7 @@ argument_list|,
 name|cached
 argument_list|)
 expr_stmt|;
+comment|//*******************************************************
 name|resp
 operator|.
 name|sendRedirect

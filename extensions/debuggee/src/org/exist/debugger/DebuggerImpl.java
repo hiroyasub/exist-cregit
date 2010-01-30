@@ -397,12 +397,7 @@ name|currentTransactionId
 init|=
 literal|1
 decl_stmt|;
-specifier|private
-name|String
-name|lastStatus
-init|=
-name|FIRST_RUN
-decl_stmt|;
+comment|//	private String lastStatus = FIRST_RUN;
 specifier|public
 name|DebuggerImpl
 parameter_list|()
@@ -976,24 +971,8 @@ argument_list|(
 name|response
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|response
-operator|.
-name|hasAttribute
-argument_list|(
-literal|"status"
-argument_list|)
-condition|)
-name|lastStatus
-operator|=
-name|response
-operator|.
-name|getAttribute
-argument_list|(
-literal|"status"
-argument_list|)
-expr_stmt|;
+comment|//		if (response.hasAttribute("status"))
+comment|//			lastStatus = response.getAttribute("status");
 comment|//it should be commands map, this implementation is dangerous
 comment|//rethink!!!
 name|responses
@@ -1707,9 +1686,7 @@ operator|.
 name|toDebuggee
 argument_list|()
 expr_stmt|;
-name|Response
-name|response
-init|=
+comment|//		Response response =
 name|getResponse
 argument_list|(
 name|command
@@ -1717,7 +1694,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//XXX: handle error
 return|return
 literal|true
@@ -1757,9 +1734,7 @@ operator|.
 name|toDebuggee
 argument_list|()
 expr_stmt|;
-name|Response
-name|response
-init|=
+comment|//		Response response =
 name|getResponse
 argument_list|(
 name|command
@@ -1767,7 +1742,7 @@ operator|.
 name|getTransactionId
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//XXX: handle error
 return|return
 literal|true
