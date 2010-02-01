@@ -298,12 +298,7 @@ operator|.
 name|ITEM
 case|:
 return|return
-operator|new
-name|DateValue
-argument_list|(
-name|getStringValue
-argument_list|()
-argument_list|)
+name|this
 return|;
 case|case
 name|Type
