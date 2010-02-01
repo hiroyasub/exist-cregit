@@ -11,9 +11,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
+name|modules
 operator|.
-name|util
+name|context
 package|;
 end_package
 
@@ -289,11 +289,11 @@ name|QName
 argument_list|(
 literal|"get-context-attribute"
 argument_list|,
-name|UtilModule
+name|ContextModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|UtilModule
+name|ContextModule
 operator|.
 name|PREFIX
 argument_list|)
@@ -348,11 +348,11 @@ name|QName
 argument_list|(
 literal|"set-context-attribute"
 argument_list|,
-name|UtilModule
+name|ContextModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|UtilModule
+name|ContextModule
 operator|.
 name|PREFIX
 argument_list|)
