@@ -1307,6 +1307,16 @@ argument_list|(
 literal|"Shutdown"
 argument_list|)
 expr_stmt|;
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|removeShutdownHook
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|BrokerPool
 operator|.
 name|stopAll
