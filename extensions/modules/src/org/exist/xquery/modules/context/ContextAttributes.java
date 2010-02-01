@@ -287,7 +287,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-context-attribute"
+literal|"get-attribute"
 argument_list|,
 name|ContextModule
 operator|.
@@ -346,7 +346,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"set-context-attribute"
+literal|"set-attribute"
 argument_list|,
 name|ContextModule
 operator|.
@@ -581,7 +581,7 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"get-context-attribute"
+literal|"get-attribute"
 argument_list|)
 condition|)
 block|{
