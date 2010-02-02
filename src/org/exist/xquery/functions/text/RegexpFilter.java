@@ -485,6 +485,122 @@ operator|+
 literal|"following items are the matched groups."
 argument_list|)
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"groups-regex"
+argument_list|,
+name|TextModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|TextModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Tries to match the string in $text to the regular expression. "
+operator|+
+literal|"Returns an empty sequence if the string does not match, or a sequence whose "
+operator|+
+literal|"first item is the entire string, and whose following items are the matched groups. "
+operator|+
+literal|"Note:\n\n"
+operator|+
+literal|"The groups-regex() variants of the groups() functions are identical except that they avoid the translation of the specified regular expression from XPath2 to Java syntax. "
+operator|+
+literal|"That is, the regular expression is evaluated as is, and must be valid according to Java regular expression syntax, rather than the more restrictive XPath2 syntax."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+name|TEXT_PARAM
+block|,
+name|REGEX_PARAM
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"an empty sequence if the string does not match, or a sequence whose "
+operator|+
+literal|"first item is the entire string, and whose following items are the matched groups."
+argument_list|)
+argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"groups-regex"
+argument_list|,
+name|TextModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|TextModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Tries to match the string in $text to the regular expression, using "
+operator|+
+literal|"the flags specified. Returns an empty sequence if the string does "
+operator|+
+literal|"not match, or a sequence whose first item is the entire string, and whose "
+operator|+
+literal|"following items are the matched groups. "
+operator|+
+literal|"Note:\n\n"
+operator|+
+literal|"The groups-regex() variants of the groups() functions are identical except that they avoid the translation of the specified regular expression from XPath2 to Java syntax. "
+operator|+
+literal|"That is, the regular expression is evaluated as is, and must be valid according to Java regular expression syntax, rather than the more restrictive XPath2 syntax."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+name|TEXT_PARAM
+block|,
+name|REGEX_PARAM
+block|,
+name|FLAGS_PARAM
+block|, 				}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"an empty sequence if the string does "
+operator|+
+literal|"not match, or a sequence whose first item is the entire string, and whose "
+operator|+
+literal|"following items are the matched groups."
+argument_list|)
+argument_list|)
 block|}
 decl_stmt|;
 comment|// Very Small cache
@@ -844,7 +960,30 @@ argument_list|()
 decl_stmt|;
 name|String
 name|pattern
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"groups-regex"
+argument_list|)
+condition|)
+block|{
+name|pattern
+operator|=
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|pattern
+operator|=
 name|translateRegexp
 argument_list|(
 name|args
@@ -855,7 +994,8 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 name|int
 name|flags
 init|=
