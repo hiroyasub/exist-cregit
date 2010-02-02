@@ -1743,7 +1743,7 @@ name|response
 operator|.
 name|setContentType
 argument_list|(
-literal|"text/plain;charset="
+literal|"text/plain; charset="
 operator|+
 name|formEncoding
 argument_list|)
@@ -1857,7 +1857,7 @@ operator|)
 condition|)
 name|contentType
 operator|+=
-literal|";charset="
+literal|"; charset="
 operator|+
 name|formEncoding
 expr_stmt|;
