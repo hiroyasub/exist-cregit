@@ -768,8 +768,8 @@ name|contextSet
 operator|.
 name|getParents
 argument_list|(
-name|getExpressionId
-argument_list|()
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 for|for
