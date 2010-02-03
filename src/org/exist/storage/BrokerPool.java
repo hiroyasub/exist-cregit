@@ -2751,10 +2751,8 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
-name|isReadOnly
-operator|=
-name|isReadOnly
-operator|||
+if|if
+condition|(
 operator|!
 name|symbols
 operator|.
@@ -2763,7 +2761,30 @@ argument_list|()
 operator|.
 name|canWrite
 argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Cannot write to "
+operator|+
+name|symbols
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|". Switching to read-only mode."
+argument_list|)
 expr_stmt|;
+name|isReadOnly
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|indexManager
 operator|=
 operator|new

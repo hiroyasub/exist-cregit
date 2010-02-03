@@ -1386,10 +1386,28 @@ name|lock
 operator|==
 literal|null
 condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to acquire a file lock on "
+operator|+
+name|file
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|". Probably another process is holding the lock. Switching to "
+operator|+
+literal|"read-only mode."
+argument_list|)
+expr_stmt|;
 name|readOnly
 operator|=
 literal|true
 expr_stmt|;
+block|}
 comment|//TODO : who will release the lock ? -pb
 block|}
 catch|catch
@@ -1418,6 +1436,15 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Failed to open "
+operator|+
+name|file
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" for writing. Switching to read-only mode."
+argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
@@ -1425,6 +1452,20 @@ block|}
 block|}
 else|else
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Cannot write to file "
+operator|+
+name|file
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|". Switching to read-only mode."
+argument_list|)
+expr_stmt|;
 name|readOnly
 operator|=
 literal|true
