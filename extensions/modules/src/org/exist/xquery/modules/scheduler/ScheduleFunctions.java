@@ -594,7 +594,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The number of times to repeat the job after the initial execution"
+literal|"The number of times to repeat the job after the initial execution. A value of -1 means repeat forever."
 argument_list|)
 block|}
 argument_list|,
@@ -969,7 +969,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"Number of times to repeat the job after the initial execution"
+literal|"Number of times to repeat the job after the initial execution. A value of -1 means repeat forever."
 argument_list|)
 block|}
 argument_list|,
