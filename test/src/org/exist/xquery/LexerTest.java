@@ -423,7 +423,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// parse the xml source
 name|broker
 operator|=
 name|pool
@@ -433,6 +432,9 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+comment|// parse the xml source
 name|transact
 operator|=
 name|pool
@@ -740,6 +742,27 @@ block|}
 catch|catch
 parameter_list|(
 name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
 name|e
 parameter_list|)
 block|{

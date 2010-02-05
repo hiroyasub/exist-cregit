@@ -211,6 +211,7 @@ argument_list|(
 name|MY_TEST_INSTANCE
 argument_list|)
 decl_stmt|;
+comment|//BUG: need to be released!
 name|broker
 operator|=
 name|brokerPool
