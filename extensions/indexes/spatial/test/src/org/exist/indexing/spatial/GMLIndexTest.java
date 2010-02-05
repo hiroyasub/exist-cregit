@@ -1198,6 +1198,12 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|pool
+operator|!=
+literal|null
+condition|)
 name|pool
 operator|.
 name|release
