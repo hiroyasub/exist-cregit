@@ -815,6 +815,7 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+comment|//BUG: need to be released!!! where???
 name|broker
 operator|=
 name|pool
