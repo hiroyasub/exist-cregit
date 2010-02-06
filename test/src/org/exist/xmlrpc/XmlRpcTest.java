@@ -21,18 +21,6 @@ name|apache
 operator|.
 name|xmlrpc
 operator|.
-name|XmlRpcConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
 name|XmlRpcException
 import|;
 end_import
@@ -48,20 +36,6 @@ operator|.
 name|client
 operator|.
 name|XmlRpcClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
-name|client
-operator|.
-name|XmlRpcClientConfig
 import|;
 end_import
 
@@ -224,34 +198,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
 import|;
 end_import
 
@@ -483,44 +429,17 @@ name|initServer
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|stopServer
-parameter_list|()
-block|{
-comment|//waiting to finish 10s
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|10
-operator|*
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e1
-parameter_list|)
-block|{
-block|}
-name|server
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|server
-operator|=
-literal|null
-expr_stmt|;
-block|}
+comment|//    @AfterClass
+comment|//    public static void stopServer() {
+comment|//    	//waiting to finish 10s
+comment|//    	try {
+comment|//			Thread.sleep(10 * 1000);
+comment|//		} catch (InterruptedException e1) {
+comment|//		}
+comment|//
+comment|//		server.shutdown();
+comment|//        server = null;
+comment|//    }
 specifier|protected
 name|void
 name|tearDown
@@ -603,11 +522,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|private
 specifier|static
 name|void

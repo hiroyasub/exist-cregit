@@ -993,15 +993,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|server
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|server
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 end_class
