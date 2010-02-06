@@ -1570,21 +1570,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-try|try
-block|{
-name|wait
-argument_list|(
-literal|2000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-block|}
 block|}
 comment|/**      * This class gets called after the database received a shutdown request.      *      * @author wolf      */
 specifier|private
