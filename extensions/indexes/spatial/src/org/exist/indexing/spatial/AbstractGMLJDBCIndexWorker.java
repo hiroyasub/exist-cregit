@@ -1518,6 +1518,7 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
+comment|// CCE org.exist.dom.DocumentImpl
 if|if
 condition|(
 name|GML_NS
