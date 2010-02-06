@@ -1321,6 +1321,19 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|server
+operator|.
+name|isStopping
+argument_list|()
+operator|||
+name|server
+operator|.
+name|isStopped
+argument_list|()
+condition|)
+return|return;
 try|try
 block|{
 name|server
@@ -1336,28 +1349,11 @@ name|e
 parameter_list|)
 block|{
 block|}
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
+comment|//                        try {
+comment|//                            Thread.sleep(1000);
+comment|//                        } catch (Exception e) {
+comment|//                            e.printStackTrace();
+comment|//                        }
 block|}
 block|}
 expr_stmt|;
@@ -1574,6 +1570,21 @@ parameter_list|)
 block|{
 block|}
 block|}
+try|try
+block|{
+name|wait
+argument_list|(
+literal|2000
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
+block|}
 block|}
 comment|/**      * This class gets called after the database received a shutdown request.      *      * @author wolf      */
 specifier|private
@@ -1694,13 +1705,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 argument_list|,

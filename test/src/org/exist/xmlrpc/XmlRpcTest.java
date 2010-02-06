@@ -429,17 +429,24 @@ name|initServer
 argument_list|()
 expr_stmt|;
 block|}
-comment|//    @AfterClass
-comment|//    public static void stopServer() {
-comment|//    	//waiting to finish 10s
-comment|//    	try {
-comment|//			Thread.sleep(10 * 1000);
-comment|//		} catch (InterruptedException e1) {
-comment|//		}
-comment|//
-comment|//		server.shutdown();
-comment|//        server = null;
-comment|//    }
+annotation|@
+name|AfterClass
+specifier|public
+specifier|static
+name|void
+name|stopServer
+parameter_list|()
+block|{
+name|server
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+name|server
+operator|=
+literal|null
+expr_stmt|;
+block|}
 specifier|protected
 name|void
 name|tearDown
