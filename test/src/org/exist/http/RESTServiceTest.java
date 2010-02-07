@@ -3556,7 +3556,7 @@ literal|"Server returned content type "
 operator|+
 name|contentType
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|contentType
 argument_list|)

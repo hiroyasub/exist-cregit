@@ -32,12 +32,24 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Assert
 operator|.
-name|TestCase
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|*
 import|;
 end_import
 
@@ -49,62 +61,16 @@ begin_class
 specifier|public
 class|class
 name|MimeTableTest
-extends|extends
-name|TestCase
 block|{
+annotation|@
+name|After
 specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|MimeTableTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|protected
 name|void
 name|tearDown
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|tearDown
-argument_list|()
-expr_stmt|;
 comment|// MimeTable is a singleton
 comment|// We use reflection here to null-out the 'instance' field
 comment|// so subsequent tests that call getInstance() will re-load
@@ -142,6 +108,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * This test checks the behavior of MimeTable.java 	 * with respect to the distribution version of mime-types.xml. 	 * The distribution version of mime-types.xml does not use the 	 * default mime type capability. 	 */
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testDistributionVersionOfMimeTypesXml
@@ -229,7 +197,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.
@@ -369,6 +337,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * This test checks the behavior of the mime-types@default-resource-type attribute 	 * The test config assigns all resources to text/xml 	 */
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testWithDefaultResourceTypeFeature
@@ -645,6 +615,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * This test checks the behavior of the mime-types@default-mime-type attribute 	 * The test config assigns all resources to foo/bar (BINARY) 	 */
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testWithDefaultMimeTypeFeature
