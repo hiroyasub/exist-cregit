@@ -513,6 +513,19 @@ literal|"'"
 operator|)
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|type
+operator|+
+literal|": "
+operator|+
+name|key
+return|;
+block|}
 block|}
 end_class
 
