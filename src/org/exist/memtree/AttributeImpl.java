@@ -243,22 +243,12 @@ name|getQName
 parameter_list|()
 block|{
 return|return
-operator|(
-name|QName
-operator|)
-name|document
-operator|.
-name|namePool
-operator|.
-name|get
-argument_list|(
 name|document
 operator|.
 name|attrName
 index|[
 name|nodeNumber
 index|]
-argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#getName() 	 */
