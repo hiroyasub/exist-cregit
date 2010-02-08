@@ -86,7 +86,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//Logger
-comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the file handle or<code>null</code>      */
+comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developer know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the file handle or<code>null</code>      */
 specifier|public
 specifier|static
 name|File
@@ -117,7 +117,7 @@ name|existHome
 init|=
 literal|null
 decl_stmt|;
-comment|// If eXist was allready configured, then return
+comment|// If eXist was already configured, then return
 comment|// the existHome of this instance.
 try|try
 block|{
@@ -179,7 +179,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Could not retieve instance of brokerpool: "
+literal|"Could not retrieve instance of brokerpool: "
 operator|+
 name|e
 operator|.
