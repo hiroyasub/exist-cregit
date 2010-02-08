@@ -57,7 +57,7 @@ init|=
 operator|new
 name|MimeType
 argument_list|(
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|XML
 argument_list|)
@@ -73,7 +73,7 @@ init|=
 operator|new
 name|MimeType
 argument_list|(
-literal|"text/xml; charset=UTF-8"
+literal|"application/xml; charset=UTF-8"
 argument_list|,
 name|XML
 argument_list|)

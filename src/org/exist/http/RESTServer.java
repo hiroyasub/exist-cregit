@@ -9704,7 +9704,7 @@ condition|)
 block|{
 name|mimeType
 operator|=
-literal|"text/xml"
+literal|"application/xml"
 expr_stmt|;
 block|}
 name|response

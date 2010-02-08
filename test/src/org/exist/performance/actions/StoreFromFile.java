@@ -264,7 +264,7 @@ specifier|private
 name|String
 name|mimeType
 init|=
-literal|"text/xml"
+literal|"application/xml"
 decl_stmt|;
 specifier|private
 name|boolean

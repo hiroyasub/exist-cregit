@@ -3121,7 +3121,7 @@ expr_stmt|;
 name|String
 name|mimeType
 init|=
-literal|"text/xml"
+literal|"application/xml"
 decl_stmt|;
 if|if
 condition|(

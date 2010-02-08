@@ -336,7 +336,7 @@ name|mt
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * This test checks the behavior of the mime-types@default-resource-type attribute 	 * The test config assigns all resources to text/xml 	 */
+comment|/** 	 * This test checks the behavior of the mime-types@default-resource-type attribute 	 * The test config assigns all resources to application/xml 	 */
 annotation|@
 name|Test
 specifier|public
@@ -423,7 +423,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.
@@ -465,7 +465,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.
@@ -507,7 +507,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.
@@ -549,7 +549,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.
@@ -591,7 +591,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect mime type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|mt
 operator|.

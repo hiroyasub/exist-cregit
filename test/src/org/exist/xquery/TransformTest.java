@@ -431,7 +431,7 @@ operator|)
 operator|.
 name|setMimeType
 argument_list|(
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|c

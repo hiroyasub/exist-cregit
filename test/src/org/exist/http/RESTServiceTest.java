@@ -1560,7 +1560,7 @@ name|setRequestProperty
 argument_list|(
 literal|"ContentType"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|Writer
@@ -1765,7 +1765,7 @@ name|setRequestProperty
 argument_list|(
 literal|"ContentType"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|Writer
@@ -1881,7 +1881,7 @@ name|setRequestProperty
 argument_list|(
 literal|"ContentType"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|Writer
@@ -2006,7 +2006,7 @@ name|setRequestProperty
 argument_list|(
 literal|"ContentType"
 argument_list|,
-literal|"text/xml; charset=UTF-8"
+literal|"application/xml; charset=UTF-8"
 argument_list|)
 expr_stmt|;
 name|Writer
@@ -2863,7 +2863,7 @@ literal|"Server returned content type "
 operator|+
 name|contentType
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|contentType
 argument_list|)
@@ -3357,7 +3357,7 @@ literal|"Server returned content type "
 operator|+
 name|contentType
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|,
 name|contentType
 argument_list|)
@@ -3645,7 +3645,7 @@ name|setRequestProperty
 argument_list|(
 literal|"Content-Type"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|Writer
