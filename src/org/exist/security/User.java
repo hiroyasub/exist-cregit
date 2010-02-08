@@ -188,6 +188,25 @@ name|String
 name|getDigestPassword
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|setAttribute
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|Object
+name|value
+parameter_list|)
+function_decl|;
+specifier|public
+name|Object
+name|getAttribute
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
