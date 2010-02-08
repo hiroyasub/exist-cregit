@@ -3824,7 +3824,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// possible format contentType: text/xml; charset=UTF-8
+comment|// possible format contentType: application/xml; charset=UTF-8
 if|if
 condition|(
 name|contentType

@@ -298,7 +298,7 @@ literal|"let $docName := concat(util:hash($moduleURI, 'MD5'), '.xml')\n"
 operator|+
 literal|"return\n"
 operator|+
-literal|"   xdb:store($collection, $docName, $xml, 'text/xml')"
+literal|"   xdb:store($collection, $docName, $xml, 'application/xml')"
 decl_stmt|;
 specifier|private
 name|String

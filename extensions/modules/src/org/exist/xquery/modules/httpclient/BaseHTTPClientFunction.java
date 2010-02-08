@@ -786,7 +786,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Parses header parameters and sets them on the Request     *      * @param method The Http Method to set the request headers on     * @param headers The headers node e.g.<headers><header name="Content-Type" value="text/xml"/></headers>     */
+comment|/**     * Parses header parameters and sets them on the Request     *      * @param method The Http Method to set the request headers on     * @param headers The headers node e.g.<headers><header name="Content-Type" value="application/xml"/></headers>     */
 specifier|protected
 name|void
 name|setHeaders

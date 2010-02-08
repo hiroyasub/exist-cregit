@@ -781,7 +781,7 @@ name|ByteArrayRequestEntity
 argument_list|(
 name|reqPayload
 argument_list|,
-literal|"text/xml; charset=utf-8"
+literal|"application/xml; charset=utf-8"
 argument_list|)
 expr_stmt|;
 block|}

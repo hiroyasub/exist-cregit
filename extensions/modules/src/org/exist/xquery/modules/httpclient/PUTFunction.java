@@ -562,7 +562,7 @@ operator|.
 name|toByteArray
 argument_list|()
 argument_list|,
-literal|"text/xml; charset=utf-8"
+literal|"application/xml; charset=utf-8"
 argument_list|)
 decl_stmt|;
 name|put

@@ -263,7 +263,7 @@ name|setRequestProperty
 argument_list|(
 literal|"ContentType"
 argument_list|,
-literal|"text/xml"
+literal|"application/xml"
 argument_list|)
 expr_stmt|;
 name|OutputStream
