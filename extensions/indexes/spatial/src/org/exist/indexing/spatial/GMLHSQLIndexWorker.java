@@ -1431,6 +1431,9 @@ name|DocumentImpl
 name|doc
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|it
 init|=
 name|contextSet
@@ -1443,9 +1446,6 @@ argument_list|()
 decl_stmt|;
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
@@ -2756,6 +2756,9 @@ name|DocumentImpl
 name|doc
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|it
 init|=
 name|contextSet
@@ -2768,9 +2771,6 @@ argument_list|()
 decl_stmt|;
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
@@ -3560,6 +3560,9 @@ name|DocumentImpl
 name|doc
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|it
 init|=
 name|contextSet
@@ -3572,9 +3575,6 @@ argument_list|()
 decl_stmt|;
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
