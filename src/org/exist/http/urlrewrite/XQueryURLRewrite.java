@@ -2598,6 +2598,11 @@ name|lookup
 argument_list|(
 name|uri
 argument_list|,
+name|request
+operator|.
+name|getServerName
+argument_list|()
+argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
