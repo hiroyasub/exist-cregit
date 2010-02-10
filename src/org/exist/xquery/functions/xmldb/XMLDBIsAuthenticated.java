@@ -215,7 +215,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
