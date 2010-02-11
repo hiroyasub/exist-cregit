@@ -888,7 +888,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|protected
+specifier|static
+specifier|public
 specifier|final
 name|Collection
 name|createCollection
@@ -949,7 +950,8 @@ return|return
 name|child
 return|;
 block|}
-specifier|protected
+specifier|static
+specifier|public
 specifier|final
 name|Collection
 name|createCollectionPath
