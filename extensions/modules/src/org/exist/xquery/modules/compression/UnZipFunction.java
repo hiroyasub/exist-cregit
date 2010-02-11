@@ -205,6 +205,20 @@ name|ValueSequence
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Extracts files and folders from a Zip file  *  * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
 end_comment
@@ -278,7 +292,15 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. $data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, for example a list of extracted files. If the return type is true() it indicates the entry should be processed and passed to the entry-data function, else the resource is skipped."
+literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. "
+operator|+
+literal|"user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. "
+operator|+
+literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, "
+operator|+
+literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
+operator|+
+literal|"should be processed and passed to the entry-data function, else the resource is skipped."
 argument_list|)
 block|,
 operator|new
@@ -294,7 +316,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"A sequence with additional parameters for filtering function."
+literal|"A sequence with an additional parameters for filtering function."
 argument_list|)
 block|,
 operator|new
@@ -310,7 +332,15 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). $type may be 'resource' or 'folder'. $param is a sequence with additional parameters."
+literal|"A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. "
+operator|+
+literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
+operator|+
+literal|"Or a user defined function wich returns path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. "
+operator|+
+literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
+operator|+
+literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters."
 argument_list|)
 block|,
 operator|new
@@ -326,7 +356,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"A sequence with additional parameters for storing function."
+literal|"A sequence with an additional parameters for storing function."
 argument_list|)
 block|,             }
 argument_list|,
@@ -373,6 +403,8 @@ name|compressedData
 parameter_list|)
 throws|throws
 name|XPathException
+throws|,
+name|XMLDBException
 block|{
 name|ZipInputStream
 name|zis
