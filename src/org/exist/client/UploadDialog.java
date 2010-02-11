@@ -205,6 +205,14 @@ name|UploadDialog
 extends|extends
 name|JFrame
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 name|JTextField
 name|currentFile
 decl_stmt|;

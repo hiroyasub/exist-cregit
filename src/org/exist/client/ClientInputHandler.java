@@ -73,18 +73,6 @@ name|DefaultInputHandler
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|jedit
-operator|.
-name|syntax
-operator|.
-name|InputHandler
-import|;
-end_import
-
 begin_comment
 comment|/**  * A class to extend {@link org.jedit.syntax.DefaultInputHandler} to be a little  * more Mac friendly. This class doesn't pretend to be a robust cross-platform  * implementation of key bindings, but it is an incremental improvement over  * what came before it. To see just how involved cross-platform keyboard  * handling can become, check out<a href="http://jedit.org/">jEdit</a> from  * which the jEdit-syntax libraries were derived many years ago. Ideally, I  * suppose, someone should incorporate jEdit's much more robust solution back  * into eXist, but that's a pretty extensive overhaul.  */
 end_comment
