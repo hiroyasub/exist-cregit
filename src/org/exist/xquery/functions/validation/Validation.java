@@ -23,16 +23,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStream
 import|;
 end_import
@@ -292,7 +282,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   xQuery function for validation of XML instance documents  * using grammars like XSDs and DTDs.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  *   XQuery function for validation of XML instance documents  * using grammars like XSDs and DTDs.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -308,9 +298,9 @@ specifier|final
 name|String
 name|deprecated1
 init|=
-literal|"Use the validation:parse(), "
+literal|"Use the validation:jaxp-parse(), "
 operator|+
-literal|"validation:jaxv() or valation:jing() functions."
+literal|"validation:jaxv() or validation:jing() functions."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -318,9 +308,9 @@ specifier|final
 name|String
 name|deprecated2
 init|=
-literal|"Use the validation:parse-report(), "
+literal|"Use the validation:jaxp-parse-report(), "
 operator|+
-literal|"validation:jaxv-report() or valation:jing-report() functions."
+literal|"validation:jaxv-report() or validation:jing-report() functions."
 decl_stmt|;
 specifier|private
 specifier|static
