@@ -622,6 +622,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|collection
@@ -639,9 +642,6 @@ block|{
 name|XmldbURI
 name|childUri
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
@@ -1837,6 +1837,11 @@ operator|.
 name|COLLECTIONS_DBX_ID
 argument_list|)
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 name|int
 name|collectionId
 init|=

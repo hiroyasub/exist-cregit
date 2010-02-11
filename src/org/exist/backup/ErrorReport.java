@@ -89,6 +89,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|CONFIGURATION_FAILD
+init|=
+literal|7
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 index|[]
 name|ERRCODES
