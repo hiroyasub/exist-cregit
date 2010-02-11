@@ -326,6 +326,10 @@ name|create
 argument_list|(
 literal|"test.xml"
 argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|NodeList
@@ -495,6 +499,10 @@ name|create
 argument_list|(
 literal|"test.xml"
 argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|Element
@@ -864,6 +872,10 @@ name|create
 argument_list|(
 literal|"test.xml"
 argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|Element
@@ -1162,6 +1174,10 @@ name|create
 argument_list|(
 literal|"test.xml"
 argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|Element
