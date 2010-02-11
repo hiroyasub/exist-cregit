@@ -2462,6 +2462,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|collection
@@ -2481,9 +2484,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -2570,6 +2570,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|collection
@@ -2587,9 +2590,6 @@ block|{
 name|XmldbURI
 name|child
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next

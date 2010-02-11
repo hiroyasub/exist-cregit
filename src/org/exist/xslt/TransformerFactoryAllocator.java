@@ -270,6 +270,11 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 name|attributes
 init|=
 operator|(
@@ -286,6 +291,9 @@ name|PROPERTY_TRANSFORMER_ATTRIBUTES
 argument_list|)
 decl_stmt|;
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|attrNames
 init|=
 name|attributes
@@ -304,9 +312,6 @@ block|{
 name|String
 name|name
 init|=
-operator|(
-name|String
-operator|)
 name|attrNames
 operator|.
 name|nextElement

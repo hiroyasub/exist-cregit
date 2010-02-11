@@ -104,6 +104,14 @@ name|CollectionTag
 extends|extends
 name|TagSupport
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -149,6 +157,9 @@ block|{
 try|try
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 name|Class
