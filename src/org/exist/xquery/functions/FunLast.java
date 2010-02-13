@@ -394,6 +394,16 @@ operator|.
 name|getContextSequence
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|inSequence
+operator|==
+literal|null
+condition|)
+name|inSequence
+operator|=
+name|contextSequence
+expr_stmt|;
 name|Sequence
 name|result
 decl_stmt|;
