@@ -149,6 +149,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StructuralIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|DOMIndexer
@@ -976,14 +988,6 @@ specifier|public
 specifier|static
 specifier|final
 name|byte
-name|ELEMENTS_DBX_ID
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|byte
 name|VALUES_DBX_ID
 init|=
 literal|2
@@ -1030,8 +1034,6 @@ name|ALL_STORAGE_FILES
 init|=
 block|{
 name|COLLECTIONS_DBX_ID
-block|,
-name|ELEMENTS_DBX_ID
 block|,
 name|VALUES_DBX_ID
 block|,
@@ -1135,10 +1137,6 @@ name|DOMFile
 name|domDb
 decl_stmt|;
 comment|/** the index processors */
-specifier|protected
-name|NativeElementIndex
-name|elementIndex
-decl_stmt|;
 specifier|protected
 name|NativeValueIndex
 name|valueIndex
@@ -1601,20 +1599,6 @@ operator|.
 name|isReadOnly
 argument_list|()
 expr_stmt|;
-name|elementIndex
-operator|=
-operator|new
-name|NativeElementIndex
-argument_list|(
-name|this
-argument_list|,
-name|ELEMENTS_DBX_ID
-argument_list|,
-name|dataDir
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
 name|valueIndex
 operator|=
 operator|new
@@ -1669,6 +1653,15 @@ throw|;
 block|}
 block|}
 specifier|public
+name|ElementIndex
+name|getElementIndex
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+specifier|public
 name|void
 name|addObserver
 parameter_list|(
@@ -1684,13 +1677,7 @@ name|o
 argument_list|)
 expr_stmt|;
 comment|//        textEngine.addObserver(o);
-name|elementIndex
-operator|.
-name|addObserver
-argument_list|(
-name|o
-argument_list|)
-expr_stmt|;
+comment|//        elementIndex.addObserver(o);
 comment|//TODO : what about other indexes observers ?
 block|}
 specifier|public
@@ -1703,17 +1690,8 @@ operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|elementIndex
-operator|!=
-literal|null
-condition|)
-name|elementIndex
-operator|.
-name|deleteObservers
-argument_list|()
-expr_stmt|;
+comment|//        if (elementIndex != null)
+comment|//            elementIndex.deleteObservers();
 comment|//TODO : what about other indexes observers ?
 comment|//        if (textEngine != null)
 comment|//            textEngine.deleteObservers();
@@ -2489,14 +2467,6 @@ return|return
 name|collectionsDb
 return|;
 case|case
-name|ELEMENTS_DBX_ID
-case|:
-return|return
-name|elementIndex
-operator|.
-name|dbNodes
-return|;
-case|case
 name|VALUES_DBX_ID
 case|:
 return|return
@@ -2666,12 +2636,23 @@ name|indexConfiguration
 return|;
 block|}
 specifier|public
-name|ElementIndex
-name|getElementIndex
+name|StructuralIndex
+name|getStructuralIndex
 parameter_list|()
 block|{
 return|return
-name|elementIndex
+operator|(
+name|StructuralIndex
+operator|)
+name|getIndexController
+argument_list|()
+operator|.
+name|getWorkerByIndexName
+argument_list|(
+name|StructuralIndex
+operator|.
+name|STRUCTURAL_INDEX_ID
+argument_list|)
 return|;
 block|}
 specifier|public
@@ -14836,11 +14817,12 @@ name|ReadOnlyException
 block|{
 if|if
 condition|(
-name|internalAddress
-operator|!=
-name|BFile
+name|StorageAddress
 operator|.
-name|UNKNOWN_ADDRESS
+name|hasAddress
+argument_list|(
+name|internalAddress
+argument_list|)
 condition|)
 name|domDb
 operator|.
@@ -15695,11 +15677,12 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|address
-operator|!=
-name|BFile
+name|StorageAddress
 operator|.
-name|UNKNOWN_ADDRESS
+name|hasAddress
+argument_list|(
+name|address
+argument_list|)
 condition|)
 name|domDb
 operator|.
@@ -15806,22 +15789,8 @@ operator|.
 name|ELEMENT
 argument_list|)
 expr_stmt|;
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|addNode
-argument_list|(
-name|qname
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
+comment|//	    elementIndex.setDocument(doc);
+comment|//	    elementIndex.addNode(qname, p);
 name|GeneralRangeIndexSpec
 name|spec1
 init|=
@@ -15957,22 +15926,8 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|addNode
-argument_list|(
-name|qname
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
+comment|//	    elementIndex.setDocument(doc);
+comment|//	    elementIndex.addNode(qname, p);
 comment|//Strange : does it mean that the node is added 2 times under 2 different identities ?
 name|AttrImpl
 name|attr
@@ -16767,13 +16722,7 @@ name|int
 name|repairMode
 parameter_list|)
 block|{
-name|elementIndex
-operator|.
-name|setInUpdateMode
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+comment|//        elementIndex.setInUpdateMode(true);
 name|nodeProcessor
 operator|.
 name|reset
@@ -17651,14 +17600,16 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
+name|StorageAddress
+operator|.
+name|hasAddress
+argument_list|(
 name|p
 operator|.
 name|getInternalAddress
 argument_list|()
-operator|==
-name|StoredNode
-operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
+argument_list|)
 condition|)
 return|return
 name|objectWith
@@ -18049,20 +18000,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|elementIndex
-operator|=
-operator|new
-name|NativeElementIndex
-argument_list|(
-name|this
-argument_list|,
-name|ELEMENTS_DBX_ID
-argument_list|,
-name|dataDir
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
 name|valueIndex
 operator|=
 operator|new
@@ -19313,49 +19250,12 @@ name|indexType
 argument_list|)
 expr_stmt|;
 comment|//	                    notifyStartElement((ElementImpl)node, currentPath, fullTextIndex);
-if|if
-condition|(
-name|mode
-operator|!=
-name|MODE_REMOVE
-condition|)
-block|{
-name|NodeProxy
-name|p
-init|=
-operator|new
-name|NodeProxy
-argument_list|(
-name|node
-argument_list|)
-decl_stmt|;
-name|p
-operator|.
-name|setIndexType
-argument_list|(
-name|indexType
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|elementIndex
-operator|.
-name|addNode
-argument_list|(
-name|node
-operator|.
-name|getQName
-argument_list|()
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
-block|}
+comment|//                    if (mode != MODE_REMOVE) {
+comment|//                        NodeProxy p = new NodeProxy(node);
+comment|//                        p.setIndexType(indexType);
+comment|//                        elementIndex.setDocument(doc);
+comment|//                        elementIndex.addNode(node.getQName(), p);
+comment|//                    }
 break|break;
 block|}
 case|case
@@ -19591,13 +19491,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//notifyStoreAttribute((AttrImpl)node, currentPath, NativeValueIndex.WITH_PATH, null);
-name|elementIndex
-operator|.
-name|setDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
+comment|//                    elementIndex.setDocument(doc);
 specifier|final
 name|NodeProxy
 name|tempProxy
@@ -19631,21 +19525,8 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|mode
-operator|!=
-name|MODE_REMOVE
-condition|)
-name|elementIndex
-operator|.
-name|addNode
-argument_list|(
-name|qname
-argument_list|,
-name|tempProxy
-argument_list|)
-expr_stmt|;
+comment|//                    if (mode != MODE_REMOVE)
+comment|//                        elementIndex.addNode(qname, tempProxy);
 name|AttrImpl
 name|attr
 init|=
@@ -19654,6 +19535,13 @@ name|AttrImpl
 operator|)
 name|node
 decl_stmt|;
+name|attr
+operator|.
+name|setIndexType
+argument_list|(
+name|indexType
+argument_list|)
+expr_stmt|;
 switch|switch
 condition|(
 name|attr

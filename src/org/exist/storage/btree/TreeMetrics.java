@@ -62,10 +62,23 @@ name|dataPages
 init|=
 literal|0
 decl_stmt|;
+specifier|private
+name|String
+name|btreeName
+decl_stmt|;
 specifier|public
 name|TreeMetrics
-parameter_list|()
+parameter_list|(
+name|String
+name|name
+parameter_list|)
 block|{
+name|this
+operator|.
+name|btreeName
+operator|=
+name|name
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -130,7 +143,9 @@ name|writer
 operator|.
 name|println
 argument_list|(
-literal|"BTree tree metrics:"
+literal|"BTree tree metrics for "
+operator|+
+name|btreeName
 argument_list|)
 expr_stmt|;
 name|writer

@@ -528,26 +528,8 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//LINE[descendant-or-self::LINE&= 'king']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//LINE[descendant-or-self::LINE&= 'king']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
+comment|//        r = execute("//LINE[descendant-or-self::LINE&= 'king']", false);
+comment|//        execute("//LINE[descendant-or-self::LINE&= 'king']", true, MSG_OPT_ERROR, r);
 name|r
 operator|=
 name|execute

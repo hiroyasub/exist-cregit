@@ -1322,7 +1322,7 @@ name|append
 argument_list|(
 name|Integer
 operator|.
-name|toString
+name|toHexString
 argument_list|(
 name|data
 index|[
@@ -1330,18 +1330,10 @@ name|pos
 operator|+
 name|i
 index|]
-operator|&
-literal|0xFF
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|' '
-argument_list|)
-expr_stmt|;
+comment|//            buf.append(' ');
 block|}
 return|return
 name|buf

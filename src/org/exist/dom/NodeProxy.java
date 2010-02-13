@@ -4107,6 +4107,13 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+name|parent
+operator|.
+name|addMatches
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 return|return
 name|parent
 return|;
@@ -4193,6 +4200,13 @@ else|else
 name|parent
 operator|.
 name|copyContext
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|parent
+operator|.
+name|addMatches
 argument_list|(
 name|this
 argument_list|)

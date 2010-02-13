@@ -41,6 +41,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StructuralIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -2999,7 +3011,7 @@ decl_stmt|;
 return|return
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -3609,7 +3621,7 @@ decl_stmt|;
 return|return
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName

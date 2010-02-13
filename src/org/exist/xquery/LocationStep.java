@@ -21,7 +21,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentImpl
+name|*
 import|;
 end_import
 
@@ -31,9 +31,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|indexing
 operator|.
-name|DocumentSet
+name|StructuralIndex
 import|;
 end_import
 
@@ -43,9 +43,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|memtree
 operator|.
-name|ExtNodeSet
+name|InMemoryNodeSet
 import|;
 end_import
 
@@ -55,69 +55,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|memtree
 operator|.
-name|NewArrayNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeVisitor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|VirtualNodeSet
+name|NodeImpl
 import|;
 end_import
 
@@ -139,9 +79,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|stax
 operator|.
-name|ElementIndex
+name|EmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|StaXUtil
 import|;
 end_import
 
@@ -180,54 +132,6 @@ operator|.
 name|value
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|NodeImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|InMemoryNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|stax
-operator|.
-name|EmbeddedXMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|stax
-operator|.
-name|StaXUtil
 import|;
 end_import
 
@@ -275,7 +179,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamReader
+name|XMLStreamException
 import|;
 end_import
 
@@ -287,17 +191,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
+name|XMLStreamReader
 import|;
 end_import
 
@@ -308,6 +202,16 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
 import|;
 end_import
 
@@ -554,50 +458,13 @@ return|return
 literal|true
 return|;
 block|}
-if|if
-condition|(
-name|inUpdate
-condition|)
-return|return
-literal|false
-return|;
-if|if
-condition|(
-operator|(
-name|parentDeps
-operator|&
-name|Dependency
-operator|.
-name|LOCAL_VARS
-operator|)
-operator|==
-name|Dependency
-operator|.
-name|LOCAL_VARS
-condition|)
-block|{
-name|context
-operator|.
-name|getProfiler
-argument_list|()
-operator|.
-name|message
-argument_list|(
-name|this
-argument_list|,
-name|Profiler
-operator|.
-name|OPTIMIZATIONS
-argument_list|,
-literal|null
-argument_list|,
-literal|"Preloaded NodeSets"
-argument_list|)
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
+comment|//		if (inUpdate)
+comment|//			return false;
+comment|//		if ((parentDeps& Dependency.LOCAL_VARS) == Dependency.LOCAL_VARS) {
+comment|//			context.getProfiler().message(this, Profiler.OPTIMIZATIONS, null,
+comment|//					"Preloaded NodeSets");
+comment|//			return true;
+comment|//		}
 return|return
 literal|false
 return|;
@@ -1079,25 +946,9 @@ name|inUpdate
 operator|=
 literal|true
 expr_stmt|;
-if|if
-condition|(
-operator|(
-name|contextInfo
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|SINGLE_STEP_EXECUTION
-operator|)
-operator|>
-literal|0
-condition|)
-block|{
-name|preloadedData
-operator|=
-literal|true
-expr_stmt|;
-block|}
+comment|//		if ((contextInfo.getFlags()& SINGLE_STEP_EXECUTION)> 0) {
+comment|//			preloadedData = true;
+comment|//		}
 if|if
 condition|(
 operator|(
@@ -2126,7 +1977,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -2134,7 +1985,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -2498,7 +2349,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -2506,7 +2357,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -2641,7 +2492,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -2649,7 +2500,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -2689,10 +2540,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|contextSet
-operator|instanceof
-name|ExtNodeSet
-operator|&&
 operator|!
 name|contextSet
 operator|.
@@ -2718,9 +2565,6 @@ name|axis
 argument_list|,
 name|docs
 argument_list|,
-operator|(
-name|ExtNodeSet
-operator|)
 name|contextSet
 argument_list|,
 name|contextId
@@ -3002,7 +2846,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -3010,7 +2854,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -3102,7 +2946,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -3110,7 +2954,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -3150,10 +2994,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|contextSet
-operator|instanceof
-name|ExtNodeSet
-operator|&&
 operator|!
 name|contextSet
 operator|.
@@ -3179,9 +3019,6 @@ name|axis
 argument_list|,
 name|docs
 argument_list|,
-operator|(
-name|ExtNodeSet
-operator|)
 name|contextSet
 argument_list|,
 name|contextId
@@ -3386,7 +3223,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -3394,7 +3231,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -3537,7 +3374,7 @@ operator|.
 name|getDocumentSet
 argument_list|()
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -3545,7 +3382,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -3587,9 +3424,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|!
 name|contextSet
-operator|instanceof
-name|ExtNodeSet
+operator|.
+name|getProcessInReverseOrder
+argument_list|()
 condition|)
 block|{
 return|return
@@ -3610,9 +3449,6 @@ name|axis
 argument_list|,
 name|docs
 argument_list|,
-operator|(
-name|ExtNodeSet
-operator|)
 name|contextSet
 argument_list|,
 name|contextId
@@ -4003,7 +3839,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -4011,7 +3847,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -4752,7 +4588,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -4760,7 +4596,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -5273,7 +5109,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -5281,7 +5117,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -5824,7 +5660,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -5832,7 +5668,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -5958,7 +5794,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -5966,7 +5802,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -6257,7 +6093,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -6265,7 +6101,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -6355,7 +6191,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -6363,7 +6199,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -8540,7 +8376,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -8548,7 +8384,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -8797,7 +8633,7 @@ comment|//				if (currentSet == null
 comment|//						|| currentDocs == null
 comment|//						|| (!optimized&& !(docs == currentDocs || docs
 comment|//								.equalDocs(currentDocs)))) {
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -8805,7 +8641,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -8879,7 +8715,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -8887,7 +8723,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -9297,7 +9133,7 @@ operator|)
 operator|)
 condition|)
 block|{
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -9305,7 +9141,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if
@@ -9440,7 +9276,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
-name|ElementIndex
+name|StructuralIndex
 name|index
 init|=
 name|context
@@ -9448,7 +9284,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 decl_stmt|;
 if|if

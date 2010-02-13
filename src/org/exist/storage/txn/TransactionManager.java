@@ -716,6 +716,11 @@ expr_stmt|;
 block|}
 name|txn
 operator|.
+name|signalCommit
+argument_list|()
+expr_stmt|;
+name|txn
+operator|.
 name|releaseAll
 argument_list|()
 expr_stmt|;
@@ -807,6 +812,11 @@ name|flushToLog
 argument_list|(
 literal|true
 argument_list|)
+expr_stmt|;
+name|txn
+operator|.
+name|signalAbort
+argument_list|()
 expr_stmt|;
 name|txn
 operator|.

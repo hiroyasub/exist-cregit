@@ -507,6 +507,13 @@ specifier|protected
 name|BrokerPool
 name|pool
 decl_stmt|;
+specifier|private
+name|double
+name|splitFactor
+init|=
+operator|-
+literal|1
+decl_stmt|;
 specifier|protected
 name|BTree
 parameter_list|(
@@ -850,6 +857,34 @@ name|deregisterCache
 argument_list|(
 name|cache
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|setSplitFactor
+parameter_list|(
+name|double
+name|factor
+parameter_list|)
+block|{
+if|if
+condition|(
+name|factor
+operator|>
+literal|1.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"splitFactor should be<= 1> 0"
+argument_list|)
+throw|;
+name|this
+operator|.
+name|splitFactor
+operator|=
+name|factor
 expr_stmt|;
 block|}
 comment|/** 	 *  addValue adds a Value to the BTree and associates a pointer with it. The 	 *  pointer can be used for referencing any type of data, it just so happens 	 *  that dbXML uses it for referencing pages of associated data in the BTree 	 *  file or other files. 	 * 	 *@param  value               The Value to add 	 *@param  pointer             The pointer to associate with it 	 *@return                     The previous value for the pointer (or -1) 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
@@ -2131,7 +2166,13 @@ name|metrics
 init|=
 operator|new
 name|TreeMetrics
+argument_list|(
+name|getFile
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 decl_stmt|;
 name|BTreeNode
 name|root
@@ -2158,6 +2199,12 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+comment|//        try {
+comment|//            TreeMetrics metrics = treeStatistics();
+comment|//            metrics.toLogger();
+comment|//        } catch (IOException e) {
+comment|//            e.printStackTrace();
+comment|//        }
 name|boolean
 name|flushed
 init|=
@@ -2260,7 +2307,7 @@ name|write
 argument_list|(
 name|Integer
 operator|.
-name|toString
+name|toHexString
 argument_list|(
 name|data
 index|[
@@ -2269,13 +2316,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|write
-argument_list|(
-literal|' '
-argument_list|)
-expr_stmt|;
+comment|//        	writer.write(' ');
 block|}
 name|writer
 operator|.
@@ -3947,8 +3988,8 @@ condition|?
 literal|0
 else|:
 name|nPtrs
-operator|<<
-literal|3
+operator|*
+literal|8
 expr_stmt|;
 if|if
 condition|(
@@ -4742,6 +4783,8 @@ operator|+=
 literal|8
 expr_stmt|;
 block|}
+comment|//            if (getFile().getName().equals("structure.dbx"))
+comment|//                System.out.println("nKeys: " + nKeys + "; size: " + p);
 block|}
 comment|/**          * Write the node to the underlying page.          *           * @throws IOException          */
 specifier|private
@@ -5149,6 +5192,9 @@ operator|+=
 literal|8
 expr_stmt|;
 block|}
+comment|//            System.out.println(getFile().getName() + " - " + ph.getStatus() + ": " + page.getPageNum() +
+comment|//                ": written = " + p +
+comment|//                "; keys = " + nKeys);
 name|writeValue
 argument_list|(
 name|page
@@ -5602,11 +5648,45 @@ name|mustSplit
 argument_list|()
 condition|)
 block|{
+comment|// we normally split a node at its median value.
+comment|// however, if the inserted key is in the upper or lower
+comment|// section of the node, we split directly at the key. this
+comment|// has advantages if keys are inserted in ascending order
+if|if
+condition|(
+name|splitFactor
+operator|>
+literal|0
+operator|&&
+name|idx
+operator|>
+operator|(
+name|nKeys
+operator|*
+name|splitFactor
+operator|)
+condition|)
+name|split
+argument_list|(
+name|transaction
+argument_list|,
+name|idx
+operator|==
+literal|0
+condition|?
+literal|1
+else|:
+name|idx
+argument_list|)
+expr_stmt|;
+else|else
+block|{
 name|split
 argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -5833,6 +5913,27 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
+specifier|private
+name|void
+name|split
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|BTreeException
+block|{
+name|split
+argument_list|(
+name|transaction
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**          * Split the node.          *          * @param transaction the current transaction          */
 specifier|private
 name|void
@@ -5840,6 +5941,9 @@ name|split
 parameter_list|(
 name|Txn
 name|transaction
+parameter_list|,
+name|int
+name|pivot
 parameter_list|)
 throws|throws
 name|IOException
@@ -5874,14 +5978,19 @@ operator|.
 name|getValueCount
 argument_list|()
 decl_stmt|;
-specifier|final
-name|int
+if|if
+condition|(
 name|pivot
-init|=
+operator|==
+operator|-
+literal|1
+condition|)
+name|pivot
+operator|=
 name|vc
 operator|/
 literal|2
-decl_stmt|;
+expr_stmt|;
 comment|// Split the node into two nodes
 switch|switch
 condition|(
@@ -7851,6 +7960,11 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 case|:
+case|case
+name|IndexQuery
+operator|.
+name|RANGE
+case|:
 for|for
 control|(
 name|int
@@ -8215,6 +8329,11 @@ case|case
 name|IndexQuery
 operator|.
 name|NBW
+case|:
+case|case
+name|IndexQuery
+operator|.
+name|RANGE
 case|:
 if|if
 condition|(
@@ -9973,6 +10092,11 @@ name|IndexQuery
 operator|.
 name|TRUNC_RIGHT
 case|:
+case|case
+name|IndexQuery
+operator|.
+name|RANGE
+case|:
 for|for
 control|(
 name|int
@@ -10466,6 +10590,11 @@ case|case
 name|IndexQuery
 operator|.
 name|NBW
+case|:
+case|case
+name|IndexQuery
+operator|.
+name|RANGE
 case|:
 if|if
 condition|(

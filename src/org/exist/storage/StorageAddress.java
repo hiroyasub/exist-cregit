@@ -247,6 +247,26 @@ literal|0xFFFF0000L
 operator|)
 return|;
 block|}
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|hasAddress
+parameter_list|(
+name|long
+name|pointer
+parameter_list|)
+block|{
+return|return
+operator|(
+name|pointer
+operator|&
+literal|0xFFFFFFFF0000FFFFL
+operator|)
+operator|>
+literal|0
+return|;
+block|}
 comment|/** 	 * Returns true if the page number and tid of the two storage 	 * addresses is equal. The type indicator is ignored. 	 *  	 * @param p0 	 * @param p1 	 * @return true if the page number and tid of the two storage addresses is equal 	 */
 specifier|public
 specifier|final

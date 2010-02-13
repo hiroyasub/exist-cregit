@@ -11909,11 +11909,12 @@ decl_stmt|;
 comment|// try to directly locate the root node through its storage address
 if|if
 condition|(
-name|address
-operator|!=
-name|StoredNode
+name|StorageAddress
 operator|.
-name|UNKNOWN_NODE_IMPL_ADDRESS
+name|hasAddress
+argument_list|(
+name|address
+argument_list|)
 condition|)
 name|rec
 operator|=

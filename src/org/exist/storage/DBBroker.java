@@ -101,6 +101,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StructuralIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -685,6 +697,12 @@ specifier|public
 specifier|abstract
 name|ElementIndex
 name|getElementIndex
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|StructuralIndex
+name|getStructuralIndex
 parameter_list|()
 function_decl|;
 comment|/** Flush all data that has not been written before. */
