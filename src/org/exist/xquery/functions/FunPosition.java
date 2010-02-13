@@ -393,6 +393,16 @@ name|inSequence
 operator|==
 literal|null
 condition|)
+name|inSequence
+operator|=
+name|contextSequence
+expr_stmt|;
+if|if
+condition|(
+name|inSequence
+operator|==
+literal|null
+condition|)
 throw|throw
 operator|new
 name|XPathException
