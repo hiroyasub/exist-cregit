@@ -1103,6 +1103,14 @@ operator|.
 name|getContextPosition
 argument_list|()
 decl_stmt|;
+name|Sequence
+name|seq
+init|=
+name|context
+operator|.
+name|getContextSequence
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -1124,9 +1132,11 @@ control|)
 block|{
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
+argument_list|,
+name|seq
 argument_list|)
 expr_stmt|;
 name|Item

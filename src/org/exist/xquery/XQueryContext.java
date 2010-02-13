@@ -1682,6 +1682,12 @@ name|contextPosition
 init|=
 literal|0
 decl_stmt|;
+specifier|private
+name|Sequence
+name|contextSequence
+init|=
+literal|null
+decl_stmt|;
 comment|/** 	 * The builder used for creating in-memory document  	 * fragments 	 */
 specifier|private
 name|MemTreeBuilder
@@ -2620,9 +2626,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Reset current context position
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 literal|0
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 comment|//Note that, for some reasons, an XQueryContext might be used without calling this method
@@ -7574,15 +7582,22 @@ block|}
 comment|/** 	 * Set the current context position, i.e. the position 	 * of the currently processed item in the context sequence. 	 * This value is required by some expressions, e.g. fn:position(). 	 *  	 * @param pos 	 */
 specifier|public
 name|void
-name|setContextPosition
+name|setContextSequencePosition
 parameter_list|(
 name|int
 name|pos
+parameter_list|,
+name|Sequence
+name|sequence
 parameter_list|)
 block|{
 name|contextPosition
 operator|=
 name|pos
+expr_stmt|;
+name|contextSequence
+operator|=
+name|sequence
 expr_stmt|;
 block|}
 comment|/** 	 * Get the current context position, i.e. the position of 	 * the currently processed item in the context sequence. 	 *   	 * @return current context position 	 */
@@ -7593,6 +7608,15 @@ parameter_list|()
 block|{
 return|return
 name|contextPosition
+return|;
+block|}
+specifier|public
+name|Sequence
+name|getContextSequence
+parameter_list|()
+block|{
+return|return
+name|contextSequence
 return|;
 block|}
 specifier|public

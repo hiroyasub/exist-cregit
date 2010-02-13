@@ -1493,9 +1493,11 @@ argument_list|()
 expr_stmt|;
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
+argument_list|,
+name|in
 argument_list|)
 expr_stmt|;
 comment|//				atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
@@ -1635,9 +1637,11 @@ expr_stmt|;
 comment|//Reset the context position
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 literal|0
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
@@ -1886,9 +1890,11 @@ block|}
 comment|//Reset the context position
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 literal|0
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

@@ -1879,11 +1879,13 @@ block|{
 comment|// 0-based
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
 operator|-
 literal|1
+argument_list|,
+name|contextSequence
 argument_list|)
 expr_stmt|;
 name|Item
@@ -1994,9 +1996,11 @@ control|)
 block|{
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
+argument_list|,
+name|contextSequence
 argument_list|)
 expr_stmt|;
 name|Item
@@ -2134,9 +2138,11 @@ control|)
 block|{
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
+argument_list|,
+name|contextSequence
 argument_list|)
 expr_stmt|;
 name|Item

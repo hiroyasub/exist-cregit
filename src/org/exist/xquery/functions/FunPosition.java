@@ -379,9 +379,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|Sequence
+name|inSequence
+init|=
+name|context
+operator|.
+name|getContextSequence
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|contextSequence
+name|inSequence
 operator|==
 literal|null
 condition|)
@@ -399,7 +407,7 @@ name|result
 decl_stmt|;
 if|if
 condition|(
-name|contextSequence
+name|inSequence
 operator|.
 name|isEmpty
 argument_list|()

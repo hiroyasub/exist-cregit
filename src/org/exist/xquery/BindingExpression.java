@@ -999,9 +999,11 @@ argument_list|()
 decl_stmt|;
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|p
+argument_list|,
+name|contextSequence
 argument_list|)
 expr_stmt|;
 name|Sequence

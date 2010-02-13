@@ -387,11 +387,19 @@ argument_list|)
 expr_stmt|;
 block|}
 name|Sequence
+name|inSequence
+init|=
+name|context
+operator|.
+name|getContextSequence
+argument_list|()
+decl_stmt|;
+name|Sequence
 name|result
 decl_stmt|;
 if|if
 condition|(
-name|contextSequence
+name|inSequence
 operator|==
 literal|null
 condition|)
@@ -406,7 +414,7 @@ argument_list|)
 throw|;
 if|else if
 condition|(
-name|contextSequence
+name|inSequence
 operator|.
 name|isEmpty
 argument_list|()
@@ -423,7 +431,7 @@ operator|=
 operator|new
 name|IntegerValue
 argument_list|(
-name|contextSequence
+name|inSequence
 operator|.
 name|getItemCount
 argument_list|()
