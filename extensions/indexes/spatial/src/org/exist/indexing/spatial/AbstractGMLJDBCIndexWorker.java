@@ -1508,6 +1508,17 @@ name|i
 operator|--
 control|)
 block|{
+comment|//Stop below root
+if|if
+condition|(
+name|currentNode
+operator|.
+name|getParentNode
+argument_list|()
+operator|instanceof
+name|DocumentImpl
+condition|)
+break|break;
 name|currentNode
 operator|=
 operator|(
@@ -1518,7 +1529,6 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
-comment|// CCE org.exist.dom.DocumentImpl
 if|if
 condition|(
 name|GML_NS
