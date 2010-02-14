@@ -1694,12 +1694,39 @@ name|config
 operator|==
 literal|null
 condition|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Cannot optimize: collection "
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" does not define an index "
+operator|+
+literal|"on "
+operator|+
+name|qname
+argument_list|)
+expr_stmt|;
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
 comment|// found a collection without index
+block|}
 name|int
 name|type
 init|=
@@ -1726,12 +1753,48 @@ name|indexType
 operator|!=
 name|type
 condition|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Cannot optimize: collection "
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" does not define an index "
+operator|+
+literal|"with the required type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+operator|+
+literal|" on "
+operator|+
+name|qname
+argument_list|)
+expr_stmt|;
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
 comment|// found a collection with a different type
+block|}
 block|}
 return|return
 name|indexType
