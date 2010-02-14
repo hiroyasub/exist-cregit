@@ -61,6 +61,10 @@ name|boolean
 name|optimizeOnSelf
 parameter_list|()
 function_decl|;
+name|boolean
+name|optimizeOnChild
+parameter_list|()
+function_decl|;
 name|NodeSet
 name|preSelect
 parameter_list|(

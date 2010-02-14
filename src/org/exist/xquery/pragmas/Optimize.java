@@ -772,9 +772,6 @@ name|optimizeOnSelf
 argument_list|()
 condition|)
 block|{
-comment|//                        selector = new SelfSelector(selection, contextId);
-comment|//                        ancestors = index.findElementsByTagName(ancestorQN.getNameType(), selection.getDocumentSet(),
-comment|//                                ancestorQN, selector);
 name|ancestors
 operator|=
 name|index
@@ -805,8 +802,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//                        ancestors = index.findElementsByTagName(ancestorQN.getNameType(), selection.getDocumentSet(),
-comment|//                                ancestorQN, selector);
 name|ancestors
 operator|=
 name|index
@@ -820,6 +815,18 @@ argument_list|()
 argument_list|,
 name|ancestorQN
 argument_list|,
+name|optimizables
+index|[
+name|current
+index|]
+operator|.
+name|optimizeOnChild
+argument_list|()
+condition|?
+name|Constants
+operator|.
+name|PARENT_AXIS
+else|:
 name|Constants
 operator|.
 name|ANCESTOR_SELF_AXIS

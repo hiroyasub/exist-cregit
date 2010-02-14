@@ -1168,6 +1168,15 @@ literal|false
 return|;
 block|}
 specifier|public
+name|boolean
+name|optimizeOnChild
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
+specifier|public
 name|int
 name|getOptimizeAxis
 parameter_list|()
