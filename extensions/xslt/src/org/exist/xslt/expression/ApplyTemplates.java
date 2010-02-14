@@ -604,9 +604,11 @@ argument_list|()
 decl_stmt|;
 name|context
 operator|.
-name|setContextPosition
+name|setContextSequencePosition
 argument_list|(
 name|pos
+argument_list|,
+name|selected
 argument_list|)
 expr_stmt|;
 name|Sequence
