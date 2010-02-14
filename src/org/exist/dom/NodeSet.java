@@ -557,16 +557,6 @@ name|int
 name|getIndexType
 parameter_list|()
 function_decl|;
-specifier|public
-name|boolean
-name|hasTextIndex
-parameter_list|()
-function_decl|;
-specifier|public
-name|boolean
-name|hasMixedContent
-parameter_list|()
-function_decl|;
 comment|/** 	 * Get a hint about how many nodes in this node set belong to the  	 * specified document. This is just used for allocating new node sets. 	 * The information does not need to be exact. -1 is returned if the 	 * size cannot be determined (the default). 	 *  	 * @param doc 	 */
 specifier|public
 name|int
