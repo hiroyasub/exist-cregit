@@ -357,6 +357,35 @@ name|URI
 operator|.
 name|endsWith
 argument_list|(
+literal|".pack.gz"
+argument_list|)
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"pack.gz to be implemented."
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_NOT_FOUND
+argument_list|,
+literal|"File not found"
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|URI
+operator|.
+name|endsWith
+argument_list|(
 literal|".gif"
 argument_list|)
 operator|||
