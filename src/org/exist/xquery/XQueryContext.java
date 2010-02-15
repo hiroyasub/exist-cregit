@@ -4812,6 +4812,10 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+name|contextSequence
+operator|=
+literal|null
+expr_stmt|;
 if|if
 condition|(
 operator|!
