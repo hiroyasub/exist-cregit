@@ -929,6 +929,17 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|fetch
+operator|.
+name|addAttribute
+argument_list|(
+literal|"language"
+argument_list|,
+literal|"http://axschema.org/pref/language"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// wants up to three email addresses
 name|fetch
 operator|.
