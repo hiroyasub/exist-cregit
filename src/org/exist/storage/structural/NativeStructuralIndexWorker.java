@@ -1248,6 +1248,13 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|sort
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
