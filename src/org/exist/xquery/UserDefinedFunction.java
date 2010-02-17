@@ -222,6 +222,29 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|parameters
+operator|.
+name|contains
+argument_list|(
+name|qname
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"XQST0039: function "
+operator|+
+name|getName
+argument_list|()
+operator|+
+literal|" is already have parameter with the name "
+operator|+
+name|varName
+argument_list|)
+throw|;
 name|parameters
 operator|.
 name|add
