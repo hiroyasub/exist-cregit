@@ -404,7 +404,11 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
 block|{
 comment|//some transformers do not support "setAttribute"
 block|}
