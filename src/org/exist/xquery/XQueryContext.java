@@ -2523,6 +2523,14 @@ name|watchdog
 expr_stmt|;
 name|ctx
 operator|.
+name|profiler
+operator|=
+name|this
+operator|.
+name|profiler
+expr_stmt|;
+name|ctx
+operator|.
 name|lastVar
 operator|=
 name|this
