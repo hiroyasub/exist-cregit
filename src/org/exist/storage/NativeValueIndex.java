@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -26,6 +26,18 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
 import|;
 end_import
 
@@ -465,18 +477,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -586,7 +586,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains an index on typed node values.  *   * TODO: Check correct types during validation.  *   * In the BTree single BFile, the keys are :  * (collectionId, indexType, indexData)  * and the values are : gid1, gid2-gid1, ...  *<b></b>  *<p>Algorithm:</p>  * When a node is stored, an entry is added or updated in the {@link #pending} map,   * with given String content and basic type as key.  * This way, the index entries are easily put in the persistent BFile storage by   * {@link #flush()} .  *   * @author wolf  */
+comment|/**  * Maintains an index on typed node values.  *  *<p>TODO: Check correct types during validation.</p>  *  *<p>In the BTree single BFile, the keys are : (collectionId, indexType, indexData) and the values are : gid1, gid2-gid1, ...<b></b></p>  *  *<p>Algorithm:</p>  *  *<p>When a node is stored, an entry is added or updated in the {@link #pending} map, with given String content and basic type as key. This way, the  * index entries are easily put in the persistent BFile storage by {@link #flush()} .</p>  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -736,52 +736,6 @@ name|IDX_QNAME
 init|=
 literal|1
 decl_stmt|;
-comment|/** The broker that is using this value index */
-name|DBBroker
-name|broker
-decl_stmt|;
-comment|/** The datastore for this value index */
-specifier|protected
-name|BFile
-name|dbValues
-decl_stmt|;
-specifier|protected
-name|Configuration
-name|config
-decl_stmt|;
-comment|/** A collection of key-value pairs that pending modifications for this value index.        * The keys are {@link org.exist.xquery.value.AtomicValue atomic values}      * that implement {@link Indexable Indexable}. 	 * The values are {@link org.exist.util.LongLinkedList lists} containing 	 * the nodes GIDs (global identifiers.      */
-specifier|protected
-name|Map
-index|[]
-name|pending
-init|=
-operator|new
-name|Map
-index|[
-literal|2
-index|]
-decl_stmt|;
-comment|/** The current document */
-specifier|private
-name|DocumentImpl
-name|doc
-decl_stmt|;
-comment|/** Work output Stream taht should be cleared before every use */
-specifier|private
-name|VariableByteOutputStream
-name|os
-init|=
-operator|new
-name|VariableByteOutputStream
-argument_list|()
-decl_stmt|;
-comment|//TODO : reconsider this. Case sensitivity have nothing to do with atomic values -pb
-specifier|protected
-name|boolean
-name|caseSensitive
-init|=
-literal|true
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -797,6 +751,52 @@ name|String
 name|PROPERTY_INDEX_CASE_SENSITIVE
 init|=
 literal|"indexer.case-sensitive"
+decl_stmt|;
+comment|/** The broker that is using this value index. */
+name|DBBroker
+name|broker
+decl_stmt|;
+comment|/** The datastore for this value index. */
+specifier|protected
+name|BFile
+name|dbValues
+decl_stmt|;
+specifier|protected
+name|Configuration
+name|config
+decl_stmt|;
+comment|/**      * A collection of key-value pairs that pending modifications for this value index. The keys are {@link org.exist.xquery.value.AtomicValue atomic      * values} that implement {@link Indexable Indexable}. The values are {@link org.exist.util.LongLinkedList lists} containing the nodes GIDs      * (global identifiers.      */
+specifier|protected
+name|Map
+index|[]
+name|pending
+init|=
+operator|new
+name|Map
+index|[
+literal|2
+index|]
+decl_stmt|;
+comment|/** The current document. */
+specifier|private
+name|DocumentImpl
+name|doc
+decl_stmt|;
+comment|/** Work output Stream taht should be cleared before every use. */
+specifier|private
+name|VariableByteOutputStream
+name|os
+init|=
+operator|new
+name|VariableByteOutputStream
+argument_list|()
+decl_stmt|;
+comment|//TODO : reconsider this. Case sensitivity have nothing to do with atomic values -pb
+specifier|protected
+name|boolean
+name|caseSensitive
+init|=
+literal|true
 decl_stmt|;
 specifier|public
 name|NativeValueIndex
@@ -993,6 +993,7 @@ name|caseOpt
 operator|!=
 literal|null
 condition|)
+block|{
 name|caseSensitive
 operator|=
 name|caseOpt
@@ -1000,6 +1001,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|addContentLoadingObserver
@@ -1015,7 +1017,9 @@ name|getFileName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|FILE_NAME
+operator|)
 return|;
 block|}
 specifier|public
@@ -1024,7 +1028,9 @@ name|getConfigKeyForFile
 parameter_list|()
 block|{
 return|return
+operator|(
 name|FILE_KEY_IN_CONFIG
+operator|)
 return|;
 block|}
 specifier|public
@@ -1033,7 +1039,9 @@ name|getInstance
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.ContentLoadingObserver#setDocument(org.exist.dom.DocumentImpl)      */
@@ -1062,6 +1070,7 @@ control|)
 block|{
 if|if
 condition|(
+operator|(
 name|pending
 index|[
 name|section
@@ -1071,7 +1080,9 @@ name|size
 argument_list|()
 operator|>
 literal|0
+operator|)
 operator|&&
+operator|(
 name|this
 operator|.
 name|doc
@@ -1083,6 +1094,7 @@ name|doc
 operator|.
 name|getDocId
 argument_list|()
+operator|)
 condition|)
 block|{
 name|LOG
@@ -1121,7 +1133,7 @@ operator|=
 name|document
 expr_stmt|;
 block|}
-comment|/** Store the given element's value in the value index.      * @param xpathType The value type      * @param node The element      * @param content The string representation of the value      */
+comment|/**      * Store the given element's value in the value index.      *      * @param  node       The element      * @param  content    The string representation of the value      * @param  xpathType  The value type      * @param  indexType  DOCUMENT ME!      * @param  remove     DOCUMENT ME!      */
 specifier|public
 name|void
 name|storeElement
@@ -1156,6 +1168,7 @@ argument_list|()
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1175,6 +1188,7 @@ argument_list|()
 operator|+
 literal|"') differ !"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|AtomicValue
@@ -1195,7 +1209,9 @@ name|atomic
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|Object
 name|key
 decl_stmt|;
@@ -1221,10 +1237,12 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|key
 operator|=
 name|atomic
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1247,6 +1265,7 @@ argument_list|(
 name|key
 argument_list|)
 condition|)
+block|{
 name|buf
 operator|=
 operator|(
@@ -1262,6 +1281,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//Create a NodeId list
@@ -1313,6 +1333,7 @@ argument_list|(
 name|key
 argument_list|)
 condition|)
+block|{
 name|pending
 index|[
 name|indexType
@@ -1327,7 +1348,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Store the given attribute's value in the value index.      * @param spec The index specification      * @param node The attribute      */
+block|}
+comment|/**      * Store the given attribute's value in the value index.      *      * @param  node          The attribute      * @param  currentPath   DOCUMENT ME!      * @param  indexingHint  DOCUMENT ME!      * @param  spec          The index specification      * @param  remove        DOCUMENT ME!      */
 specifier|public
 name|void
 name|storeAttribute
@@ -1366,12 +1388,14 @@ operator|.
 name|getType
 argument_list|()
 argument_list|,
+operator|(
 name|spec
 operator|.
 name|getQName
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|?
 name|IDX_GENERIC
 else|:
@@ -1414,13 +1438,18 @@ name|indexingHint
 operator|!=
 name|WITHOUT_PATH
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
+operator|(
 name|doc
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|doc
 operator|.
 name|getDocId
@@ -1430,9 +1459,11 @@ name|node
 operator|.
 name|getDocId
 argument_list|()
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1452,6 +1483,7 @@ argument_list|()
 operator|+
 literal|"') differ !"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|AtomicValue
@@ -1472,7 +1504,9 @@ name|atomic
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|Object
 name|key
 decl_stmt|;
@@ -1498,10 +1532,12 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|key
 operator|=
 name|atomic
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1524,6 +1560,7 @@ argument_list|(
 name|key
 argument_list|)
 condition|)
+block|{
 comment|//Reuse the existing NodeId list
 name|buf
 operator|=
@@ -1540,6 +1577,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//Create a NodeId list
@@ -1591,6 +1629,7 @@ argument_list|(
 name|key
 argument_list|)
 condition|)
+block|{
 name|pending
 index|[
 name|indexType
@@ -1603,6 +1642,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1642,6 +1682,7 @@ name|currentNode
 init|=
 operator|(
 operator|(
+operator|(
 name|node
 operator|.
 name|getNodeType
@@ -1650,7 +1691,9 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
+operator|)
 operator|||
+operator|(
 name|node
 operator|.
 name|getNodeType
@@ -1659,6 +1702,7 @@ operator|==
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
+operator|)
 operator|)
 condition|?
 name|node
@@ -1711,18 +1755,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|rSpec
 operator|!=
 literal|null
+operator|)
 operator|||
+operator|(
 name|qSpec
 operator|!=
 literal|null
+operator|)
 condition|)
+block|{
 name|root
 operator|=
 name|currentNode
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|doc
@@ -1733,6 +1783,7 @@ operator|.
 name|isTempCollection
 argument_list|()
 operator|&&
+operator|(
 name|currentNode
 operator|.
 name|getNodeId
@@ -1742,8 +1793,11 @@ name|getTreeLevel
 argument_list|()
 operator|==
 literal|2
+operator|)
 condition|)
+block|{
 break|break;
+block|}
 name|currentNode
 operator|=
 name|currentNode
@@ -1758,7 +1812,9 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|root
+operator|)
 return|;
 block|}
 specifier|public
@@ -1775,7 +1831,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|StreamListener
 name|listener
 init|=
@@ -1921,7 +1979,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.storage.IndexGenerator#flush() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.storage.IndexGenerator#flush()      */
 specifier|public
 name|void
 name|flush
@@ -1953,7 +2011,9 @@ name|keyCount
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|int
 name|collectionId
@@ -2222,6 +2282,7 @@ name|section
 operator|==
 name|IDX_GENERIC
 condition|)
+block|{
 name|v
 operator|=
 operator|new
@@ -2235,6 +2296,7 @@ operator|)
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|QNameKey
@@ -2450,7 +2512,9 @@ name|keyCount
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|int
 name|collectionId
@@ -2579,6 +2643,7 @@ name|section
 operator|==
 name|IDX_GENERIC
 condition|)
+block|{
 name|searchKey
 operator|=
 operator|new
@@ -2592,6 +2657,7 @@ operator|)
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|QNameKey
@@ -3208,15 +3274,21 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/* Drop all index entries for the given collection. 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.collections.Collection) 	 */
+comment|/* Drop all index entries for the given collection.      * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.collections.Collection)      */
 specifier|public
 name|void
 name|dropIndex
@@ -3383,7 +3455,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* Drop all index entries for the given document. 	 * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl) 	 */
+comment|/* Drop all index entries for the given document.      * @see org.exist.storage.IndexGenerator#dropIndex(org.exist.dom.DocumentImpl)      */
 comment|//TODO : note that this is *not* this.doc -pb
 specifier|public
 name|void
@@ -3498,6 +3570,7 @@ name|section
 operator|==
 name|IDX_GENERIC
 condition|)
+block|{
 name|v
 operator|=
 operator|new
@@ -3511,6 +3584,7 @@ operator|)
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|QNameKey
@@ -3562,7 +3636,9 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 name|VariableByteArrayInput
 name|is
 init|=
@@ -3929,6 +4005,7 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|findAll
 argument_list|(
 name|relation
@@ -3948,6 +4025,7 @@ argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|List
@@ -3965,6 +4043,7 @@ name|qname
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|findAll
 argument_list|(
 name|relation
@@ -3983,10 +4062,13 @@ name|result
 argument_list|,
 name|collator
 argument_list|)
+operator|)
 return|;
 block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|public
@@ -4105,7 +4187,9 @@ name|collator
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|private
@@ -4159,7 +4243,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/** find 	 * @param relation binary operator used for the comparison 	 * @param value right hand comparison value */
+comment|/**      * find.      *      * @param   relation    binary operator used for the comparison      * @param   docs        DOCUMENT ME!      * @param   contextSet  DOCUMENT ME!      * @param   axis        DOCUMENT ME!      * @param   qnames      DOCUMENT ME!      * @param   value       right hand comparison value      * @param   result      DOCUMENT ME!      * @param   collator    DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  TerminatedException  DOCUMENT ME!      */
 specifier|private
 name|NodeSet
 name|findAll
@@ -4265,7 +4349,8 @@ argument_list|)
 decl_stmt|;
 name|Value
 name|searchKey
-decl_stmt|,
+decl_stmt|;
+name|Value
 name|prefixKey
 decl_stmt|;
 if|if
@@ -4329,6 +4414,7 @@ name|IndexQuery
 operator|.
 name|EQ
 condition|)
+block|{
 name|dbValues
 operator|.
 name|query
@@ -4338,7 +4424,9 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dbValues
 operator|.
 name|query
@@ -4350,6 +4438,7 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -4555,6 +4644,7 @@ name|IndexQuery
 operator|.
 name|EQ
 condition|)
+block|{
 name|dbValues
 operator|.
 name|query
@@ -4564,7 +4654,9 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dbValues
 operator|.
 name|query
@@ -4576,6 +4668,7 @@ argument_list|,
 name|cb
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -4676,7 +4769,9 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|public
@@ -4763,6 +4858,7 @@ throws|,
 name|EXistException
 block|{
 return|return
+operator|(
 name|match
 argument_list|(
 name|docs
@@ -4785,6 +4881,7 @@ name|collator
 argument_list|,
 name|truncation
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -4900,6 +4997,7 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|matchAll
 argument_list|(
 name|docs
@@ -4925,6 +5023,7 @@ argument_list|,
 name|truncation
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|List
@@ -4968,7 +5067,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|public
@@ -5124,7 +5225,9 @@ name|truncation
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|public
@@ -5192,7 +5295,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/** Regular expression search 	 * @param type  like type argument for {@link org.exist.storage.RegexMatcher} constructor 	 * @param flags like flags argument for {@link org.exist.storage.RegexMatcher} constructor 	 *  */
+comment|/**      * Regular expression search.      *      * @param   docs                DOCUMENT ME!      * @param   contextSet          DOCUMENT ME!      * @param   axis                DOCUMENT ME!      * @param   expr                DOCUMENT ME!      * @param   qnames              DOCUMENT ME!      * @param   type                like type argument for {@link org.exist.storage.RegexMatcher} constructor      * @param   flags               like flags argument for {@link org.exist.storage.RegexMatcher} constructor      * @param   caseSensitiveQuery  DOCUMENT ME!      * @param   result              DOCUMENT ME!      * @param   collator            DOCUMENT ME!      * @param   truncation          DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  TerminatedException  DOCUMENT ME!      * @throws  EXistException       DOCUMENT ME!      */
 specifier|public
 name|NodeSet
 name|matchAll
@@ -5251,9 +5354,11 @@ argument_list|(
 literal|"^"
 argument_list|)
 operator|&&
+operator|(
 name|caseSensitiveQuery
 operator|==
 name|caseSensitive
+operator|)
 condition|)
 block|{
 name|StringBuilder
@@ -5280,6 +5385,7 @@ condition|;
 name|j
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|Character
@@ -5294,6 +5400,7 @@ name|j
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|term
 operator|.
 name|append
@@ -5306,8 +5413,12 @@ name|j
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
+block|}
 if|if
 condition|(
 name|term
@@ -5363,6 +5474,7 @@ name|DBBroker
 operator|.
 name|MATCH_EXACT
 case|:
+block|{
 name|matcher
 operator|=
 operator|new
@@ -5372,11 +5484,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|DBBroker
 operator|.
 name|MATCH_CONTAINS
 case|:
+block|{
 name|matcher
 operator|=
 operator|new
@@ -5386,11 +5500,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|DBBroker
 operator|.
 name|MATCH_STARTSWITH
 case|:
+block|{
 name|matcher
 operator|=
 operator|new
@@ -5400,11 +5516,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|DBBroker
 operator|.
 name|MATCH_ENDSWITH
 case|:
+block|{
 name|matcher
 operator|=
 operator|new
@@ -5414,7 +5532,9 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 default|default:
+block|{
 name|matcher
 operator|=
 operator|new
@@ -5427,6 +5547,7 @@ argument_list|,
 name|flags
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -5874,7 +5995,9 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 specifier|public
@@ -6224,6 +6347,7 @@ index|]
 decl_stmt|;
 return|return
 operator|(
+operator|(
 name|ValueOccurrences
 index|[]
 operator|)
@@ -6236,9 +6360,10 @@ name|toArray
 argument_list|(
 name|result
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Scan all index keys indexed by the given QName. Return {@link org.exist.util.ValueOccurrences}      * for those index entries pointing to descendants of the specified context set. The first argument specifies      * the set of documents to include in the scan. Nodes which are not in this document set will be ignored.      *      * @param docs set of documents to scan      * @param contextSet if != null, return only index entries pointing to nodes which are descendants of nodes in the context set      * @param qnames an array of QNames: defines the index entries to be scanned.      * @param start an optional start value: only index keys starting with or being greater than this start value      *  (depends on the type of the index key) will be scanned      * @return a list of ValueOccurrences      */
+comment|/**      * Scan all index keys indexed by the given QName. Return {@link org.exist.util.ValueOccurrences} for those index entries pointing to descendants      * of the specified context set. The first argument specifies the set of documents to include in the scan. Nodes which are not in this document      * set will be ignored.      *      * @param   docs        set of documents to scan      * @param   contextSet  if != null, return only index entries pointing to nodes which are descendants of nodes in the context set      * @param   qnames      an array of QNames: defines the index entries to be scanned.      * @param   start       an optional start value: only index keys starting with or being greater than this start value (depends on the type of the      *                      index key) will be scanned      *      * @return  a list of ValueOccurrences      */
 specifier|public
 name|ValueOccurrences
 index|[]
@@ -6683,6 +6808,7 @@ index|]
 decl_stmt|;
 return|return
 operator|(
+operator|(
 name|ValueOccurrences
 index|[]
 operator|)
@@ -6695,6 +6821,7 @@ name|toArray
 argument_list|(
 name|result
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|protected
@@ -6756,6 +6883,7 @@ name|idxConf
 operator|!=
 literal|null
 condition|)
+block|{
 name|qnames
 operator|.
 name|addAll
@@ -6767,8 +6895,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 name|qnames
+operator|)
 return|;
 block|}
 specifier|protected
@@ -6792,6 +6923,7 @@ name|Constants
 operator|.
 name|LT
 case|:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6799,11 +6931,13 @@ operator|.
 name|LT
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|LTEQ
 case|:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6811,11 +6945,13 @@ operator|.
 name|LEQ
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|GT
 case|:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6823,11 +6959,13 @@ operator|.
 name|GT
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|GTEQ
 case|:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6835,11 +6973,13 @@ operator|.
 name|GEQ
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|NEQ
 case|:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6847,12 +6987,14 @@ operator|.
 name|NEQ
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|EQ
 case|:
 default|default:
+block|{
 name|indexOp
 operator|=
 name|IndexQuery
@@ -6861,11 +7003,14 @@ name|EQ
 expr_stmt|;
 break|break;
 block|}
+block|}
 return|return
+operator|(
 name|indexOp
+operator|)
 return|;
 block|}
-comment|/**      * @param xpathType      * @param value      * @return<code>null</null> if atomization fails or if the atomic value is not indexable.      * Should we throw an exception instead ? -pb     * @throws XPathException       */
+comment|/**      * DOCUMENT ME!      *      * @param   xpathType      * @param   value      *      * @return<code>null</null> if atomization fails or if the atomic value is not indexable. Should we throw an exception instead ? -pb      */
 specifier|private
 name|AtomicValue
 name|convertToAtomic
@@ -6914,7 +7059,9 @@ name|e
 parameter_list|)
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 block|}
@@ -6961,7 +7108,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 block|}
@@ -6995,7 +7144,9 @@ literal|" cannot be used as index key. It is null."
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 if|if
@@ -7038,11 +7189,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 return|return
+operator|(
 name|atomic
+operator|)
 return|;
 block|}
 specifier|public
@@ -7086,10 +7241,12 @@ literal|null
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|dbValues
 operator|.
 name|close
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -7109,6 +7266,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
 operator|.
 name|getClass
@@ -7139,11 +7297,12 @@ operator|+
 name|caseSensitive
 operator|+
 literal|")"
+operator|)
 return|;
 block|}
 comment|//***************************************************************************
 comment|//*
-comment|//* 	Private Matcher Classes
+comment|//*     Private Matcher Classes
 comment|//*
 comment|//***************************************************************************/
 specifier|private
@@ -7421,6 +7580,7 @@ name|Constants
 operator|.
 name|TRUNC_EQUALS
 case|:
+block|{
 name|this
 operator|.
 name|expr
@@ -7440,7 +7600,9 @@ operator|=
 name|collator
 expr_stmt|;
 break|break;
+block|}
 default|default:
+block|{
 throw|throw
 operator|(
 operator|new
@@ -7452,6 +7614,7 @@ name|truncation
 argument_list|)
 operator|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -7478,6 +7641,7 @@ name|Constants
 operator|.
 name|TRUNC_LEFT
 case|:
+block|{
 name|matches
 operator|=
 name|Collations
@@ -7495,11 +7659,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_RIGHT
 case|:
+block|{
 name|matches
 operator|=
 name|Collations
@@ -7517,11 +7683,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_BOTH
 case|:
+block|{
 name|matches
 operator|=
 name|Collations
@@ -7539,6 +7707,7 @@ name|expr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
@@ -7550,6 +7719,7 @@ operator|.
 name|TRUNC_EQUALS
 case|:
 default|default:
+block|{
 name|matches
 operator|=
 name|Collations
@@ -7567,6 +7737,7 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
 operator|(
 name|matches
@@ -7576,10 +7747,10 @@ block|}
 block|}
 comment|//***************************************************************************
 comment|//*
-comment|//* 	Private Callback Classes
+comment|//*     Private Callback Classes
 comment|//*
 comment|//***************************************************************************/
-comment|/** TODO document */
+comment|/**      * TODO document.      */
 class|class
 name|SearchCallback
 implements|implements
@@ -7686,7 +7857,9 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 try|try
@@ -7859,6 +8032,7 @@ name|parentNode
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -7869,7 +8043,9 @@ name|sizeHint
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|add
@@ -7879,6 +8055,7 @@ argument_list|,
 name|sizeHint
 argument_list|)
 expr_stmt|;
+block|}
 comment|// otherwise, we add all nodes without check
 block|}
 else|else
@@ -7918,11 +8095,13 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
-comment|/** TODO document */
+comment|/**      * TODO document.      */
 specifier|private
 class|class
 name|MatcherCallback
@@ -8011,6 +8190,7 @@ index|]
 operator|==
 name|IDX_GENERIC
 condition|)
+block|{
 name|offset
 operator|=
 name|SimpleValue
@@ -8021,7 +8201,9 @@ name|NativeValueIndex
 operator|.
 name|LENGTH_VALUE_TYPE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|offset
 operator|=
 name|QNameValue
@@ -8032,6 +8214,7 @@ name|NativeValueIndex
 operator|.
 name|LENGTH_VALUE_TYPE
 expr_stmt|;
+block|}
 name|key
 operator|.
 name|reuse
@@ -8084,7 +8267,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 block|}
@@ -8182,6 +8367,7 @@ if|if
 condition|(
 name|byQName
 condition|)
+block|{
 name|atomic
 operator|=
 operator|(
@@ -8207,7 +8393,9 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|atomic
 operator|=
 operator|(
@@ -8233,6 +8421,7 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|atomic
@@ -8242,9 +8431,13 @@ argument_list|()
 operator|!=
 name|type
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -8265,7 +8458,9 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 name|VariableByteInput
@@ -8302,7 +8497,9 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 name|ValueOccurrences
@@ -8444,6 +8641,7 @@ name|contextSet
 operator|!=
 literal|null
 condition|)
+block|{
 name|parentNode
 operator|=
 name|contextSet
@@ -8459,7 +8657,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parentNode
 operator|=
 operator|new
@@ -8470,6 +8670,7 @@ argument_list|,
 name|nodeId
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|parentNode
@@ -8508,9 +8709,11 @@ comment|//Not sure if we should track the contextSet's parentId... (just like we
 comment|//... or the way the contextSet is created (thus keeping track of the NodeTest)
 if|if
 condition|(
+operator|(
 name|lastParentId
 operator|==
 literal|null
+operator|)
 operator|||
 operator|!
 name|lastParentId
@@ -8523,6 +8726,7 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|oc
 operator|.
 name|addOccurrences
@@ -8530,6 +8734,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8582,13 +8787,15 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 block|}
 comment|//***************************************************************************
 comment|//*
-comment|//* 	Other Private Classes
+comment|//*     Other Private Classes
 comment|//*
 comment|//***************************************************************************/
 specifier|private
@@ -8663,7 +8870,9 @@ name|cmp
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 name|value
 operator|.
 name|compareTo
@@ -8672,11 +8881,17 @@ name|other
 operator|.
 name|value
 argument_list|)
+operator|)
 return|;
+block|}
 else|else
+block|{
 return|return
+operator|(
 name|cmp
+operator|)
 return|;
+block|}
 block|}
 block|}
 specifier|private
@@ -8838,6 +9053,7 @@ throws|throws
 name|EXistException
 block|{
 return|return
+operator|(
 name|ValueIndexFactory
 operator|.
 name|deserialize
@@ -8852,6 +9068,7 @@ name|len
 operator|-
 name|OFFSET_VALUE
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
@@ -9209,6 +9426,7 @@ throws|throws
 name|EXistException
 block|{
 return|return
+operator|(
 name|ValueIndexFactory
 operator|.
 name|deserialize
@@ -9223,6 +9441,7 @@ name|len
 operator|-
 name|OFFSET_VALUE
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -9239,12 +9458,14 @@ name|start
 parameter_list|)
 block|{
 return|return
+operator|(
 name|data
 index|[
 name|start
 operator|+
 name|OFFSET_QNAME_TYPE
 index|]
+operator|)
 return|;
 block|}
 block|}
@@ -9472,13 +9693,17 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|rSpec
 operator|!=
 literal|null
+operator|)
 operator|||
+operator|(
 name|qSpec
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 if|if
@@ -9487,12 +9712,14 @@ name|contentStack
 operator|==
 literal|null
 condition|)
+block|{
 name|contentStack
 operator|=
 operator|new
 name|Stack
 argument_list|()
 expr_stmt|;
+block|}
 name|XMLString
 name|contentBuf
 init|=
@@ -9573,6 +9800,7 @@ name|rSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|storeAttribute
 argument_list|(
 name|attrib
@@ -9588,12 +9816,14 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|qSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|storeAttribute
 argument_list|(
 name|attrib
@@ -9609,6 +9839,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|attrib
@@ -9622,6 +9853,7 @@ name|AttrImpl
 operator|.
 name|ID
 case|:
+block|{
 name|storeAttribute
 argument_list|(
 name|attrib
@@ -9649,11 +9881,13 @@ literal|false
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|AttrImpl
 operator|.
 name|IDREF
 case|:
+block|{
 name|storeAttribute
 argument_list|(
 name|attrib
@@ -9681,11 +9915,13 @@ literal|false
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|AttrImpl
 operator|.
 name|IDREFS
 case|:
+block|{
 name|StringTokenizer
 name|tokenizer
 init|=
@@ -9736,6 +9972,7 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
+block|}
 default|default:
 comment|// do nothing special
 block|}
@@ -9800,13 +10037,17 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|rSpec
 operator|!=
 literal|null
+operator|)
 operator|||
+operator|(
 name|qSpec
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|XMLString
@@ -9826,6 +10067,7 @@ name|rSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|storeElement
 argument_list|(
 name|element
@@ -9852,12 +10094,14 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|qSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|storeElement
 argument_list|(
 name|element
@@ -9884,6 +10128,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|super
 operator|.
@@ -9913,9 +10158,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|(
 name|contentStack
 operator|!=
 literal|null
+operator|)
 operator|&&
 operator|!
 name|contentStack
@@ -9985,7 +10232,9 @@ name|getWorker
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 block|}

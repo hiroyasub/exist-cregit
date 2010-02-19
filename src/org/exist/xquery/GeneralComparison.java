@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *   *  Copyright (C) 2000-03, Wolfgang M. Meier (meier@ifs. tu- darmstadt. de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  *  Copyright (C) 2000-03, Wolfgang M. Meier (meier@ifs. tu- darmstadt. de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -12,20 +12,6 @@ operator|.
 name|xquery
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|pragmas
-operator|.
-name|Optimize
-import|;
-end_import
 
 begin_import
 import|import
@@ -201,6 +187,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|pragmas
+operator|.
+name|Optimize
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|ExpressionDumper
@@ -287,7 +287,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
+name|StringValue
 import|;
 end_import
 
@@ -301,7 +301,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|StringValue
+name|Type
 import|;
 end_import
 
@@ -336,7 +336,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A general XQuery/XPath2 comparison expression.  *   * @author wolf  */
+comment|/**  * A general XQuery/XPath2 comparison expression.  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -350,7 +350,7 @@ name|Optimizable
 implements|,
 name|IndexUseReporter
 block|{
-comment|/** 	 * The type of operator used for the comparison, i.e. =, !=,&lt;,&gt; ... 	 * One of the constants declared in class {@link Constants}. 	 */
+comment|/** The type of operator used for the comparison, i.e. =, !=,&lt;,&gt; ... One of the constants declared in class {@link Constants}. */
 specifier|protected
 name|int
 name|relation
@@ -359,7 +359,7 @@ name|Constants
 operator|.
 name|EQ
 decl_stmt|;
-comment|/** 	 * Truncation flags: when comparing with a string value, the search 	 * string may be truncated with a single * wildcard. See the constants declared 	 * in class {@link Constants}. 	 *  	 * The standard functions starts-with, ends-with and contains are 	 * transformed into a general comparison with wildcard. Hence the need 	 * to consider wildcards here. 	 */
+comment|/**      * Truncation flags: when comparing with a string value, the search string may be truncated with a single * wildcard. See the constants declared      * in class {@link Constants}.      *      *<p>The standard functions starts-with, ends-with and contains are transformed into a general comparison with wildcard. Hence the need to      * consider wildcards here.</p>      */
 specifier|protected
 name|int
 name|truncation
@@ -368,21 +368,21 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 decl_stmt|;
-comment|/** 	 * The class might cache the entire results of a previous execution. 	 */
+comment|/** The class might cache the entire results of a previous execution. */
 specifier|protected
 name|CachedResult
 name|cached
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Extra argument (to standard functions starts-with/contains etc.) 	 * to indicate the collation to be used for string comparisons. 	 */
+comment|/** Extra argument (to standard functions starts-with/contains etc.) to indicate the collation to be used for string comparisons. */
 specifier|protected
 name|Object
 name|collationArg
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Set to true if this expression is called within the where clause 	 * of a FLWOR expression. 	 */
+comment|/** Set to true if this expression is called within the where clause of a FLWOR expression. */
 specifier|protected
 name|boolean
 name|inWhereClause
@@ -591,10 +591,13 @@ name|truncation
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|left
 operator|instanceof
 name|PathExpr
+operator|)
 operator|&&
+operator|(
 operator|(
 operator|(
 name|PathExpr
@@ -606,6 +609,7 @@ name|getLength
 argument_list|()
 operator|==
 literal|1
+operator|)
 condition|)
 block|{
 name|left
@@ -634,10 +638,13 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|right
 operator|instanceof
 name|PathExpr
+operator|)
 operator|&&
+operator|(
 operator|(
 operator|(
 name|PathExpr
@@ -649,6 +656,7 @@ name|getLength
 argument_list|()
 operator|==
 literal|1
+operator|)
 condition|)
 block|{
 name|right
@@ -680,6 +688,7 @@ if|if
 condition|(
 name|didLeftSimplification
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -698,10 +707,12 @@ argument_list|,
 literal|"Marked left argument as a child expression"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|didRightSimplification
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -720,6 +731,7 @@ argument_list|,
 literal|"Marked right argument as a child expression"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.BinaryOp#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
@@ -789,13 +801,17 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|invalidNodeEvaluation
 operator|=
+operator|(
 name|getLeft
 argument_list|()
 operator|instanceof
 name|LocationStep
+operator|)
 operator|&&
+operator|(
 operator|(
 operator|(
 name|LocationStep
@@ -809,7 +825,9 @@ operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
+operator|)
 expr_stmt|;
+block|}
 comment|//Unfortunately, we lose the possibility to make a nodeset optimization
 comment|//(we still don't know anything about the contextSequence that will be processed)
 comment|// check if the right-hand operand is a simple cast expression
@@ -847,6 +865,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -854,6 +873,7 @@ argument_list|(
 literal|"Right operand is a cast expression"
 argument_list|)
 expr_stmt|;
+block|}
 name|rightOpDeps
 operator|=
 name|expression
@@ -870,19 +890,23 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|contextInfo
 operator|.
 name|getContextStep
 argument_list|()
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|contextInfo
 operator|.
 name|getContextStep
 argument_list|()
 operator|instanceof
 name|LocationStep
+operator|)
 condition|)
 block|{
 operator|(
@@ -958,13 +982,16 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|steps
 operator|.
 name|size
 argument_list|()
 operator|==
 literal|1
+operator|)
 operator|&&
+operator|(
 name|firstStep
 operator|.
 name|getAxis
@@ -973,6 +1000,7 @@ operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
+operator|)
 condition|)
 block|{
 name|Expression
@@ -985,13 +1013,17 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|outerExpr
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|outerExpr
 operator|instanceof
 name|LocationStep
+operator|)
 condition|)
 block|{
 name|LocationStep
@@ -1018,12 +1050,14 @@ operator|.
 name|isWildcardTest
 argument_list|()
 operator|&&
+operator|(
 name|test
 operator|.
 name|getName
 argument_list|()
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|contextQName
@@ -1039,6 +1073,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|outerStep
 operator|.
 name|getAxis
@@ -1047,7 +1082,9 @@ operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|)
 operator|||
+operator|(
 name|outerStep
 operator|.
 name|getAxis
@@ -1056,7 +1093,9 @@ operator|==
 name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
+operator|)
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -1066,6 +1105,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|firstStep
@@ -1102,12 +1142,14 @@ operator|.
 name|isWildcardTest
 argument_list|()
 operator|&&
+operator|(
 name|test
 operator|.
 name|getName
 argument_list|()
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|contextQName
@@ -1123,6 +1165,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|lastStep
 operator|.
 name|getAxis
@@ -1131,7 +1174,9 @@ operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|)
 operator|||
+operator|(
 name|lastStep
 operator|.
 name|getAxis
@@ -1140,7 +1185,9 @@ operator|==
 name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
+operator|)
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -1150,6 +1197,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|lastStep
@@ -1163,19 +1211,24 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|axis
 operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
+operator|)
 operator|&&
+operator|(
 name|steps
 operator|.
 name|size
 argument_list|()
 operator|>
 literal|1
+operator|)
 condition|)
+block|{
 name|axis
 operator|=
 name|steps
@@ -1188,27 +1241,34 @@ operator|.
 name|getAxis
 argument_list|()
 expr_stmt|;
+block|}
 name|optimizeChild
 operator|=
+operator|(
 name|steps
 operator|.
 name|size
 argument_list|()
 operator|==
 literal|1
+operator|)
 operator|&&
+operator|(
 operator|(
 name|axis
 operator|==
 name|Constants
 operator|.
 name|CHILD_AXIS
+operator|)
 operator|||
+operator|(
 name|axis
 operator|==
 name|Constants
 operator|.
 name|ATTRIBUTE_AXIS
+operator|)
 operator|)
 expr_stmt|;
 block|}
@@ -1229,10 +1289,15 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|Optimize
 operator|.
 name|getQNameIndexType
@@ -1247,6 +1312,7 @@ operator|!=
 name|Type
 operator|.
 name|ITEM
+operator|)
 return|;
 block|}
 specifier|public
@@ -1255,7 +1321,9 @@ name|optimizeOnSelf
 parameter_list|()
 block|{
 return|return
+operator|(
 name|optimizeSelf
+operator|)
 return|;
 block|}
 specifier|public
@@ -1264,7 +1332,9 @@ name|optimizeOnChild
 parameter_list|()
 block|{
 return|return
+operator|(
 name|optimizeChild
+operator|)
 return|;
 block|}
 specifier|public
@@ -1273,10 +1343,12 @@ name|getOptimizeAxis
 parameter_list|()
 block|{
 return|return
+operator|(
 name|axis
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BinaryOp#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -1302,21 +1374,25 @@ operator|)
 condition|)
 block|{
 return|return
+operator|(
 name|getLeft
 argument_list|()
 operator|.
 name|returnsType
 argument_list|()
+operator|)
 return|;
 block|}
 comment|// In all other cases, we return boolean
 return|return
+operator|(
 name|Type
 operator|.
 name|BOOLEAN
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -1340,7 +1416,7 @@ operator|.
 name|NODE
 argument_list|)
 operator|&&
-comment|//	and does not depend on the context item
+comment|//  and does not depend on the context item
 operator|!
 name|Dependency
 operator|.
@@ -1374,14 +1450,17 @@ operator|)
 condition|)
 block|{
 return|return
+operator|(
 name|Dependency
 operator|.
 name|CONTEXT_SET
+operator|)
 return|;
 block|}
 else|else
 block|{
 return|return
+operator|(
 name|Dependency
 operator|.
 name|CONTEXT_SET
@@ -1389,6 +1468,7 @@ operator|+
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
+operator|)
 return|;
 block|}
 block|}
@@ -1398,9 +1478,11 @@ name|getRelation
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
 operator|.
 name|relation
+operator|)
 return|;
 block|}
 specifier|public
@@ -1450,6 +1532,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1464,6 +1547,7 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|Sequence
 name|rightSeq
 init|=
@@ -1603,6 +1687,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1629,7 +1714,9 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1637,6 +1724,7 @@ name|this
 argument_list|,
 literal|"Cannot convert key to required index type"
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
@@ -1655,6 +1743,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1667,6 +1756,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|NodeSet
 name|temp
 decl_stmt|;
@@ -1686,9 +1776,11 @@ name|Collator
 name|collator
 init|=
 operator|(
+operator|(
 name|collationArg
 operator|!=
 literal|null
+operator|)
 condition|?
 name|getCollator
 argument_list|(
@@ -1834,6 +1926,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1848,6 +1941,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
@@ -1857,10 +1951,12 @@ name|preselectResult
 operator|==
 literal|null
 condition|)
+block|{
 name|preselectResult
 operator|=
 name|temp
 expr_stmt|;
+block|}
 else|else
 block|{
 name|preselectResult
@@ -1885,6 +1981,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1912,19 +2009,24 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
+operator|(
 name|preselectResult
 operator|==
 literal|null
+operator|)
 condition|?
 name|NodeSet
 operator|.
 name|EMPTY_SET
 else|:
 name|preselectResult
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1991,6 +2093,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2009,12 +2112,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2037,15 +2142,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
 comment|// if the context sequence hasn't changed we can return a cached result
 if|if
 condition|(
+operator|(
 name|cached
 operator|!=
 literal|null
+operator|)
 operator|&&
 name|cached
 operator|.
@@ -2074,6 +2182,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2092,6 +2201,7 @@ argument_list|,
 literal|"Returned cached result"
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 name|cached
@@ -2106,9 +2216,11 @@ comment|// if we were optimizing and the preselect did not return anything,
 comment|// we won't have any matches and can return
 if|if
 condition|(
+operator|(
 name|preselectResult
 operator|!=
 literal|null
+operator|)
 operator|&&
 name|preselectResult
 operator|.
@@ -2127,16 +2239,20 @@ else|else
 block|{
 if|if
 condition|(
+operator|(
 name|contextStep
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|preselectResult
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
-comment|/* 		             * If we are inside a predicate and one of the arguments is a node set, 		             * we try to speed up the query by returning nodes from the context set. 		             * This works only inside a predicate. The node set will always be the left 		             * operand. 		             */
+comment|/*                      * If we are inside a predicate and one of the arguments is a node set,                      * we try to speed up the query by returning nodes from the context set.                      * This works only inside a predicate. The node set will always be the left                      * operand.                      */
 if|if
 condition|(
 name|inPredicate
@@ -2172,9 +2288,11 @@ name|NODE
 argument_list|)
 operator|&&
 operator|(
+operator|(
 name|contextSequence
 operator|==
 literal|null
+operator|)
 operator|||
 name|contextSequence
 operator|.
@@ -2189,6 +2307,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -2196,6 +2315,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -2294,9 +2414,11 @@ comment|// can this result be cached? Don't cache if the result depends on local
 name|boolean
 name|canCache
 init|=
+operator|(
 name|contextSequence
 operator|!=
 literal|null
+operator|)
 operator|&&
 name|contextSequence
 operator|.
@@ -2351,6 +2473,7 @@ if|if
 condition|(
 name|canCache
 condition|)
+block|{
 name|cached
 operator|=
 operator|new
@@ -2364,6 +2487,7 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -2374,6 +2498,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2388,6 +2513,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 name|actualReturnType
 operator|=
 name|result
@@ -2396,10 +2522,12 @@ name|getItemType
 argument_list|()
 expr_stmt|;
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
-comment|/** 	 * Generic, slow implementation. Applied if none of the possible 	 * optimizations can be used. 	 * 	 * @param contextSequence 	 * @param contextItem 	 * @return The Sequence resulting from the comparison 	 * @throws XPathException 	 */
+comment|/**      * Generic, slow implementation. Applied if none of the possible optimizations can be used.      *      * @param   contextSequence      * @param   contextItem      *      * @return  The Sequence resulting from the comparison      *      * @throws  XPathException      */
 specifier|protected
 name|Sequence
 name|genericCompare
@@ -2423,6 +2551,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2441,6 +2570,7 @@ argument_list|,
 literal|"genericCompare"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|Sequence
 name|ls
@@ -2456,6 +2586,7 @@ name|contextItem
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
 name|genericCompare
 argument_list|(
 name|ls
@@ -2464,6 +2595,7 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|protected
@@ -2885,6 +3017,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2912,11 +3045,14 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
-comment|/** 	 * Optimized implementation, which can be applied if the left operand 	 * returns a node set. In this case, the left expression is executed first. 	 * All matching context nodes are then passed to the right expression. 	 */
+comment|/**      * Optimized implementation, which can be applied if the left operand returns a node set. In this case, the left expression is executed first. All      * matching context nodes are then passed to the right expression.      *      * @param   nodes            DOCUMENT ME!      * @param   contextSequence  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
 specifier|protected
 name|Sequence
 name|nodeSetCompare
@@ -2940,6 +3076,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2958,6 +3095,7 @@ argument_list|,
 literal|"nodeSetCompare"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -2965,6 +3103,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2972,6 +3111,7 @@ argument_list|(
 literal|"No index: fall back to nodeSetCompare"
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|start
 init|=
@@ -2998,9 +3138,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|contextSequence
 operator|!=
 literal|null
+operator|)
 operator|&&
 operator|!
 name|contextSequence
@@ -3045,7 +3187,9 @@ name|context
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -3053,7 +3197,9 @@ name|this
 argument_list|,
 literal|"Internal error: context node missing"
 argument_list|)
+operator|)
 throw|;
+block|}
 name|AtomicValue
 name|lv
 init|=
@@ -3120,6 +3266,7 @@ argument_list|,
 name|rv
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3127,6 +3274,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 do|while
@@ -3213,6 +3361,7 @@ argument_list|,
 name|rv
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3220,6 +3369,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3233,6 +3383,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3260,11 +3411,14 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
-comment|/** 	 * Optimized implementation: first checks if a range index is defined 	 * on the nodes in the left argument. If that fails, check if we can use 	 * the fulltext index to speed up the search. Otherwise, fall back to 	 * {@link #nodeSetCompare(NodeSet, Sequence)}. 	 */
+comment|/**      * Optimized implementation: first checks if a range index is defined on the nodes in the left argument. If that fails, check if we can use the      * fulltext index to speed up the search. Otherwise, fall back to {@link #nodeSetCompare(NodeSet, Sequence)}.      *      * @param   contextSequence  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
 specifier|protected
 name|Sequence
 name|quickNodeSetCompare
@@ -3275,7 +3429,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|/* TODO think about optimising fallback to NodeSetCompare() in the for loop!!! 		 * At the moment when we fallback to NodeSetCompare() we are in effect throwing away any nodes 		 * we have already processed in quickNodeSetCompare() and reprocessing all the nodes in NodeSetCompare(). 		 * Instead - Could we create a NodeCompare() (based on NodeSetCompare() code) to only compare a single node and then union the result? 		 * - deliriumsky 		 */
+comment|/* TODO think about optimising fallback to NodeSetCompare() in the for loop!!!          * At the moment when we fallback to NodeSetCompare() we are in effect throwing away any nodes          * we have already processed in quickNodeSetCompare() and reprocessing all the nodes in NodeSetCompare().          * Instead - Could we create a NodeCompare() (based on NodeSetCompare() code) to only compare a single node and then union the result?          * - deliriumsky          */
 if|if
 condition|(
 name|context
@@ -3286,6 +3440,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3304,6 +3459,7 @@ argument_list|,
 literal|"quickNodeSetCompare"
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|start
 init|=
@@ -3332,7 +3488,9 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 return|return
+operator|(
 name|genericCompare
 argument_list|(
 name|leftSeq
@@ -3341,7 +3499,9 @@ name|contextSequence
 argument_list|,
 literal|null
 argument_list|)
+operator|)
 return|;
+block|}
 name|NodeSet
 name|nodes
 init|=
@@ -3381,9 +3541,11 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 comment|//get the Sequence on the right
@@ -3413,9 +3575,11 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 comment|//get the type of a possible index
@@ -3445,6 +3609,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3459,6 +3624,7 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|boolean
 name|indexScan
 init|=
@@ -3519,9 +3685,11 @@ condition|(
 operator|!
 name|indexFound
 operator|&&
+operator|(
 name|contextQName
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 comment|// if there are some indexes defined on a qname,
@@ -3532,22 +3700,28 @@ name|iflags
 operator|.
 name|hasIndexOnQNames
 condition|)
+block|{
 name|indexScan
 operator|=
 literal|true
 expr_stmt|;
+block|}
 comment|// else use range index defined on path by default
 block|}
 block|}
 else|else
+block|{
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
+block|}
 comment|//Get the documents from the node set
 specifier|final
 name|DocumentSet
@@ -3698,6 +3872,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3723,6 +3898,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -3730,6 +3906,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3756,13 +3933,16 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
@@ -3781,6 +3961,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3793,13 +3974,16 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|Collator
 name|collator
 init|=
 operator|(
+operator|(
 name|collationArg
 operator|!=
 literal|null
+operator|)
 condition|?
 name|getCollator
 argument_list|(
@@ -3840,6 +4024,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3852,6 +4037,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|//key without truncation, find key
 name|context
 operator|.
@@ -3910,6 +4096,7 @@ if|if
 condition|(
 name|indexScan
 condition|)
+block|{
 name|ns
 operator|=
 name|context
@@ -3940,7 +4127,9 @@ argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ns
 operator|=
 name|context
@@ -3973,6 +4162,7 @@ argument_list|,
 name|collator
 argument_list|)
 expr_stmt|;
+block|}
 name|hasUsedIndex
 operator|=
 literal|true
@@ -3983,11 +4173,14 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|ns
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|result
@@ -3997,6 +4190,7 @@ argument_list|(
 name|ns
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -4108,6 +4302,7 @@ name|Constants
 operator|.
 name|TRUNC_RIGHT
 case|:
+block|{
 name|matchType
 operator|=
 name|DBBroker
@@ -4115,11 +4310,13 @@ operator|.
 name|MATCH_STARTSWITH
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_LEFT
 case|:
+block|{
 name|matchType
 operator|=
 name|DBBroker
@@ -4127,11 +4324,13 @@ operator|.
 name|MATCH_ENDSWITH
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_BOTH
 case|:
+block|{
 name|matchType
 operator|=
 name|DBBroker
@@ -4139,11 +4338,13 @@ operator|.
 name|MATCH_CONTAINS
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_EQUALS
 case|:
+block|{
 name|matchType
 operator|=
 name|DBBroker
@@ -4151,7 +4352,9 @@ operator|.
 name|MATCH_EXACT
 expr_stmt|;
 break|break;
+block|}
 default|default:
+block|{
 comment|// We should never get here!
 name|LOG
 operator|.
@@ -4175,6 +4378,7 @@ name|truncation
 argument_list|)
 operator|)
 throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -4316,6 +4520,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -4355,6 +4560,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -4362,6 +4568,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4388,13 +4595,16 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
@@ -4411,6 +4621,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -4437,6 +4648,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -4444,6 +4656,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4459,13 +4672,16 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
@@ -4479,6 +4695,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -4506,8 +4723,11 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|result
+operator|)
 return|;
 block|}
 else|else
@@ -4519,6 +4739,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4531,6 +4752,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|//no range index defined on the nodes in this sequence, so fallback to nodeSetCompare
 if|if
 condition|(
@@ -4542,6 +4764,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -4560,13 +4783,16 @@ argument_list|,
 literal|"falling back to nodeSetCompare (no index available)"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|nodeSetCompare
 argument_list|(
 name|nodes
 argument_list|,
 name|contextSequence
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
@@ -4588,7 +4814,9 @@ name|Constants
 operator|.
 name|TRUNC_LEFT
 case|:
+block|{
 return|return
+operator|(
 operator|new
 name|StringBuilder
 argument_list|()
@@ -4602,13 +4830,17 @@ name|append
 argument_list|(
 literal|'$'
 argument_list|)
+operator|)
 return|;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_RIGHT
 case|:
+block|{
 return|return
+operator|(
 operator|new
 name|StringBuilder
 argument_list|()
@@ -4622,14 +4854,20 @@ name|append
 argument_list|(
 name|expr
 argument_list|)
+operator|)
 return|;
-default|default :
+block|}
+default|default:
+block|{
 return|return
+operator|(
 name|expr
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Cast the atomic operands into a comparable type 	 * and compare them. 	 */
+block|}
+comment|/**      * Cast the atomic operands into a comparable type and compare them.      *      * @param   collator  DOCUMENT ME!      * @param   lv        DOCUMENT ME!      * @param   rv        DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
 specifier|private
 name|boolean
 name|compareAtomic
@@ -4709,17 +4947,21 @@ comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type
 block|}
 if|else if
 condition|(
+operator|(
 name|rtype
 operator|==
 name|Type
 operator|.
 name|UNTYPED_ATOMIC
+operator|)
 operator|||
+operator|(
 name|rtype
 operator|==
 name|Type
 operator|.
 name|STRING
+operator|)
 condition|)
 block|{
 name|lv
@@ -4740,6 +4982,7 @@ comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or a
 comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
 block|}
 else|else
+block|{
 name|lv
 operator|=
 name|lv
@@ -4749,6 +4992,7 @@ argument_list|(
 name|rtype
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4795,17 +5039,21 @@ comment|//then the xdt:untypedAtomic value (or values) is (are) cast to the type
 block|}
 if|else if
 condition|(
+operator|(
 name|ltype
 operator|==
 name|Type
 operator|.
 name|UNTYPED_ATOMIC
+operator|)
 operator|||
+operator|(
 name|ltype
 operator|==
 name|Type
 operator|.
 name|STRING
+operator|)
 condition|)
 block|{
 name|rv
@@ -4820,12 +5068,13 @@ name|STRING
 argument_list|)
 expr_stmt|;
 comment|//if (ltype == Type.UNTYPED_ATOMIC)
-comment|//	lv = lv.convertTo(Type.STRING);
+comment|//  lv = lv.convertTo(Type.STRING);
 comment|//If one of the atomic values is an instance of xdt:untypedAtomic
 comment|//and the other is not an instance of xs:string, xdt:untypedAtomic, or any numeric type,
 comment|//then the xdt:untypedAtomic value is cast to the dynamic type of the other value.
 block|}
 else|else
+block|{
 name|rv
 operator|=
 name|rv
@@ -4836,7 +5085,8 @@ name|ltype
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 			if (backwardsCompatible) { 				if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) { 					// in XPath 1.0 compatible mode, if one of the operands is a number, cast 					// both operands to xs:double 					if (Type.subTypeOf(ltype, Type.NUMBER) 						|| Type.subTypeOf(rtype, Type.NUMBER)) { 							lv = lv.convertTo(Type.DOUBLE); 							rv = rv.convertTo(Type.DOUBLE); 					} 				} 			} 			*/
+block|}
+comment|/*             if (backwardsCompatible) {                 if (!"".equals(lv.getStringValue())&& !"".equals(rv.getStringValue())) {                     // in XPath 1.0 compatible mode, if one of the operands is a number, cast                     // both operands to xs:double                     if (Type.subTypeOf(ltype, Type.NUMBER)                         || Type.subTypeOf(rtype, Type.NUMBER)) {                             lv = lv.convertTo(Type.DOUBLE);                             rv = rv.convertTo(Type.DOUBLE);                     }                 }             }             */
 comment|// if truncation is set, we always do a string comparison
 if|if
 condition|(
@@ -4860,8 +5110,8 @@ name|STRING
 argument_list|)
 expr_stmt|;
 block|}
-comment|//				System.out.println(
-comment|//					lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
+comment|//              System.out.println(
+comment|//                  lv.getStringValue() + Constants.OPS[relation] + rv.getStringValue());
 switch|switch
 condition|(
 name|truncation
@@ -4872,7 +5122,9 @@ name|Constants
 operator|.
 name|TRUNC_RIGHT
 case|:
+block|{
 return|return
+operator|(
 name|lv
 operator|.
 name|startsWith
@@ -4881,13 +5133,17 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
+operator|)
 return|;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_LEFT
 case|:
+block|{
 return|return
+operator|(
 name|lv
 operator|.
 name|endsWith
@@ -4896,13 +5152,17 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
+operator|)
 return|;
+block|}
 case|case
 name|Constants
 operator|.
 name|TRUNC_BOTH
 case|:
+block|{
 return|return
+operator|(
 name|lv
 operator|.
 name|contains
@@ -4911,9 +5171,13 @@ name|collator
 argument_list|,
 name|rv
 argument_list|)
+operator|)
 return|;
+block|}
 default|default:
+block|{
 return|return
+operator|(
 name|lv
 operator|.
 name|compareTo
@@ -4924,7 +5188,9 @@ name|relation
 argument_list|,
 name|rv
 argument_list|)
+operator|)
 return|;
+block|}
 block|}
 block|}
 catch|catch
@@ -4949,11 +5215,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 name|e
+operator|)
 throw|;
 block|}
 block|}
-comment|/**      * @param lv      * @return Whether or not<code>lv</code> is an empty string 	 * @throws XPathException      */
+comment|/**      * DOCUMENT ME!      *      * @param   lv      *      * @return  Whether or not<code>lv</code> is an empty string      *      * @throws  XPathException      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4986,6 +5254,7 @@ operator|.
 name|STRING
 argument_list|)
 operator|||
+operator|(
 name|lv
 operator|.
 name|getType
@@ -4994,6 +5263,7 @@ operator|==
 name|Type
 operator|.
 name|ATOMIC
+operator|)
 condition|)
 block|{
 if|if
@@ -5008,12 +5278,18 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
+block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -5022,7 +5298,9 @@ name|hasUsedIndex
 parameter_list|()
 block|{
 return|return
+operator|(
 name|hasUsedIndex
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#dump(org.exist.xquery.util.ExpressionDumper)      */
@@ -5246,10 +5524,12 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|protected
@@ -5286,6 +5566,7 @@ name|Constants
 operator|.
 name|GT
 case|:
+block|{
 name|relation
 operator|=
 name|Constants
@@ -5293,11 +5574,13 @@ operator|.
 name|LT
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|LT
 case|:
+block|{
 name|relation
 operator|=
 name|Constants
@@ -5305,11 +5588,13 @@ operator|.
 name|GT
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|LTEQ
 case|:
+block|{
 name|relation
 operator|=
 name|Constants
@@ -5317,11 +5602,13 @@ operator|.
 name|GTEQ
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Constants
 operator|.
 name|GTEQ
 case|:
+block|{
 name|relation
 operator|=
 name|Constants
@@ -5330,6 +5617,7 @@ name|LTEQ
 expr_stmt|;
 break|break;
 comment|//What about Constants.EQ and Constants.NEQ ? Well, it seems to never be called
+block|}
 block|}
 name|Expression
 name|right
@@ -5349,7 +5637,7 @@ name|right
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Possibly switch operands to simplify execution 	 */
+comment|/**      * Possibly switch operands to simplify execution.      */
 specifier|protected
 name|void
 name|simplify
@@ -5391,9 +5679,11 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|switchOperands
 argument_list|()
 expr_stmt|;
+block|}
 comment|//Prefer fewer items at the left hand
 if|else if
 condition|(
@@ -5432,9 +5722,11 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 name|switchOperands
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|Collator
@@ -5452,12 +5744,16 @@ name|collationArg
 operator|==
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|context
 operator|.
 name|getDefaultCollator
 argument_list|()
+operator|)
 return|;
+block|}
 name|String
 name|collationURI
 decl_stmt|;
@@ -5509,19 +5805,23 @@ block|}
 else|else
 block|{
 return|return
+operator|(
 name|context
 operator|.
 name|getDefaultCollator
 argument_list|()
+operator|)
 return|;
 block|}
 return|return
+operator|(
 name|context
 operator|.
 name|getCollator
 argument_list|(
 name|collationURI
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -5609,7 +5909,9 @@ operator|.
 name|SYSTEM_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|IndexSpec
 name|idxcfg
 init|=
@@ -5629,6 +5931,7 @@ name|idxflags
 operator|.
 name|indexOnQName
 operator|&&
+operator|(
 name|idxcfg
 operator|.
 name|getIndexByQName
@@ -5637,6 +5940,7 @@ name|contextQName
 argument_list|)
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 name|idxflags
@@ -5652,6 +5956,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -5671,6 +5976,7 @@ literal|" does not define an index"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -5683,12 +5989,14 @@ operator|.
 name|hasIndexesByQName
 argument_list|()
 condition|)
+block|{
 name|idxflags
 operator|.
 name|hasIndexOnQNames
 operator|=
 literal|true
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -5701,6 +6009,7 @@ operator|.
 name|hasIndexesByPath
 argument_list|()
 condition|)
+block|{
 name|idxflags
 operator|.
 name|hasIndexOnPaths
@@ -5708,11 +6017,14 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 name|idxflags
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -5810,7 +6122,9 @@ name|indexOnQName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|indexOnQName
+operator|)
 return|;
 block|}
 specifier|public
@@ -5819,7 +6133,9 @@ name|hasIndexOnPaths
 parameter_list|()
 block|{
 return|return
+operator|(
 name|hasIndexOnPaths
+operator|)
 return|;
 block|}
 specifier|public
@@ -5828,7 +6144,9 @@ name|hasIndexOnQNames
 parameter_list|()
 block|{
 return|return
+operator|(
 name|hasIndexOnQNames
+operator|)
 return|;
 block|}
 specifier|public
