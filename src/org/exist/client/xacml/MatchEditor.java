@@ -1600,7 +1600,7 @@ name|listeners
 operator|.
 name|remove
 argument_list|(
-name|listeners
+name|listener
 argument_list|)
 expr_stmt|;
 block|}
