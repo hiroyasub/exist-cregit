@@ -5461,6 +5461,11 @@ block|}
 block|}
 if|else if
 condition|(
+name|collator
+operator|==
+literal|null
+operator|&&
+operator|(
 name|type
 operator|==
 name|DBBroker
@@ -5472,6 +5477,7 @@ operator|==
 name|DBBroker
 operator|.
 name|MATCH_STARTSWITH
+operator|)
 condition|)
 block|{
 name|startTerm
