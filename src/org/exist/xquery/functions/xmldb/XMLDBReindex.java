@@ -47,45 +47,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|IndexQueryService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|BasicFunction
 import|;
 end_import
 
@@ -161,7 +125,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionReturnSequenceType
+name|FunctionParameterSequenceType
 import|;
 end_import
 
@@ -175,7 +139,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionParameterSequenceType
+name|FunctionReturnSequenceType
 import|;
 end_import
 
