@@ -5338,7 +5338,7 @@ name|TerminatedException
 throws|,
 name|EXistException
 block|{
-comment|// if the regexp starts with a char sequence, we restrict the index scan to entries starting with
+comment|// if the match expression starts with a char sequence, we restrict the index scan to entries starting with
 comment|// the same sequence. Otherwise, we have to scan the whole index.
 name|StringValue
 name|startTerm
@@ -5347,6 +5347,12 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|type
+operator|==
+name|DBBroker
+operator|.
+name|MATCH_REGEXP
+operator|&&
 name|expr
 operator|.
 name|startsWith
@@ -5452,6 +5458,41 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|else if
+condition|(
+name|type
+operator|==
+name|DBBroker
+operator|.
+name|MATCH_EXACT
+operator|||
+name|type
+operator|==
+name|DBBroker
+operator|.
+name|MATCH_STARTSWITH
+condition|)
+block|{
+name|startTerm
+operator|=
+operator|new
+name|StringValue
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Match will begin index scan at '"
+operator|+
+name|startTerm
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
 block|}
 name|TermMatcher
 name|matcher
