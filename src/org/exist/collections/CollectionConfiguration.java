@@ -499,6 +499,9 @@ name|getCollectionDefaultPerms
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
+comment|//use DocumentImpl.isCollectionConfig()
 specifier|public
 specifier|static
 name|boolean
@@ -519,6 +522,9 @@ name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Deprecated
+comment|//use DocumentImpl.isCollectionConfig()
 specifier|public
 specifier|static
 name|boolean

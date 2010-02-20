@@ -41,9 +41,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|indexing
+name|collections
 operator|.
-name|StructuralIndex
+name|CollectionConfiguration
 import|;
 end_import
 
@@ -892,6 +892,22 @@ operator|.
 name|append
 argument_list|(
 name|fileURI
+argument_list|)
+return|;
+block|}
+specifier|public
+name|boolean
+name|isCollectionConfig
+parameter_list|()
+block|{
+return|return
+name|fileURI
+operator|.
+name|endsWith
+argument_list|(
+name|CollectionConfiguration
+operator|.
+name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 return|;
 block|}
@@ -2117,7 +2133,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
+comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
 specifier|public
 specifier|final
 name|int
