@@ -977,7 +977,7 @@ block|{
 return|return
 name|XACMLConstants
 operator|.
-name|POLICY_COLLECTION
+name|POLICY_COLLECTION_URI
 operator|.
 name|equals
 argument_list|(
