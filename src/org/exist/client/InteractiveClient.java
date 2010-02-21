@@ -12051,6 +12051,8 @@ block|{
 comment|// Try to load properties from stream
 try|try
 block|{
+try|try
+block|{
 name|clientProps
 operator|.
 name|load
@@ -12058,6 +12060,15 @@ argument_list|(
 name|pin
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|pin
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
