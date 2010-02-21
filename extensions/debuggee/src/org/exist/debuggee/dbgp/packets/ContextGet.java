@@ -260,11 +260,11 @@ return|return
 literal|""
 return|;
 comment|//XXX: error?
-name|StringBuffer
+name|StringBuilder
 name|properties
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|XQueryContext

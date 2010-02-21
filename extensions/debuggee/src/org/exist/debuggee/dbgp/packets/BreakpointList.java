@@ -146,11 +146,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|StringBuffer
+name|StringBuilder
 name|responce
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|responce

@@ -564,11 +564,11 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|content
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 for|for

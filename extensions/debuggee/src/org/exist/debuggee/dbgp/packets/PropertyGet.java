@@ -354,11 +354,11 @@ argument_list|(
 literal|"property_get"
 argument_list|)
 return|;
-name|StringBuffer
+name|StringBuilder
 name|responce
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|responce
@@ -417,7 +417,7 @@ return|;
 block|}
 specifier|protected
 specifier|static
-name|StringBuffer
+name|StringBuilder
 name|getPropertyString
 parameter_list|(
 name|Variable
@@ -453,11 +453,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|StringBuffer
+name|StringBuilder
 name|property
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 if|if
