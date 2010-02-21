@@ -1204,6 +1204,7 @@ name|ROOT_COLLECTION
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|volatile
 name|BrokerPool
 name|pool
 decl_stmt|;

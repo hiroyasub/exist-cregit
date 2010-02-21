@@ -151,6 +151,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|volatile
 name|Counters
 name|instance
 decl_stmt|;
