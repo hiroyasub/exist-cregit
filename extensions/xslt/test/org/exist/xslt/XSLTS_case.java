@@ -564,10 +564,12 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|String
+name|StringBuffer
 name|content
 init|=
-literal|""
+operator|new
+name|StringBuffer
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -587,9 +589,9 @@ name|i
 operator|++
 control|)
 name|content
-operator|=
-name|content
-operator|+
+operator|.
+name|append
+argument_list|(
 operator|(
 name|String
 operator|)
@@ -602,6 +604,7 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -610,6 +613,9 @@ argument_list|(
 name|outputURL
 argument_list|,
 name|content
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

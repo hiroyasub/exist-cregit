@@ -250,11 +250,6 @@ name|String
 name|getPropertiesString
 parameter_list|()
 block|{
-name|String
-name|properties
-init|=
-literal|""
-decl_stmt|;
 if|if
 condition|(
 name|variables
@@ -262,9 +257,16 @@ operator|==
 literal|null
 condition|)
 return|return
-name|properties
+literal|""
 return|;
 comment|//XXX: error?
+name|StringBuffer
+name|properties
+init|=
+operator|new
+name|StringBuffer
+argument_list|()
+decl_stmt|;
 name|XQueryContext
 name|ctx
 init|=
@@ -286,7 +288,9 @@ argument_list|()
 control|)
 block|{
 name|properties
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|PropertyGet
 operator|.
 name|getPropertyString
@@ -295,10 +299,14 @@ name|variable
 argument_list|,
 name|ctx
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 return|return
 name|properties
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 specifier|public
