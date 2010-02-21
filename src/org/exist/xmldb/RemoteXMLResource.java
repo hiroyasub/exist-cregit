@@ -1659,9 +1659,8 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|File
 name|tmpfile
-init|=
+operator|=
 name|File
 operator|.
 name|createTempFile
@@ -1670,7 +1669,7 @@ literal|"eXistRXR"
 argument_list|,
 literal|".xml"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|tmpfile
 operator|.
 name|deleteOnExit
