@@ -2191,6 +2191,8 @@ name|file
 argument_list|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|StringBuilder
 name|buf
 init|=
@@ -2240,6 +2242,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
