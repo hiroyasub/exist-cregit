@@ -1652,6 +1652,14 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|startDocument
+parameter_list|()
+throws|throws
+name|SAXException
+block|{
 try|try
 block|{
 name|File
@@ -1714,8 +1722,21 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// Don't know where to report!!!
+throw|throw
+operator|new
+name|SAXException
+argument_list|(
+literal|"Unable to create temp file for serialization data"
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
+name|super
+operator|.
+name|startDocument
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** 		 * @see org.xml.sax.DocumentHandler#endDocument() 		 */
 specifier|public
