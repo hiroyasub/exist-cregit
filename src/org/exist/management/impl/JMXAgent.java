@@ -223,6 +223,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|volatile
 name|Agent
 name|agent
 init|=
