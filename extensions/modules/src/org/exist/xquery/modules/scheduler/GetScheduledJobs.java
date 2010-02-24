@@ -381,11 +381,11 @@ operator|.
 name|hasDbaRole
 argument_list|()
 decl_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|xmlBuf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|int
