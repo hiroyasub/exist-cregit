@@ -65,6 +65,7 @@ literal|3600000
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|volatile
 name|SessionManager
 name|instance
 init|=
