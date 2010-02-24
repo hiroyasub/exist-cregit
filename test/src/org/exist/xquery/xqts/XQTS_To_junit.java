@@ -1284,8 +1284,7 @@ literal|";\n\n"
 operator|+
 literal|"import org.exist.xquery.xqts.XQTS_case;\n"
 operator|+
-literal|"import static org.junit.Assert.*;\n"
-operator|+
+comment|//       	    		"import static org.junit.Assert.*;\n" +
 literal|"import org.junit.Test;\n\n"
 operator|+
 literal|"public class C_"
