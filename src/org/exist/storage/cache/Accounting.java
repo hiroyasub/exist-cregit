@@ -97,7 +97,7 @@ specifier|private
 name|int
 name|maxEntries
 init|=
-literal|1000
+literal|5000
 decl_stmt|;
 comment|/** total cache hits during the lifetime of the cache*/
 specifier|private
@@ -324,6 +324,17 @@ name|boolean
 name|resizeNeeded
 parameter_list|()
 block|{
+if|if
+condition|(
+name|thrashingFactor
+operator|==
+literal|0
+condition|)
+return|return
+name|thrashing
+operator|>
+literal|0
+return|;
 return|return
 name|thrashing
 operator|>

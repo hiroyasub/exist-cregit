@@ -73,35 +73,7 @@ name|storage
 operator|.
 name|cache
 operator|.
-name|Cache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|cache
-operator|.
-name|Cacheable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|cache
-operator|.
-name|LRDCache
+name|*
 import|;
 end_import
 
@@ -798,15 +770,17 @@ return|return
 literal|true
 return|;
 block|}
-specifier|private
+specifier|protected
 name|void
 name|initCache
 parameter_list|()
 block|{
+comment|//        cache = new LRDCache(cacheManager.getDefaultInitialSize(), 1.5,
+comment|//            growthThreshold, CacheManager.BTREE_CACHE);
 name|cache
 operator|=
 operator|new
-name|LRDCache
+name|BTreeCache
 argument_list|(
 name|cacheManager
 operator|.
@@ -815,7 +789,7 @@ argument_list|()
 argument_list|,
 literal|1.5
 argument_list|,
-name|growthThreshold
+literal|0
 argument_list|,
 name|CacheManager
 operator|.
@@ -3493,7 +3467,7 @@ specifier|final
 class|class
 name|BTreeNode
 implements|implements
-name|Cacheable
+name|BTreeCacheable
 block|{
 comment|/** defines the default size for the keys array */
 specifier|private
@@ -3792,6 +3766,20 @@ parameter_list|()
 block|{
 return|return
 name|timestamp
+return|;
+block|}
+specifier|public
+name|boolean
+name|isInnerPage
+parameter_list|()
+block|{
+return|return
+name|ph
+operator|.
+name|getStatus
+argument_list|()
+operator|==
+name|BRANCH
 return|;
 block|}
 comment|/**          * @see org.exist.storage.cache.Cacheable#sync(boolean syncJournal)          */
