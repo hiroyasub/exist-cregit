@@ -13512,6 +13512,8 @@ name|optionQueryFile
 argument_list|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|StringBuilder
 name|buf
 init|=
@@ -13560,6 +13562,15 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|// if no argument has been found, read query from stdin
 if|if
@@ -14318,8 +14329,9 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 literal|'*'
 argument_list|)
