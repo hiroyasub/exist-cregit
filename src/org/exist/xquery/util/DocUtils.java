@@ -666,6 +666,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+literal|"An error occurred while parsing "
+operator|+
+name|path
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -701,6 +707,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+literal|"An error occurred while parsing "
+operator|+
+name|path
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -876,7 +888,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Document is a binary resource, not an XML document. Please consider using the function util:binary-doc() to retrieve a reference to it."
+literal|"Document "
+operator|+
+name|path
+operator|+
+literal|" is a binary resource, not an XML document. Please consider using the function util:binary-doc() to retrieve a reference to it."
 argument_list|)
 throw|;
 block|}
