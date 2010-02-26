@@ -2181,11 +2181,11 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Cannot compile xquery "
+literal|"Cannot compile xquery: "
 operator|+
-name|source
+name|ex
 operator|.
-name|toString
+name|getMessage
 argument_list|()
 argument_list|,
 name|ex
@@ -2202,11 +2202,11 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"I/O exception while compiling xquery "
+literal|"I/O exception while compiling xquery: "
 operator|+
-name|source
+name|ex
 operator|.
-name|toString
+name|getMessage
 argument_list|()
 argument_list|,
 name|ex
