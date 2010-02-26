@@ -1080,11 +1080,15 @@ argument_list|()
 operator|+
 literal|" has a storage format incompatible with this "
 operator|+
-literal|"version of eXist. Please do a backup/restore of your data first. Software version is: "
+literal|"version of eXist. You need to upgrade your database by creating a backup, cleaning "
+operator|+
+literal|" your data directory and restoring the data. In some cases, a reindex may be sufficient. "
+operator|+
+literal|"Please follow the instructions for the version you installed. File version is: "
 operator|+
 name|expectedVersion
 operator|+
-literal|"; db version is "
+literal|"; db expects version "
 operator|+
 name|fileHeader
 operator|.
