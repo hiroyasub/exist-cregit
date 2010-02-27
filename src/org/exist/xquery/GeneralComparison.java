@@ -2387,6 +2387,11 @@ operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
+comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
+name|preselectResult
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 comment|// can this result be cached? Don't cache if the result depends on local variables.
