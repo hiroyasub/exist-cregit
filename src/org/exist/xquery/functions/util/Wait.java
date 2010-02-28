@@ -295,7 +295,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"inverval"
+literal|"interval"
 argument_list|,
 name|Type
 operator|.
