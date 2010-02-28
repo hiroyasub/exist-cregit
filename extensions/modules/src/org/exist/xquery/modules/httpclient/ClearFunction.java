@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id: ClearPersistentCookiesFunction.java 9680 2009-08-06 19:23:51Z ixitar $  */
 end_comment
 
 begin_package
@@ -132,13 +132,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 20070905  * @version 1.2  */
+comment|/**  * DOCUMENT ME!  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.2  * @serial   20070905  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ClearPersistentCookiesFunction
+name|ClearFunction
 extends|extends
 name|BaseHTTPClientFunction
 block|{
@@ -152,7 +152,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|ClearPersistentCookiesFunction
+name|ClearFunction
 operator|.
 name|class
 argument_list|)
@@ -161,8 +161,10 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+index|[]
+name|signatures
 init|=
+block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -192,12 +194,16 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|)
+block|}
 decl_stmt|;
 specifier|public
-name|ClearPersistentCookiesFunction
+name|ClearFunction
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|FunctionSignature
+name|signature
 parameter_list|)
 block|{
 name|super
