@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -22,6 +22,16 @@ operator|.
 name|util
 operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
 import|;
 end_import
 
@@ -53,11 +63,17 @@ begin_class
 specifier|public
 class|class
 name|ObjectHashSet
+parameter_list|<
+name|K
+parameter_list|>
 extends|extends
-name|AbstractHashtable
+name|AbstractHashSet
+argument_list|<
+name|K
+argument_list|>
 block|{
 specifier|protected
-name|Object
+name|K
 index|[]
 name|keys
 decl_stmt|;
@@ -71,6 +87,10 @@ argument_list|()
 expr_stmt|;
 name|keys
 operator|=
+operator|(
+name|K
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -93,6 +113,10 @@ argument_list|)
 expr_stmt|;
 name|keys
 operator|=
+operator|(
+name|K
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -104,7 +128,7 @@ specifier|public
 name|void
 name|add
 parameter_list|(
-name|Object
+name|K
 name|key
 parameter_list|)
 block|{
@@ -122,7 +146,7 @@ name|HashtableOverflowException
 name|e
 parameter_list|)
 block|{
-name|Object
+name|K
 index|[]
 name|copyKeys
 init|=
@@ -145,6 +169,10 @@ argument_list|)
 expr_stmt|;
 name|keys
 operator|=
+operator|(
+name|K
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -208,7 +236,7 @@ specifier|protected
 name|void
 name|insert
 parameter_list|(
-name|Object
+name|K
 name|key
 parameter_list|)
 throws|throws
@@ -451,7 +479,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
-name|Object
+name|K
 name|key
 parameter_list|)
 block|{
@@ -577,10 +605,10 @@ literal|false
 return|;
 block|}
 specifier|public
-name|Object
+name|K
 name|remove
 parameter_list|(
-name|Object
+name|K
 name|key
 parameter_list|)
 block|{
@@ -645,6 +673,9 @@ index|[
 name|idx
 index|]
 operator|=
+operator|(
+name|K
+operator|)
 name|REMOVED
 expr_stmt|;
 operator|--
@@ -727,6 +758,9 @@ index|[
 name|idx
 index|]
 operator|=
+operator|(
+name|K
+operator|)
 name|REMOVED
 expr_stmt|;
 operator|--
@@ -795,14 +829,23 @@ return|;
 block|}
 specifier|public
 name|List
+argument_list|<
+name|K
+argument_list|>
 name|keys
 parameter_list|()
 block|{
 name|ArrayList
+argument_list|<
+name|K
+argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|K
+argument_list|>
 argument_list|(
 name|items
 argument_list|)
@@ -850,12 +893,20 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+name|Collections
+operator|.
+name|unmodifiableList
+argument_list|(
 name|list
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.util.hashtable.AbstractHashtable#iterator()       */
 specifier|public
 name|Iterator
+argument_list|<
+name|K
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
@@ -867,6 +918,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|K
+argument_list|>
 name|stableIterator
 parameter_list|()
 block|{
@@ -891,6 +945,9 @@ class|class
 name|ObjectHashSetIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|K
+argument_list|>
 block|{
 name|int
 name|idx
@@ -953,7 +1010,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
 specifier|public
-name|Object
+name|K
 name|next
 parameter_list|()
 block|{
@@ -1017,13 +1074,16 @@ class|class
 name|ObjectHashSetStableIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|K
+argument_list|>
 block|{
 name|int
 name|idx
 init|=
 literal|0
 decl_stmt|;
-name|Object
+name|K
 name|mKeys
 index|[]
 decl_stmt|;
@@ -1033,6 +1093,10 @@ parameter_list|()
 block|{
 name|mKeys
 operator|=
+operator|(
+name|K
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -1106,7 +1170,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
 specifier|public
-name|Object
+name|K
 name|next
 parameter_list|()
 block|{

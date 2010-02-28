@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -33,8 +33,16 @@ begin_class
 specifier|public
 class|class
 name|Int2ObjectHashMap
+parameter_list|<
+name|V
+parameter_list|>
 extends|extends
 name|AbstractHashtable
+argument_list|<
+name|Integer
+argument_list|,
+name|V
+argument_list|>
 block|{
 specifier|protected
 name|int
@@ -42,7 +50,7 @@ index|[]
 name|keys
 decl_stmt|;
 specifier|protected
-name|Object
+name|V
 index|[]
 name|values
 decl_stmt|;
@@ -69,6 +77,10 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|V
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -116,6 +128,10 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|V
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -146,6 +162,10 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|V
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -161,7 +181,7 @@ parameter_list|(
 name|int
 name|key
 parameter_list|,
-name|Object
+name|V
 name|value
 parameter_list|)
 block|{
@@ -187,7 +207,7 @@ name|copyKeys
 init|=
 name|keys
 decl_stmt|;
-name|Object
+name|V
 index|[]
 name|copyValues
 init|=
@@ -221,6 +241,10 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|V
+index|[]
+operator|)
 operator|new
 name|Object
 index|[
@@ -288,7 +312,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|Object
+name|V
 name|get
 parameter_list|(
 name|int
@@ -668,6 +692,9 @@ index|[
 name|idx
 index|]
 operator|=
+operator|(
+name|V
+operator|)
 name|REMOVED
 expr_stmt|;
 operator|--
@@ -762,6 +789,9 @@ index|[
 name|idx
 index|]
 operator|=
+operator|(
+name|V
+operator|)
 name|REMOVED
 expr_stmt|;
 operator|--
@@ -778,6 +808,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|Integer
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
@@ -785,7 +818,7 @@ return|return
 operator|new
 name|Int2ObjectIterator
 argument_list|(
-name|Int2ObjectIterator
+name|IteratorType
 operator|.
 name|KEYS
 argument_list|)
@@ -793,6 +826,9 @@ return|;
 block|}
 specifier|public
 name|Iterator
+argument_list|<
+name|V
+argument_list|>
 name|valueIterator
 parameter_list|()
 block|{
@@ -800,7 +836,7 @@ return|return
 operator|new
 name|Int2ObjectIterator
 argument_list|(
-name|Int2ObjectIterator
+name|IteratorType
 operator|.
 name|VALUES
 argument_list|)
@@ -813,7 +849,7 @@ parameter_list|(
 name|int
 name|key
 parameter_list|,
-name|Object
+name|V
 name|value
 parameter_list|)
 throws|throws
@@ -1086,6 +1122,9 @@ name|boolean
 name|hasEqualKeys
 parameter_list|(
 name|Int2ObjectHashMap
+argument_list|<
+name|?
+argument_list|>
 name|other
 parameter_list|)
 block|{
@@ -1193,8 +1232,14 @@ block|}
 specifier|protected
 class|class
 name|Int2ObjectIterator
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|HashtableIterator
+argument_list|<
+name|T
+argument_list|>
 block|{
 name|int
 name|idx
@@ -1204,7 +1249,7 @@ decl_stmt|;
 specifier|public
 name|Int2ObjectIterator
 parameter_list|(
-name|int
+name|IteratorType
 name|type
 parameter_list|)
 block|{
@@ -1265,7 +1310,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
 specifier|public
-name|Object
+name|T
 name|next
 parameter_list|()
 block|{
@@ -1308,23 +1353,34 @@ return|return
 literal|null
 return|;
 block|}
-if|if
+switch|switch
 condition|(
 name|returnType
-operator|==
-name|VALUES
 condition|)
+block|{
+case|case
+name|VALUES
+case|:
 return|return
+operator|(
+name|T
+operator|)
 name|values
 index|[
 name|idx
 operator|++
 index|]
 return|;
-else|else
+case|case
+name|KEYS
+case|:
 return|return
-operator|new
+operator|(
+name|T
+operator|)
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|keys
 index|[
@@ -1333,6 +1389,14 @@ operator|++
 index|]
 argument_list|)
 return|;
+block|}
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"This never happens"
+argument_list|)
+throw|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.util.hashtable.AbstractHashtable.HashtableIterator#remove() 		 */
 specifier|public
@@ -1360,6 +1424,9 @@ operator|-
 literal|1
 index|]
 operator|=
+operator|(
+name|V
+operator|)
 name|REMOVED
 expr_stmt|;
 name|items

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -29,28 +29,20 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|hashtable
-operator|.
-name|Long2ObjectHashMap
-operator|.
-name|Long2ObjectIterator
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
 name|SequencedLongHashMap
+parameter_list|<
+name|V
+parameter_list|>
 extends|extends
 name|AbstractHashtable
+argument_list|<
+name|Long
+argument_list|,
+name|V
+argument_list|>
 block|{
 comment|/**      * Represents an entry in the map. Each entry      * has a link to the next and previous entries in      * the order in which they were inserted.      *       * @author wolf      */
 specifier|public
@@ -58,33 +50,48 @@ specifier|final
 specifier|static
 class|class
 name|Entry
+parameter_list|<
+name|V
+parameter_list|>
 block|{
 name|long
 name|key
 decl_stmt|;
-name|Object
+name|V
 name|value
 decl_stmt|;
 comment|/** points to the next entry in insertion order. */
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|next
 init|=
 literal|null
 decl_stmt|;
 comment|/** points to the previous entry in insertion order. */
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|prev
 init|=
 literal|null
 decl_stmt|;
 comment|/** points to the prev entry if more than one key maps          * to the same bucket in the table.          */
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|prevDup
 init|=
 literal|null
 decl_stmt|;
 comment|/** points to the next entry if more than one key maps          * to the same bucket in the table.          */
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|nextDup
 init|=
 literal|null
@@ -95,7 +102,7 @@ parameter_list|(
 name|long
 name|key
 parameter_list|,
-name|Object
+name|V
 name|value
 parameter_list|)
 block|{
@@ -114,6 +121,9 @@ expr_stmt|;
 block|}
 specifier|public
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|getNext
 parameter_list|()
 block|{
@@ -131,7 +141,7 @@ name|key
 return|;
 block|}
 specifier|public
-name|Object
+name|V
 name|getValue
 parameter_list|()
 block|{
@@ -161,12 +171,18 @@ name|keys
 decl_stmt|;
 specifier|protected
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 index|[]
 name|values
 decl_stmt|;
 comment|/** points to the first entry inserted. */
 specifier|private
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|first
 init|=
 literal|null
@@ -174,6 +190,9 @@ decl_stmt|;
 comment|/** points to the last inserted entry. */
 specifier|private
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|last
 init|=
 literal|null
@@ -195,6 +214,13 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|Entry
+argument_list|<
+name|V
+argument_list|>
+index|[]
+operator|)
 operator|new
 name|Entry
 index|[
@@ -224,6 +250,13 @@ index|]
 expr_stmt|;
 name|values
 operator|=
+operator|(
+name|Entry
+argument_list|<
+name|V
+argument_list|>
+index|[]
+operator|)
 operator|new
 name|Entry
 index|[
@@ -239,11 +272,14 @@ parameter_list|(
 name|long
 name|key
 parameter_list|,
-name|Object
+name|V
 name|value
 parameter_list|)
 block|{
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|entry
 init|=
 name|insert
@@ -296,7 +332,7 @@ parameter_list|(
 name|long
 name|key
 parameter_list|,
-name|Object
+name|V
 name|value
 parameter_list|)
 block|{
@@ -359,6 +395,9 @@ index|]
 operator|=
 operator|new
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 argument_list|(
 name|key
 argument_list|,
@@ -376,6 +415,9 @@ index|]
 return|;
 block|}
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|next
 init|=
 name|values
@@ -427,6 +469,9 @@ name|next
 operator|=
 operator|new
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 argument_list|(
 name|key
 argument_list|,
@@ -467,7 +512,7 @@ return|;
 block|}
 comment|/**      * Returns the value for key or null if the key      * is not in the map.      *       * @param key      */
 specifier|public
-name|Object
+name|V
 name|get
 parameter_list|(
 name|long
@@ -509,6 +554,9 @@ literal|null
 return|;
 comment|// key does not exist
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|next
 init|=
 name|values
@@ -550,6 +598,9 @@ block|}
 comment|/**      * Returns the first entry added to the map.      */
 specifier|public
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|getFirstEntry
 parameter_list|()
 block|{
@@ -559,7 +610,7 @@ return|;
 block|}
 comment|/**      * Remove the entry specified by key from the map.      *       * @param key      */
 specifier|public
-name|Object
+name|V
 name|remove
 parameter_list|(
 name|long
@@ -567,6 +618,9 @@ name|key
 parameter_list|)
 block|{
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|entry
 init|=
 name|removeFromHashtable
@@ -599,6 +653,9 @@ return|;
 block|}
 specifier|private
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|removeFromHashtable
 parameter_list|(
 name|long
@@ -642,6 +699,9 @@ return|;
 comment|// key does not exist
 block|}
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|next
 init|=
 name|values
@@ -753,7 +813,10 @@ return|;
 block|}
 comment|/** 	 * Remove the first entry added to the map. 	 */
 specifier|public
-name|Object
+name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|removeFirst
 parameter_list|()
 block|{
@@ -768,6 +831,9 @@ literal|null
 return|;
 specifier|final
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|head
 init|=
 name|first
@@ -794,6 +860,9 @@ name|void
 name|removeEntry
 parameter_list|(
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|entry
 parameter_list|)
 block|{
@@ -961,14 +1030,20 @@ block|}
 comment|/** 	 * Returns an iterator over all keys in the 	 * order in which they were inserted. 	 */
 specifier|public
 name|Iterator
+argument_list|<
+name|Long
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
 return|return
 operator|new
 name|SequencedLongIterator
+argument_list|<
+name|Long
+argument_list|>
 argument_list|(
-name|Long2ObjectIterator
+name|IteratorType
 operator|.
 name|KEYS
 argument_list|)
@@ -977,14 +1052,20 @@ block|}
 comment|/**      * Returns an iterator over all values in the order      * in which they were inserted.      */
 specifier|public
 name|Iterator
+argument_list|<
+name|V
+argument_list|>
 name|valueIterator
 parameter_list|()
 block|{
 return|return
 operator|new
 name|SequencedLongIterator
+argument_list|<
+name|V
+argument_list|>
 argument_list|(
-name|Long2ObjectIterator
+name|IteratorType
 operator|.
 name|VALUES
 argument_list|)
@@ -993,17 +1074,26 @@ block|}
 specifier|protected
 class|class
 name|SequencedLongIterator
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|HashtableIterator
+argument_list|<
+name|T
+argument_list|>
 block|{
 specifier|private
 name|Entry
+argument_list|<
+name|V
+argument_list|>
 name|current
 decl_stmt|;
 specifier|public
 name|SequencedLongIterator
 parameter_list|(
-name|int
+name|IteratorType
 name|type
 parameter_list|)
 block|{
@@ -1031,7 +1121,7 @@ return|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.util.hashtable.Long2ObjectHashMap.Long2ObjectIterator#next() 		 */
 specifier|public
-name|Object
+name|T
 name|next
 parameter_list|()
 block|{
@@ -1055,29 +1145,46 @@ name|current
 operator|.
 name|next
 expr_stmt|;
-if|if
+switch|switch
 condition|(
 name|returnType
-operator|==
-name|VALUES
 condition|)
 block|{
+case|case
+name|KEYS
+case|:
 return|return
-name|next
-operator|.
-name|value
-return|;
-block|}
-else|else
-return|return
-operator|new
+operator|(
+name|T
+operator|)
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|next
 operator|.
 name|key
 argument_list|)
 return|;
+case|case
+name|VALUES
+case|:
+return|return
+operator|(
+name|T
+operator|)
+name|next
+operator|.
+name|value
+return|;
+block|}
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"This never happens"
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
