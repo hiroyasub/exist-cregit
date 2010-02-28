@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -63,12 +63,12 @@ init|=
 literal|100000
 decl_stmt|;
 specifier|private
-name|Object
+name|String
 name|values
 index|[]
 init|=
 operator|new
-name|Object
+name|String
 index|[
 name|tabSize
 index|]
@@ -126,10 +126,16 @@ name|tabSize
 index|]
 decl_stmt|;
 name|Int2ObjectHashMap
+argument_list|<
+name|String
+argument_list|>
 name|table
 init|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 name|tabSize
 argument_list|)
@@ -262,7 +268,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|String
 name|v
 init|=
 name|table
@@ -387,9 +393,6 @@ expr_stmt|;
 name|String
 name|v
 init|=
-operator|(
-name|String
-operator|)
 name|table
 operator|.
 name|get
@@ -529,10 +532,16 @@ name|tabSize
 index|]
 decl_stmt|;
 name|Object2LongHashMap
+argument_list|<
+name|String
+argument_list|>
 name|table
 init|=
 operator|new
 name|Object2LongHashMap
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 name|tabSize
 operator|/
@@ -854,10 +863,16 @@ name|tabSize
 index|]
 decl_stmt|;
 name|SequencedLongHashMap
+argument_list|<
+name|String
+argument_list|>
 name|table
 init|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 name|tabSize
 argument_list|)
@@ -982,7 +997,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|String
 name|v
 init|=
 name|table
@@ -1397,7 +1412,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|String
 name|v
 init|=
 name|table
@@ -1437,7 +1452,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|String
 name|v
 init|=
 name|table
@@ -1491,7 +1506,7 @@ name|i
 operator|++
 control|)
 block|{
-name|Object
+name|String
 name|v
 init|=
 name|table
@@ -1604,7 +1619,7 @@ argument_list|()
 expr_stmt|;
 name|Iterator
 argument_list|<
-name|?
+name|Long
 argument_list|>
 name|iter
 init|=
@@ -1736,10 +1751,16 @@ literal|100
 block|}
 decl_stmt|;
 name|SequencedLongHashMap
+argument_list|<
+name|String
+argument_list|>
 name|table
 init|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 name|tabSize
 argument_list|)
@@ -1787,6 +1808,9 @@ expr_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|String
+argument_list|>
 name|next
 init|=
 name|table
