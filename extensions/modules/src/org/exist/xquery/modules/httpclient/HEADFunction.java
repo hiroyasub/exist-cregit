@@ -146,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.2  * @serial   20070905  */
+comment|/**  * Performs HTTP Head method  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.3  * @serial   20100228  */
 end_comment
 
 begin_class
@@ -279,9 +279,9 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|//get the persist cookies
+comment|//get the persist state
 name|boolean
-name|persistCookies
+name|persistState
 init|=
 name|args
 index|[
@@ -349,7 +349,7 @@ name|context
 argument_list|,
 name|head
 argument_list|,
-name|persistCookies
+name|persistState
 argument_list|)
 expr_stmt|;
 block|}

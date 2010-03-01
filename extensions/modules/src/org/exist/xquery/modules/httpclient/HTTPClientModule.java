@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @author   ljo  * @version  1.2  * @serial   20070905  */
+comment|/**  * HTTPClient module  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @author   ljo  * @version  1.3  * @serial   20100228  */
 end_comment
 
 begin_class
@@ -88,9 +88,9 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|HTTP_MODULE_PERSISTENT_COOKIES
+name|HTTP_MODULE_PERSISTENT_STATE
 init|=
-literal|"_eXist_httpclient_module_cookies"
+literal|"_eXist_httpclient_module_persistent_state"
 decl_stmt|;
 specifier|private
 specifier|final

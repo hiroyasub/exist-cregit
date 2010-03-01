@@ -416,7 +416,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.3  * @serial   20090219  */
+comment|/**  * Performs HTTP Post method  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.3  * @serial   20100228  */
 end_comment
 
 begin_class
@@ -608,9 +608,9 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-comment|//get the persist cookies
+comment|//get the persist state
 name|boolean
-name|persistCookies
+name|persistState
 init|=
 name|args
 index|[
@@ -984,7 +984,7 @@ name|context
 argument_list|,
 name|post
 argument_list|,
-name|persistCookies
+name|persistState
 argument_list|)
 expr_stmt|;
 block|}
