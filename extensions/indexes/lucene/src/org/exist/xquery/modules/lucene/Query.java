@@ -975,6 +975,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|long
+name|start
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
 name|preselectResult
 operator|=
@@ -1183,6 +1191,22 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Lucene query took "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|start
+operator|)
+argument_list|)
+expr_stmt|;
 return|return
 name|preselectResult
 return|;
