@@ -418,7 +418,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"repositort-uri"
+literal|"repository-uri"
 argument_list|,
 name|Type
 operator|.
