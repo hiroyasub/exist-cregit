@@ -2027,6 +2027,17 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|username
+operator|!=
+literal|null
+operator|&&
+name|password
+operator|!=
+literal|null
+condition|)
+block|{
 name|User
 name|newUser
 init|=
@@ -2057,6 +2068,7 @@ name|user
 operator|=
 name|newUser
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
