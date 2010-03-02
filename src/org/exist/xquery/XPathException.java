@@ -576,6 +576,18 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|getLine
+argument_list|()
+operator|>
+literal|0
+operator|||
+name|source
+operator|!=
+literal|null
+condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -621,6 +633,19 @@ name|getColumn
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|source
+operator|!=
+literal|null
+condition|)
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|", "
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -632,7 +657,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|", source: "
+literal|"source: "
 argument_list|)
 operator|.
 name|append
@@ -650,6 +675,7 @@ argument_list|(
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|callStack

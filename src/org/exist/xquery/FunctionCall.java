@@ -1465,7 +1465,7 @@ name|e
 operator|.
 name|getLine
 argument_list|()
-operator|==
+operator|<=
 literal|0
 condition|)
 name|e
