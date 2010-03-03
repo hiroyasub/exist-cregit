@@ -261,6 +261,13 @@ name|getName
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
+comment|// Nothing to close
+block|}
 block|}
 end_class
 
