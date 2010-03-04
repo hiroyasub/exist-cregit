@@ -3007,6 +3007,9 @@ comment|//Collect the (normalized) geometries for each document
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|iDoc
 init|=
 name|docs

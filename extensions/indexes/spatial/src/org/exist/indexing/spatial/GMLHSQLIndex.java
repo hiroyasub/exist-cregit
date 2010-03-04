@@ -955,6 +955,27 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Connected to GML index: "
+operator|+
+name|getDataDir
+argument_list|()
+operator|+
+literal|"/"
+operator|+
+name|db_file_name_prefix
+argument_list|)
+expr_stmt|;
 name|ResultSet
 name|rs
 init|=
