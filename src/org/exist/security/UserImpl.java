@@ -187,6 +187,16 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a user within the database.  *   * @author Wolfgang Meier<wolfgang@exist-db.org> Modified by {Marco.Tampucci,  *         Massimo.Martinelli} @isti.cnr.it  */
 end_comment
@@ -2370,6 +2380,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/**      * Add a named attribute.      *      * @param name      * @param value      */
 annotation|@
 name|Override
 specifier|public
@@ -2393,6 +2404,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Get the named attribute value.      *      * @param name The String that is the name of the attribute.      * @return The value associated with the name or null if no value is associated with the name.      */
 annotation|@
 name|Override
 specifier|public
@@ -2410,6 +2422,24 @@ name|get
 argument_list|(
 name|name
 argument_list|)
+return|;
+block|}
+comment|/**      * Returns the set of attributes names.      *      * @return the Set of attribute names.      */
+annotation|@
+name|Override
+specifier|public
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getAttributeNames
+parameter_list|()
+block|{
+return|return
+name|attributes
+operator|.
+name|keySet
+argument_list|()
 return|;
 block|}
 block|}
