@@ -2090,6 +2090,16 @@ literal|null
 condition|)
 name|option
 operator|=
+literal|"yes"
+expr_stmt|;
+if|if
+condition|(
+name|options
+operator|!=
+literal|null
+condition|)
+name|option
+operator|=
 name|options
 operator|.
 name|getProperty
