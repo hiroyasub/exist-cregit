@@ -4003,6 +4003,10 @@ if|if
 condition|(
 operator|!
 name|validate
+operator|&&
+name|entityMap
+operator|!=
+literal|null
 condition|)
 block|{
 name|String
