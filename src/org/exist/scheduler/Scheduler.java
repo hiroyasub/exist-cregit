@@ -730,6 +730,8 @@ argument_list|,
 name|jobDataMap
 argument_list|,
 name|params
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|//create the minimum quartz supporting classes to execute a job
@@ -883,7 +885,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -917,7 +919,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -954,7 +956,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -973,6 +975,49 @@ name|params
 parameter_list|,
 name|int
 name|repeatCount
+parameter_list|)
+block|{
+return|return
+operator|(
+name|createPeriodicJob
+argument_list|(
+name|period
+argument_list|,
+name|job
+argument_list|,
+name|delay
+argument_list|,
+name|params
+argument_list|,
+name|repeatCount
+argument_list|,
+literal|true
+argument_list|)
+operator|)
+return|;
+block|}
+comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      * @param   unschedule   Unschedule job on XPathException?      *      * @return  true if the job was successfully scheduled, false otherwise      */
+specifier|public
+name|boolean
+name|createPeriodicJob
+parameter_list|(
+name|long
+name|period
+parameter_list|,
+name|JobDescription
+name|job
+parameter_list|,
+name|long
+name|delay
+parameter_list|,
+name|Properties
+name|params
+parameter_list|,
+name|int
+name|repeatCount
+parameter_list|,
+name|boolean
+name|unschedule
 parameter_list|)
 block|{
 comment|//Create the job details
@@ -1014,6 +1059,8 @@ argument_list|,
 name|jobDataMap
 argument_list|,
 name|params
+argument_list|,
+name|unschedule
 argument_list|)
 expr_stmt|;
 comment|//setup a trigger for the job, millisecond based
@@ -1155,7 +1202,7 @@ literal|true
 operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createCronJob
@@ -1180,7 +1227,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createCronJob
@@ -1193,6 +1240,39 @@ name|job
 parameter_list|,
 name|Properties
 name|params
+parameter_list|)
+block|{
+return|return
+operator|(
+name|createCronJob
+argument_list|(
+name|cronExpression
+argument_list|,
+name|job
+argument_list|,
+name|params
+argument_list|,
+literal|true
+argument_list|)
+operator|)
+return|;
+block|}
+comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job 	 * @param   unschedule   Unschedule job on XPathException?.      *      * @return  true if the job was successfully scheduled, false otherwise      */
+specifier|public
+name|boolean
+name|createCronJob
+parameter_list|(
+name|String
+name|cronExpression
+parameter_list|,
+name|JobDescription
+name|job
+parameter_list|,
+name|Properties
+name|params
+parameter_list|,
+name|boolean
+name|unschedule
 parameter_list|)
 block|{
 comment|//Create the job details
@@ -1234,6 +1314,8 @@ argument_list|,
 name|jobDataMap
 argument_list|,
 name|params
+argument_list|,
+name|unschedule
 argument_list|)
 expr_stmt|;
 try|try
@@ -2323,6 +2405,9 @@ name|jobDataMap
 parameter_list|,
 name|Properties
 name|params
+parameter_list|,
+name|boolean
+name|unschedule
 parameter_list|)
 block|{
 comment|//if this is a system job, store the BrokerPool in the job's data map
@@ -2422,6 +2507,20 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
+comment|//Store the value of the unschedule setting
+name|jobDataMap
+operator|.
+name|put
+argument_list|(
+literal|"unschedule"
+argument_list|,
+operator|new
+name|Boolean
+argument_list|(
+name|unschedule
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

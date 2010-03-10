@@ -557,6 +557,24 @@ argument_list|(
 literal|"params"
 argument_list|)
 decl_stmt|;
+name|boolean
+name|unschedule
+init|=
+operator|(
+operator|(
+name|Boolean
+operator|)
+name|jobDataMap
+operator|.
+name|get
+argument_list|(
+literal|"unschedule"
+argument_list|)
+operator|)
+operator|.
+name|booleanValue
+argument_list|()
+decl_stmt|;
 comment|//if invalid arguments then abort
 if|if
 condition|(
@@ -1005,6 +1023,8 @@ name|getMessage
 argument_list|()
 operator|+
 literal|"!"
+argument_list|,
+name|unschedule
 argument_list|)
 expr_stmt|;
 block|}
@@ -1133,7 +1153,27 @@ parameter_list|)
 throws|throws
 name|JobExecutionException
 block|{
-comment|//abort all triggers for this job
+name|abort
+argument_list|(
+name|message
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|abort
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|boolean
+name|unschedule
+parameter_list|)
+throws|throws
+name|JobExecutionException
+block|{
 name|JobExecutionException
 name|jaa
 init|=
@@ -1144,16 +1184,23 @@ literal|"UserXQueryJob Failed: "
 operator|+
 name|message
 operator|+
+operator|(
+name|unschedule
+condition|?
 literal|" Unscheduling UserXQueryJob."
+else|:
+literal|""
+operator|)
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+comment|//abort all triggers for this job if specified that we should unschedule the job
 name|jaa
 operator|.
 name|setUnscheduleAllTriggers
 argument_list|(
-literal|true
+name|unschedule
 argument_list|)
 expr_stmt|;
 throw|throw
