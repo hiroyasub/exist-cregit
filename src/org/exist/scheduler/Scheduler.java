@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Scheduler to trigger Startup, System and User defined jobs.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * A Scheduler to trigger Startup, System and User defined jobs.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  * @author  Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
 
 begin_class

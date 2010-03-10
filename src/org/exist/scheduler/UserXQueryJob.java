@@ -328,7 +328,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a User's XQuery Job Extends UserJob.  *  * @author  Adam Retter<adam@exist-db.org>  */
+comment|/**  * Class to represent a User's XQuery Job Extends UserJob.  *  * @author  Adam Retter<adam@exist-db.org>  * @author  Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
 
 begin_class

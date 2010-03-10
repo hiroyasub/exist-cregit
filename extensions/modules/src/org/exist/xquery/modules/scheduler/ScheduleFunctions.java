@@ -198,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension ScheduleFunctions.  *  *<p>Schedules job's with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @version  1.3  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2009-05-15  */
+comment|/**  * eXist Scheduler Module Extension ScheduleFunctions.  *  *<p>Schedules job's with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.3  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2010-03-10  */
 end_comment
 
 begin_class

@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows Jobs to be Scheduled with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @author   ljo  * @version  1.3  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  * @serial   2009-05-15  */
+comment|/**  * eXist Scheduler Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows Jobs to be Scheduled with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @author   ljo  * @version  1.3  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  * @serial   2010-03-10  */
 end_comment
 
 begin_class
@@ -74,7 +74,7 @@ specifier|static
 name|String
 name|INCLUSION_DATE
 init|=
-literal|"2006-11-16, 2009-02-06"
+literal|"2006-11-16, 2009-02-06, 2010-03-10"
 decl_stmt|;
 specifier|public
 specifier|final
