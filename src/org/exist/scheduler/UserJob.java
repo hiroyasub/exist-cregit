@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Class to represent a User's Job  * Should be extended by all classes wishing to  * schedule as a Job that perform user defined functions  *   * Classes extending UserJob may have multiple  * instances executing within the scheduler at once  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a User's Job Should be extended by all classes wishing to schedule as a Job that perform user defined functions.  *  *<p>Classes extending UserJob may have multiple instances executing within the scheduler at once</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -45,7 +45,9 @@ name|getGroup
 parameter_list|()
 block|{
 return|return
+operator|(
 name|JOB_GROUP
+operator|)
 return|;
 block|}
 block|}

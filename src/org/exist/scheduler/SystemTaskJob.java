@@ -17,30 +17,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|SystemTask
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|quartz
 operator|.
 name|JobDataMap
@@ -67,8 +43,32 @@ name|JobExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|SystemTask
+import|;
+end_import
+
 begin_comment
-comment|/**  * Class to represent a SystemTask Job  * Can be used by SystemTasks to schedule themselves as job's  *   * SystemTaskJobs may only have a Single Instance  * running in the scheduler at once, intersecting  * schedules will be queued.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a SystemTask Job Can be used by SystemTasks to schedule themselves as job's.  *  *<p>SystemTaskJobs may only have a Single Instance running in the scheduler at once, intersecting schedules will be queued.</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -85,12 +85,6 @@ operator|.
 name|StatefulJob
 block|{
 specifier|private
-name|String
-name|JOB_NAME
-init|=
-literal|"SystemTask"
-decl_stmt|;
-specifier|private
 specifier|final
 specifier|static
 name|String
@@ -99,18 +93,24 @@ init|=
 literal|"eXist.System"
 decl_stmt|;
 specifier|private
+name|String
+name|JOB_NAME
+init|=
+literal|"SystemTask"
+decl_stmt|;
+specifier|private
 name|SystemTask
 name|task
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Default Constructor for Quartz 	 */
+comment|/**      * Default Constructor for Quartz.      */
 specifier|public
 name|SystemTaskJob
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Constructor for Creating a new SystemTask Job 	 */
+comment|/**      * Constructor for Creating a new SystemTask Job.      *      * @param  jobName  DOCUMENT ME!      * @param  task     DOCUMENT ME!      */
 specifier|public
 name|SystemTaskJob
 parameter_list|(
@@ -133,6 +133,7 @@ name|jobName
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|JOB_NAME
@@ -147,13 +148,16 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|JOB_NAME
 operator|=
 name|jobName
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -162,7 +166,9 @@ name|getName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|JOB_NAME
+operator|)
 return|;
 block|}
 specifier|public
@@ -188,17 +194,21 @@ name|getGroup
 parameter_list|()
 block|{
 return|return
+operator|(
 name|JOB_GROUP
+operator|)
 return|;
 block|}
-comment|/** 	 * Returns the SystemTask for this Job 	 *  	 * @return The SystemTask for this Job 	 */
+comment|/**      * Returns the SystemTask for this Job.      *      * @return  The SystemTask for this Job      */
 specifier|protected
 name|SystemTask
 name|getSystemTask
 parameter_list|()
 block|{
 return|return
+operator|(
 name|task
+operator|)
 return|;
 block|}
 specifier|public
@@ -252,13 +262,17 @@ decl_stmt|;
 comment|//if invalid arguments then abort
 if|if
 condition|(
+operator|(
 name|pool
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|task
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 comment|//abort all triggers for this job
@@ -281,7 +295,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 name|jaa
+operator|)
 throw|;
 block|}
 comment|//trigger the system task

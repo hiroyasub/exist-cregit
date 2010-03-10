@@ -15,28 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|quartz
@@ -65,8 +43,30 @@ name|JobExecutionException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
-comment|/**  * Class to represent a User's Java Job  *   * Should be extended by all classes wishing to  * schedule as a Job that perform user defined functionality  *   *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a User's Java Job.  *  *<p>Should be extended by all classes wishing to schedule as a Job that perform user defined functionality</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -77,7 +77,7 @@ name|UserJavaJob
 extends|extends
 name|UserJob
 block|{
-comment|/** 	 *	The execute method as called by the Quartz Scheduler 	 * 	 * @param jec	The execution context of the executing job 	 * 	 * @throws JobExecutionException if there was a problem with the job, 	 * this also describes to Quartz how to cleanup the job 	 */
+comment|/**      * The execute method as called by the Quartz Scheduler.      *      * @param   jec  The execution context of the executing job      *      * @throws  JobExecutionException  if there was a problem with the job, this also describes to Quartz how to cleanup the job      */
 specifier|public
 specifier|final
 name|void
@@ -153,7 +153,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Function that is executed by the Scheduler 	 *  	 * @param brokerpool	The BrokerPool for the Scheduler of this job  	 * @param params	Any parameters passed to the job or null otherwise 	 *  	 * @throws JobException if there is a problem with the job. 	 * cleanupJob() should then be called, which will adjust the 	 * jobs scheduling appropriately 	 */
+comment|/**      * Function that is executed by the Scheduler.      *      * @param   brokerpool  The BrokerPool for the Scheduler of this job      * @param   params      Any parameters passed to the job or null otherwise      *      * @throws  JobException  if there is a problem with the job. cleanupJob() should then be called, which will adjust the jobs scheduling      *                        appropriately      */
 specifier|public
 specifier|abstract
 name|void

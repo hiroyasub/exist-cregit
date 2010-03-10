@@ -29,6 +29,36 @@ begin_import
 import|import
 name|org
 operator|.
+name|quartz
+operator|.
+name|JobDataMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|JobExecutionContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|JobExecutionException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|EXistException
@@ -259,31 +289,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|quartz
+name|io
 operator|.
-name|JobDataMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|JobExecutionContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|JobExecutionException
+name|IOException
 import|;
 end_import
 
@@ -291,9 +301,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|net
 operator|.
-name|IOException
+name|MalformedURLException
 import|;
 end_import
 
@@ -317,18 +327,8 @@ name|Properties
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
 begin_comment
-comment|/**  * Class to represent a User's XQuery Job  * Extends UserJob  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Class to represent a User's XQuery Job Extends UserJob.  *  * @author  Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -371,13 +371,13 @@ name|user
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Default Constructor for Quartz 	 */
+comment|/**      * Default Constructor for Quartz.      */
 specifier|public
 name|UserXQueryJob
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Constructor for Creating a new XQuery User Job 	 */
+comment|/**      * Constructor for Creating a new XQuery User Job.      *      * @param  jobName         DOCUMENT ME!      * @param  XQueryResource  DOCUMENT ME!      * @param  user            DOCUMENT ME!      */
 specifier|public
 name|UserXQueryJob
 parameter_list|(
@@ -409,6 +409,7 @@ name|jobName
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|JOB_NAME
@@ -417,13 +418,16 @@ literal|": "
 operator|+
 name|XQueryResource
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|JOB_NAME
 operator|=
 name|jobName
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -432,7 +436,9 @@ name|getName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|JOB_NAME
+operator|)
 return|;
 block|}
 specifier|public
@@ -448,24 +454,28 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the XQuery Resource for this Job 	 *  	 * @return The XQuery Resource for this Job 	 */
+comment|/**      * Returns the XQuery Resource for this Job.      *      * @return  The XQuery Resource for this Job      */
 specifier|protected
 name|String
 name|getXQueryResource
 parameter_list|()
 block|{
 return|return
+operator|(
 name|XQueryResource
+operator|)
 return|;
 block|}
-comment|/** 	 * Returns the User for this Job 	 *  	 * @return The User for this Job 	 */
+comment|/**      * Returns the User for this Job.      *      * @return  The User for this Job      */
 specifier|protected
 name|User
 name|getUser
 parameter_list|()
 block|{
 return|return
+operator|(
 name|user
+operator|)
 return|;
 block|}
 specifier|public
@@ -550,17 +560,23 @@ decl_stmt|;
 comment|//if invalid arguments then abort
 if|if
 condition|(
+operator|(
 name|pool
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|xqueryresource
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|user
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 name|abort
@@ -612,6 +628,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|source
 operator|=
 name|SourceFactory
@@ -627,6 +644,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|XmldbURI
@@ -658,6 +676,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|=
 operator|new
@@ -673,6 +692,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1027,18 +1047,25 @@ block|{
 comment|//return the compiled query to the pool
 if|if
 condition|(
+operator|(
 name|xqPool
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|source
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|compiled
 operator|!=
 literal|null
+operator|)
 condition|)
+block|{
 name|xqPool
 operator|.
 name|returnCompiledXQuery
@@ -1048,6 +1075,7 @@ argument_list|,
 name|compiled
 argument_list|)
 expr_stmt|;
+block|}
 comment|//release the lock on the xquery resource
 if|if
 condition|(
@@ -1055,6 +1083,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -1067,16 +1096,21 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Release the DBBroker
 if|if
 condition|(
+operator|(
 name|pool
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|broker
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|pool
@@ -1123,7 +1157,9 @@ literal|true
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 name|jaa
+operator|)
 throw|;
 block|}
 block|}

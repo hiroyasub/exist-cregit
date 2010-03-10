@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension GetSheduledJobs  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -19,11 +19,13 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|xml
 operator|.
-name|Date
+name|sax
+operator|.
+name|SAXException
 import|;
 end_import
 
@@ -219,18 +221,16 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|xml
+name|util
 operator|.
-name|sax
-operator|.
-name|SAXException
+name|Date
 import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension GetScheduledJobs  *   * Retrieves details of Jobs that have been Scheduled  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren@syntactica.com>  * @serial 2007-12-04  * @serial 2009-07-09  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension GetScheduledJobs.  *  *<p>Retrieves details of Jobs that have been Scheduled</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren@syntactica.com>  * @version  1.3  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2007-12-04  * @serial   2009-07-09  */
 end_comment
 
 begin_class
@@ -240,12 +240,6 @@ name|GetScheduledJobs
 extends|extends
 name|BasicFunction
 block|{
-specifier|private
-name|Scheduler
-name|scheduler
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -318,7 +312,13 @@ literal|"the XML containing the list of jobs"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * GetScheduledJobs Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+specifier|private
+name|Scheduler
+name|scheduler
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * GetScheduledJobs Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
 specifier|public
 name|GetScheduledJobs
 parameter_list|(
@@ -350,7 +350,7 @@ name|getScheduler
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the  function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the xquery function, it is really the main entry point of this class.      *      * @param   args             arguments from the function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A sequence representing the result of the function call      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -788,13 +788,17 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|endTime
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|finalTime
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|xmlBuf

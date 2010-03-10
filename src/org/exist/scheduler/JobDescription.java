@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface defined requirements for a Scheduleable job  *   * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Interface defined requirements for a Scheduleable job.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_interface
@@ -22,14 +22,12 @@ specifier|public
 interface|interface
 name|JobDescription
 block|{
-comment|/** 	 * Get the name of the job 	 *  	 *  @return The job's name 	 */
-specifier|public
+comment|/**      * Get the name of the job.      *      * @return  The job's name      */
 name|String
 name|getName
 parameter_list|()
 function_decl|;
-comment|/**      * Set the name of the job      *       * @param name The job's new name      */
-specifier|public
+comment|/**      * Set the name of the job.      *      * @param  name  The job's new name      */
 name|void
 name|setName
 parameter_list|(
@@ -37,8 +35,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the name group for the job 	 *  	 * @return The job's group name 	 */
-specifier|public
+comment|/**      * Get the name group for the job.      *      * @return  The job's group name      */
 name|String
 name|getGroup
 parameter_list|()

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension  *   * An extension module for the eXist Native XML Database that allows  * Jobs to be Scheduled with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren.cahlander@gmail.com>  * @author ljo  * @serial 2009-05-15  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Scheduler Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows Jobs to be Scheduled with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @author   ljo  * @version  1.3  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  * @serial   2009-05-15  */
 end_comment
 
 begin_class
@@ -247,7 +247,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|NAMESPACE_URI
+operator|)
 return|;
 block|}
 specifier|public
@@ -256,7 +258,9 @@ name|getDefaultPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|PREFIX
+operator|)
 return|;
 block|}
 specifier|public
@@ -265,7 +269,9 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|"A module for scheduling jobs using the Quartz Scheduler"
+operator|)
 return|;
 block|}
 specifier|public
@@ -274,7 +280,9 @@ name|getReleaseVersion
 parameter_list|()
 block|{
 return|return
+operator|(
 name|RELEASED_IN_VERSION
+operator|)
 return|;
 block|}
 block|}

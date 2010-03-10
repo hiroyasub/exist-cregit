@@ -29,76 +29,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|SystemTask
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|quartz
 operator|.
 name|CronTrigger
@@ -174,6 +104,76 @@ operator|.
 name|impl
 operator|.
 name|StdSchedulerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|SystemTask
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
 import|;
 end_import
 
@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Scheduler to trigger Startup, System and User defined jobs  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * A Scheduler to trigger Startup, System and User defined jobs.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -396,6 +396,22 @@ name|JOB_NAME_ATTRIBUTE
 init|=
 literal|"name"
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Scheduler
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+comment|//Logger
 comment|//the scheduler
 specifier|private
 name|org
@@ -434,23 +450,7 @@ name|config
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|Scheduler
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-comment|//Logger
-comment|/** 	 * Create and Start a new Scheduler 	 *  	 * @param brokerpool	The brokerpool for which this scheduler is intended 	 */
+comment|/**      * Create and Start a new Scheduler.      *      * @param   brokerpool  The brokerpool for which this scheduler is intended      * @param   config      DOCUMENT ME!      *      * @throws  EXistException  DOCUMENT ME!      */
 specifier|public
 name|Scheduler
 parameter_list|(
@@ -514,11 +514,13 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|EXistException
 argument_list|(
 literal|"Failed to load scheduler settings from org/exist/scheduler/quartz.properties"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|properties
@@ -561,6 +563,7 @@ name|se
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|EXistException
 argument_list|(
@@ -568,6 +571,7 @@ literal|"Unable to create Scheduler"
 argument_list|,
 name|se
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
@@ -605,7 +609,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Shutdown the running Scheduler 	 *  	 * Asynchronous method. use isShutdown() to determine if the 	 * Scheduler has Shutdown 	 */
+comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete  DOCUMENT ME!      */
 specifier|public
 name|void
 name|shutdown
@@ -647,10 +651,12 @@ block|{
 try|try
 block|{
 return|return
+operator|(
 name|scheduler
 operator|.
 name|isShutdown
 argument_list|()
+operator|)
 return|;
 block|}
 catch|catch
@@ -667,11 +673,13 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Creates a startup job 	 *  	 * @param job The job to trigger at startup  	 * @param params Any parameters to pass to the job 	 */
+comment|/**      * Creates a startup job.      *      * @param  job     The job to trigger at startup      * @param  params  Any parameters to pass to the job      */
 specifier|private
 name|void
 name|createStartupJob
@@ -784,7 +792,7 @@ name|jec
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Executes all startup jobs 	 */
+comment|/**      * Executes all startup jobs.      */
 specifier|public
 name|void
 name|executeStartupJobs
@@ -817,6 +825,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -834,6 +843,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 comment|//execute the job
@@ -873,7 +883,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param delay<= 0, start now, otherwise start in specified number of milliseconds 	 *  	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
+comment|/**      * DOCUMENT ME!      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -889,6 +899,7 @@ name|delay
 parameter_list|)
 block|{
 return|return
+operator|(
 name|createPeriodicJob
 argument_list|(
 name|period
@@ -903,9 +914,10 @@ name|SimpleTrigger
 operator|.
 name|REPEAT_INDEFINITELY
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param delay<= 0, start now, otherwise start in specified number of milliseconds 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
+comment|/**      * DOCUMENT ME!      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -924,6 +936,7 @@ name|params
 parameter_list|)
 block|{
 return|return
+operator|(
 name|createPeriodicJob
 argument_list|(
 name|period
@@ -938,9 +951,10 @@ name|SimpleTrigger
 operator|.
 name|REPEAT_INDEFINITELY
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/** 	 * @param period	The period, in milliseconds. 	 * @param job 	The job to trigger after each period 	 * @param delay<= 0, start now, otherwise start in specified number of milliseconds 	 * @param params	Any parameters to pass to the job 	 * @param repeatCount	Number of times to repeat this job. 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
+comment|/**      * DOCUMENT ME!      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createPeriodicJob
@@ -1129,15 +1143,19 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 comment|//Successfully scheduled Job
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
-comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
+comment|/**      * DOCUMENT ME!      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createCronJob
@@ -1150,6 +1168,7 @@ name|job
 parameter_list|)
 block|{
 return|return
+operator|(
 name|createCronJob
 argument_list|(
 name|cronExpression
@@ -1158,9 +1177,10 @@ name|job
 argument_list|,
 literal|null
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/** 	 * @param cronExpression	The Cron scheduling expression 	 * @param job 	The job to trigger after each period 	 * @param params	Any parameters to pass to the job 	 *  	 * @return	true if the job was successfully scheduled, false otherwise 	 */
+comment|/**      * DOCUMENT ME!      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createCronJob
@@ -1275,7 +1295,9 @@ name|pe
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 catch|catch
@@ -1302,15 +1324,19 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 comment|//Successfully scheduled Job
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
-comment|/** 	 * Removes a Job from the Scheduler 	 *  	 * @param jobName	The name of the Job 	 * @param jobGroup The group that the Job was Scheduled in 	 *  	 * @return true if the job was deleted, false otherwise 	 */
+comment|/**      * Removes a Job from the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was deleted, false otherwise      */
 specifier|public
 name|boolean
 name|deleteJob
@@ -1325,6 +1351,7 @@ block|{
 try|try
 block|{
 return|return
+operator|(
 name|scheduler
 operator|.
 name|deleteJob
@@ -1333,6 +1360,7 @@ name|jobName
 argument_list|,
 name|jobGroup
 argument_list|)
+operator|)
 return|;
 block|}
 catch|catch
@@ -1355,11 +1383,13 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Pauses a Job with the Scheduler 	 *  	 * @param jobName	The name of the Job 	 * @param jobGroup The group that the Job was Scheduled in 	 */
+comment|/**      * Pauses a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|pauseJob
@@ -1383,7 +1413,9 @@ name|jobGroup
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 catch|catch
@@ -1406,11 +1438,13 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Resume a Job with the Scheduler 	 *  	 * @param jobName	The name of the Job 	 * @param jobGroup The group that the Job was Scheduled in 	 */
+comment|/**      * Resume a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|resumeJob
@@ -1434,7 +1468,9 @@ name|jobGroup
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 catch|catch
@@ -1457,11 +1493,13 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Gets the names of the Job groups 	 *  	 * @return String array of the Job group names 	 */
+comment|/**      * Gets the names of the Job groups.      *      * @return  String array of the Job group names      */
 specifier|public
 name|String
 index|[]
@@ -1471,10 +1509,12 @@ block|{
 try|try
 block|{
 return|return
+operator|(
 name|scheduler
 operator|.
 name|getJobGroupNames
 argument_list|()
+operator|)
 return|;
 block|}
 catch|catch
@@ -1493,11 +1533,13 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Gets information about currently Scheduled Jobs 	 *  	 * @return An array of ScheduledJobInfo 	 */
+comment|/**      * Gets information about currently Scheduled Jobs.      *      * @return  An array of ScheduledJobInfo      */
 specifier|public
 name|ScheduledJobInfo
 index|[]
@@ -1624,7 +1666,9 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 comment|//copy the array list to a correctly typed array
@@ -1667,10 +1711,12 @@ name|length
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|jobsArray
+operator|)
 return|;
 block|}
-comment|/** 	 * Gets information about currently Executing Jobs 	 *  	 * @return An array of ScheduledJobInfo 	 */
+comment|/**      * Gets information about currently Executing Jobs.      *      * @return  An array of ScheduledJobInfo      */
 specifier|public
 name|ScheduledJobInfo
 index|[]
@@ -1711,7 +1757,9 @@ name|se
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 name|ScheduledJobInfo
@@ -1773,10 +1821,12 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|jobs
+operator|)
 return|;
 block|}
-comment|/** 	 * Set's up all the jobs that are listed in conf.xml and loaded 	 * through org.exist.util.Configuration 	 */
+comment|/**      * Set's up all the jobs that are listed in conf.xml and loaded through org.exist.util.Configuration.      */
 specifier|public
 name|void
 name|setupConfiguredJobs
@@ -1785,8 +1835,8 @@ block|{
 name|Configuration
 operator|.
 name|JobConfig
-name|jobList
 index|[]
+name|jobList
 init|=
 operator|(
 name|Configuration
@@ -1809,7 +1859,9 @@ name|jobList
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
 name|int
@@ -1854,6 +1906,7 @@ argument_list|(
 literal|"/db/"
 argument_list|)
 operator|||
+operator|(
 name|jobConfig
 operator|.
 name|getResourceName
@@ -1865,6 +1918,7 @@ literal|':'
 argument_list|)
 operator|>
 literal|0
+operator|)
 condition|)
 block|{
 if|if
@@ -2102,6 +2156,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|job
 operator|.
 name|setName
@@ -2112,6 +2167,7 @@ name|getJobName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -2254,7 +2310,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * Sets up the Job's Data Map 	 *  	 * @param job	The Job 	 * @param jobDataMap	The Job's Data Map 	 * @param params	Any parameters for the job 	 */
+comment|/**      * Sets up the Job's Data Map.      *      * @param  job         The Job      * @param  jobDataMap  The Job's Data Map      * @param  params      Any parameters for the job      */
 specifier|private
 name|void
 name|setupJobDataMap

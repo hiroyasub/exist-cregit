@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Scheduler Module Extension ScheduleFunctions  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Scheduler Module Extension ScheduleFunctions  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,30 @@ operator|.
 name|scheduler
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
 
 begin_import
 import|import
@@ -165,30 +189,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -198,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension ScheduleFunctions  *   * Schedules job's with eXist's Scheduler    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander<loren.cahlander@gmail.com>  * @serial 2009-05-15  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Scheduler Module Extension ScheduleFunctions.  *  *<p>Schedules job's with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @version  1.3  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2009-05-15  */
 end_comment
 
 begin_class
@@ -239,12 +239,6 @@ name|String
 name|SCHEDULE_JAVA_PERIODIC_JOB
 init|=
 literal|"schedule-java-periodic-job"
-decl_stmt|;
-specifier|private
-name|Scheduler
-name|scheduler
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 specifier|final
@@ -1011,7 +1005,13 @@ block|,
 name|scheduleXQueryPeriodicParam
 block|}
 decl_stmt|;
-comment|/** 	 * ScheduleFunctions Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+specifier|private
+name|Scheduler
+name|scheduler
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * ScheduleFunctions Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
 specifier|public
 name|ScheduleFunctions
 parameter_list|(
@@ -1043,7 +1043,7 @@ name|getScheduler
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate thed call to the xquery function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the  function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate thed call to the xquery function, it is really the main entry point of this class.      *      * @param   args             arguments from the function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A sequence representing the result of the function call      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1103,10 +1103,12 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|getArgumentCount
 argument_list|()
 operator|>=
 literal|4
+operator|)
 operator|&&
 name|args
 index|[
@@ -1615,6 +1617,7 @@ name|XPathException
 block|{
 if|if
 condition|(
+operator|(
 name|options
 operator|.
 name|getNodeType
@@ -1623,6 +1626,7 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
+operator|)
 operator|&&
 name|options
 operator|.
@@ -1652,6 +1656,7 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|child
 operator|.
 name|getNodeType
@@ -1660,6 +1665,7 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
+operator|)
 operator|&&
 name|child
 operator|.
@@ -1702,15 +1708,21 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|name
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|value
 operator|==
 literal|null
+operator|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1718,7 +1730,9 @@ name|this
 argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
+operator|)
 throw|;
+block|}
 name|properties
 operator|.
 name|setProperty

@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exception class can be thrown by implementations of  * org.exist.scheduler.Job  *   * Also provides a mechanism for cleaning up a job after  * failed execution  *  * @author Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Exception class can be thrown by implementations of org.exist.scheduler.Job.  *  *<p>Also provides a mechanism for cleaning up a job after failed execution</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
 end_comment
 
 begin_class
@@ -116,7 +116,7 @@ operator|=
 name|message
 expr_stmt|;
 block|}
-comment|/** 	 * Should be called after this exception is caught 	 * it cleans up the job, with regards to the scheduler 	 *  	 * Jobs may be removed, refired immediately or left 	 * for their next execution 	 */
+comment|/**      * Should be called after this exception is caught it cleans up the job, with regards to the scheduler.      *      *<p>Jobs may be removed, refired immediately or left for their next execution</p>      *      * @throws  JobExecutionException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|cleanupJob
@@ -132,7 +132,9 @@ block|{
 case|case
 name|JOB_REFIRE
 case|:
+block|{
 throw|throw
+operator|(
 operator|new
 name|JobExecutionException
 argument_list|(
@@ -140,10 +142,13 @@ name|message
 argument_list|,
 literal|true
 argument_list|)
+operator|)
 throw|;
+block|}
 case|case
 name|JOB_ABORT_THIS
 case|:
+block|{
 name|JobExecutionException
 name|jat
 init|=
@@ -163,11 +168,15 @@ literal|true
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 name|jat
+operator|)
 throw|;
+block|}
 case|case
 name|JOB_ABORT_ALL
 case|:
+block|{
 name|JobExecutionException
 name|jaa
 init|=
@@ -187,13 +196,18 @@ literal|true
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 name|jaa
+operator|)
 throw|;
+block|}
 case|case
 name|JOB_ABORT
 case|:
 default|default:
+block|{
 throw|throw
+operator|(
 operator|new
 name|JobExecutionException
 argument_list|(
@@ -201,7 +215,9 @@ name|message
 argument_list|,
 literal|false
 argument_list|)
+operator|)
 throw|;
+block|}
 block|}
 block|}
 block|}
