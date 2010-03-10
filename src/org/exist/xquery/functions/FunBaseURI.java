@@ -811,6 +811,12 @@ name|type
 operator|==
 name|Node
 operator|.
+name|ATTRIBUTE_NODE
+operator|||
+name|type
+operator|==
+name|Node
+operator|.
 name|ELEMENT_NODE
 operator|||
 name|type
@@ -821,6 +827,7 @@ name|DOCUMENT_NODE
 condition|)
 block|{
 comment|//Only elements, document nodes have a base-uri
+comment|//attributes have it too -shabanovd
 name|URI
 name|relativeURI
 decl_stmt|;
