@@ -390,9 +390,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the contents of a binary resource as an xs:string value. The binary data "
+literal|"Returns the contents of a string as an base64binary value. The string data "
 operator|+
-literal|"is transformed into a Java string using the encoding specified in the optional "
+literal|"is transformed into a binary using the encoding specified in the optional "
 operator|+
 literal|"second argument or the default of UTF-8."
 argument_list|,
@@ -449,9 +449,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the contents of a binary resource as an xs:string value. The binary data "
+literal|"Returns the contents of a string as a base64binary value. The string data "
 operator|+
-literal|"is transformed into a Java string using the encoding specified in the optional "
+literal|"is transformed into a binary using the encoding specified in the optional "
 operator|+
 literal|"second argument or the default of UTF-8."
 argument_list|,
