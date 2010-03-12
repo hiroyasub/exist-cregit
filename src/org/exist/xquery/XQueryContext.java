@@ -12417,6 +12417,11 @@ name|UpdateListener
 name|listener
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|listeners
+init|)
+block|{
 name|listeners
 operator|.
 name|add
@@ -12424,6 +12429,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -12435,6 +12441,11 @@ parameter_list|,
 name|int
 name|event
 parameter_list|)
+block|{
+synchronized|synchronized
+init|(
+name|listeners
+init|)
 block|{
 for|for
 control|(
@@ -12463,10 +12474,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 specifier|public
 name|void
 name|unsubscribe
 parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|listeners
+init|)
 block|{
 for|for
 control|(
@@ -12495,6 +12512,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
