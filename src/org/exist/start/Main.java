@@ -2056,6 +2056,18 @@ literal|"standalone"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.home"
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
 name|File
 name|_tools_dir
 init|=
@@ -2192,6 +2204,7 @@ operator|+
 name|_jetty_dir
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|config
 decl_stmt|;
