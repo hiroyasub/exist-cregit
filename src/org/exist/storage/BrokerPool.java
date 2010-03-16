@@ -2574,7 +2574,9 @@ name|processMonitor
 operator|=
 operator|new
 name|ProcessMonitor
-argument_list|()
+argument_list|(
+name|maxShutdownWait
+argument_list|)
 expr_stmt|;
 name|xqueryStats
 operator|=
