@@ -335,7 +335,7 @@ argument_list|)
 expr_stmt|;
 synchronized|synchronized
 init|(
-name|processes
+name|this
 init|)
 block|{
 name|processes
@@ -353,14 +353,10 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+specifier|synchronized
 name|void
 name|endJob
 parameter_list|()
-block|{
-synchronized|synchronized
-init|(
-name|processes
-init|)
 block|{
 name|processes
 operator|.
@@ -376,7 +372,6 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-block|}
 specifier|public
 name|JobInfo
 index|[]
@@ -385,7 +380,7 @@ parameter_list|()
 block|{
 synchronized|synchronized
 init|(
-name|processes
+name|this
 init|)
 block|{
 name|JobInfo
@@ -463,8 +458,16 @@ argument_list|()
 decl_stmt|;
 synchronized|synchronized
 init|(
-name|processes
+name|this
 init|)
+block|{
+if|if
+condition|(
+name|maxShutdownWait
+operator|>
+operator|-
+literal|1
+condition|)
 block|{
 while|while
 condition|(
@@ -475,11 +478,6 @@ argument_list|()
 operator|>
 literal|0
 condition|)
-block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
 block|{
 try|try
 block|{
@@ -499,7 +497,6 @@ name|e
 parameter_list|)
 block|{
 block|}
-block|}
 comment|//...or force the shutdown
 if|if
 condition|(
@@ -518,6 +515,7 @@ operator|>
 name|maxShutdownWait
 condition|)
 break|break;
+block|}
 block|}
 for|for
 control|(
