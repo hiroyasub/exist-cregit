@@ -146,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez<josemariafg@gmail.com>  * @serial 2010-03-19  * @version 1.4  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
 end_comment
 
 begin_class
@@ -344,6 +344,21 @@ literal|3
 index|]
 argument_list|,
 name|MessageListFunctions
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|SendEmailFunction
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|SendEmailFunction
 operator|.
 name|class
 argument_list|)
