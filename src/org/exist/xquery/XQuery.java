@@ -1150,7 +1150,7 @@ if|if
 condition|(
 name|context
 operator|.
-name|isDebugMode
+name|requireDebugMode
 argument_list|()
 condition|)
 block|{
