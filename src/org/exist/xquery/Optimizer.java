@@ -734,7 +734,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"Boolean operator is not a top-level expression in the predicate: "
 operator|+
