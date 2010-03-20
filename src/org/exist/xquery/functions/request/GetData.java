@@ -617,7 +617,7 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
-comment|//if the content length is unknown, return
+comment|//if the content length is unknown or 0, return
 if|if
 condition|(
 name|request
@@ -627,6 +627,13 @@ argument_list|()
 operator|==
 operator|-
 literal|1
+operator|||
+name|request
+operator|.
+name|getContentLength
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 return|return
