@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: WebDAVServlet.java 2782 2006-02-25 18:55:49Z dizzzz $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: WebDAVServlet.java 2782 2006-02-25 18:55:49Z dizzzz $  */
 end_comment
 
 begin_package
@@ -652,7 +652,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a WebDAV interface that also maintains the atom feed if it exists  * in the directory.  *  * @author wolf  * @author Alex Milowski  */
+comment|/**  * Provides a WebDAV interface that also maintains the atom feed if it exists in  * the directory.  *   * @author wolf  * @author Alex Milowski  */
 end_comment
 
 begin_class
@@ -662,6 +662,14 @@ name|WebDAVServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 specifier|protected
 specifier|final
 specifier|static
@@ -1139,7 +1147,8 @@ name|filename
 argument_list|)
 condition|)
 block|{
-comment|// We're already in an error state from the WebDAV action so just return
+comment|// We're already in an error state from the WebDAV action so
+comment|// just return
 name|LOG
 operator|.
 name|debug
@@ -1696,7 +1705,8 @@ name|filename
 argument_list|)
 condition|)
 block|{
-comment|// We're already in an error state from the WebDAV action so just return
+comment|// We're already in an error state from the WebDAV action so
+comment|// just return
 name|transact
 operator|.
 name|abort
@@ -2382,7 +2392,7 @@ argument_list|,
 name|doc
 argument_list|)
 decl_stmt|;
-comment|//TODO : we should probably unlock the collection here
+comment|// TODO : we should probably unlock the collection here
 name|collection
 operator|.
 name|store
@@ -2629,7 +2639,7 @@ name|BrokerPool
 operator|.
 name|DEFAULT_INSTANCE_NAME
 decl_stmt|;
-comment|/* (non-Javadoc)          * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)          */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
 name|void
 name|init
@@ -2732,7 +2742,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)          */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest 	 * , javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|service

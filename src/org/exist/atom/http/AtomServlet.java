@@ -582,7 +582,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements a rest interface for exist collections as atom feeds  *  * @author Alex Milowski  */
+comment|/**  * Implements a rest interface for exist collections as atom feeds  *   * @author Alex Milowski  */
 end_comment
 
 begin_class
@@ -592,6 +592,14 @@ name|AtomServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -623,7 +631,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**     * A user principal object that implements XmldbPrincipal     */
+comment|/** 	 * A user principal object that implements XmldbPrincipal 	 */
 specifier|static
 class|class
 name|UserXmldbPrincipal
@@ -711,7 +719,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**     * Module contexts that default to using the servlet's config     */
+comment|/** 	 * Module contexts that default to using the servlet's config 	 */
 class|class
 name|ModuleContext
 implements|implements
@@ -807,7 +815,7 @@ return|;
 block|}
 block|}
 comment|// What I want...
-comment|//private Map<String,AtomModule> modules;
+comment|// private Map<String,AtomModule> modules;
 specifier|private
 name|Map
 argument_list|<
@@ -862,7 +870,7 @@ specifier|private
 name|UserImpl
 name|defaultUser
 decl_stmt|;
-comment|/* (non-Javadoc)     * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)     */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
 name|void
 name|init
@@ -1249,7 +1257,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|//get form and container encoding's
+comment|// get form and container encoding's
 name|formEncoding
 operator|=
 name|config
@@ -1294,7 +1302,7 @@ name|DEFAULT_ENCODING
 expr_stmt|;
 block|}
 comment|// Load all the modules
-comment|//modules = new HashMap<String,AtomModule>();
+comment|// modules = new HashMap<String,AtomModule>();
 name|modules
 operator|=
 operator|new
@@ -1844,7 +1852,8 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|// What I want but can't have because of JDK 1.4
-comment|//URI baseURI = URI.create(methodConf.getBaseURI());
+comment|// URI baseURI =
+comment|// URI.create(methodConf.getBaseURI());
 name|URI
 name|baseURI
 init|=
@@ -2972,7 +2981,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.GenericServlet#destroy()      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#destroy() 	 */
 specifier|public
 name|void
 name|destroy
@@ -3008,7 +3017,8 @@ name|io
 operator|.
 name|IOException
 block|{
-comment|// First try to validate the principial if passed from the servlet engine
+comment|// First try to validate the principial if passed from the servlet
+comment|// engine
 name|Principal
 name|principal
 init|=

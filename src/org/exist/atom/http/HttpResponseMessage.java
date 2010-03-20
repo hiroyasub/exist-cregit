@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author R. Alexander Milowski  */
+comment|/**  *   * @author R. Alexander Milowski  */
 end_comment
 
 begin_class
