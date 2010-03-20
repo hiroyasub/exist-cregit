@@ -110,9 +110,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//    // Holders for jar files
-comment|//    private File[] _coreJars;
-comment|//    private File _mainJar;
 specifier|private
 name|Map
 argument_list|<
