@@ -284,7 +284,7 @@ condition|)
 block|{
 name|opencmd
 operator|=
-literal|"cmd /c start"
+literal|"cmd /c \"start %s\""
 expr_stmt|;
 block|}
 if|else if
@@ -302,14 +302,14 @@ condition|)
 block|{
 name|opencmd
 operator|=
-literal|"open"
+literal|"open %s"
 expr_stmt|;
 block|}
 else|else
 block|{
 name|opencmd
 operator|=
-literal|"xdg-open"
+literal|"xdg-open %s"
 expr_stmt|;
 block|}
 name|Timer
@@ -385,12 +385,13 @@ operator|.
 name|format
 argument_list|(
 name|opencmd
-operator|+
-literal|" '%s'"
 argument_list|,
 name|file
 operator|.
-name|getAbsolutePath
+name|toURI
+argument_list|()
+operator|.
+name|toURL
 argument_list|()
 argument_list|)
 decl_stmt|;
