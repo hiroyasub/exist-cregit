@@ -223,24 +223,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-annotation|@
-name|Deprecated
-specifier|public
-specifier|final
-specifier|static
-name|User
-name|DEFAULT
-init|=
-operator|new
-name|UserImpl
-argument_list|(
-literal|"guest"
-argument_list|,
-literal|null
-argument_list|,
-literal|"guest"
-argument_list|)
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -1962,6 +1944,9 @@ argument_list|()
 return|;
 block|}
 comment|/** 	 * Split up the validate method into two, to make it possible to 	 * authenticate users, which are not defined in the instance named "exist" 	 * without having impact on the standard functionality. 	 *  	 * @param passwd 	 * @return true if the password was correct, false if not, or if there was a 	 *         problem. 	 */
+annotation|@
+name|Deprecated
+comment|//use SecurityManager.authenticate
 specifier|public
 specifier|final
 name|boolean
@@ -2015,6 +2000,9 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Deprecated
+comment|//use SecurityManager.authenticate
 specifier|public
 specifier|final
 name|boolean
@@ -2177,6 +2165,9 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Deprecated
+comment|//use SecurityManager.authenticate
 specifier|public
 specifier|final
 name|boolean
