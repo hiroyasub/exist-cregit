@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: EmbeddedUser.java 188 2007-03-30 14:59:28Z dizzzz $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: EmbeddedUser.java 188 2007-03-30 14:59:28Z dizzzz $  */
 end_comment
 
 begin_package
@@ -37,6 +37,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|AuthenticationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -50,18 +62,6 @@ operator|.
 name|security
 operator|.
 name|User
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UserImpl
 import|;
 end_import
 
@@ -120,54 +120,36 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|UserImpl
-name|user
-init|=
+try|try
+block|{
+return|return
 name|secman
 operator|.
-name|getUser
+name|authenticate
 argument_list|(
 name|xmldbURL
 operator|.
 name|getUsername
 argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|user
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-comment|// user does not exist
-block|}
-if|else if
-condition|(
-operator|!
-name|user
-operator|.
-name|validate
-argument_list|(
+argument_list|,
 name|xmldbURL
 operator|.
 name|getPassword
 argument_list|()
 argument_list|)
-condition|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|AuthenticationException
+name|e
+parameter_list|)
 block|{
 return|return
 literal|null
 return|;
-comment|// wrong password
+comment|// authentication is failed
 block|}
-return|return
-name|user
-return|;
-comment|// user does exist and password is valid
 block|}
 comment|/**      *  Get user GUEST from database.      *      * @param pool  Exist broker pool, provides access to database.      * @return      eXist GUEST user.      */
 specifier|public
@@ -179,6 +161,7 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+comment|//TODO: security: review -shabanovd
 return|return
 name|pool
 operator|.
