@@ -243,7 +243,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//If user does not exist then send a challenge request again
+comment|// If user does not exist then send a challenge request again
 name|sendChallenge
 argument_list|(
 name|request
@@ -269,7 +269,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|//If password is incorrect then send a challenge request again
+comment|// If password is incorrect then send a challenge request again
 name|sendChallenge
 argument_list|(
 name|request

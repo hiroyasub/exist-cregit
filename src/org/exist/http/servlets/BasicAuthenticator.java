@@ -177,7 +177,7 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.Authenticator#authenticate(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.http.servlets.Authenticator#authenticate(javax.servlet.http 	 * .HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|public
 name|UserImpl
 name|authenticate
@@ -258,7 +258,7 @@ argument_list|(
 name|c
 argument_list|)
 decl_stmt|;
-comment|//LOG.debug("BASIC auth credentials: "+s);
+comment|// LOG.debug("BASIC auth credentials: "+s);
 name|int
 name|p
 init|=
@@ -304,7 +304,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|//get the user from the session if possible
+comment|// get the user from the session if possible
 name|HttpSession
 name|session
 init|=
@@ -386,7 +386,7 @@ name|HTTP_SESSIONVAR_XMLDB_USER
 argument_list|)
 expr_stmt|;
 block|}
-comment|//get the credentials
+comment|// get the credentials
 if|if
 condition|(
 name|credentials
@@ -394,8 +394,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//prompt for credentials
-comment|//LOG.debug("Sending BASIC auth challenge.");
+comment|// prompt for credentials
+comment|// LOG.debug("Sending BASIC auth challenge.");
 name|sendChallenge
 argument_list|(
 name|request
@@ -407,7 +407,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|//authenticate the credentials
+comment|// authenticate the credentials
 name|SecurityManager
 name|secman
 init|=
@@ -432,7 +432,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//If user does not exist then send a challenge request again
+comment|// If user does not exist then send a challenge request again
 name|sendChallenge
 argument_list|(
 name|request
@@ -455,7 +455,7 @@ name|password
 argument_list|)
 condition|)
 block|{
-comment|//If password is incorrect then send a challenge request again
+comment|// If password is incorrect then send a challenge request again
 name|sendChallenge
 argument_list|(
 name|request
@@ -467,7 +467,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|//store the user in the session
+comment|// store the user in the session
 if|if
 condition|(
 name|session
@@ -487,12 +487,12 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
-comment|//return the authenticated user
+comment|// return the authenticated user
 return|return
 name|user
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.http.servlets.Authenticator#sendChallenge(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.http.servlets.Authenticator#sendChallenge(javax.servlet.http 	 * .HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|public
 name|void
 name|sendChallenge
