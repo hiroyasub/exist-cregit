@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|AuthenticationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -93,7 +105,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|User
 import|;
 end_import
 
@@ -179,7 +191,7 @@ expr_stmt|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.http.servlets.Authenticator#authenticate(javax.servlet.http 	 * .HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|public
-name|UserImpl
+name|User
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -315,7 +327,7 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-name|UserImpl
+name|User
 name|user
 init|=
 literal|null
@@ -330,7 +342,7 @@ block|{
 name|user
 operator|=
 operator|(
-name|UserImpl
+name|User
 operator|)
 name|session
 operator|.
@@ -416,46 +428,27 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 name|user
 operator|=
 name|secman
 operator|.
-name|getUser
+name|authenticate
 argument_list|(
 name|username
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|user
-operator|==
-literal|null
-condition|)
-block|{
-comment|// If user does not exist then send a challenge request again
-name|sendChallenge
-argument_list|(
-name|request
 argument_list|,
-name|response
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
-if|if
-condition|(
-operator|!
-name|user
-operator|.
-name|validate
-argument_list|(
 name|password
 argument_list|)
-condition|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|AuthenticationException
+name|e
+parameter_list|)
 block|{
-comment|// If password is incorrect then send a challenge request again
+comment|// if authentication failed then send a challenge request again
 name|sendChallenge
 argument_list|(
 name|request
