@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|AuthenticationException
 import|;
 end_import
 
@@ -107,7 +107,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|User
 import|;
 end_import
 
@@ -310,64 +322,46 @@ condition|)
 block|{
 name|username
 operator|=
-literal|"guest"
+name|SecurityManager
+operator|.
+name|GUEST_USER
 expr_stmt|;
 name|password
 operator|=
-literal|"guest"
+name|username
 expr_stmt|;
 block|}
 comment|// check user
-name|UserImpl
-name|u
-init|=
+try|try
+block|{
+return|return
 name|brokerPool
 operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
+name|authenticate
 argument_list|(
 name|username
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|u
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|XmlRpcException
-argument_list|(
-literal|0
 argument_list|,
-literal|"User "
-operator|+
-name|username
-operator|+
-literal|" unknown"
-argument_list|)
-throw|;
-if|if
-condition|(
-operator|!
-name|u
-operator|.
-name|validate
-argument_list|(
 name|password
 argument_list|)
-condition|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|AuthenticationException
+name|e
+parameter_list|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"login denied for user "
-operator|+
-name|username
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -376,15 +370,13 @@ name|XmlRpcException
 argument_list|(
 literal|0
 argument_list|,
-literal|"Invalid password for user "
-operator|+
-name|username
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
-return|return
-name|u
-return|;
 block|}
 specifier|protected
 name|BrokerPool
