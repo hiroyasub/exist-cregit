@@ -68,18 +68,22 @@ specifier|private
 name|long
 name|lastModified
 decl_stmt|;
+comment|// time of last file change
 specifier|private
 name|Task
 name|task
 decl_stmt|;
+comment|// listened task
 specifier|private
 name|File
 name|file
 decl_stmt|;
+comment|// listened file
 specifier|private
 name|GateApplet
 name|gate
 decl_stmt|;
+comment|/** 	 * Create a listener for task 	 * @param task listened task 	 * @param gate GateApplet 	 */
 specifier|public
 name|Listener
 parameter_list|(
@@ -121,6 +125,7 @@ name|lastModified
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** 	 * Create a listener for task, used for task loaded from FS 	 * @param task listened task 	 * @param gate GateApplet 	 * @param lastModified time of last task modification, stored in XML description of task  	 */
 specifier|public
 name|Listener
 parameter_list|(
@@ -178,6 +183,7 @@ operator|.
 name|lastModified
 return|;
 block|}
+comment|/** 	 * Listen task's file changes, upload file to server  	 * and store task description on local FS    	 */
 specifier|public
 name|void
 name|run

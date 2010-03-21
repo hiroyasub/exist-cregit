@@ -103,6 +103,10 @@ name|TimerTask
 import|;
 end_import
 
+begin_comment
+comment|/**  * @author frog  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -150,6 +154,7 @@ operator|=
 name|gate
 expr_stmt|;
 block|}
+comment|/** 	 * Add a task to execute 	 * @param task added task 	 */
 specifier|public
 name|void
 name|addTask
@@ -170,6 +175,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|/** 	 * Start a new task added into list 	 */
 specifier|public
 name|void
 name|run
@@ -201,6 +207,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * Load tasks from local file system 	 * and start listeners for them 	 */
 specifier|public
 name|void
 name|load

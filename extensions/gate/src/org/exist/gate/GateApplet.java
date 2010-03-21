@@ -237,6 +237,8 @@ operator|new
 name|HttpClient
 argument_list|()
 decl_stmt|;
+comment|// Since we use applet's methods from unsigned javascript,
+comment|// we must have a trusted thread for operations in local file system
 specifier|private
 name|TaskManager
 name|manager
@@ -492,11 +494,13 @@ operator|=
 literal|"xdg-open %s"
 expr_stmt|;
 block|}
+comment|// Load tasks of old applet's sessions
 name|manager
 operator|.
 name|load
 argument_list|()
 expr_stmt|;
+comment|// Start main trusted thread
 name|Timer
 name|timer
 init|=
@@ -525,6 +529,7 @@ return|return
 name|http
 return|;
 block|}
+comment|/** 	 * Add task to manage the remote doc  	 * @param downloadFrom URL of remote doc for download 	 * @param uploadTo URL of remote doc for upload back after doc will be changing 	 */
 specifier|public
 name|void
 name|manage
@@ -552,6 +557,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Download remote doc 	 * @param downloadFrom URL of remote doc for download * @return downloaded file 	 * @throws IOException 	 */
 specifier|public
 name|File
 name|download
@@ -705,6 +711,7 @@ return|return
 name|file
 return|;
 block|}
+comment|/** 	 * Upload file to server  	 * @param file uploaded file 	 * @param uploadTo URL of remote doc to upload 	 * @throws HttpException 	 * @throws IOException 	 */
 specifier|public
 name|void
 name|upload
@@ -772,6 +779,7 @@ name|releaseConnection
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** 	 * Open file on application, registered for type of file in current Desktop  	 * @param file opened file 	 * @throws IOException 	 */
 specifier|public
 name|void
 name|open
@@ -811,6 +819,7 @@ name|cmd
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** 	 * Create file in local cache 	 * @param name name of file 	 * @return file in cache 	 * @throws IOException 	 */
 specifier|public
 name|File
 name|createFile
@@ -841,6 +850,7 @@ return|return
 name|tmp
 return|;
 block|}
+comment|/** 	 * @return task manager 	 */
 specifier|public
 name|TaskManager
 name|getTaskManager
@@ -850,6 +860,7 @@ return|return
 name|manager
 return|;
 block|}
+comment|/** 	 * @return folder of GateApplet in local FS 	 */
 specifier|public
 name|File
 name|getEtc
@@ -859,6 +870,7 @@ return|return
 name|etc
 return|;
 block|}
+comment|/** 	 * @return "meta" folder of applet in local FS 	 */
 specifier|public
 name|File
 name|getMeta
@@ -868,6 +880,7 @@ return|return
 name|meta
 return|;
 block|}
+comment|/** 	 * @return "cache" folder in local FS 	 */
 specifier|public
 name|File
 name|getCache

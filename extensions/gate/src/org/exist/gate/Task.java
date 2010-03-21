@@ -90,14 +90,18 @@ specifier|private
 name|String
 name|downloadFrom
 decl_stmt|;
+comment|// URL of file download from
 specifier|private
 name|String
 name|uploadTo
 decl_stmt|;
+comment|// URL for upload file
 specifier|private
 name|File
 name|tmp
 decl_stmt|;
+comment|// Downladed file
+comment|/** 	 * Create a new task 	 * @param downloadFrom URL of file download from 	 * @param uploadTo URL for upload file after changes 	 * @param gate GateApplet 	 */
 specifier|public
 name|Task
 parameter_list|(
@@ -130,6 +134,7 @@ operator|=
 name|gate
 expr_stmt|;
 block|}
+comment|/** 	 * Create a task, used for stored task 	 * @param downloadFrom URL of file download from 	 * @param uploadTo URL for upload file after changes 	 * @param tmp path of file stored in local cache 	 * @param gate GateApplet 	 */
 specifier|public
 name|Task
 parameter_list|(
@@ -171,6 +176,7 @@ operator|=
 name|tmp
 expr_stmt|;
 block|}
+comment|/** 	 * Execute task: dowload file, store desrioption, 	 * then file changes listener and open one  	 * in desktop application.  	 */
 specifier|public
 name|void
 name|execute
@@ -283,6 +289,7 @@ return|return
 name|tmp
 return|;
 block|}
+comment|/** 	 * Store task description into FS as XML doc 	 * @throws IOException 	 */
 specifier|public
 name|void
 name|store
