@@ -290,7 +290,6 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 function_decl|;
-empty_stmt|;
 specifier|public
 name|User
 name|authenticate
