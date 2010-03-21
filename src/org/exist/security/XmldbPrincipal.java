@@ -35,6 +35,8 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
+annotation|@
+name|Deprecated
 specifier|public
 name|String
 name|getPassword
