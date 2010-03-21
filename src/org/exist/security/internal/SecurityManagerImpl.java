@@ -511,20 +511,32 @@ name|pool
 decl_stmt|;
 specifier|private
 name|Int2ObjectHashMap
+argument_list|<
+name|Group
+argument_list|>
 name|groups
 init|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|Group
+argument_list|>
 argument_list|(
 literal|65
 argument_list|)
 decl_stmt|;
 specifier|private
 name|Int2ObjectHashMap
+argument_list|<
+name|User
+argument_list|>
 name|users
 init|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|User
+argument_list|>
 argument_list|(
 literal|65
 argument_list|)
@@ -3023,7 +3035,10 @@ argument_list|(
 name|username
 argument_list|)
 condition|)
-return|return
+block|{
+name|User
+name|newUser
+init|=
 operator|new
 name|UserImpl
 argument_list|(
@@ -3036,7 +3051,29 @@ name|user
 argument_list|,
 name|credentials
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|newUser
+operator|.
+name|isAuthenticated
+argument_list|()
+condition|)
+return|return
+name|newUser
 return|;
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+literal|"Wrong password for user ["
+operator|+
+name|username
+operator|+
+literal|"] "
+argument_list|)
+throw|;
+block|}
 block|}
 throw|throw
 operator|new
@@ -3113,7 +3150,10 @@ argument_list|(
 name|username
 argument_list|)
 condition|)
-return|return
+block|{
+name|User
+name|newUser
+init|=
 operator|new
 name|UserImpl
 argument_list|(
@@ -3126,17 +3166,39 @@ name|user
 argument_list|,
 name|credentials
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|newUser
+operator|.
+name|isAuthenticated
+argument_list|()
+condition|)
+return|return
+name|newUser
 return|;
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+literal|"Wrong password for user ["
+operator|+
+name|username
+operator|+
+literal|"] "
+argument_list|)
+throw|;
+block|}
 block|}
 throw|throw
 operator|new
 name|AuthenticationException
 argument_list|(
-literal|"User "
+literal|"User ["
 operator|+
 name|username
 operator|+
-literal|" not found"
+literal|"] not found"
 argument_list|)
 throw|;
 block|}
