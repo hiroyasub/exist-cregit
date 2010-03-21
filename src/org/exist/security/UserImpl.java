@@ -1644,6 +1644,11 @@ literal|null
 else|:
 name|passwd
 expr_stmt|;
+name|setPassword
+argument_list|(
+name|passwd
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * Sets the encoded passwod value of the User object 	 *  	 * @param passwd 	 *            The new passwordDigest value 	 * @deprecated 	 */
 specifier|public
@@ -1668,6 +1673,11 @@ condition|?
 literal|null
 else|:
 name|passwd
+expr_stmt|;
+name|setPassword
+argument_list|(
+name|passwd
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
