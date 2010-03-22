@@ -4281,7 +4281,7 @@ return|return
 name|mails
 return|;
 block|}
-comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text></text>      *<xhtml></xhtml>      *</message>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      */
+comment|/**      * Constructs a mail Object from an XML representation of an email      *      * The XML email Representation is expected to look something like this      *      *<mail>      *<from></from>      *<reply-to></reply-to>      *<to></to>      *<cc></cc>      *<bcc></bcc>      *<subject></subject>      *<message>      *<text charset=""></text>      *<xhtml charset=""></xhtml>      *<generic charset="" type=""></generic>      *</message>      *<attachment mimetype="" filename=""></attachment>      *</mail>      *      * @param mailElements	The XML mail Node      * @return		A mail Object representing the XML mail Node      */
 specifier|private
 name|List
 argument_list|<
