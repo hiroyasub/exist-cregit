@@ -140,6 +140,17 @@ condition|)
 return|return
 literal|true
 return|;
+comment|//workaround old style, remove -shabanovd
+if|if
+condition|(
+name|credentials
+operator|==
+literal|null
+condition|)
+name|credentials
+operator|=
+literal|""
+expr_stmt|;
 if|if
 condition|(
 name|credentials
