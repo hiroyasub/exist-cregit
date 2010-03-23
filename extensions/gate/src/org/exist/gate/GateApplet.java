@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist's  Gate extension - REST client for automate document management  *  form any browser in any desktop application on any client platform  *  Copyright (C) 2010,  Evgeny V. Gazdovsky (gazdovsky@gmail.com)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -213,6 +213,10 @@ name|RequestEntity
 import|;
 end_import
 
+begin_comment
+comment|/**  * Native eXist document management storage management  * @author Evgeny Gazdovsky (gazdovsky@gmail.com)  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -236,6 +240,15 @@ init|=
 operator|new
 name|HttpClient
 argument_list|()
+decl_stmt|;
+specifier|private
+name|String
+name|sessionid
+init|=
+name|getParameter
+argument_list|(
+literal|"sessionid"
+argument_list|)
 decl_stmt|;
 comment|// Since we use applet's methods from unsigned javascript,
 comment|// we must have a trusted thread for operations in local file system
@@ -557,6 +570,34 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|private
+name|void
+name|useCurrentSession
+parameter_list|(
+name|HttpMethodBase
+name|method
+parameter_list|)
+block|{
+if|if
+condition|(
+name|sessionid
+operator|!=
+literal|null
+condition|)
+block|{
+name|method
+operator|.
+name|setRequestHeader
+argument_list|(
+literal|"Cookie"
+argument_list|,
+literal|"JSESSIONID="
+operator|+
+name|sessionid
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** 	 * Download remote doc 	 * @param downloadFrom URL of remote doc for download * @return downloaded file 	 * @throws IOException 	 */
 specifier|public
 name|File
@@ -582,6 +623,11 @@ argument_list|(
 name|downloadFrom
 argument_list|)
 decl_stmt|;
+name|useCurrentSession
+argument_list|(
+name|get
+argument_list|)
+expr_stmt|;
 name|http
 operator|.
 name|executeMethod
@@ -736,6 +782,11 @@ argument_list|(
 name|uploadTo
 argument_list|)
 decl_stmt|;
+name|useCurrentSession
+argument_list|(
+name|put
+argument_list|)
+expr_stmt|;
 name|InputStream
 name|is
 init|=
