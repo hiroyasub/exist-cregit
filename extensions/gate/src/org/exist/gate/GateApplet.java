@@ -244,11 +244,6 @@ decl_stmt|;
 specifier|private
 name|String
 name|sessionid
-init|=
-name|getParameter
-argument_list|(
-literal|"sessionid"
-argument_list|)
 decl_stmt|;
 comment|// Since we use applet's methods from unsigned javascript,
 comment|// we must have a trusted thread for operations in local file system
@@ -344,11 +339,16 @@ literal|1000
 decl_stmt|;
 comment|// Default period/delay for different operations
 specifier|public
-name|GateApplet
+name|void
+name|init
 parameter_list|()
 block|{
-name|super
-argument_list|()
+name|sessionid
+operator|=
+name|getParameter
+argument_list|(
+literal|"sessionid"
+argument_list|)
 expr_stmt|;
 comment|// Setup HTTP proxy
 name|String
