@@ -11,9 +11,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|modules
+name|functions
 operator|.
-name|lib
+name|system
 package|;
 end_package
 
