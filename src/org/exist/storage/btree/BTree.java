@@ -19,6 +19,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|storage
@@ -60,6 +72,18 @@ operator|.
 name|storage
 operator|.
 name|DefaultCacheManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NativeBroker
 import|;
 end_import
 
@@ -260,6 +284,21 @@ name|BTree
 extends|extends
 name|Paged
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOGSTATS
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|NativeBroker
+operator|.
+name|EXIST_STATISTICS_LOGGER
+argument_list|)
+decl_stmt|;
 comment|/** Used as return value, if a value was not found */
 specifier|public
 specifier|final
@@ -13090,7 +13129,7 @@ argument_list|)
 expr_stmt|;
 comment|//buf.append(cache.getHits()).append(" / ");
 comment|//buf.append(cache.getFails());
-name|LOG
+name|LOGSTATS
 operator|.
 name|info
 argument_list|(
