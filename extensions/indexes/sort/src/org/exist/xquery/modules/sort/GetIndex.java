@@ -147,7 +147,9 @@ literal|"Look up a node in the sort index and return a number (&gt; 0) correspon
 operator|+
 literal|"position of that node in the ordered set which was created by a previous call to "
 operator|+
-literal|"the sort:create-index function."
+literal|"the sort:create-index function. The function returns the empty sequence if the node "
+operator|+
+literal|"cannot be found in the index."
 argument_list|,
 operator|new
 name|SequenceType
@@ -199,7 +201,7 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"A number&gt; 0 or the empty "
 operator|+
-literal|"sequence if the $node argument was empty."
+literal|"sequence if the $node argument was empty or the node could not be found in the index."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -356,6 +358,14 @@ argument_list|)
 throw|;
 block|}
 return|return
+name|pos
+operator|<
+literal|0
+condition|?
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+else|:
 operator|new
 name|IntegerValue
 argument_list|(

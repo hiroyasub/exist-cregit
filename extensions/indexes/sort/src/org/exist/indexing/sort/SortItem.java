@@ -37,6 +37,20 @@ name|AtomicValue
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|StringValue
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -53,9 +67,9 @@ decl_stmt|;
 name|AtomicValue
 name|value
 init|=
-name|AtomicValue
+name|StringValue
 operator|.
-name|EMPTY_VALUE
+name|EMPTY_STRING
 decl_stmt|;
 specifier|public
 name|SortItem
