@@ -129,6 +129,18 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|HasIndex
+operator|.
+name|signature
+argument_list|,
+name|HasIndex
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|RemoveIndex
 operator|.
 name|signatures
@@ -165,7 +177,7 @@ name|super
 argument_list|(
 name|functions
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
