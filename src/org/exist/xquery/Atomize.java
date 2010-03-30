@@ -344,6 +344,18 @@ if|if
 condition|(
 name|input
 operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+if|if
+condition|(
+name|input
+operator|.
 name|hasOne
 argument_list|()
 condition|)
@@ -405,6 +417,15 @@ expr_stmt|;
 block|}
 return|return
 name|result
+return|;
+block|}
+specifier|public
+name|Expression
+name|getExpression
+parameter_list|()
+block|{
+return|return
+name|expression
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
