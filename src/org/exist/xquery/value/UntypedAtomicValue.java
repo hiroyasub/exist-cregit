@@ -201,6 +201,16 @@ name|UNTYPED_ATOMIC
 case|:
 return|return
 name|strVal
+operator|==
+literal|null
+condition|?
+operator|new
+name|UntypedAtomicValue
+argument_list|(
+name|value
+argument_list|)
+else|:
+name|strVal
 return|;
 case|case
 name|Type
@@ -334,7 +344,7 @@ return|return
 operator|new
 name|DoubleValue
 argument_list|(
-name|strVal
+name|value
 argument_list|)
 return|;
 case|case
@@ -347,7 +357,7 @@ return|return
 operator|new
 name|DoubleValue
 argument_list|(
-name|strVal
+name|value
 argument_list|)
 return|;
 case|case

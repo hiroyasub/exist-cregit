@@ -288,7 +288,9 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The sequence to be joined to form the string"
+literal|"The sequence to be joined to form the string. If it is empty, "
+operator|+
+literal|"a zero-length string is returned."
 argument_list|)
 block|,
 operator|new
