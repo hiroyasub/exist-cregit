@@ -1122,6 +1122,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+comment|// TODO: Add throw of exception? DW
 block|}
 comment|//TODO : throw an exception here rather than silently ignore an *explicit* parameter ?
 comment|// WM: maybe throw an exception. Users can check if a db is already configured.
