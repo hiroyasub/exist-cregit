@@ -1011,7 +1011,7 @@ literal|null
 argument_list|,
 literal|"in"
 argument_list|,
-literal|2
+literal|1
 argument_list|)
 expr_stmt|;
 name|QName
@@ -4201,7 +4201,7 @@ literal|null
 argument_list|,
 literal|"in"
 argument_list|,
-literal|2
+literal|1
 argument_list|)
 expr_stmt|;
 name|QName
@@ -9085,10 +9085,7 @@ name|context
 argument_list|,
 name|docs
 argument_list|,
-name|docs
-operator|.
-name|docsToNodeSet
-argument_list|()
+literal|null
 argument_list|,
 name|hints
 argument_list|)
