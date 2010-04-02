@@ -1053,10 +1053,6 @@ decl_stmt|;
 name|String
 name|replace
 init|=
-operator|(
-operator|(
-name|StringValue
-operator|)
 name|getArgument
 argument_list|(
 literal|2
@@ -1068,12 +1064,9 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-operator|)
 operator|.
 name|getStringValue
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|//An error is raised [err:FORX0004] if the value of $replacement contains a "$" character that is not immediately followed by a digit 0-9 and not immediately preceded by a "\".
 comment|//An error is raised [err:FORX0004] if the value of $replacement contains a "\" character that is not part of a "\\" pair, unless it is immediately followed by a "$" character.
