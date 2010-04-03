@@ -327,7 +327,7 @@ name|INT
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The maximum number of returned keys"
 argument_list|)
@@ -444,7 +444,7 @@ name|INT
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The maximum number of returned keys"
 argument_list|)
@@ -577,7 +577,7 @@ name|INT
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The maximum number of returned keys"
 argument_list|)
@@ -750,6 +750,21 @@ decl_stmt|;
 name|int
 name|max
 init|=
+operator|-
+literal|1
+decl_stmt|;
+if|if
+condition|(
+name|args
+index|[
+literal|3
+index|]
+operator|.
+name|hasOne
+argument_list|()
+condition|)
+name|max
+operator|=
 operator|(
 operator|(
 name|IntegerValue
@@ -767,7 +782,7 @@ operator|)
 operator|.
 name|getInt
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|FunctionCall
 name|call
 init|=
@@ -867,6 +882,13 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|max
+operator|!=
+operator|-
+literal|1
+condition|)
 name|hints
 operator|.
 name|put
@@ -1026,6 +1048,11 @@ name|int
 name|len
 init|=
 operator|(
+name|max
+operator|!=
+operator|-
+literal|1
+operator|&&
 name|occur
 operator|.
 name|length
@@ -1354,6 +1381,11 @@ name|int
 name|len
 init|=
 operator|(
+name|max
+operator|!=
+operator|-
+literal|1
+operator|&&
 name|occur
 operator|.
 name|length
