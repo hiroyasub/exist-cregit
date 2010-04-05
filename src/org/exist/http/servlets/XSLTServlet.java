@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -325,6 +325,18 @@ name|xml
 operator|.
 name|sax
 operator|.
+name|SAXParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
 name|XMLReader
 import|;
 end_import
@@ -383,7 +395,67 @@ name|xml
 operator|.
 name|transform
 operator|.
-name|*
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Templates
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Transformer
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|TransformerException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|URIResolver
 import|;
 end_import
 
@@ -613,18 +685,6 @@ name|GZIPInputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXParseException
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -758,6 +818,7 @@ name|property
 operator|!=
 literal|null
 condition|)
+block|{
 name|caching
 operator|=
 operator|(
@@ -765,11 +826,14 @@ name|Boolean
 operator|)
 name|property
 expr_stmt|;
+block|}
 else|else
+block|{
 name|caching
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 return|return
 name|caching
@@ -809,6 +873,7 @@ name|stylesheet
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -816,6 +881,7 @@ argument_list|(
 literal|"No stylesheet source specified!"
 argument_list|)
 throw|;
+block|}
 name|Item
 name|inputNode
 init|=
@@ -882,6 +948,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|sourceObj
 operator|=
 name|seq
@@ -891,6 +958,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -923,6 +991,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -932,6 +1001,7 @@ operator|+
 name|sourceAttrib
 argument_list|)
 throw|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -1089,7 +1159,9 @@ name|templates
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//do the transformation
 name|DBBroker
 name|broker
@@ -1146,16 +1218,6 @@ name|properties
 argument_list|)
 expr_stmt|;
 name|String
-name|mediaType
-init|=
-name|properties
-operator|.
-name|getProperty
-argument_list|(
-literal|"media-type"
-argument_list|)
-decl_stmt|;
-name|String
 name|encoding
 init|=
 name|properties
@@ -1171,10 +1233,12 @@ name|encoding
 operator|==
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setCharacterEncoding
@@ -1182,6 +1246,16 @@ argument_list|(
 name|encoding
 argument_list|)
 expr_stmt|;
+name|String
+name|mediaType
+init|=
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"media-type"
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|mediaType
@@ -1351,6 +1425,7 @@ name|base
 operator|!=
 literal|null
 condition|)
+block|{
 name|moduleLoadPath
 operator|=
 name|getServletContext
@@ -1361,7 +1436,9 @@ argument_list|(
 name|base
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|moduleLoadPath
 operator|=
 name|getCurrentDir
@@ -1372,6 +1449,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 expr_stmt|;
+block|}
 name|xinclude
 operator|.
 name|setModuleLoadPath
@@ -1392,6 +1470,7 @@ name|inputNode
 operator|!=
 literal|null
 condition|)
+block|{
 name|serializer
 operator|.
 name|toSAX
@@ -1402,6 +1481,7 @@ operator|)
 name|inputNode
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|SAXToReceiver
@@ -1729,6 +1809,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|stylesheet
 operator|=
 name|f
@@ -1739,6 +1820,7 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -1758,6 +1840,7 @@ argument_list|(
 literal|"//"
 argument_list|)
 condition|)
+block|{
 name|stylesheet
 operator|=
 name|stylesheet
@@ -1769,6 +1852,7 @@ argument_list|,
 literal|"/"
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|url
 init|=
@@ -1881,6 +1965,7 @@ return|;
 block|}
 block|}
 block|}
+comment|// TODO please explain what happens here
 name|int
 name|p
 init|=
@@ -1899,6 +1984,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|base
 operator|=
 name|stylesheet
@@ -1910,11 +1996,14 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|base
 operator|=
 name|stylesheet
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -1922,6 +2011,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1931,6 +2021,7 @@ operator|+
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 name|CachedStylesheet
 name|cached
 init|=
@@ -2040,6 +2131,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|path
 operator|=
 name|path
@@ -2051,6 +2143,7 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 name|path
 operator|=
 name|getServletContext
@@ -2078,16 +2171,20 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return
 name|file
 return|;
+block|}
 else|else
+block|{
 return|return
 name|file
 operator|.
 name|getParentFile
 argument_list|()
 return|;
+block|}
 block|}
 specifier|private
 name|void
@@ -2304,6 +2401,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|properties
 operator|.
 name|setProperty
@@ -2324,6 +2422,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2388,6 +2487,7 @@ argument_list|(
 literal|"xmldb:exist://"
 argument_list|)
 condition|)
+block|{
 name|factory
 operator|.
 name|setURIResolver
@@ -2399,6 +2499,7 @@ name|baseURI
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|getTemplates
 argument_list|(
 name|user
@@ -2483,6 +2584,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -2492,6 +2594,7 @@ operator|+
 name|docPath
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2520,6 +2623,7 @@ name|lastModified
 operator|)
 operator|)
 condition|)
+block|{
 name|templates
 operator|=
 name|getSource
@@ -2529,6 +2633,7 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 name|lastModified
 operator|=
 name|doc
@@ -2594,6 +2699,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -2606,6 +2712,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -2860,7 +2967,9 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"A configuration exception occurred while compiling the stylesheet: "
+literal|"A configuration exception occurred while "
+operator|+
+literal|"compiling the stylesheet: "
 operator|+
 name|e
 operator|.
@@ -3005,7 +3114,7 @@ operator|=
 name|myDoc
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)            * @see javax.xml.transform.URIResolver#resolve(java.lang.String, java.lang.String)            */
+comment|/* (non-Javadoc)          * @see javax.xml.transform.URIResolver#resolve(java.lang.String, java.lang.String)          */
 specifier|public
 name|Source
 name|resolve
@@ -3040,11 +3149,14 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|path
 operator|=
 name|href
 expr_stmt|;
+block|}
 else|else
+block|{
 name|path
 operator|=
 name|collection
@@ -3056,6 +3168,7 @@ literal|"/"
 operator|+
 name|href
 expr_stmt|;
+block|}
 name|DocumentImpl
 name|xslDoc
 decl_stmt|;
@@ -3145,6 +3258,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|TransformerException
@@ -3154,6 +3268,7 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
 name|DOMSource
 name|source
 init|=
