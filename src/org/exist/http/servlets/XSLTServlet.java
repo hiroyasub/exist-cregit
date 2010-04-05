@@ -185,7 +185,63 @@ name|util
 operator|.
 name|serializer
 operator|.
-name|*
+name|Receiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|ReceiverToSAX
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|SAXSerializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|SAXToReceiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|SerializerPool
 import|;
 end_import
 
@@ -685,6 +741,10 @@ name|GZIPInputStream
 import|;
 end_import
 
+begin_comment
+comment|/**  * eXist-db servlet for XSLT transformations.  *  * @author Wolfgang  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -729,7 +789,7 @@ specifier|private
 specifier|final
 specifier|static
 name|String
-name|REQ_ATTRIBUTE_PROPERTIES
+name|REQ_ATTRIBUTE_OUTPUT
 init|=
 literal|"xslt.output."
 decl_stmt|;
@@ -785,6 +845,7 @@ name|caching
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * @return Value of TransformerFactoryAllocator.PROPERTY_CACHING_ATTRIBUTE or TRUE if not present.      */
 specifier|private
 name|boolean
 name|isCaching
@@ -839,6 +900,8 @@ return|return
 name|caching
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doPost
@@ -1024,6 +1087,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// Retrieve username / password from HTTP request attributes
 name|String
 name|userParam
 init|=
@@ -1189,7 +1253,7 @@ argument_list|(
 name|templates
 argument_list|)
 decl_stmt|;
-name|setParameters
+name|setTransformerParameters
 argument_list|(
 name|request
 argument_list|,
@@ -1527,7 +1591,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-empty_stmt|;
 name|inStream
 operator|.
 name|mark
@@ -1752,6 +1815,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/*      * Please add comments to this method. make assumption clear. These might not be valid.      */
 specifier|private
 name|Templates
 name|getSource
@@ -1776,9 +1840,8 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-name|String
-name|base
-decl_stmt|;
+comment|// TODO looks like a fall back to filesystem. Will work for Unix, not for win32?
+comment|// TODO or is it a relative path to .......
 if|if
 condition|(
 name|stylesheet
@@ -1810,6 +1873,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+comment|// Found file, get URI
 name|stylesheet
 operator|=
 name|f
@@ -1823,6 +1887,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// TODO cannot read file, what does this mean?
 if|if
 condition|(
 name|f
@@ -1966,6 +2031,9 @@ block|}
 block|}
 block|}
 comment|// TODO please explain what happens here
+name|String
+name|base
+decl_stmt|;
 name|int
 name|p
 init|=
@@ -2072,6 +2140,7 @@ name|user
 argument_list|)
 return|;
 block|}
+comment|/*      * Please explain what this method is about. Write about assumptions / input.      */
 specifier|private
 name|File
 name|getCurrentDir
@@ -2186,9 +2255,10 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/**      *  Copy "xslt." attributes from HTTP request to transformer. Does not copy 'input', 'output'      * and 'styleheet' attributes.      */
 specifier|private
 name|void
-name|setParameters
+name|setTransformerParameters
 parameter_list|(
 name|HttpServletRequest
 name|request
@@ -2242,7 +2312,7 @@ name|name
 operator|.
 name|startsWith
 argument_list|(
-name|REQ_ATTRIBUTE_PROPERTIES
+name|REQ_ATTRIBUTE_OUTPUT
 argument_list|)
 operator|||
 name|REQ_ATTRIBUTE_INPUT
@@ -2336,6 +2406,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**      * Copies 'output' attributes to properties object.      */
 specifier|private
 name|void
 name|setOutputProperties
@@ -2381,7 +2452,7 @@ name|name
 operator|.
 name|startsWith
 argument_list|(
-name|REQ_ATTRIBUTE_PROPERTIES
+name|REQ_ATTRIBUTE_OUTPUT
 argument_list|)
 condition|)
 block|{
@@ -2410,7 +2481,7 @@ name|name
 operator|.
 name|substring
 argument_list|(
-name|REQ_ATTRIBUTE_PROPERTIES
+name|REQ_ATTRIBUTE_OUTPUT
 operator|.
 name|length
 argument_list|()
@@ -2982,6 +3053,7 @@ throw|;
 block|}
 block|}
 block|}
+comment|/*      * TODO: create generic resolver for whole database      */
 specifier|private
 class|class
 name|ExternalResolver
@@ -3006,7 +3078,9 @@ operator|=
 name|base
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)            * @see javax.xml.transform.URIResolver#resolve(java.lang.String, java.lang.String)            */
+comment|/* (non-Javadoc)          * @see javax.xml.transform.URIResolver#resolve(java.lang.String, java.lang.String)          */
+annotation|@
+name|Override
 specifier|public
 name|Source
 name|resolve
@@ -3079,6 +3153,7 @@ return|;
 block|}
 block|}
 block|}
+comment|/*      * TODO: create generic resolver for whole database      */
 specifier|private
 class|class
 name|DatabaseResolver
@@ -3115,6 +3190,8 @@ name|myDoc
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see javax.xml.transform.URIResolver#resolve(java.lang.String, java.lang.String)          */
+annotation|@
+name|Override
 specifier|public
 name|Source
 name|resolve
