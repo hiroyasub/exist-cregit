@@ -3865,6 +3865,16 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+if|if
+condition|(
+name|other
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|this
+return|;
 name|NewArrayNodeSet
 name|result
 init|=
