@@ -512,13 +512,22 @@ return|return
 literal|true
 return|;
 block|}
+name|xqueryResourcePath
+operator|=
+name|xqueryResourcePath
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"org.exist.security.openid.verify_logging_script = "
+literal|"org.exist.security.openid.verify_logging_script = \""
 operator|+
 name|xqueryResourcePath
+operator|+
+literal|"\""
 argument_list|)
 expr_stmt|;
 name|BrokerPool
@@ -652,6 +661,15 @@ operator|+
 name|xqueryResourcePath
 operator|+
 literal|" does not exist."
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"pathURI "
+operator|+
+name|pathUri
 argument_list|)
 expr_stmt|;
 return|return
