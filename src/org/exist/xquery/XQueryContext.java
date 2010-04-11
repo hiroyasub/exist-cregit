@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -205,7 +205,91 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DefaultDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|MutableDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
 import|;
 end_import
 
@@ -647,7 +731,77 @@ name|xquery
 operator|.
 name|pragmas
 operator|.
-name|*
+name|BatchTransactionPragma
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|pragmas
+operator|.
+name|ForceIndexUse
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|pragmas
+operator|.
+name|NoIndexPragma
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|pragmas
+operator|.
+name|Optimize
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|pragmas
+operator|.
+name|ProfilePragma
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|pragmas
+operator|.
+name|TimerPragma
 import|;
 end_import
 
@@ -675,7 +829,105 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|*
+name|AnyURIValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|DateTimeValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|JavaObjectValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|NodeValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|StringValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|TimeUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -920,7 +1172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic XQuery context components.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic  * XQuery context components.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -1725,15 +1977,11 @@ name|debuggeeJoint
 init|=
 literal|null
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 specifier|private
 name|XQueryContext
 parameter_list|()
 block|{
+comment|// NOP
 block|}
 specifier|protected
 name|XQueryContext
@@ -8634,7 +8882,7 @@ block|}
 else|else
 block|{
 name|Source
-name|source
+name|moduleSource
 decl_stmt|;
 if|if
 condition|(
@@ -8803,7 +9051,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
-name|source
+name|moduleSource
 operator|=
 operator|new
 name|DBSource
@@ -8829,7 +9077,7 @@ name|namespaceURI
 argument_list|,
 name|location
 argument_list|,
-name|source
+name|moduleSource
 argument_list|)
 expr_stmt|;
 block|}
@@ -8903,7 +9151,7 @@ comment|// No. Load from file or URL
 try|try
 block|{
 comment|//TODO: use URIs to ensure proper resolution of relative locations
-name|source
+name|moduleSource
 operator|=
 name|SourceFactory
 operator|.
@@ -9013,7 +9261,7 @@ name|namespaceURI
 argument_list|,
 name|location
 argument_list|,
-name|source
+name|moduleSource
 argument_list|)
 expr_stmt|;
 block|}
@@ -11313,6 +11561,7 @@ comment|/*         SymbolTable syms = broker.getSymbols();         String[] pfx 
 name|loadDefaultNS
 argument_list|()
 expr_stmt|;
+comment|// Switch: enable optimizer
 name|String
 name|param
 init|=
@@ -11345,6 +11594,7 @@ argument_list|(
 literal|"yes"
 argument_list|)
 expr_stmt|;
+comment|// Switch: Backward compatibility
 name|param
 operator|=
 operator|(
@@ -11376,6 +11626,7 @@ argument_list|(
 literal|"yes"
 argument_list|)
 expr_stmt|;
+comment|// Switch: raiseErrorOnFailedRetrieval
 name|Boolean
 name|option
 init|=
@@ -11408,7 +11659,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
-comment|// load built-in modules
+comment|// Get map of built-in modules
 name|Map
 argument_list|<
 name|String
@@ -11418,7 +11669,7 @@ argument_list|<
 name|Module
 argument_list|>
 argument_list|>
-name|modules
+name|builtInModules
 init|=
 operator|(
 name|Map
@@ -11432,11 +11683,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|modules
+name|builtInModules
 operator|!=
 literal|null
 condition|)
 block|{
+comment|// Iterate on all map entries
 for|for
 control|(
 name|Map
@@ -11452,23 +11704,13 @@ argument_list|>
 argument_list|>
 name|entry
 range|:
-name|modules
+name|builtInModules
 operator|.
 name|entrySet
 argument_list|()
 control|)
 block|{
-name|Class
-argument_list|<
-name|Module
-argument_list|>
-name|mClass
-init|=
-name|entry
-operator|.
-name|getValue
-argument_list|()
-decl_stmt|;
+comment|// Get URI and class
 name|String
 name|namespaceURI
 init|=
@@ -11477,8 +11719,18 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|// first check if the module has already been loaded
-comment|// in the parent context
+name|Class
+argument_list|<
+name|Module
+argument_list|>
+name|moduleClass
+init|=
+name|entry
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+comment|// first check if the module has already been loaded in the parent context
 name|Module
 name|module
 init|=
@@ -11494,11 +11746,12 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// Module does not exist yet, instantiate
 name|instantiateModule
 argument_list|(
 name|namespaceURI
 argument_list|,
-name|mClass
+name|moduleClass
 argument_list|)
 expr_stmt|;
 block|}
@@ -11572,6 +11825,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/**      * Load default namespaces, e.g. xml, xsi, xdt, fn, local, exist and dbgp.      */
 specifier|protected
 name|void
 name|loadDefaultNS
@@ -11676,6 +11930,13 @@ name|e
 parameter_list|)
 block|{
 comment|//TODO : ignored because it should never happen
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -11752,7 +12013,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Check if the XQuery contains pragmas that define serialization settings. If yes, copy the corresponding settings to the current set of output      * properties.      *      * @param   properties  the properties object to which serialization parameters will be added.      *      * @throws  XPathException  if an error occurs while parsing the option      */
+comment|/**      * Check if the XQuery contains pragmas that define serialization settings. If yes,      * copy the corresponding settings to the current set of output properties.      *      * @param   properties  the properties object to which serialization parameters will be added.      *      * @throws  XPathException  if an error occurs while parsing the option      */
 specifier|public
 name|void
 name|checkOptions
@@ -11892,7 +12153,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Read list of built-in modules from the configuration. This method will only make sure that the specified module class exists and is a subclass      * of {@link org.exist.xquery.Module}.      *      * @param   xquery       configuration root      * @param   classMap           * @param   externalMap        *      * @throws  DatabaseConfigurationException      */
+comment|/**      * Read list of built-in modules from the configuration. This method will only make sure      * that the specified module class exists and is a subclass of {@link org.exist.xquery.Module}.      *      * @param   xquery            configuration root      * @param   modulesClassMap   map containing all classes of modules      * @param   modulesSourceMap  map containing all source uris to external resources      *      * @throws  DatabaseConfigurationException      */
 specifier|public
 specifier|static
 name|void
@@ -11910,7 +12171,7 @@ argument_list|<
 name|?
 argument_list|>
 argument_list|>
-name|classMap
+name|modulesClassMap
 parameter_list|,
 name|Map
 argument_list|<
@@ -11918,13 +12179,13 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-name|externalMap
+name|modulesSourceMap
 parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
 comment|// add the standard function module
-name|classMap
+name|modulesClassMap
 operator|.
 name|put
 argument_list|(
@@ -11956,6 +12217,7 @@ argument_list|(
 name|CONFIGURATION_MODULES_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
+comment|// search under<builtin-modules>
 if|if
 condition|(
 name|builtins
@@ -11999,6 +12261,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// iterate over all<module src= uri= class=> entries
 for|for
 control|(
 name|int
@@ -12017,6 +12280,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// Get element.
 name|elem
 operator|=
 operator|(
@@ -12029,6 +12293,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+comment|// Get attributes uri class and src
 name|String
 name|uri
 init|=
@@ -12065,6 +12330,7 @@ operator|.
 name|BUILT_IN_MODULE_SOURCE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
+comment|// uri attribute is the identifier and is always required
 if|if
 condition|(
 name|uri
@@ -12082,6 +12348,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+comment|// either class or source attribute must be present
 if|if
 condition|(
 operator|(
@@ -12116,7 +12383,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|externalMap
+comment|// Store src attribute info
+name|modulesSourceMap
 operator|.
 name|put
 argument_list|(
@@ -12152,11 +12420,13 @@ block|}
 block|}
 else|else
 block|{
+comment|// source class attribute info
+comment|// Get class of module
 name|Class
 argument_list|<
 name|?
 argument_list|>
-name|mClass
+name|moduleClass
 init|=
 name|lookupModuleClass
 argument_list|(
@@ -12165,20 +12435,21 @@ argument_list|,
 name|clazz
 argument_list|)
 decl_stmt|;
+comment|// Store class if thw module class actually exists
 if|if
 condition|(
-name|mClass
+name|moduleClass
 operator|!=
 literal|null
 condition|)
 block|{
-name|classMap
+name|modulesClassMap
 operator|.
 name|put
 argument_list|(
 name|uri
 argument_list|,
-name|mClass
+name|moduleClass
 argument_list|)
 expr_stmt|;
 block|}
@@ -12211,6 +12482,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/**      *  Returns the Class object associated with the with the given module class name. All      * important exceptions are caught. @see org.exist.xquery.Module      *      * @param uri   namespace of class. For logging purposes only.      * @param clazz the fully qualified name of the desired module class.      * @return      the module Class object for the module with the specified name.      * @throws      DatabaseConfigurationException if the given module class is not an instance      *              of org.exist.xquery.Module      */
 specifier|private
 specifier|static
 name|Class
@@ -12228,21 +12500,25 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-try|try
-block|{
 name|Class
 argument_list|<
 name|?
 argument_list|>
 name|mClass
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|mClass
+operator|=
 name|Class
 operator|.
 name|forName
 argument_list|(
 name|clazz
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -12276,11 +12552,6 @@ argument_list|)
 operator|)
 throw|;
 block|}
-return|return
-operator|(
-name|mClass
-operator|)
-return|;
 block|}
 catch|catch
 parameter_list|(
@@ -12337,9 +12608,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
-literal|null
-operator|)
+name|mClass
 return|;
 block|}
 specifier|public
@@ -12403,6 +12672,7 @@ name|SESSION
 argument_list|)
 return|;
 block|}
+comment|// ====================================================================================
 specifier|private
 class|class
 name|ContextUpdateListener
@@ -12436,6 +12706,7 @@ init|(
 name|listeners
 init|)
 block|{
+comment|// TODO field must be final?
 name|listeners
 operator|.
 name|add
@@ -12461,6 +12732,7 @@ init|(
 name|listeners
 init|)
 block|{
+comment|// TODO field must be final?
 for|for
 control|(
 name|UpdateListener
@@ -12499,6 +12771,7 @@ init|(
 name|listeners
 init|)
 block|{
+comment|// TODO field must be final?
 for|for
 control|(
 name|UpdateListener

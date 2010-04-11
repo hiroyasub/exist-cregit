@@ -2749,7 +2749,7 @@ argument_list|,
 name|trace
 argument_list|)
 expr_stmt|;
-comment|//built-in-modules
+comment|// built-in-modules
 name|Map
 argument_list|<
 name|String
@@ -7231,7 +7231,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param dbHome      * @param doc      * @param indexer      * @throws DatabaseConfigurationException      * @throws MalformedURLException      * @throws IOException      */
 specifier|private
 name|void
 name|configureIndexer
