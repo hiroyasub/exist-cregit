@@ -6365,6 +6365,8 @@ argument_list|(
 name|value
 argument_list|,
 name|xpathType
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -6375,7 +6377,9 @@ name|e
 parameter_list|)
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 block|}
