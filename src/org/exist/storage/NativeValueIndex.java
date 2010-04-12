@@ -7096,6 +7096,8 @@ argument_list|(
 name|value
 argument_list|,
 name|xpathType
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
