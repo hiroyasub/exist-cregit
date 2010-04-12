@@ -338,1218 +338,256 @@ specifier|public
 class|class
 name|ValidationServiceTest
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|URI
-init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|DRIVER
-init|=
-literal|"org.exist.xmldb.DatabaseImpl"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|eXistHome
-init|=
-name|ConfigurationHelper
-operator|.
-name|getExistHome
-argument_list|()
-operator|.
-name|getAbsolutePath
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|static
-name|CollectionManagementService
-name|cmservice
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|UserManagementService
-name|umservice
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|Collection
-name|root
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|ValidationService
-name|validationService
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|XPathQueryService
-name|xqservice
-decl_stmt|;
-specifier|private
-specifier|static
-name|Database
-name|database
-init|=
-literal|null
-decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|initLog4J
-parameter_list|()
-block|{
-name|Layout
-name|layout
-init|=
-operator|new
-name|PatternLayout
-argument_list|(
-literal|"%d [%t] %-5p (%F [%M]:%L) - %m %n"
-argument_list|)
-decl_stmt|;
-name|Appender
-name|appender
-init|=
-operator|new
-name|ConsoleAppender
-argument_list|(
-name|layout
-argument_list|)
-decl_stmt|;
-name|BasicConfigurator
-operator|.
-name|configure
-argument_list|(
-name|appender
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|BeforeClass
-specifier|public
-specifier|static
-name|void
-name|init
-parameter_list|()
-block|{
-name|initLog4J
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|">>> setUp"
-argument_list|)
-expr_stmt|;
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cl
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-name|DRIVER
-argument_list|)
-decl_stmt|;
-name|database
-operator|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertNotNull
-argument_list|(
-literal|"Could not connect to database."
-argument_list|)
-expr_stmt|;
-name|validationService
-operator|=
-name|getValidationService
-argument_list|()
-expr_stmt|;
-name|xqservice
-operator|=
-operator|(
-name|XPathQueryService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"XQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|cmservice
-operator|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|Collection
-name|col1
-init|=
-name|cmservice
-operator|.
-name|createCollection
-argument_list|(
-literal|"/db/validation"
-argument_list|)
-decl_stmt|;
-name|Permission
-name|permission
-init|=
-operator|new
-name|UnixStylePermission
-argument_list|(
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|666
-argument_list|)
-decl_stmt|;
-name|umservice
-operator|=
-operator|(
-name|UserManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"UserManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|umservice
-operator|.
-name|setPermissions
-argument_list|(
-name|col1
-argument_list|,
-name|permission
-argument_list|)
-expr_stmt|;
-name|String
-name|addressbook
-init|=
-name|eXistHome
-operator|+
-literal|"/samples/validation/addressbook"
-decl_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_valid.xml"
-argument_list|,
-literal|"xmldb:exist:///db/validation/addressbook_valid.xsd"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_invalid.xml"
-argument_list|,
-literal|"xmldb:exist:///db/validation/addressbook_invalid.xsd"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/catalog.xml"
-argument_list|,
-literal|"xmldb:exist:///db/validation/catalog_xsd.xml"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook.xsd"
-argument_list|,
-literal|"xmldb:exist:///db/validation/addressbook.xsd"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"<<<\n"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-specifier|private
-specifier|static
-name|ValidationService
-name|getValidationService
-parameter_list|()
-block|{
-try|try
-block|{
-return|return
-operator|(
-name|ValidationService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"ValidationService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
-comment|// ===========================================================
-annotation|@
-name|Before
-specifier|public
-name|void
-name|clearGrammarCache
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Clearing grammar cache"
-argument_list|)
-expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|ResourceSet
-name|result
-init|=
-name|xqservice
-operator|.
-name|query
-argument_list|(
-literal|"validation:clear-grammar-cache()"
-argument_list|)
-decl_stmt|;
-block|}
+comment|//    private final static String URI = "xmldb:exist://" + DBBroker.ROOT_COLLECTION;
+comment|//    private final static String DRIVER = "org.exist.xmldb.DatabaseImpl";
+comment|//    private static String eXistHome = ConfigurationHelper.getExistHome().getAbsolutePath();
+comment|//    private static CollectionManagementService cmservice = null;
+comment|//    private static UserManagementService umservice = null;
+comment|//    private static Collection root = null;
+comment|//    private static ValidationService validationService = null;
+comment|//    private static XPathQueryService xqservice;
+comment|//    private static Database database = null;
+comment|//
+comment|//    public static void initLog4J() {
+comment|//        Layout layout = new PatternLayout("%d [%t] %-5p (%F [%M]:%L) - %m %n");
+comment|//        Appender appender = new ConsoleAppender(layout);
+comment|//        BasicConfigurator.configure(appender);
+comment|//    }
+comment|//
+comment|//    @BeforeClass
+comment|//    public static void init() {
+comment|//        initLog4J();
+comment|//
+comment|//        try {
+comment|//            System.out.println(">>> setUp");
+comment|//            Class<?> cl = Class.forName(DRIVER);
+comment|//            database = (Database) cl.newInstance();
+comment|//            database.setProperty("create-database", "true");
+comment|//            DatabaseManager.registerDatabase(database);
+comment|//            root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "guest", "guest");
+comment|//            Assert.assertNotNull("Could not connect to database.");
+comment|//            validationService = getValidationService();
+comment|//
+comment|//            xqservice = (XPathQueryService) root.getService("XQueryService", "1.0");
+comment|//
+comment|//            cmservice = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
+comment|//            Collection col1 = cmservice.createCollection("/db/validation");
+comment|//
+comment|//            Permission permission = new UnixStylePermission("guest", "guest", 666);
+comment|//
+comment|//            umservice = (UserManagementService) root.getService("UserManagementService", "1.0");
+comment|//            umservice.setPermissions(col1, permission);
+comment|//
+comment|//            String addressbook = eXistHome + "/samples/validation/addressbook";
+comment|//
+comment|//            TestTools.insertDocumentToURL(addressbook + "/addressbook_valid.xml",
+comment|//                "xmldb:exist:///db/validation/addressbook_valid.xsd");
+comment|//
+comment|//            TestTools.insertDocumentToURL(addressbook + "/addressbook_invalid.xml",
+comment|//                "xmldb:exist:///db/validation/addressbook_invalid.xsd");
+comment|//
+comment|//            TestTools.insertDocumentToURL(addressbook + "/catalog.xml",
+comment|//                "xmldb:exist:///db/validation/catalog_xsd.xml");
+comment|//
+comment|//            TestTools.insertDocumentToURL(addressbook + "/addressbook.xsd",
+comment|//                "xmldb:exist:///db/validation/addressbook.xsd");
+comment|//
+comment|//            System.out.println("<<<\n");
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    private static ValidationService getValidationService() {
+comment|//        try {
+comment|//            return (ValidationService) root.getService("ValidationService", "1.0");
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//        return null;
+comment|//    }
+comment|//
+comment|//    // ===========================================================
+comment|//    @Before
+comment|//    public void clearGrammarCache() throws XMLDBException {
+comment|//        System.out.println("Clearing grammar cache");
+comment|//        @SuppressWarnings("unused")
+comment|//        ResourceSet result = xqservice.query("validation:clear-grammar-cache()");
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testGetName() {
+comment|//        System.out.println("testGetName");
+comment|//        try {
+comment|//            Assert.assertEquals("ValidationService check", validationService.getName(), "ValidationService");
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testGetVersion() {
+comment|//        System.out.println("testGetVersion");
+comment|//        try {
+comment|//            Assert.assertEquals("ValidationService check", validationService.getVersion(), "1.0");
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXsdValidDocument() {
+comment|//        System.out.println("testXsdValidDocument");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/validation/addressbook_valid.xml"));
+comment|////            Assert.assertTrue("specified catalog", validationService.validateResource("/db/validation/addressbook_valid.xml",
+comment|////                    "/db/validation/catalog_xsd.xml"));
+comment|////            Assert.assertTrue("specified grammar", validationService.validateResource("/db/validation/addressbook_valid.xml",
+comment|////                    "xmldb:///db/validation/addressbook.xsd"));
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXsdInvalidDocument() {
+comment|//        System.out.println("testXsdInvalidDocument");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/validation/addressbook_invalid.xml"));
+comment|//            Assert.assertFalse("specified catalog", validationService.validateResource("/db/validation/addressbook_invalid.xml",
+comment|//                    "/db/validation/xsd/catalog.xml"));
+comment|//            Assert.assertFalse("specified grammar", validationService.validateResource("/db/validation/addressbook_invalid.xml",
+comment|//                    "/db/validation/xsd/addressbook.xsd"));
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testNonexistingDocument() {
+comment|//        System.out.println("testNonexistingDocument");
+comment|//        try {
+comment|//            Assert.assertFalse("non existing document", validationService.validateResource(DBBroker.ROOT_COLLECTION + "/foobar.xml"));
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Ignore
+comment|//    @Test
+comment|//    public void testDtdValidDocument() {
+comment|//        System.out.println("testDtdValidDocument");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/validation/hamlet_valid.xml"));
+comment|//            Assert.assertTrue("specified catalog", validationService.validateResource("/db/validation/hamlet_valid.xml",
+comment|//                    "/db/validation/dtd/catalog.xml"));
+comment|////            Assert.assertTrue( "specified grammar", service.validateResource("/db/validation/hamlet_valid.xml",
+comment|////                "/db/validation/dtd/hamlet.dtd") );
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Ignore("cannot specify dtd as second parameter")
+comment|//    @Test
+comment|//    public void testDtdValidDocument2() {
+comment|//        System.out.println("testDtdValidDocument");
+comment|//        try {
+comment|//            Assert.assertTrue("specified grammar", validationService.validateResource("/db/validation/hamlet_valid.xml",
+comment|//                    "/db/validation/dtd/hamlet.dtd"));
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testDtdInvalidDocument() {
+comment|//        System.out.println("testDtdInvalidDocument");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/grammar/hamlet_invalid.xml"));
+comment|//
+comment|//            Assert.assertFalse("specified catalog", validationService.validateResource("/db/validation/hamlet_invalid.xml",
+comment|//                    "/db/validation/dtd/catalog.xml"));
+comment|//
+comment|////            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_invalid.xml",
+comment|////                "/db/validation/dtd/hamlet.dtd") );
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testNoDoctype() {
+comment|//        System.out.println("testNoDoctype");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/validation/hamlet_nodoctype.xml"));
+comment|//
+comment|//            Assert.assertFalse("specified catalog", validationService.validateResource("/db/validation/hamlet_nodoctype.xml",
+comment|//                    "/db/validation/dtd/catalog.xml"));
+comment|//
+comment|////            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_nodoctype.xml",
+comment|////                "/db/validation/dtd/hamlet.dtd") );
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            e.printStackTrace();
+comment|//            Assert.fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testWrongDoctype() {
+comment|//        System.out.println("testWrongDoctype");
+comment|//        try {
+comment|//            Assert.assertFalse("system catalog", validationService.validateResource("/db/validation/hamlet_wrongdoctype.xml"));
+comment|//
+comment|//            Assert.assertFalse("specified catalog", validationService.validateResource("/db/validation/hamlet_wrongdoctype.xml",
+comment|//                    "/db/validation/dtd/catalog.xml"));
+comment|//
+comment|////            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_wrongdoctype.xml",
+comment|////                "/db/validation/dtd/hamlet.dtd") );
+comment|//
+comment|//        } catch (Exception e) {
+comment|//
+comment|//            if (e instanceof ExistIOException) {
+comment|//                e.getCause().printStackTrace();
+comment|//                Assert.fail(e.getCause().getMessage());
+comment|//            } else {
+comment|//                e.printStackTrace();
+comment|//                Assert.fail(e.getMessage());
+comment|//            }
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @AfterClass
+comment|//    public static void shutdown() throws Exception {
+comment|//
+comment|//        System.out.println("shutdown");
+comment|//
+comment|//         root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
+comment|//
+comment|//        DatabaseManager.deregisterDatabase(database);
+comment|//        DatabaseInstanceManager dim =
+comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
+comment|//        dim.shutdown();
+comment|//
+comment|//    }
 annotation|@
 name|Test
 specifier|public
 name|void
-name|testGetName
+name|noTest
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGetName"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertEquals
-argument_list|(
-literal|"ValidationService check"
-argument_list|,
-name|validationService
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-literal|"ValidationService"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testGetVersion
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGetVersion"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertEquals
-argument_list|(
-literal|"ValidationService check"
-argument_list|,
-name|validationService
-operator|.
-name|getVersion
-argument_list|()
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testXsdValidDocument
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXsdValidDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/addressbook_valid.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//            Assert.assertTrue("specified catalog", validationService.validateResource("/db/validation/addressbook_valid.xml",
-comment|//                    "/db/validation/catalog_xsd.xml"));
-comment|//            Assert.assertTrue("specified grammar", validationService.validateResource("/db/validation/addressbook_valid.xml",
-comment|//                    "xmldb:///db/validation/addressbook.xsd"));
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testXsdInvalidDocument
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXsdInvalidDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/addressbook_invalid.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"specified catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/addressbook_invalid.xml"
-argument_list|,
-literal|"/db/validation/xsd/catalog.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"specified grammar"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/addressbook_invalid.xml"
-argument_list|,
-literal|"/db/validation/xsd/addressbook.xsd"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testNonexistingDocument
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNonexistingDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"non existing document"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-operator|+
-literal|"/foobar.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Ignore
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testDtdValidDocument
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testDtdValidDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_valid.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertTrue
-argument_list|(
-literal|"specified catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_valid.xml"
-argument_list|,
-literal|"/db/validation/dtd/catalog.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//            Assert.assertTrue( "specified grammar", service.validateResource("/db/validation/hamlet_valid.xml",
-comment|//                "/db/validation/dtd/hamlet.dtd") );
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Ignore
-argument_list|(
-literal|"cannot specify dtd as second parameter"
-argument_list|)
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testDtdValidDocument2
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testDtdValidDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertTrue
-argument_list|(
-literal|"specified grammar"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_valid.xml"
-argument_list|,
-literal|"/db/validation/dtd/hamlet.dtd"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testDtdInvalidDocument
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testDtdInvalidDocument"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/grammar/hamlet_invalid.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"specified catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_invalid.xml"
-argument_list|,
-literal|"/db/validation/dtd/catalog.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_invalid.xml",
-comment|//                "/db/validation/dtd/hamlet.dtd") );
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testNoDoctype
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNoDoctype"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_nodoctype.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"specified catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_nodoctype.xml"
-argument_list|,
-literal|"/db/validation/dtd/catalog.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_nodoctype.xml",
-comment|//                "/db/validation/dtd/hamlet.dtd") );
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testWrongDoctype
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testWrongDoctype"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"system catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_wrongdoctype.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertFalse
-argument_list|(
-literal|"specified catalog"
-argument_list|,
-name|validationService
-operator|.
-name|validateResource
-argument_list|(
-literal|"/db/validation/hamlet_wrongdoctype.xml"
-argument_list|,
-literal|"/db/validation/dtd/catalog.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//            Assert.assertFalse( "specified grammar", service.validateResource("/db/validation/hamlet_wrongdoctype.xml",
-comment|//                "/db/validation/dtd/hamlet.dtd") );
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-if|if
-condition|(
-name|e
-operator|instanceof
-name|ExistIOException
-condition|)
-block|{
-name|e
-operator|.
-name|getCause
-argument_list|()
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getCause
-argument_list|()
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|shutdown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"shutdown"
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|deregisterDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|DatabaseInstanceManager
-name|dim
-init|=
-operator|(
-name|DatabaseInstanceManager
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"DatabaseInstanceManager"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|dim
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class

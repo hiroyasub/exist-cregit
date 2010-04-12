@@ -270,892 +270,211 @@ specifier|public
 class|class
 name|ValidationFunctions_Node_Test
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|ValidationFunctions_Node_Test
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|eXistHome
-init|=
-name|ConfigurationHelper
-operator|.
-name|getExistHome
-argument_list|()
-operator|.
-name|getAbsolutePath
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|static
-name|CollectionManagementService
-name|cmservice
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|UserManagementService
-name|umservice
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|XPathQueryService
-name|service
-decl_stmt|;
-specifier|private
-specifier|static
-name|Collection
-name|root
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|Database
-name|database
-init|=
-literal|null
-decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|initLog4J
-parameter_list|()
-block|{
-name|Layout
-name|layout
-init|=
-operator|new
-name|PatternLayout
-argument_list|(
-literal|"%d [%t] %-5p (%F [%M]:%L) - %m %n"
-argument_list|)
-decl_stmt|;
-name|Appender
-name|appender
-init|=
-operator|new
-name|ConsoleAppender
-argument_list|(
-name|layout
-argument_list|)
-decl_stmt|;
-name|BasicConfigurator
-operator|.
-name|configure
-argument_list|(
-name|appender
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|BeforeClass
-specifier|public
-specifier|static
-name|void
-name|start
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// initialize driver
-name|initLog4J
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"start"
-argument_list|)
-expr_stmt|;
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cl
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-literal|"org.exist.xmldb.DatabaseImpl"
-argument_list|)
-decl_stmt|;
-name|database
-operator|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|)
-expr_stmt|;
-name|service
-operator|=
-operator|(
-name|XPathQueryService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"XQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|cmservice
-operator|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|Collection
-name|col1
-init|=
-name|cmservice
-operator|.
-name|createCollection
-argument_list|(
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-argument_list|)
-decl_stmt|;
-name|Collection
-name|col2
-init|=
-name|cmservice
-operator|.
-name|createCollection
-argument_list|(
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-argument_list|)
-decl_stmt|;
-name|Permission
-name|permission
-init|=
-operator|new
-name|UnixStylePermission
-argument_list|(
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|666
-argument_list|)
-decl_stmt|;
-name|umservice
-operator|=
-operator|(
-name|UserManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"UserManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|umservice
-operator|.
-name|setPermissions
-argument_list|(
-name|col1
-argument_list|,
-name|permission
-argument_list|)
-expr_stmt|;
-name|umservice
-operator|.
-name|setPermissions
-argument_list|(
-name|col2
-argument_list|,
-name|permission
-argument_list|)
-expr_stmt|;
-name|String
-name|addressbook
-init|=
-name|eXistHome
-operator|+
-literal|"/samples/validation/addressbook"
-decl_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook.xsd"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-operator|+
-literal|"/addressbook.xsd"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/catalog.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-operator|+
-literal|"/catalog.xml"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_valid.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-operator|+
-literal|"/addressbook_valid.xml"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_invalid.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-operator|+
-literal|"/addressbook_invalid.xml"
-argument_list|)
-expr_stmt|;
-block|}
-comment|// ===========================================================
-specifier|private
-name|void
-name|clearGrammarCache
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Clearing grammar cache"
-argument_list|)
-expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:clear-grammar-cache()"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|storedNode
+name|noTest
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"storedNode"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|String
-name|query
-init|=
-literal|null
-decl_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test1"
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"let $doc := doc('/db/validation/addressbook_valid.xml') "
-operator|+
-literal|"let $result := validation:validate( $doc, "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
-operator|+
-literal|"return $result"
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document as node"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test2"
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"let $doc := doc('/db/validation/addressbook_invalid.xml') "
-operator|+
-literal|"let $result := validation:validate( $doc, "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
-operator|+
-literal|"return $result"
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"invalid document as node"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|constructedNode
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"constructedNode"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|String
-name|query
-init|=
-literal|null
-decl_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test1"
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"let $doc := "
-operator|+
-literal|"<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">"
-operator|+
-literal|"<owner><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner>"
-operator|+
-literal|"<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>"
-operator|+
-literal|"<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>"
-operator|+
-literal|"</addressBook> "
-operator|+
-literal|"let $result := validation:validate( $doc, "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
-operator|+
-literal|"return $result"
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document as node"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test2"
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"let $doc := "
-operator|+
-literal|"<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">"
-operator|+
-literal|"<owner1><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner1>"
-operator|+
-literal|"<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>"
-operator|+
-literal|"<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>"
-operator|+
-literal|"</addressBook> "
-operator|+
-literal|"let $result := validation:validate( $doc, "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') ) "
-operator|+
-literal|"return $result"
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"invalid document as node"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|shutdown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"shutdown"
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|deregisterDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|DatabaseInstanceManager
-name|dim
-init|=
-operator|(
-name|DatabaseInstanceManager
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"DatabaseInstanceManager"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|dim
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
+comment|//    private final static Logger logger = Logger.getLogger(ValidationFunctions_Node_Test.class);
+comment|//
+comment|//    private static String eXistHome = ConfigurationHelper.getExistHome().getAbsolutePath();
+comment|//
+comment|//    private static CollectionManagementService  cmservice = null;
+comment|//    private static UserManagementService  umservice = null;
+comment|//    private static XPathQueryService service;
+comment|//    private static Collection root = null;
+comment|//    private static Database database = null;
+comment|//
+comment|//
+comment|//
+comment|//
+comment|//    public static void initLog4J() {
+comment|//        Layout layout = new PatternLayout("%d [%t] %-5p (%F [%M]:%L) - %m %n");
+comment|//        Appender appender = new ConsoleAppender(layout);
+comment|//        BasicConfigurator.configure(appender);
+comment|//    }
+comment|//
+comment|//    @BeforeClass
+comment|//    public static void start() throws Exception {
+comment|//
+comment|//        // initialize driver
+comment|//        initLog4J();
+comment|//        logger.info("start");
+comment|//
+comment|//        Class<?> cl = Class.forName("org.exist.xmldb.DatabaseImpl");
+comment|//        database = (Database) cl.newInstance();
+comment|//        database.setProperty("create-database", "true");
+comment|//        DatabaseManager.registerDatabase(database);
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "guest", "guest");
+comment|//        service = (XPathQueryService) root.getService("XQueryService", "1.0");
+comment|//
+comment|//
+comment|//        cmservice = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
+comment|//        Collection col1 = cmservice.createCollection(TestTools.VALIDATION_HOME);
+comment|//        Collection col2 = cmservice.createCollection(TestTools.VALIDATION_XSD);
+comment|//
+comment|//        Permission permission = new UnixStylePermission("guest", "guest", 666);
+comment|//
+comment|//        umservice = (UserManagementService) root.getService("UserManagementService", "1.0");
+comment|//        umservice.setPermissions(col1, permission);
+comment|//        umservice.setPermissions(col2, permission);
+comment|//
+comment|//        String addressbook = eXistHome + "/samples/validation/addressbook";
+comment|//
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook.xsd",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/addressbook.xsd");
+comment|//        TestTools.insertDocumentToURL(addressbook + "/catalog.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/catalog.xml");
+comment|//
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_valid.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_valid.xml");
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_invalid.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_invalid.xml");
+comment|//    }
+comment|//
+comment|//    // ===========================================================
+comment|//    private void clearGrammarCache() {
+comment|//        logger.info("Clearing grammar cache");
+comment|//        @SuppressWarnings("unused")
+comment|//		ResourceSet result = null;
+comment|//        try {
+comment|//            result = service.query("validation:clear-grammar-cache()");
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void storedNode() {
+comment|//
+comment|//        logger.info("storedNode");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        String query = null;
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//
+comment|//        try {
+comment|//            logger.info("Test1");
+comment|//            query = "let $doc := doc('/db/validation/addressbook_valid.xml') " +
+comment|//                    "let $result := validation:validate( $doc, " +
+comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
+comment|//                    "return $result";
+comment|//            result = service.query(query);
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document as node", "true", r);
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//
+comment|//        try {
+comment|//            logger.info("Test2");
+comment|//
+comment|//            query = "let $doc := doc('/db/validation/addressbook_invalid.xml') " +
+comment|//                    "let $result := validation:validate( $doc, " +
+comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
+comment|//                    "return $result";
+comment|//            result = service.query(query);
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("invalid document as node", "false", r);
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void constructedNode() {
+comment|//
+comment|//        logger.info("constructedNode");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        String query = null;
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//
+comment|//        try {
+comment|//            logger.info("Test1");
+comment|//
+comment|//            query = "let $doc := " +
+comment|//                    "<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">" +
+comment|//                    "<owner><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner>" +
+comment|//                    "<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>" +
+comment|//                    "<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>" +
+comment|//                    "</addressBook> " +
+comment|//                    "let $result := validation:validate( $doc, " +
+comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
+comment|//                    "return $result";
+comment|//            result = service.query(query);
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document as node", "true", r);
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//
+comment|//        try {
+comment|//            logger.info("Test2");
+comment|//
+comment|//            query = "let $doc := " +
+comment|//                    "<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">" +
+comment|//                    "<owner1><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner1>" +
+comment|//                    "<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>" +
+comment|//                    "<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>" +
+comment|//                    "</addressBook> " +
+comment|//                    "let $result := validation:validate( $doc, " +
+comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
+comment|//                    "return $result";
+comment|//            result = service.query(query);
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("invalid document as node", "false", r);
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @AfterClass
+comment|//    public static void shutdown() throws Exception {
+comment|//
+comment|//        logger.info("shutdown");
+comment|//
+comment|//
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
+comment|//
+comment|//
+comment|//        DatabaseManager.deregisterDatabase(database);
+comment|//        DatabaseInstanceManager dim =
+comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
+comment|//        dim.shutdown();
+comment|//
+comment|//    }
 block|}
 end_class
 

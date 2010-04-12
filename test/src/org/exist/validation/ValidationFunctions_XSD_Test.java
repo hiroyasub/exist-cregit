@@ -331,1131 +331,258 @@ name|database
 init|=
 literal|null
 decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|initLog4J
-parameter_list|()
-block|{
-name|Layout
-name|layout
-init|=
-operator|new
-name|PatternLayout
-argument_list|(
-literal|"%d [%t] %-5p (%F [%M]:%L) - %m %n"
-argument_list|)
-decl_stmt|;
-name|Appender
-name|appender
-init|=
-operator|new
-name|ConsoleAppender
-argument_list|(
-name|layout
-argument_list|)
-decl_stmt|;
-name|BasicConfigurator
-operator|.
-name|configure
-argument_list|(
-name|appender
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|BeforeClass
-specifier|public
-specifier|static
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// initialize driver
-name|initLog4J
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"setUp"
-argument_list|)
-expr_stmt|;
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cl
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-literal|"org.exist.xmldb.DatabaseImpl"
-argument_list|)
-decl_stmt|;
-name|database
-operator|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|)
-expr_stmt|;
-name|service
-operator|=
-operator|(
-name|XPathQueryService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"XQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|cmservice
-operator|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|Collection
-name|col1
-init|=
-name|cmservice
-operator|.
-name|createCollection
-argument_list|(
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-argument_list|)
-decl_stmt|;
-name|Collection
-name|col2
-init|=
-name|cmservice
-operator|.
-name|createCollection
-argument_list|(
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-argument_list|)
-decl_stmt|;
-name|Permission
-name|permission
-init|=
-operator|new
-name|UnixStylePermission
-argument_list|(
-literal|"guest"
-argument_list|,
-literal|"guest"
-argument_list|,
-literal|666
-argument_list|)
-decl_stmt|;
-name|umservice
-operator|=
-operator|(
-name|UserManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"UserManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-name|umservice
-operator|.
-name|setPermissions
-argument_list|(
-name|col1
-argument_list|,
-name|permission
-argument_list|)
-expr_stmt|;
-name|umservice
-operator|.
-name|setPermissions
-argument_list|(
-name|col2
-argument_list|,
-name|permission
-argument_list|)
-expr_stmt|;
-name|String
-name|addressbook
-init|=
-name|eXistHome
-operator|+
-literal|"/samples/validation/addressbook"
-decl_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook.xsd"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-operator|+
-literal|"/addressbook.xsd"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/catalog.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_XSD
-operator|+
-literal|"/catalog.xml"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_valid.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-operator|+
-literal|"/addressbook_valid.xml"
-argument_list|)
-expr_stmt|;
-name|TestTools
-operator|.
-name|insertDocumentToURL
-argument_list|(
-name|addressbook
-operator|+
-literal|"/addressbook_invalid.xml"
-argument_list|,
-literal|"xmldb:exist://"
-operator|+
-name|TestTools
-operator|.
-name|VALIDATION_HOME
-operator|+
-literal|"/addressbook_invalid.xml"
-argument_list|)
-expr_stmt|;
-block|}
-comment|// ===========================================================
-specifier|private
-name|void
-name|clearGrammarCache
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Clearing grammar cache"
-argument_list|)
-expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:clear-grammar-cache()"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|testXSD_NotInSystemCatalog
+name|noTest
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"start"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// XSD for addressbook_valid.xml is *not* registered in system catalog.
-comment|// result should be "document is invalid"
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"addressbook_valid.xml not in systemcatalog"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testXSD_SpecifiedCatalog
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"start"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test1"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/catalog.xml') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test2"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/catalog.xml') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"invalid document"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test3"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/dtd/catalog.xml') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"wrong catalog"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test4"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'),"
-operator|+
-literal|" xs:anyURI('/db/validation/dtd/catalog.xml') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"wrong catalog, invalid document"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testXSD_SpecifiedGrammar
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"start"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test1"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test2"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/addressbook.xsd') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"invalid document"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|testXSD_SearchedGrammar
-parameter_list|()
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"start"
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|ResourceSet
-name|result
-init|=
-literal|null
-decl_stmt|;
-name|String
-name|r
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test1"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/xsd/') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test2"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/dtd/') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document, not found"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test3"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
-operator|+
-literal|" xs:anyURI('/db/validation/') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"valid document"
-argument_list|,
-literal|"true"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Test4"
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml') ,"
-operator|+
-literal|" xs:anyURI('/db/validation/') )"
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-operator|(
-name|String
-operator|)
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"invalid document"
-argument_list|,
-literal|"false"
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|clearGrammarCache
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|// DTDs
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|stop
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"stop"
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|deregisterDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|DatabaseInstanceManager
-name|dim
-init|=
-operator|(
-name|DatabaseInstanceManager
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"DatabaseInstanceManager"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|dim
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
+comment|//    public static void initLog4J(){
+comment|//        Layout layout = new PatternLayout("%d [%t] %-5p (%F [%M]:%L) - %m %n");
+comment|//        Appender appender=new ConsoleAppender(layout);
+comment|//        BasicConfigurator.configure(appender);
+comment|//    }
+comment|//
+comment|//    @BeforeClass
+comment|//    public static void setUp() throws Exception {
+comment|//
+comment|//        // initialize driver
+comment|//        initLog4J();
+comment|//
+comment|//        logger.info("setUp");
+comment|//
+comment|//        Class<?> cl = Class.forName("org.exist.xmldb.DatabaseImpl");
+comment|//        database = (Database) cl.newInstance();
+comment|//        database.setProperty("create-database", "true");
+comment|//        DatabaseManager.registerDatabase(database);
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "guest", "guest");
+comment|//        service = (XPathQueryService) root.getService( "XQueryService", "1.0" );
+comment|//
+comment|//        cmservice = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
+comment|//        Collection col1 = cmservice.createCollection(TestTools.VALIDATION_HOME);
+comment|//        Collection col2 = cmservice.createCollection(TestTools.VALIDATION_XSD);
+comment|//
+comment|//        Permission permission = new UnixStylePermission("guest", "guest", 666);
+comment|//
+comment|//        umservice = (UserManagementService) root.getService("UserManagementService", "1.0");
+comment|//        umservice.setPermissions(col1, permission);
+comment|//        umservice.setPermissions(col2, permission);
+comment|//
+comment|//        String addressbook = eXistHome + "/samples/validation/addressbook";
+comment|//
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook.xsd",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/addressbook.xsd");
+comment|//        TestTools.insertDocumentToURL(addressbook + "/catalog.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/catalog.xml");
+comment|//
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_valid.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_valid.xml");
+comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_invalid.xml",
+comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_invalid.xml");
+comment|//    }
+comment|//
+comment|//    // ===========================================================
+comment|//
+comment|//    private void clearGrammarCache() {
+comment|//        logger.info("Clearing grammar cache");
+comment|//        @SuppressWarnings("unused")
+comment|//		ResourceSet result = null;
+comment|//        try {
+comment|//            result = service.query("validation:clear-grammar-cache()");
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXSD_NotInSystemCatalog() {
+comment|//
+comment|//        logger.info("start");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//        try {
+comment|//            // XSD for addressbook_valid.xml is *not* registered in system catalog.
+comment|//            // result should be "document is invalid"
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals( "addressbook_valid.xml not in systemcatalog", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXSD_SpecifiedCatalog() {
+comment|//
+comment|//        logger.info("start");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//        try {
+comment|//            logger.info("Test1");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/xsd/catalog.xml') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document", "true", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test2");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/xsd/catalog.xml') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals( "invalid document", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test3");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/dtd/catalog.xml') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("wrong catalog", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test4");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'),"
+comment|//                +" xs:anyURI('/db/validation/dtd/catalog.xml') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("wrong catalog, invalid document", "false", r );
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXSD_SpecifiedGrammar() {
+comment|//
+comment|//        logger.info("start");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//        try {
+comment|//            logger.info("Test1");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/xsd/addressbook.xsd') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document", "true", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test2");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/xsd/addressbook.xsd') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals( "invalid document", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    @Test
+comment|//    public void testXSD_SearchedGrammar() {
+comment|//
+comment|//        logger.info("start");
+comment|//
+comment|//        clearGrammarCache();
+comment|//
+comment|//        ResourceSet result = null;
+comment|//        String r = null;
+comment|//        try {
+comment|//
+comment|//            logger.info("Test1");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/xsd/') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document", "true", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test2");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/dtd/') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals( "valid document, not found", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test3");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_valid.xml'), "
+comment|//                +" xs:anyURI('/db/validation/') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals("valid document", "true", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//            logger.info("Test4");
+comment|//            result = service.query(
+comment|//                "validation:validate( xs:anyURI('/db/validation/addressbook_invalid.xml') ,"
+comment|//                +" xs:anyURI('/db/validation/') )");
+comment|//            r = (String) result.getResource(0).getContent();
+comment|//            assertEquals( "invalid document", "false", r );
+comment|//
+comment|//            clearGrammarCache();
+comment|//
+comment|//
+comment|//        } catch (Exception e) {
+comment|//            logger.error(e);
+comment|//            e.printStackTrace();
+comment|//            fail(e.getMessage());
+comment|//        }
+comment|//    }
+comment|//
+comment|//    // DTDs
+comment|//
+comment|//    @AfterClass
+comment|//    public static void stop() throws Exception {
+comment|//
+comment|//        logger.info("stop");
+comment|//
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
+comment|//
+comment|//        DatabaseManager.deregisterDatabase(database);
+comment|//        DatabaseInstanceManager dim =
+comment|//            (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
+comment|//        dim.shutdown();
+comment|//
+comment|//    }
 block|}
 end_class
 
