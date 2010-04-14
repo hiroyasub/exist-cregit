@@ -176,6 +176,17 @@ function_decl|;
 specifier|public
 name|List
 argument_list|<
+name|Variable
+argument_list|>
+name|getVariables
+parameter_list|(
+name|int
+name|contextID
+parameter_list|)
+function_decl|;
+specifier|public
+name|List
+argument_list|<
 name|Location
 argument_list|>
 name|getStackFrames

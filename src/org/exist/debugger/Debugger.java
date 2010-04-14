@@ -168,7 +168,10 @@ argument_list|<
 name|Variable
 argument_list|>
 name|getVariables
-parameter_list|()
+parameter_list|(
+name|int
+name|contextID
+parameter_list|)
 function_decl|;
 specifier|public
 name|List

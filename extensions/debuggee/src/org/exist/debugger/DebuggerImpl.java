@@ -714,7 +714,10 @@ argument_list|<
 name|Variable
 argument_list|>
 name|getVariables
-parameter_list|()
+parameter_list|(
+name|int
+name|contextID
+parameter_list|)
 block|{
 name|ContextGet
 name|command
@@ -728,6 +731,15 @@ literal|" -i "
 operator|+
 name|getNextTransaction
 argument_list|()
+operator|+
+literal|" -c "
+operator|+
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|contextID
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|command
