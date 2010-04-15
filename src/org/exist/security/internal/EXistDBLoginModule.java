@@ -543,58 +543,10 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\t\t[eXistLoginModule] "
-operator|+
-literal|"user entered user name: "
+literal|"\t\t[eXistLoginModule] user entered user name: "
 operator|+
 name|username
 argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"\t\t[eXistLoginModule] "
-operator|+
-literal|"user entered password: "
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|password
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-name|password
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
 expr_stmt|;
 block|}
 try|try
@@ -633,9 +585,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\t\t[eXistLoginModule] "
-operator|+
-literal|"authentication failed"
+literal|"\t\t[eXistLoginModule] authentication failed"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -734,9 +684,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\t\t[eXistLoginModule] "
-operator|+
-literal|"added User to Subject"
+literal|"\t\t[eXistLoginModule] added User to Subject"
 argument_list|)
 expr_stmt|;
 block|}
