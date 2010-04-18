@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -132,7 +132,7 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
+comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
 name|execute
@@ -146,6 +146,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -153,6 +154,7 @@ argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|resource
@@ -163,6 +165,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -170,6 +173,7 @@ argument_list|(
 literal|"Missing parameter: either resource or collection should be specified"
 argument_list|)
 throw|;
+block|}
 name|registerDatabase
 argument_list|()
 expr_stmt|;
@@ -267,6 +271,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -274,7 +279,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -284,6 +291,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -353,6 +361,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -362,7 +371,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -376,7 +387,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param collection    */
+block|}
+comment|/**      * @param collection      */
 specifier|public
 name|void
 name|setCollection
@@ -392,7 +404,7 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
-comment|/**    * @param resource    */
+comment|/**      * @param resource      */
 specifier|public
 name|void
 name|setResource

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -279,7 +279,7 @@ name|mtable
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc)    * @see org.apache.tools.ant.Task#execute()    */
+comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
 name|execute
@@ -293,6 +293,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -300,6 +301,7 @@ argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|fileSetList
@@ -310,6 +312,7 @@ name|srcFile
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -317,6 +320,7 @@ argument_list|(
 literal|"no file set specified"
 argument_list|)
 throw|;
+block|}
 name|registerDatabase
 argument_list|()
 expr_stmt|;
@@ -342,6 +346,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -353,6 +358,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 name|String
 name|baseURI
 init|=
@@ -379,11 +385,14 @@ argument_list|()
 operator|-
 literal|3
 condition|)
+block|{
 name|path
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
+block|{
 name|path
 operator|=
 name|uri
@@ -395,6 +404,7 @@ operator|+
 literal|3
 argument_list|)
 expr_stmt|;
+block|}
 name|Collection
 name|root
 init|=
@@ -439,6 +449,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|root
 operator|=
 name|DatabaseManager
@@ -452,6 +463,7 @@ argument_list|,
 name|password
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|root
@@ -472,6 +484,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -479,7 +492,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -489,6 +504,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -554,16 +570,19 @@ name|forceMimeType
 operator|!=
 literal|null
 condition|)
+block|{
 name|baseMimeType
 operator|=
 name|forceMimeType
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|mime
 operator|!=
 literal|null
 condition|)
+block|{
 name|baseMimeType
 operator|=
 name|mime
@@ -571,11 +590,14 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|baseMimeType
 operator|=
 name|defaultMimeType
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|type
@@ -592,6 +614,7 @@ argument_list|(
 literal|"xml"
 argument_list|)
 condition|)
+block|{
 name|mime
 operator|=
 operator|(
@@ -616,6 +639,7 @@ name|MimeType
 operator|.
 name|XML_TYPE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|type
@@ -625,6 +649,7 @@ argument_list|(
 literal|"binary"
 argument_list|)
 condition|)
+block|{
 name|mime
 operator|=
 operator|(
@@ -649,6 +674,7 @@ name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 block|}
 comment|// single file
 if|if
@@ -721,6 +747,7 @@ name|targetFile
 operator|==
 literal|null
 condition|)
+block|{
 name|targetFile
 operator|=
 name|srcFile
@@ -728,6 +755,7 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 name|log
 argument_list|(
 literal|"Creating resource "
@@ -1048,16 +1076,19 @@ name|forceMimeType
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentBaseMimeType
 operator|=
 name|forceMimeType
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|currentMime
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentBaseMimeType
 operator|=
 name|currentMime
@@ -1065,11 +1096,14 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|currentBaseMimeType
 operator|=
 name|defaultMimeType
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|type
@@ -1086,6 +1120,7 @@ argument_list|(
 literal|"xml"
 argument_list|)
 condition|)
+block|{
 name|currentMime
 operator|=
 operator|(
@@ -1110,6 +1145,7 @@ name|MimeType
 operator|.
 name|XML_TYPE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|type
@@ -1119,6 +1155,7 @@ argument_list|(
 literal|"binary"
 argument_list|)
 condition|)
+block|{
 name|currentMime
 operator|=
 operator|(
@@ -1143,6 +1180,7 @@ name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1308,6 +1346,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -1317,7 +1356,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -1331,7 +1372,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 		This method allows more than one Fileset per store task! 	 */
+block|}
+comment|/**     This method allows more than one Fileset per store task!      */
 specifier|public
 name|void
 name|addFileset
