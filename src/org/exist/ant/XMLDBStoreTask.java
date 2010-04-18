@@ -879,7 +879,7 @@ argument_list|()
 expr_stmt|;
 name|String
 index|[]
-name|files
+name|includedFiles
 init|=
 name|scanner
 operator|.
@@ -890,7 +890,7 @@ name|log
 argument_list|(
 literal|"Found "
 operator|+
-name|files
+name|includedFiles
 operator|.
 name|length
 operator|+
@@ -907,19 +907,10 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
+name|String
+name|included
+range|:
+name|includedFiles
 control|)
 block|{
 name|file
@@ -929,20 +920,14 @@ name|File
 argument_list|(
 name|baseDir
 argument_list|,
-name|files
-index|[
-name|i
-index|]
+name|included
 argument_list|)
 expr_stmt|;
 name|log
 argument_list|(
 literal|"Storing "
 operator|+
-name|files
-index|[
-name|i
-index|]
+name|included
 operator|+
 literal|" ...\n"
 argument_list|)
@@ -951,10 +936,7 @@ comment|//TODO : use dedicated function in XmldbURI
 comment|// check whether the relative file path contains file seps
 name|p
 operator|=
-name|files
-index|[
-name|i
-index|]
+name|included
 operator|.
 name|lastIndexOf
 argument_list|(
@@ -974,10 +956,7 @@ condition|)
 block|{
 name|relDir
 operator|=
-name|files
-index|[
-name|i
-index|]
+name|included
 operator|.
 name|substring
 argument_list|(
