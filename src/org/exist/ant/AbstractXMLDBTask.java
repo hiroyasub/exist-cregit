@@ -187,7 +187,7 @@ name|failonerror
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * @param driver    */
+comment|/**      * @param driver      */
 specifier|public
 name|void
 name|setDriver
@@ -203,7 +203,7 @@ operator|=
 name|driver
 expr_stmt|;
 block|}
-comment|/**    * @param password    */
+comment|/**      * @param password      */
 specifier|public
 name|void
 name|setPassword
@@ -219,7 +219,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/**    * @param user    */
+comment|/**      * @param user      */
 specifier|public
 name|void
 name|setUser
@@ -235,7 +235,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**    * @param uri    */
+comment|/**      * @param uri      */
 specifier|public
 name|void
 name|setUri
@@ -251,7 +251,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
-comment|/**    * @param create    */
+comment|/**      * @param create      */
 specifier|public
 name|void
 name|setInitdb
@@ -358,6 +358,9 @@ return|return;
 block|}
 block|}
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|clazz
 init|=
 name|Class
@@ -624,10 +627,12 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|current
 operator|=
 name|c
 expr_stmt|;
+block|}
 block|}
 return|return
 name|current

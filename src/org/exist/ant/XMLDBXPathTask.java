@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,78 @@ operator|.
 name|ant
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
+import|;
+end_import
 
 begin_import
 import|import
@@ -179,38 +251,6 @@ name|XPathQueryService
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|OutputKeys
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
 begin_comment
 comment|/**  * an ant task to execute an query using XPath.<p/> The query is either passed  * as nested text in the element, or via an attribute "query".<p/>  *  * @author wolf<p/> modified by:  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
@@ -270,7 +310,7 @@ name|encoding
 init|=
 literal|"UTF-8"
 decl_stmt|;
-comment|/*   * (non-Javadoc)   *   * @see org.apache.tools.ant.Task#execute()   */
+comment|/*      * (non-Javadoc)      *      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
 name|execute
@@ -284,6 +324,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -291,6 +332,7 @@ argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|text
@@ -329,6 +371,7 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -336,6 +379,7 @@ argument_list|(
 literal|"you have to specify a query"
 argument_list|)
 throw|;
+block|}
 name|log
 argument_list|(
 literal|"XPath is: "
@@ -405,6 +449,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -412,7 +457,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -422,6 +469,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -702,10 +750,12 @@ name|res
 init|=
 literal|null
 decl_stmt|;
-name|String
+name|StringBuffer
 name|result
 init|=
-literal|""
+operator|new
+name|StringBuffer
+argument_list|()
 decl_stmt|;
 while|while
 condition|(
@@ -726,7 +776,9 @@ name|nextResource
 argument_list|()
 expr_stmt|;
 name|result
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|res
 operator|.
 name|getContent
@@ -734,8 +786,14 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
 literal|"\n"
+argument_list|)
 expr_stmt|;
 block|}
 name|getProject
@@ -746,6 +804,9 @@ argument_list|(
 name|outputproperty
 argument_list|,
 name|result
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -772,6 +833,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -781,7 +843,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -793,6 +857,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -814,6 +879,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -823,7 +889,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -835,6 +903,7 @@ operator|.
 name|MSG_ERR
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -1033,6 +1102,7 @@ if|if
 condition|(
 name|failonerror
 condition|)
+block|{
 throw|throw
 operator|new
 name|BuildException
@@ -1040,7 +1110,9 @@ argument_list|(
 name|msg
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|log
 argument_list|(
 name|msg
@@ -1052,7 +1124,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * @param query    */
+block|}
+comment|/**      * @param query      */
 specifier|public
 name|void
 name|setQuery
