@@ -106,7 +106,7 @@ name|AbstractXMLDBTask
 block|{
 specifier|private
 name|File
-name|file
+name|zipFile
 init|=
 literal|null
 decl_stmt|;
@@ -161,7 +161,7 @@ name|dirSet
 operator|==
 literal|null
 operator|&&
-name|file
+name|zipFile
 operator|==
 literal|null
 condition|)
@@ -362,7 +362,7 @@ argument_list|()
 expr_stmt|;
 name|String
 index|[]
-name|files
+name|includedFiles
 init|=
 name|scanner
 operator|.
@@ -373,33 +373,19 @@ name|log
 argument_list|(
 literal|"Found "
 operator|+
-name|files
+name|includedFiles
 operator|.
 name|length
 operator|+
 literal|" files.\n"
 argument_list|)
 expr_stmt|;
-name|File
-name|file
-init|=
-literal|null
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|files
-operator|.
-name|length
-condition|;
-name|i
-operator|++
+name|String
+name|included
+range|:
+name|includedFiles
 control|)
 block|{
 name|dir
@@ -416,14 +402,12 @@ name|File
 operator|.
 name|separator
 operator|+
-name|files
-index|[
-name|i
-index|]
+name|included
 argument_list|)
 expr_stmt|;
-name|file
-operator|=
+name|File
+name|contentsFile
+init|=
 operator|new
 name|File
 argument_list|(
@@ -431,11 +415,11 @@ name|dir
 argument_list|,
 literal|"__contents__.xml"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 operator|!
-name|file
+name|contentsFile
 operator|.
 name|exists
 argument_list|()
@@ -446,7 +430,7 @@ name|msg
 init|=
 literal|"Did not found file "
 operator|+
-name|file
+name|contentsFile
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -483,7 +467,7 @@ name|log
 argument_list|(
 literal|"Restoring from "
 operator|+
-name|file
+name|contentsFile
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -504,7 +488,7 @@ name|password
 argument_list|,
 name|restorePassword
 argument_list|,
-name|file
+name|contentsFile
 argument_list|,
 name|uri
 argument_list|)
@@ -523,7 +507,7 @@ block|}
 block|}
 if|else if
 condition|(
-name|file
+name|zipFile
 operator|!=
 literal|null
 condition|)
@@ -532,7 +516,7 @@ name|log
 argument_list|(
 literal|"Restoring from "
 operator|+
-name|file
+name|zipFile
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -545,7 +529,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|file
+name|zipFile
 operator|.
 name|exists
 argument_list|()
@@ -556,7 +540,7 @@ name|msg
 init|=
 literal|"File not found: "
 operator|+
-name|file
+name|zipFile
 operator|.
 name|getAbsolutePath
 argument_list|()
@@ -601,7 +585,7 @@ name|password
 argument_list|,
 name|restorePassword
 argument_list|,
-name|file
+name|zipFile
 argument_list|,
 name|uri
 argument_list|)
@@ -714,7 +698,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|file
+name|zipFile
 operator|=
 name|file
 expr_stmt|;
