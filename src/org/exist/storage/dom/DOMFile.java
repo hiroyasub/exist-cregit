@@ -21165,10 +21165,16 @@ name|int
 name|mode
 decl_stmt|;
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|values
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -21187,6 +21193,9 @@ expr_stmt|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|getValues
 parameter_list|()
 block|{
