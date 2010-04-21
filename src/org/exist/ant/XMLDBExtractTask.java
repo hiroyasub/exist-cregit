@@ -704,7 +704,13 @@ name|mkdirs
 argument_list|()
 expr_stmt|;
 block|}
-else|else
+if|if
+condition|(
+name|dir
+operator|.
+name|exists
+argument_list|()
+condition|)
 block|{
 name|writeResource
 argument_list|(
