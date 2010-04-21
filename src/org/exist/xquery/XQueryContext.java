@@ -1977,12 +1977,6 @@ name|debuggeeJoint
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|XQueryContext
-parameter_list|()
-block|{
-comment|// NOP
-block|}
 specifier|protected
 name|XQueryContext
 parameter_list|(
