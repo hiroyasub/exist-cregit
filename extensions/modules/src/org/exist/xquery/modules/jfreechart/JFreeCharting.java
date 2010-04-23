@@ -362,7 +362,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * JFreechart extension functions.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * JFreechart extension functions.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  * @author Andrzej Taramina (andrzej@chaeron.com)  */
 end_comment
 
 begin_class
@@ -439,7 +439,9 @@ literal|"<param1>Value1</param1><param2>Value2</param2>/<configuration>.  "
 operator|+
 literal|"Supported parameters: width height title categoryAxisLabel "
 operator|+
-literal|"valueAxisLabel domainAxisLabel rangeAxisLabel orientation "
+literal|"valueAxisLabel domainAxisLabel rangeAxisLabel pieSectionLabel pieSectionNumberFormat pieSectionPercentFormat orientation "
+operator|+
+literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperrBound categoryItemLabelGeneratorClass "
 operator|+
 literal|"order legend tooltips urls."
 decl_stmt|;
