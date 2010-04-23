@@ -214,6 +214,10 @@ specifier|private
 name|Color
 name|plotBackgroundColor
 decl_stmt|;
+specifier|private
+name|String
+name|seriesColors
+decl_stmt|;
 comment|// Range
 specifier|private
 name|Double
@@ -458,6 +462,15 @@ parameter_list|()
 block|{
 return|return
 name|categoryItemLabelGeneratorNumberFormat
+return|;
+block|}
+specifier|public
+name|String
+name|getSeriesColors
+parameter_list|()
+block|{
+return|return
+name|seriesColors
 return|;
 block|}
 comment|/**      *  Read configuration from node and initialize configuration.      * @throws XPathException Thrown when an element cannot be read.      */
@@ -1462,6 +1475,50 @@ block|}
 else|else
 block|{
 name|plotBackgroundColor
+operator|=
+name|value
+expr_stmt|;
+block|}
+block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"seriesColors"
+argument_list|)
+condition|)
+block|{
+name|String
+name|value
+init|=
+name|getValue
+argument_list|(
+name|child
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Value for 'seriesColors' cannot be parsed"
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+name|seriesColors
 operator|=
 name|value
 expr_stmt|;
