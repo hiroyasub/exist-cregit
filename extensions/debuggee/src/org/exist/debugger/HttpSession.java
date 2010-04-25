@@ -69,16 +69,29 @@ implements|implements
 name|Runnable
 block|{
 specifier|private
+name|DebuggerImpl
+name|debugger
+decl_stmt|;
+specifier|private
 name|String
 name|url
 decl_stmt|;
 specifier|protected
 name|HttpSession
 parameter_list|(
+name|DebuggerImpl
+name|debugger
+parameter_list|,
 name|String
 name|url
 parameter_list|)
 block|{
+name|this
+operator|.
+name|debugger
+operator|=
+name|debugger
+expr_stmt|;
 name|this
 operator|.
 name|url
@@ -92,11 +105,6 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|//		HttpState initialState = new HttpState();
-comment|//
-comment|//		Cookie mycookie = new Cookie(".exist-db.org", "XDEBUG_SESSION", "default", "/", null, false);
-comment|//
-comment|//		initialState.addCookie(mycookie);
 name|HttpClient
 name|client
 init|=
@@ -104,7 +112,6 @@ operator|new
 name|HttpClient
 argument_list|()
 decl_stmt|;
-comment|//		client.setState(initialState);
 name|PostMethod
 name|method
 init|=
@@ -155,11 +162,16 @@ argument_list|(
 literal|"sending http request with debugging flag"
 argument_list|)
 expr_stmt|;
+name|debugger
+operator|.
+name|setResponseCode
+argument_list|(
 name|client
 operator|.
 name|executeMethod
 argument_list|(
 name|method
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|System
