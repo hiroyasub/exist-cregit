@@ -6643,6 +6643,22 @@ name|var
 operator|)
 return|;
 block|}
+specifier|public
+name|void
+name|undeclareGlobalVariable
+parameter_list|(
+name|QName
+name|name
+parameter_list|)
+block|{
+name|globalVariables
+operator|.
+name|remove
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Declare a user-defined variable.      *      *<p>The value argument is converted into an XPath value (@see XPathUtil#javaObjectToXPath(Object)).</p>      *      * @param   qname  the qualified name of the new variable. Any namespaces should have been declared before.      * @param   value  a Java object, representing the fixed value of the variable      *      * @return  the created Variable object      *      * @throws  XPathException  if the value cannot be converted into a known XPath value or the variable QName references an unknown      *                          namespace-prefix.      */
 specifier|public
 name|Variable
