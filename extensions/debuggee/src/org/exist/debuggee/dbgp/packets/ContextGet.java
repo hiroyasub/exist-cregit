@@ -104,15 +104,11 @@ comment|/** 	 * stack depth (optional) 	 */
 specifier|private
 name|Integer
 name|stackDepth
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * context id (optional, retrieved by context-names) 	 */
 specifier|private
 name|String
 name|contextID
-init|=
-literal|""
 decl_stmt|;
 specifier|private
 name|Map
@@ -139,6 +135,20 @@ name|session
 argument_list|,
 name|args
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|stackDepth
+operator|=
+literal|null
+expr_stmt|;
+name|contextID
+operator|=
+literal|null
 expr_stmt|;
 block|}
 specifier|protected
@@ -211,6 +221,10 @@ block|{
 comment|//TODO: different stack depth& context id
 if|if
 condition|(
+name|contextID
+operator|==
+literal|null
+operator|||
 name|contextID
 operator|.
 name|equals
@@ -415,6 +429,7 @@ name|contextID
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|contextID
 operator|.
 name|equals
@@ -426,12 +441,7 @@ name|command
 operator|+=
 literal|" -c "
 operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|contextID
-argument_list|)
 expr_stmt|;
 return|return
 name|command
@@ -439,6 +449,21 @@ operator|.
 name|getBytes
 argument_list|()
 return|;
+block|}
+specifier|public
+name|void
+name|setContextID
+parameter_list|(
+name|String
+name|contextID
+parameter_list|)
+block|{
+name|this
+operator|.
+name|contextID
+operator|=
+name|contextID
+expr_stmt|;
 block|}
 block|}
 end_class
