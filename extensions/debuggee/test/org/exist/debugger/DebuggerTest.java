@@ -159,19 +159,11 @@ name|debugger
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"creating debugger"
-argument_list|)
-expr_stmt|;
 name|debugger
 operator|=
-operator|new
 name|DebuggerImpl
+operator|.
+name|getDebugger
 argument_list|()
 expr_stmt|;
 name|System
@@ -915,7 +907,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//@Test
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testBreakpoints
@@ -933,21 +926,13 @@ expr_stmt|;
 name|Debugger
 name|debugger
 init|=
-operator|new
 name|DebuggerImpl
+operator|.
+name|getDebugger
 argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"creating debugger"
-argument_list|)
-expr_stmt|;
 name|System
 operator|.
 name|out
@@ -994,10 +979,28 @@ operator|.
 name|sync
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"before run1"
+argument_list|)
+expr_stmt|;
 name|source
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"after run1"
+argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
@@ -1040,10 +1043,28 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"before run2"
+argument_list|)
+expr_stmt|;
 name|source
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"after run2"
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -1101,20 +1122,12 @@ argument_list|,
 name|database
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"creating debugger"
-argument_list|)
-expr_stmt|;
 name|Debugger
 name|debugger
 init|=
-operator|new
 name|DebuggerImpl
+operator|.
+name|getDebugger
 argument_list|()
 decl_stmt|;
 name|Exception

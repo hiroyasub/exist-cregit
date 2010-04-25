@@ -184,8 +184,9 @@ argument_list|()
 expr_stmt|;
 name|debugger
 operator|=
-operator|new
 name|DebuggerImpl
+operator|.
+name|getDebugger
 argument_list|()
 expr_stmt|;
 block|}
