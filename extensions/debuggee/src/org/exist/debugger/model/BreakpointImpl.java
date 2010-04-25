@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -533,6 +543,8 @@ specifier|public
 name|boolean
 name|sync
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -580,6 +592,8 @@ specifier|public
 name|boolean
 name|remove
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|getDebugger

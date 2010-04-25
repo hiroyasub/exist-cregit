@@ -164,8 +164,10 @@ argument_list|)
 expr_stmt|;
 name|debugger
 operator|.
-name|setResponseCode
+name|terminate
 argument_list|(
+name|url
+argument_list|,
 name|client
 operator|.
 name|executeMethod

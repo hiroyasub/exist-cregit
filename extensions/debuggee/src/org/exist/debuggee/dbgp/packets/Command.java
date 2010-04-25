@@ -238,7 +238,7 @@ name|void
 name|init
 parameter_list|()
 block|{
-comment|//used by BreakpointSet
+comment|//used to init original class vars
 block|}
 specifier|public
 name|String
@@ -561,6 +561,26 @@ name|command
 operator|.
 name|equals
 argument_list|(
+literal|"stop"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|Stop
+argument_list|(
+name|session
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
 literal|"stack_get"
 argument_list|)
 condition|)
@@ -848,6 +868,26 @@ block|{
 return|return
 operator|new
 name|FeatureGet
+argument_list|(
+name|session
+argument_list|,
+name|args
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+name|command
+operator|.
+name|equals
+argument_list|(
+literal|"eval"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|Eval
 argument_list|(
 name|session
 argument_list|,
