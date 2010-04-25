@@ -81,9 +81,6 @@ decl_stmt|;
 specifier|private
 name|int
 name|status
-init|=
-operator|-
-literal|1
 decl_stmt|;
 specifier|public
 name|BreakpointSet
@@ -102,17 +99,6 @@ argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"breakpoint = "
-operator|+
-name|breakpoint
-argument_list|)
-expr_stmt|;
 block|}
 specifier|protected
 name|void
@@ -124,6 +110,11 @@ operator|=
 operator|new
 name|BreakpointImpl
 argument_list|()
+expr_stmt|;
+name|status
+operator|=
+operator|-
+literal|1
 expr_stmt|;
 block|}
 specifier|protected

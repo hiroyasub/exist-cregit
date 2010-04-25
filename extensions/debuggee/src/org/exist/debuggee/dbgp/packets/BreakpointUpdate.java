@@ -60,36 +60,28 @@ name|Command
 block|{
 comment|/** 	 * is the unique session breakpoint id returned by breakpoint_set. 	 */
 specifier|private
-name|int
+name|Integer
 name|breakpointID
 decl_stmt|;
 comment|/** 	 * breakpoint state [optional, defaults to "enabled"] 	 */
 specifier|private
 name|Boolean
 name|state
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * the line number (lineno) of the breakpoint [optional] 	 */
 specifier|private
 name|Integer
 name|lineNo
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * hit value (hit_value) used with the hit condition to determine if should break; a value of zero indicates hit count processing is disabled for this breakpoint [optional, defaults to zero (i.e. disabled)] 	 */
 specifier|private
 name|Integer
 name|hitValue
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * hit condition string (hit_condition); see HIT_CONDITION hit_condition documentation above; BTW 'o' stands for 'operator' [optional, defaults to '>='] 	 */
 specifier|private
 name|String
 name|hitCondition
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|Breakpoint
@@ -111,6 +103,36 @@ name|session
 argument_list|,
 name|args
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|breakpointID
+operator|=
+literal|null
+expr_stmt|;
+name|state
+operator|=
+literal|null
+expr_stmt|;
+name|lineNo
+operator|=
+literal|null
+expr_stmt|;
+name|hitValue
+operator|=
+literal|null
+expr_stmt|;
+name|hitCondition
+operator|=
+literal|null
+expr_stmt|;
+name|breakpoint
+operator|=
+literal|null
 expr_stmt|;
 block|}
 specifier|protected
@@ -236,6 +258,12 @@ name|void
 name|exec
 parameter_list|()
 block|{
+if|if
+condition|(
+name|breakpointID
+operator|!=
+literal|null
+condition|)
 name|breakpoint
 operator|=
 name|getJoint

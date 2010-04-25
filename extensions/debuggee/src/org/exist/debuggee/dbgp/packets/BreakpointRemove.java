@@ -74,7 +74,7 @@ name|Command
 block|{
 comment|/** 	 * is the unique session breakpoint id returned by breakpoint_set. 	 */
 specifier|private
-name|int
+name|Integer
 name|breakpointID
 decl_stmt|;
 specifier|private
@@ -97,6 +97,16 @@ name|session
 argument_list|,
 name|args
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|breakpointID
+operator|=
+literal|null
 expr_stmt|;
 block|}
 specifier|protected
@@ -151,6 +161,12 @@ name|void
 name|exec
 parameter_list|()
 block|{
+if|if
+condition|(
+name|breakpointID
+operator|!=
+literal|null
+condition|)
 name|breakpoint
 operator|=
 name|getJoint
