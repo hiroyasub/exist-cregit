@@ -15,6 +15,16 @@ name|model
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
@@ -221,11 +231,15 @@ specifier|public
 name|boolean
 name|sync
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 specifier|public
 name|boolean
 name|remove
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

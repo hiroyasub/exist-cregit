@@ -294,6 +294,16 @@ name|boolean
 name|disconnect
 parameter_list|)
 function_decl|;
+specifier|public
+name|String
+name|evalution
+parameter_list|(
+name|String
+name|script
+parameter_list|)
+throws|throws
+name|Exception
+function_decl|;
 block|}
 end_interface
 
