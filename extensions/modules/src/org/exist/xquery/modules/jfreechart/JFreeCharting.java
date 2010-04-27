@@ -441,7 +441,7 @@ literal|"Supported parameters: width height title categoryAxisLabel "
 operator|+
 literal|"valueAxisLabel domainAxisLabel rangeAxisLabel pieSectionLabel pieSectionNumberFormat pieSectionPercentFormat orientation "
 operator|+
-literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperrBound categoryItemLabelGeneratorClass seriesColors "
+literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperrBound categoryItemLabelGeneratorClass seriesColors sectionColors sectionColorsDelimiter "
 operator|+
 literal|"order legend tooltips urls."
 decl_stmt|;
