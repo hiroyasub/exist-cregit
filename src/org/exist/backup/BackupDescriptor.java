@@ -151,6 +151,14 @@ init|=
 literal|"date"
 decl_stmt|;
 specifier|public
+name|Object
+name|getContent
+parameter_list|(
+name|String
+name|fileName
+parameter_list|)
+function_decl|;
+specifier|public
 name|EXistInputSource
 name|getInputSource
 parameter_list|()

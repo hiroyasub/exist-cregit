@@ -126,7 +126,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|FileNotFoundException
+name|Exception
 name|fnfe
 parameter_list|)
 block|{
