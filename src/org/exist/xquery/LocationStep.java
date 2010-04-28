@@ -5965,6 +5965,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|temp
@@ -5981,9 +5984,6 @@ control|)
 block|{
 name|p
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -7984,6 +7984,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Predicate
+argument_list|>
 name|i
 init|=
 name|predicates
@@ -8002,9 +8005,6 @@ comment|//&& (result instanceof VirtualNodeSet || !result.isEmpty());) {
 comment|// TODO : log and/or profile ?
 name|pred
 operator|=
-operator|(
-name|Predicate
-operator|)
 name|i
 operator|.
 name|next
@@ -8534,13 +8534,7 @@ condition|(
 name|useDirectChildSelect
 condition|)
 block|{
-name|NewArrayNodeSet
-name|result
-init|=
-operator|new
-name|NewArrayNodeSet
-argument_list|()
-decl_stmt|;
+comment|//NewArrayNodeSet result = new NewArrayNodeSet();
 for|for
 control|(
 name|NodeProxy
