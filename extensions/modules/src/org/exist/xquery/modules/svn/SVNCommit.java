@@ -286,49 +286,17 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"repository-uri"
+literal|"connection"
 argument_list|,
 name|Type
 operator|.
-name|ANY_URI
+name|NODE
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The location in the subversion repository URI from which the logs should be retrieved"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"username"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion username"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"password"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion password"
+literal|"The connection to a subversion repository"
 argument_list|)
 block|,
 operator|new

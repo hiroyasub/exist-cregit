@@ -250,7 +250,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SVNUpdate
+name|SVNDisconnect
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +266,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"update"
+literal|"disconnect"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Updates a resource from a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Disconnect a connection to a subversion repository.\n\nThis is a stub and currently does nothing."
 argument_list|,
 operator|new
 name|SequenceType
@@ -298,38 +298,6 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The connection to a subversion repository"
 argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource"
-argument_list|,
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The path to the resource to be stored."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"revision"
-argument_list|,
-name|Type
-operator|.
-name|INTEGER
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The revision number to update to.  An empty value updates to the latest revision."
-argument_list|)
 block|}
 argument_list|,
 operator|new
@@ -337,19 +305,19 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|LONG
+name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO
 argument_list|,
-literal|"The commit information."
+literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/**      *      * @param context      */
 specifier|public
-name|SVNUpdate
+name|SVNDisconnect
 parameter_list|(
 name|XQueryContext
 name|context
@@ -380,7 +348,17 @@ name|XPathException
 block|{
 comment|//        DAVRepositoryFactory.setup();
 comment|//        SVNRepositoryFactoryImpl.setup();
-comment|//        String uri = args[0].getStringValue();
+name|String
+name|uri
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 comment|//        try {
 comment|//            SVNRepository repo =
 comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));
