@@ -273,6 +273,9 @@ name|match
 decl_stmt|;
 specifier|private
 name|Stack
+argument_list|<
+name|NodeOffset
+argument_list|>
 name|offsetStack
 init|=
 literal|null
@@ -463,6 +466,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|NodeProxy
+argument_list|>
 name|i
 init|=
 name|ancestors
@@ -480,9 +486,6 @@ block|{
 name|NodeProxy
 name|p
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|i
 operator|.
 name|next
@@ -623,6 +626,9 @@ name|offsetStack
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|NodeOffset
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|offsetStack
@@ -699,6 +705,9 @@ name|offsetStack
 operator|=
 operator|new
 name|Stack
+argument_list|<
+name|NodeOffset
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|offsetStack
@@ -809,6 +818,11 @@ throws|throws
 name|SAXException
 block|{
 name|List
+argument_list|<
+name|Match
+operator|.
+name|Offset
+argument_list|>
 name|offsets
 init|=
 literal|null
@@ -974,6 +988,11 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Match
+operator|.
+name|Offset
+argument_list|>
 argument_list|(
 literal|4
 argument_list|)
@@ -1127,6 +1146,11 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Match
+operator|.
+name|Offset
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|int

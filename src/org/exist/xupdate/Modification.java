@@ -581,6 +581,9 @@ argument_list|()
 decl_stmt|;
 specifier|protected
 name|Int2ObjectHashMap
+argument_list|<
+name|DocumentTrigger
+argument_list|>
 name|triggers
 decl_stmt|;
 specifier|private
@@ -681,6 +684,9 @@ name|triggers
 operator|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|DocumentTrigger
+argument_list|>
 argument_list|(
 literal|97
 argument_list|)
