@@ -622,6 +622,11 @@ name|boolean
 name|allowQueryPost
 decl_stmt|;
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|MethodConfiguration
+argument_list|>
 name|methods
 decl_stmt|;
 name|MethodConfiguration
@@ -660,6 +665,11 @@ name|methods
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|MethodConfiguration
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|methods

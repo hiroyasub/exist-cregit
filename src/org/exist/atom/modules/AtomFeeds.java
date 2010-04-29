@@ -733,15 +733,7 @@ argument_list|)
 throw|;
 block|}
 comment|// Return the collection feed
-name|String
-name|charset
-init|=
-name|getContext
-argument_list|()
-operator|.
-name|getDefaultCharset
-argument_list|()
-decl_stmt|;
+comment|//String charset = getContext().getDefaultCharset();
 if|if
 condition|(
 name|returnContent
