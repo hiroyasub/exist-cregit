@@ -4748,6 +4748,9 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker
@@ -5007,6 +5010,9 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker
@@ -5076,6 +5082,9 @@ name|String
 name|qname
 parameter_list|,
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|StoredNode
@@ -5111,9 +5120,6 @@ control|)
 block|{
 name|next
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next
@@ -5183,6 +5189,9 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker
@@ -5252,6 +5261,9 @@ name|QName
 name|qname
 parameter_list|,
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|StoredNode
@@ -5285,9 +5297,6 @@ block|{
 name|StoredNode
 name|next
 init|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next
@@ -5773,6 +5782,9 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker

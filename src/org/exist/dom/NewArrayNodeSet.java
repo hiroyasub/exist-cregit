@@ -4902,6 +4902,9 @@ block|}
 comment|// DocumentSet methods
 specifier|public
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|getDocumentIterator
 parameter_list|()
 block|{
@@ -5705,6 +5708,9 @@ block|}
 comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 specifier|public
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|getCollectionIterator
 parameter_list|()
 block|{
