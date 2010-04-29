@@ -2147,6 +2147,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|iter
 init|=
 name|docs
@@ -2166,9 +2169,6 @@ name|int
 name|collectionId
 init|=
 operator|(
-operator|(
-name|Collection
-operator|)
 name|iter
 operator|.
 name|next
@@ -3124,6 +3124,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|iter
 init|=
 name|docs
@@ -3421,6 +3424,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|iter
 init|=
 name|docs
@@ -3645,6 +3651,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|docs
@@ -3664,9 +3673,6 @@ name|int
 name|collectionId
 init|=
 operator|(
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next
@@ -4005,6 +4011,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|i
 init|=
 name|docs
@@ -4024,9 +4033,6 @@ name|int
 name|collectionId
 init|=
 operator|(
-operator|(
-name|Collection
-operator|)
 name|i
 operator|.
 name|next

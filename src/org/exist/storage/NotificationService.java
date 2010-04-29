@@ -195,6 +195,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|UpdateListener
+argument_list|>
 name|i
 init|=
 name|keySet
@@ -212,9 +215,6 @@ control|)
 block|{
 name|listener
 operator|=
-operator|(
-name|UpdateListener
-operator|)
 name|i
 operator|.
 name|next
@@ -250,6 +250,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|UpdateListener
+argument_list|>
 name|i
 init|=
 name|keySet
@@ -267,9 +270,6 @@ control|)
 block|{
 name|listener
 operator|=
-operator|(
-name|UpdateListener
-operator|)
 name|i
 operator|.
 name|next
@@ -304,6 +304,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|UpdateListener
+argument_list|>
 name|i
 init|=
 name|keySet
@@ -321,9 +324,6 @@ control|)
 block|{
 name|listener
 operator|=
-operator|(
-name|UpdateListener
-operator|)
 name|i
 operator|.
 name|next

@@ -217,10 +217,16 @@ decl_stmt|;
 comment|/** Caches maintained by this class */
 specifier|private
 name|List
+argument_list|<
+name|Cache
+argument_list|>
 name|caches
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Cache
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private

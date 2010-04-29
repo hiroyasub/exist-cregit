@@ -404,6 +404,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|JobInfo
+argument_list|>
 name|i
 init|=
 name|processes
@@ -429,9 +432,6 @@ index|[
 name|j
 index|]
 operator|=
-operator|(
-name|JobInfo
-operator|)
 name|i
 operator|.
 name|next
