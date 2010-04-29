@@ -6002,6 +6002,9 @@ comment|//TODO : do not throw the exception if a system property allows several 
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|iterator
@@ -6019,9 +6022,6 @@ block|{
 name|DocumentImpl
 name|confDoc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -7491,6 +7491,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|subcollections
@@ -7507,9 +7510,6 @@ control|)
 block|{
 name|childColl
 operator|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
@@ -8419,6 +8419,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 name|documents
