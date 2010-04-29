@@ -750,15 +750,7 @@ name|txt
 init|=
 literal|"<!-- place holder for null byte sized XML document --><null/>"
 decl_stmt|;
-name|InputSource
-name|is
-init|=
-operator|new
-name|InputSource
-argument_list|(
-name|url
-argument_list|)
-decl_stmt|;
+comment|//InputSource is = new InputSource(url);
 name|IndexInfo
 name|info
 init|=

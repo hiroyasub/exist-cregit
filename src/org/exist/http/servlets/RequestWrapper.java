@@ -106,6 +106,9 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|getAttributeNames
 parameter_list|()
 function_decl|;
@@ -178,6 +181,9 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|getParameterNames
 parameter_list|()
 function_decl|;
