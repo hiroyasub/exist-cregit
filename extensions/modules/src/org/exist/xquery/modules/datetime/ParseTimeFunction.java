@@ -29,16 +29,6 @@ name|java
 operator|.
 name|text
 operator|.
-name|ParsePosition
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
 name|SimpleDateFormat
 import|;
 end_import
@@ -420,15 +410,7 @@ argument_list|(
 name|dateFormat
 argument_list|)
 decl_stmt|;
-name|ParsePosition
-name|pp
-init|=
-operator|new
-name|ParsePosition
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
+comment|//ParsePosition pp = new ParsePosition(0);
 try|try
 block|{
 name|Date
