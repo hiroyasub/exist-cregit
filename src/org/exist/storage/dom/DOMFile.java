@@ -7921,6 +7921,9 @@ return|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|findKeys
 parameter_list|(
 name|IndexQuery
@@ -8428,6 +8431,9 @@ block|}
 comment|/**      * Find matching nodes for the given query.      *       * @param query      *                     Description of the Parameter      * @return Description of the Return Value      * @exception IOException      *                           Description of the Exception      * @exception BTreeException      *                           Description of the Exception      */
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|findValues
 parameter_list|(
 name|IndexQuery
@@ -19205,7 +19211,7 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
-comment|//	            LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
+comment|//LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
 return|return
 name|page
 return|;
@@ -19443,7 +19449,7 @@ return|return
 name|rec
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getKey() 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getKey() 		 */
 specifier|public
 name|long
 name|getKey
@@ -19456,7 +19462,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 		 */
 specifier|public
 name|int
 name|getReferenceCount
@@ -19502,7 +19508,7 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 		 */
 specifier|public
 name|void
 name|setReferenceCount
@@ -19516,7 +19522,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 		 */
 specifier|public
 name|void
 name|setTimestamp
@@ -19532,7 +19538,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#getTimestamp() 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
 specifier|public
 name|int
 name|getTimestamp
@@ -19809,7 +19815,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.storage.cache.Cacheable#allowUnload() 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#allowUnload() 		 */
 specifier|public
 name|boolean
 name|allowUnload
@@ -19819,7 +19825,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.lang.Object#equals(java.lang.Object) 		 */
 specifier|public
 name|boolean
 name|equals
@@ -19866,7 +19872,7 @@ return|return
 name|invalidated
 return|;
 block|}
-comment|/** 	 * Walk through the page after records have been removed. Set the tid 	 * counter to the next spare id that can be used for following 	 * insertions. 	 */
+comment|/** 		 * Walk through the page after records have been removed. Set the tid 		 * counter to the next spare id that can be used for following 		 * insertions. 		 */
 specifier|public
 name|void
 name|cleanUp
@@ -20057,7 +20063,7 @@ name|maxTID
 argument_list|)
 expr_stmt|;
 comment|//Uncommented because of recovery runs where both are not in sync
-comment|/* 	      if (ph.getRecordCount() != recordCount) 	      LOG.warn("page record count differs from computed record count"); 	    */
+comment|/* 		      if (ph.getRecordCount() != recordCount) 		      LOG.warn("page record count differs from computed record count"); 		    */
 block|}
 block|}
 comment|/**      * This represents an overflow page. Overflow pages are created if the node      * data exceeds the size of one page. An overflow page is a sequence of      * DOMPages.      *       * @author wolf      *       */
@@ -20220,7 +20226,7 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
-comment|//	            LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
+comment|//LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
 return|return
 name|page
 return|;
