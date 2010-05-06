@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -37,7 +37,55 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|BasicFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -65,7 +113,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionReturnSequenceType
+name|IntegerValue
 import|;
 end_import
 
@@ -243,14 +291,10 @@ name|SVNWCUtil
 import|;
 end_import
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Apr 22, 2010  * Time: 9:48:14 AM  * To change this template use File | Settings | File Templates.  */
-end_comment
-
 begin_class
 specifier|public
 class|class
-name|SVNCommit
+name|SVNLatestRevision
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +310,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"commit"
+literal|"get-latest-revision-number"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +321,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Commits a resource to a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Returns the number of the latest revision of the subversion repository."
 argument_list|,
 operator|new
 name|SequenceType
@@ -286,23 +330,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"connection"
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The connection to a subversion repository"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource"
+literal|"repository-uri"
 argument_list|,
 name|Type
 operator|.
@@ -312,13 +340,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The path to the resource to be stored."
+literal|"The location in the subversion repository URI"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"message"
+literal|"username"
 argument_list|,
 name|Type
 operator|.
@@ -326,30 +354,47 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
-literal|"The SVN commit message."
+literal|"The subversion username"
 argument_list|)
-block|}
-argument_list|,
+block|,
 operator|new
-name|FunctionReturnSequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"password"
+argument_list|,
 name|Type
 operator|.
-name|NODE
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The commit information."
+literal|"The subversion password"
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"revision-number"
+argument_list|,
+name|Type
+operator|.
+name|LONG
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The latest revision number of the repository"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/**      *      * @param context      */
 specifier|public
-name|SVNCommit
+name|SVNLatestRevision
 parameter_list|(
 name|XQueryContext
 name|context
@@ -363,7 +408,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args      * @param contextSequence      */
 specifier|public
 name|Sequence
 name|eval
@@ -378,8 +422,16 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//        DAVRepositoryFactory.setup();
-comment|//        SVNRepositoryFactoryImpl.setup();
+name|DAVRepositoryFactory
+operator|.
+name|setup
+argument_list|()
+expr_stmt|;
+name|SVNRepositoryFactoryImpl
+operator|.
+name|setup
+argument_list|()
+expr_stmt|;
 name|String
 name|uri
 init|=
@@ -391,20 +443,91 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-comment|//        try {
-comment|//            SVNRepository repo =
-comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));
-comment|//            ISVNAuthenticationManager authManager =
-comment|//                    SVNWCUtil.createDefaultAuthenticationManager(args[1].getStringValue(), args[2].getStringValue());
-comment|//            repo.setAuthenticationManager(authManager);
-comment|//
-comment|//        } catch (SVNException e) {
-comment|//            throw new XPathException(this, e.getMessage(), e);
-comment|//        }
+try|try
+block|{
+name|SVNRepository
+name|repo
+init|=
+name|SVNRepositoryFactory
+operator|.
+name|create
+argument_list|(
+name|SVNURL
+operator|.
+name|parseURIDecoded
+argument_list|(
+name|uri
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|ISVNAuthenticationManager
+name|authManager
+init|=
+name|SVNWCUtil
+operator|.
+name|createDefaultAuthenticationManager
+argument_list|(
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|,
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|repo
+operator|.
+name|setAuthenticationManager
+argument_list|(
+name|authManager
+argument_list|)
+expr_stmt|;
+name|long
+name|latestRevision
+init|=
+name|repo
+operator|.
+name|getLatestRevision
+argument_list|()
+decl_stmt|;
 return|return
-literal|null
+operator|new
+name|IntegerValue
+argument_list|(
+name|latestRevision
+argument_list|)
 return|;
-comment|//To change body of implemented methods use File | Settings | File Templates.
+block|}
+catch|catch
+parameter_list|(
+name|SVNException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class

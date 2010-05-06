@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 

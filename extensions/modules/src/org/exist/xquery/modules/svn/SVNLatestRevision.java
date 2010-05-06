@@ -391,6 +391,8 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The latest revision number of the repository"
 argument_list|)
+argument_list|,
+literal|"Moved to subversion:get-latest-revision-number() with namespace http://exist-db.org/xquery/versioning/svn"
 argument_list|)
 decl_stmt|;
 specifier|public

@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -250,7 +250,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SVNCleanup
+name|SVNLock
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +266,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"clean-up"
+literal|"lock"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"? a resource to a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Locks a resource to a subversion repository.\n\nThis is a stub and currently does nothing."
 argument_list|,
 operator|new
 name|SequenceType
@@ -318,17 +318,17 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"delete"
+literal|"message"
 argument_list|,
 name|Type
 operator|.
-name|BOOLEAN
+name|STRING
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The lock message"
 argument_list|)
 block|}
 argument_list|,
@@ -349,7 +349,7 @@ argument_list|)
 decl_stmt|;
 comment|/**      *      * @param context      */
 specifier|public
-name|SVNCleanup
+name|SVNLock
 parameter_list|(
 name|XQueryContext
 name|context

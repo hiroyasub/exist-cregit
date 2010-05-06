@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -250,7 +250,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SVNDisconnect
+name|SVNUnlock
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +266,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"disconnect"
+literal|"unlock"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Disconnect a connection to a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Unlocks a resource in a subversion repository.\n\nThis is a stub and currently does nothing."
 argument_list|,
 operator|new
 name|SequenceType
@@ -298,6 +298,22 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The connection to a subversion repository"
 argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"resource"
+argument_list|,
+name|Type
+operator|.
+name|ANY_URI
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The path to the resource."
+argument_list|)
 block|}
 argument_list|,
 operator|new
@@ -317,7 +333,7 @@ argument_list|)
 decl_stmt|;
 comment|/**      *      * @param context      */
 specifier|public
-name|SVNDisconnect
+name|SVNUnlock
 parameter_list|(
 name|XQueryContext
 name|context
@@ -348,17 +364,7 @@ name|XPathException
 block|{
 comment|//        DAVRepositoryFactory.setup();
 comment|//        SVNRepositoryFactoryImpl.setup();
-name|String
-name|uri
-init|=
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
+comment|//        String uri = args[0].getStringValue();
 comment|//        try {
 comment|//            SVNRepository repo =
 comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));

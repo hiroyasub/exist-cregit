@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -250,7 +250,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SVNConnect
+name|SVNDisconnect
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +266,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"connect"
+literal|"disconnect"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Establishes a connection to a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Disconnect a connection to a subversion repository.\n\nThis is a stub and currently does nothing."
 argument_list|,
 operator|new
 name|SequenceType
@@ -286,55 +286,8 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"repository-uri"
+literal|"connection"
 argument_list|,
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion repository URI"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"username"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion username"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"password"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The subversion password"
-argument_list|)
-block|,             }
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
 name|Type
 operator|.
 name|NODE
@@ -343,13 +296,28 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The connection information."
+literal|"The connection to a subversion repository"
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|EMPTY
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO
+argument_list|,
+literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/**      *      * @param context      */
 specifier|public
-name|SVNConnect
+name|SVNDisconnect
 parameter_list|(
 name|XQueryContext
 name|context

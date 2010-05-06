@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -487,8 +487,6 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"a sequence containing the log entries"
 argument_list|)
-argument_list|,
-literal|"Moved to subversion:log() with namespace http://exist-db.org/xquery/versioning/svn"
 argument_list|)
 decl_stmt|;
 specifier|private

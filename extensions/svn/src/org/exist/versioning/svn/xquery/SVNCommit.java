@@ -9,11 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|modules
+name|versioning
 operator|.
 name|svn
+operator|.
+name|xquery
 package|;
 end_package
 
@@ -250,7 +250,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|SVNUnlock
+name|SVNCommit
 extends|extends
 name|BasicFunction
 block|{
@@ -266,7 +266,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"unlock"
+literal|"commit"
 argument_list|,
 name|SVNModule
 operator|.
@@ -277,7 +277,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Unlocks a resource in a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Commits a resource to a subversion repository.\n\nThis is a stub and currently does nothing."
 argument_list|,
 operator|new
 name|SequenceType
@@ -312,7 +312,23 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The path to the resource."
+literal|"The path to the resource to be stored."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"message"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"The SVN commit message."
 argument_list|)
 block|}
 argument_list|,
@@ -321,19 +337,19 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|EMPTY
+name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO
+name|EXACTLY_ONE
 argument_list|,
-literal|""
+literal|"The commit information."
 argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/**      *      * @param context      */
 specifier|public
-name|SVNUnlock
+name|SVNCommit
 parameter_list|(
 name|XQueryContext
 name|context
@@ -364,7 +380,17 @@ name|XPathException
 block|{
 comment|//        DAVRepositoryFactory.setup();
 comment|//        SVNRepositoryFactoryImpl.setup();
-comment|//        String uri = args[0].getStringValue();
+name|String
+name|uri
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 comment|//        try {
 comment|//            SVNRepository repo =
 comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));
