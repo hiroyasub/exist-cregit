@@ -458,7 +458,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|WorkingCopy
+name|WorkingCopyTest
 block|{
 specifier|private
 specifier|static
