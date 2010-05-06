@@ -12,6 +12,8 @@ operator|.
 name|versioning
 operator|.
 name|svn
+operator|.
+name|old
 package|;
 end_package
 

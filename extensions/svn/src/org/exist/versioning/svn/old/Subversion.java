@@ -12,6 +12,8 @@ operator|.
 name|versioning
 operator|.
 name|svn
+operator|.
+name|old
 package|;
 end_package
 
@@ -444,6 +446,22 @@ operator|.
 name|wc
 operator|.
 name|SVNEventAction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|tmatesoft
+operator|.
+name|svn
+operator|.
+name|core
+operator|.
+name|wc
+operator|.
+name|SVNRevision
 import|;
 end_import
 
@@ -972,7 +990,7 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
+specifier|public
 name|boolean
 name|update
 parameter_list|()
@@ -982,16 +1000,17 @@ block|{
 return|return
 name|update
 argument_list|(
-name|latestRevision
-argument_list|()
+name|SVNRevision
+operator|.
+name|HEAD
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 name|boolean
 name|update
 parameter_list|(
-name|long
+name|SVNRevision
 name|toRevision
 parameter_list|)
 throws|throws
@@ -1004,6 +1023,9 @@ operator|new
 name|ExportReporterBaton
 argument_list|(
 name|toRevision
+operator|.
+name|getNumber
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|ISVNEditor
@@ -1024,6 +1046,9 @@ operator|.
 name|update
 argument_list|(
 name|toRevision
+operator|.
+name|getNumber
+argument_list|()
 argument_list|,
 literal|null
 argument_list|,
