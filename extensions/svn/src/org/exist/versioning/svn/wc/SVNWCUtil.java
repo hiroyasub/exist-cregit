@@ -953,7 +953,7 @@ name|File
 name|externalFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|parent
 argument_list|,

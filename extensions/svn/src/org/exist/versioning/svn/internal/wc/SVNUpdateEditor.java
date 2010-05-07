@@ -119,6 +119,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -10592,7 +10606,7 @@ block|}
 name|dstDir
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|SVNPathUtil
 operator|.
@@ -10996,7 +11010,7 @@ decl_stmt|;
 name|currentWD
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|currentWD
 argument_list|,
@@ -14664,7 +14678,7 @@ name|File
 name|areaPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myAdminInfo
 operator|.
@@ -15566,7 +15580,7 @@ name|File
 name|file
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myAdminInfo
 operator|.

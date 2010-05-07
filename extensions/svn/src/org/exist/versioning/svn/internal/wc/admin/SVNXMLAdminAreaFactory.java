@@ -77,6 +77,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|tmatesoft
 operator|.
 name|svn
@@ -388,7 +402,7 @@ name|File
 name|adminDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,
@@ -402,7 +416,7 @@ name|File
 name|formatFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|adminDir
 argument_list|,
@@ -743,7 +757,7 @@ name|File
 name|adminDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,
@@ -757,7 +771,7 @@ name|File
 name|formatFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|adminDir
 argument_list|,

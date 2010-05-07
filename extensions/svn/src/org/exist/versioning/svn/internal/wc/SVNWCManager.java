@@ -79,6 +79,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -6923,7 +6937,7 @@ block|{
 name|path
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|SVNPathUtil
 operator|.
@@ -7247,7 +7261,7 @@ block|{
 name|fullPath
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|fullPath
 argument_list|,
@@ -8196,7 +8210,7 @@ name|File
 name|entryPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,

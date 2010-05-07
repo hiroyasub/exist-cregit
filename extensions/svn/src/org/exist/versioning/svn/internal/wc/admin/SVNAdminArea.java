@@ -4200,12 +4200,12 @@ name|index
 init|=
 literal|0
 decl_stmt|;
-name|File
+name|Resource
 name|logFile
 init|=
 literal|null
 decl_stmt|;
-name|File
+name|Resource
 name|tmpFile
 init|=
 literal|null
@@ -4330,7 +4330,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|File
+name|Resource
 name|logFile
 init|=
 literal|null
@@ -7347,7 +7347,7 @@ name|myAdminRoot
 return|;
 block|}
 specifier|public
-name|File
+name|Resource
 name|getAdminFile
 parameter_list|(
 name|String

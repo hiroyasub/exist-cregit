@@ -720,210 +720,43 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Making a new directory at '"
-operator|+
-name|url
-operator|+
-literal|"'..."
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|/*              * creates a new version comtrolled directory in a repository and               * displays what revision the repository was committed to              */
-name|committedRevision
-operator|=
-name|makeDirectory
-argument_list|(
-name|url
-argument_list|,
-literal|"making a new directory at '"
-operator|+
-name|url
-operator|+
-literal|"'"
-argument_list|)
-operator|.
-name|getNewRevision
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SVNException
-name|svne
-parameter_list|)
-block|{
-name|error
-argument_list|(
-literal|"error while making a new directory at '"
-operator|+
-name|url
-operator|+
-literal|"'"
-argument_list|,
-name|svne
-argument_list|)
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Committed to revision "
-operator|+
-name|committedRevision
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
-name|Resource
-name|anImportDir
-init|=
-operator|new
-name|Resource
-argument_list|(
-name|myHomePath
-operator|+
-name|importDir
-argument_list|)
-decl_stmt|;
-name|Resource
-name|anImportFile
-init|=
-operator|new
-name|Resource
-argument_list|(
-name|anImportDir
-argument_list|,
-name|SVNPathUtil
-operator|.
-name|tail
-argument_list|(
-name|importFile
-argument_list|)
-argument_list|)
-decl_stmt|;
-comment|/*          * creates a new local directory - './importDir' and a new file -           * './importDir/importFile.txt' that will be imported into the repository          * into the '/MyRepos/importDir' directory           */
-name|createLocalDir
-argument_list|(
-name|anImportDir
-argument_list|,
-operator|new
-name|Resource
-index|[]
-block|{
-name|anImportFile
-block|}
-argument_list|,
-operator|new
-name|String
-index|[]
-block|{
-name|importFileText
-block|}
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Importing a new directory into '"
-operator|+
-name|importToURL
-operator|+
-literal|"'..."
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|/*              * recursively imports an unversioned directory into a repository               * and displays what revision the repository was committed to              */
-name|boolean
-name|isRecursive
-init|=
-literal|true
-decl_stmt|;
-name|committedRevision
-operator|=
-name|importDirectory
-argument_list|(
-name|anImportDir
-argument_list|,
-name|importToURL
-argument_list|,
-literal|"importing a new directory '"
-operator|+
-name|anImportDir
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|"'"
-argument_list|,
-name|isRecursive
-argument_list|)
-operator|.
-name|getNewRevision
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SVNException
-name|svne
-parameter_list|)
-block|{
-name|error
-argument_list|(
-literal|"error while importing a new directory '"
-operator|+
-name|anImportDir
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|"' into '"
-operator|+
-name|importToURL
-operator|+
-literal|"'"
-argument_list|,
-name|svne
-argument_list|)
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Committed to revision "
-operator|+
-name|committedRevision
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
+comment|//        System.out.println("Making a new directory at '" + url + "'...");
+comment|//        try{
+comment|//            /*
+comment|//             * creates a new version comtrolled directory in a repository and
+comment|//             * displays what revision the repository was committed to
+comment|//             */
+comment|//            committedRevision = makeDirectory(url, "making a new directory at '" + url + "'").getNewRevision();
+comment|//        }catch(SVNException svne){
+comment|//            error("error while making a new directory at '" + url + "'", svne);
+comment|//        }
+comment|//        System.out.println("Committed to revision " + committedRevision);
+comment|//        System.out.println();
+comment|//
+comment|//        Resource anImportDir = new Resource(myHomePath+importDir);
+comment|//        Resource anImportFile = new Resource(anImportDir, SVNPathUtil.tail(importFile));
+comment|//        /*
+comment|//         * creates a new local directory - './importDir' and a new file -
+comment|//         * './importDir/importFile.txt' that will be imported into the repository
+comment|//         * into the '/MyRepos/importDir' directory
+comment|//         */
+comment|//        createLocalDir(anImportDir, new Resource[]{anImportFile}, new String[]{importFileText});
+comment|//
+comment|//        System.out.println("Importing a new directory into '" + importToURL + "'...");
+comment|//        try{
+comment|//            /*
+comment|//             * recursively imports an unversioned directory into a repository
+comment|//             * and displays what revision the repository was committed to
+comment|//             */
+comment|//            boolean isRecursive = true;
+comment|//            committedRevision = importDirectory(anImportDir, importToURL, "importing a new directory '" + anImportDir.getAbsolutePath() + "'", isRecursive).getNewRevision();
+comment|//        }catch(SVNException svne){
+comment|//            error("error while importing a new directory '" + anImportDir.getAbsolutePath() + "' into '" + importToURL + "'", svne);
+comment|//        }
+comment|//        System.out.println("Committed to revision " + committedRevision);
+comment|//        System.out.println();
+comment|//
+comment|//
 comment|/*          * creates a local directory where the working copy will be checked out into          */
 name|Resource
 name|wcDir

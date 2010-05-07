@@ -93,6 +93,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -2442,7 +2456,7 @@ name|File
 name|childPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,
@@ -3084,7 +3098,7 @@ name|File
 name|lockFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,
@@ -3097,7 +3111,7 @@ decl_stmt|;
 name|lockFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|lockFile
 argument_list|,
@@ -4232,7 +4246,7 @@ name|File
 name|adminDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,

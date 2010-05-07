@@ -117,6 +117,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|SVNAnnotationGenerator
 import|;
 end_import
@@ -1003,7 +1017,7 @@ name|File
 name|tmpFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 operator|.
@@ -1019,7 +1033,7 @@ decl_stmt|;
 name|tmpFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|tmpFile
 argument_list|,
@@ -2316,7 +2330,7 @@ name|File
 name|root
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|rootWCPath
 argument_list|)

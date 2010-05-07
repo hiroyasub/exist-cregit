@@ -2006,7 +2006,7 @@ name|File
 name|adminDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dir
 argument_list|,

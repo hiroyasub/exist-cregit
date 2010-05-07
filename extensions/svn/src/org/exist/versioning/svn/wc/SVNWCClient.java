@@ -139,6 +139,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -8200,7 +8214,7 @@ operator|.
 name|createLockEvent
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|)
@@ -8229,7 +8243,7 @@ operator|.
 name|createLockEvent
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|)
@@ -8849,7 +8863,7 @@ operator|.
 name|createLockEvent
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|)
@@ -8878,7 +8892,7 @@ operator|.
 name|createLockEvent
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|)
@@ -11431,7 +11445,7 @@ name|File
 name|externalDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|info
 operator|.
@@ -11648,7 +11662,7 @@ name|File
 name|externalDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|info
 operator|.
@@ -13361,7 +13375,7 @@ operator|.
 name|probeOpen
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|commonParentPath
 argument_list|)
@@ -13395,7 +13409,7 @@ name|File
 name|file
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|commonParentPath
 argument_list|,
@@ -15075,7 +15089,7 @@ name|File
 name|childPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|path
 argument_list|,
@@ -16865,7 +16879,7 @@ name|File
 name|childDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|newArea
 operator|.

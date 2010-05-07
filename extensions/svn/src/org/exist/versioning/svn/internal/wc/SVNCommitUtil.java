@@ -139,6 +139,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -1349,7 +1363,7 @@ name|File
 name|baseDir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|rootPath
 argument_list|)
@@ -1431,7 +1445,7 @@ operator|.
 name|getType
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|rootPath
 argument_list|)
@@ -1567,7 +1581,7 @@ name|File
 name|targetFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseDir
 argument_list|,
@@ -2032,7 +2046,7 @@ name|File
 name|pathFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseDir
 argument_list|,
@@ -2088,7 +2102,7 @@ name|File
 name|pathFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseDir
 argument_list|,
@@ -2714,7 +2728,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|File
+name|Resource
 index|[
 name|filesList
 operator|.
@@ -2920,7 +2934,7 @@ name|File
 name|targetFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseAccess
 operator|.

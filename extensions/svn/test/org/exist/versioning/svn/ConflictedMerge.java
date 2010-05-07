@@ -387,7 +387,7 @@ name|File
 name|baseDirectory
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|args
 index|[
@@ -399,7 +399,7 @@ name|File
 name|reposRoot
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseDirectory
 argument_list|,
@@ -410,7 +410,7 @@ name|File
 name|wcRoot
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|baseDirectory
 argument_list|,

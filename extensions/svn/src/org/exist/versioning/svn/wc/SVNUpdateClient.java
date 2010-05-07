@@ -127,6 +127,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -4524,7 +4538,7 @@ name|File
 name|owner
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|adminAreaInfo
 operator|.
@@ -4558,7 +4572,7 @@ name|File
 name|externalFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|owner
 argument_list|,
@@ -4931,7 +4945,7 @@ name|File
 name|childTo
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|to
 argument_list|,
@@ -4945,7 +4959,7 @@ name|File
 name|childFrom
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|from
 argument_list|,
@@ -4984,7 +4998,7 @@ name|File
 name|childTo
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|to
 argument_list|,
@@ -5114,7 +5128,7 @@ name|File
 name|srcPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|adminArea
 operator|.
@@ -5131,7 +5145,7 @@ name|File
 name|dstPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|to
 argument_list|,
@@ -6044,7 +6058,7 @@ block|{
 name|dstPath
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstPath
 argument_list|,
@@ -7958,7 +7972,7 @@ operator|.
 name|owner
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|root
 argument_list|,
@@ -8088,7 +8102,7 @@ operator|.
 name|owner
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|root
 argument_list|,
@@ -8307,7 +8321,7 @@ name|File
 name|target
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|externalDiff
 operator|.
@@ -8379,7 +8393,7 @@ name|File
 name|target
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|externalDiff
 operator|.

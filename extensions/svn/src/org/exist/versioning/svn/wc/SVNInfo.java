@@ -47,6 +47,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -895,7 +909,7 @@ block|{
 name|myConflictOldFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|file
 operator|.
@@ -916,7 +930,7 @@ block|{
 name|myConflictNewFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|file
 operator|.
@@ -937,7 +951,7 @@ block|{
 name|myConflictWrkFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|file
 operator|.
@@ -958,7 +972,7 @@ block|{
 name|myPropConflictFile
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|file
 operator|.
