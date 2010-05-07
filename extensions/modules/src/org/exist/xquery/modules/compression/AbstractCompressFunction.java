@@ -2031,6 +2031,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|itChildDocs
 init|=
 name|childDocs
@@ -2106,6 +2109,9 @@ comment|// iterate over child collections
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|itChildCols
 init|=
 name|col

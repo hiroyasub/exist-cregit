@@ -1316,6 +1316,9 @@ init|=
 literal|null
 decl_stmt|;
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|allPictures
