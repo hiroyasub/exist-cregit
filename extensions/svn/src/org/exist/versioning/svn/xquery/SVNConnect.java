@@ -551,6 +551,10 @@ argument_list|,
 name|subversion
 argument_list|)
 expr_stmt|;
+name|returnValue
+operator|=
+literal|true
+expr_stmt|;
 block|}
 else|else
 block|{
