@@ -741,6 +741,13 @@ parameter_list|)
 throws|throws
 name|URISyntaxException
 block|{
+name|xmldbURI
+operator|=
+name|xmldbURI
+operator|.
+name|normalize
+argument_list|()
+expr_stmt|;
 name|boolean
 name|hadXmldbPrefix
 init|=
