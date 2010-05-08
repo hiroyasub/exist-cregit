@@ -437,11 +437,13 @@ literal|"configuration should be supplied as follows:<configuration>"
 operator|+
 literal|"<param1>Value1</param1><param2>Value2</param2>/<configuration>.  "
 operator|+
-literal|"Supported parameters: width height title categoryAxisLabel "
+literal|"Supported parameters: width height title categoryAxisLabel timeAxisLabel "
 operator|+
 literal|"valueAxisLabel domainAxisLabel rangeAxisLabel pieSectionLabel pieSectionNumberFormat pieSectionPercentFormat orientation "
 operator|+
 literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperrBound categoryItemLabelGeneratorClass seriesColors sectionColors sectionColorsDelimiter "
+operator|+
+literal|"categoryAxisColor valueAxisColortimeAxisColor "
 operator|+
 literal|"order legend tooltips urls."
 decl_stmt|;
