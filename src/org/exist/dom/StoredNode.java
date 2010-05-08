@@ -1645,6 +1645,9 @@ name|StoredNode
 name|getLastNode
 parameter_list|(
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|StoredNode
@@ -1693,9 +1696,6 @@ control|)
 block|{
 name|next
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next

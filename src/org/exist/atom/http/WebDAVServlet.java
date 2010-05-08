@@ -2812,6 +2812,9 @@ expr_stmt|;
 for|for
 control|(
 name|Enumeration
+argument_list|<
+name|String
+argument_list|>
 name|e
 init|=
 name|request
@@ -2829,9 +2832,6 @@ block|{
 name|String
 name|header
 init|=
-operator|(
-name|String
-operator|)
 name|e
 operator|.
 name|nextElement

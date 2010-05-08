@@ -1102,6 +1102,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|Integer
+argument_list|>
 name|i
 init|=
 name|mimeTypeById
@@ -1119,9 +1122,6 @@ block|{
 name|Integer
 name|val
 init|=
-operator|(
-name|Integer
-operator|)
 name|i
 operator|.
 name|next
@@ -1404,6 +1404,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 name|defaultMappings
@@ -1420,9 +1423,6 @@ control|)
 block|{
 name|prefix
 operator|=
-operator|(
-name|String
-operator|)
 name|i
 operator|.
 name|next
@@ -1474,6 +1474,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|i
 init|=
 name|mimeTypeByName
@@ -1490,9 +1493,6 @@ control|)
 block|{
 name|mime
 operator|=
-operator|(
-name|String
-operator|)
 name|i
 operator|.
 name|next
