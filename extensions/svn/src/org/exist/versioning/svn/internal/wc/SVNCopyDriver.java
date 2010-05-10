@@ -139,6 +139,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -4265,7 +4279,7 @@ name|toString
 argument_list|()
 else|:
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dst
 operator|.
@@ -4549,7 +4563,7 @@ name|File
 name|srcFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -4575,7 +4589,7 @@ operator|.
 name|getVersionedEntry
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -4690,7 +4704,7 @@ name|File
 name|srcPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -4701,7 +4715,7 @@ name|File
 name|dstPath
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -4984,7 +4998,7 @@ argument_list|(
 name|wcAccess
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -5004,7 +5018,7 @@ operator|.
 name|getEntry
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -5399,7 +5413,7 @@ operator|.
 name|probeOpen
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|topSrc
 argument_list|)
@@ -5641,7 +5655,7 @@ operator|.
 name|getEntry
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -6073,7 +6087,7 @@ name|File
 name|srcFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|source
 operator|.
@@ -6483,7 +6497,7 @@ name|File
 name|externalWC
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|localPath
 argument_list|,
@@ -8125,7 +8139,7 @@ operator|.
 name|getType
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8156,7 +8170,7 @@ argument_list|,
 literal|"Path ''{0}'' already exists"
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8196,7 +8210,7 @@ operator|.
 name|getType
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|)
@@ -8217,7 +8231,7 @@ comment|// create parents.
 name|addLocalParents
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|)
@@ -8278,7 +8292,7 @@ argument_list|(
 name|dstAccess
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|topDst
 argument_list|)
@@ -8324,7 +8338,7 @@ operator|.
 name|getEntry
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8372,7 +8386,7 @@ argument_list|,
 literal|"''{0}'' is already under version control"
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8427,7 +8441,7 @@ argument_list|,
 literal|"Entry for ''{0}'' exists (though the working file is missing)"
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8531,7 +8545,7 @@ argument_list|(
 name|dstAccess
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|)
@@ -8725,7 +8739,7 @@ name|File
 name|dstFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -8952,7 +8966,7 @@ name|File
 name|dst
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -9237,7 +9251,7 @@ name|File
 name|source
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -9339,7 +9353,7 @@ operator|.
 name|getType
 argument_list|(
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -9370,7 +9384,7 @@ argument_list|,
 literal|"Path ''{0}'' already exists"
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -9394,7 +9408,7 @@ name|File
 name|dstParent
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|SVNPathUtil
 operator|.
@@ -9566,7 +9580,7 @@ block|}
 name|nestedWC
 operator|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|nestedWC
 operator|.
@@ -10417,7 +10431,7 @@ argument_list|(
 name|dstAccess
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParentPath
 argument_list|)
@@ -10472,7 +10486,7 @@ name|File
 name|sourceFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -10484,7 +10498,7 @@ argument_list|(
 name|sourceFile
 argument_list|,
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParentPath
 argument_list|)
@@ -10576,7 +10590,7 @@ name|File
 name|srcParent
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|SVNPathUtil
 operator|.
@@ -10592,7 +10606,7 @@ name|File
 name|dstParent
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|SVNPathUtil
 operator|.
@@ -10608,7 +10622,7 @@ name|File
 name|sourceFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|pair
 operator|.
@@ -11196,7 +11210,7 @@ name|File
 name|dst
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|,
@@ -11447,7 +11461,7 @@ name|File
 name|srcBaseFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|src
 operator|.
@@ -11471,7 +11485,7 @@ name|File
 name|dstBaseFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|,
@@ -11678,7 +11692,7 @@ name|File
 name|dst
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|,
@@ -11764,7 +11778,7 @@ name|File
 name|dst
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|,
@@ -12088,7 +12102,7 @@ name|File
 name|dst
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|dstParent
 argument_list|,

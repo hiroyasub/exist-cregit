@@ -1138,7 +1138,7 @@ condition|?
 literal|null
 else|:
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myPath
 argument_list|)

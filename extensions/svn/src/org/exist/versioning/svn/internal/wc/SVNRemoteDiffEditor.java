@@ -79,6 +79,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -924,7 +938,7 @@ name|File
 name|deletedFile
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myTarget
 argument_list|,
@@ -2754,7 +2768,7 @@ name|File
 name|dir
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myCurrentDirectory
 operator|.
@@ -2848,7 +2862,7 @@ name|File
 name|file
 init|=
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myCurrentDirectory
 operator|.
@@ -3295,7 +3309,7 @@ operator|!=
 literal|null
 condition|?
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myTarget
 argument_list|,
@@ -3410,7 +3424,7 @@ operator|!=
 literal|null
 condition|?
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myTarget
 argument_list|,

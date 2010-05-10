@@ -59,6 +59,20 @@ name|versioning
 operator|.
 name|svn
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
 name|internal
 operator|.
 name|wc
@@ -454,7 +468,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|File
+name|Resource
 argument_list|(
 name|myBasePath
 argument_list|,
@@ -466,7 +480,7 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-name|File
+name|Resource
 operator|.
 name|separatorChar
 argument_list|,
@@ -479,7 +493,7 @@ name|path
 operator|.
 name|replace
 argument_list|(
-name|File
+name|Resource
 operator|.
 name|separatorChar
 argument_list|,
@@ -500,7 +514,7 @@ argument_list|()
 operator|.
 name|replace
 argument_list|(
-name|File
+name|Resource
 operator|.
 name|separatorChar
 argument_list|,
