@@ -18036,16 +18036,13 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|result
-init|=
 name|service
 operator|.
 name|query
 argument_list|(
 name|query
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
