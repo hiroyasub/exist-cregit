@@ -104,17 +104,18 @@ index|[]
 name|functions
 init|=
 block|{
+comment|//        new FunctionDef( Directory.signatures[0],               Directory.class ),
 operator|new
 name|FunctionDef
 argument_list|(
-name|DirectoryListFunction
+name|DirectoryList
 operator|.
 name|signatures
 index|[
 literal|0
 index|]
 argument_list|,
-name|DirectoryListFunction
+name|DirectoryList
 operator|.
 name|class
 argument_list|)
