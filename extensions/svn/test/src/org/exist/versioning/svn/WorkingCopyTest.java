@@ -354,19 +354,19 @@ name|repositoryID
 init|=
 literal|null
 decl_stmt|;
+comment|//	private String URL = "https://support.syntactica.com/exist_svn/";
 specifier|private
 name|String
 name|URL
 init|=
-literal|"https://support.syntactica.com/exist_svn/"
+literal|"svn://localhost/"
 decl_stmt|;
-comment|//private String URL = "svn://localhost/";
 specifier|private
 specifier|static
 name|boolean
 name|local
 init|=
-literal|false
+literal|true
 decl_stmt|;
 annotation|@
 name|Test
@@ -406,15 +406,17 @@ parameter_list|)
 block|{
 comment|//
 block|}
+comment|//        String username = "existtest";
+comment|//        String password = "existtest";
 name|String
 name|username
 init|=
-literal|"existtest"
+literal|"harry"
 decl_stmt|;
 name|String
 name|password
 init|=
-literal|"existtest"
+literal|"harryssecret"
 decl_stmt|;
 name|String
 name|importFile
@@ -444,6 +446,18 @@ name|String
 name|fileText
 init|=
 literal|"This is a new file added to the working copy"
+decl_stmt|;
+name|String
+name|newFileXml
+init|=
+name|newDir
+operator|+
+literal|"/newFile.xml"
+decl_stmt|;
+name|String
+name|fileTextXml
+init|=
+literal|"<test/>"
 decl_stmt|;
 comment|/*          * That's where a new directory will be created          */
 name|SVNURL
@@ -878,6 +892,22 @@ name|newFile
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|Resource
+name|aNewFileXml
+init|=
+operator|new
+name|Resource
+argument_list|(
+name|aNewDir
+argument_list|,
+name|SVNPathUtil
+operator|.
+name|tail
+argument_list|(
+name|newFileXml
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|/*          * creates a new local directory - 'wcDir/newDir' and a new file -           * '/MyWorkspace/newDir/newFile.txt'           */
 name|createLocalDir
 argument_list|(
@@ -888,6 +918,8 @@ name|Resource
 index|[]
 block|{
 name|aNewFile
+block|,
+name|aNewFileXml
 block|}
 argument_list|,
 operator|new
@@ -895,6 +927,8 @@ name|String
 index|[]
 block|{
 name|fileText
+block|,
+name|fileTextXml
 block|}
 argument_list|)
 expr_stmt|;
@@ -1725,11 +1759,10 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+comment|//    	e.printStackTrace();
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
 name|message
 operator|+
@@ -1748,14 +1781,8 @@ else|:
 literal|""
 operator|)
 argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
+throw|;
+comment|//        Assert.assertTrue(message+(e!=null ? ": "+e.getMessage() : ""), false);
 block|}
 comment|/*      * This method does not relate to SVNKit API. Just a method which creates      * local directories and files :)      */
 specifier|private
