@@ -9727,7 +9727,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"if (doc-available(\"http://www.w3.org/RDF/\")) then doc(\"http://www.w3.org/RDF/\") else ()"
+literal|"if (doc-available(\"http://www.w3.org/XML/\")) then doc(\"http://www.w3.org/XML/\") else ()"
 expr_stmt|;
 name|result
 operator|=
@@ -9763,7 +9763,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"if (doc-available(\"http://www.w3.org/RDF/dummy\")) then doc(\"http://www.w3.org/RDF/dummy\") else ()"
+literal|"if (doc-available(\"http://www.w3.org/XML/dummy\")) then doc(\"http://www.w3.org/XML/dummy\") else ()"
 expr_stmt|;
 name|result
 operator|=
@@ -9799,7 +9799,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc-available(\"http://www.w3.org/RDF/\")"
+literal|"doc-available(\"http://www.w3.org/XML/\")"
 expr_stmt|;
 name|result
 operator|=
@@ -10053,6 +10053,11 @@ literal|"testFunctionDoc : XMLDBException: "
 operator|+
 name|e
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
