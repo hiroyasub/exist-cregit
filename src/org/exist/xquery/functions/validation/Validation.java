@@ -717,7 +717,9 @@ decl_stmt|;
 name|ValidationReport
 name|report
 init|=
-literal|null
+operator|new
+name|ValidationReport
+argument_list|()
 decl_stmt|;
 try|try
 block|{
