@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $ANTLR 2.7.4: "SimpleQLParser.g" -> "SimpleQLParser.java"$
+comment|// $ANTLR 2.7.7 (2006-11-01): "SimpleQLParser.g" -> "SimpleQLParser.java"$
 end_comment
 
 begin_package
@@ -21,7 +21,7 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|NoViableAltException
+name|TokenBuffer
 import|;
 end_import
 
@@ -29,7 +29,7 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|ParserSharedInputState
+name|TokenStreamException
 import|;
 end_import
 
@@ -37,7 +37,23 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|RecognitionException
+name|TokenStreamIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|ANTLRException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|LLkParser
 import|;
 end_import
 
@@ -53,14 +69,6 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|TokenBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|antlr
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -69,7 +77,51 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|TokenStreamException
+name|RecognitionException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|NoViableAltException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|MismatchedTokenException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|SemanticException
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|ParserSharedInputState
+import|;
+end_import
+
+begin_import
+import|import
+name|antlr
+operator|.
+name|collections
+operator|.
+name|impl
+operator|.
+name|BitSet
 import|;
 end_import
 
