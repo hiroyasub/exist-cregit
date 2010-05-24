@@ -3079,6 +3079,18 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -3148,6 +3160,17 @@ expr_stmt|;
 block|}
 block|}
 comment|//OK : the DB is repaired; let's make a few RW operations
+try|try
+block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|SYSTEM_USER
+argument_list|)
+expr_stmt|;
 comment|// remove temporary docs
 name|broker
 operator|.
@@ -3156,6 +3179,19 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST
+argument_list|)
+expr_stmt|;
+block|}
 name|sync
 argument_list|(
 name|broker
@@ -4082,6 +4118,16 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+else|else
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST
+argument_list|)
+expr_stmt|;
 comment|//Inform the other threads that we have a new-comer
 comment|// TODO: do they really need to be informed here???????
 name|this
@@ -4310,6 +4356,15 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST
+argument_list|)
+expr_stmt|;
 comment|//Inform the other threads that someone is gone
 name|this
 operator|.
