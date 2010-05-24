@@ -665,7 +665,7 @@ name|URI
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
@@ -794,7 +794,7 @@ name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|DatabaseInstanceManager
