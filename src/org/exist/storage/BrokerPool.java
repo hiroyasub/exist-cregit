@@ -2807,19 +2807,23 @@ expr_stmt|;
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: I would rather tend to keep this broker reserved as a system broker.
 comment|// create a first broker to initialize the security manager
-name|createBroker
-argument_list|()
-expr_stmt|;
+comment|//createBroker();
 comment|//TODO : this broker is *not* marked as active and *might* be reused by another process ! Is it intended ?
 comment|// at this stage, the database is still single-threaded, so reusing the broker later is not a problem.
+comment|//DBBroker broker = inactiveBrokers.peek();
+comment|// dmitriy: Security issue: better to use proper get()/release() way, because of subprocesses (SecurityManager as example)
 name|DBBroker
 name|broker
 init|=
-name|inactiveBrokers
+name|get
+argument_list|(
+name|SecurityManager
 operator|.
-name|peek
-argument_list|()
+name|SYSTEM_USER
+argument_list|)
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|broker
@@ -3045,15 +3049,6 @@ try|try
 block|{
 name|broker
 operator|.
-name|setUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|SYSTEM_USER
-argument_list|)
-expr_stmt|;
-name|broker
-operator|.
 name|repair
 argument_list|()
 expr_stmt|;
@@ -3076,18 +3071,6 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|GUEST
 argument_list|)
 expr_stmt|;
 block|}
@@ -3160,17 +3143,6 @@ expr_stmt|;
 block|}
 block|}
 comment|//OK : the DB is repaired; let's make a few RW operations
-try|try
-block|{
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|SYSTEM_USER
-argument_list|)
-expr_stmt|;
 comment|// remove temporary docs
 name|broker
 operator|.
@@ -3179,19 +3151,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|GUEST
-argument_list|)
-expr_stmt|;
-block|}
 name|sync
 argument_list|(
 name|broker
@@ -3201,6 +3160,15 @@ operator|.
 name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
 comment|//Create a default configuration file for the root collection
 comment|//TODO : why can't we call this from within CollectionConfigurationManager ?
 comment|//TODO : understand why we get a test suite failure
