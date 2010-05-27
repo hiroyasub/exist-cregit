@@ -18035,6 +18035,68 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|void
+name|testMatchRegexp_Orbeon
+parameter_list|()
+block|{
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace text=\"http://exist-db.org/xquery/text\"; "
+operator|+
+literal|"let $count := count(for $resource in collection() let $resource-uri := document-uri($resource)"
+operator|+
+literal|" where (text:match-any($resource, 'gaga')) return 1) return<foobar/>"
+decl_stmt|;
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+comment|// should not yield into NPE
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// ======================================
 comment|/**      * @return      * @throws XMLDBException      */
 specifier|private

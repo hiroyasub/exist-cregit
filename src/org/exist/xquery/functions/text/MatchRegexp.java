@@ -1619,10 +1619,15 @@ condition|(
 name|canCache
 operator|&&
 name|contextSequence
+operator|!=
+literal|null
+operator|&&
+name|contextSequence
 operator|.
 name|isCacheable
 argument_list|()
 condition|)
+block|{
 name|cached
 operator|=
 operator|new
@@ -1635,6 +1640,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 comment|// otherwise we have to walk through each item in the context
 block|}
 else|else
