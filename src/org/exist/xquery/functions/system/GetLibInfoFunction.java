@@ -248,7 +248,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"name of lib"
+literal|"The name of the lib (jar file) from '$EXIST_HOME', '$EXIST_HOME/lib/core', "
+operator|+
+literal|"'$EXIST_HOME/lib/optional' and '$EXIST_HOME/lib/user' or "
+operator|+
+literal|"'WEB-INF/lib' (if eXist is worrking in servlet container environment). "
+operator|+
+literal|"The name can contain mask kind of 'name-%latest%.jar' for getting latest version of lib."
 argument_list|)
 block|}
 argument_list|,
@@ -265,7 +271,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"result"
+literal|"Info about lib: szie, last modified time"
 argument_list|)
 argument_list|)
 block|}
