@@ -1171,7 +1171,7 @@ name|byte
 operator|)
 name|Type
 operator|.
-name|DATE_TIME
+name|DATE
 expr_stmt|;
 comment|//put the Type in the byte array
 name|ByteConversion
