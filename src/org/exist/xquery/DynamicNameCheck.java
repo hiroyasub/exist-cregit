@@ -566,7 +566,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-literal|"\"\":"
+literal|"{''}:"
 operator|+
 name|node
 operator|.
@@ -661,9 +661,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-literal|"\"\""
-operator|+
-literal|':'
+literal|"{''}:"
 operator|+
 name|localName
 return|;
@@ -673,7 +671,7 @@ block|{
 return|return
 name|prefix
 operator|+
-literal|':'
+literal|":"
 operator|+
 name|localName
 return|;
