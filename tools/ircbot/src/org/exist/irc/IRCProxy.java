@@ -307,6 +307,11 @@ name|channels
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|IRCSession
+argument_list|>
 operator|)
 name|getServletContext
 argument_list|()
@@ -473,6 +478,11 @@ name|channels
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|IRCSession
+argument_list|>
 operator|)
 name|getServletContext
 argument_list|()
@@ -845,6 +855,11 @@ name|channels
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|IRCSession
+argument_list|>
 operator|)
 name|getServletContext
 argument_list|()
