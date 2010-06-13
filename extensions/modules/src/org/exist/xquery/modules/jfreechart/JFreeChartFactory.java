@@ -31,30 +31,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Constructor
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|InvocationTargetException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|IOException
@@ -68,6 +44,18 @@ operator|.
 name|io
 operator|.
 name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|Constructor
 import|;
 end_import
 
@@ -159,7 +147,7 @@ name|chart
 operator|.
 name|labels
 operator|.
-name|StandardPieSectionLabelGenerator
+name|CategoryItemLabelGenerator
 import|;
 end_import
 
@@ -173,7 +161,7 @@ name|chart
 operator|.
 name|labels
 operator|.
-name|CategoryItemLabelGenerator
+name|StandardPieSectionLabelGenerator
 import|;
 end_import
 

@@ -678,6 +678,9 @@ block|}
 else|else
 block|{
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|results
 init|=
 literal|null

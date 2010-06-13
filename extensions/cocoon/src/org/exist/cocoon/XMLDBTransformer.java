@@ -674,10 +674,16 @@ literal|null
 decl_stmt|;
 specifier|private
 name|Stack
+argument_list|<
+name|ForEach
+argument_list|>
 name|commandStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|ForEach
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|private

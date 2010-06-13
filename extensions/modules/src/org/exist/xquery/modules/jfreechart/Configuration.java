@@ -1842,8 +1842,6 @@ block|{
 name|Double
 name|value
 init|=
-name|value
-operator|=
 name|parseDouble
 argument_list|(
 name|getValue
@@ -1891,8 +1889,6 @@ block|{
 name|Double
 name|value
 init|=
-name|value
-operator|=
 name|parseDouble
 argument_list|(
 name|getValue

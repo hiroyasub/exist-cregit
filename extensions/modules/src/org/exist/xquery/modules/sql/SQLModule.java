@@ -33,16 +33,6 @@ name|java
 operator|.
 name|sql
 operator|.
-name|PreparedStatement
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
 name|SQLException
 import|;
 end_import

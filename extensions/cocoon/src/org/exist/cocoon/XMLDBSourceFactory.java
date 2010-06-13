@@ -240,6 +240,11 @@ block|{
 comment|/** A Map containing the authentication credentials */
 specifier|protected
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|SourceCredential
+argument_list|>
 name|credentialMap
 decl_stmt|;
 comment|/** An optional base collection for each of the drivers */
@@ -263,6 +268,11 @@ name|credentialMap
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|SourceCredential
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|baseMap

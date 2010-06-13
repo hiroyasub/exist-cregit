@@ -300,6 +300,11 @@ name|literals
 operator|=
 operator|new
 name|Hashtable
+argument_list|<
+name|ANTLRHashString
+argument_list|,
+name|Integer
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|literals
