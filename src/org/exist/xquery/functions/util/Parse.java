@@ -267,11 +267,11 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|NODE
+name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the XML fragment parsed from the string"
 argument_list|)
