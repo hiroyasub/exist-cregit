@@ -136,6 +136,8 @@ literal|"path"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doRewrite
@@ -155,6 +157,8 @@ throws|,
 name|IOException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isControllerForward
@@ -164,6 +168,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|updateRequest
@@ -234,6 +240,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|rewriteRequest
