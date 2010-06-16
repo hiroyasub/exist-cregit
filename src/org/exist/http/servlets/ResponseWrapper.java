@@ -99,6 +99,30 @@ name|boolean
 name|secure
 parameter_list|)
 function_decl|;
+comment|/** 	 * The method<code>addCookie</code> 	 * 	 * @param name Name of the Cookie 	 * @param value Value of the Cookie 	 * @param maxAge an<code>int</code> value 	 * @param secure security of the Cookie 	 * @param domain domain of the cookie 	 * @param path path scope of the cookie 	 */
+specifier|public
+name|void
+name|addCookie
+parameter_list|(
+name|String
+name|name
+parameter_list|,
+name|String
+name|value
+parameter_list|,
+name|int
+name|maxAge
+parameter_list|,
+name|boolean
+name|secure
+parameter_list|,
+name|String
+name|domain
+parameter_list|,
+name|String
+name|path
+parameter_list|)
+function_decl|;
 comment|/** 	 * @param arg0 	 * @param arg1 	 */
 specifier|public
 name|void

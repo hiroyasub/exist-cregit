@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module function definitions for xmldb module.  *  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author ljo  */
+comment|/**  * Module function definitions for xmldb module.  *  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
 end_comment
 
 begin_class
@@ -167,6 +167,21 @@ operator|.
 name|signatures
 index|[
 literal|1
+index|]
+argument_list|,
+name|SetCookie
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|SetCookie
+operator|.
+name|signatures
+index|[
+literal|2
 index|]
 argument_list|,
 name|SetCookie
