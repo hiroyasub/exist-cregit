@@ -616,10 +616,16 @@ argument_list|)
 expr_stmt|;
 comment|//get the collections but not system collections
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 name|alCollections
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 argument_list|()
 decl_stmt|;
 try|try
@@ -637,6 +643,9 @@ name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 name|alAllCollections
 init|=
 name|getCollections
@@ -645,6 +654,9 @@ name|root
 argument_list|,
 operator|new
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1463,12 +1475,18 @@ comment|//THIS IS A COPY FROM ClientFrame
 comment|//TODO: share this code between the two classes
 specifier|private
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 name|getCollections
 parameter_list|(
 name|Collection
 name|root
 parameter_list|,
 name|ArrayList
+argument_list|<
+name|PrettyXmldbURI
+argument_list|>
 name|collectionsList
 parameter_list|)
 throws|throws

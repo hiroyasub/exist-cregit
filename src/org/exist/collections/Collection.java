@@ -892,6 +892,9 @@ decl_stmt|;
 comment|// stores child-collections with their storage address
 specifier|private
 name|ObjectHashSet
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|subcollections
 init|=
 operator|new

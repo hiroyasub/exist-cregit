@@ -2176,6 +2176,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|i
 init|=
 name|current
@@ -2197,9 +2200,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -2283,6 +2283,9 @@ block|}
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|current
@@ -2300,9 +2303,6 @@ block|{
 name|XmldbURI
 name|childUri
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next

@@ -1009,10 +1009,16 @@ name|AbstractStreamListener
 block|{
 specifier|private
 name|Stack
+argument_list|<
+name|ElementContent
+argument_list|>
 name|contentStack
 init|=
 operator|new
 name|Stack
+argument_list|<
+name|ElementContent
+argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|public

@@ -1935,6 +1935,11 @@ name|namespaces
 init|=
 operator|(
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 operator|)
 name|parameters
 operator|.
@@ -1978,6 +1983,11 @@ name|variableDecls
 init|=
 operator|(
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 operator|)
 name|parameters
 operator|.
