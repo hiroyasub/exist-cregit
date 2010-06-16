@@ -37,22 +37,6 @@ name|FunctionDef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|modules
-operator|.
-name|example
-operator|.
-name|EchoFunction
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
