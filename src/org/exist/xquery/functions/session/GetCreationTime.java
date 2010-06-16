@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  ixitar@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,16 @@ operator|.
 name|session
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
 
 begin_comment
 comment|//import org.apache.log4j.Logger;
@@ -67,6 +77,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Dependency
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -80,6 +102,18 @@ operator|.
 name|xquery
 operator|.
 name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Profiler
 import|;
 end_import
 
@@ -128,6 +162,20 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|DateTimeValue
 import|;
 end_import
 
@@ -202,13 +250,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns an attribute stored in the current session or an empty sequence  * if the attribute does not exist.  *   * @author Loren Cahlander  */
+comment|/**  * Returns the time when this session was created, or   * January 1, 1970 GMT if it is an invalidated session  *   * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|GetMaxInactiveInterval
+name|GetCreationTime
 extends|extends
 name|Function
 block|{
@@ -225,7 +273,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-max-inactive-interval"
+literal|"get-creation-time"
 argument_list|,
 name|SessionModule
 operator|.
@@ -236,15 +284,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the maximum time interval, in seconds, that the servlet container "
+literal|"Returns the time when this session was created. If a session does not "
 operator|+
-literal|"will keep this session open between client accesses. After this interval, "
+literal|"exist, a new one is created. If the session is already invalidated, it "
 operator|+
-literal|"the servlet container will invalidate the session. The maximum time interval "
-operator|+
-literal|"can be set with the session:set-max-inactive-interval function. A negative time indicates "
-operator|+
-literal|"the session should never timeout. "
+literal|"returns January 1, 1970 GMT"
 argument_list|,
 literal|null
 argument_list|,
@@ -253,18 +297,18 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|INT
+name|DATE_TIME
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the maximum time interval, in seconds"
+literal|"the date-time when the session was created"
 argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
-name|GetMaxInactiveInterval
+name|GetCreationTime
 parameter_list|(
 name|XQueryContext
 name|context
@@ -292,6 +336,105 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+block|{
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|start
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|DEPENDENCIES
+argument_list|,
+literal|"DEPENDENCIES"
+argument_list|,
+name|Dependency
+operator|.
+name|getDependenciesName
+argument_list|(
+name|this
+operator|.
+name|getDependencies
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|START_SEQUENCES
+argument_list|,
+literal|"CONTEXT SEQUENCE"
+argument_list|,
+name|contextSequence
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|message
+argument_list|(
+name|this
+argument_list|,
+name|Profiler
+operator|.
+name|START_SEQUENCES
+argument_list|,
+literal|"CONTEXT ITEM"
+argument_list|,
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|SessionModule
 name|myModule
 init|=
@@ -409,8 +552,8 @@ condition|)
 block|{
 try|try
 block|{
-name|int
-name|interval
+name|long
+name|creationTime
 init|=
 operator|(
 operator|(
@@ -422,25 +565,19 @@ name|getObject
 argument_list|()
 operator|)
 operator|.
-name|getMaxInactiveInterval
+name|getCreationTime
 argument_list|()
 decl_stmt|;
 return|return
-operator|(
-name|XPathUtil
-operator|.
-name|javaObjectToXPath
+operator|new
+name|DateTimeValue
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
+operator|new
+name|Date
 argument_list|(
-name|interval
+name|creationTime
 argument_list|)
-argument_list|,
-name|context
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -450,22 +587,15 @@ name|ise
 parameter_list|)
 block|{
 return|return
-operator|(
-name|XPathUtil
-operator|.
-name|javaObjectToXPath
+operator|new
+name|DateTimeValue
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
+operator|new
+name|Date
 argument_list|(
-operator|-
-literal|1
+literal|0
 argument_list|)
-argument_list|,
-name|context
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
