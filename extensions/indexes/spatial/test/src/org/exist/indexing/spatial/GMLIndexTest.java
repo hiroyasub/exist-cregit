@@ -830,6 +830,7 @@ name|next
 argument_list|()
 condition|)
 block|{
+comment|//Let be sure we have the right count
 block|}
 name|int
 name|count
