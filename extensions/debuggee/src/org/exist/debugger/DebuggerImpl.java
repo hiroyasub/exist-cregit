@@ -586,6 +586,24 @@ operator|+
 name|eventPort
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|session
+operator|!=
+literal|null
+condition|)
+operator|new
+name|IOException
+argument_list|(
+literal|"Another debugging session is active."
+argument_list|)
+expr_stmt|;
+name|responseCode
+operator|=
+literal|0
+expr_stmt|;
 name|Thread
 name|session
 init|=
@@ -1085,7 +1103,25 @@ name|void
 name|sessionClosed
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+if|if
+condition|(
+operator|!
+name|session
+operator|.
+name|isClosing
+argument_list|()
+condition|)
+name|session
+operator|.
+name|close
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|session
+operator|=
+literal|null
+expr_stmt|;
 block|}
 comment|// weak map???
 specifier|private
