@@ -632,6 +632,47 @@ name|getColumn
 argument_list|()
 return|;
 block|}
+specifier|public
+name|int
+name|getSubExpressionCount
+parameter_list|()
+block|{
+return|return
+literal|1
+return|;
+block|}
+specifier|public
+name|Expression
+name|getSubExpression
+parameter_list|(
+name|int
+name|index
+parameter_list|)
+block|{
+if|if
+condition|(
+name|index
+operator|==
+literal|0
+condition|)
+return|return
+name|expression
+return|;
+throw|throw
+operator|new
+name|IndexOutOfBoundsException
+argument_list|(
+literal|"Index: "
+operator|+
+name|index
+operator|+
+literal|", Size: "
+operator|+
+name|getSubExpressionCount
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 
