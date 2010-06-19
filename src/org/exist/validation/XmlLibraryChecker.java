@@ -132,7 +132,7 @@ name|ClassVersion
 argument_list|(
 literal|"Xerces"
 argument_list|,
-literal|"Xerces-J 2.9.1"
+literal|"Xerces-J 2.10.0"
 argument_list|,
 literal|"org.apache.xerces.impl.Version.getVersion()"
 argument_list|)
