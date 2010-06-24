@@ -6367,23 +6367,14 @@ argument_list|)
 expr_stmt|;
 name|separator
 operator|=
-name|leftVals
+name|keys
 index|[
 name|leftVals
 operator|.
 name|length
-operator|-
-literal|1
 index|]
-operator|.
-name|getSeparator
-argument_list|(
-name|rightVals
-index|[
-literal|0
-index|]
-argument_list|)
 expr_stmt|;
+comment|//.getSeparator(rightVals[0]);
 break|break;
 default|default :
 throw|throw
