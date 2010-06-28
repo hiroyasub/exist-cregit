@@ -15,6 +15,38 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -200,26 +232,6 @@ operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -2563,6 +2575,9 @@ block|}
 comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 specifier|public
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|getCollectionIterator
 parameter_list|()
 block|{
@@ -2575,6 +2590,9 @@ block|}
 comment|// DocumentSet methods
 specifier|public
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|getDocumentIterator
 parameter_list|()
 block|{
@@ -3172,6 +3190,9 @@ class|class
 name|DocumentIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 block|{
 name|int
 name|currentDoc
@@ -3190,7 +3211,7 @@ name|partCount
 return|;
 block|}
 specifier|public
-name|Object
+name|DocumentImpl
 name|next
 parameter_list|()
 block|{
@@ -3228,8 +3249,14 @@ class|class
 name|CollectionIterator
 implements|implements
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 block|{
 name|Iterator
+argument_list|<
+name|Collection
+argument_list|>
 name|iterator
 init|=
 literal|null
@@ -3318,7 +3345,7 @@ return|;
 block|}
 comment|/**          * The method<code>next</code>          *          * @return an<code>Object</code> value          */
 specifier|public
-name|Object
+name|Collection
 name|next
 parameter_list|()
 block|{
