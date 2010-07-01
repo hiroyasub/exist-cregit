@@ -219,22 +219,6 @@ argument_list|(
 name|functions
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|logger
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Instantiating Cache module"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|public
 name|String
