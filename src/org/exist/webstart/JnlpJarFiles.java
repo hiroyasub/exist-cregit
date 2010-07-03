@@ -132,7 +132,7 @@ comment|// Names of core jar files sans ".jar" extension.
 comment|// Use %latest% token in place of a version string.
 specifier|private
 name|String
-name|jars
+name|allJarNames
 index|[]
 init|=
 operator|new
@@ -172,7 +172,7 @@ decl_stmt|;
 comment|/**      * Get jar file specified by file pattern.      * @param folder  Directory containing the jars.      * @param jarFileBaseName  Name of jar file, including %latest% token if      * necessary sans .jar file extension.      * @return File object of jar file, null if not found.      */
 specifier|private
 name|File
-name|getJar
+name|getJarFromLocation
 parameter_list|(
 name|File
 name|folder
@@ -257,52 +257,10 @@ literal|null
 return|;
 block|}
 block|}
-specifier|private
-name|File
-name|getJarPackGz
-parameter_list|(
-name|File
-name|jarName
-parameter_list|)
-block|{
-name|String
-name|path
-init|=
-name|jarName
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|".pack.gz"
-decl_stmt|;
-name|File
-name|pkgz
-init|=
-operator|new
-name|File
-argument_list|(
-name|path
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pkgz
-operator|.
-name|exists
-argument_list|()
-condition|)
-block|{
-return|return
-name|pkgz
-return|;
-block|}
-return|return
-literal|null
-return|;
-block|}
+comment|// Copy jars from map to list
 specifier|private
 name|void
-name|fillJarSet
+name|addToJars
 parameter_list|(
 name|File
 name|jar
@@ -313,6 +271,16 @@ condition|(
 name|jar
 operator|!=
 literal|null
+operator|&&
+name|jar
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|".jar"
+argument_list|)
 condition|)
 block|{
 name|allFiles
@@ -327,34 +295,6 @@ argument_list|,
 name|jar
 argument_list|)
 expr_stmt|;
-name|File
-name|pkgz
-init|=
-name|getJarPackGz
-argument_list|(
-name|jar
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|pkgz
-operator|!=
-literal|null
-condition|)
-block|{
-name|allFiles
-operator|.
-name|put
-argument_list|(
-name|pkgz
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|pkgz
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param jnlpHelper      */
@@ -378,7 +318,7 @@ name|debug
 argument_list|(
 literal|"Number of webstart jars="
 operator|+
-name|jars
+name|allJarNames
 operator|.
 name|length
 argument_list|)
@@ -389,13 +329,13 @@ control|(
 name|String
 name|jarname
 range|:
-name|jars
+name|allJarNames
 control|)
 block|{
 name|File
 name|jar
 init|=
-name|getJar
+name|getJarFromLocation
 argument_list|(
 name|jnlpHelper
 operator|.
@@ -405,7 +345,7 @@ argument_list|,
 name|jarname
 argument_list|)
 decl_stmt|;
-name|fillJarSet
+name|addToJars
 argument_list|(
 name|jar
 argument_list|)
@@ -426,27 +366,19 @@ argument_list|,
 literal|"exist.jar"
 argument_list|)
 decl_stmt|;
-name|fillJarSet
+name|addToJars
 argument_list|(
 name|mainJar
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    public List<String> getCoreJarNames(){
-comment|//        List<String> corejars = new ArrayList<String>();
-comment|//        for(String key : allFiles.keySet()){
-comment|//            if(key.endsWith(".jar")&& !key.equals("exist.jar")){
-comment|//                corejars.add(key);
-comment|//            }
-comment|//        }
-comment|//        return corejars;
-comment|//    }
+comment|/**      *  Get All jar file as list.      *      * @return list of jar files.      */
 specifier|public
 name|List
 argument_list|<
 name|File
 argument_list|>
-name|getCoreJarFiles
+name|getAllWebstartJars
 parameter_list|()
 block|{
 name|List
@@ -473,30 +405,6 @@ name|values
 argument_list|()
 control|)
 block|{
-if|if
-condition|(
-name|file
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|endsWith
-argument_list|(
-literal|".jar"
-argument_list|)
-operator|&&
-operator|!
-name|file
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"exist.jar"
-argument_list|)
-condition|)
-block|{
 name|corejars
 operator|.
 name|add
@@ -505,28 +413,14 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 return|return
 name|corejars
 return|;
 block|}
+comment|/**      * Get file reference for JAR file.      * @param key      * @return      */
 specifier|public
 name|File
-name|getMainJar
-parameter_list|()
-block|{
-return|return
-name|allFiles
-operator|.
-name|get
-argument_list|(
-literal|"exist.jar"
-argument_list|)
-return|;
-block|}
-specifier|public
-name|File
-name|getFile
+name|getJarFile
 parameter_list|(
 name|String
 name|key
