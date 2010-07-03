@@ -184,7 +184,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      *  Write JNLP files (jnlp, jar, gif/jpg) to browser.      * @param response  Object for writing to end user.      * @throws java.io.IOException      */
+comment|/**      *  Write JNLP xml file to browser.      * @param response  Object for writing to end user.      * @throws java.io.IOException      */
 name|void
 name|writeJnlpXML
 parameter_list|(
