@@ -219,13 +219,6 @@ argument_list|(
 name|functions
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Instantiating Cache module"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|String

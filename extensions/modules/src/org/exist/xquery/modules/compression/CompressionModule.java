@@ -249,13 +249,6 @@ argument_list|(
 name|functions
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"Instantiating Compression module"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
