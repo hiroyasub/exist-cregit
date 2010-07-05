@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -109,18 +109,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|btree
@@ -180,11 +168,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  */
+comment|/**  * @author wolf  *   */
 end_comment
 
 begin_comment
-comment|//TODO : rename as NativeIndexValueFactory ? -pb
+comment|// TODO : rename as NativeIndexValueFactory ? -pb
 end_comment
 
 begin_class
@@ -209,27 +197,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//TODO : check
-specifier|public
-specifier|static
-name|int
-name|OFFSET_COLLECTION_ID
-init|=
-literal|0
-decl_stmt|;
-comment|//TODO : check
-specifier|public
-specifier|static
-name|int
-name|OFFSET_TYPE
-init|=
-name|OFFSET_COLLECTION_ID
-operator|+
-name|Collection
-operator|.
-name|LENGTH_COLLECTION_ID
-decl_stmt|;
-comment|//2
 specifier|public
 specifier|static
 name|int
@@ -237,19 +204,7 @@ name|LENGTH_VALUE_TYPE
 init|=
 literal|1
 decl_stmt|;
-comment|//sizeof byte
-specifier|public
-specifier|static
-name|int
-name|OFFSET_VALUE
-init|=
-name|OFFSET_TYPE
-operator|+
-name|ValueIndexFactory
-operator|.
-name|LENGTH_VALUE_TYPE
-decl_stmt|;
-comment|//3
+comment|// sizeof byte
 specifier|public
 specifier|final
 specifier|static
@@ -277,7 +232,7 @@ index|[
 name|start
 index|]
 decl_stmt|;
-comment|//TODO : improve deserialization (use static methods in the org.exist.xquery.Value package
+comment|// TODO : improve deserialization (use static methods in the org.exist.xquery.Value package
 comment|/* xs:string */
 if|if
 condition|(
@@ -369,7 +324,7 @@ name|DATE_TIME
 argument_list|)
 condition|)
 block|{
-comment|//get the dateTime back as a long
+comment|// get the dateTime back as a long
 name|long
 name|value
 init|=
@@ -388,7 +343,7 @@ name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 decl_stmt|;
-comment|//Create a GregorianCalendar from the long (normalized datetime as milliseconds since the Epoch)
+comment|// Create a GregorianCalendar from the long (normalized datetime as milliseconds since the Epoch)
 name|GregorianCalendar
 name|utccal
 init|=
@@ -403,7 +358,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-comment|//Create a XMLGregorianCalendar from the GregorianCalendar
+comment|// Create a XMLGregorianCalendar from the GregorianCalendar
 try|try
 block|{
 name|XMLGregorianCalendar
@@ -471,7 +426,7 @@ name|DATE
 argument_list|)
 condition|)
 block|{
-comment|//get the date back as a long
+comment|// get the date back as a long
 name|long
 name|value
 init|=
@@ -490,7 +445,7 @@ name|LENGTH_VALUE_TYPE
 operator|)
 argument_list|)
 decl_stmt|;
-comment|//Create a GregorianCalendar from the long (normalized datetime as milliseconds since the Epoch)
+comment|// Create a GregorianCalendar from the long (normalized datetime as milliseconds since the Epoch)
 name|GregorianCalendar
 name|utccal
 init|=
@@ -505,7 +460,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-comment|//Create a XMLGregorianCalendar from the GregorianCalendar
+comment|// Create a XMLGregorianCalendar from the GregorianCalendar
 try|try
 block|{
 name|XMLGregorianCalendar
@@ -768,9 +723,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* 	public final static byte[] serialize(Indexable value, short collectionId) throws EXistException { 		//TODO : refactor (only strings are case sensitive) 		return  serialize(value, collectionId, true); 	}	 	*/
-comment|/** 	 * @ deprecated 	 * @param value 	 * @param collectionId 	 * @param caseSensitive 	 * @throws EXistException 	 */
-comment|/* 	public final static byte[] serialize(Indexable value, short collectionId, boolean caseSensitive)  		throws EXistException {	  		// xs:string 		if (Type.subTypeOf(value.getType(), Type.STRING)) 		{			 			final String val = caseSensitive ?  					((StringValue)value).getStringValue() :  					((StringValue)value).getStringValue().toLowerCase(); 			final byte[] data = new byte[UTF8.encoded(val) + (Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE)]; 			ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID); 			data[OFFSET_TYPE] = (byte) value.getType();	// TODO: cast to byte is not safe 			UTF8.encode(val, data, OFFSET_VALUE); 			return data; 		} 		 		// xs:dateTime  		else if(Type.subTypeOf(value.getType(), Type.DATE_TIME))		{ 	    	GregorianCalendar utccal = ((AbstractDateTimeValue)value).calendar.normalize().toGregorianCalendar();	//Get the dateTime (XMLGregorianCalendar) normalized to UTC (as a GregorianCalendar) 			long millis = utccal.getTimeInMillis();			//Get the normalized dateTime as a long (milliseconds since the Epoch) 			byte[] data = new byte[(Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE) + 8];						//alocate a byte array for holding collectionId,Type,long (11 = (byte)short + byte + (byte)long) 			ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID);	//put the collectionId in the byte array 			//TODO : should we keep the actual type, i.e. value.getType() ? 			data[OFFSET_TYPE] = (byte) Type.DATE_TIME;					//put the Type in the byte array 			ByteConversion.longToByte(millis, data, OFFSET_VALUE);			//put the long in the byte array 			return(data);			 		} 		 		// xs:integer  		else if(Type.subTypeOf(value.getType(), Type.INTEGER)) 		{ 	        long l = ((IntegerValue)value).getValue() - Long.MIN_VALUE; 	        byte[] data = new byte[(Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE) + 8]; 			ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID); 			data[OFFSET_TYPE] = (byte) Type.INTEGER; 			ByteConversion.longToByte(l, data, OFFSET_VALUE); 			return data; 		} 		 		// xs:double  		else if (value.getType() == Type.DOUBLE) 		{ 	        final byte[] data = new byte[(Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE) + 8]; 	        ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID); 	        data[OFFSET_TYPE] = (byte) Type.DOUBLE; 	        final long bits = Double.doubleToLongBits(((DoubleValue)value).getValue()) ^ 0x8000000000000000L; 	        ByteConversion.longToByte(bits, data, OFFSET_VALUE); 	        return data; 		} 		 		// xs:float  		else if (value.getType() == Type.FLOAT) 		{ 	        final byte[] data = new byte[(Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE) + 4]; 	        ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID); 	        data[OFFSET_TYPE] = (byte) Type.FLOAT; 	        final int bits = (int)(Float.floatToIntBits(((FloatValue)value).getValue()) ^ 0x80000000); 	        ByteConversion.intToByte(bits, data, OFFSET_VALUE); 	        return data; 		} 	 		// xs:boolean  		else if(value.getType() == Type.BOOLEAN) 		{ 			byte[] data = new byte[(Collection.LENGTH_COLLECTION_ID + ValueIndexFactory.LENGTH_VALUE_TYPE) + 1]; 	        ByteConversion.shortToByte(collectionId, data, OFFSET_COLLECTION_ID); 	        data[OFFSET_TYPE] = Type.BOOLEAN; 	        data[OFFSET_VALUE] = (byte)(((BooleanValue)value).getValue() ? 1 : 0); 	        return data; 		} 		 		 		// unknown!  		else 		{ 			throw new EXistException("Unknown data type for serialization: " + Type.getTypeName(value.getType())); 		}	 	} 	*/
 comment|/** 	 * @param value 	 * @param offset 	 * @throws EXistException 	 */
 specifier|public
 specifier|final
@@ -788,7 +740,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-comment|//TODO : refactor (only strings are case sensitive)
+comment|// TODO : refactor (only strings are case sensitive)
 return|return
 name|serialize
 argument_list|(
@@ -968,7 +920,8 @@ operator|+
 literal|12
 index|]
 decl_stmt|;
-comment|//allocate an appropriately sized byte array for holding Type,long
+comment|// allocate an appropriately sized
+comment|// byte array for holding Type,long
 name|data
 index|[
 name|offset
@@ -981,7 +934,7 @@ name|Type
 operator|.
 name|DATE_TIME
 expr_stmt|;
-comment|//put the Type in the byte array
+comment|// put the Type in the byte array
 name|ByteConversion
 operator|.
 name|intToByteH
@@ -1112,7 +1065,7 @@ operator|(
 name|data
 operator|)
 return|;
-comment|//return the byte array
+comment|// return the byte array
 block|}
 comment|/* xs:date */
 if|else if
@@ -1160,7 +1113,8 @@ operator|+
 literal|7
 index|]
 decl_stmt|;
-comment|//allocate an appropriately sized byte array for holding Type,long
+comment|// allocate an appropriately sized
+comment|// byte array for holding Type,long
 name|data
 index|[
 name|offset
@@ -1173,7 +1127,7 @@ name|Type
 operator|.
 name|DATE
 expr_stmt|;
-comment|//put the Type in the byte array
+comment|// put the Type in the byte array
 name|ByteConversion
 operator|.
 name|intToByteH
@@ -1587,7 +1541,7 @@ init|=
 operator|new
 name|DateTimeValue
 argument_list|(
-literal|"0753-04-21T00:00:00+01:00"
+literal|"0753-04-21T01:00:00+01:00"
 argument_list|)
 decl_stmt|;
 name|byte
@@ -1659,6 +1613,40 @@ argument_list|(
 name|b2
 argument_list|)
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|DateTimeValue
+name|dtv2_
+init|=
+operator|(
+name|DateTimeValue
+operator|)
+name|ValueIndexFactory
+operator|.
+name|deserialize
+argument_list|(
+name|b2
+argument_list|,
+literal|0
+argument_list|,
+name|b2
+operator|.
+name|length
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|dtv2
+operator|!=
+name|dtv2_
+condition|)
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ERROR!"
 argument_list|)
 expr_stmt|;
 name|IntegerValue
@@ -1744,7 +1732,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|XPathException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -1753,20 +1741,6 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-comment|//To change body of catch statement use File | Settings | File Templates.
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-comment|//To change body of catch statement use File | Settings | File Templates.
 block|}
 block|}
 specifier|private
