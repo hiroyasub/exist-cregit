@@ -576,7 +576,7 @@ name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|xpqservice
