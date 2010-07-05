@@ -1523,9 +1523,13 @@ argument_list|)
 expr_stmt|;
 name|setUser
 argument_list|(
-name|SecurityManager
+name|pool
 operator|.
-name|SYSTEM_USER
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|readOnly
@@ -12691,9 +12695,16 @@ argument_list|(
 name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
 argument_list|(
 literal|"removing binary resource "
 operator|+

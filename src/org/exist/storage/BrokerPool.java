@@ -2817,9 +2817,10 @@ name|broker
 init|=
 name|get
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -4091,9 +4092,10 @@ name|broker
 operator|.
 name|setUser
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|GUEST
+name|getGuestAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Inform the other threads that we have a new-comer
@@ -4328,9 +4330,10 @@ name|broker
 operator|.
 name|setUser
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|GUEST
+name|getGuestAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Inform the other threads that someone is gone
@@ -4575,9 +4578,10 @@ name|broker
 operator|.
 name|setUser
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -5153,9 +5157,10 @@ name|broker
 operator|.
 name|setUser
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker
