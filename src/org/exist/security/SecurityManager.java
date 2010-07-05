@@ -306,6 +306,16 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 function_decl|;
+specifier|public
+name|User
+name|getSystemAccount
+parameter_list|()
+function_decl|;
+specifier|public
+name|User
+name|getGuestAccount
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
