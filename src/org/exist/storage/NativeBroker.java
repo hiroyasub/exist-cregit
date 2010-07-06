@@ -1523,15 +1523,12 @@ argument_list|)
 expr_stmt|;
 name|setUser
 argument_list|(
-name|pool
+name|SecurityManager
 operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getSystemAccount
-argument_list|()
+name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
+comment|//        setUser( pool.getSecurityManager().getSystemAccount() );
 name|readOnly
 operator|=
 name|pool
