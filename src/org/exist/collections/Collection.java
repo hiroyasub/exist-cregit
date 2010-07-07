@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -899,6 +899,9 @@ name|subcollections
 init|=
 operator|new
 name|ObjectHashSet
+argument_list|<
+name|XmldbURI
+argument_list|>
 argument_list|(
 literal|19
 argument_list|)
@@ -1256,7 +1259,7 @@ name|childName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Add a document to the collection.      *      *@param  doc      */
+comment|/**      * Add a document to the collection.      *      * @param  doc      */
 specifier|public
 name|void
 name|addDocument
@@ -1335,7 +1338,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Return an iterator over all subcollections.      *      * The list of subcollections is copied first, so modifications      * via the iterator have no affect.      *      *@return    Description of the Return Value      */
+comment|/**      *  Return an iterator over all subcollections.      *      * The list of subcollections is copied first, so modifications      * via the iterator have no affect.      *      * @return    Description of the Return Value      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -1469,6 +1472,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|subcollections
@@ -1485,9 +1491,6 @@ control|)
 block|{
 name|childName
 operator|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
@@ -1662,6 +1665,9 @@ argument_list|)
 condition|)
 block|{
 name|List
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|subColls
 init|=
 literal|null
@@ -1743,35 +1749,12 @@ block|{
 comment|// process the child collections
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|subColls
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|XmldbURI
 name|childName
-init|=
-operator|(
-name|XmldbURI
-operator|)
+range|:
 name|subColls
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+control|)
+block|{
 comment|//TODO : resolve URI !
 name|Collection
 name|child
@@ -1861,6 +1844,9 @@ argument_list|)
 condition|)
 block|{
 name|List
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|subColls
 init|=
 literal|null
@@ -1941,19 +1927,6 @@ name|i
 operator|++
 control|)
 block|{
-name|XmldbURI
-name|childName
-init|=
-operator|(
-name|XmldbURI
-operator|)
-name|subColls
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
 name|uris
 index|[
 name|i
@@ -1963,7 +1936,12 @@ name|path
 operator|.
 name|appendInternal
 argument_list|(
-name|childName
+name|subColls
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2309,6 +2287,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|String
+argument_list|>
 name|iter
 init|=
 name|documents
@@ -2333,9 +2314,6 @@ index|[
 name|i
 index|]
 operator|=
-operator|(
-name|String
-operator|)
 name|iter
 operator|.
 name|next
@@ -2483,7 +2461,7 @@ operator|*
 name|DOCUMENT_SIZE
 return|;
 block|}
-comment|/**      *  Return the number of child-collections managed by this      * collection.      *      *@return    The childCollectionCount value      */
+comment|/**      * Return the number of child-collections managed by this collection.      *      * @return The childCollectionCount value      */
 specifier|public
 name|int
 name|getChildCollectionCount
@@ -2544,7 +2522,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      *@param  broker      *@param  path  The name of the document (without collection path)      *@return   the document      */
+comment|/**      * Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param  broker      * @param  path  The name of the document (without collection path)      * @return the document      */
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -2571,9 +2549,6 @@ expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|documents
 operator|.
 name|get
@@ -2641,7 +2616,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @deprecated Use other method      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
+comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @deprecated Use getDocumentWithLock(DBBroker broker, XmldbURI uri, int lockMode)      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2700,9 +2675,6 @@ expr_stmt|;
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|documents
 operator|.
 name|get
@@ -2756,9 +2728,6 @@ name|rawPath
 parameter_list|)
 block|{
 return|return
-operator|(
-name|DocumentImpl
-operator|)
 name|documents
 operator|.
 name|get
@@ -2767,7 +2736,7 @@ name|rawPath
 argument_list|)
 return|;
 block|}
-comment|/**      * Release any locks held on the document.      * @deprecated Use other method      * @param doc      */
+comment|/**      * Release any locks held on the document.      * @deprecated Use releaseDocument(DocumentImpl doc, int mode)      * @param doc      */
 specifier|public
 name|void
 name|releaseDocument
@@ -2828,7 +2797,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Returns the number of documents in this collection.      *      *@return    The documentCount value      */
+comment|/**      * Returns the number of documents in this collection.      *      * @return The documentCount value      */
 specifier|public
 name|int
 name|getDocumentCount
@@ -2901,7 +2870,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**      *  Get the internal id.      *      *@return    The id value      */
+comment|/**      * Get the internal id.      *      * @return    The id value      */
 specifier|public
 name|int
 name|getId
@@ -2911,7 +2880,7 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/**      *  Get the name of this collection.      *      *@return    The name value      */
+comment|/**      * Get the name of this collection.      *      * @return    The name value      */
 specifier|public
 name|XmldbURI
 name|getURI
@@ -2921,7 +2890,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/**      *  Returns the parent-collection.      *      *@return    The parent-collection or null if this      *is the root collection.      */
+comment|/**      * Returns the parent-collection.      *      * @return The parent-collection or null if this is the root collection.      */
 specifier|public
 name|XmldbURI
 name|getParentURI
@@ -2949,7 +2918,7 @@ name|removeLastSegment
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the permissions attribute of the Collection object      *      *@return    The permissions value      */
+comment|/**      * Gets the permissions attribute of the Collection object      *      * @return The permissions value      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -3016,7 +2985,7 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      *  Check if the collection has a child document.      *      *@param  uri  the name (without path) of the document      *@return A value of true when the collection has the document identified.      */
+comment|/**      * Check if the collection has a child document.      *      * @param  uri  the name (without path) of the document      * @return A value of true when the collection has the document identified.      */
 specifier|public
 name|boolean
 name|hasDocument
@@ -3037,7 +3006,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      *  Check if the collection has a sub-collection.      *      *@param  name  the name of the subcollection (without path).      *@return A value of true when the subcollection exists.      */
+comment|/**      * Check if the collection has a sub-collection.      *      * @param  name  the name of the subcollection (without path).      * @return A value of true when the subcollection exists.      */
 specifier|public
 name|boolean
 name|hasSubcollection
@@ -3126,7 +3095,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      *  Returns an iterator on the child-documents in this collection.      *      *@return A iterator of all the documents in the collection.      */
+comment|/**      * Returns an iterator on the child-documents in this collection.      *      * @return A iterator of all the documents in the collection.      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -3386,7 +3355,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Remove the specified sub-collection.      *      *@param  name  Description of the Parameter      */
+comment|/**      * Remove the specified sub-collection.      *      * @param  name  Description of the Parameter      */
 specifier|public
 name|void
 name|removeCollection
@@ -3431,7 +3400,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Remove the specified document from the collection.      *      *@param  transaction      *@param  broker      *@param  docUri      */
+comment|/**      * Remove the specified document from the collection.      *      * @param  transaction      * @param  broker      * @param  docUri      */
 specifier|public
 name|void
 name|removeXMLResource
@@ -4344,7 +4313,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param source      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      *       * @param transaction      * @param broker      * @param info      * @param source      * @param privileged      *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4530,7 +4499,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param data      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      *       * @param transaction      * @param broker      * @param info      * @param data      * @param privileged      *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4673,7 +4642,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param node      * @param privileged      * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      *       * @param transaction      * @param broker      * @param info      * @param node      * @param privileged      *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|void
 name|store
@@ -4760,7 +4729,7 @@ throws|,
 name|SAXException
 function_decl|;
 block|}
-comment|/** Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      * @param transaction      * @param broker      * @param info      * @param privileged      * @param doParse      * @throws EXistException      * @throws SAXException      */
+comment|/**       * Stores an XML document in the database. {@link #validateXMLResourceInternal(org.exist.storage.txn.Txn,      * org.exist.storage.DBBroker, org.exist.xmldb.XmldbURI, CollectionConfiguration, org.exist.collections.Collection.ValidateBlock)}       * should have been called previously in order to acquire a write lock for the document. Launches the finish trigger.      *       * @param transaction      * @param broker      * @param info      * @param privileged      * @param doParse      *       * @throws EXistException      * @throws SAXException      */
 specifier|private
 name|void
 name|storeXMLInternal
@@ -4796,6 +4765,13 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -5141,7 +5117,7 @@ throws|,
 name|EXistException
 function_decl|;
 block|}
-comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri         * @param data        * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri         * @param data        *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -5192,7 +5168,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param source      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri      * @param source      *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -5343,7 +5319,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param node      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri      * @param node      *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -5429,7 +5405,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      * @param transaction      * @param broker      * @param docUri      * @param doValidate      * @return An {@link IndexInfo} with a write lock on the document.       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri      * @param doValidate      *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|private
 name|IndexInfo
 name|validateXMLResourceInternal
@@ -5543,9 +5519,6 @@ argument_list|)
 decl_stmt|;
 name|oldDoc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|documents
 operator|.
 name|get
@@ -5669,6 +5642,13 @@ argument_list|,
 name|oldDoc
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -5699,6 +5679,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -5841,6 +5828,13 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -7141,6 +7135,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -8312,7 +8313,7 @@ operator|++
 name|refCount
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#decReferenceCount()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#decReferenceCount()      */
 specifier|public
 name|int
 name|decReferenceCount
@@ -8329,7 +8330,7 @@ else|:
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)      */
 specifier|public
 name|void
 name|setReferenceCount
@@ -8343,7 +8344,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#setTimestamp(int)      */
 specifier|public
 name|void
 name|setTimestamp
@@ -8359,7 +8360,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#getTimestamp()      */
 specifier|public
 name|int
 name|getTimestamp
@@ -8369,7 +8370,7 @@ return|return
 name|timestamp
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#release()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#release()      */
 specifier|public
 name|boolean
 name|sync
