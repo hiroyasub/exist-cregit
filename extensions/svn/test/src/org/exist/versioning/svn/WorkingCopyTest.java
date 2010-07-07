@@ -354,19 +354,19 @@ name|repositoryID
 init|=
 literal|null
 decl_stmt|;
-comment|//	private String URL = "https://support.syntactica.com/exist_svn/";
 specifier|private
 name|String
 name|URL
 init|=
-literal|"svn://localhost/"
+literal|"https://support.syntactica.com/exist_svn/"
 decl_stmt|;
+comment|//	private String URL = "svn://localhost/"; //change local = true if use local svn server
 specifier|private
 specifier|static
 name|boolean
 name|local
 init|=
-literal|true
+literal|false
 decl_stmt|;
 annotation|@
 name|Test
@@ -406,18 +406,18 @@ parameter_list|)
 block|{
 comment|//
 block|}
-comment|//        String username = "existtest";
-comment|//        String password = "existtest";
 name|String
 name|username
 init|=
-literal|"harry"
+literal|"existtest"
 decl_stmt|;
 name|String
 name|password
 init|=
-literal|"harryssecret"
+literal|"existtest"
 decl_stmt|;
+comment|//        String username = "harry";
+comment|//        String password = "harryssecret";
 name|String
 name|importFile
 init|=
