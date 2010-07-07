@@ -169,6 +169,11 @@ name|DBBroker
 name|sysBroker
 parameter_list|)
 function_decl|;
+specifier|public
+name|BrokerPool
+name|getDatabase
+parameter_list|()
+function_decl|;
 name|boolean
 name|isXACMLEnabled
 parameter_list|()

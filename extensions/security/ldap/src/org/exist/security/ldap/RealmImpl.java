@@ -35,8 +35,6 @@ begin_class
 specifier|public
 class|class
 name|RealmImpl
-implements|implements
-name|Realm
 block|{  }
 end_class
 

@@ -530,7 +530,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|/*              * creates a new version comtrolled directory in a repository and               * displays what revision the repository was committed to              */
+comment|/*              * creates a new version controlled directory in a repository and               * displays what revision the repository was committed to              */
 name|committedRevision
 operator|=
 name|wc

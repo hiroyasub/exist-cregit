@@ -3019,9 +3019,7 @@ block|}
 name|Realm
 name|realm
 init|=
-operator|new
-name|RealmImpl
-argument_list|()
+literal|null
 decl_stmt|;
 annotation|@
 name|Override
@@ -3073,6 +3071,18 @@ return|return
 name|SecurityManager
 operator|.
 name|GUEST
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|BrokerPool
+name|getDatabase
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
 return|;
 block|}
 block|}
