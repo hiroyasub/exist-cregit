@@ -495,7 +495,7 @@ literal|"increment"
 argument_list|,
 name|Type
 operator|.
-name|DURATION
+name|DAY_TIME_DURATION
 argument_list|,
 name|Cardinality
 operator|.

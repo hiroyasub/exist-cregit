@@ -201,12 +201,8 @@ name|ZERO_DECIMAL
 init|=
 name|BigDecimal
 operator|.
-name|valueOf
-argument_list|(
-literal|0
-argument_list|)
+name|ZERO
 decl_stmt|;
-comment|// TODO: replace with BigDecimal.ZERO in JDK 1.5
 specifier|protected
 specifier|static
 specifier|final
