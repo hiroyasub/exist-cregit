@@ -2511,14 +2511,7 @@ name|SIGNAL_STARTUP
 argument_list|)
 expr_stmt|;
 comment|//create the security manager
-name|securityManager
-operator|=
-operator|new
-name|SecurityManagerImpl
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
+comment|//        securityManager = new SecurityManagerImpl(this);
 comment|//REFACTOR : construct then configure
 name|cacheManager
 operator|=
@@ -2930,6 +2923,14 @@ operator|=
 name|OPERATING
 expr_stmt|;
 comment|//wake-up the security manager
+name|securityManager
+operator|=
+operator|new
+name|SecurityManagerImpl
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|securityManager
 operator|.
 name|attach
