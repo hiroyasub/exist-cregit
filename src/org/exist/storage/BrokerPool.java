@@ -357,6 +357,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|SecurityManagerImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|btree
@@ -2458,62 +2472,6 @@ return|return
 literal|true
 return|;
 block|}
-specifier|protected
-name|SecurityManager
-name|newSecurityManager
-parameter_list|()
-block|{
-try|try
-block|{
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|smClass
-init|=
-operator|(
-name|Class
-argument_list|<
-name|?
-argument_list|>
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|PROPERTY_SECURITY_CLASS
-argument_list|)
-decl_stmt|;
-return|return
-operator|(
-name|SecurityManager
-operator|)
-name|smClass
-operator|.
-name|newInstance
-argument_list|()
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Exception while instantiating security manager class."
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
 comment|/**Initializes the database instance. 	 * @throws EXistException 	 */
 specifier|protected
 name|void
@@ -2550,6 +2508,15 @@ expr_stmt|;
 name|signalSystemStatus
 argument_list|(
 name|SIGNAL_STARTUP
+argument_list|)
+expr_stmt|;
+comment|//create the security manager
+name|securityManager
+operator|=
+operator|new
+name|SecurityManagerImpl
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 comment|//REFACTOR : construct then configure
@@ -2958,21 +2925,12 @@ expr_stmt|;
 comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
-comment|//create the security manager
-comment|//TODO : why only the first broker has a security manager ? Global or attached to each broker ?
-comment|// WM: there's only one security manager per BrokerPool, but it needs a DBBroker instance to read
-comment|// the system collection.
-name|SecurityManager
-name|localSecurityManager
-init|=
-name|newSecurityManager
-argument_list|()
-decl_stmt|;
-name|securityManager
+name|status
 operator|=
-literal|null
+name|OPERATING
 expr_stmt|;
-name|localSecurityManager
+comment|//wake-up the security manager
+name|securityManager
 operator|.
 name|attach
 argument_list|(
@@ -2980,14 +2938,6 @@ name|this
 argument_list|,
 name|broker
 argument_list|)
-expr_stmt|;
-name|securityManager
-operator|=
-name|localSecurityManager
-expr_stmt|;
-name|status
-operator|=
-name|OPERATING
 expr_stmt|;
 comment|//have to do this after initializing = false
 comment|// so that the policies collection is saved
@@ -4501,11 +4451,6 @@ name|broker
 parameter_list|)
 block|{
 name|securityManager
-operator|=
-name|newSecurityManager
-argument_list|()
-expr_stmt|;
-name|securityManager
 operator|.
 name|attach
 argument_list|(
@@ -4514,6 +4459,7 @@ argument_list|,
 name|broker
 argument_list|)
 expr_stmt|;
+comment|//XXX: reload
 name|LOG
 operator|.
 name|debug
