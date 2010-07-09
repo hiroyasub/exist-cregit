@@ -171,7 +171,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"the value '"
+literal|"err:XPTY0004: the value '"
 operator|+
 name|duration
 operator|+

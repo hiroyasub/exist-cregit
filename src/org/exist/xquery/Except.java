@@ -347,7 +347,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Error XPTY0004 : except operand is not a node sequence"
+literal|"Err:XPTY0004 : except operand is not a node sequence"
 argument_list|)
 throw|;
 name|result
@@ -396,7 +396,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Error XPTY0004 : except operand is not a node sequence"
+literal|"Err:XPTY0004 : except operand is not a node sequence"
 argument_list|)
 throw|;
 if|if

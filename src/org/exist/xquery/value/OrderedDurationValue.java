@@ -180,7 +180,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot compare unordered "
+literal|"err:XPTY0004: cannot compare unordered "
 operator|+
 name|Type
 operator|.
@@ -218,7 +218,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot compare "
+literal|"err:XPTY0004: cannot compare "
 operator|+
 name|Type
 operator|.
@@ -264,7 +264,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot compare "
+literal|"err:XPTY0004: cannot compare "
 operator|+
 name|Type
 operator|.
@@ -997,7 +997,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot add "
+literal|"err:XPTY0004: cannot add "
 operator|+
 name|Type
 operator|.
@@ -1260,7 +1260,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot substract "
+literal|"err:XPTY0004: cannot substract "
 operator|+
 name|Type
 operator|.

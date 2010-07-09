@@ -197,7 +197,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"The value '"
+literal|"err:XPTY0004: The value '"
 operator|+
 name|duration
 operator|+
@@ -274,7 +274,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot construct "
+literal|"err:FORG0001: cannot construct "
 operator|+
 name|Type
 operator|.
@@ -585,7 +585,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot cast 'xs:yearMonthDuration(\""
+literal|"err:XPTY0004: cannot cast 'xs:yearMonthDuration(\""
 operator|+
 name|getStringValue
 argument_list|()
@@ -719,7 +719,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOCA0005: Operand is not a number"
+literal|"err:FOCA0005: Operand is not a number"
 argument_list|)
 throw|;
 block|}
@@ -741,7 +741,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FODT0002: Multiplication by infinity overflow"
+literal|"err:FODT0002: Multiplication by infinity overflow"
 argument_list|)
 throw|;
 block|}
@@ -882,7 +882,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOCA0005: Operand is not a number"
+literal|"err:FOCA0005: Operand is not a number"
 argument_list|)
 throw|;
 block|}
@@ -925,7 +925,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FODT0002: Division by zero overflow"
+literal|"err:FODT0002: Division by zero overflow"
 argument_list|)
 throw|;
 block|}
@@ -1059,7 +1059,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0006: value of type "
+literal|"err:FORG0006: value of type "
 operator|+
 name|Type
 operator|.

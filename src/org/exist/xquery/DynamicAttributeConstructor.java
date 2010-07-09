@@ -686,7 +686,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Error XQDY0025: element has more than one attribute '"
+literal|"Err:XQDY0025: element has more than one attribute '"
 operator|+
 name|qn
 operator|+

@@ -696,6 +696,8 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+literal|"err:XPST0017: "
+operator|+
 literal|"number of arguments to function "
 operator|+
 name|getName

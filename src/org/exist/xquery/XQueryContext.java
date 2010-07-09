@@ -10318,7 +10318,7 @@ name|XPathException
 argument_list|(
 name|call
 argument_list|,
-literal|"Call to undeclared function: "
+literal|"err:XPST0017: Call to undeclared function: "
 operator|+
 name|call
 operator|.

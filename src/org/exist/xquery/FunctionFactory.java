@@ -1864,6 +1864,13 @@ name|buf
 operator|.
 name|append
 argument_list|(
+literal|"err:XPST0017: "
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 literal|"Unexpectedly received "
 argument_list|)
 expr_stmt|;
