@@ -304,7 +304,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function near() requires two arguments"
+literal|"err:XPST0017: Function near() requires two arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -557,7 +557,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function phrase() requires two arguments"
+literal|"err:XPST0017: Function phrase() requires two arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -694,7 +694,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function starts-with() requires two or three arguments"
+literal|"err:XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 if|if
@@ -720,7 +720,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function starts-with() requires two or three arguments"
+literal|"err:XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -895,7 +895,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017 : Function ends-with() requires two or three arguments"
+literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 if|if
@@ -921,7 +921,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017 : Function ends-with() requires two or three arguments"
+literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -1096,7 +1096,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function contains() requires two or three arguments"
+literal|"err:XPST0017: Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 if|if
@@ -1122,7 +1122,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function contains() requires two or three arguments"
+literal|"err:XPST0017: Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -1297,7 +1297,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function equals() requires two or three arguments"
+literal|"err:XPST0017: Function equals() requires two or three arguments"
 argument_list|)
 throw|;
 if|if
@@ -1323,7 +1323,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"XPST0017: Function equals() requires two or three arguments"
+literal|"err:XPST0017: Function equals() requires two or three arguments"
 argument_list|)
 throw|;
 name|PathExpr
@@ -1525,7 +1525,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Wrong number of arguments for constructor function"
+literal|"err:XPST0017: Wrong number of arguments for constructor function"
 argument_list|)
 throw|;
 name|PathExpr
@@ -1834,7 +1834,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Function "
+literal|"err:XPST0017: Function "
 operator|+
 name|qname
 operator|.
@@ -2090,7 +2090,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Function "
+literal|"err:XPST0017: Function "
 operator|+
 name|qname
 operator|.
