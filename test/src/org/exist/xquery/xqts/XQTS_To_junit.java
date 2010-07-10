@@ -427,7 +427,7 @@ literal|"xmldb:exist:///db/XQTS"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 if|if
@@ -450,7 +450,7 @@ literal|"xmldb:exist:///db/XQTS"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 if|if
