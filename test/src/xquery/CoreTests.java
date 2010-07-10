@@ -8,7 +8,7 @@ end_package
 begin_class
 specifier|public
 class|class
-name|AxesTests
+name|CoreTests
 extends|extends
 name|TestRunner
 block|{
