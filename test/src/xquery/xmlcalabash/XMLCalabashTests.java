@@ -30,7 +30,7 @@ name|getDirectory
 parameter_list|()
 block|{
 return|return
-literal|"test/src/xquery/xmlcalabash"
+literal|"extensions/modules/src/org.exist.xquery/modules/xmlcalabash"
 return|;
 block|}
 block|}
