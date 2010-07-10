@@ -361,7 +361,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Err:XPTY0004 : intersect operand is not a node sequence"
+literal|"err:XPTY0004 : intersect operand is not a node sequence"
 argument_list|)
 throw|;
 if|if

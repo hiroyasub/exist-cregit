@@ -318,7 +318,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Err:XPTY0004 : union operand is not a node sequence"
+literal|"err:XPTY0004 : union operand is not a node sequence"
 argument_list|)
 throw|;
 name|result
@@ -357,7 +357,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Err:XPTY0004 : union operand is not a node sequence"
+literal|"err:XPTY0004 : union operand is not a node sequence"
 argument_list|)
 throw|;
 name|result
@@ -406,7 +406,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Err:XPTY0004 : union operand is not a node sequence"
+literal|"err:XPTY0004 : union operand is not a node sequence"
 argument_list|)
 throw|;
 if|if

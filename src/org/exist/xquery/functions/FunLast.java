@@ -419,7 +419,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FONC0001: undefined context item"
+literal|"err:XPDY0002: undefined context item"
 argument_list|)
 throw|;
 if|else if

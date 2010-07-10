@@ -1168,7 +1168,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"duration "
+literal|"err:FODT0003: duration "
 operator|+
 name|offset
 operator|+
@@ -1214,7 +1214,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"duration "
+literal|"err:FODT0003: duration "
 operator|+
 name|offset
 operator|+

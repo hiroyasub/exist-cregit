@@ -1726,7 +1726,7 @@ name|DOMException
 operator|.
 name|INUSE_ATTRIBUTE_ERR
 argument_list|,
-literal|"XQTY0024: An attribute node cannot follow a node that is not an attribute node."
+literal|"err:XQTY0024: An attribute node cannot follow a node that is not an attribute node."
 argument_list|)
 throw|;
 name|int
@@ -1782,7 +1782,7 @@ name|DOMException
 operator|.
 name|INUSE_ATTRIBUTE_ERR
 argument_list|,
-literal|"Error XQDY0025: element has more than one attribute '"
+literal|"err:XQDY0025: element has more than one attribute '"
 operator|+
 name|qname
 operator|+
