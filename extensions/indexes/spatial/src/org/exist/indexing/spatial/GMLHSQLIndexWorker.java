@@ -409,8 +409,10 @@ name|broker
 argument_list|)
 expr_stmt|;
 comment|//TODO : evaluate one connection per worker
-comment|/*         try { 	         conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +  					index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
+comment|/*         try {             conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +                  index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|boolean
 name|saveGeometryNode
@@ -1045,6 +1047,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|boolean
 name|removeDocumentNode
@@ -1163,6 +1167,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|int
 name|removeDocument
@@ -1231,6 +1237,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|int
 name|removeCollection
@@ -1319,6 +1327,8 @@ block|}
 block|}
 comment|//Since an embedded HSQL has only one connection available (unless I'm totally dumb)
 comment|//acquire and release the connection from the index, which is *the* connection's owner
+annotation|@
+name|Override
 specifier|protected
 name|Connection
 name|acquireConnection
@@ -1337,6 +1347,8 @@ name|broker
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|releaseConnection
@@ -1357,6 +1369,8 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|NodeSet
 name|search
@@ -1475,9 +1489,6 @@ condition|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
@@ -1897,9 +1908,6 @@ init|=
 operator|new
 name|NodeProxy
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|nodeId
@@ -2282,6 +2290,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|Map
 argument_list|<
@@ -2462,6 +2472,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|Geometry
 name|getGeometryForNode
@@ -2698,6 +2710,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|Geometry
 index|[]
@@ -2800,9 +2814,6 @@ condition|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
@@ -3032,9 +3043,6 @@ init|=
 operator|new
 name|NodeProxy
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|nodeId
@@ -3142,6 +3150,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|AtomicValue
 name|getGeometricPropertyForNode
@@ -3501,6 +3511,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|ValueSequence
 name|getGeometricPropertyForNodes
@@ -3604,9 +3616,6 @@ condition|)
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|it
 operator|.
 name|next
@@ -3801,7 +3810,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|BooleanValue
+name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 argument_list|)
@@ -3834,7 +3843,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|DoubleValue
+name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 argument_list|)
@@ -3867,7 +3876,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|StringValue
+name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 argument_list|)
@@ -3898,7 +3907,7 @@ name|result
 operator|.
 name|add
 argument_list|(
-name|Base64Binary
+name|AtomicValue
 operator|.
 name|EMPTY_VALUE
 argument_list|)
@@ -3972,9 +3981,6 @@ init|=
 operator|new
 name|NodeProxy
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|nodeId
@@ -4206,6 +4212,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|boolean
 name|checkIndex
@@ -5160,9 +5168,6 @@ argument_list|(
 operator|new
 name|NodeProxy
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|doc
 argument_list|,
 name|nodeId
@@ -5194,7 +5199,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 operator|.
 name|GML_NS
 operator|.
@@ -5227,7 +5232,7 @@ argument_list|()
 operator|+
 literal|"' namespace. '"
 operator|+
-name|GMLHSQLIndexWorker
+name|AbstractGMLJDBCIndexWorker
 operator|.
 name|GML_NS
 operator|+
