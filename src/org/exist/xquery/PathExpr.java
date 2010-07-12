@@ -814,9 +814,6 @@ decl_stmt|;
 name|Expression
 name|expr
 init|=
-operator|(
-name|Expression
-operator|)
 name|steps
 operator|.
 name|get
@@ -894,9 +891,6 @@ control|)
 block|{
 name|expr
 operator|=
-operator|(
-name|Expression
-operator|)
 name|iter
 operator|.
 name|next

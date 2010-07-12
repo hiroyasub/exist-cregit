@@ -273,7 +273,7 @@ name|e
 operator|.
 name|prependMessage
 argument_list|(
-literal|"Error checking function parameter "
+literal|"err:XPTY0004: checking function parameter "
 operator|+
 operator|(
 name|i
