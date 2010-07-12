@@ -618,6 +618,8 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+literal|"err:FODC0005: "
+operator|+
 name|e
 operator|.
 name|getMessage

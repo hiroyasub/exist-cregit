@@ -765,7 +765,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Cannot compare "
+literal|"err:FORG0006: Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -849,7 +849,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Cannot compare "
+literal|"err:FORG0006: Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -940,7 +940,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Cannot compare "
+literal|"err:FORG0006: Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -1079,7 +1079,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Cannot compare "
+literal|"err:FORG0006: Cannot compare "
 operator|+
 name|Type
 operator|.

@@ -631,7 +631,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0004: Context item is not a node; got: "
+literal|"XPTY0004: Context item is not a node; got: "
 operator|+
 name|Type
 operator|.

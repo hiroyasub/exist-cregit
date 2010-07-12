@@ -653,7 +653,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002: Undefined context item"
+literal|"XPTY0002: Undefined context item"
 argument_list|)
 throw|;
 name|Sequence
@@ -684,7 +684,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0004: Context item is not a node"
+literal|"XPTY0004: Context item is not a node"
 argument_list|)
 throw|;
 else|else

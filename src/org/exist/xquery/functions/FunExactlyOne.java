@@ -465,7 +465,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"fn:exactly-one called with a sequence containing "
+literal|"err:FORG0005: fn:exactly-one called with a sequence containing "
 operator|+
 name|result
 operator|.

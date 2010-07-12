@@ -422,7 +422,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"fn:zero-or-one called with a sequence containing "
+literal|"err:FORG0003: fn:zero-or-one called with a sequence containing "
 operator|+
 name|result
 operator|.

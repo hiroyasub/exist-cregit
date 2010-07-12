@@ -1289,7 +1289,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Invalid regular expression: "
+literal|"err:FORX0001: Invalid regular expression: "
 operator|+
 name|e
 operator|.
@@ -1312,6 +1312,8 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+literal|"FORX0001/FORX0003/FORX0004:"
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -1334,7 +1336,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Invalid replace expression: "
+literal|"err:FORX0004: Invalid replace expression: "
 operator|+
 name|e
 operator|.

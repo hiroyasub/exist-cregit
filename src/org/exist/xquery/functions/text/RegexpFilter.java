@@ -1230,7 +1230,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Invalid regular expression: "
+literal|"err:FORX0001: Invalid regular expression: "
 operator|+
 name|e
 operator|.
@@ -1343,7 +1343,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Invalid regular expression flag: "
+literal|"err:FORX0001: Invalid regular expression flag: "
 operator|+
 name|ch
 argument_list|)

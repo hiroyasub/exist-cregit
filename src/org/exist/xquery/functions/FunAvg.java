@@ -606,7 +606,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPTY0004: '"
+literal|"err:FORG0006: '"
 operator|+
 name|Type
 operator|.
@@ -631,7 +631,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+literal|"err:FORG0006: '"
 operator|+
 name|Type
 operator|.
@@ -719,7 +719,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPTY0004: '"
+literal|"err:FORG0006: '"
 operator|+
 name|Type
 operator|.
@@ -744,7 +744,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+literal|"err:FORG0006: '"
 operator|+
 name|Type
 operator|.
@@ -871,7 +871,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: "
+literal|"err:FORG0006: "
 operator|+
 name|e
 operator|.

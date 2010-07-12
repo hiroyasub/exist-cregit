@@ -798,7 +798,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Invalid regular expression: "
+literal|"err:FORX0001: Invalid regular expression: "
 operator|+
 name|e
 operator|.

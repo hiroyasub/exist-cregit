@@ -690,7 +690,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"concat requires at least two arguments"
+literal|"err:XPST0017: concat requires at least two arguments"
 argument_list|)
 throw|;
 block|}
