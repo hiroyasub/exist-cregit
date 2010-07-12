@@ -7951,6 +7951,15 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|result
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
 operator|!
 name|result
 condition|)
