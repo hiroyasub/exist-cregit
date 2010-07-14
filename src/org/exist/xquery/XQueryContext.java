@@ -2677,9 +2677,8 @@ name|ctx
 operator|.
 name|profiler
 operator|=
-name|this
-operator|.
-name|profiler
+name|getProfiler
+argument_list|()
 expr_stmt|;
 name|ctx
 operator|.
