@@ -1246,6 +1246,11 @@ block|}
 block|}
 block|}
 block|}
+name|result
+operator|.
+name|removeDuplicates
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|context
