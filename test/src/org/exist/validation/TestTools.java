@@ -93,6 +93,10 @@ name|exist
 operator|.
 name|security
 operator|.
+name|internal
+operator|.
+name|aider
+operator|.
 name|UnixStylePermission
 import|;
 end_import

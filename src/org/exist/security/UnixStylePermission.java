@@ -85,6 +85,8 @@ init|=
 operator|new
 name|UnixStylePermission
 argument_list|(
+literal|null
+argument_list|,
 name|DEFAULT_PERM
 argument_list|)
 decl_stmt|;
@@ -112,19 +114,40 @@ name|permissions
 init|=
 name|DEFAULT_PERM
 decl_stmt|;
-specifier|public
-name|UnixStylePermission
-parameter_list|()
-block|{
-block|}
-comment|/**      *  Construct a Permission with given permissions       *      *@param  permissions  Description of the Parameter      */
+specifier|private
+name|SecurityManager
+name|sm
+decl_stmt|;
 specifier|public
 name|UnixStylePermission
 parameter_list|(
+name|SecurityManager
+name|sm
+parameter_list|)
+block|{
+name|this
+operator|.
+name|sm
+operator|=
+name|sm
+expr_stmt|;
+block|}
+comment|/**      * Construct a Permission with given permissions       *      * @param  sm           Description of the Parameter      * @param  permissions  Description of the Parameter      */
+specifier|public
+name|UnixStylePermission
+parameter_list|(
+name|SecurityManager
+name|sm
+parameter_list|,
 name|int
 name|permissions
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|sm
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|permissions
@@ -132,10 +155,13 @@ operator|=
 name|permissions
 expr_stmt|;
 block|}
-comment|/**      *  Construct a permission with given user, group and      *  permissions      *      *@param  user         Description of the Parameter      *@param  group        Description of the Parameter      *@param  permissions  Description of the Parameter      */
+comment|/**      * Construct a permission with given user, group and permissions      *      * @param  sm           Description of the Parameter      * @param  user         Description of the Parameter      * @param  group        Description of the Parameter      * @param  permissions  Description of the Parameter      */
 specifier|public
 name|UnixStylePermission
 parameter_list|(
+name|SecurityManager
+name|sm
+parameter_list|,
 name|String
 name|user
 parameter_list|,
@@ -146,6 +172,13 @@ name|int
 name|permissions
 parameter_list|)
 block|{
+name|this
+argument_list|(
+name|sm
+argument_list|,
+name|permissions
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|owner
@@ -157,12 +190,6 @@ operator|.
 name|ownerGroup
 operator|=
 name|group
-expr_stmt|;
-name|this
-operator|.
-name|permissions
-operator|=
-name|permissions
 expr_stmt|;
 block|}
 comment|/**      *  Get the active permissions for group      *      *@return    The groupPermissions value      */

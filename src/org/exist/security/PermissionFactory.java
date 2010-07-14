@@ -51,6 +51,13 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+name|SecurityManager
+name|sm
+init|=
+literal|null
+decl_stmt|;
+specifier|public
+specifier|static
 specifier|final
 name|Permission
 name|getPermission
@@ -65,7 +72,9 @@ name|Permission
 operator|)
 operator|new
 name|UnixStylePermission
-argument_list|()
+argument_list|(
+name|sm
+argument_list|)
 return|;
 block|}
 catch|catch
@@ -108,6 +117,8 @@ operator|)
 operator|new
 name|UnixStylePermission
 argument_list|(
+name|sm
+argument_list|,
 name|perm
 argument_list|)
 return|;
@@ -158,6 +169,8 @@ operator|)
 operator|new
 name|UnixStylePermission
 argument_list|(
+name|sm
+argument_list|,
 name|user
 argument_list|,
 name|group
