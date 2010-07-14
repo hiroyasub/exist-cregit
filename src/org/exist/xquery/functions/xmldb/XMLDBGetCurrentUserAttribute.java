@@ -330,9 +330,9 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|BooleanValue
+name|Sequence
 operator|.
-name|FALSE
+name|EMPTY_SEQUENCE
 return|;
 block|}
 name|String
