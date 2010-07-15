@@ -4414,9 +4414,6 @@ name|session
 operator|.
 name|getUser
 argument_list|()
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 operator|||
 name|manager
@@ -4529,9 +4526,6 @@ argument_list|(
 name|session
 operator|.
 name|getUser
-argument_list|()
-operator|.
-name|getName
 argument_list|()
 argument_list|)
 operator|||
