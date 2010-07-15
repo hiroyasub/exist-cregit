@@ -46,7 +46,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|XSLTModule
+name|XSLModule
 extends|extends
 name|AbstractInternalModule
 block|{
@@ -56,7 +56,7 @@ specifier|static
 name|String
 name|NAMESPACE_URI
 init|=
-literal|"http://exist-db.org/xquery/xslt"
+literal|"http://www.w3.org/1999/XSL/Transform"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -64,7 +64,7 @@ specifier|static
 name|String
 name|PREFIX
 init|=
-literal|"xslt"
+literal|"xsl"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -400,7 +400,7 @@ block|, 		}
 decl_stmt|;
 comment|/** 	 * @param functions 	 */
 specifier|public
-name|XSLTModule
+name|XSLModule
 parameter_list|()
 block|{
 name|super

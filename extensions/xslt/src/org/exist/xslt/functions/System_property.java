@@ -206,11 +206,11 @@ name|QName
 argument_list|(
 literal|"system-property"
 argument_list|,
-name|XSLTModule
+name|XSLModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|XSLTModule
+name|XSLModule
 operator|.
 name|PREFIX
 argument_list|)
