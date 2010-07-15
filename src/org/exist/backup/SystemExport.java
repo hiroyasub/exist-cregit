@@ -2046,6 +2046,9 @@ argument_list|()
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attr
@@ -2068,6 +2071,9 @@ name|getPermissions
 argument_list|()
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2886,6 +2892,9 @@ argument_list|()
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attr
@@ -2908,6 +2917,9 @@ name|getPermissions
 argument_list|()
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -61,14 +61,6 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|Permission
-name|SYSTEM_DEFAULT
-init|=
-literal|null
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|int
 name|READ
 init|=
@@ -119,37 +111,37 @@ name|int
 name|getGroupPermissions
 parameter_list|()
 function_decl|;
-comment|/**      *  Gets the user who owns this resource      *      *@return    The owner value      */
+comment|/**      * Gets the user who owns this resource      *      * @return The owner value      */
 specifier|public
-name|String
+name|User
 name|getOwner
 parameter_list|()
 function_decl|;
-comment|/**      *  Gets the group       *      *@return    The ownerGroup value      */
+comment|/**      * Gets the group       *      * @return The ownerGroup value      */
 specifier|public
-name|String
+name|Group
 name|getOwnerGroup
 parameter_list|()
 function_decl|;
-comment|/**      *  Get the permissions      *      *@return    The permissions value      */
+comment|/**      * Get the permissions      *      * @return The permissions value      */
 specifier|public
 name|int
 name|getPermissions
 parameter_list|()
 function_decl|;
-comment|/**      *  Get the active permissions for others      *      *@return    The publicPermissions value      */
+comment|/**      * Get the active permissions for others      *      * @return The publicPermissions value      */
 specifier|public
 name|int
 name|getPublicPermissions
 parameter_list|()
 function_decl|;
-comment|/**      *  Get the active permissions for the owner      *      *@return    The userPermissions value      */
+comment|/**      * Get the active permissions for the owner      *      * @return The userPermissions value      */
 specifier|public
 name|int
 name|getUserPermissions
 parameter_list|()
 function_decl|;
-comment|/**      *  Read the Permission from an input stream      *      *@param  istream          Description of the Parameter      *@exception  IOException  Description of the Exception      */
+comment|/**      * Read the Permission from an input stream      *      * @param  istream          Description of the Parameter      * @exception  IOException  Description of the Exception      * @deprecated use one on implementation level      */
 specifier|public
 name|void
 name|read
@@ -160,16 +152,25 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      *  Set the owner group      *      *@param  group  The new group value      */
+comment|/**      * Set the owner group      *      * @param  group  The group value      */
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|Group
+name|group
+parameter_list|)
+function_decl|;
+comment|/**      * Set the owner group      *      * @param  name The group's name      */
 specifier|public
 name|void
 name|setGroup
 parameter_list|(
 name|String
-name|group
+name|name
 parameter_list|)
 function_decl|;
-comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
+comment|/**      * Sets permissions for group      *      * @param  perm  The new groupPermissions value      */
 specifier|public
 name|void
 name|setGroupPermissions
@@ -178,7 +179,7 @@ name|int
 name|perm
 parameter_list|)
 function_decl|;
-comment|/**      *  Set the owner passed as User object      *      *@param  user  The new owner value      */
+comment|/**      * Set the owner passed as User object      *      * @param  user  The new owner value      */
 specifier|public
 name|void
 name|setOwner
@@ -187,7 +188,7 @@ name|User
 name|user
 parameter_list|)
 function_decl|;
-comment|/**      *  Set the owner      *      *@param  user  The new owner value      */
+comment|/**      * Set the owner      *      * @param  user  The new owner value      */
 specifier|public
 name|void
 name|setOwner

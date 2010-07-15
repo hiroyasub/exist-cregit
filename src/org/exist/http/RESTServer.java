@@ -9433,6 +9433,9 @@ name|perm
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attrs
@@ -9450,6 +9453,9 @@ argument_list|,
 name|perm
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;

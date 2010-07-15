@@ -55,6 +55,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Group
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Permission
 import|;
 end_import
@@ -102,31 +114,14 @@ name|UnixStylePermission
 implements|implements
 name|Permission
 block|{
-comment|//default Unix style permissions for a resource
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|DEFAULT_PERM
-init|=
-literal|0755
-decl_stmt|;
 comment|//owner, default to DBA
 specifier|private
-name|String
+name|User
 name|owner
-init|=
-name|SecurityManager
-operator|.
-name|DBA_USER
 decl_stmt|;
 specifier|private
-name|String
+name|Group
 name|ownerGroup
-init|=
-name|SecurityManager
-operator|.
-name|DBA_GROUP
 decl_stmt|;
 comment|//permissions
 specifier|private
@@ -139,6 +134,16 @@ specifier|public
 name|UnixStylePermission
 parameter_list|()
 block|{
+name|owner
+operator|=
+operator|new
+name|UserAider
+argument_list|(
+name|SecurityManager
+operator|.
+name|DBA_USER
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Construct a Permission with given permissions       *      * @param  permissions  Description of the Parameter      */
 specifier|public
@@ -148,6 +153,9 @@ name|int
 name|permissions
 parameter_list|)
 block|{
+name|this
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|permissions
@@ -173,13 +181,21 @@ name|this
 operator|.
 name|owner
 operator|=
+operator|new
+name|UserAider
+argument_list|(
 name|user
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|ownerGroup
 operator|=
+operator|new
+name|GroupAider
+argument_list|(
 name|group
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -206,7 +222,7 @@ return|;
 block|}
 comment|/**      * Gets the user who owns this resource      *      * @return    The owner value      */
 specifier|public
-name|String
+name|User
 name|getOwner
 parameter_list|()
 block|{
@@ -216,7 +232,7 @@ return|;
 block|}
 comment|/**      * Gets the group       *      * @return    The ownerGroup value      */
 specifier|public
-name|String
+name|Group
 name|getOwnerGroup
 parameter_list|()
 block|{
@@ -262,7 +278,23 @@ operator|>>
 literal|6
 return|;
 block|}
-comment|/**      *  Set the owner group      *      *@param  group  The new group value      */
+comment|/**      * Set the owner group      *      * @param  group  The group value      */
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|Group
+name|group
+parameter_list|)
+block|{
+name|this
+operator|.
+name|ownerGroup
+operator|=
+name|group
+expr_stmt|;
+block|}
+comment|/**      * Set the owner group      *      * @param  group  The group name      */
 specifier|public
 name|void
 name|setGroup
@@ -275,7 +307,11 @@ name|this
 operator|.
 name|ownerGroup
 operator|=
+operator|new
+name|GroupAider
+argument_list|(
 name|group
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
@@ -307,34 +343,12 @@ name|User
 name|user
 parameter_list|)
 block|{
-comment|// FIXME: assume guest identity if user gets lost due to a database corruption
-if|if
-condition|(
-name|user
-operator|==
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|owner
-operator|=
-name|SecurityManager
-operator|.
-name|GUEST_USER
-expr_stmt|;
-block|}
-else|else
 name|this
 operator|.
 name|owner
 operator|=
 name|user
-operator|.
-name|getName
-argument_list|()
 expr_stmt|;
-comment|//this.ownerGroup = user.getPrimaryGroup();
 block|}
 comment|/**      *  Set the owner      *      *@param  user  The new owner value      */
 specifier|public
@@ -349,7 +363,11 @@ name|this
 operator|.
 name|owner
 operator|=
+operator|new
+name|UserAider
+argument_list|(
 name|user
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Set permissions using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write permissions for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  str                  The new permissions      *@exception  SyntaxException  Description of the Exception      */

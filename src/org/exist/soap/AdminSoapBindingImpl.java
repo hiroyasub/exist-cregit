@@ -3889,6 +3889,9 @@ name|perms
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|dd
@@ -3898,6 +3901,9 @@ argument_list|(
 name|perms
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4063,6 +4069,9 @@ name|perms
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|desc
@@ -4072,6 +4081,9 @@ argument_list|(
 name|perms
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5979,6 +5991,9 @@ else|else
 block|{
 name|u
 operator|=
+operator|(
+name|UserImpl
+operator|)
 name|manager
 operator|.
 name|getUser
@@ -8011,6 +8026,9 @@ name|perm
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|p
@@ -8020,6 +8038,9 @@ argument_list|(
 name|perm
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8382,6 +8403,9 @@ name|perm
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -8394,6 +8418,9 @@ argument_list|(
 name|perm
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8745,6 +8772,9 @@ name|perm
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -8757,6 +8787,9 @@ argument_list|(
 name|perm
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;

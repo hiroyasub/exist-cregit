@@ -76,12 +76,21 @@ name|MD5_ENCODING
 init|=
 literal|2
 decl_stmt|;
-comment|/** 	 *  Add the user to a group 	 * 	 *@param  group  The feature to be added to the Group attribute 	 */
+comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
 specifier|public
 name|void
 name|addGroup
 parameter_list|(
 name|String
+name|name
+parameter_list|)
+function_decl|;
+comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
+specifier|public
+name|void
+name|addGroup
+parameter_list|(
+name|Group
 name|group
 parameter_list|)
 function_decl|;

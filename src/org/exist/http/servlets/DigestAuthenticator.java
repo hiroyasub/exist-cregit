@@ -227,6 +227,9 @@ decl_stmt|;
 name|UserImpl
 name|user
 init|=
+operator|(
+name|UserImpl
+operator|)
 name|secman
 operator|.
 name|getUser

@@ -11,39 +11,11 @@ name|exist
 operator|.
 name|security
 operator|.
-name|openid
+name|internal
+operator|.
+name|aider
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|Override
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
 
 begin_import
 import|import
@@ -64,18 +36,6 @@ operator|.
 name|security
 operator|.
 name|Group
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UserAttributes
 import|;
 end_import
 
@@ -115,18 +75,6 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|openid4java
-operator|.
-name|discovery
-operator|.
-name|Identifier
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -134,27 +82,40 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|UserImpl
+name|UserAider
 implements|implements
 name|User
 block|{
-name|Identifier
-name|_identifier
-init|=
-literal|null
+name|String
+name|name
 decl_stmt|;
 specifier|public
-name|UserImpl
+name|UserAider
 parameter_list|(
-name|Identifier
-name|identifier
+name|String
+name|name
 parameter_list|)
 block|{
-name|_identifier
+name|this
+operator|.
+name|name
 operator|=
-name|identifier
+name|name
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see java.security.Principal#getName() 	 */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -167,6 +128,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(org.exist.security.Group) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -179,6 +141,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -191,6 +154,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -204,6 +168,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -212,14 +177,12 @@ index|[]
 name|getGroups
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
-operator|new
-name|String
-index|[
-literal|0
-index|]
+literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -232,6 +195,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getUID() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -239,11 +203,12 @@ name|int
 name|getUID
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
-operator|-
-literal|1
+literal|0
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -256,6 +221,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -271,6 +237,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -281,7 +248,9 @@ name|String
 name|passwd
 parameter_list|)
 block|{
+comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -294,6 +263,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -306,6 +276,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#authenticate(java.lang.Object) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -316,10 +287,12 @@ name|Object
 name|credentials
 parameter_list|)
 block|{
+comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#isAuthenticated() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -327,14 +300,12 @@ name|boolean
 name|isAuthenticated
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
-operator|(
-name|_identifier
-operator|!=
-literal|null
-operator|)
+literal|false
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getRealm() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -347,6 +318,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setUID(int) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -359,6 +331,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPassword() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -366,10 +339,12 @@ name|String
 name|getPassword
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getDigestPassword() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -377,136 +352,12 @@ name|String
 name|getDigestPassword
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getName
-parameter_list|()
-block|{
-name|String
-name|name
-init|=
-literal|""
-decl_stmt|;
-if|if
-condition|(
-name|attributes
-operator|.
-name|containsKey
-argument_list|(
-name|UserAttributes
-operator|.
-name|FIRTSNAME
-argument_list|)
-condition|)
-name|name
-operator|+=
-name|attributes
-operator|.
-name|get
-argument_list|(
-name|UserAttributes
-operator|.
-name|FIRTSNAME
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|attributes
-operator|.
-name|containsKey
-argument_list|(
-name|UserAttributes
-operator|.
-name|LASTNAME
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|name
-operator|!=
-literal|""
-condition|)
-name|name
-operator|+=
-literal|" "
-expr_stmt|;
-name|name
-operator|+=
-name|attributes
-operator|.
-name|get
-argument_list|(
-name|UserAttributes
-operator|.
-name|LASTNAME
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|name
-operator|.
-name|equals
-argument_list|(
-literal|""
-argument_list|)
-condition|)
-name|name
-operator|+=
-name|attributes
-operator|.
-name|get
-argument_list|(
-name|UserAttributes
-operator|.
-name|FULLNAME
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|name
-operator|.
-name|equals
-argument_list|(
-literal|""
-argument_list|)
-condition|)
-return|return
-name|_identifier
-operator|.
-name|getIdentifier
-argument_list|()
-return|;
-return|return
-name|name
-return|;
-block|}
-specifier|private
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-name|attributes
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-decl_stmt|;
-comment|/**      * Add a named attribute.      *      * @param name      * @param value      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setAttribute(java.lang.String, java.lang.Object) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -520,45 +371,9 @@ name|Object
 name|value
 parameter_list|)
 block|{
-name|String
-name|id
-init|=
-name|UserAttributes
-operator|.
-name|alias
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|id
-operator|==
-literal|null
-condition|)
-name|attributes
-operator|.
-name|put
-argument_list|(
-name|name
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-else|else
-name|attributes
-operator|.
-name|put
-argument_list|(
-name|id
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
+comment|// TODO Auto-generated method stub
 block|}
-comment|/**      * Get the named attribute value.      *      * @param name The String that is the name of the attribute.      * @return The value associated with the name or null if no value is associated with the name.      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getAttribute(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -569,57 +384,12 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|String
-name|id
-init|=
-name|UserAttributes
-operator|.
-name|alias
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|id
-operator|!=
+comment|// TODO Auto-generated method stub
+return|return
 literal|null
-condition|)
-return|return
-name|attributes
-operator|.
-name|get
-argument_list|(
-name|id
-argument_list|)
-return|;
-if|if
-condition|(
-name|name
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"id"
-argument_list|)
-condition|)
-return|return
-name|_identifier
-operator|.
-name|getIdentifier
-argument_list|()
-return|;
-return|return
-name|attributes
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
 return|;
 block|}
-comment|/**      * Returns the set of attributes names.      *      * @return the Set of attribute names.      */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getAttributeNames() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -630,11 +400,9 @@ argument_list|>
 name|getAttributeNames
 parameter_list|()
 block|{
+comment|// TODO Auto-generated method stub
 return|return
-name|attributes
-operator|.
-name|keySet
-argument_list|()
+literal|null
 return|;
 block|}
 block|}

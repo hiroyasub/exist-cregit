@@ -1640,6 +1640,9 @@ name|currentPerms
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attr
@@ -1659,6 +1662,9 @@ argument_list|,
 name|currentPerms
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2068,6 +2074,9 @@ index|]
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attr
@@ -2090,6 +2099,9 @@ name|i
 index|]
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;

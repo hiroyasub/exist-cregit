@@ -124,6 +124,9 @@ name|permissions
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 return|;
 block|}
 comment|/** 		 * Set the owner of this resource for purposes of permission management. 		 * 		 * @param owner the new owner of this resource 		 */
@@ -153,6 +156,9 @@ return|return
 name|permissions
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 return|;
 block|}
