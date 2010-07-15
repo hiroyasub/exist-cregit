@@ -881,9 +881,6 @@ if|if
 condition|(
 name|user
 operator|.
-name|getName
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 name|owner
@@ -932,6 +929,9 @@ operator|.
 name|equals
 argument_list|(
 name|ownerGroup
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 condition|)
 return|return
