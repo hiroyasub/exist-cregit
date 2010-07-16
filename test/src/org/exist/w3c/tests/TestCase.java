@@ -1195,24 +1195,14 @@ operator|.
 name|read
 argument_list|()
 condition|)
-if|if
-condition|(
-name|compare
-operator|.
-name|equals
-argument_list|(
-literal|"Fragment"
-argument_list|)
-condition|)
+comment|//							if (compare.equals("Fragment"))
 name|reader
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-else|else
-return|return
-literal|false
-return|;
+comment|//							else
+comment|//								return false;
 block|}
 block|}
 block|}
