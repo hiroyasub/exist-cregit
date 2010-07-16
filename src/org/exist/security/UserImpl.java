@@ -2590,7 +2590,7 @@ return|return
 name|_realm
 return|;
 block|}
-specifier|protected
+specifier|private
 name|boolean
 name|authenticated
 init|=

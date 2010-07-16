@@ -87,6 +87,13 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|String
+name|_TIMEZONE
+init|=
+literal|"Timezone"
+decl_stmt|;
+specifier|public
+specifier|static
+name|String
 name|FIRTSNAME
 init|=
 literal|"http://axschema.org/namePerson/first"
@@ -125,6 +132,13 @@ name|String
 name|LANGUAGE
 init|=
 literal|"http://axschema.org/pref/language"
+decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|TIMEZONE
+init|=
+literal|"http://axschema.org/pref/timezone"
 decl_stmt|;
 comment|//alias -> axschema url
 specifier|public
@@ -188,6 +202,13 @@ argument_list|(
 name|_LANGUAGE
 argument_list|,
 name|LANGUAGE
+argument_list|)
+expr_stmt|;
+name|addAlias
+argument_list|(
+name|_TIMEZONE
+argument_list|,
+name|TIMEZONE
 argument_list|)
 expr_stmt|;
 block|}
