@@ -1072,9 +1072,9 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
-literal|"Tried to substract "
+literal|"err:XPTY0004: Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -1172,9 +1172,9 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|XPathException
 argument_list|(
-literal|"Tried to substract "
+literal|"err:XPTY0004: Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -1376,7 +1376,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Tried to convert '"
+literal|"err:XPTY0004: Tried to convert '"
 operator|+
 operator|(
 name|NumericValue
