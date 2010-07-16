@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension  *  Copyright (C) 2006-10 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist SQL Module Extension  *  Copyright (C) 2006-10 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,48 +16,6 @@ operator|.
 name|sql
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|Connection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|SQLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
-import|;
-end_import
 
 begin_import
 import|import
@@ -107,8 +65,50 @@ name|XQueryContext
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|Connection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|SQLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
 begin_comment
-comment|/**  * eXist SQL Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against SQL Databases, returning an XML representation of the result set.  *   * @author Adam Retter<adam@exist-db.org>  * @author ljo  * @serial 2010-03-18  * @version 1.2  *   * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist SQL Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows queries against SQL Databases, returning an XML representation of the result  * set.</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   ljo  * @version  1.2  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  * @serial   2010-03-18  */
 end_comment
 
 begin_class
@@ -338,7 +338,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|NAMESPACE_URI
+operator|)
 return|;
 block|}
 annotation|@
@@ -349,7 +351,9 @@ name|getDefaultPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|PREFIX
+operator|)
 return|;
 block|}
 annotation|@
@@ -360,7 +364,9 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|"A module for performing SQL queries against Databases, returning XML representations of the result sets."
+operator|)
 return|;
 block|}
 annotation|@
@@ -371,10 +377,12 @@ name|getReleaseVersion
 parameter_list|()
 block|{
 return|return
+operator|(
 name|RELEASED_IN_VERSION
+operator|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery      *      * @param context      *            The Context of the XQuery containing the Connection      * @param connectionUID      *            The UID of the Connection to retrieve from the Context of the      *            XQuery      */
+comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery.      *      * @param   context        The Context of the XQuery containing the Connection      * @param   connectionUID  The UID of the Connection to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
 specifier|public
 specifier|final
 specifier|static
@@ -389,6 +397,7 @@ name|connectionUID
 parameter_list|)
 block|{
 return|return
+operator|(
 name|retrieveObjectFromContextMap
 argument_list|(
 name|context
@@ -399,9 +408,10 @@ name|CONNECTIONS_CONTEXTVAR
 argument_list|,
 name|connectionUID
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Stores a Connection in the Context of an XQuery      *      * @param context      *            The Context of the XQuery to store the Connection in      * @param con      *            The connection to store      *      * @return A unique ID representing the connection      */
+comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the Connection in      * @param   con      The connection to store      *      * @return  A unique ID representing the connection      */
 specifier|public
 specifier|final
 specifier|static
@@ -417,6 +427,7 @@ name|con
 parameter_list|)
 block|{
 return|return
+operator|(
 name|storeObjectInContextMap
 argument_list|(
 name|context
@@ -427,9 +438,10 @@ name|CONNECTIONS_CONTEXTVAR
 argument_list|,
 name|con
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored PreparedStatement from the Context of an XQuery      *      * @param context      *            The Context of the XQuery containing the PreparedStatement      * @param preparedStatementUID      *            The UID of the PreparedStatement to retrieve from the Context of the XQuery      */
+comment|/**      * Retrieves a previously stored PreparedStatement from the Context of an XQuery.      *      * @param   context               The Context of the XQuery containing the PreparedStatement      * @param   preparedStatementUID  The UID of the PreparedStatement to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
 specifier|public
 specifier|final
 specifier|static
@@ -444,6 +456,7 @@ name|preparedStatementUID
 parameter_list|)
 block|{
 return|return
+operator|(
 name|retrieveObjectFromContextMap
 argument_list|(
 name|context
@@ -454,9 +467,10 @@ name|PREPARED_STATEMENTS_CONTEXTVAR
 argument_list|,
 name|preparedStatementUID
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Stores a PreparedStatement in the Context of an XQuery      *      * @param context      *            The Context of the XQuery to store the PreparedStatement in      * @param preparedStatement      *            The PreparedStatement to store      *      * @return A unique ID representing the PreparedStatement      */
+comment|/**      * Stores a PreparedStatement in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the PreparedStatement in      * @param   stmt     preparedStatement The PreparedStatement to store      *      * @return  A unique ID representing the PreparedStatement      */
 specifier|public
 specifier|final
 specifier|static
@@ -472,6 +486,7 @@ name|stmt
 parameter_list|)
 block|{
 return|return
+operator|(
 name|storeObjectInContextMap
 argument_list|(
 name|context
@@ -482,11 +497,11 @@ name|PREPARED_STATEMENTS_CONTEXTVAR
 argument_list|,
 name|stmt
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored Object from the Context of an XQuery      *      * @param context      *            The Context of the XQuery containing the Object      * @param objectUID      *            The UID of the Object to retrieve from the Context of the      *            XQuery      */
+comment|/**      * Retrieves a previously stored Object from the Context of an XQuery.      *      * @param   context         The Context of the XQuery containing the Object      * @param   contextMapName  DOCUMENT ME!      * @param   objectUID       The UID of the Object to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
 specifier|private
-specifier|final
 specifier|static
 parameter_list|<
 name|T
@@ -536,22 +551,25 @@ literal|null
 condition|)
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 comment|// get the connection
 return|return
+operator|(
 name|map
 operator|.
 name|get
 argument_list|(
 name|objectUID
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/**      * Stores an Object in the Context of an XQuery      *      * @param context      *            The Context of the XQuery to store the Object in      *      * @param contextMapName      *          The name of the context map      * @param o      *            The Object to store      *      * @return A unique ID representing the Object      */
+comment|/**      * Stores an Object in the Context of an XQuery.      *      * @param   context         The Context of the XQuery to store the Object in      * @param   contextMapName  The name of the context map      * @param   o               The Object to store      *      * @return  A unique ID representing the Object      */
 specifier|private
-specifier|final
 specifier|static
 specifier|synchronized
 parameter_list|<
@@ -642,12 +660,13 @@ name|map
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|uid
+operator|)
 return|;
 block|}
-comment|/**      * Closes all the open DB Connections for the specified XQueryContext      *      * @param xqueryContext      *            The context to close JDBC Connections for      */
+comment|/**      * Closes all the open DB Connections for the specified XQueryContext.      *      * @param  xqueryContext  The context to close JDBC Connections for      */
 specifier|private
-specifier|final
 specifier|static
 name|void
 name|closeAllConnections
@@ -777,9 +796,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Closes all the open DB PreparedStatements for the specified XQueryContext      *      * @param xqueryContext      *            The context to close JDBC PreparedStatements for      */
+comment|/**      * Closes all the open DB PreparedStatements for the specified XQueryContext.      *      * @param  xqueryContext  The context to close JDBC PreparedStatements for      */
 specifier|private
-specifier|final
 specifier|static
 name|void
 name|closeAllPreparedStatements
@@ -912,7 +930,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns a Unique ID based on the System Time      *      * @return The Unique ID      */
+comment|/**      * Returns a Unique ID based on the System Time.      *      * @return  The Unique ID      */
 specifier|private
 specifier|static
 specifier|synchronized
@@ -921,11 +939,13 @@ name|getUID
 parameter_list|()
 block|{
 return|return
+operator|(
 name|currentUID
 operator|++
+operator|)
 return|;
 block|}
-comment|/**      * Resets the Module Context and closes any DB connections for the      * XQueryContext      *      * @param xqueryContext      *            The XQueryContext      */
+comment|/**      * Resets the Module Context and closes any DB connections for the XQueryContext.      *      * @param  xqueryContext  The XQueryContext      */
 annotation|@
 name|Override
 specifier|public

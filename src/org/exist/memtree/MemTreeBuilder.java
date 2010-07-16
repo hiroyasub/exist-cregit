@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,30 @@ operator|.
 name|memtree
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|Attributes
+import|;
+end_import
 
 begin_import
 import|import
@@ -83,30 +107,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|Attributes
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this class to build a new in-memory DOM document.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Use this class to build a new in-memory DOM document.  *  * @author  Wolfgang<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -197,14 +197,16 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the created document object. 	 *  	 */
+comment|/**      * Returns the created document object.      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|DocumentImpl
 name|getDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|doc
+operator|)
 return|;
 block|}
 specifier|public
@@ -213,7 +215,9 @@ name|getContext
 parameter_list|()
 block|{
 return|return
+operator|(
 name|context
+operator|)
 return|;
 block|}
 specifier|public
@@ -222,13 +226,15 @@ name|getSize
 parameter_list|()
 block|{
 return|return
+operator|(
 name|doc
 operator|.
 name|getSize
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/** 	 * Start building the document. 	 */
+comment|/**      * Start building the document.      */
 specifier|public
 name|void
 name|startDocument
@@ -247,7 +253,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Start building the document. 	 */
+comment|/**      * Start building the document.      *      * @param  explicitCreation  DOCUMENT ME!      */
 specifier|public
 name|void
 name|startDocument
@@ -269,14 +275,14 @@ name|explicitCreation
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * End building the document. 	 */
+comment|/**      * End building the document.      */
 specifier|public
 name|void
 name|endDocument
 parameter_list|()
 block|{
 block|}
-comment|/** 	 * Create a new element. 	 *  	 * @return the node number of the created element 	 */
+comment|/**      * Create a new element.      *      * @param   namespaceURI  DOCUMENT ME!      * @param   localName     DOCUMENT ME!      * @param   qname         DOCUMENT ME!      * @param   attributes    DOCUMENT ME!      *      * @return  the node number of the created element      */
 specifier|public
 name|int
 name|startElement
@@ -332,6 +338,7 @@ name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 name|prefix
 operator|=
 operator|(
@@ -353,6 +360,7 @@ argument_list|)
 else|:
 literal|""
 expr_stmt|;
+block|}
 name|QName
 name|qn
 init|=
@@ -367,15 +375,17 @@ name|prefix
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
 name|startElement
 argument_list|(
 name|qn
 argument_list|,
 name|attributes
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/** 	 * Create a new element. 	 *  	 * @return the node number of the created element 	 */
+comment|/**      * Create a new element.      *      * @param   qn          DOCUMENT ME!      * @param   attributes  DOCUMENT ME!      *      * @return  the node number of the created element      */
 specifier|public
 name|int
 name|startElement
@@ -473,7 +483,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
-comment|//					|| attrNS.equals(Namespaces.EXIST_NS))) {
+comment|//                  || attrNS.equals(Namespaces.EXIST_NS))) {
 name|int
 name|p
 init|=
@@ -558,9 +568,11 @@ block|}
 comment|// update links
 if|if
 condition|(
+operator|(
 name|level
 operator|+
 literal|1
+operator|)
 operator|>=
 name|prevNodeInLevel
 operator|.
@@ -617,6 +629,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|doc
 operator|.
 name|next
@@ -626,6 +639,7 @@ index|]
 operator|=
 name|nodeNr
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|next
@@ -651,7 +665,9 @@ operator|++
 name|level
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|private
@@ -679,9 +695,11 @@ condition|)
 block|{
 comment|// an xml:id attribute.
 return|return
+operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_CDATA_TYPE
+operator|)
 return|;
 block|}
 if|if
@@ -695,11 +713,15 @@ operator|.
 name|ATTR_ID_TYPE
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_ID_TYPE
+operator|)
 return|;
+block|}
 if|else if
 condition|(
 name|type
@@ -711,11 +733,15 @@ operator|.
 name|ATTR_IDREF_TYPE
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_IDREF_TYPE
+operator|)
 return|;
+block|}
 if|else if
 condition|(
 name|type
@@ -727,25 +753,33 @@ operator|.
 name|ATTR_IDREFS_TYPE
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_IDREFS_TYPE
+operator|)
 return|;
+block|}
 else|else
+block|{
 return|return
+operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_CDATA_TYPE
+operator|)
 return|;
 block|}
-comment|/** 	 * Close the last element created. 	 */
+block|}
+comment|/**      * Close the last element created.      */
 specifier|public
 name|void
 name|endElement
 parameter_list|()
 block|{
-comment|//		System.out.println("end-element: level = " + level);
+comment|//      System.out.println("end-element: level = " + level);
 name|prevNodeInLevel
 index|[
 name|level
@@ -776,10 +810,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 literal|0
 operator|<
 name|lastNode
+operator|)
 operator|&&
+operator|(
 name|level
 operator|==
 name|doc
@@ -788,10 +825,12 @@ name|getTreeLevel
 argument_list|(
 name|lastNode
 argument_list|)
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|getNodeType
@@ -802,7 +841,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|&&
+operator|(
 name|proxy
 operator|.
 name|getNodeType
@@ -811,6 +852,7 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
@@ -828,7 +870,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 if|if
@@ -858,6 +902,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|references
@@ -871,7 +916,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|&&
+operator|(
 name|proxy
 operator|.
 name|getNodeType
@@ -880,6 +927,7 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
@@ -912,7 +960,9 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 block|}
@@ -949,7 +999,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -999,10 +1051,12 @@ comment|//TODO :
 comment|//1) call linkNode(nodeNr); ?
 comment|//2) is there a relationship between lastNode and nodeNr ?
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
-comment|/** 	 * Create a new text node. 	 *  	 * @return the node number of the created node 	 */
+comment|/**      * Create a new text node.      *      * @param   ch     DOCUMENT ME!      * @param   start  DOCUMENT ME!      * @param   len    DOCUMENT ME!      *      * @return  the node number of the created node      */
 specifier|public
 name|int
 name|characters
@@ -1028,10 +1082,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 literal|0
 operator|<
 name|lastNode
+operator|)
 operator|&&
+operator|(
 name|level
 operator|==
 name|doc
@@ -1040,6 +1097,7 @@ name|getTreeLevel
 argument_list|(
 name|lastNode
 argument_list|)
+operator|)
 condition|)
 block|{
 if|if
@@ -1072,7 +1130,9 @@ name|len
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 if|if
@@ -1157,7 +1217,9 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1198,10 +1260,12 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
-comment|/** 	 * Create a new text node. 	 *  	 * @return the node number of the created node 	 */
+comment|/**      * Create a new text node.      *      * @param   s  DOCUMENT ME!      *      * @return  the node number of the created node      */
 specifier|public
 name|int
 name|characters
@@ -1220,10 +1284,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 literal|0
 operator|<
 name|lastNode
+operator|)
 operator|&&
+operator|(
 name|level
 operator|==
 name|doc
@@ -1232,10 +1299,12 @@ name|getTreeLevel
 argument_list|(
 name|lastNode
 argument_list|)
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|getNodeType
@@ -1246,7 +1315,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|doc
 operator|.
 name|getNodeType
@@ -1257,6 +1328,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
@@ -1271,7 +1343,9 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 if|if
@@ -1301,6 +1375,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|references
@@ -1314,7 +1389,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|doc
 operator|.
 name|references
@@ -1328,6 +1405,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
@@ -1352,7 +1430,9 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1389,7 +1469,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -1431,7 +1513,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -1439,8 +1523,8 @@ name|int
 name|comment
 parameter_list|(
 name|char
-name|ch
 index|[]
+name|ch
 parameter_list|,
 name|int
 name|start
@@ -1484,7 +1568,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -1505,10 +1591,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 literal|0
 operator|<
 name|lastNode
+operator|)
 operator|&&
+operator|(
 name|level
 operator|==
 name|doc
@@ -1517,10 +1606,12 @@ name|getTreeLevel
 argument_list|(
 name|lastNode
 argument_list|)
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|getNodeType
@@ -1531,7 +1622,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|doc
 operator|.
 name|getNodeType
@@ -1542,6 +1635,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 condition|)
 block|{
 comment|// if the last node is a text node, we have to append the
@@ -1556,7 +1650,9 @@ name|data
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 if|if
@@ -1586,6 +1682,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|doc
 operator|.
 name|references
@@ -1599,7 +1696,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|doc
 operator|.
 name|references
@@ -1613,6 +1712,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
@@ -1637,7 +1737,9 @@ name|data
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|lastNode
+operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1674,7 +1776,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -1723,9 +1827,11 @@ name|addChars
 argument_list|(
 name|nodeNr
 argument_list|,
+operator|(
 name|data
 operator|==
 literal|null
+operator|)
 condition|?
 literal|""
 else|:
@@ -1738,7 +1844,9 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|nodeNr
+operator|)
 return|;
 block|}
 specifier|public
@@ -1753,6 +1861,7 @@ name|uri
 parameter_list|)
 block|{
 return|return
+operator|(
 name|namespaceNode
 argument_list|(
 operator|new
@@ -1765,6 +1874,7 @@ argument_list|,
 literal|"xmlns"
 argument_list|)
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -1796,12 +1906,14 @@ decl_stmt|;
 name|String
 name|elemPrefix
 init|=
+operator|(
 name|elemQN
 operator|.
 name|getPrefix
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|?
 literal|""
 else|:
@@ -1822,12 +1934,14 @@ name|getLocalName
 argument_list|()
 argument_list|)
 operator|&&
+operator|(
 name|elemQN
 operator|.
 name|getNamespaceURI
 argument_list|()
 operator|!=
 literal|null
+operator|)
 operator|&&
 operator|!
 name|elemQN
@@ -1843,11 +1957,16 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|doc
 operator|.
 name|addNamespace
@@ -1856,6 +1975,7 @@ name|lastNode
 argument_list|,
 name|qn
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -1869,13 +1989,15 @@ name|String
 name|systemId
 parameter_list|)
 block|{
-comment|//		int nodeNr = doc.addNode(Node.DOCUMENT_TYPE_NODE, level, null);
-comment|//		doc.addChars(nodeNr, data);
-comment|//		linkNode(nodeNr);
-comment|//		return nodeNr;
+comment|//      int nodeNr = doc.addNode(Node.DOCUMENT_TYPE_NODE, level, null);
+comment|//      doc.addChars(nodeNr, data);
+comment|//      linkNode(nodeNr);
+comment|//      return nodeNr;
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
 block|}
 specifier|public
@@ -1916,6 +2038,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|doc
 operator|.
 name|next
@@ -1925,6 +2048,7 @@ index|]
 operator|=
 name|nodeNr
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|next

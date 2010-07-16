@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -22,6 +22,30 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
 import|;
 end_import
 
@@ -195,30 +219,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -248,7 +248,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to make a in-memory document fragment persistent.  * The class directly accesses the in-memory document structure and writes  * it into a temporary doc on the database. This is much faster than first serializing the  * document tree to SAX and passing it to   * {@link org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo, org.xml.sax.InputSource, boolean)}.  *   * As the in-memory document fragment may not be a well-formed XML doc (having more  * than one root element), a wrapper element is put around the content nodes.  *   * @author wolf  */
+comment|/**  * Helper class to make a in-memory document fragment persistent. The class directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing the document tree to SAX and passing it to {@link  * org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo,  * org.xml.sax.InputSource, boolean)}.  *  *<p>As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.</p>  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -426,6 +426,7 @@ name|config
 operator|!=
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|indexSpec
@@ -436,7 +437,8 @@ name|getIndexConfiguration
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Scan the DOM tree once to determine its structure.      *       * @throws EXistException      */
+block|}
+comment|/**      * Scan the DOM tree once to determine its structure.      *      * @throws  EXistException      */
 specifier|public
 name|void
 name|scan
@@ -467,7 +469,7 @@ name|dt
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Store the nodes.      *      */
+comment|/**      * Store the nodes.      */
 specifier|public
 name|void
 name|store
@@ -579,11 +581,13 @@ comment|// store the document nodes
 name|int
 name|top
 init|=
+operator|(
 name|doc
 operator|.
 name|size
 operator|>
 literal|1
+operator|)
 condition|?
 literal|1
 else|:
@@ -698,7 +702,9 @@ name|top
 operator|==
 name|nodeNr
 condition|)
+block|{
 break|break;
+block|}
 name|nextNode
 operator|=
 name|doc
@@ -727,14 +733,18 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|nodeNr
 operator|==
 operator|-
 literal|1
+operator|)
 operator|||
+operator|(
 name|top
 operator|==
 name|nodeNr
+operator|)
 condition|)
 block|{
 name|endNode
@@ -759,7 +769,7 @@ name|nextNode
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param nodeNr      */
+comment|/**      * DOCUMENT ME!      *      * @param  nodeNr      * @param  currentPath  DOCUMENT ME!      */
 specifier|private
 name|void
 name|startNode
@@ -789,6 +799,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 name|ElementImpl
 name|elem
 init|=
@@ -951,17 +962,22 @@ name|currentPath
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 if|if
 condition|(
+operator|(
 name|prevNode
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 operator|(
 name|prevNode
 operator|.
@@ -971,7 +987,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -980,6 +998,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 operator|)
 condition|)
 block|{
@@ -1054,11 +1073,13 @@ name|indexSpec
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 name|last
 operator|=
 name|stack
@@ -1154,11 +1175,13 @@ name|indexSpec
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 name|comment
 operator|.
 name|setData
@@ -1265,11 +1288,13 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 name|QName
 name|qn
 init|=
@@ -1387,7 +1412,9 @@ name|indexSpec
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 default|default:
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1404,7 +1431,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param nodeNr      * @param elem      */
+block|}
+comment|/**      * DOCUMENT ME!      *      * @param  nodeNr      * @param  elem      */
 specifier|private
 name|void
 name|initElement
@@ -1488,6 +1516,7 @@ name|ns
 operator|!=
 literal|null
 condition|)
+block|{
 name|elem
 operator|.
 name|setNamespaceMappings
@@ -1495,6 +1524,7 @@ argument_list|(
 name|ns
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|Map
@@ -1525,9 +1555,13 @@ name|ns
 operator|<
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|Map
 argument_list|<
 name|String
@@ -1547,12 +1581,15 @@ argument_list|()
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|doc
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|doc
 operator|.
 name|namespaceParent
@@ -1561,6 +1598,7 @@ name|ns
 index|]
 operator|==
 name|nodeNr
+operator|)
 condition|)
 block|{
 name|QName
@@ -1585,6 +1623,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|map
 operator|.
 name|put
@@ -1597,7 +1636,9 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|map
 operator|.
 name|put
@@ -1613,15 +1654,18 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|map
+operator|)
 return|;
 block|}
-comment|/**      * @param nodeNr      * @param elem      * @throws DOMException      */
+comment|/**      * DOCUMENT ME!      *      * @param   nodeNr      * @param   elem      * @param   path    DOCUMENT ME!      *      * @throws  DOMException      */
 specifier|private
 name|void
 name|storeAttributes
@@ -1658,12 +1702,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|doc
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|doc
 operator|.
 name|attrParent
@@ -1672,6 +1719,7 @@ name|attr
 index|]
 operator|==
 name|nodeNr
+operator|)
 condition|)
 block|{
 name|QName
@@ -1761,7 +1809,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param nodeNr      */
+comment|/**      * DOCUMENT ME!      *      * @param  nodeNr      * @param  currentPath  DOCUMENT ME!      */
 specifier|private
 name|void
 name|endNode
@@ -1835,6 +1883,7 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -1843,7 +1892,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -1852,7 +1903,9 @@ operator|==
 name|Node
 operator|.
 name|COMMENT_NODE
+operator|)
 operator|||
+operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -1861,13 +1914,18 @@ operator|==
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
+operator|)
 condition|)
+block|{
 if|if
 condition|(
+operator|(
 name|previous
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -1877,12 +1935,16 @@ name|previous
 operator|.
 name|getNodeType
 argument_list|()
+operator|)
 condition|)
+block|{
 name|prevNode
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 name|prevNode
 operator|=

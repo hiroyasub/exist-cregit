@@ -31,36 +31,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|Connection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|PreparedStatement
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|SQLException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -215,8 +185,38 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|Connection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|PreparedStatement
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|SQLException
+import|;
+end_import
+
 begin_comment
-comment|/**  * eXist SQL Module Extension PrepareFunction  *  * Prepare a SQL statement against a SQL capable Database  *  * @author Adam Retter<adam@exist-db.org>  * @serial 2010-03-17  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension PrepareFunction.  *  *<p>Prepare a SQL statement against a SQL capable Database</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @version  1.0  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2010-03-17  */
 end_comment
 
 begin_class
@@ -303,7 +303,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The SQL statement"
 argument_list|)
-block|,         }
+block|,             }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -321,7 +321,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**     * PrepareFunction Constructor     *     * @param context The Context of the calling XQuery     */
+comment|/**      * PrepareFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
 specifier|public
 name|PrepareFunction
 parameter_list|(
@@ -340,7 +340,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the XQuery prepare() function, it is really the main      * entry point of this class      *      * @param args      *            arguments from the prepare() function call      * @param contextSequence      *            the Context Sequence to operate on (not used here internally!)      * @return A xs:long representing the handle to the prepared statement      *      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      *      org.exist.xquery.value.Sequence)      */
+comment|/**      * evaluate the call to the XQuery prepare() function, it is really the main entry point of this class.      *      * @param   args             arguments from the prepare() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing the handle to the prepared statement      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 annotation|@
 name|Override
 specifier|public
@@ -465,6 +465,7 @@ argument_list|)
 expr_stmt|;
 comment|// store the PreparedStatement and return the uid handle of the PreparedStatement
 return|return
+operator|(
 operator|new
 name|IntegerValue
 argument_list|(
@@ -483,6 +484,7 @@ name|stmt
 argument_list|)
 argument_list|)
 argument_list|)
+operator|)
 return|;
 block|}
 catch|catch
@@ -512,6 +514,7 @@ name|sqle
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -532,6 +535,7 @@ literal|"\""
 argument_list|,
 name|sqle
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}

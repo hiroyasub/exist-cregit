@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author wolf  *  * To change the template for this generated type comment go to  * Window - Preferences - Java - Code Generation - Code and Comments  */
+comment|/**  * DOCUMENT ME!  *  * @author  wolf  *  *<p>To change the template for this generated type comment go to Window - Preferences - Java - Code Generation - Code and Comments</p>  */
 end_comment
 
 begin_class
@@ -22,7 +22,7 @@ specifier|public
 class|class
 name|NodeFactory
 block|{
-comment|/** 	 *  	 */
+comment|/**      * Creates a new NodeFactory object.      */
 specifier|public
 name|NodeFactory
 parameter_list|()

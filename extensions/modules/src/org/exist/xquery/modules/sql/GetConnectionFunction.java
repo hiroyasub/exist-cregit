@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension GetConnectionFunction  *  Copyright (C) 2008-10 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist SQL Module Extension GetConnectionFunction  *  Copyright (C) 2008-10 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,46 +16,6 @@ operator|.
 name|sql
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|Connection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|DriverManager
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|SQLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
 
 begin_import
 import|import
@@ -253,8 +213,48 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|Connection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|DriverManager
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|SQLException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction  *   * Get a connection to a SQL Database  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @serial 2008-05-29  * @version 1.21  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetConnectionFunction.  *  *<p>Get a connection to a SQL Database</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Loren Cahlander  * @version  1.21  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-29  */
 end_comment
 
 begin_class
@@ -517,7 +517,7 @@ name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * GetConnectionFunction Constructor 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 */
+comment|/**      * GetConnectionFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
 specifier|public
 name|GetConnectionFunction
 parameter_list|(
@@ -536,7 +536,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-connection() function, it is really 	 * the main entry point of this class 	 *  	 * @param args 	 *            arguments from the get-connection() function call 	 * @param contextSequence 	 *            the Context Sequence to operate on (not used here internally!) 	 * @return A xs:long representing a handle to the connection 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the xquery get-connection() function, it is really the main entry point of this class.      *      * @param   args             arguments from the get-connection() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing a handle to the connection      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -570,11 +570,15 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
+block|}
 comment|// get the db connection details
 name|String
 name|dbDriver
@@ -732,6 +736,7 @@ expr_stmt|;
 block|}
 comment|// store the Connection and return the uid handle of the Connection
 return|return
+operator|(
 operator|new
 name|IntegerValue
 argument_list|(
@@ -744,6 +749,7 @@ argument_list|,
 name|con
 argument_list|)
 argument_list|)
+operator|)
 return|;
 block|}
 catch|catch
@@ -764,6 +770,7 @@ name|iae
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -775,6 +782,7 @@ name|dbDriver
 argument_list|,
 name|iae
 argument_list|)
+operator|)
 throw|;
 block|}
 catch|catch
@@ -795,6 +803,7 @@ name|cnfe
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -806,6 +815,7 @@ name|dbDriver
 argument_list|,
 name|cnfe
 argument_list|)
+operator|)
 throw|;
 block|}
 catch|catch
@@ -826,6 +836,7 @@ name|ie
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -837,6 +848,7 @@ name|dbDriver
 argument_list|,
 name|ie
 argument_list|)
+operator|)
 throw|;
 block|}
 catch|catch
@@ -857,6 +869,7 @@ name|sqle
 argument_list|)
 expr_stmt|;
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -868,6 +881,7 @@ name|dbURL
 argument_list|,
 name|sqle
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}

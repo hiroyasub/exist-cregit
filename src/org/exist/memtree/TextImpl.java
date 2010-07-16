@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,20 +12,6 @@ operator|.
 name|memtree
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
 
 begin_import
 import|import
@@ -60,6 +46,20 @@ operator|.
 name|dom
 operator|.
 name|Text
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
 import|;
 end_import
 
@@ -100,11 +100,13 @@ parameter_list|()
 block|{
 comment|//Quick and (not so ?) dirty...
 return|return
+operator|(
 name|getData
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Text#splitText(int) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Text#splitText(int)      */
 specifier|public
 name|Text
 name|splitText
@@ -117,10 +119,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#getData() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#getData()      */
 specifier|public
 name|String
 name|getData
@@ -129,6 +133,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 operator|new
 name|String
 argument_list|(
@@ -150,9 +155,10 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#setData(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#setData(java.lang.String)      */
 specifier|public
 name|void
 name|setData
@@ -164,22 +170,24 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#getLength() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#getLength()      */
 specifier|public
 name|int
 name|getLength
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|alphaLen
 index|[
 name|nodeNumber
 index|]
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
 specifier|public
 name|String
 name|getNodeValue
@@ -188,8 +196,10 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 name|getData
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -198,7 +208,9 @@ name|getLocalName
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|""
+operator|)
 return|;
 block|}
 specifier|public
@@ -207,7 +219,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|""
+operator|)
 return|;
 block|}
 specifier|public
@@ -216,10 +230,12 @@ name|getFirstChild
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#substringData(int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#substringData(int, int)      */
 specifier|public
 name|String
 name|substringData
@@ -235,10 +251,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#appendData(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#appendData(java.lang.String)      */
 specifier|public
 name|void
 name|appendData
@@ -251,7 +269,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#insertData(int, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#insertData(int, java.lang.String)      */
 specifier|public
 name|void
 name|insertData
@@ -267,7 +285,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#deleteData(int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#deleteData(int, int)      */
 specifier|public
 name|void
 name|deleteData
@@ -283,7 +301,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.CharacterData#replaceData(int, int, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#replaceData(int, int, java.lang.String)      */
 specifier|public
 name|void
 name|replaceData
@@ -302,7 +320,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace() 	 */
+comment|/**      * ? @see org.w3c.dom.Text#isElementContentWhitespace()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isElementContentWhitespace
@@ -310,10 +328,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#getWholeText() 	 */
+comment|/**      * ? @see org.w3c.dom.Text#getWholeText()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getWholeText
@@ -321,10 +341,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      *      * @param   content  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|Text
 name|replaceWholeText
@@ -337,7 +359,9 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -346,9 +370,11 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|TEXT
+operator|)
 return|;
 block|}
 specifier|public
@@ -393,10 +419,12 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 block|}

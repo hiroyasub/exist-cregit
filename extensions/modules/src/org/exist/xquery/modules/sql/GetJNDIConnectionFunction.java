@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist SQL Module Extension GetJNDIConnectionFunction  *  Copyright (C) 2008-09 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist SQL Module Extension GetJNDIConnectionFunction  *  Copyright (C) 2008-09 Adam Retter<adam@exist-db.org>  *  www.adamretter.co.uk  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,46 +16,6 @@ operator|.
 name|sql
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|Connection
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|naming
-operator|.
-name|Context
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|naming
-operator|.
-name|InitialContext
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|sql
-operator|.
-name|DataSource
-import|;
-end_import
 
 begin_import
 import|import
@@ -211,8 +171,48 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|Connection
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|Context
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|InitialContext
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|sql
+operator|.
+name|DataSource
+import|;
+end_import
+
 begin_comment
-comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction  *   * Get a connection to a SQL Database via JNDI  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @serial 2008-05-19  * @version 1.2  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction.  *  *<p>Get a connection to a SQL Database via JNDI</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Loren Cahlander  * @version  1.2  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-19  */
 end_comment
 
 begin_class
@@ -397,7 +397,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * GetJNDIConnectionFunction Constructor 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 */
+comment|/**      * GetJNDIConnectionFunction Constructor.      *      * @param  context    The Context of the calling XQuery      * @param  signature  DOCUMENT ME!      */
 specifier|public
 name|GetJNDIConnectionFunction
 parameter_list|(
@@ -416,7 +416,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-jndi-connection() function, it is 	 * really the main entry point of this class 	 *  	 * @param args 	 *            arguments from the get-jndi-connection() function call 	 * @param contextSequence 	 *            the Context Sequence to operate on (not used here internally!) 	 * @return A xs:long representing a handle to the connection 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the xquery get-jndi-connection() function, it is really the main entry point of this class.      *      * @param   args             arguments from the get-jndi-connection() function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A xs:long representing a handle to the connection      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -444,9 +444,11 @@ argument_list|()
 condition|)
 block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 try|try
@@ -551,6 +553,7 @@ expr_stmt|;
 block|}
 comment|// store the connection and return the uid handle of the connection
 return|return
+operator|(
 operator|new
 name|IntegerValue
 argument_list|(
@@ -563,6 +566,7 @@ argument_list|,
 name|con
 argument_list|)
 argument_list|)
+operator|)
 return|;
 block|}
 catch|catch
@@ -572,6 +576,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -582,6 +587,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}

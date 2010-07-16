@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,198 @@ operator|.
 name|memtree
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Attr
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|CDATASection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Comment
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMConfiguration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMImplementation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DocumentFragment
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DocumentType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|EntityReference
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|ProcessingInstruction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Text
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
 
 begin_import
 import|import
@@ -253,198 +445,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Attr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|CDATASection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Comment
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMConfiguration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMImplementation
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DocumentFragment
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DocumentType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|EntityReference
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|ProcessingInstruction
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Text
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -454,7 +454,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An in-memory implementation of Document.  *   * This implementation stores all node data in the document object. Nodes from  * another document, i.e. a persistent document in the database, can be stored  * as reference nodes, i.e. the nodes are not copied into this document object.  * Instead a reference is inserted which will only be expanded during  * serialization.  *   * @author wolf  */
+comment|/**  * An in-memory implementation of Document.  *  *<p>This implementation stores all node data in the document object. Nodes from another document, i.e. a persistent document in the database, can be  * stored as reference nodes, i.e. the nodes are not copied into this document object. Instead a reference is inserted which will only be expanded  * during serialization.</p>  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -474,16 +474,37 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
-name|long
-name|createDocId
-parameter_list|()
-block|{
-return|return
-name|nextDocId
-operator|++
-return|;
-block|}
+name|int
+name|NODE_SIZE
+init|=
+literal|16
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|ATTR_SIZE
+init|=
+literal|8
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|CHAR_BUF_SIZE
+init|=
+literal|256
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|int
+name|REF_SIZE
+init|=
+literal|8
+decl_stmt|;
 specifier|protected
 name|XQueryContext
 name|context
@@ -622,8 +643,8 @@ decl_stmt|;
 comment|// reference nodes (link to an external, persistent document fragment)
 specifier|protected
 name|NodeProxy
-name|references
 index|[]
+name|references
 init|=
 literal|null
 decl_stmt|;
@@ -636,38 +657,6 @@ decl_stmt|;
 specifier|protected
 name|long
 name|docId
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|NODE_SIZE
-init|=
-literal|16
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|ATTR_SIZE
-init|=
-literal|8
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|CHAR_BUF_SIZE
-init|=
-literal|256
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|REF_SIZE
-init|=
-literal|8
 decl_stmt|;
 name|boolean
 name|explicitCreation
@@ -716,13 +705,16 @@ name|context
 operator|==
 literal|null
 condition|)
+block|{
 name|namePool
 operator|=
 operator|new
 name|NamePool
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|namePool
 operator|=
 name|context
@@ -730,6 +722,20 @@ operator|.
 name|getSharedNamePool
 argument_list|()
 expr_stmt|;
+block|}
+block|}
+specifier|private
+specifier|static
+name|long
+name|createDocId
+parameter_list|()
+block|{
+return|return
+operator|(
+name|nextDocId
+operator|++
+operator|)
+return|;
 block|}
 specifier|private
 name|void
@@ -905,7 +911,9 @@ name|getSize
 parameter_list|()
 block|{
 return|return
+operator|(
 name|size
+operator|)
 return|;
 block|}
 specifier|public
@@ -928,9 +936,11 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|size
@@ -939,9 +949,11 @@ name|nodeKind
 operator|.
 name|length
 condition|)
+block|{
 name|grow
 argument_list|()
 expr_stmt|;
+block|}
 name|nodeKind
 index|[
 name|size
@@ -962,9 +974,11 @@ name|size
 index|]
 operator|=
 operator|(
+operator|(
 name|qname
 operator|!=
 literal|null
+operator|)
 condition|?
 name|namePool
 operator|.
@@ -994,8 +1008,10 @@ operator|-
 literal|1
 expr_stmt|;
 return|return
+operator|(
 name|size
 operator|++
+operator|)
 return|;
 block|}
 specifier|public
@@ -1022,34 +1038,42 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|characters
 operator|==
 literal|null
 condition|)
+block|{
 name|characters
 operator|=
 operator|new
 name|char
 index|[
+operator|(
 name|len
 operator|>
 name|CHAR_BUF_SIZE
+operator|)
 condition|?
 name|len
 else|:
 name|CHAR_BUF_SIZE
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 operator|>=
 name|characters
 operator|.
@@ -1073,16 +1097,20 @@ if|if
 condition|(
 name|newLen
 operator|<
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 condition|)
+block|{
 name|newLen
 operator|=
 name|nextChar
 operator|+
 name|len
 expr_stmt|;
+block|}
 name|char
 index|[]
 name|nc
@@ -1166,9 +1194,11 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 name|int
 name|len
 init|=
@@ -1183,25 +1213,31 @@ name|characters
 operator|==
 literal|null
 condition|)
+block|{
 name|characters
 operator|=
 operator|new
 name|char
 index|[
+operator|(
 name|len
 operator|>
 name|CHAR_BUF_SIZE
+operator|)
 condition|?
 name|len
 else|:
 name|CHAR_BUF_SIZE
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 operator|>=
 name|characters
 operator|.
@@ -1225,16 +1261,20 @@ if|if
 condition|(
 name|newLen
 operator|<
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 condition|)
+block|{
 name|newLen
 operator|=
 name|nextChar
 operator|+
 name|len
 expr_stmt|;
+block|}
 name|char
 index|[]
 name|nc
@@ -1335,25 +1375,31 @@ name|characters
 operator|==
 literal|null
 condition|)
+block|{
 name|characters
 operator|=
 operator|new
 name|char
 index|[
+operator|(
 name|len
 operator|>
 name|CHAR_BUF_SIZE
+operator|)
 condition|?
 name|len
 else|:
 name|CHAR_BUF_SIZE
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 operator|>=
 name|characters
 operator|.
@@ -1377,16 +1423,20 @@ if|if
 condition|(
 name|newLen
 operator|<
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 condition|)
+block|{
 name|newLen
 operator|=
 name|nextChar
 operator|+
 name|len
 expr_stmt|;
+block|}
 name|char
 index|[]
 name|nc
@@ -1476,25 +1526,31 @@ name|characters
 operator|==
 literal|null
 condition|)
+block|{
 name|characters
 operator|=
 operator|new
 name|char
 index|[
+operator|(
 name|len
 operator|>
 name|CHAR_BUF_SIZE
+operator|)
 condition|?
 name|len
 else|:
 name|CHAR_BUF_SIZE
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 operator|>=
 name|characters
 operator|.
@@ -1518,16 +1574,20 @@ if|if
 condition|(
 name|newLen
 operator|<
+operator|(
 name|nextChar
 operator|+
 name|len
+operator|)
 condition|)
+block|{
 name|newLen
 operator|=
 name|nextChar
 operator|+
 name|len
 expr_stmt|;
+block|}
 name|char
 index|[]
 name|nc
@@ -1619,24 +1679,32 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
+operator|(
 name|references
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|nextRef
 operator|==
 name|references
 operator|.
 name|length
+operator|)
 condition|)
+block|{
 name|growReferences
 argument_list|()
 expr_stmt|;
+block|}
 name|references
 index|[
 name|nextRef
@@ -1697,16 +1765,22 @@ name|hasReferenceNodes
 parameter_list|()
 block|{
 return|return
+operator|(
+operator|(
 name|references
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|references
 index|[
 literal|0
 index|]
 operator|!=
 literal|null
+operator|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -1734,15 +1808,20 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
+operator|(
 name|nodeNr
 operator|>
 literal|0
+operator|)
 operator|&&
+operator|(
 name|nodeKind
 index|[
 name|nodeNr
@@ -1751,8 +1830,11 @@ operator|!=
 name|Node
 operator|.
 name|ELEMENT_NODE
+operator|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -1762,7 +1844,9 @@ name|INUSE_ATTRIBUTE_ERR
 argument_list|,
 literal|"err:XQTY0024: An attribute node cannot follow a node that is not an attribute node."
 argument_list|)
+operator|)
 throw|;
+block|}
 name|int
 name|prevAttr
 init|=
@@ -1773,21 +1857,27 @@ decl_stmt|;
 comment|// check if an attribute with the same qname exists in the parent element
 while|while
 condition|(
+operator|(
 name|nodeNr
 operator|>
 literal|0
+operator|)
 operator|&&
+operator|(
 name|prevAttr
 operator|>
 operator|-
 literal|1
+operator|)
 operator|&&
+operator|(
 name|attrParent
 index|[
 name|prevAttr
 index|]
 operator|==
 name|nodeNr
+operator|)
 condition|)
 block|{
 name|QName
@@ -1808,7 +1898,9 @@ argument_list|(
 name|qname
 argument_list|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -1822,7 +1914,9 @@ name|qname
 operator|+
 literal|"'"
 argument_list|)
+operator|)
 throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -1832,9 +1926,11 @@ name|attrName
 operator|.
 name|length
 condition|)
+block|{
 name|growAttributes
 argument_list|()
 expr_stmt|;
+block|}
 name|qname
 operator|.
 name|setNameType
@@ -1886,6 +1982,7 @@ index|]
 operator|<
 literal|0
 condition|)
+block|{
 name|alpha
 index|[
 name|nodeNr
@@ -1893,9 +1990,12 @@ index|]
 operator|=
 name|nextAttr
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|nextAttr
 operator|++
+operator|)
 return|;
 block|}
 specifier|public
@@ -1915,24 +2015,32 @@ name|nodeKind
 operator|==
 literal|null
 condition|)
+block|{
 name|init
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
+operator|(
 name|namespaceCode
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|nextNamespace
 operator|==
 name|namespaceCode
 operator|.
 name|length
+operator|)
 condition|)
+block|{
 name|growNamespaces
 argument_list|()
 expr_stmt|;
+block|}
 name|namespaceCode
 index|[
 name|nextNamespace
@@ -1971,8 +2079,10 @@ name|nextNamespace
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nextNamespace
 operator|++
+operator|)
 return|;
 block|}
 specifier|public
@@ -1984,10 +2094,12 @@ name|nodeNr
 parameter_list|)
 block|{
 return|return
+operator|(
 name|treeLevel
 index|[
 name|nodeNr
 index|]
+operator|)
 return|;
 block|}
 specifier|public
@@ -1996,9 +2108,11 @@ name|getLastNode
 parameter_list|()
 block|{
 return|return
+operator|(
 name|size
 operator|-
 literal|1
+operator|)
 return|;
 block|}
 specifier|public
@@ -2007,7 +2121,9 @@ name|getDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
 specifier|public
@@ -2020,23 +2136,33 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|(
 name|nodeKind
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|nodeNr
 operator|<
 literal|0
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|nodeKind
 index|[
 name|nodeNr
 index|]
+operator|)
 return|;
 block|}
 specifier|private
@@ -2459,6 +2585,7 @@ name|references
 operator|==
 literal|null
 condition|)
+block|{
 name|references
 operator|=
 operator|new
@@ -2467,6 +2594,7 @@ index|[
 name|REF_SIZE
 index|]
 expr_stmt|;
+block|}
 else|else
 block|{
 name|int
@@ -2488,8 +2616,8 @@ operator|/
 literal|2
 decl_stmt|;
 name|NodeProxy
-name|newReferences
 index|[]
+name|newReferences
 init|=
 operator|new
 name|NodeProxy
@@ -2638,6 +2766,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -2645,6 +2774,7 @@ name|this
 argument_list|,
 name|nodeNr
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -2658,6 +2788,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 operator|new
 name|NamespaceNode
 argument_list|(
@@ -2665,6 +2796,7 @@ name|this
 argument_list|,
 name|nodeNr
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -2683,16 +2815,22 @@ name|nodeNr
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|nodeNr
 operator|>=
 name|size
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -2702,7 +2840,9 @@ name|HIERARCHY_REQUEST_ERR
 argument_list|,
 literal|"node not found"
 argument_list|)
+operator|)
 throw|;
+block|}
 name|NodeImpl
 name|node
 decl_stmt|;
@@ -2719,6 +2859,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2730,11 +2871,13 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2746,11 +2889,13 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2762,11 +2907,13 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2778,11 +2925,13 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2794,11 +2943,13 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 case|:
+block|{
 name|node
 operator|=
 operator|new
@@ -2810,8 +2961,11 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 default|default:
+block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -2821,10 +2975,14 @@ name|NOT_FOUND_ERR
 argument_list|,
 literal|"node not found"
 argument_list|)
+operator|)
 throw|;
 block|}
+block|}
 return|return
+operator|(
 name|node
+operator|)
 return|;
 block|}
 specifier|public
@@ -2838,10 +2996,15 @@ name|nextAttr
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 return|return
+operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -2851,35 +3014,41 @@ name|nextAttr
 operator|-
 literal|1
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Node#getParentNode()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getParentNode()      */
 specifier|public
 name|Node
 name|getParentNode
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getDoctype()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getDoctype()      */
 specifier|public
 name|DocumentType
 name|getDoctype
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getImplementation()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getImplementation()      */
 specifier|public
 name|DOMImplementation
 name|getImplementation
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|DOMImplementation
 argument_list|()
@@ -2901,7 +3070,9 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -2921,7 +3092,9 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -2936,7 +3109,9 @@ name|version
 parameter_list|)
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -2951,6 +3126,7 @@ name|version
 parameter_list|)
 block|{
 return|return
+operator|(
 literal|"XML"
 operator|.
 name|equals
@@ -2973,12 +3149,14 @@ argument_list|(
 name|version
 argument_list|)
 operator|)
+operator|)
 return|;
 block|}
 block|}
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getDocumentElement()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getDocumentElement()      */
 specifier|public
 name|Element
 name|getDocumentElement
@@ -2990,9 +3168,13 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|int
 name|nodeNr
 init|=
@@ -3021,10 +3203,13 @@ name|nodeNr
 condition|)
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 else|else
+block|{
 name|nodeNr
 operator|=
 name|next
@@ -3033,7 +3218,9 @@ name|nodeNr
 index|]
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 operator|(
 name|Element
 operator|)
@@ -3041,9 +3228,10 @@ name|getNode
 argument_list|(
 name|nodeNr
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Node#getFirstChild()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
 name|Node
 name|getFirstChild
@@ -3055,16 +3243,24 @@ name|size
 operator|>
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 name|getNode
 argument_list|(
 literal|1
 argument_list|)
+operator|)
 return|;
+block|}
 else|else
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 block|}
 specifier|public
 name|int
@@ -3097,10 +3293,13 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|attrParent
 index|[
 name|attr
@@ -3108,6 +3307,7 @@ operator|++
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 operator|++
@@ -3116,7 +3316,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|count
+operator|)
 return|;
 block|}
 specifier|public
@@ -3150,10 +3352,13 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|namespaceParent
 index|[
 name|ns
@@ -3161,6 +3366,7 @@ operator|++
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 operator|++
@@ -3169,7 +3375,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|count
+operator|)
 return|;
 block|}
 specifier|public
@@ -3213,7 +3421,9 @@ index|]
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|count
+operator|)
 return|;
 block|}
 specifier|public
@@ -3241,27 +3451,37 @@ literal|1
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|nextNode
-argument_list|<
+operator|<
 name|size
+operator|)
 operator|&&
+operator|(
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|level
+operator|)
 condition|)
 block|{
 return|return
+operator|(
 name|nextNode
+operator|)
 return|;
 block|}
 else|else
+block|{
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
+block|}
 block|}
 specifier|public
 name|int
@@ -3280,17 +3500,21 @@ name|nodeNumber
 index|]
 decl_stmt|;
 return|return
+operator|(
+operator|(
 name|nextNr
 operator|<
 name|nodeNumber
+operator|)
 condition|?
 operator|-
 literal|1
 else|:
 name|nextNr
+operator|)
 return|;
 block|}
-comment|/**      * The method<code>getParentNodeFor</code>      *      * @param nodeNumber an<code>int</code> value      * @return an<code>int</code> value      */
+comment|/**      * The method<code>getParentNodeFor.</code>      *      * @param   nodeNumber  an<code>int</code> value      *      * @return  an<code>int</code> value      */
 specifier|public
 name|int
 name|getParentNodeFor
@@ -3323,7 +3547,9 @@ index|]
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nextNode
+operator|)
 return|;
 block|}
 specifier|public
@@ -3345,7 +3571,9 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -3371,6 +3599,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3378,6 +3607,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 name|next
 operator|=
 operator|(
@@ -3417,6 +3647,7 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3424,13 +3655,16 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -3456,6 +3690,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3463,6 +3698,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 name|next
 operator|.
 name|selectDescendants
@@ -3505,7 +3741,9 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -3531,6 +3769,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3538,6 +3777,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 name|next
 operator|.
 name|selectDescendantAttributes
@@ -3575,9 +3815,13 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|ElementImpl
 name|root
 init|=
@@ -3599,9 +3843,13 @@ argument_list|,
 name|id
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|root
+operator|)
 return|;
+block|}
 name|int
 name|treeLevel
 init|=
@@ -3625,25 +3873,30 @@ argument_list|()
 decl_stmt|;
 while|while
 condition|(
+operator|(
 operator|++
 name|nextNode
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|treeLevel
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|document
 operator|.
 name|nodeKind
@@ -3654,6 +3907,7 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
+operator|)
 operator|&&
 name|hasIdAttribute
 argument_list|(
@@ -3662,15 +3916,21 @@ argument_list|,
 name|id
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|getNode
 argument_list|(
 name|nextNode
 argument_list|)
+operator|)
 return|;
 block|}
+block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -3689,9 +3949,13 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|ElementImpl
 name|root
 init|=
@@ -3720,9 +3984,13 @@ name|attr
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|attr
+operator|)
 return|;
+block|}
 name|int
 name|treeLevel
 init|=
@@ -3746,21 +4014,25 @@ argument_list|()
 decl_stmt|;
 while|while
 condition|(
+operator|(
 operator|++
 name|nextNode
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|treeLevel
+operator|)
 condition|)
 block|{
 if|if
@@ -3792,13 +4064,19 @@ name|attr
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|attr
+operator|)
 return|;
 block|}
 block|}
+block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|private
@@ -3832,12 +4110,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -3846,10 +4127,12 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|document
 operator|.
 name|attrType
@@ -3860,6 +4143,7 @@ operator|==
 name|AttributeImpl
 operator|.
 name|ATTR_ID_TYPE
+operator|)
 operator|&&
 name|id
 operator|.
@@ -3873,16 +4157,22 @@ name|attr
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|private
@@ -3916,12 +4206,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -3930,10 +4223,12 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|document
 operator|.
 name|attrType
@@ -3944,6 +4239,7 @@ operator|==
 name|AttributeImpl
 operator|.
 name|ATTR_IDREF_TYPE
+operator|)
 operator|&&
 name|id
 operator|.
@@ -3957,7 +4253,9 @@ name|attr
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -3965,14 +4263,18 @@ name|this
 argument_list|,
 name|attr
 argument_list|)
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -3991,9 +4293,13 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -4019,9 +4325,13 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|next
 operator|=
 operator|(
@@ -4034,7 +4344,9 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4061,18 +4373,26 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -4098,9 +4418,13 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|next
@@ -4112,9 +4436,13 @@ argument_list|,
 name|test
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|next
 operator|=
 operator|(
@@ -4127,7 +4455,9 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4146,9 +4476,13 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -4174,9 +4508,13 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|next
@@ -4186,9 +4524,13 @@ argument_list|(
 name|test
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|next
 operator|=
 operator|(
@@ -4201,7 +4543,9 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 comment|/*     * (non-Javadoc)     *     * @see org.w3c.dom.Document#createElement(java.lang.String)     */
@@ -4240,6 +4584,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -4252,6 +4597,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 name|int
@@ -4272,6 +4618,7 @@ name|qn
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
 operator|new
 name|ElementImpl
 argument_list|(
@@ -4279,9 +4626,10 @@ name|this
 argument_list|,
 name|nodeNr
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createDocumentFragment()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createDocumentFragment()      */
 specifier|public
 name|DocumentFragment
 name|createDocumentFragment
@@ -4289,10 +4637,12 @@ parameter_list|()
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createTextNode(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createTextNode(java.lang.String)      */
 specifier|public
 name|Text
 name|createTextNode
@@ -4303,10 +4653,12 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createComment(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createComment(java.lang.String)      */
 specifier|public
 name|Comment
 name|createComment
@@ -4317,10 +4669,12 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createCDATASection(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createCDATASection(java.lang.String)      */
 specifier|public
 name|CDATASection
 name|createCDATASection
@@ -4333,10 +4687,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createProcessingInstruction(java.lang.String,      *           java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createProcessingInstruction(java.lang.String,      *           java.lang.String)      */
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
@@ -4352,10 +4708,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createAttribute(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createAttribute(java.lang.String)      */
 specifier|public
 name|Attr
 name|createAttribute
@@ -4368,10 +4726,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createEntityReference(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createEntityReference(java.lang.String)      */
 specifier|public
 name|EntityReference
 name|createEntityReference
@@ -4384,10 +4744,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getElementsByTagName(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementsByTagName(java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -4451,6 +4813,7 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|nl
 operator|.
 name|add
@@ -4463,11 +4826,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
+operator|(
 name|nl
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#importNode(org.w3c.dom.Node, boolean)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#importNode(org.w3c.dom.Node, boolean)      */
 specifier|public
 name|Node
 name|importNode
@@ -4483,10 +4849,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createElementNS(java.lang.String,      *           java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createElementNS(java.lang.String,      *           java.lang.String)      */
 specifier|public
 name|Element
 name|createElementNS
@@ -4502,10 +4870,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#createAttributeNS(java.lang.String,      *           java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createAttributeNS(java.lang.String,      *           java.lang.String)      */
 specifier|public
 name|Attr
 name|createAttributeNS
@@ -4521,10 +4891,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getElementsByTagNameNS(java.lang.String,      *           java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementsByTagNameNS(java.lang.String,      *           java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -4538,10 +4910,12 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Document#getElementById(java.lang.String)      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementById(java.lang.String)      */
 specifier|public
 name|Element
 name|getElementById
@@ -4552,10 +4926,12 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.w3c.dom.Node#getOwnerDocument()      */
+comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getOwnerDocument()      */
 specifier|public
 name|org
 operator|.
@@ -4568,10 +4944,12 @@ name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
-comment|/**      * Copy the document fragment starting at the specified node to the given      * document builder.      *       * @param node      * @param receiver      */
+comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param   node      * @param   receiver      *      * @throws  SAXException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|copyTo
@@ -4641,12 +5019,15 @@ name|node
 operator|instanceof
 name|ReferenceNode
 condition|)
+block|{
 comment|//Nothing more to stream ?
 name|nextNode
 operator|=
 literal|null
 expr_stmt|;
+block|}
 else|else
+block|{
 name|nextNode
 operator|=
 operator|(
@@ -4657,6 +5038,7 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|nextNode
@@ -4673,10 +5055,13 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|top
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|top
 operator|.
 name|nodeNumber
@@ -4684,8 +5069,11 @@ operator|==
 name|node
 operator|.
 name|nodeNumber
+operator|)
 condition|)
+block|{
 break|break;
+block|}
 comment|//No nextNode if the top node is a Document node
 comment|//                if (top != null&& top.nodeNumber == 0)
 comment|//                    break;
@@ -4718,15 +5106,20 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|node
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 operator|(
 name|top
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|top
 operator|.
 name|nodeNumber
@@ -4734,6 +5127,7 @@ operator|==
 name|node
 operator|.
 name|nodeNumber
+operator|)
 operator|)
 condition|)
 block|{
@@ -4794,6 +5188,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 name|QName
 name|nodeName
 init|=
@@ -4833,12 +5228,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -4847,6 +5245,7 @@ name|attr
 index|]
 operator|==
 name|nr
+operator|)
 condition|)
 block|{
 name|QName
@@ -4896,12 +5295,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -4910,6 +5312,7 @@ name|ns
 index|]
 operator|==
 name|nr
+operator|)
 condition|)
 block|{
 name|QName
@@ -4935,11 +5338,13 @@ expr_stmt|;
 block|}
 block|}
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|characters
@@ -4964,11 +5369,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|cdataSection
@@ -4993,11 +5400,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+block|{
 name|QName
 name|attrQName
 init|=
@@ -5021,11 +5430,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|comment
@@ -5050,11 +5461,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 name|QName
 name|qn
 init|=
@@ -5103,11 +5516,13 @@ name|data
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 case|:
+block|{
 if|if
 condition|(
 name|expandRefs
@@ -5192,6 +5607,7 @@ block|}
 break|break;
 block|}
 block|}
+block|}
 specifier|private
 name|void
 name|copyEndNode
@@ -5216,6 +5632,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|receiver
 operator|.
 name|endElement
@@ -5227,7 +5644,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Expand all reference nodes in the current document, i.e. replace them by      * real nodes. Reference nodes are just pointers to nodes from other documents       * stored in the database. The XQuery engine uses reference nodes to speed       * up the creation of temporary doc fragments.      *       * This method creates a new copy of the document contents and expands all      * reference nodes.      */
+block|}
+comment|/**      * Expand all reference nodes in the current document, i.e. replace them by real nodes. Reference nodes are just pointers to nodes from other      * documents stored in the database. The XQuery engine uses reference nodes to speed up the creation of temporary doc fragments.      *      *<p>This method creates a new copy of the document contents and expands all reference nodes.</p>      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|expand
@@ -5241,7 +5659,9 @@ name|size
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|DocumentImpl
 name|newDoc
 init|=
@@ -5277,7 +5697,9 @@ name|computeNodeIds
 argument_list|()
 expr_stmt|;
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
 name|MemTreeBuilder
@@ -5308,9 +5730,11 @@ expr_stmt|;
 name|NodeImpl
 name|node
 init|=
+operator|(
 name|rootNode
 operator|==
 literal|null
+operator|)
 condition|?
 operator|(
 name|NodeImpl
@@ -5360,6 +5784,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -5372,6 +5797,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 name|DocumentImpl
@@ -5388,7 +5814,9 @@ name|computeNodeIds
 argument_list|()
 expr_stmt|;
 return|return
+operator|(
 name|newDoc
+operator|)
 return|;
 block|}
 specifier|public
@@ -5429,15 +5857,21 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|getNode
 argument_list|(
 name|i
 argument_list|)
+operator|)
 return|;
 block|}
+block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|private
@@ -5454,7 +5888,9 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|NodeIdFactory
 name|nodeFactory
 decl_stmt|;
@@ -5464,6 +5900,7 @@ name|context
 operator|==
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|nodeFactory
@@ -5489,7 +5926,9 @@ literal|null
 expr_stmt|;
 comment|//TODO: fix NPE, raise error???
 block|}
+block|}
 else|else
+block|{
 name|nodeFactory
 operator|=
 name|context
@@ -5503,6 +5942,7 @@ operator|.
 name|getNodeFactory
 argument_list|()
 expr_stmt|;
+block|}
 name|nodeId
 index|[
 literal|0
@@ -5519,7 +5959,9 @@ name|size
 operator|==
 literal|1
 condition|)
+block|{
 return|return;
+block|}
 name|NodeId
 name|nextId
 init|=
@@ -5630,12 +6072,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -5644,6 +6089,7 @@ name|attr
 index|]
 operator|==
 name|nodeNr
+operator|)
 condition|)
 block|{
 name|attrNodeId
@@ -5702,6 +6148,7 @@ name|nextNode
 operator|>
 name|nodeNr
 condition|)
+block|{
 name|nextId
 operator|=
 name|nextId
@@ -5712,7 +6159,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param newDoc      */
+block|}
+comment|/**      * DOCUMENT ME!      *      * @param  newDoc      */
 specifier|private
 name|void
 name|copyDocContents
@@ -5854,7 +6302,7 @@ operator|.
 name|nextRef
 expr_stmt|;
 block|}
-comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *       * @param serializer      * @param node      * @param receiver      * @throws SAXException      */
+comment|/**      * Stream the specified document fragment to a receiver. This method is called by the serializer to output in-memory nodes.      *      * @param   serializer      * @param   node      * @param   receiver      *      * @throws  SAXException      */
 specifier|public
 name|void
 name|streamTo
@@ -5901,12 +6349,15 @@ name|node
 operator|instanceof
 name|ReferenceNode
 condition|)
+block|{
 comment|//Nothing more to stream ?
 name|nextNode
 operator|=
 literal|null
 expr_stmt|;
+block|}
 else|else
+block|{
 name|nextNode
 operator|=
 operator|(
@@ -5917,6 +6368,7 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|nextNode
@@ -5933,10 +6385,13 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|top
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|top
 operator|.
 name|nodeNumber
@@ -5944,8 +6399,11 @@ operator|==
 name|node
 operator|.
 name|nodeNumber
+operator|)
 condition|)
+block|{
 break|break;
+block|}
 name|nextNode
 operator|=
 operator|(
@@ -5975,15 +6433,20 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|node
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 operator|(
 name|top
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|top
 operator|.
 name|nodeNumber
@@ -5991,6 +6454,7 @@ operator|==
 name|node
 operator|.
 name|nodeNumber
+operator|)
 operator|)
 condition|)
 block|{
@@ -6051,6 +6515,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 name|QName
 name|nodeName
 init|=
@@ -6082,12 +6547,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -6096,6 +6564,7 @@ name|ns
 index|]
 operator|==
 name|nr
+operator|)
 condition|)
 block|{
 name|QName
@@ -6120,6 +6589,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|receiver
 operator|.
 name|startPrefixMapping
@@ -6132,7 +6602,9 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|receiver
 operator|.
 name|startPrefixMapping
@@ -6148,6 +6620,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -6185,12 +6658,15 @@ argument_list|()
 expr_stmt|;
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -6199,6 +6675,7 @@ name|attr
 index|]
 operator|==
 name|nr
+operator|)
 condition|)
 block|{
 name|QName
@@ -6238,11 +6715,13 @@ name|attribs
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|characters
@@ -6271,11 +6750,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+block|{
 name|QName
 name|attrQName
 init|=
@@ -6299,11 +6780,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|comment
@@ -6328,11 +6811,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 name|QName
 name|qn
 init|=
@@ -6381,11 +6866,13 @@ name|data
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 name|receiver
 operator|.
 name|cdataSection
@@ -6410,11 +6897,13 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 case|:
+block|{
 name|serializer
 operator|.
 name|toReceiver
@@ -6437,6 +6926,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 specifier|private
@@ -6502,12 +6992,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -6516,6 +7009,7 @@ name|ns
 index|]
 operator|==
 name|nr
+operator|)
 condition|)
 block|{
 name|QName
@@ -6540,6 +7034,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|receiver
 operator|.
 name|endPrefixMapping
@@ -6547,7 +7042,9 @@ argument_list|(
 literal|""
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|receiver
 operator|.
 name|endPrefixMapping
@@ -6558,6 +7055,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -6584,16 +7082,22 @@ name|size
 operator|<=
 literal|1
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|context
 operator|.
 name|storeTemporaryDoc
 argument_list|(
 name|this
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -6609,9 +7113,11 @@ decl_stmt|;
 name|int
 name|top
 init|=
+operator|(
 name|size
 operator|>
 literal|1
+operator|)
 condition|?
 literal|1
 else|:
@@ -6637,7 +7143,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|count
+operator|)
 return|;
 block|}
 specifier|public
@@ -6646,10 +7154,12 @@ name|hasChildNodes
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getChildCount
 argument_list|()
 operator|>
 literal|0
+operator|)
 return|;
 block|}
 specifier|public
@@ -6658,7 +7168,9 @@ name|getLocalName
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|""
+operator|)
 return|;
 block|}
 specifier|public
@@ -6667,10 +7179,12 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|""
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getInputEncoding() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getInputEncoding()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getInputEncoding
@@ -6678,10 +7192,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlEncoding() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getXmlEncoding()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getXmlEncoding
@@ -6689,10 +7205,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlStandalone() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getXmlStandalone()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|getXmlStandalone
@@ -6700,10 +7218,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#setXmlStandalone(boolean)      *      * @param   xmlStandalone  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setXmlStandalone
@@ -6716,7 +7236,7 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlVersion() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getXmlVersion()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getXmlVersion
@@ -6724,10 +7244,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      *      * @param   xmlVersion  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setXmlVersion
@@ -6740,7 +7262,7 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Document#getStrictErrorChecking() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getStrictErrorChecking()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|getStrictErrorChecking
@@ -6748,10 +7270,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setStrictErrorChecking(boolean) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#setStrictErrorChecking(boolean)      *      * @param  strictErrorChecking  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setStrictErrorChecking
@@ -6762,17 +7286,19 @@ parameter_list|)
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDocumentURI() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getDocumentURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getDocumentURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|documentURI
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      *      * @param  documentURI  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setDocumentURI
@@ -6788,7 +7314,7 @@ operator|=
 name|documentURI
 expr_stmt|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node)      *      * @param   source  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|Node
 name|adoptNode
@@ -6801,10 +7327,12 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDomConfig() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#getDomConfig()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|DOMConfiguration
 name|getDomConfig
@@ -6812,10 +7340,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#normalizeDocument() 	 */
+comment|/**      * ? @see org.w3c.dom.Document#normalizeDocument()      */
 specifier|public
 name|void
 name|normalizeDocument
@@ -6823,7 +7353,7 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      *      * @param   n              DOCUMENT ME!      * @param   namespaceURI   DOCUMENT ME!      * @param   qualifiedName  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|Node
 name|renameNode
@@ -6842,7 +7372,9 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -6866,10 +7398,12 @@ name|getContext
 parameter_list|()
 block|{
 return|return
+operator|(
 name|context
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getBaseURI
@@ -6886,12 +7420,14 @@ block|{
 try|try
 block|{
 return|return
+operator|(
 name|context
 operator|.
 name|getBaseURI
 argument_list|()
 operator|+
 literal|""
+operator|)
 return|;
 block|}
 catch|catch
@@ -6912,12 +7448,14 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|XmldbURI
 operator|.
 name|EMPTY_URI
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 comment|//return XmldbURI.ROOT_COLLECTION_URI.toString();
 block|}
@@ -6927,9 +7465,11 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|DOCUMENT
+operator|)
 return|;
 block|}
 specifier|public
@@ -7001,6 +7541,7 @@ block|{
 break|break;
 block|}
 else|else
+block|{
 name|nodeNr
 operator|=
 name|next
@@ -7008,6 +7549,7 @@ index|[
 name|nodeNr
 index|]
 expr_stmt|;
+block|}
 block|}
 block|}
 name|result
@@ -7018,10 +7560,12 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -7035,12 +7579,14 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|next
 index|[
 name|nextNode
 index|]
+operator|)
 return|;
 block|}
 block|}

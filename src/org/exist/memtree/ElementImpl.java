@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,116 +12,6 @@ operator|.
 name|memtree
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|Namespaces
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|ElementAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NamedNodeMapImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeListImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|NodeTest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
 
 begin_import
 import|import
@@ -209,6 +99,116 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|Namespaces
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|ElementAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NamedNodeMapImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeListImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -274,15 +274,17 @@ name|nodeNumber
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getTagName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getTagName()      */
 specifier|public
 name|String
 name|getTagName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getNodeName
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -291,29 +293,37 @@ name|getQName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|nodeName
 index|[
 name|nodeNumber
 index|]
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasChildNodes()      */
 specifier|public
 name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
 return|return
+operator|(
+operator|(
+operator|(
 name|nodeNumber
 operator|+
 literal|1
+operator|)
 operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
@@ -329,9 +339,11 @@ name|treeLevel
 index|[
 name|nodeNumber
 index|]
+operator|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
 name|Node
 name|getFirstChild
@@ -356,37 +368,47 @@ literal|1
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|nextNode
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|level
+operator|)
 condition|)
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|nextNode
 argument_list|)
+operator|)
 return|;
 block|}
 else|else
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getChildNodes() 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getChildNodes()      */
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -444,7 +466,9 @@ index|]
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nl
+operator|)
 return|;
 block|}
 specifier|public
@@ -453,63 +477,73 @@ name|getChildCount
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|getChildCountFor
 argument_list|(
 name|nodeNumber
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
 specifier|public
 name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPrefix() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
 specifier|public
 name|String
 name|getPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getPrefix
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
 specifier|public
 name|String
 name|getLocalName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getLocalName
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasAttributes()      */
 specifier|public
 name|boolean
 name|hasAttributes
 parameter_list|()
 block|{
 return|return
+operator|(
+operator|(
 name|document
 operator|.
 name|alpha
@@ -519,7 +553,9 @@ index|]
 operator|>
 operator|-
 literal|1
+operator|)
 operator|||
+operator|(
 name|document
 operator|.
 name|alphaLen
@@ -529,9 +565,11 @@ index|]
 operator|>
 operator|-
 literal|1
+operator|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttribute(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttribute(java.lang.String)      */
 specifier|public
 name|String
 name|getAttribute
@@ -560,12 +598,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -574,6 +615,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -598,14 +640,18 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|document
 operator|.
 name|attrValue
 index|[
 name|attr
 index|]
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
@@ -641,12 +687,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -655,6 +704,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -679,12 +729,16 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|nsQName
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -692,10 +746,12 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttribute(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttribute(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|setAttribute
@@ -711,7 +767,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttribute(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttribute(java.lang.String)      */
 specifier|public
 name|void
 name|removeAttribute
@@ -730,6 +786,7 @@ name|getAttributesCount
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|getAttributesCountFor
@@ -743,9 +800,10 @@ name|getNamespacesCountFor
 argument_list|(
 name|nodeNumber
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getAttributes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getAttributes()      */
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -778,12 +836,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -792,6 +853,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|map
@@ -829,17 +891,24 @@ name|ns
 operator|<
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 name|map
+operator|)
 return|;
+block|}
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -848,6 +917,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|NamespaceNode
@@ -873,10 +943,12 @@ name|ns
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|map
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNode(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNode(java.lang.String)      */
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -905,12 +977,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -919,6 +994,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -943,7 +1019,9 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -951,7 +1029,9 @@ name|document
 argument_list|,
 name|attr
 argument_list|)
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
@@ -987,12 +1067,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -1001,6 +1084,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -1025,7 +1109,9 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|new
 name|NamespaceNode
 argument_list|(
@@ -1033,7 +1119,9 @@ name|document
 argument_list|,
 name|ns
 argument_list|)
+operator|)
 return|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -1041,10 +1129,12 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNode(org.w3c.dom.Attr) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNode(org.w3c.dom.Attr)      */
 specifier|public
 name|Attr
 name|setAttributeNode
@@ -1057,10 +1147,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttributeNode(org.w3c.dom.Attr) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttributeNode(org.w3c.dom.Attr)      */
 specifier|public
 name|Attr
 name|removeAttributeNode
@@ -1073,7 +1165,9 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -1109,12 +1203,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -1123,6 +1220,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|AttributeImpl
@@ -1145,6 +1243,7 @@ argument_list|(
 name|attrib
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1152,6 +1251,7 @@ argument_list|(
 name|attrib
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
@@ -1207,21 +1307,25 @@ argument_list|)
 expr_stmt|;
 while|while
 condition|(
+operator|(
 operator|++
 name|nextNode
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|treeLevel
+operator|)
 condition|)
 block|{
 name|n
@@ -1244,6 +1348,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|n
 operator|.
 name|selectAttributes
@@ -1253,6 +1358,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1304,6 +1410,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1311,6 +1418,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -1377,6 +1485,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1385,23 +1494,28 @@ name|n
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 while|while
 condition|(
+operator|(
 operator|++
 name|nextNode
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|nextNode
 index|]
-argument_list|>
+operator|>
 name|treeLevel
+operator|)
 condition|)
 block|{
 name|NodeImpl
@@ -1423,6 +1537,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1432,7 +1547,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String) 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -1499,6 +1615,7 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|nl
 operator|.
 name|add
@@ -1512,6 +1629,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|document
@@ -1523,13 +1641,17 @@ index|]
 operator|<=
 name|nodeNumber
 condition|)
+block|{
 break|break;
 block|}
+block|}
 return|return
+operator|(
 name|nl
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|String
 name|getAttributeNS
@@ -1564,12 +1686,15 @@ name|name
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -1578,6 +1703,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|name
@@ -1611,14 +1737,18 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|document
 operator|.
 name|attrValue
 index|[
 name|attr
 index|]
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
@@ -1656,12 +1786,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -1670,6 +1803,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -1694,12 +1828,16 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|nsQName
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -1707,10 +1845,12 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNS(java.lang.String, java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNS(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|setAttributeNS
@@ -1729,7 +1869,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|removeAttributeNS
@@ -1745,7 +1885,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -1780,12 +1920,15 @@ name|name
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|attr
 operator|<
 name|document
 operator|.
 name|nextAttr
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|attrParent
@@ -1794,6 +1937,7 @@ name|attr
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|name
@@ -1827,7 +1971,9 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -1835,7 +1981,9 @@ name|document
 argument_list|,
 name|attr
 argument_list|)
+operator|)
 return|;
+block|}
 operator|++
 name|attr
 expr_stmt|;
@@ -1873,12 +2021,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -1887,6 +2038,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -1911,7 +2063,9 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 operator|new
 name|NamespaceNode
 argument_list|(
@@ -1919,7 +2073,9 @@ name|document
 argument_list|,
 name|ns
 argument_list|)
+operator|)
 return|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
@@ -1927,10 +2083,12 @@ block|}
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNodeNS(org.w3c.dom.Attr) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNodeNS(org.w3c.dom.Attr)      */
 specifier|public
 name|Attr
 name|setAttributeNodeNS
@@ -1943,10 +2101,12 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -2026,6 +2186,7 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 name|nl
 operator|.
 name|add
@@ -2039,6 +2200,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|document
@@ -2050,13 +2212,17 @@ index|]
 operator|<=
 name|nodeNumber
 condition|)
+block|{
 break|break;
 block|}
+block|}
 return|return
+operator|(
 name|nl
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#hasAttribute(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#hasAttribute(java.lang.String)      */
 specifier|public
 name|boolean
 name|hasAttribute
@@ -2066,15 +2232,17 @@ name|name
 parameter_list|)
 block|{
 return|return
+operator|(
 name|getAttribute
 argument_list|(
 name|name
 argument_list|)
 operator|!=
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -2087,6 +2255,7 @@ name|localName
 parameter_list|)
 block|{
 return|return
+operator|(
 name|getAttributeNS
 argument_list|(
 name|namespaceURI
@@ -2095,9 +2264,10 @@ name|localName
 argument_list|)
 operator|!=
 literal|null
+operator|)
 return|;
 block|}
-comment|/**      * The method<code>getNamespaceForPrefix</code>      *      * @param name a<code>String</code> value      * @return a<code>String</code> value      */
+comment|/**      * The method<code>getNamespaceForPrefix.</code>      *      * @param   name  a<code>String</code> value      *      * @return  a<code>String</code> value      */
 specifier|public
 name|String
 name|getNamespaceForPrefix
@@ -2126,12 +2296,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -2140,6 +2313,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -2166,22 +2340,28 @@ operator|+
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|nsQName
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
+block|}
 operator|++
 name|ns
 expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/**      * The method<code>getPrefixes</code>      *      * @return a<code>Set</code> value      */
+comment|/**      * The method<code>getPrefixes.</code>      *      * @return  a<code>Set</code> value      */
 specifier|public
 name|Set
 argument_list|<
@@ -2223,12 +2403,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -2237,6 +2420,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -2265,10 +2449,12 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|set
+operator|)
 return|;
 block|}
-comment|/**      * The method<code>declaresNamespacePrefixes</code>      *      * @return a<code>boolean</code> value      */
+comment|/**      * The method<code>declaresNamespacePrefixes.</code>      *      * @return  a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|declaresNamespacePrefixes
@@ -2287,7 +2473,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/**      * The method<code>getNamespaceMap</code>      *      * @return a<code>Map</code> value      */
+comment|/**      * The method<code>getNamespaceMap.</code>      *      * @return  a<code>Map</code> value      */
 specifier|public
 name|Map
 argument_list|<
@@ -2335,12 +2521,15 @@ condition|)
 block|{
 while|while
 condition|(
+operator|(
 name|ns
 operator|<
 name|document
 operator|.
 name|nextNamespace
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|namespaceParent
@@ -2349,6 +2538,7 @@ name|ns
 index|]
 operator|==
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|QName
@@ -2382,7 +2572,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|map
+operator|)
 return|;
 block|}
 specifier|public
@@ -2391,12 +2583,14 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|ELEMENT
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getBaseURI
@@ -2469,11 +2663,14 @@ block|}
 comment|// fixme! UNDEFINED instead of all the -1s in this file./ljo
 while|while
 condition|(
+operator|(
 name|parent
 operator|!=
 operator|-
 literal|1
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|getNode
@@ -2485,6 +2682,7 @@ name|getBaseURI
 argument_list|()
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 if|if
@@ -2553,7 +2751,9 @@ name|DOCUMENT_NODE
 condition|)
 block|{
 return|return
+operator|(
 name|baseURI
+operator|)
 return|;
 block|}
 else|else
@@ -2584,10 +2784,12 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|baseURI
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#getSchemaTypeInfo() 	 */
+comment|/**      * ? @see org.w3c.dom.Element#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -2595,10 +2797,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean) 	 */
+comment|/**      * ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean)      *      * @param   name  DOCUMENT ME!      * @param   isId  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setIdAttribute
@@ -2614,7 +2818,7 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean) 	 */
+comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean)      *      * @param   namespaceURI  DOCUMENT ME!      * @param   localName     DOCUMENT ME!      * @param   isId          DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setIdAttributeNS
@@ -2633,7 +2837,7 @@ name|DOMException
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean) 	 */
+comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean)      *      * @param   idAttr  DOCUMENT ME!      * @param   isId    DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setIdAttributeNode
@@ -2790,6 +2994,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2797,6 +3002,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 name|Node
 name|natt
 init|=
@@ -2883,6 +3089,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2890,6 +3097,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 name|Node
 name|child
 init|=
@@ -2920,10 +3128,12 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -2982,6 +3192,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2989,6 +3200,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -3007,10 +3219,12 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 block|}

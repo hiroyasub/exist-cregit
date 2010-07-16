@@ -13,6 +13,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -57,7 +69,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|ValueSequence
+name|Type
 import|;
 end_import
 
@@ -71,19 +83,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
+name|ValueSequence
 import|;
 end_import
 
@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/**  * DOCUMENT ME!  */
 end_comment
 
 begin_class
@@ -284,7 +284,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -341,7 +343,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -398,7 +402,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -457,6 +463,7 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|nodes
 operator|.
 name|add
@@ -465,8 +472,11 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -528,7 +538,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -590,7 +602,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -649,9 +663,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|parent
 operator|!=
 literal|null
+operator|)
 operator|&&
 name|test
 operator|.
@@ -660,6 +676,7 @@ argument_list|(
 name|parent
 argument_list|)
 condition|)
+block|{
 name|nodes
 operator|.
 name|add
@@ -668,8 +685,11 @@ name|parent
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -718,6 +738,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
+operator|(
 name|test
 operator|.
 name|getType
@@ -726,7 +747,9 @@ operator|==
 name|Type
 operator|.
 name|NODE
+operator|)
 operator|&&
+operator|(
 name|node
 operator|.
 name|getNodeType
@@ -736,6 +759,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 operator|)
+operator|)
 operator|||
 name|test
 operator|.
@@ -744,6 +768,7 @@ argument_list|(
 name|node
 argument_list|)
 condition|)
+block|{
 name|nodes
 operator|.
 name|add
@@ -752,8 +777,11 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -810,7 +838,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 specifier|public
@@ -867,7 +897,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|nodes
+operator|)
 return|;
 block|}
 block|}

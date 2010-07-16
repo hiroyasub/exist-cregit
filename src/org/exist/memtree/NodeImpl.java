@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,116 @@ operator|.
 name|memtree
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NamedNodeMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|UserDataHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ContentHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|ext
+operator|.
+name|LexicalHandler
+import|;
+end_import
 
 begin_import
 import|import
@@ -339,116 +449,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NamedNodeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|UserDataHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ContentHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|ext
-operator|.
-name|LexicalHandler
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -529,19 +529,23 @@ name|getNodeNumber
 parameter_list|()
 block|{
 return|return
+operator|(
 name|nodeNumber
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getImplementation() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getImplementation()      */
 specifier|public
 name|int
 name|getImplementationType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
@@ -551,9 +555,11 @@ name|getDocumentSet
 parameter_list|()
 block|{
 return|return
+operator|(
 name|DocumentSet
 operator|.
 name|EMPTY_DOCUMENT_SET
+operator|)
 return|;
 block|}
 specifier|public
@@ -562,22 +568,26 @@ name|getCollectionIterator
 parameter_list|()
 block|{
 return|return
+operator|(
 name|EmptyNodeSet
 operator|.
 name|EMPTY_ITERATOR
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#getNode() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getNode()      */
 specifier|public
 name|Node
 name|getNode
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
 specifier|public
 name|String
 name|getNodeName
@@ -594,9 +604,13 @@ name|Type
 operator|.
 name|DOCUMENT
 case|:
+block|{
 return|return
+operator|(
 literal|"#document"
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
@@ -607,6 +621,7 @@ name|Type
 operator|.
 name|PROCESSING_INSTRUCTION
 case|:
+block|{
 name|QName
 name|qn
 init|=
@@ -619,17 +634,22 @@ index|]
 decl_stmt|;
 comment|//TODO : check !
 return|return
+operator|(
 name|qn
 operator|.
 name|getStringValue
 argument_list|()
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
 name|ATTRIBUTE
 case|:
+block|{
 return|return
+operator|(
 operator|(
 name|document
 operator|.
@@ -641,13 +661,17 @@ operator|)
 operator|.
 name|getStringValue
 argument_list|()
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
 name|NAMESPACE
 case|:
+block|{
 return|return
+operator|(
 operator|(
 name|document
 operator|.
@@ -659,35 +683,53 @@ operator|)
 operator|.
 name|getStringValue
 argument_list|()
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
 name|TEXT
 case|:
+block|{
 return|return
+operator|(
 literal|"#text"
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
 name|COMMENT
 case|:
+block|{
 return|return
+operator|(
 literal|"#comment"
+operator|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
 name|CDATA_SECTION
 case|:
+block|{
 return|return
+operator|(
 literal|"#cdata-section"
+operator|)
 return|;
-default|default :
+block|}
+default|default:
+block|{
 return|return
+operator|(
 literal|"#unknown"
+operator|)
 return|;
+block|}
 block|}
 block|}
 comment|//TODO : what are the semantics ? IMHO, QName.EMPTY_QNAME shouldn't be QNameable ! -pb
@@ -717,6 +759,7 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 name|QName
 name|qn
 init|=
@@ -728,52 +771,75 @@ name|nodeNumber
 index|]
 decl_stmt|;
 return|return
+operator|(
 name|qn
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|DOCUMENT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 return|return
+operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
+operator|)
 return|;
-default|default :
+block|}
+default|default:
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 block|}
 block|}
 specifier|public
@@ -785,12 +851,14 @@ name|expand
 argument_list|()
 expr_stmt|;
 return|return
+operator|(
 name|document
 operator|.
 name|nodeId
 index|[
 name|nodeNumber
 index|]
+operator|)
 return|;
 block|}
 specifier|public
@@ -845,7 +913,7 @@ name|newDoc
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
 specifier|public
 name|String
 name|getNodeValue
@@ -854,6 +922,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -870,9 +939,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setNodeValue(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setNodeValue(java.lang.String)      */
 specifier|public
 name|void
 name|setNodeValue
@@ -884,6 +954,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -894,9 +965,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeType() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeType()      */
 specifier|public
 name|short
 name|getNodeType
@@ -911,21 +983,27 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|Node
 operator|.
 name|DOCUMENT_NODE
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|document
 operator|.
 name|nodeKind
 index|[
 name|nodeNumber
 index|]
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getParentNode() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
 specifier|public
 name|Node
 name|getParentNode
@@ -964,16 +1042,22 @@ name|next
 operator|<
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|next
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -988,9 +1072,13 @@ name|nodeNumber
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|int
 name|next
 init|=
@@ -1024,17 +1112,23 @@ name|next
 operator|<
 literal|0
 condition|)
+block|{
 comment|//Is this even possible ?
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|next
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 name|this
 operator|.
 name|document
@@ -1046,14 +1140,18 @@ operator|.
 name|document
 else|:
 literal|null
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|next
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -1068,6 +1166,7 @@ name|node
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1078,9 +1177,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/* (non-Javadoc)      * @see java.lang.Object#equals(java.lang.Object)      */
 specifier|public
 name|boolean
 name|equals
@@ -1098,9 +1198,13 @@ operator|instanceof
 name|NodeImpl
 operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|o
 init|=
@@ -1110,18 +1214,24 @@ operator|)
 name|obj
 decl_stmt|;
 return|return
+operator|(
+operator|(
 name|document
 operator|==
 name|o
 operator|.
 name|document
+operator|)
 operator|&&
+operator|(
 name|nodeNumber
 operator|==
 name|o
 operator|.
 name|nodeNumber
+operator|)
 operator|&&
+operator|(
 name|getNodeType
 argument_list|()
 operator|==
@@ -1129,9 +1239,11 @@ name|o
 operator|.
 name|getNodeType
 argument_list|()
+operator|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#equals(org.exist.xquery.value.NodeValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#equals(org.exist.xquery.value.NodeValue)      */
 specifier|public
 name|boolean
 name|equals
@@ -1153,9 +1265,13 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|o
 init|=
@@ -1165,18 +1281,24 @@ operator|)
 name|other
 decl_stmt|;
 return|return
+operator|(
+operator|(
 name|document
 operator|==
 name|o
 operator|.
 name|document
+operator|)
 operator|&&
+operator|(
 name|nodeNumber
 operator|==
 name|o
 operator|.
 name|nodeNumber
+operator|)
 operator|&&
+operator|(
 name|getNodeType
 argument_list|()
 operator|==
@@ -1184,9 +1306,11 @@ name|o
 operator|.
 name|getNodeType
 argument_list|()
+operator|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#after(org.exist.xquery.value.NodeValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#after(org.exist.xquery.value.NodeValue)      */
 specifier|public
 name|boolean
 name|after
@@ -1211,14 +1335,19 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
 literal|"cannot compare persistent node with in-memory node"
 argument_list|)
+operator|)
 throw|;
+block|}
 return|return
+operator|(
 name|nodeNumber
 operator|>
 operator|(
@@ -1229,9 +1358,10 @@ name|other
 operator|)
 operator|.
 name|nodeNumber
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NodeValue#before(org.exist.xquery.value.NodeValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#before(org.exist.xquery.value.NodeValue)      */
 specifier|public
 name|boolean
 name|before
@@ -1256,14 +1386,19 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
 literal|"cannot compare persistent node with in-memory node"
 argument_list|)
+operator|)
 throw|;
+block|}
 return|return
+operator|(
 name|nodeNumber
 operator|<
 operator|(
@@ -1274,6 +1409,7 @@ name|other
 operator|)
 operator|.
 name|nodeNumber
+operator|)
 return|;
 block|}
 specifier|public
@@ -1293,11 +1429,15 @@ operator|instanceof
 name|NodeImpl
 operator|)
 condition|)
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|INFERIOR
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|n
 init|=
@@ -1317,12 +1457,15 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|nodeNumber
 operator|==
 name|n
 operator|.
 name|nodeNumber
+operator|)
 operator|&&
+operator|(
 name|getNodeType
 argument_list|()
 operator|==
@@ -1330,12 +1473,17 @@ name|n
 operator|.
 name|getNodeType
 argument_list|()
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|EQUAL
+operator|)
 return|;
+block|}
 if|else if
 condition|(
 name|nodeNumber
@@ -1344,17 +1492,25 @@ name|n
 operator|.
 name|nodeNumber
 condition|)
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|INFERIOR
+operator|)
 return|;
+block|}
 else|else
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|SUPERIOR
+operator|)
 return|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1368,25 +1524,34 @@ name|document
 operator|.
 name|docId
 condition|)
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|INFERIOR
+operator|)
 return|;
+block|}
 else|else
+block|{
 return|return
+operator|(
 name|Constants
 operator|.
 name|SUPERIOR
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getChildNodes() 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getChildNodes()      */
 specifier|public
 name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1397,16 +1562,18 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 comment|//return new NodeListImpl();
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
 name|Node
 name|getFirstChild
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1417,15 +1584,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLastChild() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLastChild()      */
 specifier|public
 name|Node
 name|getLastChild
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1436,9 +1605,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPreviousSibling()      */
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1450,9 +1620,13 @@ name|nodeNumber
 operator|==
 literal|0
 condition|)
+block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
+block|}
 name|int
 name|parent
 init|=
@@ -1475,13 +1649,17 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|nextNode
 operator|>=
 name|parent
+operator|)
 operator|&&
+operator|(
 name|nextNode
 operator|<
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|int
@@ -1500,24 +1678,30 @@ name|following
 operator|==
 name|nodeNumber
 condition|)
+block|{
 return|return
+operator|(
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|nextNode
 argument_list|)
+operator|)
 return|;
+block|}
 name|nextNode
 operator|=
 name|following
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNextSibling() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNextSibling()      */
 specifier|public
 name|Node
 name|getNextSibling
@@ -1534,9 +1718,12 @@ name|nodeNumber
 index|]
 decl_stmt|;
 return|return
+operator|(
+operator|(
 name|nextNr
 operator|<
 name|nodeNumber
+operator|)
 condition|?
 literal|null
 else|:
@@ -1546,15 +1733,17 @@ name|getNode
 argument_list|(
 name|nextNr
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getAttributes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getAttributes()      */
 specifier|public
 name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1565,16 +1754,19 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getOwnerDocument()      */
 specifier|public
 name|Document
 name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
+operator|)
 return|;
 block|}
 specifier|public
@@ -1583,7 +1775,9 @@ name|getDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
+operator|)
 return|;
 block|}
 specifier|public
@@ -1592,10 +1786,12 @@ name|getDocumentAtExist
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|insertBefore
@@ -1610,6 +1806,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1620,9 +1817,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|replaceChild
@@ -1637,6 +1835,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1647,9 +1846,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|removeChild
@@ -1661,6 +1861,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1671,9 +1872,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#newChild(org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#newChild(org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|appendChild
@@ -1685,6 +1887,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1695,9 +1898,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasChildNodes()      */
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -1706,10 +1910,12 @@ block|{
 comment|//        throw new RuntimeException("Can not call hasChildNodes() on node type " + this.getNodeType());
 comment|//the default value is
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#cloneNode(boolean)      */
 specifier|public
 name|Node
 name|cloneNode
@@ -1719,6 +1925,7 @@ name|arg0
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1729,15 +1936,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#normalize() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#normalize()      */
 specifier|public
 name|void
 name|normalize
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1748,9 +1957,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String)      */
 specifier|public
 name|boolean
 name|isSupported
@@ -1763,6 +1973,7 @@ name|arg1
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1773,15 +1984,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
 specifier|public
 name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1792,15 +2005,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPrefix() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
 specifier|public
 name|String
 name|getPrefix
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1811,9 +2026,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setPrefix(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setPrefix(java.lang.String)      */
 specifier|public
 name|void
 name|setPrefix
@@ -1825,6 +2041,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1835,15 +2052,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
 specifier|public
 name|String
 name|getLocalName
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1854,15 +2073,17 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasAttributes()      */
 specifier|public
 name|boolean
 name|hasAttributes
 parameter_list|()
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -1873,10 +2094,11 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* 	 * Methods of interface Item 	 */
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
+comment|/*      * Methods of interface Item      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
 specifier|public
 name|int
 name|getType
@@ -1891,11 +2113,15 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|DOCUMENT
+operator|)
 return|;
+block|}
 name|int
 name|type
 init|=
@@ -1912,80 +2138,112 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|DOCUMENT
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|COMMENT
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|PROCESSING_INSTRUCTION
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|ELEMENT
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|ATTRIBUTE
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|TEXT
+operator|)
 return|;
+block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|CDATA_SECTION
+operator|)
 return|;
-default|default :
+block|}
+default|default:
+block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|NODE
+operator|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -2021,24 +2279,29 @@ literal|1
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|next
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|next
 index|]
-argument_list|>
+operator|>
 name|level
+operator|)
 condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|document
 operator|.
 name|nodeKind
@@ -2049,7 +2312,9 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
+operator|)
 operator|||
+operator|(
 name|document
 operator|.
 name|nodeKind
@@ -2060,6 +2325,7 @@ operator|==
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
+operator|)
 condition|)
 block|{
 if|if
@@ -2089,6 +2355,7 @@ index|]
 expr_stmt|;
 block|}
 else|else
+block|{
 name|len
 operator|+=
 name|document
@@ -2099,19 +2366,27 @@ name|next
 index|]
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 return|return
+operator|(
 name|getStringValueSlow
 argument_list|()
+operator|)
 return|;
+block|}
 operator|++
 name|next
 expr_stmt|;
 block|}
 return|return
+operator|(
+operator|(
 name|len
 operator|<
 literal|0
+operator|)
 condition|?
 literal|""
 else|:
@@ -2126,6 +2401,7 @@ name|startOffset
 argument_list|,
 name|len
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|private
@@ -2157,20 +2433,24 @@ literal|1
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|next
-argument_list|<
+operator|<
 name|document
 operator|.
 name|size
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|treeLevel
 index|[
 name|next
 index|]
-argument_list|>
+operator|>
 name|level
+operator|)
 condition|)
 block|{
 switch|switch
@@ -2193,18 +2473,21 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+block|{
 if|if
 condition|(
 name|buf
 operator|==
 literal|null
 condition|)
+block|{
 name|buf
 operator|=
 operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -2229,21 +2512,25 @@ index|]
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 name|REFERENCE_NODE
 case|:
+block|{
 if|if
 condition|(
 name|buf
 operator|==
 literal|null
 condition|)
+block|{
 name|buf
 operator|=
 operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -2266,14 +2553,18 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
+block|}
 operator|++
 name|next
 expr_stmt|;
 block|}
 return|return
+operator|(
+operator|(
 name|buf
 operator|==
 literal|null
+operator|)
 condition|?
 literal|""
 else|:
@@ -2281,19 +2572,22 @@ name|buf
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
 specifier|public
 name|Sequence
 name|toSequence
 parameter_list|()
 block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -2305,6 +2599,7 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 name|UntypedAtomicValue
 operator|.
 name|convertTo
@@ -2316,9 +2611,10 @@ argument_list|()
 argument_list|,
 name|requiredType
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#atomize() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
 specifier|public
 name|AtomicValue
 name|atomize
@@ -2327,22 +2623,26 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 operator|new
 name|UntypedAtomicValue
 argument_list|(
 name|getStringValue
 argument_list|()
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* 	 * Methods of interface Sequence 	 */
+comment|/*      * Methods of interface Sequence      */
 specifier|public
 name|boolean
 name|isEmpty
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -2351,7 +2651,9 @@ name|hasOne
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 specifier|public
@@ -2360,10 +2662,12 @@ name|hasMany
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
 specifier|public
 name|void
 name|add
@@ -2375,6 +2679,7 @@ throws|throws
 name|XPathException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -2385,9 +2690,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence)      */
 specifier|public
 name|void
 name|addAll
@@ -2399,6 +2705,7 @@ throws|throws
 name|XPathException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -2409,21 +2716,24 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 specifier|public
 name|int
 name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|NODE
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -2432,35 +2742,41 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 operator|new
 name|SingleNodeIterator
 argument_list|(
 name|this
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|SingleNodeIterator
 argument_list|(
 name|this
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemCount() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemCount()      */
 specifier|public
 name|int
 name|getItemCount
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|1
+operator|)
 return|;
 block|}
 specifier|public
@@ -2470,6 +2786,7 @@ parameter_list|()
 block|{
 comment|//Let the derived classes do it...
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -2480,21 +2797,24 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 specifier|public
 name|Item
 name|itemAt
@@ -2504,16 +2824,20 @@ name|pos
 parameter_list|)
 block|{
 return|return
+operator|(
+operator|(
 name|pos
 operator|==
 literal|0
+operator|)
 condition|?
 name|this
 else|:
 literal|null
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -2523,10 +2847,12 @@ name|XPathException
 block|{
 comment|//A node evaluates to true()
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -2534,7 +2860,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|//		throw new XPathException("Querying constructed nodes is not yet implemented");
+comment|//      throw new XPathException("Querying constructed nodes is not yet implemented");
 name|ValueSequence
 name|seq
 init|=
@@ -2550,10 +2876,12 @@ name|this
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|seq
 operator|.
 name|toNodeSet
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -2564,6 +2892,7 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 operator|new
 name|ValueSequence
 argument_list|(
@@ -2572,66 +2901,10 @@ argument_list|)
 operator|.
 name|toMemNodeSet
 argument_list|()
+operator|)
 return|;
 block|}
-specifier|private
-specifier|final
-specifier|static
-class|class
-name|SingleNodeIterator
-implements|implements
-name|SequenceIterator
-block|{
-name|NodeImpl
-name|node
-decl_stmt|;
-specifier|public
-name|SingleNodeIterator
-parameter_list|(
-name|NodeImpl
-name|node
-parameter_list|)
-block|{
-name|this
-operator|.
-name|node
-operator|=
-name|node
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#hasNext() 		 */
-specifier|public
-name|boolean
-name|hasNext
-parameter_list|()
-block|{
-return|return
-name|node
-operator|!=
-literal|null
-return|;
-block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
-specifier|public
-name|Item
-name|nextItem
-parameter_list|()
-block|{
-name|NodeImpl
-name|next
-init|=
-name|node
-decl_stmt|;
-name|node
-operator|=
-literal|null
-expr_stmt|;
-return|return
-name|next
-return|;
-block|}
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
 specifier|public
 name|void
 name|toSAX
@@ -2678,6 +2951,7 @@ name|properties
 operator|!=
 literal|null
 condition|)
+block|{
 name|serializer
 operator|.
 name|setProperties
@@ -2685,6 +2959,7 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|handler
@@ -2745,6 +3020,7 @@ name|document
 operator|!=
 literal|null
 condition|)
+block|{
 name|document
 operator|.
 name|copyTo
@@ -2754,6 +3030,7 @@ argument_list|,
 name|receiver
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -2775,6 +3052,7 @@ name|document
 operator|!=
 literal|null
 condition|)
+block|{
 name|document
 operator|.
 name|streamTo
@@ -2787,7 +3065,8 @@ name|receiver
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -2810,9 +3089,13 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|0
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2824,162 +3107,238 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|1
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|String
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|CharSequence
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|2
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Character
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|char
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|2
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Double
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|double
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|10
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Float
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|float
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|11
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Long
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|long
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|12
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Integer
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|int
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|13
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Short
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|short
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|14
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Byte
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|byte
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|15
+operator|)
 return|;
+block|}
 if|if
 condition|(
+operator|(
 name|javaClass
 operator|==
 name|Boolean
 operator|.
 name|class
+operator|)
 operator|||
+operator|(
 name|javaClass
 operator|==
 name|boolean
 operator|.
 name|class
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|16
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2988,16 +3347,22 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
 literal|20
+operator|)
 return|;
+block|}
 return|return
+operator|(
 name|Integer
 operator|.
 name|MAX_VALUE
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 specifier|public
 name|Object
 name|toJavaObject
@@ -3022,9 +3387,13 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -3036,9 +3405,13 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -3047,9 +3420,13 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
 name|this
+operator|)
 return|;
+block|}
 else|else
 block|{
 name|StringValue
@@ -3063,16 +3440,18 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
 name|v
 operator|.
 name|toJavaObject
 argument_list|(
 name|target
 argument_list|)
+operator|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsContext(int)      */
 specifier|public
 name|void
 name|setSelfAsContext
@@ -3082,6 +3461,7 @@ name|contextId
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -3092,9 +3472,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
 specifier|public
 name|boolean
 name|isCached
@@ -3102,10 +3483,12 @@ parameter_list|()
 block|{
 comment|// always return false
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setIsCached(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
 specifier|public
 name|void
 name|setIsCached
@@ -3116,6 +3499,7 @@ parameter_list|)
 block|{
 comment|// ignore
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -3126,6 +3510,7 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
@@ -3136,14 +3521,16 @@ parameter_list|()
 block|{
 comment|// do nothing: this is a single node
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getBaseURI
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -3218,6 +3605,7 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3225,6 +3613,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -3248,7 +3637,9 @@ name|nodeNumber
 operator|<
 literal|2
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|includeSelf
@@ -3273,6 +3664,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3280,6 +3672,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|int
 name|nextNode
@@ -3317,6 +3710,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3324,6 +3718,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -3370,13 +3765,17 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|nextNode
 operator|>=
 name|parent
+operator|)
 operator|&&
+operator|(
 name|nextNode
 operator|<
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|NodeImpl
@@ -3398,6 +3797,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3405,6 +3805,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -3493,15 +3894,20 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|position
 operator|<
 literal|0
+operator|)
 operator|||
+operator|(
 operator|++
 name|count
 operator|==
 name|position
+operator|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3509,13 +3915,16 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|count
 operator|==
 name|position
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 block|}
@@ -3559,7 +3968,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -3585,6 +3996,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3592,6 +4004,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|next
@@ -3603,7 +4016,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 break|break;
+block|}
 name|next
 operator|=
 operator|(
@@ -3647,9 +4062,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|nextNode
 operator|>
 name|nodeNumber
+operator|)
 operator|&&
 name|test
 operator|.
@@ -3658,6 +4075,7 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3665,6 +4083,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -3720,7 +4139,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -3746,6 +4167,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|next
 operator|.
 name|selectDescendants
@@ -3757,6 +4179,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|next
@@ -3768,7 +4191,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 break|break;
+block|}
 name|next
 operator|=
 operator|(
@@ -3843,15 +4268,20 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|position
 operator|<
 literal|0
+operator|)
 operator|||
+operator|(
 operator|++
 name|count
 operator|==
 name|position
+operator|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -3859,13 +4289,16 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|count
 operator|==
 name|position
 condition|)
+block|{
 break|break;
+block|}
 block|}
 name|nextNode
 operator|++
@@ -3885,7 +4318,9 @@ name|XPathException
 block|{
 comment|// do nothing
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -3900,7 +4335,9 @@ name|XPathException
 block|{
 comment|// do nothing
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -3915,7 +4352,9 @@ name|XPathException
 block|{
 comment|// do nothing
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -3963,9 +4402,13 @@ name|nodeNumber
 operator|<
 literal|2
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|includeSelf
@@ -3990,9 +4433,13 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 block|}
 name|int
 name|nextNode
@@ -4030,9 +4477,13 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -4044,7 +4495,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4079,13 +4532,17 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
+operator|(
 name|nextNode
 operator|>=
 name|parent
+operator|)
 operator|&&
+operator|(
 name|nextNode
 operator|<
 name|nodeNumber
+operator|)
 condition|)
 block|{
 name|NodeImpl
@@ -4107,9 +4564,13 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -4121,7 +4582,9 @@ index|]
 expr_stmt|;
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4198,29 +4661,41 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|position
 operator|<
 literal|0
+operator|)
 operator|||
+operator|(
 operator|++
 name|count
 operator|==
 name|position
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|count
 operator|==
 name|position
 condition|)
+block|{
 break|break;
 block|}
 block|}
+block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4260,9 +4735,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -4288,9 +4767,13 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|next
@@ -4302,7 +4785,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 break|break;
+block|}
 name|next
 operator|=
 operator|(
@@ -4346,9 +4831,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|nextNode
 operator|>
 name|nodeNumber
+operator|)
 operator|&&
 name|test
 operator|.
@@ -4357,9 +4844,13 @@ argument_list|(
 name|n
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 name|nextNode
 operator|=
 name|document
@@ -4372,7 +4863,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4415,9 +4908,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
+block|}
 name|NodeImpl
 name|next
 init|=
@@ -4443,6 +4940,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 if|if
 condition|(
 name|next
@@ -4454,9 +4952,14 @@ argument_list|,
 name|test
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
+block|}
 if|if
 condition|(
 name|next
@@ -4468,7 +4971,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 break|break;
+block|}
 name|next
 operator|=
 operator|(
@@ -4543,25 +5048,35 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|position
 operator|<
 literal|0
+operator|)
 operator|||
+operator|(
 operator|++
 name|count
 operator|==
 name|position
+operator|)
 condition|)
+block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
+block|}
 if|if
 condition|(
 name|count
 operator|==
 name|position
 condition|)
+block|{
 break|break;
+block|}
 block|}
 name|nextNode
 operator|++
@@ -4569,10 +5084,12 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      *      * @param   other  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -4584,6 +5101,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4594,10 +5112,11 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 comment|//return 0;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getTextContent()      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getTextContent
@@ -4606,6 +5125,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4616,9 +5136,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      *      * @param   textContent  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|setTextContent
@@ -4630,6 +5151,7 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4640,9 +5162,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      *      * @param   other  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isSameNode
@@ -4652,6 +5175,7 @@ name|other
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4662,9 +5186,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      *      * @param   namespaceURI  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|lookupPrefix
@@ -4674,6 +5199,7 @@ name|namespaceURI
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4684,9 +5210,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      *      * @param   namespaceURI  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -4696,6 +5223,7 @@ name|namespaceURI
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4706,9 +5234,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      *      * @param   prefix  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -4718,6 +5247,7 @@ name|prefix
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4728,9 +5258,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      *      * @param   arg  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isEqualNode
@@ -4740,6 +5271,7 @@ name|arg
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4750,9 +5282,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      *      * @param   feature  DOCUMENT ME!      * @param   version  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|Object
 name|getFeature
@@ -4765,6 +5298,7 @@ name|version
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4775,9 +5309,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      *      * @param   key      DOCUMENT ME!      * @param   data     DOCUMENT ME!      * @param   handler  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|Object
 name|setUserData
@@ -4793,6 +5328,7 @@ name|handler
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4803,9 +5339,10 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getUserData(java.lang.String)      *      * @param   key  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|Object
 name|getUserData
@@ -4815,6 +5352,7 @@ name|key
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|RuntimeException
 argument_list|(
@@ -4825,6 +5363,7 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
@@ -4835,7 +5374,9 @@ parameter_list|()
 block|{
 comment|//See package's name ;-)
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -4866,7 +5407,9 @@ name|getState
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|0
+operator|)
 return|;
 block|}
 specifier|public
@@ -4875,7 +5418,9 @@ name|isCacheable
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 specifier|public
@@ -4887,9 +5432,72 @@ name|previousState
 parameter_list|)
 block|{
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 comment|// will never change
+block|}
+specifier|private
+specifier|final
+specifier|static
+class|class
+name|SingleNodeIterator
+implements|implements
+name|SequenceIterator
+block|{
+name|NodeImpl
+name|node
+decl_stmt|;
+specifier|public
+name|SingleNodeIterator
+parameter_list|(
+name|NodeImpl
+name|node
+parameter_list|)
+block|{
+name|this
+operator|.
+name|node
+operator|=
+name|node
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#hasNext()          */
+specifier|public
+name|boolean
+name|hasNext
+parameter_list|()
+block|{
+return|return
+operator|(
+name|node
+operator|!=
+literal|null
+operator|)
+return|;
+block|}
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
+specifier|public
+name|Item
+name|nextItem
+parameter_list|()
+block|{
+name|NodeImpl
+name|next
+init|=
+name|node
+decl_stmt|;
+name|node
+operator|=
+literal|null
+expr_stmt|;
+return|return
+operator|(
+name|next
+operator|)
+return|;
+block|}
 block|}
 block|}
 end_class

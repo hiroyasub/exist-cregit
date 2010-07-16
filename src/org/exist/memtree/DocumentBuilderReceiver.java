@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,102 +12,6 @@ operator|.
 name|memtree
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|serializer
-operator|.
-name|AttrList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|serializer
-operator|.
-name|Receiver
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
-import|;
-end_import
 
 begin_import
 import|import
@@ -195,8 +99,104 @@ name|LexicalHandler
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|StoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|AttrList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|serializer
+operator|.
+name|Receiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
-comment|/**  * Builds an in-memory DOM tree from SAX {@link org.exist.util.serializer.Receiver}  * events.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Builds an in-memory DOM tree from SAX {@link org.exist.util.serializer.Receiver} events.  *  * @author  Wolfgang<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -288,10 +288,12 @@ name|getDocument
 parameter_list|()
 block|{
 return|return
+operator|(
 name|builder
 operator|.
 name|getDocument
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -300,13 +302,15 @@ name|getContext
 parameter_list|()
 block|{
 return|return
+operator|(
 name|builder
 operator|.
 name|getContext
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)      */
 specifier|public
 name|void
 name|setDocumentLocator
@@ -316,7 +320,7 @@ name|arg0
 parameter_list|)
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startDocument()      */
 specifier|public
 name|void
 name|startDocument
@@ -344,7 +348,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endDocument()      */
 specifier|public
 name|void
 name|endDocument
@@ -358,7 +362,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|startPrefixMapping
@@ -377,13 +381,16 @@ condition|(
 operator|!
 name|explicitNSDecl
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|namespaces
 operator|==
 literal|null
 condition|)
+block|{
 name|namespaces
 operator|=
 operator|new
@@ -395,6 +402,7 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|namespaces
 operator|.
 name|put
@@ -405,7 +413,7 @@ name|namespace
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)      */
 specifier|public
 name|void
 name|endPrefixMapping
@@ -417,7 +425,7 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)      */
 specifier|public
 name|void
 name|startElement
@@ -463,9 +471,11 @@ if|if
 condition|(
 name|explicitNSDecl
 operator|&&
+operator|(
 name|namespaces
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 for|for
@@ -579,7 +589,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|endElement
@@ -672,7 +682,7 @@ name|seq
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#characters(char[], int, int)      */
 specifier|public
 name|void
 name|characters
@@ -734,6 +744,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|SAXException
 argument_list|(
@@ -742,10 +753,11 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)      */
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -764,7 +776,7 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|processingInstruction
@@ -822,7 +834,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)      */
 specifier|public
 name|void
 name|skippedEntity

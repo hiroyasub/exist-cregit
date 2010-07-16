@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,42 @@ operator|.
 name|memtree
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|ProcessingInstruction
+import|;
+end_import
 
 begin_import
 import|import
@@ -79,42 +115,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|ProcessingInstruction
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -124,7 +124,7 @@ name|NodeImpl
 implements|implements
 name|ProcessingInstruction
 block|{
-comment|/** 	 * @param doc 	 * @param nodeNumber 	 */
+comment|/**      * Creates a new ProcessingInstructionImpl object.      *      * @param  doc      * @param  nodeNumber      */
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|(
@@ -143,7 +143,7 @@ name|nodeNumber
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#getTarget() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#getTarget()      */
 specifier|public
 name|String
 name|getTarget
@@ -160,9 +160,12 @@ name|nodeNumber
 index|]
 decl_stmt|;
 return|return
+operator|(
+operator|(
 name|qn
 operator|!=
 literal|null
+operator|)
 condition|?
 name|qn
 operator|.
@@ -170,6 +173,7 @@ name|getLocalName
 argument_list|()
 else|:
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -179,6 +183,7 @@ parameter_list|()
 block|{
 comment|// TODO: this could be optimized
 return|return
+operator|(
 name|getData
 argument_list|()
 operator|.
@@ -188,6 +193,7 @@ literal|"^\\s+"
 argument_list|,
 literal|""
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -196,8 +202,10 @@ name|getLocalName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getTarget
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -206,16 +214,19 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|""
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#getData() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#getData()      */
 specifier|public
 name|String
 name|getData
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|String
 argument_list|(
@@ -237,6 +248,7 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -247,15 +259,17 @@ throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
 operator|new
 name|StringValue
 argument_list|(
 name|getData
 argument_list|()
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.ProcessingInstruction#setData(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#setData(java.lang.String)      */
 specifier|public
 name|void
 name|setData
@@ -267,7 +281,7 @@ throws|throws
 name|DOMException
 block|{
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getBaseURI
@@ -321,11 +335,14 @@ block|}
 comment|// fixme! Testa med 0/ljo
 while|while
 condition|(
+operator|(
 name|parent
 operator|!=
 operator|-
 literal|1
+operator|)
 operator|&&
+operator|(
 name|document
 operator|.
 name|getNode
@@ -337,6 +354,7 @@ name|getBaseURI
 argument_list|()
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 if|if
@@ -405,7 +423,9 @@ name|DOCUMENT_NODE
 condition|)
 block|{
 return|return
+operator|(
 name|baseURI
+operator|)
 return|;
 block|}
 else|else
@@ -436,7 +456,9 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|baseURI
+operator|)
 return|;
 block|}
 specifier|public
@@ -446,7 +468,9 @@ parameter_list|()
 block|{
 comment|//No child
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
 specifier|public
@@ -455,9 +479,11 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|PROCESSING_INSTRUCTION
+operator|)
 return|;
 block|}
 specifier|public
@@ -517,10 +543,12 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 block|}

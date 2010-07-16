@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,66 @@ operator|.
 name|memtree
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Attr
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|TypeInfo
+import|;
+end_import
 
 begin_import
 import|import
@@ -61,68 +121,8 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Attr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|TypeInfo
-import|;
-end_import
-
 begin_comment
-comment|/**  * A dynamically constructed namespace node. Used to track namespace  * declarations in elements. Implements Attr, so it can be treated as a normal  * attribute.  *   * @author wolf  */
+comment|/**  * A dynamically constructed namespace node. Used to track namespace declarations in elements. Implements Attr, so it can be treated as a normal  * attribute.  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -136,7 +136,7 @@ name|Attr
 implements|,
 name|QNameable
 block|{
-comment|/**      * @param doc      * @param nodeNumber      */
+comment|/**      * Creates a new NamespaceNode object.      *      * @param  doc      * @param  nodeNumber      */
 specifier|public
 name|NamespaceNode
 parameter_list|(
@@ -166,9 +166,11 @@ comment|//XQuery doesn't support namespace nodes
 comment|//so, mapping as an attribute at *serialization tile*  makes sense
 comment|//however, the Query parser should not accept them in constructors !
 return|return
+operator|(
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
+operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
@@ -178,9 +180,11 @@ name|getType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|NAMESPACE
+operator|)
 return|;
 block|}
 specifier|public
@@ -189,11 +193,13 @@ name|getPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getPrefix
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -202,9 +208,11 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Namespaces
 operator|.
 name|XMLNS_NS
+operator|)
 return|;
 block|}
 specifier|public
@@ -213,7 +221,9 @@ name|getSpecified
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|true
+operator|)
 return|;
 block|}
 specifier|public
@@ -222,40 +232,46 @@ name|getQName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|document
 operator|.
 name|namespaceCode
 index|[
 name|nodeNumber
 index|]
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
 specifier|public
 name|String
 name|getLocalName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getLocalName
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
 specifier|public
 name|String
 name|getNodeName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getStringValue
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -264,28 +280,32 @@ name|getName
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getStringValue
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#getValue() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getValue()      */
 specifier|public
 name|String
 name|getValue
 parameter_list|()
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#setValue(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#setValue(java.lang.String)      */
 specifier|public
 name|void
 name|setValue
@@ -305,20 +325,23 @@ throws|throws
 name|DOMException
 block|{
 return|return
+operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Attr#getOwnerElement() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getOwnerElement()      */
 specifier|public
 name|Element
 name|getOwnerElement
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|(
 name|Element
 operator|)
@@ -333,9 +356,10 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Attr#getSchemaTypeInfo() 	 */
+comment|/**      * ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -343,10 +367,12 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|null
+operator|)
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Attr#isId() 	 */
+comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isId
@@ -354,7 +380,9 @@ parameter_list|()
 block|{
 comment|// maybe TODO - new DOM interfaces - Java 5.0
 return|return
+operator|(
 literal|false
+operator|)
 return|;
 block|}
 specifier|public
@@ -363,9 +391,11 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
+operator|(
 name|Type
 operator|.
 name|NAMESPACE
+operator|)
 return|;
 block|}
 comment|//Untested
@@ -433,10 +463,12 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 block|}

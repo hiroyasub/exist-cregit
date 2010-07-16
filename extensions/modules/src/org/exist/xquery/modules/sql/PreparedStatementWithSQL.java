@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * DOCUMENT ME!  *  * @author  Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -77,7 +77,9 @@ name|getSql
 parameter_list|()
 block|{
 return|return
+operator|(
 name|sql
+operator|)
 return|;
 block|}
 specifier|public
@@ -86,7 +88,9 @@ name|getStmt
 parameter_list|()
 block|{
 return|return
+operator|(
 name|stmt
+operator|)
 return|;
 block|}
 block|}
