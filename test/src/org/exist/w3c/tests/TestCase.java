@@ -1040,6 +1040,13 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+operator|==
+literal|1
+operator|&&
 name|skipped
 operator|!=
 literal|0
