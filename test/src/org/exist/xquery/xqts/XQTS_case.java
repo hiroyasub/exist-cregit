@@ -2046,6 +2046,8 @@ if|if
 condition|(
 name|compareResult
 argument_list|(
+name|script
+argument_list|,
 literal|"XQTS_1_0_2/ExpectedTestResults/"
 operator|+
 name|folder

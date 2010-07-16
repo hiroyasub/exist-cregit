@@ -559,6 +559,8 @@ if|if
 condition|(
 name|compareResult
 argument_list|(
+literal|""
+argument_list|,
 name|XSLTS_folder
 operator|+
 literal|"ExpectedTestResults/"
