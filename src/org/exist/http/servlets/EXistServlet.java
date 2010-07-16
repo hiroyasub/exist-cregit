@@ -410,7 +410,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the REST-style interface if eXist is running within  * a Servlet engine. The real work is done by class   * {@link org.exist.http.RESTServer}.  *   * @author wolf  */
+comment|/**  * Implements the REST-style interface if eXist is running within a Servlet  * engine. The real work is done by class {@link org.exist.http.RESTServer}.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -496,7 +496,7 @@ specifier|private
 name|User
 name|defaultUser
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 specifier|public
 name|void
 name|init
@@ -870,7 +870,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|//get form and container encoding's
+comment|// get form and container encoding's
 name|formEncoding
 operator|=
 name|config
@@ -930,7 +930,7 @@ name|useDynamicContentType
 operator|=
 literal|"no"
 expr_stmt|;
-comment|//Instantiate REST Server
+comment|// Instantiate REST Server
 name|srvREST
 operator|=
 operator|new
@@ -957,7 +957,7 @@ literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Instantiate SOAP Server
+comment|// Instantiate SOAP Server
 name|srvSOAP
 operator|=
 operator|new
@@ -968,14 +968,14 @@ argument_list|,
 name|containerEncoding
 argument_list|)
 expr_stmt|;
-comment|//XML lib checks....
+comment|// XML lib checks....
 name|XmlLibraryChecker
 operator|.
 name|check
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest 	 * , javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|doPut
@@ -991,7 +991,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|//first, adjust the path
+comment|// first, adjust the path
 name|String
 name|path
 init|=
@@ -1000,7 +1000,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
-comment|//second, perform descriptor actions
+comment|// second, perform descriptor actions
 name|Descriptor
 name|descriptor
 init|=
@@ -1016,8 +1016,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//TODO: figure out a way to log PUT requests with HttpServletRequestWrapper and Descriptor.doLogRequestInReplayLog()
-comment|//map's the path if a mapping is specified in the descriptor
+comment|// TODO: figure out a way to log PUT requests with
+comment|// HttpServletRequestWrapper and
+comment|// Descriptor.doLogRequestInReplayLog()
+comment|// map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -1028,7 +1030,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|//third, authenticate the user
+comment|// third, authenticate the user
 name|User
 name|user
 init|=
@@ -1047,8 +1049,8 @@ literal|null
 condition|)
 block|{
 comment|// You now get a challenge if there is no user
-comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
-comment|//		"Permission denied: unknown user or password");
+comment|// response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|// "Permission denied: unknown user or password");
 return|return;
 block|}
 name|DBBroker
@@ -1110,7 +1112,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//fourth, process the request
+comment|// fourth, process the request
 name|ServletInputStream
 name|is
 init|=
@@ -1290,9 +1292,9 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//If the current user is the Default User and they do not have permission
-comment|//then send a challenge request to prompt the client for a username/password.
-comment|//Else return a FORBIDDEN Error
+comment|// If the current user is the Default User and they do not have permission
+comment|// then send a challenge request to prompt the client for a username/password.
+comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
@@ -1431,7 +1433,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param request      * @return      */
+comment|/** 	 * @param request 	 * @return 	 */
 specifier|private
 name|String
 name|adjustPath
@@ -1493,7 +1495,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest 	 * , javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|doGet
@@ -1509,7 +1511,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|//first, adjust the path
+comment|// first, adjust the path
 name|String
 name|path
 init|=
@@ -1518,7 +1520,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
-comment|//second, perform descriptor actions
+comment|// second, perform descriptor actions
 name|Descriptor
 name|descriptor
 init|=
@@ -1540,7 +1542,7 @@ name|requestsFiltered
 argument_list|()
 condition|)
 block|{
-comment|//logs the request if specified in the descriptor
+comment|// logs the request if specified in the descriptor
 name|descriptor
 operator|.
 name|doLogRequestInReplayLog
@@ -1548,7 +1550,7 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-comment|//map's the path if a mapping is specified in the descriptor
+comment|// map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -1559,7 +1561,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|//third, authenticate the user
+comment|// third, authenticate the user
 name|User
 name|user
 init|=
@@ -1578,11 +1580,11 @@ literal|null
 condition|)
 block|{
 comment|// You now get a challenge if there is no user
-comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
-comment|//		"Permission denied: unknown user " + "or password");
+comment|// response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|// "Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fourth, process the request
+comment|// fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -1599,7 +1601,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//Route the request
+comment|// Route the request
 if|if
 condition|(
 name|path
@@ -1615,7 +1617,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|//SOAP Server
+comment|// SOAP Server
 name|srvSOAP
 operator|.
 name|doGet
@@ -1632,7 +1634,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//REST Server
+comment|// REST Server
 name|srvREST
 operator|.
 name|doGet
@@ -1692,9 +1694,9 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//If the current user is the Default User and they do not have permission
-comment|//then send a challenge request to prompt the client for a username/password.
-comment|//Else return a FORBIDDEN Error
+comment|// If the current user is the Default User and they do not have permission
+comment|// then send a challenge request to prompt the client for a username/password.
+comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
@@ -1870,7 +1872,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|//first, adjust the path
+comment|// first, adjust the path
 name|String
 name|path
 init|=
@@ -1879,7 +1881,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
-comment|//second, perform descriptor actions
+comment|// second, perform descriptor actions
 name|Descriptor
 name|descriptor
 init|=
@@ -1901,7 +1903,7 @@ name|requestsFiltered
 argument_list|()
 condition|)
 block|{
-comment|//logs the request if specified in the descriptor
+comment|// logs the request if specified in the descriptor
 name|descriptor
 operator|.
 name|doLogRequestInReplayLog
@@ -1909,7 +1911,7 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-comment|//map's the path if a mapping is specified in the descriptor
+comment|// map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -1920,7 +1922,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|//third, authenticate the user
+comment|// third, authenticate the user
 name|User
 name|user
 init|=
@@ -1939,11 +1941,11 @@ literal|null
 condition|)
 block|{
 comment|// You now get a challenge if there is no user
-comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
-comment|//		"Permission denied: unknown user " + "or password");
+comment|// response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|// "Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fourth, process the request
+comment|// fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -2020,9 +2022,9 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//If the current user is the Default User and they do not have permission
-comment|//then send a challenge request to prompt the client for a username/password.
-comment|//Else return a FORBIDDEN Error
+comment|// If the current user is the Default User and they do not have permission
+comment|// then send a challenge request to prompt the client for a username/password.
+comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
@@ -2180,7 +2182,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest 	 * , javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|doDelete
@@ -2196,7 +2198,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|//first, adjust the path
+comment|// first, adjust the path
 name|String
 name|path
 init|=
@@ -2205,7 +2207,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
-comment|//second, perform descriptor actions
+comment|// second, perform descriptor actions
 name|Descriptor
 name|descriptor
 init|=
@@ -2221,7 +2223,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//map's the path if a mapping is specified in the descriptor
+comment|// map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -2232,7 +2234,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|//third, authenticate the user
+comment|// third, authenticate the user
 name|User
 name|user
 init|=
@@ -2251,11 +2253,11 @@ literal|null
 condition|)
 block|{
 comment|// You now get a challenge if there is no user
-comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
-comment|//		"Permission denied: unknown user " + "or password");
+comment|// response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|// "Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fourth, process the request
+comment|// fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -2295,9 +2297,9 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//If the current user is the Default User and they do not have permission
-comment|//then send a challenge request to prompt the client for a username/password.
-comment|//Else return a FORBIDDEN Error
+comment|// If the current user is the Default User and they do not have permission
+comment|// then send a challenge request to prompt the client for a username/password.
+comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
@@ -2436,7 +2438,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest 	 * , javax.servlet.http.HttpServletResponse) 	 */
 specifier|protected
 name|void
 name|doPost
@@ -2457,8 +2459,10 @@ name|request
 init|=
 literal|null
 decl_stmt|;
-comment|//For POST request, If we are logging the requests we must wrap HttpServletRequest in HttpServletRequestWrapper
-comment|//otherwise we cannot access the POST parameters from the content body of the request!!! - deliriumsky
+comment|// For POST request, If we are logging the requests we must wrap
+comment|// HttpServletRequest in HttpServletRequestWrapper
+comment|// otherwise we cannot access the POST parameters from the content body
+comment|// of the request!!! - deliriumsky
 name|Descriptor
 name|descriptor
 init|=
@@ -2508,7 +2512,7 @@ operator|=
 name|req
 expr_stmt|;
 block|}
-comment|//first, adjust the path
+comment|// first, adjust the path
 name|String
 name|path
 init|=
@@ -2539,7 +2543,7 @@ name|request
 argument_list|)
 expr_stmt|;
 block|}
-comment|//second, perform descriptor actions
+comment|// second, perform descriptor actions
 if|if
 condition|(
 name|descriptor
@@ -2553,7 +2557,7 @@ name|requestsFiltered
 argument_list|()
 condition|)
 block|{
-comment|//logs the request if specified in the descriptor
+comment|// logs the request if specified in the descriptor
 name|descriptor
 operator|.
 name|doLogRequestInReplayLog
@@ -2561,7 +2565,7 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-comment|//map's the path if a mapping is specified in the descriptor
+comment|// map's the path if a mapping is specified in the descriptor
 name|path
 operator|=
 name|descriptor
@@ -2572,7 +2576,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|//third, authenticate the user
+comment|// third, authenticate the user
 name|User
 name|user
 init|=
@@ -2591,11 +2595,11 @@ literal|null
 condition|)
 block|{
 comment|// You now get a challenge if there is no user
-comment|//response.sendError(HttpServletResponse.SC_FORBIDDEN,
-comment|//		"Permission denied: unknown user " + "or password");
+comment|// response.sendError(HttpServletResponse.SC_FORBIDDEN,
+comment|// "Permission denied: unknown user " + "or password");
 return|return;
 block|}
-comment|//fourth, process the request
+comment|// fourth, process the request
 name|DBBroker
 name|broker
 init|=
@@ -2612,7 +2616,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//Route the request
+comment|// Route the request
 if|if
 condition|(
 name|path
@@ -2628,7 +2632,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|//SOAP Server
+comment|// SOAP Server
 name|srvSOAP
 operator|.
 name|doPost
@@ -2645,7 +2649,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//REST Server
+comment|// REST Server
 name|srvREST
 operator|.
 name|doPost
@@ -2667,9 +2671,9 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//If the current user is the Default User and they do not have permission
-comment|//then send a challenge request to prompt the client for a username/password.
-comment|//Else return a FORBIDDEN Error
+comment|// If the current user is the Default User and they do not have permission
+comment|// then send a challenge request to prompt the client for a username/password.
+comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
@@ -2867,7 +2871,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.GenericServlet#destroy()      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#destroy() 	 */
 specifier|public
 name|void
 name|destroy
@@ -3000,7 +3004,7 @@ name|User
 operator|)
 name|principal
 return|;
-comment|//Secondly try basic authentication
+comment|// Secondly try basic authentication
 name|String
 name|auth
 init|=
@@ -3036,7 +3040,7 @@ argument_list|,
 name|response
 argument_list|)
 return|;
-comment|/* 		byte[] c = Base64.decode(auth.substring(6).getBytes()); 		String s = new String(c); 		int p = s.indexOf(':'); 		if (p == Constants.STRING_NOT_FOUND) { 			 return null; 			 } 		String username = s.substring(0, p); 		String password = s.substring(p + 1); 		 		User user = pool.getSecurityManager().getUser(username); 		if (user == null) 			return null; 		if (!user.validate(password)) 			return null; 		return user;                  */
+comment|/* 		 * byte[] c = Base64.decode(auth.substring(6).getBytes()); String s = 		 * new String(c); int p = s.indexOf(':'); if (p == 		 * Constants.STRING_NOT_FOUND) { return null; } String username = 		 * s.substring(0, p); String password = s.substring(p + 1); 		 *  		 * User user = pool.getSecurityManager().getUser(username); if (user == 		 * null) return null; if (!user.validate(password)) return null; return 		 * user; 		 */
 block|}
 specifier|private
 name|User
