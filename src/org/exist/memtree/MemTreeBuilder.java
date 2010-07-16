@@ -1265,7 +1265,7 @@ name|nodeNr
 operator|)
 return|;
 block|}
-comment|/**      * Create a new text node.      *      * @param   s  DOCUMENT ME!      *      * @return  the node number of the created node      */
+comment|/**      * Create a new text node.      *      * @param   s  DOCUMENT ME!      *      * @return  the node number of the created node, -1 if no node was created      */
 specifier|public
 name|int
 name|characters
@@ -1274,6 +1274,20 @@ name|CharSequence
 name|s
 parameter_list|)
 block|{
+if|if
+condition|(
+name|s
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|(
+operator|-
+literal|1
+operator|)
+return|;
+block|}
 name|int
 name|lastNode
 init|=
