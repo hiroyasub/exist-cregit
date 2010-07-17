@@ -1105,6 +1105,10 @@ parameter_list|()
 block|{
 if|if
 condition|(
+name|session
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|session
 operator|.
