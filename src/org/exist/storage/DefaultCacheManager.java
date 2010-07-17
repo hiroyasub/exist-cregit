@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * CacheManager maintains a global memory pool available  * to all page caches. All caches start with a low default  * setting, but CacheManager can grow individual caches   * until the total memory is reached. Caches can also be  * shrinked if their "load" remains below a given threshold  * between check intervals.The check interval is determined  * by the global sync background thread.  *   * The class computes the available memory in terms of  * pages.  *   * @author wolf  *  */
+comment|/**  * CacheManager maintains a global memory pool available to all page caches. All caches start with a low default setting, but CacheManager can grow  * individual caches until the total memory is reached. Caches can also be shrinked if their "load" remains below a given threshold between check  * intervals.The check interval is determined by the global sync background thread.  *  *<p>The class computes the available memory in terms of pages.</p>  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -131,7 +131,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * The maximum fraction of the total memory that can      * be used by a single cache.      */
+comment|/** The maximum fraction of the total memory that can be used by a single cache. */
 specifier|public
 specifier|final
 specifier|static
@@ -140,7 +140,7 @@ name|MAX_MEM_USE
 init|=
 literal|0.9
 decl_stmt|;
-comment|/**      * The minimum size a cache needs to have to be      * considered for shrinking, defined in terms of a fraction      * of the overall memory.        */
+comment|/** The minimum size a cache needs to have to be considered for shrinking, defined in terms of a fraction of the overall memory. */
 specifier|public
 specifier|final
 specifier|static
@@ -149,7 +149,7 @@ name|MIN_SHRINK_FACTOR
 init|=
 literal|0.5
 decl_stmt|;
-comment|/**      * The amount by which a large cache will be shrinked if      * other caches request a resize.      */
+comment|/** The amount by which a large cache will be shrinked if other caches request a resize. */
 specifier|public
 specifier|final
 specifier|static
@@ -158,7 +158,7 @@ name|SHRINK_FACTOR
 init|=
 literal|0.7
 decl_stmt|;
-comment|/**      * The minimum number of pages that must be read from a      * cache between check intervals to be not considered for       * shrinking. This is a measure for the "load" of the cache. Caches      * with high load will never be shrinked. A negative value means that 	 * shrinkage will not be performed.      */
+comment|/**      * The minimum number of pages that must be read from a cache between check intervals to be not considered for shrinking. This is a measure for      * the "load" of the cache. Caches with high load will never be shrinked. A negative value means that shrinkage will not be performed.      */
 specifier|public
 specifier|final
 specifier|static
@@ -214,7 +214,7 @@ name|SHRINK_THRESHOLD_PROPERTY
 init|=
 literal|"db-connection.cache-shrink-threshold"
 decl_stmt|;
-comment|/** Caches maintained by this class */
+comment|/** Caches maintained by this class. */
 specifier|private
 name|List
 argument_list|<
@@ -233,19 +233,19 @@ specifier|private
 name|long
 name|totalMem
 decl_stmt|;
-comment|/**      * The total maximum amount of pages shared between      * all caches.       */
+comment|/** The total maximum amount of pages shared between all caches. */
 specifier|private
 name|int
 name|totalPageCount
 decl_stmt|;
-comment|/**      * The number of pages currently used by the active caches.      */
+comment|/** The number of pages currently used by the active caches. */
 specifier|private
 name|int
 name|currentPageCount
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * The maximum number of pages that can be allocated by a      * single cache.      */
+comment|/** The maximum number of pages that can be allocated by a single cache. */
 specifier|private
 name|int
 name|maxCacheSize
@@ -254,14 +254,14 @@ specifier|private
 name|int
 name|pageSize
 decl_stmt|;
-comment|/**      * The minimum number of pages that must be read from a      * cache between check intervals to be not considered for       * shrinking. This is a measure for the "load" of the cache. Caches      * with high load will never be shrinked. A negative value means that 	 * shrinkage will not be performed.      */
+comment|/**      * The minimum number of pages that must be read from a cache between check intervals to be not considered for shrinking. This is a measure for      * the "load" of the cache. Caches with high load will never be shrinked. A negative value means that shrinkage will not be performed.      */
 specifier|private
 name|int
 name|shrinkThreshold
 init|=
 name|DEFAULT_SHRINK_THRESHOLD
 decl_stmt|;
-comment|/**      * Signals that a resize had been requested by a cache, but      * the request could not be accepted during normal operations.      * The manager might try to shrink the largest cache during the      * next sync event.      */
+comment|/**      * Signals that a resize had been requested by a cache, but the request could not be accepted during normal operations. The manager might try to      * shrink the largest cache during the next sync event.      */
 specifier|private
 name|Cache
 name|lastRequest
@@ -311,6 +311,7 @@ operator|)
 operator|<
 literal|0
 condition|)
+block|{
 comment|//TODO : should we share the page size with the native broker ?
 name|pageSize
 operator|=
@@ -318,6 +319,7 @@ name|BrokerPool
 operator|.
 name|DEFAULT_PAGE_SIZE
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -376,21 +378,29 @@ decl_stmt|;
 name|long
 name|maxCache
 init|=
+operator|(
 name|max
 operator|>=
+operator|(
 literal|768
 operator|*
 literal|1024
 operator|*
 literal|1024
+operator|)
+operator|)
 condition|?
+operator|(
 name|max
 operator|/
 literal|2
+operator|)
 else|:
+operator|(
 name|max
 operator|/
 literal|3
+operator|)
 decl_stmt|;
 if|if
 condition|(
@@ -644,32 +654,40 @@ argument_list|()
 operator|<
 name|maxCacheSize
 condition|)
+block|{
 name|lastRequest
 operator|=
 name|cache
 expr_stmt|;
+block|}
 comment|// no free pages available
 comment|//            LOG.debug("Cache " + cache.getFileName() + " cannot be resized");
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
 block|}
 if|if
 condition|(
+operator|(
 name|cache
 operator|.
 name|getGrowthFactor
 argument_list|()
 operator|>
 literal|1.0
+operator|)
 operator|&&
+operator|(
 name|cache
 operator|.
 name|getBuffers
 argument_list|()
 operator|<
 name|maxCacheSize
+operator|)
 condition|)
 block|{
 synchronized|synchronized
@@ -683,11 +701,15 @@ name|currentPageCount
 operator|>=
 name|totalPageCount
 condition|)
+block|{
 comment|// another cache has been resized. Give up
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
+block|}
 comment|// calculate new cache size
 name|int
 name|newCacheSize
@@ -713,19 +735,24 @@ name|newCacheSize
 operator|>
 name|maxCacheSize
 condition|)
+block|{
 comment|// new cache size is too large: adjust
 name|newCacheSize
 operator|=
 name|maxCacheSize
 expr_stmt|;
+block|}
 if|if
 condition|(
+operator|(
 name|currentPageCount
 operator|+
 name|newCacheSize
+operator|)
 operator|>
 name|totalPageCount
 condition|)
+block|{
 comment|// new cache size exceeds total: adjust
 name|newCacheSize
 operator|=
@@ -740,6 +767,7 @@ operator|-
 name|currentPageCount
 operator|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -821,16 +849,20 @@ name|newCacheSize
 expr_stmt|;
 comment|//                LOG.debug("currentPageCount = " + currentPageCount + "; max = " + totalPageCount);
 return|return
+operator|(
 name|newCacheSize
+operator|)
 return|;
 block|}
 block|}
 return|return
+operator|(
 operator|-
 literal|1
+operator|)
 return|;
 block|}
-comment|/**      * Called from the global major sync event to check if caches can      * be shrinked. To be shrinked, the size of a cache needs to be      * larger than the factor defined by {@link #MIN_SHRINK_FACTOR}      * and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      * If shrinked, the cache will be reset to the default initial cache size.      */
+comment|/**      * Called from the global major sync event to check if caches can be shrinked. To be shrinked, the size of a cache needs to be larger than the      * factor defined by {@link #MIN_SHRINK_FACTOR} and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      *<p>If shrinked, the cache will be reset to the default initial cache size.</p>      */
 specifier|public
 name|void
 name|checkCaches
@@ -910,16 +942,20 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|cache
 operator|.
 name|getBuffers
 argument_list|()
 operator|>
 name|minSize
+operator|)
 operator|&&
+operator|(
 name|load
 operator|<
 name|shrinkThreshold
+operator|)
 condition|)
 block|{
 if|if
@@ -1009,7 +1045,9 @@ name|lastRequest
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|minSize
 init|=
@@ -1160,7 +1198,9 @@ name|getMaxTotal
 parameter_list|()
 block|{
 return|return
+operator|(
 name|totalPageCount
+operator|)
 return|;
 block|}
 specifier|public
@@ -1169,7 +1209,9 @@ name|getCurrentSize
 parameter_list|()
 block|{
 return|return
+operator|(
 name|currentPageCount
+operator|)
 return|;
 block|}
 specifier|public
@@ -1178,9 +1220,11 @@ name|getSizeInBytes
 parameter_list|()
 block|{
 return|return
+operator|(
 name|currentPageCount
 operator|*
 name|pageSize
+operator|)
 return|;
 block|}
 specifier|public
@@ -1189,7 +1233,9 @@ name|getMaxSingle
 parameter_list|()
 block|{
 return|return
+operator|(
 name|maxCacheSize
+operator|)
 return|;
 block|}
 specifier|public
@@ -1198,17 +1244,21 @@ name|getTotalMem
 parameter_list|()
 block|{
 return|return
+operator|(
 name|totalMem
+operator|)
 return|;
 block|}
-comment|/**      * Returns the default initial size for all caches.      *       * @return Default initial size 64.      */
+comment|/**      * Returns the default initial size for all caches.      *      * @return  Default initial size 64.      */
 specifier|public
 name|int
 name|getDefaultInitialSize
 parameter_list|()
 block|{
 return|return
+operator|(
 name|DEFAULT_CACHE_SIZE
+operator|)
 return|;
 block|}
 specifier|private
