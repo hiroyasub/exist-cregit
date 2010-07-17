@@ -183,6 +183,11 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+name|source
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
