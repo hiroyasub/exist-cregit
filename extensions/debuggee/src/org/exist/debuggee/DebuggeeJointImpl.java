@@ -413,6 +413,12 @@ specifier|private
 name|CompiledXQuery
 name|compiledXQuery
 decl_stmt|;
+specifier|private
+name|boolean
+name|inProlog
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|DebuggeeJointImpl
 parameter_list|()
@@ -568,6 +574,19 @@ name|BREAK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|prologEnter
+parameter_list|(
+name|Expression
+name|expr
+parameter_list|)
+block|{
+name|inProlog
+operator|=
+literal|true
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.DebuggeeJoint#expressionStart(org.exist.xquery.Expression) 	 */
 specifier|public
@@ -1038,6 +1057,12 @@ name|firstExpression
 operator|=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|inProlog
+condition|)
+block|{
 name|command
 operator|.
 name|setStatus
@@ -1083,6 +1108,11 @@ argument_list|<
 name|CommandContinuation
 argument_list|>
 argument_list|()
+expr_stmt|;
+block|}
+name|inProlog
+operator|=
+literal|false
 expr_stmt|;
 block|}
 block|}

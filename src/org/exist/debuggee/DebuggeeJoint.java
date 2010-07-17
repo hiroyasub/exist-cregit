@@ -163,6 +163,14 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|prologEnter
+parameter_list|(
+name|Expression
+name|expr
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
 name|reset
 parameter_list|()
 function_decl|;
