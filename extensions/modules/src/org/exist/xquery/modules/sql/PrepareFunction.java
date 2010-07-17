@@ -303,7 +303,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The SQL statement"
 argument_list|)
-block|,             }
+block|, 			}
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
