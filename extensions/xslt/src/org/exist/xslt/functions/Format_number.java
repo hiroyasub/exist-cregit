@@ -233,7 +233,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The number to format"
 argument_list|)
@@ -450,6 +450,21 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 name|NumericValue
 name|numericValue
 init|=
