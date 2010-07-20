@@ -4097,6 +4097,20 @@ decl_stmt|;
 name|String
 name|path
 decl_stmt|;
+if|if
+condition|(
+name|href
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|path
+operator|=
+name|base
+expr_stmt|;
+block|}
+if|else
 comment|//TODO : use dedicated function in XmldbURI
 if|if
 condition|(
