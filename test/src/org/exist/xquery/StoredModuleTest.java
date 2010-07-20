@@ -1531,6 +1531,161 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|testCircularImports
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+specifier|final
+name|String
+name|index_module
+init|=
+literal|"import module namespace module1 = \"http://test/module1\" at \"xmldb:exist:///db/testCircular/module1.xqy\";"
+operator|+
+literal|"module1:func()"
+decl_stmt|;
+specifier|final
+name|String
+name|module1_module
+init|=
+literal|"module namespace module1 = \"http://test/module1\";"
+operator|+
+literal|"import module namespace processor = \"http://test/processor\" at \"processor.xqy\";"
+operator|+
+literal|"declare function module1:func()"
+operator|+
+literal|"{"
+operator|+
+literal|"   processor:execute()"
+operator|+
+literal|"};"
+operator|+
+literal|"declare function module1:hello($name as xs:string)"
+operator|+
+literal|"{"
+operator|+
+literal|"<hello>{$name}</hello>"
+operator|+
+literal|"};"
+decl_stmt|;
+specifier|final
+name|String
+name|processor_module
+init|=
+literal|"module namespace processor = \"http://test/processor\";"
+operator|+
+literal|"import module namespace impl = \"http://test/processor/impl/exist-db\" at \"impl.xqy\";"
+operator|+
+literal|"declare function processor:execute()"
+operator|+
+literal|"{"
+operator|+
+literal|"    impl:execute()"
+operator|+
+literal|"};"
+decl_stmt|;
+specifier|final
+name|String
+name|impl_module
+init|=
+literal|"module namespace impl = \"http://test/processor/impl/exist-db\";"
+operator|+
+literal|"import module namespace controller = \"http://test/controller\" at \"controller.xqy\";"
+operator|+
+literal|"declare function impl:execute()"
+operator|+
+literal|"{"
+operator|+
+literal|"    controller:index()"
+operator|+
+literal|"};"
+decl_stmt|;
+specifier|final
+name|String
+name|controller_module
+init|=
+literal|"module namespace controller = \"http://test/controller\";"
+operator|+
+literal|"import module namespace module1 = \"http://test/module1\" at \"module1.xqy\";"
+operator|+
+literal|"declare function controller:index() as item()*"
+operator|+
+literal|"{"
+operator|+
+literal|"    module1:hello(\"world\")"
+operator|+
+literal|"};"
+decl_stmt|;
+name|Collection
+name|testHome
+init|=
+name|createCollection
+argument_list|(
+literal|"testCircular"
+argument_list|)
+decl_stmt|;
+comment|//writeModule(testHome, "index.xqy", index_module);
+name|writeModule
+argument_list|(
+name|testHome
+argument_list|,
+literal|"module1.xqy"
+argument_list|,
+name|module1_module
+argument_list|)
+expr_stmt|;
+name|writeModule
+argument_list|(
+name|testHome
+argument_list|,
+literal|"processor.xqy"
+argument_list|,
+name|processor_module
+argument_list|)
+expr_stmt|;
+name|writeModule
+argument_list|(
+name|testHome
+argument_list|,
+literal|"impl.xqy"
+argument_list|,
+name|impl_module
+argument_list|)
+expr_stmt|;
+name|writeModule
+argument_list|(
+name|testHome
+argument_list|,
+literal|"controller.xqy"
+argument_list|,
+name|controller_module
+argument_list|)
+expr_stmt|;
+name|CompiledExpression
+name|query
+init|=
+name|xqService
+operator|.
+name|compile
+argument_list|(
+name|index_module
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|execute
+init|=
+name|xqService
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+block|}
 specifier|private
 name|void
 name|writeFile
