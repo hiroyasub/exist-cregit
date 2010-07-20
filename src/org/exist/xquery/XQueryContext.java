@@ -5303,14 +5303,6 @@ argument_list|()
 expr_stmt|;
 comment|//clear any dynamic options
 block|}
-comment|//remove the context-vars, subsequent execution of the query
-comment|//may generate different values for the vars based on the
-comment|//content of the db
-name|XQueryContextVars
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -5354,6 +5346,14 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|//remove the context-vars, subsequent execution of the query
+comment|//may generate different values for the vars based on the
+comment|//content of the db
+name|XQueryContextVars
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|clearUpdateListeners
 argument_list|()
 expr_stmt|;
