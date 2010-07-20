@@ -4707,10 +4707,12 @@ condition|(
 operator|!
 name|isShared
 condition|)
+block|{
 name|lastVar
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|fragmentStack
 operator|=
 operator|new
@@ -4731,41 +4733,39 @@ condition|(
 operator|!
 name|keepGlobals
 condition|)
+block|{
 name|globalVariables
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|dynamicOptions
 operator|!=
 literal|null
 condition|)
+block|{
 name|dynamicOptions
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
 comment|//clear any dynamic options
-comment|//remove the context-vars, subsequent execution of the query
-comment|//may generate different values for the vars based on the
-comment|//content of the db
-name|XQueryContextVars
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
 name|isShared
 condition|)
+block|{
 name|watchdog
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
 name|Iterator
@@ -4810,7 +4810,17 @@ condition|(
 operator|!
 name|keepGlobals
 condition|)
+block|{
 name|mappedModules
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+comment|//remove the context-vars, subsequent execution of the query
+comment|//may generate different values for the vars based on the
+comment|//content of the db
+name|XQueryContextVars
 operator|.
 name|clear
 argument_list|()
