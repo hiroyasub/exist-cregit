@@ -2852,6 +2852,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|sax
 operator|.
 name|setOutput
@@ -2893,6 +2895,9 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|serializerPool
 operator|.
 name|returnObject
@@ -2900,6 +2905,7 @@ argument_list|(
 name|sax
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
