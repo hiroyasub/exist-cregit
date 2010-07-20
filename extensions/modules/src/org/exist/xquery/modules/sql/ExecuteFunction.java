@@ -3017,6 +3017,8 @@ operator|.
 name|setObject
 argument_list|(
 name|i
+operator|+
+literal|1
 argument_list|,
 name|value
 argument_list|,
