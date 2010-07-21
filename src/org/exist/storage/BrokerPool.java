@@ -1797,6 +1797,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|/**      * The cache in which the database instance's collections are stored.      */
+comment|//TODO : rename as collectionsCache ?
 specifier|protected
 name|CollectionCache
 name|collectionCache
@@ -2930,7 +2931,6 @@ operator|=
 name|OPERATING
 expr_stmt|;
 comment|//wake-up the security manager
-comment|//		securityManager = new SecurityManagerImpl(this);
 name|securityManager
 operator|.
 name|attach
@@ -3650,7 +3650,6 @@ name|collectionConfigurationManager
 return|;
 block|}
 comment|/**      * Returns a cache in which the database instance's collections are stored.      *       * @return The cache 	 */
-comment|//TODO : rename as getCollectionCache ?
 specifier|public
 name|CollectionCache
 name|getCollectionsCache
@@ -4451,6 +4450,9 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+comment|//XXX: reload
+try|try
+block|{
 name|securityManager
 operator|.
 name|attach
@@ -4460,7 +4462,26 @@ argument_list|,
 name|broker
 argument_list|)
 expr_stmt|;
-comment|//XXX: reload
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Security manager reloaded failed: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
