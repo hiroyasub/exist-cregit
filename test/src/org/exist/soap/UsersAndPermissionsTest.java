@@ -296,6 +296,15 @@ name|rex
 parameter_list|)
 block|{
 block|}
+name|admin
+operator|.
+name|getUser
+argument_list|(
+name|sessionId
+argument_list|,
+name|testUser
+argument_list|)
+expr_stmt|;
 name|String
 index|[]
 name|testGroups
