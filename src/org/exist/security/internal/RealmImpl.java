@@ -613,7 +613,7 @@ name|SecurityManager
 operator|.
 name|DBA_USER
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|ACCOUNT_SYSTEM
@@ -694,7 +694,9 @@ name|SecurityManager
 operator|.
 name|GUEST_USER
 argument_list|,
-literal|null
+name|SecurityManager
+operator|.
+name|GUEST_USER
 argument_list|)
 expr_stmt|;
 name|ACCOUNT_GUEST
