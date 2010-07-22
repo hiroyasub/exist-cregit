@@ -195,6 +195,22 @@ name|exist
 operator|.
 name|security
 operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|UserAider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|AccessContext
@@ -5946,7 +5962,7 @@ argument_list|(
 literal|"guest user cannot be modified"
 argument_list|)
 throw|;
-name|UserImpl
+name|User
 name|u
 decl_stmt|;
 if|if
@@ -5980,12 +5996,17 @@ throw|;
 name|u
 operator|=
 operator|new
-name|UserImpl
+name|UserAider
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+operator|(
+operator|(
+name|UserAider
+operator|)
 name|u
+operator|)
 operator|.
 name|setPasswordDigest
 argument_list|(
@@ -5997,9 +6018,6 @@ else|else
 block|{
 name|u
 operator|=
-operator|(
-name|UserImpl
-operator|)
 name|manager
 operator|.
 name|getUser
@@ -6039,7 +6057,12 @@ argument_list|(
 literal|"you are not allowed to change this user"
 argument_list|)
 throw|;
+operator|(
+operator|(
+name|UserImpl
+operator|)
 name|u
+operator|)
 operator|.
 name|setPasswordDigest
 argument_list|(

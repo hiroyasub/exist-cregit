@@ -17,6 +17,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Group
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Permission
 import|;
 end_import
@@ -90,7 +102,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  An eXist-specific service which provides methods to manage users and  *  permissions.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  * An eXist-specific service which provides methods to manage users and  * permissions.  *  * @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_interface
@@ -307,7 +319,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Get a property defined by this service.      *      *@param  property            Description of the Parameter      *@return                     The property value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      * Get a property defined by this service.      *      * @param  property            Description of the Parameter      * @return                     The property value      * @exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 name|getProperty
@@ -318,7 +330,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Set a property for this service.      *      *@param  property            The new property value      *@param  value               The new property value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Set a property for this service.      *      * @param  property            The new property value      * @param  value               The new property value      * @exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|setProperty
@@ -415,6 +427,16 @@ name|user
 parameter_list|,
 name|String
 name|rmgroup
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+specifier|public
+name|void
+name|addRole
+parameter_list|(
+name|Group
+name|role
 parameter_list|)
 throws|throws
 name|XMLDBException

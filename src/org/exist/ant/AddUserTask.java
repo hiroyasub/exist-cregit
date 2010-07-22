@@ -59,7 +59,11 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|internal
+operator|.
+name|aider
+operator|.
+name|UserAider
 import|;
 end_import
 
@@ -146,11 +150,11 @@ throw|;
 block|}
 try|try
 block|{
-name|UserImpl
+name|UserAider
 name|usr
 init|=
 operator|new
-name|UserImpl
+name|UserAider
 argument_list|(
 name|name
 argument_list|)

@@ -621,6 +621,8 @@ operator|=
 operator|new
 name|UserImpl
 argument_list|(
+name|this
+argument_list|,
 literal|1
 argument_list|,
 name|SecurityManager
@@ -702,6 +704,8 @@ operator|=
 operator|new
 name|UserImpl
 argument_list|(
+name|this
+argument_list|,
 literal|2
 argument_list|,
 name|SecurityManager
@@ -1134,6 +1138,8 @@ operator|=
 operator|new
 name|UserImpl
 argument_list|(
+name|this
+argument_list|,
 name|major
 argument_list|,
 name|minor
@@ -1657,6 +1663,8 @@ argument_list|,
 operator|new
 name|UserImpl
 argument_list|(
+name|this
+argument_list|,
 name|name
 argument_list|)
 argument_list|)

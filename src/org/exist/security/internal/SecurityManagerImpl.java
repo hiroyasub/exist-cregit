@@ -1190,7 +1190,8 @@ name|pool
 operator|.
 name|get
 argument_list|(
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|MutableDocumentSet

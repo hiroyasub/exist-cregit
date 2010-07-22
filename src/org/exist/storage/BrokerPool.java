@@ -2785,12 +2785,12 @@ name|broker
 init|=
 name|get
 argument_list|(
-name|SecurityManager
+name|securityManager
 operator|.
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//		DBBroker broker = get(securityManager.getSystemAccount());
 try|try
 block|{
 if|if

@@ -198,20 +198,17 @@ operator|.
 name|getUser
 argument_list|()
 expr_stmt|;
-comment|//                broker.setUser(pool.getSecurityManager().getSystemAccount());
 name|broker
 operator|.
 name|setUser
 argument_list|(
-name|org
+name|pool
 operator|.
-name|exist
+name|getSecurityManager
+argument_list|()
 operator|.
-name|security
-operator|.
-name|SecurityManager
-operator|.
-name|SYSTEM_USER
+name|getSystemAccount
+argument_list|()
 argument_list|)
 expr_stmt|;
 while|while

@@ -158,7 +158,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|void
+name|Group
 name|addGroup
 parameter_list|(
 name|String
@@ -166,11 +166,14 @@ name|name
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
 block|}
 annotation|@
 name|Override
 specifier|public
-name|void
+name|Group
 name|addGroup
 parameter_list|(
 name|Group
@@ -178,6 +181,9 @@ name|group
 parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
 block|}
 annotation|@
 name|Override
@@ -635,6 +641,18 @@ name|attributes
 operator|.
 name|keySet
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Group
+name|getDefaultGroup
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
 return|;
 block|}
 block|}

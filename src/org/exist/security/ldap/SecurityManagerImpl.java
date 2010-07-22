@@ -1763,6 +1763,11 @@ init|=
 operator|new
 name|UserImpl
 argument_list|(
+operator|(
+name|Realm
+operator|)
+literal|null
+argument_list|,
 name|username
 argument_list|,
 literal|null
@@ -3022,9 +3027,7 @@ name|getSystemAccount
 parameter_list|()
 block|{
 return|return
-name|SecurityManager
-operator|.
-name|SYSTEM_USER
+literal|null
 return|;
 block|}
 annotation|@
@@ -3035,9 +3038,7 @@ name|getGuestAccount
 parameter_list|()
 block|{
 return|return
-name|SecurityManager
-operator|.
-name|GUEST
+literal|null
 return|;
 block|}
 annotation|@
@@ -3048,12 +3049,7 @@ name|getDBAGroup
 parameter_list|()
 block|{
 return|return
-name|getGroup
-argument_list|(
-name|SecurityManager
-operator|.
-name|DBA_GROUP
-argument_list|)
+literal|null
 return|;
 block|}
 annotation|@
