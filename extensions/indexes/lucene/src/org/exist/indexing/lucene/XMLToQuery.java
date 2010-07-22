@@ -2511,9 +2511,6 @@ name|child
 operator|.
 name|getNodeValue
 argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|child
