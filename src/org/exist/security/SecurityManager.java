@@ -161,6 +161,15 @@ name|getPDP
 parameter_list|()
 function_decl|;
 name|void
+name|deleteRole
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+name|void
 name|deleteUser
 parameter_list|(
 name|String

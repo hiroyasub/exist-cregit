@@ -1560,6 +1560,17 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 name|boolean
+name|addRole
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+name|boolean
 name|setPermissions
 parameter_list|(
 name|String

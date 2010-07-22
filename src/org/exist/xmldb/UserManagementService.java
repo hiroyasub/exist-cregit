@@ -310,6 +310,16 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|Group
+name|getRole
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	 * Retrieve a list of all existing groups. 	 *  	 * Please note: new groups are created automatically if a new group 	 * is assigned to a user. You can't add or remove them. 	 *  	 * @return List of all existing groups. 	 * @throws XMLDBException 	 */
 specifier|public
 name|String
@@ -402,6 +412,16 @@ name|removeUser
 parameter_list|(
 name|User
 name|user
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+specifier|public
+name|void
+name|removeRole
+parameter_list|(
+name|Group
+name|role
 parameter_list|)
 throws|throws
 name|XMLDBException

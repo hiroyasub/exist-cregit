@@ -23,6 +23,36 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -103,6 +133,20 @@ name|defaultRole
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|Set
+argument_list|<
+name|Group
+argument_list|>
+name|roles
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|Group
+argument_list|>
+argument_list|()
+decl_stmt|;
 specifier|public
 name|UserAider
 parameter_list|(
@@ -156,7 +200,10 @@ argument_list|)
 expr_stmt|;
 name|defaultRole
 operator|=
+name|addGroup
+argument_list|(
 name|group
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.security.Principal#getName() 	 */
@@ -182,9 +229,24 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+name|Group
+name|role
+init|=
+operator|new
+name|GroupAider
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+name|roles
+operator|.
+name|add
+argument_list|(
+name|role
+argument_list|)
+expr_stmt|;
 return|return
-literal|null
+name|role
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(org.exist.security.Group) 	 */
@@ -195,12 +257,17 @@ name|Group
 name|addGroup
 parameter_list|(
 name|Group
-name|group
+name|role
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|addGroup
+argument_list|(
+name|role
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
@@ -225,10 +292,44 @@ name|setGroups
 parameter_list|(
 name|String
 index|[]
-name|groups
+name|names
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+name|roles
+operator|=
+operator|new
+name|HashSet
+argument_list|<
+name|Group
+argument_list|>
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|names
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|addGroup
+argument_list|(
+name|names
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
 annotation|@
@@ -239,9 +340,46 @@ index|[]
 name|getGroups
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+name|int
+name|i
+init|=
+literal|0
+decl_stmt|;
+name|String
+index|[]
+name|names
+init|=
+operator|new
+name|String
+index|[
+name|roles
+operator|.
+name|size
+argument_list|()
+index|]
+decl_stmt|;
+for|for
+control|(
+name|Group
+name|role
+range|:
+name|roles
+control|)
+block|{
+name|names
+index|[
+name|i
+operator|++
+index|]
+operator|=
+name|role
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
 return|return
-literal|null
+name|names
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
@@ -252,7 +390,6 @@ name|boolean
 name|hasDbaRole
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -265,9 +402,8 @@ name|int
 name|getUID
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|0
+name|id
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
@@ -278,9 +414,20 @@ name|String
 name|getPrimaryGroup
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+if|if
+condition|(
+name|defaultRole
+operator|==
+literal|null
+condition|)
 return|return
 literal|null
+return|;
+return|return
+name|defaultRole
+operator|.
+name|getName
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
@@ -299,19 +446,12 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setPassword
-parameter_list|(
-name|String
-name|passwd
-parameter_list|)
-block|{
-comment|// TODO Auto-generated method stub
-block|}
+specifier|private
+name|XmldbURI
+name|homeCollection
+init|=
+literal|null
+decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
 annotation|@
 name|Override
@@ -323,7 +463,12 @@ name|XmldbURI
 name|homeCollection
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+name|this
+operator|.
+name|homeCollection
+operator|=
+name|homeCollection
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
 annotation|@
@@ -333,9 +478,8 @@ name|XmldbURI
 name|getHome
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|homeCollection
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#authenticate(java.lang.Object) 	 */
@@ -349,7 +493,6 @@ name|Object
 name|credentials
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -362,7 +505,6 @@ name|boolean
 name|isAuthenticated
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -375,7 +517,6 @@ name|Realm
 name|getRealm
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -393,6 +534,24 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+specifier|private
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|attributes
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+decl_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setAttribute(java.lang.String, java.lang.Object) 	 */
 annotation|@
 name|Override
@@ -407,7 +566,15 @@ name|Object
 name|value
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+name|attributes
+operator|.
+name|put
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getAttribute(java.lang.String) 	 */
 annotation|@
@@ -420,9 +587,13 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|attributes
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getAttributeNames() 	 */
@@ -436,9 +607,11 @@ argument_list|>
 name|getAttributeNames
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|attributes
+operator|.
+name|keySet
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -461,6 +634,22 @@ decl_stmt|;
 specifier|public
 name|void
 name|setEncodedPassword
+parameter_list|(
+name|String
+name|passwd
+parameter_list|)
+block|{
+name|password
+operator|=
+name|passwd
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setPassword
 parameter_list|(
 name|String
 name|passwd
