@@ -2986,6 +2986,10 @@ throw|throw
 operator|new
 name|AuthenticationException
 argument_list|(
+name|AuthenticationException
+operator|.
+name|WRONG_PASSWORD
+argument_list|,
 literal|"Wrong password for user ["
 operator|+
 name|username
@@ -2998,6 +3002,10 @@ throw|throw
 operator|new
 name|AuthenticationException
 argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+argument_list|,
 literal|"User ["
 operator|+
 name|username

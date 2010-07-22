@@ -1641,6 +1641,13 @@ name|User
 name|user
 parameter_list|)
 block|{
+name|defaultRealm
+operator|.
+name|addAccount
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 comment|//		if (user.getUID()< 0)
 comment|//			user.setUID(++nextUserId);
 comment|//		users.put(user.getUID(), user);
@@ -1853,6 +1860,8 @@ range|:
 name|realms
 control|)
 block|{
+try|try
+block|{
 return|return
 name|realm
 operator|.
@@ -1864,10 +1873,36 @@ name|credentials
 argument_list|)
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|AuthenticationException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getType
+argument_list|()
+operator|!=
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+condition|)
+throw|throw
+name|e
+throw|;
+block|}
+block|}
 throw|throw
 operator|new
 name|AuthenticationException
 argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+argument_list|,
 literal|"User ["
 operator|+
 name|username

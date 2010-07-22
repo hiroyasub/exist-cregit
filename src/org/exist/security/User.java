@@ -78,7 +78,7 @@ literal|2
 decl_stmt|;
 comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
 specifier|public
-name|void
+name|Group
 name|addGroup
 parameter_list|(
 name|String
@@ -87,7 +87,7 @@ parameter_list|)
 function_decl|;
 comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
 specifier|public
-name|void
+name|Group
 name|addGroup
 parameter_list|(
 name|Group
@@ -101,15 +101,6 @@ name|remGroup
 parameter_list|(
 name|String
 name|group
-parameter_list|)
-function_decl|;
-specifier|public
-name|void
-name|setGroups
-parameter_list|(
-name|String
-index|[]
-name|groups
 parameter_list|)
 function_decl|;
 comment|/** 	 *  Get all groups this user belongs to 	 * 	 *@return    The groups value 	 */
@@ -133,6 +124,11 @@ comment|/** 	 *  Get the primary group this user belongs to 	 * 	 *@return    Th
 specifier|public
 name|String
 name|getPrimaryGroup
+parameter_list|()
+function_decl|;
+specifier|public
+name|Group
+name|getDefaultGroup
 parameter_list|()
 function_decl|;
 comment|/** 	 *  Is the user a member of group? 	 * 	 *@param  group  Description of the Parameter 	 *@return        Description of the Return Value 	 */
@@ -206,6 +202,17 @@ specifier|public
 name|String
 name|getDigestPassword
 parameter_list|()
+function_decl|;
+annotation|@
+name|Deprecated
+specifier|public
+name|void
+name|setGroups
+parameter_list|(
+name|String
+index|[]
+name|groups
+parameter_list|)
 function_decl|;
 comment|/**      * Add a named attribute.      *      * @param name      * @param value      */
 specifier|public
