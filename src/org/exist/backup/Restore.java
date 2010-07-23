@@ -1909,10 +1909,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|listener
-operator|.
-name|warn
-argument_list|(
+name|String
+name|msg
+init|=
 literal|"Failed to restore resource '"
 operator|+
 name|name
@@ -1929,8 +1928,23 @@ literal|false
 argument_list|)
 operator|+
 literal|"'.\nReason: Unable to obtain its EXistInputSource"
+decl_stmt|;
+name|listener
+operator|.
+name|warn
+argument_list|(
+name|msg
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|(
+operator|new
+name|RuntimeException
+argument_list|(
+name|msg
+argument_list|)
+operator|)
+throw|;
 block|}
 try|try
 block|{
