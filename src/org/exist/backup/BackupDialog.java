@@ -151,7 +151,7 @@ name|setupComponents
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param owner 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
+comment|/**      * Creates a new BackupDialog object.      *      * @param   owner      * @param   modal      *      * @throws  HeadlessException      */
 specifier|public
 name|BackupDialog
 parameter_list|(

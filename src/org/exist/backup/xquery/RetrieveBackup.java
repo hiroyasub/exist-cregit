@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -21,9 +21,47 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|backup
 operator|.
-name|BasicFunction
+name|ZipArchiveBackupDescriptor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
+name|servlets
+operator|.
+name|ResponseWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
 import|;
 end_import
 
@@ -35,7 +73,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|FunctionSignature
+name|BasicFunction
 import|;
 end_import
 
@@ -59,7 +97,19 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQueryContext
+name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Variable
 import|;
 end_import
 
@@ -83,7 +133,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Variable
+name|XQueryContext
 import|;
 end_import
 
@@ -127,21 +177,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
+name|JavaObjectValue
 import|;
 end_import
 
@@ -169,7 +205,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|JavaObjectValue
+name|SequenceType
 import|;
 end_import
 
@@ -179,47 +215,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|xquery
 operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|value
 operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|http
-operator|.
-name|servlets
-operator|.
-name|ResponseWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|backup
-operator|.
-name|ZipArchiveBackupDescriptor
+name|Type
 import|;
 end_import
 
@@ -230,26 +230,6 @@ operator|.
 name|io
 operator|.
 name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
 import|;
 end_import
 
@@ -270,6 +250,26 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
 import|;
 end_import
 
@@ -424,6 +424,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|dir
 operator|=
 operator|new
@@ -450,6 +451,7 @@ argument_list|,
 name|exportDir
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|name
 init|=
@@ -480,11 +482,15 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -495,7 +501,9 @@ argument_list|(
 literal|".zip"
 argument_list|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -505,7 +513,9 @@ literal|"for security reasons, the function only allows "
 operator|+
 literal|"reading zipped backup archives"
 argument_list|)
+operator|)
 throw|;
+block|}
 try|try
 block|{
 name|ZipArchiveBackupDescriptor
@@ -527,18 +537,24 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|properties
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|properties
 operator|.
 name|size
 argument_list|()
 operator|==
 literal|0
+operator|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -546,7 +562,9 @@ name|this
 argument_list|,
 literal|"the file does not see to be a valid backup archive"
 argument_list|)
+operator|)
 throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -555,6 +573,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -562,6 +581,7 @@ name|this
 argument_list|,
 literal|"the file does not see to be a valid backup archive"
 argument_list|)
+operator|)
 throw|;
 block|}
 comment|// directly stream the backup contents to the HTTP response
@@ -599,7 +619,9 @@ name|respVar
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -607,7 +629,9 @@ name|this
 argument_list|,
 literal|"No response object found in the current XQuery context."
 argument_list|)
+operator|)
 throw|;
+block|}
 if|if
 condition|(
 name|respVar
@@ -622,7 +646,9 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -630,7 +656,9 @@ name|this
 argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
+operator|)
 throw|;
+block|}
 name|JavaObjectValue
 name|respValue
 init|=
@@ -666,7 +694,9 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -679,7 +709,9 @@ argument_list|()
 operator|+
 literal|" can only be used within the EXistServlet or XQueryServlet"
 argument_list|)
+operator|)
 throw|;
+block|}
 name|ResponseWrapper
 name|response
 init|=
@@ -782,6 +814,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -789,12 +822,15 @@ name|this
 argument_list|,
 literal|"An IO error occurred while reading the backup archive"
 argument_list|)
+operator|)
 throw|;
 block|}
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}

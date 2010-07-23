@@ -27,9 +27,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|text
 operator|.
-name|Date
+name|ParseException
 import|;
 end_import
 
@@ -37,9 +37,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
+name|util
 operator|.
-name|ParseException
+name|Date
 import|;
 end_import
 
@@ -103,6 +103,7 @@ name|other
 parameter_list|)
 block|{
 return|return
+operator|(
 name|date
 operator|.
 name|after
@@ -111,6 +112,7 @@ name|other
 operator|.
 name|date
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -122,12 +124,14 @@ name|time
 parameter_list|)
 block|{
 return|return
+operator|(
 name|date
 operator|.
 name|getTime
 argument_list|()
 operator|>
 name|time
+operator|)
 return|;
 block|}
 specifier|public
@@ -139,6 +143,7 @@ name|other
 parameter_list|)
 block|{
 return|return
+operator|(
 name|date
 operator|.
 name|before
@@ -147,6 +152,7 @@ name|other
 operator|.
 name|date
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -158,12 +164,14 @@ name|time
 parameter_list|)
 block|{
 return|return
+operator|(
 name|time
 operator|>
 name|date
 operator|.
 name|getTime
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -172,7 +180,9 @@ name|getFile
 parameter_list|()
 block|{
 return|return
+operator|(
 name|file
+operator|)
 return|;
 block|}
 specifier|public
@@ -181,7 +191,9 @@ name|getDate
 parameter_list|()
 block|{
 return|return
+operator|(
 name|date
+operator|)
 return|;
 block|}
 block|}

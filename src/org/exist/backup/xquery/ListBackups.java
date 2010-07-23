@@ -19,9 +19,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|xml
 operator|.
-name|Namespaces
+name|sax
+operator|.
+name|helpers
+operator|.
+name|AttributesImpl
 import|;
 end_import
 
@@ -31,9 +35,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|backup
-operator|.
-name|BackupDirectory
+name|Namespaces
 import|;
 end_import
 
@@ -57,7 +59,7 @@ name|exist
 operator|.
 name|backup
 operator|.
-name|ZipArchiveBackupDescriptor
+name|BackupDirectory
 import|;
 end_import
 
@@ -70,6 +72,18 @@ operator|.
 name|backup
 operator|.
 name|FileSystemBackupDescriptor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|ZipArchiveBackupDescriptor
 import|;
 end_import
 
@@ -236,20 +250,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|helpers
-operator|.
-name|AttributesImpl
 import|;
 end_import
 
@@ -508,6 +508,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|dir
 operator|=
 operator|new
@@ -534,6 +535,7 @@ argument_list|,
 name|exportDir
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|pushDocumentContext
@@ -663,6 +665,7 @@ argument_list|(
 literal|".zip"
 argument_list|)
 condition|)
+block|{
 name|descriptor
 operator|=
 operator|new
@@ -674,7 +677,9 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|descriptor
 operator|=
 operator|new
@@ -686,6 +691,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|Properties
 name|properties
 init|=
@@ -835,6 +841,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 return|return
+operator|(
 name|builder
 operator|.
 name|getDocument
@@ -844,6 +851,7 @@ name|getNode
 argument_list|(
 name|nodeNr
 argument_list|)
+operator|)
 return|;
 block|}
 finally|finally

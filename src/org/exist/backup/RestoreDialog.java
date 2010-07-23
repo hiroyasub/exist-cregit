@@ -15,6 +15,42 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|ElementIndex
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ProgressIndicator
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|awt
@@ -163,42 +199,6 @@ name|JTextField
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|ElementIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|TextSearchEngine
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ProgressIndicator
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -236,7 +236,7 @@ operator|new
 name|UploadProgressObserver
 argument_list|()
 decl_stmt|;
-comment|/** 	 * @param owner 	 * @param title 	 * @param modal 	 * @throws java.awt.HeadlessException 	 */
+comment|/**      * Creates a new RestoreDialog object.      *      * @param   owner      * @param   title      * @param   modal      *      * @throws  HeadlessException      */
 specifier|public
 name|RestoreDialog
 parameter_list|(
@@ -963,7 +963,9 @@ name|getObserver
 parameter_list|()
 block|{
 return|return
+operator|(
 name|progressObserver
+operator|)
 return|;
 block|}
 class|class
@@ -1018,6 +1020,7 @@ name|o
 operator|instanceof
 name|TextSearchEngine
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -1025,12 +1028,14 @@ argument_list|(
 literal|"Storing words"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|o
 operator|instanceof
 name|ElementIndex
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -1038,7 +1043,9 @@ argument_list|(
 literal|"Storing elements"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|progress
 operator|.
 name|setString
@@ -1046,6 +1053,7 @@ argument_list|(
 literal|"Storing nodes"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

@@ -194,7 +194,9 @@ name|getErrcode
 parameter_list|()
 block|{
 return|return
+operator|(
 name|code
+operator|)
 return|;
 block|}
 specifier|public
@@ -203,10 +205,12 @@ name|getErrcodeString
 parameter_list|()
 block|{
 return|return
+operator|(
 name|ERRCODES
 index|[
 name|code
 index|]
+operator|)
 return|;
 block|}
 specifier|public
@@ -215,7 +219,9 @@ name|getMessage
 parameter_list|()
 block|{
 return|return
+operator|(
 name|message
+operator|)
 return|;
 block|}
 specifier|public
@@ -239,7 +245,9 @@ name|getException
 parameter_list|()
 block|{
 return|return
+operator|(
 name|exception
+operator|)
 return|;
 block|}
 specifier|public
@@ -290,6 +298,7 @@ name|message
 operator|!=
 literal|null
 condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -297,11 +306,14 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|sb
 operator|.
 name|toString
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -365,7 +377,9 @@ name|getDocumentId
 parameter_list|()
 block|{
 return|return
+operator|(
 name|documentId
+operator|)
 return|;
 block|}
 specifier|public
@@ -389,6 +403,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
+operator|(
 name|super
 operator|.
 name|toString
@@ -397,6 +412,7 @@ operator|+
 literal|"\nDocument ID: "
 operator|+
 name|documentId
+operator|)
 return|;
 block|}
 block|}
@@ -467,7 +483,9 @@ name|getCollectionId
 parameter_list|()
 block|{
 return|return
+operator|(
 name|collectionId
+operator|)
 return|;
 block|}
 specifier|public
@@ -506,7 +524,9 @@ name|getCollectionURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|collectionURI
+operator|)
 return|;
 block|}
 specifier|public
@@ -515,6 +535,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
+operator|(
 name|super
 operator|.
 name|toString
@@ -523,6 +544,7 @@ operator|+
 literal|"\nCollection ID: "
 operator|+
 name|collectionId
+operator|)
 return|;
 block|}
 block|}
@@ -605,7 +627,9 @@ name|getDocumentId
 parameter_list|()
 block|{
 return|return
+operator|(
 name|documentId
+operator|)
 return|;
 block|}
 specifier|public
@@ -614,6 +638,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
+operator|(
 name|super
 operator|.
 name|toString
@@ -622,6 +647,7 @@ operator|+
 literal|"\nDocument ID: "
 operator|+
 name|documentId
+operator|)
 return|;
 block|}
 block|}

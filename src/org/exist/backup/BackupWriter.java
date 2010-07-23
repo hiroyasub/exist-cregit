@@ -54,7 +54,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper interface for writing backups. Serves as an abstraction for writing  * to different targets like directories or zip files.  */
+comment|/**  * Helper interface for writing backups. Serves as an abstraction for writing to different targets like directories or zip files.  */
 end_comment
 
 begin_interface

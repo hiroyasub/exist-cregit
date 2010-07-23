@@ -283,7 +283,9 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
+operator|(
 name|currentContentsOut
+operator|)
 return|;
 block|}
 specifier|public
@@ -328,7 +330,9 @@ operator|=
 literal|true
 expr_stmt|;
 return|return
+operator|(
 name|currentOut
+operator|)
 return|;
 block|}
 specifier|public
@@ -358,13 +362,17 @@ if|if
 condition|(
 name|dataWritten
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|IOException
 argument_list|(
 literal|"Backup properties need to be set before any backup data is written"
 argument_list|)
+operator|)
 throw|;
+block|}
 name|File
 name|propFile
 init|=

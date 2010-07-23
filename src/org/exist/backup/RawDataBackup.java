@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Callback interface, mainly used by the {@link org.exist.storage.DataBackup}  * system task to write the raw data files to an archive..  */
+comment|/**  * Callback interface, mainly used by the {@link org.exist.storage.DataBackup} system task to write the raw data files to an archive..  */
 end_comment
 
 begin_interface
@@ -42,7 +42,6 @@ specifier|public
 interface|interface
 name|RawDataBackup
 block|{
-specifier|public
 name|OutputStream
 name|newEntry
 parameter_list|(
@@ -52,7 +51,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-specifier|public
 name|void
 name|closeEntry
 parameter_list|()

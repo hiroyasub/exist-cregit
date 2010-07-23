@@ -40,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module function definitions for backup module.  *  * @author wolf  * @author ljo  *  */
+comment|/**  * Module function definitions for backup module.  *  * @author  wolf  * @author  ljo  */
 end_comment
 
 begin_class
@@ -133,7 +133,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|NAMESPACE_URI
+operator|)
 return|;
 block|}
 specifier|public
@@ -142,7 +144,9 @@ name|getDefaultPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|PREFIX
+operator|)
 return|;
 block|}
 specifier|public
@@ -151,7 +155,9 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|"A module for access to database backups available on the server file system"
+operator|)
 return|;
 block|}
 specifier|public
@@ -160,7 +166,9 @@ name|getReleaseVersion
 parameter_list|()
 block|{
 return|return
+operator|(
 name|RELEASED_IN_VERSION
+operator|)
 return|;
 block|}
 block|}

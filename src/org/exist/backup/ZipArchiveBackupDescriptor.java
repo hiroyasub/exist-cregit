@@ -15,11 +15,25 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|exist
 operator|.
-name|IOException
+name|util
+operator|.
+name|EXistInputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ZipEntryInputSource
 import|;
 end_import
 
@@ -40,6 +54,36 @@ operator|.
 name|io
 operator|.
 name|FileNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Enumeration
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -76,50 +120,6 @@ operator|.
 name|zip
 operator|.
 name|ZipFile
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Enumeration
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|EXistInputSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ZipEntryInputSource
 import|;
 end_import
 
@@ -183,9 +183,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|descriptor
 operator|==
 literal|null
+operator|)
 operator|||
 name|descriptor
 operator|.
@@ -258,10 +260,13 @@ condition|)
 block|{
 if|if
 condition|(
+operator|(
 name|base
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|base
 operator|.
 name|length
@@ -274,6 +279,7 @@ argument_list|()
 operator|.
 name|length
 argument_list|()
+operator|)
 condition|)
 block|{
 name|descriptor
@@ -297,6 +303,7 @@ name|base
 operator|!=
 literal|null
 condition|)
+block|{
 name|base
 operator|=
 name|base
@@ -319,6 +326,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|descriptor
@@ -327,6 +335,7 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|FileNotFoundException
 argument_list|(
@@ -339,6 +348,7 @@ argument_list|()
 operator|+
 literal|" is not a valid eXist backup archive"
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
@@ -381,9 +391,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|descriptor
 operator|==
 literal|null
+operator|)
 operator|||
 name|descriptor
 operator|.
@@ -392,6 +404,7 @@ argument_list|()
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|FileNotFoundException
 argument_list|(
@@ -406,6 +419,7 @@ name|base
 operator|+
 literal|" descriptor not found): not a valid eXist backup archive"
 argument_list|)
+operator|)
 throw|;
 block|}
 block|}
@@ -448,7 +462,9 @@ block|{
 comment|// DoNothing(R)
 block|}
 return|return
+operator|(
 name|bd
+operator|)
 return|;
 block|}
 specifier|public
@@ -461,13 +477,16 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|(
 name|describedItem
 operator|.
 name|length
 argument_list|()
 operator|>
 literal|0
+operator|)
 operator|&&
+operator|(
 name|describedItem
 operator|.
 name|charAt
@@ -476,7 +495,9 @@ literal|0
 argument_list|)
 operator|==
 literal|'/'
+operator|)
 condition|)
+block|{
 name|describedItem
 operator|=
 name|describedItem
@@ -486,6 +507,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -496,12 +518,14 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|describedItem
 operator|=
 name|describedItem
 operator|+
 literal|'/'
 expr_stmt|;
+block|}
 name|BackupDescriptor
 name|bd
 init|=
@@ -529,7 +553,9 @@ block|{
 comment|// DoNothing(R)
 block|}
 return|return
+operator|(
 name|bd
+operator|)
 return|;
 block|}
 specifier|public
@@ -538,6 +564,7 @@ name|getInputSource
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|ZipEntryInputSource
 argument_list|(
@@ -545,6 +572,7 @@ name|archive
 argument_list|,
 name|descriptor
 argument_list|)
+operator|)
 return|;
 block|}
 specifier|public
@@ -574,9 +602,11 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|ze
 operator|!=
 literal|null
+operator|)
 operator|&&
 operator|!
 name|ze
@@ -597,7 +627,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|retval
+operator|)
 return|;
 block|}
 specifier|public
@@ -606,6 +638,7 @@ name|getSymbolicPath
 parameter_list|()
 block|{
 return|return
+operator|(
 name|archive
 operator|.
 name|getName
@@ -617,6 +650,7 @@ name|descriptor
 operator|.
 name|getName
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -648,6 +682,7 @@ if|if
 condition|(
 name|isChildDescriptor
 condition|)
+block|{
 name|retval
 operator|+=
 literal|"/"
@@ -656,8 +691,11 @@ name|BackupDescriptor
 operator|.
 name|COLLECTION_DESCRIPTOR
 expr_stmt|;
+block|}
 return|return
+operator|(
 name|retval
+operator|)
 return|;
 block|}
 specifier|public
@@ -709,7 +747,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|properties
+operator|)
 return|;
 block|}
 specifier|public
@@ -718,6 +758,7 @@ name|getParentDir
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|File
 argument_list|(
@@ -729,6 +770,7 @@ argument_list|)
 operator|.
 name|getParentFile
 argument_list|()
+operator|)
 return|;
 block|}
 specifier|public
@@ -737,6 +779,7 @@ name|getName
 parameter_list|()
 block|{
 return|return
+operator|(
 operator|new
 name|File
 argument_list|(
@@ -748,6 +791,7 @@ argument_list|)
 operator|.
 name|getName
 argument_list|()
+operator|)
 return|;
 block|}
 block|}
