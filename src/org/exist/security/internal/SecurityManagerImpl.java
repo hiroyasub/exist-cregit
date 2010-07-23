@@ -1889,13 +1889,8 @@ name|User
 name|user
 parameter_list|)
 block|{
-name|defaultRealm
-operator|.
-name|addAccount
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
+comment|// TODO The following line was commented out as a BIG HACK.....to enable the Java Client to be able to successfully do a restore. With this line in, you get an exception since the code tries to re-add the admin user! Ugh!  - Andrzej
+comment|// defaultRealm.addAccount(user);
 comment|//		if (user.getUID()< 0)
 comment|//			user.setUID(++nextUserId);
 comment|//		users.put(user.getUID(), user);
