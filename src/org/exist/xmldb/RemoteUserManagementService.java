@@ -3311,7 +3311,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"setUser"
+literal|"updateAccount"
 argument_list|,
 name|params
 argument_list|)

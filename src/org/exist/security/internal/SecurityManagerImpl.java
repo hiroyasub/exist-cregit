@@ -1294,7 +1294,7 @@ return|;
 block|}
 specifier|public
 specifier|synchronized
-name|void
+name|boolean
 name|updateAccount
 parameter_list|(
 name|User
@@ -1305,13 +1305,14 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+return|return
 name|defaultRealm
 operator|.
 name|updateAccount
 argument_list|(
 name|account
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 specifier|public
 specifier|synchronized

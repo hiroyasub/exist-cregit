@@ -200,7 +200,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-name|void
+name|boolean
 name|updateAccount
 parameter_list|(
 name|User
