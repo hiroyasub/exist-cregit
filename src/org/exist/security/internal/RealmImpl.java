@@ -1962,6 +1962,9 @@ name|getPassword
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|_save
+argument_list|()
+expr_stmt|;
 return|return
 literal|true
 return|;
