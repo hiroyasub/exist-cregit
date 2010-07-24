@@ -41,18 +41,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -71,6 +59,7 @@ name|String
 name|getId
 parameter_list|()
 function_decl|;
+comment|//accounts manipulation methods
 specifier|public
 name|User
 name|getAccount
@@ -95,6 +84,19 @@ name|String
 name|accountName
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|updateAccount
+parameter_list|(
+name|User
+name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+function_decl|;
+comment|//roles manipulation methods
 specifier|public
 name|Collection
 argument_list|<
@@ -131,6 +133,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 function_decl|;
+comment|//possible, internal methods
 specifier|public
 name|User
 name|getAccount

@@ -439,6 +439,34 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
 begin_comment
 comment|/**  * SecurityManager is responsible for managing users and groups.  *   * There's only one SecurityManager for each database instance, which  * may be obtained by {@link BrokerPool#getSecurityManager()}.  *   * Users and groups are stored in the system collection, in document  * users.xml. While it is possible to edit this file by hand, it  * may lead to unexpected results, since SecurityManager reads   * users.xml only during database startup and shutdown.  */
 end_comment
@@ -1267,6 +1295,27 @@ block|}
 specifier|public
 specifier|synchronized
 name|void
+name|updateAccount
+parameter_list|(
+name|User
+name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
+name|defaultRealm
+operator|.
+name|updateAccount
+argument_list|(
+name|account
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+specifier|synchronized
+name|void
 name|deleteRole
 parameter_list|(
 name|String
@@ -1889,8 +1938,13 @@ name|User
 name|user
 parameter_list|)
 block|{
-comment|// TODO The following line was commented out as a BIG HACK.....to enable the Java Client to be able to successfully do a restore. With this line in, you get an exception since the code tries to re-add the admin user! Ugh!  - Andrzej
-comment|// defaultRealm.addAccount(user);
+name|defaultRealm
+operator|.
+name|addAccount
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 comment|//		if (user.getUID()< 0)
 comment|//			user.setUID(++nextUserId);
 comment|//		users.put(user.getUID(), user);
