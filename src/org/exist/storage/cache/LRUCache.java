@@ -58,6 +58,9 @@ name|max
 decl_stmt|;
 specifier|protected
 name|SequencedLongHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 name|map
 decl_stmt|;
 specifier|protected
@@ -119,6 +122,9 @@ name|map
 operator|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|size
 operator|*
@@ -243,9 +249,6 @@ block|{
 name|Cacheable
 name|obj
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|map
 operator|.
 name|get
@@ -311,6 +314,9 @@ decl_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|Cacheable
+argument_list|>
 name|next
 init|=
 name|map
@@ -327,9 +333,6 @@ condition|)
 block|{
 name|cacheable
 operator|=
-operator|(
-name|Cacheable
-operator|)
 name|next
 operator|.
 name|getValue
@@ -379,6 +382,9 @@ decl_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|Cacheable
+argument_list|>
 name|next
 init|=
 name|map
@@ -395,9 +401,6 @@ condition|)
 block|{
 name|cacheable
 operator|=
-operator|(
-name|Cacheable
-operator|)
 name|next
 operator|.
 name|getValue
@@ -527,6 +530,9 @@ decl_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|Cacheable
+argument_list|>
 name|next
 init|=
 name|map
@@ -539,9 +545,6 @@ block|{
 name|Cacheable
 name|cached
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|next
 operator|.
 name|getValue
@@ -705,10 +708,16 @@ block|}
 else|else
 block|{
 name|SequencedLongHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 name|newMap
 init|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|newSize
 operator|*
@@ -718,6 +727,9 @@ decl_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|Cacheable
+argument_list|>
 name|next
 init|=
 name|map
@@ -737,9 +749,6 @@ condition|)
 block|{
 name|cacheable
 operator|=
-operator|(
-name|Cacheable
-operator|)
 name|next
 operator|.
 name|getValue
@@ -804,6 +813,9 @@ name|map
 operator|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|newSize
 argument_list|)

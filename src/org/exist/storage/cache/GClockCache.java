@@ -69,6 +69,9 @@ name|size
 decl_stmt|;
 specifier|protected
 name|Long2ObjectHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 name|map
 decl_stmt|;
 specifier|protected
@@ -151,6 +154,9 @@ name|map
 operator|=
 operator|new
 name|Long2ObjectHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|size
 operator|*
@@ -218,9 +224,6 @@ block|{
 name|Cacheable
 name|old
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|map
 operator|.
 name|get
@@ -321,9 +324,6 @@ block|{
 name|Cacheable
 name|item
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|map
 operator|.
 name|get
@@ -373,9 +373,6 @@ decl_stmt|;
 name|Cacheable
 name|cacheable
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|map
 operator|.
 name|remove
@@ -867,10 +864,16 @@ name|newSize
 index|]
 decl_stmt|;
 name|Long2ObjectHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 name|newMap
 init|=
 operator|new
 name|Long2ObjectHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|newSize
 operator|*
@@ -976,6 +979,9 @@ name|map
 operator|=
 operator|new
 name|Long2ObjectHashMap
+argument_list|<
+name|Cacheable
+argument_list|>
 argument_list|(
 name|newSize
 operator|*

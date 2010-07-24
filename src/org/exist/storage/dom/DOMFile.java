@@ -1088,10 +1088,16 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|Object2LongIdentityHashMap
+argument_list|<
+name|Object
+argument_list|>
 name|pages
 init|=
 operator|new
 name|Object2LongIdentityHashMap
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 literal|64
 argument_list|)

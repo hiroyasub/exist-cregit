@@ -150,6 +150,9 @@ decl_stmt|;
 name|SequencedLongHashMap
 operator|.
 name|Entry
+argument_list|<
+name|Cacheable
+argument_list|>
 name|next
 init|=
 name|map

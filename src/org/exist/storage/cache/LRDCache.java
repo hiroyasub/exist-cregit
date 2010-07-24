@@ -99,9 +99,6 @@ block|{
 name|Cacheable
 name|old
 init|=
-operator|(
-name|Cacheable
-operator|)
 name|map
 operator|.
 name|get

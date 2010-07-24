@@ -135,6 +135,9 @@ decl_stmt|;
 comment|/** the map used to track replaced page numbers */
 specifier|private
 name|SequencedLongHashMap
+argument_list|<
+name|Object
+argument_list|>
 name|map
 decl_stmt|;
 specifier|public
@@ -148,6 +151,9 @@ name|map
 operator|=
 operator|new
 name|SequencedLongHashMap
+argument_list|<
+name|Object
+argument_list|>
 argument_list|(
 operator|(
 name|maxEntries
