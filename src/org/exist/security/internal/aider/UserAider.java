@@ -77,7 +77,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Realm
+name|User
 import|;
 end_import
 
@@ -89,7 +89,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|realm
+operator|.
+name|Realm
 import|;
 end_import
 
