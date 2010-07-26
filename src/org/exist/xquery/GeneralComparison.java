@@ -3614,6 +3614,11 @@ name|indexScan
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|indexMixed
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|contextSequence
@@ -3657,12 +3662,27 @@ name|contextQName
 operator|!=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+name|iflags
+operator|.
+name|partialIndexOnQName
+condition|)
+block|{
+name|indexMixed
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// set contextQName to null so the index lookup below is not
 comment|// restricted to that QName
 name|contextQName
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4144,6 +4164,8 @@ operator|)
 name|key
 argument_list|,
 name|collator
+argument_list|,
+name|indexMixed
 argument_list|)
 expr_stmt|;
 block|}
@@ -6114,6 +6136,12 @@ literal|true
 decl_stmt|;
 specifier|public
 name|boolean
+name|partialIndexOnQName
+init|=
+literal|false
+decl_stmt|;
+specifier|public
+name|boolean
 name|hasIndexOnPaths
 init|=
 literal|false
@@ -6170,6 +6198,12 @@ operator|.
 name|indexOnQName
 operator|=
 name|indexOnQName
+expr_stmt|;
+name|this
+operator|.
+name|partialIndexOnQName
+operator|=
+literal|false
 expr_stmt|;
 name|this
 operator|.
