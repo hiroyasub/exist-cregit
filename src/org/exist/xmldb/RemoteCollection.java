@@ -1869,9 +1869,8 @@ block|}
 name|Permission
 name|perm
 init|=
-name|PermissionFactory
-operator|.
-name|getPermission
+operator|new
+name|UnixStylePermission
 argument_list|(
 operator|(
 name|String
