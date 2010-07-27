@@ -1532,6 +1532,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|Ignore
+annotation|@
 name|Test
 specifier|public
 name|void
