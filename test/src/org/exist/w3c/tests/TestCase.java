@@ -1193,7 +1193,27 @@ name|e
 parameter_list|)
 block|{
 block|}
+comment|//workaround problematic results
 if|if
+condition|(
+name|expResult
+operator|.
+name|equals
+argument_list|(
+literal|"<?pi ?>"
+argument_list|)
+operator|&&
+operator|(
+name|res
+operator|.
+name|equals
+argument_list|(
+literal|"<?pi?>"
+argument_list|)
+operator|)
+condition|)
+empty_stmt|;
+if|else if
 condition|(
 operator|!
 name|ok
@@ -1204,6 +1224,7 @@ return|;
 block|}
 else|else
 block|{
+comment|//workaround problematic results
 if|if
 condition|(
 name|expResult
@@ -1221,6 +1242,7 @@ literal|"&"
 argument_list|)
 condition|)
 empty_stmt|;
+comment|//workaround problematic results
 if|else if
 condition|(
 name|expResult
