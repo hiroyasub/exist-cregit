@@ -334,6 +334,16 @@ throws|throws
 name|XPathException
 block|{
 name|String
+name|wsTrimString
+init|=
+name|StringValue
+operator|.
+name|trimWhitespace
+argument_list|(
+name|s
+argument_list|)
+decl_stmt|;
+name|String
 name|escapedString
 init|=
 name|escape
@@ -342,7 +352,7 @@ name|StringValue
 operator|.
 name|trimWhitespace
 argument_list|(
-name|s
+name|wsTrimString
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -407,7 +417,7 @@ name|StringValue
 operator|.
 name|normalizeWhitespace
 argument_list|(
-name|s
+name|wsTrimString
 argument_list|)
 expr_stmt|;
 comment|//Should we have TABs, new lines...
