@@ -1305,6 +1305,8 @@ block|}
 else|else
 block|{
 comment|//Do we have the same result than Atomize there ? -pb
+try|try
+block|{
 name|qn
 operator|=
 name|QName
@@ -1319,6 +1321,30 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"XPTY0004 '"
+operator|+
+name|qnitem
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"' is not a valid element name"
+argument_list|)
+throw|;
+block|}
 comment|//Use the default namespace if specified
 comment|/*                  if (qn.getPrefix() == null&& context.inScopeNamespaces.get("xmlns") != null) {                      qn.setNamespaceURI((String)context.inScopeNamespaces.get("xmlns"));                  }                  */
 if|if

@@ -830,6 +830,7 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
+comment|//TODO: change to XPathException? -shabanovd
 comment|// fixme! Should we not use isQName() here? /ljo
 if|if
 condition|(
@@ -860,6 +861,7 @@ argument_list|(
 literal|"Illegal QName: starts with a digit"
 argument_list|)
 throw|;
+comment|//TODO: change to XPathException? -shabanovd
 block|}
 return|return
 name|qname
@@ -918,6 +920,7 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
+comment|//TODO: change to XPathException? -shabanovd
 if|if
 condition|(
 name|p
@@ -934,6 +937,7 @@ argument_list|(
 literal|"Illegal QName: ends with a :"
 argument_list|)
 throw|;
+comment|//TODO: change to XPathException? -shabanovd
 if|if
 condition|(
 operator|!
@@ -950,6 +954,7 @@ argument_list|(
 literal|"Illegal QName: not a valid local name."
 argument_list|)
 throw|;
+comment|//TODO: change to XPathException? -shabanovd
 block|}
 return|return
 name|qname
