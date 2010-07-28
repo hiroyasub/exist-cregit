@@ -181,7 +181,7 @@ literal|"UTF-8"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ConfigElement
+name|Configuration
 name|config
 init|=
 name|Configurator
@@ -343,11 +343,11 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
-name|ConfigElementImpl
+name|ConfigurationImpl
 name|config
 init|=
 operator|new
-name|ConfigElementImpl
+name|ConfigurationImpl
 argument_list|(
 operator|(
 name|ElementAtExist
