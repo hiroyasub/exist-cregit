@@ -371,6 +371,13 @@ block|{
 operator|new
 name|File
 argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.io.tmpdir"
+argument_list|)
+operator|+
 literal|"/expathrepo"
 argument_list|)
 operator|.
@@ -385,6 +392,13 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.io.tmpdir"
+argument_list|)
+operator|+
 literal|"/expathrepo"
 argument_list|)
 argument_list|)
