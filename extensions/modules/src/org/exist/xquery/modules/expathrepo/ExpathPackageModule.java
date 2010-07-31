@@ -149,7 +149,7 @@ name|RELEASED_IN_VERSION
 init|=
 literal|"eXist-1.5"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 name|Repository
 name|_repo
