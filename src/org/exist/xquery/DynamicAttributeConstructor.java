@@ -504,6 +504,8 @@ name|getQName
 argument_list|()
 expr_stmt|;
 else|else
+try|try
+block|{
 name|qn
 operator|=
 name|QName
@@ -520,6 +522,30 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"XPTY0004 '"
+operator|+
+name|nameSeq
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"' is not a valid attribute name"
+argument_list|)
+throw|;
+block|}
 comment|//Not in the specs but... makes sense
 if|if
 condition|(
