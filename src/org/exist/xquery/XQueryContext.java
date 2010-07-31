@@ -2055,7 +2055,7 @@ name|debuggeeJoint
 init|=
 literal|null
 decl_stmt|;
-comment|// NOTE: expathrepo whilst we figure out managing deps
+comment|// TODO: expath repo manageer, may change
 specifier|private
 specifier|static
 name|Repository
@@ -2169,15 +2169,7 @@ name|PackageException
 name|ex
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Problem setting expath repository"
-argument_list|,
-name|ex
-argument_list|)
-throw|;
+comment|//throw new XPathException("Problem setting expath repository", ex);
 block|}
 block|}
 return|return
@@ -2496,7 +2488,7 @@ name|src
 argument_list|)
 return|;
 block|}
-comment|// NOTE: expathrepo whilst we figure out managing deps
+comment|// TODO: end of expath repo manageer, may change
 specifier|protected
 name|XQueryContext
 parameter_list|(
