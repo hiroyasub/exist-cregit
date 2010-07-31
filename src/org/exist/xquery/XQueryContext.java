@@ -2169,6 +2169,7 @@ name|PackageException
 name|ex
 parameter_list|)
 block|{
+comment|// problem with pck-repo.jar throwing exception
 comment|//throw new XPathException("Problem setting expath repository", ex);
 block|}
 block|}
