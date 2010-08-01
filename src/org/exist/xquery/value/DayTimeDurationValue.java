@@ -397,10 +397,13 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+name|canonicalize
+argument_list|()
+expr_stmt|;
 name|int
 name|d
 init|=
-name|duration
+name|canonicalDuration
 operator|.
 name|getDays
 argument_list|()
@@ -408,7 +411,7 @@ decl_stmt|;
 name|int
 name|h
 init|=
-name|duration
+name|canonicalDuration
 operator|.
 name|getHours
 argument_list|()
@@ -416,7 +419,7 @@ decl_stmt|;
 name|int
 name|m
 init|=
-name|duration
+name|canonicalDuration
 operator|.
 name|getMinutes
 argument_list|()
@@ -424,7 +427,7 @@ decl_stmt|;
 name|Number
 name|s
 init|=
-name|duration
+name|canonicalDuration
 operator|.
 name|getField
 argument_list|(
@@ -459,7 +462,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|duration
+name|canonicalDuration
 operator|.
 name|getSign
 argument_list|()
