@@ -133,9 +133,25 @@ block|{
 name|Variable
 name|var
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|var
+operator|=
 name|getVariable
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+comment|// ignore: variable might not be known yet
+return|return;
+block|}
 if|if
 condition|(
 name|var
