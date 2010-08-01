@@ -321,6 +321,12 @@ argument_list|(
 name|builder
 argument_list|)
 decl_stmt|;
+name|receiver
+operator|.
+name|checkNS
+operator|=
+literal|true
+expr_stmt|;
 try|try
 block|{
 name|SequenceIterator
