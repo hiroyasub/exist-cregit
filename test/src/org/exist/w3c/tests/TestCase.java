@@ -1182,6 +1182,13 @@ name|equals
 argument_list|(
 literal|"Fragment"
 argument_list|)
+operator|||
+name|compare
+operator|.
+name|equals
+argument_list|(
+literal|"Inspect"
+argument_list|)
 condition|)
 block|{
 try|try
