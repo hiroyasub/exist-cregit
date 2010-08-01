@@ -1038,6 +1038,19 @@ name|Constants
 operator|.
 name|SELF_AXIS
 case|:
+if|if
+condition|(
+name|getTest
+argument_list|()
+operator|.
+name|getType
+argument_list|()
+operator|!=
+name|Type
+operator|.
+name|NODE
+condition|)
+block|{
 name|contextStep
 operator|=
 name|contextInfo
@@ -1142,6 +1155,7 @@ operator|+
 literal|" called on set of nodes which do not contain any nodes of this name."
 argument_list|)
 throw|;
+block|}
 block|}
 break|break;
 comment|//		case Constants.DESCENDANT_AXIS:
