@@ -149,7 +149,7 @@ specifier|final
 name|Duration
 name|duration
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Duration
 name|canonicalDuration
 decl_stmt|;
@@ -542,7 +542,7 @@ return|return
 name|x
 return|;
 block|}
-specifier|protected
+specifier|private
 name|void
 name|canonicalize
 parameter_list|()

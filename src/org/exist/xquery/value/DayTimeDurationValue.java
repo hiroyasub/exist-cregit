@@ -397,9 +397,12 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
-name|canonicalize
+name|Duration
+name|canonicalDuration
+init|=
+name|getCanonicalDuration
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|int
 name|d
 init|=
