@@ -151,21 +151,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
-name|annotation
-operator|.
-name|ConfigurationField
+name|*
 import|;
 end_import
 
@@ -238,7 +224,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -333,7 +319,7 @@ operator|.
 name|ldapContextFactory
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.Realm#getId() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.Realm#getId() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -341,12 +327,22 @@ name|String
 name|getId
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+literal|"ActiveDirectory@"
+operator|+
+operator|(
+operator|(
+name|ContextFactory
+operator|)
+name|ensureContextFactory
+argument_list|()
+operator|)
+operator|.
+name|getDomain
+argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.Realm#authenticate(java.lang.String, java.lang.Object) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.Realm#authenticate(java.lang.String, 	 * java.lang.Object) 	 */
 specifier|public
 name|User
 name|authenticate
@@ -381,7 +377,7 @@ name|username
 operator|+
 literal|"))"
 decl_stmt|;
-comment|//Create the search controls
+comment|// Create the search controls
 name|SearchControls
 name|searchCtls
 init|=
@@ -396,7 +392,7 @@ argument_list|(
 name|returnedAtts
 argument_list|)
 expr_stmt|;
-comment|//Specify the search scope
+comment|// Specify the search scope
 name|searchCtls
 operator|.
 name|setSearchScope
@@ -435,8 +431,11 @@ name|credentials
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//Search objects in GC using filters
+comment|// Search objects in GC using filters
 name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
 name|answer
 init|=
 name|ctxGC
@@ -470,9 +469,6 @@ block|{
 name|SearchResult
 name|sr
 init|=
-operator|(
-name|SearchResult
-operator|)
 name|answer
 operator|.
 name|next
@@ -487,6 +483,11 @@ name|getAttributes
 argument_list|()
 decl_stmt|;
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 name|amap
 init|=
 literal|null
@@ -502,9 +503,19 @@ name|amap
 operator|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|NamingEnumeration
+argument_list|<
+name|?
+extends|extends
+name|Attribute
+argument_list|>
 name|ne
 init|=
 name|attrs
@@ -523,9 +534,6 @@ block|{
 name|Attribute
 name|attr
 init|=
-operator|(
-name|Attribute
-operator|)
 name|ne
 operator|.
 name|next

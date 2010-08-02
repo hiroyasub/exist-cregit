@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -568,7 +568,7 @@ name|username
 argument_list|)
 return|;
 block|}
-comment|//configurable methods
+comment|// configurable methods
 annotation|@
 name|Override
 specifier|public

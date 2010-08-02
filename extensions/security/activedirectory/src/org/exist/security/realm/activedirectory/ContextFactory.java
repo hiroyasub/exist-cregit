@@ -166,6 +166,15 @@ return|return
 name|searchBase
 return|;
 block|}
+specifier|public
+name|String
+name|getDomain
+parameter_list|()
+block|{
+return|return
+name|domain
+return|;
+block|}
 block|}
 end_class
 
