@@ -223,7 +223,7 @@ name|principalPattern
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|MessageFormat
 name|principalPatternFormat
 decl_stmt|;
