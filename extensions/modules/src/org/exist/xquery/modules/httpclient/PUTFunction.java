@@ -623,6 +623,10 @@ argument_list|,
 name|put
 argument_list|,
 name|persistState
+argument_list|,
+literal|null
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
