@@ -133,29 +133,12 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|domain
-operator|==
-literal|null
-condition|)
-block|{
-comment|//throw error?
-name|domain
-operator|=
-literal|""
-expr_stmt|;
-block|}
-name|principalPatternFormat
-operator|=
-operator|new
-name|MessageFormat
-argument_list|(
-literal|"{0}@"
-operator|+
-name|domain
-argument_list|)
-expr_stmt|;
+comment|//		if (domain == null) {
+comment|//			//throw error?
+comment|//			domain = "";
+comment|//		}
+comment|//
+comment|//		principalPatternFormat = new MessageFormat("{0}@"+domain);
 block|}
 specifier|public
 name|String

@@ -145,11 +145,11 @@ literal|"<ActiveDirectory>"
 operator|+
 literal|"<context "
 operator|+
-literal|"		domain='local.domain' "
+literal|"		principalPattern='CN={0},OU=kjc,OU=institute,DC=ad,DC=uni-heidelberg,DC=de' "
 operator|+
-literal|"		searchBase='cn=users,dc=local,dc=domain' "
+literal|"		searchBase='cn=users,dc=ad,dc=uni-heidelberg,dc=de' "
 operator|+
-literal|"		url='ldap://localhost:389'/>"
+literal|"		url='ldap://ad.uni-heidelberg.de:389'/>"
 operator|+
 literal|"</ActiveDirectory>"
 decl_stmt|;
@@ -235,9 +235,9 @@ name|realm
 operator|.
 name|authenticate
 argument_list|(
-literal|"admin"
+literal|"exist"
 argument_list|,
-literal|"passwd"
+literal|"p2zlw4mg"
 argument_list|)
 expr_stmt|;
 block|}
@@ -247,6 +247,11 @@ name|AuthenticationException
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 name|e

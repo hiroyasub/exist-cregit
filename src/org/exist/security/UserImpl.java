@@ -1527,7 +1527,7 @@ name|role
 init|=
 name|realm
 operator|.
-name|getRole
+name|getGroup
 argument_list|(
 name|name
 argument_list|)
