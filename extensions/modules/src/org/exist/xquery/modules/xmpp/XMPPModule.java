@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: MailModule.java 10647 2009-11-26 17:27:50Z shabanovd $  */
+comment|/*  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist XMPP Module Extension  *   * An extension module for the eXist Native XML Database that allows  * chats via XMPP protocol.  *     * @version 1.5  *  */
+comment|/**  * eXist XMPP Module Extension  *   * An extension module for the eXist Native XML Database that allows  * chats via XMPP protocol.  *     * @author Evgeny Gazdovsky<gazdovsky@gmail.com>  * @version 1.5  *  */
 end_comment
 
 begin_class
@@ -141,8 +141,6 @@ name|PREFIX
 init|=
 literal|"xmpp"
 decl_stmt|;
-comment|// JavaMail-based from 2009-03-14
-comment|// makes the need for versioning of the functions obvious too /ljo
 specifier|public
 specifier|final
 specifier|static
@@ -391,7 +389,7 @@ parameter_list|()
 block|{
 return|return
 operator|(
-literal|"A module for performing email related functions"
+literal|"A module for XMPP messaging"
 operator|)
 return|;
 block|}
