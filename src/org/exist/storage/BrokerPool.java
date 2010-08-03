@@ -628,6 +628,7 @@ name|BrokerPool
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/*** initializing subcomponents */
 specifier|public
 specifier|final
 specifier|static
@@ -636,6 +637,25 @@ name|SIGNAL_STARTUP
 init|=
 literal|"startup"
 decl_stmt|;
+comment|/*** ready for recovery& read-only operations */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_READINESS
+init|=
+literal|"readiness"
+decl_stmt|;
+comment|/*** ready for writable operations */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_RIDEABLE
+init|=
+literal|"rideable"
+decl_stmt|;
+comment|/*** running shutdown sequence */
 specifier|public
 specifier|final
 specifier|static
@@ -1535,9 +1555,10 @@ specifier|private
 specifier|final
 specifier|static
 name|int
-name|OPERATING
+name|SHUTDOWN
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 specifier|private
 specifier|final
@@ -1545,21 +1566,21 @@ specifier|static
 name|int
 name|INITIALIZING
 init|=
-literal|1
+literal|0
 decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
 name|int
-name|SHUTDOWN
+name|OPERATING
 init|=
-literal|2
+literal|1
 decl_stmt|;
 specifier|private
 name|int
 name|status
 init|=
-name|OPERATING
+name|INITIALIZING
 decl_stmt|;
 comment|/** 	 * The number of brokers for the database instance  	 */
 specifier|private
@@ -2930,6 +2951,11 @@ name|status
 operator|=
 name|OPERATING
 expr_stmt|;
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_READINESS
+argument_list|)
+expr_stmt|;
 comment|//wake-up the security manager
 name|securityManager
 operator|.
@@ -3095,6 +3121,11 @@ expr_stmt|;
 block|}
 block|}
 comment|//OK : the DB is repaired; let's make a few RW operations
+name|signalSystemStatus
+argument_list|(
+name|SIGNAL_RIDEABLE
+argument_list|)
+expr_stmt|;
 comment|// remove temporary docs
 name|broker
 operator|.
@@ -3420,7 +3451,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|10000
+literal|100
 expr_stmt|;
 block|}
 block|}
