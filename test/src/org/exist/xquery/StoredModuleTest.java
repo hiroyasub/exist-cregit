@@ -1016,6 +1016,22 @@ literal|"'hi from module 4'"
 operator|+
 literal|"};"
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|module5
+init|=
+literal|"module namespace mod5 = 'urn:module5';"
+operator|+
+literal|"declare variable $mod5:testvar := 'variable works' ;"
+operator|+
+literal|"declare function mod5:showMe() as xs:string {"
+operator|+
+literal|"concat('hi from module 5: ',$mod5:testvar)"
+operator|+
+literal|"};"
+decl_stmt|;
 annotation|@
 name|Test
 argument_list|(
@@ -1531,8 +1547,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Ignore
 annotation|@
 name|Test
 specifier|public
