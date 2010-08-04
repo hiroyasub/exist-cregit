@@ -1080,14 +1080,14 @@ name|Type
 operator|.
 name|subTypeOf
 argument_list|(
-name|cStep
-operator|.
 name|getTest
 argument_list|()
 operator|.
 name|getType
 argument_list|()
 argument_list|,
+name|cStep
+operator|.
 name|getTest
 argument_list|()
 operator|.
