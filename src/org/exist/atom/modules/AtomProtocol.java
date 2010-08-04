@@ -6609,6 +6609,8 @@ throws|throws
 name|LockException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|Element
 name|element
@@ -6815,6 +6817,8 @@ throws|throws
 name|LockException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|Element
 name|element

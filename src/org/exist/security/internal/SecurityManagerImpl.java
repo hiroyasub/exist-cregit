@@ -109,6 +109,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DefaultDocumentSet
@@ -248,20 +276,6 @@ operator|.
 name|aider
 operator|.
 name|GroupAider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|realm
-operator|.
-name|AuthenticatingRealm
 import|;
 end_import
 
@@ -460,6 +474,11 @@ comment|/**  * SecurityManager is responsible for managing users and groups.  * 
 end_comment
 
 begin_class
+annotation|@
+name|ConfigurationClass
+argument_list|(
+literal|"security-manager"
+argument_list|)
 specifier|public
 class|class
 name|SecurityManagerImpl
@@ -539,6 +558,11 @@ name|nextGroupId
 init|=
 literal|0
 decl_stmt|;
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"collection"
+argument_list|)
 specifier|private
 name|int
 name|defCollectionPermissions
@@ -547,6 +571,11 @@ name|Permission
 operator|.
 name|DEFAULT_PERM
 decl_stmt|;
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"resource"
+argument_list|)
 specifier|private
 name|int
 name|defResourcePermissions
@@ -554,6 +583,17 @@ init|=
 name|Permission
 operator|.
 name|DEFAULT_PERM
+decl_stmt|;
+annotation|@
+name|ConfigurationField
+argument_list|(
+literal|"valueString"
+argument_list|)
+specifier|private
+name|Boolean
+name|enableXACML
+init|=
+literal|false
 decl_stmt|;
 specifier|private
 name|ExistPDP
@@ -1215,9 +1255,8 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
-name|Boolean
 name|enableXACML
-init|=
+operator|=
 operator|(
 name|Boolean
 operator|)
@@ -1230,7 +1269,7 @@ name|getProperty
 argument_list|(
 literal|"xacml.enable"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|enableXACML
@@ -1312,6 +1351,8 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|defaultRealm
 operator|.
@@ -1331,6 +1372,8 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|deleteUser
 argument_list|(
@@ -1351,6 +1394,8 @@ name|user
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 if|if
 condition|(
@@ -1366,24 +1411,6 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//		user = (User)users.remove(user.getUID());
-comment|//		if(user != null)
-comment|//			LOG.debug("user " + user.getName() + " removed");
-comment|//		else
-comment|//			LOG.debug("user not found");
-comment|//		DBBroker broker = null;
-comment|//        TransactionManager transact = pool.getTransactionManager();
-comment|//        Txn txn = transact.beginTransaction();
-comment|//		try {
-comment|//			broker = pool.get(SYSTEM_USER);
-comment|//			save(broker, txn);
-comment|//            transact.commit(txn);
-comment|//		} catch (EXistException e) {
-comment|//            transact.abort(txn);
-comment|//			e.printStackTrace();
-comment|//		} finally {
-comment|//			pool.release(broker);
-comment|//		}
 block|}
 specifier|public
 specifier|synchronized
@@ -1646,6 +1673,10 @@ parameter_list|(
 name|Group
 name|name
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|defaultRealm
 operator|.
@@ -1926,6 +1957,10 @@ parameter_list|(
 name|User
 name|user
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|defaultRealm
 operator|.
@@ -2320,6 +2355,10 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
 name|addGroup
 argument_list|(

@@ -181,6 +181,10 @@ parameter_list|(
 name|User
 name|user
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 name|void
 name|deleteUser
@@ -190,6 +194,8 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 name|void
 name|deleteUser
@@ -199,6 +205,8 @@ name|user
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 name|boolean
 name|updateAccount
@@ -224,6 +232,10 @@ parameter_list|(
 name|Group
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 annotation|@
 name|Deprecated
@@ -233,6 +245,10 @@ parameter_list|(
 name|String
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 name|boolean
 name|hasGroup
@@ -270,6 +286,8 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 name|boolean
 name|hasAdminPrivileges
