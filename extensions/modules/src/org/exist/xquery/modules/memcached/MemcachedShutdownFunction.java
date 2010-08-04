@@ -19,18 +19,6 @@ end_package
 
 begin_import
 import|import
-name|net
-operator|.
-name|spy
-operator|.
-name|memcached
-operator|.
-name|MemcachedClient
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
