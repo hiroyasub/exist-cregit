@@ -615,7 +615,6 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
-comment|//TODO : make fn:tokenize("Some unparsed<br> HTML<BR> text", "\s*<br>\s*", "") work
 name|String
 name|pattern
 init|=

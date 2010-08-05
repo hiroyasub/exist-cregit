@@ -2254,7 +2254,7 @@ block|{
 name|int
 name|xmlVersion
 init|=
-literal|1
+literal|11
 decl_stmt|;
 name|boolean
 name|ignoreWhitespace

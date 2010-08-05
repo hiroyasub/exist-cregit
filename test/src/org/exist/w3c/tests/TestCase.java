@@ -941,6 +941,7 @@ decl_stmt|;
 name|int
 name|l
 decl_stmt|;
+comment|//expected result length is only one result
 if|if
 condition|(
 name|result
@@ -959,6 +960,29 @@ name|expectedResult
 operator|.
 name|length
 argument_list|()
+expr_stmt|;
+comment|//caught-on length on last result
+if|else if
+condition|(
+operator|!
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+name|l
+operator|=
+operator|(
+name|int
+operator|)
+name|expectedResult
+operator|.
+name|length
+argument_list|()
+operator|-
+name|pos
+operator|-
+literal|1
 expr_stmt|;
 else|else
 name|l
