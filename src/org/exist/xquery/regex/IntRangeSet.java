@@ -1227,7 +1227,7 @@ expr_stmt|;
 block|}
 comment|/**      * Get an iterator over the values      */
 specifier|public
-name|IntIterator
+name|IntRangeSetIterator
 name|iterator
 parameter_list|()
 block|{
@@ -1436,7 +1436,7 @@ name|IntRangeSet
 name|other
 parameter_list|)
 block|{
-name|IntIterator
+name|IntRangeSetIterator
 name|it
 init|=
 name|other
@@ -1668,8 +1668,6 @@ specifier|private
 class|class
 name|IntRangeSetIterator
 implements|implements
-name|IntIterator
-implements|,
 name|Serializable
 block|{
 specifier|private
