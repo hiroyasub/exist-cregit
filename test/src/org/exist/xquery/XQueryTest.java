@@ -6627,7 +6627,7 @@ name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
 operator|+
-literal|"import module namespace foo=\"\" at \""
+literal|"import module namespace foo=\"ho\" at \""
 operator|+
 name|URI
 operator|+
@@ -6700,7 +6700,7 @@ name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
 operator|+
-literal|"import module namespace foo=\"\" at \""
+literal|"import module namespace foo=\"ho\" at \""
 operator|+
 name|URI
 operator|+
