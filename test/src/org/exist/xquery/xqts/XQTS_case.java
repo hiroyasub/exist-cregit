@@ -329,6 +329,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|util
+operator|.
+name|DocUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|DateTimeValue
@@ -1656,46 +1670,12 @@ operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
-comment|//use doc dunction
-name|FunDoc
-name|fn
-init|=
-operator|new
-name|FunDoc
-argument_list|(
-name|context
-argument_list|)
-decl_stmt|;
-name|List
-name|arg
-init|=
-operator|new
-name|ArrayList
-argument_list|()
-decl_stmt|;
-name|arg
-operator|.
-name|add
-argument_list|(
-operator|new
-name|StringValue
-argument_list|(
-name|sources
-operator|.
-name|get
-argument_list|(
-name|id
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|fn
-operator|.
-name|setArguments
-argument_list|(
-name|arg
-argument_list|)
-expr_stmt|;
+comment|//use DocUtils
+comment|//					context.declareVariable(
+comment|//							inputFile.getAttribute("variable"),
+comment|//							DocUtils.getDocument(context, sources.get(id))
+comment|//					);
+comment|//in-memory nodes
 name|context
 operator|.
 name|declareVariable
@@ -1707,16 +1687,19 @@ argument_list|(
 literal|"variable"
 argument_list|)
 argument_list|,
-name|fn
+name|loadVarFromURI
+argument_list|(
+name|context
+argument_list|,
+name|sources
+operator|.
+name|get
+argument_list|(
+name|id
+argument_list|)
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//use DocUtils
-comment|//					context.declareVariable(
-comment|//							inputFile.getAttribute("variable"),
-comment|//							DocUtils.getDocument(context, sources.get(id))
-comment|//					);
-comment|//in-memory nodes
-comment|//context.declareVariable(inputFile.getAttribute("variable"), loadVarFromURI(context, sources.get(id)));
 block|}
 name|Sequence
 name|contextSequence
