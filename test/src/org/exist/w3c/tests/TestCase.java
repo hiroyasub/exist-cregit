@@ -1080,6 +1080,9 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
+name|pos
+operator|++
+expr_stmt|;
 block|}
 name|pos
 operator|++
@@ -1087,12 +1090,20 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|(
 name|result
 operator|.
 name|getItemCount
 argument_list|()
 operator|==
 literal|1
+operator|||
+operator|!
+name|i
+operator|.
+name|hasNext
+argument_list|()
+operator|)
 operator|&&
 name|skipped
 operator|!=
@@ -1133,8 +1144,6 @@ name|skipped
 argument_list|)
 expr_stmt|;
 block|}
-comment|//			System.out.println(res);
-comment|//			System.out.println(String.copyValueOf(chars));
 name|String
 name|expResult
 init|=
