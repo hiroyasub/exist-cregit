@@ -1092,7 +1092,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|public
 specifier|static
 name|boolean
 name|isWhiteSpace

@@ -13,62 +13,20 @@ end_package
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|sf
+name|exist
 operator|.
-name|saxon
+name|util
 operator|.
-name|sort
+name|hashtable
 operator|.
-name|IntArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|net
-operator|.
-name|sf
-operator|.
-name|saxon
-operator|.
-name|sort
-operator|.
-name|IntHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|net
-operator|.
-name|sf
-operator|.
-name|saxon
-operator|.
-name|sort
-operator|.
-name|IntToIntHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|net
-operator|.
-name|sf
-operator|.
-name|saxon
-operator|.
-name|sort
-operator|.
-name|IntToIntMap
+name|Int2ObjectHashMap
 import|;
 end_import
 
 begin_comment
-comment|/**  * This class holds data about the case-variants of Unicode characters. The data is automatically  * generated from the Unicode database.  *   * Copied from Saxon-HE 9.2 package net.sf.saxon.regex without change.  */
+comment|/**  * This class holds data about the case-variants of Unicode characters. The data is automatically  * generated from the Unicode database.  *   * Copied from Saxon-HE 9.2 package net.sf.saxon.regex.  */
 end_comment
 
 begin_class
@@ -76,22 +34,33 @@ specifier|public
 class|class
 name|CaseVariants
 block|{
+specifier|static
+name|int
+index|[]
+name|EMPTY_INT_ARRAY
+init|=
+operator|new
+name|int
+index|[
+literal|0
+index|]
+decl_stmt|;
 comment|// Use one hashmap for characters with a single case variant, another for characters with multiple
 comment|// case variants, to reduce the number of objects that need to be allocated
 specifier|private
 specifier|static
-name|IntToIntMap
+name|Int2ObjectHashMap
 name|monoVariants
 init|=
 operator|new
-name|IntToIntHashMap
+name|Int2ObjectHashMap
 argument_list|(
 literal|2500
 argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
-name|IntHashMap
+name|Int2ObjectHashMap
 argument_list|<
 name|int
 index|[]
@@ -99,7 +68,7 @@ argument_list|>
 name|polyVariants
 init|=
 operator|new
-name|IntHashMap
+name|Int2ObjectHashMap
 argument_list|<
 name|int
 index|[]
@@ -219,6 +188,9 @@ block|{
 name|int
 name|mono
 init|=
+operator|(
+name|Integer
+operator|)
 name|monoVariants
 operator|.
 name|get
@@ -226,27 +198,10 @@ argument_list|(
 name|code
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|mono
-operator|!=
-name|monoVariants
-operator|.
-name|getDefaultValue
-argument_list|()
-condition|)
-block|{
-return|return
-operator|new
-name|int
-index|[]
-block|{
-name|mono
-block|}
-return|;
-block|}
-else|else
-block|{
+comment|//UNDERSTAND: is it safe?
+comment|//        if (mono != monoVariants.getDefaultValue()) {
+comment|//            return new int[]{mono};
+comment|//        } else {
 name|int
 index|[]
 name|result
@@ -266,8 +221,6 @@ literal|null
 condition|)
 block|{
 return|return
-name|IntArraySet
-operator|.
 name|EMPTY_INT_ARRAY
 return|;
 block|}
@@ -277,7 +230,7 @@ return|return
 name|result
 return|;
 block|}
-block|}
+comment|//        }
 block|}
 comment|/**      * Get the case variants of roman letters (A-Z, a-z), other than the letters A-Z and a-z themselves      */
 specifier|public
