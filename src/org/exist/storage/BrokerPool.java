@@ -3418,6 +3418,12 @@ return|return
 name|pageSize
 return|;
 block|}
+specifier|private
+name|String
+name|lastSignal
+init|=
+literal|""
+decl_stmt|;
 specifier|public
 name|void
 name|signalSystemStatus
@@ -3428,6 +3434,14 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
+name|lastSignal
+operator|.
+name|equals
+argument_list|(
+name|signal
+argument_list|)
+operator|||
 name|System
 operator|.
 name|currentTimeMillis
@@ -3436,6 +3450,10 @@ operator|>
 name|nextSystemStatus
 condition|)
 block|{
+name|lastSignal
+operator|=
+name|signal
+expr_stmt|;
 name|setChanged
 argument_list|()
 expr_stmt|;
@@ -3451,7 +3469,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 operator|+
-literal|100
+literal|10000
 expr_stmt|;
 block|}
 block|}
