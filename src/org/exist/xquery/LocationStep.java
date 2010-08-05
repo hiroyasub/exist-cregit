@@ -1024,6 +1024,30 @@ argument_list|(
 name|DOT_TEST
 argument_list|)
 expr_stmt|;
+comment|//Change axis from descendant-or-self to descendant for '//'
+if|if
+condition|(
+name|this
+operator|.
+name|axis
+operator|==
+name|Constants
+operator|.
+name|DESCENDANT_SELF_AXIS
+operator|&&
+name|isAbbreviated
+argument_list|()
+condition|)
+block|{
+name|this
+operator|.
+name|axis
+operator|=
+name|Constants
+operator|.
+name|DESCENDANT_AXIS
+expr_stmt|;
+block|}
 comment|// static analysis for empty-sequence
 name|Expression
 name|contextStep
