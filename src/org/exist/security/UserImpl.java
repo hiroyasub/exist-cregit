@@ -1943,14 +1943,10 @@ name|this
 operator|.
 name|password
 operator|=
-operator|(
-operator|(
-name|Password
-operator|)
 name|_cred
-operator|)
 operator|.
-name|pw
+name|toString
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -2149,14 +2145,17 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|" password=\"{MD5}"
+literal|" password=\""
 argument_list|)
 expr_stmt|;
 name|buf
 operator|.
 name|append
 argument_list|(
-name|password
+name|_cred
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|buf
