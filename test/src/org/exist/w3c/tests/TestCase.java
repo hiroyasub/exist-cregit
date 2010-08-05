@@ -981,8 +981,6 @@ name|length
 argument_list|()
 operator|-
 name|pos
-operator|-
-literal|1
 expr_stmt|;
 else|else
 name|l
@@ -1399,14 +1397,15 @@ operator|.
 name|read
 argument_list|()
 condition|)
-comment|//							if (compare.equals("Fragment"))
 name|reader
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-comment|//							else
-comment|//								return false;
+else|else
+name|pos
+operator|++
+expr_stmt|;
 block|}
 block|}
 block|}
