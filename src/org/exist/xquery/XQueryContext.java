@@ -9491,6 +9491,22 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+literal|""
+operator|.
+name|equals
+argument_list|(
+name|namespaceURI
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"err:XQST0088: The first URILiteral in a module import must be of nonzero length."
+argument_list|)
+throw|;
 name|Module
 name|module
 init|=
