@@ -304,7 +304,7 @@ literal|"let $d1 := local:xpath($path)//n/text()\n"
 operator|+
 literal|"let $doc := xdb:store($col, 'test1.xml',<test><n>1</n></test>)\n"
 operator|+
-literal|"return local:xpath($path)//n/text()"
+literal|"return local:xpath($path)/text()"
 expr_stmt|;
 name|result
 operator|=
