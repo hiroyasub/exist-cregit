@@ -651,6 +651,11 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|graphics2D
+operator|.
+name|dispose
+argument_list|()
+expr_stmt|;
 return|return
 name|thumbImage
 return|;
