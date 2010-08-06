@@ -1644,7 +1644,6 @@ argument_list|(
 literal|"testCircular"
 argument_list|)
 decl_stmt|;
-comment|//writeModule(testHome, "index.xqy", index_module);
 name|writeModule
 argument_list|(
 name|testHome
@@ -1679,6 +1678,85 @@ argument_list|,
 literal|"controller.xqy"
 argument_list|,
 name|controller_module
+argument_list|)
+expr_stmt|;
+name|CompiledExpression
+name|query
+init|=
+name|xqService
+operator|.
+name|compile
+argument_list|(
+name|index_module
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|execute
+init|=
+name|xqService
+operator|.
+name|execute
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|testLocalVariableDeclarationCallsLocalFunction
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+specifier|final
+name|String
+name|index_module
+init|=
+literal|"xquery version \"1.0\";"
+operator|+
+literal|"import module namespace xqmvc = \"http://scholarsportal.info/xqmvc/core\" at \"xmldb:exist:///db/testLocalVariableDeclaration/module1.xqm\";"
+operator|+
+literal|"xqmvc:function1()"
+decl_stmt|;
+specifier|final
+name|String
+name|module1_module
+init|=
+literal|"xquery version \"1.0\";"
+operator|+
+literal|"module namespace xqmvc = \"http://scholarsportal.info/xqmvc/core\";"
+operator|+
+literal|"declare variable $xqmvc:plugin-resource-dir as xs:string := fn:concat('/plugins/', xqmvc:current-plugin(), '/resources');"
+operator|+
+literal|"declare function xqmvc:current-plugin() {"
+operator|+
+literal|"\"somePlugin\""
+operator|+
+literal|"};"
+operator|+
+literal|"declare function xqmvc:function1() {"
+operator|+
+literal|"\"hello world\""
+operator|+
+literal|"};"
+decl_stmt|;
+name|Collection
+name|testHome
+init|=
+name|createCollection
+argument_list|(
+literal|"testLocalVariableDeclaration"
+argument_list|)
+decl_stmt|;
+name|writeModule
+argument_list|(
+name|testHome
+argument_list|,
+literal|"module1.xqm"
+argument_list|,
+name|module1_module
 argument_list|)
 expr_stmt|;
 name|CompiledExpression
