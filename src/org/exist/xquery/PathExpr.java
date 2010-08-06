@@ -536,9 +536,6 @@ comment|// for subsequent steps
 name|Expression
 name|expr
 init|=
-operator|(
-name|Expression
-operator|)
 name|steps
 operator|.
 name|get

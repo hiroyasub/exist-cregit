@@ -150,6 +150,12 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
+comment|/**      * Returns the root expression associated with this context.      *      * @return  root expression      */
+specifier|public
+name|Expression
+name|getRootExpression
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
