@@ -307,11 +307,6 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-comment|//It is possible for a text node constructor to construct a text node containing a zero-length string.
-comment|//However, if used in the content of a constructed element or document node,
-comment|//such a text node will be deleted or merged with another text node.
-comment|//TODO : how to enforce this behaviour ? We have to detect that the parent of the text node
-comment|//is an element or a document node. Unfortunately, we are using a *new* MemTreeBuilder
 if|if
 condition|(
 name|contentSeq
@@ -335,16 +330,6 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
-comment|//The line below if necessayr to make fn-root-17 pass (but no other test AFAICT)
-comment|//let $var := text {"a text Node"} return  fn:root(text {"A text Node"})
-comment|//<expected-result compare="Text">A text Node</expected-result>
-comment|//The result of the constructed text node is reused
-comment|//TODO : how to avoid this ?
-name|builder
-operator|.
-name|startDocument
-argument_list|()
-expr_stmt|;
 name|context
 operator|.
 name|proceed
@@ -422,8 +407,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//It is possible for a text node constructor to construct a text node containing a zero-length string.
+comment|//However, if used in the content of a constructed element or document node,
+comment|//such a text node will be deleted or merged with another text node.
 if|if
 condition|(
+operator|!
+name|newDocumentContext
+operator|&&
 name|buf
 operator|.
 name|length
