@@ -9520,7 +9520,7 @@ expr_stmt|;
 block|}
 comment|/**      * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix      * specified by the module is used. If location is null, the module will be read from the namespace URI.      *      * @param   namespaceURI      * @param   prefix      * @param   location      *      * @throws  XPathException      */
 specifier|public
-name|void
+name|Module
 name|importModule
 parameter_list|(
 name|String
@@ -10101,6 +10101,9 @@ argument_list|,
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+return|return
+name|module
+return|;
 block|}
 comment|/**      * Returns the static location mapped to an XQuery source module, if known.      *      * @param   namespaceURI  the URI of the module      *      * @return  the location string      */
 annotation|@
