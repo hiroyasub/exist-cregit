@@ -1751,16 +1751,24 @@ name|int
 name|returnsType
 parameter_list|()
 block|{
+comment|//TODO: let must return "return expression type"
+comment|//return returnExpr.returnsType();
+if|if
+condition|(
+name|sequenceType
+operator|!=
+literal|null
+condition|)
 return|return
-name|returnExpr
+name|sequenceType
 operator|.
-name|returnsType
+name|getPrimaryType
 argument_list|()
 return|;
-comment|//		if (sequenceType != null)
-comment|//			return sequenceType.getPrimaryType();
-comment|//		//Type.ITEM by default : this may change *after* evaluation
-comment|//		return actualReturnType;
+comment|//Type.ITEM by default : this may change *after* evaluation
+return|return
+name|actualReturnType
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
