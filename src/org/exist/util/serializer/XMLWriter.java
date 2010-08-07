@@ -1768,7 +1768,7 @@ operator|+
 literal|"\""
 argument_list|)
 expr_stmt|;
-comment|//workaround for XHTML doctype, declare does not allow spaces so use&#160; instead and then replace each&#160; with a space here - delirium
+comment|//workaround for XHTML doctype, declare does not allow spaces so use&#160; instead and then replace each&#160; with a space here - Adam
 block|}
 if|if
 condition|(
@@ -1783,6 +1783,7 @@ name|publicId
 operator|==
 literal|null
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -1790,6 +1791,7 @@ argument_list|(
 literal|" SYSTEM"
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|write
