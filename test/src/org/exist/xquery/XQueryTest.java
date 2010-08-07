@@ -15022,7 +15022,11 @@ literal|"declare function tst:foo($a as element()?) {   $a }; "
 operator|+
 literal|"tst:foo( "
 operator|+
-literal|"let $a as xs:boolean := true()  return<result/> )"
+literal|"  let $a as xs:boolean := true()  "
+operator|+
+literal|"  return<result/> "
+operator|+
+literal|")"
 decl_stmt|;
 name|XPathQueryService
 name|service
@@ -16617,7 +16621,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|bugtestCCE_SaxException
+name|testCCE_SaxException
 parameter_list|()
 block|{
 try|try
@@ -16641,14 +16645,19 @@ literal|"declare option exist:serialize 'indent=no';"
 operator|+
 literal|"let $results := doc(\"ccesax.xml\")/element() "
 operator|+
-literal|"let $output := let $body :=<e>{$results/b/c}</e>   return<d>{$body}</d> "
+literal|"let $output := let $body :=<e>{$results/b/c}</e>  return<d>{$body}</d> "
 operator|+
-literal|"let $id := $output/e/c return xmldb:store(\"/db\", \"output.xml\", $output)"
+literal|"let $id := $output/e/c "
+operator|+
+literal|"let $store := xmldb:store(\"/db\", \"output.xml\", $output)"
+operator|+
+literal|"return doc('/db/output.xml')"
 decl_stmt|;
+comment|//            String output = "<d><b><c>mmm</c></b></d>";
 name|String
 name|output
 init|=
-literal|"<d><b><c>mmm</c></b></d>"
+literal|"<d><e><c>mmm</c></e></d>"
 decl_stmt|;
 name|XPathQueryService
 name|service
@@ -16726,7 +16735,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=2003042
 specifier|public
 name|void
-name|bugtestXPTY0018_MixNodesAtomicValues_2003042
+name|testXPTY0018_MixNodesAtomicValues_2003042
 parameter_list|()
 block|{
 try|try
@@ -16734,7 +16743,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"<a>{2}<b/></a>"
+literal|"declare option exist:serialize 'indent=no';<a>{2}<b/></a>"
 decl_stmt|;
 name|XPathQueryService
 name|service
@@ -16776,8 +16785,9 @@ name|assertEquals
 argument_list|(
 name|query
 argument_list|,
-literal|"<a>{2}<b/></a>"
+literal|"<a>2<b/></a>"
 argument_list|,
+comment|//checked with saxon
 name|result
 operator|.
 name|getResource
