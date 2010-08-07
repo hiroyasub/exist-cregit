@@ -747,6 +747,14 @@ throw|;
 block|}
 name|context
 operator|.
+name|getRootContext
+argument_list|()
+operator|.
+name|resolveForwardReferences
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
 name|analyzeAndOptimizeIfModulesChanged
 argument_list|(
 name|expr
