@@ -1751,22 +1751,16 @@ name|int
 name|returnsType
 parameter_list|()
 block|{
-if|if
-condition|(
-name|sequenceType
-operator|!=
-literal|null
-condition|)
 return|return
-name|sequenceType
+name|returnExpr
 operator|.
-name|getPrimaryType
+name|returnsType
 argument_list|()
 return|;
-comment|//Type.ITEM by default : this may change *after* evaluation
-return|return
-name|actualReturnType
-return|;
+comment|//		if (sequenceType != null)
+comment|//			return sequenceType.getPrimaryType();
+comment|//		//Type.ITEM by default : this may change *after* evaluation
+comment|//		return actualReturnType;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
