@@ -12821,7 +12821,7 @@ block|}
 comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1691174&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestAttribute_1691174
+name|testAttribute_1691174
 parameter_list|()
 block|{
 name|String
@@ -12887,7 +12887,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|0
+literal|1
 argument_list|,
 name|result
 operator|.
@@ -14279,7 +14279,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1665215
 specifier|public
 name|void
-name|bugtestPredicateMinLast_1665215
+name|testPredicateMinLast_1665215
 parameter_list|()
 block|{
 try|try
@@ -14374,7 +14374,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1665213
 specifier|public
 name|void
-name|bugtestPredicatePositionLast_1665213
+name|testPredicatePositionLast_1665213
 parameter_list|()
 block|{
 comment|// OK, regression
@@ -15813,7 +15813,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1970717
 specifier|public
 name|void
-name|bugtestConstructTextNodeWithEmptyString_1970717
+name|testConstructTextNodeWithEmptyString_1970717
 parameter_list|()
 block|{
 comment|// OK
@@ -17206,7 +17206,7 @@ block|}
 comment|// http://sourceforge.net/support/tracker.php?aid=1841635
 specifier|public
 name|void
-name|bugtestResolveBaseURI_1841635
+name|testResolveBaseURI_1841635
 parameter_list|()
 block|{
 name|String
