@@ -417,29 +417,11 @@ block|{
 return|return
 name|Type
 operator|.
-name|subTypeOf
-argument_list|(
-name|getArgument
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|returnsType
-argument_list|()
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|)
-condition|?
-name|Type
-operator|.
-name|NODE
-else|:
-name|Type
-operator|.
 name|BOOLEAN
 return|;
+comment|//		return Type.subTypeOf(getArgument(0).returnsType(), Type.NODE)
+comment|//			? Type.NODE
+comment|//			: Type.BOOLEAN;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
 specifier|public
