@@ -2917,9 +2917,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Invalid character in entity name ("
+literal|"XPST0003 : Invalid character ("
 operator|+
 name|ch
+operator|+
+literal|") in entity name ("
+operator|+
+name|entityRef
 operator|+
 literal|") or missing ;"
 argument_list|)
