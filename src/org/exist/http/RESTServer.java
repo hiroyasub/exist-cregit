@@ -2400,48 +2400,12 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
-condition|(
-name|xproc_mime_type
-operator|.
-name|equals
-argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
-argument_list|)
-condition|)
-block|{
+comment|//else if (xproc_mime_type.equals(resource.getMetadata().getMimeType())) {
 comment|// Show the source of the XProc
-name|writeResourceAs
-argument_list|(
-name|resource
-argument_list|,
-name|broker
-argument_list|,
-name|stylesheet
-argument_list|,
-name|encoding
-argument_list|,
-name|MimeType
-operator|.
-name|XML_TYPE
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|outputProperties
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|)
-expr_stmt|;
-block|}
+comment|//	writeResourceAs(resource, broker, stylesheet, encoding,
+comment|//			MimeType.XML_TYPE.getName(), outputProperties,
+comment|//			request, response);
+comment|//}
 block|}
 else|else
 block|{
@@ -2509,44 +2473,11 @@ name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
-condition|(
-name|xproc_mime_type
-operator|.
-name|equals
-argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
-argument_list|)
-condition|)
-block|{
+comment|//else if (xproc_mime_type.equals(resource.getMetadata().getMimeType())) {
 comment|// Execute the XProc
-name|executeXProc
-argument_list|(
-name|broker
-argument_list|,
-name|resource
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|,
-name|outputProperties
-argument_list|,
-name|servletPath
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|pathInfo
-argument_list|)
-expr_stmt|;
-block|}
+comment|//	executeXProc(broker, resource, request, response,
+comment|//			outputProperties, servletPath.toString(), pathInfo);
+comment|//}
 block|}
 catch|catch
 parameter_list|(
@@ -3189,29 +3120,10 @@ operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
-operator|||
-name|resource
-operator|.
-name|getResourceType
-argument_list|()
-operator|==
-name|DocumentImpl
-operator|.
-name|XML_FILE
-operator|&&
-name|xproc_mime_type
-operator|.
-name|equals
-argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
-argument_list|)
 operator|)
+comment|//||
+comment|//	resource.getResourceType() == DocumentImpl.XML_FILE
+comment|//&& xproc_mime_type.equals(resource.getMetadata().getMimeType()))
 condition|)
 block|{
 break|break;
@@ -3276,28 +3188,9 @@ operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
-operator|||
-name|resource
-operator|.
-name|getResourceType
-argument_list|()
-operator|==
-name|DocumentImpl
-operator|.
-name|XML_FILE
-operator|&&
-name|xproc_mime_type
-operator|.
-name|equals
-argument_list|(
-name|resource
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|()
-argument_list|)
+comment|//||
+comment|//	resource.getResourceType() == DocumentImpl.XML_FILE
+comment|//&& xproc_mime_type.equals(resource.getMetadata().getMimeType())
 condition|)
 block|{
 comment|// found an XQuery resource, fixup request values
@@ -3354,30 +3247,11 @@ name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
+comment|//else {
 comment|// Execute the XProc
-name|executeXProc
-argument_list|(
-name|broker
-argument_list|,
-name|resource
-argument_list|,
-name|request
-argument_list|,
-name|response
-argument_list|,
-name|outputProperties
-argument_list|,
-name|servletPath
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|pathInfo
-argument_list|)
-expr_stmt|;
-block|}
+comment|//	executeXProc(broker, resource, request, response,
+comment|//			outputProperties, servletPath.toString(), pathInfo);
+comment|//}
 block|}
 catch|catch
 parameter_list|(
