@@ -783,6 +783,8 @@ argument_list|()
 operator|-
 name|start
 operator|)
+operator|+
+literal|" msec"
 argument_list|)
 expr_stmt|;
 if|if
