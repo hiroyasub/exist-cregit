@@ -2243,6 +2243,13 @@ argument_list|,
 name|options
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|query
+operator|!=
+literal|null
+condition|)
+block|{
 name|LuceneHitCollector
 name|collector
 init|=
@@ -2281,6 +2288,7 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
