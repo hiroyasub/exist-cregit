@@ -19142,6 +19142,132 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=1460791
+specifier|public
+name|void
+name|testDescendantOrSelf_1460791
+parameter_list|()
+block|{
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"declare option exist:serialize 'indent=no';"
+operator|+
+literal|"let $test:=<z><a> aaa</a><z> zzz</z></z> "
+operator|+
+literal|"return "
+operator|+
+literal|"( "
+operator|+
+literal|"<one> {$test//z}</one>, "
+operator|+
+literal|"<two> {$test/descendant-or-self::node()/child::z}</two> "
+operator|+
+literal|"(: note that these should be the same *by definition* :) "
+operator|+
+literal|")"
+decl_stmt|;
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|query
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"<one><z> zzz</z></one>"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|query
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"<two><z> zzz</z></two>"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+comment|// should not yield into exceptio
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// ======================================
 comment|/**      * @return      * @throws XMLDBException      */
 specifier|private
