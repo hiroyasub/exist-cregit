@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -1106,7 +1106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @author wolf  * @author ljo  * @author adam  * @author gev  *   */
+comment|/**  *  * @author wolf  * @author ljo  * @author adam  * @author gev  *  */
 end_comment
 
 begin_class
@@ -1383,7 +1383,7 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Handle GET request. In the simplest case just returns the document or 	 * binary resource specified in the path. If the path leads to a collection, 	 * a listing of the collection contents is returned. If it resolves to a 	 * binary resource with mime-type "application/xquery", this resource will 	 * be loaded and executed by the XQuery engine. 	 *  	 * The method also recognizes a number of predefined parameters: 	 *  	 *<ul> 	 *<li>_xpath or _query: if specified, the given query is executed on the 	 * current resource or collection.</li> 	 *  	 *<li>_howmany: defines how many items from the query result will be 	 * returned.</li> 	 *  	 *<li>_start: a start offset into the result set.</li> 	 *  	 *<li>_wrap: if set to "yes", the query results will be wrapped into a 	 * exist:result element.</li> 	 *  	 *<li>_indent: if set to "yes", the returned XML will be pretty-printed. 	 *</li> 	 *  	 *<li>_source: if set to "yes" and a resource with mime-type 	 * "application/xquery" is requested then the xquery will not be executed, 	 * instead the source of the document will be returned. Must be enabled in 	 * descriptor.xml with the following syntax<xquery-app><allow-source><xquery 	 * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li> 	 *  	 *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to 	 * the returned XML.</li> 	 *  	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 * @throws NotFoundException 	 */
+comment|/** 	 * Handle GET request. In the simplest case just returns the document or 	 * binary resource specified in the path. If the path leads to a collection, 	 * a listing of the collection contents is returned. If it resolves to a 	 * binary resource with mime-type "application/xquery", this resource will 	 * be loaded and executed by the XQuery engine. 	 * 	 * The method also recognizes a number of predefined parameters: 	 * 	 *<ul> 	 *<li>_xpath or _query: if specified, the given query is executed on the 	 * current resource or collection.</li> 	 * 	 *<li>_howmany: defines how many items from the query result will be 	 * returned.</li> 	 * 	 *<li>_start: a start offset into the result set.</li> 	 * 	 *<li>_wrap: if set to "yes", the query results will be wrapped into a 	 * exist:result element.</li> 	 * 	 *<li>_indent: if set to "yes", the returned XML will be pretty-printed. 	 *</li> 	 * 	 *<li>_source: if set to "yes" and a resource with mime-type 	 * "application/xquery" is requested then the xquery will not be executed, 	 * instead the source of the document will be returned. Must be enabled in 	 * descriptor.xml with the following syntax<xquery-app><allow-source><xquery 	 * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li> 	 * 	 *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to 	 * the returned XML.</li> 	 * 	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 * @throws NotFoundException 	 */
 specifier|public
 name|void
 name|doGet
@@ -2400,12 +2400,48 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|//else if (xproc_mime_type.equals(resource.getMetadata().getMimeType())) {
+if|else if
+condition|(
+name|xproc_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+condition|)
+block|{
 comment|// Show the source of the XProc
-comment|//	writeResourceAs(resource, broker, stylesheet, encoding,
-comment|//			MimeType.XML_TYPE.getName(), outputProperties,
-comment|//			request, response);
-comment|//}
+name|writeResourceAs
+argument_list|(
+name|resource
+argument_list|,
+name|broker
+argument_list|,
+name|stylesheet
+argument_list|,
+name|encoding
+argument_list|,
+name|MimeType
+operator|.
+name|XML_TYPE
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|outputProperties
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2473,11 +2509,44 @@ name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|//else if (xproc_mime_type.equals(resource.getMetadata().getMimeType())) {
+if|else if
+condition|(
+name|xproc_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
+condition|)
+block|{
 comment|// Execute the XProc
-comment|//	executeXProc(broker, resource, request, response,
-comment|//			outputProperties, servletPath.toString(), pathInfo);
-comment|//}
+name|executeXProc
+argument_list|(
+name|broker
+argument_list|,
+name|resource
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|,
+name|outputProperties
+argument_list|,
+name|servletPath
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|pathInfo
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2922,7 +2991,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Handles POST requests. If the path leads to a binary resource with 	 * mime-type "application/xquery", that resource will be read and executed 	 * by the XQuery engine. Otherwise, the request content is loaded and parsed 	 * as XML. It may either contain an XUpdate or a query request. 	 *  	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 */
+comment|/** 	 * Handles POST requests. If the path leads to a binary resource with 	 * mime-type "application/xquery", that resource will be read and executed 	 * by the XQuery engine. Otherwise, the request content is loaded and parsed 	 * as XML. It may either contain an XUpdate or a query request. 	 * 	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 */
 specifier|public
 name|void
 name|doPost
@@ -3120,10 +3189,29 @@ operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
+operator|||
+name|resource
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|XML_FILE
+operator|&&
+name|xproc_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
 operator|)
-comment|//||
-comment|//	resource.getResourceType() == DocumentImpl.XML_FILE
-comment|//&& xproc_mime_type.equals(resource.getMetadata().getMimeType()))
 condition|)
 block|{
 break|break;
@@ -3188,9 +3276,28 @@ operator|.
 name|getMimeType
 argument_list|()
 argument_list|)
-comment|//||
-comment|//	resource.getResourceType() == DocumentImpl.XML_FILE
-comment|//&& xproc_mime_type.equals(resource.getMetadata().getMimeType())
+operator|||
+name|resource
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|XML_FILE
+operator|&&
+name|xproc_mime_type
+operator|.
+name|equals
+argument_list|(
+name|resource
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|getMimeType
+argument_list|()
+argument_list|)
 condition|)
 block|{
 comment|// found an XQuery resource, fixup request values
@@ -3247,11 +3354,30 @@ name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|//else {
+else|else
+block|{
 comment|// Execute the XProc
-comment|//	executeXProc(broker, resource, request, response,
-comment|//			outputProperties, servletPath.toString(), pathInfo);
-comment|//}
+name|executeXProc
+argument_list|(
+name|broker
+argument_list|,
+name|resource
+argument_list|,
+name|request
+argument_list|,
+name|response
+argument_list|,
+name|outputProperties
+argument_list|,
+name|servletPath
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|pathInfo
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -4844,7 +4970,7 @@ name|source
 return|;
 block|}
 block|}
-comment|/** 	 * Handles PUT requests. The request content is stored as a new resource at 	 * the specified location. If the resource already exists, it is overwritten 	 * if the user has write permissions. 	 *  	 * The resource type depends on the content type specified in the HTTP 	 * header. The content type will be looked up in the global mime table. If 	 * the corresponding mime type is not a know XML mime type, the resource 	 * will be stored as a binary resource. 	 *  	 * @param broker 	 * @param tempFile 	 *            The temp file from which the PUT will get its content 	 * @param path 	 *            The path to which the file should be stored 	 * @param request 	 * @param response 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 */
+comment|/** 	 * Handles PUT requests. The request content is stored as a new resource at 	 * the specified location. If the resource already exists, it is overwritten 	 * if the user has write permissions. 	 * 	 * The resource type depends on the content type specified in the HTTP 	 * header. The content type will be looked up in the global mime table. If 	 * the corresponding mime type is not a know XML mime type, the resource 	 * will be stored as a binary resource. 	 * 	 * @param broker 	 * @param tempFile 	 *            The temp file from which the PUT will get its content 	 * @param path 	 *            The path to which the file should be stored 	 * @param request 	 * @param response 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 */
 specifier|public
 name|void
 name|doPut
@@ -5860,7 +5986,7 @@ return|return
 name|xml
 return|;
 block|}
-comment|/** 	 * TODO: pass request and response objects to XQuery. 	 *  	 * @throws XPathException 	 */
+comment|/** 	 * TODO: pass request and response objects to XQuery. 	 * 	 * @throws XPathException 	 */
 specifier|protected
 name|void
 name|search
@@ -6386,7 +6512,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Pass the request, response and session objects to the XQuery context. 	 *  	 * @param context 	 * @param request 	 * @param response 	 * @throws XPathException 	 */
+comment|/** 	 * Pass the request, response and session objects to the XQuery context. 	 * 	 * @param context 	 * @param request 	 * @param response 	 * @throws XPathException 	 */
 specifier|private
 name|HttpRequestWrapper
 name|declareVariables
@@ -7937,7 +8063,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * @param response 	 * @param encoding 	 * @param query 	 * @param path 	 * @param e 	 *  	 */
+comment|/** 	 * @param response 	 * @param encoding 	 * @param query 	 * @param path 	 * @param e 	 * 	 */
 specifier|private
 name|void
 name|writeXPathExceptionHtml
