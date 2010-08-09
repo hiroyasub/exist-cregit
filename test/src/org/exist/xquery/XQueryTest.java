@@ -18884,6 +18884,134 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// http://sourceforge.net/support/tracker.php?aid=1817822
+specifier|public
+name|void
+name|testVariableScopeBug_1817822
+parameter_list|()
+block|{
+try|try
+block|{
+name|String
+name|query
+init|=
+literal|"declare namespace test = \"http://example.com\"; "
+operator|+
+literal|"declare function test:expression($expr) as xs:double? { "
+operator|+
+literal|" typeswitch($expr) "
+operator|+
+literal|"   case element(Value) return test:value($expr) "
+operator|+
+literal|"   case element(SomethingRandom) return test:product($expr/*) "
+operator|+
+literal|"   default return () "
+operator|+
+literal|"}; "
+operator|+
+literal|"declare function test:value($expr) { "
+operator|+
+literal|"   xs:double($expr) "
+operator|+
+literal|"}; "
+operator|+
+literal|"declare function test:product($expressions) { "
+operator|+
+literal|"   test:expression($expressions[1]) "
+operator|+
+literal|"   * "
+operator|+
+literal|"   test:expression($expressions[2]) "
+operator|+
+literal|"}; "
+operator|+
+literal|"let $values := (<Value>2</Value>,<Value>3</Value>) "
+operator|+
+literal|"let $a := test:expression(<AnotherSomethingRandom/>) "
+operator|+
+literal|"let $b := test:product($values) "
+operator|+
+literal|"return<Result>{$b}</Result>"
+decl_stmt|;
+name|XPathQueryService
+name|service
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|getTestCollection
+argument_list|()
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|query
+argument_list|,
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"<Result>6</Result>"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|ex
+parameter_list|)
+block|{
+comment|// should not yield into exceptio
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|ex
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// ======================================
 comment|/**      * @return      * @throws XMLDBException      */
 specifier|private
