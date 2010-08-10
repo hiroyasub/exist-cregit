@@ -1719,6 +1719,9 @@ argument_list|()
 decl_stmt|;
 comment|// iterate validation report items, write message
 name|List
+argument_list|<
+name|ValidationReportItem
+argument_list|>
 name|cr
 init|=
 name|report
@@ -1729,6 +1732,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|ValidationReportItem
+argument_list|>
 name|iter
 init|=
 name|cr
@@ -1746,9 +1752,6 @@ block|{
 name|ValidationReportItem
 name|vri
 init|=
-operator|(
-name|ValidationReportItem
-operator|)
 name|iter
 operator|.
 name|next
