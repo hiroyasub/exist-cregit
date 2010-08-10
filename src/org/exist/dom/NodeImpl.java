@@ -104,6 +104,8 @@ implements|implements
 name|Node
 implements|,
 name|QNameable
+implements|,
+name|NodeAtExist
 block|{
 specifier|protected
 specifier|final

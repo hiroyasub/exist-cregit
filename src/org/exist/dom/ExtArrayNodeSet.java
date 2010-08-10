@@ -3272,10 +3272,16 @@ literal|0
 condition|)
 block|{
 name|ObjectHashSet
+argument_list|<
+name|Collection
+argument_list|>
 name|collections
 init|=
 operator|new
 name|ObjectHashSet
+argument_list|<
+name|Collection
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Part

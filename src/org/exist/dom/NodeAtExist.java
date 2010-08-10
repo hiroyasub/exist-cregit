@@ -80,6 +80,7 @@ name|DocumentAtExist
 name|getDocumentAtExist
 parameter_list|()
 function_decl|;
+comment|//the document nodes' array index
 specifier|public
 name|int
 name|getNodeNumber
