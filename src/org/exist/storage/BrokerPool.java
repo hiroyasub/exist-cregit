@@ -628,6 +628,7 @@ name|BrokerPool
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//on-start, ready, go
 comment|/*** initializing subcomponents */
 specifier|public
 specifier|final

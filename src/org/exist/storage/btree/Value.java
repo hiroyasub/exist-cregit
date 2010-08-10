@@ -47,6 +47,9 @@ class|class
 name|Value
 implements|implements
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 block|{
 specifier|public
 specifier|final

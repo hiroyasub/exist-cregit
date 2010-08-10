@@ -311,15 +311,6 @@ argument_list|(
 name|messageId
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|args
-operator|==
-literal|null
-condition|)
-return|return
-name|message
-return|;
 return|return
 name|MessageFormat
 operator|.
