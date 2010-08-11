@@ -518,7 +518,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $response
+comment|// response object is read from global variable $response
 name|Variable
 name|respVar
 init|=
