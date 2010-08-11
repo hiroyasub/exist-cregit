@@ -93,6 +93,8 @@ begin_interface
 specifier|public
 interface|interface
 name|SecurityManager
+extends|extends
+name|Configurable
 block|{
 specifier|public
 specifier|final

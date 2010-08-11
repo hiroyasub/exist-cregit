@@ -205,6 +205,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|AuthenticationException
@@ -3070,6 +3082,30 @@ name|Override
 specifier|public
 name|BrokerPool
 name|getDatabase
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isConfigured
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Configuration
+name|getConfiguration
 parameter_list|()
 block|{
 comment|// TODO Auto-generated method stub

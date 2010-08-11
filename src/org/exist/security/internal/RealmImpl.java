@@ -109,20 +109,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|TriggerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|config
 operator|.
 name|Configurator
@@ -313,18 +299,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|MimeType
 import|;
 end_import
@@ -412,18 +386,6 @@ operator|.
 name|dom
 operator|.
 name|NodeList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
 import|;
 end_import
 
@@ -932,6 +894,7 @@ operator|==
 literal|null
 condition|)
 return|return;
+comment|//TODO: throw error?
 name|sysCollection
 operator|.
 name|setPermissions
