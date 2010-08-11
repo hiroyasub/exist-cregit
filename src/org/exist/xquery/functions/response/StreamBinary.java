@@ -593,7 +593,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
-comment|// request object is read from global variable $response
+comment|// response object is read from global variable $response
 name|Variable
 name|respVar
 init|=
@@ -625,7 +625,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"No request object found in the current XQuery context."
+literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
 if|if
