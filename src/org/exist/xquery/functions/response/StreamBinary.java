@@ -550,7 +550,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"No request object found in the current XQuery context."
+literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
 if|if
