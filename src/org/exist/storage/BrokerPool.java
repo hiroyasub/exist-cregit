@@ -2957,34 +2957,7 @@ argument_list|(
 name|SIGNAL_READINESS
 argument_list|)
 expr_stmt|;
-comment|//wake-up the security manager
-name|securityManager
-operator|.
-name|attach
-argument_list|(
-name|this
-argument_list|,
-name|broker
-argument_list|)
-expr_stmt|;
-comment|//have to do this after initializing = false
-comment|// so that the policies collection is saved
-if|if
-condition|(
-name|securityManager
-operator|.
-name|isXACMLEnabled
-argument_list|()
-condition|)
-name|securityManager
-operator|.
-name|getPDP
-argument_list|()
-operator|.
-name|initializePolicyCollection
-argument_list|()
-expr_stmt|;
-comment|//Get a manager to handle further collectios configuration
+comment|//Get a manager to handle further collections configuration
 try|try
 block|{
 name|collectionConfigurationManager
@@ -3017,6 +2990,33 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+comment|//wake-up the security manager
+name|securityManager
+operator|.
+name|attach
+argument_list|(
+name|this
+argument_list|,
+name|broker
+argument_list|)
+expr_stmt|;
+comment|//have to do this after initializing = false
+comment|// so that the policies collection is saved
+if|if
+condition|(
+name|securityManager
+operator|.
+name|isXACMLEnabled
+argument_list|()
+condition|)
+name|securityManager
+operator|.
+name|getPDP
+argument_list|()
+operator|.
+name|initializePolicyCollection
+argument_list|()
+expr_stmt|;
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 if|if
@@ -4501,44 +4501,12 @@ name|broker
 parameter_list|)
 block|{
 comment|//XXX: reload
-try|try
-block|{
-name|securityManager
-operator|.
-name|attach
-argument_list|(
-name|this
-argument_list|,
-name|broker
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Security manager reloaded failed: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Security manager reloaded"
-argument_list|)
-expr_stmt|;
+comment|//		try {
+comment|//			securityManager.attach(this, broker);
+comment|//		} catch (EXistException e) {
+comment|//			LOG.debug("Security manager reloaded failed: "+e.getMessage());
+comment|//		}
+comment|//		LOG.debug("Security manager reloaded");
 block|}
 specifier|public
 name|long
