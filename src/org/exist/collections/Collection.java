@@ -6413,6 +6413,7 @@ argument_list|(
 literal|"Document exists and update is not allowed"
 argument_list|)
 throw|;
+comment|// do we have write permissions?
 if|if
 condition|(
 operator|!
@@ -6455,7 +6456,6 @@ argument_list|(
 literal|"Document exists and update is not allowed for the collection"
 argument_list|)
 throw|;
-comment|// do we have write permissions?
 block|}
 if|else if
 condition|(
