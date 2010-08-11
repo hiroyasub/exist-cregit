@@ -216,10 +216,20 @@ name|callbackHandler
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|?
+argument_list|>
 name|sharedState
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|?
+argument_list|>
 name|options
 decl_stmt|;
 comment|// configurable option

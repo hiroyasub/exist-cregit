@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Manages the permissions assigned to a ressource. This includes  *  the user who owns the ressource, the owner group and the permissions  *  for user, group and others. Permissions are encoded in a single byte  *  according to common unix conventions.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  *  Manages the permissions assigned to a resource. This includes  *  the user who owns the resource, the owner group and the permissions  *  for user, group and others. Permissions are encoded in a single byte  *  according to common unix conventions.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class

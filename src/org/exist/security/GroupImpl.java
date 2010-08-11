@@ -43,6 +43,9 @@ class|class
 name|GroupImpl
 implements|implements
 name|Comparable
+argument_list|<
+name|Object
+argument_list|>
 implements|,
 name|Group
 block|{
