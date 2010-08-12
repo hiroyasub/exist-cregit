@@ -126,21 +126,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ConfigurationDocumentTrigger event = "
-operator|+
-name|event
-operator|+
-literal|" documentPath = "
-operator|+
-name|documentPath
-argument_list|)
-expr_stmt|;
+empty_stmt|;
 block|}
 annotation|@
 name|Override
@@ -164,20 +150,28 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-name|System
+name|Configuration
+name|conf
+init|=
+name|Configurator
 operator|.
-name|out
+name|hotConfigs
 operator|.
-name|println
+name|get
 argument_list|(
-literal|"ConfigurationDocumentTrigger event = "
-operator|+
-name|event
-operator|+
-literal|" documentPath = "
-operator|+
 name|documentPath
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|conf
+operator|!=
+literal|null
+condition|)
+name|conf
+operator|.
+name|checkForUpdates
+argument_list|()
 expr_stmt|;
 block|}
 block|}

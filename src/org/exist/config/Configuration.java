@@ -166,6 +166,11 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|checkForUpdates
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

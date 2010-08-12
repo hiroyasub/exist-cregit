@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -109,6 +121,11 @@ comment|//
 comment|//	public void setUserLock(User user);
 comment|//	public User getUserLock();
 comment|//	public Collection getCollection();
+specifier|public
+name|XmldbURI
+name|getURI
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
