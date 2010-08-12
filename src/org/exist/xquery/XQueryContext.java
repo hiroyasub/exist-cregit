@@ -6282,7 +6282,7 @@ control|(
 name|Module
 name|module
 range|:
-name|modules
+name|allModules
 operator|.
 name|values
 argument_list|()

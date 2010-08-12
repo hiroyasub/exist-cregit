@@ -837,7 +837,6 @@ name|broker
 parameter_list|)
 block|{
 return|return
-operator|(
 name|mSource
 operator|.
 name|isValid
@@ -848,13 +847,8 @@ operator|==
 name|Source
 operator|.
 name|VALID
-operator|&&
-name|mContext
-operator|.
-name|checkModulesValid
-argument_list|()
-operator|)
 return|;
+comment|//		return (mSource.isValid(broker) == Source.VALID&& mContext.checkModulesValid());
 block|}
 specifier|public
 name|void
