@@ -513,6 +513,9 @@ name|perms
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|params
@@ -522,6 +525,9 @@ argument_list|(
 name|perms
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
