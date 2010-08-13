@@ -2116,7 +2116,12 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"Unknown user"
+literal|"Unknown user: "
+operator|+
+name|u
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 if|if
