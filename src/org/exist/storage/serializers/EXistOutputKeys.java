@@ -100,6 +100,15 @@ name|XINCLUDE_PATH
 init|=
 literal|"xinclude-path"
 decl_stmt|;
+comment|// enforce XHTML namespace on elements with no namespace
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ENFORCE_XHTML
+init|=
+literal|"enforce-xhtml"
+decl_stmt|;
 block|}
 end_class
 
