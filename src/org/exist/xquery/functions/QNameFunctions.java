@@ -595,6 +595,13 @@ condition|(
 name|prefix
 operator|==
 literal|null
+operator|||
+name|prefix
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 name|result
 operator|=
