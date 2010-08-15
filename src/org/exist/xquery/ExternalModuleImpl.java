@@ -708,6 +708,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|isReady
+operator|&&
 name|decl
 operator|!=
 literal|null
