@@ -224,6 +224,16 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+specifier|public
+name|boolean
+name|isSuspended
+parameter_list|()
+function_decl|;
+specifier|public
+name|boolean
+name|isTerminated
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

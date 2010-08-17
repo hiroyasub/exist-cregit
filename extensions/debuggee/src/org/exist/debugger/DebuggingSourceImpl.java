@@ -213,9 +213,11 @@ name|boolean
 name|isSuspended
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|debugger
+operator|.
+name|isSuspended
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#isTerminated() 	 */
@@ -224,9 +226,11 @@ name|boolean
 name|isTerminated
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|debugger
+operator|.
+name|isTerminated
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#removeBreakpoint(org.exist.debugger.model.Breakpoint) 	 */
