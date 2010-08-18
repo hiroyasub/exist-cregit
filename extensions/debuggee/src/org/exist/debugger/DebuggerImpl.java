@@ -1843,6 +1843,8 @@ operator|.
 name|toDebuggee
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|waitFor
 argument_list|(
 name|command
@@ -1853,6 +1855,15 @@ argument_list|,
 name|BREAK
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+comment|//closed?
+block|}
 block|}
 specifier|public
 name|boolean
