@@ -564,6 +564,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -671,6 +673,7 @@ argument_list|(
 name|user
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -679,7 +682,7 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"you are not the owner of this resource; owner = "
+literal|"you are either not the owner of this resource or a sysadmin; owner = "
 operator|+
 name|document
 operator|.
@@ -690,6 +693,7 @@ name|getOwner
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|document
 operator|.
 name|setPermissions
@@ -817,6 +821,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -968,7 +974,7 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"you are not the owner of this collection"
+literal|"you are eirther not the owner of this collection or a sysadmin"
 argument_list|)
 throw|;
 block|}
