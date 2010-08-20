@@ -221,7 +221,14 @@ operator|.
 name|getReadBytes
 argument_list|()
 operator|+
-literal|" byte(s) readed."
+literal|" byte(s) readed, "
+operator|+
+name|session
+operator|.
+name|getWrittenBytes
+argument_list|()
+operator|+
+literal|" byte(s) writed."
 argument_list|)
 expr_stmt|;
 block|}

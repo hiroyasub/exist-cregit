@@ -166,7 +166,6 @@ init|(
 name|decoders
 init|)
 block|{
-comment|//TODO: rewrite???
 if|if
 condition|(
 name|decoders
@@ -220,7 +219,6 @@ init|(
 name|encoders
 init|)
 block|{
-comment|//TODO: rewrite???
 if|if
 condition|(
 name|encoders

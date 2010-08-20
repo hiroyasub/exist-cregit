@@ -254,14 +254,10 @@ name|RuntimeIoException
 name|e
 parameter_list|)
 block|{
-name|System
+name|e
 operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Failed to connect."
-argument_list|)
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 return|return
 literal|null
