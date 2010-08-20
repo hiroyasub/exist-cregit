@@ -79,7 +79,7 @@ name|PREFIX
 argument_list|)
 decl_stmt|;
 specifier|public
-name|void
+name|boolean
 name|joint
 parameter_list|(
 name|CompiledXQuery

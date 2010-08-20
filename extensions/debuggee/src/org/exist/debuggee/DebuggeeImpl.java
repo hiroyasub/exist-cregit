@@ -274,7 +274,7 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
-name|void
+name|boolean
 name|joint
 parameter_list|(
 name|CompiledXQuery
@@ -294,6 +294,15 @@ operator|.
 name|connect
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|session
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 comment|//link debugger session& script
 name|DebuggeeJointImpl
 name|joint
@@ -330,6 +339,9 @@ name|session
 argument_list|)
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 block|}
 block|}
