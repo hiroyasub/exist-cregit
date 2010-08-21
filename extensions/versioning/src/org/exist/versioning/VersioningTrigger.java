@@ -826,7 +826,7 @@ name|documentPath
 operator|=
 name|documentPath
 expr_stmt|;
-name|User
+name|Subject
 name|activeUser
 init|=
 name|broker
@@ -848,7 +848,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1173,7 +1173,7 @@ name|VERSIONS_COLLECTION
 argument_list|)
 condition|)
 return|return;
-name|User
+name|Subject
 name|activeUser
 init|=
 name|broker
@@ -1195,7 +1195,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
