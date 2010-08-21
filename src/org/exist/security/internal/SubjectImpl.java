@@ -446,6 +446,20 @@ name|getAttributeNames
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getRealmId
+parameter_list|()
+block|{
+return|return
+name|account
+operator|.
+name|getRealmId
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.Principal#getId() 	 */
 annotation|@
 name|Override

@@ -1488,7 +1488,7 @@ name|EXistException
 block|{
 name|deleteUser
 argument_list|(
-name|getUser
+name|getAccount
 argument_list|(
 name|name
 argument_list|)
@@ -1526,7 +1526,7 @@ block|}
 specifier|public
 specifier|synchronized
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name

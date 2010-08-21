@@ -563,7 +563,7 @@ name|user
 operator|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|username
 argument_list|)
@@ -817,7 +817,7 @@ name|defaultUser
 operator|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|SecurityManager
 operator|.
@@ -840,7 +840,7 @@ name|adminUser
 init|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|SecurityManager
 operator|.

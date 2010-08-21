@@ -178,7 +178,7 @@ name|owner
 operator|=
 name|sm
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|user
 argument_list|)
@@ -289,7 +289,7 @@ name|owner
 operator|=
 name|sm
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|istream
 operator|.
@@ -425,7 +425,7 @@ name|owner
 operator|=
 name|sm
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|name
 argument_list|)

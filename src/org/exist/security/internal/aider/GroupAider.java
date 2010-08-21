@@ -41,6 +41,20 @@ name|Group
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|RealmImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -52,6 +66,10 @@ name|GroupAider
 implements|implements
 name|Group
 block|{
+specifier|private
+name|String
+name|realmId
+decl_stmt|;
 specifier|private
 name|String
 name|name
@@ -72,12 +90,17 @@ argument_list|(
 name|id
 argument_list|,
 literal|null
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
 specifier|public
 name|GroupAider
 parameter_list|(
+name|String
+name|realmId
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -86,6 +109,8 @@ name|this
 argument_list|(
 operator|-
 literal|1
+argument_list|,
+name|realmId
 argument_list|,
 name|name
 argument_list|)
@@ -96,6 +121,9 @@ name|GroupAider
 parameter_list|(
 name|int
 name|id
+parameter_list|,
+name|String
+name|realmId
 parameter_list|,
 name|String
 name|name
@@ -112,6 +140,42 @@ operator|.
 name|name
 operator|=
 name|name
+expr_stmt|;
+name|this
+operator|.
+name|realmId
+operator|=
+name|realmId
+expr_stmt|;
+block|}
+specifier|public
+name|GroupAider
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|this
+operator|.
+name|id
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+name|this
+operator|.
+name|name
+operator|=
+name|name
+expr_stmt|;
+comment|//XXX: parse name for realmId, use default as workaround
+name|this
+operator|.
+name|realmId
+operator|=
+name|RealmImpl
+operator|.
+name|ID
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.security.Principal#getName() 	 */
@@ -145,7 +209,6 @@ name|boolean
 name|isConfigured
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -157,9 +220,19 @@ name|Configuration
 name|getConfiguration
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getRealmId
+parameter_list|()
+block|{
+return|return
+name|realmId
 return|;
 block|}
 block|}

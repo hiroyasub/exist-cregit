@@ -595,7 +595,7 @@ name|user
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|userName
 argument_list|)

@@ -5212,7 +5212,7 @@ name|user
 init|=
 name|mgtService
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|args
 index|[
@@ -5691,7 +5691,7 @@ name|u
 init|=
 name|mgtService
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|args
 index|[
@@ -5787,7 +5787,7 @@ name|u
 init|=
 name|mgtService
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|args
 index|[
@@ -5934,7 +5934,7 @@ name|user
 init|=
 name|mgtService
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|properties
 operator|.

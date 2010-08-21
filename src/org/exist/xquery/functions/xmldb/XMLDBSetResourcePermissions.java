@@ -644,7 +644,7 @@ name|usr
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|user
 argument_list|)

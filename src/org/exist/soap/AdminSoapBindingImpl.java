@@ -6034,7 +6034,7 @@ name|u
 operator|=
 name|manager
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|name
 argument_list|)
@@ -6320,7 +6320,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|user
 argument_list|)
@@ -7213,7 +7213,7 @@ name|lo
 init|=
 name|manager
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|userName
 argument_list|)

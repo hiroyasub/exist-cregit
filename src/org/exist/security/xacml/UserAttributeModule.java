@@ -482,7 +482,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|uid
 argument_list|)

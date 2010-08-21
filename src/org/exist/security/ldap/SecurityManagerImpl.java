@@ -2681,7 +2681,7 @@ return|;
 block|}
 specifier|public
 name|AccountImpl
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -3036,7 +3036,7 @@ block|{
 name|Account
 name|user
 init|=
-name|getUser
+name|getAccount
 argument_list|(
 name|username
 argument_list|)

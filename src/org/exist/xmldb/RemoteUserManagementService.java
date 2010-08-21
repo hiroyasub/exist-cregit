@@ -371,7 +371,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|addRole
+name|addGroup
 parameter_list|(
 name|Group
 name|role
@@ -413,7 +413,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"addRole"
+literal|"addGroup"
 argument_list|,
 name|params
 argument_list|)
@@ -2488,7 +2488,7 @@ block|}
 comment|/** 	 *  Get user information for specified user 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -2543,7 +2543,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"getUser"
+literal|"getAccount"
 argument_list|,
 name|params
 argument_list|)
@@ -2554,6 +2554,16 @@ init|=
 operator|new
 name|UserAider
 argument_list|(
+operator|(
+name|String
+operator|)
+name|tab
+operator|.
+name|get
+argument_list|(
+literal|"realmId"
+argument_list|)
+argument_list|,
 operator|(
 name|String
 operator|)
@@ -2793,6 +2803,16 @@ name|tab
 operator|.
 name|get
 argument_list|(
+literal|"realmId"
+argument_list|)
+argument_list|,
+operator|(
+name|String
+operator|)
+name|tab
+operator|.
+name|get
+argument_list|(
 literal|"name"
 argument_list|)
 argument_list|)
@@ -2909,7 +2929,7 @@ block|}
 block|}
 specifier|public
 name|Group
-name|getRole
+name|getGroup
 parameter_list|(
 name|String
 name|name
@@ -2964,7 +2984,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"getRole"
+literal|"getGroup"
 argument_list|,
 name|params
 argument_list|)
@@ -2975,6 +2995,16 @@ init|=
 operator|new
 name|GroupAider
 argument_list|(
+operator|(
+name|String
+operator|)
+name|tab
+operator|.
+name|get
+argument_list|(
+literal|"realmId"
+argument_list|)
+argument_list|,
 operator|(
 name|String
 operator|)
@@ -3088,7 +3118,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|removeRole
+name|removeGroup
 parameter_list|(
 name|Group
 name|role
@@ -3130,7 +3160,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"removeRole"
+literal|"removeGroup"
 argument_list|,
 name|params
 argument_list|)

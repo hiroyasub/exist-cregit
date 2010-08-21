@@ -837,7 +837,7 @@ name|user
 init|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|properties
 operator|.

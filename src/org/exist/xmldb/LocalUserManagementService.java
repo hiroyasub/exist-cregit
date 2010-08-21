@@ -446,10 +446,10 @@ block|}
 block|}
 specifier|public
 name|void
-name|addRole
+name|addGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -495,7 +495,7 @@ name|manager
 operator|.
 name|hasGroup
 argument_list|(
-name|role
+name|group
 operator|.
 name|getName
 argument_list|()
@@ -511,7 +511,7 @@ name|VENDOR_ERROR
 argument_list|,
 literal|"role "
 operator|+
-name|role
+name|group
 operator|.
 name|getName
 argument_list|()
@@ -525,7 +525,7 @@ name|manager
 operator|.
 name|addGroup
 argument_list|(
-name|role
+name|group
 argument_list|)
 expr_stmt|;
 block|}
@@ -4095,7 +4095,7 @@ return|;
 block|}
 specifier|public
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -4120,7 +4120,7 @@ decl_stmt|;
 return|return
 name|manager
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|name
 argument_list|)
@@ -4181,7 +4181,7 @@ return|;
 block|}
 specifier|public
 name|Group
-name|getRole
+name|getGroup
 parameter_list|(
 name|String
 name|name
@@ -4408,7 +4408,7 @@ block|}
 block|}
 specifier|public
 name|void
-name|removeRole
+name|removeGroup
 parameter_list|(
 name|Group
 name|role

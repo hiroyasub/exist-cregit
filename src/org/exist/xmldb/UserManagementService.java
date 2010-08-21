@@ -290,10 +290,10 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Get a user record from the database      *      *@param  name                Description of the Parameter      *@return                     The user value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Get a account record from the database      *      *@param  name                Description of the Parameter      *@return                     The user value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -312,7 +312,7 @@ name|XMLDBException
 function_decl|;
 specifier|public
 name|Group
-name|getRole
+name|getGroup
 parameter_list|(
 name|String
 name|name
@@ -418,10 +418,10 @@ name|XMLDBException
 function_decl|;
 specifier|public
 name|void
-name|removeRole
+name|removeGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -453,10 +453,10 @@ name|XMLDBException
 function_decl|;
 specifier|public
 name|void
-name|addRole
+name|addGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|XMLDBException

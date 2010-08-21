@@ -149,7 +149,7 @@ name|usr
 init|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|name
 argument_list|)

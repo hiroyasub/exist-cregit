@@ -246,7 +246,7 @@ name|AccountImpl
 operator|)
 name|secman
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|digest
 operator|.

@@ -282,7 +282,7 @@ throws|,
 name|ConfigurationException
 function_decl|;
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name

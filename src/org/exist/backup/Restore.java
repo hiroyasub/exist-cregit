@@ -2986,7 +2986,7 @@ name|dba
 init|=
 name|mgmt
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|SecurityManager
 operator|.

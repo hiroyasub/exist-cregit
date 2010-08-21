@@ -279,7 +279,7 @@ name|admin
 init|=
 name|service
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"admin"
 argument_list|)

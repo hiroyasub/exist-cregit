@@ -47,6 +47,11 @@ name|int
 name|getId
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|getRealmId
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
