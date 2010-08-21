@@ -427,6 +427,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"Failed to write document to database: "
@@ -751,7 +756,7 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"\", \"admin\", \"admin\"),"
+literal|"\", \"admin\", \"\"),"
 argument_list|)
 expr_stmt|;
 name|query
@@ -929,7 +934,7 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"', \"admin\", \"admin\"),"
+literal|"', \"admin\", \"\"),"
 argument_list|)
 expr_stmt|;
 name|query
