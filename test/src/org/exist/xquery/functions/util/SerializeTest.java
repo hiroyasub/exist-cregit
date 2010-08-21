@@ -885,7 +885,13 @@ block|{
 name|String
 name|query
 init|=
-literal|"let $xml :=<test xmlns:xi='http://www.w3.org/2001/XInclude'><xi:include href='/db/system/users.xml'/></test>\n"
+literal|"let $xml := "
+operator|+
+literal|"<test xmlns:xi='http://www.w3.org/2001/XInclude'>"
+operator|+
+literal|"<xi:include href='/db/system/security/config.xml'/>"
+operator|+
+literal|"</test>\n"
 operator|+
 literal|"return\n"
 operator|+
@@ -926,9 +932,9 @@ argument_list|)
 expr_stmt|;
 name|assertXpathEvaluatesTo
 argument_list|(
-literal|"1.0"
+literal|"2.0"
 argument_list|,
-literal|"/test/auth/@version"
+literal|"/test//@version"
 argument_list|,
 name|r
 argument_list|)
@@ -980,6 +986,11 @@ literal|"testSerializeXincludes(): "
 operator|+
 name|e
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
