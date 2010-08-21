@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -212,6 +212,8 @@ operator|=
 operator|new
 name|LDAPRealm
 argument_list|(
+literal|null
+argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
@@ -236,7 +238,7 @@ name|void
 name|testAuthenticate
 parameter_list|()
 block|{
-name|User
+name|Account
 name|account
 init|=
 literal|null

@@ -93,7 +93,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -145,11 +145,11 @@ literal|"<ActiveDirectory>"
 operator|+
 literal|"<context "
 operator|+
-literal|"		principalPattern='CN={0},OU=kjc,OU=institute,DC=ad,DC=uni-heidelberg,DC=de' "
+literal|"		principalPattern='CN={0},OU=users,DC=localhost' "
 operator|+
-literal|"		searchBase='cn=users,dc=ad,dc=uni-heidelberg,dc=de' "
+literal|"		searchBase='ou=users,dc=localhost' "
 operator|+
-literal|"		url='ldap://ad.uni-heidelberg.de:389'/>"
+literal|"		url='ldap://localhost:389'/>"
 operator|+
 literal|"</ActiveDirectory>"
 decl_stmt|;
@@ -198,6 +198,8 @@ operator|=
 operator|new
 name|ActiveDirectoryRealm
 argument_list|(
+literal|null
+argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
@@ -222,22 +224,22 @@ name|void
 name|testAuthenticate
 parameter_list|()
 block|{
-name|User
-name|account
+name|Subject
+name|currentUser
 init|=
 literal|null
 decl_stmt|;
 try|try
 block|{
-name|account
+name|currentUser
 operator|=
 name|realm
 operator|.
 name|authenticate
 argument_list|(
-literal|"exist"
+literal|"HRA eXsit"
 argument_list|,
-literal|"p2zlw4mg"
+literal|"OUR_PASSWORD"
 argument_list|)
 expr_stmt|;
 block|}
@@ -263,7 +265,7 @@ expr_stmt|;
 block|}
 name|assertNotNull
 argument_list|(
-name|account
+name|currentUser
 argument_list|)
 expr_stmt|;
 block|}
