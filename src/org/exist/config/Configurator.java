@@ -841,6 +841,15 @@ block|{
 if|if
 condition|(
 name|configuration
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+if|if
+condition|(
+name|configuration
 operator|instanceof
 name|ConfigurationImpl
 condition|)
@@ -2712,36 +2721,22 @@ argument_list|,
 name|fileURL
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|document
 operator|==
 literal|null
 condition|)
-throw|throw
-operator|new
-name|ConfigurationException
-argument_list|(
-literal|"The configuration file can't be found, url = "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|append
-argument_list|(
-name|fileURL
-argument_list|)
-argument_list|)
-throw|;
-block|}
-block|}
-name|conf
-operator|=
-operator|new
-name|ConfigurationImpl
-argument_list|(
+return|return
+literal|null
+return|;
+comment|//possible on corrupted database, find better solution (recovery flag?)
+comment|//throw new ConfigurationException("The configuration file can't be found, url = "+collection.getURI().append(fileURL));
+name|ElementAtExist
+name|confElement
+init|=
 operator|(
 name|ElementAtExist
 operator|)
@@ -2749,6 +2744,24 @@ name|document
 operator|.
 name|getDocumentElement
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|confElement
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+comment|//possible on corrupted database, find better solution (recovery flag?)
+comment|//throw new ConfigurationException("The configuration file is empty, url = "+collection.getURI().append(fileURL));
+name|conf
+operator|=
+operator|new
+name|ConfigurationImpl
+argument_list|(
+name|confElement
 argument_list|)
 expr_stmt|;
 name|hotConfigs

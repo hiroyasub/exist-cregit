@@ -2305,7 +2305,7 @@ if|if
 condition|(
 name|account
 operator|.
-name|getRealm
+name|getRealmId
 argument_list|()
 operator|==
 literal|null
@@ -2314,7 +2314,7 @@ throw|throw
 operator|new
 name|ConfigurationException
 argument_list|(
-literal|"Account must have realm."
+literal|"Account must have realm id."
 argument_list|)
 throw|;
 if|if
@@ -2365,10 +2365,7 @@ name|equals
 argument_list|(
 name|account
 operator|.
-name|getRealm
-argument_list|()
-operator|.
-name|getId
+name|getRealmId
 argument_list|()
 argument_list|)
 condition|)
