@@ -223,6 +223,18 @@ name|exist
 operator|.
 name|config
 operator|.
+name|Configurator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
 name|annotation
 operator|.
 name|ConfigurationClass
@@ -1476,6 +1488,11 @@ expr_stmt|;
 block|}
 comment|//Clear the living instances container : they are all sentenced to death...
 name|instances
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|Configurator
 operator|.
 name|clear
 argument_list|()
