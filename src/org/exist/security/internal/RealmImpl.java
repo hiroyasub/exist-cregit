@@ -1710,7 +1710,7 @@ if|if
 condition|(
 name|account
 operator|.
-name|getRealm
+name|getRealmId
 argument_list|()
 operator|==
 literal|null
@@ -1719,17 +1719,22 @@ throw|throw
 operator|new
 name|ConfigurationException
 argument_list|(
-literal|"Account realm is null."
+literal|"Account's realmId is null."
 argument_list|)
 throw|;
 if|if
 condition|(
+operator|!
+name|getId
+argument_list|()
+operator|.
+name|equals
+argument_list|(
 name|account
 operator|.
-name|getRealm
+name|getRealmId
 argument_list|()
-operator|!=
-name|this
+argument_list|)
 condition|)
 throw|throw
 operator|new
