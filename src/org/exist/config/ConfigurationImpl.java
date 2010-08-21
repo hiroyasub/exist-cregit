@@ -1381,6 +1381,12 @@ name|name
 argument_list|)
 return|;
 block|}
+specifier|private
+name|boolean
+name|saving
+init|=
+literal|false
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -1390,6 +1396,9 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
+name|saving
+operator|&&
 name|configuredObjectReferene
 operator|!=
 literal|null
@@ -1427,6 +1436,10 @@ name|EXistException
 block|{
 try|try
 block|{
+name|saving
+operator|=
+literal|true
+expr_stmt|;
 name|Configurator
 operator|.
 name|save
@@ -1452,6 +1465,13 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|saving
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 block|}
