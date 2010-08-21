@@ -73,21 +73,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
-name|annotation
-operator|.
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -758,7 +744,7 @@ literal|null
 return|;
 block|}
 annotation|@
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"password"
 argument_list|)
@@ -769,7 +755,7 @@ init|=
 literal|null
 decl_stmt|;
 annotation|@
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"digestPassword"
 argument_list|)

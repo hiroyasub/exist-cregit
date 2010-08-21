@@ -63,7 +63,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -100,7 +100,7 @@ extends|extends
 name|LdapContextFactory
 block|{
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"domain"
 argument_list|)
@@ -111,7 +111,7 @@ init|=
 literal|null
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"searchBase"
 argument_list|)

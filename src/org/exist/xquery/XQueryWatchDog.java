@@ -59,7 +59,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -160,7 +160,7 @@ name|XQueryContext
 name|context
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"query-timeout"
 argument_list|)
@@ -173,7 +173,7 @@ operator|.
 name|MAX_VALUE
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"output-size-limit"
 argument_list|)

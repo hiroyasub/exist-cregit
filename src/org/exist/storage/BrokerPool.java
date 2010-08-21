@@ -215,7 +215,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -1592,7 +1592,7 @@ literal|0
 decl_stmt|;
 comment|/** 	 * The minimal number of brokers for the database instance  	 */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"min"
 argument_list|)
@@ -1602,7 +1602,7 @@ name|minBrokers
 decl_stmt|;
 comment|/** 	 * The maximal number of brokers for the database instance  	 */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"max"
 argument_list|)
@@ -1681,7 +1681,7 @@ name|boolean
 name|isReadOnly
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"pageSize"
 argument_list|)
@@ -1702,7 +1702,7 @@ literal|null
 decl_stmt|;
 comment|/** 	 * Delay (in ms) for running jobs to return when the database instance shuts down. 	 */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"wait-before-shutdown"
 argument_list|)
@@ -1712,7 +1712,7 @@ name|maxShutdownWait
 decl_stmt|;
 comment|/** 	 * The scheduler for the database instance. 	 */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"scheduler"
 argument_list|)
@@ -1732,7 +1732,7 @@ name|symbols
 decl_stmt|;
 comment|/** 	 * Cache synchronization on the database instance. 	 */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"sync-period"
 argument_list|)

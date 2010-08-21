@@ -163,7 +163,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -213,7 +213,7 @@ init|=
 literal|"simple"
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"principalPattern"
 argument_list|)
@@ -228,7 +228,7 @@ name|MessageFormat
 name|principalPatternFormat
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"url"
 argument_list|)

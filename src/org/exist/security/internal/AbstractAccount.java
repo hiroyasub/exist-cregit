@@ -91,7 +91,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -185,7 +185,7 @@ implements|implements
 name|Account
 block|{
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"home"
 argument_list|)
@@ -219,7 +219,7 @@ init|=
 literal|false
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"expired"
 argument_list|)
@@ -230,11 +230,7 @@ name|accountExpired
 init|=
 literal|false
 decl_stmt|;
-annotation|@
-name|ConfigurationField
-argument_list|(
-literal|"credentials-expired"
-argument_list|)
+comment|//	@ConfigurationFieldAsElement("credentials-expired")
 specifier|private
 specifier|final
 name|boolean
@@ -243,7 +239,7 @@ init|=
 literal|false
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"enabled"
 argument_list|)

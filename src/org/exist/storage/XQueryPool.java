@@ -69,7 +69,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -191,7 +191,7 @@ name|long
 name|lastTimeOutCheck
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"size"
 argument_list|)
@@ -200,7 +200,7 @@ name|int
 name|maxPoolSize
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"max-stack-size"
 argument_list|)
@@ -209,7 +209,7 @@ name|int
 name|maxStackSize
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"timeout"
 argument_list|)
@@ -218,7 +218,7 @@ name|long
 name|timeout
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"timeout-check-interval"
 argument_list|)

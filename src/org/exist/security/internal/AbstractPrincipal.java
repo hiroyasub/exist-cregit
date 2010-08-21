@@ -97,7 +97,21 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -185,7 +199,7 @@ name|Realm
 name|realm
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"name"
 argument_list|)
@@ -195,7 +209,7 @@ name|String
 name|name
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"id"
 argument_list|)

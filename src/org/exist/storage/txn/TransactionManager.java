@@ -99,7 +99,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -300,7 +300,7 @@ name|Journal
 name|journal
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"enabled"
 argument_list|)
@@ -309,7 +309,7 @@ name|boolean
 name|enabled
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"group-commit"
 argument_list|)
@@ -320,7 +320,7 @@ init|=
 literal|false
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"force-restart"
 argument_list|)

@@ -48,7 +48,7 @@ name|FIELD
 argument_list|)
 specifier|public
 annotation_defn|@interface
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 block|{
 name|String
 name|value

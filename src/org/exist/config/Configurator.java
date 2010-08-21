@@ -291,7 +291,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -305,7 +305,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -652,7 +652,7 @@ name|field
 operator|.
 name|isAnnotationPresent
 argument_list|(
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 operator|.
 name|class
 argument_list|)
@@ -666,7 +666,7 @@ name|field
 operator|.
 name|getAnnotation
 argument_list|(
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 operator|.
 name|class
 argument_list|)
@@ -684,7 +684,7 @@ name|field
 operator|.
 name|isAnnotationPresent
 argument_list|(
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 operator|.
 name|class
 argument_list|)
@@ -698,7 +698,7 @@ name|field
 operator|.
 name|getAnnotation
 argument_list|(
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 operator|.
 name|class
 argument_list|)
@@ -1987,7 +1987,7 @@ name|field
 operator|.
 name|isAnnotationPresent
 argument_list|(
-name|ConfigurationFieldAsNode
+name|ConfigurationFieldAsElement
 operator|.
 name|class
 argument_list|)

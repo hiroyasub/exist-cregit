@@ -37,7 +37,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -58,7 +58,7 @@ implements|implements
 name|Configurable
 block|{
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"valueString"
 argument_list|)
@@ -69,7 +69,7 @@ init|=
 literal|"default"
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"valueInteger"
 argument_list|)
@@ -80,7 +80,7 @@ init|=
 literal|7
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"valueInt"
 argument_list|)
@@ -91,7 +91,7 @@ init|=
 literal|5
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"value"
 argument_list|)
@@ -102,7 +102,7 @@ init|=
 literal|3
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"valueboolean"
 argument_list|)
@@ -113,7 +113,7 @@ init|=
 literal|false
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"valueBoolean"
 argument_list|)

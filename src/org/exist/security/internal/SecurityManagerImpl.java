@@ -163,7 +163,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -565,7 +565,7 @@ literal|65
 argument_list|)
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"last-account-id"
 argument_list|)
@@ -576,7 +576,7 @@ init|=
 literal|0
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"last-group-id"
 argument_list|)
@@ -587,7 +587,7 @@ init|=
 literal|0
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"version"
 argument_list|)
@@ -619,7 +619,7 @@ name|RealmImpl
 name|defaultRealm
 decl_stmt|;
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"realm"
 argument_list|)

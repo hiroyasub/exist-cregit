@@ -153,7 +153,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
@@ -398,7 +398,7 @@ literal|1024
 decl_stmt|;
 comment|/**       * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"size"
 argument_list|)
@@ -430,7 +430,7 @@ argument_list|()
 decl_stmt|;
 comment|/** the data directory where journal files are written to */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"journal-dir"
 argument_list|)
@@ -503,7 +503,7 @@ name|pool
 decl_stmt|;
 comment|/** if set to true, a sync will be triggered on the log file after every commit */
 annotation|@
-name|ConfigurationField
+name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"sync-on-commit"
 argument_list|)
