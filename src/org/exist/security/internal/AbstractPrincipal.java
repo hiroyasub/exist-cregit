@@ -352,6 +352,8 @@ operator|.
 name|create
 argument_list|(
 name|name
+operator|+
+literal|".xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -514,6 +516,8 @@ operator|.
 name|create
 argument_list|(
 name|name
+operator|+
+literal|".xml"
 argument_list|)
 argument_list|)
 decl_stmt|;
