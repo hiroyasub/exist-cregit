@@ -229,7 +229,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -1672,7 +1672,7 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 literal|null

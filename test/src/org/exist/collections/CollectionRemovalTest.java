@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -396,6 +396,16 @@ name|SecurityManager
 operator|.
 name|GUEST_USER
 argument_list|,
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
+operator|.
+name|GUEST_USER
+argument_list|,
 name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI2
@@ -452,6 +462,8 @@ name|SecurityManager
 operator|.
 name|DBA_USER
 argument_list|,
+literal|""
+argument_list|,
 name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI2
@@ -469,6 +481,9 @@ name|removeCollection
 parameter_list|(
 name|String
 name|user
+parameter_list|,
+name|String
+name|password
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -496,7 +511,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|User
+name|Subject
 name|guest
 init|=
 name|pool
@@ -504,9 +519,11 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
+name|authenticate
 argument_list|(
 name|user
+argument_list|,
+name|password
 argument_list|)
 decl_stmt|;
 name|broker
@@ -643,7 +660,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1030,7 +1047,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -316,7 +316,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
