@@ -665,7 +665,7 @@ name|guest
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"guest"
 argument_list|)
@@ -745,7 +745,7 @@ name|test2
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"guest"
 argument_list|)
@@ -1234,7 +1234,7 @@ name|test2
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"test2"
 argument_list|)
@@ -1333,7 +1333,7 @@ name|test2
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"test2"
 argument_list|)
@@ -1396,12 +1396,14 @@ init|=
 operator|new
 name|GroupAider
 argument_list|(
+literal|"exist"
+argument_list|,
 literal|"users"
 argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|addRole
+name|addGroup
 argument_list|(
 name|group
 argument_list|)
@@ -1501,7 +1503,7 @@ name|test1
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"test1"
 argument_list|)
@@ -1673,7 +1675,7 @@ name|test1
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"test1"
 argument_list|)
@@ -1696,7 +1698,7 @@ name|test2
 init|=
 name|ums
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 literal|"test2"
 argument_list|)
@@ -1719,7 +1721,7 @@ name|role
 init|=
 name|ums
 operator|.
-name|getRole
+name|getGroup
 argument_list|(
 literal|"users"
 argument_list|)
@@ -1732,7 +1734,7 @@ literal|null
 condition|)
 name|ums
 operator|.
-name|removeRole
+name|removeGroup
 argument_list|(
 name|role
 argument_list|)
