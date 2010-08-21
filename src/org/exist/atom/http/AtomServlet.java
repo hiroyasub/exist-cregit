@@ -417,7 +417,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
 import|;
 end_import
 
@@ -653,7 +665,7 @@ block|{
 name|int
 name|authMethod
 decl_stmt|;
-name|User
+name|Account
 name|user
 decl_stmt|;
 name|UserXmldbPrincipal
@@ -661,7 +673,7 @@ parameter_list|(
 name|int
 name|authMethod
 parameter_list|,
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{
@@ -881,7 +893,7 @@ name|Authenticator
 name|authenticator
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|defaultUser
 decl_stmt|;
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
@@ -2646,7 +2658,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -3015,7 +3027,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-name|User
+name|Subject
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -3157,7 +3169,7 @@ argument_list|)
 return|;
 block|}
 specifier|private
-name|User
+name|Subject
 name|getDefaultUser
 parameter_list|()
 block|{

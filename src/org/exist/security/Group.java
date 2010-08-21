@@ -13,29 +13,13 @@ name|security
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|security
-operator|.
-name|Principal
-import|;
-end_import
-
 begin_interface
 specifier|public
 interface|interface
 name|Group
 extends|extends
 name|Principal
-block|{
-specifier|public
-name|int
-name|getId
-parameter_list|()
-function_decl|;
-block|}
+block|{  }
 end_interface
 
 end_unit

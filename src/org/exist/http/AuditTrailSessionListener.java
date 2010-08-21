@@ -57,7 +57,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -464,8 +464,8 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
-name|User
-name|principal
+name|Subject
+name|subject
 init|=
 literal|null
 decl_stmt|;
@@ -488,14 +488,14 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
-name|principal
+name|subject
 operator|=
 name|pool
 operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 expr_stmt|;
 name|broker
@@ -504,7 +504,7 @@ name|pool
 operator|.
 name|get
 argument_list|(
-name|principal
+name|subject
 argument_list|)
 expr_stmt|;
 if|if
@@ -520,7 +520,7 @@ name|error
 argument_list|(
 literal|"Unable to retrieve DBBroker for "
 operator|+
-name|principal
+name|subject
 operator|.
 name|getName
 argument_list|()
@@ -829,7 +829,7 @@ name|xqueryResourcePath
 operator|+
 literal|"] script for "
 operator|+
-name|principal
+name|subject
 operator|.
 name|getName
 argument_list|()

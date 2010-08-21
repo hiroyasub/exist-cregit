@@ -95,7 +95,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -824,7 +824,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|User
+name|Subject
 name|u
 init|=
 name|getUser
@@ -1248,7 +1248,7 @@ return|;
 block|}
 comment|/**    * @param user    * @param pool    * @return the User object corresponding to the username in<code>user</code>    * @throws XMLDBException    */
 specifier|private
-name|User
+name|Subject
 name|getUser
 parameter_list|(
 name|String

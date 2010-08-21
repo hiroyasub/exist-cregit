@@ -137,7 +137,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Subject
 import|;
 end_import
 
@@ -2027,7 +2039,7 @@ block|}
 else|else
 block|{
 comment|//create an XQuery job
-name|User
+name|Subject
 name|guestUser
 init|=
 name|brokerpool
@@ -2035,12 +2047,8 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|GUEST_USER
-argument_list|)
+name|getGuestSubject
+argument_list|()
 decl_stmt|;
 name|job
 operator|=

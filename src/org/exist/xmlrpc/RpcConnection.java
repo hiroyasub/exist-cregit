@@ -203,6 +203,20 @@ name|security
 operator|.
 name|internal
 operator|.
+name|AccountImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
 name|aider
 operator|.
 name|GroupAider
@@ -704,7 +718,7 @@ name|XmldbRequestProcessorFactory
 name|factory
 decl_stmt|;
 specifier|protected
-name|User
+name|Subject
 name|user
 decl_stmt|;
 comment|/**      * Creates a new<code>RpcConnection</code> instance.      *      * @exception EXistException if an error occurs      */
@@ -714,7 +728,7 @@ parameter_list|(
 name|XmldbRequestProcessorFactory
 name|factory
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -6908,7 +6922,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8919,7 +8933,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
-name|User
+name|Account
 name|u
 init|=
 name|factory
@@ -9090,7 +9104,7 @@ name|util
 operator|.
 name|Collection
 argument_list|<
-name|User
+name|Account
 argument_list|>
 name|users
 init|=
@@ -9130,7 +9144,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|User
+name|Account
 name|user
 range|:
 name|users
@@ -9162,7 +9176,7 @@ literal|"uid"
 argument_list|,
 name|user
 operator|.
-name|getUID
+name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -18399,7 +18413,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|u
 decl_stmt|;
 if|if
@@ -18508,7 +18522,7 @@ argument_list|)
 throw|;
 operator|(
 operator|(
-name|UserImpl
+name|AccountImpl
 operator|)
 name|u
 operator|)
@@ -18520,7 +18534,7 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|UserImpl
+name|AccountImpl
 operator|)
 name|u
 operator|)
@@ -18941,7 +18955,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|u
 decl_stmt|;
 if|if
@@ -19114,7 +19128,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|u
 decl_stmt|;
 if|if
@@ -19454,7 +19468,7 @@ operator|+
 name|userName
 argument_list|)
 throw|;
-name|User
+name|Account
 name|lockOwner
 init|=
 name|doc
@@ -19699,7 +19713,7 @@ argument_list|(
 literal|"Insufficient privileges to read resource"
 argument_list|)
 throw|;
-name|User
+name|Account
 name|u
 init|=
 name|doc
@@ -19898,7 +19912,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|lockOwner
 init|=
 name|doc

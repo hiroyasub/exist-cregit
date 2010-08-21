@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -471,7 +471,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|user
 init|=
 name|pdp
@@ -562,7 +562,7 @@ specifier|private
 name|EvaluationResult
 name|getGroups
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{

@@ -231,7 +231,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -243,7 +243,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -726,7 +728,7 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|defaultUser
 init|=
 literal|null
@@ -901,7 +903,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 expr_stmt|;
 name|String
@@ -931,7 +933,7 @@ argument_list|(
 literal|"password"
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 decl_stmt|;
 try|try
@@ -1631,15 +1633,15 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|defaultUser
 decl_stmt|;
-name|User
+name|Subject
 name|requestUser
 init|=
-name|UserImpl
+name|AccountImpl
 operator|.
 name|getUserFromServletRequest
 argument_list|(
@@ -1768,7 +1770,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|User
+name|Subject
 name|newUser
 init|=
 name|pool

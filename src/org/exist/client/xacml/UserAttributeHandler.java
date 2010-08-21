@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -353,7 +353,7 @@ name|SUBJECT_ID_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
-name|User
+name|Account
 index|[]
 name|users
 init|=
@@ -388,7 +388,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getUID
+name|getId
 argument_list|()
 argument_list|)
 argument_list|)
@@ -409,7 +409,7 @@ name|USER_NAME_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
-name|User
+name|Account
 index|[]
 name|users
 init|=
@@ -528,7 +528,7 @@ literal|true
 return|;
 block|}
 specifier|private
-name|User
+name|Account
 index|[]
 name|getUsers
 parameter_list|()
@@ -547,7 +547,7 @@ literal|null
 condition|)
 return|return
 operator|new
-name|User
+name|Account
 index|[
 literal|0
 index|]
@@ -578,7 +578,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|User
+name|Account
 index|[
 literal|0
 index|]

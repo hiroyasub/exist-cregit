@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -69,6 +79,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
+throws|,
+name|IOException
 function_decl|;
 specifier|public
 name|Group

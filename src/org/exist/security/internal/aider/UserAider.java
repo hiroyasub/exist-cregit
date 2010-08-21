@@ -53,6 +53,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|Group
@@ -67,7 +79,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -106,7 +118,7 @@ specifier|public
 class|class
 name|UserAider
 implements|implements
-name|User
+name|Account
 block|{
 specifier|private
 name|String
@@ -115,9 +127,6 @@ decl_stmt|;
 specifier|private
 name|int
 name|id
-init|=
-operator|-
-literal|1
 decl_stmt|;
 specifier|private
 name|Group
@@ -146,15 +155,32 @@ decl_stmt|;
 specifier|public
 name|UserAider
 parameter_list|(
+name|int
+name|id
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|id
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|UserAider
+parameter_list|(
 name|String
 name|name
 parameter_list|)
 block|{
 name|this
-operator|.
+argument_list|(
+operator|-
+literal|1
+argument_list|,
 name|name
-operator|=
-name|name
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -168,9 +194,10 @@ name|name
 parameter_list|)
 block|{
 name|this
-argument_list|(
+operator|.
 name|name
-argument_list|)
+operator|=
+name|name
 expr_stmt|;
 name|this
 operator|.
@@ -374,12 +401,12 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getUID() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.security.Principal#getId() 	 */
 annotation|@
 name|Override
 specifier|public
 name|int
-name|getUID
+name|getId
 parameter_list|()
 block|{
 return|return
@@ -466,33 +493,6 @@ return|return
 name|homeCollection
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#authenticate(java.lang.Object) 	 */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|authenticate
-parameter_list|(
-name|Object
-name|credentials
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#isAuthenticated() 	 */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isAuthenticated
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getRealm() 	 */
 annotation|@
 name|Override
@@ -504,19 +504,6 @@ block|{
 return|return
 literal|null
 return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setUID(int) 	 */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setUID
-parameter_list|(
-name|int
-name|uid
-parameter_list|)
-block|{
-comment|// TODO Auto-generated method stub
 block|}
 specifier|private
 name|Map
@@ -685,6 +672,90 @@ parameter_list|()
 block|{
 return|return
 name|passwordDigest
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isConfigured
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Configuration
+name|getConfiguration
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getUsername
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isAccountNonExpired
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isAccountNonLocked
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isCredentialsNonExpired
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isEnabled
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|false
 return|;
 block|}
 block|}

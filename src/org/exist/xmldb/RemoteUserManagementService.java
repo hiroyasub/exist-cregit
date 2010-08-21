@@ -53,7 +53,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -223,7 +223,7 @@ specifier|public
 name|void
 name|addUser
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 throws|throws
@@ -1102,7 +1102,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|User
+name|Account
 name|u
 parameter_list|)
 throws|throws
@@ -1422,7 +1422,7 @@ specifier|public
 name|void
 name|chown
 parameter_list|(
-name|User
+name|Account
 name|u
 parameter_list|,
 name|String
@@ -1527,7 +1527,7 @@ parameter_list|(
 name|Resource
 name|res
 parameter_list|,
-name|User
+name|Account
 name|u
 parameter_list|,
 name|String
@@ -2487,7 +2487,7 @@ return|;
 block|}
 comment|/** 	 *  Get user information for specified user 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
-name|User
+name|Account
 name|getUser
 parameter_list|(
 name|String
@@ -2548,7 +2548,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 name|u
 init|=
 operator|new
@@ -2659,7 +2659,7 @@ block|}
 block|}
 comment|/** 	 *  Get a list of all users currently defined 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
-name|User
+name|Account
 index|[]
 name|getUsers
 parameter_list|()
@@ -2693,12 +2693,12 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 index|[]
 name|u
 init|=
 operator|new
-name|User
+name|Account
 index|[
 name|users
 operator|.
@@ -3016,7 +3016,7 @@ specifier|public
 name|void
 name|removeUser
 parameter_list|(
-name|User
+name|Account
 name|u
 parameter_list|)
 throws|throws
@@ -3201,7 +3201,7 @@ specifier|public
 name|void
 name|updateUser
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 throws|throws
@@ -3352,7 +3352,7 @@ specifier|public
 name|void
 name|addUserGroup
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 throws|throws
@@ -3462,7 +3462,7 @@ specifier|public
 name|void
 name|removeGroup
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|,
 name|String

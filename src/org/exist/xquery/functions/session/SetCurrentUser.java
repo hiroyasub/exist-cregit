@@ -101,7 +101,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -588,7 +588,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Subject
 name|user
 decl_stmt|;
 try|try

@@ -129,7 +129,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -494,7 +496,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -545,7 +547,7 @@ return|;
 block|}
 finally|finally
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -805,7 +807,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -845,7 +847,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -917,7 +919,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -951,7 +953,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(

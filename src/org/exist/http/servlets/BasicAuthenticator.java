@@ -105,7 +105,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -191,7 +191,7 @@ expr_stmt|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.http.servlets.Authenticator#authenticate(javax.servlet.http 	 * .HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|public
-name|User
+name|Subject
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -327,7 +327,7 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -342,7 +342,7 @@ block|{
 name|user
 operator|=
 operator|(
-name|User
+name|Subject
 operator|)
 name|session
 operator|.

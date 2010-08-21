@@ -99,7 +99,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -332,7 +332,7 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|user
 decl_stmt|;
 specifier|private
@@ -349,7 +349,7 @@ comment|/** 	 * Constructor for LocalXUpdateQueryService. 	 */
 specifier|public
 name|LocalXUpdateQueryService
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool

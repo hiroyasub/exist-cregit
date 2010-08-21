@@ -73,7 +73,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -562,7 +562,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 name|usr
 init|=
 name|ums

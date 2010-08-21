@@ -187,7 +187,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -652,7 +652,7 @@ decl_stmt|;
 specifier|public
 name|LocalXMLResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool
@@ -689,7 +689,7 @@ block|}
 specifier|public
 name|LocalXMLResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool

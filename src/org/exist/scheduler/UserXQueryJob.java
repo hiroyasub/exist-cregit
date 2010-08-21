@@ -109,7 +109,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -366,7 +366,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -387,7 +387,7 @@ parameter_list|,
 name|String
 name|XQueryResource
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -468,7 +468,7 @@ return|;
 block|}
 comment|/**      * Returns the User for this Job.      *      * @return  The User for this Job      */
 specifier|protected
-name|User
+name|Subject
 name|getUser
 parameter_list|()
 block|{
@@ -531,11 +531,11 @@ argument_list|(
 literal|"xqueryresource"
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 operator|(
-name|User
+name|Subject
 operator|)
 name|jobDataMap
 operator|.

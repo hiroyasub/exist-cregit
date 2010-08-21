@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -320,7 +320,7 @@ name|String
 name|methodName
 parameter_list|)
 block|{
-name|User
+name|Account
 name|user
 init|=
 name|context
@@ -440,7 +440,7 @@ return|return
 literal|null
 return|;
 block|}
-name|User
+name|Account
 name|user
 init|=
 name|context
@@ -589,7 +589,7 @@ specifier|public
 name|Subject
 name|createUserSubject
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{
@@ -992,7 +992,7 @@ name|Subject
 argument_list|>
 name|createQuerySubjects
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|,
 name|Module

@@ -347,7 +347,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -1850,7 +1850,7 @@ literal|"xupdate"
 argument_list|)
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|serviceModeUser
 init|=
 literal|null
@@ -2809,7 +2809,7 @@ name|get
 argument_list|(
 name|securityManager
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3872,7 +3872,7 @@ specifier|public
 name|DBBroker
 name|get
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws
@@ -4094,7 +4094,7 @@ name|setUser
 argument_list|(
 name|securityManager
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4332,7 +4332,7 @@ name|setUser
 argument_list|(
 name|securityManager
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4348,7 +4348,7 @@ specifier|public
 name|DBBroker
 name|enterServiceMode
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws
@@ -4448,7 +4448,7 @@ specifier|public
 name|void
 name|exitServiceMode
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws
@@ -4551,7 +4551,7 @@ argument_list|(
 name|syncEvent
 argument_list|)
 expr_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|broker
@@ -4566,7 +4566,7 @@ name|setUser
 argument_list|(
 name|securityManager
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5145,7 +5145,7 @@ name|setUser
 argument_list|(
 name|securityManager
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;

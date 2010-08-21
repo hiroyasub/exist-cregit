@@ -479,7 +479,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -1330,7 +1330,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -2221,7 +2221,7 @@ specifier|public
 name|void
 name|setUser
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -2234,7 +2234,7 @@ expr_stmt|;
 block|}
 comment|/** 	 * Get the current User. 	 */
 specifier|public
-name|User
+name|Subject
 name|getUser
 parameter_list|()
 block|{

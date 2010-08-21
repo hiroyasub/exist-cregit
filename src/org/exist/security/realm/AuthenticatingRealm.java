@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -48,7 +48,7 @@ specifier|public
 interface|interface
 name|AuthenticatingRealm
 block|{
-name|User
+name|Subject
 name|authenticate
 parameter_list|(
 name|String

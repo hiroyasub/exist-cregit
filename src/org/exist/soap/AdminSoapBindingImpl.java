@@ -171,7 +171,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -183,7 +183,21 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -610,7 +624,7 @@ name|RemoteException
 block|{
 try|try
 block|{
-name|User
+name|Subject
 name|u
 init|=
 name|pool
@@ -5436,7 +5450,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -5906,7 +5920,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 name|user
 init|=
 name|session
@@ -5962,7 +5976,7 @@ argument_list|(
 literal|"guest user cannot be modified"
 argument_list|)
 throw|;
-name|User
+name|Account
 name|u
 decl_stmt|;
 if|if
@@ -6059,7 +6073,7 @@ argument_list|)
 throw|;
 operator|(
 operator|(
-name|UserImpl
+name|AccountImpl
 operator|)
 name|u
 operator|)
@@ -6249,26 +6263,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RemoteException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -6317,7 +6312,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|User
+name|Account
 name|u
 init|=
 name|pool
@@ -6432,7 +6427,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
-name|User
+name|Account
 name|user
 init|=
 name|getSession
@@ -6486,24 +6481,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RemoteException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -6549,7 +6527,7 @@ name|util
 operator|.
 name|Collection
 argument_list|<
-name|User
+name|Account
 argument_list|>
 name|users
 init|=
@@ -6581,7 +6559,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|User
+name|Account
 name|user
 range|:
 name|users
@@ -7030,7 +7008,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -7184,7 +7162,7 @@ operator|+
 name|userName
 argument_list|)
 throw|;
-name|User
+name|Account
 name|lockOwner
 init|=
 name|doc
@@ -7230,7 +7208,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
-name|User
+name|Account
 name|lo
 init|=
 name|manager
@@ -7411,7 +7389,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -7510,7 +7488,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|lockOwner
 init|=
 name|doc
@@ -7745,7 +7723,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -7845,7 +7823,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
-name|User
+name|Account
 name|u
 init|=
 name|doc
@@ -8016,7 +7994,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -8347,7 +8325,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -8734,7 +8712,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session
@@ -9111,7 +9089,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|session

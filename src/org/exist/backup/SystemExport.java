@@ -181,7 +181,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -4038,7 +4040,7 @@ operator|-
 literal|1
 condition|)
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(
@@ -4080,7 +4082,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|UserImpl
+name|AccountImpl
 operator|.
 name|enablePasswordChecks
 argument_list|(

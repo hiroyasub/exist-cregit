@@ -119,7 +119,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -272,7 +272,7 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|authenticate
@@ -299,7 +299,7 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|User
+name|Subject
 name|authenticate
 parameter_list|(
 name|String

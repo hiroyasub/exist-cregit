@@ -213,7 +213,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
 import|;
 end_import
 
@@ -387,7 +399,7 @@ specifier|private
 name|LockToken
 name|getDefaultToken
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{
@@ -453,7 +465,7 @@ specifier|private
 name|void
 name|createNullResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -967,7 +979,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -1217,7 +1229,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Get current userlock
-name|User
+name|Account
 name|lock
 init|=
 name|resource

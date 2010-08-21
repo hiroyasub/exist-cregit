@@ -39,7 +39,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -175,7 +175,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
-name|User
+name|Subject
 name|oldUser
 init|=
 literal|null
@@ -207,7 +207,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -323,7 +323,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -2593,7 +2593,7 @@ name|i
 operator|++
 control|)
 block|{
-name|User
+name|Account
 name|user
 init|=
 name|userModel
@@ -2707,7 +2707,7 @@ name|getPoint
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 name|user
 init|=
 name|userModel
@@ -2851,7 +2851,7 @@ literal|"Home"
 block|}
 decl_stmt|;
 specifier|private
-name|User
+name|Account
 name|users
 index|[]
 init|=
@@ -2966,7 +2966,7 @@ index|[
 name|rowIndex
 index|]
 operator|.
-name|getUID
+name|getId
 argument_list|()
 argument_list|)
 return|;

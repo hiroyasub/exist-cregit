@@ -61,7 +61,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -345,7 +345,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|User
+name|Subject
 name|user
 init|=
 name|context

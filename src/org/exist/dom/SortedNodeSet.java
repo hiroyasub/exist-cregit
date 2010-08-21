@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -333,7 +333,7 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -353,7 +353,7 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|String

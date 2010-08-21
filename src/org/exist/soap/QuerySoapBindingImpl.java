@@ -203,7 +203,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -936,7 +936,7 @@ name|RemoteException
 block|{
 try|try
 block|{
-name|User
+name|Subject
 name|u
 init|=
 name|pool

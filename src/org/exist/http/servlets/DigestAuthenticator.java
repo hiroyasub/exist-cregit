@@ -111,7 +111,21 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -157,7 +171,7 @@ name|pool
 expr_stmt|;
 block|}
 specifier|public
-name|UserImpl
+name|Subject
 name|authenticate
 parameter_list|(
 name|HttpServletRequest
@@ -224,11 +238,11 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|UserImpl
+name|AccountImpl
 name|user
 init|=
 operator|(
-name|UserImpl
+name|AccountImpl
 operator|)
 name|secman
 operator|.
@@ -285,8 +299,12 @@ literal|null
 return|;
 block|}
 return|return
+operator|(
+name|Subject
+operator|)
 name|user
 return|;
+comment|//XXX: digest authenticator
 block|}
 specifier|public
 name|void

@@ -17,16 +17,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|security
-operator|.
-name|Principal
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Set
@@ -62,7 +52,7 @@ end_import
 begin_interface
 specifier|public
 interface|interface
-name|User
+name|Account
 extends|extends
 name|Principal
 block|{
@@ -129,11 +119,6 @@ name|boolean
 name|hasDbaRole
 parameter_list|()
 function_decl|;
-specifier|public
-name|int
-name|getUID
-parameter_list|()
-function_decl|;
 comment|/** 	 *  Get the primary group this user belongs to 	 * 	 *@return    The primaryGroup value 	 */
 specifier|public
 name|String
@@ -177,32 +162,9 @@ name|getHome
 parameter_list|()
 function_decl|;
 specifier|public
-name|boolean
-name|authenticate
-parameter_list|(
-name|Object
-name|credentials
-parameter_list|)
-function_decl|;
-specifier|public
-name|boolean
-name|isAuthenticated
-parameter_list|()
-function_decl|;
-specifier|public
 name|Realm
 name|getRealm
 parameter_list|()
-function_decl|;
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|setUID
-parameter_list|(
-name|int
-name|uid
-parameter_list|)
 function_decl|;
 comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
 specifier|public
@@ -256,6 +218,31 @@ argument_list|<
 name|String
 argument_list|>
 name|getAttributeNames
+parameter_list|()
+function_decl|;
+comment|/**      * Returns the person full name or account name.      *      * @return the person full name or account name      */
+name|String
+name|getUsername
+parameter_list|()
+function_decl|;
+comment|/**      * Indicates whether the account has expired. Authentication on an expired account is not possible.      *      * @return<code>true</code> if the account is valid (ie non-expired),<code>false</code> if no longer valid (ie expired)      */
+name|boolean
+name|isAccountNonExpired
+parameter_list|()
+function_decl|;
+comment|/**      * Indicates whether the account is locked or unlocked. Authentication on a locked account is not possible.      *      * @return<code>true</code> if the account is not locked,<code>false</code> otherwise      */
+name|boolean
+name|isAccountNonLocked
+parameter_list|()
+function_decl|;
+comment|/**      * Indicates whether the account's credentials has expired. Expired credentials prevent authentication.      *      * @return<code>true</code> if the account's credentials are valid (ie non-expired),<code>false</code> if no longer valid (ie expired)      */
+name|boolean
+name|isCredentialsNonExpired
+parameter_list|()
+function_decl|;
+comment|/**      * Indicates whether the account is enabled or disabled. Authentication on a disabled account is not possible.      *      * @return<code>true</code> if the account is enabled,<code>false</code> otherwise      */
+name|boolean
+name|isEnabled
 parameter_list|()
 function_decl|;
 block|}

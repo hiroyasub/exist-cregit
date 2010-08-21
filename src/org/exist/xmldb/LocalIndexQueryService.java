@@ -91,7 +91,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -283,13 +283,13 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|User
+name|Subject
 name|user
 decl_stmt|;
 specifier|public
 name|LocalIndexQueryService
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool

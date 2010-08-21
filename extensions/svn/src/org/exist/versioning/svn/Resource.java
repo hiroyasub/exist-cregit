@@ -273,7 +273,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -2154,7 +2154,7 @@ argument_list|)
 throw|;
 block|}
 specifier|private
-name|User
+name|Subject
 name|getBrokerUser
 parameter_list|()
 throws|throws

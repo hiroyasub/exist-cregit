@@ -135,7 +135,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -326,7 +326,7 @@ parameter_list|,
 name|InputStream
 name|is
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws
@@ -493,7 +493,7 @@ parameter_list|,
 name|File
 name|tmp
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws

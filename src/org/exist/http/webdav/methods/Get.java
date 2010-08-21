@@ -207,7 +207,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -440,7 +440,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest

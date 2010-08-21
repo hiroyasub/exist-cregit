@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -144,7 +144,7 @@ throw|;
 block|}
 try|try
 block|{
-name|User
+name|Account
 name|usr
 init|=
 name|service

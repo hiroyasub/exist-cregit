@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -484,7 +484,7 @@ name|String
 argument_list|>
 name|params
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -764,7 +764,7 @@ parameter_list|,
 name|String
 name|targetNamespace
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -847,7 +847,7 @@ parameter_list|,
 name|String
 name|publicId
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{

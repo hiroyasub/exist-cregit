@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -365,7 +365,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|User
+name|Subject
 name|user
 init|=
 name|context

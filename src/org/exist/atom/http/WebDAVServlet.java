@@ -433,7 +433,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UUIDGenerator
+name|Subject
 import|;
 end_import
 
@@ -445,7 +445,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|UUIDGenerator
 import|;
 end_import
 
@@ -942,7 +942,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -1575,7 +1575,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -2016,7 +2016,7 @@ specifier|public
 name|void
 name|process
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest

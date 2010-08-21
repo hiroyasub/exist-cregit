@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -124,7 +124,7 @@ function_decl|;
 specifier|public
 name|Collection
 argument_list|<
-name|User
+name|Account
 argument_list|>
 name|getAccounts
 parameter_list|()
@@ -136,23 +136,6 @@ name|Group
 argument_list|>
 name|getRoles
 parameter_list|()
-function_decl|;
-comment|//possible, internal methods
-specifier|public
-name|User
-name|getAccount
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-function_decl|;
-specifier|public
-name|Group
-name|getGroup
-parameter_list|(
-name|int
-name|id
-parameter_list|)
 function_decl|;
 specifier|public
 name|void

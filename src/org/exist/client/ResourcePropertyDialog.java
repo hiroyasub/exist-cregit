@@ -253,7 +253,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -1149,7 +1149,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|User
+name|Account
 name|users
 index|[]
 init|=

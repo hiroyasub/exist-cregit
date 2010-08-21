@@ -410,7 +410,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -848,7 +848,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -921,7 +921,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1002,7 +1002,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1100,7 +1100,7 @@ name|String
 name|password
 parameter_list|)
 block|{
-name|User
+name|Subject
 name|user
 decl_stmt|;
 try|try
@@ -1279,7 +1279,7 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|User
+name|Subject
 name|user
 decl_stmt|;
 specifier|private
@@ -1294,7 +1294,7 @@ literal|"UTF-8"
 decl_stmt|;
 name|Database
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 block|{
@@ -2773,7 +2773,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 decl_stmt|;

@@ -105,7 +105,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -117,7 +117,21 @@ name|exist
 operator|.
 name|security
 operator|.
-name|UserImpl
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|AccountImpl
 import|;
 end_import
 
@@ -833,12 +847,6 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
-name|User
-name|defaultUser
-init|=
-literal|null
-decl_stmt|;
-specifier|private
 specifier|final
 name|Map
 argument_list|<
@@ -1134,7 +1142,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|User
+name|Subject
 name|user
 init|=
 name|pool
@@ -1142,13 +1150,13 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 decl_stmt|;
-name|User
+name|Subject
 name|requestUser
 init|=
-name|UserImpl
+name|AccountImpl
 operator|.
 name|getUserFromServletRequest
 argument_list|(
@@ -1845,7 +1853,7 @@ specifier|private
 name|Templates
 name|getSource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|HttpServletRequest
@@ -2549,7 +2557,7 @@ parameter_list|(
 name|SAXTransformerFactory
 name|factory
 parameter_list|,
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|String
@@ -2606,7 +2614,7 @@ specifier|public
 name|Templates
 name|getTemplates
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|)
 throws|throws

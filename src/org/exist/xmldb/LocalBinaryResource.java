@@ -167,7 +167,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -381,7 +381,7 @@ comment|/** 	 *  	 */
 specifier|public
 name|LocalBinaryResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool

@@ -241,7 +241,19 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
 import|;
 end_import
 
@@ -590,7 +602,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|User
+name|Subject
 name|user
 init|=
 literal|null
@@ -641,7 +653,7 @@ comment|/**      * Create a collection with no parent (root collection).      * 
 specifier|public
 name|LocalCollection
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool
@@ -674,7 +686,7 @@ comment|/**      * Create a collection identified by its name. Load the collecti
 specifier|public
 name|LocalCollection
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool
@@ -722,7 +734,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getGuestAccount
+name|getGuestSubject
 argument_list|()
 expr_stmt|;
 name|this
@@ -1212,7 +1224,7 @@ parameter_list|(
 name|Collection
 name|collection
 parameter_list|,
-name|User
+name|Account
 name|user
 parameter_list|)
 throws|throws

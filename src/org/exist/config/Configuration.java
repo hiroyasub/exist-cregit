@@ -33,6 +33,28 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -42,6 +64,12 @@ specifier|public
 interface|interface
 name|Configuration
 block|{
+specifier|public
+name|String
+name|NS
+init|=
+literal|"http://exist-db.org/Configuration"
+decl_stmt|;
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -170,6 +198,15 @@ specifier|public
 name|void
 name|checkForUpdates
 parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|save
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
 function_decl|;
 block|}
 end_interface

@@ -61,7 +61,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -89,7 +89,7 @@ block|{
 comment|/**      *  Authenticate user specified in URL with embedded database.      *      * @param xmldbURL URL formatted as xmldb:exist://username:passwd@......      * @param pool     Exist broker pool, provides access to database.      * @return         USER when user exists and password is OK, or NULL      */
 specifier|public
 specifier|static
-name|User
+name|Subject
 name|authenticate
 parameter_list|(
 name|XmldbURL
@@ -154,26 +154,21 @@ block|}
 comment|/**      *  Get user GUEST from database.      *      * @param pool  Exist broker pool, provides access to database.      * @return      eXist GUEST user.      */
 specifier|public
 specifier|static
-name|User
+name|Subject
 name|getUserGuest
 parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|)
 block|{
-comment|//TODO: security: review -shabanovd
 return|return
 name|pool
 operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|GUEST_USER
-argument_list|)
+name|getGuestSubject
+argument_list|()
 return|;
 block|}
 block|}

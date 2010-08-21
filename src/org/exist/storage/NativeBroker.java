@@ -89,18 +89,6 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfiguration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
 name|triggers
 operator|.
 name|TriggerException
@@ -200,18 +188,6 @@ operator|.
 name|security
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SecurityManager
 import|;
 end_import
 
@@ -1528,7 +1504,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3049,7 +3025,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 block|{
-name|User
+name|Subject
 name|u
 init|=
 name|getUser
@@ -3064,12 +3040,8 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|DBA_USER
-argument_list|)
+name|getSystemSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -8228,7 +8200,7 @@ throws|,
 name|LockException
 block|{
 comment|//store the currentUser
-name|User
+name|Subject
 name|currentUser
 init|=
 name|getUser
@@ -8242,12 +8214,8 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|DBA_USER
-argument_list|)
+name|getSystemSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//start a transaction
@@ -11771,7 +11739,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 throw|;
-name|User
+name|Account
 name|docUser
 init|=
 name|doc

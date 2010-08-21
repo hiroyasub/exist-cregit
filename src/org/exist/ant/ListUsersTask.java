@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -114,7 +114,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
-name|User
+name|Account
 index|[]
 name|users
 init|=
@@ -144,7 +144,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|User
+name|Account
 name|user
 range|:
 name|users

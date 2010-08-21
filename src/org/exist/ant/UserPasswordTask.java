@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -127,7 +127,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
-name|User
+name|Account
 name|usr
 init|=
 name|service

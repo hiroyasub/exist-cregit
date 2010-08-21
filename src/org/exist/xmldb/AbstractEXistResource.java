@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -162,7 +162,7 @@ implements|implements
 name|EXistResource
 block|{
 specifier|protected
-name|User
+name|Subject
 name|user
 decl_stmt|;
 specifier|protected
@@ -194,7 +194,7 @@ decl_stmt|;
 specifier|public
 name|AbstractEXistResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool
@@ -252,7 +252,7 @@ comment|/** 	 *  	 * @param user 	 * @param pool 	 * @param parent 	 * @param do
 specifier|public
 name|AbstractEXistResource
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|BrokerPool

@@ -113,7 +113,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * Gets the user who owns this resource      *      * @return The owner value      */
 specifier|public
-name|User
+name|Account
 name|getOwner
 parameter_list|()
 function_decl|;
@@ -152,6 +152,15 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**      * Set the owner group by group id      *      * @param  group  The group id      */
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+function_decl|;
 comment|/**      * Set the owner group      *      * @param  group  The group value      */
 specifier|public
 name|void
@@ -179,12 +188,21 @@ name|int
 name|perm
 parameter_list|)
 function_decl|;
+comment|/**      * Set the owner passed as account id      *      * @param  user  The new owner id      */
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+function_decl|;
 comment|/**      * Set the owner passed as User object      *      * @param  user  The new owner value      */
 specifier|public
 name|void
 name|setOwner
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 function_decl|;
@@ -246,7 +264,7 @@ specifier|public
 name|boolean
 name|validate
 parameter_list|(
-name|User
+name|Subject
 name|user
 parameter_list|,
 name|int

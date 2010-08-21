@@ -101,7 +101,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -1490,7 +1490,7 @@ specifier|public
 name|String
 name|getDefCollGroup
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{
@@ -1513,7 +1513,7 @@ specifier|public
 name|String
 name|getDefResGroup
 parameter_list|(
-name|User
+name|Account
 name|user
 parameter_list|)
 block|{

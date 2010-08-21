@@ -447,7 +447,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -832,7 +832,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|//$NON-NLS-1$ //$NON-NLS-2$
-name|User
+name|Account
 name|user
 init|=
 name|service

@@ -123,7 +123,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -883,7 +883,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-name|User
+name|Subject
 name|currentUser
 init|=
 name|broker
@@ -903,7 +903,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemAccount
+name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;

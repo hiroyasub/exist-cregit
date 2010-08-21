@@ -13,6 +13,16 @@ name|config
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -20,9 +30,9 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ExceptionConfiguration
+name|ConfigurationException
 extends|extends
-name|Exception
+name|EXistException
 block|{
 specifier|private
 specifier|static
@@ -33,7 +43,7 @@ init|=
 literal|1441009248525222734L
 decl_stmt|;
 specifier|public
-name|ExceptionConfiguration
+name|ConfigurationException
 parameter_list|()
 block|{
 name|super
@@ -41,7 +51,7 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
-name|ExceptionConfiguration
+name|ConfigurationException
 parameter_list|(
 name|String
 name|message
@@ -54,7 +64,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|ExceptionConfiguration
+name|ConfigurationException
 parameter_list|(
 name|String
 name|message
@@ -72,7 +82,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|ExceptionConfiguration
+name|ConfigurationException
 parameter_list|(
 name|Throwable
 name|cause

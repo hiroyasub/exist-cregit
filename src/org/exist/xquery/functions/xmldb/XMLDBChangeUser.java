@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|User
+name|Account
 import|;
 end_import
 
@@ -513,7 +513,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|User
+name|Account
 name|oldUser
 init|=
 name|ums

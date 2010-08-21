@@ -125,19 +125,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|User
+name|Subject
 import|;
 end_import
 
@@ -321,7 +309,8 @@ argument_list|(
 name|brokerPool
 argument_list|)
 decl_stmt|;
-name|User
+comment|//UNDERSTAND: why using guest account, it can be disabled
+name|Subject
 name|user
 init|=
 name|brokerPool
@@ -329,12 +318,8 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getUser
-argument_list|(
-name|SecurityManager
-operator|.
-name|GUEST_USER
-argument_list|)
+name|getGuestSubject
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
