@@ -1991,10 +1991,29 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//lock and check for documents& collestions it can be owner
-comment|//		sm.usersById.remove(user.getId());
-comment|//		usersByName.remove(user.getName());
-comment|//
+comment|//XXX: lock and check for documents& collestions it can be owner
+name|sm
+operator|.
+name|usersById
+operator|.
+name|remove
+argument_list|(
+name|user
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|usersByName
+operator|.
+name|remove
+argument_list|(
+name|user
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//		_save();
 return|return
 literal|false
@@ -2022,14 +2041,48 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//lock and check for documents& collestions it can be owner
-comment|//		Group role = groupsByName.get(name);
-comment|//		if (role == null)
-comment|//			return false;
-comment|//
-comment|//		sm.groupsById.remove(role.getId());
-comment|//		groupsByName.remove(role.getName());
-comment|//
+comment|//XXX:lock and check for documents& collestions it can be owner
+name|Group
+name|group
+init|=
+name|groupsByName
+operator|.
+name|get
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|group
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+name|sm
+operator|.
+name|groupsById
+operator|.
+name|remove
+argument_list|(
+name|group
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|groupsByName
+operator|.
+name|remove
+argument_list|(
+name|group
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//		_save();
 return|return
 literal|false

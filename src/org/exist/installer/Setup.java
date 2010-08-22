@@ -302,7 +302,7 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
-name|updateUser
+name|updateAccount
 argument_list|(
 name|admin
 argument_list|)

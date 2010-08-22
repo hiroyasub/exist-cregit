@@ -1224,7 +1224,7 @@ decl_stmt|;
 return|return
 name|secman
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|lockOwnerId
 argument_list|)

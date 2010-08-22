@@ -2212,7 +2212,7 @@ block|{
 block|}
 specifier|public
 name|void
-name|deleteRole
+name|deleteGroup
 parameter_list|(
 name|String
 name|name
@@ -2223,7 +2223,7 @@ block|{
 block|}
 specifier|public
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|String
 name|name
@@ -2234,7 +2234,7 @@ block|{
 block|}
 specifier|public
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|Account
 name|user
@@ -2593,7 +2593,7 @@ return|;
 block|}
 specifier|public
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|int
 name|uid
@@ -2900,7 +2900,7 @@ comment|// TODO: why is this here?
 specifier|public
 specifier|synchronized
 name|boolean
-name|hasUser
+name|hasAccount
 parameter_list|(
 name|String
 name|name
@@ -3010,13 +3010,16 @@ return|;
 block|}
 comment|// TODO: this should be addUser
 specifier|public
-name|void
-name|setUser
+name|Account
+name|addAccount
 parameter_list|(
 name|Account
 name|user
 parameter_list|)
 block|{
+return|return
+literal|null
+return|;
 block|}
 annotation|@
 name|Override

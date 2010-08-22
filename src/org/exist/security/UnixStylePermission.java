@@ -1133,7 +1133,7 @@ name|account
 init|=
 name|sm
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|id
 argument_list|)

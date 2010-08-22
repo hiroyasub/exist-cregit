@@ -1428,7 +1428,7 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|user
 argument_list|)
@@ -1452,7 +1452,7 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|user
 argument_list|)
@@ -1688,7 +1688,7 @@ literal|null
 condition|)
 name|ums
 operator|.
-name|removeUser
+name|removeAccount
 argument_list|(
 name|test1
 argument_list|)
@@ -1711,7 +1711,7 @@ literal|null
 condition|)
 name|ums
 operator|.
-name|removeUser
+name|removeAccount
 argument_list|(
 name|test2
 argument_list|)

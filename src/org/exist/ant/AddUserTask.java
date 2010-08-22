@@ -222,7 +222,7 @@ argument_list|)
 expr_stmt|;
 name|service
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|usr
 argument_list|)

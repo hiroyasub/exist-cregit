@@ -557,7 +557,7 @@ block|{
 return|return
 name|service
 operator|.
-name|getUsers
+name|getAccounts
 argument_list|()
 return|;
 block|}

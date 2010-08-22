@@ -3002,7 +3002,7 @@ argument_list|)
 expr_stmt|;
 name|mgmt
 operator|.
-name|updateUser
+name|updateAccount
 argument_list|(
 name|dba
 argument_list|)

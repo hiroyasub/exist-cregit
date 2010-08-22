@@ -5984,7 +5984,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|name
 argument_list|)
@@ -6255,7 +6255,7 @@ try|try
 block|{
 name|manager
 operator|.
-name|setUser
+name|addAccount
 argument_list|(
 name|u
 argument_list|)
@@ -6473,7 +6473,7 @@ try|try
 block|{
 name|manager
 operator|.
-name|deleteUser
+name|deleteAccount
 argument_list|(
 name|name
 argument_list|)

@@ -4936,7 +4936,7 @@ expr_stmt|;
 block|}
 name|mgtService
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|user
 argument_list|)
@@ -5016,7 +5016,7 @@ index|[]
 init|=
 name|mgtService
 operator|.
-name|getUsers
+name|getAccounts
 argument_list|()
 decl_stmt|;
 name|System
@@ -5310,7 +5310,7 @@ argument_list|)
 expr_stmt|;
 name|mgtService
 operator|.
-name|updateUser
+name|updateAccount
 argument_list|(
 name|user
 argument_list|)

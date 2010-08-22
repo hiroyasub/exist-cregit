@@ -133,7 +133,7 @@ condition|)
 block|{
 name|service
 operator|.
-name|removeUser
+name|removeAccount
 argument_list|(
 name|u
 argument_list|)

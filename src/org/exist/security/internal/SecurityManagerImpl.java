@@ -1455,7 +1455,7 @@ block|}
 specifier|public
 specifier|synchronized
 name|void
-name|deleteRole
+name|deleteGroup
 parameter_list|(
 name|String
 name|name
@@ -1476,7 +1476,7 @@ block|}
 specifier|public
 specifier|synchronized
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|String
 name|name
@@ -1486,7 +1486,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
-name|deleteUser
+name|deleteAccount
 argument_list|(
 name|getAccount
 argument_list|(
@@ -1498,7 +1498,7 @@ block|}
 specifier|public
 specifier|synchronized
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|Account
 name|user
@@ -1579,7 +1579,7 @@ specifier|public
 specifier|final
 specifier|synchronized
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|int
 name|id
@@ -1749,7 +1749,7 @@ block|}
 specifier|public
 specifier|synchronized
 name|boolean
-name|hasUser
+name|hasAccount
 parameter_list|(
 name|String
 name|name
@@ -1780,27 +1780,8 @@ return|return
 literal|false
 return|;
 block|}
-specifier|private
-specifier|synchronized
-name|void
-name|save
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"storing acl file"
-argument_list|)
-expr_stmt|;
+comment|//	private synchronized void save(DBBroker broker, Txn transaction) throws EXistException {
+comment|//		LOG.debug("storing acl file");
 comment|//		StringBuffer buf = new StringBuffer();
 comment|//        buf.append("<!-- Central user configuration. Editing this document will cause the security " +
 comment|//                "to reload and update its internal database. Please handle with care! -->");
@@ -1855,29 +1836,9 @@ comment|//		}
 comment|//
 comment|//		broker.flush();
 comment|//		broker.sync(Sync.MAJOR_SYNC);
-block|}
-specifier|public
-specifier|synchronized
-name|void
-name|setUser
-parameter_list|(
-name|Account
-name|user
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-throws|,
-name|EXistException
-throws|,
-name|ConfigurationException
-block|{
-name|defaultRealm
-operator|.
-name|addAccount
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
+comment|//	}
+comment|//	public synchronized void addAccount(Account account) throws PermissionDeniedException, EXistException, ConfigurationException {
+comment|//		 defaultRealm.addAccount(account);
 comment|//		if (user.getUID()< 0)
 comment|//			user.setUID(++nextUserId);
 comment|//		users.put(user.getUID(), user);
@@ -1909,7 +1870,7 @@ comment|//			LOG.debug("error while creating home collection", e);
 comment|//		} finally {
 comment|//			pool.release(broker);
 comment|//		}
-block|}
+comment|//	}
 specifier|private
 name|void
 name|createUserHome
@@ -2287,7 +2248,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 specifier|final
 specifier|synchronized
 name|Account
@@ -2394,10 +2355,7 @@ literal|"The realm id = '"
 operator|+
 name|account
 operator|.
-name|getRealm
-argument_list|()
-operator|.
-name|getId
+name|getRealmId
 argument_list|()
 operator|+
 literal|"' not found."
@@ -2409,7 +2367,7 @@ init|=
 name|getNextAccoutId
 argument_list|()
 decl_stmt|;
-name|Account
+name|AccountImpl
 name|new_account
 init|=
 operator|new
@@ -2439,15 +2397,10 @@ name|new_account
 argument_list|)
 expr_stmt|;
 comment|//XXX: one transaction?
-name|configuration
-operator|.
 name|save
 argument_list|()
 expr_stmt|;
 name|new_account
-operator|.
-name|getConfiguration
-argument_list|()
 operator|.
 name|save
 argument_list|()
@@ -2460,6 +2413,27 @@ expr_stmt|;
 return|return
 name|account
 return|;
+block|}
+specifier|protected
+name|void
+name|save
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
+if|if
+condition|(
+name|configuration
+operator|!=
+literal|null
+condition|)
+name|configuration
+operator|.
+name|save
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override

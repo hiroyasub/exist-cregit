@@ -221,7 +221,7 @@ block|}
 comment|/** 	 *  Add a new user account 	 * 	 *@param  user                The user to be added 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
-name|addUser
+name|addAccount
 parameter_list|(
 name|Account
 name|user
@@ -339,7 +339,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"setUser"
+literal|"addAccount"
 argument_list|,
 name|params
 argument_list|)
@@ -2671,7 +2671,7 @@ comment|/** 	 *  Get a list of all users currently defined 	 * 	 *@return       
 specifier|public
 name|Account
 index|[]
-name|getUsers
+name|getAccounts
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -2693,7 +2693,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"getUsers"
+literal|"getAccounts"
 argument_list|,
 operator|new
 name|ArrayList
@@ -3044,7 +3044,7 @@ block|}
 comment|/** 	 *  Remove user. 	 * 	 *@param  u   User 	 *@exception  XMLDBException 	 */
 specifier|public
 name|void
-name|removeUser
+name|removeAccount
 parameter_list|(
 name|Account
 name|u
@@ -3086,7 +3086,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"removeUser"
+literal|"removeAccount"
 argument_list|,
 name|params
 argument_list|)
@@ -3229,7 +3229,7 @@ block|}
 comment|/** 	 *  Update the specified user 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
-name|updateUser
+name|updateAccount
 parameter_list|(
 name|Account
 name|user
@@ -3377,7 +3377,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  Update the specified user without update user's password 	 * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/** 	 * Update the specified account without update user's password 	 * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|addUserGroup
@@ -3457,7 +3457,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"setUser"
+literal|"updateAccount"
 argument_list|,
 name|params
 argument_list|)

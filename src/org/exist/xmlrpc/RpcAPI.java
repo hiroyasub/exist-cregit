@@ -1609,7 +1609,7 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 name|boolean
-name|addRole
+name|addGroup
 parameter_list|(
 name|String
 name|name

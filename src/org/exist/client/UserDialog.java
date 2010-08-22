@@ -2235,7 +2235,7 @@ try|try
 block|{
 name|service
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|user
 argument_list|)
@@ -2459,7 +2459,7 @@ try|try
 block|{
 name|service
 operator|.
-name|updateUser
+name|updateAccount
 argument_list|(
 name|user
 argument_list|)
@@ -2610,7 +2610,7 @@ try|try
 block|{
 name|service
 operator|.
-name|removeUser
+name|removeAccount
 argument_list|(
 name|user
 argument_list|)
@@ -2884,7 +2884,7 @@ name|users
 operator|=
 name|service
 operator|.
-name|getUsers
+name|getAccounts
 argument_list|()
 expr_stmt|;
 name|fireTableDataChanged

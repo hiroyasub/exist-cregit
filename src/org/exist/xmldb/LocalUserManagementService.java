@@ -314,7 +314,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|addUser
+name|addAccount
 parameter_list|(
 name|Account
 name|u
@@ -361,7 +361,7 @@ if|if
 condition|(
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|u
 operator|.
@@ -391,7 +391,7 @@ try|try
 block|{
 name|manager
 operator|.
-name|setUser
+name|addAccount
 argument_list|(
 name|u
 argument_list|)
@@ -426,6 +426,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
@@ -509,14 +514,14 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"role "
+literal|"group '"
 operator|+
 name|group
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" exists"
+literal|"' exists"
 argument_list|)
 throw|;
 try|try
@@ -558,6 +563,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
@@ -2328,7 +2338,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|u
 operator|.
@@ -2608,7 +2618,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|u
 operator|.
@@ -4129,7 +4139,7 @@ block|}
 specifier|public
 name|Account
 index|[]
-name|getUsers
+name|getAccounts
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -4304,7 +4314,7 @@ return|;
 block|}
 specifier|public
 name|void
-name|removeUser
+name|removeAccount
 parameter_list|(
 name|Account
 name|u
@@ -4351,7 +4361,7 @@ try|try
 block|{
 name|manager
 operator|.
-name|deleteUser
+name|deleteAccount
 argument_list|(
 name|u
 argument_list|)
@@ -4455,7 +4465,7 @@ try|try
 block|{
 name|manager
 operator|.
-name|deleteRole
+name|deleteGroup
 argument_list|(
 name|role
 operator|.
@@ -4549,7 +4559,7 @@ block|{
 block|}
 specifier|public
 name|void
-name|updateUser
+name|updateAccount
 parameter_list|(
 name|Account
 name|u

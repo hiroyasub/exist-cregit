@@ -760,7 +760,7 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
-name|updateUser
+name|updateAccount
 argument_list|(
 name|user
 argument_list|)

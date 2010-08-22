@@ -510,7 +510,7 @@ name|userObj
 condition|)
 name|ums
 operator|.
-name|removeUser
+name|removeAccount
 argument_list|(
 name|userObj
 argument_list|)

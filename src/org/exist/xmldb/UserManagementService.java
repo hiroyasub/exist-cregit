@@ -268,24 +268,24 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Add a new user to the database      *      *@param  user                The feature to be added to the User attribute      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Add a new account to the database      *      *@param  account             The feature to be added to the Account      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
-name|addUser
+name|addAccount
 parameter_list|(
 name|Account
-name|user
+name|account
 parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Update existing user information      *      *@param  user                Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Update existing account information      *      *@param  account             Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
-name|updateUser
+name|updateAccount
 parameter_list|(
 name|Account
-name|user
+name|account
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -301,11 +301,11 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Retrieve a list of all existing users.      *      *@return                     The users value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Retrieve a list of all existing accounts.      *      *@return                     The accounts value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Account
 index|[]
-name|getUsers
+name|getAccounts
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -408,10 +408,10 @@ function_decl|;
 comment|/**      *  Delete a user from the database      *      *@param  user                User      *@exception  XMLDBException      */
 specifier|public
 name|void
-name|removeUser
+name|removeAccount
 parameter_list|(
 name|Account
-name|user
+name|account
 parameter_list|)
 throws|throws
 name|XMLDBException

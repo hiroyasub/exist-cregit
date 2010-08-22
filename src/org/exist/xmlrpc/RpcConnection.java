@@ -14151,7 +14151,7 @@ argument_list|)
 throw|;
 name|manager
 operator|.
-name|deleteUser
+name|deleteAccount
 argument_list|(
 name|name
 argument_list|)
@@ -18421,7 +18421,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|name
 argument_list|)
@@ -18631,7 +18631,7 @@ block|}
 block|}
 name|manager
 operator|.
-name|setUser
+name|addAccount
 argument_list|(
 name|u
 argument_list|)
@@ -18852,7 +18852,7 @@ block|}
 block|}
 specifier|public
 name|boolean
-name|addRole
+name|addGroup
 parameter_list|(
 name|String
 name|name
@@ -18928,7 +18928,7 @@ block|}
 comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      */
 specifier|public
 name|boolean
-name|setUser
+name|updateAccount
 parameter_list|(
 name|String
 name|name
@@ -18963,7 +18963,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|name
 argument_list|)
@@ -19086,7 +19086,7 @@ block|}
 block|}
 name|manager
 operator|.
-name|setUser
+name|addAccount
 argument_list|(
 name|u
 argument_list|)
@@ -19098,7 +19098,7 @@ block|}
 comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      */
 specifier|public
 name|boolean
-name|setUser
+name|updateAccount
 parameter_list|(
 name|String
 name|name
@@ -19136,7 +19136,7 @@ condition|(
 operator|!
 name|manager
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|name
 argument_list|)
@@ -19258,7 +19258,7 @@ block|}
 block|}
 name|manager
 operator|.
-name|setUser
+name|addAccount
 argument_list|(
 name|u
 argument_list|)

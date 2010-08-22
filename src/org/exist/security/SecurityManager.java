@@ -215,22 +215,22 @@ name|getPDP
 parameter_list|()
 function_decl|;
 name|Account
-name|getUser
+name|getAccount
 parameter_list|(
 name|int
 name|id
 parameter_list|)
 function_decl|;
 name|boolean
-name|hasUser
+name|hasAccount
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 function_decl|;
 comment|// TODO: this should be addUser
-name|void
-name|setUser
+name|Account
+name|addAccount
 parameter_list|(
 name|Account
 name|user
@@ -243,7 +243,7 @@ throws|,
 name|ConfigurationException
 function_decl|;
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|String
 name|name
@@ -256,7 +256,7 @@ throws|,
 name|ConfigurationException
 function_decl|;
 name|void
-name|deleteUser
+name|deleteAccount
 parameter_list|(
 name|Account
 name|user
@@ -345,7 +345,7 @@ name|gid
 parameter_list|)
 function_decl|;
 name|void
-name|deleteRole
+name|deleteGroup
 parameter_list|(
 name|String
 name|name

@@ -120,7 +120,7 @@ name|users
 init|=
 name|service
 operator|.
-name|getUsers
+name|getAccounts
 argument_list|()
 decl_stmt|;
 if|if

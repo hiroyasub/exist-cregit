@@ -3316,7 +3316,7 @@ name|setOwner
 argument_list|(
 name|secman
 operator|.
-name|getUser
+name|getAccount
 argument_list|(
 name|uid
 argument_list|)

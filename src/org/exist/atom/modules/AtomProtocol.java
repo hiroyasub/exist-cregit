@@ -6750,7 +6750,7 @@ condition|(
 operator|!
 name|securityMan
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|owner
 argument_list|)
@@ -6972,7 +6972,7 @@ condition|(
 operator|!
 name|securityMan
 operator|.
-name|hasUser
+name|hasAccount
 argument_list|(
 name|owner
 argument_list|)

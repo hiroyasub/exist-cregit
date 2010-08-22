@@ -691,7 +691,7 @@ argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|addUser
+name|addAccount
 argument_list|(
 name|userObj
 argument_list|)
