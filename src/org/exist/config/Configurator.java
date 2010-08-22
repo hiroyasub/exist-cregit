@@ -247,6 +247,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|EXistException
@@ -554,6 +566,21 @@ specifier|public
 class|class
 name|Configurator
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|Configurator
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|protected
 specifier|static
 name|ConcurrentMap
@@ -1404,11 +1431,9 @@ name|confs
 control|)
 block|{
 block|}
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|warn
 argument_list|(
 literal|"!!!!!!!!!!! TODO: List as property filed !!!!!!!!!!! "
 argument_list|)
@@ -1447,11 +1472,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|warn
 argument_list|(
 literal|"skip unsupported configuration value type "
 operator|+
@@ -1549,11 +1572,9 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"configuration error: \n"
 operator|+
@@ -1591,11 +1612,9 @@ name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"security error: "
 operator|+
@@ -2351,7 +2370,25 @@ block|}
 block|}
 else|else
 block|{
-comment|//unknown type - skip
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"field '"
+operator|+
+name|field
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' have unsupported type ["
+operator|+
+name|typeName
+operator|+
+literal|"] - skiped"
+argument_list|)
+expr_stmt|;
+comment|//unsupported type - skip
 comment|//buf.append(field.get(instance));
 block|}
 block|}
@@ -2695,32 +2732,6 @@ return|;
 block|}
 block|}
 block|}
-else|else
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Document "
-operator|+
-name|document
-operator|+
-literal|" perms "
-operator|+
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|document
-operator|)
-operator|.
-name|getPermissions
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|document
@@ -2880,6 +2891,9 @@ argument_list|,
 name|collection
 argument_list|,
 name|uri
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -2980,13 +2994,18 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|info
 argument_list|(
-literal|"STORING CONFIGURATION url = "
+literal|"STORING CONFIGURATION collection = "
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|" document = "
 operator|+
 name|uri
 argument_list|)
