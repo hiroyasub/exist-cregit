@@ -2523,20 +2523,8 @@ block|}
 else|else
 block|{
 comment|//create& save configuration file
-name|broker
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|sync
-argument_list|(
-name|Sync
-operator|.
-name|MAJOR_SYNC
-argument_list|)
-expr_stmt|;
+comment|//				broker.flush();
+comment|//				broker.sync(Sync.MAJOR_SYNC);
 name|BrokerPool
 name|pool
 init|=
@@ -2878,20 +2866,8 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|broker
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|sync
-argument_list|(
-name|Sync
-operator|.
-name|MAJOR_SYNC
-argument_list|)
-expr_stmt|;
+comment|//			broker.flush();
+comment|//			broker.sync(Sync.MAJOR_SYNC);
 name|BrokerPool
 name|pool
 init|=
