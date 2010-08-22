@@ -589,18 +589,7 @@ argument_list|,
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
-name|usersByName
-operator|.
-name|put
-argument_list|(
-name|ACCOUNT_SYSTEM
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|ACCOUNT_SYSTEM
-argument_list|)
-expr_stmt|;
+comment|//usersByName.put(ACCOUNT_SYSTEM.getName(), ACCOUNT_SYSTEM);
 comment|//Administrator account
 name|AccountImpl
 name|ACCOUNT_ADMIN
@@ -873,6 +862,8 @@ operator|.
 name|beginTransaction
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|collectionRealm
@@ -947,6 +938,27 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|transact
+operator|.
+name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+comment|// LOG.debug("loading acl failed: " + e.getMessage());
+block|}
 block|}
 for|for
 control|(
@@ -1451,13 +1463,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
