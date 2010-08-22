@@ -1141,6 +1141,10 @@ comment|//ignore namespace declarations
 if|if
 condition|(
 operator|!
+literal|"xmlns"
+operator|.
+name|equals
+argument_list|(
 name|attrs
 operator|.
 name|item
@@ -1150,10 +1154,6 @@ argument_list|)
 operator|.
 name|getPrefix
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xmlns"
 argument_list|)
 condition|)
 name|properties
