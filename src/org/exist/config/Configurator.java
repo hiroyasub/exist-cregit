@@ -3075,6 +3075,13 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|doc
+operator|.
+name|setPermissions
+argument_list|(
+literal|0770
+argument_list|)
+expr_stmt|;
 name|collection
 operator|.
 name|store
@@ -3088,13 +3095,6 @@ argument_list|,
 name|data
 argument_list|,
 literal|false
-argument_list|)
-expr_stmt|;
-name|doc
-operator|.
-name|setPermissions
-argument_list|(
-literal|0770
 argument_list|)
 expr_stmt|;
 name|broker
