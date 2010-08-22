@@ -1492,11 +1492,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-name|Configurator
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 specifier|static
@@ -5467,6 +5462,11 @@ expr_stmt|;
 name|notificationService
 operator|=
 literal|null
+expr_stmt|;
+name|Configurator
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 block|}
