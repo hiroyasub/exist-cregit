@@ -8923,7 +8923,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -9091,7 +9091,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|>
-name|getUsers
+name|getAccounts
 parameter_list|()
 throws|throws
 name|EXistException
@@ -14111,7 +14111,7 @@ block|}
 comment|/**      * The method<code>removeUser</code>      *      * @param name a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
-name|removeUser
+name|removeAccount
 parameter_list|(
 name|String
 name|name
@@ -18364,7 +18364,7 @@ block|}
 comment|/**      * The method<code>setUser</code>      *      * @param name a<code>String</code> value      * @param passwd a<code>String</code> value      * @param passwdDigest a<code>String</code> value      * @param groups a<code>Vector</code> value      * @param home a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|boolean
-name|setUser
+name|addAccount
 parameter_list|(
 name|String
 name|name
@@ -24716,7 +24716,7 @@ return|;
 block|}
 specifier|public
 name|boolean
-name|setUser
+name|addAccount
 parameter_list|(
 name|String
 name|name
@@ -24739,7 +24739,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 return|return
-name|setUser
+name|addAccount
 argument_list|(
 name|name
 argument_list|,

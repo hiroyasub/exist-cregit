@@ -1511,7 +1511,7 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 name|boolean
-name|setUser
+name|addAccount
 parameter_list|(
 name|String
 name|name
@@ -1537,7 +1537,7 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 name|boolean
-name|setUser
+name|addAccount
 parameter_list|(
 name|String
 name|name
@@ -1746,7 +1746,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|getUser
+name|getAccount
 parameter_list|(
 name|String
 name|name
@@ -1765,7 +1765,7 @@ argument_list|,
 name|Object
 argument_list|>
 argument_list|>
-name|getUsers
+name|getAccounts
 parameter_list|()
 throws|throws
 name|EXistException
@@ -1773,7 +1773,7 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 name|boolean
-name|removeUser
+name|removeAccount
 parameter_list|(
 name|String
 name|name
