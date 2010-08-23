@@ -17,11 +17,11 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|exist
 operator|.
-name|IOException
+name|EXistException
 import|;
 end_import
 
@@ -31,7 +31,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
+name|config
+operator|.
+name|ConfigurationException
 import|;
 end_import
 
@@ -73,14 +75,14 @@ name|Group
 name|addGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
 throws|,
-name|IOException
+name|ConfigurationException
 function_decl|;
 specifier|public
 name|Group
@@ -95,7 +97,7 @@ name|boolean
 name|hasGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 function_decl|;
 specifier|public
@@ -111,24 +113,28 @@ name|boolean
 name|updateGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
+throws|,
+name|ConfigurationException
 function_decl|;
 specifier|public
 name|boolean
 name|deleteGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
+throws|,
+name|ConfigurationException
 function_decl|;
 block|}
 end_interface

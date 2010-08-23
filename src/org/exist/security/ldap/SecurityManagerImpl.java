@@ -373,6 +373,20 @@ name|exist
 operator|.
 name|security
 operator|.
+name|realm
+operator|.
+name|Realm
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|ExistPDP
@@ -3170,6 +3184,21 @@ specifier|public
 name|Configuration
 name|getConfiguration
 parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Realm
+name|getRealm
+parameter_list|(
+name|String
+name|iD
+parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return

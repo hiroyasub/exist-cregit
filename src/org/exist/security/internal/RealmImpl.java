@@ -1030,432 +1030,63 @@ name|collectionGroups
 argument_list|)
 expr_stmt|;
 block|}
+comment|//XXX: load others principals
 comment|//1.0 version
-name|Collection
-name|sysCollection
-init|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|SecurityManager
-operator|.
-name|SECURITY_COLLETION_URI
-argument_list|)
-decl_stmt|;
-name|Document
-name|acl
-init|=
-name|sysCollection
-operator|.
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|ACL_FILE_URI
-argument_list|)
-decl_stmt|;
-name|Element
-name|docElement
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|acl
-operator|!=
-literal|null
-condition|)
-name|docElement
-operator|=
-name|acl
-operator|.
-name|getDocumentElement
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|docElement
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// LOG.debug("loading acl");
-name|Element
-name|root
-init|=
-name|acl
-operator|.
-name|getDocumentElement
-argument_list|()
-decl_stmt|;
-name|Attr
-name|version
-init|=
-name|root
-operator|.
-name|getAttributeNode
-argument_list|(
-literal|"version"
-argument_list|)
-decl_stmt|;
-name|int
-name|major
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|minor
-init|=
-literal|0
-decl_stmt|;
-if|if
-condition|(
-name|version
-operator|!=
-literal|null
-condition|)
-block|{
-name|String
-index|[]
-name|numbers
-init|=
-name|version
-operator|.
-name|getValue
-argument_list|()
-operator|.
-name|split
-argument_list|(
-literal|"\\."
-argument_list|)
-decl_stmt|;
-name|major
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|numbers
-index|[
-literal|0
-index|]
-argument_list|)
-expr_stmt|;
-name|minor
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|numbers
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-name|NodeList
-name|nl
-init|=
-name|root
-operator|.
-name|getChildNodes
-argument_list|()
-decl_stmt|;
-name|Node
-name|node
-decl_stmt|;
-name|Element
-name|next
-decl_stmt|;
-name|Account
-name|account
-init|=
-literal|null
-decl_stmt|;
-name|Group
-name|group
-init|=
-literal|null
-decl_stmt|;
-name|NodeList
-name|ul
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nl
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|nl
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getNodeType
-argument_list|()
-operator|!=
-name|Node
-operator|.
-name|ELEMENT_NODE
-condition|)
-continue|continue;
-name|next
-operator|=
-operator|(
-name|Element
-operator|)
-name|nl
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|next
-operator|.
-name|getTagName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"users"
-argument_list|)
-condition|)
-block|{
-name|ul
-operator|=
-name|next
-operator|.
-name|getChildNodes
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|ul
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|node
-operator|=
-name|ul
-operator|.
-name|item
-argument_list|(
-name|j
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-operator|==
-name|Node
-operator|.
-name|ELEMENT_NODE
-operator|&&
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"user"
-argument_list|)
-condition|)
-block|{
-name|account
-operator|=
-name|AccountImpl
-operator|.
-name|createAccount
-argument_list|(
-name|this
-argument_list|,
-name|major
-argument_list|,
-name|minor
-argument_list|,
-operator|(
-name|Element
-operator|)
-name|node
-argument_list|)
-expr_stmt|;
-name|sm
-operator|.
-name|usersById
-operator|.
-name|put
-argument_list|(
-name|account
-operator|.
-name|getId
-argument_list|()
-argument_list|,
-name|account
-argument_list|)
-expr_stmt|;
-name|usersByName
-operator|.
-name|put
-argument_list|(
-name|account
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|account
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-if|else if
-condition|(
-name|next
-operator|.
-name|getTagName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"groups"
-argument_list|)
-condition|)
-block|{
-name|ul
-operator|=
-name|next
-operator|.
-name|getChildNodes
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|ul
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|node
-operator|=
-name|ul
-operator|.
-name|item
-argument_list|(
-name|j
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-operator|==
-name|Node
-operator|.
-name|ELEMENT_NODE
-operator|&&
-name|node
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"group"
-argument_list|)
-condition|)
-block|{
-name|group
-operator|=
-operator|new
-name|GroupImpl
-argument_list|(
-operator|(
-name|Element
-operator|)
-name|node
-argument_list|)
-expr_stmt|;
-name|sm
-operator|.
-name|groupsById
-operator|.
-name|put
-argument_list|(
-name|group
-operator|.
-name|getId
-argument_list|()
-argument_list|,
-name|group
-argument_list|)
-expr_stmt|;
-name|groupsByName
-operator|.
-name|put
-argument_list|(
-name|group
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|group
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-block|}
+comment|//			Collection sysCollection = broker.getCollection(SecurityManager.SECURITY_COLLETION_URI);
+comment|//			Document acl = sysCollection.getDocument(broker, ACL_FILE_URI);
+comment|//			Element docElement = null;
+comment|//			if (acl != null)
+comment|//				docElement = acl.getDocumentElement();
+comment|//
+comment|//			if (docElement != null) {
+comment|//				// LOG.debug("loading acl");
+comment|//				Element root = acl.getDocumentElement();
+comment|//				Attr version = root.getAttributeNode("version");
+comment|//				int major = 0;
+comment|//				int minor = 0;
+comment|//				if (version != null) {
+comment|//					String[] numbers = version.getValue().split("\\.");
+comment|//					major = Integer.parseInt(numbers[0]);
+comment|//					minor = Integer.parseInt(numbers[1]);
+comment|//				}
+comment|//				NodeList nl = root.getChildNodes();
+comment|//
+comment|//				Node node;
+comment|//				Element next;
+comment|//
+comment|//				Account account = null; Group group = null;
+comment|//				NodeList ul;
+comment|//
+comment|//				for (int i = 0; i< nl.getLength(); i++) {
+comment|//					if (nl.item(i).getNodeType() != Node.ELEMENT_NODE)
+comment|//						continue;
+comment|//					next = (Element) nl.item(i);
+comment|//					if (next.getTagName().equals("users")) {
+comment|//
+comment|//						ul = next.getChildNodes();
+comment|//						for (int j = 0; j< ul.getLength(); j++) {
+comment|//							node = ul.item(j);
+comment|//							if (node.getNodeType() == Node.ELEMENT_NODE
+comment|//&& node.getLocalName().equals("user")) {
+comment|//								account = AccountImpl.createAccount(this, major, minor, (Element) node);
+comment|//								sm.usersById.put(account.getId(), account);
+comment|//								usersByName.put(account.getName(), account);
+comment|//							}
+comment|//						}
+comment|//					} else if (next.getTagName().equals("groups")) {
+comment|//						ul = next.getChildNodes();
+comment|//						for (int j = 0; j< ul.getLength(); j++) {
+comment|//							node = ul.item(j);
+comment|//							if (node.getNodeType() == Node.ELEMENT_NODE
+comment|//&& node.getLocalName().equals("group")) {
+comment|//								group = new GroupImpl((Element) node);
+comment|//								sm.groupsById.put(group.getId(), group);
+comment|//								groupsByName.put(group.getName(), group);
+comment|//							}
+comment|//						}
+comment|//					}
+comment|//				}
+comment|//			}
 block|}
 catch|catch
 parameter_list|(
@@ -1683,8 +1314,6 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
-throws|,
-name|IOException
 block|{
 return|return
 name|addGroup
