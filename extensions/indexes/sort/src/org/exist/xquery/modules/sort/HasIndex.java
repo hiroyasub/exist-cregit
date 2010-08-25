@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -131,13 +135,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Look up a node in the sort index and return a number (&gt; 0) corresponding to the "
-operator|+
-literal|"position of that node in the ordered set which was created by a previous call to "
-operator|+
-literal|"the sort:create-index function. The function returns the empty sequence if the node "
-operator|+
-literal|"cannot be found in the index."
+literal|"Check if the sort index, $id, exists."
 argument_list|,
 operator|new
 name|SequenceType
@@ -171,9 +169,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A number&gt; 0 or the empty "
-operator|+
-literal|"sequence if the $node argument was empty or the node could not be found in the index."
+literal|"true() if the sort index, $id, exists, false() otherwise."
 argument_list|)
 argument_list|)
 decl_stmt|;
