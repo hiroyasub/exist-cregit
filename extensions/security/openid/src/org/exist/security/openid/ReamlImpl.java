@@ -19,16 +19,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collection
@@ -54,6 +44,18 @@ operator|.
 name|config
 operator|.
 name|ConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
 import|;
 end_import
 
@@ -102,18 +104,6 @@ operator|.
 name|security
 operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Account
 import|;
 end_import
 
@@ -303,8 +293,6 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|EXistException
-throws|,
-name|IOException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
