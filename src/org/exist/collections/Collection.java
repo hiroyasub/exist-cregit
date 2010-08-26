@@ -7602,25 +7602,9 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//System collection has no configuration
-if|if
-condition|(
-name|DBBroker
-operator|.
-name|SYSTEM_COLLECTION
-operator|.
-name|equals
-argument_list|(
-name|getURI
-argument_list|()
-operator|.
-name|getRawCollectionPath
-argument_list|()
-argument_list|)
-condition|)
-return|return
-literal|null
-return|;
+comment|//        //System collection has no configuration
+comment|//        if (DBBroker.SYSTEM_COLLECTION.equals(getURI().getRawCollectionPath()))
+comment|//            return null;
 name|CollectionConfigurationManager
 name|manager
 init|=
