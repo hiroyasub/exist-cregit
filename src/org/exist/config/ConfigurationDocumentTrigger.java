@@ -207,7 +207,9 @@ condition|)
 name|conf
 operator|.
 name|checkForUpdates
-argument_list|()
+argument_list|(
+name|document
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
