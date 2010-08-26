@@ -224,7 +224,6 @@ literal|null
 decl_stmt|;
 comment|//used for internal locking
 specifier|private
-specifier|final
 name|boolean
 name|accountLocked
 init|=
@@ -236,7 +235,6 @@ argument_list|(
 literal|"expired"
 argument_list|)
 specifier|private
-specifier|final
 name|boolean
 name|accountExpired
 init|=
@@ -244,7 +242,6 @@ literal|false
 decl_stmt|;
 comment|//	@ConfigurationFieldAsElement("credentials-expired")
 specifier|private
-specifier|final
 name|boolean
 name|credentialsExpired
 init|=
@@ -256,7 +253,6 @@ argument_list|(
 literal|"enabled"
 argument_list|)
 specifier|private
-specifier|final
 name|boolean
 name|enabled
 init|=
