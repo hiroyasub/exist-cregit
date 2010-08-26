@@ -211,6 +211,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|utils
+operator|.
+name|Utils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -1609,7 +1623,7 @@ name|boolean
 name|deleteAccount
 parameter_list|(
 name|Account
-name|user
+name|account
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -1618,7 +1632,7 @@ name|EXistException
 block|{
 if|if
 condition|(
-name|user
+name|account
 operator|==
 literal|null
 condition|)
@@ -1632,7 +1646,7 @@ name|usersById
 operator|.
 name|remove
 argument_list|(
-name|user
+name|account
 operator|.
 name|getId
 argument_list|()
@@ -1642,7 +1656,7 @@ name|usersByName
 operator|.
 name|remove
 argument_list|(
-name|user
+name|account
 operator|.
 name|getName
 argument_list|()
@@ -1728,19 +1742,15 @@ name|boolean
 name|updateGroup
 parameter_list|(
 name|Group
-name|role
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"not implemented"
-argument_list|)
-throw|;
-comment|//TODO: code
+comment|//nothing to do: the name or id can't be changed
+return|return
+literal|false
+return|;
 block|}
 specifier|public
 specifier|synchronized

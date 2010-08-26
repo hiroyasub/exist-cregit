@@ -201,18 +201,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|PermissionDeniedException
 import|;
 end_import
@@ -250,18 +238,6 @@ operator|.
 name|security
 operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UnixStylePermission
 import|;
 end_import
 
@@ -399,68 +375,12 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Attr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
 comment|/**  * SecurityManager is responsible for managing users and groups.  *   * There's only one SecurityManager for each database instance, which  * may be obtained by {@link BrokerPool#getSecurityManager()}.  *   * Users and groups are stored in the system collection, in document  * users.xml. While it is possible to edit this file by hand, it  * may lead to unexpected results, since SecurityManager reads   * users.xml only during database startup and shutdown.  */
+end_comment
+
+begin_comment
+comment|//<!-- Central user configuration. Editing this document will cause the security to reload and update its internal database. Please handle with care! -->
 end_comment
 
 begin_class
@@ -610,12 +530,6 @@ specifier|private
 name|ExistPDP
 name|pdp
 decl_stmt|;
-comment|//default UnixStylePermission
-specifier|public
-specifier|final
-name|Permission
-name|DEFAULT_PERMISSION
-decl_stmt|;
 specifier|private
 name|RealmImpl
 name|defaultRealm
@@ -690,14 +604,6 @@ name|sm
 operator|=
 name|this
 expr_stmt|;
-name|DEFAULT_PERMISSION
-operator|=
-operator|new
-name|UnixStylePermission
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** 	 * Initialize the security manager. 	 *  	 * Checks if the file users.xml exists in the system collection of the database. 	 * If not, it is created with two default users: admin and guest. 	 *   	 * @param pool 	 * @param sysBroker 	 */
 specifier|public
@@ -721,31 +627,6 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
-name|String
-name|COLLECTION_CONFIG
-init|=
-literal|"<collection xmlns='http://exist-db.org/collection-config/1.0'>"
-operator|+
-literal|"<exist:triggers>"
-operator|+
-literal|"<exist:trigger event='store,remove' class='org.exist.examples.triggers.ExampleTrigger'>"
-operator|+
-literal|"</exist:trigger>"
-operator|+
-literal|"</exist:triggers>"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
-literal|"<create path=\"//user/@uid\" type=\"xs:integer\"/>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
 name|TransactionManager
 name|transaction
 init|=
@@ -827,8 +708,6 @@ argument_list|,
 name|systemCollection
 argument_list|)
 expr_stmt|;
-comment|//				CollectionConfigurationManager mgr = pool.getConfigurationManager();
-comment|//		        mgr.addConfiguration(txn, broker, systemCollection, COLLECTION_CONFIG);
 name|transaction
 operator|.
 name|commit
@@ -868,248 +747,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-name|Document
-name|config
-init|=
-name|systemCollection
-operator|.
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|ACL_FILE_URI
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|config
-operator|!=
-literal|null
-condition|)
-block|{
-name|Element
-name|element
-init|=
-name|config
-operator|.
-name|getDocumentElement
-argument_list|()
-decl_stmt|;
-name|Attr
-name|version
-init|=
-name|element
-operator|.
-name|getAttributeNode
-argument_list|(
-literal|"version"
-argument_list|)
-decl_stmt|;
-name|int
-name|major
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|minor
-init|=
-literal|0
-decl_stmt|;
-if|if
-condition|(
-name|version
-operator|!=
-literal|null
-condition|)
-block|{
-name|String
-index|[]
-name|numbers
-init|=
-name|version
-operator|.
-name|getValue
-argument_list|()
-operator|.
-name|split
-argument_list|(
-literal|"\\."
-argument_list|)
-decl_stmt|;
-name|major
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|numbers
-index|[
-literal|0
-index|]
-argument_list|)
-expr_stmt|;
-name|minor
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|numbers
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-comment|//check version
-comment|//load last account& role id
-name|NodeList
-name|nl
-init|=
-name|element
-operator|.
-name|getChildNodes
-argument_list|()
-decl_stmt|;
-name|Element
-name|next
-decl_stmt|;
-name|String
-name|lastId
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nl
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|nl
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getNodeType
-argument_list|()
-operator|!=
-name|Node
-operator|.
-name|ELEMENT_NODE
-condition|)
-continue|continue;
-name|next
-operator|=
-operator|(
-name|Element
-operator|)
-name|nl
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|next
-operator|.
-name|getTagName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"users"
-argument_list|)
-condition|)
-block|{
-name|lastId
-operator|=
-name|next
-operator|.
-name|getAttribute
-argument_list|(
-literal|"last-id"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|lastUserId
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|lastId
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-block|}
-block|}
-if|else if
-condition|(
-name|next
-operator|.
-name|getTagName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"groups"
-argument_list|)
-condition|)
-block|{
-name|lastId
-operator|=
-name|next
-operator|.
-name|getAttribute
-argument_list|(
-literal|"last-id"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|lastGroupId
-operator|=
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|lastId
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NumberFormatException
-name|e
-parameter_list|)
-block|{
-block|}
-block|}
-block|}
 block|}
 try|try
 block|{
@@ -1171,8 +808,6 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
-comment|//				CollectionConfigurationManager mgr = pool.getConfigurationManager();
-comment|//		        mgr.addConfiguration(txn, broker, collection, COLLECTION_CONFIG);
 name|transaction
 operator|.
 name|commit
@@ -1256,116 +891,6 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|//
-comment|//		Element docElement = null;
-comment|//		if (new_config != null)
-comment|//			docElement = new_config.getDocumentElement();
-comment|//		if (docElement == null) {
-comment|//			_save();
-comment|//		} else {
-comment|//
-comment|//		}
-comment|//       TransactionManager transact = pool.getTransactionManager();
-comment|//       Txn txn = null;
-comment|//       DBBroker broker = sysBroker;
-comment|//       try {
-comment|//          Collection sysCollection = broker.getCollection(XmldbURI.SYSTEM_COLLECTION_URI);
-comment|//          if (sysCollection == null) {
-comment|//             txn = transact.beginTransaction();
-comment|//             sysCollection = broker.getOrCreateCollection(txn, XmldbURI.SYSTEM_COLLECTION_URI);
-comment|//              if (sysCollection == null)
-comment|//                return;
-comment|//             sysCollection.setPermissions(0770);
-comment|//             broker.saveCollection(txn, sysCollection);
-comment|//             transact.commit(txn);
-comment|//          }
-comment|//          Document acl = sysCollection.getDocument(broker, ACL_FILE_URI);
-comment|//          Element docElement = null;
-comment|//          if (acl != null)
-comment|//             docElement = acl.getDocumentElement();
-comment|//          if (docElement == null) {
-comment|//             LOG.debug("creating system users");
-comment|//             UserImpl user = new UserImpl(DBA_USER, "");
-comment|//             user.addGroup(DBA_GROUP);
-comment|//             user.setUID(++nextUserId);
-comment|//             users.put(user.getUID(), user);
-comment|//             user = new UserImpl(GUEST_USER, GUEST_USER, GUEST_GROUP);
-comment|//             user.setUID(++nextUserId);
-comment|//             users.put(user.getUID(), user);
-comment|//             newGroup(DBA_GROUP);
-comment|//             newGroup(GUEST_GROUP);
-comment|//             txn = transact.beginTransaction();
-comment|//             save(broker, txn);
-comment|//             transact.commit(txn);
-comment|//          } else {
-comment|//             LOG.debug("loading acl");
-comment|//             Element root = acl.getDocumentElement();
-comment|//             Attr version = root.getAttributeNode("version");
-comment|//             int major = 0;
-comment|//             int minor = 0;
-comment|//             if (version!=null) {
-comment|//                String [] numbers = version.getValue().split("\\.");
-comment|//                major = Integer.parseInt(numbers[0]);
-comment|//                minor = Integer.parseInt(numbers[1]);
-comment|//             }
-comment|//             NodeList nl = root.getChildNodes();
-comment|//             Node node;
-comment|//             Element next;
-comment|//             User user;
-comment|//             NodeList ul;
-comment|//             String lastId;
-comment|//             Group group;
-comment|//             for (int i = 0; i< nl.getLength(); i++) {
-comment|//                if(nl.item(i).getNodeType() != Node.ELEMENT_NODE)
-comment|//                   continue;
-comment|//                next = (Element) nl.item(i);
-comment|//                if (next.getTagName().equals("users")) {
-comment|//                   lastId = next.getAttribute("last-id");
-comment|//                   try {
-comment|//                      nextUserId = Integer.parseInt(lastId);
-comment|//                   } catch (NumberFormatException e) {
-comment|//                   }
-comment|//                   ul = next.getChildNodes();
-comment|//                   for (int j = 0; j< ul.getLength(); j++) {
-comment|//                      node = ul.item(j);
-comment|//                      if(node.getNodeType() == Node.ELEMENT_NODE&&
-comment|//                              node.getLocalName().equals("user")) {
-comment|//                         user = new UserImpl(major,minor,(Element)node);
-comment|//                         users.put(user.getUID(), user);
-comment|//                      }
-comment|//                   }
-comment|//                } else if (next.getTagName().equals("groups")) {
-comment|//                   lastId = next.getAttribute("last-id");
-comment|//                   try {
-comment|//                      nextGroupId = Integer.parseInt(lastId);
-comment|//                   } catch (NumberFormatException e) {
-comment|//                   }
-comment|//                   ul = next.getChildNodes();
-comment|//                   for (int j = 0; j< ul.getLength(); j++) {
-comment|//                      node = ul.item(j);
-comment|//                      if(node.getNodeType() == Node.ELEMENT_NODE&&
-comment|//                              node.getLocalName().equals("group")) {
-comment|//                         group = new GroupImpl((Element)node);
-comment|//                         groups.put(group.getId(), group);
-comment|//                      }
-comment|//                   }
-comment|//                }
-comment|//             }
-comment|//          }
-comment|//       } catch (Exception e) {
-comment|//          transact.abort(txn);
-comment|//          e.printStackTrace();
-comment|//          LOG.debug("loading acl failed: " + e.getMessage());
-comment|//       }
-comment|//XXX: move to CollectionManagment
-comment|// read default collection and resource permissions
-comment|//		Integer defOpt = (Integer) broker.getConfiguration().getProperty(PROPERTY_PERMISSIONS_COLLECTIONS);
-comment|//		if (defOpt != null)
-comment|//			defaultResourcePermissions = defOpt.intValue();
-comment|//
-comment|//		defOpt = (Integer)broker.getConfiguration().getProperty(PROPERTY_PERMISSIONS_RESOURCES);
-comment|//		if (defOpt != null)
-comment|//			defaultResourcePermissions = defOpt.intValue();
 name|enableXACML
 operator|=
 operator|(

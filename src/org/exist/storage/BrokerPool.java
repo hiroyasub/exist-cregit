@@ -3163,7 +3163,7 @@ argument_list|(
 name|SIGNAL_RIDEABLE
 argument_list|)
 expr_stmt|;
-comment|//initialize configurations wantcher trigger
+comment|//initialize configurations watcher trigger
 name|Collection
 name|systemCollection
 init|=
