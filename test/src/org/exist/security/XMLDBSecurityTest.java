@@ -1929,6 +1929,15 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Shutdown standalone server..."
+argument_list|)
+expr_stmt|;
 name|server
 operator|.
 name|shutdown
