@@ -19,9 +19,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|Iterator
 import|;
 end_import
 
@@ -104,6 +104,18 @@ operator|.
 name|config
 operator|.
 name|ConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|Configurator
 import|;
 end_import
 
@@ -309,66 +321,6 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Attr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -516,6 +468,9 @@ literal|1
 argument_list|,
 literal|""
 argument_list|,
+operator|(
+name|String
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;
@@ -781,340 +736,13 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-name|XmldbURI
-name|realmCollectionURL
-init|=
-name|SecurityManager
+name|super
 operator|.
-name|SECURITY_COLLETION_URI
-operator|.
-name|append
-argument_list|(
-name|getId
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|BrokerPool
-name|pool
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-decl_stmt|;
-name|TransactionManager
-name|transact
-init|=
-name|pool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|Txn
-name|txn
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|collectionRealm
-operator|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|realmCollectionURL
-argument_list|)
-expr_stmt|;
-name|collectionAccounts
-operator|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|realmCollectionURL
-operator|.
-name|append
-argument_list|(
-literal|"accounts"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|collectionGroups
-operator|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|realmCollectionURL
-operator|.
-name|append
-argument_list|(
-literal|"groups"
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|collectionRealm
-operator|==
-literal|null
-operator|||
-name|collectionAccounts
-operator|==
-literal|null
-operator|||
-name|collectionGroups
-operator|==
-literal|null
-condition|)
-block|{
-name|txn
-operator|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
-expr_stmt|;
-try|try
-block|{
-if|if
-condition|(
-name|collectionRealm
-operator|==
-literal|null
-condition|)
-name|collectionRealm
-operator|=
-name|Utils
-operator|.
-name|createCollection
+name|startUp
 argument_list|(
 name|broker
-argument_list|,
-name|txn
-argument_list|,
-name|realmCollectionURL
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|collectionAccounts
-operator|==
-literal|null
-condition|)
-name|collectionAccounts
-operator|=
-name|Utils
-operator|.
-name|createCollection
-argument_list|(
-name|broker
-argument_list|,
-name|txn
-argument_list|,
-name|realmCollectionURL
-operator|.
-name|append
-argument_list|(
-literal|"accounts"
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|collectionGroups
-operator|==
-literal|null
-condition|)
-name|collectionGroups
-operator|=
-name|Utils
-operator|.
-name|createCollection
-argument_list|(
-name|broker
-argument_list|,
-name|txn
-argument_list|,
-name|realmCollectionURL
-operator|.
-name|append
-argument_list|(
-literal|"groups"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|transact
-operator|.
-name|commit
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-comment|// LOG.debug("loading acl failed: " + e.getMessage());
-block|}
-block|}
-for|for
-control|(
-name|Account
-name|account
-range|:
-name|usersByName
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|account
-operator|.
-name|getId
-argument_list|()
-operator|>
-literal|0
-condition|)
-operator|(
-operator|(
-name|AbstractPrincipal
-operator|)
-name|account
-operator|)
-operator|.
-name|setCollection
-argument_list|(
-name|broker
-argument_list|,
-name|collectionAccounts
-argument_list|)
-expr_stmt|;
-block|}
-for|for
-control|(
-name|Group
-name|group
-range|:
-name|groupsByName
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|group
-operator|.
-name|getId
-argument_list|()
-operator|>
-literal|0
-condition|)
-operator|(
-operator|(
-name|AbstractPrincipal
-operator|)
-name|group
-operator|)
-operator|.
-name|setCollection
-argument_list|(
-name|broker
-argument_list|,
-name|collectionGroups
-argument_list|)
-expr_stmt|;
-block|}
-comment|//XXX: load others principals
-comment|//1.0 version
-comment|//			Collection sysCollection = broker.getCollection(SecurityManager.SECURITY_COLLETION_URI);
-comment|//			Document acl = sysCollection.getDocument(broker, ACL_FILE_URI);
-comment|//			Element docElement = null;
-comment|//			if (acl != null)
-comment|//				docElement = acl.getDocumentElement();
-comment|//
-comment|//			if (docElement != null) {
-comment|//				// LOG.debug("loading acl");
-comment|//				Element root = acl.getDocumentElement();
-comment|//				Attr version = root.getAttributeNode("version");
-comment|//				int major = 0;
-comment|//				int minor = 0;
-comment|//				if (version != null) {
-comment|//					String[] numbers = version.getValue().split("\\.");
-comment|//					major = Integer.parseInt(numbers[0]);
-comment|//					minor = Integer.parseInt(numbers[1]);
-comment|//				}
-comment|//				NodeList nl = root.getChildNodes();
-comment|//
-comment|//				Node node;
-comment|//				Element next;
-comment|//
-comment|//				Account account = null; Group group = null;
-comment|//				NodeList ul;
-comment|//
-comment|//				for (int i = 0; i< nl.getLength(); i++) {
-comment|//					if (nl.item(i).getNodeType() != Node.ELEMENT_NODE)
-comment|//						continue;
-comment|//					next = (Element) nl.item(i);
-comment|//					if (next.getTagName().equals("users")) {
-comment|//
-comment|//						ul = next.getChildNodes();
-comment|//						for (int j = 0; j< ul.getLength(); j++) {
-comment|//							node = ul.item(j);
-comment|//							if (node.getNodeType() == Node.ELEMENT_NODE
-comment|//&& node.getLocalName().equals("user")) {
-comment|//								account = AccountImpl.createAccount(this, major, minor, (Element) node);
-comment|//								sm.usersById.put(account.getId(), account);
-comment|//								usersByName.put(account.getName(), account);
-comment|//							}
-comment|//						}
-comment|//					} else if (next.getTagName().equals("groups")) {
-comment|//						ul = next.getChildNodes();
-comment|//						for (int j = 0; j< ul.getLength(); j++) {
-comment|//							node = ul.item(j);
-comment|//							if (node.getNodeType() == Node.ELEMENT_NODE
-comment|//&& node.getLocalName().equals("group")) {
-comment|//								group = new GroupImpl((Element) node);
-comment|//								sm.groupsById.put(group.getId(), group);
-comment|//								groupsByName.put(group.getName(), group);
-comment|//							}
-comment|//						}
-comment|//					}
-comment|//				}
-comment|//			}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-comment|// LOG.debug("loading acl failed: " + e.getMessage());
-block|}
 block|}
 specifier|private
 name|Group
