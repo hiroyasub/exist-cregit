@@ -17676,13 +17676,6 @@ return|return
 literal|true
 return|;
 block|}
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -18285,13 +18278,6 @@ return|return
 literal|true
 return|;
 block|}
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|PermissionDeniedException
