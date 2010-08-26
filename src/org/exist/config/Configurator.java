@@ -1422,6 +1422,12 @@ argument_list|(
 name|property
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|confs
+operator|!=
+literal|null
+condition|)
 for|for
 control|(
 name|Configuration
