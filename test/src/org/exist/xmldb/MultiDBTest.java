@@ -14,22 +14,14 @@ package|;
 end_package
 
 begin_import
-import|import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Assert
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
+name|*
 import|;
 end_import
 
@@ -78,6 +70,26 @@ operator|.
 name|util
 operator|.
 name|SingleInstanceConfiguration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -205,29 +217,10 @@ begin_class
 specifier|public
 class|class
 name|MultiDBTest
-extends|extends
-name|TestCase
 block|{
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|MultiDBTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
+comment|//    public static void main(String[] args) {
+comment|//        TestRunner.run(MultiDBTest.class);
+comment|//    }
 specifier|private
 specifier|final
 specifier|static
@@ -252,6 +245,10 @@ literal|"</db-connection>"
 operator|+
 literal|"</exist>"
 decl_stmt|;
+annotation|@
+name|Ignore
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testStore
