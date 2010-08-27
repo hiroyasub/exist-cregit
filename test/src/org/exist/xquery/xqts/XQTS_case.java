@@ -448,6 +448,8 @@ name|moduleSources
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|loadTS
@@ -2236,42 +2238,43 @@ name|message
 operator|.
 name|append
 argument_list|(
-literal|"expected \n["
+literal|"expected \n"
 argument_list|)
 expr_stmt|;
 name|message
 operator|.
 name|append
 argument_list|(
+literal|"["
+operator|+
 name|exp
+operator|+
+literal|"]\n"
 argument_list|)
 expr_stmt|;
 name|message
 operator|.
 name|append
 argument_list|(
-literal|"]\n, get \n["
+literal|"got \n"
 argument_list|)
 expr_stmt|;
 name|message
 operator|.
 name|append
 argument_list|(
+literal|"["
+operator|+
 name|res
+operator|+
+literal|"]\n"
 argument_list|)
 expr_stmt|;
 name|message
 operator|.
 name|append
 argument_list|(
-literal|"]"
-argument_list|)
-expr_stmt|;
-name|message
-operator|.
-name|append
-argument_list|(
-literal|"\nsctipt:\n"
+literal|"script:\n"
 argument_list|)
 expr_stmt|;
 name|message
