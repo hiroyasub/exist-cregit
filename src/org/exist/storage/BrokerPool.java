@@ -1179,7 +1179,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to initialialize database instance '"
+literal|"Unable to initialize database instance '"
 operator|+
 name|instanceName
 operator|+
