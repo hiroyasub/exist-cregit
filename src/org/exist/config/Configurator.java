@@ -3339,6 +3339,11 @@ name|void
 name|clear
 parameter_list|()
 block|{
+synchronized|synchronized
+init|(
+name|hotConfigs
+init|)
+block|{
 for|for
 control|(
 name|Configuration
@@ -3371,6 +3376,12 @@ expr_stmt|;
 block|}
 block|}
 name|hotConfigs
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
+name|map
 operator|.
 name|clear
 argument_list|()
