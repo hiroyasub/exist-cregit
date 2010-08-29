@@ -139,7 +139,7 @@ block|{
 name|String
 name|config1
 init|=
-literal|"<instance "
+literal|"<instance xmlns='http://exist-db.org/Configuration' "
 operator|+
 literal|"valueString=\"a\" "
 operator|+
@@ -156,7 +156,7 @@ decl_stmt|;
 name|String
 name|config2
 init|=
-literal|"<config valueString=\"b\"><instance valueString=\"a\" valueInteger=\"5\"></instance></config>"
+literal|"<config xmlns='http://exist-db.org/Configuration' valueString=\"b\"><instance valueString=\"a\" valueInteger=\"5\"></instance></config>"
 decl_stmt|;
 annotation|@
 name|Test
