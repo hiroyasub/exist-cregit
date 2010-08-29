@@ -1076,7 +1076,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"admin"
+literal|"SYSTEM"
 argument_list|,
 name|folder
 operator|.
