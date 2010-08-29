@@ -2756,7 +2756,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testSetUser
+name|testAddAccount
 parameter_list|()
 block|{
 try|try
@@ -2857,7 +2857,7 @@ name|xmlrpc
 operator|.
 name|execute
 argument_list|(
-literal|"setUser"
+literal|"addAccount"
 argument_list|,
 name|params
 argument_list|)
