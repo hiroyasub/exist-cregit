@@ -860,7 +860,7 @@ block|}
 specifier|public
 specifier|static
 name|Method
-name|findSetMethod
+name|searchForSetMethod
 parameter_list|(
 name|Class
 argument_list|<
@@ -925,6 +925,13 @@ block|}
 catch|catch
 parameter_list|(
 name|SecurityException
+name|e
+parameter_list|)
+block|{
+block|}
+catch|catch
+parameter_list|(
+name|NoClassDefFoundError
 name|e
 parameter_list|)
 block|{
@@ -1520,7 +1527,7 @@ block|{
 name|Method
 name|method
 init|=
-name|findSetMethod
+name|searchForSetMethod
 argument_list|(
 name|instance
 operator|.
