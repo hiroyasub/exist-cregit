@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|cocoon
+operator|.
 name|source
 package|;
 end_package
@@ -112,6 +114,18 @@ operator|.
 name|output
 operator|.
 name|ByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|AbstractSource
 import|;
 end_import
 

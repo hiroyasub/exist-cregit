@@ -55,19 +55,9 @@ name|Logger
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|cluster
-operator|.
-name|cocoon
-operator|.
-name|ConsoleInfo
-import|;
-end_import
+begin_comment
+comment|//import org.exist.cluster.cocoon.ConsoleInfo;
+end_comment
 
 begin_import
 import|import
@@ -2479,54 +2469,16 @@ argument_list|()
 block|}
 return|;
 block|}
-specifier|public
-name|ConsoleInfo
-name|getConsoleProperties
-parameter_list|()
-throws|throws
-name|ClusterException
-block|{
-name|String
-name|port
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|port
-operator|==
-literal|null
-condition|)
-name|port
-operator|=
-literal|"8080"
-expr_stmt|;
-comment|//TODO ... verify how to retrieve default port
-name|ConsoleInfo
-name|info
-init|=
-operator|new
-name|ConsoleInfo
-argument_list|()
-decl_stmt|;
-name|info
-operator|.
-name|setProperty
-argument_list|(
-literal|"port"
-argument_list|,
-name|port
-argument_list|)
-expr_stmt|;
-return|return
-name|info
-return|;
-block|}
+comment|//    public ConsoleInfo getConsoleProperties() throws ClusterException{
+comment|//        String port = System.getProperty("jetty.port");
+comment|//
+comment|//        if(port==null)
+comment|//            port = "8080";   //TODO ... verify how to retrieve default port
+comment|//
+comment|//        ConsoleInfo info = new ConsoleInfo();
+comment|//        info.setProperty("port",port);
+comment|//        return info;
+comment|//    }
 specifier|public
 name|void
 name|stop
