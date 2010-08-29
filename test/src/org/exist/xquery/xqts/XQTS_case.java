@@ -2238,7 +2238,14 @@ name|message
 operator|.
 name|append
 argument_list|(
-literal|"expected \n"
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|message
+operator|.
+name|append
+argument_list|(
+literal|"expected "
 argument_list|)
 expr_stmt|;
 name|message
@@ -2249,14 +2256,14 @@ literal|"["
 operator|+
 name|exp
 operator|+
-literal|"]\n"
+literal|"]"
 argument_list|)
 expr_stmt|;
 name|message
 operator|.
 name|append
 argument_list|(
-literal|"got \n"
+literal|" got "
 argument_list|)
 expr_stmt|;
 name|message
@@ -2291,7 +2298,14 @@ name|message
 operator|.
 name|append
 argument_list|(
-literal|"\ndata:\n"
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|message
+operator|.
+name|append
+argument_list|(
+literal|"data:\n"
 argument_list|)
 expr_stmt|;
 name|message
@@ -2431,7 +2445,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2491,7 +2505,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2551,7 +2565,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2611,7 +2625,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2710,7 +2724,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2777,7 +2791,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
@@ -2832,7 +2846,7 @@ literal|"expected error is "
 operator|+
 name|expectedError
 operator|+
-literal|", get "
+literal|", got "
 operator|+
 name|error
 operator|+
