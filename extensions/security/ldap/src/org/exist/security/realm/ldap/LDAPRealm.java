@@ -264,12 +264,6 @@ name|ldapContextFactory
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
-name|Configuration
-name|configuration
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|LDAPRealm
 parameter_list|(

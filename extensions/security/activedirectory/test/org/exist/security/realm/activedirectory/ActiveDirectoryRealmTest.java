@@ -141,15 +141,16 @@ specifier|static
 name|String
 name|config
 init|=
-literal|"<ActiveDirectory>"
+literal|"<ActiveDirectory xmlns='http://exist-db.org/Configuration'>"
 operator|+
-literal|"<context "
+literal|"<context>"
 operator|+
-literal|"		principalPattern='CN={0},OU=users,DC=localhost' "
+comment|//		"		principalPattern='CN={0},OU=users,DC=bnb,DC=bulungur,dc=nb' " +
+comment|//		"		searchBase='ou=users,dc=bnb,dc=bulungur,dc=nb' " +
+literal|"<url>ldap://bulungur.nb:389</url>"
 operator|+
-literal|"		searchBase='ou=users,dc=localhost' "
-operator|+
-literal|"		url='ldap://localhost:389'/>"
+comment|//		"<authentication>strong</authentication>" +
+literal|"</context>"
 operator|+
 literal|"</ActiveDirectory>"
 decl_stmt|;
@@ -237,9 +238,9 @@ name|realm
 operator|.
 name|authenticate
 argument_list|(
-literal|"HRA eXsit"
+literal|"accounter@bulungur"
 argument_list|,
-literal|"OUR_PASSWORD"
+literal|"password"
 argument_list|)
 expr_stmt|;
 block|}

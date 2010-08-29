@@ -163,7 +163,7 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationFieldAsAttribute
+name|ConfigurationFieldAsElement
 import|;
 end_import
 
@@ -206,6 +206,11 @@ name|SUN_CONNECTION_POOLING_PROPERTY
 init|=
 literal|"com.sun.jndi.ldap.connect.pool"
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsElement
+argument_list|(
+literal|"authentication"
+argument_list|)
 specifier|protected
 name|String
 name|authentication
@@ -213,7 +218,7 @@ init|=
 literal|"simple"
 decl_stmt|;
 annotation|@
-name|ConfigurationFieldAsAttribute
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"principalPattern"
 argument_list|)
@@ -228,7 +233,7 @@ name|MessageFormat
 name|principalPatternFormat
 decl_stmt|;
 annotation|@
-name|ConfigurationFieldAsAttribute
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"url"
 argument_list|)
@@ -382,7 +387,7 @@ name|Hashtable
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|env
 init|=
@@ -391,7 +396,7 @@ name|Hashtable
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -466,6 +471,8 @@ argument_list|,
 name|url
 argument_list|)
 expr_stmt|;
+comment|// the following is helpful in debugging errors
+comment|//env.put("com.sun.jndi.ldap.trace.ber", System.err);
 comment|// Only pool connections for system contexts
 if|if
 condition|(
