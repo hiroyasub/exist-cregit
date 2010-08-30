@@ -1203,6 +1203,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -2858,6 +2860,32 @@ literal|"Unable to get a geometry from the second node"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|srsName1
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a SRS for the first geometry"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|srsName2
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to get a SRS for the second geometry"
+argument_list|)
+throw|;
 comment|//Transform the second geometry in the SRS of the first one if necessary
 if|if
 condition|(
