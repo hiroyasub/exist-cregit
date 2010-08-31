@@ -69,18 +69,6 @@ name|exist
 operator|.
 name|config
 operator|.
-name|Configurable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
 name|Configuration
 import|;
 end_import
@@ -295,8 +283,6 @@ class|class
 name|RealmImpl
 extends|extends
 name|AbstractRealm
-implements|implements
-name|Configurable
 block|{
 specifier|public
 specifier|static
@@ -522,7 +508,18 @@ argument_list|,
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
-comment|//usersByName.put(ACCOUNT_SYSTEM.getName(), ACCOUNT_SYSTEM);
+name|usersByName
+operator|.
+name|put
+argument_list|(
+name|ACCOUNT_SYSTEM
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|ACCOUNT_SYSTEM
+argument_list|)
+expr_stmt|;
 comment|//Administrator account
 name|AccountImpl
 name|ACCOUNT_ADMIN
