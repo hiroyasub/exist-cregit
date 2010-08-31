@@ -368,9 +368,13 @@ name|group
 operator|!=
 literal|null
 condition|)
-name|ownerGroup
-operator|=
+name|setGroup
+argument_list|(
 name|group
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
@@ -402,7 +406,7 @@ name|Account
 name|account
 parameter_list|)
 block|{
-comment|// FIXME: assume guest identity if user gets lost due to a database corruption
+comment|//assume SYSTEM identity if user gets lost due to a database corruption
 if|if
 condition|(
 name|account
@@ -421,13 +425,14 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
-name|this
-operator|.
-name|owner
-operator|=
+name|setOwner
+argument_list|(
 name|account
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 expr_stmt|;
-comment|//this.ownerGroup = user.getPrimaryGroup();
 block|}
 comment|/**      *  Set the owner      *      *@param  name  The new owner value      */
 specifier|public
