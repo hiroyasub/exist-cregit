@@ -175,6 +175,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|SYSTEM
+init|=
+literal|"SYSTEM"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|DBA_GROUP
 init|=
 literal|"dba"

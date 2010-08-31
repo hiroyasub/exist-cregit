@@ -159,11 +159,11 @@ name|config
 init|=
 literal|"<LDAP>"
 operator|+
-literal|"<context "
+literal|"<context>"
 operator|+
-literal|"		principalPattern='cn={0},dc=local' "
+literal|"<principalPattern>cn={0},dc=local</principalPattern>"
 operator|+
-literal|"		url='ldap://localhost:389'/>"
+literal|"<url>ldap://localhost:389</url>"
 operator|+
 literal|"</LDAP>"
 decl_stmt|;
