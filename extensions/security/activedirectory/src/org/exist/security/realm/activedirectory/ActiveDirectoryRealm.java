@@ -19,11 +19,89 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|NamingEnumeration
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|naming
 operator|.
 name|NamingException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|directory
+operator|.
+name|Attribute
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|directory
+operator|.
+name|Attributes
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|directory
+operator|.
+name|SearchControls
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|naming
+operator|.
+name|directory
+operator|.
+name|SearchResult
 import|;
 end_import
 
@@ -344,22 +422,62 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-comment|//		String returnedAtts[] = { "sn", "givenName", "mail" };
-comment|//		String searchFilter = "(&(objectClass=user)(sAMAccountName=" + username + "))";
-comment|//
-comment|//		// Create the search controls
-comment|//		SearchControls searchCtls = new SearchControls();
-comment|//		searchCtls.setReturningAttributes(returnedAtts);
-comment|//
-comment|//		// Specify the search scope
-comment|//		searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-comment|//
+name|String
+name|returnedAtts
+index|[]
+init|=
+block|{
+literal|"sn"
+block|,
+literal|"givenName"
+block|,
+literal|"mail"
+block|}
+decl_stmt|;
+name|String
+name|searchFilter
+init|=
+literal|"(&(objectClass=user)(sAMAccountName="
+operator|+
+name|username
+operator|+
+literal|"))"
+decl_stmt|;
+comment|// Create the search controls
+name|SearchControls
+name|searchCtls
+init|=
+operator|new
+name|SearchControls
+argument_list|()
+decl_stmt|;
+name|searchCtls
+operator|.
+name|setReturningAttributes
+argument_list|(
+name|returnedAtts
+argument_list|)
+expr_stmt|;
+comment|// Specify the search scope
+name|searchCtls
+operator|.
+name|setSearchScope
+argument_list|(
+name|SearchControls
+operator|.
+name|SUBTREE_SCOPE
+argument_list|)
+expr_stmt|;
 name|LdapContext
 name|ctxGC
 init|=
 literal|null
 decl_stmt|;
-comment|//		boolean ldapUser = false;
+name|boolean
+name|ldapUser
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 name|ctxGC
@@ -380,23 +498,140 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Search objects in GC using filters
-comment|//			NamingEnumeration<SearchResult> answer = ctxGC.search(((ContextFactory) ensureContextFactory()).getSearchBase(), searchFilter, searchCtls);
-comment|//
-comment|//			while (answer.hasMoreElements()) {
-comment|//				SearchResult sr = answer.next();
-comment|//				Attributes attrs = sr.getAttributes();
-comment|//				Map<String, Object> amap = null;
-comment|//				if (attrs != null) {
-comment|//					amap = new HashMap<String, Object>();
-comment|//					NamingEnumeration<? extends Attribute> ne = attrs.getAll();
-comment|//					while (ne.hasMore()) {
-comment|//						Attribute attr = ne.next();
-comment|//						amap.put(attr.getID(), attr.get());
-comment|//						ldapUser = true;
-comment|//					}
-comment|//					ne.close();
-comment|//				}
-comment|//			}
+name|NamingEnumeration
+argument_list|<
+name|SearchResult
+argument_list|>
+name|answer
+init|=
+name|ctxGC
+operator|.
+name|search
+argument_list|(
+operator|(
+operator|(
+name|ContextFactory
+operator|)
+name|ensureContextFactory
+argument_list|()
+operator|)
+operator|.
+name|getSearchBase
+argument_list|()
+argument_list|,
+name|searchFilter
+argument_list|,
+name|searchCtls
+argument_list|)
+decl_stmt|;
+while|while
+condition|(
+name|answer
+operator|.
+name|hasMoreElements
+argument_list|()
+condition|)
+block|{
+name|SearchResult
+name|sr
+init|=
+name|answer
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|Attributes
+name|attrs
+init|=
+name|sr
+operator|.
+name|getAttributes
+argument_list|()
+decl_stmt|;
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|amap
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|attrs
+operator|!=
+literal|null
+condition|)
+block|{
+name|amap
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|NamingEnumeration
+argument_list|<
+name|?
+extends|extends
+name|Attribute
+argument_list|>
+name|ne
+init|=
+name|attrs
+operator|.
+name|getAll
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+name|ne
+operator|.
+name|hasMore
+argument_list|()
+condition|)
+block|{
+name|Attribute
+name|attr
+init|=
+name|ne
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+name|amap
+operator|.
+name|put
+argument_list|(
+name|attr
+operator|.
+name|getID
+argument_list|()
+argument_list|,
+name|attr
+operator|.
+name|get
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|ldapUser
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|ne
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -424,6 +659,11 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|ldapUser
+condition|)
+block|{
 try|try
 block|{
 name|AbstractAccount
@@ -489,6 +729,10 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class
