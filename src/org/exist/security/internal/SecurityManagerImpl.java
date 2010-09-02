@@ -1638,11 +1638,63 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_NOT_FOUND
 condition|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Realm '"
+operator|+
+name|realm
+operator|.
+name|getId
+argument_list|()
+operator|+
+literal|"' throw exception for account '"
+operator|+
+name|username
+operator|+
+literal|"'. ["
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 throw|throw
 name|e
 throw|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Account '"
+operator|+
+name|username
+operator|+
+literal|"' not found, throw error"
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|AuthenticationException
