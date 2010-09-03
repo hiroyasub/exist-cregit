@@ -15,6 +15,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -178,6 +192,13 @@ name|analyzerId
 init|=
 literal|null
 decl_stmt|;
+comment|// save Analyzer for later use in LuceneMatchListener
+specifier|private
+name|Analyzer
+name|analyzer
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 name|QName
 name|qname
@@ -313,6 +334,7 @@ argument_list|(
 name|ANALYZER_ID_ATTR
 argument_list|)
 decl_stmt|;
+comment|// save Analyzer for later use in LuceneMatchListener
 if|if
 condition|(
 name|id
@@ -327,14 +349,18 @@ operator|>
 literal|0
 condition|)
 block|{
-if|if
-condition|(
+name|analyzer
+operator|=
 name|analyzers
 operator|.
 name|getAnalyzerById
 argument_list|(
 name|id
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|analyzer
 operator|==
 literal|null
 condition|)
@@ -350,6 +376,16 @@ throw|;
 name|analyzerId
 operator|=
 name|id
+expr_stmt|;
+block|}
+else|else
+block|{
+name|analyzer
+operator|=
+name|analyzers
+operator|.
+name|getDefaultAnalyzer
+argument_list|()
 expr_stmt|;
 block|}
 name|String
@@ -629,6 +665,16 @@ name|getNextSibling
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+comment|// return saved Analyzer for use in LuceneMatchListener
+specifier|public
+name|Analyzer
+name|getAnalyzer
+parameter_list|()
+block|{
+return|return
+name|analyzer
+return|;
 block|}
 specifier|public
 name|String

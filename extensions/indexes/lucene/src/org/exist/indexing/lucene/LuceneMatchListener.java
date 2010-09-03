@@ -37,6 +37,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|Analyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|Token
 import|;
 end_import
@@ -1097,14 +1111,48 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Use Lucene's analyzer to tokenize the text and find matching query terms
-name|TokenStream
-name|tokenStream
+comment|// retrieve the Analyzer for the NodeProxy that was used for indexing and querying
+name|Analyzer
+name|analyzer
 init|=
+name|idxConf
+operator|.
+name|getAnalyzer
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|analyzer
+operator|==
+literal|null
+condition|)
+block|{
+comment|// otherwise use system default Lucene analyzer (from conf.xml) to tokenize the text and find matching query terms
+name|analyzer
+operator|=
 name|index
 operator|.
 name|getDefaultAnalyzer
 argument_list|()
+expr_stmt|;
+block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Analyzer: "
+operator|+
+name|analyzer
+operator|+
+literal|" for path: "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
+name|TokenStream
+name|tokenStream
+init|=
+name|analyzer
 operator|.
 name|tokenStream
 argument_list|(
