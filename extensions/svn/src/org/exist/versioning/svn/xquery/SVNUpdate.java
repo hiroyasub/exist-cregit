@@ -35,6 +35,34 @@ name|org
 operator|.
 name|exist
 operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
+name|WorkingCopy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|*
@@ -66,6 +94,20 @@ operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|IntegerValue
 import|;
 end_import
 
@@ -135,116 +177,14 @@ name|svn
 operator|.
 name|core
 operator|.
-name|SVNURL
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
-name|auth
-operator|.
-name|ISVNAuthenticationManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
-name|internal
-operator|.
-name|io
-operator|.
-name|dav
-operator|.
-name|DAVRepositoryFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
-name|internal
-operator|.
-name|io
-operator|.
-name|svn
-operator|.
-name|SVNRepositoryFactoryImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
-name|io
-operator|.
-name|SVNRepository
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
-name|io
-operator|.
-name|SVNRepositoryFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|tmatesoft
-operator|.
-name|svn
-operator|.
-name|core
-operator|.
 name|wc
 operator|.
-name|SVNWCUtil
+name|SVNRevision
 import|;
 end_import
 
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Apr 22, 2010  * Time: 9:48:14 AM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Updates a working copy (brings changes from the repository into the working copy). Like 'svn update PATH' command.  *    * @author<a href="mailto:amir.akhmedov@gmail.com">Amir Akhmedov</a>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class
@@ -277,7 +217,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Updates a resource from a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Updates a working copy (brings changes from the repository into the working copy). Like 'svn update PATH' command."
 argument_list|,
 operator|new
 name|SequenceType
@@ -286,23 +226,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"connection"
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The connection to a subversion repository"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource"
+literal|"url"
 argument_list|,
 name|Type
 operator|.
@@ -312,23 +236,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The path to the resource to be stored."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"revision"
-argument_list|,
-name|Type
-operator|.
-name|INTEGER
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_ONE
-argument_list|,
-literal|"The revision number to update to.  An empty value updates to the latest revision."
+literal|"a working copy entry that is to be updated"
 argument_list|)
 block|}
 argument_list|,
@@ -343,7 +251,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The commit information."
+literal|"revision to which revision was resolved"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -378,23 +286,75 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//        DAVRepositoryFactory.setup();
-comment|//        SVNRepositoryFactoryImpl.setup();
-comment|//        String uri = args[0].getStringValue();
-comment|//        try {
-comment|//            SVNRepository repo =
-comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));
-comment|//            ISVNAuthenticationManager authManager =
-comment|//                    SVNWCUtil.createDefaultAuthenticationManager(args[1].getStringValue(), args[2].getStringValue());
-comment|//            repo.setAuthenticationManager(authManager);
-comment|//
-comment|//        } catch (SVNException e) {
-comment|//            throw new XPathException(this, e.getMessage(), e);
-comment|//        }
+name|String
+name|uri
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+name|WorkingCopy
+name|wc
+init|=
+operator|new
+name|WorkingCopy
+argument_list|(
+literal|""
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+name|long
+name|update
+init|=
+operator|-
+literal|1
+decl_stmt|;
+try|try
+block|{
+name|update
+operator|=
+name|wc
+operator|.
+name|update
+argument_list|(
+operator|new
+name|Resource
+argument_list|(
+name|uri
+argument_list|)
+argument_list|,
+name|SVNRevision
+operator|.
+name|HEAD
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SVNException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 return|return
-literal|null
+operator|new
+name|IntegerValue
+argument_list|(
+name|update
+argument_list|)
 return|;
-comment|//To change body of implemented methods use File | Settings | File Templates.
 block|}
 block|}
 end_class
