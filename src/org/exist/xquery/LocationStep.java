@@ -2502,6 +2502,10 @@ return|;
 block|}
 if|if
 condition|(
+operator|!
+name|hasPreloadedData
+argument_list|()
+operator|&&
 name|test
 operator|.
 name|isWildcardTest
@@ -2946,10 +2950,16 @@ comment|// TODO : understand this. I guess comments should be treated in a
 comment|// similar way ? -pb
 if|if
 condition|(
+operator|(
+operator|!
+name|hasPreloadedData
+argument_list|()
+operator|&&
 name|test
 operator|.
 name|isWildcardTest
 argument_list|()
+operator|)
 operator|||
 name|test
 operator|.
@@ -3377,10 +3387,16 @@ comment|// TODO : understand this. I guess comments should be treated in a
 comment|// similar way ? -pb
 if|if
 condition|(
+operator|(
+operator|!
+name|hasPreloadedData
+argument_list|()
+operator|&&
 name|test
 operator|.
 name|isWildcardTest
 argument_list|()
+operator|)
 operator|||
 name|test
 operator|.

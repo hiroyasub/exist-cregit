@@ -1483,6 +1483,12 @@ name|axis
 operator|==
 name|Constants
 operator|.
+name|SELF_AXIS
+operator|||
+name|axis
+operator|==
+name|Constants
+operator|.
 name|DESCENDANT_AXIS
 operator|||
 name|axis
