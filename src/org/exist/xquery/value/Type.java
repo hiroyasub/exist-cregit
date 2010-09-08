@@ -1781,7 +1781,7 @@ operator|=
 name|supertype
 expr_stmt|;
 block|}
-comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype 	 */
+comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype          *          * @throws IllegalArgumentException When the type is invalid 	 */
 specifier|public
 specifier|final
 specifier|static
