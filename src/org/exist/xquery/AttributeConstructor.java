@@ -707,6 +707,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeConstructor#resetState() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
