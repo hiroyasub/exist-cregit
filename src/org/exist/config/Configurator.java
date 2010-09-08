@@ -2302,7 +2302,7 @@ literal|"Class ["
 operator|+
 name|clazzName
 operator|+
-literal|"] consctuctor not found, skip instance creation."
+literal|"] constructor not found, skip instance creation."
 argument_list|)
 expr_stmt|;
 continue|continue;
