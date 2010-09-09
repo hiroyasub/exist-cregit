@@ -475,6 +475,7 @@ name|XMLDBException
 function_decl|;
 annotation|@
 name|Deprecated
+comment|//it'll removed after 1.6
 specifier|public
 name|void
 name|addUser
@@ -487,6 +488,7 @@ name|XMLDBException
 function_decl|;
 annotation|@
 name|Deprecated
+comment|//it'll removed after 1.6
 specifier|public
 name|void
 name|updateUser
@@ -499,6 +501,7 @@ name|XMLDBException
 function_decl|;
 annotation|@
 name|Deprecated
+comment|//it'll removed after 1.6
 specifier|public
 name|User
 name|getUser
@@ -511,6 +514,7 @@ name|XMLDBException
 function_decl|;
 annotation|@
 name|Deprecated
+comment|//it'll removed after 1.6
 specifier|public
 name|User
 index|[]
@@ -521,12 +525,29 @@ name|XMLDBException
 function_decl|;
 annotation|@
 name|Deprecated
+comment|//it'll removed after 1.6
 specifier|public
 name|void
 name|removeUser
 parameter_list|(
 name|User
 name|user
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+annotation|@
+name|Deprecated
+comment|//it'll removed after 1.6
+specifier|public
+name|void
+name|lockResource
+parameter_list|(
+name|Resource
+name|res
+parameter_list|,
+name|User
+name|u
 parameter_list|)
 throws|throws
 name|XMLDBException
