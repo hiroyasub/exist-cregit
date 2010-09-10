@@ -121,31 +121,39 @@ name|DATE
 init|=
 literal|7
 decl_stmt|;
-comment|/** 	 * Indicates that the node has a qname-value index defined 	 * on it. 	 */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DECIMAL
+init|=
+literal|8
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
 name|int
 name|QNAME_INDEX
 init|=
-literal|8
+literal|0x10
 decl_stmt|;
+comment|// Indicates that the node has a qname-value index defined on it.
 comment|/** 	 * Bit mask to extract the type of the range index. 	 */
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|int
 name|RANGE_INDEX_MASK
 init|=
-literal|0x07
+literal|0x0F
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|int
 name|HAS_VALUE_OR_MIXED_INDEX_MASK
 init|=
-literal|0x0F
+literal|0x18
 decl_stmt|;
 specifier|private
 specifier|static
@@ -186,6 +194,10 @@ block|,
 name|Type
 operator|.
 name|DATE
+block|,
+name|Type
+operator|.
+name|DECIMAL
 block|}
 decl_stmt|;
 specifier|protected
@@ -274,6 +286,15 @@ name|DATE
 index|]
 operator|=
 name|DATE
+expr_stmt|;
+name|indexTypes
+index|[
+name|Type
+operator|.
+name|DECIMAL
+index|]
+operator|=
+name|DECIMAL
 expr_stmt|;
 block|}
 comment|/** 	 * For a given index type bit, return the corresponding 	 * atomic XPath type (as defined in {@link org.exist.xquery.value.Type}). 	 *  	 * @param type a bit set indicating the type 	 * @return atomic XPath type 	 */

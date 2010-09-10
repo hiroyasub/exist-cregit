@@ -349,6 +349,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|BigDecimal
+name|getValue
+parameter_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
 specifier|public
 name|int
