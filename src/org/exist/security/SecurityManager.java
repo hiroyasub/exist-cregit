@@ -250,7 +250,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|// TODO: this should be addUser
 name|Account
 name|addAccount
 parameter_list|(

@@ -84,12 +84,6 @@ literal|"http://exist-db.org/Configuration"
 decl_stmt|;
 specifier|public
 name|String
-name|NS_SUB
-init|=
-literal|"http://exist-db.org/Configuration/Sub"
-decl_stmt|;
-specifier|public
-name|String
 name|ID
 init|=
 literal|"id"
