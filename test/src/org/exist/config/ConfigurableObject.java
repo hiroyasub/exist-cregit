@@ -41,6 +41,20 @@ name|ConfigurationFieldAsAttribute
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationFieldAsElement
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -69,7 +83,7 @@ init|=
 literal|"default"
 decl_stmt|;
 annotation|@
-name|ConfigurationFieldAsAttribute
+name|ConfigurationFieldAsElement
 argument_list|(
 literal|"valueInteger"
 argument_list|)

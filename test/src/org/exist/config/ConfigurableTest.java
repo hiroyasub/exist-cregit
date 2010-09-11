@@ -143,15 +143,17 @@ literal|"<instance xmlns='http://exist-db.org/Configuration' "
 operator|+
 literal|"valueString=\"a\" "
 operator|+
-literal|"valueInteger=\"5\" "
-operator|+
 literal|"valueInt=\"5\" "
 operator|+
 literal|"valueboolean=\"true\" "
 operator|+
 literal|"valueBoolean=\"false\" "
 operator|+
-literal|"></instance>"
+literal|">"
+operator|+
+literal|"<valueInteger>5</valueInteger> "
+operator|+
+literal|"</instance>"
 decl_stmt|;
 name|String
 name|config2
