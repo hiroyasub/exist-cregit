@@ -1665,6 +1665,12 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|conn
+operator|!=
+literal|null
+condition|)
 name|conn
 operator|.
 name|rollback
@@ -2013,13 +2019,6 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|collectionConfig
-operator|!=
-literal|null
-condition|)
-block|{
 name|isCollectionGMLAware
 operator|=
 operator|(
@@ -2028,7 +2027,6 @@ operator|!=
 literal|null
 operator|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -3026,9 +3024,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|iDoc
 operator|.
 name|next
@@ -3322,7 +3317,7 @@ comment|//TODO : find a way to pass
 comment|//1) the SRS
 comment|//2) gmlPrefix
 comment|//3) other stuff...
-comment|//This will possible require some changes in GeometryTransformer
+comment|//This will possibly require some changes in GeometryTransformer
 name|gmlString
 operator|=
 name|gmlTransformer
@@ -3753,6 +3748,8 @@ decl_stmt|;
 name|ElementImpl
 name|deferredElement
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker
@@ -3764,6 +3761,8 @@ operator|.
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -3812,6 +3811,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -3839,6 +3840,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -3919,6 +3922,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
