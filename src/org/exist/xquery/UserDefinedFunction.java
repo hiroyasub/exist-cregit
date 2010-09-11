@@ -148,15 +148,13 @@ literal|null
 decl_stmt|;
 specifier|private
 name|boolean
-name|inRecursion
-init|=
-literal|false
-decl_stmt|;
-specifier|private
-name|boolean
 name|bodyAnalyzed
 init|=
 literal|false
+decl_stmt|;
+specifier|protected
+name|FunctionCall
+name|call
 decl_stmt|;
 specifier|public
 name|UserDefinedFunction
@@ -298,13 +296,11 @@ block|{
 if|if
 condition|(
 operator|!
-name|inRecursion
+name|call
+operator|.
+name|isRecursive
 condition|)
 block|{
-name|inRecursion
-operator|=
-literal|true
-expr_stmt|;
 comment|// Save the local variable stack
 name|LocalVariable
 name|mark
@@ -382,10 +378,6 @@ name|mark
 argument_list|)
 expr_stmt|;
 block|}
-name|inRecursion
-operator|=
-literal|false
-expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
@@ -877,13 +869,11 @@ comment|// Answer: would lead to an infinite loop if the function is recursive.
 if|if
 condition|(
 operator|!
-name|inRecursion
+name|call
+operator|.
+name|isRecursive
 condition|)
 block|{
-name|inRecursion
-operator|=
-literal|true
-expr_stmt|;
 name|bodyAnalyzed
 operator|=
 literal|false
@@ -894,10 +884,6 @@ name|resetState
 argument_list|(
 name|postOptimization
 argument_list|)
-expr_stmt|;
-name|inRecursion
-operator|=
-literal|false
 expr_stmt|;
 block|}
 if|if

@@ -204,7 +204,7 @@ name|arguments
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|isRecursive
 init|=
@@ -308,6 +308,14 @@ operator|=
 name|this
 operator|.
 name|functionDef
+expr_stmt|;
+name|this
+operator|.
+name|functionDef
+operator|.
+name|call
+operator|=
+name|this
 expr_stmt|;
 name|SequenceType
 name|returnType
