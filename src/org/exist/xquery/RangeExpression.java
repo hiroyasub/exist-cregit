@@ -107,20 +107,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|ValueSequence
-import|;
-end_import
-
 begin_comment
 comment|/**  * An XQuery range expression, like "1 to 10".  *   * @author wolf  */
 end_comment
@@ -634,18 +620,16 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//	        	result = new ValueSequence();
+comment|//				for(long i = ((IntegerValue)valueStart.convertTo(Type.INTEGER)).getLong();
+comment|//					i<= ((IntegerValue)valueEnd.convertTo(Type.INTEGER)).getLong(); i++) {
+comment|//					result.add(new IntegerValue(i));
+comment|//				}
 name|result
 operator|=
 operator|new
-name|ValueSequence
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|long
-name|i
-init|=
-operator|(
+name|RangeSequence
+argument_list|(
 operator|(
 name|IntegerValue
 operator|)
@@ -657,14 +641,7 @@ name|Type
 operator|.
 name|INTEGER
 argument_list|)
-operator|)
-operator|.
-name|getLong
-argument_list|()
-init|;
-name|i
-operator|<=
-operator|(
+argument_list|,
 operator|(
 name|IntegerValue
 operator|)
@@ -676,27 +653,8 @@ name|Type
 operator|.
 name|INTEGER
 argument_list|)
-operator|)
-operator|.
-name|getLong
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|result
-operator|.
-name|add
-argument_list|(
-operator|new
-name|IntegerValue
-argument_list|(
-name|i
-argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -936,45 +894,20 @@ operator|.
 name|INTEGER
 argument_list|)
 decl_stmt|;
+comment|//	       		result = new ValueSequence();
+comment|//				for (long i = valueStart.getLong();	i<= valueEnd.getLong(); i++) {
+comment|//					result.add(new IntegerValue(i));
+comment|//				}
 name|result
 operator|=
 operator|new
-name|ValueSequence
-argument_list|()
-expr_stmt|;
-for|for
-control|(
-name|long
-name|i
-init|=
+name|RangeSequence
+argument_list|(
 name|valueStart
-operator|.
-name|getLong
-argument_list|()
-init|;
-name|i
-operator|<=
+argument_list|,
 name|valueEnd
-operator|.
-name|getLong
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|result
-operator|.
-name|add
-argument_list|(
-operator|new
-name|IntegerValue
-argument_list|(
-name|i
-argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
