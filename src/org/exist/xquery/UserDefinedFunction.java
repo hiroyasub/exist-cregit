@@ -962,6 +962,15 @@ name|contextDocs
 operator|=
 literal|null
 expr_stmt|;
+name|clone
+operator|.
+name|body
+operator|=
+name|this
+operator|.
+name|body
+expr_stmt|;
+comment|// so body will be analyzed and optimized for all calls of such functions in recursion.
 return|return
 name|clone
 return|;
