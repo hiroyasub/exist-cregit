@@ -152,7 +152,7 @@ name|bodyAnalyzed
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
+specifier|private
 name|FunctionCall
 name|call
 decl_stmt|;
@@ -299,6 +299,7 @@ operator|!
 name|call
 operator|.
 name|isRecursive
+argument_list|()
 condition|)
 block|{
 comment|// Save the local variable stack
@@ -872,6 +873,7 @@ operator|!
 name|call
 operator|.
 name|isRecursive
+argument_list|()
 condition|)
 block|{
 name|bodyAnalyzed
@@ -988,6 +990,30 @@ name|InternalError
 argument_list|()
 throw|;
 block|}
+block|}
+specifier|public
+name|FunctionCall
+name|getCaller
+parameter_list|()
+block|{
+return|return
+name|call
+return|;
+block|}
+specifier|public
+name|void
+name|setCaller
+parameter_list|(
+name|FunctionCall
+name|call
+parameter_list|)
+block|{
+name|this
+operator|.
+name|call
+operator|=
+name|call
+expr_stmt|;
 block|}
 block|}
 end_class

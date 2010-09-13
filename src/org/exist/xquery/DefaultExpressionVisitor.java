@@ -101,9 +101,11 @@ if|if
 condition|(
 name|function
 operator|.
-name|call
+name|getCaller
+argument_list|()
 operator|.
 name|isRecursive
+argument_list|()
 condition|)
 return|return;
 name|function

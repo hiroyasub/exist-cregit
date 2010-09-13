@@ -204,7 +204,7 @@ name|arguments
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|isRecursive
 init|=
@@ -313,9 +313,10 @@ name|this
 operator|.
 name|functionDef
 operator|.
-name|call
-operator|=
+name|setCaller
+argument_list|(
 name|this
+argument_list|)
 expr_stmt|;
 name|SequenceType
 name|returnType
@@ -1802,6 +1803,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+specifier|public
+name|boolean
+name|isRecursive
+parameter_list|()
+block|{
+return|return
+name|isRecursive
+return|;
 block|}
 block|}
 end_class
