@@ -637,6 +637,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//
 block|}
 block|}
 name|testCollection
@@ -1783,10 +1784,10 @@ name|getNodeValue
 argument_list|()
 decl_stmt|;
 comment|//use DocUtils
-comment|//					context.declareVariable(
-comment|//							inputFile.getAttribute("variable"),
-comment|//							DocUtils.getDocument(context, sources.get(id))
-comment|//					);
+comment|//                  context.declareVariable(
+comment|//                  inputFile.getAttribute("variable"),
+comment|//                  DocUtils.getDocument(context, sources.get(id))
+comment|//                  );
 comment|//in-memory nodes
 name|context
 operator|.
@@ -2868,11 +2869,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//e.printStackTrace();
 name|Assert
 operator|.
 name|fail
@@ -2940,9 +2937,9 @@ literal|"GMT-5:00"
 argument_list|)
 decl_stmt|;
 comment|// getDefault();
-comment|//	            if( implicitTimeZone.inDaylightTime( new Date() ) ) {
-comment|//	                implicitTimeZone.setRawOffset( implicitTimeZone.getRawOffset() + implicitTimeZone.getDSTSavings() );
-comment|//	            }
+comment|//              if( implicitTimeZone.inDaylightTime( new Date() ) ) {
+comment|//                  implicitTimeZone.setRawOffset( implicitTimeZone.getRawOffset() + implicitTimeZone.getDSTSavings() );
+comment|//              }
 name|context
 operator|.
 name|setTimeZone
@@ -2951,7 +2948,7 @@ name|implicitTimeZone
 argument_list|)
 expr_stmt|;
 block|}
-if|else  			if
+if|else if
 condition|(
 name|group
 operator|.
@@ -3159,12 +3156,7 @@ argument_list|(
 literal|"2005-12-05T17:10:00.203-05:00"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|dt
-operator|!=
-literal|null
-condition|)
+comment|//if (dt != null)
 name|context
 operator|.
 name|setCalendar
@@ -3182,6 +3174,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//
 block|}
 block|}
 block|}
