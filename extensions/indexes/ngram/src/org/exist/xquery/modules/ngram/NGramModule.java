@@ -140,6 +140,21 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|NGramSearch
+operator|.
+name|signatures
+index|[
+literal|3
+index|]
+argument_list|,
+name|NGramSearch
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|HighlightMatches
 operator|.
 name|signature
@@ -162,6 +177,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -171,6 +188,8 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -180,6 +199,8 @@ return|return
 name|PREFIX
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -189,6 +210,8 @@ return|return
 literal|"A module for NGram-based indexed searching."
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getReleaseVersion
