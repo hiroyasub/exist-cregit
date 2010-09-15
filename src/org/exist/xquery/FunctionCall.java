@@ -584,6 +584,13 @@ operator|.
 name|getSignature
 argument_list|()
 expr_stmt|;
+name|functionDef
+operator|.
+name|setCaller
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
