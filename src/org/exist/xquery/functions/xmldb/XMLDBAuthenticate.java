@@ -953,26 +953,14 @@ name|error
 argument_list|(
 literal|"Unable to authenticate user: "
 operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|userName
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Unable to authenticate user: "
-operator|+
-name|e
+return|return
+name|BooleanValue
 operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
+name|FALSE
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -986,26 +974,14 @@ name|error
 argument_list|(
 literal|"Unable to authenticate user: "
 operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|userName
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Unable to authenticate user: "
-operator|+
-name|e
+return|return
+name|BooleanValue
 operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
+name|FALSE
+return|;
 block|}
 name|Collection
 name|root
@@ -1042,21 +1018,11 @@ operator|+
 literal|" does not exist"
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|(
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Unable to authenticate user: target collection "
-operator|+
-name|targetColl
-operator|+
-literal|" does not exist"
-argument_list|)
-operator|)
-throw|;
+return|return
+name|BooleanValue
+operator|.
+name|FALSE
+return|;
 block|}
 if|if
 condition|(
