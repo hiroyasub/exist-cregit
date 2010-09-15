@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Native XML Database  * Copyright (C) 2000-03,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -119,7 +119,7 @@ name|contextDocSet
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Holds the context id for the context of this expression. 	 */
+comment|/**      * Holds the context id for the context of this expression.      */
 specifier|protected
 name|int
 name|contextId
@@ -151,6 +151,8 @@ name|nextExpressionId
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getExpressionId
@@ -160,6 +162,8 @@ return|return
 name|expressionId
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getContextId
@@ -169,6 +173,8 @@ return|return
 name|contextId
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -188,7 +194,9 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|Sequence
@@ -203,14 +211,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|int
 name|returnsType
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#resetState()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
@@ -224,7 +236,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * The default cardinality is {@link Cardinality#EXACTLY_ONE}. 	 */
+comment|/**      * The default cardinality is {@link Cardinality#EXACTLY_ONE}.      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -237,7 +251,9 @@ name|EXACTLY_ONE
 return|;
 comment|// default cardinality
 block|}
-comment|/** 	 * Returns {@link Dependency#DEFAULT_DEPENDENCIES}. 	 *  	 * @see org.exist.xquery.Expression#getDependencies() 	 */
+comment|/**      * Returns {@link Dependency#DEFAULT_DEPENDENCIES}.      *      * @see org.exist.xquery.Expression#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -249,6 +265,8 @@ operator|.
 name|DEFAULT_DEPENDENCIES
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -258,6 +276,8 @@ name|axis
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPrimaryAxis
@@ -270,6 +290,8 @@ name|UNKNOWN_AXIS
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContextDocSet
@@ -285,6 +307,8 @@ operator|=
 name|contextSet
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getContextDocSet
@@ -294,6 +318,8 @@ return|return
 name|contextDocSet
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|accept
@@ -310,6 +336,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setASTNode
@@ -341,6 +369,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setLocation
@@ -365,6 +395,8 @@ operator|=
 name|column
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLine
@@ -374,6 +406,8 @@ return|return
 name|line
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getColumn
@@ -383,6 +417,8 @@ return|return
 name|column
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XACMLSource
 name|getSource
@@ -395,6 +431,8 @@ name|getSource
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|getContext
@@ -404,6 +442,8 @@ return|return
 name|context
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getSubExpressionCount
@@ -414,6 +454,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getSubExpression
@@ -437,6 +479,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Boolean
 name|match
