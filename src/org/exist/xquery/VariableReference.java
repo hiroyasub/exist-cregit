@@ -691,6 +691,13 @@ name|boolean
 name|postOptimization
 parameter_list|)
 block|{
+name|super
+operator|.
+name|resetState
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void

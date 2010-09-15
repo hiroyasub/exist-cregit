@@ -865,6 +865,13 @@ name|boolean
 name|postOptimization
 parameter_list|)
 block|{
+name|super
+operator|.
+name|resetState
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
 comment|// Question: understand this test. Why not reset even is not in recursion ?
 comment|// Answer: would lead to an infinite loop if the function is recursive.
 if|if
