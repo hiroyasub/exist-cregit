@@ -9653,6 +9653,17 @@ operator|.
 name|ENCODING
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|containsHeader
+argument_list|(
+literal|"Content-Type"
+argument_list|)
+condition|)
+block|{
 name|String
 name|mimeType
 init|=
@@ -9724,6 +9735,7 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
