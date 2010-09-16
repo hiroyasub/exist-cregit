@@ -228,7 +228,10 @@ specifier|public
 name|GMLHSQLIndex
 parameter_list|()
 block|{
+comment|//Nothing to do ;-)
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -259,12 +262,7 @@ expr_stmt|;
 name|String
 name|param
 init|=
-operator|(
-operator|(
-name|Element
-operator|)
 name|config
-operator|)
 operator|.
 name|getAttribute
 argument_list|(
@@ -309,12 +307,7 @@ block|}
 block|}
 name|param
 operator|=
-operator|(
-operator|(
-name|Element
-operator|)
 name|config
-operator|)
 operator|.
 name|getAttribute
 argument_list|(
@@ -376,6 +369,8 @@ name|max_docs_in_context_to_refine_query
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker
@@ -425,6 +420,8 @@ return|return
 name|worker
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|checkDatabase
@@ -443,6 +440,8 @@ literal|"org.hsqldb.jdbcDriver"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|shutdownDatabase
@@ -452,7 +451,7 @@ name|DBException
 block|{
 try|try
 block|{
-comment|//No need to shutdown if we haven't opened anything
+comment|//No need to shutdown if we have opened something
 if|if
 condition|(
 name|conn
@@ -535,6 +534,8 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|deleteDatabase
@@ -622,6 +623,8 @@ expr_stmt|;
 block|}
 comment|//TODO : raise an error if deleted == false ?
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|removeIndexContent
@@ -716,7 +719,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//Horrible "locking" mechanism
+annotation|@
+name|Override
 specifier|protected
 name|Connection
 name|acquireConnection
@@ -727,6 +731,7 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
+comment|//Horrible "locking" mechanism
 synchronized|synchronized
 init|(
 name|this
@@ -868,6 +873,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 specifier|synchronized
 name|void

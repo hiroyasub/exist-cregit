@@ -41,18 +41,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -62,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  */
+comment|/** */
 end_comment
 
 begin_class
@@ -114,18 +102,11 @@ parameter_list|,
 name|Element
 name|node
 parameter_list|)
-throws|throws
-name|DatabaseConfigurationException
 block|{
 name|String
 name|param
 init|=
-operator|(
-operator|(
-name|Element
-operator|)
 name|node
-operator|)
 operator|.
 name|getAttribute
 argument_list|(
