@@ -1420,6 +1420,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -1909,13 +1911,6 @@ block|}
 else|else
 block|{
 comment|//builds the geometry
-if|if
-condition|(
-name|geometry
-operator|==
-literal|null
-condition|)
-block|{
 name|sourceCRS
 operator|=
 operator|(
@@ -1947,7 +1942,6 @@ argument_list|,
 name|geometryNode
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|geometry

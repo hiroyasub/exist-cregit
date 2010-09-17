@@ -177,7 +177,7 @@ name|AbstractGMLJDBCIndex
 extends|extends
 name|AbstractIndex
 block|{
-comment|/** 	 * Holds the index ID. Notice that we delegate this task to the abstract JDBC class, 	 * not to the concrete HSQL (or whatever) one. This allows spatial functions to use 	 * the available JDBC index, whatever its underlying engine is. 	 */
+comment|/**      * Holds the index ID. Notice that we delegate this task to the abstract JDBC class,      * not to the concrete HSQL (or whatever) one. This allows spatial functions to use      * the available JDBC index, whatever its underlying engine is.      */
 specifier|public
 specifier|final
 specifier|static
@@ -237,7 +237,7 @@ name|conn
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The spatial operators to test spatial relationshipds beween geometries.      * See http://www.vividsolutions.com/jts/bin/JTS%20Technical%20Specs.pdf (chapter 11).         */
+comment|/**      * The spatial operators to test spatial relationshipds beween geometries.      * See http://www.vividsolutions.com/jts/bin/JTS%20Technical%20Specs.pdf (chapter 11).      */
 specifier|public
 interface|interface
 name|SpatialOperator
@@ -317,7 +317,10 @@ specifier|public
 name|AbstractGMLJDBCIndex
 parameter_list|()
 block|{
+comment|//Nothing to do here
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -395,6 +398,8 @@ return|return
 name|max_docs_in_context_to_refine_query
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|open
@@ -404,6 +409,8 @@ name|DatabaseConfigurationException
 block|{
 comment|//Nothing particular to do : the connection will be opened on request
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -465,6 +472,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//Seems to never be used
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sync
@@ -473,8 +482,10 @@ throws|throws
 name|DBException
 block|{
 comment|//TODO : something useful here
-comment|/*     	try {      		if (conn != null)     			conn.commit();         } catch (SQLException e) {         	throw new DBException(e.getMessage());          }         */
+comment|/*         try {             if (conn != null)                 conn.commit();         } catch (SQLException e) {             throw new DBException(e.getMessage());         }         */
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -541,6 +552,8 @@ name|deleteDatabase
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|checkIndex
@@ -561,6 +574,8 @@ name|broker
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|IndexWorker

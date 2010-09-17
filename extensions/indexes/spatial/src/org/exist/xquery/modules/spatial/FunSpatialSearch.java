@@ -737,6 +737,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -789,11 +791,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 comment|//TODO : to be discussed. We could also return an empty sequence here
 name|result
 operator|=
 name|nodes
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
