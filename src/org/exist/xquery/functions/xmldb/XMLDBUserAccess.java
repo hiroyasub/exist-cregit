@@ -445,7 +445,53 @@ literal|"the group memberships"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//TODO: let users know about signature change from string to any_uri
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|fnUserPrimaryGroup
+init|=
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"get-user-primary-group"
+argument_list|,
+name|XMLDBModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Returns the user's primary group."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+name|ARG_USER_ID
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The Primary Group of the User"
+argument_list|)
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -495,7 +541,7 @@ literal|"the home collection URI of user $user-id if one is assigned, otherwise 
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/**      * @param context      * @param signature      */
 specifier|public
 name|XMLDBUserAccess
 parameter_list|(
@@ -514,7 +560,9 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, 	 *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,      *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -607,6 +655,7 @@ argument_list|(
 literal|"exists-user"
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 operator|==
@@ -620,6 +669,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 return|;
+block|}
 if|if
 condition|(
 name|user
@@ -649,6 +699,25 @@ argument_list|)
 throw|;
 block|}
 if|if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"get-user-primary-group"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|StringValue
+argument_list|(
+name|user
+operator|.
+name|getPrimaryGroup
+argument_list|()
+argument_list|)
+return|;
+block|}
+if|else if
 condition|(
 name|isCalledAs
 argument_list|(
@@ -774,6 +843,7 @@ literal|null
 operator|!=
 name|collection
 condition|)
+block|{
 try|try
 block|{
 name|collection
@@ -789,6 +859,7 @@ name|e
 parameter_list|)
 block|{
 comment|/* ignore */
+block|}
 block|}
 block|}
 block|}
