@@ -411,6 +411,7 @@ name|Group
 name|getDBAGroup
 parameter_list|()
 function_decl|;
+comment|//TODO needs javadoc saying what to replace with?
 annotation|@
 name|Deprecated
 name|java
@@ -424,6 +425,7 @@ argument_list|>
 name|getUsers
 parameter_list|()
 function_decl|;
+comment|//TODO needs javadoc saying what to replace with?
 annotation|@
 name|Deprecated
 name|java
