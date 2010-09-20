@@ -54,7 +54,6 @@ block|{
 name|MarshallerTest
 operator|.
 name|class
-block|,
 block|}
 argument_list|)
 specifier|public
