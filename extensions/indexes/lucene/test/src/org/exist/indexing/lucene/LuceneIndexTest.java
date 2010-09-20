@@ -2235,11 +2235,6 @@ name|void
 name|boosts
 parameter_list|()
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|DocumentSet
 name|docs
 init|=
@@ -2374,11 +2369,6 @@ name|void
 name|queryTranslation
 parameter_list|()
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|DocumentSet
 name|docs
 init|=

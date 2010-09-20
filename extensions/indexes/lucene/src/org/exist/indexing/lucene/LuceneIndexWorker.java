@@ -3034,9 +3034,8 @@ decl_stmt|;
 specifier|private
 name|LuceneHitCollector
 parameter_list|()
-throws|throws
-name|IOException
 block|{
+comment|//Nothing special to do
 block|}
 specifier|public
 name|List
@@ -3108,6 +3107,8 @@ return|return
 name|docs
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setScorer
@@ -3125,6 +3126,8 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextReader
@@ -3145,6 +3148,8 @@ operator|=
 name|docBase
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|acceptsDocsOutOfOrder
@@ -3154,6 +3159,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|collect
@@ -4939,6 +4946,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//What to do there ?
 block|}
 annotation|@
 name|Override
@@ -5757,6 +5765,8 @@ name|LuceneStreamListener
 extends|extends
 name|AbstractStreamListener
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -5884,6 +5894,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -6031,6 +6043,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -6137,6 +6151,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -6196,6 +6212,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker
@@ -6283,6 +6301,8 @@ operator|.
 name|query
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Match
 name|createInstance
@@ -6327,6 +6347,8 @@ name|query
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Match
 name|newCopy
@@ -6340,6 +6362,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getIndexId
@@ -6384,6 +6408,8 @@ operator|=
 name|score
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -6442,6 +6468,8 @@ operator|.
 name|query
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchEquals

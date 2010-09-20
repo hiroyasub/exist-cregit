@@ -456,6 +456,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 name|assertTrue
 argument_list|(
@@ -565,6 +566,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 name|assertTrue
 argument_list|(

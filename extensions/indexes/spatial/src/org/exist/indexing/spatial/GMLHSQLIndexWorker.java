@@ -409,7 +409,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 comment|//TODO : evaluate one connection per worker
-comment|/*         try {             conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +                  index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {         	LOG.error(e);         }         */
+comment|/*         try {             conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +                  index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) { 	        LOG.error(e);         }         */
 block|}
 annotation|@
 name|Override
@@ -1856,7 +1856,7 @@ expr_stmt|;
 comment|//Ignore since the broker has no right on the document
 continue|continue;
 block|}
-comment|//contextSet == null should be use to scan the whole index
+comment|//contextSet == null should be used to scan the whole index
 if|if
 condition|(
 name|contextSet
@@ -3721,7 +3721,22 @@ argument_list|()
 expr_stmt|;
 name|ValueSequence
 name|result
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|contextSet
+operator|==
+literal|null
+condition|)
+name|result
+operator|=
+operator|new
+name|ValueSequence
+argument_list|()
+expr_stmt|;
+else|else
+name|result
+operator|=
 operator|new
 name|ValueSequence
 argument_list|(
@@ -3730,7 +3745,7 @@ operator|.
 name|getLength
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 while|while
 condition|(
 name|rs
