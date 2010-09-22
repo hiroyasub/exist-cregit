@@ -1163,6 +1163,58 @@ operator|.
 name|getConnectors
 argument_list|()
 decl_stmt|;
+comment|// Construct description of all ports opened.
+name|StringBuilder
+name|allPorts
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|connectors
+operator|.
+name|length
+operator|>
+literal|1
+condition|)
+block|{
+comment|// plural s
+name|allPorts
+operator|.
+name|append
+argument_list|(
+literal|"s"
+argument_list|)
+expr_stmt|;
+block|}
+for|for
+control|(
+name|Connector
+name|connector
+range|:
+name|connectors
+control|)
+block|{
+name|allPorts
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
+name|allPorts
+operator|.
+name|append
+argument_list|(
+name|connector
+operator|.
+name|getPort
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|connectors
@@ -1223,9 +1275,9 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Server has started on port "
+literal|"Server has started on port"
 operator|+
-name|port
+name|allPorts
 operator|+
 literal|". Configured contexts:"
 argument_list|)
@@ -1277,14 +1329,14 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"http://localhost:"
-operator|+
-name|port
+literal|"'"
 operator|+
 name|contextHandler
 operator|.
 name|getContextPath
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1351,9 +1403,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"http://localhost:"
-operator|+
-name|port
+literal|"'"
 operator|+
 name|contextHandler
 operator|.
@@ -1361,6 +1411,8 @@ name|getContextPath
 argument_list|()
 operator|+
 name|suffix
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}

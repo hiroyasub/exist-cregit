@@ -243,6 +243,7 @@ block|{
 comment|// Left empty intentionally
 block|}
 comment|// Getters and setters
+comment|/**      *  Get type of lock.      */
 specifier|public
 name|byte
 name|getType
