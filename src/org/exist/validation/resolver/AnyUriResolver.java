@@ -284,6 +284,8 @@ literal|""
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XMLInputSource
 name|resolveEntity
@@ -408,6 +410,18 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|// prevent NPE
+if|if
+condition|(
+name|resourcePath
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|InputStream
 name|is
 init|=
