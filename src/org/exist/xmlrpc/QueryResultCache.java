@@ -57,7 +57,7 @@ init|=
 literal|254
 decl_stmt|;
 specifier|public
-name|QueryResult
+name|AbstractCachedResult
 index|[]
 name|results
 decl_stmt|;
@@ -83,7 +83,7 @@ block|{
 name|results
 operator|=
 operator|new
-name|QueryResult
+name|AbstractCachedResult
 index|[
 name|INITIAL_SIZE
 index|]
@@ -93,7 +93,7 @@ specifier|public
 name|int
 name|add
 parameter_list|(
-name|QueryResult
+name|AbstractCachedResult
 name|qr
 parameter_list|)
 block|{
@@ -137,12 +137,12 @@ return|;
 block|}
 block|}
 comment|// no empty bucket. need to resize.
-name|QueryResult
+name|AbstractCachedResult
 index|[]
 name|temp
 init|=
 operator|new
-name|QueryResult
+name|AbstractCachedResult
 index|[
 operator|(
 name|results
@@ -195,7 +195,7 @@ name|pos
 return|;
 block|}
 specifier|public
-name|QueryResult
+name|AbstractCachedResult
 name|get
 parameter_list|(
 name|int
@@ -225,6 +225,76 @@ index|]
 return|;
 block|}
 specifier|public
+name|QueryResult
+name|getResult
+parameter_list|(
+name|int
+name|pos
+parameter_list|)
+block|{
+name|AbstractCachedResult
+name|acr
+init|=
+name|get
+argument_list|(
+name|pos
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|acr
+operator|!=
+literal|null
+operator|&&
+name|acr
+operator|instanceof
+name|QueryResult
+operator|)
+condition|?
+operator|(
+name|QueryResult
+operator|)
+name|acr
+else|:
+literal|null
+return|;
+block|}
+specifier|public
+name|SerializedResult
+name|getSerializedResult
+parameter_list|(
+name|int
+name|pos
+parameter_list|)
+block|{
+name|AbstractCachedResult
+name|acr
+init|=
+name|get
+argument_list|(
+name|pos
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|acr
+operator|!=
+literal|null
+operator|&&
+name|acr
+operator|instanceof
+name|SerializedResult
+operator|)
+condition|?
+operator|(
+name|SerializedResult
+operator|)
+name|acr
+else|:
+literal|null
+return|;
+block|}
+specifier|public
 name|void
 name|remove
 parameter_list|(
@@ -245,6 +315,18 @@ name|results
 operator|.
 name|length
 condition|)
+block|{
+comment|// Perhaps we should not free resources here
+comment|// but an explicit remove implies you want
+comment|// to free resources
+name|results
+index|[
+name|pos
+index|]
+operator|.
+name|free
+argument_list|()
+expr_stmt|;
 name|results
 index|[
 name|pos
@@ -252,6 +334,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -297,6 +380,17 @@ name|hash
 operator|)
 condition|)
 block|{
+comment|// Perhaps we should not free resources here
+comment|// but an explicit remove implies you want
+comment|// to free resources
+name|results
+index|[
+name|pos
+index|]
+operator|.
+name|free
+argument_list|()
+expr_stmt|;
 name|results
 index|[
 name|pos
@@ -337,7 +431,7 @@ name|i
 operator|++
 control|)
 block|{
-name|QueryResult
+name|AbstractCachedResult
 name|result
 init|=
 name|results
@@ -390,6 +484,8 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Here we should not free resources, because they could be still in use
+comment|// by other threads, so leave the work to the garbage collector
 name|results
 index|[
 name|i

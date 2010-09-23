@@ -1554,11 +1554,15 @@ expr_stmt|;
 block|}
 else|else
 block|{
-try|try
-block|{
 name|File
 name|temp
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|temp
+operator|=
 name|File
 operator|.
 name|createTempFile
@@ -1567,7 +1571,7 @@ literal|"existDBS"
 argument_list|,
 literal|".xml"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// This is deleted later; is this necessary?
 name|temp
 operator|.
@@ -1714,6 +1718,20 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|temp
+operator|!=
+literal|null
+condition|)
+name|temp
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 return|return
