@@ -249,8 +249,9 @@ begin_class
 annotation|@
 name|ConfigurationClass
 argument_list|(
-literal|"LDAP"
+literal|"realm"
 argument_list|)
+comment|//TODO: id = LDAP
 specifier|public
 class|class
 name|LDAPRealm

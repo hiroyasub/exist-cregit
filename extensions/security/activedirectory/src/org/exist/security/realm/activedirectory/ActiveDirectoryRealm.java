@@ -287,8 +287,9 @@ begin_class
 annotation|@
 name|ConfigurationClass
 argument_list|(
-literal|"ActiveDirectory"
+literal|"realm"
 argument_list|)
+comment|//TODO: id = ActiveDirectory
 specifier|public
 class|class
 name|ActiveDirectoryRealm
