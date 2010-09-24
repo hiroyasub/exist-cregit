@@ -65,6 +65,14 @@ name|ACCOUNT_LOCKED
 init|=
 literal|2
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SESSION_NOT_FOUND
+init|=
+literal|3
+decl_stmt|;
 specifier|private
 name|int
 name|type

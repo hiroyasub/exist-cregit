@@ -446,6 +446,21 @@ name|String
 name|iD
 parameter_list|)
 function_decl|;
+comment|//session manager part
+name|String
+name|registerSession
+parameter_list|(
+name|Subject
+name|subject
+parameter_list|)
+function_decl|;
+name|Subject
+name|getSubjectBySessionId
+parameter_list|(
+name|String
+name|sessionid
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
