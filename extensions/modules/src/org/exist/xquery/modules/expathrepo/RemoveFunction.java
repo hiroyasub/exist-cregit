@@ -310,7 +310,7 @@ decl_stmt|;
 name|boolean
 name|force
 init|=
-literal|true
+literal|false
 decl_stmt|;
 name|UserInteractionStrategy
 name|interact
@@ -376,7 +376,7 @@ return|return
 name|removed
 return|;
 comment|// /TODO: _repo.removePackage seems to throw PackageException
-comment|//throw new XPathException("Problem removing package " + pkg + " in expath repository, check that eXist-db has access permissions to expath repository file directory  ", ex);
+comment|// throw new XPathException("Problem removing package " + pkg + " in expath repository, check that eXist-db has access permissions to expath repository file directory  ", ex);
 block|}
 return|return
 name|removed
