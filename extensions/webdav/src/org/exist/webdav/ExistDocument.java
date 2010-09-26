@@ -444,6 +444,23 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|document
+operator|.
+name|getResourceType
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|XML_FILE
+condition|)
+block|{
+name|isXmlDocument
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|// Get meta data
 name|creationTime
 operator|=
@@ -641,6 +658,21 @@ parameter_list|()
 block|{
 return|return
 name|contentLength
+return|;
+block|}
+specifier|private
+name|boolean
+name|isXmlDocument
+init|=
+literal|false
+decl_stmt|;
+specifier|public
+name|boolean
+name|isXmlDocument
+parameter_list|()
+block|{
+return|return
+name|isXmlDocument
 return|;
 block|}
 comment|/**      *  Stream document to framework.      */

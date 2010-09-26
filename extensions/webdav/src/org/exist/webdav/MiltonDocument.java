@@ -430,6 +430,29 @@ specifier|private
 name|ExistDocument
 name|existDocument
 decl_stmt|;
+comment|// Only for PROPFIND the estimate size for an XML document must be shown
+specifier|private
+name|boolean
+name|returnContentLenghtAsNull
+init|=
+literal|true
+decl_stmt|;
+comment|/**      * Set to TRUE if for an XML document an estimated document must be returned. Otherwise      * for content length NULL is returned.      */
+specifier|public
+name|void
+name|setReturnContentLenghtAsNull
+parameter_list|(
+name|boolean
+name|returnContentLenghtAsNull
+parameter_list|)
+block|{
+name|this
+operator|.
+name|returnContentLenghtAsNull
+operator|=
+name|returnContentLenghtAsNull
+expr_stmt|;
+block|}
 comment|/**      *  Constructor of representation of a Document in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
 specifier|public
 name|MiltonDocument
@@ -642,6 +665,28 @@ name|Long
 name|getContentLength
 parameter_list|()
 block|{
+comment|// Only for PROPFIND the estimate size for an XML document must be shown
+if|if
+condition|(
+name|returnContentLenghtAsNull
+operator|&&
+name|existDocument
+operator|.
+name|isXmlDocument
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Returning NULL for content length XML resource."
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 return|return
 literal|0L
 operator|+

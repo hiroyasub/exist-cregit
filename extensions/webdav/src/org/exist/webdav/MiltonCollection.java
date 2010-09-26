@@ -347,6 +347,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|UUID
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -787,10 +797,10 @@ name|getDocumentURIs
 argument_list|()
 control|)
 block|{
-name|allResources
-operator|.
-name|add
-argument_list|(
+comment|// Show restimated size for XML documents for PROPFIND
+name|MiltonDocument
+name|mdoc
+init|=
 operator|new
 name|MiltonDocument
 argument_list|(
@@ -804,6 +814,19 @@ name|brokerPool
 argument_list|,
 name|subject
 argument_list|)
+decl_stmt|;
+name|mdoc
+operator|.
+name|setReturnContentLenghtAsNull
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|allResources
+operator|.
+name|add
+argument_list|(
+name|mdoc
 argument_list|)
 expr_stmt|;
 block|}
@@ -1226,7 +1249,6 @@ parameter_list|)
 throws|throws
 name|NotAuthorizedException
 block|{
-comment|// DWES: not sure if required to implement
 name|LOG
 operator|.
 name|debug
@@ -1239,12 +1261,29 @@ operator|+
 literal|" name="
 operator|+
 name|name
-operator|+
-literal|" NOT IMPLEMENTED YET"
 argument_list|)
 expr_stmt|;
+name|String
+name|token
+init|=
+name|UUID
+operator|.
+name|randomUUID
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 return|return
-literal|null
+operator|new
+name|LockToken
+argument_list|(
+name|token
+argument_list|,
+name|lockInfo
+argument_list|,
+name|timeout
+argument_list|)
 return|;
 block|}
 comment|/* ================      * LockableResource      * ================ */
@@ -1267,7 +1306,6 @@ name|PreConditionFailedException
 throws|,
 name|LockedException
 block|{
-comment|// DWES: not sure if required to implement
 name|LOG
 operator|.
 name|debug
@@ -1276,15 +1314,27 @@ name|resourceXmldbUri
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|" -- "
+operator|+
+name|lockInfo
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
+return|return
+name|refreshLock
 argument_list|(
-literal|"didnt lock"
+name|UUID
+operator|.
+name|randomUUID
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|)
-throw|;
+return|;
 block|}
 annotation|@
 name|Override
@@ -1300,7 +1350,6 @@ name|NotAuthorizedException
 throws|,
 name|PreConditionFailedException
 block|{
-comment|// DWES: not sure if required to implement
 name|LOG
 operator|.
 name|debug
@@ -1315,13 +1364,70 @@ operator|+
 name|token
 argument_list|)
 expr_stmt|;
-throw|throw
+name|LockInfo
+name|lockInfo
+init|=
 operator|new
-name|RuntimeException
+name|LockInfo
 argument_list|(
-literal|"didnt lock"
+name|LockInfo
+operator|.
+name|LockScope
+operator|.
+name|NONE
+argument_list|,
+name|LockInfo
+operator|.
+name|LockType
+operator|.
+name|READ
+argument_list|,
+name|token
+argument_list|,
+name|LockInfo
+operator|.
+name|LockDepth
+operator|.
+name|ZERO
 argument_list|)
-throw|;
+decl_stmt|;
+name|LockTimeout
+name|lockTime
+init|=
+operator|new
+name|LockTimeout
+argument_list|(
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+decl_stmt|;
+name|LockToken
+name|lockToken
+init|=
+operator|new
+name|LockToken
+argument_list|(
+name|token
+argument_list|,
+name|lockInfo
+argument_list|,
+name|lockTime
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|LockResult
+argument_list|(
+name|LockResult
+operator|.
+name|FailureReason
+operator|.
+name|PRECONDITION_FAILED
+argument_list|,
+name|lockToken
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override
@@ -1337,7 +1443,7 @@ name|NotAuthorizedException
 throws|,
 name|PreConditionFailedException
 block|{
-comment|// DWES: not sure if required to implement
+comment|// Just do nothing
 name|LOG
 operator|.
 name|debug
@@ -1352,13 +1458,6 @@ operator|+
 name|tokenId
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"didnt lock"
-argument_list|)
-throw|;
 block|}
 annotation|@
 name|Override
@@ -1367,7 +1466,6 @@ name|LockToken
 name|getCurrentLock
 parameter_list|()
 block|{
-comment|// DWES: not sure if required to implement
 name|LOG
 operator|.
 name|debug
@@ -1381,6 +1479,7 @@ expr_stmt|;
 return|return
 literal|null
 return|;
+comment|// null is allowed
 block|}
 comment|/* ===============      * MovableResource      * =============== */
 annotation|@
