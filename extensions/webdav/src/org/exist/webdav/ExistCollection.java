@@ -1557,7 +1557,7 @@ operator|.
 name|getInstance
 argument_list|()
 operator|.
-name|getContentType
+name|getContentTypeFor
 argument_list|(
 name|newName
 argument_list|)
