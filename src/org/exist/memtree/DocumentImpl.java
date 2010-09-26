@@ -7198,7 +7198,7 @@ name|String
 name|getInputEncoding
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -7211,7 +7211,7 @@ name|String
 name|getXmlEncoding
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -7224,7 +7224,7 @@ name|boolean
 name|getXmlStandalone
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|false
@@ -7242,7 +7242,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getXmlVersion()      *      * @return  DOCUMENT ME!      */
 specifier|public
@@ -7250,7 +7250,7 @@ name|String
 name|getXmlVersion
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -7268,7 +7268,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getStrictErrorChecking()      *      * @return  DOCUMENT ME!      */
 specifier|public
@@ -7276,7 +7276,7 @@ name|boolean
 name|getStrictErrorChecking
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|false
@@ -7292,7 +7292,7 @@ name|boolean
 name|strictErrorChecking
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getDocumentURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
@@ -7333,7 +7333,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -7346,7 +7346,7 @@ name|DOMConfiguration
 name|getDomConfig
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -7359,7 +7359,7 @@ name|void
 name|normalizeDocument
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      *      * @param   n              DOCUMENT ME!      * @param   namespaceURI   DOCUMENT ME!      * @param   qualifiedName  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
@@ -7378,7 +7378,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null

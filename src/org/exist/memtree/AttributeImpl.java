@@ -631,7 +631,7 @@ name|TypeInfo
 name|getSchemaTypeInfo
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null

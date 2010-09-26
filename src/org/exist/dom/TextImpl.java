@@ -847,7 +847,7 @@ name|boolean
 name|isElementContentWhitespace
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
@@ -858,7 +858,7 @@ name|String
 name|getWholeText
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -874,7 +874,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -918,7 +918,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|0
 return|;
@@ -931,7 +931,7 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -947,7 +947,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
 specifier|public
@@ -958,7 +958,7 @@ name|Node
 name|other
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
@@ -972,7 +972,7 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -986,7 +986,7 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
@@ -1000,7 +1000,7 @@ name|String
 name|prefix
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -1014,7 +1014,7 @@ name|Node
 name|arg
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
@@ -1031,7 +1031,7 @@ name|String
 name|version
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -1051,7 +1051,7 @@ name|UserDataHandler
 name|handler
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
@@ -1065,7 +1065,7 @@ name|String
 name|key
 parameter_list|)
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;

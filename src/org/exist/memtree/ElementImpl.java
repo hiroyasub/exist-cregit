@@ -2795,7 +2795,7 @@ name|TypeInfo
 name|getSchemaTypeInfo
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -2816,7 +2816,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean)      *      * @param   namespaceURI  DOCUMENT ME!      * @param   localName     DOCUMENT ME!      * @param   isId          DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
@@ -2835,7 +2835,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean)      *      * @param   idAttr  DOCUMENT ME!      * @param   isId    DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
@@ -2851,7 +2851,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 specifier|public
 name|void

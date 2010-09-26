@@ -117,7 +117,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 return|return
 operator|(
 literal|null
@@ -249,7 +249,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 return|return
 operator|(
 literal|null
@@ -267,7 +267,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#insertData(int, java.lang.String)      */
 specifier|public
@@ -283,7 +283,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#deleteData(int, int)      */
 specifier|public
@@ -299,7 +299,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#replaceData(int, int, java.lang.String)      */
 specifier|public
@@ -318,7 +318,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#isElementContentWhitespace()      *      * @return  DOCUMENT ME!      */
 specifier|public
@@ -326,7 +326,7 @@ name|boolean
 name|isElementContentWhitespace
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|false
@@ -339,7 +339,7 @@ name|String
 name|getWholeText
 parameter_list|()
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
@@ -357,7 +357,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe TODO - new DOM interfaces - Java 5.0
+comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 operator|(
 literal|null
