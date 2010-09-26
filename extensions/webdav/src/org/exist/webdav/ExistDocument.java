@@ -695,6 +695,14 @@ argument_list|(
 literal|"Stream started"
 argument_list|)
 expr_stmt|;
+name|long
+name|startTime
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -922,6 +930,24 @@ operator|.
 name|release
 argument_list|(
 name|broker
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Stream stopped, duration "
+operator|+
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|startTime
+operator|)
+operator|+
+literal|" msec."
 argument_list|)
 expr_stmt|;
 block|}
