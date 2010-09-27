@@ -200,6 +200,8 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
+literal|"exist"
+argument_list|,
 literal|"exist.xml"
 argument_list|)
 expr_stmt|;
@@ -233,7 +235,9 @@ name|info
 init|=
 operator|new
 name|ExistPkgInfo
-argument_list|()
+argument_list|(
+name|pkg
+argument_list|)
 decl_stmt|;
 try|try
 block|{
