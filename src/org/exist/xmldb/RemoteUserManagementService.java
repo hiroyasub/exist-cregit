@@ -3003,6 +3003,13 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|tab
+operator|!=
+literal|null
+condition|)
+block|{
 name|Group
 name|role
 init|=
@@ -3042,6 +3049,10 @@ argument_list|)
 decl_stmt|;
 return|return
 name|role
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 catch|catch

@@ -9093,6 +9093,13 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|group
+operator|!=
+literal|null
+condition|)
+block|{
 name|HashMap
 argument_list|<
 name|String
@@ -9145,6 +9152,10 @@ argument_list|)
 expr_stmt|;
 return|return
 name|map
+return|;
+block|}
+return|return
+literal|null
 return|;
 block|}
 annotation|@
