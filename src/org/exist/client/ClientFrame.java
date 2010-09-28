@@ -3661,7 +3661,12 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Edit Triggers"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.60"
+argument_list|)
 argument_list|,
 name|KeyEvent
 operator|.
@@ -3802,7 +3807,12 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Enter service mode"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.62a"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|item
@@ -3879,7 +3889,12 @@ operator|=
 operator|new
 name|JMenuItem
 argument_list|(
-literal|"Exit service mode"
+name|Messages
+operator|.
+name|getString
+argument_list|(
+literal|"ClientFrame.62b"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|item
