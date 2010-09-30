@@ -357,13 +357,20 @@ name|startsWith
 argument_list|(
 literal|"._"
 argument_list|)
+operator|||
+name|documentSeqment
+operator|.
+name|equals
+argument_list|(
+literal|".DS_Store"
+argument_list|)
 condition|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"skipping MacOsX file "
+literal|"skipping MacOsX file '"
 operator|+
 name|uri
 operator|.
@@ -372,6 +379,8 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
