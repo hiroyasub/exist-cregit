@@ -1372,7 +1372,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Document does not contain userlock"
+literal|"Document "
+operator|+
+name|xmldbUri
+operator|+
+literal|" does not contain userlock"
 argument_list|)
 expr_stmt|;
 return|return
@@ -1948,17 +1952,20 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource is not locked."
+literal|"Resource "
+operator|+
+name|xmldbUri
+operator|+
+literal|" is not locked."
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|DocumentNotLockedException
 argument_list|(
-name|lock
-operator|.
-name|getName
-argument_list|()
+literal|""
+operator|+
+name|xmldbUri
 argument_list|)
 throw|;
 block|}
