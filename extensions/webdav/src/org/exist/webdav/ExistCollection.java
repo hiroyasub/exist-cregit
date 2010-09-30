@@ -1639,6 +1639,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|//                if(tmpFile.length()==0){
+comment|//                    FileOutputStream fos2 = new FileOutputStream(tmpFile);
+comment|//                    IOUtils.write("<null_resource/>", fos2);
+comment|//                    fos2.close();
+comment|//                }
 name|String
 name|url
 init|=

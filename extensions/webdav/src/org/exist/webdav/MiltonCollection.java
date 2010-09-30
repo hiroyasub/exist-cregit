@@ -527,13 +527,11 @@ implements|,
 name|PutableResource
 implements|,
 name|LockingCollectionResource
-comment|/*, DigestResource */
+comment|/*, DigestResource , LockNullResource*/
 implements|,
 name|MoveableResource
 implements|,
 name|CopyableResource
-implements|,
-name|LockNullResource
 block|{
 specifier|private
 name|ExistCollection
