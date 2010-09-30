@@ -919,9 +919,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Deleting "
+literal|"Deleting '"
 operator|+
 name|xmldbUri
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|DBBroker
@@ -1134,13 +1136,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Create  "
+literal|"Create  '"
 operator|+
 name|name
 operator|+
-literal|" in "
+literal|"' in '"
 operator|+
 name|xmldbUri
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|XmldbURI
@@ -1273,7 +1277,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Document deleted sucessfully"
+literal|"Collection created sucessfully"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1444,9 +1448,11 @@ literal|"Create '"
 operator|+
 name|newName
 operator|+
-literal|"' in "
+literal|"' in '"
 operator|+
 name|xmldbUri
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|XmldbURI
@@ -2009,17 +2015,19 @@ name|debug
 argument_list|(
 name|mode
 operator|+
-literal|" "
+literal|" '"
 operator|+
 name|xmldbUri
 operator|+
-literal|" to "
+literal|"' to '"
 operator|+
 name|destCollectionUri
 operator|+
-literal|" named "
+literal|"' named '"
 operator|+
 name|newName
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|XmldbURI

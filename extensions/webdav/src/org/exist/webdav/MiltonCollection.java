@@ -93,6 +93,18 @@ name|bradmcevoy
 operator|.
 name|http
 operator|.
+name|LockNullResource
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
 name|LockResult
 import|;
 end_import
@@ -520,6 +532,8 @@ implements|,
 name|MoveableResource
 implements|,
 name|CopyableResource
+implements|,
+name|LockNullResource
 block|{
 specifier|private
 name|ExistCollection
@@ -797,7 +811,6 @@ name|getDocumentURIs
 argument_list|()
 control|)
 block|{
-comment|// Show restimated size for XML documents for PROPFIND
 name|MiltonDocument
 name|mdoc
 init|=
@@ -815,6 +828,7 @@ argument_list|,
 name|subject
 argument_list|)
 decl_stmt|;
+comment|// Show (restimated) size for PROPFIND only
 name|mdoc
 operator|.
 name|setReturnContentLenghtAsNull
@@ -955,6 +969,17 @@ name|ConflictException
 throws|,
 name|BadRequestException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Delete collection '"
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 name|existCollection
 operator|.
 name|delete
@@ -987,9 +1012,6 @@ operator|+
 literal|"' in '"
 operator|+
 name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"'."
 argument_list|)
@@ -1130,13 +1152,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Create "
+literal|"Create '"
 operator|+
 name|newName
 operator|+
-literal|" in "
+literal|"' in '"
 operator|+
 name|resourceXmldbUri
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|Resource
@@ -1253,14 +1277,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
+literal|"'"
 operator|+
-literal|" name="
+name|resourceXmldbUri
+operator|+
+literal|"' name='"
 operator|+
 name|name
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|String
@@ -1310,12 +1335,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
+literal|"'"
 operator|+
-literal|" -- "
+name|resourceXmldbUri
+operator|+
+literal|"' -- "
 operator|+
 name|lockInfo
 operator|.
@@ -1354,14 +1378,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
+literal|"'"
 operator|+
-literal|" token="
+name|resourceXmldbUri
+operator|+
+literal|"' token='"
 operator|+
 name|token
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|LockInfo
@@ -1448,14 +1473,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
+literal|"'"
 operator|+
-literal|" token="
+name|resourceXmldbUri
+operator|+
+literal|"' token='"
 operator|+
 name|tokenId
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1470,10 +1496,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"'"
+operator|+
 name|resourceXmldbUri
-operator|.
-name|toString
-argument_list|()
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 return|return
@@ -1503,14 +1530,18 @@ name|debug
 argument_list|(
 literal|"Move '"
 operator|+
+name|resourceXmldbUri
+operator|+
+literal|"' to '"
+operator|+
+name|newName
+operator|+
+literal|"' in '"
+operator|+
 name|rDest
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'---'"
-operator|+
-name|newName
 operator|+
 literal|"'"
 argument_list|)
@@ -1577,16 +1608,20 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Copy '"
+literal|"Move '"
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|"' to '"
+operator|+
+name|newName
+operator|+
+literal|"' in '"
 operator|+
 name|toCollection
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'---'"
-operator|+
-name|newName
 operator|+
 literal|"'"
 argument_list|)

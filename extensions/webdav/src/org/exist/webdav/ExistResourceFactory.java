@@ -386,7 +386,11 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to convert path into XmldbURI representation."
+literal|"Unable to convert path '"
+operator|+
+name|path
+operator|+
+literal|"'into a XmldbURI representation."
 argument_list|)
 expr_stmt|;
 return|return
