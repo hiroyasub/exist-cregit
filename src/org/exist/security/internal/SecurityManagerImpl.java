@@ -1354,97 +1354,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|//	private synchronized void save(DBBroker broker, Txn transaction) throws EXistException {
-comment|//		LOG.debug("storing acl file");
-comment|//		StringBuffer buf = new StringBuffer();
-comment|//        buf.append("<!-- Central user configuration. Editing this document will cause the security " +
-comment|//                "to reload and update its internal database. Please handle with care! -->");
-comment|//		buf.append("<auth version='1.0'>");
-comment|//		// save groups
-comment|//        buf.append("<!-- Please do not remove the guest and admin groups -->");
-comment|//		buf.append("<groups last-id=\"");
-comment|//		buf.append(Integer.toString(nextGroupId));
-comment|//		buf.append("\">");
-comment|//		for (Iterator i = groups.valueIterator(); i.hasNext();)
-comment|//			buf.append(((Group) i.next()).toString());
-comment|//		buf.append("</groups>");
-comment|//		//save users
-comment|//        buf.append("<!-- Please do not remove the admin user. -->");
-comment|//		buf.append("<users last-id=\"");
-comment|//		buf.append(Integer.toString(nextUserId));
-comment|//		buf.append("\">");
-comment|//		for (Iterator i = users.valueIterator(); i.hasNext();)
-comment|//			buf.append(((User) i.next()).toString());
-comment|//		buf.append("</users>");
-comment|//		buf.append("</auth>");
-comment|//
-comment|//		// store users.xml
-comment|//		broker.flush();
-comment|//		broker.sync(Sync.MAJOR_SYNC);
-comment|//
-comment|//		User currentUser = broker.getUser();
-comment|//		try {
-comment|//			broker.setUser(getUser(DBA_USER));
-comment|//			Collection sysCollection = broker.getCollection(XmldbURI.SYSTEM_COLLECTION_URI);
-comment|//            String data = buf.toString();
-comment|//            IndexInfo info = sysCollection.validateXMLResource(transaction, broker, ACL_FILE_URI, data);
-comment|//            //TODO : unlock the collection here ?
-comment|//            DocumentImpl doc = info.getDocument();
-comment|//            doc.getMetadata().setMimeType(MimeType.XML_TYPE.getName());
-comment|//            sysCollection.store(transaction, broker, info, data, false);
-comment|//			doc.setPermissions(0770);
-comment|//			broker.saveCollection(transaction, doc.getCollection());
-comment|//		} catch (IOException e) {
-comment|//			throw new EXistException(e.getMessage());
-comment|//        } catch (TriggerException e) {
-comment|//            throw new EXistException(e.getMessage());
-comment|//		} catch (SAXException e) {
-comment|//			throw new EXistException(e.getMessage());
-comment|//		} catch (PermissionDeniedException e) {
-comment|//			throw new EXistException(e.getMessage());
-comment|//		} catch (LockException e) {
-comment|//			throw new EXistException(e.getMessage());
-comment|//		} finally {
-comment|//			broker.setUser(currentUser);
-comment|//		}
-comment|//
-comment|//		broker.flush();
-comment|//		broker.sync(Sync.MAJOR_SYNC);
-comment|//	}
-comment|//	public synchronized void addAccount(Account account) throws PermissionDeniedException, EXistException, ConfigurationException {
-comment|//		 defaultRealm.addAccount(account);
-comment|//		if (user.getUID()< 0)
-comment|//			user.setUID(++nextUserId);
-comment|//		users.put(user.getUID(), user);
-comment|//		String[] groups = user.getGroups();
-comment|//        // if no group is specified, we automatically fall back to the guest group
-comment|//        if (groups.length == 0)
-comment|//            user.addGroup(GUEST_GROUP);
-comment|//		for (int i = 0; i< groups.length; i++) {
-comment|//			if (!hasGroup(groups[i]))
-comment|//				newGroup(groups[i]);
-comment|//		}
-comment|//        TransactionManager transact = pool.getTransactionManager();
-comment|//        Txn txn = transact.beginTransaction();
-comment|//		DBBroker broker = null;
-comment|//		try {
-comment|//			broker = pool.get(SYSTEM_USER);
-comment|//			save(broker, txn);
-comment|//			createUserHome(broker, txn, user);
-comment|//            transact.commit(txn);
-comment|//		} catch (EXistException e) {
-comment|//            transact.abort(txn);
-comment|//			LOG.debug("error while creating user", e);
-comment|//		} catch (IOException e) {
-comment|//            transact.abort(txn);
-comment|//			LOG.debug("error while creating home collection", e);
-comment|//		} catch (PermissionDeniedException e) {
-comment|//            transact.abort(txn);
-comment|//			LOG.debug("error while creating home collection", e);
-comment|//		} finally {
-comment|//			pool.release(broker);
-comment|//		}
-comment|//	}
 specifier|private
 name|void
 name|createUserHome
@@ -2266,7 +2175,7 @@ name|broker
 argument_list|)
 decl_stmt|;
 name|String
-name|role
+name|group
 init|=
 operator|(
 name|config
@@ -2293,7 +2202,7 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|role
+name|group
 argument_list|)
 expr_stmt|;
 name|broker
