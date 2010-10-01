@@ -8613,7 +8613,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>getUser</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>getAccount</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|HashMap
 argument_list|<
@@ -8657,11 +8657,11 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"user "
+literal|"account '"
 operator|+
 name|name
 operator|+
-literal|" does not exist"
+literal|"' does not exist"
 argument_list|)
 throw|;
 name|HashMap
@@ -8778,7 +8778,7 @@ return|return
 name|tab
 return|;
 block|}
-comment|/**      * The method<code>getUsers</code>      *      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>getAccounts</code>      *      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|public
 name|Vector
 argument_list|<
@@ -9172,40 +9172,31 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
-name|SecurityManager
-name|manager
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+name|BrokerPool
+name|database
 init|=
 name|factory
 operator|.
 name|getBrokerPool
 argument_list|()
-operator|.
-name|getSecurityManager
-argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|manager
+try|try
+block|{
+name|broker
+operator|=
+name|database
 operator|.
-name|hasAdminPrivileges
+name|get
 argument_list|(
 name|user
 argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"you are not allowed to remove users"
-argument_list|)
-throw|;
-block|}
-name|factory
-operator|.
-name|getBrokerPool
-argument_list|()
+expr_stmt|;
+name|database
 operator|.
 name|getSecurityManager
 argument_list|()
@@ -9215,6 +9206,17 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|database
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**      * The method<code>hasDocument</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
 specifier|public
@@ -18613,6 +18615,30 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|DBBroker
+name|broker
+init|=
+literal|null
+decl_stmt|;
+name|BrokerPool
+name|database
+init|=
+name|factory
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|broker
+operator|=
+name|database
+operator|.
+name|get
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
 name|manager
 operator|.
 name|addAccount
@@ -18620,6 +18646,17 @@ argument_list|(
 name|u
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|database
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
