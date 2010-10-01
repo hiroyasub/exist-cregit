@@ -429,9 +429,6 @@ name|indexId
 parameter_list|)
 block|{
 return|return
-operator|(
-name|IndexWorker
-operator|)
 name|indexWorkers
 operator|.
 name|get

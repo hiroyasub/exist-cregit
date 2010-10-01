@@ -811,9 +811,6 @@ control|)
 block|{
 name|index
 operator|=
-operator|(
-name|Index
-operator|)
 name|i
 operator|.
 name|next
