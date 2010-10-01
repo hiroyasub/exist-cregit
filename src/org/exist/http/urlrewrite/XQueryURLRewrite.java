@@ -2519,6 +2519,21 @@ name|formEncoding
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|(
+operator|(
+name|HttpServletResponse
+operator|)
+name|response
+operator|)
+operator|.
+name|containsHeader
+argument_list|(
+literal|"Content-Type"
+argument_list|)
+condition|)
+block|{
 name|response
 operator|.
 name|setContentType
@@ -2530,6 +2545,7 @@ operator|+
 name|formEncoding
 argument_list|)
 expr_stmt|;
+block|}
 comment|//        response.addHeader( "pragma", "no-cache" );
 comment|//        response.addHeader( "Cache-Control", "no-cache" );
 name|Serializer
