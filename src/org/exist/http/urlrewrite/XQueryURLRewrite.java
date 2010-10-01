@@ -2521,6 +2521,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 operator|(
 operator|(
 name|HttpServletResponse
