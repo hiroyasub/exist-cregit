@@ -261,12 +261,12 @@ expr_stmt|;
 block|}
 specifier|protected
 specifier|final
-name|Account
+name|AccountImpl
 name|ACCOUNT_SYSTEM
 decl_stmt|;
 specifier|protected
 specifier|final
-name|Account
+name|AccountImpl
 name|ACCOUNT_GUEST
 decl_stmt|;
 specifier|protected
@@ -281,7 +281,7 @@ name|GROUP_GUEST
 decl_stmt|;
 specifier|protected
 specifier|final
-name|Account
+name|AccountImpl
 name|ACCOUNT_UNKNOW
 decl_stmt|;
 specifier|protected
@@ -343,7 +343,9 @@ argument_list|)
 expr_stmt|;
 name|ACCOUNT_UNKNOW
 operator|.
-name|addGroup
+name|groups
+operator|.
+name|add
 argument_list|(
 name|GROUP_UNKNOW
 argument_list|)
@@ -406,10 +408,18 @@ argument_list|)
 expr_stmt|;
 name|ACCOUNT_SYSTEM
 operator|.
-name|addGroup
+name|groups
+operator|.
+name|add
 argument_list|(
 name|GROUP_DBA
 argument_list|)
+expr_stmt|;
+name|ACCOUNT_SYSTEM
+operator|.
+name|hasDbaRole
+operator|=
+literal|true
 expr_stmt|;
 name|sm
 operator|.
@@ -457,10 +467,18 @@ argument_list|)
 decl_stmt|;
 name|ACCOUNT_ADMIN
 operator|.
-name|addGroup
+name|groups
+operator|.
+name|add
 argument_list|(
 name|GROUP_DBA
 argument_list|)
+expr_stmt|;
+name|ACCOUNT_ADMIN
+operator|.
+name|hasDbaRole
+operator|=
+literal|true
 expr_stmt|;
 name|sm
 operator|.
@@ -549,7 +567,9 @@ argument_list|)
 expr_stmt|;
 name|ACCOUNT_GUEST
 operator|.
-name|addGroup
+name|groups
+operator|.
+name|add
 argument_list|(
 name|GROUP_GUEST
 argument_list|)
@@ -980,7 +1000,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' user"
+literal|"' account"
 argument_list|)
 throw|;
 name|Account
@@ -1005,7 +1025,7 @@ operator|new
 name|PermissionDeniedException
 argument_list|(
 comment|//XXX: different exception
-literal|"user "
+literal|"account "
 operator|+
 name|account
 operator|.
@@ -1015,6 +1035,7 @@ operator|+
 literal|" does not exist"
 argument_list|)
 throw|;
+comment|//check: add account to group
 name|String
 index|[]
 name|groups
@@ -1057,6 +1078,59 @@ argument_list|)
 operator|)
 condition|)
 block|{
+name|updatingAccount
+operator|.
+name|addGroup
+argument_list|(
+name|groups
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//check: remove account from group
+name|groups
+operator|=
+name|updatingAccount
+operator|.
+name|getGroups
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|groups
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|account
+operator|.
+name|hasGroup
+argument_list|(
+name|groups
+index|[
+name|i
+index|]
+argument_list|)
+operator|)
+condition|)
+block|{
 if|if
 condition|(
 operator|!
@@ -1074,7 +1148,7 @@ argument_list|)
 throw|;
 name|updatingAccount
 operator|.
-name|addGroup
+name|remGroup
 argument_list|(
 name|groups
 index|[
@@ -1084,7 +1158,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//XXX: delete group from account information
 name|updatingAccount
 operator|.
 name|setPassword
@@ -1492,7 +1565,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|" you are not allowed to delete '"
+literal|" you ["
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"] are not allowed to delete '"
 operator|+
 name|remove_group
 operator|.
@@ -1697,11 +1777,11 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_NOT_FOUND
 argument_list|,
-literal|"Acount "
+literal|"Acount '"
 operator|+
 name|accountName
 operator|+
-literal|" not found"
+literal|"' not found"
 argument_list|)
 throw|;
 name|Subject

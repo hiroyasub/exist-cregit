@@ -67,6 +67,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -162,6 +174,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 return|return
 name|account
@@ -182,6 +196,8 @@ parameter_list|(
 name|Group
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 return|return
 name|account

@@ -360,6 +360,23 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|boolean
+name|isMembersManager
+parameter_list|(
+name|Account
+name|account
+parameter_list|)
+block|{
+return|return
+name|membersManagers
+operator|.
+name|contains
+argument_list|(
+name|account
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

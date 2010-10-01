@@ -201,6 +201,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|DOMException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|Document
 import|;
 end_import
@@ -754,7 +766,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * Read a account information from the given DOM node 	 *  	 * @param node 	 *            Description of the Parameter 	 *@exception DatabaseConfigurationException 	 *                Description of the Exception 	 * @throws ConfigurationException  	 */
+comment|/** 	 * Read a account information from the given DOM node 	 *  	 * @param node 	 *            Description of the Parameter 	 *@exception DatabaseConfigurationException 	 *                Description of the Exception 	 * @throws ConfigurationException  	 * @throws PermissionDeniedException  	 * @throws DOMException  	 */
 specifier|public
 specifier|static
 name|Account
@@ -771,6 +783,10 @@ name|node
 parameter_list|)
 throws|throws
 name|ConfigurationException
+throws|,
+name|DOMException
+throws|,
+name|PermissionDeniedException
 block|{
 name|String
 name|password

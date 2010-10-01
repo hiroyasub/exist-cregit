@@ -133,6 +133,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -174,20 +186,6 @@ operator|.
 name|aider
 operator|.
 name|UserAider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|ldap
-operator|.
-name|LDAPbindSecurityManager
 import|;
 end_import
 
@@ -739,45 +737,11 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new user with name, password and primary group 	 *  	 *@param user 	 *            Description of the Parameter 	 *@param password 	 *            Description of the Parameter 	 *@param primaryGroup 	 *            Description of the Parameter 	 * @throws ConfigurationException  	 */
-specifier|public
-name|AccountImpl
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|int
-name|id
-parameter_list|,
-name|String
-name|name
-parameter_list|,
-name|String
-name|password
-parameter_list|,
-name|String
-name|primaryGroup
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-name|this
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|name
-argument_list|,
-name|password
-argument_list|)
-expr_stmt|;
-name|addGroup
-argument_list|(
-name|primaryGroup
-argument_list|)
-expr_stmt|;
-block|}
+comment|/** 	 * Create a new user with name, password and primary group 	 *  	 *@param user 	 *            Description of the Parameter 	 *@param password 	 *            Description of the Parameter 	 *@param primaryGroup 	 *            Description of the Parameter 	 * @throws ConfigurationException  	 * @throws PermissionDeniedException  	 */
+comment|//	public AccountImpl(AbstractRealm realm, int id, String name, String password, String primaryGroup) throws ConfigurationException {
+comment|//		this(realm, id, name, password);
+comment|//		addGroup(primaryGroup);
+comment|//	}
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -792,6 +756,8 @@ name|from_user
 parameter_list|)
 throws|throws
 name|ConfigurationException
+throws|,
+name|PermissionDeniedException
 block|{
 name|super
 argument_list|(
@@ -1376,47 +1342,6 @@ block|{
 return|return
 literal|false
 return|;
-block|}
-comment|// [ 1557095 ] LDAP passwords patch
-comment|// Try to authenticate using LDAP
-if|if
-condition|(
-name|sm
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|sm
-operator|instanceof
-name|LDAPbindSecurityManager
-condition|)
-block|{
-if|if
-condition|(
-operator|(
-operator|(
-name|LDAPbindSecurityManager
-operator|)
-name|sm
-operator|)
-operator|.
-name|bind
-argument_list|(
-name|name
-argument_list|,
-name|passwd
-argument_list|)
-condition|)
-return|return
-literal|true
-return|;
-else|else
-return|return
-literal|false
-return|;
-block|}
 block|}
 if|if
 condition|(

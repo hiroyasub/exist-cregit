@@ -129,6 +129,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|DBBroker
 import|;
 end_import
@@ -446,6 +458,18 @@ throws|throws
 name|EXistException
 block|{
 comment|// TODO Auto-generated method stub
+block|}
+annotation|@
+name|Override
+specifier|public
+name|BrokerPool
+name|getDatabase
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
 block|}
 block|}
 end_class

@@ -19,7 +19,9 @@ interface|interface
 name|Group
 extends|extends
 name|Principal
-block|{  }
+block|{
+comment|//boolean isMembersManager(Account account);
+block|}
 end_interface
 
 end_unit

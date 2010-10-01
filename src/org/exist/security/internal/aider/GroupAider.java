@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -26,6 +36,18 @@ operator|.
 name|config
 operator|.
 name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
 import|;
 end_import
 
@@ -77,6 +99,13 @@ decl_stmt|;
 specifier|private
 name|int
 name|id
+decl_stmt|;
+specifier|private
+name|Set
+argument_list|<
+name|Account
+argument_list|>
+name|membersManagers
 decl_stmt|;
 specifier|public
 name|GroupAider

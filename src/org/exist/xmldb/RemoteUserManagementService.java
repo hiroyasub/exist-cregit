@@ -2560,7 +2560,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
-name|Account
+name|UserAider
 name|u
 init|=
 operator|new
@@ -2715,12 +2715,12 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Account
+name|UserAider
 index|[]
 name|u
 init|=
 operator|new
-name|Account
+name|UserAider
 index|[
 name|users
 operator|.

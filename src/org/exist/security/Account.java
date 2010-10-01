@@ -82,7 +82,7 @@ name|MD5_ENCODING
 init|=
 literal|2
 decl_stmt|;
-comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
+comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 * @throws PermissionDeniedException  	 */
 specifier|public
 name|Group
 name|addGroup
@@ -90,8 +90,10 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
+comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 * @throws PermissionDeniedException  	 */
 specifier|public
 name|Group
 name|addGroup
@@ -99,6 +101,8 @@ parameter_list|(
 name|Group
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/** 	 *  Remove the user to a group 	 *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it   	 * 	 *@param  group  The feature to be removed to the Group attribute 	 */
 specifier|public

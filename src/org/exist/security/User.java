@@ -91,7 +91,10 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
+empty_stmt|;
 comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
 specifier|public
 name|Group
@@ -100,7 +103,10 @@ parameter_list|(
 name|Group
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
+empty_stmt|;
 comment|/** 	 *  Remove the user to a group 	 *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it   	 * 	 *@param  group  The feature to be removed to the Group attribute 	 */
 specifier|public
 name|void

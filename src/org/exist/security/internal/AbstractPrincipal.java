@@ -647,6 +647,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|protected
+name|BrokerPool
+name|getDatabase
+parameter_list|()
+block|{
+return|return
+name|realm
+operator|.
+name|getDatabase
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
