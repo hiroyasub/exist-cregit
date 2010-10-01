@@ -2123,6 +2123,8 @@ literal|1
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -3026,6 +3028,8 @@ operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getParentNode()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getParentNode
@@ -3560,6 +3564,8 @@ name|nextNode
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectChildren
@@ -3628,6 +3634,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectDescendants
@@ -3730,6 +3738,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectDescendantAttributes
@@ -4285,6 +4295,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchChildren
@@ -4357,6 +4369,8 @@ literal|false
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchDescendants
@@ -4468,6 +4482,8 @@ literal|false
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchDescendantAttributes
@@ -4940,6 +4956,8 @@ operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getOwnerDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -5145,10 +5163,6 @@ name|node
 argument_list|,
 name|receiver
 argument_list|)
-expr_stmt|;
-name|nextNode
-operator|=
-literal|null
 expr_stmt|;
 break|break;
 block|}
@@ -5654,6 +5668,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Expand all reference nodes in the current document, i.e. replace them by real nodes. Reference nodes are just pointers to nodes from other      * documents stored in the database. The XQuery engine uses reference nodes to speed up the creation of temporary doc fragments.      *      *<p>This method creates a new copy of the document contents and expands all reference nodes.</p>      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|expand
@@ -6473,10 +6489,6 @@ argument_list|,
 name|receiver
 argument_list|)
 expr_stmt|;
-name|nextNode
-operator|=
-literal|null
-expr_stmt|;
 break|break;
 block|}
 block|}
@@ -7170,6 +7182,8 @@ literal|0
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -7181,6 +7195,8 @@ literal|""
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -7467,6 +7483,8 @@ operator|)
 return|;
 comment|//return XmldbURI.ROOT_COLLECTION_URI.toString();
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
