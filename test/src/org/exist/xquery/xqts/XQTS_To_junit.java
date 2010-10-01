@@ -607,7 +607,11 @@ name|setUserProperty
 argument_list|(
 literal|"config.basedir"
 argument_list|,
-literal|"../../test/external/XQTS_1_0_2"
+literal|"../../"
+operator|+
+name|XQTS_case
+operator|.
+name|XQTS_folder
 argument_list|)
 expr_stmt|;
 name|DefaultLogger

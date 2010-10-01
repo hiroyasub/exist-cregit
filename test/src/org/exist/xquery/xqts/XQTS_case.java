@@ -416,13 +416,13 @@ name|XQTS_case
 extends|extends
 name|TestCase
 block|{
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|String
 name|XQTS_folder
 init|=
-literal|"test/external/XQTS_1_0_2/"
+literal|"test/external/XQTS_1_0_3/"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -511,7 +511,9 @@ name|setUserProperty
 argument_list|(
 literal|"config.basedir"
 argument_list|,
-literal|"../../test/external/XQTS_1_0_2"
+literal|"../../"
+operator|+
+name|XQTS_folder
 argument_list|)
 expr_stmt|;
 name|DefaultLogger
@@ -768,7 +770,7 @@ argument_list|(
 literal|"ID"
 argument_list|)
 argument_list|,
-literal|"test/external/XQTS_1_0_2/"
+name|XQTS_folder
 operator|+
 name|source
 operator|.
@@ -1936,7 +1938,7 @@ name|compareResult
 argument_list|(
 name|script
 argument_list|,
-literal|"XQTS_1_0_2/ExpectedTestResults/"
+literal|"XQTS_1_0_3/ExpectedTestResults/"
 operator|+
 name|folder
 argument_list|,
