@@ -3473,6 +3473,13 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+comment|// Check could also be collection instanceof LocalCollection
+if|if
+condition|(
+name|compiled
+operator|instanceof
+name|CompiledXQuery
+condition|)
 name|context
 operator|=
 operator|(
