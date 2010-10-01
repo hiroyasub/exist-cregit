@@ -3978,6 +3978,50 @@ return|return
 name|broker
 return|;
 block|}
+specifier|public
+name|Subject
+name|getSubject
+parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|//Try to get an active broker
+name|DBBroker
+name|broker
+init|=
+name|activeBrokers
+operator|.
+name|get
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|broker
+operator|.
+name|getUser
+argument_list|()
+return|;
+block|}
+block|}
+return|return
+literal|null
+return|;
+comment|//XXX: return guest?
+block|}
 comment|/** Returns an active broker for the database instance. 	 * @return The broker 	 * @throws EXistException If the instance is not available (stopped or not configured) 	 */
 comment|//TODO : rename as getBroker ? getInstance (when refactored) ?
 specifier|public
