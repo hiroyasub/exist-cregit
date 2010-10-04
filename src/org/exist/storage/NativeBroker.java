@@ -1665,6 +1665,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ElementIndex
 name|getElementIndex
@@ -1674,7 +1676,10 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|addObserver
 parameter_list|(
@@ -1689,11 +1694,14 @@ argument_list|(
 name|o
 argument_list|)
 expr_stmt|;
-comment|//        textEngine.addObserver(o);
-comment|//        elementIndex.addObserver(o);
+comment|//textEngine.addObserver(o);
+comment|//elementIndex.addObserver(o);
 comment|//TODO : what about other indexes observers ?
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|deleteObservers
 parameter_list|()
@@ -1703,11 +1711,11 @@ operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
-comment|//        if (elementIndex != null)
-comment|//            elementIndex.deleteObservers();
+comment|//if (elementIndex != null)
+comment|//elementIndex.deleteObservers();
 comment|//TODO : what about other indexes observers ?
-comment|//        if (textEngine != null)
-comment|//            textEngine.deleteObservers();
+comment|//if (textEngine != null)
+comment|//textEngine.deleteObservers();
 block|}
 comment|// ============ dispatch the various events to indexing classes ==========
 specifier|private
@@ -1745,9 +1753,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -1809,9 +1814,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -1861,9 +1863,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -1911,9 +1910,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -1956,9 +1952,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -1999,9 +1992,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -2042,9 +2032,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -2081,8 +2068,6 @@ specifier|private
 name|void
 name|notifyPrintStatistics
 parameter_list|()
-throws|throws
-name|DBException
 block|{
 for|for
 control|(
@@ -2105,9 +2090,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -2150,9 +2132,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -2196,9 +2175,6 @@ block|{
 name|ContentLoadingObserver
 name|observer
 init|=
-operator|(
-name|ContentLoadingObserver
-operator|)
 name|contentLoadingObservers
 operator|.
 name|get
@@ -2217,6 +2193,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Update indexes for the given element node. This method is called when the indexer      * encounters a closing element tag. It updates any range indexes defined on the      * element value and adds the element id to the structural index.      *       * @param node the current element node      * @param currentPath node path leading to the element      * @param content contains the string value of the element. Needed if a range index      * is defined on it.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -2417,12 +2395,14 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
-comment|//            qnameValueIndex.setDocument((DocumentImpl) node.getOwnerDocument());
-comment|//            qnameValueIndex.endElement((ElementImpl) node, currentPath, content);
+comment|//qnameValueIndex.setDocument((DocumentImpl) node.getOwnerDocument());
+comment|//qnameValueIndex.endElement((ElementImpl) node, currentPath, content);
 block|}
 block|}
-comment|/*       private String getOldNodeContent(StoredNode node, long oldAddress) {       NodeProxy p = new NodeProxy(node);       if (oldAddress != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)       p.setInternalAddress(oldAddress);       String content = getNodeValue(node, false);       //Curious... I assume getNodeValue() needs the old address       p.setInternalAddress(node.getInternalAddress());       return content;       }*/
+comment|/*       private String getOldNodeContent(StoredNode node, long oldAddress) {           NodeProxy p = new NodeProxy(node);           if (oldAddress != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)               p.setInternalAddress(oldAddress);           String content = getNodeValue(node, false);           //Curious... I assume getNodeValue() needs the old address           p.setInternalAddress(node.getInternalAddress());           return content;       }       */
 comment|/** Takes care of actually remove entries from the indices;      * must be called after one or more call to {@link #removeNode(Txn, StoredNode, NodePath, String)}. */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endRemove
@@ -2435,6 +2415,8 @@ name|notifyRemove
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isReadOnly
@@ -2512,6 +2494,8 @@ return|return
 name|defaultIndexDepth
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|backupToArchive
@@ -2639,6 +2623,8 @@ name|backup
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexSpec
 name|getIndexConfiguration
@@ -2648,6 +2634,8 @@ return|return
 name|indexConfiguration
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StructuralIndex
 name|getStructuralIndex
@@ -2668,6 +2656,8 @@ name|STRUCTURAL_INDEX_ID
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NativeValueIndex
 name|getValueIndex
@@ -2677,6 +2667,8 @@ return|return
 name|valueIndex
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|TextSearchEngine
 name|getTextEngine
@@ -2722,6 +2714,8 @@ name|getEngine
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|EmbeddedXMLStreamReader
 name|getXMLStreamReader
@@ -2798,6 +2792,8 @@ return|return
 name|streamReader
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|EmbeddedXMLStreamReader
 name|newXMLStreamReader
@@ -2848,6 +2844,8 @@ name|reportAttributes
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -2924,6 +2922,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Serializer
 name|getSerializer
@@ -2938,6 +2938,8 @@ return|return
 name|xmlSerializer
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Serializer
 name|newSerializer
@@ -3084,6 +3086,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.DBBroker#getOrCreateCollection(org.exist.storage.txn.Txn, org.exist.xmldb.XmldbURI)      */
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -3523,6 +3527,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|getCollection
@@ -3542,6 +3548,8 @@ name|NO_LOCK
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|openCollection
@@ -3861,7 +3869,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//Important :
-comment|//This code must remain ouside of the synchonized block
+comment|//This code must remain outside of the synchonized block
 comment|//because another thread may already own a lock on the collection
 comment|//This would result in a deadlock... until the time-out raises the Exception
 comment|//TODO : make an attempt to an immediate lock ?
@@ -3913,6 +3921,8 @@ name|collection
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.DBBroker#copyCollection(org.exist.storage.txn.Txn, org.exist.collections.Collection, org.exist.collections.Collection, org.exist.xmldb.XmldbURI)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyCollection
@@ -4537,6 +4547,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|moveCollection
@@ -5279,20 +5291,8 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-throw|;
+comment|//} catch (ReadOnlyException e) {
+comment|//throw new PermissionDeniedException(DATABASE_IS_READ_ONLY);
 block|}
 finally|finally
 block|{
@@ -5552,7 +5552,7 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//TODO : resolve from collection's base URI
-comment|//TODO : resulve URIs !!! (uri.resolve(childName))
+comment|//TODO : resolve URIs !!! (uri.resolve(childName))
 name|Collection
 name|childCollection
 init|=
@@ -6290,20 +6290,9 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-throw|;
-block|}
+comment|//catch(ReadOnlyException e) {
+comment|//throw new PermissionDeniedException(DATABASE_IS_READ_ONLY);
+comment|//}
 catch|catch
 parameter_list|(
 name|BTreeException
@@ -6678,6 +6667,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *       * Note: appending a new document to a collection does not require a save.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|saveCollection
@@ -7311,17 +7302,6 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
-comment|//            } else {
-comment|//                try {
-comment|//                    StringWriter sw = new StringWriter();
-comment|//                    collectionsDb.dump(sw);
-comment|//                    LOG.debug(CollectionStore.FREE_COLLECTION_ID_KEY + ": " + key.dump());
-comment|//                    LOG.debug(sw.toString());
-comment|//                } catch (IOException e) {
-comment|//                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-comment|//                } catch (BTreeException e) {
-comment|//                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-comment|//                }
 block|}
 return|return
 name|freeCollectionId
@@ -7550,6 +7530,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reindexCollection
@@ -8179,6 +8161,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Store into the temporary collection of the database a given in-memory Document      *      * The in-memory Document is stored without a transaction and is not journalled,      * if there is no temporary collection, this will first be created with a transaction      *      * @param doc The in-memory Document to store      * @return The document stored in the temp collection      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|storeTempResource
@@ -8315,7 +8299,6 @@ name|temp
 operator|==
 literal|null
 condition|)
-block|{
 name|LOG
 operator|.
 name|warn
@@ -8323,7 +8306,6 @@ argument_list|(
 literal|"Failed to create temporary collection"
 argument_list|)
 expr_stmt|;
-block|}
 name|created
 operator|=
 literal|true
@@ -8445,7 +8427,6 @@ name|transaction
 operator|==
 literal|null
 condition|)
-block|{
 name|temp
 operator|.
 name|getLock
@@ -8458,13 +8439,11 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 if|else if
 condition|(
 operator|!
 name|created
 condition|)
-block|{
 name|transaction
 operator|.
 name|registerLock
@@ -8479,7 +8458,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
+comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|storeXMLResource
 argument_list|(
 name|transaction
@@ -8487,7 +8466,6 @@ argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
-comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|flush
 argument_list|()
 expr_stmt|;
@@ -8537,7 +8515,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|//restore the getUser()
+comment|//restore the user
 name|setUser
 argument_list|(
 name|currentUser
@@ -8549,6 +8527,8 @@ literal|null
 return|;
 block|}
 comment|/** remove all documents from temporary collection */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cleanUpTempResources
@@ -8561,6 +8541,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** remove all documents from temporary collection      *       * @param forceRemoval Should temporary resources be forcefully removed       */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cleanUpTempResources
@@ -8734,6 +8716,8 @@ block|}
 block|}
 block|}
 comment|/** store Document entry into its collection. */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeXMLResource
@@ -8826,20 +8810,8 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-expr_stmt|;
+comment|//} catch (ReadOnlyException e) {
+comment|//LOG.warn(DATABASE_IS_READ_ONLY);
 block|}
 catch|catch
 parameter_list|(
@@ -9090,6 +9062,8 @@ return|return
 name|binFile
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeBinaryResource
@@ -9313,6 +9287,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeBinaryResource
@@ -9572,6 +9548,8 @@ block|}
 block|}
 block|}
 comment|/**      *  get a document by its file name. The document's file name is used to      *  identify a document.      *      *@param  fileName absolute file name in the database;       *name can be given with or without the leading path /db/shakespeare.      *@return  The document value      *@exception  PermissionDeniedException       */
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getXMLResource
@@ -9760,12 +9738,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//      if (!doc.getPermissions().validate(getUser(), Permission.READ))
-comment|//          throw new PermissionDeniedException("not allowed to read document");
+comment|//if (!doc.getPermissions().validate(getUser(), Permission.READ))
+comment|//throw new PermissionDeniedException("not allowed to read document");
 return|return
 name|doc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|getXMLResource
@@ -9901,13 +9881,13 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//                LOG.debug("document '" + fileName + "' not found!");
+comment|//LOG.debug("document '" + fileName + "' not found!");
 return|return
 literal|null
 return|;
 block|}
-comment|//      if (!doc.getPermissions().validate(getUser(), Permission.READ))
-comment|//          throw new PermissionDeniedException("not allowed to read document");
+comment|//if (!doc.getPermissions().validate(getUser(), Permission.READ))
+comment|//throw new PermissionDeniedException("not allowed to read document");
 if|if
 condition|(
 name|doc
@@ -10010,7 +9990,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*     public byte[] getBinaryResource(final BinaryDocument blob)         throws IOException     {     	if (blob.getPage() == Page.NO_PAGE)     		return new byte[0];         byte[] data = (byte[]) new DOMTransaction(this, domDb, Lock.WRITE_LOCK) { 			public Object start() throws ReadOnlyException { 			    return domDb.getBinary(blob.getPage()); 			} 	    } 	    .run();         return data;        ByteArrayOutputStream os = new ByteArrayOutputStream();        readBinaryResource(blob,os);        return os.toByteArray();     }      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|readBinaryResource
@@ -10026,7 +10007,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|/*     	if (blob.getPage() == Page.NO_PAGE)     		return;         new DOMTransaction(this, domDb, Lock.WRITE_LOCK) {             public Object start() throws ReadOnlyException {                 domDb.readBinary(blob.getPage(), os);                 return null;             }         }.run();         */
 name|InputStream
 name|is
 init|=
@@ -10098,6 +10078,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getBinaryResourceSize
@@ -10131,6 +10113,8 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getBinaryResource
@@ -10142,7 +10126,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|/*     	if (blob.getPage() == Page.NO_PAGE)     		return;         new DOMTransaction(this, domDb, Lock.WRITE_LOCK) {             public Object start() throws ReadOnlyException {                 domDb.readBinary(blob.getPage(), os);                 return null;             }         }.run();         */
 name|File
 name|binFile
 init|=
@@ -10167,6 +10150,8 @@ argument_list|)
 return|;
 block|}
 comment|//TODO : consider a better cooperation with Collection -pb
+annotation|@
+name|Override
 specifier|public
 name|void
 name|getCollectionResources
@@ -10318,6 +10303,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|getResourcesFailsafe
@@ -10463,6 +10450,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|getCollectionsFailsafe
@@ -10592,6 +10581,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      *  Get all the documents in this database matching the given      *  document-type's name.      * @return The documentsByDoctype value      */
+annotation|@
+name|Override
 specifier|public
 name|MutableDocumentSet
 name|getXMLResourcesByDoctype
@@ -10714,6 +10705,8 @@ name|result
 return|;
 block|}
 comment|/**      *  Adds all the documents in the database to the specified DocumentSet.      *      * @param docs a (possibly empty) document set to which the found      *  documents are added.      */
+annotation|@
+name|Override
 specifier|public
 name|MutableDocumentSet
 name|getAllXMLResources
@@ -10823,6 +10816,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//TODO : consider a better cooperation with Collection -pb
+annotation|@
+name|Override
 specifier|public
 name|void
 name|getResourceMetadata
@@ -10946,6 +10941,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyResource
@@ -11391,7 +11388,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//          saveCollection(destination);
 block|}
 catch|catch
 parameter_list|(
@@ -11620,6 +11616,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** move Resource to another collection, with possible rename */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|moveResource
@@ -12220,6 +12218,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeXMLResource
@@ -12641,6 +12641,8 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeBinaryResource
@@ -12776,9 +12778,10 @@ block|}
 catch|catch
 parameter_list|(
 name|Exception
-name|ignored
+name|e
 parameter_list|)
 block|{
+comment|//ignore
 block|}
 if|if
 condition|(
@@ -12836,7 +12839,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*         if (blob.getPage() != Page.NO_PAGE) { 		    new DOMTransaction(this, domDb, Lock.WRITE_LOCK) { 				public Object start() throws ReadOnlyException { 				    domDb.removeOverflowValue(transaction, blob.getPage()); 				    return null; 				} 		    } 	        .run();         }          */
 name|removeResourceMetadata
 argument_list|(
 name|transaction
@@ -12934,20 +12936,8 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-expr_stmt|;
+comment|//} catch (ReadOnlyException e) {
+comment|//LOG.warn(DATABASE_IS_READ_ONLY);
 block|}
 catch|catch
 parameter_list|(
@@ -13351,6 +13341,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|collectionsDb
 operator|.
 name|remove
@@ -13360,6 +13351,7 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : maybe something ? -pb
 block|}
@@ -13410,6 +13402,8 @@ name|freeDocId
 return|;
 block|}
 comment|/** get next Free Doc Id */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getNextResourceId
@@ -13769,6 +13763,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|defragXMLResource
@@ -13805,17 +13801,6 @@ name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        Writer writer = new StringWriter();
-comment|//        try {
-comment|//            domDb.dump(writer);
-comment|//        } catch (BTreeException e1) {
-comment|//            //  Auto-generated catch block
-comment|//            e1.printStackTrace();
-comment|//        } catch (IOException e1) {
-comment|//            //  Auto-generated catch block
-comment|//            e1.printStackTrace();
-comment|//        }
-comment|//        System.out.println(writer.toString());
 specifier|final
 name|long
 name|start
@@ -13827,14 +13812,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|//          checkTree(doc);
-comment|//            try {
-comment|//                domDb.printFreeSpaceList();
-comment|//            } catch (IOException e1) {
-comment|//                // Auto-generated catch block
-comment|//                e1.printStackTrace();
-comment|//            }
-comment|// remember this for later remove
 specifier|final
 name|long
 name|firstChild
@@ -14131,7 +14108,6 @@ block|}
 name|flush
 argument_list|()
 expr_stmt|;
-comment|// checkTree(tempDoc);
 comment|// remove the old nodes
 operator|new
 name|DOMTransaction
@@ -14194,7 +14170,6 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
-comment|// checkTree(tempDoc);
 name|doc
 operator|.
 name|copyChildren
@@ -14235,19 +14210,9 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//Commented out since DocmentImpl has no more internal address
-comment|//LOG.debug("new doc address = " + StorageAddress.toString(doc.getInternalAddress()));
 name|closeDocument
 argument_list|()
 expr_stmt|;
-comment|//          new DOMTransaction(this, domDb, Lock.READ_LOCK) {
-comment|//              public Object start() throws ReadOnlyException {
-comment|//                  LOG.debug("Pages used: " + domDb.debugPages(doc));
-comment|//                  return null;
-comment|//              }
-comment|//          }.run();
-comment|//            storeXMLResource(transaction, doc);
-comment|//            checkTree(doc);
 name|LOG
 operator|.
 name|debug
@@ -14285,6 +14250,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** consistency Check of the database; useful after XUpdates;      * called if xupdate.consistency-checks is true in configuration */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkXMLResourceConsistency
@@ -14353,10 +14320,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//          elementIndex.consistencyCheck(doc);
 block|}
 block|}
 comment|/** consistency Check of the database; useful after XUpdates;      * called by {@link #checkXMLResourceConsistency(DocumentImpl)} */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkXMLResourceTree
@@ -14525,7 +14493,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-comment|//                Pass buf to the following method to get a dump of all node ids in the document
+comment|//Pass buf to the following method to get a dump of all node ids in the document
 if|if
 condition|(
 operator|!
@@ -14661,6 +14629,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      *  Store a node into the database. This method is called by the parser to      *  write a node to the storage backend.      *      *@param  node         the node to be stored      *@param  currentPath  path expression which points to this node's      *      element-parent or to itself if it is an element (currently used by      *      the Broker to determine if a node's content should be      *      fulltext-indexed).  @param index switch to activate fulltext indexation      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeNode
@@ -14873,6 +14843,8 @@ name|doIndex
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|updateNode
@@ -15085,12 +15057,10 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        if (reindex) {
-comment|//            StreamListener listener = indexController.getStreamListener(node.getDocument(), StreamListener.STORE);
-comment|//            IndexUtils.scanNode(transaction, node, listener);
-comment|//        }
 block|}
 comment|/**      * Physically insert a node into the DOM storage.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|insertNodeAfter
@@ -15745,6 +15715,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Removes the Node Reference from the database.      * The index will be updated later, i.e. after all nodes have been physically       * removed. See {@link #endRemove(org.exist.storage.txn.Txn)}.      * removeNode() just adds the node ids to the list in elementIndex       * for later removal.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeNode
@@ -15901,7 +15873,6 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
-comment|// save element by calling ElementIndex
 name|qname
 operator|=
 name|node
@@ -15918,8 +15889,6 @@ operator|.
 name|ELEMENT
 argument_list|)
 expr_stmt|;
-comment|//	    elementIndex.setDocument(doc);
-comment|//	    elementIndex.addNode(qname, p);
 name|GeneralRangeIndexSpec
 name|spec1
 init|=
@@ -16055,8 +16024,6 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-comment|//	    elementIndex.setDocument(doc);
-comment|//	    elementIndex.addNode(qname, p);
 comment|//Strange : does it mean that the node is added 2 times under 2 different identities ?
 name|AttrImpl
 name|attr
@@ -16332,6 +16299,8 @@ case|:
 break|break;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAllNodes
@@ -16813,6 +16782,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Index a single node, which has been added through an XUpdate      * operation. This method is only called if inserting the node is possible      * without changing the node identifiers of sibling or parent nodes. In other       * cases, reindex will be called.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|indexNode
@@ -16860,7 +16831,6 @@ name|int
 name|repairMode
 parameter_list|)
 block|{
-comment|//        elementIndex.setInUpdateMode(true);
 name|nodeProcessor
 operator|.
 name|reset
@@ -17531,6 +17501,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -17586,6 +17558,8 @@ name|run
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StoredNode
 name|objectWith
@@ -17727,6 +17701,8 @@ name|run
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StoredNode
 name|objectWith
@@ -17868,8 +17844,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//					LOG.debug(domDb.debugPages(p.doc, true));
-comment|//					return null;
 if|if
 condition|(
 name|fakeNodeId
@@ -18069,6 +18043,8 @@ name|run
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|repair
@@ -18234,6 +18210,8 @@ name|MODE_REPAIR
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|flush
@@ -18277,6 +18255,8 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sync
@@ -18516,6 +18496,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|shutdown
@@ -18573,6 +18555,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** check available memory */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkAvailableMemory
@@ -18723,6 +18707,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//TOUNDERSTAND : why not use shutdown ? -pb
+annotation|@
+name|Override
 specifier|public
 name|void
 name|closeDocument
@@ -18991,10 +18977,7 @@ specifier|private
 name|IndexSpec
 name|idxSpec
 decl_stmt|;
-specifier|private
-name|FulltextIndexSpec
-name|ftIdx
-decl_stmt|;
+comment|//private FulltextIndexSpec ftIdx;
 specifier|private
 name|int
 name|level
@@ -19015,6 +18998,7 @@ decl_stmt|;
 name|NodeProcessor
 parameter_list|()
 block|{
+comment|//ignore
 block|}
 specifier|public
 name|void
@@ -19123,19 +19107,7 @@ name|idxSpec
 operator|=
 name|indexSpec
 expr_stmt|;
-name|ftIdx
-operator|=
-name|idxSpec
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-name|idxSpec
-operator|.
-name|getFulltextIndexSpec
-argument_list|()
-expr_stmt|;
+comment|//ftIdx = idxSpec == null ? null : idxSpec.getFulltextIndexSpec();
 name|level
 operator|=
 name|node
@@ -19202,6 +19174,9 @@ name|getURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|int
+name|indexType
+decl_stmt|;
 switch|switch
 condition|(
 name|node
@@ -19215,17 +19190,15 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
-block|{
 comment|//Compute index type
 comment|//TODO : let indexers OR it themselves
 comment|//we'd need to notify the ElementIndexer at the very end then...
-name|int
 name|indexType
-init|=
+operator|=
 name|RangeIndexSpec
 operator|.
 name|NO_INDEX
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|idxSpec
@@ -19319,21 +19292,13 @@ argument_list|(
 name|indexType
 argument_list|)
 expr_stmt|;
-comment|//	                    notifyStartElement((ElementImpl)node, currentPath, fullTextIndex);
-comment|//                    if (mode != MODE_REMOVE) {
-comment|//                        NodeProxy p = new NodeProxy(node);
-comment|//                        p.setIndexType(indexType);
-comment|//                        elementIndex.setDocument(doc);
-comment|//                        elementIndex.addNode(node.getQName(), p);
-comment|//                    }
+comment|//notifyStartElement((ElementImpl)node, currentPath, fullTextIndex);
 break|break;
-block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-block|{
 name|QName
 name|qname
 init|=
@@ -19358,13 +19323,12 @@ expr_stmt|;
 comment|//Compute index type
 comment|//TODO : let indexers OR it themselves
 comment|//we'd need to notify the ElementIndexer at the very end then...
-name|int
 name|indexType
-init|=
+operator|=
 name|RangeIndexSpec
 operator|.
 name|NO_INDEX
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|idxSpec
@@ -19522,8 +19486,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//notifyStoreAttribute((AttrImpl)node, currentPath, NativeValueIndex.WITH_PATH, null);
-comment|//                    elementIndex.setDocument(doc);
 specifier|final
 name|NodeProxy
 name|tempProxy
@@ -19557,8 +19519,6 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
-comment|//                    if (mode != MODE_REMOVE)
-comment|//                        elementIndex.addNode(qname, tempProxy);
 name|AttrImpl
 name|attr
 init|=
@@ -19749,7 +19709,6 @@ name|removeLastComponent
 argument_list|()
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|Node
 operator|.
@@ -19947,8 +19906,7 @@ name|getReservedMem
 argument_list|()
 condition|)
 block|{
-comment|//LOG.info(
-comment|//  "total memory: " + run.totalMemory() + "; free: " + run.freeMemory());
+comment|//LOG.info("total memory: " + run.totalMemory() + "; free: " + run.freeMemory());
 name|flush
 argument_list|()
 expr_stmt|;

@@ -1055,6 +1055,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * @return file version      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getFileVersion
@@ -1124,8 +1126,6 @@ name|ByteArray
 name|value
 parameter_list|)
 throws|throws
-name|ReadOnlyException
-throws|,
 name|IOException
 block|{
 if|if
@@ -1519,6 +1519,8 @@ name|UNKNOWN_ADDRESS
 return|;
 block|}
 comment|/**      * Close the BFile.      *       * @throws DBException      * @return always true      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|close
@@ -1593,6 +1595,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|create
@@ -1622,6 +1626,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|closeAndRemove
@@ -1685,6 +1691,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|FileHeader
 name|createFileHeader
@@ -1701,6 +1709,8 @@ name|pageSize
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|PageHeader
 name|createPageHeader
@@ -1804,8 +1814,6 @@ name|i
 operator|++
 control|)
 block|{
-try|try
-block|{
 name|remove
 argument_list|(
 name|transaction
@@ -1818,28 +1826,6 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Database is read-only. Cannot remove items."
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Database is read-only"
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 catch|catch
@@ -2058,7 +2044,9 @@ name|cb
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.  	 * @return<code>true</code> if something has actually been cleaned 	 */
+comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.       * @return<code>true</code> if something has actually been cleaned      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|flush
@@ -2145,6 +2133,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|printStatistics
@@ -2777,20 +2767,6 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|BTreeException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
@@ -2819,8 +2795,6 @@ name|long
 name|p
 parameter_list|)
 throws|throws
-name|BTreeException
-throws|,
 name|IOException
 block|{
 specifier|final
@@ -3493,7 +3467,7 @@ name|overwrite
 argument_list|)
 return|;
 block|}
-comment|/**      * Convinience method for {@link BFile#put(Value, byte[], boolean)}, overwrite is true.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
+comment|/**      * Convenience method for {@link BFile#put(Value, byte[], boolean)}, overwrite is true.      *       * @param key with which the data is updated      * @param value value to update      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
 specifier|public
 name|long
 name|put
@@ -3564,8 +3538,6 @@ parameter_list|,
 name|boolean
 name|overwrite
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 if|if
 condition|(
@@ -3785,8 +3757,6 @@ parameter_list|(
 name|Value
 name|key
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 name|remove
 argument_list|(
@@ -3806,8 +3776,6 @@ parameter_list|,
 name|Value
 name|key
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 try|try
 block|{
@@ -3900,8 +3868,6 @@ parameter_list|,
 name|long
 name|p
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 try|try
 block|{
@@ -3930,22 +3896,6 @@ argument_list|,
 name|page
 argument_list|,
 name|p
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|BTreeException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"btree problem"
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -3980,11 +3930,7 @@ name|long
 name|p
 parameter_list|)
 throws|throws
-name|BTreeException
-throws|,
 name|IOException
-throws|,
-name|ReadOnlyException
 block|{
 if|if
 condition|(
@@ -4457,8 +4403,6 @@ name|value
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ReadOnlyException
 block|{
 specifier|final
 name|int
@@ -5032,8 +4976,6 @@ parameter_list|,
 name|ByteArray
 name|value
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 try|try
 block|{
@@ -5111,8 +5053,6 @@ parameter_list|,
 name|ByteArray
 name|value
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 return|return
 name|update
@@ -5143,8 +5083,6 @@ parameter_list|,
 name|ByteArray
 name|value
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 try|try
 block|{
@@ -5235,8 +5173,6 @@ throws|throws
 name|BTreeException
 throws|,
 name|IOException
-throws|,
-name|ReadOnlyException
 block|{
 if|if
 condition|(
@@ -8408,7 +8344,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//            if ((dp.getPageHeader().getLsn() != Page.NO_PAGE&& requiresRedo(loggable, dp))&& loggable != null)
+comment|//if ((dp.getPageHeader().getLsn() != Page.NO_PAGE&& requiresRedo(loggable, dp))&& loggable != null)
 name|dp
 operator|.
 name|getPageHeader
@@ -8481,14 +8417,7 @@ operator|new
 name|FreeList
 argument_list|()
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|MAX_FREE_LIST_LEN
-init|=
-literal|128
-decl_stmt|;
+comment|//public final static int MAX_FREE_LIST_LEN = 128;
 specifier|public
 name|BFileHeader
 parameter_list|(
@@ -8609,6 +8538,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
@@ -8641,6 +8572,8 @@ name|offset
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|write
@@ -8853,6 +8786,8 @@ name|records
 operator|++
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
@@ -9022,6 +8957,8 @@ operator|=
 name|tid
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|write
@@ -10879,6 +10816,8 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|delete
@@ -11081,6 +11020,8 @@ return|return
 name|input
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -11266,6 +11207,8 @@ return|return
 name|data
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|SinglePage
 name|getFirstPage
@@ -11275,6 +11218,8 @@ return|return
 name|firstPage
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|BFilePageHeader
 name|getPageHeader
@@ -11287,6 +11232,8 @@ name|getPageHeader
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPageInfo
@@ -11301,6 +11248,8 @@ name|getPageInfo
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getPageNum
@@ -11313,6 +11262,8 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -11371,6 +11322,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -11946,7 +11899,9 @@ argument_list|)
 expr_stmt|;
 comment|//            LOG.debug(firstPage.getPageNum() + " data length: " + firstPage.ph.getDataLength());
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.storage.store.BFile.DataPage#findValuePosition(short) 		 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.store.BFile.DataPage#findValuePosition(short)          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|findValuePosition
@@ -11961,7 +11916,9 @@ return|return
 literal|2
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.storage.store.BFile.DataPage#getNextTID() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.store.BFile.DataPage#getNextTID()          */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNextTID
@@ -11971,7 +11928,9 @@ return|return
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.storage.store.BFile.DataPage#removeTID(short) 		 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.store.BFile.DataPage#removeTID(short)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeTID
@@ -11983,8 +11942,11 @@ name|int
 name|length
 parameter_list|)
 block|{
+comment|//
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.storage.store.BFile.DataPage#setOffset(short, int) 		 */
+comment|/* (non-Javadoc)          * @see org.exist.storage.store.BFile.DataPage#setOffset(short, int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOffset
@@ -11996,6 +11958,7 @@ name|int
 name|offset
 parameter_list|)
 block|{
+comment|//
 block|}
 block|}
 specifier|public
@@ -12043,6 +12006,7 @@ specifier|public
 name|SimplePageInput
 parameter_list|()
 block|{
+comment|//
 block|}
 specifier|public
 name|SimplePageInput
@@ -12150,6 +12114,7 @@ specifier|public
 name|MultiPageInput
 parameter_list|()
 block|{
+comment|//
 block|}
 specifier|public
 name|MultiPageInput
@@ -13444,7 +13409,7 @@ name|i
 expr_stmt|;
 break|break;
 block|}
-comment|//                os.writeByte(nextPage.data[offset++]);
+comment|//os.writeByte(nextPage.data[offset++]);
 block|}
 block|}
 specifier|public
@@ -13564,7 +13529,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"failed to acquire a read lock on "
+literal|"Failed to acquire a read lock on "
 operator|+
 name|getFile
 argument_list|()
@@ -13845,6 +13810,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|int
@@ -13862,23 +13829,21 @@ index|[
 name|tid
 index|]
 return|;
-comment|//		    final int dlen = ph.getDataLength();
-comment|//		    for(int pos = 0; pos< dlen; ) {
-comment|//		        if (ByteConversion.byteToShort(data, pos) == tid) return pos + 2;
-comment|//		        pos += ByteConversion.byteToInt(data, pos + 2) + 6;
-comment|//		    }
-comment|//		    LOG.warn("tid " + tid + " not found. " + getPageInfo());
-comment|//		    return -1;
+comment|//          final int dlen = ph.getDataLength();
+comment|//          for(int pos = 0; pos< dlen; ) {
+comment|//              if (ByteConversion.byteToShort(data, pos) == tid) return pos + 2;
+comment|//              pos += ByteConversion.byteToInt(data, pos + 2) + 6;
+comment|//          }
+comment|//          LOG.warn("tid " + tid + " not found. " + getPageInfo());
+comment|//          return -1;
 block|}
 specifier|private
 name|void
 name|readOffsets
 parameter_list|()
-throws|throws
-name|IOException
 block|{
-comment|//        	if(offsets.length> 256)
-comment|//        		LOG.warn("TID size: " + ph.nextTID);
+comment|//if(offsets.length> 256)
+comment|//LOG.warn("TID size: " + ph.nextTID);
 name|Arrays
 operator|.
 name|fill
@@ -14064,6 +14029,8 @@ literal|6
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNextTID
@@ -14403,6 +14370,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOffset
@@ -14425,6 +14394,8 @@ operator|)
 name|offset
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeTID
@@ -14490,8 +14461,10 @@ operator|-=
 name|length
 expr_stmt|;
 block|}
-comment|//        	readOffsets(start);
+comment|//readOffsets(start);
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|delete
@@ -14562,6 +14535,8 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|SinglePage
 name|getFirstPage
@@ -14571,6 +14546,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -14581,6 +14558,8 @@ return|return
 name|data
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|BFilePageHeader
 name|getPageHeader
@@ -14590,6 +14569,8 @@ return|return
 name|ph
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPageInfo
@@ -14602,6 +14583,8 @@ name|getPageInfo
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getPageNum
@@ -14614,6 +14597,8 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -14628,6 +14613,8 @@ operator|=
 name|buf
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write

@@ -7650,32 +7650,8 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Read-only error on '"
-operator|+
-name|dbTokens
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' (inverted index)"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
+comment|//} catch (ReadOnlyException e) {
+comment|//LOG.warn("Read-only error on '" + dbTokens.getFile().getName() + "' (inverted index)", e);
 block|}
 catch|catch
 parameter_list|(
