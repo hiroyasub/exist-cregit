@@ -21,6 +21,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -145,7 +155,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|List
 argument_list|>
 name|parameters
 parameter_list|)
