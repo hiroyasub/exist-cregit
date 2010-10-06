@@ -761,8 +761,6 @@ return|return
 name|conn
 return|;
 block|}
-else|else
-block|{
 name|long
 name|timeOut_
 init|=
@@ -820,8 +818,6 @@ return|return
 name|conn
 return|;
 block|}
-else|else
-block|{
 name|waitTime
 operator|=
 name|timeOut_
@@ -852,7 +848,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|InterruptedException
@@ -869,7 +864,6 @@ argument_list|(
 literal|"interrupted while waiting for lock"
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 block|}

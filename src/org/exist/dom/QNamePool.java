@@ -277,7 +277,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Add a QName, consisting of namespace, local name and prefix, to the 	 * pool. 	 */
+comment|/**      * Add a QName, consisting of namespace, local name and prefix, to the      * pool.      */
 specifier|public
 name|QName
 name|add
@@ -366,6 +366,7 @@ name|HashtableOverflowException
 name|e1
 parameter_list|)
 block|{
+comment|//Doh ! Report something here !
 block|}
 comment|// should never happen, but just to be sure
 return|return
@@ -497,7 +498,7 @@ name|idx
 index|]
 return|;
 block|}
-comment|//		System.out.println("Hash collision: " + value + " with " + values[idx]);
+comment|//System.out.println("Hash collision: " + value + " with " + values[idx]);
 name|int
 name|rehashVal
 init|=
@@ -693,8 +694,13 @@ return|return
 name|retVal
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
+argument_list|<
+name|QName
+argument_list|>
 name|iterator
 parameter_list|()
 block|{
@@ -702,8 +708,13 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
+argument_list|<
+name|QName
+argument_list|>
 name|valueIterator
 parameter_list|()
 block|{

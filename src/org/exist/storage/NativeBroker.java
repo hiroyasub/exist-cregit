@@ -7110,20 +7110,8 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|//TODO : rethrow ? -pb
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-throw|;
+comment|//} catch (ReadOnlyException e) {
+comment|//throw new PermissionDeniedException(DATABASE_IS_READ_ONLY);
 block|}
 finally|finally
 block|{
@@ -13164,20 +13152,8 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|//TODO : rethrow ? -pb
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-name|DATABASE_IS_READ_ONLY
-argument_list|)
-throw|;
+comment|//} catch (ReadOnlyException e) {
+comment|//throw new PermissionDeniedException(DATABASE_IS_READ_ONLY);
 block|}
 finally|finally
 block|{
@@ -13556,25 +13532,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Database is read-only"
-argument_list|)
-expr_stmt|;
-return|return
-name|DocumentImpl
-operator|.
-name|UNKNOWN_DOCUMENT_ID
-return|;
+comment|//} catch (ReadOnlyException e) {
+comment|//LOG.warn("Database is read-only");
+comment|//return DocumentImpl.UNKNOWN_DOCUMENT_ID;
 comment|//TODO : rethrow ? -pb
 block|}
 catch|catch

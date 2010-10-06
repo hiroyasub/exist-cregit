@@ -311,6 +311,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Write the bytes to byte array.      * @param b the bytes to write      * @param off The start offset      * @param len The number of bytes to write      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -481,6 +483,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Write a byte to byte array.      * @param b the byte to write      */
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
@@ -649,6 +653,8 @@ name|count
 return|;
 block|}
 comment|/**      * Closing a<tt>ByteArrayOutputStream</tt> has no effect. The methods in      * this class can be called after the stream has been closed without      * generating an<tt>IOException</tt>.      *      * @throws IOException never (this method should not declare this exception      * but it has to now due to backwards compatability)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -887,6 +893,8 @@ name|newbuf
 return|;
 block|}
 comment|/**      * Gets the curent contents of this byte stream as a string.      * @return the contents of the byte array as a String      * @see java.io.ByteArrayOutputStream#toString()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

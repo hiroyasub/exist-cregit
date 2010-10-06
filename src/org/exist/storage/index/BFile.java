@@ -1621,7 +1621,6 @@ return|return
 literal|true
 return|;
 block|}
-else|else
 return|return
 literal|false
 return|;
@@ -3083,7 +3082,6 @@ argument_list|,
 name|data
 argument_list|)
 return|;
-else|else
 return|return
 operator|new
 name|SinglePage
@@ -3203,7 +3201,6 @@ literal|false
 argument_list|)
 return|;
 block|}
-else|else
 return|return
 name|wp
 return|;
@@ -3419,8 +3416,7 @@ parameter_list|,
 name|boolean
 name|overwrite
 parameter_list|)
-throws|throws
-name|ReadOnlyException
+comment|/* throws ReadOnlyException */
 block|{
 name|SanityCheck
 operator|.
@@ -3645,7 +3641,6 @@ name|value
 argument_list|)
 return|;
 block|}
-else|else
 comment|//TODO : throw an exception ? -pb
 return|return
 name|UNKNOWN_ADDRESS
@@ -4507,7 +4502,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|//            dataCache.add(page);
+comment|//dataCache.add(page);
 return|return
 name|StorageAddress
 operator|.
@@ -4528,8 +4523,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 name|DataPage
 name|page
 init|=
@@ -4964,7 +4957,6 @@ name|tid
 argument_list|)
 return|;
 block|}
-block|}
 comment|/**      * Update a key/value pair.      *       * @param key      *                   Description of the Parameter      * @param value      *                   Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|long
@@ -5240,8 +5232,6 @@ return|return
 name|np
 return|;
 block|}
-else|else
-block|{
 comment|// this is an overflow page: simply replace the value
 specifier|final
 name|byte
@@ -5311,9 +5301,6 @@ return|return
 name|p
 return|;
 block|}
-block|}
-else|else
-block|{
 name|remove
 argument_list|(
 name|transaction
@@ -5346,7 +5333,6 @@ expr_stmt|;
 return|return
 name|np
 return|;
-block|}
 block|}
 specifier|public
 name|void
@@ -5510,7 +5496,6 @@ literal|true
 argument_list|)
 return|;
 block|}
-else|else
 return|return
 name|wp
 return|;
@@ -9656,6 +9641,9 @@ literal|null
 decl_stmt|;
 specifier|private
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|values
 init|=
 literal|null
@@ -9677,6 +9665,9 @@ name|values
 operator|=
 operator|new
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -9702,6 +9693,9 @@ expr_stmt|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|getValues
 parameter_list|()
 block|{
@@ -10038,13 +10032,28 @@ name|callback
 operator|==
 literal|null
 condition|)
+block|{
 name|values
 operator|.
 name|add
 argument_list|(
 name|entry
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
+name|values
+operator|.
+name|add
+argument_list|(
+name|entry
+index|[
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 return|return
 name|callback
@@ -12004,12 +12013,6 @@ literal|0L
 decl_stmt|;
 specifier|public
 name|SimplePageInput
-parameter_list|()
-block|{
-comment|//
-block|}
-specifier|public
-name|SimplePageInput
 parameter_list|(
 name|byte
 index|[]
@@ -12110,12 +12113,6 @@ name|address
 init|=
 literal|0L
 decl_stmt|;
-specifier|public
-name|MultiPageInput
-parameter_list|()
-block|{
-comment|//
-block|}
 specifier|public
 name|MultiPageInput
 parameter_list|(
@@ -12519,8 +12516,6 @@ literal|24
 operator|)
 return|;
 block|}
-else|else
-block|{
 name|int
 name|r
 init|=
@@ -12587,7 +12582,6 @@ block|}
 return|return
 name|r
 return|;
-block|}
 block|}
 specifier|public
 specifier|final
@@ -12816,8 +12810,6 @@ name|EOFException
 argument_list|()
 throw|;
 block|}
-else|else
-block|{
 try|try
 block|{
 name|lock
@@ -12893,7 +12885,6 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/*          * (non-Javadoc)          *           * @see java.io.InputStream#available()          */
@@ -13829,13 +13820,6 @@ index|[
 name|tid
 index|]
 return|;
-comment|//          final int dlen = ph.getDataLength();
-comment|//          for(int pos = 0; pos< dlen; ) {
-comment|//              if (ByteConversion.byteToShort(data, pos) == tid) return pos + 2;
-comment|//              pos += ByteConversion.byteToInt(data, pos + 2) + 6;
-comment|//          }
-comment|//          LOG.warn("tid " + tid + " not found. " + getPageInfo());
-comment|//          return -1;
 block|}
 specifier|private
 name|void
