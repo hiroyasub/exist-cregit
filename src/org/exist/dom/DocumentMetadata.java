@@ -171,7 +171,7 @@ name|docType
 init|=
 literal|null
 decl_stmt|;
-comment|/** TODO associated locktoken - if available */
+comment|/** TODO associated lock token - if available */
 specifier|private
 name|LockToken
 name|lockToken
@@ -204,6 +204,7 @@ specifier|public
 name|DocumentMetadata
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|DocumentMetadata

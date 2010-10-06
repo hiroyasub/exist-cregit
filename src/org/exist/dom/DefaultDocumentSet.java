@@ -242,6 +242,8 @@ literal|1.75
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -434,7 +436,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Fast method to add a bunch of documents from a 	 * Java collection. 	 *  	 * The method assumes that no duplicate entries are 	 * in the input collection. 	 */
+comment|/**      * Fast method to add a bunch of documents from a      * Java collection.      *       * The method assumes that no duplicate entries are      * in the input collection.      */
 specifier|public
 name|void
 name|addAll
@@ -849,9 +851,6 @@ control|)
 block|{
 name|d
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|i
 operator|.
 name|next
@@ -1484,7 +1483,7 @@ decl_stmt|;
 name|Lock
 name|dlock
 decl_stmt|;
-comment|//        final Thread thread = Thread.currentThread();
+comment|//final Thread thread = Thread.currentThread();
 for|for
 control|(
 name|int
@@ -1534,8 +1533,8 @@ operator|.
 name|getUpdateLock
 argument_list|()
 expr_stmt|;
-comment|//            if (checkExisting&& dlock.hasLock(thread))
-comment|//                continue;
+comment|//if (checkExisting&& dlock.hasLock(thread))
+comment|//continue;
 if|if
 condition|(
 name|exclusive
@@ -1666,6 +1665,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

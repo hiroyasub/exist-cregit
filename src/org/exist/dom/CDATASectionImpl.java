@@ -214,6 +214,8 @@ operator|=
 name|data
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -223,6 +225,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -232,6 +236,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -287,6 +293,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]

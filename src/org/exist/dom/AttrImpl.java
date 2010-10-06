@@ -433,6 +433,8 @@ operator|.
 name|value
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -452,6 +454,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -1151,7 +1155,7 @@ operator|.
 name|ATTRIBUTE_NODE
 argument_list|)
 expr_stmt|;
-comment|//            attr = (AttrImpl)NodeObjectPool.getInstance().borrowNode(AttrImpl.class);
+comment|//attr = (AttrImpl)NodeObjectPool.getInstance().borrowNode(AttrImpl.class);
 else|else
 name|attr
 operator|=
@@ -1198,21 +1202,6 @@ argument_list|(
 name|dln
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|dln
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"no node id "
-operator|+
-name|id
-argument_list|)
-throw|;
 name|attr
 operator|.
 name|setType
@@ -1705,6 +1694,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -1776,6 +1767,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1830,6 +1823,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1952,12 +1947,13 @@ name|toString
 argument_list|()
 return|;
 block|}
-else|else
 return|return
 name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -1967,6 +1963,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -1976,6 +1974,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -1986,7 +1986,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Attr#getSchemaTypeInfo() 	 */
+comment|/** ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      */
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -1997,7 +1997,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Attr#isId() 	 */
+comment|/** ? @see org.w3c.dom.Attr#isId()      */
 specifier|public
 name|boolean
 name|isId
@@ -2012,6 +2012,8 @@ operator|==
 name|ID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -2039,7 +2041,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -2055,7 +2059,9 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -2068,7 +2074,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -2081,7 +2089,9 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -2095,7 +2105,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -2109,7 +2121,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -2123,7 +2137,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -2137,7 +2153,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -2151,7 +2169,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -2168,7 +2188,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -2188,7 +2210,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData

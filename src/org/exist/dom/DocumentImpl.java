@@ -754,6 +754,8 @@ name|pool
 return|;
 block|}
 comment|/**      * The method<code>getLocalName</code>      *      * @return a<code>String</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -764,6 +766,8 @@ literal|""
 return|;
 block|}
 comment|/**      * The method<code>getNamespaceURI</code>      *      * @return a<code>String</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1744,6 +1748,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ?
 block|}
 block|}
 comment|/**      * The method<code>read</code>      *      * @param istream a<code>VariableByteInput</code> value      * @exception IOException if an error occurs      * @exception EOFException if an error occurs      */
@@ -1885,6 +1890,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ?
 block|}
 block|}
 comment|/**      * The method<code>readDocumentMeta</code>      *      * @param istream a<code>VariableByteInput</code> value      */
@@ -1965,6 +1971,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ?
 block|}
 block|}
 comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
@@ -2036,6 +2043,8 @@ name|SUPERIOR
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|StoredNode
 name|updateChild
@@ -2319,6 +2328,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : thow exception ?
 block|}
 finally|finally
 block|{
@@ -2387,6 +2397,8 @@ argument_list|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -2459,6 +2471,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 finally|finally
 block|{
@@ -2525,6 +2538,8 @@ index|]
 return|;
 block|}
 comment|/**      * The method<code>getChildNodes</code>      *      * @return a<code>NodeList</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -3529,6 +3544,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 finally|finally
 block|{
@@ -3552,12 +3568,14 @@ name|Node
 name|getParentNode
 parameter_list|()
 block|{
-comment|//Documents d'on have parents
+comment|//Documents don't have parents
 return|return
 literal|null
 return|;
 block|}
 comment|/**      * The method<code>getChildCount</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -3568,6 +3586,8 @@ name|children
 return|;
 block|}
 comment|/**      * The method<code>setChildCount</code>      *      * @param count an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setChildCount
@@ -4006,6 +4026,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>isSupported</code>      *      * @param type a<code>String</code> value      * @param value a<code>String</code> value      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSupported
@@ -4353,6 +4375,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -4392,6 +4416,8 @@ literal|""
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -4421,6 +4447,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -4447,6 +4475,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -4476,6 +4506,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -4504,6 +4536,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -4531,6 +4565,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -4558,6 +4594,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -4586,6 +4624,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -4613,6 +4653,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -4643,6 +4685,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -4676,6 +4720,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData
@@ -4703,6 +4749,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

@@ -240,7 +240,9 @@ name|fileURI
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.DocumentImpl#getResourceType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.DocumentImpl#getResourceType()      */
+annotation|@
+name|Override
 specifier|public
 name|byte
 name|getResourceType
@@ -274,6 +276,8 @@ return|return
 name|pageNr
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getContentLength
@@ -298,6 +302,8 @@ operator|=
 name|length
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -392,6 +398,8 @@ name|ostream
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read

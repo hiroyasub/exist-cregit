@@ -271,6 +271,8 @@ name|iterator
 parameter_list|()
 function_decl|;
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|SequenceIterator
@@ -280,6 +282,8 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|SequenceIterator
@@ -289,6 +293,8 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -339,6 +345,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Add a sequence item to the node set. The item has to be      * a subtype of node.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -383,6 +391,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other      * @throws XPathException      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -467,6 +477,8 @@ name|int
 name|getLength
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIsCached
@@ -480,6 +492,8 @@ operator|=
 name|cached
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCached
@@ -527,6 +541,8 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -582,6 +598,8 @@ return|return
 name|ds
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -2343,6 +2361,8 @@ literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getState()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -2353,6 +2373,8 @@ literal|1
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#hasChanged(int)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
@@ -2477,6 +2499,8 @@ return|return
 name|indexType
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clearContext
@@ -2524,6 +2548,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -2568,6 +2594,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#isPersistentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -2578,6 +2606,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

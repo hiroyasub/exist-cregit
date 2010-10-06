@@ -2542,6 +2542,11 @@ literal|null
 return|;
 block|}
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|tunnels
 init|=
 name|getConfigFile
@@ -2556,9 +2561,6 @@ specifier|final
 name|String
 name|tunnel
 init|=
-operator|(
-name|String
-operator|)
 name|tunnels
 operator|.
 name|get
@@ -2909,6 +2911,11 @@ return|;
 block|}
 specifier|public
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 name|getFileExtensionsToMimeTypes
 parameter_list|()
 block|{

@@ -108,8 +108,11 @@ specifier|public
 name|AVLTreeNodeSet
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#iterate()       */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -123,6 +126,8 @@ name|InorderTraversal
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -137,6 +142,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet)       */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -174,6 +181,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#getLength()       */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -184,6 +193,8 @@ name|size
 return|;
 block|}
 comment|//TODO : evaluate both semantics
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -194,6 +205,8 @@ name|size
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#item(int)       */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -259,6 +272,8 @@ literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#get(int)       */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -278,6 +293,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy)       */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|NodeProxy
@@ -308,6 +325,8 @@ name|getData
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -321,6 +340,8 @@ literal|0
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -335,6 +356,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.xquery.value.Sequence#itemAt(int)       */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -386,10 +409,13 @@ return|return
 name|p
 return|;
 block|}
+comment|//TODO : exception ?
 return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
@@ -484,8 +510,6 @@ name|leftChild
 expr_stmt|;
 continue|continue;
 block|}
-else|else
-block|{
 name|Node
 name|newNode
 init|=
@@ -506,9 +530,6 @@ name|size
 expr_stmt|;
 return|return;
 block|}
-block|}
-else|else
-block|{
 comment|// inserts s to right subtree
 if|if
 condition|(
@@ -526,8 +547,6 @@ name|rightChild
 expr_stmt|;
 continue|continue;
 block|}
-else|else
-block|{
 name|Node
 name|newNode
 init|=
@@ -547,8 +566,6 @@ operator|++
 name|size
 expr_stmt|;
 return|return;
-block|}
-block|}
 block|}
 block|}
 specifier|public
@@ -1462,6 +1479,8 @@ literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy)       */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|boolean
@@ -1664,6 +1683,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -1680,6 +1701,8 @@ operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#hasChanged(int)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
@@ -1695,6 +1718,8 @@ name|previousState
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#getState()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -1704,6 +1729,8 @@ return|return
 name|state
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -1818,7 +1845,6 @@ condition|)
 return|return
 literal|false
 return|;
-else|else
 return|return
 literal|true
 return|;
@@ -1999,7 +2025,7 @@ literal|"Method remove is not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)            * @see org.exist.xquery.value.SequenceIterator#nextItem()            */
+comment|/* (non-Javadoc)        * @see org.exist.xquery.value.SequenceIterator#nextItem()        */
 specifier|public
 name|Item
 name|nextItem
@@ -2075,6 +2101,8 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -2115,6 +2143,21 @@ specifier|static
 class|class
 name|Node
 block|{
+name|NodeProxy
+name|data
+decl_stmt|;
+name|Node
+name|parent
+decl_stmt|;
+name|Node
+name|leftChild
+decl_stmt|;
+name|Node
+name|rightChild
+decl_stmt|;
+name|int
+name|height
+decl_stmt|;
 specifier|public
 name|Node
 parameter_list|(
@@ -2373,11 +2416,6 @@ return|return
 name|tempNode
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 specifier|public
 name|int
 name|degree
@@ -2483,7 +2521,6 @@ operator|.
 name|height
 operator|)
 return|;
-else|else
 return|return
 literal|0
 return|;
@@ -2507,16 +2544,10 @@ operator|.
 name|height
 operator|)
 return|;
-else|else
 return|return
 literal|0
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 specifier|public
 name|int
 name|height
@@ -2526,21 +2557,6 @@ return|return
 name|height
 return|;
 block|}
-name|NodeProxy
-name|data
-decl_stmt|;
-name|Node
-name|parent
-decl_stmt|;
-name|Node
-name|leftChild
-decl_stmt|;
-name|Node
-name|rightChild
-decl_stmt|;
-name|int
-name|height
-decl_stmt|;
 block|}
 block|}
 end_class

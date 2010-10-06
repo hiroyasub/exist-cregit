@@ -35,7 +35,9 @@ interface|interface
 name|AttrAtExist
 extends|extends
 name|Attr
-block|{  }
+block|{
+comment|//Nothing to do here
+block|}
 end_interface
 
 end_unit

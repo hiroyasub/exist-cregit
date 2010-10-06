@@ -185,6 +185,8 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -194,6 +196,8 @@ return|return
 literal|""
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -203,6 +207,8 @@ return|return
 literal|""
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -246,6 +252,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -604,7 +612,7 @@ operator|.
 name|COMMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|//            comment = (CommentImpl)NodeObjectPool.getInstance().borrowNode(CommentImpl.class);
+comment|//comment = (CommentImpl)NodeObjectPool.getInstance().borrowNode(CommentImpl.class);
 else|else
 name|comment
 operator|=
@@ -630,6 +638,8 @@ return|return
 name|comment
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -639,6 +649,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -648,6 +660,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild

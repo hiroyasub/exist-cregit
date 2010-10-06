@@ -227,6 +227,8 @@ name|howmany
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -372,7 +374,6 @@ condition|)
 return|return
 literal|null
 return|;
-else|else
 return|return
 name|cdata
 operator|.
@@ -405,7 +406,6 @@ condition|)
 return|return
 literal|null
 return|;
-else|else
 return|return
 name|cdata
 operator|.
@@ -428,6 +428,8 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -676,6 +678,8 @@ name|count
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -690,7 +694,6 @@ condition|)
 return|return
 literal|null
 return|;
-else|else
 return|return
 name|cdata
 operator|.
@@ -699,6 +702,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Release all resources hold by this object.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|release
