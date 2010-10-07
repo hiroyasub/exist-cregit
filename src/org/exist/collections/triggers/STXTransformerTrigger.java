@@ -183,6 +183,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -502,6 +514,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -513,6 +526,26 @@ operator|+
 literal|" not found in database"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|doc
+operator|instanceof
+name|BinaryDocument
+condition|)
+block|{
+throw|throw
+operator|new
+name|CollectionConfigurationException
+argument_list|(
+literal|"stylesheet "
+operator|+
+name|stylesheetUri
+operator|+
+literal|" must be stored as an xml document and not a binary document!"
+argument_list|)
+throw|;
+block|}
 name|Serializer
 name|serializer
 init|=
