@@ -824,6 +824,8 @@ name|partCount
 expr_stmt|;
 block|}
 comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -838,6 +840,8 @@ operator|)
 return|;
 block|}
 comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -848,6 +852,8 @@ name|hasOne
 return|;
 block|}
 comment|/**      * The method<code>add</code>      *      * @param proxy a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -951,6 +957,8 @@ name|proxy
 expr_stmt|;
 block|}
 comment|/**      * Add a new node to the set. If a new array of nodes has to be allocated      * for the document, use the sizeHint parameter to determine the size of      * the newly allocated array. This will overwrite the default array size.      *      * If the size hint is correct, no further reallocations will be required.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -1112,6 +1120,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getItemType</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -1150,6 +1160,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getSizeHint</code>      *      * @param doc a<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getSizeHint
@@ -1185,6 +1197,8 @@ name|length
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#iterator()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -1208,6 +1222,8 @@ argument_list|()
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.value.Sequence#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -1225,6 +1241,8 @@ argument_list|()
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -1272,6 +1290,8 @@ argument_list|()
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#contains(org.exist.dom.NodeProxy)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
@@ -1315,6 +1335,8 @@ argument_list|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#addAll(org.exist.dom.NodeSet)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -1372,6 +1394,8 @@ block|}
 block|}
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.value.Sequence#getLength()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -1392,6 +1416,8 @@ name|size
 return|;
 block|}
 comment|//TODO : evaluate both semantics
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -1412,6 +1438,8 @@ name|size
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.NodeList#item(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
@@ -1445,6 +1473,8 @@ argument_list|()
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#get(int)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -1515,6 +1545,8 @@ literal|null
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.NodeSet#get(org.exist.dom.NodeProxy)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -1600,6 +1632,8 @@ argument_list|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -1763,6 +1797,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>selectParentChild</code>      *      * @param al a<code>NodeSet</code> value      * @param mode an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -2056,7 +2092,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//        long start = System.currentTimeMillis();
+comment|//long start = System.currentTimeMillis();
 name|Part
 name|part
 decl_stmt|;
@@ -2105,8 +2141,7 @@ name|isSorted
 operator|=
 literal|true
 expr_stmt|;
-comment|//        System.out.println("sort took " + (System.currentTimeMillis() -
-comment|//                start) + "ms.");
+comment|//System.out.println("sort took " + (System.currentTimeMillis() - start) + "ms.");
 block|}
 comment|/**      * The method<code>sortInDocumentOrder</code>      *      */
 specifier|public
@@ -2122,6 +2157,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.value.AbstractSequence#setSelfAsContext()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setSelfAsContext
@@ -2160,6 +2197,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectAncestorDescendant(org.exist.dom.NodeSet, int, boolean, boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -2225,6 +2264,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectSiblings(org.exist.dom.NodeSet, int)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
@@ -2251,6 +2292,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param siblings a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
@@ -2277,6 +2320,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectAncestors(org.exist.dom.NodeSet, boolean, boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectAncestors
@@ -2308,6 +2353,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -2414,6 +2461,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getIndexType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getIndexType
@@ -2459,6 +2508,8 @@ name|indexType
 return|;
 block|}
 comment|/**      * The method<code>getDocumentSet</code>      *      * @return a<code>DocumentSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -2467,15 +2518,15 @@ block|{
 return|return
 name|this
 return|;
-comment|//        if(cachedDocuments != null)
-comment|//            return cachedDocuments;
-comment|//        cachedDocuments = new DefaultDocumentSet(partCount);
-comment|//        sort();
-comment|//        for (int i = 0; i< partCount; i++) {
-comment|//            cachedDocuments.add(parts[i].getDocument(), false);
-comment|//        }
-comment|//        isSorted = true;
-comment|//        return cachedDocuments;
+comment|//if(cachedDocuments != null)
+comment|//  return cachedDocuments;
+comment|//cachedDocuments = new DefaultDocumentSet(partCount);
+comment|//sort();
+comment|//for (int i = 0; i< partCount; i++) {
+comment|//  cachedDocuments.add(parts[i].getDocument(), false);
+comment|//}
+comment|//isSorted = true;
+comment|//return cachedDocuments;
 block|}
 comment|/**      * The method<code>setDocumentSet</code>      *      * @param docs a<code>DocumentSet</code> value      */
 specifier|public
@@ -2573,6 +2624,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -2667,7 +2720,6 @@ operator|.
 name|getDocument
 argument_list|()
 return|;
-else|else
 return|return
 literal|null
 return|;
@@ -3224,7 +3276,6 @@ condition|)
 return|return
 literal|null
 return|;
-else|else
 return|return
 name|parts
 index|[
@@ -3241,6 +3292,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 comment|/**      * The class<code>CollectionIterator</code>      *      */
@@ -3377,6 +3429,8 @@ throw|;
 block|}
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#hasChanged(int)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
@@ -3392,6 +3446,8 @@ name|previousState
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#getState()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -3401,6 +3457,8 @@ return|return
 name|state
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -3411,6 +3469,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -3751,9 +3811,6 @@ index|]
 expr_stmt|;
 name|na
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|ia
 operator|.
 name|next
@@ -3804,9 +3861,6 @@ block|{
 name|NodeProxy
 name|next
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|ia
 operator|.
 name|next
@@ -3907,9 +3961,6 @@ block|{
 name|NodeProxy
 name|next
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|ia
 operator|.
 name|next
@@ -5886,9 +5937,6 @@ name|nextItem
 parameter_list|()
 block|{
 return|return
-operator|(
-name|Item
-operator|)
 name|next
 argument_list|()
 return|;
@@ -5899,6 +5947,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 comment|/**      * The class<code>ExtDocIterator</code>      *      */

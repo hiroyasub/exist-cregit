@@ -731,6 +731,8 @@ name|position
 expr_stmt|;
 block|}
 comment|/**      * Reset this element to its initial state.      *      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -785,6 +787,8 @@ return|return
 name|indexType
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDirty
@@ -794,6 +798,8 @@ return|return
 name|isDirty
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDirty
@@ -858,6 +864,8 @@ literal|0
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -976,16 +984,6 @@ name|String
 argument_list|>
 name|entry
 init|=
-operator|(
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-operator|)
 name|i
 operator|.
 name|next
@@ -1761,7 +1759,7 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|//            node = (ElementImpl) NodeObjectPool.getInstance().borrowNode(ElementImpl.class);
+comment|//node = (ElementImpl) NodeObjectPool.getInstance().borrowNode(ElementImpl.class);
 else|else
 name|node
 operator|=
@@ -2633,6 +2631,8 @@ name|children
 expr_stmt|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|appendChild
@@ -2941,6 +2941,8 @@ return|return
 name|rest
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|appendChildren
@@ -4475,7 +4477,7 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
-comment|//          insert the node
+comment|//insert the node
 name|broker
 operator|.
 name|insertNodeAfter
@@ -4575,6 +4577,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getAttributesCount
@@ -4585,6 +4589,8 @@ name|attributes
 return|;
 block|}
 comment|/**      * Set the attributes that belong to this node.      *      * @param attribNum The new attributes value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttributes
@@ -4709,6 +4715,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -4792,9 +4800,6 @@ block|{
 name|StoredNode
 name|next
 init|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next
@@ -4900,16 +4905,6 @@ name|String
 argument_list|>
 name|entry
 init|=
-operator|(
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-operator|)
 name|i
 operator|.
 name|next
@@ -5459,6 +5454,8 @@ name|dupList
 return|;
 block|}
 comment|/**      * @see org.exist.dom.NodeImpl#getChildCount()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -5468,6 +5465,8 @@ return|return
 name|children
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -5650,13 +5649,6 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        accept(new NodeVisitor() {
-comment|//            public boolean visit(StoredNode node) {
-comment|//                if(node.nodeId.isChildOf(nodeId))
-comment|//                    childList.add(node);
-comment|//                return true;
-comment|//            }
-comment|//        });
 return|return
 name|childList
 return|;
@@ -5743,6 +5735,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getFirstChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -5822,9 +5816,6 @@ control|)
 block|{
 name|next
 operator|=
-operator|(
-name|StoredNode
-operator|)
 name|iterator
 operator|.
 name|next
@@ -5884,6 +5875,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getLastChild
@@ -6025,6 +6018,8 @@ literal|null
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#hasAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributes
@@ -6040,6 +6035,8 @@ operator|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -6052,13 +6049,15 @@ literal|0
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
 parameter_list|()
 comment|/*throws DOMException*/
 block|{
-comment|//TODO : parametrize the boolea value ?
+comment|//TODO : parametrize the boolean value ?
 name|DBBroker
 name|broker
 init|=
@@ -6335,6 +6334,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setChildCount
@@ -6471,6 +6472,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see java.lang.Object#toString()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -6484,6 +6487,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -6557,72 +6562,14 @@ name|nodeName
 argument_list|)
 expr_stmt|;
 comment|//Remove false to have a verbose output
-if|if
-condition|(
-name|top
-operator|&&
-literal|false
-condition|)
-block|{
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|" xmlns:exist=\""
-operator|+
-name|Namespaces
-operator|.
-name|EXIST_NS
-operator|+
-literal|"\""
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|" exist:id=\""
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-name|getNodeId
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"\" exist:document=\""
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
-name|getOwnerDocument
-argument_list|()
-operator|)
-operator|.
-name|getFileURI
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"\""
-argument_list|)
-expr_stmt|;
-block|}
+comment|//if (top&& false) {
+comment|//buf.append(" xmlns:exist=\""+ Namespaces.EXIST_NS + "\"");
+comment|//buf.append(" exist:id=\"");
+comment|//buf.append(getNodeId());
+comment|//buf.append("\" exist:document=\"");
+comment|//buf.append(((DocumentImpl)getOwnerDocument()).getFileURI());
+comment|//buf.append("\"");
+comment|//}
 if|if
 condition|(
 name|declaresNamespacePrefixes
@@ -6677,16 +6624,6 @@ control|)
 block|{
 name|entry
 operator|=
-operator|(
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-operator|)
 name|i
 operator|.
 name|next
@@ -7060,6 +6997,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|insertBefore
@@ -7267,6 +7206,8 @@ literal|null
 return|;
 block|}
 comment|/**      * Insert a list of nodes at the position before the reference      * child.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|insertBefore
@@ -7614,6 +7555,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Insert a list of nodes at the position following the reference      * child.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|insertAfter
@@ -8342,6 +8285,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
+annotation|@
+name|Override
 specifier|public
 name|StoredNode
 name|updateChild
@@ -8821,6 +8766,8 @@ name|newNode
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|removeChild
@@ -9541,6 +9488,13 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
 name|broker
 operator|.
 name|updateNode
@@ -9567,6 +9521,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
@@ -9644,6 +9599,8 @@ return|;
 block|}
 block|}
 comment|/**      * Replaces the oldNode with the newChild      *       * @param transaction      * @param newChild      * @param oldChild      *       * @return The new node (this differs from the {@link org.w3c.dom.Node#replaceChild(Node, Node)} specification)      *       * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|replaceChild
@@ -10239,7 +10196,7 @@ return|return
 name|preserveWS
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#getSchemaTypeInfo() 	 */
+comment|/** ? @see org.w3c.dom.Element#getSchemaTypeInfo()      */
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -10263,7 +10220,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean) 	 */
+comment|/** ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean)      */
 specifier|public
 name|void
 name|setIdAttribute
@@ -10295,7 +10252,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean) 	 */
+comment|/** ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean)      */
 specifier|public
 name|void
 name|setIdAttributeNS
@@ -10330,7 +10287,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean) 	 */
+comment|/** ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean)      */
 specifier|public
 name|void
 name|setIdAttributeNode
@@ -10362,7 +10319,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -10509,7 +10468,9 @@ return|return
 name|baseURI
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -10538,7 +10499,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -10564,7 +10527,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -10593,7 +10558,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -10666,7 +10633,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -10693,7 +10662,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -10720,7 +10691,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -10747,7 +10720,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -10774,7 +10749,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -10804,7 +10781,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -10837,7 +10816,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData
@@ -10864,6 +10845,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept

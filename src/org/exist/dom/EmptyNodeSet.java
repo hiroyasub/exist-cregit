@@ -139,6 +139,8 @@ operator|new
 name|EmptyCollectionIterator
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -148,7 +150,9 @@ return|return
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -162,7 +166,9 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -191,6 +197,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
@@ -215,6 +223,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -224,6 +234,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -244,6 +256,7 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -253,7 +266,10 @@ name|Node
 name|node
 parameter_list|)
 block|{
+comment|//Nothing todo
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -262,6 +278,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -271,7 +288,10 @@ name|NodeList
 name|other
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -280,6 +300,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -289,7 +310,10 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -299,7 +323,8 @@ return|return
 literal|0
 return|;
 block|}
-comment|//TODO : evaluate both semantics
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -309,6 +334,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
@@ -321,6 +348,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -333,6 +362,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -360,6 +391,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -381,6 +414,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -393,6 +428,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|intersection
@@ -405,6 +442,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|deepIntersection
@@ -417,6 +456,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|union
@@ -437,14 +478,15 @@ name|EmptyNodeSetIterator
 implements|implements
 name|NodeSetIterator
 block|{
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
+comment|/* (non-Javadoc)          * @see java.util.Iterator#remove()          */
 specifier|public
 name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+comment|/* (non-Javadoc)          * @see java.util.Iterator#hasNext()          */
 specifier|public
 name|boolean
 name|hasNext
@@ -454,7 +496,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+comment|/* (non-Javadoc)          * @see java.util.Iterator#next()          */
 specifier|public
 name|NodeProxy
 name|next
@@ -481,7 +523,10 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -551,6 +596,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}
