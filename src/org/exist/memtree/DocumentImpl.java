@@ -3213,15 +3213,11 @@ index|]
 operator|<
 name|nodeNr
 condition|)
-block|{
 return|return
 operator|(
 literal|null
 operator|)
 return|;
-block|}
-else|else
-block|{
 name|nodeNr
 operator|=
 name|next
@@ -3229,7 +3225,6 @@ index|[
 name|nodeNr
 index|]
 expr_stmt|;
-block|}
 block|}
 return|return
 operator|(
@@ -3244,6 +3239,8 @@ operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getFirstChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -3255,7 +3252,6 @@ name|size
 operator|>
 literal|1
 condition|)
-block|{
 return|return
 operator|(
 name|getNode
@@ -3264,15 +3260,11 @@ literal|1
 argument_list|)
 operator|)
 return|;
-block|}
-else|else
-block|{
 return|return
 operator|(
 literal|null
 operator|)
 return|;
-block|}
 block|}
 specifier|public
 name|int
@@ -3405,7 +3397,6 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-comment|//short level = (short)(treeLevel[nr] + 1);
 name|int
 name|nextNode
 init|=
@@ -3478,22 +3469,17 @@ operator|>
 name|level
 operator|)
 condition|)
-block|{
 return|return
 operator|(
 name|nextNode
 operator|)
 return|;
-block|}
-else|else
-block|{
 return|return
 operator|(
 operator|-
 literal|1
 operator|)
 return|;
-block|}
 block|}
 specifier|public
 name|int

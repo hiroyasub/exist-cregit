@@ -287,6 +287,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -304,6 +306,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -344,6 +348,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -387,7 +393,6 @@ operator|>
 name|level
 operator|)
 condition|)
-block|{
 return|return
 operator|(
 name|document
@@ -398,17 +403,13 @@ name|nextNode
 argument_list|)
 operator|)
 return|;
-block|}
-else|else
-block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -488,6 +489,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -504,6 +507,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefix
@@ -520,6 +525,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -536,6 +543,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributes
@@ -804,6 +813,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -1170,6 +1181,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectAttributes
@@ -1258,6 +1271,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectDescendantAttributes
@@ -1361,6 +1376,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectChildren
@@ -1430,6 +1447,8 @@ index|]
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|selectDescendants
@@ -2577,6 +2596,8 @@ name|map
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -2591,6 +2612,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -2756,13 +2779,10 @@ name|baseURI
 operator|)
 return|;
 block|}
-else|else
-block|{
 name|parent
 operator|=
 name|test
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -2853,6 +2873,8 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -2911,6 +2933,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -3136,6 +3160,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue

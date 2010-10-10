@@ -527,6 +527,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+comment|//Nothing to do
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getOwnerElement()      */
 specifier|public

@@ -865,7 +865,7 @@ return|return
 name|top
 return|;
 block|}
-comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured on the current document for the current mode.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.        *      * @return the first listener in the chain of StreamListeners      */
+comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured on the current document for the current mode.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.      *      * @return the first listener in the chain of StreamListeners      */
 specifier|public
 name|StreamListener
 name|getStreamListener
@@ -891,7 +891,7 @@ literal|null
 condition|)
 block|{
 comment|// wolf: setDocument() should have been called before
-comment|//                next.getWorker().setDocument(currentDoc, currentMode);
+comment|// next.getWorker().setDocument(currentDoc, currentMode);
 name|next
 operator|=
 name|next
@@ -928,7 +928,7 @@ argument_list|()
 control|)
 block|{
 comment|// wolf: setDocument() should have been called before
-comment|//            worker.setDocument(currentDoc, currentMode);
+comment|//worker.setDocument(currentDoc, currentMode);
 name|current
 operator|=
 name|worker

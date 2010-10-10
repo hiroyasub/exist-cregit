@@ -90,20 +90,23 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getType
 parameter_list|()
 block|{
-comment|//return Type.ATOMIC;
 return|return
 name|Type
 operator|.
 name|UNTYPED_ATOMIC
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -115,7 +118,9 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -641,7 +646,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|compareTo
@@ -809,7 +816,9 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
@@ -839,7 +848,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|max
@@ -894,7 +905,6 @@ name|this
 else|:
 name|other
 return|;
-else|else
 return|return
 name|Collations
 operator|.
@@ -917,7 +927,9 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|min
@@ -972,7 +984,6 @@ name|this
 else|:
 name|other
 return|;
-else|else
 return|return
 name|Collations
 operator|.
@@ -995,7 +1006,9 @@ else|:
 name|other
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#startsWith(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#startsWith(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|startsWith
@@ -1025,7 +1038,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#endsWith(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#endsWith(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|endsWith
@@ -1055,7 +1070,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#contains(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#contains(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
@@ -1089,6 +1106,8 @@ operator|.
 name|STRING_NOT_FOUND
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -1107,7 +1126,9 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|conversionPreference
@@ -1303,7 +1324,9 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|toJavaObject

@@ -619,13 +619,11 @@ name|Type
 operator|.
 name|DOCUMENT
 case|:
-block|{
 return|return
 operator|(
 literal|"#document"
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
@@ -636,7 +634,6 @@ name|Type
 operator|.
 name|PROCESSING_INSTRUCTION
 case|:
-block|{
 name|QName
 name|qn
 init|=
@@ -656,13 +653,11 @@ name|getStringValue
 argument_list|()
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
 name|ATTRIBUTE
 case|:
-block|{
 return|return
 operator|(
 operator|(
@@ -678,13 +673,11 @@ name|getStringValue
 argument_list|()
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
 name|NAMESPACE
 case|:
-block|{
 return|return
 operator|(
 operator|(
@@ -700,45 +693,37 @@ name|getStringValue
 argument_list|()
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
 name|TEXT
 case|:
-block|{
 return|return
 operator|(
 literal|"#text"
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
 name|COMMENT
 case|:
-block|{
 return|return
 operator|(
 literal|"#comment"
 operator|)
 return|;
-block|}
 case|case
 name|Type
 operator|.
 name|CDATA_SECTION
 case|:
-block|{
 return|return
 operator|(
 literal|"#cdata-section"
 operator|)
 return|;
-block|}
 default|default:
-block|{
 return|return
 operator|(
 literal|"#unknown"
@@ -746,8 +731,6 @@ operator|)
 return|;
 block|}
 block|}
-block|}
-comment|//TODO : what are the semantics ? IMHO, QName.EMPTY_QNAME shouldn't be QNameable ! -pb
 specifier|public
 name|QName
 name|getQName
@@ -774,7 +757,6 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
-block|{
 name|QName
 name|qn
 init|=
@@ -790,13 +772,11 @@ operator|(
 name|qn
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|DOCUMENT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|QName
@@ -804,13 +784,11 @@ operator|.
 name|EMPTY_QNAME
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|QName
@@ -818,13 +796,11 @@ operator|.
 name|EMPTY_QNAME
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|QName
@@ -832,13 +808,11 @@ operator|.
 name|EMPTY_QNAME
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
-block|{
 return|return
 operator|(
 name|QName
@@ -846,15 +820,12 @@ operator|.
 name|EMPTY_QNAME
 operator|)
 return|;
-block|}
 default|default:
-block|{
 return|return
 operator|(
 literal|null
 operator|)
 return|;
-block|}
 block|}
 block|}
 specifier|public
@@ -1196,6 +1167,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -1579,7 +1552,6 @@ argument_list|()
 argument_list|)
 operator|)
 throw|;
-comment|//return new NodeListImpl();
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
 specifier|public
@@ -1922,7 +1894,7 @@ name|boolean
 name|hasChildNodes
 parameter_list|()
 block|{
-comment|//        throw new RuntimeException("Can not call hasChildNodes() on node type " + this.getNodeType());
+comment|//throw new RuntimeException("Can not call hasChildNodes() on node type " + this.getNodeType());
 comment|//the default value is
 return|return
 operator|(
@@ -2137,15 +2109,10 @@ name|DOCUMENT
 operator|)
 return|;
 block|}
-name|int
-name|type
-init|=
-name|getNodeType
-argument_list|()
-decl_stmt|;
 switch|switch
 condition|(
-name|type
+name|getNodeType
+argument_list|()
 condition|)
 block|{
 case|case
@@ -2153,7 +2120,6 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2161,13 +2127,11 @@ operator|.
 name|DOCUMENT
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2175,13 +2139,11 @@ operator|.
 name|COMMENT
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2189,13 +2151,11 @@ operator|.
 name|PROCESSING_INSTRUCTION
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2203,13 +2163,11 @@ operator|.
 name|ELEMENT
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2217,13 +2175,11 @@ operator|.
 name|ATTRIBUTE
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2231,13 +2187,11 @@ operator|.
 name|TEXT
 operator|)
 return|;
-block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
-block|{
 return|return
 operator|(
 name|Type
@@ -2245,9 +2199,7 @@ operator|.
 name|CDATA_SECTION
 operator|)
 return|;
-block|}
 default|default:
-block|{
 return|return
 operator|(
 name|Type
@@ -2255,7 +2207,6 @@ operator|.
 name|NODE
 operator|)
 return|;
-block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
@@ -2875,7 +2826,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|//      throw new XPathException("Querying constructed nodes is not yet implemented");
 name|ValueSequence
 name|seq
 init|=
@@ -3562,6 +3512,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// do nothing
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|void
@@ -3577,6 +3528,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// do nothing
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|void
@@ -3592,6 +3544,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// do nothing
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|void
@@ -4328,8 +4281,6 @@ parameter_list|(
 name|NodeTest
 name|test
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 comment|// do nothing
 return|return
@@ -4337,6 +4288,7 @@ operator|(
 literal|false
 operator|)
 return|;
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|boolean
@@ -4354,6 +4306,7 @@ operator|(
 literal|false
 operator|)
 return|;
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|boolean
@@ -4371,6 +4324,7 @@ operator|(
 literal|false
 operator|)
 return|;
+comment|//TODO : make abstract
 block|}
 specifier|public
 name|boolean
@@ -4408,8 +4362,6 @@ parameter_list|,
 name|NodeTest
 name|test
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 if|if
 condition|(
@@ -4522,8 +4474,6 @@ parameter_list|(
 name|NodeTest
 name|test
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|int
 name|parent
@@ -4612,8 +4562,6 @@ parameter_list|,
 name|int
 name|position
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|NodeId
 name|myNodeId
@@ -4720,8 +4668,6 @@ parameter_list|(
 name|NodeTest
 name|test
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|int
 name|parent
@@ -5129,7 +5075,6 @@ argument_list|()
 argument_list|)
 operator|)
 throw|;
-comment|//return 0;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getTextContent()      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
 specifier|public
@@ -5415,6 +5360,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|int

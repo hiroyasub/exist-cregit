@@ -7720,10 +7720,16 @@ implements|implements
 name|BTreeCallback
 block|{
 name|List
+argument_list|<
+name|String
+argument_list|>
 name|matches
 init|=
 operator|new
 name|ArrayList
+argument_list|<
+name|String
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|TermMatcher
@@ -7775,10 +7781,6 @@ argument_list|()
 index|]
 decl_stmt|;
 return|return
-operator|(
-name|String
-index|[]
-operator|)
 name|matches
 operator|.
 name|toArray

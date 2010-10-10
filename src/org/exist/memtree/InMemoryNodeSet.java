@@ -230,6 +230,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getAttributes
@@ -289,6 +291,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getDescendantAttributes
@@ -348,6 +352,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getChildren
@@ -407,6 +413,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getChildrenForParent
@@ -479,6 +487,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getDescendants
@@ -543,6 +553,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getAncestors
@@ -607,6 +619,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getParents
@@ -692,6 +706,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getSelf
@@ -784,6 +800,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getPrecedingSiblings
@@ -843,6 +861,8 @@ name|nodes
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getFollowingSiblings
