@@ -145,6 +145,19 @@ name|error
 operator|=
 name|error
 expr_stmt|;
+name|setLocation
+argument_list|(
+name|expression
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|expression
+operator|.
+name|getColumn
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
 specifier|public
