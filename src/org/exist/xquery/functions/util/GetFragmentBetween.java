@@ -2179,19 +2179,19 @@ comment|// without first "/" character
 name|String
 name|regExpr
 init|=
-literal|"[a-zA-Z0-9]+?\\[.+?\\]/"
+literal|"[a-zA-Z0-9:]+?\\[.+?\\]/"
 operator|+
 literal|"|"
 operator|+
-literal|"[a-zA-Z0-9]+?/"
+literal|"[a-zA-Z0-9:]+?/"
 operator|+
 literal|"|"
 operator|+
-literal|"[a-zA-Z0-9]+?\\[.+\\]$"
+literal|"[a-zA-Z0-9:]+?\\[.+\\]$"
 operator|+
 literal|"|"
 operator|+
-literal|"[a-zA-Z0-9]+?$"
+literal|"[a-zA-Z0-9:]+?$"
 decl_stmt|;
 comment|// pathName example: "/archimedes[@xmlns:xlink eq "http://www.w3.org/1999/xlink"]/text/body/chap/p[@type eq "main"]/s/foreign[@lang eq "en"]"
 name|Pattern
