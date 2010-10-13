@@ -816,6 +816,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|createCollection
@@ -838,6 +840,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>createCollection</code>      *      * @param name a<code>String</code> value      * @param created a<code>Date</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|createCollection
@@ -1051,6 +1055,8 @@ literal|false
 return|;
 block|}
 comment|/**      * The method<code>configureCollection</code>      *      * @param collName a<code>String</code> value      * @param configuration a<code>String</code> value      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|configureCollection
@@ -2260,6 +2266,8 @@ name|compiled
 return|;
 block|}
 comment|/**      * The method<code>printDiagnostics</code>      *      * @param query a<code>String</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|printDiagnostics
@@ -2573,6 +2581,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|executeQuery
@@ -2668,6 +2678,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>executeQuery</code>      *      * @param xpath a<code>String</code> value      * @param parameters a<code>HashMap</code> value      * @return an<code>int</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|executeQuery
@@ -2908,6 +2920,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>getCollectionDesc</code>      *      * @param rootCollection a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -3418,6 +3432,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>describeResource</code>      *      * @param resourceName a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -3778,6 +3794,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>describeCollection</code>      *      * @param rootCollection a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -4109,6 +4127,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -4345,6 +4365,8 @@ return|;
 block|}
 block|}
 comment|/**      * The method<code>getDocument</code>      *      * @param docName a<code>String</code> value      * @param parametri a<code>HashMap</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDocumentAsString
@@ -4673,6 +4695,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getDocumentData</code>      *      * @param docName a<code>String</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -5209,6 +5233,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getNextChunk</code>      *      * @param handle a<code>String</code> value      * @param offset an<code>int</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -5439,6 +5465,8 @@ return|;
 block|}
 block|}
 comment|/**      * The method<code>getNextExtendedChunk</code>      *      * @param handle a<code>String</code> value      * @param offset a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -5671,6 +5699,8 @@ return|;
 block|}
 block|}
 comment|/**      * The method<code>getBinaryResource</code>      *      * @param name a<code>String</code> value      * @return a<code>byte[]</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -5914,6 +5944,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>xupdate</code>      *      * @param collectionName a<code>String</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|xupdate
@@ -6235,6 +6267,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>xupdateResource</code>      *      * @param resource a<code>String</code> value      * @param xupdate a<code>String</code> value      * @return an<code>int</code> value      * @exception SAXException if an error occurs      * @exception LockException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|xupdateResource
@@ -6591,6 +6625,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>sync</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|sync
@@ -6671,6 +6707,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>isXACMLEnabled</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isXACMLEnabled
@@ -6690,6 +6728,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>dataBackup</code>      *      * @param dest a<code>String</code> value      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|dataBackup
@@ -6717,6 +6757,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>getDocumentListing</code>      *      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -6828,6 +6870,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getDocumentListing</code>      *      * @param collName a<code>String</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -7025,6 +7069,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getResourceCount</code>      *      * @param collectionName a<code>String</code> value      * @return an<code>int</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getResourceCount
@@ -7138,6 +7184,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>createResourceId</code>      *      * @param collectionName a<code>String</code> value      * @return a<code>String</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|createResourceId
@@ -7323,6 +7371,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>listDocumentPermissions</code>      *      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -7629,6 +7679,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>listCollectionPermissions</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -7947,6 +7999,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getHits</code>      *      * @param resultId an<code>int</code> value      * @return an<code>int</code> value      * @exception EXistException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getHits
@@ -8012,6 +8066,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>getPermissions</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -8284,6 +8340,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getCreationDate</code>      *      * @param collectionPath a<code>String</code> value      * @return a<code>Date</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getCreationDate
@@ -8418,6 +8476,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getTimestamps</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -8614,6 +8674,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getAccount</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -8779,6 +8841,8 @@ name|tab
 return|;
 block|}
 comment|/**      * The method<code>getAccounts</code>      *      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -8984,6 +9048,8 @@ name|r
 return|;
 block|}
 comment|/**      * The method<code>getGroups</code>      *      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -9219,6 +9285,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>hasDocument</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasDocument
@@ -9305,6 +9373,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>hasCollection</code>      *      * @param collectionName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasCollection
@@ -9387,6 +9457,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>parse</code>      *      * @param xml a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parse
@@ -9424,6 +9496,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>parse</code>      *      * @param xml a<code>byte</code> value      * @param documentPath a<code>String</code> value      * @param created a<code>Date</code> value      * @param modified a<code>Date</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parse
@@ -12943,6 +13017,8 @@ name|ret
 return|;
 block|}
 comment|/**      * The method<code>execute</code>      *      * @param pathToQuery database path pointing to a stored XQuery      * @param parameters a<code>HashMap</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -13059,14 +13135,14 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|Vector
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|result
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|Object
 argument_list|>
@@ -13275,7 +13351,7 @@ block|}
 name|NodeProxy
 name|p
 decl_stmt|;
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
@@ -13341,7 +13417,7 @@ block|{
 name|entry
 operator|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|String
 argument_list|>
@@ -13373,7 +13449,7 @@ name|next
 expr_stmt|;
 name|entry
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|p
 operator|.
@@ -13389,7 +13465,7 @@ argument_list|)
 expr_stmt|;
 name|entry
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|p
 operator|.
@@ -13405,7 +13481,7 @@ else|else
 block|{
 name|entry
 operator|.
-name|addElement
+name|add
 argument_list|(
 literal|"temp_xquery/"
 operator|+
@@ -13417,7 +13493,7 @@ argument_list|)
 expr_stmt|;
 name|entry
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|String
 operator|.
@@ -13438,7 +13514,7 @@ expr_stmt|;
 block|}
 name|result
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|entry
 argument_list|)
@@ -13447,7 +13523,7 @@ block|}
 else|else
 name|result
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|next
 operator|.
@@ -13563,6 +13639,8 @@ name|ret
 return|;
 block|}
 comment|/**      * The method<code>releaseQueryResult</code>      *      * @param handle an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|releaseQueryResult
@@ -13593,6 +13671,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|releaseQueryResult
@@ -13629,6 +13709,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>remove</code>      *      * @param documentPath a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|remove
@@ -13890,6 +13972,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>removeCollection</code>      *      * @param collectionName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|removeCollection
@@ -14087,6 +14171,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>removeUser</code>      *      * @param name a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|removeAccount
@@ -14169,6 +14255,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -14285,6 +14373,8 @@ return|;
 block|}
 block|}
 comment|/**      * The method<code>retrieve</code>      *      * @param documentPath a<code>String</code> value      * @param s_id a<code>String</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|retrieveAsString
@@ -14479,6 +14569,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>retrieveFirstChunk</code>      *      * @param docName a<code>String</code> value      * @param id a<code>String</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -14965,6 +15057,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -15402,6 +15496,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>retrieveFirstChunk</code>      *      * @param resultId an<code>int</code> value      * @param num an<code>int</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>HashMap</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -15980,6 +16076,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -16425,6 +16523,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>retrieveAllFirstChunk</code>      *      * @param resultId an<code>int</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -17136,6 +17236,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>setPermissions</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setPermissions
@@ -17771,6 +17873,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>setPermissions</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setPermissions
@@ -18348,6 +18452,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>setUser</code>      *      * @param name a<code>String</code> value      * @param passwd a<code>String</code> value      * @param passwdDigest a<code>String</code> value      * @param groups a<code>Vector</code> value      * @param home a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|addAccount
@@ -18661,6 +18767,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|updateAccount
@@ -18700,6 +18808,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|updateAccount
@@ -18871,6 +18981,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|addGroup
@@ -19289,6 +19401,8 @@ literal|true
 return|;
 block|}
 comment|/**      * The method<code>lockResource</code>      *      * @param documentPath a<code>String</code> value      * @param userName a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|lockResource
@@ -19617,6 +19731,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>hasUserLock</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>String</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|hasUserLock
@@ -19803,6 +19919,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>unlockResource</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|unlockResource
@@ -21326,6 +21444,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>getIndexedElements</code>      *      * @param collectionName a<code>String</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -21622,6 +21742,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>scanIndexTerms</code>      *      * @param collectionName a<code>String</code> value      * @param start a<code>String</code> value      * @param end a<code>String</code> value      * @param inclusive a<code>boolean</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -21835,6 +21957,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>scanIndexTerms</code>      *      * @param xpath a<code>String</code> value      * @param start a<code>String</code> value      * @param end a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception XPathException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -22291,6 +22415,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//	FIXME: Check it for possible security hole. Check name.
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -23203,6 +23329,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>reindexCollection</code>      *      * @param collectionName a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|reindexCollection
@@ -23309,6 +23437,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>backup</code>      *      * @param userbackup a<code>String</code> value      * @param password a<code>String</code> value      * @param destcollection a<code>String</code> value      * @param collection a<code>String</code> value      * @exception Exception if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|backup
@@ -23388,6 +23518,8 @@ literal|true
 return|;
 block|}
 comment|/**      *   Validate if specified document is Valid.      *      * @param documentPath   Path to XML document in database      * @throws java.lang.Exception  Generic exception      * @throws PermissionDeniedException  User is not allowed to perform action.      * @return TRUE if document is valid, FALSE if not or errors or.....      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isValid
@@ -23502,6 +23634,8 @@ name|isValid
 return|;
 block|}
 comment|/**      * The method<code>getDocType</code>      *      * @param documentPath a<code>String</code> value      * @return a<code>Vector</code> value      * @exception PermissionDeniedException if an error occurs      * @exception EXistException if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Vector
 argument_list|<
@@ -23784,6 +23918,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * The method<code>setDocType</code>      *      * @param documentPath a<code>String</code> value      * @param doctypename a<code>String</code> value      * @param publicid a<code>String</code> value      * @param systemid a<code>String</code> value      * @return a<code>boolean</code> value      * @exception Exception if an error occurs      * @exception URISyntaxException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setDocType
@@ -24093,6 +24229,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|copyResource
@@ -24126,6 +24264,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|copyCollection
@@ -24159,6 +24299,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|moveResource
@@ -24192,6 +24334,8 @@ literal|true
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|moveCollection
@@ -24225,6 +24369,8 @@ literal|true
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<
@@ -24344,6 +24490,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|copyCollection
@@ -24651,6 +24799,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|xupdateResource
@@ -24680,6 +24830,8 @@ name|DEFAULT_ENCODING
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setPermissions
@@ -24710,6 +24862,8 @@ name|permissions
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setPermissions
@@ -24740,6 +24894,8 @@ name|permissions
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|addAccount
@@ -24779,6 +24935,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -24805,6 +24963,8 @@ name|resultId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|executeQuery
@@ -24837,6 +24997,8 @@ name|parameters
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|storeBinary
@@ -24888,6 +25050,8 @@ name|modified
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|storeBinary
@@ -24933,6 +25097,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parseLocalExt
@@ -24994,6 +25160,8 @@ name|modified
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parseLocal
@@ -25046,6 +25214,8 @@ name|modified
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parseLocalExt
@@ -25101,6 +25271,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parseLocal
@@ -25147,6 +25319,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|uploadCompressed
@@ -25181,6 +25355,8 @@ literal|true
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|uploadCompressed
@@ -25212,6 +25388,8 @@ literal|true
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|upload
@@ -25246,6 +25424,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|upload
@@ -25277,6 +25457,8 @@ literal|false
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parse
@@ -25328,6 +25510,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parse
@@ -25382,6 +25566,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|parse
@@ -25412,6 +25598,8 @@ argument_list|)
 return|;
 block|}
 comment|/** @deprecated Use XmldbURI version instead */
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -25437,6 +25625,8 @@ argument_list|)
 return|;
 block|}
 comment|/** @deprecated Use XmldbURI version instead */
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -25512,6 +25702,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -25583,6 +25775,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -25649,6 +25843,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|HashMap
 argument_list|<
@@ -25708,6 +25904,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -25735,6 +25933,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDocumentAsString
@@ -25831,6 +26031,8 @@ name|parametri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDocumentAsString
@@ -25857,6 +26059,8 @@ literal|null
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -25993,6 +26197,8 @@ return|return
 name|xml
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -26130,6 +26336,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shutdown
@@ -26144,6 +26352,8 @@ literal|0
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|shutdown
