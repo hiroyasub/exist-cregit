@@ -181,6 +181,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|realm
 operator|.
 name|Realm
@@ -401,6 +413,8 @@ name|getDatabase
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startUp
@@ -1316,11 +1330,13 @@ block|}
 annotation|@
 name|Override
 specifier|public
-specifier|final
 specifier|synchronized
 name|Account
 name|getAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -1403,6 +1419,8 @@ argument_list|()
 return|;
 block|}
 comment|//Groups management methods
+annotation|@
+name|Override
 specifier|public
 specifier|final
 specifier|synchronized
@@ -1422,6 +1440,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 specifier|synchronized
@@ -1444,12 +1464,16 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-specifier|final
 specifier|synchronized
 name|Group
 name|getGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -1463,6 +1487,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 specifier|synchronized

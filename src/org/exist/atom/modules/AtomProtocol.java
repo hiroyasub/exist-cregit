@@ -792,6 +792,8 @@ operator|=
 name|node
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeChanged
@@ -837,6 +839,8 @@ name|AtomProtocol
 parameter_list|()
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doPost
@@ -3423,6 +3427,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doPut
@@ -5023,6 +5029,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doDelete
@@ -5698,6 +5706,8 @@ operator|new
 name|NodeHandler
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|process
@@ -5916,6 +5926,8 @@ operator|new
 name|NodeHandler
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|process
@@ -6122,6 +6134,8 @@ operator|new
 name|NodeHandler
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|process
@@ -6773,6 +6787,11 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
 name|owner
 argument_list|)
 expr_stmt|;
@@ -6995,6 +7014,11 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
+name|broker
+operator|.
+name|getUser
+argument_list|()
+argument_list|,
 name|owner
 argument_list|)
 expr_stmt|;

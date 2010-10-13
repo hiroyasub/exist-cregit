@@ -240,6 +240,8 @@ operator|=
 name|pdp
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|EvaluationResult
 name|findAttribute
@@ -484,6 +486,8 @@ argument_list|()
 operator|.
 name|getAccount
 argument_list|(
+literal|null
+argument_list|,
 name|uid
 argument_list|)
 decl_stmt|;
@@ -694,6 +698,8 @@ argument_list|)
 return|;
 block|}
 comment|/** 	* Indicates support of looking up attributes by 	* data supplied by an AttributeDesignator element, 	* specifically, a SubjectAttributeDesignator element. 	* 	* @return true to indicate that this module supports 	* this method of looking up attributes  	*/
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDesignatorSupported
@@ -704,6 +710,8 @@ literal|true
 return|;
 block|}
 comment|/** 	* Returns a<code>Set</code> containing 	*<code>AttributeDesignator.SUBJECT_TARGET</code> 	* to indicate that this module only supports 	*<code>Subject</code>s. 	* 	* @return A<code>Set</code> indicating the supported 	* designator type. 	*/
+annotation|@
+name|Override
 specifier|public
 name|Set
 argument_list|<
@@ -728,6 +736,8 @@ argument_list|)
 return|;
 block|}
 comment|/** 	* A<code>Set</code> containing the<code>URI</code>s 	* {@link XACMLConstants#USER_NAME_ATTRIBUTE user name} and 	* {@link XACMLConstants#GROUP_ATTRIBUTE groups} to indicate that 	* these are the only attributes supported by this module. 	* 	* @return A<code>Set</code> indicating the supported 	* attribute ids. 	*/
+annotation|@
+name|Override
 specifier|public
 name|Set
 argument_list|<

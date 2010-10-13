@@ -15,26 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|DataInput
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -141,18 +121,9 @@ name|int
 name|getUserPermissions
 parameter_list|()
 function_decl|;
-comment|/**      * Read the Permission from an input stream      *      * @param  istream          Description of the Parameter      * @exception  IOException  Description of the Exception      * @deprecated use one on implementation level      */
-specifier|public
-name|void
-name|read
-parameter_list|(
-name|DataInput
-name|istream
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/**      * Set the owner group by group id      *      * @param  group  The group id      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setGroup
@@ -161,7 +132,20 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|int
+name|id
+parameter_list|)
+function_decl|;
 comment|/**      * Set the owner group      *      * @param  group  The group value      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setGroup
@@ -170,11 +154,35 @@ name|Group
 name|group
 parameter_list|)
 function_decl|;
-comment|/**      * Set the owner group      *      * @param  name The group's name      */
 specifier|public
 name|void
 name|setGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|Group
+name|group
+parameter_list|)
+function_decl|;
+comment|/**      * Set the owner group      *      * @param  name The group's name      */
+annotation|@
+name|Deprecated
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -189,6 +197,8 @@ name|perm
 parameter_list|)
 function_decl|;
 comment|/**      * Set the owner passed as account id      *      * @param  user  The new owner id      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setOwner
@@ -197,7 +207,20 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|int
+name|id
+parameter_list|)
+function_decl|;
 comment|/**      * Set the owner passed as User object      *      * @param  user  The new owner value      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setOwner
@@ -206,11 +229,35 @@ name|Account
 name|user
 parameter_list|)
 function_decl|;
-comment|/**      * Set the owner      *      * @param  user  The new owner value      */
 specifier|public
 name|void
 name|setOwner
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|Account
+name|user
+parameter_list|)
+function_decl|;
+comment|/**      * Set the owner      *      * @param  user  The new owner value      */
+annotation|@
+name|Deprecated
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|String
+name|user
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|user
 parameter_list|)

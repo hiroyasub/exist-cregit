@@ -61,6 +61,18 @@ name|PermissionDeniedException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Subject
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -88,6 +100,9 @@ specifier|public
 name|Group
 name|getGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)

@@ -119,6 +119,9 @@ begin_interface
 specifier|public
 interface|interface
 name|SecurityManager
+parameter_list|<
+name|T
+parameter_list|>
 extends|extends
 name|Configurable
 block|{
@@ -266,6 +269,9 @@ function_decl|;
 name|void
 name|deleteAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -279,6 +285,9 @@ function_decl|;
 name|void
 name|deleteAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|user
 parameter_list|)
@@ -292,6 +301,9 @@ function_decl|;
 name|boolean
 name|updateAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|account
 parameter_list|)
@@ -305,11 +317,14 @@ function_decl|;
 name|Account
 name|getAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
 function_decl|;
-name|void
+name|Group
 name|addGroup
 parameter_list|(
 name|Group
@@ -354,6 +369,9 @@ function_decl|;
 name|Group
 name|getGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -368,6 +386,9 @@ function_decl|;
 name|void
 name|deleteGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -390,7 +411,7 @@ parameter_list|(
 name|String
 name|username
 parameter_list|,
-name|Object
+name|T
 name|credentials
 parameter_list|)
 throws|throws

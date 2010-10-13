@@ -199,6 +199,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|realm
 operator|.
 name|Realm
@@ -383,6 +395,8 @@ name|configuration
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|Group
@@ -404,6 +418,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|Group
@@ -422,6 +438,8 @@ name|realm
 operator|.
 name|getGroup
 argument_list|(
+literal|null
+argument_list|,
 name|name
 argument_list|)
 decl_stmt|;

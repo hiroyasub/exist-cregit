@@ -842,6 +842,8 @@ return|return
 name|created_group
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|Group
@@ -865,6 +867,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|Account
@@ -926,11 +930,16 @@ name|account
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|boolean
 name|updateAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|account
 parameter_list|)
@@ -1008,6 +1017,8 @@ name|updatingAccount
 init|=
 name|getAccount
 argument_list|(
+name|invokingUser
+argument_list|,
 name|account
 operator|.
 name|getName
@@ -1196,11 +1207,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|boolean
 name|deleteAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|account
 parameter_list|)
@@ -1461,6 +1477,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1477,6 +1495,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1760,6 +1780,8 @@ name|user
 init|=
 name|getAccount
 argument_list|(
+literal|null
+argument_list|,
 name|accountName
 argument_list|)
 decl_stmt|;

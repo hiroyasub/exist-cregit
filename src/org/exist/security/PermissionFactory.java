@@ -58,7 +58,6 @@ literal|null
 decl_stmt|;
 specifier|public
 specifier|static
-specifier|final
 name|Permission
 name|getPermission
 parameter_list|()
@@ -99,7 +98,6 @@ return|;
 block|}
 specifier|public
 specifier|static
-specifier|final
 name|Permission
 name|getPermission
 parameter_list|(
@@ -145,10 +143,12 @@ return|;
 block|}
 specifier|public
 specifier|static
-specifier|final
 name|Permission
 name|getPermission
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|user
 parameter_list|,
@@ -169,6 +169,8 @@ operator|)
 operator|new
 name|UnixStylePermission
 argument_list|(
+name|invokingUser
+argument_list|,
 name|sm
 argument_list|,
 name|user

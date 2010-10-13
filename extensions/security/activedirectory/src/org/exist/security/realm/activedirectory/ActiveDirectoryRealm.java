@@ -326,6 +326,8 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|LdapContextFactory
 name|ensureContextFactory
@@ -391,6 +393,8 @@ name|ID
 return|;
 block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.Realm#authenticate(java.lang.String, 	 * java.lang.Object) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Subject
 name|authenticate
@@ -654,6 +658,8 @@ name|AbstractAccount
 operator|)
 name|getAccount
 argument_list|(
+literal|null
+argument_list|,
 name|username
 argument_list|)
 decl_stmt|;

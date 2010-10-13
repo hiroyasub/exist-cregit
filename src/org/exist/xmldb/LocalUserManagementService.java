@@ -4278,6 +4278,8 @@ name|manager
 operator|.
 name|getAccount
 argument_list|(
+name|user
+argument_list|,
 name|name
 argument_list|)
 return|;
@@ -4468,6 +4470,8 @@ name|manager
 operator|.
 name|getGroup
 argument_list|(
+name|user
+argument_list|,
 name|name
 argument_list|)
 return|;
@@ -4717,6 +4721,8 @@ name|manager
 operator|.
 name|deleteAccount
 argument_list|(
+name|user
+argument_list|,
 name|u
 argument_list|)
 expr_stmt|;
@@ -4847,6 +4853,8 @@ name|manager
 operator|.
 name|deleteGroup
 argument_list|(
+name|user
+argument_list|,
 name|role
 operator|.
 name|getName
@@ -4997,6 +5005,8 @@ name|manager
 operator|.
 name|updateAccount
 argument_list|(
+name|user
+argument_list|,
 name|u
 argument_list|)
 expr_stmt|;

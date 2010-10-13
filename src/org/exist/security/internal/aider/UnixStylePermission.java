@@ -21,26 +21,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|DataInput
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|StringTokenizer
@@ -217,6 +197,8 @@ name|permissions
 expr_stmt|;
 block|}
 comment|/**      * Get the active permissions for group      *      * @return The groupPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getGroupPermissions
@@ -233,6 +215,8 @@ literal|3
 return|;
 block|}
 comment|/**      * Gets the user who owns this resource      *      * @return    The owner value      */
+annotation|@
+name|Override
 specifier|public
 name|Account
 name|getOwner
@@ -243,6 +227,8 @@ name|owner
 return|;
 block|}
 comment|/**      * Gets the group       *      * @return    The ownerGroup value      */
+annotation|@
+name|Override
 specifier|public
 name|Group
 name|getOwnerGroup
@@ -253,6 +239,8 @@ name|ownerGroup
 return|;
 block|}
 comment|/**      * Get the permissions      *      * @return    The permissions value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPermissions
@@ -263,6 +251,8 @@ name|permissions
 return|;
 block|}
 comment|/**      * Get the active permissions for others      *      * @return    The publicPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPublicPermissions
@@ -275,6 +265,8 @@ literal|0x7
 return|;
 block|}
 comment|/**      * Get the active permissions for the owner      *      * @return    The userPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getUserPermissions
@@ -291,10 +283,15 @@ literal|6
 return|;
 block|}
 comment|/**      * Set the owner group      *      * @param  group  The group value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Group
 name|group
 parameter_list|)
@@ -307,10 +304,15 @@ name|group
 expr_stmt|;
 block|}
 comment|/**      * Set the owner group      *      * @param  group  The group name      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|group
 parameter_list|)
@@ -327,6 +329,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Sets permissions for group      *      *@param  perm  The new groupPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setGroupPermissions
@@ -347,10 +351,15 @@ operator|)
 expr_stmt|;
 block|}
 comment|/**      *  Set the owner passed as User object      *      *@param  user  The new owner value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOwner
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|user
 parameter_list|)
@@ -363,10 +372,15 @@ name|user
 expr_stmt|;
 block|}
 comment|/**      *  Set the owner      *      *@param  user  The new owner value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOwner
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|user
 parameter_list|)
@@ -383,6 +397,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      *  Set permissions using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write permissions for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  str                  The new permissions      *@exception  SyntaxException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -600,6 +616,8 @@ block|}
 block|}
 block|}
 comment|/**      *  Set permissions      *      *@param  perm  The new permissions value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -616,6 +634,8 @@ name|perm
 expr_stmt|;
 block|}
 comment|/**      *  Set permissions for others      *      *@param  perm  The new publicPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPublicPermissions
@@ -632,6 +652,8 @@ name|perm
 expr_stmt|;
 block|}
 comment|/**      *  Set permissions for the owner      *      *@param  perm  The new userPermissions value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setUserPermissions
@@ -652,6 +674,8 @@ operator|)
 expr_stmt|;
 block|}
 comment|/**      *  Format permissions       *      *@return    Description of the Return Value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -968,6 +992,8 @@ name|permission
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|validate
@@ -983,23 +1009,15 @@ return|return
 literal|false
 return|;
 block|}
-specifier|public
-name|void
-name|read
-parameter_list|(
-name|DataInput
-name|istream
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-block|}
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|int
 name|id
 parameter_list|)
@@ -1019,6 +1037,9 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|int
 name|id
 parameter_list|)
@@ -1029,6 +1050,114 @@ operator|new
 name|UserAider
 argument_list|(
 name|id
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+block|{
+name|setGroup
+argument_list|(
+literal|null
+argument_list|,
+name|id
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|Group
+name|group
+parameter_list|)
+block|{
+name|setGroup
+argument_list|(
+literal|null
+argument_list|,
+name|group
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setGroup
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|setGroup
+argument_list|(
+literal|null
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+block|{
+name|setOwner
+argument_list|(
+literal|null
+argument_list|,
+name|id
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|Account
+name|user
+parameter_list|)
+block|{
+name|setOwner
+argument_list|(
+literal|null
+argument_list|,
+name|user
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setOwner
+parameter_list|(
+name|String
+name|user
+parameter_list|)
+block|{
+name|setOwner
+argument_list|(
+literal|null
+argument_list|,
+name|user
 argument_list|)
 expr_stmt|;
 block|}

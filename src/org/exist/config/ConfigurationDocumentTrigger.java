@@ -247,6 +247,11 @@ name|convert
 argument_list|(
 name|broker
 operator|.
+name|getUser
+argument_list|()
+argument_list|,
+name|broker
+operator|.
 name|getBrokerPool
 argument_list|()
 operator|.

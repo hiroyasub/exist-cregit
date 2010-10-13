@@ -184,6 +184,8 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Subject
 name|authenticate
@@ -262,6 +264,8 @@ name|secman
 operator|.
 name|getAccount
 argument_list|(
+literal|null
+argument_list|,
 name|digest
 operator|.
 name|username
@@ -322,6 +326,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sendChallenge
@@ -461,11 +467,11 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|StringBuffer
+name|StringBuilder
 name|current
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|String

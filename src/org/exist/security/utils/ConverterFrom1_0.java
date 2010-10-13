@@ -93,6 +93,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|internal
 operator|.
 name|RealmImpl
@@ -142,18 +154,6 @@ operator|.
 name|realm
 operator|.
 name|Realm
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|DatabaseConfigurationException
 import|;
 end_import
 
@@ -325,6 +325,9 @@ specifier|static
 name|void
 name|convert
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|SecurityManager
 name|sm
 parameter_list|,
@@ -628,6 +631,8 @@ name|realm
 operator|.
 name|updateAccount
 argument_list|(
+name|invokingUser
+argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
