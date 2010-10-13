@@ -254,6 +254,8 @@ name|perm
 parameter_list|)
 function_decl|;
 comment|/**      *  Format permissions       *      *@return    Description of the Return Value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
