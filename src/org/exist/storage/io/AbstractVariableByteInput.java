@@ -90,6 +90,7 @@ specifier|public
 name|AbstractVariableByteInput
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 specifier|abstract
@@ -723,6 +724,7 @@ name|IOException
 name|ee
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 return|return
 name|i
@@ -886,6 +888,7 @@ name|void
 name|release
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 end_class

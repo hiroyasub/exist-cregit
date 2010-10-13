@@ -270,10 +270,16 @@ specifier|private
 specifier|final
 specifier|static
 name|Int2ObjectHashMap
+argument_list|<
+name|LogEntry
+argument_list|>
 name|entryTypes
 init|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|LogEntry
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// register the common entry types
@@ -376,9 +382,6 @@ block|{
 name|LogEntry
 name|entry
 init|=
-operator|(
-name|LogEntry
-operator|)
 name|entryTypes
 operator|.
 name|get

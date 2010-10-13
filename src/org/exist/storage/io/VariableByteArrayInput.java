@@ -212,6 +212,8 @@ operator|+
 name|length
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 name|readByte
@@ -241,6 +243,8 @@ index|]
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *       * @see java.io.InputStream#read()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
@@ -269,6 +273,8 @@ literal|0xFF
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *       * @see java.io.InputStream#available()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|available
@@ -282,6 +288,8 @@ operator|-
 name|position
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|short
 name|readShort
@@ -375,6 +383,8 @@ return|return
 name|i
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readInt
@@ -463,6 +473,8 @@ return|return
 name|i
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|readFixedInt
@@ -524,6 +536,8 @@ literal|24
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|readLong
@@ -612,6 +626,8 @@ return|return
 name|i
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|readUTF
@@ -681,6 +697,8 @@ return|return
 name|s
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyTo
@@ -745,6 +763,8 @@ condition|)
 do|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyRaw
@@ -775,10 +795,9 @@ name|position
 operator|+=
 name|count
 expr_stmt|;
-comment|//        for (int i = 0; i< count; i++) {
-comment|//    		os.buf.append(data[position++]);
-comment|//    	}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skip
@@ -822,9 +841,13 @@ operator|)
 operator|>
 literal|0
 condition|)
-empty_stmt|;
+block|{
+comment|//Nothing to do
 block|}
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skipBytes

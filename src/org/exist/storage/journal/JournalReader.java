@@ -853,6 +853,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 name|fc
 operator|=

@@ -156,10 +156,13 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}
 comment|/**      * Wait for a sync event or shutdown.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -188,6 +191,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 if|if
 condition|(

@@ -149,6 +149,8 @@ return|;
 block|}
 comment|/* InputStream methods */
 comment|/**      * Reads the next byte of data from the input stream. The value byte is      * returned as an<code>int</code> in the range<code>0</code> to      *<code>255</code>. If no byte is available because the end of the stream      * has been reached, the value<code>-1</code> is returned. This method      * blocks until input data is available, the end of the stream is detected,      * or an exception is thrown.      *       *       * @return the next byte of data, or<code>-1</code> if the end of the      *             stream is reached.      * @throws IOException  if an I/O error occurs.      */
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|int
@@ -190,6 +192,8 @@ index|]
 return|;
 block|}
 comment|/**      * Reads up to<code>len</code> bytes of data from the input stream into      * an array of bytes.  An attempt is made to read as many as      *<code>len</code> bytes, but a smaller number may be read.      * The number of bytes actually read is returned as an integer.      *       *<p> This method blocks until input data is available, end of file is      * detected, or an exception is thrown.      *       *       * @param b     the buffer into which the data is read.      * @param off   the start offset in array<code>b</code>      *                   at which the data is written.      * @param len   the maximum number of bytes to read.      * @return the total number of bytes read into the buffer, or      *<code>-1</code> if there is no more data because the end of      *             the stream has been reached.      * @throws IOException  if an I/O error occurs.      * @throws NullPointerException  if<code>b</code> is<code>null</code>.      */
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|int
@@ -446,6 +450,8 @@ name|count
 return|;
 block|}
 comment|/**      * Closes this input stream and releases the buffer associated      * with this stream.      */
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
@@ -483,6 +489,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * The number of bytes that can be read (or skipped over) from      * this input stream without blocking by the next caller of a method for      * this input stream.      *       *       * @return the number of bytes that can be read from this input stream      *             without blocking.      * @throws ExistIOException  if an I/O error occurs.      */
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|int

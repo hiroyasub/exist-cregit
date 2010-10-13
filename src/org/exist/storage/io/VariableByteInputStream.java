@@ -69,6 +69,8 @@ name|is
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see java.io.InputStream#read()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
@@ -84,6 +86,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see java.io.InputStream#available()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|available

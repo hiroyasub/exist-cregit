@@ -1263,7 +1263,7 @@ operator|==
 literal|null
 condition|)
 return|return;
-comment|// the db has probably shut down already
+comment|// the db has probably been shut down already
 synchronized|synchronized
 init|(
 name|latch
@@ -1694,7 +1694,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|//				RandomAccessFile raf = new RandomAccessFile(file, "rw");
+comment|//RandomAccessFile raf = new RandomAccessFile(file, "rw");
 name|FileOutputStream
 name|os
 init|=
@@ -1987,7 +1987,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Shut down the journal. This will write a checkpoint record 	 * to the log, so recovery manager knows the file has been 	 * closed in a clean way. 	 *  	 * @param txnId 	 */
+comment|/**      * Shut down the journal. This will write a checkpoint record      * to the log, so recovery manager knows the file has been      * closed in a clean way.      *       * @param txnId      */
 specifier|public
 name|void
 name|shutdown
@@ -2082,6 +2082,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 name|currentBuffer
 operator|=
@@ -2184,6 +2185,8 @@ operator|=
 name|file
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run

@@ -192,6 +192,8 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -216,6 +218,8 @@ name|length
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|flush
@@ -223,6 +227,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|int
@@ -277,6 +282,8 @@ return|return
 name|buf
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -298,6 +305,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -315,6 +324,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
