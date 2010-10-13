@@ -511,6 +511,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -521,7 +531,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|List
 import|;
 end_import
 
@@ -593,6 +603,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|java
 operator|.
@@ -680,6 +692,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|disconnect
@@ -741,6 +755,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|createCollection
@@ -989,6 +1005,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|removeCollection
@@ -1211,6 +1229,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|removeDocument
@@ -1534,6 +1554,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|store
@@ -2010,6 +2032,8 @@ return|return
 name|session
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|xupdate
@@ -2483,6 +2507,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|xupdateResource
@@ -2993,6 +3019,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeBinary
@@ -3351,6 +3379,8 @@ block|}
 comment|//        documentCache.clear();
 comment|//        return doc != null;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -3641,6 +3671,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -3813,27 +3845,27 @@ operator|new
 name|CollectionDesc
 argument_list|()
 decl_stmt|;
-name|Vector
+name|List
 argument_list|<
 name|DocumentDesc
 argument_list|>
 name|docs
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|DocumentDesc
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
 name|collections
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|String
 argument_list|>
@@ -3983,7 +4015,7 @@ argument_list|)
 expr_stmt|;
 name|docs
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|dd
 argument_list|)
@@ -4010,7 +4042,7 @@ condition|;
 control|)
 name|collections
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|i
 operator|.
@@ -4186,6 +4218,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -5691,6 +5725,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyResource
@@ -5744,6 +5780,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyCollection
@@ -5851,6 +5889,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setUser
@@ -6325,6 +6365,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -6446,6 +6488,8 @@ return|return
 name|desc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeUser
@@ -6565,6 +6609,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -6710,6 +6756,8 @@ name|r
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -6752,14 +6800,14 @@ operator|.
 name|getGroups
 argument_list|()
 decl_stmt|;
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
 name|v
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|String
 argument_list|>
@@ -6809,6 +6857,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|moveCollection
@@ -6916,6 +6966,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|moveResource
@@ -6969,6 +7021,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lockResource
@@ -7366,6 +7420,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unlockResource
@@ -7691,6 +7747,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|java
 operator|.
@@ -7958,6 +8016,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -8289,6 +8349,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -8676,6 +8738,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -9045,6 +9109,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
