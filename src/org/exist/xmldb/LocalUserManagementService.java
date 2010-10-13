@@ -340,6 +340,8 @@ operator|=
 name|user
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAccount
@@ -501,6 +503,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addGroup
@@ -662,6 +666,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -915,6 +921,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPermissions
@@ -1265,6 +1273,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chmod
@@ -1619,6 +1629,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chmod
@@ -1827,6 +1839,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chmod
@@ -2151,6 +2165,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chmod
@@ -2382,6 +2398,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chown
@@ -2666,6 +2684,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|chown
@@ -2941,6 +2961,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.UserManagementService#hasUserLock(org.xmldb.api.base.Resource) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|hasUserLock
@@ -3061,6 +3083,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lockResource
@@ -3355,6 +3379,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unlockResource
@@ -3597,6 +3623,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -3606,6 +3634,8 @@ return|return
 literal|"UserManagementService"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Permission
 name|getPermissions
@@ -3640,6 +3670,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Permission
 name|getPermissions
@@ -3746,6 +3778,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Permission
 index|[]
@@ -3937,6 +3971,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Permission
 index|[]
@@ -4179,6 +4215,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
@@ -4193,6 +4231,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Account
 name|getAccount
@@ -4276,6 +4316,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Account
 index|[]
@@ -4379,6 +4421,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Group
 name|getGroup
@@ -4462,6 +4506,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -4593,6 +4639,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getVersion
@@ -4602,6 +4650,8 @@ return|return
 literal|"1.0"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAccount
@@ -4730,6 +4780,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeGroup
@@ -4861,6 +4913,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCollection
@@ -4881,6 +4935,8 @@ operator|)
 name|collection
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
@@ -4895,6 +4951,8 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|updateAccount
@@ -4995,6 +5053,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addUserGroup
@@ -5006,6 +5066,8 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeGroup
