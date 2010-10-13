@@ -2017,7 +2017,7 @@ name|new_account
 argument_list|)
 expr_stmt|;
 return|return
-name|account
+name|new_account
 return|;
 block|}
 specifier|protected
