@@ -1147,7 +1147,7 @@ literal|"STFLWORExpr"
 argument_list|)
 condition|)
 block|{
-comment|/*UNDERSTAND: why it must throw FORG0006? 				The test description:  					Test 'where' clause with heterogenous sequences. First item is a node 			 				The XQuery 1.0: An XML Query Language (W3C Recommendation 23 January 2007) 				2.4.3 Effective Boolean Value 					If its operand is a sequence whose first item is a node, fn:boolean returns true.  			*/
+comment|/*UNDERSTAND: why it must throw FORG0006?                 The test description:                      Test 'where' clause with heterogenous sequences. First item is a node                 The XQuery 1.0: An XML Query Language (W3C Recommendation 23 January 2007)                 2.4.3 Effective Boolean Value                     If its operand is a sequence whose first item is a node, fn:boolean returns true.              */
 if|if
 condition|(
 name|testCase
@@ -1630,6 +1630,11 @@ name|moduleMap
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
 operator|)
 name|broker
 operator|.
@@ -1786,10 +1791,10 @@ name|getNodeValue
 argument_list|()
 decl_stmt|;
 comment|//use DocUtils
-comment|//                  context.declareVariable(
-comment|//                  inputFile.getAttribute("variable"),
-comment|//                  DocUtils.getDocument(context, sources.get(id))
-comment|//                  );
+comment|//context.declareVariable(
+comment|//inputFile.getAttribute("variable"),
+comment|//DocUtils.getDocument(context, sources.get(id))
+comment|//);
 comment|//in-memory nodes
 name|context
 operator|.
@@ -2939,9 +2944,9 @@ literal|"GMT-5:00"
 argument_list|)
 decl_stmt|;
 comment|// getDefault();
-comment|//              if( implicitTimeZone.inDaylightTime( new Date() ) ) {
-comment|//                  implicitTimeZone.setRawOffset( implicitTimeZone.getRawOffset() + implicitTimeZone.getDSTSavings() );
-comment|//              }
+comment|//if( implicitTimeZone.inDaylightTime( new Date() ) ) {
+comment|//implicitTimeZone.setRawOffset( implicitTimeZone.getRawOffset() + implicitTimeZone.getDSTSavings() );
+comment|//}
 name|context
 operator|.
 name|setTimeZone

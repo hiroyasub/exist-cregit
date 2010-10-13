@@ -228,7 +228,7 @@ name|File
 operator|.
 name|separator
 decl_stmt|;
-comment|/** 	 * @param args 	 * @throws Exception  	 */
+comment|/**      * @param args      * @throws Exception       */
 specifier|public
 specifier|static
 name|void
@@ -316,7 +316,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @throws java.lang.Exception 	 */
+comment|/**      * @throws java.lang.Exception      */
 annotation|@
 name|After
 specifier|public
@@ -581,7 +581,7 @@ argument_list|(
 literal|"webapp/xqts/build.xml"
 argument_list|)
 decl_stmt|;
-comment|//		File xqtsFile = new File("webapp/xqts/build.xml");
+comment|//File xqtsFile = new File("webapp/xqts/build.xml");
 name|Project
 name|p
 init|=
@@ -737,6 +737,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 specifier|private
@@ -828,13 +829,13 @@ decl_stmt|;
 name|String
 name|subPackage
 decl_stmt|;
-comment|//       		if (parentName == null) {
-comment|//       			subfolder = folder;
-comment|//       			subPackage = _package_;
-comment|//       		} else {
-comment|//       			subfolder = new File(folder.getAbsolutePath()+sep+parentName);
-comment|//       			subPackage = _package_+"."+adoptString(parentName);
-comment|//       		}
+comment|//if (parentName == null) {
+comment|//subfolder = folder;
+comment|//subPackage = _package_;
+comment|//} else {
+comment|//subfolder = new File(folder.getAbsolutePath()+sep+parentName);
+comment|//subPackage = _package_+"."+adoptString(parentName);
+comment|//}
 name|BufferedWriter
 name|allTests
 init|=
@@ -883,7 +884,7 @@ name|allTests
 operator|.
 name|write
 argument_list|(
-literal|"		C_"
+literal|"\t\tC_"
 operator|+
 name|adoptString
 argument_list|(
@@ -987,7 +988,7 @@ name|allTests
 operator|.
 name|write
 argument_list|(
-literal|"		org.exist.xquery.xqts"
+literal|"\t\ttorg.exist.xquery.xqts"
 operator|+
 name|subPackage
 operator|+
@@ -1028,7 +1029,7 @@ name|allTests
 operator|.
 name|write
 argument_list|(
-literal|"		C_"
+literal|"\t\tC_"
 operator|+
 name|adoptString
 argument_list|(
@@ -1127,7 +1128,6 @@ operator|+
 literal|"@Suite.SuiteClasses({\n"
 argument_list|)
 expr_stmt|;
-comment|//   	    		"        XmldbLocalTests.class," +
 return|return
 name|out
 return|;
@@ -1205,7 +1205,7 @@ name|testGroup
 operator|+
 literal|"']/catalog:test-case"
 operator|+
-literal|"	return xs:string($testGroup/@name)"
+literal|"\treturn xs:string($testGroup/@name)"
 decl_stmt|;
 name|ResourceSet
 name|results
@@ -1288,7 +1288,7 @@ literal|";\n\n"
 operator|+
 literal|"import org.exist.xquery.xqts.XQTS_case;\n"
 operator|+
-comment|//       	    		"import static org.junit.Assert.*;\n" +
+comment|//"import static org.junit.Assert.*;\n" +
 literal|"import org.junit.Test;\n\n"
 operator|+
 literal|"public class C_"
@@ -1300,7 +1300,7 @@ argument_list|)
 operator|+
 literal|" extends XQTS_case {\n"
 operator|+
-literal|"	private String testGroup = \""
+literal|"\tprivate String testGroup = \""
 operator|+
 name|testGroup
 operator|+
@@ -1351,9 +1351,9 @@ name|caseName
 operator|+
 literal|" */"
 operator|+
-literal|"	@Test\n"
+literal|"\t@Test\n"
 operator|+
-literal|"	public void test_"
+literal|"\tpublic void test_"
 operator|+
 name|adoptString
 argument_list|(
@@ -1362,13 +1362,13 @@ argument_list|)
 operator|+
 literal|"() {\n"
 operator|+
-literal|"		groupCase(testGroup, \""
+literal|"\tgroupCase(testGroup, \""
 operator|+
 name|caseName
 operator|+
 literal|"\");"
 operator|+
-literal|"	}\n\n"
+literal|"\t}\n\n"
 argument_list|)
 expr_stmt|;
 block|}
