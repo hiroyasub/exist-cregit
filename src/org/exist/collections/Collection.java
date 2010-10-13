@@ -2337,6 +2337,8 @@ name|paths
 return|;
 block|}
 comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for      * write.      *      * @return A boolean value where true indicates it may be unloaded.      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|allowUnload
@@ -2382,6 +2384,8 @@ comment|//			lock.release();
 comment|//		}
 comment|//		return false;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
@@ -2423,6 +2427,8 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -4373,6 +4379,8 @@ operator|new
 name|StoreBlock
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4559,6 +4567,8 @@ operator|new
 name|StoreBlock
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -4701,6 +4711,8 @@ operator|new
 name|StoreBlock
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5236,6 +5248,8 @@ operator|new
 name|ValidateBlock
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -5381,6 +5395,8 @@ operator|new
 name|ValidateBlock
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -8028,6 +8044,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see java.util.Observable#addObserver(java.util.Observer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addObserver
@@ -8167,6 +8185,8 @@ literal|false
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see java.util.Observable#deleteObservers()          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|deleteObservers
@@ -8184,6 +8204,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getKey()          */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getKey
@@ -8194,6 +8216,8 @@ name|collectionId
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getReferenceCount
@@ -8204,6 +8228,8 @@ name|refCount
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#incReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|incReferenceCount
@@ -8215,6 +8241,8 @@ name|refCount
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#decReferenceCount()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|decReferenceCount
@@ -8232,6 +8260,8 @@ literal|0
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setReferenceCount
@@ -8246,6 +8276,8 @@ name|count
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#setTimestamp(int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTimestamp
@@ -8262,6 +8294,8 @@ name|timestamp
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#getTimestamp()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getTimestamp
@@ -8272,6 +8306,8 @@ name|timestamp
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#release()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|sync
@@ -8285,6 +8321,8 @@ literal|false
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#isDirty()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDirty
@@ -8294,6 +8332,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
