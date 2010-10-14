@@ -17,23 +17,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|w3c
+name|io
 operator|.
-name|dom
-operator|.
-name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|RequestDispatcher
+name|IOException
 import|;
 end_import
 
@@ -44,6 +32,16 @@ operator|.
 name|servlet
 operator|.
 name|FilterChain
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|RequestDispatcher
 import|;
 end_import
 
@@ -83,11 +81,27 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|exist
 operator|.
-name|IOException
+name|http
+operator|.
+name|servlets
+operator|.
+name|HttpResponseWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
 import|;
 end_import
 
@@ -162,7 +176,11 @@ argument_list|)
 throw|;
 name|setHeaders
 argument_list|(
+operator|new
+name|HttpResponseWrapper
+argument_list|(
 name|response
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|dispatcher

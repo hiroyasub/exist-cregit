@@ -19,6 +19,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|UnsupportedEncodingException
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -513,6 +523,8 @@ return|return
 operator|new
 name|StringValue
 argument_list|(
+name|decode
+argument_list|(
 name|cookies
 index|[
 name|c
@@ -520,6 +532,7 @@ index|]
 operator|.
 name|getValue
 argument_list|()
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -541,6 +554,41 @@ argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
+block|}
+comment|// TODO: remove this hack after fixing HTTP 1.1
+specifier|private
+name|String
+name|decode
+parameter_list|(
+name|String
+name|value
+parameter_list|)
+block|{
+try|try
+block|{
+return|return
+operator|new
+name|String
+argument_list|(
+name|value
+operator|.
+name|getBytes
+argument_list|(
+literal|"ISO-8859-1"
+argument_list|)
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|UnsupportedEncodingException
+name|e
+parameter_list|)
+block|{
+return|return
+name|value
+return|;
+block|}
 block|}
 block|}
 end_class
