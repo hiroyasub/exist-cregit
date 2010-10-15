@@ -206,6 +206,9 @@ specifier|public
 name|Account
 name|getAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -254,6 +257,9 @@ specifier|public
 name|boolean
 name|updateAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|account
 parameter_list|)
@@ -276,6 +282,9 @@ specifier|public
 name|boolean
 name|deleteAccount
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Account
 name|account
 parameter_list|)
@@ -318,6 +327,9 @@ specifier|public
 name|Group
 name|getGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|String
 name|name
 parameter_list|)
