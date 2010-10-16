@@ -27,6 +27,12 @@ literal|0
 decl_stmt|;
 specifier|protected
 name|long
+name|creationTimestamp
+init|=
+literal|0
+decl_stmt|;
+specifier|protected
+name|long
 name|timestamp
 init|=
 literal|0
@@ -54,14 +60,16 @@ name|queryTime
 operator|=
 name|queryTime
 expr_stmt|;
+name|touch
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|creationTimestamp
+operator|=
 name|this
 operator|.
 name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
 expr_stmt|;
 block|}
 comment|/** 	 * @return Returns the queryTime. 	 */
@@ -82,6 +90,30 @@ parameter_list|()
 block|{
 return|return
 name|timestamp
+return|;
+block|}
+comment|/** 	 * This method can be used to explicitly update the 	 * last time the cached result has been used 	 */
+specifier|public
+name|void
+name|touch
+parameter_list|()
+block|{
+name|timestamp
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
+comment|/** 	 * @return Returns the timestamp. 	 */
+specifier|public
+name|long
+name|getCreationTimestamp
+parameter_list|()
+block|{
+return|return
+name|creationTimestamp
 return|;
 block|}
 comment|/** 	 * This abstract method must be used 	 * to free internal variables. 	 */
