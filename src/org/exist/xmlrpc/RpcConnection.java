@@ -5297,6 +5297,12 @@ argument_list|(
 literal|"Invalid handle specified"
 argument_list|)
 throw|;
+comment|// This will keep the serialized result in the cache
+name|sr
+operator|.
+name|touch
+argument_list|()
+expr_stmt|;
 name|VirtualTempFile
 name|vfile
 init|=
@@ -5529,6 +5535,12 @@ argument_list|(
 literal|"Invalid handle specified"
 argument_list|)
 throw|;
+comment|// This will keep the serialized result in the cache
+name|sr
+operator|.
+name|touch
+argument_list|()
+expr_stmt|;
 name|VirtualTempFile
 name|vfile
 init|=
@@ -8043,11 +8055,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 if|if
@@ -11435,6 +11443,12 @@ argument_list|(
 literal|"Invalid handle specified"
 argument_list|)
 throw|;
+comment|// This will keep the serialized result in the cache
+name|sr
+operator|.
+name|touch
+argument_list|()
+expr_stmt|;
 name|vtempFile
 operator|=
 name|sr
@@ -15356,11 +15370,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 name|Item
@@ -15651,11 +15661,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 name|Item
@@ -16260,11 +16266,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 name|Serializer
@@ -16671,11 +16673,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 name|Serializer
@@ -20890,11 +20888,7 @@ argument_list|)
 throw|;
 name|qr
 operator|.
-name|timestamp
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
+name|touch
 argument_list|()
 expr_stmt|;
 name|HashMap
