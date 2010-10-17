@@ -84,8 +84,8 @@ name|value
 parameter_list|)
 function_decl|;
 specifier|public
-name|float
-name|getBoost
+name|LuceneIndexConfig
+name|getIndexConfig
 parameter_list|()
 function_decl|;
 specifier|public

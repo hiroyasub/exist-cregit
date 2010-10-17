@@ -1833,7 +1833,7 @@ return|return
 name|result
 return|;
 block|}
-specifier|private
+specifier|protected
 name|Item
 name|getKey
 parameter_list|(
@@ -2002,7 +2002,7 @@ operator|.
 name|NODE
 return|;
 block|}
-specifier|private
+specifier|protected
 name|Properties
 name|parseOptions
 parameter_list|(

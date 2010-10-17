@@ -912,6 +912,9 @@ name|getConfig
 argument_list|(
 name|path
 argument_list|)
+operator|.
+name|next
+argument_list|()
 decl_stmt|;
 name|TextExtractor
 name|extractor
