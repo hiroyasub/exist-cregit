@@ -3302,9 +3302,7 @@ name|docIdx
 operator|<
 literal|0
 condition|)
-return|return
-literal|null
-return|;
+continue|continue;
 comment|// do a binary search to pick some node in the range of valid
 comment|// child ids
 name|int
