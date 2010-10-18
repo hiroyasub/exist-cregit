@@ -423,9 +423,9 @@ operator|==
 name|owner
 condition|)
 block|{
-comment|//                System.out.println("Waiter: " + waiter.getName() + " Thread: " + t.getName() + " == " + owner.getName() +
-comment|//                    " type: " + wt.getLockType());
-comment|//                debug(t.getName(), l.getLockInfo());
+comment|//System.out.println("Waiter: " + waiter.getName() + " Thread: " + t.getName() + " == " + owner.getName() +
+comment|//" type: " + wt.getLockType());
+comment|//debug(t.getName(), l.getLockInfo());
 comment|// the thread acquired the lock in the meantime
 return|return
 literal|false
@@ -458,13 +458,10 @@ name|waiters
 argument_list|)
 return|;
 block|}
-else|else
 return|return
 literal|false
 return|;
 block|}
-else|else
-block|{
 name|Lock
 name|l
 init|=
@@ -502,9 +499,9 @@ operator|==
 name|owner
 condition|)
 block|{
-comment|//                    System.out.println("Thread " + t.getName() + " == " + owner.getName());
-comment|//                    debug(t.getName(), l.getLockInfo());
-comment|// the thread acquired the lock in the meantime
+comment|//System.out.println("Thread " + t.getName() + " == " + owner.getName());
+comment|//debug(t.getName(), l.getLockInfo());
+comment|//the thread acquired the lock in the meantime
 return|return
 literal|false
 return|;
@@ -535,7 +532,6 @@ argument_list|,
 name|waiters
 argument_list|)
 return|;
-block|}
 block|}
 block|}
 return|return

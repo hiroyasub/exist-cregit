@@ -194,6 +194,8 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -238,6 +240,8 @@ name|chunkSize
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
@@ -293,6 +297,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -309,6 +315,8 @@ operator|+
 name|chunkSize
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -325,6 +333,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undo
@@ -341,6 +351,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

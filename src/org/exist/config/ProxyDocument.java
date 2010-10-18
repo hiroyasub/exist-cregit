@@ -720,6 +720,8 @@ return|return
 name|document
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProxyObject
@@ -728,13 +730,7 @@ name|E
 name|object
 parameter_list|)
 block|{
-if|if
-condition|(
-name|object
-operator|instanceof
-name|DocumentAtExist
-condition|)
-block|{
+comment|//if (object instanceof DocumentAtExist) {
 name|document
 operator|=
 operator|(
@@ -749,15 +745,8 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Only DocumentAtExist allowed"
-argument_list|)
-throw|;
+comment|//} else
+comment|//throw new IllegalArgumentException("Only DocumentAtExist allowed");
 block|}
 specifier|public
 name|NodeAtExist

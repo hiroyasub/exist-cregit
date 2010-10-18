@@ -445,10 +445,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
-name|nextNode
-operator|=
-literal|null
-expr_stmt|;
+comment|//nextNode = null;
 break|break;
 block|}
 block|}

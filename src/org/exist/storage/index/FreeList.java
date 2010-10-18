@@ -68,11 +68,6 @@ specifier|public
 class|class
 name|FreeList
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 specifier|private
 specifier|final
 specifier|static
@@ -118,8 +113,9 @@ specifier|public
 name|FreeList
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
-comment|/** 	 * Append a new {@link FreeSpace} object to the list, 	 * describing the amount of free space available on a page. 	 *   	 * @param free 	 */
+comment|/**      * Append a new {@link FreeSpace} object to the list,      * describing the amount of free space available on a page.      *        * @param free      */
 specifier|public
 name|void
 name|add
@@ -167,7 +163,7 @@ operator|++
 name|size
 expr_stmt|;
 block|}
-comment|/** 	 * Remove a record from the list. 	 *  	 * @param node 	 */
+comment|/**      * Remove a record from the list.      *       * @param node      */
 specifier|public
 name|void
 name|remove
@@ -257,7 +253,7 @@ name|previous
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Retrieve the record stored for the given page number. 	 *  	 * @param pageNum 	 */
+comment|/**      * Retrieve the record stored for the given page number.      *       * @param pageNum      */
 specifier|public
 name|FreeSpace
 name|retrieve
@@ -300,7 +296,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Try to find a page that has at least requiredSize bytes 	 * available. This method selects the page with the smallest 	 * possible space. This guarantees that all pages will be filled before 	 * creating a new page.  	 *  	 * @param requiredSize 	 */
+comment|/**      * Try to find a page that has at least requiredSize bytes      * available. This method selects the page with the smallest      * possible space. This guarantees that all pages will be filled before      * creating a new page.       *       * @param requiredSize      */
 specifier|public
 name|FreeSpace
 name|find
@@ -365,6 +361,8 @@ return|return
 name|found
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -535,7 +533,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       *       * @param buf       * @param offset       * @throws IOException       */
+comment|/**      * Write the list to a {@link RandomAccessFile}.      *       * As the list is written to the file header, its maximum length      * has to be restricted. The method will thus only store      * {@link #MAX_FREE_LIST_LEN} entries and throw away the       * rest. Usually, this should not happen very often, so it is ok to      * waste some space.      *       * @param buf       * @param offset       * @throws IOException       */
 specifier|public
 name|int
 name|write
@@ -550,7 +548,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//       does the free-space list fit into the file header?
+comment|//does the free-space list fit into the file header?
 name|int
 name|skip
 init|=
@@ -563,8 +561,7 @@ operator|>
 name|MAX_FREE_LIST_LEN
 condition|)
 block|{
-comment|//            LOG.warn("removing " + (size - MAX_FREE_LIST_LEN)
-comment|//                    + " free pages.");
+comment|//LOG.warn("removing " + (size - MAX_FREE_LIST_LEN) + " free pages.");
 comment|// no: remove some smaller entries to make it fit
 name|skip
 operator|=

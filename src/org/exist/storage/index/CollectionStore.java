@@ -220,7 +220,7 @@ name|KEY_TYPE_DOCUMENT
 init|=
 literal|1
 decl_stmt|;
-comment|/** 	 * @param pool 	 * @param id 	 * @param dataDir 	 * @param config 	 * @throws DBException 	 */
+comment|/**      * @param pool      * @param id      * @param dataDir      * @param config      * @throws DBException      */
 specifier|public
 name|CollectionStore
 parameter_list|(
@@ -314,6 +314,8 @@ literal|1000
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.store.BFile#getDataSyncPeriod()      */
+annotation|@
+name|Override
 specifier|protected
 name|long
 name|getDataSyncPeriod
@@ -323,6 +325,8 @@ return|return
 literal|1000
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|flush

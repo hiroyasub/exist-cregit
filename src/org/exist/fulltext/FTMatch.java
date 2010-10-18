@@ -108,6 +108,8 @@ name|match
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Match
 name|createInstance
@@ -134,6 +136,8 @@ name|matchTerm
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Match
 name|newCopy
@@ -147,6 +151,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getIndexId

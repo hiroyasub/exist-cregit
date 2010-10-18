@@ -356,11 +356,6 @@ block|{
 name|LockedDocument
 name|d
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Lock
 name|dlock
 decl_stmt|;
@@ -424,11 +419,6 @@ block|{
 name|LockedDocument
 name|d
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Lock
 name|dlock
 decl_stmt|;
@@ -539,12 +529,12 @@ operator|.
 name|locksAcquired
 argument_list|)
 expr_stmt|;
-comment|//        for (int i = 0; i< d.locksAcquired; i++) {
-comment|//            dlock.release(Lock.READ_LOCK);
-comment|//        }
-comment|//        if (dlock.isLockedForRead(Thread.currentThread())) {
-comment|//            System.out.println("Thread is still LOCKED: " + Thread.currentThread().getName());
-comment|//        }
+comment|//for (int i = 0; i< d.locksAcquired; i++) {
+comment|//dlock.release(Lock.READ_LOCK);
+comment|//}
+comment|//if (dlock.isLockedForRead(Thread.currentThread())) {
+comment|//System.out.println("Thread is still LOCKED: " + Thread.currentThread().getName());
+comment|//}
 block|}
 specifier|private
 specifier|static

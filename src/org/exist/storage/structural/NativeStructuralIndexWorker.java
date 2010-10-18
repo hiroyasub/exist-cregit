@@ -3945,6 +3945,7 @@ specifier|private
 name|NativeStructuralStreamListener
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override

@@ -260,7 +260,10 @@ specifier|public
 name|FTIndex
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -326,6 +329,8 @@ name|fileName
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|open
@@ -426,6 +431,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -439,6 +446,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sync
@@ -452,6 +461,8 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -469,6 +480,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker
@@ -515,6 +528,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|checkIndex

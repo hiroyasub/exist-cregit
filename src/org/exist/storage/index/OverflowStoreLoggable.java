@@ -166,7 +166,7 @@ operator|=
 name|startOffset
 expr_stmt|;
 block|}
-comment|/** 	 * @param broker 	 * @param transactionId 	 */
+comment|/**      * @param broker      * @param transactionId      */
 specifier|public
 name|OverflowStoreLoggable
 parameter_list|(
@@ -185,6 +185,8 @@ name|transactionId
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -239,6 +241,8 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
@@ -291,6 +295,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -307,6 +313,8 @@ operator|+
 name|size
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -323,6 +331,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

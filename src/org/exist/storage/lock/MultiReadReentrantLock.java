@@ -246,7 +246,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.Lock#attempt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.Lock#attempt(int)      */
 specifier|public
 name|boolean
 name|attempt
@@ -333,7 +333,7 @@ name|thisThread
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//            LOG.debug("Thread already holds a write lock");
+comment|//LOG.debug("Thread already holds a write lock");
 return|return
 literal|true
 return|;
@@ -392,13 +392,13 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                LOG.debug("readLock wait by " + thisThread.getName() + " for " + getId());
+comment|//LOG.debug("readLock wait by " + thisThread.getName() + " for " + getId());
 name|waiter
 operator|.
 name|doWait
 argument_list|()
 expr_stmt|;
-comment|//            LOG.debug("wake up from readLock wait");
+comment|//LOG.debug("wake up from readLock wait");
 block|}
 name|DeadlockDetection
 operator|.
@@ -408,7 +408,7 @@ name|thisThread
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        LOG.debug("readLock acquired by thread: " + Thread.currentThread().getName());
+comment|//LOG.debug("readLock acquired by thread: " + Thread.currentThread().getName());
 name|waitingForReadLock
 operator|--
 expr_stmt|;
@@ -465,7 +465,7 @@ block|{
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//                LOG.debug("acquired additional write lock on " + getId());
+comment|//LOG.debug("acquired additional write lock on " + getId());
 return|return
 literal|true
 return|;
@@ -487,7 +487,7 @@ expr_stmt|;
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//                LOG.debug( "writeLock on " + getId() + " acquired without waiting by " + writeLockedThread.getName());
+comment|//LOG.debug( "writeLock on " + getId() + " acquired without waiting by " + writeLockedThread.getName());
 return|return
 literal|true
 return|;
@@ -500,9 +500,9 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//            if (writeLockedThread == thisThread) {
-comment|//                LOG.debug("nested write lock: " + outstandingWriteLocks);
-comment|//            }
+comment|//if (writeLockedThread == thisThread) {
+comment|//LOG.debug("nested write lock: " + outstandingWriteLocks);
+comment|//}
 name|deadlockCheck
 argument_list|()
 expr_stmt|;
@@ -590,8 +590,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//                	LOG.debug("writeLock wait on " + getId() + ". held by " + (writeLockedThread == null ? "null" : writeLockedThread.getName())
-comment|//                            + ". outstanding: " + outstandingWriteLocks);
+comment|//LOG.debug("writeLock wait on " + getId() + ". held by " + (writeLockedThread == null ? "null" : writeLockedThread.getName())
+comment|// + ". outstanding: " + outstandingWriteLocks);
 if|if
 condition|(
 name|LockOwner
@@ -638,9 +638,6 @@ operator|.
 name|append
 argument_list|(
 operator|(
-operator|(
-name|WaitingThread
-operator|)
 name|waitingForWriteLock
 operator|.
 name|get
@@ -725,7 +722,7 @@ name|outstandingWriteLocks
 operator|++
 expr_stmt|;
 comment|//testing
-comment|//            LOG.debug( "writeLock on " + getId() + " acquired by " + writeLockedThread.getName());
+comment|//LOG.debug( "writeLock on " + getId() + " acquired by " + writeLockedThread.getName());
 block|}
 synchronized|synchronized
 init|(
@@ -830,9 +827,6 @@ block|{
 name|WaitingThread
 name|next
 init|=
-operator|(
-name|WaitingThread
-operator|)
 name|waitingForWriteLock
 operator|.
 name|get
@@ -983,9 +977,9 @@ name|outstandingWriteLocks
 operator|-=
 name|count
 expr_stmt|;
-comment|//            else {
-comment|//                LOG.info("extra lock release, writelocks are " + outstandingWriteLocks + "and done was called");
-comment|//            }
+comment|//else {
+comment|//LOG.info("extra lock release, writelocks are " + outstandingWriteLocks + "and done was called");
+comment|//}
 if|if
 condition|(
 name|outstandingWriteLocks
@@ -993,8 +987,8 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//                LOG.debug("writeLock released for a nested writeLock request: " + outstandingWriteLocks +
-comment|//                    "; thread: " + writeLockedThread.getName());
+comment|//LOG.debug("writeLock released for a nested writeLock request: " + outstandingWriteLocks +
+comment|//"; thread: " + writeLockedThread.getName());
 return|return;
 block|}
 comment|// if another thread is waiting for a write lock, we immediately pass control to it.
@@ -1037,9 +1031,9 @@ operator|.
 name|getThread
 argument_list|()
 expr_stmt|;
-comment|//                if (LOG.isDebugEnabled()) {
-comment|//                    LOG.debug("writeLock released and before notifying a write lock waiting thread " + writeLockedThread);
-comment|//                }
+comment|//if (LOG.isDebugEnabled()) {
+comment|//  LOG.debug("writeLock released and before notifying a write lock waiting thread " + writeLockedThread);
+comment|//}
 synchronized|synchronized
 init|(
 name|writeLockedThread
@@ -1051,10 +1045,10 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                if (LOG.isDebugEnabled()) {
-comment|//                    LOG.debug("writeLock released by " + Thread.currentThread().getName() +
-comment|//                            " after notifying a write lock waiting thread " + writeLockedThread.getName());
-comment|//                }
+comment|//if (LOG.isDebugEnabled()) {
+comment|//  LOG.debug("writeLock released by " + Thread.currentThread().getName() +
+comment|//  " after notifying a write lock waiting thread " + writeLockedThread.getName());
+comment|//}
 block|}
 else|else
 block|{
@@ -1069,15 +1063,12 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//                    LOG.debug("writeLock " + Thread.currentThread().getName() + " released, notified waiting readers");
+comment|//LOG.debug("writeLock " + Thread.currentThread().getName() + " released, notified waiting readers");
 comment|// wake up pending read locks
 name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                } else {
-comment|//                    LOG.debug("writeLock released, no readers waiting");
-comment|//                }
 block|}
 block|}
 else|else
@@ -1096,8 +1087,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        LOG.debug("writeLock released: " + getId() + "; outstanding: " + outstandingWriteLocks +
-comment|//            "; thread: " + Thread.currentThread().getName() + " suspended: " + suspendedThreads.size());
+comment|//LOG.debug("writeLock released: " + getId() + "; outstanding: " + outstandingWriteLocks +
+comment|//"; thread: " + Thread.currentThread().getName() + " suspended: " + suspendedThreads.size());
 block|}
 comment|/**      * Threads call this method to relinquish a lock that they previously got      * from this object.      *      * @throws IllegalStateException if called when there are no outstanding locks or there is a      *                               write lock issued to a different thread.      */
 specifier|private
@@ -1318,9 +1309,6 @@ block|{
 if|if
 condition|(
 operator|(
-operator|(
-name|LockOwner
-operator|)
 name|outstandingReadLocks
 operator|.
 name|get
@@ -1386,9 +1374,6 @@ block|{
 name|LockOwner
 name|current
 init|=
-operator|(
-name|LockOwner
-operator|)
 name|outstandingReadLocks
 operator|.
 name|get
@@ -1681,7 +1666,6 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-else|else
 return|return
 literal|true
 return|;
@@ -1763,6 +1747,7 @@ name|void
 name|wakeUp
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * Check if the pending request for a write lock is compatible      * with existing read locks and other write requests. A lock request is      * compatible with another lock request if: (a) it belongs to the same thread,      * (b) it belongs to a different thread, but this thread is also waiting for a write lock.      *      * @param waiting      * @return true if the lock request is compatible with all other requests and the      * lock can be granted.      */
 specifier|private

@@ -60,6 +60,7 @@ specifier|public
 name|ByteArrayPool
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 specifier|static
@@ -267,6 +268,8 @@ index|[]
 index|[]
 argument_list|>
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|byte
 index|[]

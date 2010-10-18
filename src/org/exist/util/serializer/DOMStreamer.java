@@ -282,6 +282,7 @@ specifier|public
 name|DOMStreamer
 parameter_list|()
 block|{
+comment|//TODUNDERSTAND : what is this class ? java.lang.Object ?
 name|super
 argument_list|()
 expr_stmt|;
@@ -335,7 +336,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/** 	 * Reset internal state for reuse. Registered handlers will be set 	 * to null. 	 * 	 */
+comment|/**      * Reset internal state for reuse. Registered handlers will be set      * to null.      *      */
 specifier|public
 name|void
 name|reset
@@ -365,7 +366,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Serialize the given node and all its descendants to SAX. 	 *  	 * @param node 	 * @throws SAXException 	 */
+comment|/**      * Serialize the given node and all its descendants to SAX.      *       * @param node      * @throws SAXException      */
 specifier|public
 name|void
 name|serialize
@@ -515,10 +516,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
-name|nextNode
-operator|=
-literal|null
-expr_stmt|;
+comment|//nextNode = null;
 break|break;
 block|}
 block|}
@@ -965,9 +963,6 @@ index|[
 name|j
 index|]
 operator|=
-operator|(
-name|String
-operator|)
 name|nsEntry
 operator|.
 name|getKey
@@ -982,9 +977,6 @@ index|[
 name|j
 index|]
 argument_list|,
-operator|(
-name|String
-operator|)
 name|nsEntry
 operator|.
 name|getValue
@@ -1459,11 +1451,6 @@ specifier|private
 class|class
 name|ElementInfo
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|Node
 name|element
 decl_stmt|;

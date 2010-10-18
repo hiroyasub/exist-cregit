@@ -598,7 +598,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)      */
 specifier|public
 name|void
 name|setDocumentLocator
@@ -607,8 +607,9 @@ name|Locator
 name|arg0
 parameter_list|)
 block|{
+comment|//Nothing to do ?
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startDocument()      */
 specifier|public
 name|void
 name|startDocument
@@ -644,7 +645,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endDocument()      */
 specifier|public
 name|void
 name|endDocument
@@ -680,7 +681,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|startPrefixMapping
@@ -758,7 +759,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)      */
 specifier|public
 name|void
 name|endPrefixMapping
@@ -777,7 +778,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)      */
 specifier|public
 name|void
 name|startElement
@@ -1381,7 +1382,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName)      */
 specifier|public
 name|void
 name|startElement
@@ -2005,7 +2006,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|endElement
@@ -2069,7 +2070,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName)      */
 specifier|public
 name|void
 name|endElement
@@ -2194,7 +2195,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.QName, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.QName, java.lang.String)      */
 specifier|public
 name|void
 name|attribute
@@ -2273,7 +2274,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#characters(char[], int, int)      */
 specifier|public
 name|void
 name|characters
@@ -2365,7 +2366,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)      */
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -2417,7 +2418,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|processingInstruction
@@ -2514,7 +2515,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)      */
 specifier|public
 name|void
 name|skippedEntity
@@ -2525,8 +2526,9 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|startDTD
@@ -2543,8 +2545,9 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endDTD() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endDTD()      */
 specifier|public
 name|void
 name|endDTD
@@ -2552,6 +2555,7 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -2624,8 +2628,9 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String)      */
 specifier|public
 name|void
 name|endEntity
@@ -2636,8 +2641,9 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startCDATA() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startCDATA()      */
 specifier|public
 name|void
 name|startCDATA
@@ -2645,8 +2651,9 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endCDATA() 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endCDATA()      */
 specifier|public
 name|void
 name|endCDATA
@@ -2654,8 +2661,9 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+comment|//Nothing to do
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int) 	 */
+comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)      */
 specifier|public
 name|void
 name|comment

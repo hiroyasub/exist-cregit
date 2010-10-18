@@ -267,6 +267,7 @@ specifier|public
 name|NativeStructuralIndex
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -305,6 +306,8 @@ name|getSymbols
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|open
@@ -396,6 +399,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -413,6 +418,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sync
@@ -513,6 +520,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove

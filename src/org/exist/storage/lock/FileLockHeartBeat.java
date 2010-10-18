@@ -110,6 +110,7 @@ specifier|public
 name|FileLockHeartBeat
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|FileLockHeartBeat
@@ -142,6 +143,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|String
@@ -152,11 +154,6 @@ return|return
 literal|"eXist.internal"
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|public
 name|void
 name|execute
@@ -189,6 +186,11 @@ name|params
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|FileLock
+argument_list|>
 operator|)
 name|jobDataMap
 operator|.

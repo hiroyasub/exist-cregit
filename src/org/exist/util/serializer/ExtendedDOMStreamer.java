@@ -188,6 +188,8 @@ name|serializer
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMStreamer#startNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|startNode
@@ -251,6 +253,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMStreamer#reset()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reset

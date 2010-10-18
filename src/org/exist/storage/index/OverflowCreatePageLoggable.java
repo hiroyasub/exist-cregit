@@ -144,6 +144,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -181,6 +183,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
@@ -212,6 +216,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -226,6 +232,8 @@ operator|+
 literal|8
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -242,6 +250,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undo
@@ -258,6 +268,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

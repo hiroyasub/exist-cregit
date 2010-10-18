@@ -574,7 +574,7 @@ operator|=
 name|newMode
 expr_stmt|;
 comment|// wolf: unnecessary call to setDocument?
-comment|//        setDocument(document, newMode);
+comment|// setDocument(document, newMode);
 block|}
 specifier|public
 name|DocumentImpl
@@ -1025,7 +1025,10 @@ specifier|public
 name|FTStreamListener
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -1117,6 +1120,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -1166,9 +1171,6 @@ block|{
 name|ElementContent
 name|contentBuf
 init|=
-operator|(
-name|ElementContent
-operator|)
 name|contentStack
 operator|.
 name|pop
@@ -1226,6 +1228,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**          *          * @param transaction          * @param text          * @param path          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -1339,9 +1343,6 @@ block|{
 name|ElementContent
 name|next
 init|=
-operator|(
-name|ElementContent
-operator|)
 name|contentStack
 operator|.
 name|get
@@ -1373,6 +1374,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -1485,6 +1488,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker

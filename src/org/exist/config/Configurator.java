@@ -918,6 +918,7 @@ name|SecurityException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
@@ -925,6 +926,7 @@ name|NoClassDefFoundError
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 return|return
 literal|null
@@ -1024,6 +1026,7 @@ name|SecurityException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
@@ -1031,6 +1034,7 @@ name|NoClassDefFoundError
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 return|return
 literal|null
@@ -1168,7 +1172,7 @@ if|if
 condition|(
 name|impl
 operator|.
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|!=
 literal|null
 condition|)
@@ -1176,7 +1180,7 @@ name|configurable
 operator|=
 name|impl
 operator|.
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|.
 name|get
 argument_list|()
@@ -1213,7 +1217,7 @@ block|}
 else|else
 name|impl
 operator|.
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|=
 operator|new
 name|WeakReference
@@ -1797,7 +1801,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Wrong annotation for strucure: "
+literal|"Wrong annotation for structure: "
 operator|+
 name|field
 operator|.
@@ -2012,8 +2016,6 @@ block|{
 comment|//TODO: static list
 continue|continue;
 block|}
-else|else
-block|{
 name|LOG
 operator|.
 name|warn
@@ -2031,7 +2033,6 @@ name|remove
 argument_list|()
 expr_stmt|;
 continue|continue;
-block|}
 block|}
 for|for
 control|(
@@ -2430,9 +2431,9 @@ return|return
 name|configuration
 return|;
 block|}
-comment|//	public static Configuration parse(InputStream is) throws ExceptionConfiguration {
-comment|//		throw new ExceptionConfiguration("parser was not implemented");
-comment|//	}
+comment|//public static Configuration parse(InputStream is) throws ExceptionConfiguration {
+comment|//throw new ExceptionConfiguration("parser was not implemented");
+comment|//}
 specifier|public
 specifier|static
 name|Configuration
@@ -2472,9 +2473,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//	public static Configuration parseDefault() throws ExceptionConfiguration {
-comment|//		throw new ExceptionConfiguration("default configuration parser was not implemented");
-comment|//	}
+comment|//public static Configuration parseDefault() throws ExceptionConfiguration {
+comment|//throw new ExceptionConfiguration("default configuration parser was not implemented");
+comment|//}
 specifier|public
 specifier|static
 name|Configuration
@@ -2664,8 +2665,6 @@ parameter_list|,
 name|String
 name|referenceBy
 parameter_list|)
-throws|throws
-name|ConfigurationException
 block|{
 name|Class
 argument_list|<
@@ -2902,9 +2901,9 @@ argument_list|(
 name|configName
 argument_list|)
 expr_stmt|;
-comment|//		buf.append(" xmlns='");
-comment|//		buf.append(Configuration.NS_REF);
-comment|//		buf.append("'");
+comment|//buf.append(" xmlns='");
+comment|//buf.append(Configuration.NS_REF);
+comment|//buf.append("'");
 name|buf
 operator|.
 name|append
@@ -3058,7 +3057,7 @@ name|simple
 init|=
 literal|true
 decl_stmt|;
-comment|//store filed's values as attributes or elements depends on annotation
+comment|//store field's values as attributes or elements depends on annotation
 name|Map
 argument_list|<
 name|String
@@ -3478,11 +3477,6 @@ name|simple
 operator|=
 literal|false
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 name|List
 argument_list|<
 name|Configurable
@@ -3855,8 +3849,6 @@ literal|null
 return|;
 block|}
 block|}
-else|else
-block|{
 try|try
 block|{
 name|document
@@ -3884,7 +3876,6 @@ literal|null
 return|;
 block|}
 block|}
-block|}
 if|if
 condition|(
 name|document
@@ -3894,7 +3885,7 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//possible on corrupted database, find better solution (recovery flag?)
+comment|//possibly on corrupted database, find better solution (recovery flag?)
 comment|//throw new ConfigurationException("The configuration file can't be found, url = "+collection.getURI().append(fileURL));
 name|ElementAtExist
 name|confElement
@@ -3916,7 +3907,7 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//possible on corrupted database, find better solution (recovery flag?)
+comment|//possibly on corrupted database, find better solution (recovery flag?)
 comment|//throw new ConfigurationException("The configuration file is empty, url = "+collection.getURI().append(fileURL));
 name|conf
 operator|=
@@ -3956,8 +3947,6 @@ parameter_list|(
 name|DocumentAtExist
 name|document
 parameter_list|)
-throws|throws
-name|ConfigurationException
 block|{
 if|if
 condition|(
@@ -4018,7 +4007,7 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//possible on corrupted database, find better solution (recovery flag?)
+comment|//possibly on corrupted database, find better solution (recovery flag?)
 comment|//throw new ConfigurationException("The configuration file is empty, url = "+collection.getURI().append(fileURL));
 name|conf
 operator|=
@@ -4063,8 +4052,6 @@ name|uri
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|ConfigurationException
 block|{
 name|BrokerPool
 name|database
@@ -4498,7 +4485,7 @@ operator|)
 name|conf
 operator|)
 operator|.
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|=
 literal|null
 expr_stmt|;

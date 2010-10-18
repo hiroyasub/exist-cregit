@@ -81,9 +81,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-operator|.
-name|Entry
+name|Set
 import|;
 end_import
 
@@ -93,7 +91,9 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -206,7 +206,7 @@ name|WeakReference
 argument_list|<
 name|Configurable
 argument_list|>
-name|configuredObjectReferene
+name|configuredObjectReference
 init|=
 literal|null
 decl_stmt|;
@@ -214,6 +214,7 @@ specifier|private
 name|ConfigurationImpl
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|protected
 name|ConfigurationImpl
@@ -1374,11 +1375,11 @@ condition|(
 operator|!
 name|saving
 operator|&&
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|!=
 literal|null
 operator|&&
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|.
 name|get
 argument_list|()
@@ -1395,7 +1396,7 @@ name|Configurator
 operator|.
 name|configure
 argument_list|(
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|.
 name|get
 argument_list|()
@@ -1450,11 +1451,11 @@ literal|true
 expr_stmt|;
 if|if
 condition|(
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|!=
 literal|null
 operator|&&
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|.
 name|get
 argument_list|()
@@ -1465,7 +1466,7 @@ name|Configurator
 operator|.
 name|save
 argument_list|(
-name|configuredObjectReferene
+name|configuredObjectReference
 operator|.
 name|get
 argument_list|()
@@ -1499,6 +1500,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -1541,29 +1544,6 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//			if ( conf.getNamespaceURI().equals(Configuration.NS_REF) ) {
-comment|//
-comment|//				NamedNodeMap attrs = conf.getAttributes();
-comment|//				if (attrs.getLength() != 1)
-comment|//					return false;
-comment|//
-comment|//				Attr attr = (Attr) attrs.item(0);
-comment|//
-comment|//				if (attr.getValue().equals( getProperty(attr.getLocalName()) ))
-comment|//					return true;
-comment|//
-comment|//			} else if ( getNamespaceURI().equals(Configuration.NS_REF) ) {
-comment|//
-comment|//				NamedNodeMap attrs = getAttributes();
-comment|//				if (attrs.getLength() != 1)
-comment|//					return false;
-comment|//
-comment|//				Attr attr = (Attr) attrs.item(0);
-comment|//
-comment|//				if (attr.getValue().equals( conf.getProperty(attr.getLocalName()) ))
-comment|//					return true;
-comment|//
-comment|//			} else {
 name|String
 name|id
 init|=
@@ -1605,7 +1585,6 @@ condition|)
 return|return
 literal|true
 return|;
-comment|//			}
 block|}
 return|return
 literal|false

@@ -136,7 +136,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param writer 	 */
+comment|/**      * @param writer      */
 specifier|public
 name|IndentingXMLWriter
 parameter_list|(
@@ -150,7 +150,9 @@ name|writer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#setWriter(java.io.Writer) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setWriter(java.io.Writer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setWriter
@@ -179,7 +181,9 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#startElement(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -216,7 +220,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#startElement(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(org.exist.dom.QName)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -253,7 +259,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#endElement() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -293,7 +301,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#endElement(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement(org.exist.dom.QName)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -333,7 +343,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#characters(java.lang.CharSequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#characters(java.lang.CharSequence)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -356,14 +368,14 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-comment|//		while (length> 0&& isWhiteSpace(chars.charAt(start))) {
-comment|//			--length;
-comment|//			if(length> 0)
-comment|//				++start;
-comment|//		}
-comment|//		while (length> 0&& isWhiteSpace(chars.charAt(start + length - 1))) {
-comment|//			--length;
-comment|//		}
+comment|//while (length> 0&& isWhiteSpace(chars.charAt(start))) {
+comment|//--length;
+comment|//if(length> 0)
+comment|//++start;
+comment|//}
+comment|//while (length> 0&& isWhiteSpace(chars.charAt(start + length - 1))) {
+comment|//--length;
+comment|//}
 if|if
 condition|(
 name|length
@@ -447,7 +459,9 @@ name|chars
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#comment(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#comment(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
@@ -470,7 +484,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#processingInstruction(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#processingInstruction(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -498,6 +514,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentType
@@ -537,7 +555,9 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.XMLWriter#setOutputProperties(java.util.Properties) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setOutputProperties(java.util.Properties)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOutputProperties
@@ -585,6 +605,7 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do ?
 block|}
 name|indent
 operator|=

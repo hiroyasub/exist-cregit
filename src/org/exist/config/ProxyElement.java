@@ -559,6 +559,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * @return the element 	 */
+annotation|@
+name|Override
 specifier|public
 name|E
 name|getProxyObject
@@ -568,6 +570,8 @@ return|return
 name|element
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProxyObject
@@ -576,13 +580,7 @@ name|E
 name|object
 parameter_list|)
 block|{
-if|if
-condition|(
-name|object
-operator|instanceof
-name|ElementAtExist
-condition|)
-block|{
+comment|//if (object instanceof ElementAtExist) {
 name|this
 operator|.
 name|element
@@ -592,15 +590,8 @@ name|E
 operator|)
 name|object
 expr_stmt|;
-block|}
-else|else
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Only ElementAtExist allowed"
-argument_list|)
-throw|;
+comment|//} else
+comment|//throw new IllegalArgumentException("Only ElementAtExist allowed");
 block|}
 block|}
 end_class

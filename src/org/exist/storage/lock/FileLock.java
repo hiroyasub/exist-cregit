@@ -399,6 +399,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 try|try
@@ -427,6 +428,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}

@@ -53,18 +53,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|memtree
 operator|.
 name|NodeImpl
@@ -219,6 +207,8 @@ name|broker
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMSerializer#startNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|startNode
@@ -310,6 +300,7 @@ name|SAXNotRecognizedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do ?
 block|}
 catch|catch
 parameter_list|(
@@ -317,6 +308,7 @@ name|SAXNotSupportedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do ?
 block|}
 try|try
 block|{
@@ -324,9 +316,6 @@ name|serializer
 operator|.
 name|toSAX
 argument_list|(
-operator|(
-name|NodeProxy
-operator|)
 operator|(
 operator|(
 name|ReferenceNode
