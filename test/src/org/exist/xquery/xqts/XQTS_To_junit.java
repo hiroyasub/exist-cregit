@@ -988,7 +988,7 @@ name|allTests
 operator|.
 name|write
 argument_list|(
-literal|"\t\ttorg.exist.xquery.xqts"
+literal|"\t\torg.exist.xquery.xqts"
 operator|+
 name|subPackage
 operator|+
