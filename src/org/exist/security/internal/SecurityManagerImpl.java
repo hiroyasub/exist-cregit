@@ -2183,7 +2183,9 @@ name|getRealmId
 argument_list|()
 argument_list|)
 decl_stmt|;
-return|return
+name|G
+name|newGroup
+init|=
 name|registeredRealm
 operator|.
 name|addGroup
@@ -2193,6 +2195,12 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|save
+argument_list|()
+expr_stmt|;
+return|return
+name|newGroup
 return|;
 comment|//return defaultRealm.addGroup(group.getName());
 block|}
@@ -2388,7 +2396,7 @@ return|return
 name|new_account
 return|;
 block|}
-specifier|protected
+specifier|private
 name|void
 name|save
 parameter_list|()
@@ -2403,11 +2411,13 @@ name|configuration
 operator|!=
 literal|null
 condition|)
+block|{
 name|configuration
 operator|.
 name|save
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
