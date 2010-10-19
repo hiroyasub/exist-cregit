@@ -472,7 +472,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The name of the iser who will be the groups manager"
+literal|"The name of the user who will be the groups manager"
 argument_list|)
 block|}
 argument_list|,
