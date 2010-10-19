@@ -79,20 +79,6 @@ name|config
 operator|.
 name|annotation
 operator|.
-name|ConfigurationClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
-name|annotation
-operator|.
 name|ConfigurationFieldAsElement
 import|;
 end_import
@@ -112,11 +98,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|ConfigurationClass
-argument_list|(
-literal|"group"
-argument_list|)
 specifier|public
 specifier|abstract
 class|class

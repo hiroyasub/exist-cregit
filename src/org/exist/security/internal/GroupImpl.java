@@ -63,7 +63,26 @@ name|ConfigurationException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|annotation
+operator|.
+name|ConfigurationClass
+import|;
+end_import
+
 begin_class
+annotation|@
+name|ConfigurationClass
+argument_list|(
+literal|"group"
+argument_list|)
 specifier|public
 class|class
 name|GroupImpl
