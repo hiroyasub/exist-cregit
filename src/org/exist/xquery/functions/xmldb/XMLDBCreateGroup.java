@@ -766,6 +766,8 @@ name|systemUser
 argument_list|)
 expr_stmt|;
 comment|//create the group
+name|group
+operator|=
 name|sm
 operator|.
 name|addGroup
@@ -806,6 +808,8 @@ block|}
 else|else
 block|{
 comment|//deprecated, create the group
+name|group
+operator|=
 name|sm
 operator|.
 name|addGroup
