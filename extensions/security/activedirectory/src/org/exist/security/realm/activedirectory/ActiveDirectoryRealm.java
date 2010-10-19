@@ -187,8 +187,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|internal
-operator|.
 name|AbstractAccount
 import|;
 end_import
@@ -694,22 +692,19 @@ argument_list|)
 expr_stmt|;
 name|account
 operator|=
-operator|(
-name|AbstractAccount
-operator|)
 name|sm
 operator|.
 name|addAccount
 argument_list|(
-operator|new
-name|UserAider
+name|instantiateAccount
 argument_list|(
-name|ID
+name|this
 argument_list|,
 name|username
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//account = (AbstractAccount) sm.addAccount(new UserAider(ID, username));
 block|}
 catch|catch
 parameter_list|(

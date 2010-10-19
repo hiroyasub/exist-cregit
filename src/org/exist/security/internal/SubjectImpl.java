@@ -15,6 +15,30 @@ name|internal
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|AbstractAccount
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|AbstractSubject
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -69,15 +93,7 @@ name|authenticated
 operator|=
 name|account
 operator|.
-name|_cred
-operator|!=
-literal|null
-operator|&&
-name|account
-operator|.
-name|_cred
-operator|.
-name|check
+name|checkCredentials
 argument_list|(
 name|credentials
 argument_list|)

@@ -231,8 +231,6 @@ name|save
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
-throws|,
-name|EXistException
 function_decl|;
 block|}
 end_interface

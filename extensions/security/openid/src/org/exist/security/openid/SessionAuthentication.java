@@ -141,6 +141,8 @@ operator|=
 name|session
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attributeAdded
@@ -150,6 +152,8 @@ name|event
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attributeRemoved
@@ -164,6 +168,8 @@ name|logout
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attributeReplaced
@@ -187,6 +193,8 @@ name|logout
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|logout
@@ -202,6 +210,8 @@ name|__J_AUTHENTICATED
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

@@ -81,12 +81,17 @@ begin_interface
 specifier|public
 interface|interface
 name|GroupsManagement
+parameter_list|<
+name|G
+extends|extends
+name|Group
+parameter_list|>
 block|{
 specifier|public
-name|Group
+name|G
 name|addGroup
 parameter_list|(
-name|Group
+name|G
 name|group
 parameter_list|)
 throws|throws
@@ -97,7 +102,7 @@ throws|,
 name|ConfigurationException
 function_decl|;
 specifier|public
-name|Group
+name|G
 name|getGroup
 parameter_list|(
 name|Subject
@@ -111,7 +116,7 @@ specifier|public
 name|boolean
 name|hasGroup
 parameter_list|(
-name|Group
+name|G
 name|group
 parameter_list|)
 function_decl|;
@@ -127,7 +132,7 @@ specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
-name|Group
+name|G
 name|group
 parameter_list|)
 throws|throws
@@ -141,7 +146,7 @@ specifier|public
 name|boolean
 name|deleteGroup
 parameter_list|(
-name|Group
+name|G
 name|group
 parameter_list|)
 throws|throws

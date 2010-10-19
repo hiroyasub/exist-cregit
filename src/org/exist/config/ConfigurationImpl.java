@@ -103,16 +103,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|ElementAtExist
@@ -256,6 +246,8 @@ name|getLocalName
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -320,6 +312,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<
@@ -414,6 +408,8 @@ return|return
 name|list
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
@@ -503,6 +499,8 @@ return|return
 name|property
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasProperty
@@ -535,6 +533,8 @@ literal|1
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
@@ -636,6 +636,8 @@ name|obj
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Boolean
 name|getPropertyBoolean
@@ -768,6 +770,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Integer
 name|getPropertyInteger
@@ -865,6 +869,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Long
 name|getPropertyLong
@@ -1056,6 +1062,8 @@ literal|""
 return|;
 comment|//XXX: put config url
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Set
 argument_list|<
@@ -1414,8 +1422,6 @@ name|save
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
-throws|,
-name|EXistException
 block|{
 comment|//ignore in-memory nodes
 if|if

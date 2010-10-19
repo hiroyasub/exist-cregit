@@ -52,6 +52,13 @@ name|String
 name|getRealmId
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|save
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 block|}
 end_interface
 

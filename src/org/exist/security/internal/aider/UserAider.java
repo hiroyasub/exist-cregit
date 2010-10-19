@@ -91,6 +91,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|internal
 operator|.
 name|RealmImpl
@@ -863,6 +875,17 @@ comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|save
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
+block|{
+comment|//do nothing
 block|}
 block|}
 end_class

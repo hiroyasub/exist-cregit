@@ -221,8 +221,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|internal
-operator|.
 name|AbstractRealm
 import|;
 end_import
@@ -238,20 +236,6 @@ operator|.
 name|internal
 operator|.
 name|SubjectAccreditedImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|internal
-operator|.
-name|SubjectImpl
 import|;
 end_import
 
@@ -519,6 +503,8 @@ throws|throws
 name|ConsumerException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|init
@@ -624,6 +610,8 @@ name|DH_SHA256
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doGet
@@ -647,6 +635,8 @@ name|resp
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doPost

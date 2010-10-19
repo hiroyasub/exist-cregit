@@ -630,26 +630,10 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|Subject
-name|currentSubject
-init|=
-name|database
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
+comment|//Subject currentSubject = database.getSubject();
 try|try
 block|{
-name|database
-operator|.
-name|setSubject
-argument_list|(
-name|sm
-operator|.
-name|getSystemSubject
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//	database.setSubject(sm.getSystemSubject());
 name|Group
 name|group
 init|=
@@ -711,13 +695,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|database
-operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
-expr_stmt|;
+comment|//	database.setSubject(currentSubject);
 block|}
 return|return
 name|BooleanValue

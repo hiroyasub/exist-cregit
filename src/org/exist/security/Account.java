@@ -83,6 +83,8 @@ init|=
 literal|2
 decl_stmt|;
 comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 * @throws PermissionDeniedException  	 */
+annotation|@
+name|Override
 specifier|public
 name|Group
 name|addGroup
@@ -94,6 +96,8 @@ throws|throws
 name|PermissionDeniedException
 function_decl|;
 comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 * @throws PermissionDeniedException  	 */
+annotation|@
+name|Override
 specifier|public
 name|Group
 name|addGroup
@@ -105,6 +109,8 @@ throws|throws
 name|PermissionDeniedException
 function_decl|;
 comment|/** 	 *  Remove the user to a group 	 *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it   	 * 	 *@param  group  The feature to be removed to the Group attribute 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remGroup
@@ -114,29 +120,39 @@ name|group
 parameter_list|)
 function_decl|;
 comment|/** 	 *  Get all groups this user belongs to 	 * 	 *@return    The groups value 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
 name|getGroups
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasDbaRole
 parameter_list|()
 function_decl|;
 comment|/** 	 *  Get the primary group this user belongs to 	 * 	 *@return    The primaryGroup value 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrimaryGroup
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|Group
 name|getDefaultGroup
 parameter_list|()
 function_decl|;
 comment|/** 	 *  Is the user a member of group? 	 * 	 *@param  group  Description of the Parameter 	 *@return        Description of the Return Value 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasGroup
@@ -146,6 +162,8 @@ name|group
 parameter_list|)
 function_decl|;
 comment|/** 	 *  Sets the password attribute of the User object 	 * 	 * @param  passwd  The new password value 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPassword
@@ -154,6 +172,8 @@ name|String
 name|passwd
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setHome
@@ -162,17 +182,23 @@ name|XmldbURI
 name|homeCollection
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getHome
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|Realm
 name|getRealm
 parameter_list|()
 function_decl|;
 comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPassword
@@ -180,6 +206,8 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Deprecated
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDigestPassword
@@ -187,6 +215,8 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Deprecated
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setGroups
@@ -197,6 +227,8 @@ name|groups
 parameter_list|)
 function_decl|;
 comment|/**      * Add a named attribute.      *      * @param name      * @param value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
@@ -209,6 +241,8 @@ name|value
 parameter_list|)
 function_decl|;
 comment|/**      * Get the named attribute value.      *      * @param name The String that is the name of the attribute.      * @return The value associated with the name or null if no value is associated with the name.      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getAttribute
@@ -218,6 +252,8 @@ name|name
 parameter_list|)
 function_decl|;
 comment|/**      * Returns the set of attributes names.      *      * @return the Set of attribute names.      */
+annotation|@
+name|Override
 specifier|public
 name|Set
 argument_list|<
@@ -227,26 +263,36 @@ name|getAttributeNames
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the person full name or account name.      *      * @return the person full name or account name      */
+annotation|@
+name|Override
 name|String
 name|getUsername
 parameter_list|()
 function_decl|;
 comment|/**      * Indicates whether the account has expired. Authentication on an expired account is not possible.      *      * @return<code>true</code> if the account is valid (ie non-expired),<code>false</code> if no longer valid (ie expired)      */
+annotation|@
+name|Override
 name|boolean
 name|isAccountNonExpired
 parameter_list|()
 function_decl|;
 comment|/**      * Indicates whether the account is locked or unlocked. Authentication on a locked account is not possible.      *      * @return<code>true</code> if the account is not locked,<code>false</code> otherwise      */
+annotation|@
+name|Override
 name|boolean
 name|isAccountNonLocked
 parameter_list|()
 function_decl|;
 comment|/**      * Indicates whether the account's credentials has expired. Expired credentials prevent authentication.      *      * @return<code>true</code> if the account's credentials are valid (ie non-expired),<code>false</code> if no longer valid (ie expired)      */
+annotation|@
+name|Override
 name|boolean
 name|isCredentialsNonExpired
 parameter_list|()
 function_decl|;
 comment|/**      * Indicates whether the account is enabled or disabled. Authentication on a disabled account is not possible.      *      * @return<code>true</code> if the account is enabled,<code>false</code> otherwise      */
+annotation|@
+name|Override
 name|boolean
 name|isEnabled
 parameter_list|()
