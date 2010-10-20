@@ -287,7 +287,7 @@ specifier|final
 name|LDAPSearchContext
 name|search
 decl_stmt|;
-specifier|protected
+specifier|public
 name|LdapContextFactory
 parameter_list|(
 name|Configuration

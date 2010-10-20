@@ -301,6 +301,11 @@ name|ID
 init|=
 literal|"LDAP"
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsElement
+argument_list|(
+literal|"context"
+argument_list|)
 specifier|protected
 name|LdapContextFactory
 name|ldapContextFactory
