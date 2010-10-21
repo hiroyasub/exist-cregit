@@ -309,8 +309,6 @@ argument_list|)
 specifier|protected
 name|LdapContextFactory
 name|ldapContextFactory
-init|=
-literal|null
 decl_stmt|;
 specifier|public
 name|LDAPRealm
