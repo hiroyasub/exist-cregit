@@ -3710,6 +3710,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+comment|// check the content type to see if its XML or a parameter string
 name|String
 name|requestType
 init|=
@@ -3721,18 +3722,10 @@ decl_stmt|;
 if|if
 condition|(
 name|requestType
-operator|==
+operator|!=
 literal|null
 condition|)
-name|requestType
-operator|=
-name|MimeType
-operator|.
-name|XML_TYPE
-operator|.
-name|getName
-argument_list|()
-expr_stmt|;
+block|{
 name|int
 name|semicolon
 init|=
@@ -3763,25 +3756,22 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
-name|MimeType
-name|requestTypeMime
-init|=
-name|MimeTable
-operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|getContentType
-argument_list|(
-name|requestType
-argument_list|)
-decl_stmt|;
+block|}
+comment|// content type != application/x-www-form-urlencoded
 if|if
 condition|(
-name|requestTypeMime
+operator|!
+name|requestType
 operator|.
-name|isXMLType
+name|equals
+argument_list|(
+name|MimeType
+operator|.
+name|URL_ENCODED_TYPE
+operator|.
+name|getName
 argument_list|()
+argument_list|)
 condition|)
 block|{
 comment|// third, normal POST: read the request content and check if
@@ -5022,6 +5012,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|// content type = application/x-www-form-urlencoded
 block|}
 else|else
 block|{
