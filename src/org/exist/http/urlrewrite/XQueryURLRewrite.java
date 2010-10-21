@@ -4294,6 +4294,10 @@ condition|(
 name|doc
 operator|!=
 literal|null
+operator|&&
+name|controllerDoc
+operator|==
+literal|null
 condition|)
 name|doc
 operator|.
@@ -4312,6 +4316,10 @@ condition|(
 name|subColl
 operator|!=
 literal|null
+operator|&&
+name|subColl
+operator|!=
+name|collection
 condition|)
 name|subColl
 operator|.
