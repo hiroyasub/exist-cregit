@@ -294,6 +294,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsAttribute
+argument_list|(
+literal|"id"
+argument_list|)
 specifier|public
 specifier|static
 name|String
