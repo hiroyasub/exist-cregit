@@ -251,6 +251,38 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|GroupAider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|UserAider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -568,7 +600,6 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//return sm.addAccount(new UserAider(ID, username));
 return|return
 operator|(
 name|LDAPAccountImpl
@@ -577,14 +608,16 @@ name|sm
 operator|.
 name|addAccount
 argument_list|(
-name|instantiateAccount
+operator|new
+name|UserAider
 argument_list|(
-name|this
+name|ID
 argument_list|,
 name|username
 argument_list|)
 argument_list|)
 return|;
+comment|//return sm.addAccount(instantiateAccount(ID, username));
 block|}
 catch|catch
 parameter_list|(
@@ -653,6 +686,7 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//return sm.addGroup(instantiateGroup(this, groupname));
 return|return
 operator|(
 name|LDAPGroupImpl
@@ -661,15 +695,15 @@ name|sm
 operator|.
 name|addGroup
 argument_list|(
-name|instantiateGroup
+operator|new
+name|GroupAider
 argument_list|(
-name|this
+name|ID
 argument_list|,
 name|groupname
 argument_list|)
 argument_list|)
 return|;
-comment|//return sm.addGroup(new GroupAider(ID, groupname));
 block|}
 catch|catch
 parameter_list|(

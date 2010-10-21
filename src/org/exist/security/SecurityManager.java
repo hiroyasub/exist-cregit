@@ -258,7 +258,7 @@ parameter_list|>
 name|A
 name|addAccount
 parameter_list|(
-name|A
+name|Account
 name|user
 parameter_list|)
 throws|throws
@@ -344,7 +344,7 @@ parameter_list|>
 name|G
 name|addGroup
 parameter_list|(
-name|G
+name|Group
 name|group
 parameter_list|)
 throws|throws
