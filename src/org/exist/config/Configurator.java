@@ -2092,6 +2092,12 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
+comment|//lookup for new configuration, update if found
+name|boolean
+name|found
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 name|Iterator
@@ -2145,9 +2151,19 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+name|found
+operator|=
+literal|true
+expr_stmt|;
 break|break;
 block|}
 block|}
+if|if
+condition|(
+operator|!
+name|found
+condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -2164,6 +2180,7 @@ operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|//create
 for|for
