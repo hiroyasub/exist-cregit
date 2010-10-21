@@ -20,7 +20,13 @@ name|Group
 extends|extends
 name|Principal
 block|{
-comment|//boolean isMembersManager(Account account);
+name|boolean
+name|isMembersManager
+parameter_list|(
+name|Account
+name|account
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

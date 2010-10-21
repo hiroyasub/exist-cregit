@@ -1523,7 +1523,14 @@ name|EXistException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|super
+operator|.
+name|updateAccount
+argument_list|(
+name|invokingUser
+argument_list|,
+name|account
+argument_list|)
 return|;
 block|}
 annotation|@

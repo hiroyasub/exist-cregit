@@ -282,11 +282,31 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|//if(group instanceof Ldap)
+if|if
+condition|(
+name|group
+operator|instanceof
+name|LDAPGroupImpl
+condition|)
+block|{
+comment|//TODO
+comment|//we dont support writes to LDAP yet!
 return|return
 literal|null
 return|;
-comment|//TODO
+block|}
+else|else
+block|{
+comment|//adds an LDAP User to a group from a different Realm
+return|return
+name|super
+operator|.
+name|addGroup
+argument_list|(
+name|group
+argument_list|)
+return|;
+block|}
 block|}
 block|}
 end_class
