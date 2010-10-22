@@ -1957,6 +1957,20 @@ name|se
 parameter_list|)
 block|{
 comment|//could not parse to xml
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Could not parse http response content as XML: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|se
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -2087,6 +2101,20 @@ name|se
 parameter_list|)
 block|{
 comment|//could not parse to xml(html)
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Could not parse http response content from HTML to XML: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|se
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
