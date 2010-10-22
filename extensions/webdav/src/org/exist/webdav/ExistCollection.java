@@ -1695,7 +1695,10 @@ argument_list|()
 operator|.
 name|setMimeType
 argument_list|(
-name|contentType
+name|mime
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|collection
@@ -1745,7 +1748,10 @@ name|newNameUri
 argument_list|,
 name|dis
 argument_list|,
-name|contentType
+name|mime
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|length
 operator|.
