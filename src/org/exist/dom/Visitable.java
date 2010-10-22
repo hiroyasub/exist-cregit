@@ -28,16 +28,23 @@ comment|/**  * Visitor pattern: interface to be implemented by a visitable node.
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
 specifier|public
 interface|interface
 name|Visitable
 block|{
 comment|/**      * Visit the current node. For element nodes,      * the method recursively traverses through the child nodes and      * calls accept on each of them.      *       * @param iterator an iterator positioned at the current node      * @param visitor the visitor to call.      * @return the value returned by the NodeVisitor.visit method.      * @deprecated      */
+annotation|@
+name|Deprecated
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|NodeVisitor

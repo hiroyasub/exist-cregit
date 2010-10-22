@@ -41,7 +41,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamException
+name|XMLStreamConstants
 import|;
 end_import
 
@@ -53,7 +53,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamReader
+name|XMLStreamException
 import|;
 end_import
 
@@ -90,6 +90,18 @@ operator|.
 name|stax
 operator|.
 name|EmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
 import|;
 end_import
 
@@ -380,6 +392,8 @@ name|broker
 expr_stmt|;
 block|}
 comment|/**      * The method<code>contains</code>      *      * @param p a<code>NodeProxy</code> value      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
@@ -421,9 +435,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|//	if (context.get(p.getDocument(), p.getNodeId().getParentId()) != null) {
-comment|//      return true;
-comment|//	}
 return|return
 literal|false
 return|;
@@ -443,6 +454,8 @@ name|predicate
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#getDocumentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -467,6 +480,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1037,6 +1052,8 @@ literal|false
 expr_stmt|;
 block|}
 comment|/**      * The method<code>parentWithChild</code>      *      * @param proxy a<code>NodeProxy</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param level an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1109,6 +1126,8 @@ name|first
 return|;
 block|}
 comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -1637,8 +1656,6 @@ block|}
 block|}
 continue|continue;
 block|}
-else|else
-block|{
 if|if
 condition|(
 operator|(
@@ -1930,11 +1947,11 @@ name|SELF_AXIS
 condition|)
 block|{
 comment|//TODO : is this StroredNode construction necessary ?
-comment|//                    Iterator domIter = proxy.getDocument().getBroker().getNodeIterator(new StoredNode(proxy));
-comment|//                    StoredNode node = (StoredNode) domIter.next();
-comment|//                    node.setOwnerDocument(proxy.getDocument());
-comment|//                    node.setNodeId(proxy.getNodeId());
-comment|//                    addChildren(proxy, result, node, domIter, 0);
+comment|//Iterator domIter = proxy.getDocument().getBroker().getNodeIterator(new StoredNode(proxy));
+comment|//StoredNode node = (StoredNode) domIter.next();
+comment|//node.setOwnerDocument(proxy.getDocument());
+comment|//node.setNodeId(proxy.getNodeId());
+comment|//addChildren(proxy, result, node, domIter, 0);
 name|addChildren
 argument_list|(
 name|proxy
@@ -1942,7 +1959,6 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 name|realDocumentSet
@@ -2020,6 +2036,7 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2040,6 +2057,8 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -2049,6 +2068,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2056,6 +2076,8 @@ argument_list|(
 literal|"DOC == NULL"
 argument_list|)
 expr_stmt|;
+return|return;
+block|}
 name|child
 operator|.
 name|setOwnerDocument
@@ -2249,7 +2271,7 @@ if|if
 condition|(
 name|status
 operator|==
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 condition|)
@@ -2279,7 +2301,7 @@ name|ATTRIBUTE_AXIS
 operator|&&
 name|status
 operator|!=
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|ATTRIBUTE
 condition|)
@@ -2290,7 +2312,7 @@ name|status
 condition|)
 block|{
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|END_ELEMENT
 case|:
@@ -2304,7 +2326,7 @@ condition|)
 return|return;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|ATTRIBUTE
 case|:
@@ -2455,7 +2477,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
@@ -2537,7 +2559,7 @@ if|if
 condition|(
 name|status
 operator|==
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 condition|)
@@ -2857,6 +2879,8 @@ return|;
 block|}
 comment|/* the following methods are normally never called in this context,      * we just provide them because they are declared abstract      * in the super class      */
 comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -2877,6 +2901,8 @@ literal|0
 return|;
 block|}
 comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -2897,6 +2923,8 @@ literal|1
 return|;
 block|}
 comment|/**      * The method<code>hasMany</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasMany
@@ -2928,6 +2956,7 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>add</code>      *      * @param node a<code>Node</code> value      */
 specifier|public
@@ -2938,8 +2967,11 @@ name|Node
 name|node
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>add</code>      *      * @param proxy a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -2948,6 +2980,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>addAll</code>      *      * @param other a<code>NodeList</code> value      */
 specifier|public
@@ -2958,8 +2991,11 @@ name|NodeList
 name|other
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>addAll</code>      *      * @param other a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -2968,6 +3004,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>set</code>      *      * @param position an<code>int</code> value      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>long</code> value      */
 specifier|public
@@ -2984,6 +3021,7 @@ name|long
 name|nodeId
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>remove</code>      *      * @param node a<code>NodeProxy</code> value      */
 specifier|public
@@ -2994,8 +3032,11 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 comment|/**      * The method<code>getLength</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -3011,6 +3052,8 @@ name|getLength
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -3037,6 +3080,8 @@ name|NODE
 return|;
 block|}
 comment|/**      * The method<code>getItemCount</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -3054,6 +3099,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>item</code>      *      * @param pos an<code>int</code> value      * @return a<code>Node</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
@@ -3075,6 +3122,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>get</code>      *      * @param pos an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -3096,6 +3145,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>itemAt</code>      *      * @param pos an<code>int</code> value      * @return an<code>Item</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -3143,6 +3194,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>get</code>      *      * @param proxy a<code>NodeProxy</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -3164,6 +3217,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>iterator</code>      *      * @return a<code>NodeSetIterator</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -3180,6 +3235,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -3198,6 +3255,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -3216,6 +3275,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>intersection</code>      *      * @param other a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|intersection
@@ -3237,6 +3298,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>union</code>      *      * @param other a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|union
@@ -3258,6 +3321,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>filterDocuments</code>      *      * @param otherSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|filterDocuments
@@ -3275,12 +3340,12 @@ specifier|public
 name|void
 name|clearContext
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 comment|// ignored for a virtual set
 block|}
 comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -3302,7 +3367,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-comment|//        result.append("Virtual#").append(super.toString());
+comment|//result.append("Virtual#").append(super.toString());
 return|return
 name|result
 operator|.

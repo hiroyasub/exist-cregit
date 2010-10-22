@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -36,18 +48,6 @@ operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamReader
 import|;
 end_import
 
@@ -74,7 +74,7 @@ name|type
 condition|)
 block|{
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
@@ -86,7 +86,7 @@ name|ELEMENT
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|ATTRIBUTE
 case|:
@@ -98,12 +98,12 @@ name|ATTRIBUTE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 case|:
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CDATA
 case|:
@@ -115,7 +115,7 @@ name|TEXT
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|COMMENT
 case|:
@@ -127,7 +127,7 @@ name|COMMENT
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|PROCESSING_INSTRUCTION
 case|:
@@ -168,7 +168,7 @@ name|type
 condition|)
 block|{
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
@@ -180,7 +180,7 @@ name|ELEMENT_NODE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|ATTRIBUTE
 case|:
@@ -192,7 +192,7 @@ name|ATTRIBUTE_NODE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 case|:
@@ -204,7 +204,7 @@ name|TEXT_NODE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CDATA
 case|:
@@ -216,7 +216,7 @@ name|CDATA_SECTION_NODE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|COMMENT
 case|:
@@ -228,7 +228,7 @@ name|COMMENT_NODE
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|PROCESSING_INSTRUCTION
 case|:

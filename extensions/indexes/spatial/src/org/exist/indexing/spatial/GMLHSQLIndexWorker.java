@@ -409,7 +409,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 comment|//TODO : evaluate one connection per worker
-comment|/*         try {             conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +                  index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) { 	        LOG.error(e);         }         */
+comment|/*         try {             conn = DriverManager.getConnection("jdbc:hsqldb:" + index.getDataDir() + "/" +                  index.db_file_name_prefix + ";shutdown=true", "sa", "");         } catch (SQLException e) {             LOG.error(e);         }         */
 block|}
 annotation|@
 name|Override

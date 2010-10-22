@@ -108,6 +108,8 @@ init|=
 literal|0
 decl_stmt|;
 comment|/* (non-Javadoc)      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -135,6 +137,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
@@ -221,6 +225,7 @@ name|RecognitionException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
@@ -228,6 +233,7 @@ name|TokenStreamException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
@@ -235,6 +241,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 return|return
 name|scanner

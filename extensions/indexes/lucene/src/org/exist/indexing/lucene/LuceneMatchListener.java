@@ -179,6 +179,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -243,7 +255,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamException
+name|XMLStreamConstants
 import|;
 end_import
 
@@ -255,7 +267,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamReader
+name|XMLStreamException
 import|;
 end_import
 
@@ -985,7 +997,7 @@ name|ev
 condition|)
 block|{
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|END_ELEMENT
 case|:
@@ -1011,7 +1023,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
@@ -1032,7 +1044,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 case|:
@@ -1046,7 +1058,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)

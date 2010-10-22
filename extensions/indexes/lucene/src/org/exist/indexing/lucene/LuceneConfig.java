@@ -1316,6 +1316,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}

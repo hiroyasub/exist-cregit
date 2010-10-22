@@ -342,11 +342,6 @@ specifier|private
 name|AccessContext
 name|accessCtx
 decl_stmt|;
-specifier|private
-name|SortedNodeSet
-parameter_list|()
-block|{
-block|}
 specifier|public
 name|SortedNodeSet
 parameter_list|(
@@ -399,6 +394,8 @@ operator|=
 name|accessCtx
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -413,6 +410,8 @@ operator|==
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -427,6 +426,8 @@ operator|==
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -446,6 +447,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -846,6 +849,8 @@ name|other
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
@@ -857,6 +862,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|IteratorItem
+argument_list|>
 name|i
 init|=
 name|list
@@ -875,9 +883,6 @@ name|NodeProxy
 name|p
 init|=
 operator|(
-operator|(
-name|IteratorItem
-operator|)
 name|i
 operator|.
 name|next
@@ -905,6 +910,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -964,6 +971,9 @@ decl_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|IteratorItem
+argument_list|>
 name|i
 init|=
 name|list
@@ -982,9 +992,6 @@ name|NodeProxy
 name|p
 init|=
 operator|(
-operator|(
-name|IteratorItem
-operator|)
 name|i
 operator|.
 name|next
@@ -1012,6 +1019,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
@@ -1023,6 +1032,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|IteratorItem
+argument_list|>
 name|i
 init|=
 name|list
@@ -1041,9 +1053,6 @@ name|NodeProxy
 name|p
 init|=
 operator|(
-operator|(
-name|IteratorItem
-operator|)
 name|i
 operator|.
 name|next
@@ -1071,6 +1080,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -1084,6 +1095,8 @@ argument_list|()
 return|;
 block|}
 comment|//TODO : evaluate both semantics
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -1096,6 +1109,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
@@ -1139,6 +1154,8 @@ name|p
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -1174,6 +1191,8 @@ else|:
 name|p
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSetIterator
 name|iterator
@@ -1190,7 +1209,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -1209,7 +1230,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.AbstractNodeSet#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -1239,6 +1262,9 @@ implements|,
 name|SequenceIterator
 block|{
 name|Iterator
+argument_list|<
+name|IteratorItem
+argument_list|>
 name|pi
 decl_stmt|;
 specifier|public
@@ -1283,9 +1309,6 @@ literal|null
 return|;
 return|return
 operator|(
-operator|(
-name|IteratorItem
-operator|)
 name|pi
 operator|.
 name|next
@@ -1304,7 +1327,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
 specifier|public
 name|Item
 name|nextItem
@@ -1340,6 +1363,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -1477,6 +1501,11 @@ block|}
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|OrderedLinkedList
+operator|.
+name|SimpleNode
+argument_list|>
 name|j
 init|=
 name|strings
@@ -1495,11 +1524,6 @@ operator|.
 name|append
 argument_list|(
 operator|(
-operator|(
-name|OrderedLinkedList
-operator|.
-name|SimpleNode
-operator|)
 name|j
 operator|.
 name|next
@@ -1538,6 +1562,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
@@ -1609,6 +1635,8 @@ name|value
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -1639,7 +1667,9 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#add(org.exist.dom.NodeProxy)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add

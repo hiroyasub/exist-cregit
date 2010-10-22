@@ -464,7 +464,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"There is no XQTS data at database"
+literal|"There are no XQTS data in the database"
 argument_list|)
 throw|;
 block|}
@@ -801,7 +801,7 @@ literal|"']/catalog:test-group"
 expr_stmt|;
 name|query
 operator|+=
-literal|"	return xs:string($testGroup/@name)"
+literal|"\treturn xs:string($testGroup/@name)"
 expr_stmt|;
 name|ResourceSet
 name|results
@@ -1345,7 +1345,7 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"	/* "
+literal|"\t/* "
 operator|+
 name|caseName
 operator|+

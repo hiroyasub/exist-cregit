@@ -1410,13 +1410,13 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
-comment|//        try {
-comment|//            cachedSearcher.close();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
-comment|//        } finally {
-comment|//            cachedSearcher = null;
-comment|//        }
+comment|//try {
+comment|//cachedSearcher.close();
+comment|//} catch (IOException e) {
+comment|//LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
+comment|//} finally {
+comment|//cachedSearcher = null;
+comment|//}
 block|}
 block|}
 end_class

@@ -742,7 +742,7 @@ name|query
 operator|.
 name|setRewriteMethod
 argument_list|(
-name|PrefixQuery
+name|MultiTermQuery
 operator|.
 name|SCORING_BOOLEAN_QUERY_REWRITE
 argument_list|)

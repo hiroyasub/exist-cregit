@@ -87,7 +87,7 @@ argument_list|<
 name|QName
 argument_list|>
 block|{
-comment|/*     public final static QName DOCUMENT_QNAME = new QName("#document", "", null); 	public final static QName TEXT_QNAME = new QName("#text", "", null); 	public final static QName COMMENT_QNAME = new QName("#comment", "", null); 	public final static QName DOCTYPE_QNAME = new QName("#doctype", "", null); 	*/
+comment|/*     public final static QName DOCUMENT_QNAME = new QName("#document", "", null);     public final static QName TEXT_QNAME = new QName("#text", "", null);     public final static QName COMMENT_QNAME = new QName("#comment", "", null);     public final static QName DOCTYPE_QNAME = new QName("#doctype", "", null);     */
 specifier|public
 specifier|final
 specifier|static
@@ -154,7 +154,7 @@ name|prefix_
 init|=
 literal|null
 decl_stmt|;
-comment|//TODO ; use ElementValue.INKNOWN and type explicitely ?
+comment|//TODO : use ElementValue.UNKNOWN and type explicitely ?
 specifier|private
 name|byte
 name|nameType_
@@ -163,7 +163,7 @@ name|ElementValue
 operator|.
 name|ELEMENT
 decl_stmt|;
-comment|/** 	 * Construct a QName. The prefix might be null for the default namespace or if no prefix  	 * has been defined for the QName. The namespace URI should be set to the empty  	 * string, if no namespace URI is defined. 	 *  	 * @param localName 	 * @param namespaceURI 	 * @param prefix 	 */
+comment|/**      * Construct a QName. The prefix might be null for the default namespace or if no prefix       * has been defined for the QName. The namespace URI should be set to the empty       * string, if no namespace URI is defined.      *       * @param localName      * @param namespaceURI      * @param prefix      */
 specifier|public
 name|QName
 parameter_list|(
@@ -317,7 +317,7 @@ operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
-comment|/** 	 * Returns true if the QName defines a namespace URI. 	 *  	 */
+comment|/**      * Returns true if the QName defines a namespace URI.      *       */
 specifier|public
 name|boolean
 name|needsNamespaceDecl
@@ -405,12 +405,13 @@ literal|':'
 operator|+
 name|localName_
 return|;
-else|else
 return|return
 name|localName_
 return|;
 block|}
-comment|/** 	 * (deprecated) : use for debugging purpose only, 	 * use getStringValue() for production 	 */
+comment|/**      * (deprecated) : use for debugging purpose only,      * use getStringValue() for production      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -422,9 +423,9 @@ name|getStringValue
 argument_list|()
 return|;
 comment|//TODO : replace by something like this
-comment|/* 		if (prefix_ != null&& prefix_.length()> 0) 			return prefix_ + ':' + localName_; 		if (needsNamespaceDecl()) { 			if (prefix_ != null&& prefix_.length()> 0) 				return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_; 			return "{" + namespaceURI_ + "}" + localName_; 		} else  			return localName_; 		*/
+comment|/*         if (prefix_ != null&& prefix_.length()> 0)             return prefix_ + ':' + localName_;         if (needsNamespaceDecl()) {             if (prefix_ != null&& prefix_.length()> 0)                 return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_;             return "{" + namespaceURI_ + "}" + localName_;         } else              return localName_;         */
 block|}
-comment|/** 	 * Compares two QNames by comparing namespace URI 	 * and local names. The prefixes are not relevant. 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+comment|/**      * Compares two QNames by comparing namespace URI      * and local names. The prefixes are not relevant.      *       * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 specifier|public
 name|int
 name|compareTo
@@ -528,7 +529,9 @@ else|:
 name|c
 return|;
 block|}
-comment|/**  	 * Checks two QNames for equality. Two QNames are equal 	 * if their namespace URIs, local names and prefixes are equal. 	 *  	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/**       * Checks two QNames for equality. Two QNames are equal      * if their namespace URIs, local names and prefixes are equal.      *       * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -683,7 +686,9 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#hashCode() 	 */
+comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
@@ -784,7 +789,7 @@ name|prefix_
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Extract the prefix from a QName string. 	 *   	 * @param qname 	 * @return the prefix, if found 	 * @exception IllegalArgumentException if the qname starts with a leading : 	 */
+comment|/**      * Extract the prefix from a QName string.      *        * @param qname      * @return the prefix, if found      * @exception IllegalArgumentException if the qname starts with a leading :      */
 specifier|public
 specifier|static
 name|String
@@ -874,7 +879,7 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Extract the local name from a QName string. 	 *  	 * @param qname 	 * @exception IllegalArgumentException if the qname starts with a leading : or ends with a : 	 */
+comment|/**      * Extract the local name from a QName string.      *       * @param qname      * @exception IllegalArgumentException if the qname starts with a leading : or ends with a :      */
 specifier|public
 specifier|static
 name|String
@@ -967,7 +972,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * @param context 	 * @param qname 	 * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *       * @param context      * @param qname      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
 specifier|public
 specifier|static
 name|QName
@@ -1058,7 +1063,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Parses the given string into a QName. The method uses context to look up 	 * a namespace URI for an existing prefix. 	 *  	 * This method uses the default element namespace for qnames without prefix. 	 *  	 * @param context 	 * @param qname 	 * @exception IllegalArgumentException if no namespace URI is mapped to the prefix 	 */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *       * This method uses the default element namespace for qnames without prefix.      *       * @param context      * @param qname      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
 specifier|public
 specifier|static
 name|QName

@@ -198,6 +198,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -244,7 +246,9 @@ operator|=
 name|target
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeName() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeName
@@ -254,6 +258,8 @@ return|return
 name|target
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -263,6 +269,8 @@ return|return
 name|target
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -299,7 +307,9 @@ operator|=
 name|data
 expr_stmt|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -332,6 +342,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -386,6 +398,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -846,8 +860,8 @@ operator|.
 name|PROCESSING_INSTRUCTION_NODE
 argument_list|)
 expr_stmt|;
-comment|//            pi = (ProcessingInstructionImpl)
-comment|//				NodeObjectPool.getInstance().borrowNode(ProcessingInstructionImpl.class);
+comment|//pi = (ProcessingInstructionImpl)
+comment|//NodeObjectPool.getInstance().borrowNode(ProcessingInstructionImpl.class);
 else|else
 name|pi
 operator|=
@@ -879,6 +893,8 @@ return|return
 name|pi
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -888,6 +904,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -897,6 +915,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild

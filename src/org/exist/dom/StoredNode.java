@@ -15,6 +15,50 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -44,6 +88,18 @@ operator|.
 name|stax
 operator|.
 name|EmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
 import|;
 end_import
 
@@ -142,50 +198,6 @@ operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -451,7 +463,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Read a node from the specified byte array. 	 *  	 * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)} 	 * method of the corresponding node class. The node will be allocated in the pool 	 * and should be released once it is no longer needed. 	 *  	 * @param data 	 * @param start 	 * @param len 	 * @param doc 	 */
+comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *       * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode
@@ -705,7 +717,9 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * @see java.lang.Object#equals(java.lang.Object) 	 */
+comment|/**      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -768,7 +782,7 @@ return|return
 name|nodeId
 return|;
 block|}
-comment|/** 	 *  Get the internal storage address of this node 	 * 	 *@return    The internalAddress value 	 */
+comment|/**      *  Get the internal storage address of this node      *      *@return    The internalAddress value      */
 specifier|public
 name|long
 name|getInternalAddress
@@ -812,8 +826,9 @@ name|boolean
 name|dirty
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getNodeType() 	 */
+comment|/**      * @see org.w3c.dom.Node#getNodeType()      */
 specifier|public
 name|short
 name|getNodeType
@@ -825,7 +840,7 @@ operator|.
 name|nodeType
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
+comment|/**      * @see org.w3c.dom.Node#getOwnerDocument()      */
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -881,7 +896,7 @@ name|getDocId
 argument_list|()
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getParentNode() 	 */
+comment|/**      * @see org.w3c.dom.Node#getParentNode()      */
 specifier|public
 name|Node
 name|getParentNode
@@ -966,7 +981,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
+comment|/**      * @see org.w3c.dom.Node#getPreviousSibling()      */
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1065,7 +1080,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
@@ -1074,7 +1089,7 @@ if|if
 condition|(
 name|status
 operator|!=
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|END_ELEMENT
 operator|&&
@@ -1188,8 +1203,6 @@ return|return
 literal|null
 return|;
 block|}
-else|else
-block|{
 name|NodeId
 name|firstChild
 init|=
@@ -1229,12 +1242,11 @@ argument_list|(
 name|siblingId
 argument_list|)
 return|;
+comment|//PreviousSiblingVisitor visitor = new PreviousSiblingVisitor(this);
+comment|//((StoredNode) parent).accept(visitor);
+comment|//return visitor.last;
 block|}
-comment|//        PreviousSiblingVisitor visitor = new PreviousSiblingVisitor(this);
-comment|//        ((StoredNode) parent).accept(visitor);
-comment|//        return visitor.last;
-block|}
-comment|/** 	 * @see org.w3c.dom.Node#getNextSibling() 	 */
+comment|/**      * @see org.w3c.dom.Node#getNextSibling()      */
 specifier|public
 name|Node
 name|getNextSibling
@@ -1357,7 +1369,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
@@ -1366,7 +1378,7 @@ if|if
 condition|(
 name|status
 operator|!=
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|END_ELEMENT
 operator|&&
@@ -1478,8 +1490,6 @@ return|return
 literal|null
 return|;
 block|}
-else|else
-block|{
 name|NodeId
 name|siblingId
 init|=
@@ -1496,15 +1506,14 @@ argument_list|(
 name|siblingId
 argument_list|)
 return|;
-block|}
-comment|//        Iterator iterator = getBroker().getNodeIterator(this);
-comment|//        iterator.next();
-comment|//        getLastNode(iterator, this);
-comment|//        if (iterator.hasNext()) {
-comment|//            StoredNode sibling = (StoredNode) iterator.next();
-comment|//            return sibling.nodeId.isSiblingOf(nodeId) ? sibling : null;
-comment|//        }
-comment|//        return null;
+comment|//Iterator iterator = getBroker().getNodeIterator(this);
+comment|//iterator.next();
+comment|//getLastNode(iterator, this);
+comment|//if (iterator.hasNext()) {
+comment|//StoredNode sibling = (StoredNode) iterator.next();
+comment|//return sibling.nodeId.isSiblingOf(nodeId) ? sibling : null;
+comment|//}
+comment|//return null;
 block|}
 specifier|protected
 name|StoredNode
@@ -1656,10 +1665,10 @@ block|}
 return|return
 literal|null
 return|;
-comment|//        final Iterator iterator = getBroker().getNodeIterator(node);
-comment|//        //TODO : hasNext() test ? -pb
-comment|//        iterator.next();
-comment|//        return getLastNode(iterator, node);
+comment|//final Iterator iterator = getBroker().getNodeIterator(node);
+comment|//TODO : hasNext() test ? -pb
+comment|//iterator.next();
+comment|//return getLastNode(iterator, node);
 block|}
 specifier|protected
 name|StoredNode
@@ -1754,7 +1763,7 @@ condition|(
 name|getNodeType
 argument_list|()
 operator|==
-name|NodeImpl
+name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
@@ -1786,7 +1795,7 @@ operator|.
 name|getNodeType
 argument_list|()
 operator|!=
-name|NodeImpl
+name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
@@ -1829,7 +1838,7 @@ condition|(
 name|getNodeType
 argument_list|()
 operator|==
-name|NodeImpl
+name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
@@ -1845,6 +1854,8 @@ return|return
 name|parentPath
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1902,7 +1913,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Release all memory resources hold by this node.  	 */
+comment|/**      * Release all memory resources hold by this node.       */
 specifier|public
 name|void
 name|release
@@ -1915,7 +1926,7 @@ expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//		NodeObjectPool.getInstance().returnNode(this);
+comment|//NodeObjectPool.getInstance().returnNode(this);
 name|NodePool
 operator|.
 name|getInstance
@@ -1956,6 +1967,9 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 init|=
 name|broker
@@ -2022,6 +2036,9 @@ name|boolean
 name|accept
 parameter_list|(
 name|Iterator
+argument_list|<
+name|StoredNode
+argument_list|>
 name|iterator
 parameter_list|,
 name|NodeVisitor

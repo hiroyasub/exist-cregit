@@ -1933,6 +1933,9 @@ block|}
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|findEntries
 parameter_list|(
 name|IndexQuery
@@ -1972,6 +1975,9 @@ return|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|findKeys
 parameter_list|(
 name|IndexQuery
@@ -3207,6 +3213,9 @@ return|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|getEntries
 parameter_list|()
 throws|throws
@@ -3256,6 +3265,9 @@ return|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|getKeys
 parameter_list|()
 throws|throws
@@ -3305,6 +3317,9 @@ return|;
 block|}
 specifier|public
 name|ArrayList
+argument_list|<
+name|Value
+argument_list|>
 name|getValues
 parameter_list|()
 throws|throws

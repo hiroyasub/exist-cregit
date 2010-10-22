@@ -2675,8 +2675,6 @@ parameter_list|)
 throws|throws
 name|IOException
 throws|,
-name|ParseException
-throws|,
 name|XPathException
 block|{
 name|NodeSet
@@ -2880,8 +2878,6 @@ throws|throws
 name|IOException
 throws|,
 name|ParseException
-throws|,
-name|XPathException
 block|{
 name|NodeSet
 name|resultSet
@@ -3660,8 +3656,6 @@ return|return
 name|indexes
 return|;
 block|}
-else|else
-block|{
 return|return
 name|getDefinedIndexesFor
 argument_list|(
@@ -3670,7 +3664,6 @@ argument_list|,
 name|indexes
 argument_list|)
 return|;
-block|}
 block|}
 specifier|private
 name|List
@@ -4209,7 +4202,6 @@ argument_list|,
 name|max
 argument_list|)
 return|;
-else|else
 return|return
 name|scanIndexByNodes
 argument_list|(
@@ -4767,6 +4759,14 @@ operator|new
 name|FieldSelector
 argument_list|()
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|3270211696620175721L
+decl_stmt|;
 specifier|public
 name|FieldSelectorResult
 name|accept
@@ -4789,7 +4789,6 @@ name|FieldSelectorResult
 operator|.
 name|LOAD_AND_BREAK
 return|;
-else|else
 return|return
 name|FieldSelectorResult
 operator|.
@@ -5965,12 +5964,7 @@ name|getNameType
 argument_list|()
 operator||
 operator|(
-operator|(
-operator|(
-name|int
-operator|)
 name|namespaceId
-operator|)
 operator|&
 literal|0xFFFF
 operator|)
@@ -5978,12 +5972,7 @@ operator|<<
 literal|16
 operator||
 operator|(
-operator|(
-operator|(
-name|long
-operator|)
 name|localNameId
-operator|)
 operator|&
 literal|0xFFFFFFFFL
 operator|)

@@ -888,8 +888,6 @@ return|return
 name|query
 return|;
 block|}
-else|else
-block|{
 name|MultiPhraseQuery
 name|query
 init|=
@@ -1045,7 +1043,6 @@ expr_stmt|;
 return|return
 name|query
 return|;
-block|}
 block|}
 specifier|private
 name|SpanQuery
@@ -1259,8 +1256,6 @@ name|inOrder
 argument_list|)
 return|;
 block|}
-else|else
-block|{
 name|SpanQuery
 index|[]
 name|children
@@ -1285,7 +1280,6 @@ argument_list|,
 name|inOrder
 argument_list|)
 return|;
-block|}
 block|}
 specifier|private
 name|SpanQuery
@@ -2394,8 +2388,6 @@ parameter_list|,
 name|Properties
 name|options
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|RegexQuery
 name|query

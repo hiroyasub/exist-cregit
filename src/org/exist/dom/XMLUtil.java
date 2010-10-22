@@ -242,6 +242,7 @@ name|TransformerException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do ?
 block|}
 return|return
 name|writer

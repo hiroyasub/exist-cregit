@@ -13,6 +13,54 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Stack
+import|;
+end_import
+
+begin_comment
+comment|//import javax.xml.parsers.ParserConfigurationException;
+end_comment
+
+begin_comment
+comment|//import javax.xml.parsers.SAXParserFactory;
+end_comment
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -187,18 +235,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|GeneralRangeIndexSpec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|IndexSpec
 import|;
 end_import
@@ -212,6 +248,18 @@ operator|.
 name|storage
 operator|.
 name|NodePath
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|RangeIndexSpec
 import|;
 end_import
 
@@ -401,29 +449,13 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXNotRecognizedException
-import|;
-end_import
+begin_comment
+comment|//import org.xml.sax.SAXNotRecognizedException;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXNotSupportedException
-import|;
-end_import
+begin_comment
+comment|//import org.xml.sax.SAXNotSupportedException;
+end_comment
 
 begin_import
 import|import
@@ -448,70 +480,6 @@ operator|.
 name|ext
 operator|.
 name|LexicalHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|SAXParserFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
 import|;
 end_import
 
@@ -799,7 +767,7 @@ name|docSize
 init|=
 literal|0
 decl_stmt|;
-comment|/* 	 * used to record the number of children of an element during validation 	 * phase. later, when storing the nodes, we already know the child count and 	 * don't need to update the element a second time. 	 */
+comment|/*      * used to record the number of children of an element during validation      * phase. later, when storing the nodes, we already know the child count and      * don't need to update the element a second time.      */
 specifier|private
 name|int
 name|childCnt
@@ -876,7 +844,7 @@ operator|new
 name|XMLString
 argument_list|()
 decl_stmt|;
-comment|/** 	 * Create a new parser using the given database broker and user to store the 	 * document. 	 *  	 *@param broker 	 *@exception EXistException 	 */
+comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       *@param broker      *@exception EXistException      */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -899,7 +867,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new parser using the given database broker and user to store the 	 * document. 	 *  	 *@param broker 	 *            The database broker to use. 	 *@param transaction 	 *            The transaction to use for indexing 	 *@param priv 	 *            used by the security manager to indicate that it needs 	 *            privileged access to the db. 	 *@exception EXistException 	 */
+comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       *@param broker      *            The database broker to use.      *@param transaction      *            The transaction to use for indexing      *@param priv      *            used by the security manager to indicate that it needs      *            privileged access to the db.      *@exception EXistException      */
 specifier|public
 name|Indexer
 parameter_list|(
@@ -1078,7 +1046,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Prepare the indexer for parsing a new document. This will reset the 	 * internal state of the Indexer object. 	 *  	 * @param doc 	 */
+comment|/**      * Prepare the indexer for parsing a new document. This will reset the      * internal state of the Indexer object.      *       * @param doc      */
 specifier|public
 name|void
 name|setDocument
@@ -1149,7 +1117,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Set the document object to be used by this Indexer. This method doesn't 	 * reset the internal state. 	 *  	 * @param doc 	 */
+comment|/**      * Set the document object to be used by this Indexer. This method doesn't      * reset the internal state.      *       * @param doc      */
 specifier|public
 name|void
 name|setDocumentObject
@@ -1632,7 +1600,7 @@ name|progress
 argument_list|)
 expr_stmt|;
 block|}
-comment|// LOG.debug("elementCnt = " + childCnt.length);
+comment|//LOG.debug("elementCnt = " + childCnt.length);
 block|}
 specifier|public
 name|void
@@ -1814,7 +1782,7 @@ condition|(
 operator|!
 name|validate
 operator|&&
-name|GeneralRangeIndexSpec
+name|RangeIndexSpec
 operator|.
 name|hasQNameOrValueIndex
 argument_list|(
@@ -1972,7 +1940,7 @@ operator|--
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param last 	 */
+comment|/**      * @param last      */
 specifier|private
 name|void
 name|setChildCount
@@ -2214,6 +2182,7 @@ name|int
 name|length
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|void
@@ -2441,81 +2410,18 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|/** 	 * set SAX parser feature. This method will catch (and ignore) exceptions if 	 * the used parser does not support a feature. 	 *  	 *@param factory 	 *@param feature 	 *@param value 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|void
-name|setFeature
-parameter_list|(
-name|SAXParserFactory
-name|factory
-parameter_list|,
-name|String
-name|feature
-parameter_list|,
-name|boolean
-name|value
-parameter_list|)
-block|{
-try|try
-block|{
-name|factory
-operator|.
-name|setFeature
-argument_list|(
-name|feature
-argument_list|,
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SAXNotRecognizedException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SAXNotSupportedException
-name|snse
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|snse
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParserConfigurationException
-name|pce
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|pce
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|/**      * set SAX parser feature. This method will catch (and ignore) exceptions if      * the used parser does not support a feature.      *       *@param factory      *@param feature      *@param value      */
+comment|//private void setFeature(SAXParserFactory factory, String feature, boolean value) {
+comment|//try {
+comment|//factory.setFeature(feature, value);
+comment|//} catch (SAXNotRecognizedException e) {
+comment|//LOG.warn(e);
+comment|//} catch (SAXNotSupportedException snse) {
+comment|//LOG.warn(snse);
+comment|//} catch (ParserConfigurationException pce) {
+comment|//LOG.warn(pce);
+comment|//}
+comment|//}
 specifier|public
 name|void
 name|startCDATA
@@ -3007,6 +2913,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|node
 operator|=
 operator|new
@@ -3015,6 +2922,7 @@ argument_list|(
 name|qn
 argument_list|)
 expr_stmt|;
+block|}
 comment|// copy xml:space setting
 name|node
 operator|.
@@ -3885,7 +3793,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|GeneralRangeIndexSpec
+name|RangeIndexSpec
 operator|.
 name|hasQNameOrValueIndex
 argument_list|(
