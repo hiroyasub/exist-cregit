@@ -15,6 +15,136 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -179,6 +309,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Group
 import|;
 end_import
@@ -239,33 +381,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Account
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|internal
-operator|.
-name|SecurityManagerImpl
 import|;
 end_import
 
@@ -337,6 +453,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|ProcessMonitor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|QNameRangeIndexSpec
 import|;
 end_import
@@ -350,18 +478,6 @@ operator|.
 name|storage
 operator|.
 name|UpdateListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|ProcessMonitor
 import|;
 end_import
 
@@ -651,136 +767,6 @@ name|XMLReader
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class represents a collection in the database. A collection maintains a list of  * sub-collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, int)}  * to get a collection with a read or write lock and {@link #release(int)} to release the lock.  *  * @author wolf  */
 end_comment
@@ -991,6 +977,7 @@ specifier|public
 name|Collection
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|Collection
@@ -2379,20 +2366,20 @@ block|}
 return|return
 literal|true
 return|;
-comment|//		try {
-comment|//			lock.acquire(Lock.WRITE_LOCK);
-comment|//			for (Iterator i = documents.values().iterator(); i.hasNext(); ) {
-comment|//				DocumentImpl doc = (DocumentImpl) i.next();
-comment|//				if (doc.isLockedForWrite())
-comment|//					return false;
-comment|//			}
-comment|//			return true;
-comment|//		} catch (LockException e) {
-comment|//			LOG.warn("Failed to acquire lock on collection: " + getName(), e);
-comment|//		} finally {
-comment|//			lock.release();
-comment|//		}
-comment|//		return false;
+comment|//try {
+comment|//lock.acquire(Lock.WRITE_LOCK);
+comment|//for (Iterator i = documents.values().iterator(); i.hasNext(); ) {
+comment|//DocumentImpl doc = (DocumentImpl) i.next();
+comment|//if (doc.isLockedForWrite())
+comment|//return false;
+comment|//}
+comment|//return true;
+comment|//} catch (LockException e) {
+comment|//LOG.warn("Failed to acquire lock on collection: " + getName(), e);
+comment|//} finally {
+comment|//lock.release();
+comment|//}
+comment|//return false;
 block|}
 annotation|@
 name|Override
@@ -2645,6 +2632,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Retrieve a child resource after putting a read lock on it. With this method,      * access to the received document object is safe.      *      * @deprecated Use getDocumentWithLock(DBBroker broker, XmldbURI uri, int lockMode)      * @param broker      * @param name      * @return The document that was locked.      * @throws LockException      */
+annotation|@
+name|Deprecated
 specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
@@ -2765,6 +2754,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Release any locks held on the document.      * @deprecated Use releaseDocument(DocumentImpl doc, int mode)      * @param doc      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|releaseDocument
@@ -3212,6 +3203,9 @@ name|subcollections
 operator|=
 operator|new
 name|ObjectHashSet
+argument_list|<
+name|XmldbURI
+argument_list|>
 argument_list|(
 name|collLen
 operator|==
@@ -3506,9 +3500,6 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|documents
 operator|.
 name|get
@@ -4907,7 +4898,7 @@ operator|.
 name|closeDocument
 argument_list|()
 expr_stmt|;
-comment|//			broker.checkTree(document);
+comment|//broker.checkTree(document);
 name|LOG
 operator|.
 name|debug
@@ -4935,7 +4926,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|SecurityManagerImpl
+name|SecurityManager
 operator|.
 name|ACL_FILE_URI
 argument_list|)
@@ -5966,6 +5957,10 @@ finally|finally
 block|{
 if|if
 condition|(
+name|oldDoc
+operator|!=
+literal|null
+operator|&&
 name|oldDocLocked
 condition|)
 name|oldDoc
@@ -6018,10 +6013,6 @@ name|docUri
 parameter_list|)
 throws|throws
 name|EXistException
-throws|,
-name|PermissionDeniedException
-throws|,
-name|IOException
 block|{
 comment|//Is it a collection configuration file ?
 comment|//TODO : use XmldbURI.resolve() !
@@ -6127,14 +6118,14 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//        broker.saveCollection(transaction, this);
-comment|//        CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
-comment|//        if(confMgr != null)
-comment|//            try {
-comment|//                confMgr.reload(broker, this);
-comment|//            } catch (CollectionConfigurationException e) {
-comment|//                throw new EXistException("An error occurred while reloading the updated collection configuration: " + e.getMessage(), e);
-comment|//            }
+comment|//broker.saveCollection(transaction, this);
+comment|//CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
+comment|//if(confMgr != null)
+comment|//try {
+comment|//confMgr.reload(broker, this);
+comment|// catch (CollectionConfigurationException e) {
+comment|//throw new EXistException("An error occurred while reloading the updated collection configuration: " + e.getMessage(), e);
+comment|//}
 block|}
 comment|/** add observers to the indexer      * @param broker      * @param indexer      */
 specifier|private
@@ -6597,8 +6588,8 @@ argument_list|)
 condition|)
 block|{
 comment|// we are updating collection.xconf. Notify configuration manager
-comment|//            CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
-comment|//            confMgr.invalidateAll(getURI());
+comment|//CollectionConfigurationManager confMgr = broker.getBrokerPool().getConfigurationManager();
+comment|//confMgr.invalidateAll(getURI());
 name|collectionConfEnabled
 operator|=
 literal|false
@@ -6773,8 +6764,6 @@ name|String
 name|mimeType
 parameter_list|)
 throws|throws
-name|EXistException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -6830,8 +6819,6 @@ name|Date
 name|modified
 parameter_list|)
 throws|throws
-name|EXistException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -6891,8 +6878,6 @@ name|int
 name|size
 parameter_list|)
 throws|throws
-name|EXistException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -6952,8 +6937,6 @@ name|Date
 name|modified
 parameter_list|)
 throws|throws
-name|EXistException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -7319,7 +7302,7 @@ argument_list|,
 name|blob
 argument_list|)
 expr_stmt|;
-comment|/*                 if (triggersEnabled) { 	            CollectionConfiguration config = getConfiguration(broker); 	            if (config != null) { 	                event = oldDoc != null ? Trigger.UPDATE_DOCUMENT_EVENT : Trigger.STORE_DOCUMENT_EVENT;                     try {                         trigger = (DocumentTrigger) config.newTrigger(event, broker, this);                     } catch (CollectionConfigurationException e) {                         LOG.debug("An error occurred while initializing a trigger for collection " + getURI() + ": " + e.getMessage(), e);                     }                     if (trigger != null) { 	                    trigger.prepare(event, broker, transaction, blob.getURI(), blob); 	                } 	            } 	        }*/
+comment|/*             if (triggersEnabled) {                 CollectionConfiguration config = getConfiguration(broker);                 if (config != null) {                     event = oldDoc != null ? Trigger.UPDATE_DOCUMENT_EVENT : Trigger.STORE_DOCUMENT_EVENT;                     try {                         trigger = (DocumentTrigger) config.newTrigger(event, broker, this);                     } catch (CollectionConfigurationException e) {                         LOG.debug("An error occurred while initializing a trigger for collection " + getURI() + ": " + e.getMessage(), e);                     }                     if (trigger != null) {                         trigger.prepare(event, broker, transaction, blob.getURI(), blob);                     }                 }             }             */
 comment|// This is no longer needed as the dom.dbx isn't used
 comment|//broker.closeDocument();
 if|if
@@ -7658,9 +7641,9 @@ condition|)
 return|return
 literal|null
 return|;
-comment|//        //System collection has no configuration
-comment|//        if (DBBroker.SYSTEM_COLLECTION.equals(getURI().getRawCollectionPath()))
-comment|//            return null;
+comment|//System collection has no configuration
+comment|//if (DBBroker.SYSTEM_COLLECTION.equals(getURI().getRawCollectionPath()))
+comment|//return null;
 name|CollectionConfigurationManager
 name|manager
 init|=
@@ -7731,7 +7714,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        LOG.debug("Loaded configuration for collection:  " + getURI());
+comment|//LOG.debug("Loaded configuration for collection:  " + getURI());
 return|return
 name|configuration
 return|;
@@ -7907,10 +7890,6 @@ parameter_list|,
 name|CollectionConfiguration
 name|colconfig
 parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|SAXException
 block|{
 comment|// If user-defined Reader is set, return it;
 if|if
@@ -8087,6 +8066,7 @@ comment|/* (non-Javadoc)      * @see java.util.Observable#addObserver(java.util.
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|addObserver
 parameter_list|(
@@ -8228,6 +8208,7 @@ comment|/* (non-Javadoc)          * @see java.util.Observable#deleteObservers() 
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|deleteObservers
 parameter_list|()
@@ -8487,7 +8468,6 @@ name|conf
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 name|broker
 operator|.
@@ -8495,16 +8475,12 @@ name|getIndexConfiguration
 argument_list|()
 return|;
 comment|//... otherwise return the general config (the broker's one)
-block|}
-else|else
-block|{
 return|return
 name|conf
 operator|.
 name|getIndexConfiguration
 argument_list|()
 return|;
-block|}
 block|}
 specifier|public
 name|GeneralRangeIndexSpec

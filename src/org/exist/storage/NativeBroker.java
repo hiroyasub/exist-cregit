@@ -11379,22 +11379,6 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|EXistException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"An error occurred while copying resource"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
 name|IOException
 name|e
 parameter_list|)
