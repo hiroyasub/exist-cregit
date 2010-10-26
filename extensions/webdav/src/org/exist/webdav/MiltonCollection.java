@@ -527,11 +527,13 @@ implements|,
 name|PutableResource
 implements|,
 name|LockingCollectionResource
-comment|/*, DigestResource , LockNullResource*/
+comment|/*, DigestResource */
 implements|,
 name|MoveableResource
 implements|,
 name|CopyableResource
+implements|,
+name|LockNullResource
 block|{
 specifier|private
 name|ExistCollection
@@ -1246,6 +1248,26 @@ name|ConflictException
 argument_list|(
 name|this
 argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
 throw|;
 block|}
 return|return

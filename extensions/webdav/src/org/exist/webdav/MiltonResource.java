@@ -1002,15 +1002,12 @@ name|getName
 parameter_list|()
 block|{
 return|return
-name|decodePath
-argument_list|(
 literal|""
 operator|+
 name|resourceXmldbUri
 operator|.
 name|lastSegment
 argument_list|()
-argument_list|)
 return|;
 block|}
 annotation|@
