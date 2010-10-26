@@ -380,7 +380,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user group. $group is the group name."
+literal|"Create a new user group. $group is the group name. The current user will be the groups manager."
 argument_list|,
 operator|new
 name|SequenceType
@@ -472,7 +472,7 @@ name|Cardinality
 operator|.
 name|ONE_OR_MORE
 argument_list|,
-literal|"The name of the user who will be the groups manager"
+literal|"The name of the user(s) who will be the groups manager"
 argument_list|)
 block|}
 argument_list|,
@@ -643,16 +643,6 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|2
-condition|)
-block|{
-comment|//find the group managers, this makes sure they all exist first!
 name|List
 argument_list|<
 name|Account
@@ -666,6 +656,16 @@ name|Account
 argument_list|>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|2
+condition|)
+block|{
+comment|//find the group managers, this makes sure they all exist first!
 for|for
 control|(
 name|SequenceIterator
@@ -742,6 +742,18 @@ name|groupManagerAccount
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+comment|//no group manager specified, so use the current user
+name|groupManagerAccounts
+operator|.
+name|add
+argument_list|(
+name|currentUser
+argument_list|)
+expr_stmt|;
+block|}
 comment|//TODO remove this once the security implementation supports group managers
 comment|//elevate to system user, so we can add groups to the user
 name|Subject
@@ -801,20 +813,6 @@ name|getUser
 argument_list|()
 argument_list|,
 name|groupManagerAccount
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|//deprecated, create the group
-name|group
-operator|=
-name|sm
-operator|.
-name|addGroup
-argument_list|(
-name|group
 argument_list|)
 expr_stmt|;
 block|}
