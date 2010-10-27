@@ -2129,18 +2129,7 @@ operator|.
 name|class
 argument_list|)
 block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|DeprecatedExtDocument
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedExtDocument
-operator|.
-name|class
-argument_list|)
-block|,
+comment|//		new FunctionDef(DeprecatedExtDocument.signature, DeprecatedExtDocument.class),
 operator|new
 name|FunctionDef
 argument_list|(
