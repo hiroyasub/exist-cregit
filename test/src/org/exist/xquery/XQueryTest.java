@@ -17329,7 +17329,7 @@ expr_stmt|;
 name|String
 name|query
 init|=
-literal|"document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
+literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -17395,7 +17395,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
+literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -17461,7 +17461,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"document('/db/test/baseuri.xml')/Root/Node1/Node2/base-uri()"
+literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/Node2/base-uri()"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -17527,7 +17527,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"document('/db/test/baseuri.xml')/Root/Node1/Node2/Node3/base-uri()"
+literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/Node2/Node3/base-uri()"
 decl_stmt|;
 name|ResourceSet
 name|result
