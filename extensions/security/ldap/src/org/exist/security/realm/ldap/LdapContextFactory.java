@@ -291,6 +291,15 @@ specifier|private
 name|LDAPSearchContext
 name|search
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsElement
+argument_list|(
+literal|"transformation"
+argument_list|)
+specifier|private
+name|LDAPTransformationContext
+name|realmTransformation
+decl_stmt|;
 specifier|public
 name|LdapContextFactory
 parameter_list|(
@@ -580,6 +589,15 @@ parameter_list|()
 block|{
 return|return
 name|search
+return|;
+block|}
+specifier|public
+name|LDAPTransformationContext
+name|getTransformationContext
+parameter_list|()
+block|{
+return|return
+name|realmTransformation
 return|;
 block|}
 comment|// configurable methods
