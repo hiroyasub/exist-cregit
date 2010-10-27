@@ -191,6 +191,15 @@ init|=
 operator|-
 literal|1L
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|NO_LOCK_TIMEOUT
+init|=
+operator|-
+literal|2L
+decl_stmt|;
 comment|// Write Locks and Null Resources
 comment|// see http://www.webdav.org/specs/rfc2518.html#rfc.section.7.4
 specifier|private
