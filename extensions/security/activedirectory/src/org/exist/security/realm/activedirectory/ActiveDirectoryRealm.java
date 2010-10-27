@@ -668,7 +668,8 @@ argument_list|()
 operator|.
 name|setSubject
 argument_list|(
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
@@ -676,7 +677,8 @@ argument_list|)
 expr_stmt|;
 name|account
 operator|=
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addAccount
 argument_list|(
