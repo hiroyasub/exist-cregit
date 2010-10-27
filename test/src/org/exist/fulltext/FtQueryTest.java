@@ -732,7 +732,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|3
+literal|2
 argument_list|,
 name|result
 operator|.
@@ -754,48 +754,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|0
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"declare namespace mods='http://www.loc.gov/mods/v3'; "
-operator|+
-literal|"//mods:titleInfo/mods:title[attribute()&= 'alternative']"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|9
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"declare namespace mods='http://www.loc.gov/mods/v3'; "
-operator|+
-literal|"//mods:titleInfo/mods:title[@type&= 'alternative']"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|9
 argument_list|,
 name|result
 operator|.
@@ -1096,7 +1054,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|3
+literal|2
 argument_list|,
 name|result
 operator|.
@@ -1118,30 +1076,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|0
-argument_list|,
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|//            result = service.query("declare namespace mods='http://www.loc.gov/mods/v3'; " +
-comment|//                    "//mods:titleInfo/mods:title[text:match-all(attribute(), 'alternative')]");
-comment|//            assertEquals(9, result.getSize());
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-literal|"declare namespace mods='http://www.loc.gov/mods/v3'; "
-operator|+
-literal|"//mods:titleInfo/mods:title[text:match-all(@type, 'alternative')]"
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|9
 argument_list|,
 name|result
 operator|.
@@ -1310,7 +1244,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|32
+literal|14
 argument_list|,
 name|result
 operator|.
@@ -2482,7 +2416,7 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-literal|5
+literal|8
 argument_list|,
 name|result
 operator|.
@@ -3821,11 +3755,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|TestUtils
-operator|.
-name|cleanupDB
-argument_list|()
-expr_stmt|;
+comment|//	        TestUtils.cleanupDB();
 name|DatabaseManager
 operator|.
 name|deregisterDatabase
