@@ -361,7 +361,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|Group
 name|addGroup
 parameter_list|(

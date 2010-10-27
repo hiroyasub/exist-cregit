@@ -710,8 +710,6 @@ try|try
 block|{
 name|broker
 operator|=
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -796,8 +794,6 @@ expr_stmt|;
 name|TransactionManager
 name|transaction
 init|=
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -878,7 +874,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addUser
 argument_list|(
@@ -906,8 +903,6 @@ return|;
 block|}
 finally|finally
 block|{
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -994,8 +989,6 @@ try|try
 block|{
 name|broker
 operator|=
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -1074,8 +1067,6 @@ expr_stmt|;
 name|TransactionManager
 name|transaction
 init|=
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -1156,7 +1147,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -1187,8 +1179,6 @@ return|;
 block|}
 finally|finally
 block|{
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.

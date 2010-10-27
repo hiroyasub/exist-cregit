@@ -297,7 +297,7 @@ argument_list|(
 literal|65
 argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|private
 name|SecurityManager
 name|sm
 decl_stmt|;
@@ -371,10 +371,20 @@ name|getDatabase
 parameter_list|()
 block|{
 return|return
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getDatabase
 argument_list|()
+return|;
+block|}
+specifier|protected
+name|SecurityManager
+name|getSecurityManager
+parameter_list|()
+block|{
+return|return
+name|sm
 return|;
 block|}
 annotation|@
@@ -771,7 +781,8 @@ name|conf
 argument_list|)
 decl_stmt|;
 comment|//GroupImpl group = new GroupImpl(this, conf);
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -865,7 +876,8 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|hasGroup
 argument_list|(
@@ -887,7 +899,8 @@ argument_list|)
 decl_stmt|;
 comment|//GroupImpl group = new GroupImpl(this, conf);
 comment|//group.removed = true;
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -988,7 +1001,8 @@ name|conf
 argument_list|)
 decl_stmt|;
 comment|//AccountImpl account = new AccountImpl( this, conf );
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addUser
 argument_list|(
@@ -1082,7 +1096,8 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|hasUser
 argument_list|(
@@ -1104,7 +1119,8 @@ argument_list|)
 decl_stmt|;
 comment|//AccountImpl account = new AccountImpl( this, conf );
 comment|//account.removed = true;
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addUser
 argument_list|(
@@ -1658,7 +1674,8 @@ name|instantiateGroup
 argument_list|(
 name|this
 argument_list|,
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getNextGroupId
 argument_list|()
@@ -1666,7 +1683,8 @@ argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -1726,7 +1744,8 @@ argument_list|)
 throw|;
 if|if
 condition|(
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|hasGroup
 argument_list|(
@@ -1757,7 +1776,8 @@ argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -1897,7 +1917,8 @@ return|return
 operator|(
 name|A
 operator|)
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addAccount
 argument_list|(
@@ -1932,8 +1953,6 @@ try|try
 block|{
 name|broker
 operator|=
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -2170,8 +2189,6 @@ return|;
 block|}
 finally|finally
 block|{
-name|sm
-operator|.
 name|getDatabase
 argument_list|()
 operator|.
@@ -2181,6 +2198,31 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Group
+name|getExternalGroup
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getGroup
+argument_list|(
+name|invokingUser
+argument_list|,
+name|name
+argument_list|)
+return|;
 block|}
 block|}
 end_class

@@ -621,7 +621,8 @@ argument_list|()
 operator|.
 name|setSubject
 argument_list|(
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
@@ -633,7 +634,8 @@ init|=
 operator|(
 name|LDAPAccountImpl
 operator|)
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addAccount
 argument_list|(
@@ -697,7 +699,8 @@ block|{
 name|Group
 name|additionalGroup
 init|=
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getGroup
 argument_list|(
@@ -736,7 +739,8 @@ block|{
 name|boolean
 name|updated
 init|=
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|updateAccount
 argument_list|(
@@ -825,7 +829,8 @@ argument_list|()
 operator|.
 name|setSubject
 argument_list|(
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
@@ -836,7 +841,8 @@ return|return
 operator|(
 name|LDAPGroupImpl
 operator|)
-name|sm
+name|getSecurityManager
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
