@@ -129,6 +129,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -481,6 +491,7 @@ end_import
 
 begin_class
 specifier|public
+specifier|abstract
 class|class
 name|NodeImpl
 implements|implements
@@ -3499,6 +3510,7 @@ operator|)
 return|;
 block|}
 specifier|public
+specifier|abstract
 name|void
 name|selectAttributes
 parameter_list|(
@@ -3510,11 +3522,9 @@ name|result
 parameter_list|)
 throws|throws
 name|XPathException
-block|{
-comment|// do nothing
-comment|//TODO : make abstract
-block|}
+function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|selectDescendantAttributes
 parameter_list|(
@@ -3526,11 +3536,9 @@ name|result
 parameter_list|)
 throws|throws
 name|XPathException
-block|{
-comment|// do nothing
-comment|//TODO : make abstract
-block|}
+function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|selectChildren
 parameter_list|(
@@ -3542,10 +3550,7 @@ name|result
 parameter_list|)
 throws|throws
 name|XPathException
-block|{
-comment|// do nothing
-comment|//TODO : make abstract
-block|}
+function_decl|;
 specifier|public
 name|void
 name|selectDescendants
@@ -4562,6 +4567,8 @@ parameter_list|,
 name|int
 name|position
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 name|NodeId
 name|myNodeId
@@ -4841,6 +4848,8 @@ name|position
 parameter_list|)
 throws|throws
 name|XPathException
+throws|,
+name|EXistException
 block|{
 name|int
 name|parent

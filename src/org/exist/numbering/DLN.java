@@ -76,7 +76,7 @@ name|DLNBase
 implements|implements
 name|NodeId
 block|{
-comment|/** 	 * Constructs a new DLN with a single id with value 1. 	 * 	 */
+comment|/**      * Constructs a new DLN with a single id with value 1.      *      */
 specifier|public
 name|DLN
 parameter_list|()
@@ -612,7 +612,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-comment|//        System.out.println("insertBefore: " + newNode.toString() + " = " + newNode.bitIndex);
+comment|//System.out.println("insertBefore: " + newNode.toString() + " = " + newNode.bitIndex);
 if|if
 condition|(
 name|lastId
@@ -657,7 +657,7 @@ operator|.
 name|compact
 argument_list|()
 expr_stmt|;
-comment|//            System.out.println("newNode: " + newNode.toString() + " = " + newNode.bitIndex + "; last = " + lastPos);
+comment|//System.out.println("newNode: " + newNode.toString() + " = " + newNode.bitIndex + "; last = " + lastPos);
 block|}
 return|return
 name|newNode
@@ -766,7 +766,7 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-name|DLN
+name|DLNBase
 operator|.
 name|getUnitsRequired
 argument_list|(
@@ -1054,7 +1054,6 @@ name|NodeId
 name|sibling
 parameter_list|)
 block|{
-comment|//DLN other = (DLN) sibling;
 name|NodeId
 name|parent
 init|=
@@ -1257,7 +1256,6 @@ argument_list|(
 name|other
 argument_list|)
 return|;
-else|else
 return|return
 literal|true
 return|;
@@ -1300,7 +1298,6 @@ argument_list|(
 name|this
 argument_list|)
 return|;
-else|else
 return|return
 literal|true
 return|;
@@ -1358,10 +1355,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//        if (prevId == null) {
-comment|//            write(os);
-comment|//            return this;
-comment|//        }
 name|int
 name|i
 init|=
@@ -1483,8 +1476,6 @@ name|String
 index|[]
 name|args
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|DLN
 name|left1

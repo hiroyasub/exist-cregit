@@ -764,6 +764,40 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|selectAttributes
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|,
+name|Sequence
+name|result
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|selectChildren
+parameter_list|(
+name|NodeTest
+name|test
+parameter_list|,
+name|Sequence
+name|result
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 block|}
 end_class
 

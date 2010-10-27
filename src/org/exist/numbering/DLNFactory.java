@@ -112,7 +112,7 @@ name|bitCnt
 operator|==
 literal|0
 condition|?
-name|DLN
+name|NodeId
 operator|.
 name|END_OF_DOCUMENT
 else|:
@@ -138,8 +138,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//        if (previous == null)
-comment|//            return createFromStream(is);
+comment|//if (previous == null)
+comment|//  return createFromStream(is);
 name|byte
 name|prefix
 init|=
@@ -173,7 +173,7 @@ name|bitCnt
 operator|==
 literal|0
 condition|?
-name|DLN
+name|NodeId
 operator|.
 name|END_OF_DOCUMENT
 else|:
@@ -242,7 +242,7 @@ name|documentNodeId
 parameter_list|()
 block|{
 return|return
-name|DLN
+name|NodeId
 operator|.
 name|DOCUMENT_NODE
 return|;
@@ -263,7 +263,7 @@ name|startOffset
 parameter_list|)
 block|{
 return|return
-name|DLN
+name|DLNBase
 operator|.
 name|getLengthInBytes
 argument_list|(

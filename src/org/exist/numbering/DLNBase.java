@@ -1045,9 +1045,9 @@ argument_list|(
 name|units
 argument_list|)
 decl_stmt|;
-comment|//            System.err.println("startBit: " + startBit + "; bitIndex: " + bitIndex +
-comment|//                    "; units: " + units + ": numBits: " + numBits + " " + toBitString() +
-comment|//                    "; bits: " + bits.length);
+comment|//System.err.println("startBit: " + startBit + "; bitIndex: " + bitIndex +
+comment|//"; units: " + units + ": numBits: " + numBits + " " + toBitString() +
+comment|//"; bits: " + bits.length);
 name|int
 name|id
 init|=
@@ -2288,6 +2288,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

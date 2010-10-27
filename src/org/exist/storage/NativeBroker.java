@@ -5610,6 +5610,8 @@ block|}
 block|}
 block|}
 comment|/**      * Removes a collection and all child collections and resources      *       * @param transaction the transaction to use      * @param collection the collection to remove      * @return true if the collection was removed, false otherwise      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|removeCollection
@@ -6413,6 +6415,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -6527,6 +6531,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -7281,6 +7287,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|collectionsDb
 operator|.
 name|remove
@@ -7290,6 +7297,7 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|freeCollectionId
@@ -8024,6 +8032,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -8287,6 +8297,7 @@ name|temp
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -8294,6 +8305,8 @@ argument_list|(
 literal|"Failed to create temporary collection"
 argument_list|)
 expr_stmt|;
+comment|//TODO : emergency exit?
+block|}
 name|created
 operator|=
 literal|true
@@ -9960,12 +9973,6 @@ block|}
 finally|finally
 block|{
 comment|//TOUNDERSTAND : by whom is this lock acquired ? -pb
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
 name|collection
 operator|.
 name|release
@@ -12300,6 +12307,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -12376,6 +12385,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -13410,7 +13421,6 @@ condition|)
 return|return
 name|nextDocId
 return|;
-else|else
 name|nextDocId
 operator|=
 literal|1
@@ -13812,6 +13822,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -14065,6 +14077,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -14343,6 +14357,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -14510,6 +14526,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -14645,6 +14663,8 @@ argument_list|,
 name|doc
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -14850,6 +14870,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -15058,6 +15080,8 @@ argument_list|,
 name|doc
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -15706,6 +15730,8 @@ argument_list|,
 name|doc
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -17045,6 +17071,7 @@ name|docIsValid
 operator|=
 literal|false
 expr_stmt|;
+comment|//TODO : emergency exit ?
 block|}
 name|NodeId
 name|parentId
@@ -17476,6 +17503,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -17533,6 +17562,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -17699,6 +17730,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -17886,8 +17919,6 @@ return|return
 name|node
 return|;
 block|}
-else|else
-block|{
 name|LOG
 operator|.
 name|debug
@@ -17941,7 +17972,6 @@ operator|+
 literal|" instead"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// retry based on nodeid
 name|StoredNode
@@ -18229,6 +18259,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -18670,6 +18702,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
@@ -19734,6 +19768,8 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|start
