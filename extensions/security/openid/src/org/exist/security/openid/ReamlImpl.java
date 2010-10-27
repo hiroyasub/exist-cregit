@@ -483,6 +483,23 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Group
+name|getExternalGroup
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
