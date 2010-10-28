@@ -72,6 +72,17 @@ return|return
 name|VERSION
 return|;
 block|}
+specifier|public
+specifier|static
+name|int
+index|[]
+name|getStructuredVersion
+parameter_list|()
+block|{
+return|return
+name|STRUCTURED_VERSION
+return|;
+block|}
 block|}
 end_class
 

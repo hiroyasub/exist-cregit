@@ -151,6 +151,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|EXistException
 import|;
 end_import
@@ -628,6 +638,8 @@ class|class
 name|BrokerPool
 extends|extends
 name|Observable
+implements|implements
+name|Database
 block|{
 specifier|private
 specifier|final
