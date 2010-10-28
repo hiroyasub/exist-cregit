@@ -92,6 +92,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO add in ErrorCode and ErrorVal
 specifier|public
 name|StaticXQueryException
 parameter_list|(
