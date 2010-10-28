@@ -19,6 +19,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|EXistException
 import|;
 end_import
@@ -630,7 +640,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|protected
-name|BrokerPool
+name|Database
 name|getDatabase
 parameter_list|()
 block|{

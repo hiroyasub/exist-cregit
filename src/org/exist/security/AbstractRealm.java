@@ -59,6 +59,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|EXistException
 import|;
 end_import
@@ -366,7 +376,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|BrokerPool
+name|Database
 name|getDatabase
 parameter_list|()
 block|{

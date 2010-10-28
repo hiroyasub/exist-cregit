@@ -95,6 +95,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|EXistException
 import|;
 end_import
@@ -495,7 +505,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-name|BrokerPool
+name|Database
 name|pool
 decl_stmt|;
 specifier|protected
@@ -612,8 +622,8 @@ decl_stmt|;
 specifier|public
 name|SecurityManagerImpl
 parameter_list|(
-name|BrokerPool
-name|pool
+name|Database
+name|db
 parameter_list|)
 throws|throws
 name|ConfigurationException
@@ -622,7 +632,7 @@ name|this
 operator|.
 name|pool
 operator|=
-name|pool
+name|db
 expr_stmt|;
 name|defaultRealm
 operator|=
@@ -1959,7 +1969,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|BrokerPool
+name|Database
 name|getDatabase
 parameter_list|()
 block|{
@@ -2789,6 +2799,7 @@ literal|null
 return|;
 block|}
 comment|//Session management part
+comment|//TODO: validate& remove if session timeout
 name|Map
 argument_list|<
 name|String
