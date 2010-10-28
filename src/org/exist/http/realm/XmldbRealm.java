@@ -1005,7 +1005,11 @@ operator|!
 name|BrokerPool
 operator|.
 name|isConfigured
-argument_list|()
+argument_list|(
+name|BrokerPool
+operator|.
+name|DEFAULT_INSTANCE_NAME
+argument_list|)
 condition|)
 block|{
 name|this
