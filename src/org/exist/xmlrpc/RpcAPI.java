@@ -224,6 +224,12 @@ name|COLUMN
 init|=
 literal|"column"
 decl_stmt|;
+comment|/** 	 * Return the database version. 	 *  	 * @return 	 */
+specifier|public
+name|String
+name|getVersion
+parameter_list|()
+function_decl|;
 comment|/** 	 * Shut down the database immediately. 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 */
 specifier|public
 name|boolean
