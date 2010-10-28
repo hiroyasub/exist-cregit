@@ -94,7 +94,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"&lt; eXist-1.0"
+literal|"pre eXist-1.0"
 decl_stmt|;
 specifier|public
 specifier|final

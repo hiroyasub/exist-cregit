@@ -72,7 +72,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"eXist-1.5.0"
+literal|"eXist-1.5"
 decl_stmt|;
 specifier|private
 specifier|final
