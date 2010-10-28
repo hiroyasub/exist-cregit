@@ -912,275 +912,52 @@ name|testCase
 parameter_list|)
 block|{
 comment|//ignore tests
-if|if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"FunctionCallExpr"
-argument_list|)
-operator|&&
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"K-FunctionCallExpr-11"
-argument_list|)
-condition|)
-return|return;
-if|else if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"SeqCollectionFunc"
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"fn-collection-4d"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"fn-collection-5d"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"fn-collection-9"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"fn-collection-10d"
-argument_list|)
-condition|)
-return|return;
-block|}
-if|else if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"SeqExprCastSI"
-argument_list|)
-operator|&&
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"casthcds9"
-argument_list|)
-condition|)
-block|{
-return|return;
-block|}
-if|else if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"NotationEQSI"
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-5"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-8"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-10"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-11"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-12"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-13"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-14"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-19"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-20"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Comp-notation-21"
-argument_list|)
-condition|)
-return|return;
-block|}
-if|else if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"SchemaImportProlog"
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-1"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-2"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-5"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-9"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-13"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-17"
-argument_list|)
-operator|||
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"schema-import-25"
-argument_list|)
-condition|)
-return|return;
-block|}
-if|else if
-condition|(
-name|testGroup
-operator|.
-name|equals
-argument_list|(
-literal|"STFLWORExpr"
-argument_list|)
-condition|)
-block|{
-comment|/*UNDERSTAND: why it must throw FORG0006?                 The test description:                      Test 'where' clause with heterogenous sequences. First item is a node                 The XQuery 1.0: An XML Query Language (W3C Recommendation 23 January 2007)                 2.4.3 Effective Boolean Value                     If its operand is a sequence whose first item is a node, fn:boolean returns true.              */
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"ST-WhereExpr001"
-argument_list|)
-condition|)
-return|return;
-block|}
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"K2-NodeTest-11"
-argument_list|)
-condition|)
-return|return;
-comment|//Added by p.b. as a quick attempt to work around current blocking code
-if|if
-condition|(
-name|testCase
-operator|.
-name|equals
-argument_list|(
-literal|"Constr-cont-document-3"
-argument_list|)
-condition|)
-return|return;
-comment|//Added by p.b. as a quick attempt to work around current blocking code
+comment|//        if (testGroup.equals("FunctionCallExpr")&& testCase.equals("K-FunctionCallExpr-11"))
+comment|//            return;
+comment|//        else if (testGroup.equals("SeqCollectionFunc")) {
+comment|//            if (testCase.equals("fn-collection-4d")
+comment|//                || testCase.equals("fn-collection-5d")
+comment|//                || testCase.equals("fn-collection-9")
+comment|//                || testCase.equals("fn-collection-10d"))
+comment|//                return;
+comment|//        } else if (testGroup.equals("SeqExprCastSI")&& testCase.equals("casthcds9")) {
+comment|//            return;
+comment|//        } else if (testGroup.equals("NotationEQSI")) {
+comment|//            if (testCase.equals("Comp-notation-5")
+comment|//                || testCase.equals("Comp-notation-8")
+comment|//                || testCase.equals("Comp-notation-10")
+comment|//                || testCase.equals("Comp-notation-11")
+comment|//                || testCase.equals("Comp-notation-12")
+comment|//                || testCase.equals("Comp-notation-13")
+comment|//                || testCase.equals("Comp-notation-14")
+comment|//                || testCase.equals("Comp-notation-19")
+comment|//                || testCase.equals("Comp-notation-20")
+comment|//                || testCase.equals("Comp-notation-21"))
+comment|//                return;
+comment|//        } else if (testGroup.equals("SchemaImportProlog")) {
+comment|//            if (testCase.equals("schema-import-1")
+comment|//                || testCase.equals("schema-import-2")
+comment|//                || testCase.equals("schema-import-5")
+comment|//                || testCase.equals("schema-import-9")
+comment|//                || testCase.equals("schema-import-13")
+comment|//                || testCase.equals("schema-import-17")
+comment|//                || testCase.equals("schema-import-25"))
+comment|//                return;
+comment|//        } else if (testGroup.equals("STFLWORExpr")) {
+comment|//            /*UNDERSTAND: why it must throw FORG0006?
+comment|//                The test description:
+comment|//                    Test 'where' clause with heterogenous sequences. First item is a node
+comment|//                The XQuery 1.0: An XML Query Language (W3C Recommendation 23 January 2007)
+comment|//                2.4.3 Effective Boolean Value
+comment|//                    If its operand is a sequence whose first item is a node, fn:boolean returns true.
+comment|//            */
+comment|//            if (testCase.equals("ST-WhereExpr001"))
+comment|//                return;
+comment|//        }
+comment|//        if (testCase.equals("K2-NodeTest-11"))
+comment|//            return; //Added by p.b. as a quick attempt to work around current blocking code
+comment|//        if (testCase.equals("Constr-cont-document-3"))
+comment|//            return; //Added by p.b. as a quick attempt to work around current blocking code
 try|try
 block|{
 name|XQueryService
@@ -1989,6 +1766,19 @@ operator|!
 name|ok
 condition|)
 block|{
+name|StringBuilder
+name|message
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+comment|//do not sysout extected& getted results (temporarily)
+if|if
+condition|(
+literal|false
+condition|)
+block|{
 name|String
 name|exp
 init|=
@@ -2257,13 +2047,6 @@ literal|"\n"
 argument_list|)
 expr_stmt|;
 block|}
-name|StringBuilder
-name|message
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
 name|message
 operator|.
 name|append
@@ -2345,6 +2128,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 name|Assert
 operator|.
 name|fail
