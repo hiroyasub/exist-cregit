@@ -3990,6 +3990,7 @@ return|return
 name|broker
 return|;
 block|}
+comment|//Seems dangerous and redundant as you myst acquire a broker yourself first, just use broker.setUser()
 specifier|public
 name|boolean
 name|setSubject
@@ -4040,6 +4041,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|//Seems dangerous and redundant as you myst acquire a broker yourself first, just use broker.getUser()
 specifier|public
 name|Subject
 name|getSubject
