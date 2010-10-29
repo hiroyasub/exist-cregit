@@ -678,9 +678,11 @@ name|setHeader
 argument_list|(
 literal|"Content-Disposition"
 argument_list|,
-literal|"inline; filename="
+literal|"inline; filename=\""
 operator|+
 name|filename
+operator|+
+literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
