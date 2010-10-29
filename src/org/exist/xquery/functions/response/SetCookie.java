@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist team  *  http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist team  *  http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,28 +16,6 @@ operator|.
 name|response
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|Duration
-import|;
-end_import
 
 begin_import
 import|import
@@ -183,7 +161,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|DurationValue
+name|BooleanValue
 import|;
 end_import
 
@@ -197,7 +175,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|BooleanValue
+name|DurationValue
 import|;
 end_import
 
@@ -285,8 +263,30 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|datatype
+operator|.
+name|Duration
+import|;
+end_import
+
 begin_comment
-comment|/**  * Set's a HTTP Cookie on the HTTP Response  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  *   * @see org.exist.xquery.Function  */
+comment|/**  * Set's a HTTP Cookie on the HTTP Response.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  * @author  JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  * @see     org.exist.xquery.Function  */
 end_comment
 
 begin_class
@@ -605,7 +605,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -752,19 +752,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|var
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|var
 operator|.
 name|getValue
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -772,6 +777,7 @@ name|this
 argument_list|,
 literal|"Response not set"
 argument_list|)
+operator|)
 throw|;
 block|}
 if|if
@@ -790,6 +796,7 @@ name|JAVA_OBJECT
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -797,6 +804,7 @@ name|this
 argument_list|,
 literal|"Variable $response is not bound to a Java object."
 argument_list|)
+operator|)
 throw|;
 block|}
 name|JavaObjectValue
@@ -1031,6 +1039,7 @@ block|{
 case|case
 literal|2
 case|:
+block|{
 operator|(
 operator|(
 name|ResponseWrapper
@@ -1049,9 +1058,11 @@ name|value
 argument_list|)
 expr_stmt|;
 break|break;
+block|}
 case|case
 literal|4
 case|:
+block|{
 if|if
 condition|(
 name|secureSeq
@@ -1118,9 +1129,11 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
+block|}
 case|case
 literal|6
 case|:
+block|{
 name|boolean
 name|secure
 init|=
@@ -1235,9 +1248,11 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+block|}
 else|else
 block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1245,12 +1260,15 @@ name|this
 argument_list|,
 literal|"Type error: variable $response is not bound to a response object"
 argument_list|)
+operator|)
 throw|;
 block|}
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}

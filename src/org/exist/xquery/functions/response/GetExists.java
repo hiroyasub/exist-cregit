@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: GetExists.java 2436 2006-01-07 21:47:15 +0000 (Sat, 07 Jan 2006) brihaye $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id: GetExists.java 2436 2006-01-07 21:47:15 +0000 (Sat, 07 Jan 2006) brihaye $  */
 end_comment
 
 begin_package
@@ -170,7 +170,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Andrzej Taramina<andrzej@chaeron.com>  */
+comment|/**  * DOCUMENT ME!  *  * @author  Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
 
 begin_class
@@ -239,7 +239,7 @@ literal|"true if the response object exists"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * Creates a new GetExists object.      *      * @param  context      */
 specifier|public
 name|GetExists
 parameter_list|(
@@ -255,7 +255,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -307,16 +307,20 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|var
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|var
 operator|.
 name|getValue
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 name|exists

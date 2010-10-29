@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2006-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2006-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module function definitions for xmldb module.  *  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
+comment|/**  * Module function definitions for xmldb module.  *  * @author  Adam Retter (adam.retter@devon.gov.uk)  * @author  ljo  * @author  JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
 end_comment
 
 begin_class
@@ -270,34 +270,40 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDescription() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
 specifier|public
 name|String
 name|getDescription
 parameter_list|()
 block|{
 return|return
+operator|(
 literal|"A module for dealing with HTTP responses."
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
 specifier|public
 name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
+operator|(
 name|NAMESPACE_URI
+operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
 specifier|public
 name|String
 name|getDefaultPrefix
 parameter_list|()
 block|{
 return|return
+operator|(
 name|PREFIX
+operator|)
 return|;
 block|}
 specifier|public
@@ -306,7 +312,9 @@ name|getReleaseVersion
 parameter_list|()
 block|{
 return|return
+operator|(
 name|RELEASED_IN_VERSION
+operator|)
 return|;
 block|}
 block|}

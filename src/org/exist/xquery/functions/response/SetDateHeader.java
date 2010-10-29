@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -250,7 +250,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set's a HTTP header on the HTTP Response  *   * @author Adam Retter<adam.retter@devon.gov.uk>  *   * @see org.exist.xquery.Function  */
+comment|/**  * Set's a HTTP header on the HTTP Response.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  * @see     org.exist.xquery.Function  */
 end_comment
 
 begin_class
@@ -381,7 +381,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -448,6 +448,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -466,12 +467,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -493,6 +496,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|ResponseModule
 name|myModule
@@ -524,18 +528,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|(
 name|var
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|var
 operator|.
 name|getValue
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -543,7 +553,9 @@ name|this
 argument_list|,
 literal|"Response not set"
 argument_list|)
+operator|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -558,7 +570,9 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -566,7 +580,9 @@ name|this
 argument_list|,
 literal|"Variable $response is not bound to a Java object."
 argument_list|)
+operator|)
 throw|;
+block|}
 name|JavaObjectValue
 name|response
 init|=
@@ -640,6 +656,7 @@ argument_list|()
 operator|instanceof
 name|ResponseWrapper
 condition|)
+block|{
 operator|(
 operator|(
 name|ResponseWrapper
@@ -657,8 +674,11 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
+operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -666,11 +686,15 @@ name|this
 argument_list|,
 literal|"Type error: variable $response is not bound to a response object"
 argument_list|)
+operator|)
 throw|;
+block|}
 return|return
+operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+operator|)
 return|;
 block|}
 block|}
