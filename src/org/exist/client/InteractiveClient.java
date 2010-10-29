@@ -3214,15 +3214,10 @@ name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
-name|URIUtils
-operator|.
-name|urlEncodeUtf8
-argument_list|(
 name|args
 index|[
 literal|1
 index|]
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
