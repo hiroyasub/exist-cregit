@@ -1080,11 +1080,6 @@ specifier|final
 name|Server
 name|server
 decl_stmt|;
-name|int
-name|port
-init|=
-literal|8080
-decl_stmt|;
 try|try
 block|{
 name|server
@@ -1215,27 +1210,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|connectors
-operator|.
-name|length
-operator|>
-literal|0
-condition|)
-block|{
-name|port
-operator|=
-name|connectors
-index|[
-literal|0
-index|]
-operator|.
-name|getPort
-argument_list|()
-expr_stmt|;
-block|}
-comment|//TODO: use plaggable interface
+comment|//TODO: use pluggable interface
 name|Class
 argument_list|<
 name|?

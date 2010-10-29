@@ -10375,27 +10375,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|modExternal
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|(
-operator|new
-name|XPathException
-argument_list|(
-literal|"source at "
-operator|+
-name|location
-operator|+
-literal|" is not a valid module"
-argument_list|)
-operator|)
-throw|;
-block|}
-if|if
-condition|(
 operator|!
 name|modExternal
 operator|.
