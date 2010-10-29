@@ -119,6 +119,15 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|qname
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
