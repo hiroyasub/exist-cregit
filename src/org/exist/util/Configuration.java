@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -3707,6 +3707,11 @@ name|jobRepeat
 init|=
 literal|null
 decl_stmt|;
+name|String
+name|jobUnschedule
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -3838,6 +3843,25 @@ name|JOB_PERIOD_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|jobUnschedule
+operator|==
+literal|null
+condition|)
+block|{
+name|jobUnschedule
+operator|=
+name|getConfigAttributeValue
+argument_list|(
+name|job
+argument_list|,
+name|Scheduler
+operator|.
+name|JOB_UNSCHEDULE_ON_EXCEPTION
+argument_list|)
+expr_stmt|;
+block|}
 comment|//create the job config
 try|try
 block|{
@@ -3854,6 +3878,8 @@ argument_list|,
 name|jobResource
 argument_list|,
 name|jobSchedule
+argument_list|,
+name|jobUnschedule
 argument_list|)
 decl_stmt|;
 comment|//get and set the job delay
@@ -8888,6 +8914,12 @@ operator|.
 name|REPEAT_INDEFINITELY
 decl_stmt|;
 specifier|private
+name|boolean
+name|unscheduleOnException
+init|=
+literal|true
+decl_stmt|;
+specifier|private
 name|Properties
 name|parameters
 init|=
@@ -8909,6 +8941,9 @@ name|resourceName
 parameter_list|,
 name|String
 name|schedule
+parameter_list|,
+name|String
+name|unscheduleOnException
 parameter_list|)
 throws|throws
 name|JobException
@@ -9014,6 +9049,25 @@ operator|.
 name|schedule
 operator|=
 name|schedule
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|unscheduleOnException
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|unscheduleOnException
+operator|=
+name|parseBoolean
+argument_list|(
+name|unscheduleOnException
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -9143,6 +9197,15 @@ return|return
 operator|(
 name|parameters
 operator|)
+return|;
+block|}
+specifier|public
+name|boolean
+name|unscheduleOnException
+parameter_list|()
+block|{
+return|return
+name|unscheduleOnException
 return|;
 block|}
 block|}
