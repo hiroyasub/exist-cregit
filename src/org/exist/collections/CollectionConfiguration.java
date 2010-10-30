@@ -461,7 +461,11 @@ init|=
 operator|new
 name|TriggerConfig
 index|[
-literal|6
+name|Trigger
+operator|.
+name|MAX_EVENT
+operator|+
+literal|1
 index|]
 decl_stmt|;
 specifier|private
