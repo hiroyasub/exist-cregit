@@ -99,6 +99,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
+name|TriggerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -241,6 +255,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 block|{
 name|super
 operator|.
@@ -256,7 +272,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare.      * Wraps for cluster the resultant collection in a ClusterCollection      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param uri The collection's URI 	 * @return The collection or<code>null</code> if no collection matches the path 	 * @throws PermissionDeniedException 	 * @throws IOException 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare.      * Wraps for cluster the resultant collection in a ClusterCollection      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param uri The collection's URI 	 * @return The collection or<code>null</code> if no collection matches the path 	 * @throws PermissionDeniedException 	 * @throws IOException 	 * @throws TriggerException  	 */
 specifier|public
 name|Collection
 name|getOrCreateCollection
@@ -271,6 +287,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 block|{
 name|Collection
 name|c

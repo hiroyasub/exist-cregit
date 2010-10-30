@@ -95,6 +95,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Serializable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -178,6 +188,8 @@ name|Comparable
 argument_list|<
 name|Object
 argument_list|>
+implements|,
+name|Serializable
 block|{
 specifier|protected
 specifier|final

@@ -386,6 +386,101 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|String
+name|COLLECTION_CONFIG_FOR_COLLECTIONS_EVENTS
+init|=
+literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.0'>"
+operator|+
+literal|"<exist:triggers>"
+operator|+
+literal|"<exist:trigger event='create-collection'"
+operator|+
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+operator|+
+literal|"<exist:parameter name='query' "
+operator|+
+literal|"			value=\"import module namespace log = 'log' at '"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|MODULE_COLLECTION_NAME
+operator|+
+literal|"';"
+operator|+
+literal|"log:log('trigger4')\" />"
+operator|+
+literal|"<exist:parameter name='bindingPrefix' value='log'/>"
+operator|+
+literal|"        />"
+operator|+
+literal|"</exist:trigger>"
+operator|+
+literal|"<exist:trigger event='rename-collection'"
+operator|+
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+operator|+
+literal|"<exist:parameter name='query' "
+operator|+
+literal|"			value=\"import module namespace log = 'log' at '"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|MODULE_COLLECTION_NAME
+operator|+
+literal|"';"
+operator|+
+literal|"log:log('trigger5')\" />"
+operator|+
+literal|"<exist:parameter name=\"bindingPrefix\" value=\"log\"/>"
+operator|+
+literal|"        />"
+operator|+
+literal|"</exist:trigger>"
+operator|+
+literal|"<exist:trigger event='delete-collection'"
+operator|+
+literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+operator|+
+literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|MODULE_COLLECTION_NAME
+operator|+
+literal|"';"
+operator|+
+literal|"log:log('trigger6')\"/>"
+operator|+
+literal|"<exist:parameter name='bindingPrefix' value='log' />"
+operator|+
+literal|"        />"
+operator|+
+literal|"</exist:trigger>"
+operator|+
+literal|"</exist:triggers>"
+operator|+
+literal|"</exist:collection>"
+decl_stmt|;
+specifier|private
+specifier|final
+name|String
 name|EMPTY_COLLECTION_CONFIG
 init|=
 literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.0'>"
@@ -495,6 +590,14 @@ name|MODULE_NAME
 init|=
 literal|"XQueryTriggerLogger.xqm"
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|MODULE_COLLECTION_NAME
+init|=
+literal|"XQueryCollectionTriggerLogger.xqm"
+decl_stmt|;
 comment|/** XQuery module implementing the trigger under test;       * the log() XQuery function will add an<event> element inside<events> element */
 specifier|private
 specifier|final
@@ -569,6 +672,78 @@ operator|+
 literal|")"
 operator|+
 literal|"};"
+decl_stmt|;
+comment|/** XQuery module implementing the trigger under test;       * the log() XQuery function will add an<event> element inside<events> element */
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|MODULE_COLLECTION
+init|=
+literal|"module namespace log='log'; "
+operator|+
+literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
+operator|+
+literal|"declare variable $log:eventType external;"
+operator|+
+literal|"declare variable $log:collectionName external;"
+operator|+
+literal|"declare variable $log:triggerEvent external;"
+operator|+
+literal|"declare function log:log($id as xs:string?) {"
+operator|+
+literal|"let $isLoggedIn := xmldb:login('"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"', 'admin', '') return "
+operator|+
+literal|"xmldb:update("
+operator|+
+literal|"'"
+operator|+
+name|URI
+operator|+
+literal|"/"
+operator|+
+name|TEST_COLLECTION
+operator|+
+literal|"', "
+operator|+
+literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
+operator|+
+literal|"<xu:append select='/events'>"
+operator|+
+literal|"<xu:element name='event'>"
+operator|+
+literal|"<xu:attribute name='id'>{$id}</xu:attribute>"
+operator|+
+literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
+operator|+
+literal|"<xu:attribute name='type'>{$log:eventType}</xu:attribute>"
+operator|+
+literal|"<xu:element name='collectionName'>{$log:collectionName}</xu:element>"
+operator|+
+literal|"<xu:element name='triggerEvent'>{$log:triggerEvent}</xu:element>"
+operator|+
+literal|"</xu:element>"
+operator|+
+literal|"</xu:append>"
+operator|+
+literal|"</xu:modifications>"
+operator|+
+literal|")"
+operator|+
+literal|"};"
+decl_stmt|;
+specifier|private
+specifier|static
+name|Collection
+name|root
 decl_stmt|;
 specifier|private
 specifier|static
@@ -654,9 +829,8 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
-name|Collection
 name|root
-init|=
+operator|=
 name|DatabaseManager
 operator|.
 name|getCollection
@@ -667,7 +841,7 @@ literal|"admin"
 argument_list|,
 literal|""
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|CollectionManagementService
 name|service
 init|=
@@ -914,6 +1088,49 @@ operator|.
 name|setContent
 argument_list|(
 name|MODULE
+operator|.
+name|getBytes
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|testCollection
+operator|.
+name|storeResource
+argument_list|(
+name|module
+argument_list|)
+expr_stmt|;
+name|module
+operator|=
+operator|(
+name|BinaryResource
+operator|)
+name|testCollection
+operator|.
+name|createResource
+argument_list|(
+name|MODULE_COLLECTION_NAME
+argument_list|,
+literal|"BinaryResource"
+argument_list|)
+expr_stmt|;
+operator|(
+operator|(
+name|EXistResource
+operator|)
+name|module
+operator|)
+operator|.
+name|setMimeType
+argument_list|(
+literal|"application/xquery"
+argument_list|)
+expr_stmt|;
+name|module
+operator|.
+name|setContent
+argument_list|(
+name|MODULE_COLLECTION
 operator|.
 name|getBytes
 argument_list|()
@@ -2166,6 +2383,136 @@ block|}
 catch|catch
 parameter_list|(
 name|Exception
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** test a trigger fired by a Collection manipulations */
+annotation|@
+name|Test
+specifier|public
+name|void
+name|createCollection
+parameter_list|()
+block|{
+name|IndexQueryService
+name|idxConf
+decl_stmt|;
+try|try
+block|{
+name|idxConf
+operator|=
+operator|(
+name|IndexQueryService
+operator|)
+name|root
+operator|.
+name|getService
+argument_list|(
+literal|"IndexQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+expr_stmt|;
+name|idxConf
+operator|.
+name|configureCollection
+argument_list|(
+name|COLLECTION_CONFIG_FOR_COLLECTIONS_EVENTS
+argument_list|)
+expr_stmt|;
+name|CollectionManagementService
+name|service
+init|=
+operator|(
+name|CollectionManagementService
+operator|)
+name|testCollection
+operator|.
+name|getService
+argument_list|(
+literal|"CollectionManagementService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|Collection
+name|collection
+init|=
+name|service
+operator|.
+name|createCollection
+argument_list|(
+literal|"test"
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
+comment|// remove the trigger for the Collection under test
+name|idxConf
+operator|.
+name|configureCollection
+argument_list|(
+name|EMPTY_COLLECTION_CONFIG
+argument_list|)
+expr_stmt|;
+name|XPathQueryService
+name|query
+init|=
+operator|(
+name|XPathQueryService
+operator|)
+name|root
+operator|.
+name|getService
+argument_list|(
+literal|"XPathQueryService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+comment|//TODO: wrong - it should be 'trigger4' (create)
+name|ResourceSet
+name|result
+init|=
+name|query
+operator|.
+name|query
+argument_list|(
+literal|"/events/event[@id = 'trigger5']"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
 name|e
 parameter_list|)
 block|{

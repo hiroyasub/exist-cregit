@@ -65,6 +65,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
+name|TriggerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|*
@@ -568,6 +582,12 @@ specifier|protected
 name|IndexController
 name|indexController
 decl_stmt|;
+comment|//TODO: remove after interface it
+specifier|public
+name|DBBroker
+parameter_list|()
+block|{
+block|}
 specifier|public
 name|DBBroker
 parameter_list|(
@@ -856,7 +876,7 @@ name|lockMode
 parameter_list|)
 function_decl|;
 comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @return collection or null if no collection matches the path 	 *  	 * deprecated Use XmldbURI instead! 	 *  	 * public Collection getOrCreateCollection(Txn transaction, String name) 	 * throws PermissionDeniedException { return null; } 	 */
-comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param uri The collection's URI 	 * @return The collection or<code>null</code> if no collection matches the path 	 * @throws PermissionDeniedException 	 * @throws IOException 	 */
+comment|/** 	 * Returns the database collection identified by the specified path. If the 	 * collection does not yet exist, it is created - including all ancestors. 	 * The path should be absolute, e.g. /db/shakespeare. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param uri The collection's URI 	 * @return The collection or<code>null</code> if no collection matches the path 	 * @throws PermissionDeniedException 	 * @throws IOException 	 * @throws TriggerException  	 */
 specifier|public
 specifier|abstract
 name|Collection
@@ -872,6 +892,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
 comment|/** 	 * Returns the configuration object used to initialize the current database 	 * instance. 	 *  	 */
 specifier|public
@@ -1013,7 +1035,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove the collection and all its subcollections from the database. 	 *  	 */
+comment|/** 	 * Remove the collection and all its subcollections from the database. 	 *  	 * @throws PermissionDeniedException  	 * @throws IOException  	 * @throws TriggerException  	 *  	 */
 specifier|public
 specifier|abstract
 name|boolean
@@ -1029,6 +1051,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
 comment|/** 	 * Remove a document from the database. 	 *  	 */
 specifier|public
@@ -1091,7 +1115,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached      * in memory. If a collection is modified, this method needs to be called to      * make the changes persistent. Note: appending a new document to a      * collection does not require a save.       *       * @param transaction       * @param collection Collection to store      * @throws org.exist.security.PermissionDeniedException       */
+comment|/**      * Saves the specified collection to storage. Collections are usually cached      * in memory. If a collection is modified, this method needs to be called to      * make the changes persistent. Note: appending a new document to a      * collection does not require a save.       *       * @param transaction       * @param collection Collection to store      * @throws org.exist.security.PermissionDeniedException  	 * @throws IOException  	 * @throws TriggerException       */
 specifier|public
 specifier|abstract
 name|void
@@ -1107,6 +1131,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
 specifier|public
 name|void
@@ -1347,7 +1373,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 */
+comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1371,8 +1397,10 @@ throws|,
 name|LockException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 */
+comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1396,8 +1424,10 @@ throws|,
 name|LockException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *  	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 * @throws TriggerException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1421,6 +1451,8 @@ throws|,
 name|LockException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 function_decl|;
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public

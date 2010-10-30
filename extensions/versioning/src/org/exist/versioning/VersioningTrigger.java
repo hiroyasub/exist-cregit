@@ -737,6 +737,9 @@ argument_list|<
 name|String
 argument_list|,
 name|List
+argument_list|<
+name|?
+argument_list|>
 argument_list|>
 name|parameters
 parameter_list|)
@@ -1442,6 +1445,27 @@ operator|.
 name|warn
 argument_list|(
 literal|"Permission denied in VersioningTrigger: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|TriggerException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Caught exception in VersioningTrigger: "
 operator|+
 name|e
 operator|.
@@ -2167,6 +2191,8 @@ throws|throws
 name|IOException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|TriggerException
 block|{
 name|XmldbURI
 name|path

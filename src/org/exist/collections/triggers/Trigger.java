@@ -124,11 +124,22 @@ name|CREATE_COLLECTION_EVENT
 init|=
 literal|3
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use UPDATE_COLLECTION_EVENT
 specifier|public
 specifier|final
 specifier|static
 name|int
 name|RENAME_COLLECTION_EVENT
+init|=
+literal|4
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|UPDATE_COLLECTION_EVENT
 init|=
 literal|4
 decl_stmt|;
@@ -156,6 +167,11 @@ argument_list|<
 name|String
 argument_list|,
 name|List
+argument_list|<
+name|?
+extends|extends
+name|Object
+argument_list|>
 argument_list|>
 name|parameters
 parameter_list|)

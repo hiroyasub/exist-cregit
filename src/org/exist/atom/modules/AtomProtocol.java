@@ -5054,6 +5054,8 @@ throws|,
 name|EXistException
 throws|,
 name|IOException
+throws|,
+name|TriggerException
 block|{
 name|XmldbURI
 name|pathUri

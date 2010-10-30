@@ -1779,6 +1779,22 @@ name|e
 argument_list|)
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ClusterException
+argument_list|(
+literal|"unable to retrieve the journal id "
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 specifier|private
 name|void
