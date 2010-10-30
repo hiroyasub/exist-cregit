@@ -1923,8 +1923,8 @@ parameter_list|,
 name|Collection
 name|collection
 parameter_list|,
-name|String
-name|newName
+name|Collection
+name|newCollection
 parameter_list|)
 throws|throws
 name|TriggerException
@@ -2286,8 +2286,8 @@ parameter_list|,
 name|Collection
 name|collection
 parameter_list|,
-name|String
-name|newName
+name|Collection
+name|newCollection
 parameter_list|)
 block|{
 name|LOG

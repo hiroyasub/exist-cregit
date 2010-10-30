@@ -2488,7 +2488,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//TODO: wrong - it should be 'trigger4' (create)
 name|ResourceSet
 name|result
 init|=
@@ -2496,12 +2495,12 @@ name|query
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger5']"
+literal|"/events/event[@id = 'trigger4']"
 argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|4
+literal|2
 argument_list|,
 name|result
 operator|.
