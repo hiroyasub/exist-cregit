@@ -103,13 +103,17 @@ name|communicator1
 operator|=
 operator|new
 name|Communicator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 name|communicator2
 operator|=
 operator|new
 name|Communicator
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
@@ -166,7 +170,7 @@ argument_list|)
 expr_stmt|;
 name|communicator1
 operator|.
-name|create
+name|createDocument
 argument_list|(
 name|XmldbURI
 operator|.
@@ -178,7 +182,7 @@ argument_list|)
 expr_stmt|;
 name|communicator2
 operator|.
-name|create
+name|createDocument
 argument_list|(
 name|XmldbURI
 operator|.
@@ -190,7 +194,7 @@ argument_list|)
 expr_stmt|;
 name|communicator1
 operator|.
-name|delete
+name|deleteDocument
 argument_list|(
 name|XmldbURI
 operator|.

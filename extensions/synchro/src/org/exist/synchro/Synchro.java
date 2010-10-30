@@ -238,7 +238,7 @@ name|startsWith
 argument_list|(
 name|cluster
 operator|.
-name|collection
+name|collectionURI
 argument_list|)
 condition|)
 return|return
