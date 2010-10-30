@@ -309,7 +309,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: the first operand must have at most one item"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"The first operand must have at most one item"
+argument_list|,
+name|startSeq
 argument_list|)
 throw|;
 if|else if
@@ -325,7 +331,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: the second operand must have at most one item"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"The second operand must have at most one item"
+argument_list|,
+name|endSeq
 argument_list|)
 throw|;
 else|else
@@ -376,7 +388,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -417,6 +433,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|startSeq
 argument_list|)
 throw|;
 block|}
@@ -458,7 +476,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -499,6 +521,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|endSeq
 argument_list|)
 throw|;
 block|}
@@ -517,7 +541,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -558,6 +586,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|startSeq
 argument_list|)
 throw|;
 block|}
@@ -576,7 +606,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -617,6 +651,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|endSeq
 argument_list|)
 throw|;
 block|}
@@ -713,7 +749,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -754,6 +794,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|startSeq
 argument_list|)
 throw|;
 comment|//Quite unusual test : we accept integers but no other *typed* type
@@ -811,7 +853,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0006: Required type is "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -852,6 +898,8 @@ name|getStringValue
 argument_list|()
 operator|+
 literal|")'"
+argument_list|,
+name|endSeq
 argument_list|)
 throw|;
 name|IntegerValue

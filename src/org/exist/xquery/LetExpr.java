@@ -1344,7 +1344,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid cardinality for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid cardinality for variable $"
 operator|+
 name|varName
 operator|+
@@ -1368,6 +1372,8 @@ name|getDescription
 argument_list|(
 name|actualCardinality
 argument_list|)
+argument_list|,
+name|in
 argument_list|)
 throw|;
 comment|//TODO : ignore nodes right now ; they are returned as xs:untypedAtomicType
@@ -1425,7 +1431,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -1455,6 +1465,8 @@ operator|.
 name|getItemType
 argument_list|()
 argument_list|)
+argument_list|,
+name|in
 argument_list|)
 throw|;
 comment|//Here is an attempt to process the nodes correctly
@@ -1498,7 +1510,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -1528,6 +1544,8 @@ operator|.
 name|getItemType
 argument_list|()
 argument_list|)
+argument_list|,
+name|in
 argument_list|)
 throw|;
 block|}

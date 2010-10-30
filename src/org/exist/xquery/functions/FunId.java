@@ -437,6 +437,18 @@ name|TreeSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author wolf  * @author perig  *  */
 end_comment
@@ -868,7 +880,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPDY0002: no node or context item for fn:id"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+operator|+
+literal|" No node or context item for fn:id"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -877,7 +893,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
 literal|"XPDY0002: no node or context item for fn:id"
+argument_list|,
+name|nodes
 argument_list|)
 throw|;
 block|}
@@ -908,7 +930,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPTY0004: fn:id() argument is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+operator|+
+literal|" fn:id() argument is not a node"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -917,7 +943,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
 literal|"XPTY0004: fn:id() argument is not a node"
+argument_list|,
+name|nodes
 argument_list|)
 throw|;
 block|}
@@ -997,7 +1029,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPDY0002: no context item specified"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+operator|+
+literal|" No context item specified"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1006,7 +1042,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002: no context item specified"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"No context item specified"
 argument_list|)
 throw|;
 block|}
@@ -1032,7 +1072,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"XPTY0004: context item is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+operator|+
+literal|" Context item is not a node"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1041,7 +1085,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: context item is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Context item is not a node"
+argument_list|,
+name|contextSequence
 argument_list|)
 throw|;
 block|}

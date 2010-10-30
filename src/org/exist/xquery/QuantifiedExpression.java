@@ -493,7 +493,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -520,6 +524,8 @@ operator|.
 name|getItemType
 argument_list|()
 argument_list|)
+argument_list|,
+name|inSeq
 argument_list|)
 throw|;
 block|}
@@ -701,7 +707,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -731,6 +741,8 @@ operator|.
 name|getItemType
 argument_list|()
 argument_list|)
+argument_list|,
+name|inSeq
 argument_list|)
 throw|;
 block|}
@@ -757,7 +769,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
@@ -783,6 +799,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|inSeq
 argument_list|)
 throw|;
 comment|//trigger the old behaviour

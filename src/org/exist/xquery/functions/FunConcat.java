@@ -117,6 +117,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Expression
 import|;
 end_import
@@ -690,7 +702,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0017: concat requires at least two arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Concat requires at least two arguments"
 argument_list|)
 throw|;
 block|}

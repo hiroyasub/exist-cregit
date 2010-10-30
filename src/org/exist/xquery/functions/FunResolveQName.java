@@ -129,6 +129,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -802,11 +814,20 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|FONS0004
+argument_list|,
 literal|"No namespace found for prefix. No binding for prefix '"
 operator|+
 name|prefix
 operator|+
-literal|"' was found. err:FONS0004"
+literal|"' was found."
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
 argument_list|)
 throw|;
 block|}
@@ -890,11 +911,20 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|FOCA0002
+argument_list|,
 literal|"Invalid lexical value. '"
 operator|+
 name|qnameString
 operator|+
-literal|"' is not a QName. err:FOCA0002"
+literal|"' is not a QName."
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
 argument_list|)
 throw|;
 block|}

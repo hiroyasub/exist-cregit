@@ -95,6 +95,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -606,7 +618,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002: Undefined context item"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"Undefined context item"
 argument_list|)
 throw|;
 if|if
@@ -693,11 +709,17 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FOTY0011: item is not a node; got '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Item is not a node; got '"
 operator|+
 name|item
 operator|+
 literal|"'"
+argument_list|,
+name|seq
 argument_list|)
 throw|;
 name|Sequence

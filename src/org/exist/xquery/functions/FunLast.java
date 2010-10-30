@@ -59,6 +59,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -419,7 +431,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPDY0002: undefined context item"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"undefined context item"
 argument_list|)
 throw|;
 if|else if

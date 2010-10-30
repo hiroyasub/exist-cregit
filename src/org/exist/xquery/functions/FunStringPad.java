@@ -227,7 +227,13 @@ begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
+begin_comment
+comment|//fn:string-pad() is not part of the W3C spec
+end_comment
+
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|FunStringPad
@@ -309,6 +315,8 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the duplicated string"
 argument_list|)
+argument_list|,
+literal|"fn:string-pad(...) is not part of the W3C specification."
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */

@@ -59,6 +59,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -512,7 +524,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPDY0002 : undefined context sequence for '"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"Undefined context sequence for '"
 operator|+
 name|this
 operator|.
@@ -520,6 +536,8 @@ name|toString
 argument_list|()
 operator|+
 literal|"'"
+argument_list|,
+name|contextSequence
 argument_list|)
 throw|;
 comment|// no argument and the context sequence is empty: return the empty sequence

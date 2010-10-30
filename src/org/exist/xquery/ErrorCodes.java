@@ -1771,6 +1771,15 @@ operator|=
 name|description
 expr_stmt|;
 block|}
+specifier|public
+name|QName
+name|getErrorQName
+parameter_list|()
+block|{
+return|return
+name|errorQName
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

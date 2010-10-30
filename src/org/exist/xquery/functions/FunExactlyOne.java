@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -465,7 +477,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0005: fn:exactly-one called with a sequence containing "
+name|ErrorCodes
+operator|.
+name|FOCA0005
+argument_list|,
+literal|"fn:exactly-one called with a sequence containing "
 operator|+
 name|result
 operator|.
@@ -473,6 +489,8 @@ name|getItemCount
 argument_list|()
 operator|+
 literal|" items"
+argument_list|,
+name|result
 argument_list|)
 throw|;
 block|}

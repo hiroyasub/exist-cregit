@@ -485,6 +485,17 @@ name|conditional
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitTryCatch
+parameter_list|(
+name|TryCatchExpression
+name|conditional
+parameter_list|)
+block|{
+block|}
 specifier|public
 name|void
 name|visitElementConstructor

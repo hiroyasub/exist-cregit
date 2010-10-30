@@ -83,6 +83,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -258,6 +270,20 @@ operator|.
 name|value
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
 import|;
 end_import
 
@@ -493,7 +519,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: expected at most one xs:date"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Expected at most one xs:date"
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
 argument_list|)
 throw|;
 if|else if
@@ -512,7 +547,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: expected at most one xs:time"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Expected at most one xs:time"
+argument_list|,
+name|args
+index|[
+literal|1
+index|]
 argument_list|)
 throw|;
 else|else
@@ -617,22 +661,50 @@ operator|)
 argument_list|)
 condition|)
 block|{
+name|ValueSequence
+name|argsSeq
+init|=
+operator|new
+name|ValueSequence
+argument_list|(
+name|args
+index|[
+literal|0
+index|]
+argument_list|)
+decl_stmt|;
+name|argsSeq
+operator|.
+name|addAll
+argument_list|(
+name|args
+index|[
+literal|2
+index|]
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORG0008: operands have different timezones"
+name|ErrorCodes
+operator|.
+name|FORG0008
+argument_list|,
+literal|"Operands have different timezones"
+argument_list|,
+name|argsSeq
 argument_list|)
 throw|;
 block|}
 block|}
-comment|/* else {     				if (!((DayTimeDurationValue)dv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     	        		throw new XPathException(this, "FORG0008: operands have different timezones");     			} */
+comment|/* else {     				if (!((DayTimeDurationValue)dv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     	        		throw new XPathException(this, ErrorCodes.FORG0008, "Operands have different timezones");     			} */
 block|}
 else|else
 block|{
-comment|/*     			if (!tv.getTimezone().isEmpty()) {     				if (!((DayTimeDurationValue)tv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     					throw new XPathException(this, "FORG0008: operands have different timezones");     			}     			*/
+comment|/*     			if (!tv.getTimezone().isEmpty()) {     				if (!((DayTimeDurationValue)tv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     					throw new XPathException(this, ErrorCodes.FORG0008, "Operands have different timezones");     			}     			*/
 block|}
 name|String
 name|dtv

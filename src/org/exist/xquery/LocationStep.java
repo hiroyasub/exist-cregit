@@ -1125,7 +1125,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0005: get nothing from self::"
+name|ErrorCodes
+operator|.
+name|XPST0005
+argument_list|,
+literal|"Got nothing from self::"
 operator|+
 name|getTest
 argument_list|()
@@ -1171,7 +1175,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0005: self::"
+name|ErrorCodes
+operator|.
+name|XPST0005
+argument_list|,
+literal|"Self::"
 operator|+
 name|getTest
 argument_list|()
@@ -1252,7 +1260,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0005: descendant-or-self::"
+name|ErrorCodes
+operator|.
+name|XPST0005
+argument_list|,
+literal|"Descendant-or-self::"
 operator|+
 name|getTest
 argument_list|()
@@ -1445,7 +1457,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002 : undefined context sequence for '"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"Undefined context sequence for '"
 operator|+
 name|this
 operator|.
@@ -7933,7 +7949,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002 : undefined context sequence for '"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"Undefined context sequence for '"
 operator|+
 name|this
 operator|.

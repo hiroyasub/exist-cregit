@@ -518,14 +518,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQDY0041 '"
-operator|+
+name|ErrorCodes
+operator|.
+name|XQDY0041
+argument_list|,
 name|nameSeq
 operator|.
 name|getStringValue
 argument_list|()
 operator|+
 literal|"' is not a valid processing instruction name"
+argument_list|,
+name|nameSeq
 argument_list|)
 throw|;
 if|if
@@ -546,14 +550,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQDY0064 '"
-operator|+
+name|ErrorCodes
+operator|.
+name|XQDY0064
+argument_list|,
 name|nameSeq
 operator|.
 name|getStringValue
 argument_list|()
 operator|+
 literal|"' is not a valid processing instruction name"
+argument_list|,
+name|nameSeq
 argument_list|)
 throw|;
 name|String
@@ -707,11 +715,15 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQDY0026 '"
-operator|+
+name|ErrorCodes
+operator|.
+name|XQDY0026
+argument_list|,
 name|contentString
 operator|+
 literal|"' is not a valid processing intruction content"
+argument_list|,
+name|contentSeq
 argument_list|)
 throw|;
 name|int

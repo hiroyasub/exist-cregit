@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -763,7 +775,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: Cannot compare "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -774,6 +790,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|arg
 argument_list|)
 throw|;
 name|AtomicValue
@@ -847,7 +865,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: Cannot compare "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -870,6 +892,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|value
 argument_list|)
 throw|;
 block|}
@@ -938,7 +962,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: Cannot compare "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -961,6 +989,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|min
 argument_list|)
 throw|;
 if|if
@@ -1046,7 +1076,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: Cannot compare "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -1069,6 +1103,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|min
 argument_list|)
 throw|;
 comment|//Type value correctly
@@ -1109,7 +1145,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: Cannot compare "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Cannot compare "
 operator|+
 name|Type
 operator|.
@@ -1132,6 +1172,8 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
+argument_list|,
+name|value
 argument_list|)
 throw|;
 if|if

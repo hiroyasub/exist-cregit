@@ -174,6 +174,14 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|visitTryCatch
+parameter_list|(
+name|TryCatchExpression
+name|tryCatch
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
 name|visitElementConstructor
 parameter_list|(
 name|ElementConstructor

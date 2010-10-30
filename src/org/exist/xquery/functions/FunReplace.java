@@ -117,6 +117,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Expression
 import|;
 end_import
@@ -1029,11 +1041,9 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|String
-name|pattern
+name|Sequence
+name|patternSeq
 init|=
-name|translateRegexp
-argument_list|(
 name|getArgument
 argument_list|(
 literal|1
@@ -1045,13 +1055,20 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+decl_stmt|;
+name|String
+name|pattern
+init|=
+name|translateRegexp
+argument_list|(
+name|patternSeq
 operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|String
-name|replace
+name|Sequence
+name|replaceSeq
 init|=
 name|getArgument
 argument_list|(
@@ -1064,6 +1081,11 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+decl_stmt|;
+name|String
+name|replace
+init|=
+name|replaceSeq
 operator|.
 name|getStringValue
 argument_list|()
@@ -1137,7 +1159,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0004 The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
+name|ErrorCodes
+operator|.
+name|FORX0004
+argument_list|,
+literal|"The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
+argument_list|,
+name|replaceSeq
 argument_list|)
 throw|;
 name|i
@@ -1157,7 +1185,13 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0004 The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
+name|ErrorCodes
+operator|.
+name|FORX0004
+argument_list|,
+literal|"The value of $replacement contains a '\\' character that is not part of a '\\\\' pair, unless it is immediately followed by a '$' character."
+argument_list|,
+name|replaceSeq
 argument_list|)
 throw|;
 block|}
@@ -1289,12 +1323,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0001: Invalid regular expression: "
+name|ErrorCodes
+operator|.
+name|FORX0001
+argument_list|,
+literal|"Invalid regular expression: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|patternSeq
 argument_list|,
 name|e
 argument_list|)
@@ -1312,12 +1352,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORX0001/FORX0003/FORX0004:"
-operator|+
+name|ErrorCodes
+operator|.
+name|FORX0001
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|patternSeq
 argument_list|,
 name|e
 argument_list|)
@@ -1336,12 +1380,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0004: Invalid replace expression: "
+name|ErrorCodes
+operator|.
+name|FORX0004
+argument_list|,
+literal|"Invalid replace expression: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|replaceSeq
 argument_list|,
 name|e
 argument_list|)

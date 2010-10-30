@@ -59,6 +59,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -422,7 +434,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0003: fn:zero-or-one called with a sequence containing "
+name|ErrorCodes
+operator|.
+name|FORG0003
+argument_list|,
+literal|"fn:zero-or-one called with a sequence containing "
 operator|+
 name|result
 operator|.

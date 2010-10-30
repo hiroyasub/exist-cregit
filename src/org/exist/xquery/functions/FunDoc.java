@@ -545,7 +545,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"FODC0002: can not access '"
+name|ErrorCodes
+operator|.
+name|FODC0002
+operator|+
+literal|" Can not access '"
 operator|+
 name|path
 operator|+
@@ -558,11 +562,17 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FODC0002: can not access '"
+name|ErrorCodes
+operator|.
+name|FODC0002
+argument_list|,
+literal|"Can not access '"
 operator|+
 name|path
 operator|+
 literal|"'"
+argument_list|,
+name|arg
 argument_list|)
 throw|;
 block|}
@@ -618,14 +628,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FODC0005: "
-operator|+
+name|ErrorCodes
+operator|.
+name|FODC0005
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|e
+name|arg
 argument_list|)
 throw|;
 block|}

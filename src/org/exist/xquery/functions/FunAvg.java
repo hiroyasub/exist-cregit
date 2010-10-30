@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -631,7 +643,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: '"
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|""
 operator|+
 name|Type
 operator|.
@@ -647,7 +663,9 @@ literal|"("
 operator|+
 name|value
 operator|+
-literal|")' can not be an operand in a sum"
+literal|") can not be an operand in a sum"
+argument_list|,
+name|value
 argument_list|)
 throw|;
 block|}
@@ -744,7 +762,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: '"
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|""
 operator|+
 name|Type
 operator|.
@@ -760,7 +782,9 @@ literal|"("
 operator|+
 name|value
 operator|+
-literal|")' can not be an operand in a sum"
+literal|") can not be an operand in a sum"
+argument_list|,
+name|value
 argument_list|)
 throw|;
 block|}
@@ -857,12 +881,16 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"FORG0006: "
+name|ErrorCodes
+operator|.
+name|FORG0006
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -871,14 +899,14 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0006: "
-operator|+
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
