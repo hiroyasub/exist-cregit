@@ -2115,11 +2115,35 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-comment|//if there is a referenceBy then compare by reference, otherwise .equals
-comment|//referenced object must be a reference only, no need to update (by add method?) -shabanovd
 if|if
 condition|(
-operator|(
+name|referenceBy
+operator|!=
+literal|null
+operator|&&
+name|current_conf
+operator|.
+name|equals
+argument_list|(
+name|conf
+argument_list|,
+name|referenceBy
+argument_list|)
+condition|)
+block|{
+name|i
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+name|found
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+if|else if
+condition|(
 name|referenceBy
 operator|==
 literal|null
@@ -2130,10 +2154,8 @@ name|equals
 argument_list|(
 name|conf
 argument_list|)
-operator|)
 condition|)
 block|{
-comment|//                                	|| (referenceBy != null&& current_conf.equals( conf, referenceBy ))) {
 name|current_conf
 operator|.
 name|checkForUpdates
