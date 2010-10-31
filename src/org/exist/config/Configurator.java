@@ -2045,7 +2045,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//skip internal staff
+comment|//skip internal staff //TODO: static list
 if|if
 condition|(
 name|obj
@@ -2061,7 +2061,6 @@ operator|.
 name|RealmImpl
 condition|)
 block|{
-comment|//TODO: static list
 continue|continue;
 block|}
 name|LOG
@@ -2117,6 +2116,7 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//if there is a referenceBy then compare by reference, otherwise .equals
+comment|//referenced object must be a reference only, no need to update (by add method?) -shabanovd
 if|if
 condition|(
 operator|(
@@ -2131,31 +2131,9 @@ argument_list|(
 name|conf
 argument_list|)
 operator|)
-operator|||
-operator|(
-name|referenceBy
-operator|!=
-literal|null
-operator|&&
-name|current_conf
-operator|.
-name|getProperty
-argument_list|(
-name|referenceBy
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|referenceBy
-argument_list|)
-argument_list|)
-operator|)
 condition|)
 block|{
+comment|//                                	|| (referenceBy != null&& current_conf.equals( conf, referenceBy ))) {
 name|current_conf
 operator|.
 name|checkForUpdates
