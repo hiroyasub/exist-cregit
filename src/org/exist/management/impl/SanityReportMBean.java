@@ -68,6 +68,11 @@ name|getStatus
 parameter_list|()
 function_decl|;
 specifier|public
+name|long
+name|getPingTime
+parameter_list|()
+function_decl|;
+specifier|public
 name|TabularData
 name|getErrors
 parameter_list|()
@@ -84,6 +89,14 @@ name|backup
 parameter_list|,
 name|String
 name|incremental
+parameter_list|)
+function_decl|;
+specifier|public
+name|long
+name|ping
+parameter_list|(
+name|boolean
+name|checkQueryEngine
 parameter_list|)
 function_decl|;
 block|}
