@@ -263,30 +263,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|MimeTable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|MimeType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|CollectionImpl
@@ -2113,13 +2089,9 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-name|current
-operator|.
-name|setTriggersEnabled
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
+comment|//triggers should NOT be disabled, because it do used by the system tasks (like security manager)
+comment|//UNDERSTAND: split triggers: user& system
+comment|//current.setTriggersEnabled(false);
 name|Resource
 name|res
 init|=
@@ -2439,13 +2411,7 @@ literal|8
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|current
-operator|.
-name|setTriggersEnabled
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
+comment|//	                    	current.setTriggersEnabled(true);
 block|}
 else|else
 block|{
