@@ -3225,6 +3225,13 @@ parameter_list|()
 throws|throws
 name|ServletException
 block|{
+if|if
+condition|(
+name|pool
+operator|!=
+literal|null
+condition|)
+return|return;
 try|try
 block|{
 name|Class
