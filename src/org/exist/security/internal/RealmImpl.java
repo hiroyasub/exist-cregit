@@ -257,11 +257,6 @@ class|class
 name|RealmImpl
 extends|extends
 name|AbstractRealm
-argument_list|<
-name|AccountImpl
-argument_list|,
-name|GroupImpl
-argument_list|>
 block|{
 specifier|public
 specifier|static
@@ -659,7 +654,7 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
-name|AccountImpl
+name|Account
 name|account
 parameter_list|)
 throws|throws
@@ -920,7 +915,7 @@ specifier|synchronized
 name|boolean
 name|updateGroup
 parameter_list|(
-name|GroupImpl
+name|Group
 name|group
 parameter_list|)
 throws|throws
@@ -938,7 +933,7 @@ specifier|synchronized
 name|boolean
 name|deleteGroup
 parameter_list|(
-name|GroupImpl
+name|Group
 name|group
 parameter_list|)
 throws|throws
@@ -1276,228 +1271,45 @@ literal|"] "
 argument_list|)
 throw|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|GroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|GroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|AccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|AccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|GroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|,
-name|boolean
-name|removed
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|GroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|,
-literal|true
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|AccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|,
-name|boolean
-name|removed
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|AccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|,
-literal|true
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|GroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|int
-name|id
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|GroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|GroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|GroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|AccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|int
-name|id
-parameter_list|,
-name|Account
-name|from_account
-parameter_list|)
-throws|throws
-name|ConfigurationException
-throws|,
-name|PermissionDeniedException
-block|{
-return|return
-operator|new
-name|AccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|from_account
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|AccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|String
-name|username
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|AccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|username
-argument_list|)
-return|;
-block|}
+comment|//    @Override
+comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, Configuration config) throws ConfigurationException {
+comment|//        return new GroupImpl(realm, config);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, Configuration config) throws ConfigurationException {
+comment|//        return new AccountImpl(realm, config);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
+comment|//        return new GroupImpl(realm, config, true);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
+comment|//        return new AccountImpl(realm, config, true);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, int id, String name) throws ConfigurationException {
+comment|//        return new GroupImpl(realm, id, name);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, String name) throws ConfigurationException {
+comment|//        return new GroupImpl(realm, name);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, int id, Account from_account) throws ConfigurationException, PermissionDeniedException {
+comment|//        return new AccountImpl(realm, id, from_account);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, String username) throws ConfigurationException {
+comment|//        return new AccountImpl(realm, username);
+comment|//    }
 block|}
 end_class
 

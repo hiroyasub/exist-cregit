@@ -81,17 +81,12 @@ begin_interface
 specifier|public
 interface|interface
 name|AccountsManagement
-parameter_list|<
-name|A
-extends|extends
-name|Account
-parameter_list|>
 block|{
 specifier|public
-name|A
+name|Account
 name|addAccount
 parameter_list|(
-name|A
+name|Account
 name|account
 parameter_list|)
 throws|throws
@@ -102,7 +97,7 @@ throws|,
 name|ConfigurationException
 function_decl|;
 specifier|public
-name|A
+name|Account
 name|getAccount
 parameter_list|(
 name|Subject
@@ -116,7 +111,7 @@ specifier|public
 name|boolean
 name|hasAccount
 parameter_list|(
-name|A
+name|Account
 name|account
 parameter_list|)
 function_decl|;
@@ -135,7 +130,7 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
-name|A
+name|Account
 name|account
 parameter_list|)
 throws|throws
@@ -152,7 +147,7 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
-name|A
+name|Account
 name|account
 parameter_list|)
 throws|throws

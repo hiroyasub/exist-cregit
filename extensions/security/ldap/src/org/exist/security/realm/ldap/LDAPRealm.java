@@ -137,18 +137,6 @@ name|exist
 operator|.
 name|config
 operator|.
-name|ConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
 name|annotation
 operator|.
 name|*
@@ -307,18 +295,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -339,11 +315,6 @@ class|class
 name|LDAPRealm
 extends|extends
 name|AbstractRealm
-argument_list|<
-name|LDAPAccountImpl
-argument_list|,
-name|LDAPGroupImpl
-argument_list|>
 block|{
 specifier|private
 specifier|final
@@ -939,7 +910,7 @@ name|Override
 specifier|public
 specifier|final
 specifier|synchronized
-name|LDAPAccountImpl
+name|Account
 name|getAccount
 parameter_list|(
 name|Subject
@@ -950,7 +921,7 @@ name|name
 parameter_list|)
 block|{
 comment|//first attempt to get the cached account
-name|LDAPAccountImpl
+name|Account
 name|acct
 init|=
 name|super
@@ -1167,7 +1138,7 @@ name|Override
 specifier|public
 specifier|final
 specifier|synchronized
-name|LDAPGroupImpl
+name|Group
 name|getGroup
 parameter_list|(
 name|Subject
@@ -1177,7 +1148,7 @@ name|String
 name|name
 parameter_list|)
 block|{
-name|LDAPGroupImpl
+name|Group
 name|grp
 init|=
 name|groupsByName
@@ -1711,7 +1682,7 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
-name|LDAPAccountImpl
+name|Account
 name|account
 parameter_list|)
 throws|throws
@@ -1740,7 +1711,7 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
-name|LDAPAccountImpl
+name|Account
 name|account
 parameter_list|)
 throws|throws
@@ -1759,7 +1730,7 @@ specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
-name|LDAPGroupImpl
+name|Group
 name|group
 parameter_list|)
 throws|throws
@@ -1778,7 +1749,7 @@ specifier|public
 name|boolean
 name|deleteGroup
 parameter_list|(
-name|LDAPGroupImpl
+name|Group
 name|group
 parameter_list|)
 throws|throws
@@ -1791,228 +1762,45 @@ return|return
 literal|false
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPGroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPGroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPGroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|,
-name|boolean
-name|removed
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPGroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|,
-name|removed
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPGroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|int
-name|id
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPGroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPGroupImpl
-name|instantiateGroup
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPGroupImpl
-argument_list|(
-name|realm
-argument_list|,
-name|name
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPAccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|String
-name|username
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPAccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|username
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPAccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPAccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPAccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|Configuration
-name|config
-parameter_list|,
-name|boolean
-name|removed
-parameter_list|)
-throws|throws
-name|ConfigurationException
-block|{
-return|return
-operator|new
-name|LDAPAccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|config
-argument_list|,
-name|removed
-argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|LDAPAccountImpl
-name|instantiateAccount
-parameter_list|(
-name|AbstractRealm
-name|realm
-parameter_list|,
-name|int
-name|id
-parameter_list|,
-name|Account
-name|from_account
-parameter_list|)
-throws|throws
-name|ConfigurationException
-throws|,
-name|PermissionDeniedException
-block|{
-return|return
-operator|new
-name|LDAPAccountImpl
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|from_account
-argument_list|)
-return|;
-block|}
+comment|//    @Override
+comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, Configuration config) throws ConfigurationException {
+comment|//        return new LDAPGroupImpl(realm, config);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
+comment|//        return new LDAPGroupImpl(realm, config, removed);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, int id, String name) throws ConfigurationException {
+comment|//        return new LDAPGroupImpl(realm, id, name);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, String name) throws ConfigurationException {
+comment|//        return new LDAPGroupImpl(realm, name);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, String username) throws ConfigurationException {
+comment|//        return new LDAPAccountImpl(realm, username);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, Configuration config) throws ConfigurationException {
+comment|//        return new LDAPAccountImpl(realm, config);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
+comment|//        return new LDAPAccountImpl(realm, config, removed);
+comment|//    }
+comment|//
+comment|//    @Override
+comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, int id, Account from_account) throws ConfigurationException, PermissionDeniedException {
+comment|//        return new LDAPAccountImpl(realm, id, from_account);
+comment|//    }
 specifier|private
 specifier|final
 class|class

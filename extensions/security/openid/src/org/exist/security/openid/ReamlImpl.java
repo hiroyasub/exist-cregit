@@ -456,6 +456,21 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Collection
+argument_list|<
+name|Group
+argument_list|>
+name|getGroups
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.realm.Realm#startUp(org.exist.storage.DBBroker) 	 */
 annotation|@
 name|Override
