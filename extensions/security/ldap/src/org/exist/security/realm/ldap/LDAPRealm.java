@@ -576,7 +576,7 @@ argument_list|)
 return|;
 block|}
 specifier|private
-name|LDAPAccountImpl
+name|Account
 name|createAccountInDatabase
 parameter_list|(
 name|Subject
@@ -617,12 +617,9 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LDAPAccountImpl
+name|Account
 name|account
 init|=
-operator|(
-name|LDAPAccountImpl
-operator|)
 name|getSecurityManager
 argument_list|()
 operator|.
@@ -801,7 +798,7 @@ block|}
 block|}
 block|}
 specifier|private
-name|LDAPGroupImpl
+name|Group
 name|createGroupInDatabase
 parameter_list|(
 name|Subject
@@ -844,9 +841,6 @@ argument_list|)
 expr_stmt|;
 comment|//return sm.addGroup(instantiateGroup(this, groupname));
 return|return
-operator|(
-name|LDAPGroupImpl
-operator|)
 name|getSecurityManager
 argument_list|()
 operator|.
