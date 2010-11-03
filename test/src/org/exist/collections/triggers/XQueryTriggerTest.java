@@ -378,8 +378,26 @@ name|TEST_COLLECTION
 init|=
 literal|"testXQueryTrigger"
 decl_stmt|;
+comment|/** XQuery module implementing the trigger under test */
 specifier|private
 specifier|final
+specifier|static
+name|String
+name|MODULE_NAME
+init|=
+literal|"XQueryTriggerLogger.xqm"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|MODULE_COLLECTION_NAME
+init|=
+literal|"XQueryCollectionTriggerLogger.xqm"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|String
 name|COLLECTION_CONFIG
 init|=
@@ -387,9 +405,9 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='create-document'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='create-document' />"
 operator|+
 literal|"<exist:parameter name='query' "
 operator|+
@@ -415,9 +433,9 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='update-document'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='update-document' />"
 operator|+
 literal|"<exist:parameter name='query' "
 operator|+
@@ -443,9 +461,9 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='delete-document'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='delete-document' />"
 operator|+
 literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
 operator|+
@@ -475,6 +493,7 @@ literal|"</exist:collection>"
 decl_stmt|;
 specifier|private
 specifier|final
+specifier|static
 name|String
 name|COLLECTION_CONFIG_FOR_COLLECTIONS_EVENTS
 init|=
@@ -482,9 +501,9 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='create-collection'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='create-collection' />"
 operator|+
 literal|"<exist:parameter name='query' "
 operator|+
@@ -510,9 +529,9 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='rename-collection'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='move-collection' />"
 operator|+
 literal|"<exist:parameter name='query' "
 operator|+
@@ -538,9 +557,9 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='delete-collection'"
+literal|"<exist:trigger class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
-literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
+literal|"<exist:parameter name='event' value='delete-collection' />"
 operator|+
 literal|"<exist:parameter name=\"query\" value=\"import module namespace log = 'log' at '"
 operator|+
@@ -570,6 +589,7 @@ literal|"</exist:collection>"
 decl_stmt|;
 specifier|private
 specifier|final
+specifier|static
 name|String
 name|EMPTY_COLLECTION_CONFIG
 init|=
@@ -670,23 +690,6 @@ name|String
 name|EMPTY_LOG
 init|=
 literal|"<events/>"
-decl_stmt|;
-comment|/** XQuery module implementing the trigger under test */
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|MODULE_NAME
-init|=
-literal|"XQueryTriggerLogger.xqm"
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|MODULE_COLLECTION_NAME
-init|=
-literal|"XQueryCollectionTriggerLogger.xqm"
 decl_stmt|;
 comment|/** XQuery module implementing the trigger under test;       * the log() XQuery function will add an<event> element inside<events> element */
 specifier|private

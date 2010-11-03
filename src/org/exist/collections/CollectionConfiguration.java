@@ -65,16 +65,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|StringTokenizer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -2630,35 +2620,6 @@ name|parameters
 argument_list|)
 expr_stmt|;
 block|}
-comment|//	private void convertFromOldDesign() {
-comment|//	    StringTokenizer tok = new StringTokenizer(events, ", ");
-comment|//	    String event;
-comment|//	    while(tok.hasMoreTokens()) {
-comment|//	        event = tok.nextToken();
-comment|//	        LOG.debug("Registering trigger '" + classname + "' for event '" + event + "'");
-comment|//
-comment|//            int i=0;
-comment|//            while (i<Trigger.EVENTS.length){
-comment|//            	if (event.equalsIgnoreCase(Trigger.EVENTS[i])){
-comment|//                    break;
-comment|//            	}
-comment|//            	if (event.equalsIgnoreCase(Trigger.OLD_EVENTS[i])){
-comment|//                    break;
-comment|//            	}
-comment|//            	i++;
-comment|//            }
-comment|//
-comment|//	        if (i< Trigger.EVENTS.length) {
-comment|//	        	if (oldtriggers[i] != null)
-comment|//		        	throw new CollectionConfigurationException(
-comment|//		        			"Trigger '" + classname + "' already registered");
-comment|//
-comment|//	            oldtriggers[i] = trigger;
-comment|//	        } else
-comment|//	        	throw new CollectionConfigurationException(
-comment|//        			"Unknown event type '" + event + "' in trigger '" + classname + "'");
-comment|//	    }
-comment|//	}
 specifier|private
 name|TriggerConfig
 name|instantiate
