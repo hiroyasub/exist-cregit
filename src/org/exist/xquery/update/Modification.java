@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -14,6 +14,16 @@ operator|.
 name|update
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
 
 begin_import
 import|import
@@ -45,47 +55,9 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfiguration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
 name|triggers
 operator|.
 name|DocumentTrigger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|Trigger
 import|;
 end_import
 
@@ -535,16 +507,6 @@ name|SAXException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -598,6 +560,9 @@ argument_list|()
 decl_stmt|;
 specifier|protected
 name|Int2ObjectHashMap
+argument_list|<
+name|DocumentTrigger
+argument_list|>
 name|triggers
 decl_stmt|;
 comment|/** 	 * @param context 	 */
@@ -637,6 +602,9 @@ name|triggers
 operator|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|DocumentTrigger
+argument_list|>
 argument_list|(
 literal|97
 argument_list|)
@@ -748,7 +716,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 * @throws LockException 	 */
+comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 *  	 * @throws LockException 	 * @throws TriggerException  	 */
 specifier|protected
 name|StoredNode
 index|[]
@@ -766,6 +734,8 @@ throws|,
 name|PermissionDeniedException
 throws|,
 name|XPathException
+throws|,
+name|TriggerException
 block|{
 name|Lock
 name|globalLock
@@ -1268,6 +1238,8 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|)
+throws|throws
+name|TriggerException
 block|{
 name|Iterator
 argument_list|<
@@ -1280,9 +1252,6 @@ operator|.
 name|getDocumentIterator
 argument_list|()
 decl_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
 while|while
 condition|(
 name|iterator
@@ -1291,25 +1260,24 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
-name|doc
-operator|=
-name|iterator
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
 name|context
 operator|.
 name|addModifiedDoc
 argument_list|(
-name|doc
+name|iterator
+operator|.
+name|next
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|finishTrigger
 argument_list|(
 name|transaction
 argument_list|,
-name|doc
+name|iterator
+operator|.
+name|next
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1601,7 +1569,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 *  @param transaction	The transaction 	 *  @param doc	The document to trigger for 	 */
+comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
 specifier|private
 name|void
 name|prepareTrigger
@@ -1612,6 +1580,8 @@ parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
+throws|throws
+name|TriggerException
 block|{
 comment|//if we are doing a batch update then only call prepare for the first update to that document
 if|if
@@ -1670,15 +1640,15 @@ block|}
 block|}
 block|}
 comment|//prepare the trigger
-name|CollectionConfiguration
-name|config
+name|DocumentTrigger
+name|trigger
 init|=
 name|doc
 operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|getConfiguration
+name|getDocumentTrigger
 argument_list|(
 name|context
 operator|.
@@ -1686,77 +1656,6 @@ name|getBroker
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|DocumentTrigger
-name|trigger
-init|=
-literal|null
-decl_stmt|;
-if|if
-condition|(
-name|config
-operator|!=
-literal|null
-condition|)
-block|{
-comment|//get the UPDATE_DOCUMENT_EVENT trigger
-try|try
-block|{
-name|trigger
-operator|=
-operator|(
-name|DocumentTrigger
-operator|)
-name|config
-operator|.
-name|newTrigger
-argument_list|(
-name|Trigger
-operator|.
-name|UPDATE_DOCUMENT_EVENT
-argument_list|,
-name|context
-operator|.
-name|getBroker
-argument_list|()
-argument_list|,
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CollectionConfigurationException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"An error occurred while initializing a trigger for collection "
-operator|+
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|trigger
@@ -1764,17 +1663,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-try|try
-block|{
-comment|//fire trigger prepare
 name|trigger
 operator|.
-name|prepare
+name|beforeUpdateDocument
 argument_list|(
-name|Trigger
-operator|.
-name|UPDATE_DOCUMENT_EVENT
-argument_list|,
 name|context
 operator|.
 name|getBroker
@@ -1783,69 +1675,8 @@ argument_list|,
 name|transaction
 argument_list|,
 name|doc
-operator|.
-name|getURI
-argument_list|()
-argument_list|,
-name|doc
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|TriggerException
-name|te
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Unable to prepare trigger for event UPDATE_DOCUMENT_EVENT: "
-operator|+
-name|te
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Trigger event UPDATE_DOCUMENT_EVENT for collection: "
-operator|+
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" with: "
-operator|+
-name|doc
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|triggers
 operator|.
 name|put
@@ -1860,8 +1691,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 */
+comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
 specifier|private
 name|void
 name|finishTrigger
@@ -1872,6 +1702,8 @@ parameter_list|,
 name|DocumentImpl
 name|doc
 parameter_list|)
+throws|throws
+name|TriggerException
 block|{
 comment|//if this is part of a batch transaction, defer the trigger
 if|if
@@ -1896,9 +1728,6 @@ comment|//finish the trigger
 name|DocumentTrigger
 name|trigger
 init|=
-operator|(
-name|DocumentTrigger
-operator|)
 name|triggers
 operator|.
 name|get
@@ -1915,17 +1744,10 @@ name|trigger
 operator|!=
 literal|null
 condition|)
-block|{
-try|try
-block|{
 name|trigger
 operator|.
-name|finish
+name|afterUpdateDocument
 argument_list|(
-name|Trigger
-operator|.
-name|UPDATE_DOCUMENT_EVENT
-argument_list|,
 name|context
 operator|.
 name|getBroker
@@ -1934,51 +1756,8 @@ argument_list|,
 name|transaction
 argument_list|,
 name|doc
-operator|.
-name|getURI
-argument_list|()
-argument_list|,
-name|doc
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Trigger event UPDATE_DOCUMENT_EVENT for collection: "
-operator|+
-name|doc
-operator|.
-name|getCollection
-argument_list|()
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" with: "
-operator|+
-name|doc
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 comment|/** 	 * Gets the Transaction to use for the update (can be batch or individual) 	 *  	 * @return The transaction 	 */

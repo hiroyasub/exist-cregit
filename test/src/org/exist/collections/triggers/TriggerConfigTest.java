@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -318,7 +322,7 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='store,remove' class='org.exist.collections.triggers.TestTrigger'/>"
+literal|"<exist:trigger event='create-document,delete-document' class='org.exist.collections.triggers.TestTrigger'/>"
 operator|+
 literal|"</exist:triggers>"
 operator|+
@@ -785,7 +789,7 @@ literal|"/messages.xml')) then doc('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE'] else ()"
+literal|"/messages.xml')/events/event[@id = 'STORE-DOCUMENT'] else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -968,7 +972,7 @@ literal|"/messages.xml')) then doc('"
 operator|+
 name|testCollection
 operator|+
-literal|"/messages.xml')/events/event[@id = 'STORE']/string(@collection) else ()"
+literal|"/messages.xml')/events/event[@id = 'STORE-DOCUMENT']/string(@collection) else ()"
 argument_list|)
 decl_stmt|;
 name|assertEquals

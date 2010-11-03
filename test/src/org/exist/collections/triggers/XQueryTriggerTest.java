@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-05 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import static
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|custommonkey
@@ -25,17 +37,43 @@ name|xmlunit
 operator|.
 name|XMLAssert
 operator|.
-name|*
+name|assertXMLEqual
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|exist
+name|xml
 operator|.
-name|EXistException
+name|transform
+operator|.
+name|OutputKeys
 import|;
 end_import
 
@@ -46,30 +84,6 @@ operator|.
 name|exist
 operator|.
 name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
 import|;
 end_import
 
@@ -91,51 +105,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|Txn
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|Base64Decoder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -160,30 +144,6 @@ operator|.
 name|xmldb
 operator|.
 name|IndexQueryService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|DatabaseInstanceManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
 import|;
 end_import
 
@@ -234,30 +194,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
 import|;
 end_import
 
@@ -353,19 +289,63 @@ name|api
 operator|.
 name|modules
 operator|.
-name|*
+name|BinaryResource
 import|;
 end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|xml
+name|xmldb
 operator|.
-name|transform
+name|api
 operator|.
-name|OutputKeys
+name|modules
+operator|.
+name|CollectionManagementService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XMLResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XPathQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XUpdateQueryService
 import|;
 end_import
 
@@ -407,7 +387,7 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='store'"
+literal|"<exist:trigger event='create-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -435,7 +415,7 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='update'"
+literal|"<exist:trigger event='update-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -463,7 +443,7 @@ literal|"        />"
 operator|+
 literal|"</exist:trigger>"
 operator|+
-literal|"<exist:trigger event='remove'"
+literal|"<exist:trigger event='delete-document'"
 operator|+
 literal|"                    class='org.exist.collections.triggers.XQueryTrigger'>"
 operator|+
@@ -719,15 +699,15 @@ literal|"module namespace log='log'; "
 operator|+
 literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"declare variable $log:eventType external;"
+literal|"import module namespace util='http://exist-db.org/xquery/util'; "
 operator|+
-literal|"declare variable $log:collectionName external;"
+literal|"declare variable $log:type external;"
 operator|+
-literal|"declare variable $log:documentName external;"
+literal|"declare variable $log:collection external;"
 operator|+
-literal|"declare variable $log:triggerEvent external;"
+literal|"declare variable $log:uri external;"
 operator|+
-literal|"declare variable $log:document external;"
+literal|"declare variable $log:event external;"
 operator|+
 literal|"declare function log:log($id as xs:string?) {"
 operator|+
@@ -763,15 +743,15 @@ literal|"<xu:attribute name='id'>{$id}</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
 operator|+
-literal|"<xu:attribute name='type'>{$log:eventType}</xu:attribute>"
+literal|"<xu:attribute name='type'>{$log:type}</xu:attribute>"
 operator|+
-literal|"<xu:element name='collectionName'>{$log:collectionName}</xu:element>"
+literal|"<xu:element name='collection'>{$log:collection}</xu:element>"
 operator|+
-literal|"<xu:element name='documentName'>{$log:documentName}</xu:element>"
+literal|"<xu:element name='uri'>{$log:uri}</xu:element>"
 operator|+
-literal|"<xu:element name='triggerEvent'>{$log:triggerEvent}</xu:element>"
+literal|"<xu:element name='event'>{$log:event}</xu:element>"
 operator|+
-literal|"<xu:element name='document'>{$log:document}</xu:element>"
+literal|"<xu:element name='document'>{if (util:is-binary-doc($log:uri)) then util:binary-doc($log:uri) else doc($log:uri)}</xu:element>"
 operator|+
 literal|"</xu:element>"
 operator|+
@@ -871,15 +851,13 @@ literal|"module namespace log='log'; "
 operator|+
 literal|"import module namespace xmldb='http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"declare variable $log:eventType external;"
+literal|"declare variable $log:type external;"
 operator|+
-literal|"declare variable $log:collectionName external;"
+literal|"declare variable $log:collection external;"
 operator|+
-literal|"declare variable $log:documentName external;"
+literal|"declare variable $log:uri external;"
 operator|+
-literal|"declare variable $log:triggerEvent external;"
-operator|+
-literal|"declare variable $log:document external;"
+literal|"declare variable $log:event external;"
 operator|+
 literal|"declare function log:log($id as xs:string?) {"
 operator|+
@@ -1397,7 +1375,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1427,7 +1405,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][documentName = '"
+literal|"/events/event[@id = 'trigger1'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1461,7 +1439,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][triggerEvent = 'STORE']"
+literal|"/events/event[@id = 'trigger1'][event = 'CREATE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1659,7 +1637,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][collectionName = '"
+literal|"/events/event[@id = 'trigger2'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1689,7 +1667,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][documentName = '"
+literal|"/events/event[@id = 'trigger2'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1723,7 +1701,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger2'][triggerEvent = 'UPDATE']"
+literal|"/events/event[@id = 'trigger2'][event = 'UPDATE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1915,7 +1893,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1945,7 +1923,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][documentName = '"
+literal|"/events/event[@id = 'trigger3'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -1979,7 +1957,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][triggerEvent = 'REMOVE']"
+literal|"/events/event[@id = 'trigger3'][event = 'DELETE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2174,7 +2152,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2184,7 +2162,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2198,7 +2176,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'STORE']"
+literal|"'][event = 'CREATE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2218,7 +2196,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger1'][@type = 'finish'][collectionName = '"
+literal|"/events/event[@id = 'trigger1'][@type = 'finish'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2228,7 +2206,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2242,7 +2220,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'STORE']/document"
+literal|"'][event = 'CREATE-DOCUMENT']/document"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2386,7 +2364,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2396,7 +2374,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2410,7 +2388,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'REMOVE']"
+literal|"'][event = 'DELETE-DOCUMENT']"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2430,7 +2408,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"/events/event[@id = 'trigger3'][@type = 'prepare'][collectionName = '"
+literal|"/events/event[@id = 'trigger3'][@type = 'prepare'][collection = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2440,7 +2418,7 @@ literal|"/"
 operator|+
 name|TEST_COLLECTION
 operator|+
-literal|"'][documentName = '"
+literal|"'][uri = '"
 operator|+
 name|DBBroker
 operator|.
@@ -2454,7 +2432,7 @@ literal|"/"
 operator|+
 name|BINARY_DOCUMENT_NAME
 operator|+
-literal|"'][triggerEvent = 'REMOVE']/document"
+literal|"'][event = 'DELETE-DOCUMENT']/document"
 argument_list|)
 expr_stmt|;
 name|assertEquals
