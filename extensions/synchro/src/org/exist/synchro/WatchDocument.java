@@ -151,6 +151,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|jgroups
+operator|.
+name|blocks
+operator|.
+name|MethodCall
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -287,7 +299,6 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.Trigger#getLogger() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -300,7 +311,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -313,7 +323,6 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startDocument() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -325,7 +334,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endDocument() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -337,7 +345,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -355,7 +362,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -370,7 +376,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -394,7 +399,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -415,7 +419,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#characters(char[], int, int) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -437,7 +440,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -459,7 +461,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -477,7 +478,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -492,7 +492,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -513,7 +512,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endDTD() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -525,7 +523,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -540,7 +537,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -555,7 +551,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#startCDATA() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -567,7 +562,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#endCDATA() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -579,7 +573,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -601,7 +594,6 @@ name|SAXException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#prepare(int, org.exist.storage.DBBroker, org.exist.storage.txn.Txn, org.exist.xmldb.XmldbURI, org.exist.dom.DocumentImpl) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -626,15 +618,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-if|if
-condition|(
-name|comm
-operator|==
-literal|null
-condition|)
-return|return;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, org.exist.storage.txn.Txn, org.exist.xmldb.XmldbURI, org.exist.dom.DocumentImpl) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -657,6 +641,25 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeCreateDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|XmldbURI
+name|uri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
 if|if
 condition|(
 name|comm
@@ -664,49 +667,507 @@ operator|==
 literal|null
 condition|)
 return|return;
-switch|switch
-condition|(
-name|event
-condition|)
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_CREATE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|uri
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterCreateDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
 block|{
-case|case
-name|STORE_DOCUMENT_EVENT
-case|:
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
 name|comm
 operator|.
-name|createDocument
+name|callRemoteMethods
 argument_list|(
-name|documentPath
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|UPDATE_DOCUMENT_EVENT
-case|:
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|AFTER_CREATE_DOCUMENT
+argument_list|,
 name|comm
 operator|.
-name|updateDocument
-argument_list|(
-name|documentPath
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|REMOVE_DOCUMENT_EVENT
-case|:
-name|comm
+name|getChannel
+argument_list|()
 operator|.
-name|deleteDocument
-argument_list|(
-name|documentPath
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
-break|break;
-default|default:
-break|break;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeUpdateDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_UPDATE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#isValidating() 	 */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterUpdateDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|AFTER_UPDATE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeCopyDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|,
+name|XmldbURI
+name|newUri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_COPY_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterCopyDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|,
+name|XmldbURI
+name|newUri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|AFTER_COPY_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeMoveDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|,
+name|XmldbURI
+name|newUri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_MOVE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterMoveDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|,
+name|XmldbURI
+name|newUri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_MOVE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeDeleteDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|BEFORE_DELETE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|document
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterDeleteDocument
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
+name|XmldbURI
+name|uri
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+if|if
+condition|(
+name|comm
+operator|==
+literal|null
+condition|)
+return|return;
+name|comm
+operator|.
+name|callRemoteMethods
+argument_list|(
+operator|new
+name|MethodCall
+argument_list|(
+name|Communicator
+operator|.
+name|AFTER_DELETE_DOCUMENT
+argument_list|,
+name|comm
+operator|.
+name|getChannel
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|uri
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -719,7 +1180,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#setValidating(boolean) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -732,7 +1192,6 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#setOutputHandler(org.xml.sax.ContentHandler) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -745,7 +1204,6 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#setLexicalOutputHandler(org.xml.sax.ext.LexicalHandler) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -758,7 +1216,6 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#getOutputHandler() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -771,7 +1228,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#getInputHandler() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -784,7 +1240,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#getLexicalOutputHandler() 	 */
 annotation|@
 name|Override
 specifier|public
@@ -797,7 +1252,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.triggers.DocumentTrigger#getLexicalInputHandler() 	 */
 annotation|@
 name|Override
 specifier|public

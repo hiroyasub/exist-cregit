@@ -168,42 +168,12 @@ operator|+
 name|view
 argument_list|)
 expr_stmt|;
-name|communicator1
-operator|.
-name|createDocument
-argument_list|(
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-literal|"/db/test"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|communicator2
-operator|.
-name|createDocument
-argument_list|(
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-literal|"/db/test1"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|communicator1
-operator|.
-name|deleteDocument
-argument_list|(
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-literal|"/db/test"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//		communicator1.beforeCreateDocument(XmldbURI.create("/db/test"));
+comment|//		communicator1.afterCreateDocument(XmldbURI.create("/db/test"));
+comment|//
+comment|//		communicator2.createDocument(XmldbURI.create("/db/test1"));
+comment|//
+comment|//		communicator1.deleteDocument(XmldbURI.create("/db/test"));
 block|}
 block|}
 end_class
