@@ -3123,7 +3123,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3174,7 +3174,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3225,7 +3225,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3330,7 +3330,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3384,7 +3384,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3438,7 +3438,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
@@ -3489,7 +3489,7 @@ name|EventKey
 argument_list|(
 name|document
 operator|.
-name|getDocumentURI
+name|getURI
 argument_list|()
 operator|.
 name|toString
