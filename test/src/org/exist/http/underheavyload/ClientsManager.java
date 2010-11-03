@@ -95,6 +95,12 @@ name|url
 operator|=
 name|url
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|start
+parameter_list|()
+block|{
 name|Thread
 name|thread
 init|=

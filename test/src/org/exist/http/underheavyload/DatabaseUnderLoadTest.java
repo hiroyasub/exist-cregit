@@ -89,6 +89,11 @@ argument_list|,
 literal|"http://localhost:8080/exist/admin"
 argument_list|)
 expr_stmt|;
+name|manager
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 name|Thread
