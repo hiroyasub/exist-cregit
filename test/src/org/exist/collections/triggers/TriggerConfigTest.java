@@ -322,7 +322,7 @@ literal|"<exist:collection xmlns:exist='http://exist-db.org/collection-config/1.
 operator|+
 literal|"<exist:triggers>"
 operator|+
-literal|"<exist:trigger event='create-document,delete-document' class='org.exist.collections.triggers.TestTrigger'/>"
+literal|"<exist:trigger class='org.exist.collections.triggers.TestTrigger'/>"
 operator|+
 literal|"</exist:triggers>"
 operator|+
