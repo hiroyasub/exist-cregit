@@ -1019,7 +1019,19 @@ argument_list|,
 name|conf
 argument_list|)
 decl_stmt|;
-comment|//		            	getSecurityManager().addUser(account.getId(), account);
+name|getSecurityManager
+argument_list|()
+operator|.
+name|addUser
+argument_list|(
+name|account
+operator|.
+name|getId
+argument_list|()
+argument_list|,
+name|account
+argument_list|)
+expr_stmt|;
 name|usersByName
 operator|.
 name|put
