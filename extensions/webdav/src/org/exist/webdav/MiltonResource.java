@@ -1046,8 +1046,7 @@ name|path
 return|;
 block|}
 comment|/* ========      * Resource      * ======== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getUniqueId
@@ -1058,8 +1057,7 @@ literal|null
 return|;
 comment|// disables the ETag field
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getName
@@ -1074,8 +1072,7 @@ name|lastSegment
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Object
 name|authenticate
@@ -1232,8 +1229,7 @@ return|return
 name|AUTHENTICATED
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|authorise
@@ -1496,8 +1492,7 @@ return|return
 literal|true
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getRealm
@@ -1507,8 +1502,7 @@ return|return
 name|REALM
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Date
 name|getModifiedDate
@@ -1556,8 +1550,7 @@ return|return
 name|modifiedDate
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|checkRedirect

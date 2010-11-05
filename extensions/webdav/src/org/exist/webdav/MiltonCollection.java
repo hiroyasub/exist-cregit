@@ -649,8 +649,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ===================      * Collection Resource      * =================== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Resource
 name|child
@@ -848,8 +847,7 @@ return|return
 name|allResources
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|List
 argument_list|<
@@ -906,8 +904,7 @@ name|allResources
 return|;
 block|}
 comment|/* ====================      * PropFindableResource      * ==================== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Date
 name|getCreateDate
@@ -956,8 +953,7 @@ name|createDate
 return|;
 block|}
 comment|/* ====================      * DeletableResource      * ==================== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|delete
@@ -987,8 +983,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* ==========================      * MakeCollectionableResource      * ========================== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|CollectionResource
 name|createCollection
@@ -1125,8 +1120,7 @@ name|collection
 return|;
 block|}
 comment|/* ===============      * PutableResource      * =============== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Resource
 name|createNew
@@ -1275,8 +1269,7 @@ name|resource
 return|;
 block|}
 comment|/* =========================      * LockingCollectionResource      * ========================= */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockToken
 name|createAndLock
@@ -1332,8 +1325,7 @@ argument_list|)
 return|;
 block|}
 comment|/* ================      * LockableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockResult
 name|lock
@@ -1380,8 +1372,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockResult
 name|refreshLock
@@ -1474,8 +1465,7 @@ name|lockToken
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|unlock
@@ -1505,8 +1495,7 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockToken
 name|getCurrentLock
@@ -1529,8 +1518,7 @@ return|;
 comment|// null is allowed
 block|}
 comment|/* ===============      * MovableResource      * =============== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|moveTo
@@ -1611,8 +1599,7 @@ throw|;
 block|}
 block|}
 comment|/* ================      * CopyableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|copyTo
@@ -1695,8 +1682,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ================      * GettableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|sendContent
@@ -1944,8 +1930,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Long
 name|getMaxAgeSeconds
@@ -1958,8 +1943,7 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getContentType
@@ -1972,8 +1956,7 @@ return|return
 literal|"application/xml"
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Long
 name|getContentLength

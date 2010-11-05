@@ -4101,8 +4101,10 @@ if|if
 condition|(
 name|href
 operator|.
-name|isEmpty
+name|length
 argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 name|path

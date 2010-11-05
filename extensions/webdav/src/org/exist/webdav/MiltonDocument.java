@@ -562,8 +562,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ================      * GettableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|sendContent
@@ -627,8 +626,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Long
 name|getMaxAgeSeconds
@@ -641,8 +639,7 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getContentType
@@ -658,8 +655,7 @@ name|getMimeType
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Long
 name|getContentLength
@@ -697,8 +693,7 @@ argument_list|()
 return|;
 block|}
 comment|/* ====================      * PropFindableResource      * ==================== */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Date
 name|getCreateDate
@@ -747,8 +742,7 @@ name|createDate
 return|;
 block|}
 comment|/* =================      * DeletableResource      * ================= */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|delete
@@ -767,8 +761,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* ================      * LockableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockResult
 name|lock
@@ -942,8 +935,7 @@ return|return
 name|lr
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockResult
 name|refreshLock
@@ -1130,8 +1122,7 @@ return|return
 name|lr
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|unlock
@@ -1234,8 +1225,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LockToken
 name|getCurrentLock
@@ -1297,8 +1287,7 @@ name|miltonLT
 return|;
 block|}
 comment|/* ================      * MoveableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|moveTo
@@ -1357,8 +1346,7 @@ throw|;
 block|}
 block|}
 comment|/* ================      * CopyableResource      * ================ */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|copyTo

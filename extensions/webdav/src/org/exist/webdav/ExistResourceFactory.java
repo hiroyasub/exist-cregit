@@ -225,8 +225,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/*      * Construct Resource for path. A Document or Collection resource is returned, NULL if type      * could not be detected.      */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Resource
 name|getResource

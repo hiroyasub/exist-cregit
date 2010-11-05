@@ -371,8 +371,7 @@ name|uri
 expr_stmt|;
 block|}
 comment|/**      * Initialize Collection, authenticate() is required first      */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|initMetadata
@@ -828,8 +827,6 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
