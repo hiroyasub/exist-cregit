@@ -462,7 +462,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|subject
+name|user
 operator|==
 literal|null
 condition|)
@@ -510,7 +510,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 name|collection
@@ -560,7 +560,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -573,7 +573,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -586,7 +586,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -611,18 +611,12 @@ name|permissions
 operator|.
 name|getOwner
 argument_list|()
-operator|.
-name|getUsername
-argument_list|()
 expr_stmt|;
 name|ownerGroup
 operator|=
 name|permissions
 operator|.
 name|getOwnerGroup
-argument_list|()
-operator|.
-name|getName
 argument_list|()
 expr_stmt|;
 block|}
@@ -709,14 +703,14 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// Try to read as specified subject
+comment|// Try to read as specified user
 name|broker
 operator|=
 name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 name|collection
@@ -853,14 +847,14 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|// Try to read as specified subject
+comment|// Try to read as specified user
 name|broker
 operator|=
 name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 name|collection
@@ -1014,7 +1008,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Open collection if possible, else abort
@@ -1135,27 +1129,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|TriggerException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
+comment|//        } catch (TriggerException e) {
+comment|//            LOG.error(e);
+comment|//            transact.abort(txn);
 block|}
 finally|finally
 block|{
@@ -1266,7 +1242,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Check if collection exists. not likely to happen since availability is
@@ -1704,7 +1680,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Check if collection exists. not likely to happen since availability is checked
@@ -2260,7 +2236,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// This class contains already the URI of the resource that shall be moved/copied
@@ -2520,37 +2496,10 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
-block|}
-catch|catch
-parameter_list|(
-name|TriggerException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
+comment|//        } catch (TriggerException e) {
+comment|//            LOG.error(e);
+comment|//            txnManager.abort(txn);
+comment|//            throw new EXistException(e.getMessage());
 block|}
 finally|finally
 block|{

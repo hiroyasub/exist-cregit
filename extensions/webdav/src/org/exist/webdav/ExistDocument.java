@@ -169,7 +169,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Account
+name|User
 import|;
 end_import
 
@@ -380,7 +380,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|subject
+name|user
 operator|==
 literal|null
 condition|)
@@ -427,7 +427,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// If it is not a collection, check if it is a document
@@ -506,7 +506,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -519,7 +519,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -532,7 +532,7 @@ name|permissions
 operator|.
 name|validate
 argument_list|(
-name|subject
+name|user
 argument_list|,
 name|Permission
 operator|.
@@ -545,18 +545,12 @@ name|permissions
 operator|.
 name|getOwner
 argument_list|()
-operator|.
-name|getUsername
-argument_list|()
 expr_stmt|;
 name|ownerGroup
 operator|=
 name|permissions
 operator|.
 name|getOwnerGroup
-argument_list|()
-operator|.
-name|getName
 argument_list|()
 expr_stmt|;
 comment|// Get (estimated) file size
@@ -721,7 +715,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// If it is not a collection, check if it is a document
@@ -1005,7 +999,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Need to split path into collection and document name
@@ -1315,7 +1309,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// If it is not a collection, check if it is a document
@@ -1352,8 +1346,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|// TODO consider. A Webdav lock can be set without subject lock.
-name|Account
+comment|// TODO consider. A Webdav lock can be set without user lock.
+name|User
 name|lock
 init|=
 name|document
@@ -1544,7 +1538,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Try to get document (add catch?)
@@ -1583,7 +1577,7 @@ return|;
 comment|// throw exception?
 block|}
 comment|// Get current userlock
-name|Account
+name|User
 name|userLock
 init|=
 name|document
@@ -1621,7 +1615,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|subject
+name|user
 operator|.
 name|getName
 argument_list|()
@@ -1679,7 +1673,7 @@ name|inputToken
 operator|.
 name|setOwner
 argument_list|(
-name|subject
+name|user
 operator|.
 name|getName
 argument_list|()
@@ -1714,7 +1708,7 @@ name|document
 operator|.
 name|setUserLock
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Make token persistant
@@ -1888,7 +1882,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Try to get document (add catch?)
@@ -1932,7 +1926,7 @@ argument_list|)
 throw|;
 block|}
 comment|// Get current userlock
-name|Account
+name|User
 name|lock
 init|=
 name|document
@@ -1969,7 +1963,7 @@ name|xmldbUri
 argument_list|)
 throw|;
 block|}
-comment|// Check if Resource is from subject
+comment|// Check if Resource is from user
 if|if
 condition|(
 operator|!
@@ -1980,7 +1974,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|subject
+name|user
 operator|.
 name|getName
 argument_list|()
@@ -2252,7 +2246,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Need to split path into collection and document name
@@ -2559,37 +2553,10 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
-block|}
-catch|catch
-parameter_list|(
-name|TriggerException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-throw|;
+comment|//        } catch (TriggerException e) {
+comment|//            LOG.error(e);
+comment|//            txnManager.abort(txn);
+comment|//            throw new EXistException(e.getMessage());
 block|}
 finally|finally
 block|{
@@ -2715,7 +2682,7 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 comment|// Try to get document (add catch?)
@@ -2754,7 +2721,7 @@ return|;
 comment|// throw exception?
 block|}
 comment|// Get current userlock
-name|Account
+name|User
 name|userLock
 init|=
 name|document
@@ -2795,7 +2762,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|subject
+name|user
 operator|.
 name|getName
 argument_list|()

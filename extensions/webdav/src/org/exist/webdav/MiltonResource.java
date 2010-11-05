@@ -205,7 +205,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
+name|User
 import|;
 end_import
 
@@ -230,6 +230,18 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
@@ -272,8 +284,8 @@ name|String
 name|host
 decl_stmt|;
 specifier|protected
-name|Subject
-name|subject
+name|User
+name|user
 decl_stmt|;
 specifier|protected
 specifier|final
@@ -354,12 +366,12 @@ name|host
 return|;
 block|}
 specifier|private
-name|Subject
+name|User
 name|getUserAsSubject
 parameter_list|()
 block|{
 return|return
-name|subject
+name|user
 return|;
 block|}
 comment|/**      * Convert date to dateTime XML format.      * s      * @param date Representation of data      * @return ISO8601 like formatted representation of date.s      */
@@ -1100,10 +1112,10 @@ return|return
 literal|null
 return|;
 block|}
-comment|// Check is subject was already authenticated.
+comment|// Check is user was already authenticated.
 if|if
 condition|(
-name|subject
+name|user
 operator|!=
 literal|null
 condition|)
@@ -1119,8 +1131,8 @@ return|return
 name|AUTHENTICATED
 return|;
 block|}
-comment|// Authenticate subject with password
-name|subject
+comment|// Authenticate user with password
+name|user
 operator|=
 name|existResource
 operator|.
@@ -1131,10 +1143,10 @@ argument_list|,
 name|password
 argument_list|)
 expr_stmt|;
-comment|// Quick return if no subject object was returned
+comment|// Quick return if no user object was returned
 if|if
 condition|(
-name|subject
+name|user
 operator|==
 literal|null
 condition|)
@@ -1151,7 +1163,7 @@ literal|null
 return|;
 block|}
 comment|// Guest is not allowed to access.
-name|Subject
+name|User
 name|guest
 init|=
 name|brokerPool
@@ -1159,16 +1171,21 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getGuestSubject
-argument_list|()
+name|getUser
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST_USER
+argument_list|)
 decl_stmt|;
+comment|// @@@@@@
 if|if
 condition|(
 name|guest
 operator|.
 name|equals
 argument_list|(
-name|subject
+name|user
 argument_list|)
 condition|)
 block|{
@@ -1203,7 +1220,7 @@ name|debug
 argument_list|(
 literal|"User '"
 operator|+
-name|subject
+name|user
 operator|.
 name|getName
 argument_list|()

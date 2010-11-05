@@ -535,8 +535,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|getSystemSubject
-argument_list|()
+name|SYSTEM_USER
 argument_list|)
 expr_stmt|;
 comment|// First check if resource is a collection

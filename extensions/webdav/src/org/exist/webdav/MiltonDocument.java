@@ -345,7 +345,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
+name|User
 import|;
 end_import
 
@@ -453,7 +453,7 @@ operator|=
 name|returnContentLenghtAsNull
 expr_stmt|;
 block|}
-comment|/**      *  Constructor of representation of a Document in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Document in the Milton framework, without user information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
 specifier|public
 name|MiltonDocument
 parameter_list|(
@@ -479,7 +479,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor of representation of a Document in the Milton framework, with subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param subject  An Exist operation is performed with  User. Can be NULL.      * @param pool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Document in the Milton framework, with user information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param user  An Exist operation is performed with  User. Can be NULL.      * @param pool Handle to Exist database.      */
 specifier|public
 name|MiltonDocument
 parameter_list|(
@@ -492,7 +492,7 @@ parameter_list|,
 name|BrokerPool
 name|pool
 parameter_list|,
-name|Subject
+name|User
 name|user
 parameter_list|)
 block|{

@@ -433,7 +433,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
+name|User
 import|;
 end_import
 
@@ -539,7 +539,7 @@ specifier|private
 name|ExistCollection
 name|existCollection
 decl_stmt|;
-comment|/**      *  Constructor of representation of a Collection in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Collection in the Milton framework, without user information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
 specifier|public
 name|MiltonCollection
 parameter_list|(
@@ -565,7 +565,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor of representation of a Document in the Milton framework, with subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param subject  An Exist operation is performed with  User. Can be NULL.      * @param brokerPool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Document in the Milton framework, with user information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param user  An Exist operation is performed with  User. Can be NULL.      * @param brokerPool Handle to Exist database.      */
 specifier|public
 name|MiltonCollection
 parameter_list|(
@@ -578,7 +578,7 @@ parameter_list|,
 name|BrokerPool
 name|pool
 parameter_list|,
-name|Subject
+name|User
 name|user
 parameter_list|)
 block|{
@@ -626,7 +626,7 @@ name|existResource
 operator|=
 name|existCollection
 expr_stmt|;
-comment|// If subject is available, additional data can be retrieved.
+comment|// If user is available, additional data can be retrieved.
 if|if
 condition|(
 name|user
@@ -770,7 +770,7 @@ name|path
 argument_list|,
 name|brokerPool
 argument_list|,
-name|subject
+name|user
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -825,7 +825,7 @@ name|path
 argument_list|,
 name|brokerPool
 argument_list|,
-name|subject
+name|user
 argument_list|)
 decl_stmt|;
 comment|// Show (restimated) size for PROPFIND only
@@ -1044,7 +1044,7 @@ name|collectionURI
 argument_list|,
 name|brokerPool
 argument_list|,
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 block|}
@@ -1198,7 +1198,7 @@ name|resourceURI
 argument_list|,
 name|brokerPool
 argument_list|,
-name|subject
+name|user
 argument_list|)
 expr_stmt|;
 block|}
