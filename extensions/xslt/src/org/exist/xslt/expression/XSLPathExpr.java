@@ -340,6 +340,7 @@ name|pos
 operator|++
 control|)
 block|{
+comment|// getLength
 name|Expression
 name|expr
 init|=
@@ -350,6 +351,7 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
+comment|// getExpression
 if|if
 condition|(
 operator|(
@@ -435,6 +437,7 @@ operator|!=
 literal|0
 condition|)
 block|{
+comment|// getLength
 name|Expression
 name|expr
 init|=
@@ -450,6 +453,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+comment|// 2x
 if|if
 condition|(
 name|expr
