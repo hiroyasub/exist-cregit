@@ -1160,29 +1160,15 @@ literal|null
 return|;
 block|}
 comment|// Guest is not allowed to access.
-name|User
-name|guest
-init|=
-name|brokerPool
+if|if
+condition|(
+name|username
 operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getUser
+name|equals
 argument_list|(
 name|SecurityManager
 operator|.
 name|GUEST_USER
-argument_list|)
-decl_stmt|;
-comment|// @@@@@@
-if|if
-condition|(
-name|guest
-operator|.
-name|equals
-argument_list|(
-name|user
 argument_list|)
 condition|)
 block|{
@@ -1192,10 +1178,7 @@ name|error
 argument_list|(
 literal|"The user "
 operator|+
-name|guest
-operator|.
-name|getName
-argument_list|()
+name|username
 operator|+
 literal|" is prohibited from logging in through WebDAV."
 argument_list|)
