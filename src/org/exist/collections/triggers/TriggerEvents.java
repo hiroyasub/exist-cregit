@@ -658,15 +658,8 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-throw|throw
-operator|new
-name|CollectionConfigurationException
-argument_list|(
-literal|"Unknown event type '"
-operator|+
-name|event
-argument_list|)
-throw|;
+comment|//	        	throw new CollectionConfigurationException(
+comment|//		    			"Unknown event type '" + event);
 block|}
 block|}
 return|return

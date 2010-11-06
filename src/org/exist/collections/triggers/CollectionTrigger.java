@@ -189,7 +189,7 @@ name|Collection
 name|collection
 parameter_list|,
 name|XmldbURI
-name|newUri
+name|oldUri
 parameter_list|)
 throws|throws
 name|TriggerException
@@ -227,7 +227,7 @@ name|Collection
 name|collection
 parameter_list|,
 name|XmldbURI
-name|newUri
+name|oldUri
 parameter_list|)
 throws|throws
 name|TriggerException
