@@ -886,6 +886,13 @@ condition|(
 name|timeout
 operator|==
 literal|null
+operator|||
+name|timeout
+operator|.
+name|getSeconds
+argument_list|()
+operator|==
+literal|null
 condition|)
 block|{
 name|existToken
