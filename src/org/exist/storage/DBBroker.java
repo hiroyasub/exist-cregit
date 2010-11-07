@@ -560,7 +560,7 @@ name|pool
 decl_stmt|;
 specifier|private
 name|Subject
-name|user
+name|subject
 init|=
 literal|null
 decl_stmt|;
@@ -677,21 +677,50 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|user
+name|subject
 operator|=
 name|user
 expr_stmt|;
 comment|/* 		 * synchronized (this){ System.out.println("DBBroker.setUser(" + 		 * user.getName() + ")"); Thread.dumpStack(); } 		 */
 comment|// debugging user escalation permissions problem - deliriumsky.
 block|}
-comment|/** 	 * @return The user that is currently using this DBBroker object 	 */
+comment|/** 	 * @return The user that is currently using this DBBroker object 	 * @deprecated user getSubject 	 */
 specifier|public
 name|Subject
 name|getUser
 parameter_list|()
 block|{
 return|return
-name|user
+name|subject
+return|;
+block|}
+comment|/** 	 * Set the subject that is currently using this DBBroker object. 	 * 	 * @param user 	 */
+comment|//TODO: this should be done in connection with authenticate (SecurityManager)
+specifier|public
+name|void
+name|setSubject
+parameter_list|(
+name|Subject
+name|subject
+parameter_list|)
+block|{
+name|this
+operator|.
+name|subject
+operator|=
+name|subject
+expr_stmt|;
+comment|/* 		 * synchronized (this){ System.out.println("DBBroker.setUser(" + 		 * user.getName() + ")"); Thread.dumpStack(); } 		 */
+comment|// debugging user escalation permissions problem - deliriumsky.
+block|}
+comment|/**      * The subject that is currently using this DBBroker object      *  	 * @return Subject  	 */
+specifier|public
+name|Subject
+name|getSubject
+parameter_list|()
+block|{
+return|return
+name|subject
 return|;
 block|}
 specifier|public

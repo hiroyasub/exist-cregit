@@ -7679,7 +7679,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/**      * Get the user which executes the current query.      *      * @return  user      */
+comment|/**      * Get the user which executes the current query.      *      * @return  user      * @deprecated use getSubject      */
 specifier|public
 name|Subject
 name|getUser
@@ -7693,6 +7693,20 @@ operator|.
 name|getUser
 argument_list|()
 operator|)
+return|;
+block|}
+comment|/**      * Get the subject which executes the current query.      *      * @return  subject      */
+specifier|public
+name|Subject
+name|getSubject
+parameter_list|()
+block|{
+return|return
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
 return|;
 block|}
 comment|/**      * If there is a HTTP Session, and a User has been stored in the session then this will return the user object from the session.      *      * @return  The user or null if there is no session or no user      */
