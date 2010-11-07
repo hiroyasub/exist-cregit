@@ -236,7 +236,7 @@ name|getTriggerConfigXml
 parameter_list|()
 block|{
 return|return
-literal|"<triggers><trigger event='create-document create-collection update-document rename-document rename-collection move-document move-collection delete-document delete-collection' class='org.exist.fluent.ListenerManager$TriggerDispatcher'/></triggers>"
+literal|"<triggers><trigger class='org.exist.fluent.ListenerManager$TriggerDispatcher'/></triggers>"
 return|;
 block|}
 specifier|static
@@ -3041,6 +3041,9 @@ name|fire
 argument_list|(
 name|key
 argument_list|,
+operator|(
+name|DocumentImpl
+operator|)
 literal|null
 argument_list|,
 literal|null
@@ -3089,8 +3092,20 @@ name|fire
 argument_list|(
 name|key
 argument_list|,
+operator|(
+name|DocumentImpl
+operator|)
 literal|null
 argument_list|,
+operator|(
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+operator|)
 literal|null
 argument_list|,
 literal|true

@@ -770,7 +770,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|docPath
 argument_list|,
@@ -832,7 +832,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -979,7 +979,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_STORE
+name|AFTER_CREATE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1052,7 +1052,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_STORE
+name|AFTER_CREATE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1191,7 +1191,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1250,7 +1250,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -1386,7 +1386,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_STORE
+name|AFTER_CREATE
 argument_list|,
 name|docPath
 argument_list|,
@@ -1456,7 +1456,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|AFTER_STORE
+name|AFTER_CREATE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -2044,7 +2044,7 @@ name|Event
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|docPath
 argument_list|,
@@ -2103,7 +2103,7 @@ name|add
 argument_list|(
 name|Trigger
 operator|.
-name|BEFORE_STORE
+name|BEFORE_CREATE
 argument_list|,
 name|documentListener
 argument_list|)
@@ -3397,11 +3397,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"not yet implemented"
-argument_list|)
 specifier|public
 name|void
 name|listenBeforeCreateFolder1
@@ -3503,11 +3498,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"not yet implemented"
-argument_list|)
 specifier|public
 name|void
 name|listenBeforeCreateFolder2
