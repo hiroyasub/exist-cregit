@@ -236,13 +236,11 @@ class|class
 name|TestRunner
 block|{
 specifier|private
-specifier|static
 name|File
 index|[]
 name|files
 decl_stmt|;
 specifier|private
-specifier|static
 name|Collection
 name|testCollection
 decl_stmt|;
