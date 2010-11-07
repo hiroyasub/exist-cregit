@@ -556,6 +556,8 @@ name|TaskStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|NEVER_RUN
 argument_list|)
 decl_stmt|;
@@ -906,6 +908,8 @@ name|setStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|STOPPED_ERROR
 argument_list|)
 expr_stmt|;
@@ -1015,6 +1019,8 @@ operator|.
 name|setStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|PING_WAIT
 argument_list|)
@@ -1150,6 +1156,8 @@ name|setStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|PING_ERROR
 argument_list|)
 expr_stmt|;
@@ -1197,6 +1205,8 @@ operator|.
 name|setStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|PING_OK
 argument_list|)
@@ -1382,6 +1392,8 @@ name|setStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|STOPPED_OK
 argument_list|)
 expr_stmt|;
@@ -1405,6 +1417,8 @@ operator|.
 name|setStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|STOPPED_ERROR
 argument_list|)
@@ -1442,8 +1456,6 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|TaskStatus
-operator|.
 name|INIT
 case|:
 name|actualCheckStart
@@ -1455,13 +1467,9 @@ argument_list|()
 expr_stmt|;
 break|break;
 case|case
-name|TaskStatus
-operator|.
 name|STOPPED_ERROR
 case|:
 case|case
-name|TaskStatus
-operator|.
 name|STOPPED_OK
 case|:
 name|lastCheckStart

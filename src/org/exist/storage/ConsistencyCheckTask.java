@@ -573,6 +573,8 @@ name|TaskStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|STOPPED_OK
 argument_list|)
 decl_stmt|;
@@ -586,6 +588,8 @@ operator|new
 name|TaskStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|INIT
 argument_list|)
@@ -620,6 +624,8 @@ operator|new
 name|TaskStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|PAUSED
 argument_list|)
@@ -724,6 +730,8 @@ name|TaskStatus
 argument_list|(
 name|TaskStatus
 operator|.
+name|Status
+operator|.
 name|RUNNING_CHECK
 argument_list|)
 argument_list|)
@@ -751,6 +759,8 @@ operator|.
 name|setStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|STOPPED_ERROR
 argument_list|)
@@ -875,6 +885,8 @@ operator|new
 name|TaskStatus
 argument_list|(
 name|TaskStatus
+operator|.
+name|Status
 operator|.
 name|RUNNING_BACKUP
 argument_list|)
