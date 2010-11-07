@@ -99,6 +99,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -115,6 +125,7 @@ name|void
 name|negativeNumbersComparison
 parameter_list|()
 block|{
+comment|// -8.6...
 name|byte
 index|[]
 name|data1
@@ -137,6 +148,7 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// 1.0
 name|byte
 index|[]
 name|data2
@@ -158,6 +170,18 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// print data
+name|print
+argument_list|(
+name|data1
+argument_list|)
+expr_stmt|;
+name|print
+argument_list|(
+name|data2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
 literal|"v1= "
@@ -173,6 +197,7 @@ operator|<
 name|v2
 argument_list|)
 expr_stmt|;
+comment|// -8.6< 1.0
 name|assertEquals
 argument_list|(
 literal|"v1< v2"
@@ -198,6 +223,63 @@ argument_list|)
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Test
+annotation|@
+name|Ignore
+specifier|public
+name|void
+name|negativeNumbersComparison2
+parameter_list|()
+block|{
+comment|// -8.6...
+name|byte
+index|[]
+name|data1
+init|=
+name|encode
+argument_list|(
+operator|-
+literal|8.612328
+argument_list|)
+decl_stmt|;
+name|long
+name|v1
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data1
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// 1.0
+name|byte
+index|[]
+name|data2
+init|=
+name|encode
+argument_list|(
+operator|-
+literal|1.0
+argument_list|)
+decl_stmt|;
+name|long
+name|v2
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data2
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// print data
 name|print
 argument_list|(
 name|data1
@@ -206,6 +288,259 @@ expr_stmt|;
 name|print
 argument_list|(
 name|data2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertTrue
+argument_list|(
+literal|"v1= "
+operator|+
+name|v1
+operator|+
+literal|" v2 = "
+operator|+
+name|v2
+argument_list|,
+name|v1
+operator|<
+name|v2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertEquals
+argument_list|(
+literal|"v1< v2"
+argument_list|,
+operator|-
+literal|1
+argument_list|,
+operator|(
+operator|new
+name|Value
+argument_list|(
+name|data1
+argument_list|)
+operator|.
+name|compareTo
+argument_list|(
+operator|new
+name|Value
+argument_list|(
+name|data2
+argument_list|)
+argument_list|)
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+annotation|@
+name|Ignore
+specifier|public
+name|void
+name|negativeNumbersComparison3
+parameter_list|()
+block|{
+comment|// -8.6...
+name|byte
+index|[]
+name|data1
+init|=
+name|encode
+argument_list|(
+literal|8.612328
+argument_list|)
+decl_stmt|;
+name|long
+name|v1
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data1
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// 1.0
+name|byte
+index|[]
+name|data2
+init|=
+name|encode
+argument_list|(
+literal|1.0
+argument_list|)
+decl_stmt|;
+name|long
+name|v2
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data2
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// print data
+name|print
+argument_list|(
+name|data1
+argument_list|)
+expr_stmt|;
+name|print
+argument_list|(
+name|data2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertTrue
+argument_list|(
+literal|"v1= "
+operator|+
+name|v1
+operator|+
+literal|" v2 = "
+operator|+
+name|v2
+argument_list|,
+name|v1
+operator|>
+name|v2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertEquals
+argument_list|(
+literal|"v1< v2"
+argument_list|,
+literal|1
+argument_list|,
+operator|(
+operator|new
+name|Value
+argument_list|(
+name|data1
+argument_list|)
+operator|.
+name|compareTo
+argument_list|(
+operator|new
+name|Value
+argument_list|(
+name|data2
+argument_list|)
+argument_list|)
+operator|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|negativeNumbersComparison4
+parameter_list|()
+block|{
+comment|// -8.6...
+name|byte
+index|[]
+name|data1
+init|=
+name|encode
+argument_list|(
+literal|8.612328
+argument_list|)
+decl_stmt|;
+name|long
+name|v1
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data1
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// 1.0
+name|byte
+index|[]
+name|data2
+init|=
+name|encode
+argument_list|(
+operator|-
+literal|1.0
+argument_list|)
+decl_stmt|;
+name|long
+name|v2
+init|=
+name|ByteConversion
+operator|.
+name|byteToLong
+argument_list|(
+name|data2
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// print data
+name|print
+argument_list|(
+name|data1
+argument_list|)
+expr_stmt|;
+name|print
+argument_list|(
+name|data2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertTrue
+argument_list|(
+literal|"v1= "
+operator|+
+name|v1
+operator|+
+literal|" v2 = "
+operator|+
+name|v2
+argument_list|,
+name|v1
+operator|>
+name|v2
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertEquals
+argument_list|(
+literal|"v1< v2"
+argument_list|,
+literal|1
+argument_list|,
+operator|(
+operator|new
+name|Value
+argument_list|(
+name|data1
+argument_list|)
+operator|.
+name|compareTo
+argument_list|(
+operator|new
+name|Value
+argument_list|(
+name|data2
+argument_list|)
+argument_list|)
+operator|)
 argument_list|)
 expr_stmt|;
 block|}
