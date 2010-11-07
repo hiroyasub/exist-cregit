@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: DebuggingSourceImpl.java 12440 2010-08-17 15:56:46Z shabanovd $  */
 end_comment
 
 begin_package
@@ -17,9 +17,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|HashMap
+name|IOException
 import|;
 end_import
 
@@ -29,7 +29,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|List
 import|;
 end_import
 
@@ -43,49 +43,7 @@ name|debugger
 operator|.
 name|model
 operator|.
-name|Breakpoint
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|debugger
-operator|.
-name|model
-operator|.
-name|BreakpointImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|debugger
-operator|.
-name|model
-operator|.
-name|Location
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|debugger
-operator|.
-name|model
-operator|.
-name|Variable
+name|*
 import|;
 end_import
 
@@ -108,24 +66,7 @@ specifier|private
 name|String
 name|fileURI
 decl_stmt|;
-specifier|private
-name|Map
-argument_list|<
-name|Integer
-argument_list|,
-name|Breakpoint
-argument_list|>
-name|breakpoints
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|Integer
-argument_list|,
-name|Breakpoint
-argument_list|>
-argument_list|()
-decl_stmt|;
+comment|//	private Map<Integer, Breakpoint> breakpoints = new HashMap<Integer, Breakpoint>();
 specifier|protected
 name|DebuggingSourceImpl
 parameter_list|(
@@ -150,8 +91,17 @@ name|fileURI
 expr_stmt|;
 block|}
 specifier|public
+name|Debugger
+name|getDebugger
+parameter_list|()
+block|{
+return|return
+name|debugger
+return|;
+block|}
+specifier|public
 name|Breakpoint
-name|getBreakpoint
+name|newBreakpoint
 parameter_list|()
 block|{
 name|BreakpointImpl
@@ -172,7 +122,7 @@ name|breakpoint
 operator|.
 name|setDebuggingSource
 argument_list|(
-name|debugger
+name|this
 argument_list|)
 expr_stmt|;
 return|return
@@ -189,26 +139,72 @@ comment|// TODO Auto-generated method stub
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#getStackFrames() 	 */
 specifier|public
+name|List
+argument_list|<
 name|Location
-index|[]
+argument_list|>
 name|getStackFrames
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|debugger
+operator|.
+name|getStackFrames
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#getVariables() 	 */
 specifier|public
+name|List
+argument_list|<
 name|Variable
-index|[]
+argument_list|>
 name|getVariables
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|null
+name|debugger
+operator|.
+name|getVariables
+argument_list|()
+return|;
+block|}
+specifier|public
+name|List
+argument_list|<
+name|Variable
+argument_list|>
+name|getLocalVariables
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|debugger
+operator|.
+name|getLocalVariables
+argument_list|()
+return|;
+block|}
+specifier|public
+name|List
+argument_list|<
+name|Variable
+argument_list|>
+name|getGlobalVariables
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|debugger
+operator|.
+name|getGlobalVariables
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#isSuspended() 	 */
@@ -217,9 +213,11 @@ name|boolean
 name|isSuspended
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|debugger
+operator|.
+name|isSuspended
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#isTerminated() 	 */
@@ -228,9 +226,11 @@ name|boolean
 name|isTerminated
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
-literal|false
+name|debugger
+operator|.
+name|isTerminated
+argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#removeBreakpoint(org.exist.debugger.model.Breakpoint) 	 */
@@ -269,6 +269,20 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#run() 	 */
+specifier|public
+name|void
+name|run
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|debugger
+operator|.
+name|run
+argument_list|()
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepInto() 	 */
 specifier|public
 name|void
@@ -284,6 +298,20 @@ name|stepInto
 argument_list|(
 name|listener
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepInto() 	 */
+specifier|public
+name|void
+name|stepInto
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|debugger
+operator|.
+name|stepInto
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOut() 	 */
@@ -303,6 +331,20 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOut() 	 */
+specifier|public
+name|void
+name|stepOut
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|debugger
+operator|.
+name|stepOut
+argument_list|()
+expr_stmt|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOver() 	 */
 specifier|public
 name|void
@@ -318,6 +360,20 @@ name|stepOver
 argument_list|(
 name|listener
 argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stepOver() 	 */
+specifier|public
+name|void
+name|stepOver
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|debugger
+operator|.
+name|stepOver
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stop() 	 */
@@ -337,15 +393,19 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+comment|/* (non-Javadoc) 	 * @see org.exist.debugger.DebuggingSource#stop() 	 */
 specifier|public
-name|Breakpoint
-name|newBreakpoint
+name|void
+name|stop
 parameter_list|()
+throws|throws
+name|IOException
 block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
+name|debugger
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
 block|}
 specifier|private
 name|String
@@ -374,6 +434,27 @@ name|code
 operator|=
 name|text
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|evaluate
+parameter_list|(
+name|String
+name|script
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|debugger
+operator|.
+name|evaluate
+argument_list|(
+name|script
+argument_list|)
+return|;
 block|}
 block|}
 end_class

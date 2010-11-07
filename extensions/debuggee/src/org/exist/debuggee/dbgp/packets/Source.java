@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: Source.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -625,6 +625,51 @@ name|responseBytes
 parameter_list|()
 block|{
 if|if
+condition|(
+name|exception
+operator|!=
+literal|null
+condition|)
+block|{
+name|String
+name|url
+init|=
+literal|"NULL"
+decl_stmt|;
+if|if
+condition|(
+name|fileURI
+operator|!=
+literal|null
+condition|)
+name|url
+operator|=
+name|fileURI
+expr_stmt|;
+name|response
+operator|=
+name|errorBytes
+argument_list|(
+literal|"source"
+argument_list|,
+name|Errors
+operator|.
+name|ERR_100
+argument_list|,
+name|exception
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" (URL:"
+operator|+
+name|url
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
 condition|(
 name|response
 operator|==

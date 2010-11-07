@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: PropertyGet.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -354,21 +354,38 @@ argument_list|(
 literal|"property_get"
 argument_list|)
 return|;
-name|String
+name|StringBuilder
 name|responce
 init|=
-literal|""
-operator|+
-literal|"<response "
-operator|+
-literal|"command=\"property_get\" "
-operator|+
-literal|"transaction_id=\""
-operator|+
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
+literal|"<response command=\"property_get\" transaction_id=\""
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
 name|transactionID
-operator|+
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
 literal|"\">"
-operator|+
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
 name|getPropertyString
 argument_list|(
 name|variable
@@ -379,11 +396,20 @@ operator|.
 name|getContext
 argument_list|()
 argument_list|)
-operator|+
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
 literal|"</response>"
-decl_stmt|;
+argument_list|)
+expr_stmt|;
 return|return
 name|responce
+operator|.
+name|toString
+argument_list|()
 operator|.
 name|getBytes
 argument_list|()
@@ -391,7 +417,7 @@ return|;
 block|}
 specifier|protected
 specifier|static
-name|String
+name|StringBuilder
 name|getPropertyString
 parameter_list|(
 name|Variable
@@ -427,8 +453,12 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|String
+name|StringBuilder
 name|property
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -483,11 +513,16 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|property
-operator|=
-literal|"<property "
-operator|+
-literal|"name=\""
-operator|+
+operator|.
+name|append
+argument_list|(
+literal|"<property name=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|variable
 operator|.
 name|getQName
@@ -495,11 +530,19 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"fullname=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" fullname=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|variable
 operator|.
 name|getQName
@@ -507,39 +550,74 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"type=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" type=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|type
-operator|+
-literal|"\" "
-operator|+
-literal|"size=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" size=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|strVal
 operator|.
 name|length
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"encoding=\"none\">"
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" encoding=\"none\">"
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|strVal
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 literal|"</property>"
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
 name|property
-operator|=
-literal|"<property "
-operator|+
-literal|"name=\""
-operator|+
+operator|.
+name|append
+argument_list|(
+literal|"<property name=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|variable
 operator|.
 name|getQName
@@ -547,11 +625,19 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"fullname=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" fullname=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|variable
 operator|.
 name|getQName
@@ -559,21 +645,31 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"type=\"array\" "
-operator|+
-literal|"children=\"true\" "
-operator|+
-literal|"numchildren=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" type=\"array\" children=\"true\" numchildren=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|value
 operator|.
 name|getItemCount
 argument_list|()
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 literal|"\">"
+argument_list|)
 expr_stmt|;
 name|int
 name|idx
@@ -647,40 +743,78 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|property
-operator|+=
-literal|"<property "
-operator|+
-literal|"name=\""
-operator|+
+operator|.
+name|append
+argument_list|(
+literal|"<property name=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|idx
-operator|+
-literal|"\" "
-operator|+
-literal|"type=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" type=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|type
-operator|+
-literal|"\" "
-operator|+
-literal|"size=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" size=\""
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|strVal
 operator|.
 name|length
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"encoding=\"none\">"
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
+literal|"\" encoding=\"none\">"
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 name|strVal
-operator|+
+argument_list|)
+expr_stmt|;
+name|property
+operator|.
+name|append
+argument_list|(
 literal|"</property>"
+argument_list|)
 expr_stmt|;
 block|}
 name|property
-operator|+=
+operator|.
+name|append
+argument_list|(
 literal|"</property>"
+argument_list|)
 expr_stmt|;
 block|}
 return|return

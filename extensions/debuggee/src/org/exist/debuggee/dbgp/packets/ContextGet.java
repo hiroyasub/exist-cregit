@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ContextGet.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -16,6 +16,16 @@ operator|.
 name|packets
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
 
 begin_import
 import|import
@@ -94,15 +104,11 @@ comment|/** 	 * stack depth (optional) 	 */
 specifier|private
 name|Integer
 name|stackDepth
-init|=
-literal|null
 decl_stmt|;
 comment|/** 	 * context id (optional, retrieved by context-names) 	 */
 specifier|private
 name|String
 name|contextID
-init|=
-literal|""
 decl_stmt|;
 specifier|private
 name|Map
@@ -129,6 +135,20 @@ name|session
 argument_list|,
 name|args
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|stackDepth
+operator|=
+literal|null
+expr_stmt|;
+name|contextID
+operator|=
+literal|null
 expr_stmt|;
 block|}
 specifier|protected
@@ -199,12 +219,76 @@ name|exec
 parameter_list|()
 block|{
 comment|//TODO: different stack depth& context id
+if|if
+condition|(
+name|contextID
+operator|==
+literal|null
+operator|||
+name|contextID
+operator|.
+name|equals
+argument_list|(
+literal|""
+argument_list|)
+condition|)
 name|variables
 operator|=
 name|getJoint
 argument_list|()
 operator|.
 name|getVariables
+argument_list|()
+expr_stmt|;
+if|else if
+condition|(
+name|contextID
+operator|.
+name|equals
+argument_list|(
+name|ContextNames
+operator|.
+name|LOCAL
+argument_list|)
+condition|)
+name|variables
+operator|=
+name|getJoint
+argument_list|()
+operator|.
+name|getLocalVariables
+argument_list|()
+expr_stmt|;
+if|else if
+condition|(
+name|contextID
+operator|.
+name|equals
+argument_list|(
+name|ContextNames
+operator|.
+name|GLOBAL
+argument_list|)
+condition|)
+name|variables
+operator|=
+name|getJoint
+argument_list|()
+operator|.
+name|getGlobalVariables
+argument_list|()
+expr_stmt|;
+else|else
+comment|//Class& unknow
+name|variables
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|QName
+argument_list|,
+name|Variable
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
@@ -250,11 +334,6 @@ name|String
 name|getPropertiesString
 parameter_list|()
 block|{
-name|String
-name|properties
-init|=
-literal|""
-decl_stmt|;
 if|if
 condition|(
 name|variables
@@ -262,9 +341,16 @@ operator|==
 literal|null
 condition|)
 return|return
-name|properties
+literal|""
 return|;
 comment|//XXX: error?
+name|StringBuilder
+name|properties
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 name|XQueryContext
 name|ctx
 init|=
@@ -286,7 +372,9 @@ argument_list|()
 control|)
 block|{
 name|properties
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|PropertyGet
 operator|.
 name|getPropertyString
@@ -295,10 +383,14 @@ name|variable
 argument_list|,
 name|ctx
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 return|return
 name|properties
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -337,6 +429,7 @@ name|contextID
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|contextID
 operator|.
 name|equals
@@ -348,12 +441,7 @@ name|command
 operator|+=
 literal|" -c "
 operator|+
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|contextID
-argument_list|)
 expr_stmt|;
 return|return
 name|command
@@ -361,6 +449,21 @@ operator|.
 name|getBytes
 argument_list|()
 return|;
+block|}
+specifier|public
+name|void
+name|setContextID
+parameter_list|(
+name|String
+name|contextID
+parameter_list|)
+block|{
+name|this
+operator|.
+name|contextID
+operator|=
+name|contextID
+expr_stmt|;
 block|}
 block|}
 end_class

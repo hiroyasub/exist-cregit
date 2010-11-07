@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: BreakpointRemove.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -47,6 +47,20 @@ name|Breakpoint
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|model
+operator|.
+name|BreakpointImpl
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -60,7 +74,7 @@ name|Command
 block|{
 comment|/** 	 * is the unique session breakpoint id returned by breakpoint_set. 	 */
 specifier|private
-name|int
+name|Integer
 name|breakpointID
 decl_stmt|;
 specifier|private
@@ -83,6 +97,16 @@ name|session
 argument_list|,
 name|args
 argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|init
+parameter_list|()
+block|{
+name|breakpointID
+operator|=
+literal|null
 expr_stmt|;
 block|}
 specifier|protected
@@ -137,6 +161,12 @@ name|void
 name|exec
 parameter_list|()
 block|{
+if|if
+condition|(
+name|breakpointID
+operator|!=
+literal|null
+condition|)
 name|breakpoint
 operator|=
 name|getJoint
@@ -225,6 +255,21 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+specifier|public
+name|void
+name|setBreakpoint
+parameter_list|(
+name|BreakpointImpl
+name|breakpoint
+parameter_list|)
+block|{
+name|this
+operator|.
+name|breakpoint
+operator|=
+name|breakpoint
+expr_stmt|;
 block|}
 block|}
 end_class

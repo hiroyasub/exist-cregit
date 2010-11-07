@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: StackGet.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -143,21 +143,34 @@ index|[]
 name|responseBytes
 parameter_list|()
 block|{
-name|String
+name|StringBuilder
 name|response
 init|=
-literal|""
-operator|+
-literal|"<response "
-operator|+
-literal|"command=\"stack_get\" "
-operator|+
-literal|"transaction_id=\""
-operator|+
-name|transactionID
-operator|+
-literal|"\">\n"
+operator|new
+name|StringBuilder
+argument_list|()
 decl_stmt|;
+name|response
+operator|.
+name|append
+argument_list|(
+literal|"<response command=\"stack_get\" transaction_id=\""
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|append
+argument_list|(
+name|transactionID
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|append
+argument_list|(
+literal|"\">\n"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|stackDepth
@@ -191,10 +204,13 @@ name|size
 argument_list|()
 condition|)
 name|response
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|stackToString
 argument_list|(
 name|index
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -220,32 +236,48 @@ name|index
 operator|--
 control|)
 name|response
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|stackToString
 argument_list|(
 name|index
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 name|response
-operator|+=
+operator|.
+name|append
+argument_list|(
 literal|"</response>"
+argument_list|)
 expr_stmt|;
 return|return
 name|response
+operator|.
+name|toString
+argument_list|()
 operator|.
 name|getBytes
 argument_list|()
 return|;
 block|}
 specifier|private
-name|String
+name|StringBuilder
 name|stackToString
 parameter_list|(
 name|int
 name|index
 parameter_list|)
 block|{
+name|StringBuilder
+name|result
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|stacks
@@ -260,7 +292,7 @@ operator|==
 literal|0
 condition|)
 return|return
-literal|""
+name|result
 return|;
 name|Expression
 name|expr
@@ -284,31 +316,53 @@ name|index
 operator|-
 literal|1
 decl_stmt|;
-return|return
+name|result
+operator|.
+name|append
+argument_list|(
 literal|"<stack level=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
 name|String
 operator|.
 name|valueOf
 argument_list|(
 name|level
 argument_list|)
-operator|+
-literal|"\" "
-operator|+
-literal|"lineno=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"\" lineno=\""
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
 name|expr
 operator|.
 name|getLine
 argument_list|()
-operator|+
-literal|"\" "
-operator|+
-literal|"type=\"file\" "
-operator|+
-literal|"filename=\""
-operator|+
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"\" type=\"file\" filename=\""
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
 name|getFileuri
 argument_list|(
 name|expr
@@ -316,13 +370,62 @@ operator|.
 name|getSource
 argument_list|()
 argument_list|)
-operator|+
-literal|"\" />"
-return|;
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"\" "
+argument_list|)
+expr_stmt|;
 comment|//					+
 comment|//					"where=\"\" " +
-comment|//					"cmdbegin=\""+expr.getLine()+":"+expr.getColumn()+"\" " +
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"cmdbegin=\""
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+name|expr
+operator|.
+name|getLine
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|":"
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+name|expr
+operator|.
+name|getColumn
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|"\"  />"
+argument_list|)
+expr_stmt|;
 comment|//					"cmdend=\""+(expr.getLine())+":"+(expr.getColumn()+1)+"\"/>";
+return|return
+name|result
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.debuggee.dgbp.packets.Command#exec() 	 */
 annotation|@

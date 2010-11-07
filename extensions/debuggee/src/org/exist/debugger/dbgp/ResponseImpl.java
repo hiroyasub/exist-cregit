@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: ResponseImpl.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -144,6 +144,18 @@ operator|.
 name|dom
 operator|.
 name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
 import|;
 end_import
 
@@ -400,8 +412,8 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|String
-name|getAttribute
+name|boolean
+name|hasAttribute
 parameter_list|(
 name|String
 name|attr
@@ -417,6 +429,43 @@ name|getNamedItem
 argument_list|(
 name|attr
 argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
+specifier|public
+name|String
+name|getAttribute
+parameter_list|(
+name|String
+name|attr
+parameter_list|)
+block|{
+name|Node
+name|item
+init|=
+name|parsedResponse
+operator|.
+name|getAttributes
+argument_list|()
+operator|.
+name|getNamedItem
+argument_list|(
+name|attr
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|item
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
+comment|//raise error?
+return|return
+name|item
 operator|.
 name|getNodeValue
 argument_list|()
@@ -459,6 +508,23 @@ argument_list|()
 return|;
 return|return
 literal|null
+return|;
+block|}
+specifier|public
+name|NodeList
+name|getElemetsByName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+name|parsedResponse
+operator|.
+name|getElementsByTagName
+argument_list|(
+name|name
+argument_list|)
 return|;
 block|}
 block|}

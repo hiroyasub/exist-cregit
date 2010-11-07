@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: HttpSession.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -12,20 +12,6 @@ operator|.
 name|debugger
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
-name|Cookie
-import|;
-end_import
 
 begin_import
 import|import
@@ -51,37 +37,7 @@ name|commons
 operator|.
 name|httpclient
 operator|.
-name|HttpState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
 name|NameValuePair
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
-name|methods
-operator|.
-name|GetMethod
 import|;
 end_import
 
@@ -113,16 +69,29 @@ implements|implements
 name|Runnable
 block|{
 specifier|private
+name|DebuggerImpl
+name|debugger
+decl_stmt|;
+specifier|private
 name|String
 name|url
 decl_stmt|;
 specifier|protected
 name|HttpSession
 parameter_list|(
+name|DebuggerImpl
+name|debugger
+parameter_list|,
 name|String
 name|url
 parameter_list|)
 block|{
+name|this
+operator|.
+name|debugger
+operator|=
+name|debugger
+expr_stmt|;
 name|this
 operator|.
 name|url
@@ -136,11 +105,6 @@ name|void
 name|run
 parameter_list|()
 block|{
-comment|//		HttpState initialState = new HttpState();
-comment|//
-comment|//		Cookie mycookie = new Cookie(".exist-db.org", "XDEBUG_SESSION", "default", "/", null, false);
-comment|//
-comment|//		initialState.addCookie(mycookie);
 name|HttpClient
 name|client
 init|=
@@ -148,7 +112,6 @@ operator|new
 name|HttpClient
 argument_list|()
 decl_stmt|;
-comment|//		client.setState(initialState);
 name|PostMethod
 name|method
 init|=
@@ -199,11 +162,18 @@ argument_list|(
 literal|"sending http request with debugging flag"
 argument_list|)
 expr_stmt|;
+name|debugger
+operator|.
+name|terminate
+argument_list|(
+name|url
+argument_list|,
 name|client
 operator|.
 name|executeMethod
 argument_list|(
 name|method
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|System

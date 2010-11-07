@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id:$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: BreakpointList.java 11737 2010-05-02 21:25:21Z ixitar $  */
 end_comment
 
 begin_package
@@ -146,19 +146,34 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|String
+name|StringBuilder
 name|responce
 init|=
-literal|"<response "
-operator|+
-literal|"command=\"breakpoint_list\" "
-operator|+
-literal|"transaction_id=\""
-operator|+
-name|transactionID
-operator|+
-literal|"\">"
+operator|new
+name|StringBuilder
+argument_list|()
 decl_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
+literal|"<response  command=\"breakpoint_list\" transaction_id=\""
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
+name|transactionID
+argument_list|)
+expr_stmt|;
+name|responce
+operator|.
+name|append
+argument_list|(
+literal|"\">"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Breakpoint
@@ -170,18 +185,27 @@ name|values
 argument_list|()
 control|)
 name|responce
-operator|+=
+operator|.
+name|append
+argument_list|(
 name|breakpoint
 operator|.
 name|toXMLString
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|responce
-operator|+=
+operator|.
+name|append
+argument_list|(
 literal|"</response>"
+argument_list|)
 expr_stmt|;
 return|return
 name|responce
+operator|.
+name|toString
+argument_list|()
 operator|.
 name|getBytes
 argument_list|()
