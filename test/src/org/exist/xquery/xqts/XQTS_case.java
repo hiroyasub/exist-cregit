@@ -1773,12 +1773,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-comment|//do not sysout extected& getted results (temporarily)
-if|if
-condition|(
-literal|false
-condition|)
-block|{
 name|String
 name|exp
 init|=
@@ -2128,7 +2122,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-block|}
 name|Assert
 operator|.
 name|fail
