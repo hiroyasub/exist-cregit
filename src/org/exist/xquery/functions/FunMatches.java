@@ -1846,6 +1846,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|input
+operator|.
+name|isPersistentSet
+argument_list|()
+operator|&&
 name|inPredicate
 operator|&&
 operator|!
