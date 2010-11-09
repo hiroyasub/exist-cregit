@@ -630,7 +630,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * This class handle all configuration needs: extracting and saving, reconfiguring& etc.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class

@@ -312,11 +312,13 @@ literal|null
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|Integer
 name|DUMMY_INTEGER
 init|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|0
 argument_list|)

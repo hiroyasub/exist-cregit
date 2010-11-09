@@ -1483,8 +1483,9 @@ name|LONG
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -1522,8 +1523,9 @@ name|INT
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -1561,8 +1563,9 @@ name|SHORT
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Short
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|short
@@ -1603,8 +1606,9 @@ name|BYTE
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Byte
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|byte
@@ -1680,8 +1684,9 @@ literal|"cannot convert string with length = 0 or length> 1 to Java character"
 argument_list|)
 throw|;
 return|return
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 name|value
 operator|.

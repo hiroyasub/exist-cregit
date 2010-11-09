@@ -447,8 +447,9 @@ literal|null
 condition|)
 name|s
 operator|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|0
 argument_list|)

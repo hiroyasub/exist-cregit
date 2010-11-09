@@ -377,8 +377,9 @@ argument_list|(
 name|requiredCardinality
 argument_list|)
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|seq
 operator|.

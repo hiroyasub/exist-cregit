@@ -59,6 +59,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|security
@@ -1301,12 +1313,17 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+name|Entry
+argument_list|<
 name|String
-name|key
+argument_list|,
+name|String
+argument_list|>
+name|entry
 range|:
 name|parameterMap
 operator|.
-name|keySet
+name|entrySet
 argument_list|()
 control|)
 block|{
@@ -1316,16 +1333,17 @@ name|println
 argument_list|(
 literal|"<input type=\"hidden\" name=\""
 operator|+
-name|key
+name|entry
+operator|.
+name|getKey
+argument_list|()
 operator|+
 literal|"\" value=\""
 operator|+
-name|parameterMap
+name|entry
 operator|.
-name|get
-argument_list|(
-name|key
-argument_list|)
+name|getValue
+argument_list|()
 operator|+
 literal|"\"/>"
 argument_list|)

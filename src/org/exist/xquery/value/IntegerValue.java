@@ -2446,8 +2446,9 @@ name|class
 condition|)
 comment|// ?? jmv: return new Long(value);
 return|return
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|value
 operator|.
@@ -2484,8 +2485,9 @@ name|INT
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|int
@@ -2528,8 +2530,9 @@ name|SHORT
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Short
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|short
@@ -2572,8 +2575,9 @@ name|BYTE
 argument_list|)
 decl_stmt|;
 return|return
-operator|new
 name|Byte
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|byte

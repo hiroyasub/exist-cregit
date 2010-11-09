@@ -748,8 +748,9 @@ name|modeStack
 operator|.
 name|push
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)
@@ -981,8 +982,9 @@ name|modeStack
 operator|.
 name|push
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)

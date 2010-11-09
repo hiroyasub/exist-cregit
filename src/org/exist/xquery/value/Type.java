@@ -2050,8 +2050,9 @@ name|t1
 operator|.
 name|contains
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|t
 argument_list|)
