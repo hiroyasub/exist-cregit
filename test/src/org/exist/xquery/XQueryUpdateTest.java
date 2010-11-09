@@ -460,8 +460,9 @@ name|declareVariable
 argument_list|(
 literal|"i"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|i
 argument_list|)
@@ -727,8 +728,9 @@ name|declareVariable
 argument_list|(
 literal|"i"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|i
 argument_list|)
@@ -1114,8 +1116,9 @@ name|declareVariable
 argument_list|(
 literal|"i"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|i
 argument_list|)
@@ -1417,8 +1420,9 @@ name|declareVariable
 argument_list|(
 literal|"i"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|i
 argument_list|)

@@ -227,8 +227,9 @@ name|k
 parameter_list|)
 block|{
 return|return
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|k
 argument_list|)
