@@ -39,6 +39,7 @@ name|K
 parameter_list|>
 block|{
 specifier|private
+specifier|static
 specifier|final
 name|int
 name|defaultSize

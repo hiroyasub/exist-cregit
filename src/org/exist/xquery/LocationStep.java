@@ -227,6 +227,7 @@ extends|extends
 name|Step
 block|{
 specifier|private
+specifier|static
 specifier|final
 name|int
 name|ATTR_DIRECT_SELECT_THRESHOLD
@@ -234,6 +235,7 @@ init|=
 literal|10
 decl_stmt|;
 specifier|private
+specifier|static
 specifier|final
 name|int
 name|INDEX_SCAN_THRESHOLD
