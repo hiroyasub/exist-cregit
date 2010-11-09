@@ -3318,6 +3318,8 @@ name|cp
 argument_list|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|_classpath
 operator|.
 name|addComponent
@@ -3329,6 +3331,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 empty_stmt|;
+block|}
+finally|finally
+block|{
+name|reader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
