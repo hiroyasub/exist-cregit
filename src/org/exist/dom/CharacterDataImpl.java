@@ -692,7 +692,7 @@ operator|==
 literal|null
 condition|)
 return|return
-literal|null
+literal|""
 return|;
 return|return
 name|cdata
