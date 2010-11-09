@@ -89,6 +89,7 @@ extends|extends
 name|OutputStream
 block|{
 specifier|private
+specifier|static
 specifier|final
 name|int
 name|MAX_BUFFER_SIZE
