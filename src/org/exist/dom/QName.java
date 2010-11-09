@@ -540,6 +540,15 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+if|if
+condition|(
+name|obj
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 name|QName
 name|other
 init|=

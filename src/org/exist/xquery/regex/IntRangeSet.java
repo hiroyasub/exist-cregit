@@ -1305,6 +1305,15 @@ block|{
 if|if
 condition|(
 name|other
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|other
 operator|instanceof
 name|IntRangeSet
 condition|)

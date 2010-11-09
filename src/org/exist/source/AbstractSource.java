@@ -118,6 +118,17 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+if|if
+condition|(
+name|obj
+operator|!=
+literal|null
+operator|&&
+name|obj
+operator|instanceof
+name|Source
+condition|)
+block|{
 return|return
 name|getKey
 argument_list|()
@@ -134,6 +145,10 @@ operator|.
 name|getKey
 argument_list|()
 argument_list|)
+return|;
+block|}
+return|return
+literal|false
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
