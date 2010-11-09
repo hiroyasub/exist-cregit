@@ -625,7 +625,13 @@ if|if
 condition|(
 name|timeout
 operator|==
-name|existLT
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|LockToken
 operator|.
 name|NO_LOCK_TIMEOUT
 condition|)
@@ -634,13 +640,19 @@ name|timeout
 operator|=
 literal|null
 expr_stmt|;
-block|}
 comment|// Special treatment infinite lock
-if|if
+block|}
+if|else if
 condition|(
 name|timeout
 operator|==
-name|existLT
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|LockToken
 operator|.
 name|LOCK_TIMEOUT_INFINITE
 condition|)
