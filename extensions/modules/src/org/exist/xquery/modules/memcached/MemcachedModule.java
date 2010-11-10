@@ -366,8 +366,9 @@ name|clients
 operator|.
 name|get
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|clientHandle
 argument_list|)
@@ -395,8 +396,9 @@ name|clients
 operator|.
 name|put
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|clientHandle
 argument_list|)
@@ -439,8 +441,9 @@ name|clients
 operator|.
 name|remove
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|clientHandle
 argument_list|)
