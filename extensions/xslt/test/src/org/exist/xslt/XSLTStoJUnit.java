@@ -266,6 +266,12 @@ name|BufferedWriter
 name|outAll
 decl_stmt|;
 specifier|private
+name|boolean
+name|first
+init|=
+literal|true
+decl_stmt|;
+specifier|private
 name|Vector
 argument_list|<
 name|String
@@ -312,7 +318,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-literal|"extensions/xslt/test/org/exist/xslt/xslts"
+literal|"extensions/xslt/test/src/org/exist/xslt/xslts"
 argument_list|)
 expr_stmt|;
 name|File
@@ -767,6 +773,10 @@ operator|+
 literal|"@Suite.SuiteClasses({\n"
 argument_list|)
 expr_stmt|;
+name|first
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1005,6 +1015,11 @@ operator|+
 literal|" extends XSLTS_case {\n"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|first
+condition|)
+block|{
 name|outAll
 operator|.
 name|write
@@ -1013,9 +1028,28 @@ literal|"	"
 operator|+
 name|name
 operator|+
-literal|".class,\n"
+literal|".class"
 argument_list|)
 expr_stmt|;
+name|first
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
+name|outAll
+operator|.
+name|write
+argument_list|(
+literal|",\n	"
+operator|+
+name|name
+operator|+
+literal|".class"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
