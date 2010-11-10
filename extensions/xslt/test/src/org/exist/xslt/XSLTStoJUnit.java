@@ -318,7 +318,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-literal|"extensions/xslt/test/src/org/exist/xslt/xslts"
+literal|"extensions/xslt/test/src/org/exist/xslt/xslts_1_1_0"
 argument_list|)
 expr_stmt|;
 name|File
@@ -762,7 +762,7 @@ name|outAll
 operator|.
 name|write
 argument_list|(
-literal|"package org.exist.xslt.xslts;\n\n"
+literal|"package org.exist.xslt.xslts_1_1_0;\n\n"
 operator|+
 literal|"import org.junit.runner.RunWith;\n"
 operator|+
@@ -1000,7 +1000,7 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"package org.exist.xslt.xslts;\n\n"
+literal|"package org.exist.xslt.xslts_1_1_0;\n\n"
 operator|+
 comment|//   	    		"import org.exist.xquery.xqts.XQTS_case;\n" +
 comment|//   	    		"import static org.junit.Assert.*;\n" +

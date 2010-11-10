@@ -175,6 +175,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|XMLFilenameFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|w3c
 operator|.
 name|tests
@@ -249,6 +261,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -266,6 +288,32 @@ operator|.
 name|dom
 operator|.
 name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|DatabaseManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XMLResource
 import|;
 end_import
 
@@ -294,7 +342,7 @@ specifier|final
 name|String
 name|XSLTS_folder
 init|=
-literal|"XSLTS_1_1_0/"
+literal|"XSLTS_1_1_0"
 decl_stmt|;
 annotation|@
 name|Override
@@ -323,6 +371,37 @@ literal|"org.exist.xslt.TransformerFactoryImpl"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Before
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+synchronized|synchronized
+init|(
+name|database
+init|)
+block|{
+if|if
+condition|(
+name|testCollection
+operator|==
+literal|null
+condition|)
+block|{
+name|loadTS
+argument_list|()
+expr_stmt|;
+comment|//				testCollection = DatabaseManager.getCollection("xmldb:exist:///db/XQTS", "admin", "");
+comment|//				if (testCollection == null) {
+comment|//					Assert.fail("There is no Test Suite data at database");
+comment|//				}
+block|}
+block|}
+block|}
 specifier|protected
 name|void
 name|testCase
@@ -339,9 +418,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|loadTS
-argument_list|()
-expr_stmt|;
 comment|//		String input = loadFile(XSLTS_folder+"TestInputs/"+inputURL, false);
 comment|//		String stylesheet = loadFile(XSLTS_folder+"TestInputs/"+xslURL, true);
 name|String
@@ -497,7 +573,7 @@ name|testLocation
 operator|+
 name|XSLTS_folder
 operator|+
-literal|"TestInputs/"
+literal|"/TestInputs/"
 operator|+
 name|inputURL
 argument_list|)
@@ -517,7 +593,7 @@ name|testLocation
 operator|+
 name|XSLTS_folder
 operator|+
-literal|"TestInputs/"
+literal|"/TestInputs/"
 operator|+
 name|xslURL
 argument_list|)
@@ -563,7 +639,7 @@ literal|""
 argument_list|,
 name|XSLTS_folder
 operator|+
-literal|"ExpectedTestResults/"
+literal|"/ExpectedTestResults/"
 argument_list|,
 name|outputFile
 argument_list|,
@@ -598,7 +674,7 @@ name|testLocation
 operator|+
 name|XSLTS_folder
 operator|+
-literal|"ExpectedTestResults/"
+literal|"/ExpectedTestResults/"
 argument_list|,
 name|outputFile
 operator|.
