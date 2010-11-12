@@ -4922,11 +4922,11 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|entry
+name|hotConfigs
 operator|.
-name|setValue
+name|remove
 argument_list|(
-literal|null
+name|uri
 argument_list|)
 expr_stmt|;
 block|}
