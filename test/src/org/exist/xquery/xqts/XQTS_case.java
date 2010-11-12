@@ -2078,6 +2078,8 @@ argument_list|(
 name|id
 argument_list|)
 argument_list|)
+argument_list|,
+literal|1024
 argument_list|)
 argument_list|)
 expr_stmt|;
