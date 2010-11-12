@@ -286,18 +286,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"eval(Sequence contextSequence, Item contextItem) at "
-operator|+
-name|this
+comment|//ignore it for now. may be, send it to log or console
+return|return
+name|Sequence
 operator|.
-name|getClass
-argument_list|()
-argument_list|)
-throw|;
+name|EMPTY_SEQUENCE
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
