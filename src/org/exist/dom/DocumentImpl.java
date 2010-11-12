@@ -753,6 +753,15 @@ return|return
 name|pool
 return|;
 block|}
+specifier|public
+name|BrokerPool
+name|getDatabase
+parameter_list|()
+block|{
+return|return
+name|pool
+return|;
+block|}
 comment|/**      * The method<code>getLocalName</code>      *      * @return a<code>String</code> value      */
 annotation|@
 name|Override

@@ -95,6 +95,11 @@ interface|interface
 name|Database
 block|{
 comment|//TODO: javadocs
+specifier|public
+name|String
+name|getId
+parameter_list|()
+function_decl|;
 comment|/** 	 *  	 * @return 	 */
 specifier|public
 name|SecurityManager

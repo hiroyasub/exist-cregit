@@ -5604,7 +5604,9 @@ expr_stmt|;
 name|Configurator
 operator|.
 name|clear
-argument_list|()
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
 block|}
 block|}
