@@ -301,6 +301,10 @@ name|void
 name|setToDefaults
 parameter_list|()
 block|{
+name|attr_select
+operator|=
+literal|null
+expr_stmt|;
 name|select
 operator|=
 literal|null
