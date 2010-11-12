@@ -855,7 +855,7 @@ return|return
 name|result
 return|;
 block|}
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 class|class
