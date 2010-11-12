@@ -663,6 +663,11 @@ name|explicitCreation
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|replaceAttribute
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|DocumentImpl
 parameter_list|(
@@ -1907,6 +1912,12 @@ name|qname
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|replaceAttribute
+condition|)
+empty_stmt|;
+else|else
 throw|throw
 operator|(
 operator|new

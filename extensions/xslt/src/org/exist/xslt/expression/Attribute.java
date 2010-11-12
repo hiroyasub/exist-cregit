@@ -245,6 +245,13 @@ name|getContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|constructor
+operator|.
+name|setReplaceAttributeFlag
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void

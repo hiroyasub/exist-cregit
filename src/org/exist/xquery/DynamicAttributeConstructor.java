@@ -176,6 +176,12 @@ specifier|private
 name|Expression
 name|valueExpr
 decl_stmt|;
+specifier|private
+name|boolean
+name|replaceAttribute
+init|=
+literal|false
+decl_stmt|;
 comment|/**      * @param context      */
 specifier|public
 name|DynamicAttributeConstructor
@@ -429,6 +435,13 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+name|builder
+operator|.
+name|setReplaceAttributeFlag
+argument_list|(
+name|replaceAttribute
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|proceed
@@ -955,6 +968,19 @@ name|visitAttribConstructor
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setReplaceAttributeFlag
+parameter_list|(
+name|boolean
+name|flag
+parameter_list|)
+block|{
+name|replaceAttribute
+operator|=
+name|flag
 expr_stmt|;
 block|}
 block|}

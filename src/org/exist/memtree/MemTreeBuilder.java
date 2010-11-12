@@ -2085,6 +2085,21 @@ operator|=
 name|nodeNr
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setReplaceAttributeFlag
+parameter_list|(
+name|boolean
+name|replaceAttribute
+parameter_list|)
+block|{
+name|doc
+operator|.
+name|replaceAttribute
+operator|=
+name|replaceAttribute
+expr_stmt|;
+block|}
 block|}
 end_class
 
