@@ -1854,11 +1854,7 @@ operator|.
 name|length
 argument_list|()
 operator|>=
-operator|(
 literal|1024
-operator|*
-literal|10
-operator|)
 condition|)
 block|{
 name|exp
