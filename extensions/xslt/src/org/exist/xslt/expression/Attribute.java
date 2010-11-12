@@ -506,6 +506,35 @@ if|else if
 condition|(
 name|expr
 operator|instanceof
+name|ApplyTemplates
+condition|)
+block|{
+name|ApplyTemplates
+name|applyTemplates
+init|=
+operator|(
+name|ApplyTemplates
+operator|)
+name|expr
+decl_stmt|;
+name|applyTemplates
+operator|.
+name|validate
+argument_list|()
+expr_stmt|;
+comment|//				applyTemplates.sequenceItSelf = true;
+name|constructor
+operator|.
+name|setContentExpr
+argument_list|(
+name|applyTemplates
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|expr
+operator|instanceof
 name|Text
 condition|)
 block|{
@@ -540,7 +569,9 @@ else|else
 block|{
 name|compileError
 argument_list|(
-literal|"unsupported subelement"
+literal|"unsupported subelement "
+operator|+
+name|expr
 argument_list|)
 expr_stmt|;
 block|}

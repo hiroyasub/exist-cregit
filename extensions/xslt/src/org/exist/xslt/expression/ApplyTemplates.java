@@ -477,6 +477,13 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|Sequence
 name|selected
 decl_stmt|;
@@ -704,6 +711,15 @@ block|}
 return|return
 name|result
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|//	public Sequence builtInTemplateRule(Item contextItem) throws XPathException {
 comment|//		Sequence result = new ValueSequence();
