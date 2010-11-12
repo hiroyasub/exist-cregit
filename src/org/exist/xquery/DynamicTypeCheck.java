@@ -413,7 +413,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FOCH0002: Required type is "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -445,6 +449,39 @@ literal|")'"
 argument_list|)
 throw|;
 block|}
+comment|//XDM: The dm:string-value accessor returns the string value of a node. It is defined on all seven node kinds.
+block|}
+if|else if
+condition|(
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|STRING
+operator|&&
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|type
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|)
+condition|)
+block|{
+name|item
+operator|=
+name|item
+operator|.
+name|convertTo
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|)
+expr_stmt|;
 comment|//Then, if numeric, try to refine the type
 comment|//xs:decimal(3) treat as xs:integer
 block|}
@@ -496,7 +533,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FOCH0002: Required type is "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -573,7 +614,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FOCH0002: Required type is "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -649,7 +694,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FOCH0002: Required type is "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
@@ -742,7 +791,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FORG0001: "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|""
 operator|+
 name|Type
 operator|.
@@ -779,7 +832,11 @@ name|XPathException
 argument_list|(
 name|expression
 argument_list|,
-literal|"FOCH0002: Required type is "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Required type is "
 operator|+
 name|Type
 operator|.
