@@ -1142,12 +1142,67 @@ name|rootTemplate
 operator|!=
 literal|null
 condition|)
+block|{
+if|if
+condition|(
+name|template
+operator|.
+name|isPrioritySet
+argument_list|()
+operator|||
+name|rootTemplate
+operator|.
+name|isPrioritySet
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|template
+operator|.
+name|getPriority
+argument_list|()
+operator|==
+name|rootTemplate
+operator|.
+name|getPriority
+argument_list|()
+condition|)
+block|{
 name|compileError
 argument_list|(
 literal|"double root match"
 argument_list|)
 expr_stmt|;
 comment|//XXX: put error code
+block|}
+if|else if
+condition|(
+name|template
+operator|.
+name|getPriority
+argument_list|()
+operator|>
+name|rootTemplate
+operator|.
+name|getPriority
+argument_list|()
+condition|)
+block|{
+name|rootTemplate
+operator|=
+name|template
+expr_stmt|;
+block|}
+continue|continue;
+block|}
+name|compileError
+argument_list|(
+literal|"double root match"
+argument_list|)
+expr_stmt|;
+comment|//XXX: put error code
+block|}
 name|rootTemplate
 operator|=
 name|template
