@@ -142,6 +142,7 @@ specifier|final
 name|String
 name|qname
 decl_stmt|;
+specifier|public
 specifier|final
 name|List
 argument_list|<
