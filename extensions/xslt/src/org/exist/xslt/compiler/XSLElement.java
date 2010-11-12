@@ -73,17 +73,9 @@ name|NodeId
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|AttributeConstructor
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xquery.AttributeConstructor;
+end_comment
 
 begin_comment
 comment|//import org.exist.xquery.CDATAConstructor;
@@ -262,6 +254,20 @@ operator|.
 name|xslt
 operator|.
 name|XSLStylesheet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xslt
+operator|.
+name|constructors
+operator|.
+name|AttributeConstructor
 import|;
 end_import
 
@@ -942,82 +948,14 @@ operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|value
-operator|.
-name|contains
-argument_list|(
-literal|"{"
-argument_list|)
-condition|)
-block|{
-name|value
-operator|=
-name|value
-operator|.
-name|replace
-argument_list|(
-literal|"{"
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
-name|value
-operator|=
-name|value
-operator|.
-name|replace
-argument_list|(
-literal|"}"
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
-name|PathExpr
-name|expr
-init|=
-operator|new
-name|PathExpr
-argument_list|(
-operator|(
-name|XQueryContext
-operator|)
-name|context
-argument_list|)
-decl_stmt|;
-name|org
-operator|.
-name|exist
-operator|.
-name|xslt
-operator|.
-name|pattern
-operator|.
-name|Pattern
-operator|.
-name|parse
-argument_list|(
-operator|(
-name|XQueryContext
-operator|)
-name|context
-argument_list|,
-name|value
-argument_list|,
-name|expr
-argument_list|)
-expr_stmt|;
-name|attributeConstructer
-operator|.
-name|addEnclosedExpr
-argument_list|(
-name|expr
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//				if (value.contains("{")) {
+comment|//					value = value.replace("{", "");
+comment|//					value = value.replace("}", "");
+comment|//
+comment|//					PathExpr expr = new PathExpr((XQueryContext) context);
+comment|//					org.exist.xslt.pattern.Pattern.parse((XQueryContext) context, value, expr);
+comment|//					attributeConstructer.addEnclosedExpr(expr);
+comment|//				} else {
 name|attributeConstructer
 operator|.
 name|addValue
@@ -1025,7 +963,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-block|}
+comment|//				}
 name|elementConstructer
 operator|.
 name|addAttribute
