@@ -2417,6 +2417,23 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+comment|//avoid to big output
+if|if
+condition|(
+name|res
+operator|.
+name|length
+argument_list|()
+operator|>=
+operator|(
+literal|1024
+operator|*
+literal|10
+operator|)
+condition|)
+return|return
+literal|"{TOO BIG}"
+return|;
 block|}
 block|}
 catch|catch
