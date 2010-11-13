@@ -385,6 +385,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|Servlet
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1344,6 +1354,14 @@ argument_list|(
 operator|new
 name|ServletHolder
 argument_list|(
+operator|(
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|Servlet
+argument_list|>
+operator|)
 name|openid
 argument_list|)
 argument_list|,
