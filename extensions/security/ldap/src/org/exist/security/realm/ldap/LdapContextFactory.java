@@ -243,6 +243,17 @@ name|url
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsElement
+argument_list|(
+literal|"domain"
+argument_list|)
+specifier|protected
+name|String
+name|domain
+init|=
+literal|null
+decl_stmt|;
 specifier|protected
 name|String
 name|contextFactoryClassName
@@ -598,6 +609,15 @@ parameter_list|()
 block|{
 return|return
 name|realmTransformation
+return|;
+block|}
+specifier|public
+name|String
+name|getDomain
+parameter_list|()
+block|{
+return|return
+name|domain
 return|;
 block|}
 comment|// configurable methods
