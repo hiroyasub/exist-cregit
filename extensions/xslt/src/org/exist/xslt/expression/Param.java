@@ -542,11 +542,36 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//		if (name != null) {
-comment|//			Variable var = getXSLContext().resolveVariable(name);
-comment|//			return var.getValue();
-comment|//		} else
 if|if
+condition|(
+name|name
+operator|!=
+literal|null
+operator|&&
+name|select
+operator|==
+literal|null
+condition|)
+block|{
+name|Variable
+name|var
+init|=
+name|getXSLContext
+argument_list|()
+operator|.
+name|resolveVariable
+argument_list|(
+name|name
+argument_list|)
+decl_stmt|;
+return|return
+name|var
+operator|.
+name|getValue
+argument_list|()
+return|;
+block|}
+if|else if
 condition|(
 name|select
 operator|!=
