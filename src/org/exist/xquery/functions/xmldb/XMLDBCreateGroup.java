@@ -417,7 +417,7 @@ argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
 argument_list|,
-literal|"Use xmldb:create-group($group, $group-manager) instead."
+literal|"Use xmldb:create-group($group, $group-manager-username) instead."
 argument_list|)
 block|,
 operator|new
