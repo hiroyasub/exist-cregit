@@ -3920,6 +3920,17 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+name|after
+argument_list|(
+name|broker
+argument_list|,
+name|transaction
+argument_list|,
+name|document
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
