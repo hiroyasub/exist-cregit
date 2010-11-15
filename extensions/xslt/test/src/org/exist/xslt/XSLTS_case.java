@@ -378,17 +378,15 @@ name|xslURL
 parameter_list|,
 name|String
 name|outputURL
+parameter_list|,
+name|String
+name|expectedError
 parameter_list|)
 throws|throws
 name|Exception
 block|{
 comment|//		String input = loadFile(XSLTS_folder+"TestInputs/"+inputURL, false);
 comment|//		String stylesheet = loadFile(XSLTS_folder+"TestInputs/"+xslURL, true);
-name|String
-name|expectedError
-init|=
-literal|""
-decl_stmt|;
 name|String
 name|query
 init|=

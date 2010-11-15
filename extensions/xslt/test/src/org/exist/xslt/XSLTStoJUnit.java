@@ -246,6 +246,22 @@ literal|"result-document"
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
+name|String
+name|ERROR
+init|=
+literal|"error"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|ERROR_ID
+init|=
+literal|"error-id"
+decl_stmt|;
+specifier|private
+specifier|static
 name|File
 name|folder
 decl_stmt|;
@@ -300,6 +316,10 @@ decl_stmt|;
 specifier|private
 name|String
 name|resultDocument
+decl_stmt|;
+specifier|private
+name|String
+name|errors
 decl_stmt|;
 specifier|public
 specifier|static
@@ -644,6 +664,10 @@ literal|"\", \""
 operator|+
 name|resultDocument
 operator|+
+literal|"\", \""
+operator|+
+name|errors
+operator|+
 literal|"\");\n"
 operator|+
 literal|"	}\n\n"
@@ -886,6 +910,10 @@ name|resultDocument
 operator|=
 literal|""
 expr_stmt|;
+name|errors
+operator|=
+literal|""
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -945,6 +973,28 @@ name|getValue
 argument_list|(
 literal|"file"
 argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|localName
+operator|.
+name|equals
+argument_list|(
+name|ERROR
+argument_list|)
+condition|)
+block|{
+name|errors
+operator|+=
+name|atts
+operator|.
+name|getValue
+argument_list|(
+name|ERROR_ID
+argument_list|)
+operator|+
+literal|" "
 expr_stmt|;
 block|}
 block|}
