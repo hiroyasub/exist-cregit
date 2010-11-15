@@ -1117,6 +1117,8 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+comment|//TODO change once membersManbager is implemented correctly
+comment|//if(!((user != null&& user.hasDbaRole()) || group.isMembersManager(user))){
 if|if
 condition|(
 operator|!
@@ -1132,11 +1134,14 @@ name|hasDbaRole
 argument_list|()
 operator|)
 operator|||
+name|user
+operator|.
+name|hasGroup
+argument_list|(
 name|group
 operator|.
-name|isMembersManager
-argument_list|(
-name|user
+name|getName
+argument_list|()
 argument_list|)
 operator|)
 condition|)

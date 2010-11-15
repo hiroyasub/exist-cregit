@@ -796,6 +796,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|broker
+operator|.
+name|setUser
+argument_list|(
+name|invokingUser
+argument_list|)
+expr_stmt|;
 name|getDatabase
 argument_list|()
 operator|.
