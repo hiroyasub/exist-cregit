@@ -3176,7 +3176,7 @@ expr_stmt|;
 name|var
 operator|=
 operator|new
-name|Variable
+name|VariableImpl
 argument_list|(
 name|qname
 argument_list|)

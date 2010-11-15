@@ -34,7 +34,7 @@ specifier|public
 class|class
 name|LocalVariable
 extends|extends
-name|Variable
+name|VariableImpl
 block|{
 specifier|protected
 name|LocalVariable
