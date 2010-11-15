@@ -1145,7 +1145,21 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"not allowed to change group memberships"
+literal|"User '"
+operator|+
+name|user
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' is not allowed to change group '"
+operator|+
+name|group
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' memberships"
 argument_list|)
 throw|;
 block|}

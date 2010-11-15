@@ -605,17 +605,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|BrokerPool
-name|database
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-decl_stmt|;
 name|SecurityManager
 name|sm
 init|=
@@ -630,10 +619,6 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-comment|//Subject currentSubject = database.getSubject();
-try|try
-block|{
-comment|//	database.setSubject(sm.getSystemSubject());
 name|Group
 name|group
 init|=
@@ -692,11 +677,6 @@ argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|//	database.setSubject(currentSubject);
-block|}
 return|return
 name|BooleanValue
 operator|.

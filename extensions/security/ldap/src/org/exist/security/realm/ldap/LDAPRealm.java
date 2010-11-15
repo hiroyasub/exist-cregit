@@ -1425,7 +1425,7 @@ argument_list|()
 argument_list|,
 name|search
 operator|.
-name|getAccountPersonalNameAttribute
+name|getAccountUsernameAttribute
 argument_list|()
 argument_list|,
 name|userName
