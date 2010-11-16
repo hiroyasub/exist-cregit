@@ -182,6 +182,12 @@ name|Declaration
 block|{
 specifier|private
 name|String
+name|attr_name
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
 name|attr_select
 init|=
 literal|null
@@ -263,7 +269,7 @@ throws|throws
 name|XPathException
 block|{
 name|String
-name|attr_name
+name|_attr_name
 init|=
 name|attr
 operator|.
@@ -272,7 +278,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|attr_name
+name|_attr_name
 operator|.
 name|equals
 argument_list|(
@@ -280,21 +286,17 @@ name|NAME
 argument_list|)
 condition|)
 block|{
-name|name
+name|attr_name
 operator|=
-operator|new
-name|QName
-argument_list|(
 name|attr
 operator|.
 name|getValue
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 if|else if
 condition|(
-name|attr_name
+name|_attr_name
 operator|.
 name|equals
 argument_list|(
@@ -312,7 +314,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|attr_name
+name|_attr_name
 operator|.
 name|equals
 argument_list|(
@@ -330,7 +332,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|attr_name
+name|_attr_name
 operator|.
 name|equals
 argument_list|(
@@ -367,6 +369,28 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|attr_name
+operator|!=
+literal|null
+condition|)
+block|{
+name|name
+operator|=
+name|QName
+operator|.
+name|parse
+argument_list|(
+name|contextInfo
+operator|.
+name|getContext
+argument_list|()
+argument_list|,
+name|attr_name
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|attr_select
