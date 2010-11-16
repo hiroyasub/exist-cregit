@@ -103,6 +103,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|TextConstructor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -371,13 +383,27 @@ name|param
 argument_list|)
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|expr
+operator|instanceof
+name|TextConstructor
+condition|)
+block|{
+empty_stmt|;
+comment|//ignore text elements
+block|}
 else|else
 block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"not permited element."
+literal|"not permited element '"
+operator|+
+name|expr
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 comment|//TODO: error?
