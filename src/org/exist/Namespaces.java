@@ -109,6 +109,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|XSL_NS
+init|=
+literal|"http://www.w3.org/1999/XSL/Transform"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|EXIST_NS
 init|=
 literal|"http://exist.sourceforge.net/NS/exist"
