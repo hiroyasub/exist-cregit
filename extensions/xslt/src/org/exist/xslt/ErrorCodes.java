@@ -13,6 +13,20 @@ name|xslt
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|ErrorCodes
+operator|.
+name|ErrorCode
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -20,14 +34,6 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|ErrorCodes
-extends|extends
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|ErrorCodes
 block|{
 comment|/* XSL 2.0 http://www.w3.org/TR/xslt20/#error-summary */

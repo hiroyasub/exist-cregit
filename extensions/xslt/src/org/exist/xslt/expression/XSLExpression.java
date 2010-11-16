@@ -35,7 +35,33 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xslt
+operator|.
+name|ErrorCodes
 import|;
 end_import
 
@@ -66,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * The XSL expression interface.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_interface
@@ -76,11 +102,13 @@ name|XSLExpression
 extends|extends
 name|Names
 block|{
+comment|/** 	 * Clean-up setting. 	 */
 specifier|public
 name|void
 name|setToDefaults
 parameter_list|()
 function_decl|;
+comment|/** 	 * Collect expressions attributes' information. 	 *  	 * @param context 	 * @param attr 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|prepareAttribute
@@ -94,6 +122,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Validate structure and settings. 	 *  	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|validate
@@ -101,12 +130,27 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
+comment|/** 	 * Report error message. 	 *  	 * @param code 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|compileError
 parameter_list|(
 name|String
-name|error
+name|code
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
+comment|/** 	 * Report error message. 	 *  	 * @param code 	 * @param error 	 * @throws XPathException 	 */
+specifier|public
+name|void
+name|compileError
+parameter_list|(
+name|ErrorCode
+name|code
+parameter_list|,
+name|String
+name|description
 parameter_list|)
 throws|throws
 name|XPathException
