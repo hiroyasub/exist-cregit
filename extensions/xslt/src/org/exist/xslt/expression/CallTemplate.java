@@ -334,6 +334,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|attr_name
+operator|.
+name|equals
+argument_list|(
+name|XML_SPACE
+argument_list|)
+condition|)
+block|{
+empty_stmt|;
+comment|//TODO: code
+block|}
 else|else
 block|{
 comment|//XXX: is it correct error code?

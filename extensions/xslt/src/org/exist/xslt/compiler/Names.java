@@ -720,6 +720,14 @@ name|DATA_TYPE
 init|=
 literal|"data-type"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|XML_SPACE
+init|=
+literal|"xml:space"
+decl_stmt|;
 comment|//	public static final String AA = "aa";
 block|}
 end_interface
