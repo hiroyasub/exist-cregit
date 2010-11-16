@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|TextConstructor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -252,6 +264,16 @@ name|steps
 control|)
 block|{
 if|if
+condition|(
+name|expr
+operator|instanceof
+name|TextConstructor
+condition|)
+block|{
+empty_stmt|;
+comment|//ignore text elements
+block|}
+if|else if
 condition|(
 name|expr
 operator|instanceof
