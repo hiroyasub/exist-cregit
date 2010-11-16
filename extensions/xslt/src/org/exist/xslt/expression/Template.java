@@ -103,6 +103,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|TextConstructor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|TypeTest
 import|;
 end_import
@@ -686,6 +698,16 @@ argument_list|(
 name|pos
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|expr
+operator|instanceof
+name|TextConstructor
+condition|)
+block|{
+continue|continue;
+comment|//ignore text elements
+block|}
 comment|//validate instruction order
 if|if
 condition|(
