@@ -157,6 +157,18 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|XMLDBRemoveUserFromGroup
+operator|.
+name|signature
+argument_list|,
+name|XMLDBRemoveUserFromGroup
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|XMLDBCreateCollection
 operator|.
 name|signature
@@ -1067,6 +1079,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getDescription()          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -1077,6 +1091,8 @@ literal|"A module for database manipulation functions."
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getNamespaceURI()          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1087,6 +1103,8 @@ name|NAMESPACE_URI
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getDefaultPrefix()          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -1096,6 +1114,8 @@ return|return
 name|PREFIX
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getReleaseVersion

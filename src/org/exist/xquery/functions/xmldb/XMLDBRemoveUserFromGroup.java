@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -96,6 +96,18 @@ operator|.
 name|security
 operator|.
 name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
@@ -243,18 +255,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SecurityManager
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
@@ -262,7 +262,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|XMLDBAddUserToGroup
+name|XMLDBRemoveUserFromGroup
 extends|extends
 name|BasicFunction
 block|{
@@ -276,7 +276,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|XMLDBAddUserToGroup
+name|XMLDBRemoveUserFromGroup
 operator|.
 name|class
 argument_list|)
@@ -293,7 +293,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"add-user-to-group"
+literal|"remove-user-from-group"
 argument_list|,
 name|XMLDBModule
 operator|.
@@ -304,7 +304,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Add a user to a group. $user is the username. $group is the group name"
+literal|"Remove a user from a group. $user is the username. $group is the group name"
 operator|+
 name|XMLDBModule
 operator|.
@@ -364,7 +364,7 @@ argument_list|)
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public
-name|XMLDBAddUserToGroup
+name|XMLDBRemoveUserFromGroup
 parameter_list|(
 name|XQueryContext
 name|context
@@ -504,7 +504,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' must be a DBA to add users to the DBA group."
+literal|"' must be a DBA to remove users from the DBA group."
 argument_list|)
 decl_stmt|;
 name|logger
@@ -556,7 +556,7 @@ literal|"' must be a memeber of '"
 operator|+
 name|groupName
 operator|+
-literal|"' to add users to the '"
+literal|"' to remove users from the '"
 operator|+
 name|groupName
 operator|+
@@ -580,11 +580,11 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Attempting to add user '"
+literal|"Attempting to remove user '"
 operator|+
 name|userName
 operator|+
-literal|"' to group '"
+literal|"' from group '"
 operator|+
 name|groupName
 operator|+
@@ -676,9 +676,9 @@ argument_list|)
 decl_stmt|;
 name|account
 operator|.
-name|addGroup
+name|remGroup
 argument_list|(
-name|group
+name|groupName
 argument_list|)
 expr_stmt|;
 name|sm
@@ -712,11 +712,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Failed to add user '"
+literal|"Failed to remove user '"
 operator|+
 name|userName
 operator|+
-literal|"' to group '"
+literal|"' from group '"
 operator|+
 name|groupName
 operator|+
@@ -736,11 +736,11 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Failed to add user '"
+literal|"Failed to remove user '"
 operator|+
 name|userName
 operator|+
-literal|"' to group '"
+literal|"' from group '"
 operator|+
 name|groupName
 operator|+
