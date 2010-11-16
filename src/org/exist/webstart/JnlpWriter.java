@@ -1012,14 +1012,15 @@ name|PACK_MIME_TYPE
 argument_list|)
 expr_stmt|;
 block|}
+comment|// It is very improbable that a 64 bit jar is needed, but
+comment|// it is better to be ready
+comment|// response.setContentLength(Integer.parseInt(Long.toString(localFile.length())));
 name|response
 operator|.
-name|setContentLength
+name|setHeader
 argument_list|(
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
+literal|"Content-Length"
+argument_list|,
 name|Long
 operator|.
 name|toString
@@ -1028,7 +1029,6 @@ name|localFile
 operator|.
 name|length
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1273,14 +1273,15 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|// It is very improbable that a 64 bit jar is needed, but
+comment|// it is better to be ready
+comment|// response.setContentLength(Integer.parseInt(Long.toString(imageFile.length())));
 name|response
 operator|.
-name|setContentLength
+name|setHeader
 argument_list|(
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
+literal|"Content-Length"
+argument_list|,
 name|Long
 operator|.
 name|toString
@@ -1289,7 +1290,6 @@ name|imageFile
 operator|.
 name|length
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

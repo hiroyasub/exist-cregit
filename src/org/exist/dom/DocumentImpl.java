@@ -1245,11 +1245,11 @@ return|;
 block|}
 comment|/**      * Returns the estimated size of the data in this document.      *       * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      *       */
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 block|{
-name|int
+name|long
 name|length
 init|=
 name|getMetadata
@@ -1819,16 +1819,13 @@ name|permissions
 operator|.
 name|setPermissions
 argument_list|(
-operator|(
 name|istream
 operator|.
 name|readInt
 argument_list|()
-operator|&
-literal|0777
-operator|)
 argument_list|)
 expr_stmt|;
+comment|//& 0777));
 comment|//Should be> 0 ;-)
 name|children
 operator|=

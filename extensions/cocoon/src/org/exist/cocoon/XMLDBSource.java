@@ -2637,9 +2637,6 @@ argument_list|()
 expr_stmt|;
 name|result
 operator|=
-operator|new
-name|Integer
-argument_list|(
 operator|(
 operator|(
 name|EXistResource
@@ -2650,10 +2647,6 @@ name|resource
 operator|)
 operator|.
 name|getContentLength
-argument_list|()
-argument_list|)
-operator|.
-name|longValue
 argument_list|()
 expr_stmt|;
 block|}

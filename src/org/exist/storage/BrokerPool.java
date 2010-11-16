@@ -5549,6 +5549,13 @@ finally|finally
 block|{
 comment|// clear instance variables, just to be sure they will be garbage collected
 comment|// the test suite restarts the db a few hundred times
+name|Configurator
+operator|.
+name|clear
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|transactionManager
 operator|=
 literal|null
@@ -5600,13 +5607,6 @@ expr_stmt|;
 name|notificationService
 operator|=
 literal|null
-expr_stmt|;
-name|Configurator
-operator|.
-name|clear
-argument_list|(
-name|this
-argument_list|)
 expr_stmt|;
 block|}
 block|}

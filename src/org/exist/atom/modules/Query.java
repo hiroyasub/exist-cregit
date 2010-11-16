@@ -1391,12 +1391,12 @@ decl_stmt|;
 name|int
 name|len
 decl_stmt|;
-name|int
+name|long
 name|count
 init|=
 literal|0
 decl_stmt|;
-name|int
+name|long
 name|contentLength
 init|=
 name|request

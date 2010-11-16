@@ -646,13 +646,13 @@ name|mimeType
 return|;
 block|}
 specifier|private
-name|int
+name|long
 name|contentLength
 init|=
 literal|0
 decl_stmt|;
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 block|{

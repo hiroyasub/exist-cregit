@@ -3173,10 +3173,9 @@ operator|.
 name|setPermissions
 argument_list|(
 name|perm
-operator|&
-literal|0777
 argument_list|)
 expr_stmt|;
+comment|//& 0777);
 name|broker
 operator|.
 name|getCollectionResources
@@ -6464,7 +6463,7 @@ parameter_list|,
 name|String
 name|mimeType
 parameter_list|,
-name|int
+name|long
 name|size
 parameter_list|)
 throws|throws
@@ -6517,7 +6516,7 @@ parameter_list|,
 name|String
 name|mimeType
 parameter_list|,
-name|int
+name|long
 name|size
 parameter_list|,
 name|Date

@@ -1029,7 +1029,7 @@ specifier|static
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|8
+literal|9
 decl_stmt|;
 comment|// page types
 specifier|public

@@ -102,7 +102,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 throws|throws

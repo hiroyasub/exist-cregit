@@ -902,9 +902,6 @@ name|is
 argument_list|,
 name|contentType
 argument_list|,
-operator|(
-name|int
-operator|)
 name|tempFile
 operator|.
 name|length
@@ -1218,7 +1215,7 @@ operator|.
 name|getInputStream
 argument_list|()
 decl_stmt|;
-name|int
+name|long
 name|len
 init|=
 name|request
@@ -1226,6 +1223,31 @@ operator|.
 name|getContentLength
 argument_list|()
 decl_stmt|;
+name|String
+name|lenstr
+init|=
+name|request
+operator|.
+name|getHeader
+argument_list|(
+literal|"Content-Length"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lenstr
+operator|!=
+literal|null
+condition|)
+name|len
+operator|=
+name|Long
+operator|.
+name|parseLong
+argument_list|(
+name|lenstr
+argument_list|)
+expr_stmt|;
 comment|// put may send a lot of data, so save it
 comment|// to a temporary file first.
 name|File
@@ -1277,7 +1299,10 @@ index|]
 decl_stmt|;
 name|int
 name|count
-decl_stmt|,
+init|=
+literal|0
+decl_stmt|;
+name|long
 name|l
 init|=
 literal|0

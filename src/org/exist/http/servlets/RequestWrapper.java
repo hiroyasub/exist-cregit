@@ -118,7 +118,7 @@ name|getCharacterEncoding
 parameter_list|()
 function_decl|;
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 function_decl|;

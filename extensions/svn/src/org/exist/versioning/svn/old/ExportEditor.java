@@ -1938,9 +1938,6 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-operator|(
-name|int
-operator|)
 name|currentFile
 operator|.
 name|length

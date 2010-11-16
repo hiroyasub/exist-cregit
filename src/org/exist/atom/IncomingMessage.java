@@ -92,7 +92,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 function_decl|;

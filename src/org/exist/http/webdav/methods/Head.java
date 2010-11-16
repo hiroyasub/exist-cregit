@@ -401,14 +401,23 @@ name|getMimeType
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Limitations of 32 bit sizes
+comment|//response.setContentLength(resource.getContentLength());
 name|response
 operator|.
-name|setContentLength
+name|addHeader
+argument_list|(
+literal|"Content-Length"
+argument_list|,
+name|Long
+operator|.
+name|toString
 argument_list|(
 name|resource
 operator|.
 name|getContentLength
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|response

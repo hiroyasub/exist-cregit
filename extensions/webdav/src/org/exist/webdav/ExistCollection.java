@@ -1893,7 +1893,7 @@ argument_list|()
 argument_list|,
 name|length
 operator|.
-name|intValue
+name|longValue
 argument_list|()
 argument_list|)
 decl_stmt|;

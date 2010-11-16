@@ -2025,7 +2025,7 @@ block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getContentLength() 	 */
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 throws|throws

@@ -368,11 +368,14 @@ return|;
 block|}
 comment|/**@see org.apache.cocoon.environment.Request#getContentLength() 	 */
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 block|{
 return|return
+operator|(
+name|long
+operator|)
 name|cocoonRequest
 operator|.
 name|getContentLength

@@ -1869,10 +1869,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-operator|(
-name|int
-operator|)
-literal|0
+literal|0L
 argument_list|,
 operator|new
 name|Date

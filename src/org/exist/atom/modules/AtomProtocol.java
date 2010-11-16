@@ -2810,9 +2810,6 @@ name|is
 argument_list|,
 name|contentType
 argument_list|,
-operator|(
-name|int
-operator|)
 name|tempFile
 operator|.
 name|length
@@ -4841,9 +4838,6 @@ name|is
 argument_list|,
 name|contentType
 argument_list|,
-operator|(
-name|int
-operator|)
 name|tempFile
 operator|.
 name|length

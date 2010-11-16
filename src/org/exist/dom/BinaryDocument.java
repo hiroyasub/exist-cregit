@@ -157,10 +157,10 @@ operator|.
 name|NO_PAGE
 decl_stmt|;
 specifier|private
-name|int
+name|long
 name|realSize
 init|=
-literal|0
+literal|0L
 decl_stmt|;
 specifier|public
 name|BinaryDocument
@@ -279,7 +279,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|long
 name|getContentLength
 parameter_list|()
 block|{
@@ -291,7 +291,7 @@ specifier|public
 name|void
 name|setContentLength
 parameter_list|(
-name|int
+name|long
 name|length
 parameter_list|)
 block|{
@@ -381,7 +381,7 @@ argument_list|)
 expr_stmt|;
 name|ostream
 operator|.
-name|writeInt
+name|writeLong
 argument_list|(
 name|realSize
 argument_list|)
@@ -559,7 +559,7 @@ name|realSize
 operator|=
 name|istream
 operator|.
-name|readInt
+name|readLong
 argument_list|()
 expr_stmt|;
 name|DocumentMetadata

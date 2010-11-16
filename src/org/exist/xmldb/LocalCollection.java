@@ -3945,9 +3945,6 @@ operator|.
 name|getMimeType
 argument_list|()
 argument_list|,
-operator|(
-name|int
-operator|)
 name|conLength
 argument_list|,
 name|res

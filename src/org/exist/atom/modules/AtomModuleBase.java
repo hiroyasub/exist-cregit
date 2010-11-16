@@ -568,7 +568,7 @@ parameter_list|(
 name|InputStream
 name|is
 parameter_list|,
-name|int
+name|long
 name|len
 parameter_list|)
 throws|throws
@@ -607,7 +607,10 @@ index|]
 decl_stmt|;
 name|int
 name|count
-decl_stmt|,
+init|=
+literal|0
+decl_stmt|;
+name|long
 name|l
 init|=
 literal|0

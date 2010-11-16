@@ -10122,9 +10122,6 @@ name|bin
 operator|.
 name|setContentLength
 argument_list|(
-operator|(
-name|int
-operator|)
 name|getBinaryResourceSize
 argument_list|(
 name|bin
@@ -10330,9 +10327,6 @@ name|bin
 operator|.
 name|setContentLength
 argument_list|(
-operator|(
-name|int
-operator|)
 name|getBinaryResourceSize
 argument_list|(
 name|bin
@@ -10438,7 +10432,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|65536
+literal|655360
 index|]
 decl_stmt|;
 name|int

@@ -922,9 +922,6 @@ name|is
 argument_list|,
 name|contentType
 argument_list|,
-operator|(
-name|int
-operator|)
 name|tmp
 operator|.
 name|length
