@@ -1632,7 +1632,7 @@ name|attributeSets
 operator|.
 name|containsKey
 argument_list|(
-name|name
+name|n
 argument_list|)
 condition|)
 block|{
@@ -1644,7 +1644,7 @@ name|attributeSets
 operator|.
 name|get
 argument_list|(
-name|name
+name|n
 argument_list|)
 argument_list|)
 expr_stmt|;

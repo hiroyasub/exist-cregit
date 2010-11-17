@@ -1433,6 +1433,13 @@ name|validation
 argument_list|)
 expr_stmt|;
 block|}
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|">"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|dump
