@@ -3757,6 +3757,12 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+name|this
+operator|.
+name|documentPath
+operator|=
+name|uri
+expr_stmt|;
 block|}
 annotation|@
 name|Override
