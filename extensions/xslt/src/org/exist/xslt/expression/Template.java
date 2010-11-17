@@ -551,6 +551,32 @@ block|}
 block|}
 specifier|public
 name|void
+name|add
+parameter_list|(
+name|Expression
+name|s
+parameter_list|)
+block|{
+if|if
+condition|(
+name|s
+operator|instanceof
+name|TextConstructor
+condition|)
+block|{
+return|return;
+comment|//ignore text nodes
+block|}
+name|steps
+operator|.
+name|add
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
 name|analyze
 parameter_list|(
 name|AnalyzeContextInfo
@@ -983,6 +1009,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|Sequence
 name|result
 init|=
@@ -1012,6 +1045,15 @@ expr_stmt|;
 return|return
 name|result
 return|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|//	public Sequence eval(Sequence contextSequence, Item contextItem) throws XPathException {
 comment|//		Sequence result = new ValueSequence();
