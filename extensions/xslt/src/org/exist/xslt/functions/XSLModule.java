@@ -396,6 +396,36 @@ name|Unparsed_text
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Generate_id
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|Generate_id
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Generate_id
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
+argument_list|,
+name|Generate_id
+operator|.
+name|class
+argument_list|)
 block|, 		}
 decl_stmt|;
 comment|/** 	 * @param functions 	 */
