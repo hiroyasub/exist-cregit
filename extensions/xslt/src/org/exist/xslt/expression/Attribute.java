@@ -294,11 +294,9 @@ name|XQueryContext
 operator|)
 name|context
 argument_list|,
-operator|new
 name|StringValue
-argument_list|(
-literal|""
-argument_list|)
+operator|.
+name|EMPTY_STRING
 argument_list|)
 argument_list|)
 expr_stmt|;

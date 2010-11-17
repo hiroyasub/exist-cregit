@@ -35,6 +35,14 @@ begin_class
 specifier|public
 class|class
 name|ErrorCodes
+extends|extends
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|ErrorCodes
 block|{
 comment|/* XSL 2.0 http://www.w3.org/TR/xslt20/#error-summary */
 comment|/** 	 * A static error is signaled if an XSLT-defined element is used in a context where it is not permitted, if a required attribute is omitted, or if the content of the element does not correspond to the content that is allowed for the element.  	 */
