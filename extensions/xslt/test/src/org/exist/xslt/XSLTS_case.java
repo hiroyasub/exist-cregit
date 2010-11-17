@@ -639,6 +639,15 @@ argument_list|)
 decl_stmt|;
 name|outputFile
 operator|.
+name|setAttribute
+argument_list|(
+literal|"compare"
+argument_list|,
+literal|"Fragment"
+argument_list|)
+expr_stmt|;
+name|outputFile
+operator|.
 name|setTextContent
 argument_list|(
 name|outputURL
