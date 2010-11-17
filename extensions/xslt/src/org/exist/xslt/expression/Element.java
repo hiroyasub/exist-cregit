@@ -17,6 +17,28 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -24,6 +46,78 @@ operator|.
 name|interpreter
 operator|.
 name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|MemTreeBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|XMLChar
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|AnalyzeContextInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|AttributeConstructor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -48,6 +142,18 @@ operator|.
 name|xquery
 operator|.
 name|LiteralValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|PathExpr
 import|;
 end_import
 
@@ -113,6 +219,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|QNameValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Sequence
 import|;
 end_import
@@ -139,6 +259,18 @@ name|exist
 operator|.
 name|xslt
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xslt
+operator|.
 name|XSLContext
 import|;
 end_import
@@ -152,6 +284,20 @@ operator|.
 name|dom
 operator|.
 name|Attr
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|helpers
+operator|.
+name|AttributesImpl
 import|;
 end_import
 
@@ -203,8 +349,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|ElementConstructor
-name|constructor
+name|PathExpr
+name|content
+init|=
+literal|null
 decl_stmt|;
 specifier|public
 name|Element
@@ -218,22 +366,53 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-name|constructor
-operator|=
-operator|new
-name|ElementConstructor
+block|}
+specifier|public
+name|Element
+parameter_list|(
+name|XSLContext
+name|context
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+name|super
 argument_list|(
-name|getContext
-argument_list|()
+name|context
 argument_list|)
 expr_stmt|;
-name|constructor
-operator|.
-name|setContent
-argument_list|(
 name|this
-argument_list|)
+operator|.
+name|name
+operator|=
+name|name
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setContent
+parameter_list|(
+name|PathExpr
+name|content
+parameter_list|)
+block|{
+name|this
+operator|.
+name|content
+operator|=
+name|content
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|addAttribute
+parameter_list|(
+name|Attr
+name|attr
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 specifier|public
 name|void
@@ -302,26 +481,6 @@ name|attr
 operator|.
 name|getValue
 argument_list|()
-expr_stmt|;
-name|constructor
-operator|.
-name|setNameExpr
-argument_list|(
-operator|new
-name|LiteralValue
-argument_list|(
-operator|(
-name|XQueryContext
-operator|)
-name|context
-argument_list|,
-operator|new
-name|StringValue
-argument_list|(
-name|name
-argument_list|)
-argument_list|)
-argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -417,13 +576,99 @@ name|getValue
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
+name|addAttribute
+argument_list|(
+name|attr
+argument_list|)
+expr_stmt|;
 block|}
-specifier|private
-name|boolean
-name|internalCall
+block|}
+specifier|public
+name|void
+name|analyze
+parameter_list|(
+name|AnalyzeContextInfo
+name|contextInfo
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
+comment|// declare namespaces
+comment|//        if(namespaceDecls != null) {
+comment|//            for(int i = 0; i< namespaceDecls.length; i++) {
+comment|//                if ("".equals(namespaceDecls[i].getNamespaceURI())) {
+comment|//                    // TODO: the specs are unclear here: should we throw XQST0085 or not?
+comment|//                    context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
+comment|////					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|////		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+comment|//                } else
+comment|//                    context.declareInScopeNamespace(namespaceDecls[i].getLocalName(), namespaceDecls[i].getNamespaceURI());
+comment|//            }
+comment|//        }
+name|AnalyzeContextInfo
+name|newContextInfo
 init|=
-literal|false
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
+name|contextInfo
+argument_list|)
 decl_stmt|;
+name|newContextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|newContextInfo
+operator|.
+name|addFlag
+argument_list|(
+name|IN_NODE_CONSTRUCTOR
+argument_list|)
+expr_stmt|;
+comment|//        qnameExpr.analyze(newContextInfo);
+comment|//        if(attributes != null) {
+comment|//            for(int i = 0; i< attributes.length; i++) {
+comment|//                attributes[i].analyze(newContextInfo);
+comment|//            }
+comment|//        }
+comment|//analyze content
+if|if
+condition|(
+name|content
+operator|!=
+literal|null
+condition|)
+name|content
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
+block|}
+comment|//	private boolean internalCall = false;
 specifier|public
 name|Sequence
 name|eval
@@ -437,18 +682,234 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//		if (!internalCall) {
+comment|//			internalCall = true;
+comment|//			return constructor.eval(contextSequence, contextItem);
+comment|//		}
+comment|//		internalCall = false;
+comment|//		return super.eval(contextSequence, contextItem);
+name|context
+operator|.
+name|expressionStart
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|newDocumentContext
+condition|)
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+name|MemTreeBuilder
+name|builder
+init|=
+name|context
+operator|.
+name|getDocumentBuilder
+argument_list|()
+decl_stmt|;
+comment|// declare namespaces
+comment|//            if(namespaceDecls != null) {
+comment|//                for(int i = 0; i< namespaceDecls.length; i++) {
+comment|//                    //if ("".equals(namespaceDecls[i].getNamespaceURI())) {
+comment|//                        // TODO: the specs are unclear here: should we throw XQST0085 or not?
+comment|//                    //	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
+comment|////					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|////		        		throw new XPathException(getAS      TNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
+comment|//                    //} else
+comment|//                        context.declareInScopeNamespace(namespaceDecls[i].getLocalName(), namespaceDecls[i].getNamespaceURI());
+comment|//                }
+comment|//            }
+comment|//            AttributesImpl attrs = new AttributesImpl();
+comment|//            if(attributes != null) {
+comment|//                AttributeConstructor constructor;
+comment|//                Sequence attrValues;
+comment|//                QName attrQName;
+comment|//                // first, search for xmlns attributes and declare in-scope namespaces
+comment|//                for (int i = 0; i< attributes.length; i++) {
+comment|//                    constructor = attributes[i];
+comment|//                    if(constructor.isNamespaceDeclaration()) {
+comment|//                        int p = constructor.getQName().indexOf(':');
+comment|//                        if(p == Constants.STRING_NOT_FOUND)
+comment|//                            context.declareInScopeNamespace("", constructor.getLiteralValue());
+comment|//                        else {
+comment|//                            String prefix = constructor.getQName().substring(p + 1);
+comment|//                            context.declareInScopeNamespace(prefix, constructor.getLiteralValue());
+comment|//                        }
+comment|//                    }
+comment|//                }
+comment|//                // process the remaining attributes
+comment|//                for (int i = 0; i< attributes.length; i++) {
+comment|//                    context.proceed(this, builder);
+comment|//                    constructor = attributes[i];
+comment|//                    attrValues = constructor.eval(contextSequence, contextItem);
+comment|//                    attrQName = QName.parse(context, constructor.getQName(), "");
+comment|//                    if (attrs.getIndex(attrQName.getNamespaceURI(), attrQName.getLocalName()) != -1)
+comment|//                        throw new XPathException(this, "XQST0040 '" + attrQName.getLocalName() + "' is a duplicate attribute name");
+comment|//                    attrs.addAttribute(attrQName.getNamespaceURI(), attrQName.getLocalName(),
+comment|//                            attrQName.getStringValue(), "CDATA", attrValues.getStringValue());
+comment|//                }
+comment|//            }
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|,
+name|builder
+argument_list|)
+expr_stmt|;
+comment|// create the element
+comment|//            Sequence qnameSeq = qnameExpr.eval(contextSequence, contextItem);
+comment|//            if(!qnameSeq.hasOne())
+comment|//		    throw new XPathException(this, "Type error: the node name should evaluate to a single item");
+comment|//            Item qnitem = qnameSeq.itemAt(0);
+name|QName
+name|qn
+decl_stmt|;
+comment|//            if (qnitem instanceof QNameValue) {
+comment|//                qn = ((QNameValue)qnitem).getQName();
+comment|//            } else {
+comment|//                //Do we have the same result than Atomize there ? -pb
+try|try
+block|{
+name|qn
+operator|=
+name|QName
+operator|.
+name|parse
+argument_list|(
+name|context
+argument_list|,
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
+operator|+
+name|name
+operator|+
+literal|"' is not a valid element name"
+argument_list|)
+throw|;
+block|}
+comment|//
+comment|//                //Use the default namespace if specified
+comment|//                /*
+comment|//                 if (qn.getPrefix() == null&& context.inScopeNamespaces.get("xmlns") != null) {
+comment|//                     qn.setNamespaceURI((String)context.inScopeNamespaces.get("xmlns"));
+comment|//                 }
+comment|//                 */
+comment|//                if (qn.getPrefix() == null&& context.getInScopeNamespace("") != null) {
+comment|//                     qn.setNamespaceURI(context.getInScopeNamespace(""));
+comment|//                }
+comment|//             }
+comment|//
+comment|//Not in the specs but... makes sense
 if|if
 condition|(
 operator|!
-name|internalCall
+name|XMLChar
+operator|.
+name|isValidName
+argument_list|(
+name|name
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
+operator|+
+name|name
+operator|+
+literal|"' is not a valid element name"
+argument_list|)
+throw|;
+name|int
+name|nodeNr
+init|=
+name|builder
+operator|.
+name|startElement
+argument_list|(
+name|qn
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+comment|// process attributes
+if|if
+condition|(
+name|use_attribute_sets
+operator|!=
+literal|null
 condition|)
 block|{
-name|internalCall
-operator|=
-literal|true
-expr_stmt|;
-return|return
-name|constructor
+name|Set
+argument_list|<
+name|AttributeSet
+argument_list|>
+name|sets
+init|=
+operator|(
+operator|(
+name|XSLContext
+operator|)
+name|context
+operator|)
+operator|.
+name|getXSLStylesheet
+argument_list|()
+operator|.
+name|getAttributeSet
+argument_list|(
+name|use_attribute_sets
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|AttributeSet
+name|set
+range|:
+name|sets
+control|)
+block|{
+name|set
 operator|.
 name|eval
 argument_list|(
@@ -456,22 +917,93 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// add namespace declaration nodes
+comment|//            if(namespaceDecls != null) {
+comment|//                for(int i = 0; i< namespaceDecls.length; i++) {
+comment|//                    builder.namespaceNode(namespaceDecls[i]);
+comment|//                }
+comment|//            }
+comment|//            // do we need to add a namespace declaration for the current node?
+comment|//            if (qn.needsNamespaceDecl()) {
+comment|//                if (context.getInScopePrefix(qn.getNamespaceURI()) == null) {
+comment|//                    String prefix = qn.getPrefix();
+comment|//                    if (prefix == null || prefix.length() == 0)
+comment|//                        prefix = "";
+comment|//                    context.declareInScopeNamespace(prefix, qn.getNamespaceURI());
+comment|//                    builder.namespaceNode(new QName(prefix, qn.getNamespaceURI(), "xmlns"));
+comment|//                }
+comment|//            } else if ((qn.getPrefix() == null || qn.getPrefix().length() == 0)&&
+comment|//                context.getInheritedNamespace("") != null) {
+comment|//                context.declareInScopeNamespace("", "");
+comment|//                builder.namespaceNode(new QName("", "", "xmlns"));
+comment|//            }
+comment|// process element contents
+if|if
+condition|(
+name|content
+operator|!=
+literal|null
+condition|)
+block|{
+name|content
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|)
+expr_stmt|;
+block|}
+name|builder
+operator|.
+name|endElement
+argument_list|()
+expr_stmt|;
+name|NodeImpl
+name|node
+init|=
+name|builder
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getNode
+argument_list|(
+name|nodeNr
+argument_list|)
+decl_stmt|;
+return|return
+name|node
 return|;
 block|}
-name|internalCall
-operator|=
-literal|false
-expr_stmt|;
-return|return
-name|super
+finally|finally
+block|{
+name|context
 operator|.
-name|eval
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|newDocumentContext
+condition|)
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|expressionEnd
 argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
+name|this
 argument_list|)
-return|;
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
@@ -621,6 +1153,13 @@ name|validation
 argument_list|)
 expr_stmt|;
 block|}
+name|dumper
+operator|.
+name|display
+argument_list|(
+literal|">"
+argument_list|)
+expr_stmt|;
 name|super
 operator|.
 name|dump

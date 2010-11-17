@@ -113,6 +113,18 @@ name|exist
 operator|.
 name|xslt
 operator|.
+name|XSLContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xslt
+operator|.
 name|pattern
 operator|.
 name|Pattern
@@ -163,7 +175,7 @@ decl_stmt|;
 specifier|public
 name|AnalyzeString
 parameter_list|(
-name|XQueryContext
+name|XSLContext
 name|context
 parameter_list|)
 block|{

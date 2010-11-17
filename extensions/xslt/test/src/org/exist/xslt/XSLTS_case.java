@@ -111,6 +111,44 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Templates
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Transformer
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|sax
+operator|.
+name|TransformerHandler
+import|;
+end_import
+
+begin_import
+import|import
 name|junit
 operator|.
 name|framework
@@ -128,6 +166,18 @@ operator|.
 name|memtree
 operator|.
 name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
 import|;
 end_import
 
@@ -387,27 +437,11 @@ name|Exception
 block|{
 comment|//		String input = loadFile(XSLTS_folder+"TestInputs/"+inputURL, false);
 comment|//		String stylesheet = loadFile(XSLTS_folder+"TestInputs/"+xslURL, true);
-name|String
-name|query
-init|=
-literal|"xquery version \"1.0\";\n"
-operator|+
-literal|"declare namespace transform=\"http://exist-db.org/xquery/transform\";\n"
-operator|+
-literal|"declare variable $xml external;\n"
-operator|+
-literal|"declare variable $xslt external;\n"
-operator|+
-literal|"transform:transform($xml, $xslt, ())\n"
-decl_stmt|;
-try|try
-block|{
-name|XQueryContext
-name|context
-decl_stmt|;
-name|XQuery
-name|xquery
-decl_stmt|;
+comment|//        String query = "xquery version \"1.0\";\n" +
+comment|//                "declare namespace transform=\"http://exist-db.org/xquery/transform\";\n" +
+comment|//                "declare variable $xml external;\n" +
+comment|//                "declare variable $xslt external;\n" +
+comment|//                "transform:transform($xml, $xslt, ())\n";
 name|DBBroker
 name|broker
 init|=
@@ -415,6 +449,11 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|XQueryContext
+name|context
+decl_stmt|;
+comment|//			XQuery xquery;
+comment|//
 name|broker
 operator|=
 name|pool
@@ -430,119 +469,62 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|xquery
-operator|=
-name|broker
-operator|.
-name|getXQueryService
-argument_list|()
-expr_stmt|;
-name|broker
-operator|.
-name|getConfiguration
-argument_list|()
-operator|.
-name|setProperty
-argument_list|(
-name|XQueryContext
-operator|.
-name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
+comment|//				xquery = broker.getXQueryService();
+comment|//
+comment|//				broker.getConfiguration().setProperty( XQueryContext.PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL, true);
+comment|//
+comment|//				context = xquery.newContext(AccessContext.TEST);
 name|context
 operator|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XSLContext
 argument_list|(
-name|AccessContext
-operator|.
-name|TEST
+name|broker
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|Assert
-operator|.
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
+comment|//
+comment|//			} catch (Exception e) {
+comment|//				Assert.fail(e.getMessage());
+comment|//				return;
+comment|//			}
+comment|//
+comment|//			//declare variable
+comment|//	        if (inputURL !=  null&& inputURL != "")
+comment|//	        	context.declareVariable("xml", loadVarFromURI(context, testLocation+XSLTS_folder+"/TestInputs/"+inputURL));
+comment|//	        else
+comment|//	        	context.declareVariable("xml", loadVarFromString(context, "<empty/>"));
+comment|//
+comment|//			context.declareVariable("xslt", loadVarFromURI(context, testLocation+XSLTS_folder+"/TestInputs/"+xslURL));
+comment|//
+comment|//			//compile
+comment|//			CompiledXQuery compiled = xquery.compile(context, query);
+comment|//
+comment|//			//execute
+comment|//			Sequence result = xquery.execute(compiled, null);
+name|TransformerFactoryImpl
+name|factory
+init|=
+operator|new
+name|TransformerFactoryImpl
 argument_list|()
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-finally|finally
-block|{
+decl_stmt|;
+name|factory
+operator|.
+name|setBrokerPool
+argument_list|(
 name|pool
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
-block|}
-comment|//declare variable
-if|if
-condition|(
-name|inputURL
-operator|!=
-literal|null
-operator|&&
-name|inputURL
-operator|!=
-literal|""
-condition|)
-name|context
+name|Templates
+name|templates
+init|=
+name|factory
 operator|.
-name|declareVariable
+name|newTemplates
 argument_list|(
-literal|"xml"
-argument_list|,
-name|loadVarFromURI
+operator|new
+name|SourceImpl
 argument_list|(
-name|context
-argument_list|,
-name|testLocation
-operator|+
-name|XSLTS_folder
-operator|+
-literal|"/TestInputs/"
-operator|+
-name|inputURL
-argument_list|)
-argument_list|)
-expr_stmt|;
-else|else
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-literal|"xml"
-argument_list|,
-name|loadVarFromString
-argument_list|(
-name|context
-argument_list|,
-literal|"<empty/>"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-literal|"xslt"
-argument_list|,
 name|loadVarFromURI
 argument_list|(
 name|context
@@ -555,32 +537,89 @@ literal|"/TestInputs/"
 operator|+
 name|xslURL
 argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//compile
-name|CompiledXQuery
-name|compiled
-init|=
-name|xquery
 operator|.
-name|compile
+name|getDocument
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|TransformerHandler
+name|handler
+init|=
+name|factory
+operator|.
+name|newTransformerHandler
+argument_list|(
+name|templates
+argument_list|)
+decl_stmt|;
+comment|//	        TransformErrorListener errorListener = new TransformErrorListener();
+comment|//	        handler.getTransformer().setErrorListener(errorListener);
+name|NodeImpl
+name|input
+decl_stmt|;
+if|if
+condition|(
+name|inputURL
+operator|!=
+literal|null
+operator|&&
+name|inputURL
+operator|!=
+literal|""
+condition|)
+name|input
+operator|=
+name|loadVarFromURI
 argument_list|(
 name|context
 argument_list|,
-name|query
+name|testLocation
+operator|+
+name|XSLTS_folder
+operator|+
+literal|"/TestInputs/"
+operator|+
+name|inputURL
 argument_list|)
+expr_stmt|;
+else|else
+name|input
+operator|=
+name|loadVarFromString
+argument_list|(
+name|context
+argument_list|,
+literal|"<empty/>"
+argument_list|)
+expr_stmt|;
+name|Transformer
+name|transformer
+init|=
+name|handler
+operator|.
+name|getTransformer
+argument_list|()
 decl_stmt|;
-comment|//execute
 name|Sequence
 name|result
 init|=
-name|xquery
+operator|(
+operator|(
+name|org
 operator|.
-name|execute
+name|exist
+operator|.
+name|xslt
+operator|.
+name|Transformer
+operator|)
+name|transformer
+operator|)
+operator|.
+name|transform
 argument_list|(
-name|compiled
-argument_list|,
-literal|null
+name|input
 argument_list|)
 decl_stmt|;
 comment|//compare result with one provided by test case
@@ -769,6 +808,16 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 block|}
 comment|//        StringBuilder content = new StringBuilder();
 comment|//    	for (int i = 0; i< result.getSize(); i++)
