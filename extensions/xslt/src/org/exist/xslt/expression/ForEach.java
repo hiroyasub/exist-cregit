@@ -237,7 +237,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|PathExpr
+name|XSLPathExpr
 name|select
 init|=
 literal|null
@@ -383,9 +383,9 @@ block|{
 name|select
 operator|=
 operator|new
-name|PathExpr
+name|XSLPathExpr
 argument_list|(
-name|getContext
+name|getXSLContext
 argument_list|()
 argument_list|)
 expr_stmt|;

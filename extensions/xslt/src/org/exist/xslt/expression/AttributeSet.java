@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -78,6 +88,20 @@ operator|.
 name|value
 operator|.
 name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
 import|;
 end_import
 
@@ -261,6 +285,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|Sequence
+name|result
+init|=
+operator|new
+name|ValueSequence
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|use_attribute_sets
@@ -268,9 +299,16 @@ operator|!=
 literal|null
 condition|)
 block|{
-return|return
-name|getXSLContext
-argument_list|()
+name|result
+operator|.
+name|addAll
+argument_list|(
+operator|(
+operator|(
+name|XSLContext
+operator|)
+name|context
+operator|)
 operator|.
 name|getXSLStylesheet
 argument_list|()
@@ -283,7 +321,8 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-return|;
+argument_list|)
+expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -309,7 +348,10 @@ name|contextItem
 argument_list|)
 return|;
 block|}
-return|return
+name|result
+operator|.
+name|addAll
+argument_list|(
 name|super
 operator|.
 name|eval
@@ -318,6 +360,10 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */

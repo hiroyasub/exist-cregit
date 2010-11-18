@@ -277,6 +277,30 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|ElementAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|NodeAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 import|;
 end_import
@@ -314,6 +338,18 @@ operator|.
 name|interpreter
 operator|.
 name|ContextAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|MemTreeBuilder
 import|;
 end_import
 
@@ -412,6 +448,30 @@ operator|.
 name|dom
 operator|.
 name|Attr
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Text
 import|;
 end_import
 
@@ -540,7 +600,10 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
+name|List
+argument_list|<
 name|AttributeSet
+argument_list|>
 argument_list|>
 name|attributeSets
 init|=
@@ -549,7 +612,10 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
+name|List
+argument_list|<
 name|AttributeSet
+argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -1290,6 +1356,55 @@ name|AttributeSet
 operator|)
 name|expr
 decl_stmt|;
+if|if
+condition|(
+name|attributeSets
+operator|.
+name|containsKey
+argument_list|(
+name|attributeSet
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+name|attributeSets
+operator|.
+name|get
+argument_list|(
+name|attributeSet
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|attributeSet
+argument_list|)
+expr_stmt|;
+else|else
+block|{
+name|List
+argument_list|<
+name|AttributeSet
+argument_list|>
+name|list
+init|=
+operator|new
+name|ArrayList
+argument_list|<
+name|AttributeSet
+argument_list|>
+argument_list|()
+decl_stmt|;
+name|list
+operator|.
+name|add
+argument_list|(
+name|attributeSet
+argument_list|)
+expr_stmt|;
 name|attributeSets
 operator|.
 name|put
@@ -1299,9 +1414,10 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|attributeSet
+name|list
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1558,106 +1674,23 @@ comment|//TODO: need interface for functions
 comment|//context.declareFunction(function);
 block|}
 block|}
-specifier|public
-name|Set
-argument_list|<
-name|AttributeSet
-argument_list|>
-name|getAttributeSet
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|String
-index|[]
-name|names
-init|=
-name|name
-operator|.
-name|split
-argument_list|(
-literal|" "
-argument_list|)
-decl_stmt|;
-name|Set
-argument_list|<
-name|AttributeSet
-argument_list|>
-name|sets
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|AttributeSet
-argument_list|>
-argument_list|(
-name|names
-operator|.
-name|length
-argument_list|)
-decl_stmt|;
-name|String
-name|n
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|names
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|n
-operator|=
-name|names
-index|[
-name|i
-index|]
-expr_stmt|;
-if|if
-condition|(
-name|attributeSets
-operator|.
-name|containsKey
-argument_list|(
-name|n
-argument_list|)
-condition|)
-block|{
-name|sets
-operator|.
-name|add
-argument_list|(
-name|attributeSets
-operator|.
-name|get
-argument_list|(
-name|n
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//UNDERSTAND: error???
-block|}
-block|}
-return|return
-name|sets
-return|;
-block|}
+comment|//    public Set<AttributeSet> getAttributeSet(String name) throws XPathException {
+comment|//    	String[] names = name.split(" ");
+comment|//
+comment|//    	Set<AttributeSet> sets = new HashSet<AttributeSet>(names.length);
+comment|//
+comment|//    	String n;
+comment|//    	for (int i = 0; i< names.length; i++) {
+comment|//    		n = names[i];
+comment|//			if (attributeSets.containsKey(n)) {
+comment|//				sets.add(attributeSets.get(n));
+comment|//			} else {
+comment|//				//UNDERSTAND: error???
+comment|//			}
+comment|//    	}
+comment|//
+comment|//    	return sets;
+comment|//    }
 specifier|public
 name|Sequence
 name|attributeSet
@@ -1729,16 +1762,32 @@ name|n
 argument_list|)
 condition|)
 block|{
-name|result
-operator|.
-name|addAll
-argument_list|(
+name|List
+argument_list|<
+name|AttributeSet
+argument_list|>
+name|list
+init|=
 name|attributeSets
 operator|.
 name|get
 argument_list|(
 name|n
 argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|AttributeSet
+name|set
+range|:
+name|list
+control|)
+block|{
+name|result
+operator|.
+name|addAll
+argument_list|(
+name|set
 operator|.
 name|eval
 argument_list|(
@@ -1748,6 +1797,7 @@ literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1994,28 +2044,110 @@ break|break;
 block|}
 block|}
 comment|//XXX: performance !?! how to get subelements sequence?? fast...
-comment|//			if (!matched) {
-comment|//				if (item instanceof ElementAtExist) {
-comment|//					ElementAtExist element = (ElementAtExist) item;
-comment|//
-comment|//					NodeList children = element.getChildNodes();
-comment|//					for (int i=0; i<children.getLength(); i++) {
-comment|//						NodeAtExist child = (NodeAtExist)children.item(i);
-comment|//
+if|if
+condition|(
+operator|!
+name|matched
+condition|)
+block|{
+if|if
+condition|(
+name|item
+operator|instanceof
+name|ElementAtExist
+condition|)
+block|{
+name|ElementAtExist
+name|element
+init|=
+operator|(
+name|ElementAtExist
+operator|)
+name|item
+decl_stmt|;
+name|NodeList
+name|children
+init|=
+name|element
+operator|.
+name|getChildNodes
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|children
+operator|.
+name|getLength
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|NodeAtExist
+name|child
+init|=
+operator|(
+name|NodeAtExist
+operator|)
+name|children
+operator|.
+name|item
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
 comment|//						if (child instanceof Text) {
 comment|//		                    MemTreeBuilder builder = context.getDocumentBuilder();
 comment|//		            		builder.characters(item.getStringValue());
 comment|//		            		result.add(item);
 comment|//						} else {
-comment|//							Sequence res = templates((Sequence)element, (Item)child);
-comment|//							if (res != null) {
-comment|//								result.addAll(res);
-comment|//								matched = true;
-comment|//							}
+name|Sequence
+name|res
+init|=
+name|templates
+argument_list|(
+operator|(
+name|Sequence
+operator|)
+name|element
+argument_list|,
+operator|(
+name|Item
+operator|)
+name|child
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|res
+operator|!=
+literal|null
+condition|)
+block|{
+name|result
+operator|.
+name|addAll
+argument_list|(
+name|res
+argument_list|)
+expr_stmt|;
+name|matched
+operator|=
+literal|true
+expr_stmt|;
+block|}
 comment|//						}
-comment|//					}
-comment|//				}
-comment|//			}
+block|}
+block|}
+block|}
 name|pos
 operator|++
 expr_stmt|;

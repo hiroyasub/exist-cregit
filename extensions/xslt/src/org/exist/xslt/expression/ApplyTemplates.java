@@ -119,18 +119,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|PathExpr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|TextConstructor
 import|;
 end_import
@@ -309,7 +297,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|PathExpr
+name|XSLPathExpr
 name|select
 init|=
 literal|null
@@ -321,7 +309,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-specifier|static
 name|LocationStep
 name|anyChild
 decl_stmt|;
@@ -454,9 +441,9 @@ block|{
 name|select
 operator|=
 operator|new
-name|PathExpr
+name|XSLPathExpr
 argument_list|(
-name|getContext
+name|getXSLContext
 argument_list|()
 argument_list|)
 expr_stmt|;
