@@ -181,6 +181,15 @@ name|IN_NODE_CONSTRUCTOR
 init|=
 literal|256
 decl_stmt|;
+comment|/**      * Indicates that the expression will redirect subexpressions evaluation       * result to output stream after some manipulations.      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|NON_STREAMABLE
+init|=
+literal|512
+decl_stmt|;
 comment|/**      * Indicates that no context id is supplied to an expression.      */
 specifier|public
 specifier|final
