@@ -1384,6 +1384,9 @@ argument_list|(
 literal|"Unable to read configuration file at "
 operator|+
 name|configFile
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 throw|;
 name|configFilePath
