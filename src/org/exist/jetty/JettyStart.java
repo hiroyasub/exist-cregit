@@ -1698,6 +1698,13 @@ parameter_list|)
 block|{
 block|}
 block|}
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * This class gets called after the database received a shutdown request.      *      * @author wolf      */
 specifier|private
