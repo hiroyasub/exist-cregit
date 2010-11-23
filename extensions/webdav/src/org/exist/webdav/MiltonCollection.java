@@ -1267,7 +1267,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
-name|e
+operator|new
+name|ConflictException
+argument_list|(
+name|this
+argument_list|)
 throw|;
 block|}
 return|return
