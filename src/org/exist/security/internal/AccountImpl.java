@@ -703,7 +703,7 @@ name|digestPassword
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Create a new user with name and password 	 *  	 * @param user 	 *            Description of the Parameter 	 * @param password 	 *            Description of the Parameter 	 * @throws ConfigurationException  	 */
+comment|/**      * Create a new user with name and password      *      * @param user      *            Description of the Parameter      * @param password      *            Description of the Parameter      * @throws ConfigurationException      */
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -836,7 +836,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new user with name 	 *  	 * @param name 	 *            The account name 	 * @throws ConfigurationException  	 */
+comment|/**      * Create a new user with name      *      * @param name      *            The account name      * @throws ConfigurationException      */
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -860,7 +860,7 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new user with name, password and primary group 	 *  	 *@param user 	 *            Description of the Parameter 	 *@param password 	 *            Description of the Parameter 	 *@param primaryGroup 	 *            Description of the Parameter 	 * @throws ConfigurationException  	 * @throws PermissionDeniedException  	 */
+comment|/**      * Create a new user with name, password and primary group      *      *@param user      *            Description of the Parameter      *@param password      *            Description of the Parameter      *@param primaryGroup      *            Description of the Parameter      * @throws ConfigurationException      * @throws PermissionDeniedException      */
 comment|//	public AccountImpl(AbstractRealm realm, int id, String name, String password, String primaryGroup) throws ConfigurationException {
 comment|//		this(realm, id, name, password);
 comment|//		addGroup(primaryGroup);
@@ -1189,7 +1189,7 @@ operator|=
 name|removed
 expr_stmt|;
 block|}
-comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
+comment|/**      * Get the user's password      *      * @return Description of the Return Value      * @deprecated      */
 specifier|public
 specifier|final
 name|String
@@ -1212,7 +1212,7 @@ return|return
 name|digestPassword
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
+comment|/*      * (non-Javadoc)      *      * @see org.exist.security.User#setPassword(java.lang.String)      */
 specifier|public
 specifier|final
 name|void
@@ -1272,7 +1272,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Sets the digest passwod value of the User object 	 *  	 * @param passwd 	 *            The new passwordDigest value 	 * @deprecated 	 */
+comment|/**      * Sets the digest passwod value of the User object      *      * @param passwd      *            The new passwordDigest value      * @deprecated      */
 specifier|public
 specifier|final
 name|void
@@ -1298,7 +1298,7 @@ else|:
 name|passwd
 expr_stmt|;
 block|}
-comment|/** 	 * Sets the encoded passwod value of the User object 	 *  	 * @param passwd 	 *            The new passwordDigest value 	 * @deprecated 	 */
+comment|/**      * Sets the encoded passwod value of the User object      *      * @param passwd      *            The new passwordDigest value      * @deprecated      */
 specifier|public
 specifier|final
 name|void
@@ -1387,7 +1387,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 * Split up the validate method into two, to make it possible to 	 * authenticate users, which are not defined in the instance named "exist" 	 * without having impact on the standard functionality. 	 *  	 * @param passwd 	 * @return true if the password was correct, false if not, or if there was a 	 *         problem. 	 */
+comment|/**      * Split up the validate method into two, to make it possible to      * authenticate users, which are not defined in the instance named "exist"      * without having impact on the standard functionality.      *      * @param passwd      * @return true if the password was correct, false if not, or if there was a      *         problem.      */
 annotation|@
 name|Deprecated
 comment|//use SecurityManager.authenticate
@@ -1465,9 +1465,11 @@ condition|(
 operator|!
 name|CHECK_PASSWORDS
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|password
@@ -1586,18 +1588,22 @@ name|digestPassword
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|passwd
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|digest
 argument_list|(
