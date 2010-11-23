@@ -199,36 +199,6 @@ index|[]
 name|groups
 parameter_list|)
 function_decl|;
-comment|/**      * Add a named attribute.      *      * @param name      * @param value      */
-specifier|public
-name|void
-name|setAttribute
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|Object
-name|value
-parameter_list|)
-function_decl|;
-comment|/**      * Get the named attribute value.      *      * @param name The String that is the name of the attribute.      * @return The value associated with the name or null if no value is associated with the name.      */
-specifier|public
-name|Object
-name|getAttribute
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-function_decl|;
-comment|/**      * Returns the set of attributes names.      *      * @return the Set of attribute names.      */
-specifier|public
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|getAttributeNames
-parameter_list|()
-function_decl|;
 comment|/**      * Returns the person full name or account name.      *      * @return the person full name or account name      */
 name|String
 name|getUsername

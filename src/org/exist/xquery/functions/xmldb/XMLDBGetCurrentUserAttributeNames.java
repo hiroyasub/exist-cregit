@@ -77,6 +77,18 @@ name|Set
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|AXSchemaType
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Jul 13, 2010  * Time: 1:51:11 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
@@ -143,6 +155,8 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"the attribute names of the current user"
 argument_list|)
+argument_list|,
+literal|"Use securitymanager:get-account-metadata-keys() instead!"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -179,7 +193,7 @@ name|XPathException
 block|{
 name|Set
 argument_list|<
-name|String
+name|AXSchemaType
 argument_list|>
 name|values
 init|=
@@ -188,7 +202,7 @@ operator|.
 name|getUser
 argument_list|()
 operator|.
-name|getAttributeNames
+name|getMetadataKeys
 argument_list|()
 decl_stmt|;
 name|Sequence
@@ -200,7 +214,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|String
+name|AXSchemaType
 name|value
 range|:
 name|values
@@ -214,6 +228,9 @@ operator|new
 name|StringValue
 argument_list|(
 name|value
+operator|.
+name|getNamespace
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

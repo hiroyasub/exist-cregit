@@ -47,6 +47,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|AXSchemaType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -270,6 +282,8 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the attribute value of the current user"
 argument_list|)
+argument_list|,
+literal|"Use securitymanager:get-account-metadata() instead!"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -340,9 +354,14 @@ operator|.
 name|getUser
 argument_list|()
 operator|.
-name|getAttribute
+name|getMetadataValue
+argument_list|(
+name|AXSchemaType
+operator|.
+name|valueOfNamespace
 argument_list|(
 name|attributeName
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
