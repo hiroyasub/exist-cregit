@@ -674,6 +674,13 @@ argument_list|,
 name|userName
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|account
+operator|!=
+literal|null
+condition|)
+block|{
 name|account
 operator|.
 name|addGroup
@@ -701,6 +708,21 @@ name|BooleanValue
 operator|.
 name|TRUE
 return|;
+block|}
+else|else
+block|{
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Could not find account for username '"
+operator|+
+name|userName
+operator|+
+literal|"' in call to xmldb:add-user-to-group"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
