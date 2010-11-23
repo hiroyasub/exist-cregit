@@ -425,7 +425,7 @@ decl_stmt|;
 name|String
 name|passwd
 init|=
-literal|null
+literal|""
 decl_stmt|;
 name|String
 name|uri
