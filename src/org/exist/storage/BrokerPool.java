@@ -1379,6 +1379,23 @@ name|iterator
 argument_list|()
 return|;
 block|}
+specifier|public
+specifier|final
+specifier|static
+name|boolean
+name|isInstancesEmpty
+parameter_list|()
+block|{
+return|return
+name|instances
+operator|.
+name|values
+argument_list|()
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
 comment|/** Stops the default database instance. After calling this method, it is 	 *  no longer configured. 	 * @throws EXistException If the default database instance is not available (not created, stopped or not configured)  	 */
 specifier|public
 specifier|final
