@@ -31,20 +31,6 @@ begin_import
 import|import static
 name|org
 operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|XMLAssert
-operator|.
-name|assertXMLEqual
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
 name|junit
 operator|.
 name|Assert
@@ -614,11 +600,20 @@ literal|"<xu:attribute name='type'>{$type}</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='event'>{$event}</xu:attribute>"
 operator|+
-literal|"<xu:element name='collection'>{$log:collection}</xu:element>"
+comment|//"<xu:element name='collection'>{$log:collection}</xu:element>" +
+literal|"<xu:element name='uri'>{$uri}</xu:element>"
 operator|+
-literal|"<xu:element name='uri'>{$log:uri}</xu:element>"
+literal|"{"
 operator|+
-literal|"<xu:element name='document'>{if (util:is-binary-doc($log:uri)) then util:binary-doc($log:uri) else doc($log:uri)}</xu:element>"
+literal|"if ($new-uri) then"
+operator|+
+literal|"<xu:element name='new-uri'>{$new-uri}</xu:element>"
+operator|+
+literal|"else ()"
+operator|+
+literal|"}"
+operator|+
+literal|"<xu:element name='document'>{if (util:is-binary-doc($uri)) then util:binary-doc($uri) else doc($uri)}</xu:element>"
 operator|+
 literal|"</xu:element>"
 operator|+
