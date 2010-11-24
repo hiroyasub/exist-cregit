@@ -121,6 +121,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|DeprecatedExtRegexp
 import|;
 end_import

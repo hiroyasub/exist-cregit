@@ -19,6 +19,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|ExtFulltext
 import|;
 end_import

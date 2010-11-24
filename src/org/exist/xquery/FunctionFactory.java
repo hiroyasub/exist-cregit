@@ -55,6 +55,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|ExtNear
 import|;
 end_import
@@ -68,6 +70,8 @@ operator|.
 name|xquery
 operator|.
 name|functions
+operator|.
+name|fn
 operator|.
 name|ExtPhrase
 import|;

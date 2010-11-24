@@ -79,6 +79,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|ExtCollection
 import|;
 end_import

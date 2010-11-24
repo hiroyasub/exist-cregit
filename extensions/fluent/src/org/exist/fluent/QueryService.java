@@ -147,6 +147,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|*
 import|;
 end_import

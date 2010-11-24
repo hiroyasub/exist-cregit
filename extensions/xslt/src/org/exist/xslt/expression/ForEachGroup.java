@@ -139,6 +139,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|FunDistinctValues
 operator|.
 name|ValueComparator

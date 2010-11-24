@@ -12346,7 +12346,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|ModuleImpl
+name|fn
+operator|.
+name|FnModule
 operator|.
 name|class
 argument_list|)
