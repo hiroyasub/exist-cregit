@@ -1756,7 +1756,11 @@ name|timer
 init|=
 operator|new
 name|Timer
-argument_list|()
+argument_list|(
+literal|"jetty shutdown schedule"
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 name|timer
 operator|.
