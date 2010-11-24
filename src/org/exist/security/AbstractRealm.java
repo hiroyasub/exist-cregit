@@ -279,7 +279,8 @@ name|Realm
 implements|,
 name|Configurable
 block|{
-specifier|protected
+comment|//XXX: this class must be under org.exist.security.inyternal to be protected
+specifier|public
 specifier|final
 name|Map
 argument_list|<
@@ -300,7 +301,7 @@ argument_list|(
 literal|65
 argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|public
 specifier|final
 name|Map
 argument_list|<

@@ -25,18 +25,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -76,6 +64,18 @@ operator|.
 name|config
 operator|.
 name|ConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentImpl
 import|;
 end_import
 
@@ -201,6 +201,45 @@ operator|.
 name|create
 argument_list|(
 literal|"config.xml"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|ACCOUNTS_COLLECTION_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"accounts"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|GROUPS_COLLECTION_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"groups"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|REMOVED_COLLECTION_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"removed"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -481,9 +520,9 @@ name|Group
 name|getDBAGroup
 parameter_list|()
 function_decl|;
-comment|//TODO needs javadoc saying what to replace with?
 annotation|@
 name|Deprecated
+comment|//use realm's method
 argument_list|<
 name|A
 extends|extends
@@ -500,9 +539,9 @@ argument_list|>
 name|getUsers
 parameter_list|()
 function_decl|;
-comment|//TODO needs javadoc saying what to replace with?
 annotation|@
 name|Deprecated
+comment|//use realm's method
 argument_list|<
 name|G
 extends|extends
@@ -614,6 +653,19 @@ parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
+function_decl|;
+comment|/**     * Process document, possible new sub-instance.     *       * @param document     * @throws ConfigurationException      */
+name|void
+name|processPramatter
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|ConfigurationException
 function_decl|;
 block|}
 end_interface

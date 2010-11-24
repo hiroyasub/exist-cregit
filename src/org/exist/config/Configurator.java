@@ -2424,6 +2424,9 @@ argument_list|(
 literal|"Subconfiguration must have id ["
 operator|+
 name|conf
+operator|.
+name|getName
+argument_list|()
 operator|+
 literal|"], skip instance creation."
 argument_list|)

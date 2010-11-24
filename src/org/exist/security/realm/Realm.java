@@ -37,18 +37,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|regex
-operator|.
-name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -183,7 +171,7 @@ parameter_list|()
 function_decl|;
 annotation|@
 name|Deprecated
-comment|//use getGroups
+comment|//use getGroups (remove after 1.6)
 specifier|public
 name|Collection
 argument_list|<

@@ -214,7 +214,8 @@ specifier|final
 name|int
 name|id
 decl_stmt|;
-specifier|protected
+comment|//XXX: this must be under org.exist.security.internal to make it protected
+specifier|public
 name|boolean
 name|removed
 init|=
