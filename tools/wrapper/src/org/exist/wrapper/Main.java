@@ -223,19 +223,6 @@ argument_list|(
 name|cl
 argument_list|)
 expr_stmt|;
-comment|// determine class to load
-if|if
-condition|(
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|equals
-argument_list|(
-literal|"jetty"
-argument_list|)
-condition|)
 name|klazz
 operator|=
 name|cl
@@ -243,16 +230,6 @@ operator|.
 name|loadClass
 argument_list|(
 literal|"org.exist.jetty.JettyStart"
-argument_list|)
-expr_stmt|;
-else|else
-name|klazz
-operator|=
-name|cl
-operator|.
-name|loadClass
-argument_list|(
-literal|"org.exist.jetty.StandaloneServer"
 argument_list|)
 expr_stmt|;
 comment|// find the run() method in the class
