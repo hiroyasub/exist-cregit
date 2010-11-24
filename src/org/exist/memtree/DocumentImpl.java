@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -3315,6 +3315,16 @@ return|return
 operator|(
 literal|null
 operator|)
+return|;
+block|}
+specifier|public
+name|Node
+name|getLastChild
+parameter_list|()
+block|{
+return|return
+name|getFirstChild
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -7218,12 +7228,23 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+name|Element
+name|el
+init|=
+name|getDocumentElement
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|el
+operator|!=
+literal|null
+condition|)
 name|nl
 operator|.
 name|add
 argument_list|(
-name|getDocumentElement
-argument_list|()
+name|el
 argument_list|)
 expr_stmt|;
 return|return
