@@ -31,28 +31,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|external
-operator|.
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -120,6 +98,28 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|external
+operator|.
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -419,7 +419,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -475,6 +475,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -484,6 +485,7 @@ argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -498,6 +500,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -507,6 +510,7 @@ argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
 comment|// get parameters
 name|String
 name|uploadParamName
@@ -589,6 +593,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 else|else
+block|{
 name|logger
 operator|.
 name|debug
@@ -601,6 +606,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|InputStream
 name|is
 init|=

@@ -253,6 +253,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|FilenameUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|log4j
 operator|.
 name|Logger
@@ -649,19 +663,10 @@ comment|// Iterate over all mult-part formdata items and
 comment|// add all data (field and files) to parmeters
 for|for
 control|(
-name|Iterator
+name|Object
 name|i
-init|=
+range|:
 name|items
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
 control|)
 block|{
 name|FileItem
@@ -671,9 +676,6 @@ operator|(
 name|FileItem
 operator|)
 name|i
-operator|.
-name|next
-argument_list|()
 decl_stmt|;
 name|addParameter
 argument_list|(
@@ -1469,63 +1471,14 @@ return|return
 literal|null
 return|;
 block|}
-comment|// Several browsers, e.g. MSIE send a full path of the LOCALLY stored
-comment|// file instead of the filename alone.
-comment|// Jakarta's Commons FileUpload package does not repair this
-comment|// so we should remove all supplied path information.
-comment|// If there are (back) slashes in the Filename, we have
-comment|// a full path. Find the last (back) slash, take remaining text
-comment|// DWES: use IOtutils as documented
-name|int
-name|lastFileSepPos
-init|=
-name|Math
-operator|.
-name|max
-argument_list|(
-name|itemName
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"/"
-argument_list|)
-argument_list|,
-name|itemName
-operator|.
-name|lastIndexOf
-argument_list|(
-literal|"\\"
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|String
-name|documentName
-init|=
-name|itemName
-decl_stmt|;
-if|if
-condition|(
-name|lastFileSepPos
-operator|!=
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
-condition|)
-block|{
-name|documentName
-operator|=
-name|itemName
-operator|.
-name|substring
-argument_list|(
-name|lastFileSepPos
-operator|+
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
+comment|// return Filename only
 return|return
-name|documentName
+name|FilenameUtils
+operator|.
+name|getName
+argument_list|(
+name|itemName
+argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterNames()      */
@@ -1580,7 +1533,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// na params available jyet, retrieve from request
+comment|// na params available yet, retrieve from request
 name|String
 index|[]
 name|values
@@ -1682,6 +1635,7 @@ operator|instanceof
 name|List
 condition|)
 block|{
+comment|// Cast to List
 name|List
 name|list
 init|=
@@ -1704,42 +1658,23 @@ index|]
 expr_stmt|;
 comment|// position in array
 name|int
-name|j
+name|position
 init|=
 literal|0
 decl_stmt|;
 comment|// Iterate over list
 for|for
 control|(
-name|Iterator
-name|i
-init|=
+name|Object
+name|object
+range|:
 name|list
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|j
-operator|++
 control|)
 block|{
-name|Object
-name|o
-init|=
-name|i
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
 comment|// Item is a FileItem
 if|if
 condition|(
-name|o
+name|object
 operator|instanceof
 name|FileItem
 condition|)
@@ -1751,14 +1686,14 @@ init|=
 operator|(
 name|FileItem
 operator|)
-name|o
+name|object
 decl_stmt|;
 comment|// Get string representation of FileItem
 try|try
 block|{
 name|values
 index|[
-name|j
+name|position
 index|]
 operator|=
 name|formEncoding
@@ -1803,21 +1738,24 @@ block|{
 comment|// Normal formfield
 name|values
 index|[
-name|j
+name|position
 index|]
 operator|=
 operator|(
 name|String
 operator|)
-name|o
+name|object
 expr_stmt|;
 block|}
+name|position
+operator|++
+expr_stmt|;
 block|}
 block|}
 else|else
 block|{
 comment|// No list retrieve one element only
-comment|// Acclocate space
+comment|// Allocate space
 name|values
 operator|=
 operator|new
