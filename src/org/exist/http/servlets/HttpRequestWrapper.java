@@ -758,7 +758,7 @@ name|keySet
 argument_list|()
 control|)
 block|{
-comment|// Key gey and corresponding values
+comment|// Get key and corresponding values
 name|String
 name|key
 init|=
@@ -767,6 +767,20 @@ name|String
 operator|)
 name|one
 decl_stmt|;
+comment|// DWES this prevents adding a second value for the same key
+comment|// This is wrong. If a parameters 2 times on the URL, or is entered
+comment|// via a form and a URL, basically all values bust be accessible.
+if|if
+condition|(
+operator|!
+name|params
+operator|.
+name|containsKey
+argument_list|(
+name|key
+argument_list|)
+condition|)
+block|{
 name|String
 index|[]
 name|values
@@ -800,6 +814,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
