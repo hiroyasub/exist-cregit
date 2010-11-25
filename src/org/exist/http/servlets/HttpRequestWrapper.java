@@ -137,6 +137,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -286,7 +296,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for requests processed by a servlet.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * A wrapper for requests processed by a servlet.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Dannes Wessels<dannes@exist-db.org>  */
 end_comment
 
 begin_class
@@ -330,6 +340,18 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+name|String
+name|pathInfo
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
+name|servletPath
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|Map
 argument_list|<
 name|String
@@ -341,16 +363,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|String
-name|pathInfo
+name|boolean
+name|isFormDataParsed
 init|=
-literal|null
-decl_stmt|;
-specifier|private
-name|String
-name|servletPath
-init|=
-literal|null
+literal|false
 decl_stmt|;
 specifier|public
 name|HttpRequestWrapper
@@ -430,6 +446,8 @@ operator|.
 name|getServletPath
 argument_list|()
 expr_stmt|;
+comment|// DW originally the parameters from the URL were only parsed
+comment|// upon multipart formdata?
 if|if
 condition|(
 name|parseMultipart
@@ -442,7 +460,28 @@ name|servletRequest
 argument_list|)
 condition|)
 block|{
+comment|// Formdata is actually parsed
+name|isFormDataParsed
+operator|=
+literal|true
+expr_stmt|;
+name|params
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+expr_stmt|;
+comment|// Get multi-part formdata
 name|parseMultipartContent
+argument_list|()
+expr_stmt|;
+comment|// Get parameters url-encoded
+name|parseParameters
 argument_list|()
 expr_stmt|;
 block|}
@@ -638,17 +677,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|params
-operator|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-expr_stmt|;
 name|List
 name|items
 init|=
@@ -690,152 +718,6 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Dizzzz: Why not use servletRequest.getParameterMap()
-comment|// Get data from parameter
-name|String
-name|queryString
-init|=
-name|servletRequest
-operator|.
-name|getQueryString
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|queryString
-operator|!=
-literal|null
-operator|&&
-name|queryString
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|String
-name|nvPairs
-index|[]
-init|=
-name|queryString
-operator|.
-name|split
-argument_list|(
-literal|"&"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|nvPairs
-operator|!=
-literal|null
-operator|&&
-name|nvPairs
-operator|.
-name|length
-operator|>
-literal|0
-condition|)
-block|{
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-name|queryStringParameters
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nvPairs
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|String
-name|nvp
-index|[]
-init|=
-name|nvPairs
-index|[
-name|i
-index|]
-operator|.
-name|split
-argument_list|(
-literal|"="
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|nvp
-operator|!=
-literal|null
-operator|&&
-name|nvp
-operator|.
-name|length
-operator|==
-literal|2
-operator|&&
-operator|!
-name|params
-operator|.
-name|containsKey
-argument_list|(
-name|nvp
-index|[
-literal|0
-index|]
-argument_list|)
-condition|)
-block|{
-name|addParameter
-argument_list|(
-name|queryStringParameters
-argument_list|,
-name|nvp
-index|[
-literal|0
-index|]
-argument_list|,
-name|nvp
-index|[
-literal|1
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|params
-operator|.
-name|putAll
-argument_list|(
-name|queryStringParameters
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -843,7 +725,6 @@ name|FileUploadException
 name|e
 parameter_list|)
 block|{
-comment|// TODO: handle this
 name|LOG
 operator|.
 name|error
@@ -851,11 +732,75 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|e
+block|}
+block|}
+specifier|private
+name|void
+name|parseParameters
+parameter_list|()
+block|{
+name|Map
+name|map
+init|=
+name|servletRequest
 operator|.
-name|printStackTrace
+name|getParameterMap
 argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|Object
+name|one
+range|:
+name|map
+operator|.
+name|keySet
+argument_list|()
+control|)
+block|{
+comment|// Key gey and corresponding values
+name|String
+name|key
+init|=
+operator|(
+name|String
+operator|)
+name|one
+decl_stmt|;
+name|String
+index|[]
+name|values
+init|=
+operator|(
+name|String
+index|[]
+operator|)
+name|map
+operator|.
+name|get
+argument_list|(
+name|one
+argument_list|)
+decl_stmt|;
+comment|// Write keys and values
+for|for
+control|(
+name|String
+name|value
+range|:
+name|values
+control|)
+block|{
+name|addParameter
+argument_list|(
+name|params
+argument_list|,
+name|key
+argument_list|,
+name|value
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Get file item      *       * @param obj List or Fileitem      * @return First Fileitem in list or Fileitem.      */
@@ -1155,6 +1100,8 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// DW: Params is null when request is not multipart-formdata
+comment|// isFormDataParsed=false
 name|String
 name|value
 init|=
@@ -1189,6 +1136,7 @@ return|;
 block|}
 else|else
 block|{
+comment|// Parameters
 name|Object
 name|o
 init|=
@@ -1210,6 +1158,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|// If Parameter is a List, get first entry. The data is used later on
 if|if
 condition|(
 name|o
@@ -1237,6 +1186,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If parameter is file item, convert to string
 if|if
 condition|(
 name|o
@@ -1297,6 +1247,7 @@ literal|null
 return|;
 block|}
 block|}
+comment|// Return just a simple value
 block|}
 if|else if
 condition|(
@@ -1561,7 +1512,7 @@ return|return
 name|values
 return|;
 block|}
-comment|// encode values
+comment|// decode values
 for|for
 control|(
 name|int
