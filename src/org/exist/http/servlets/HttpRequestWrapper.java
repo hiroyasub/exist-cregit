@@ -272,7 +272,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A wrapper for requests processed by a servlet.  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * A wrapper for requests processed by a servlet.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_class
@@ -282,6 +282,23 @@ name|HttpRequestWrapper
 implements|implements
 name|RequestWrapper
 block|{
+specifier|private
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|HttpRequestWrapper
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 name|HttpServletRequest
 name|servletRequest
@@ -321,23 +338,6 @@ name|servletPath
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|HttpRequestWrapper
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-decl_stmt|;
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -363,7 +363,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Constructs a wrapper for the given servlet request.      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
+comment|/**      * Constructs a wrapper for the given servlet request.      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -497,7 +497,7 @@ name|value
 parameter_list|)
 block|{
 name|Object
-name|old
+name|original
 init|=
 name|map
 operator|.
@@ -508,23 +508,25 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|old
+name|original
 operator|!=
 literal|null
 condition|)
 block|{
+comment|// Check if original value was already a List
 if|if
 condition|(
-name|old
+name|original
 operator|instanceof
 name|List
 condition|)
 block|{
+comment|// Add value to existing List
 operator|(
 operator|(
 name|List
 operator|)
-name|old
+name|original
 operator|)
 operator|.
 name|add
@@ -535,6 +537,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// Single value already detected, convert to List and add both items
 name|ArrayList
 argument_list|<
 name|Object
@@ -552,7 +555,7 @@ name|list
 operator|.
 name|add
 argument_list|(
-name|old
+name|original
 argument_list|)
 expr_stmt|;
 name|list
@@ -575,6 +578,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// Parameter did not exist yet, add single value
 name|map
 operator|.
 name|put
@@ -620,8 +624,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|this
-operator|.
 name|params
 operator|=
 operator|new
@@ -640,11 +642,11 @@ name|upload
 operator|.
 name|parseRequest
 argument_list|(
-name|this
-operator|.
 name|servletRequest
 argument_list|)
 decl_stmt|;
+comment|// Iterate over all mult-part formdata items and
+comment|// add all data (field and files) to parmeters
 for|for
 control|(
 name|Iterator
@@ -663,7 +665,7 @@ condition|;
 control|)
 block|{
 name|FileItem
-name|next
+name|item
 init|=
 operator|(
 name|FileItem
@@ -677,19 +679,19 @@ name|addParameter
 argument_list|(
 name|params
 argument_list|,
-name|next
+name|item
 operator|.
 name|getFieldName
 argument_list|()
 argument_list|,
-name|next
+name|item
 argument_list|)
 expr_stmt|;
 block|}
 comment|// Dizzzz: Why not use servletRequest.getParameterMap()
-comment|//also get parameters from the querystring
+comment|// Get data from parameter
 name|String
-name|qs
+name|queryString
 init|=
 name|servletRequest
 operator|.
@@ -698,11 +700,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|qs
+name|queryString
 operator|!=
 literal|null
 operator|&&
-name|qs
+name|queryString
 operator|.
 name|length
 argument_list|()
@@ -711,10 +713,10 @@ literal|0
 condition|)
 block|{
 name|String
-name|nvps
+name|nvPairs
 index|[]
 init|=
-name|qs
+name|queryString
 operator|.
 name|split
 argument_list|(
@@ -723,11 +725,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|nvps
+name|nvPairs
 operator|!=
 literal|null
 operator|&&
-name|nvps
+name|nvPairs
 operator|.
 name|length
 operator|>
@@ -740,7 +742,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|qsParams
+name|queryStringParameters
 init|=
 operator|new
 name|HashMap
@@ -760,7 +762,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|nvps
+name|nvPairs
 operator|.
 name|length
 condition|;
@@ -772,7 +774,7 @@ name|String
 name|nvp
 index|[]
 init|=
-name|nvps
+name|nvPairs
 index|[
 name|i
 index|]
@@ -808,7 +810,7 @@ condition|)
 block|{
 name|addParameter
 argument_list|(
-name|qsParams
+name|queryStringParameters
 argument_list|,
 name|nvp
 index|[
@@ -827,7 +829,7 @@ name|params
 operator|.
 name|putAll
 argument_list|(
-name|qsParams
+name|queryStringParameters
 argument_list|)
 expr_stmt|;
 block|}
@@ -840,6 +842,13 @@ name|e
 parameter_list|)
 block|{
 comment|// TODO: handle this
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -862,6 +871,7 @@ name|obj
 operator|instanceof
 name|List
 condition|)
+block|{
 return|return
 operator|(
 name|FileItem
@@ -878,13 +888,16 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 name|FileItem
 operator|)
 name|obj
 return|;
+block|}
 block|}
 comment|/**      * @param value      * @return      */
 specifier|private
@@ -901,11 +914,13 @@ name|containerEncoding
 operator|==
 literal|null
 condition|)
+block|{
 comment|//TODO : use file.encoding system property ?
 name|containerEncoding
 operator|=
 literal|"ISO-8859-1"
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|containerEncoding
@@ -915,9 +930,11 @@ argument_list|(
 name|formEncoding
 argument_list|)
 condition|)
+block|{
 return|return
 name|value
 return|;
+block|}
 try|try
 block|{
 name|byte
@@ -959,7 +976,7 @@ name|value
 return|;
 block|}
 block|}
-comment|/** @see javax.servlet.http.HttpServletRequest#getInputStream()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getInputStream()      */
 specifier|public
 name|InputStream
 name|getInputStream
@@ -974,7 +991,7 @@ name|getInputStream
 argument_list|()
 return|;
 block|}
-comment|/** @see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      */
 specifier|public
 name|String
 name|getCharacterEncoding
@@ -987,7 +1004,7 @@ name|getCharacterEncoding
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getContentLength()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getContentLength()      */
 specifier|public
 name|long
 name|getContentLength
@@ -1017,6 +1034,7 @@ name|lenstr
 operator|!=
 literal|null
 condition|)
+block|{
 name|retval
 operator|=
 name|Long
@@ -1026,11 +1044,12 @@ argument_list|(
 name|lenstr
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|retval
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getContentType()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getContentType()      */
 specifier|public
 name|String
 name|getContentType
@@ -1043,7 +1062,7 @@ name|getContentType
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getContextPath()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getContextPath()      */
 specifier|public
 name|String
 name|getContextPath
@@ -1056,7 +1075,7 @@ name|getContextPath
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getHeader(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getHeader(String)      */
 specifier|public
 name|String
 name|getHeader
@@ -1074,7 +1093,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      * @return An enumeration of header names      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      * @return An enumeration of header names      */
 specifier|public
 name|Enumeration
 name|getHeaderNames
@@ -1087,7 +1106,7 @@ name|getHeaderNames
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getHeaders(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getHeaders(String)      */
 specifier|public
 name|Enumeration
 name|getHeaders
@@ -1105,7 +1124,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getMethod()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getMethod()      */
 specifier|public
 name|String
 name|getMethod
@@ -1118,7 +1137,7 @@ name|getMethod
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
 specifier|public
 name|String
 name|getParameter
@@ -1154,9 +1173,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|value
 return|;
+block|}
 return|return
 name|decode
 argument_list|(
@@ -1294,7 +1315,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
 specifier|public
 name|File
 name|getFileUploadParam
@@ -1309,9 +1330,11 @@ name|params
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Object
 name|o
 init|=
@@ -1328,9 +1351,11 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|FileItem
 name|item
 init|=
@@ -1346,9 +1371,11 @@ operator|.
 name|isFormField
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -1361,7 +1388,7 @@ name|getStoreLocation
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
 specifier|public
 name|String
 name|getUploadedFileName
@@ -1376,9 +1403,11 @@ name|params
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Object
 name|o
 init|=
@@ -1395,9 +1424,11 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|FileItem
 name|item
 init|=
@@ -1413,9 +1444,11 @@ operator|.
 name|isFormField
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// Get filename from FileItem
 name|String
 name|itemName
@@ -1431,15 +1464,18 @@ name|itemName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// Several browsers, e.g. MSIE send a full path of the LOCALLY stored
 comment|// file instead of the filename alone.
 comment|// Jakarta's Commons FileUpload package does not repair this
 comment|// so we should remove all supplied path information.
 comment|// If there are (back) slashes in the Filename, we have
 comment|// a full path. Find the last (back) slash, take remaining text
+comment|// DWES: use IOtutils as documented
 name|int
 name|lastFileSepPos
 init|=
@@ -1492,7 +1528,7 @@ return|return
 name|documentName
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameterNames()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterNames()      */
 specifier|public
 name|Enumeration
 name|getParameterNames
@@ -1504,12 +1540,14 @@ name|params
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|servletRequest
 operator|.
 name|getParameterNames
 argument_list|()
 return|;
+block|}
 else|else
 block|{
 return|return
@@ -1525,7 +1563,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getParameterValues(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)      */
 specifier|public
 name|String
 index|[]
@@ -1542,6 +1580,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// na params available jyet, retrieve from request
 name|String
 index|[]
 name|values
@@ -1553,6 +1592,7 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+comment|// If no encoding is required, just return
 if|if
 condition|(
 name|formEncoding
@@ -1563,9 +1603,12 @@ name|values
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|values
 return|;
+block|}
+comment|// encode values
 for|for
 control|(
 name|int
@@ -1603,6 +1646,7 @@ return|;
 block|}
 else|else
 block|{
+comment|// params already retrieved
 name|Object
 name|obj
 init|=
@@ -1613,19 +1657,24 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+comment|// Fast return
 if|if
 condition|(
 name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+comment|// Allocate return values
 name|String
 index|[]
 name|values
 decl_stmt|;
+comment|// If object is a List, retrieve data from list
 if|if
 condition|(
 name|obj
@@ -1641,6 +1690,7 @@ name|List
 operator|)
 name|obj
 decl_stmt|;
+comment|// Reserve the right aboumt of elements
 name|values
 operator|=
 operator|new
@@ -1652,11 +1702,13 @@ name|size
 argument_list|()
 index|]
 expr_stmt|;
+comment|// position in array
 name|int
 name|j
 init|=
 literal|0
 decl_stmt|;
+comment|// Iterate over list
 for|for
 control|(
 name|Iterator
@@ -1684,6 +1736,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+comment|// Item is a FileItem
 if|if
 condition|(
 name|o
@@ -1691,6 +1744,7 @@ operator|instanceof
 name|FileItem
 condition|)
 block|{
+comment|// Cast
 name|FileItem
 name|item
 init|=
@@ -1699,6 +1753,7 @@ name|FileItem
 operator|)
 name|o
 decl_stmt|;
+comment|// Get string representation of FileItem
 try|try
 block|{
 name|values
@@ -1745,6 +1800,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// Normal formfield
 name|values
 index|[
 name|j
@@ -1760,6 +1816,8 @@ block|}
 block|}
 else|else
 block|{
+comment|// No list retrieve one element only
+comment|// Acclocate space
 name|values
 operator|=
 operator|new
@@ -1768,6 +1826,7 @@ index|[
 literal|1
 index|]
 expr_stmt|;
+comment|// Item is a FileItem
 if|if
 condition|(
 name|obj
@@ -1829,6 +1888,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// Normal formfield
 name|values
 index|[
 literal|0
@@ -1846,7 +1906,7 @@ name|values
 return|;
 block|}
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getPathInfo()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getPathInfo()      */
 specifier|public
 name|String
 name|getPathInfo
@@ -1856,7 +1916,7 @@ return|return
 name|pathInfo
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getPathTranslated()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getPathTranslated()      */
 specifier|public
 name|String
 name|getPathTranslated
@@ -1869,7 +1929,7 @@ name|getPathTranslated
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getProtocol()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getProtocol()      */
 specifier|public
 name|String
 name|getProtocol
@@ -1882,7 +1942,7 @@ name|getProtocol
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getQueryString()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getQueryString()      */
 specifier|public
 name|String
 name|getQueryString
@@ -1895,7 +1955,7 @@ name|getQueryString
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRemoteAddr()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteAddr()      */
 specifier|public
 name|String
 name|getRemoteAddr
@@ -1908,7 +1968,7 @@ name|getRemoteAddr
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRemoteHost()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteHost()      */
 specifier|public
 name|String
 name|getRemoteHost
@@ -1921,7 +1981,7 @@ name|getRemoteHost
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRemotePort()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemotePort()      */
 specifier|public
 name|int
 name|getRemotePort
@@ -1934,7 +1994,7 @@ name|getRemotePort
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRemoteUser()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteUser()      */
 specifier|public
 name|String
 name|getRemoteUser
@@ -1947,7 +2007,7 @@ name|getRemoteUser
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRequestedSessionId()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestedSessionId()      */
 specifier|public
 name|String
 name|getRequestedSessionId
@@ -1960,7 +2020,7 @@ name|getRequestedSessionId
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRequestURI()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestURI()      */
 specifier|public
 name|String
 name|getRequestURI
@@ -1973,7 +2033,7 @@ name|getRequestURI
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getRequestURL()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestURL()      */
 specifier|public
 name|StringBuffer
 name|getRequestURL
@@ -1986,7 +2046,7 @@ name|getRequestURL
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getScheme()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getScheme()      */
 specifier|public
 name|String
 name|getScheme
@@ -1999,7 +2059,7 @@ name|getScheme
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getServerName()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getServerName()      */
 specifier|public
 name|String
 name|getServerName
@@ -2012,7 +2072,7 @@ name|getServerName
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getServerPort()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getServerPort()      */
 specifier|public
 name|int
 name|getServerPort
@@ -2025,7 +2085,7 @@ name|getServerPort
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getServletPath()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getServletPath()      */
 specifier|public
 name|String
 name|getServletPath
@@ -2035,7 +2095,7 @@ return|return
 name|servletPath
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getSession()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getSession()      */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -2055,10 +2115,13 @@ name|session
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|HttpSessionWrapper
@@ -2067,7 +2130,8 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getSession(boolean)      */
+block|}
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getSession(boolean)      */
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -2092,10 +2156,13 @@ name|session
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|HttpSessionWrapper
@@ -2104,7 +2171,8 @@ name|session
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#getUserPrincipal()      */
+block|}
+comment|/**      * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()      */
 specifier|public
 name|Principal
 name|getUserPrincipal
@@ -2117,7 +2185,7 @@ name|getUserPrincipal
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromCookie()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromCookie()      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromCookie
@@ -2130,7 +2198,7 @@ name|isRequestedSessionIdFromCookie
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromURL()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromURL()      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromURL
@@ -2143,7 +2211,7 @@ name|isRequestedSessionIdFromURL
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#isRequestedSessionIdValid()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdValid()      */
 specifier|public
 name|boolean
 name|isRequestedSessionIdValid
@@ -2156,7 +2224,7 @@ name|isRequestedSessionIdValid
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#isSecure()      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#isSecure()      */
 specifier|public
 name|boolean
 name|isSecure
@@ -2169,7 +2237,7 @@ name|isSecure
 argument_list|()
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#isUserInRole(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#isUserInRole(String)      */
 specifier|public
 name|boolean
 name|isUserInRole
@@ -2187,7 +2255,7 @@ name|arg0
 argument_list|)
 return|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#removeAttribute(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#removeAttribute(String)      */
 specifier|public
 name|void
 name|removeAttribute
@@ -2204,7 +2272,7 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#setAttribute(String, Object)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#setAttribute(String, Object)      */
 specifier|public
 name|void
 name|setAttribute
@@ -2226,7 +2294,7 @@ name|arg1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**@see javax.servlet.http.HttpServletRequest#setCharacterEncoding(String)      */
+comment|/**      * @see javax.servlet.http.HttpServletRequest#setCharacterEncoding(String)      */
 specifier|public
 name|void
 name|setCharacterEncoding
