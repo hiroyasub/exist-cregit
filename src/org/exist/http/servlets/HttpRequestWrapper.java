@@ -433,6 +433,10 @@ operator|.
 name|getServletPath
 argument_list|()
 expr_stmt|;
+comment|// Get url-encoded parameters  (GET and POST)
+name|parseParameters
+argument_list|()
+expr_stmt|;
 comment|// Get multi-part formdata parameters when it is a mpfd request
 comment|// and when instructed to do so
 if|if
@@ -457,10 +461,6 @@ name|parseMultipartContent
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Get url-encoded parameters  (GET and POST)
-name|parseParameters
-argument_list|()
-expr_stmt|;
 block|}
 specifier|public
 name|Object
