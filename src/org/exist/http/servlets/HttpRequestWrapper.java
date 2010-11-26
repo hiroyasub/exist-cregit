@@ -111,7 +111,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|LinkedHashMap
 import|;
 end_import
 
@@ -132,16 +132,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -283,18 +273,6 @@ name|Logger
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Constants
-import|;
-end_import
-
 begin_comment
 comment|/**  * A wrapper for requests processed by a servlet.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Dannes Wessels<dannes@exist-db.org>  */
 end_comment
@@ -351,6 +329,7 @@ name|servletPath
 init|=
 literal|null
 decl_stmt|;
+comment|// linkedhashmap to preserver order
 specifier|private
 name|Map
 argument_list|<
@@ -360,8 +339,16 @@ name|Object
 argument_list|>
 name|params
 init|=
-literal|null
+operator|new
+name|LinkedHashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
 decl_stmt|;
+comment|// flag to administer wether multi-part formdata was processed
 specifier|private
 name|boolean
 name|isFormDataParsed
@@ -446,8 +433,8 @@ operator|.
 name|getServletPath
 argument_list|()
 expr_stmt|;
-comment|// DW originally the parameters from the URL were only parsed
-comment|// upon multipart formdata?
+comment|// Get multi-part formdata parameters when it is a mpfd request
+comment|// and when instructed to do so
 if|if
 condition|(
 name|parseMultipart
@@ -465,26 +452,15 @@ name|isFormDataParsed
 operator|=
 literal|true
 expr_stmt|;
-name|params
-operator|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-expr_stmt|;
 comment|// Get multi-part formdata
 name|parseMultipartContent
 argument_list|()
 expr_stmt|;
-comment|// Get parameters url-encoded
+block|}
+comment|// Get url-encoded parameters  (GET and POST)
 name|parseParameters
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|Object
@@ -734,6 +710,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Parses the url-encoded parameters      */
 specifier|private
 name|void
 name|parseParameters
@@ -767,20 +744,7 @@ name|String
 operator|)
 name|one
 decl_stmt|;
-comment|// DWES this prevents adding a second value for the same key
-comment|// This is wrong. If a parameters 2 times on the URL, or is entered
-comment|// via a form and a URL, basically all values bust be accessible.
-if|if
-condition|(
-operator|!
-name|params
-operator|.
-name|containsKey
-argument_list|(
-name|key
-argument_list|)
-condition|)
-block|{
+comment|// Get values belonging to the key
 name|String
 index|[]
 name|values
@@ -811,10 +775,12 @@ name|params
 argument_list|,
 name|key
 argument_list|,
+name|decode
+argument_list|(
 name|value
 argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -870,6 +836,21 @@ name|String
 name|value
 parameter_list|)
 block|{
+if|if
+condition|(
+name|formEncoding
+operator|==
+literal|null
+operator|||
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|value
+return|;
+block|}
 if|if
 condition|(
 name|containerEncoding
@@ -1108,49 +1089,6 @@ name|String
 name|name
 parameter_list|)
 block|{
-if|if
-condition|(
-name|params
-operator|==
-literal|null
-condition|)
-block|{
-comment|// DW: Params is null when request is not multipart-formdata
-comment|// isFormDataParsed=false
-name|String
-name|value
-init|=
-name|servletRequest
-operator|.
-name|getParameter
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|formEncoding
-operator|==
-literal|null
-operator|||
-name|value
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-name|value
-return|;
-block|}
-return|return
-name|decode
-argument_list|(
-name|value
-argument_list|)
-return|;
-block|}
-else|else
-block|{
 comment|// Parameters
 name|Object
 name|o
@@ -1282,7 +1220,6 @@ return|return
 literal|null
 return|;
 block|}
-block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
 specifier|public
 name|File
@@ -1294,9 +1231,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|params
-operator|==
-literal|null
+operator|!
+name|isFormDataParsed
 condition|)
 block|{
 return|return
@@ -1367,9 +1303,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|params
-operator|==
-literal|null
+operator|!
+name|isFormDataParsed
 condition|)
 block|{
 return|return
@@ -1453,22 +1388,9 @@ name|Enumeration
 name|getParameterNames
 parameter_list|()
 block|{
-if|if
-condition|(
-name|params
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-name|servletRequest
-operator|.
-name|getParameterNames
-argument_list|()
-return|;
-block|}
-else|else
-block|{
+comment|//        if (!isFormDataParsed) {
+comment|//            return servletRequest.getParameterNames();
+comment|//        } else {
 return|return
 name|Collections
 operator|.
@@ -1480,7 +1402,7 @@ name|keySet
 argument_list|()
 argument_list|)
 return|;
-block|}
+comment|//        }
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)      */
 specifier|public
@@ -1491,79 +1413,6 @@ parameter_list|(
 name|String
 name|key
 parameter_list|)
-block|{
-if|if
-condition|(
-name|params
-operator|==
-literal|null
-condition|)
-block|{
-comment|// na params available yet, retrieve from request
-name|String
-index|[]
-name|values
-init|=
-name|servletRequest
-operator|.
-name|getParameterValues
-argument_list|(
-name|key
-argument_list|)
-decl_stmt|;
-comment|// If no encoding is required, just return
-if|if
-condition|(
-name|formEncoding
-operator|==
-literal|null
-operator|||
-name|values
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-name|values
-return|;
-block|}
-comment|// decode values
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|values
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|values
-index|[
-name|i
-index|]
-operator|=
-name|decode
-argument_list|(
-name|values
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|values
-return|;
-block|}
-else|else
 block|{
 comment|// params already retrieved
 name|Object
@@ -1808,7 +1657,6 @@ block|}
 return|return
 name|values
 return|;
-block|}
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getPathInfo()      */
 specifier|public
