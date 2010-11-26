@@ -105,7 +105,7 @@ name|DBBroker
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|static
 name|JettyStart
 name|server
