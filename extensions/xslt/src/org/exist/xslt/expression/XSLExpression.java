@@ -49,6 +49,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|value
+operator|.
+name|SequenceIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -61,7 +75,7 @@ name|exist
 operator|.
 name|xslt
 operator|.
-name|ErrorCodes
+name|XSLContext
 import|;
 end_import
 
@@ -154,6 +168,30 @@ name|description
 parameter_list|)
 throws|throws
 name|XPathException
+function_decl|;
+comment|/** 	 * Process expression. 	 *   	 * @param sequenceIterator 	 * @param context 	 * @deprecated Use {@link #process(XSLContext,SequenceIterator)} instead 	 */
+specifier|public
+name|void
+name|process
+parameter_list|(
+name|SequenceIterator
+name|sequenceIterator
+parameter_list|,
+name|XSLContext
+name|context
+parameter_list|)
+function_decl|;
+comment|/** 	 * Process expression. 	 *  	 * @param context 	 * @param sequenceIterator 	 */
+specifier|public
+name|void
+name|process
+parameter_list|(
+name|XSLContext
+name|context
+parameter_list|,
+name|SequenceIterator
+name|sequenceIterator
+parameter_list|)
 function_decl|;
 specifier|public
 name|Boolean

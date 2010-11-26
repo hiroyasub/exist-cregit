@@ -828,6 +828,28 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+if|else if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+name|contextInfo
+operator|.
+name|addFlag
+argument_list|(
+name|NON_STREAMABLE
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|//	public void addText(String text) {
 comment|//    	value = new LiteralValue(context, new StringValue(text));
@@ -1189,6 +1211,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|context
+operator|.
+name|pushDocumentContext
+argument_list|()
+expr_stmt|;
 name|valueSeq
 operator|=
 name|super
@@ -1199,6 +1226,11 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|popDocumentContext
+argument_list|()
 expr_stmt|;
 block|}
 if|if

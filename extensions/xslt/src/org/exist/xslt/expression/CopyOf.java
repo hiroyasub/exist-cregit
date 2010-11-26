@@ -425,42 +425,12 @@ name|select
 argument_list|)
 expr_stmt|;
 comment|//UNDERSTAND:<node>text<node>  step = "." -> SELF:node(), but need CHILD:node()
-if|if
-condition|(
-operator|(
-name|contextInfo
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|DOT_TEST
-operator|)
-operator|!=
-literal|0
-condition|)
-block|{
-name|atRootCall
-operator|=
-literal|true
-expr_stmt|;
-name|_check_
-argument_list|(
-name|select
-argument_list|)
-expr_stmt|;
-name|contextInfo
-operator|.
-name|removeFlag
-argument_list|(
-name|DOT_TEST
-argument_list|)
-expr_stmt|;
-block|}
-name|_check_childNodes_
-argument_list|(
-name|select
-argument_list|)
-expr_stmt|;
+comment|//			if ((contextInfo.getFlags()& DOT_TEST) != 0) {
+comment|//				atRootCall = true;
+comment|//				_check_(select);
+comment|//				contextInfo.removeFlag(DOT_TEST);
+comment|//			}
+comment|//			_check_childNodes_(select);
 block|}
 name|super
 operator|.

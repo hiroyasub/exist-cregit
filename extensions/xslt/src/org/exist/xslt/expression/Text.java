@@ -196,12 +196,6 @@ name|isWhitespaceOnly
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
-name|boolean
-name|sequenceItSelf
-init|=
-literal|false
-decl_stmt|;
 specifier|public
 name|Text
 parameter_list|(
@@ -306,6 +300,27 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|text
+operator|==
+literal|null
+condition|)
+block|{
+name|isWhitespaceOnly
+operator|=
+literal|false
+expr_stmt|;
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|isWhitespaceOnly
 operator|=
 literal|true
@@ -359,6 +374,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+block|}
 comment|//TODO: The text node does not have an ancestor element that has an xml:space attribute with a value of preserve, unless there is a closer ancestor element having an xml:space attribute with a value of default.
 specifier|public
 name|Sequence
@@ -376,12 +392,8 @@ block|{
 if|if
 condition|(
 name|isWhitespaceOnly
-operator|&&
-name|context
-operator|.
-name|stripWhitespace
-argument_list|()
 condition|)
+comment|//&& context.stripWhitespace())
 return|return
 name|Sequence
 operator|.

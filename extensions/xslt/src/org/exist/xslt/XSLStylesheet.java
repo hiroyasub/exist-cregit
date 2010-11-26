@@ -49,16 +49,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -197,18 +187,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Variable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 import|;
 end_import
@@ -266,6 +244,18 @@ operator|.
 name|value
 operator|.
 name|ValueSequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|DocumentAtExist
 import|;
 end_import
 
@@ -338,18 +328,6 @@ operator|.
 name|interpreter
 operator|.
 name|ContextAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|MemTreeBuilder
 import|;
 end_import
 
@@ -557,13 +535,13 @@ name|simplified
 init|=
 literal|false
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Template
 name|rootTemplate
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Set
 argument_list|<
 name|Template
@@ -1885,51 +1863,13 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+comment|//			if (currentSequence == item)
+comment|//				item = null;
 comment|//UNDERSTAND: work around
-if|if
-condition|(
-name|item
-operator|instanceof
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-condition|)
-block|{
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-name|document
-init|=
-operator|(
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-operator|)
-name|item
-decl_stmt|;
-name|item
-operator|=
-operator|(
-name|Item
-operator|)
-name|document
-operator|.
-name|getDocumentElement
-argument_list|()
-expr_stmt|;
-block|}
+comment|//			if (item instanceof org.w3c.dom.Document) {
+comment|//				org.w3c.dom.Document document = (org.w3c.dom.Document) item;
+comment|//				item = (Item) document.getDocumentElement();
+comment|//			}
 name|context
 operator|.
 name|setContextSequencePosition
@@ -2055,20 +1995,24 @@ condition|(
 name|item
 operator|instanceof
 name|ElementAtExist
+operator|||
+name|item
+operator|instanceof
+name|DocumentAtExist
 condition|)
 block|{
-name|ElementAtExist
-name|element
+name|NodeAtExist
+name|node
 init|=
 operator|(
-name|ElementAtExist
+name|NodeAtExist
 operator|)
 name|item
 decl_stmt|;
 name|NodeList
 name|children
 init|=
-name|element
+name|node
 operator|.
 name|getChildNodes
 argument_list|()
@@ -2117,7 +2061,7 @@ argument_list|(
 operator|(
 name|Sequence
 operator|)
-name|element
+name|node
 argument_list|,
 operator|(
 name|Item
@@ -2268,50 +2212,10 @@ name|nextItem
 argument_list|()
 decl_stmt|;
 comment|//UNDERSTAND: work around
-if|if
-condition|(
-name|item
-operator|instanceof
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-condition|)
-block|{
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-name|document
-init|=
-operator|(
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
-operator|)
-name|item
-decl_stmt|;
-name|item
-operator|=
-operator|(
-name|Item
-operator|)
-name|document
-operator|.
-name|getDocumentElement
-argument_list|()
-expr_stmt|;
-block|}
+comment|//			if (item instanceof org.w3c.dom.Document) {
+comment|//				org.w3c.dom.Document document = (org.w3c.dom.Document) item;
+comment|//				item = (Item) document.getDocumentElement();
+comment|//			}
 name|context
 operator|.
 name|setContextSequencePosition
@@ -2448,22 +2352,14 @@ operator|.
 name|ERR_XTSE0580
 argument_list|)
 expr_stmt|;
-name|Variable
-name|variable
-init|=
 name|context
 operator|.
-name|declareVariable
+name|declareGlobalVariable
 argument_list|(
 name|param
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-name|param
 argument_list|)
-decl_stmt|;
-comment|//UNDERSTAND: global
+expr_stmt|;
+comment|//        Variable variable = context.declareVariable(param.getName(), param);//UNDERSTAND: global
 name|params
 operator|.
 name|put
@@ -2473,7 +2369,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|variable
+name|param
 argument_list|)
 expr_stmt|;
 block|}

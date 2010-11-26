@@ -37,11 +37,25 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|exist
+name|xml
 operator|.
-name|Namespaces
+name|stream
+operator|.
+name|XMLStreamException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamWriter
 import|;
 end_import
 
@@ -125,18 +139,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|PathExpr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 import|;
 end_import
@@ -203,9 +205,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xslt
+name|xquery
 operator|.
-name|ErrorCodes
+name|value
+operator|.
+name|SequenceIterator
 import|;
 end_import
 
@@ -217,7 +221,7 @@ name|exist
 operator|.
 name|xslt
 operator|.
-name|XSL
+name|ErrorCodes
 import|;
 end_import
 
@@ -312,12 +316,7 @@ name|qnameExpr
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|PathExpr
-name|content
-init|=
-literal|null
-decl_stmt|;
+comment|//	private PathExpr content = null;
 specifier|private
 name|List
 argument_list|<
@@ -371,15 +370,17 @@ specifier|public
 name|void
 name|setContent
 parameter_list|(
-name|PathExpr
+name|XSLPathExpr
 name|content
 parameter_list|)
 block|{
-name|this
+comment|//TODO: check, it should be empty
+name|steps
 operator|.
+name|add
+argument_list|(
 name|content
-operator|=
-name|content
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -464,21 +465,7 @@ operator|.
 name|getLocalName
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|Namespaces
-operator|.
-name|XSL_NS
-operator|.
-name|equals
-argument_list|(
-name|attr
-operator|.
-name|getNamespaceURI
-argument_list|()
-argument_list|)
-condition|)
-block|{
+comment|//		if (Namespaces.XSL_NS.equals(attr.getNamespaceURI())) {
 if|if
 condition|(
 name|attr_name
@@ -596,13 +583,8 @@ argument_list|(
 name|attr
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-name|addAttribute
-argument_list|(
-name|attr
-argument_list|)
-expr_stmt|;
+comment|//		} else
+comment|//			addAttribute(attr);
 block|}
 specifier|public
 name|void
@@ -704,19 +686,8 @@ name|newContextInfo
 argument_list|)
 expr_stmt|;
 comment|//analyze content
-if|if
-condition|(
-name|content
-operator|!=
-literal|null
-condition|)
-name|content
-operator|.
-name|analyze
-argument_list|(
-name|contextInfo
-argument_list|)
-expr_stmt|;
+comment|//        if (content != null)
+comment|//        	content.analyze(contextInfo);
 name|super
 operator|.
 name|analyze
@@ -843,16 +814,19 @@ name|tagName
 init|=
 name|name
 decl_stmt|;
+name|Sequence
+name|qnameSeq
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 name|qnameExpr
 operator|!=
 literal|null
 condition|)
-block|{
-name|Sequence
 name|qnameSeq
-init|=
+operator|=
 name|qnameExpr
 operator|.
 name|eval
@@ -861,7 +835,16 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|//            else
+comment|//            	qnameSeq = super.eval(contextSequence, contextItem);
+if|if
+condition|(
+name|qnameSeq
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 operator|!
@@ -927,6 +910,25 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|tagName
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"element name wasn't provided"
+argument_list|)
+throw|;
 comment|//Not in the specs but... makes sense
 if|if
 condition|(
@@ -1085,24 +1087,9 @@ comment|//                context.declareInScopeNamespace("", "");
 comment|//                builder.namespaceNode(new QName("", "", "xmlns"));
 comment|//            }
 comment|// process element contents
-if|if
-condition|(
-name|content
-operator|!=
-literal|null
-condition|)
-block|{
-name|content
-operator|.
-name|eval
-argument_list|(
-name|contextSequence
-argument_list|,
-name|contextItem
-argument_list|)
-expr_stmt|;
-block|}
-else|else
+comment|//            if(content != null) {
+comment|//                content.eval(contextSequence, contextItem);
+comment|//            } else
 name|super
 operator|.
 name|eval
@@ -1486,6 +1473,83 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+comment|/** 	 * @deprecated Use {@link #process(XSLContext,SequenceIterator)} instead 	 */
+specifier|public
+name|void
+name|process
+parameter_list|(
+name|SequenceIterator
+name|sequenceIterator
+parameter_list|,
+name|XSLContext
+name|context
+parameter_list|)
+block|{
+name|process
+argument_list|(
+name|context
+argument_list|,
+name|sequenceIterator
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|process
+parameter_list|(
+name|XSLContext
+name|context
+parameter_list|,
+name|SequenceIterator
+name|sequenceIterator
+parameter_list|)
+block|{
+try|try
+block|{
+name|XMLStreamWriter
+name|writer
+init|=
+name|context
+operator|.
+name|getResultWriter
+argument_list|()
+decl_stmt|;
+name|writer
+operator|.
+name|writeStartElement
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+name|super
+operator|.
+name|process
+argument_list|(
+name|context
+argument_list|,
+name|sequenceIterator
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|writeEndElement
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLStreamException
+name|e
+parameter_list|)
+block|{
+comment|// TODO Auto-generated catch block
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
