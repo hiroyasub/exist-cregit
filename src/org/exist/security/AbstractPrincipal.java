@@ -190,7 +190,7 @@ name|AbstractPrincipal
 implements|implements
 name|Principal
 block|{
-specifier|protected
+specifier|private
 name|Realm
 name|realm
 decl_stmt|;
@@ -476,7 +476,17 @@ block|}
 annotation|@
 name|Override
 specifier|public
-specifier|final
+name|Realm
+name|getRealm
+parameter_list|()
+block|{
+return|return
+name|realm
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|String
 name|getRealmId
 parameter_list|()

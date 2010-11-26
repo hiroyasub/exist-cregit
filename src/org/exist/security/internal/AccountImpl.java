@@ -1166,12 +1166,7 @@ name|from_user
 operator|.
 name|_cred
 expr_stmt|;
-name|this
-operator|.
-name|realm
-operator|=
-name|realm
-expr_stmt|;
+comment|//this.realm = realm;   //set via super()
 block|}
 specifier|public
 name|AccountImpl
@@ -1434,7 +1429,8 @@ name|name
 operator|+
 literal|":"
 operator|+
-name|realm
+name|getRealm
+argument_list|()
 operator|.
 name|getId
 argument_list|()

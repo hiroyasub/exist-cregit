@@ -403,7 +403,9 @@ name|getDatabase
 argument_list|()
 return|;
 block|}
-specifier|protected
+annotation|@
+name|Override
+specifier|public
 name|SecurityManager
 name|getSecurityManager
 parameter_list|()

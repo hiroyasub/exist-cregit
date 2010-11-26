@@ -323,7 +323,8 @@ block|{
 name|Group
 name|group
 init|=
-name|realm
+name|getRealm
+argument_list|()
 operator|.
 name|getGroup
 argument_list|(
@@ -343,7 +344,8 @@ block|{
 comment|//if the group is not present in this realm, look externally
 name|group
 operator|=
-name|realm
+name|getRealm
+argument_list|()
 operator|.
 name|getExternalGroup
 argument_list|(

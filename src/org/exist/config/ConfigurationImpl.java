@@ -81,6 +81,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -1356,7 +1368,7 @@ block|}
 return|return
 name|properties
 return|;
-comment|/*Map<String, Boolean> map = new HashMap<String, Boolean>();         //XXX: detect single element as field value         NodeList children = getChildNodes();         for (int i = 0; i< children.getLength(); i++) {             Node child = children.item(i);             if (child.getNodeType() == Node.ATTRIBUTE_NODE) {                 //properties.add(child.getNodeName());             } else if (child.getNodeType() == Node.ELEMENT_NODE) {                 map.put(child.getNodeName(), map.containsKey(child.getNodeName()));             }         }         for (Entry<String, Boolean> entry : map.entrySet()) {             if (!entry.getValue())                 properties.add(entry.getKey());         }          return properties;         */
+comment|/*         Set<String> properties = new HashSet<String>();         Map<String, Boolean> map = new HashMap<String, Boolean>();         //XXX: detect single element as field value         NodeList children = getChildNodes();         for (int i = 0; i< children.getLength(); i++) {             Node child = children.item(i);             if (child.getNodeType() == Node.ATTRIBUTE_NODE) {                 //properties.add(child.getNodeName());             } else if (child.getNodeType() == Node.ELEMENT_NODE) {                 map.put(child.getNodeName(), map.containsKey(child.getNodeName()));             }         }         for (Entry<String, Boolean> entry : map.entrySet()) {             if (!entry.getValue())                 properties.add(entry.getKey());         }          return properties;          */
 block|}
 annotation|@
 name|Override

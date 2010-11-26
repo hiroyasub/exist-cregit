@@ -89,6 +89,20 @@ name|RealmImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|realm
+operator|.
+name|Realm
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -296,6 +310,21 @@ parameter_list|(
 name|Account
 name|account
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not supported yet."
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Realm
+name|getRealm
+parameter_list|()
 block|{
 throw|throw
 operator|new

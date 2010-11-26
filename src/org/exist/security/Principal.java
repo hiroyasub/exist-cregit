@@ -25,6 +25,20 @@ name|Configurable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|realm
+operator|.
+name|Realm
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -45,6 +59,11 @@ block|{
 specifier|public
 name|int
 name|getId
+parameter_list|()
+function_decl|;
+specifier|public
+name|Realm
+name|getRealm
 parameter_list|()
 function_decl|;
 specifier|public
