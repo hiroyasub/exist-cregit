@@ -330,7 +330,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the parameter value"
+literal|"a sequence of parameter values"
 argument_list|)
 argument_list|)
 block|,
@@ -423,7 +423,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the parameter value"
+literal|"a sequence of parameter values"
 argument_list|)
 argument_list|)
 block|}

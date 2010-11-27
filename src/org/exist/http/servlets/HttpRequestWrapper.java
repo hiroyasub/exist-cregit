@@ -101,16 +101,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -274,7 +264,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for requests processed by a servlet.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * A wrapper for requests processed by a servlet. All parameters, submitted as part of  * the URL and via the http POST body (application/x-www-form-urlencoded and  * multipart/form-data encoded) are made available transparently.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Dannes Wessels<dannes@exist-db.org>  */
 end_comment
 
 begin_class
@@ -329,7 +319,7 @@ name|servletPath
 init|=
 literal|null
 decl_stmt|;
-comment|// linkedhashmap to preserver order
+comment|// Use linkedhashmap to preserver order
 specifier|private
 name|Map
 argument_list|<
@@ -355,6 +345,7 @@ name|isFormDataParsed
 init|=
 literal|false
 decl_stmt|;
+comment|/**      * Constructs a wrapper for the given servlet request. multipart/form-data will be parsed      * when evailable/      *      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -380,7 +371,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a wrapper for the given servlet request.      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
+comment|/**      * Constructs a wrapper for the given servlet request.      *      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      * @param parseMultipart Set to TRUE to enable parse multipart/form-data when available.      */
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -433,7 +424,7 @@ operator|.
 name|getServletPath
 argument_list|()
 expr_stmt|;
-comment|// Get url-encoded parameters  (GET and POST)
+comment|// Get url-encoded parameters (url-ecoded from http GET and POST)
 name|parseParameters
 argument_list|()
 expr_stmt|;
@@ -461,6 +452,20 @@ name|parseMultipartContent
 argument_list|()
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Retrieved "
+operator|+
+name|params
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" parameters."
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|Object
@@ -1388,9 +1393,6 @@ name|Enumeration
 name|getParameterNames
 parameter_list|()
 block|{
-comment|//        if (!isFormDataParsed) {
-comment|//            return servletRequest.getParameterNames();
-comment|//        } else {
 return|return
 name|Collections
 operator|.
@@ -1402,7 +1404,6 @@ name|keySet
 argument_list|()
 argument_list|)
 return|;
-comment|//        }
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)      */
 specifier|public
