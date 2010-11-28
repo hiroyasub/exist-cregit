@@ -662,8 +662,7 @@ name|doBackup
 init|=
 name|createBackup
 decl_stmt|;
-comment|// TODO: don't use the direct access feature for now. needs more
-comment|// testing
+comment|// TODO: don't use the direct access feature for now. needs more testing
 name|List
 argument_list|<
 name|ErrorReport
@@ -687,6 +686,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -694,6 +694,7 @@ argument_list|(
 literal|"Starting consistency check..."
 argument_list|)
 expr_stmt|;
+block|}
 name|report
 operator|=
 name|openLog
@@ -779,6 +780,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -791,6 +793,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|doBackup
 operator|=
 literal|true
@@ -810,6 +813,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -817,6 +821,7 @@ argument_list|(
 literal|"Fatal errors were found: pausing the consistency check task."
 argument_list|)
 expr_stmt|;
+block|}
 name|paused
 operator|=
 literal|true
@@ -836,6 +841,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -843,6 +849,7 @@ argument_list|(
 literal|"Starting backup..."
 argument_list|)
 expr_stmt|;
+block|}
 name|SystemExport
 name|sysexport
 init|=
@@ -903,6 +910,7 @@ name|lastExportedBackup
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -915,6 +923,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch

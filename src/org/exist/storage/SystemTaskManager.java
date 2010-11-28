@@ -164,7 +164,9 @@ operator|.
 name|isShuttingDown
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 synchronized|synchronized
 init|(
 name|waitingSystemTasks
@@ -277,6 +279,7 @@ name|oldUser
 operator|!=
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|setUser
@@ -284,6 +287,7 @@ argument_list|(
 name|oldUser
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release

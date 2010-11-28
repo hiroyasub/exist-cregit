@@ -4518,6 +4518,13 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+name|transact
+operator|.
+name|commit
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
