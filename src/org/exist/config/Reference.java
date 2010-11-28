@@ -27,13 +27,13 @@ parameter_list|,
 name|O
 parameter_list|>
 block|{
-comment|/** 	 * Reference resolver. 	 *  	 * @return 	 */
+comment|/** 	 * Reference resolver. 	 *  	 * @return resolver 	 */
 specifier|public
 name|R
 name|resolver
 parameter_list|()
 function_decl|;
-comment|/** 	 * Resolve reference and return referent. 	 *   	 * @return 	 */
+comment|/** 	 * Resolve reference and return referent. 	 *   	 * @return referent 	 */
 specifier|public
 name|O
 name|resolve

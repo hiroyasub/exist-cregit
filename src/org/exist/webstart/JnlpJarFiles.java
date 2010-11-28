@@ -460,7 +460,7 @@ return|return
 name|corejars
 return|;
 block|}
-comment|/**      * Get file reference for JAR file.      * @param key      * @return      */
+comment|/**      * Get file reference for JAR file.      * @param key      * @return Reference to the jar file, NULL if not existent.      */
 specifier|public
 name|File
 name|getJarFile

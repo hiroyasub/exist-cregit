@@ -493,7 +493,7 @@ name|BrokerPool
 name|pool
 parameter_list|,
 name|Subject
-name|user
+name|subject
 parameter_list|)
 block|{
 name|super
@@ -542,7 +542,7 @@ name|existDocument
 expr_stmt|;
 if|if
 condition|(
-name|user
+name|subject
 operator|!=
 literal|null
 condition|)
@@ -551,7 +551,7 @@ name|existDocument
 operator|.
 name|setUser
 argument_list|(
-name|user
+name|subject
 argument_list|)
 expr_stmt|;
 name|existDocument

@@ -1380,7 +1380,7 @@ operator|)
 condition|)
 do|;
 block|}
-comment|/** 	 * An easy way to obtain an InputStream 	 * @return 	 * @throws IOException 	 */
+comment|/** 	 * An easy way to obtain an InputStream 	 * @return byte stream 	 * @throws IOException 	 */
 specifier|public
 name|InputStream
 name|getByteStream

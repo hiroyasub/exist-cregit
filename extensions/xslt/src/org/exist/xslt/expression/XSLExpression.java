@@ -155,7 +155,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Report error message. 	 *  	 * @param code 	 * @param error 	 * @throws XPathException 	 */
+comment|/** 	 * Report error message. 	 *  	 * @param code 	 * @param description 	 * @throws XPathException 	 */
 specifier|public
 name|void
 name|compileError

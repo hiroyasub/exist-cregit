@@ -539,7 +539,7 @@ specifier|private
 name|ExistCollection
 name|existCollection
 decl_stmt|;
-comment|/**      *  Constructor of representation of a Collection in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Collection in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param pool  Handle to Exist database.      */
 specifier|public
 name|MiltonCollection
 parameter_list|(
@@ -565,7 +565,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Constructor of representation of a Document in the Milton framework, with subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param subject  An Exist operation is performed with  User. Can be NULL.      * @param brokerPool Handle to Exist database.      */
+comment|/**      *  Constructor of representation of a Document in the Milton framework, with subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource.      * @param subject  An Exist operation is performed with Subject. Can be NULL.      * @param pool  Handle to Exist database.      */
 specifier|public
 name|MiltonCollection
 parameter_list|(
@@ -579,7 +579,7 @@ name|BrokerPool
 name|pool
 parameter_list|,
 name|Subject
-name|user
+name|subject
 parameter_list|)
 block|{
 name|super
@@ -629,7 +629,7 @@ expr_stmt|;
 comment|// If subject is available, additional data can be retrieved.
 if|if
 condition|(
-name|user
+name|subject
 operator|!=
 literal|null
 condition|)
@@ -638,7 +638,7 @@ name|existCollection
 operator|.
 name|setUser
 argument_list|(
-name|user
+name|subject
 argument_list|)
 expr_stmt|;
 name|existCollection
