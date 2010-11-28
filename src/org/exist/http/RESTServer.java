@@ -3528,6 +3528,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+comment|// either xquery binary file or xproc xml file
 if|if
 condition|(
 name|resource
@@ -3980,6 +3981,7 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
+comment|//
 block|}
 name|option
 operator|=
@@ -4014,6 +4016,7 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
+comment|//
 block|}
 name|option
 operator|=
@@ -4478,11 +4481,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|String
 name|result
 decl_stmt|;
@@ -7728,6 +7726,7 @@ name|xdebug
 operator|!=
 literal|null
 condition|)
+block|{
 name|compiled
 operator|.
 name|getContext
@@ -7742,6 +7741,7 @@ argument_list|,
 name|xdebug
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//if have session
