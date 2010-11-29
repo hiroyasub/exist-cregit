@@ -531,7 +531,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-literal|"startup"
+literal|"shutdown"
 operator|.
 name|equals
 argument_list|(
@@ -540,7 +540,7 @@ argument_list|)
 condition|)
 name|WrapperManager
 operator|.
-name|signalStarting
+name|signalStopping
 argument_list|(
 literal|60000
 argument_list|)
@@ -548,7 +548,7 @@ expr_stmt|;
 else|else
 name|WrapperManager
 operator|.
-name|signalStopping
+name|signalStarting
 argument_list|(
 literal|60000
 argument_list|)
