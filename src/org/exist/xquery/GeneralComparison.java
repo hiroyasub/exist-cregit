@@ -1559,6 +1559,24 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
+comment|// if the right hand sequence has more than one item, we need to merge them
+comment|// into preselectResult
+if|if
+condition|(
+name|rightSeq
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|1
+condition|)
+name|preselectResult
+operator|=
+operator|new
+name|NewArrayNodeSet
+argument_list|()
+expr_stmt|;
+comment|// Iterate through each item in the right-hand sequence
 for|for
 control|(
 name|SequenceIterator
@@ -1924,6 +1942,9 @@ operator|)
 throw|;
 block|}
 block|}
+comment|// if the right-hand sequence has more than one item,
+comment|// merge the result of the iteration into preselectResult,
+comment|// else replace it.
 if|if
 condition|(
 name|preselectResult
@@ -1939,10 +1960,8 @@ block|}
 else|else
 block|{
 name|preselectResult
-operator|=
-name|preselectResult
 operator|.
-name|union
+name|addAll
 argument_list|(
 name|temp
 argument_list|)
