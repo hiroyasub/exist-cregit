@@ -520,6 +520,17 @@ name|Group
 name|getDBAGroup
 parameter_list|()
 function_decl|;
+specifier|public
+name|List
+argument_list|<
+name|Account
+argument_list|>
+name|getGroupMembers
+parameter_list|(
+name|String
+name|groupName
+parameter_list|)
+function_decl|;
 annotation|@
 name|Deprecated
 comment|//use realm's method
