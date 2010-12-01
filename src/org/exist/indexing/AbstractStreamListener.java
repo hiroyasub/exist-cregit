@@ -120,6 +120,8 @@ name|next
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextInChain
@@ -135,6 +137,8 @@ operator|=
 name|listener
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StreamListener
 name|getNextInChain
@@ -144,6 +148,8 @@ return|return
 name|next
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -176,6 +182,8 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -210,6 +218,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -244,6 +254,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -278,6 +290,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|IndexWorker

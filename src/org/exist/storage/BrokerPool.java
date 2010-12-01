@@ -727,7 +727,7 @@ name|SIGNAL_SHUTDOWN
 init|=
 literal|"shutdown"
 decl_stmt|;
-comment|/** 	 * The name of a default database instance for those who are too lazy to provide parameters ;-).  	 */
+comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).       */
 specifier|public
 specifier|final
 specifier|static
@@ -954,7 +954,9 @@ operator|new
 name|Thread
 argument_list|()
 block|{
-comment|/** 	     * Make sure that all instances are cleanly shut down. 	     */
+comment|/**          * Make sure that all instances are cleanly shut down.          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -992,7 +994,7 @@ name|statusObserver
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Whether of not the JVM should run the shutdown thread. 	 * @param register<code>true</code> if the JVM should run the thread 	 */
+comment|/**      * Whether of not the JVM should run the shutdown thread.      * @param register<code>true</code> if the JVM should run the thread      */
 comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
 comment|// WM: it is probably not necessary to allow users to register their own hook. This method
 comment|// is only used once, by class org.exist.jetty.JettyStart, which registers its own hook.
@@ -1006,7 +1008,7 @@ name|boolean
 name|register
 parameter_list|)
 block|{
-comment|/* 		 * TODO : call Runtime.getRuntime().removeShutdownHook or Runtime.getRuntime().registerShutdownHook  		 * depending of the value of register 		 * Since Java doesn't provide a convenient way to know if a shutdown hook has been registrered,  		 * we may have to catch IllegalArgumentException 		 */
+comment|/*          * TODO : call Runtime.getRuntime().removeShutdownHook or Runtime.getRuntime().registerShutdownHook           * depending of the value of register          * Since Java doesn't provide a convenient way to know if a shutdown hook has been registrered,           * we may have to catch IllegalArgumentException          */
 comment|//TODO : check that the JVM is not shutting down
 name|registerShutdownHook
 operator|=
@@ -1024,7 +1026,7 @@ name|FORCE_CORRUPTION
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 *  Creates and configures a default database instance and adds it to the pool.  	 *  Call this before calling {link #getInstance()}.  	 * If a default database instance already exists, the new configuration is ignored. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param config The configuration object for the database instance 	 * @throws EXistException 	 *@exception  EXistException If the initialization fails.	 	 */
+comment|/**      *  Creates and configures a default database instance and adds it to the pool.       *  Call this before calling {link #getInstance()}.       * If a default database instance already exists, the new configuration is ignored.      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config The configuration object for the database instance      * @throws EXistException      *@exception  EXistException If the initialization fails.	      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1058,7 +1060,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  Creates and configures a database instance and adds it to the pool.  	 *  Call this before calling {link #getInstance()}.  	 * If a database instance with the same name already exists, the new configuration is ignored. 	 * @param instanceName A<strong>unique</strong> name for the database instance.  	 * It is possible to have more than one database instance (with different configurations for example). 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param config The configuration object for the database instance 	 * @throws EXistException If the initialization fails.	 	 */
+comment|/**      *  Creates and configures a database instance and adds it to the pool.       *  Call this before calling {link #getInstance()}.       * If a database instance with the same name already exists, the new configuration is ignored.      * @param instanceName A<strong>unique</strong> name for the database instance.       * It is possible to have more than one database instance (with different configurations for example).      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config The configuration object for the database instance      * @throws EXistException If the initialization fails.	      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1080,8 +1082,6 @@ name|config
 parameter_list|)
 throws|throws
 name|EXistException
-throws|,
-name|DatabaseConfigurationException
 block|{
 comment|//Check if there is a database instance in the pool with the same id
 name|BrokerPool
@@ -1237,7 +1237,7 @@ literal|"' is already configured"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns whether or not the default database instance is configured. 	 * @return<code>true</code> if it is configured 	 */
+comment|/** Returns whether or not the default database instance is configured.      * @return<code>true</code> if it is configured      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1253,7 +1253,7 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
-comment|/** Returns whether or not a database instance is configured. 	 * @param id The name of the database instance 	 * @return<code>true</code> if it is configured 	 */
+comment|/** Returns whether or not a database instance is configured.      * @param id The name of the database instance      * @return<code>true</code> if it is configured      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1294,7 +1294,7 @@ name|isInstanceConfigured
 argument_list|()
 return|;
 block|}
-comment|/**Returns a broker pool for the default database instance. 	 * @return The broker pool 	 * @throws EXistException If the database instance is not available (not created, stopped or not configured) 	 */
+comment|/**Returns a broker pool for the default database instance.      * @return The broker pool      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1311,7 +1311,7 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
-comment|/**Returns a broker pool for a database instance. 	 * @param instanceName The name of the database instance 	 * @return The broker pool 	 * @throws EXistException If the instance is not available (not created, stopped or not configured) 	 */
+comment|/**Returns a broker pool for a database instance.      * @param instanceName The name of the database instance      * @return The broker pool      * @throws EXistException If the instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1345,7 +1345,6 @@ comment|//TODO : call isConfigured(id) and throw an EXistException if relevant ?
 return|return
 name|instance
 return|;
-else|else
 throw|throw
 operator|new
 name|EXistException
@@ -1358,7 +1357,7 @@ literal|"' is not available"
 argument_list|)
 throw|;
 block|}
-comment|/** Returns an iterator over the database instances. 	 * @return The iterator 	 */
+comment|/** Returns an iterator over the database instances.      * @return The iterator      */
 specifier|public
 specifier|final
 specifier|static
@@ -1396,7 +1395,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/** Stops the default database instance. After calling this method, it is 	 *  no longer configured. 	 * @throws EXistException If the default database instance is not available (not created, stopped or not configured)  	 */
+comment|/** Stops the default database instance. After calling this method, it is      *  no longer configured.      * @throws EXistException If the default database instance is not available (not created, stopped or not configured)       */
 specifier|public
 specifier|final
 specifier|static
@@ -1412,7 +1411,7 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stops the given database instance. After calling this method, it is 	 *  no longer configured. 	 * @param id The name of the database instance 	 * @throws EXistException If the database instance is not available (not created, stopped or not configured) 	 */
+comment|/** Stops the given database instance. After calling this method, it is      *  no longer configured.      * @param id The name of the database instance      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1458,7 +1457,7 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Stops all the database instances. After calling this method, the database instances are 	 *  no longer configured. 	 * @param killed<code>true</code> when invoked by an exiting JVM 	 */
+comment|/** Stops all the database instances. After calling this method, the database instances are      *  no longer configured.      * @param killed<code>true</code> when invoked by an exiting JVM      */
 specifier|public
 specifier|final
 specifier|static
@@ -3643,8 +3642,8 @@ literal|10000
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Whether or not the database instance is being initialized.  	 *  	 * @return<code>true</code> is the database instance is being initialized 	 */
-comment|//	TODO : let's be positive and rename it as isInitialized ?
+comment|/**      * Whether or not the database instance is being initialized.       *       * @return<code>true</code> is the database instance is being initialized      */
+comment|//TODO : let's be positive and rename it as isInitialized ?
 specifier|public
 name|boolean
 name|isInitializing
@@ -3868,7 +3867,7 @@ return|return
 name|collectionConfigurationManager
 return|;
 block|}
-comment|/**      * Returns a cache in which the database instance's collections are stored.      *       * @return The cache 	 */
+comment|/**      * Returns a cache in which the database instance's collections are stored.      *       * @return The cache      */
 specifier|public
 name|CollectionCache
 name|getCollectionsCache
@@ -3878,7 +3877,9 @@ return|return
 name|collectionCache
 return|;
 block|}
-comment|/**      * Returns a cache in which the database instance's may store items.      *       * @return The cache 	 */
+comment|/**      * Returns a cache in which the database instance's may store items.      *       * @return The cache      */
+annotation|@
+name|Override
 specifier|public
 name|DefaultCacheManager
 name|getCacheManager
@@ -5274,6 +5275,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 name|signalSystemStatus
 argument_list|(

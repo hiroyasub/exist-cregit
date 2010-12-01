@@ -149,7 +149,6 @@ name|PING_ERROR
 block|,
 name|PING_WAIT
 block|}
-empty_stmt|;
 specifier|private
 name|Status
 name|status
@@ -584,6 +583,8 @@ return|return
 name|status
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

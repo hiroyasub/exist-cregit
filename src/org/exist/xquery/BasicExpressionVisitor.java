@@ -56,6 +56,8 @@ name|BasicExpressionVisitor
 implements|implements
 name|ExpressionVisitor
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visit
@@ -70,6 +72,8 @@ name|expression
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitCastExpr
@@ -78,7 +82,10 @@ name|CastExpression
 name|expression
 parameter_list|)
 block|{
+comment|//Nothing todo
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitFtExpression
@@ -87,8 +94,11 @@ name|ExtFulltext
 name|fulltext
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
-comment|/** 	 * Default implementation will traverse a PathExpr 	 * if it is just a wrapper around another single 	 * expression object. 	 */
+comment|/**      * Default implementation will traverse a PathExpr      * if it is just a wrapper around another single      * expression object.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitPathExpr
@@ -126,6 +136,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitGeneralComparison
@@ -134,7 +146,10 @@ name|GeneralComparison
 name|comparison
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitUnionExpr
@@ -143,7 +158,10 @@ name|Union
 name|union
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitIntersectionExpr
@@ -152,7 +170,10 @@ name|Intersection
 name|intersect
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitAndExpr
@@ -161,7 +182,10 @@ name|OpAnd
 name|and
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitOrExpr
@@ -170,7 +194,10 @@ name|OpOr
 name|or
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitLocationStep
@@ -179,7 +206,10 @@ name|LocationStep
 name|locationStep
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitFilteredExpr
@@ -188,7 +218,10 @@ name|FilteredExpression
 name|filtered
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitPredicate
@@ -197,7 +230,10 @@ name|Predicate
 name|predicate
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitVariableReference
@@ -206,6 +242,7 @@ name|VariableReference
 name|ref
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|protected
 name|void
@@ -345,6 +382,8 @@ operator|new
 name|BasicExpressionVisitor
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitPathExpr
@@ -390,6 +429,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitLocationStep
@@ -442,6 +483,8 @@ operator|.
 name|ref
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitForExpression
@@ -450,7 +493,10 @@ name|ForExpr
 name|forExpr
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitLetExpression
@@ -459,7 +505,10 @@ name|LetExpr
 name|letExpr
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitBuiltinFunction
@@ -468,7 +517,10 @@ name|Function
 name|function
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitUserFunction
@@ -477,7 +529,10 @@ name|UserDefinedFunction
 name|function
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitConditional
@@ -486,6 +541,7 @@ name|ConditionalExpression
 name|conditional
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -497,7 +553,10 @@ name|TryCatchExpression
 name|conditional
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitElementConstructor
@@ -506,7 +565,10 @@ name|ElementConstructor
 name|constructor
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitTextConstructor
@@ -515,7 +577,10 @@ name|DynamicTextConstructor
 name|constructor
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitAttribConstructor
@@ -524,7 +589,10 @@ name|AttributeConstructor
 name|constructor
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitAttribConstructor
@@ -533,6 +601,7 @@ name|DynamicAttributeConstructor
 name|constructor
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 specifier|static
@@ -556,6 +625,8 @@ return|return
 name|firstStep
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitLocationStep
@@ -583,6 +654,8 @@ name|ref
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitVariableReference
@@ -598,6 +671,8 @@ operator|=
 name|ref
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|visitPathExpr

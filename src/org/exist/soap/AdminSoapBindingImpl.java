@@ -3509,7 +3509,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// TODO check XML/Binary resource
-comment|//            doc = (DocumentImpl) broker.openXmlDocument(name, Lock.READ_LOCK);
 name|doc
 operator|=
 name|broker
@@ -3619,9 +3618,6 @@ if|if
 condition|(
 name|resourceSize
 operator|>
-operator|(
-name|long
-operator|)
 name|Integer
 operator|.
 name|MAX_VALUE
@@ -4129,10 +4125,6 @@ argument_list|(
 operator|new
 name|DocumentDescs
 argument_list|(
-operator|(
-name|DocumentDesc
-index|[]
-operator|)
 name|docs
 operator|.
 name|toArray
@@ -4463,12 +4455,8 @@ literal|null
 condition|)
 block|{
 comment|// TODO check XML/Binary resource
-comment|//                doc = (DocumentImpl) broker.openDocument(resource, Lock.WRITE_LOCK);
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource
@@ -7672,12 +7660,8 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|// TODO check XML/Binary resource
-comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.WRITE_LOCK);
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource
@@ -8011,9 +7995,6 @@ comment|// TODO check XML/Binary resource
 comment|//            doc = (DocumentImpl) broker.openDocument(path, Lock.READ_LOCK);
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource
@@ -8064,23 +8045,6 @@ operator|new
 name|PermissionDeniedException
 argument_list|(
 literal|"Insufficient privileges to read resource"
-argument_list|)
-throw|;
-if|if
-condition|(
-name|doc
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"Resource "
-operator|+
-name|path
-operator|+
-literal|" not found"
 argument_list|)
 throw|;
 name|Account
@@ -8318,9 +8282,6 @@ try|try
 block|{
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|broker
 operator|.
 name|getXMLResource

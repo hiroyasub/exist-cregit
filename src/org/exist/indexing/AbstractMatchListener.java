@@ -106,6 +106,8 @@ name|currentNode
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNextInChain
@@ -121,6 +123,8 @@ operator|=
 name|next
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Receiver
 name|getNextInChain
@@ -130,6 +134,8 @@ return|return
 name|nextListener
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Receiver
 name|getLastInChain
@@ -173,6 +179,8 @@ return|return
 name|last
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCurrentNode
@@ -211,6 +219,8 @@ return|return
 name|currentNode
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getDocument
@@ -221,6 +231,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -240,6 +252,8 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -259,6 +273,8 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
@@ -288,6 +304,8 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
@@ -312,6 +330,8 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -341,6 +361,8 @@ name|attribs
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -365,6 +387,8 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -389,6 +413,8 @@ name|seq
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -418,6 +444,8 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
@@ -453,6 +481,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cdataSection
@@ -488,6 +518,8 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -517,6 +549,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentType
@@ -551,6 +585,8 @@ name|systemId
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|highlightText
@@ -568,6 +604,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}
