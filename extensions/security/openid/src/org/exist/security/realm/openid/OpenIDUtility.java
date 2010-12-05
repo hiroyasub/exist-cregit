@@ -11,6 +11,8 @@ name|exist
 operator|.
 name|security
 operator|.
+name|realm
+operator|.
 name|openid
 package|;
 end_package
@@ -255,6 +257,7 @@ name|REGISTER_XQUERY_SCRIPT_PROPERTY
 init|=
 literal|"org.exist.security.openid.verify_logging_script"
 decl_stmt|;
+comment|//TODO: implement this at eXist's security core
 comment|/**      * Executes an XQuery script whose filename is retrieved from the      * java option 'org.exist.security.openid.verify_logging_script'.      *      * If the java option is not set, then log that fact and then return.      *      * If the java option is set, then retrieve the script from the file      * or resource designated by the value of the property.  Execute the      * XQuery script executed with the context of the given principal.      *      * @param principal The OpenID user to be registered in the database.      * @return true if the resource exists and the script successfully executed.      */
 specifier|public
 specifier|static

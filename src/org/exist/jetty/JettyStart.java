@@ -1237,7 +1237,7 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-literal|"org.exist.security.openid.servlet.AuthenticatorOpenId"
+literal|"org.exist.security.realm.openid.AuthenticatorOpenIdServlet"
 argument_list|)
 expr_stmt|;
 block|}

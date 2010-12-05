@@ -11,6 +11,8 @@ name|exist
 operator|.
 name|security
 operator|.
+name|realm
+operator|.
 name|openid
 package|;
 end_package
