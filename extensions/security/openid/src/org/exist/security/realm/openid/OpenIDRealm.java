@@ -185,22 +185,6 @@ name|Subject
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|realm
-operator|.
-name|ldap
-operator|.
-name|LDAPRealm
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -228,7 +212,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|LDAPRealm
+name|OpenIDRealm
 operator|.
 name|class
 argument_list|)
