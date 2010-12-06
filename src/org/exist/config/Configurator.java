@@ -2459,6 +2459,7 @@ name|id
 operator|+
 literal|"Realm"
 decl_stmt|;
+comment|//org.exist.security.realm.openid.OpenIDRealm
 name|Class
 argument_list|<
 name|?
@@ -2502,10 +2503,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|list
-operator|.
-name|add
-argument_list|(
+name|Configurable
+name|obj
+init|=
 name|constructor
 operator|.
 name|newInstance
@@ -2514,6 +2514,66 @@ name|instance
 argument_list|,
 name|conf
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|obj
+operator|instanceof
+name|Startable
+condition|)
+block|{
+name|BrokerPool
+name|db
+init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|db
+operator|=
+name|BrokerPool
+operator|.
+name|getInstance
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+comment|//ignore if database starting-up
+block|}
+if|if
+condition|(
+name|db
+operator|!=
+literal|null
+condition|)
+operator|(
+operator|(
+name|Startable
+operator|)
+name|obj
+operator|)
+operator|.
+name|startUp
+argument_list|(
+name|db
+operator|.
+name|get
+argument_list|(
+literal|null
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|list
+operator|.
+name|add
+argument_list|(
+name|obj
 argument_list|)
 expr_stmt|;
 block|}
@@ -2525,7 +2585,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Class ["
 operator|+
@@ -2544,7 +2604,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Security exception on class ["
 operator|+
@@ -2563,7 +2623,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Class ["
 operator|+
@@ -2582,7 +2642,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Instantiation exception on class ["
 operator|+
@@ -2601,13 +2661,39 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Invocation target exception on class ["
 operator|+
 name|clazzName
 operator|+
 literal|"] creation, skip instance creation."
+argument_list|)
+expr_stmt|;
+continue|continue;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Databasse exception on class ["
+operator|+
+name|clazzName
+operator|+
+literal|"] startup, skip instance creation."
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
 argument_list|)
 expr_stmt|;
 continue|continue;
