@@ -21,6 +21,26 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Set
@@ -147,6 +167,20 @@ name|exist
 operator|.
 name|security
 operator|.
+name|internal
+operator|.
+name|SubjectAccreditedImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -189,18 +223,95 @@ specifier|public
 class|class
 name|AccountImpl
 extends|extends
-name|AbstractAccount
+name|SubjectAccreditedImpl
 block|{
 name|Identifier
 name|_identifier
 init|=
 literal|null
 decl_stmt|;
+specifier|protected
+specifier|static
+name|String
+name|escape
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+throws|throws
+name|ConfigurationException
+block|{
+name|URI
+name|uri
+decl_stmt|;
+try|try
+block|{
+name|uri
+operator|=
+operator|new
+name|URI
+argument_list|(
+name|id
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+literal|"www.google.com"
+operator|.
+name|equals
+argument_list|(
+name|uri
+operator|.
+name|getAuthority
+argument_list|()
+argument_list|)
+condition|)
+return|return
+name|uri
+operator|.
+name|getQuery
+argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|"id="
+argument_list|,
+literal|""
+argument_list|)
+operator|+
+literal|"@google.com"
+return|;
+return|return
+name|id
+operator|.
+name|replace
+argument_list|(
+literal|"https://"
+argument_list|,
+literal|"/"
+argument_list|)
+return|;
+block|}
 specifier|public
 name|AccountImpl
 parameter_list|(
-name|AbstractRealm
-name|realm
+name|AbstractAccount
+name|account
 parameter_list|,
 name|Identifier
 name|identifier
@@ -210,15 +321,9 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
-name|realm
-argument_list|,
-operator|-
-literal|1
+name|account
 argument_list|,
 name|identifier
-operator|.
-name|getIdentifier
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|_identifier
@@ -226,281 +331,78 @@ operator|=
 name|identifier
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setPassword
-parameter_list|(
-name|String
-name|passwd
-parameter_list|)
-block|{
-block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getPassword
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|XmldbURI
-name|getHome
-parameter_list|()
-block|{
-comment|// TODO Auto-generated method stub
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getDigestPassword
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-comment|//TODO: find a place to construct 'full' name
-specifier|public
-name|String
-name|getName_
-parameter_list|()
-block|{
-name|String
-name|name
-init|=
-literal|""
-decl_stmt|;
-name|Set
-argument_list|<
-name|AXSchemaType
-argument_list|>
-name|metadataKeys
-init|=
-name|getMetadataKeys
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|metadataKeys
-operator|.
-name|contains
-argument_list|(
-name|AXSchemaType
-operator|.
-name|FIRSTNAME
-argument_list|)
-condition|)
-block|{
-name|name
-operator|+=
-name|getMetadataValue
-argument_list|(
-name|AXSchemaType
-operator|.
-name|FIRSTNAME
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|metadataKeys
-operator|.
-name|contains
-argument_list|(
-name|AXSchemaType
-operator|.
-name|LASTNAME
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|name
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|name
-operator|+=
-literal|" "
-expr_stmt|;
-block|}
-name|name
-operator|+=
-name|getMetadataValue
-argument_list|(
-name|AXSchemaType
-operator|.
-name|LASTNAME
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|name
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
-condition|)
-block|{
-name|name
-operator|+=
-name|getMetadataValue
-argument_list|(
-name|AXSchemaType
-operator|.
-name|FULLNAME
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|name
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
-condition|)
-block|{
-name|name
-operator|=
-name|_identifier
-operator|.
-name|getIdentifier
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|name
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Group
-name|addGroup
-parameter_list|(
-name|Group
-name|group
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-if|if
-condition|(
-name|group
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-name|Account
-name|user
-init|=
-name|getDatabase
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-operator|(
-name|user
-operator|!=
-literal|null
-operator|&&
-name|user
-operator|.
-name|hasDbaRole
-argument_list|()
-operator|)
-operator|||
-operator|(
-operator|(
-name|GroupImpl
-operator|)
-name|group
-operator|)
-operator|.
-name|isMembersManager
-argument_list|(
-name|user
-argument_list|)
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"not allowed to change group memberships"
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-operator|!
-name|groups
-operator|.
-name|contains
-argument_list|(
-name|group
-argument_list|)
-condition|)
-block|{
-name|groups
-operator|.
-name|add
-argument_list|(
-name|group
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|SecurityManager
-operator|.
-name|DBA_GROUP
-operator|.
-name|equals
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-name|hasDbaRole
-operator|=
-literal|true
-expr_stmt|;
-block|}
-block|}
-return|return
-name|group
-return|;
-block|}
+comment|//	@Override
+comment|//	public void setPassword(String passwd) {
+comment|//	}
+comment|//
+comment|//	@Override
+comment|//	public String getPassword() {
+comment|//		return null;
+comment|//	}
+comment|//
+comment|//	@Override
+comment|//	public XmldbURI getHome() {
+comment|//		// TODO Auto-generated method stub
+comment|//		return null;
+comment|//	}
+comment|//
+comment|//	@Override
+comment|//	public String getDigestPassword() {
+comment|//		return null;
+comment|//	}
+comment|//
+comment|//	//TODO: find a place to construct 'full' name
+comment|//	public String getName_() {
+comment|//            String name = "";
+comment|//
+comment|//            Set<AXSchemaType> metadataKeys = getMetadataKeys();
+comment|//
+comment|//            if(metadataKeys.contains(AXSchemaType.FIRSTNAME)) {
+comment|//                name += getMetadataValue(AXSchemaType.FIRSTNAME);
+comment|//            }
+comment|//
+comment|//            if(metadataKeys.contains(AXSchemaType.LASTNAME)) {
+comment|//                if(name.length()> 0 ) {
+comment|//                    name += " ";
+comment|//                }
+comment|//                name += getMetadataValue(AXSchemaType.LASTNAME);
+comment|//            }
+comment|//
+comment|//            if(name.length() == 0) {
+comment|//                name += getMetadataValue(AXSchemaType.FULLNAME);
+comment|//            }
+comment|//
+comment|//            if(name.length() == 0) {
+comment|//                name = _identifier.getIdentifier();
+comment|//            }
+comment|//
+comment|//            return name;
+comment|//	}
+comment|//
+comment|//    @Override
+comment|//    public Group addGroup(Group group) throws PermissionDeniedException {
+comment|//
+comment|//        if(group == null){
+comment|//            return null;
+comment|//        }
+comment|//
+comment|//        Account user = getDatabase().getSubject();
+comment|//
+comment|//
+comment|//        if(!((user != null&& user.hasDbaRole()) || ((GroupImpl)group).isMembersManager(user))){
+comment|//                throw new PermissionDeniedException("not allowed to change group memberships");
+comment|//        }
+comment|//
+comment|//        if(!groups.contains(group)) {
+comment|//            groups.add(group);
+comment|//
+comment|//            if(SecurityManager.DBA_GROUP.equals(name)) {
+comment|//                hasDbaRole = true;
+comment|//            }
+comment|//        }
+comment|//
+comment|//        return group;
+comment|//    }
 block|}
 end_class
 

@@ -169,7 +169,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
+name|Subject
 import|;
 end_import
 
@@ -181,7 +181,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
+name|internal
+operator|.
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -217,6 +219,13 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|OpenIDRealm
+name|instance
+init|=
+literal|null
+decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -245,7 +254,7 @@ decl_stmt|;
 specifier|public
 name|OpenIDRealm
 parameter_list|(
-name|SecurityManager
+name|SecurityManagerImpl
 name|sm
 parameter_list|,
 name|Configuration
@@ -259,9 +268,7 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|AuthenticatorOpenIdServlet
-operator|.
-name|realm
+name|instance
 operator|=
 name|this
 expr_stmt|;
