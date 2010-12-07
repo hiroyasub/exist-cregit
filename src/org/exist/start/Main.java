@@ -288,12 +288,14 @@ name|exist
 operator|==
 literal|null
 condition|)
+block|{
 name|exist
 operator|=
 operator|new
 name|Main
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|exist
 return|;
@@ -377,6 +379,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// NOP
 block|}
 return|return
 literal|null
@@ -689,6 +692,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -700,6 +704,7 @@ operator|+
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 name|StringTokenizer
 name|st
 init|=
@@ -769,6 +774,7 @@ literal|"always"
 argument_list|)
 condition|)
 block|{
+comment|// ignore
 block|}
 if|else if
 condition|(
@@ -1282,6 +1288,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -1305,6 +1312,7 @@ operator|+
 name|include_subject
 argument_list|)
 expr_stmt|;
+block|}
 comment|// ok, should we include?
 if|if
 condition|(
@@ -1459,6 +1467,7 @@ argument_list|)
 operator|&&
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -1470,6 +1479,7 @@ operator|+
 name|jar
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1539,6 +1549,7 @@ argument_list|)
 operator|&&
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -1550,6 +1561,7 @@ operator|+
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1676,6 +1688,7 @@ argument_list|)
 operator|&&
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -1687,6 +1700,7 @@ operator|+
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1779,7 +1793,7 @@ literal|"\n"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*             System.err.println(                 "\nWARN: The following JAR file entries from '"                 + startConfigFileName + "' aren't available (this may NOT be a "                 + "problem):\n"                 + nonexistentJars             ); 			*/
+comment|/*             System.err.println(             "\nWARN: The following JAR file entries from '"             + startConfigFileName + "' aren't available (this may NOT be a "             + "problem):\n"             + nonexistentJars             );              */
 block|}
 block|}
 specifier|public
@@ -1939,6 +1953,7 @@ name|length
 operator|>
 literal|1
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1958,6 +1973,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|args
 operator|=
 name|nargs
@@ -2010,6 +2026,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2026,6 +2043,7 @@ literal|"exist.home"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// DWES #### can this be removed?
 name|System
 operator|.
@@ -2161,6 +2179,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|_dirs
@@ -2182,6 +2201,7 @@ name|i
 index|]
 expr_stmt|;
 break|break;
+block|}
 block|}
 if|if
 condition|(
@@ -2237,15 +2257,19 @@ argument_list|(
 literal|"jetty"
 argument_list|)
 condition|)
+block|{
 name|config
 operator|=
 literal|"jetty.xml"
 expr_stmt|;
+block|}
 else|else
+block|{
 name|config
 operator|=
 literal|"standalone.xml"
 expr_stmt|;
+block|}
 name|args
 operator|=
 operator|new
@@ -2320,6 +2344,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|System
 operator|.
 name|setProperty
@@ -2335,6 +2360,7 @@ name|toASCIIString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// clean up tempdir for Jetty...
 try|try
@@ -2384,6 +2410,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
 block|}
 name|Classpath
 name|_classpath
@@ -2419,6 +2446,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2435,6 +2463,7 @@ literal|"java.io.tmpdir"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Invoke org.mortbay.jetty.Server.main(args) using new classloader.
 try|try
 block|{
@@ -2526,6 +2555,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2540,6 +2570,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|webinf
@@ -2579,6 +2610,7 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 try|try
 block|{
 name|_home_dir
@@ -2595,6 +2627,8 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
+block|}
 block|}
 block|}
 block|}
@@ -2619,6 +2653,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2633,6 +2668,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|jar
@@ -2661,6 +2697,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
 block|}
 block|}
 block|}
@@ -2691,6 +2728,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2705,6 +2743,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|jar
@@ -2712,6 +2751,7 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 try|try
 block|{
 name|_home_dir
@@ -2732,6 +2772,8 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
+block|}
 block|}
 block|}
 comment|// searching exist.jar failed, try conf.xml to have the configuration
@@ -2757,6 +2799,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2771,6 +2814,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|jar
@@ -2799,6 +2843,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
 block|}
 block|}
 block|}
@@ -2829,6 +2874,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -2843,6 +2889,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|jar
@@ -2850,6 +2897,7 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 try|try
 block|{
 name|_home_dir
@@ -2870,6 +2918,8 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
+block|}
 block|}
 block|}
 return|return
@@ -2902,6 +2952,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -2918,6 +2969,7 @@ literal|"java.class.path"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|_classpath
 operator|.
 name|addClasspath
@@ -3008,6 +3060,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -3017,6 +3070,7 @@ argument_list|(
 literal|"Configuring classpath from default resource"
 argument_list|)
 expr_stmt|;
+block|}
 name|configFilePath2
 operator|=
 literal|"org/exist/start/start.config"
@@ -3404,6 +3458,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
 block|}
 if|if
 condition|(
@@ -3445,6 +3500,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// ignore
 block|}
 if|if
 condition|(
@@ -3473,6 +3529,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -3484,6 +3541,7 @@ operator|+
 name|tools_jar_file
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3504,6 +3562,7 @@ if|if
 condition|(
 name|_debug
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -3518,6 +3577,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|_classpath
 return|;
