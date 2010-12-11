@@ -39,6 +39,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|imageio
+operator|.
+name|ImageIO
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -131,7 +141,21 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|Base64BinaryValueType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BinaryValue
 import|;
 end_import
 
@@ -365,12 +389,13 @@ try|try
 block|{
 name|image
 operator|=
-name|ImageModule
+name|ImageIO
 operator|.
-name|getImage
+name|read
 argument_list|(
 operator|(
-name|Base64Binary
+operator|(
+name|BinaryValue
 operator|)
 name|args
 index|[
@@ -381,6 +406,10 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
+operator|)
+operator|.
+name|getInputStream
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

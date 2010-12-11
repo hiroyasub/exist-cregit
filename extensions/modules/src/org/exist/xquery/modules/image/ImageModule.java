@@ -147,7 +147,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|Base64BinaryValueType
 import|;
 end_import
 
@@ -326,76 +326,6 @@ parameter_list|()
 block|{
 return|return
 name|RELEASED_IN_VERSION
-return|;
-block|}
-comment|/** 	 * Get's an the raw binary data from base64 binary encoded image data 	 *  	 * @param imgBase64Data	The base64 encoded image data 	 *  	 * @return The raw binary data 	 */
-specifier|protected
-specifier|static
-name|byte
-index|[]
-name|getImageData
-parameter_list|(
-name|Base64Binary
-name|imgBase64Data
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-comment|//decode the base64 image data
-name|Base64Decoder
-name|dec
-init|=
-operator|new
-name|Base64Decoder
-argument_list|()
-decl_stmt|;
-name|dec
-operator|.
-name|translate
-argument_list|(
-name|imgBase64Data
-operator|.
-name|getStringValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|//return the raw binary data
-return|return
-name|dec
-operator|.
-name|getByteArray
-argument_list|()
-return|;
-block|}
-comment|/** 	 * Get's an Image object from base64 binary encoded image data 	 *  	 * @param imgBase64Data	The base64 encoded image data 	 *  	 * @return An Image object 	 */
-specifier|protected
-specifier|static
-name|Image
-name|getImage
-parameter_list|(
-name|Base64Binary
-name|imgBase64Data
-parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|XPathException
-block|{
-comment|//Create an Image object from the byte array
-return|return
-name|ImageIO
-operator|.
-name|read
-argument_list|(
-operator|new
-name|ByteArrayInputStream
-argument_list|(
-name|getImageData
-argument_list|(
-name|imgBase64Data
-argument_list|)
-argument_list|)
-argument_list|)
 return|;
 block|}
 comment|/** 	 * @author Rafael Troilo (rtroilo@gmail.com) 	 */

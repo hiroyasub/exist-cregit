@@ -453,8 +453,12 @@ name|BASE64_BINARY
 case|:
 return|return
 operator|new
-name|Base64Binary
+name|BinaryValueFromString
 argument_list|(
+operator|new
+name|Base64BinaryValueType
+argument_list|()
+argument_list|,
 name|value
 argument_list|)
 return|;
@@ -465,8 +469,12 @@ name|HEX_BINARY
 case|:
 return|return
 operator|new
-name|HexBinary
+name|BinaryValueFromString
 argument_list|(
+operator|new
+name|HexBinaryValueType
+argument_list|()
+argument_list|,
 name|value
 argument_list|)
 return|;

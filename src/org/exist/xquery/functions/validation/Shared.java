@@ -91,6 +91,32 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|channels
+operator|.
+name|Pipe
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|channels
+operator|.
+name|Pipe
+operator|.
+name|SinkChannel
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -279,7 +305,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|Base64BinaryValueType
 import|;
 end_import
 
@@ -294,6 +320,20 @@ operator|.
 name|value
 operator|.
 name|Base64BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BinaryValue
 import|;
 end_import
 
@@ -901,6 +941,15 @@ operator|==
 name|Type
 operator|.
 name|BASE64_BINARY
+operator|||
+name|item
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|HEX_BINARY
 condition|)
 block|{
 name|LOG
@@ -910,11 +959,11 @@ argument_list|(
 literal|"Streaming base64 binary"
 argument_list|)
 expr_stmt|;
-name|Base64Binary
-name|base64
+name|BinaryValue
+name|binary
 init|=
 operator|(
-name|Base64Binary
+name|BinaryValue
 operator|)
 name|item
 decl_stmt|;
@@ -926,7 +975,7 @@ operator|(
 name|byte
 index|[]
 operator|)
-name|base64
+name|binary
 operator|.
 name|toJavaObject
 argument_list|(
@@ -952,6 +1001,7 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+comment|//TODO consider using BinaryValue.getInputStream()
 if|if
 condition|(
 name|item

@@ -143,7 +143,21 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|Base64BinaryValueType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BinaryValue
 import|;
 end_import
 
@@ -410,7 +424,7 @@ specifier|protected
 name|Sequence
 name|processCompressedData
 parameter_list|(
-name|Base64Binary
+name|BinaryValue
 name|compressedData
 parameter_list|)
 throws|throws
@@ -430,14 +444,10 @@ operator|=
 operator|new
 name|TarArchiveInputStream
 argument_list|(
-operator|new
-name|ByteArrayInputStream
-argument_list|(
 name|compressedData
 operator|.
-name|getBinaryData
+name|getInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|TarArchiveEntry

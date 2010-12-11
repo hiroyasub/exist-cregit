@@ -23,16 +23,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -257,7 +247,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|BinaryValue
 import|;
 end_import
 
@@ -614,16 +604,11 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|//get the images raw binary data
-name|byte
-name|imgData
-index|[]
+name|BinaryValue
+name|imageData
 init|=
-name|ImageModule
-operator|.
-name|getImageData
-argument_list|(
 operator|(
-name|Base64Binary
+name|BinaryValue
 operator|)
 name|args
 index|[
@@ -633,7 +618,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -647,7 +631,7 @@ block|{
 return|return
 name|parseWithTikaJpegParser
 argument_list|(
-name|imgData
+name|imageData
 argument_list|)
 return|;
 block|}
@@ -692,11 +676,10 @@ name|ImageIO
 operator|.
 name|createImageInputStream
 argument_list|(
-operator|new
-name|ByteArrayInputStream
-argument_list|(
-name|imgData
-argument_list|)
+name|imageData
+operator|.
+name|getInputStream
+argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
@@ -737,9 +720,8 @@ specifier|private
 name|Sequence
 name|parseWithTikaJpegParser
 parameter_list|(
-name|byte
-name|imgData
-index|[]
+name|BinaryValue
+name|imageData
 parameter_list|)
 throws|throws
 name|XPathException
@@ -835,11 +817,10 @@ operator|new
 name|Object
 index|[]
 block|{
-operator|new
-name|ByteArrayInputStream
-argument_list|(
-name|imgData
-argument_list|)
+name|imageData
+operator|.
+name|getInputStream
+argument_list|()
 block|,
 name|receiver
 block|,
