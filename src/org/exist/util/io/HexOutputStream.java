@@ -266,7 +266,7 @@ name|NullPointerException
 argument_list|()
 throw|;
 block|}
-name|super
+name|out
 operator|.
 name|write
 argument_list|(
