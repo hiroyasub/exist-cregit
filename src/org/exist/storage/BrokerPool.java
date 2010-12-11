@@ -49,6 +49,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Calendar
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -1939,6 +1949,12 @@ name|inServiceMode
 init|=
 literal|false
 decl_stmt|;
+comment|//the time that the database was started
+specifier|private
+specifier|final
+name|Calendar
+name|startupTime
+decl_stmt|;
 comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
 specifier|private
@@ -1961,6 +1977,13 @@ name|EXistException
 throws|,
 name|DatabaseConfigurationException
 block|{
+name|startupTime
+operator|=
+name|Calendar
+operator|.
+name|getInstance
+argument_list|()
+expr_stmt|;
 name|Integer
 name|anInteger
 decl_stmt|;
@@ -5693,6 +5716,15 @@ expr_stmt|;
 block|}
 return|return
 name|debuggee
+return|;
+block|}
+specifier|public
+name|Calendar
+name|getStartupTime
+parameter_list|()
+block|{
+return|return
+name|startupTime
 return|;
 block|}
 block|}
