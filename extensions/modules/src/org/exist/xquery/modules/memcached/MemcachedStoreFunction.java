@@ -123,7 +123,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64Binary
+name|BinaryValue
 import|;
 end_import
 
@@ -538,13 +538,18 @@ name|o
 operator|=
 operator|(
 operator|(
-name|Base64Binary
+name|BinaryValue
 operator|)
 name|data
 operator|)
 operator|.
-name|getBinaryData
-argument_list|()
+name|toJavaObject
+argument_list|(
+name|byte
+index|[]
+operator|.
+expr|class
+argument_list|)
 expr_stmt|;
 block|}
 else|else
