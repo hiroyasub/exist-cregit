@@ -509,7 +509,7 @@ name|path
 operator|.
 name|substring
 argument_list|(
-name|dbLocation
+literal|0
 argument_list|,
 name|lastSep
 argument_list|)
