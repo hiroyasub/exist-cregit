@@ -277,6 +277,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|runCommand
+parameter_list|(
+name|String
+index|[]
+name|params
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 
