@@ -21,6 +21,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Debuggable
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|LockException
@@ -31,6 +41,8 @@ begin_interface
 specifier|public
 interface|interface
 name|Lock
+extends|extends
+name|Debuggable
 block|{
 specifier|public
 specifier|final

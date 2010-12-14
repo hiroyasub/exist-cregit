@@ -998,7 +998,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+comment|//TODO: move to utils
+specifier|public
 specifier|static
 name|String
 name|arrayToString
