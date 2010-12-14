@@ -5422,6 +5422,27 @@ argument_list|)
 expr_stmt|;
 comment|//This lock is released in storeXMLInternal()
 comment|//TODO : check that we go until there to ensure the lock is released
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|acquireLock
+argument_list|(
+name|document
+operator|.
+name|getUpdateLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+else|else
 name|document
 operator|.
 name|getUpdateLock
@@ -5520,6 +5541,27 @@ else|else
 block|{
 comment|//This lock is released in storeXMLInternal()
 comment|//TODO : check that we go until there to ensure the lock is released
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
+name|transaction
+operator|.
+name|acquireLock
+argument_list|(
+name|document
+operator|.
+name|getUpdateLock
+argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+else|else
 name|document
 operator|.
 name|getUpdateLock
