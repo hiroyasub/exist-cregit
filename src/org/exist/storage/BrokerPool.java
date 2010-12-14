@@ -4145,7 +4145,7 @@ block|{
 return|return
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 return|;
 block|}
@@ -4155,6 +4155,20 @@ name|securityManager
 operator|.
 name|getGuestSubject
 argument_list|()
+return|;
+block|}
+specifier|public
+name|DBBroker
+name|getBroker
+parameter_list|()
+throws|throws
+name|EXistException
+block|{
+return|return
+name|get
+argument_list|(
+literal|null
+argument_list|)
 return|;
 block|}
 comment|/** Returns an active broker for the database instance. 	 * @return The broker 	 * @throws EXistException If the instance is not available (stopped or not configured) 	 */

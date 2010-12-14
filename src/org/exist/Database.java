@@ -147,6 +147,15 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|DBBroker
+name|getBroker
+parameter_list|()
+throws|throws
+name|EXistException
+function_decl|;
+comment|//TODO: remove 'throws EXistException'?
+comment|/* 	 * @Deprecated ? 	 * try { 	 * 	broker = database.authenticate(account, credentials); 	 *  	 * 	broker1 = database.get(); 	 * 	broker2 = database.get(); 	 * 	... 	 * 	brokerN = database.get(); 	 *  	 * } finally { 	 * 	database.release(broker); 	 * } 	 */
+specifier|public
+name|DBBroker
 name|get
 parameter_list|(
 name|Subject
