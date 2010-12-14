@@ -1578,6 +1578,43 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//XXX:make pluggable
+specifier|private
+specifier|static
+name|boolean
+name|havePluggableCommands
+init|=
+literal|false
+decl_stmt|;
+static|static
+block|{
+try|try
+block|{
+name|Class
+operator|.
+name|forName
+argument_list|(
+literal|"org.exist.plugin.command.Commands"
+argument_list|)
+expr_stmt|;
+name|havePluggableCommands
+operator|=
+literal|true
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|havePluggableCommands
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
+comment|//*************************************
 specifier|public
 name|InteractiveClient
 parameter_list|()
@@ -1754,6 +1791,22 @@ argument_list|(
 literal|"unlock resource      remove a write lock from the specified resource."
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|havePluggableCommands
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"svn                  subversion command-line client."
+argument_list|)
+expr_stmt|;
+name|messageln
+argument_list|(
+literal|"threads              threads debug information."
+argument_list|)
+expr_stmt|;
+block|}
 name|messageln
 argument_list|(
 literal|"quit                 quit the program"
@@ -6737,6 +6790,36 @@ condition|)
 name|displayHelp
 argument_list|()
 expr_stmt|;
+comment|//XXX:make it pluggable
+if|else if
+condition|(
+name|havePluggableCommands
+condition|)
+block|{
+name|CollectionManagementServiceImpl
+name|mgtService
+init|=
+operator|(
+name|CollectionManagementServiceImpl
+operator|)
+name|current
+operator|.
+name|getService
+argument_list|(
+literal|"CollectionManagementService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|mgtService
+operator|.
+name|runCommand
+argument_list|(
+name|args
+argument_list|)
+expr_stmt|;
+comment|//****************************************************************
+block|}
 if|else if
 condition|(
 name|args
