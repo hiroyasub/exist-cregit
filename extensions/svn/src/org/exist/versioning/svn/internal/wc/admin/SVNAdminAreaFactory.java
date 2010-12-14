@@ -449,33 +449,9 @@ name|SVNAdminArea16Factory
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|SVNAdminAreaFactory
-operator|.
-name|registerFactory
-argument_list|(
-operator|new
-name|SVNAdminArea15Factory
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|SVNAdminAreaFactory
-operator|.
-name|registerFactory
-argument_list|(
-operator|new
-name|SVNAdminArea14Factory
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|SVNAdminAreaFactory
-operator|.
-name|registerFactory
-argument_list|(
-operator|new
-name|SVNXMLAdminAreaFactory
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        SVNAdminAreaFactory.registerFactory(new SVNAdminArea15Factory());
+comment|//        SVNAdminAreaFactory.registerFactory(new SVNAdminArea14Factory());
+comment|//        SVNAdminAreaFactory.registerFactory(new SVNXMLAdminAreaFactory());
 block|}
 specifier|public
 specifier|static

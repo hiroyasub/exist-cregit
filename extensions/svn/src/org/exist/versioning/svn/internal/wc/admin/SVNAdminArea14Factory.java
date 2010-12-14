@@ -434,6 +434,21 @@ argument_list|,
 literal|"entries"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+operator|!
+name|entriesFile
+operator|.
+name|exists
+argument_list|()
+condition|)
+block|{
+return|return
+literal|0
+return|;
+comment|//            SVNErrorMessage err = SVNErrorMessage.create(SVNErrorCode.IO_ERROR, "Cannot read entries file ''{0}'': {1}", new Object[] {entriesFile, "This resource does not exist."});
+comment|//            throw new SVNException(err);
+block|}
 name|int
 name|formatVersion
 init|=

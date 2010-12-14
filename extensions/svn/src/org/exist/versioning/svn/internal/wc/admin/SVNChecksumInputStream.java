@@ -75,11 +75,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|tmatesoft
+name|exist
+operator|.
+name|versioning
 operator|.
 name|svn
-operator|.
-name|core
 operator|.
 name|internal
 operator|.
