@@ -388,7 +388,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Delivers the fragment between two nodes (normally milestones) of a document.  * It leads to more performance for most XML documents because it  * determines the fragment directly by the EmbeddedXmlReader and not by   * XQL operators.  * @author Josef Willenborg, Max Planck Institute for the history of science,  * http://www.mpiwg-berlin.mpg.de, jwillenborg@mpiwg-berlin.mpg.de   */
+comment|/**  * Delivers the fragment between two nodes (normally milestones) of a document.  * It leads to more performance for most XML documents because it  * determines the fragment directly by the EmbeddedXmlReader and not by   * XQL operators.  * @author Josef Willenborg, Max Planck Institute for the History of Science,  * http://www.mpiwg-berlin.mpg.de, jwillenborg@mpiwg-berlin.mpg.de   */
 end_comment
 
 begin_class
@@ -1405,6 +1405,29 @@ name|nsUri
 operator|+
 literal|"\""
 decl_stmt|;
+if|if
+condition|(
+name|nsPrefix
+operator|!=
+literal|null
+operator|&&
+name|nsPrefix
+operator|.
+name|equals
+argument_list|(
+literal|""
+argument_list|)
+condition|)
+name|nsString
+operator|=
+literal|"xmlns"
+operator|+
+literal|"=\""
+operator|+
+name|nsUri
+operator|+
+literal|"\""
+expr_stmt|;
 name|elemNsString
 operator|=
 name|elemNsString
