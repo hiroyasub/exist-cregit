@@ -2244,11 +2244,13 @@ specifier|public
 name|void
 name|runCommand
 parameter_list|(
-name|String
+name|XmldbURI
 name|collectionURI
 parameter_list|,
+name|Vector
+argument_list|<
 name|String
-modifier|...
+argument_list|>
 name|params
 parameter_list|)
 throws|throws
