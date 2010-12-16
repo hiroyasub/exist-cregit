@@ -1713,6 +1713,11 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 if|else if
 condition|(
+name|input
+operator|.
+name|isPersistentSet
+argument_list|()
+operator|&&
 name|inPredicate
 operator|&&
 operator|!
