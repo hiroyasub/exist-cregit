@@ -1579,6 +1579,8 @@ argument_list|(
 name|revision
 argument_list|,
 name|documentPath
+argument_list|,
+name|activeUser
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1923,6 +1925,9 @@ name|revision
 parameter_list|,
 name|XmldbURI
 name|documentPath
+parameter_list|,
+name|User
+name|user
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1984,10 +1989,7 @@ name|setProperty
 argument_list|(
 literal|"user"
 argument_list|,
-name|broker
-operator|.
-name|getUser
-argument_list|()
+name|user
 operator|.
 name|getName
 argument_list|()
