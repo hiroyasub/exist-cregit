@@ -1046,6 +1046,10 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|contextSequence
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|contextSequence
 operator|.
