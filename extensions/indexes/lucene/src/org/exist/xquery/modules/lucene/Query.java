@@ -1179,6 +1179,20 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+operator|!
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+comment|// in-memory docs won't have an index
+return|return
+name|NodeSet
+operator|.
+name|EMPTY_SET
+return|;
 name|long
 name|start
 init|=
@@ -1492,6 +1506,24 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|contextSequence
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|contextSequence
+operator|.
+name|isPersistentSet
+argument_list|()
+condition|)
+comment|// in-memory docs won't have an index
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 name|NodeSet
 name|result
 decl_stmt|;

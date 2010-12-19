@@ -697,6 +697,17 @@ comment|// determine the set of potential ancestors for which the predicate has 
 comment|// be re-evaluated to filter out wrong matches
 if|if
 condition|(
+name|selection
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+name|ancestors
+operator|=
+name|selection
+expr_stmt|;
+if|else if
+condition|(
 name|contextStep
 operator|==
 literal|null
