@@ -764,13 +764,6 @@ condition|(
 name|is
 operator|!=
 literal|null
-operator|&&
-name|is
-operator|.
-name|available
-argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 comment|//determine if exists mime database considers this binary data
