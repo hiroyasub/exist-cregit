@@ -690,7 +690,7 @@ argument_list|()
 decl_stmt|;
 name|binary
 operator|.
-name|streamTo
+name|streamBinaryTo
 argument_list|(
 name|response
 operator|.
