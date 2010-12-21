@@ -1916,6 +1916,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.soap.Query#xquery(java.lang.String, byte[])          */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -1992,6 +1994,8 @@ argument_list|)
 return|;
 block|}
 comment|/**  @deprecated use {@link #xquery(String, byte[])} instead. */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -2087,6 +2091,13 @@ operator|.
 name|SOAP
 argument_list|)
 decl_stmt|;
+name|session
+operator|.
+name|registerContext
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
 comment|// TODO(pkaminsk2): why replicate XQuery.compile here?
 name|XQueryLexer
 name|lexer

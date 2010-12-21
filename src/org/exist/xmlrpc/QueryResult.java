@@ -11,6 +11,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -45,6 +55,32 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BinaryValue
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple container for the results of a query. Used to cache  * query results that may be retrieved later by the client.  *   * @author wolf  * @author jmfernandez  */
 end_comment
@@ -56,6 +92,21 @@ name|QueryResult
 extends|extends
 name|AbstractCachedResult
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|QueryResult
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|protected
 name|Sequence
 name|result
@@ -156,7 +207,9 @@ return|return
 name|exception
 return|;
 block|}
-comment|/** 	 * @return Returns the result. 	 */
+comment|/**      * @return Returns the result.      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getResult
@@ -166,12 +219,13 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|free
 parameter_list|()
 block|{
-comment|// Really, nothing to explicitly free
 if|if
 condition|(
 name|result
@@ -179,6 +233,49 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//cleanup any binary values
+if|if
+condition|(
+name|result
+operator|instanceof
+name|BinaryValue
+condition|)
+block|{
+try|try
+block|{
+operator|(
+operator|(
+name|BinaryValue
+operator|)
+name|result
+operator|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to cleanup BinaryValue: "
+operator|+
+name|result
+operator|.
+name|hashCode
+argument_list|()
+argument_list|,
+name|ioe
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|result
 operator|=
 literal|null
