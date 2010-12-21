@@ -2420,8 +2420,8 @@ specifier|public
 name|AtomicValue
 name|getGeometricPropertyForNode
 parameter_list|(
-name|DBBroker
-name|broker
+name|XQueryContext
+name|context
 parameter_list|,
 name|NodeProxy
 name|p
@@ -2447,7 +2447,7 @@ expr_stmt|;
 return|return
 name|getGeometricPropertyForNode
 argument_list|(
-name|broker
+name|context
 argument_list|,
 name|p
 argument_list|,
@@ -2524,8 +2524,8 @@ specifier|public
 name|ValueSequence
 name|getGeometricPropertyForNodes
 parameter_list|(
-name|DBBroker
-name|broker
+name|XQueryContext
+name|context
 parameter_list|,
 name|NodeSet
 name|contextSet
@@ -2551,7 +2551,7 @@ expr_stmt|;
 return|return
 name|getGeometricPropertyForNodes
 argument_list|(
-name|broker
+name|context
 argument_list|,
 name|contextSet
 argument_list|,
@@ -2814,8 +2814,8 @@ specifier|abstract
 name|AtomicValue
 name|getGeometricPropertyForNode
 parameter_list|(
-name|DBBroker
-name|broker
+name|XQueryContext
+name|context
 parameter_list|,
 name|NodeProxy
 name|p
@@ -2836,8 +2836,8 @@ specifier|abstract
 name|ValueSequence
 name|getGeometricPropertyForNodes
 parameter_list|(
-name|DBBroker
-name|broker
+name|XQueryContext
+name|context
 parameter_list|,
 name|NodeSet
 name|contextSet

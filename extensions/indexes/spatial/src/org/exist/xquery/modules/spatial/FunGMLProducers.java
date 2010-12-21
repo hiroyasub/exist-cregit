@@ -1346,9 +1346,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -1669,9 +1666,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -2018,9 +2012,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -2190,9 +2181,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -2362,9 +2350,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -2640,9 +2625,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
@@ -2698,9 +2680,6 @@ operator|.
 name|getGeometricPropertyForNode
 argument_list|(
 name|context
-operator|.
-name|getBroker
-argument_list|()
 argument_list|,
 operator|(
 name|NodeProxy
