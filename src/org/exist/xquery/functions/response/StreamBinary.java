@@ -137,20 +137,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|Base64BinaryValueType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|FunctionParameterSequenceType
 import|;
 end_import
@@ -208,16 +194,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|BufferedOutputStream
 import|;
 end_import
 
@@ -417,6 +393,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
