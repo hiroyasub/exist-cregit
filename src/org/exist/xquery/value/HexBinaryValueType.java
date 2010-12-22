@@ -59,7 +59,6 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*     public AtomicValue convertTo(int requiredType) throws XPathException {         switch (requiredType) {             case Type.HEX_BINARY:                 return this;             case Type.BASE64_BINARY:                  return new Base64Binary(data);             case Type.UNTYPED_ATOMIC:                 //Added trim() since it looks like a new line character is added                 return new UntypedAtomicValue(getStringValue().trim());             case Type.STRING:                  return new StringValue(getStringValue());             default:                 throw new XPathException("cannot convert " + Type.getTypeName(getType()) + " to " + Type.getTypeName(requiredType));             }     }     */
 block|}
 end_class
 
