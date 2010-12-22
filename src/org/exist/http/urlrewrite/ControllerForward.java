@@ -335,6 +335,17 @@ operator|+
 name|colPath
 argument_list|)
 expr_stmt|;
+name|request
+operator|.
+name|setAttribute
+argument_list|(
+name|XQueryURLRewrite
+operator|.
+name|RQ_ATTR
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public

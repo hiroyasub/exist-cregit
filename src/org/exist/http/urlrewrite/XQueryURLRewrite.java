@@ -929,6 +929,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|RQ_ATTR
+init|=
+literal|"org.exist.forward"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|RQ_ATTR_REQUEST_URI
 init|=
 literal|"org.exist.forward.request-uri"
