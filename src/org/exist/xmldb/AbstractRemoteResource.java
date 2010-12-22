@@ -2523,6 +2523,19 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+comment|// vfile may have been set by getRemoteContentIntoLocalFile
+if|if
+condition|(
+name|vfile
+operator|!=
+literal|null
+condition|)
+return|return
+name|vfile
+operator|.
+name|getContent
+argument_list|()
+return|;
 return|return
 name|contentVFile
 operator|.
