@@ -177,6 +177,15 @@ operator|=
 name|binaryValueType
 expr_stmt|;
 block|}
+specifier|protected
+name|BinaryValueType
+name|getBinaryValueType
+parameter_list|()
+block|{
+return|return
+name|binaryValueType
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -185,7 +194,8 @@ name|getType
 parameter_list|()
 block|{
 return|return
-name|binaryValueType
+name|getBinaryValueType
+argument_list|()
 operator|.
 name|getXQueryType
 argument_list|()
@@ -825,6 +835,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**      * Streams the raw binary data      */
 specifier|public
 specifier|abstract
 name|void
@@ -836,8 +847,8 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**      * Streams the encoded binary data      */
 specifier|public
-specifier|final
 name|void
 name|streamTo
 parameter_list|(
@@ -848,33 +859,20 @@ throws|throws
 name|IOException
 block|{
 comment|//we need to create a safe output stream that cannot be closed
-name|FilterOutputStream
+name|OutputStream
 name|safeOutputStream
 init|=
-operator|new
-name|FilterOutputStream
+name|makeSafeOutputStream
 argument_list|(
 name|os
 argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|//do nothing
-block|}
-block|}
 decl_stmt|;
 comment|//get the encoder
 name|FilterOutputStream
 name|fos
 init|=
-name|binaryValueType
+name|getBinaryValueType
+argument_list|()
 operator|.
 name|getEncoder
 argument_list|(
@@ -973,7 +971,36 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/*     public class BinaryValueInputStream extends InputStream {          private InputStream src;          public BinaryValueInputStream(InputStream src) {             if(is.markSupported()) {                 this.src = src;             } else {                 this.src = new CachingFilterInputStream(src);             }              //mark the start of the stream so that we can read again             src.mark(Integer.MAX_VALUE);         }          @Override         public boolean markSupported() {             return true;         }          @Override         public synchronized void mark(int i) {             src.mark(i);         }          @Override         public synchronized void reset() throws IOException {             src.reset();         }          @Override         public int read() throws IOException {             return src.read();         }          @Override         public int read(byte[] bytes) throws IOException {             return src.read(bytes);         }          @Override         public int read(byte[] bytes, int off, int len) throws IOException {             return src.read(bytes, off, len);         }          @Override         public long skip(long n) throws IOException {             return src.skip(n);         }          @Override         public int available() throws IOException {             return src.available();         }          @Override         public void close() throws IOException {             src.close();         }     }*/
+comment|/**      * Creates a safe OutputStream that cannot be closed      */
+specifier|protected
+name|OutputStream
+name|makeSafeOutputStream
+parameter_list|(
+name|OutputStream
+name|os
+parameter_list|)
+block|{
+return|return
+operator|new
+name|FilterOutputStream
+argument_list|(
+name|os
+argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//do nothing
+block|}
+block|}
+return|;
+block|}
 block|}
 end_class
 

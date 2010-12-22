@@ -91,7 +91,7 @@ name|Class
 argument_list|<
 name|T
 argument_list|>
-name|encoder
+name|coder
 decl_stmt|;
 specifier|public
 name|BinaryValueType
@@ -103,7 +103,7 @@ name|Class
 argument_list|<
 name|T
 argument_list|>
-name|encoder
+name|coder
 parameter_list|)
 block|{
 name|this
@@ -114,9 +114,9 @@ name|xqueryType
 expr_stmt|;
 name|this
 operator|.
-name|encoder
+name|coder
 operator|=
-name|encoder
+name|coder
 expr_stmt|;
 block|}
 specifier|public
@@ -138,6 +138,47 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
+name|instantiateCoder
+argument_list|(
+name|os
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+specifier|public
+name|T
+name|getDecoder
+parameter_list|(
+name|OutputStream
+name|os
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|instantiateCoder
+argument_list|(
+name|os
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+specifier|private
+name|T
+name|instantiateCoder
+parameter_list|(
+name|OutputStream
+name|stream
+parameter_list|,
+name|boolean
+name|encoder
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 try|try
 block|{
 name|Constructor
@@ -146,27 +187,33 @@ name|T
 argument_list|>
 name|c
 init|=
-name|encoder
+name|coder
 operator|.
 name|getConstructor
 argument_list|(
 name|OutputStream
 operator|.
 name|class
+argument_list|,
+name|boolean
+operator|.
+name|class
 argument_list|)
 decl_stmt|;
 name|T
-name|fos
+name|f
 init|=
 name|c
 operator|.
 name|newInstance
 argument_list|(
-name|os
+name|stream
+argument_list|,
+name|encoder
 argument_list|)
 decl_stmt|;
 return|return
-name|fos
+name|f
 return|;
 block|}
 catch|catch
@@ -179,9 +226,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Unable to get binary encoder '"
+literal|"Unable to get binary coder '"
 operator|+
-name|encoder
+name|coder
 operator|.
 name|getName
 argument_list|()
@@ -207,9 +254,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Unable to get binary encoder '"
+literal|"Unable to get binary coder '"
 operator|+
-name|encoder
+name|coder
 operator|.
 name|getName
 argument_list|()
@@ -235,9 +282,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Unable to get binary encoder '"
+literal|"Unable to get binary coder '"
 operator|+
-name|encoder
+name|coder
 operator|.
 name|getName
 argument_list|()
@@ -263,9 +310,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Unable to get binary encoder '"
+literal|"Unable to get binary coder '"
 operator|+
-name|encoder
+name|coder
 operator|.
 name|getName
 argument_list|()
@@ -291,9 +338,9 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Unable to get binary encoder '"
+literal|"Unable to get binary coder '"
 operator|+
-name|encoder
+name|coder
 operator|.
 name|getName
 argument_list|()

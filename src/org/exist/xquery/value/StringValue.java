@@ -945,7 +945,7 @@ name|BASE64_BINARY
 case|:
 return|return
 operator|new
-name|BinaryValueFromString
+name|BinaryValueFromBinaryString
 argument_list|(
 operator|new
 name|Base64BinaryValueType
@@ -961,7 +961,7 @@ name|HEX_BINARY
 case|:
 return|return
 operator|new
-name|BinaryValueFromString
+name|BinaryValueFromBinaryString
 argument_list|(
 operator|new
 name|HexBinaryValueType
