@@ -223,6 +223,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|IndexInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentImpl
@@ -1155,10 +1167,7 @@ expr_stmt|;
 name|Txn
 name|transaction
 init|=
-name|tm
-operator|.
-name|beginTransaction
-argument_list|()
+literal|null
 decl_stmt|;
 name|org
 operator|.
@@ -1210,7 +1219,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tm.abort(transaction);
 return|return
 literal|false
 return|;
@@ -1237,7 +1245,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tm.abort(transaction);
 return|return
 literal|false
 return|;
@@ -1265,7 +1272,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tm.abort(transaction);
 return|return
 literal|false
 return|;
@@ -1275,6 +1281,13 @@ operator|=
 name|destinationPath
 operator|.
 name|lastSegment
+argument_list|()
+expr_stmt|;
+name|transaction
+operator|=
+name|tm
+operator|.
+name|beginTransaction
 argument_list|()
 expr_stmt|;
 name|broker
@@ -1307,6 +1320,12 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|tm
 operator|.
 name|abort
@@ -1426,10 +1445,7 @@ expr_stmt|;
 name|Txn
 name|transaction
 init|=
-name|tm
-operator|.
-name|beginTransaction
-argument_list|()
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -1446,7 +1462,7 @@ argument_list|()
 argument_list|,
 name|Lock
 operator|.
-name|WRITE_LOCK
+name|NO_LOCK
 argument_list|)
 expr_stmt|;
 if|if
@@ -1456,26 +1472,12 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tm.abort(transaction);
 return|return
 literal|false
 return|;
 block|}
 comment|// keep the write lock in the transaction
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|collection
-operator|.
-name|getLock
-argument_list|()
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
+comment|//transaction.registerLock(collection.getLock(), Lock.WRITE_LOCK);
 name|DocumentImpl
 name|doc
 init|=
@@ -1498,11 +1500,17 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//tm.abort(transaction);
 return|return
 literal|true
 return|;
 block|}
+name|transaction
+operator|=
+name|tm
+operator|.
+name|beginTransaction
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -1557,6 +1565,12 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|transaction
+operator|!=
+literal|null
+condition|)
 name|tm
 operator|.
 name|abort
@@ -1813,25 +1827,77 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//			if (mimeType.isXMLType()) {
-comment|//				// store as xml resource
-comment|//				is = new FileInputStream(temp);
-comment|//				IndexInfo info = collection.validateXMLResource(
-comment|//						transaction, broker, fileName, new InputSource(new InputStreamReader(is)));
-comment|//				is.close();
-comment|//				info.getDocument().getMetadata().setMimeType(mimeType.getName());
-comment|//				is = new FileInputStream(temp);
-comment|//				collection.store(transaction, broker, info, new InputSource(new InputStreamReader(is)), false);
-comment|//				is.close();
-comment|//
-comment|//			} else {
+if|if
+condition|(
+name|mimeType
+operator|.
+name|isXMLType
+argument_list|()
+condition|)
+block|{
+comment|// store as xml resource
+name|String
+name|str
+init|=
+literal|"<empty/>"
+decl_stmt|;
+name|IndexInfo
+name|info
+init|=
+name|collection
+operator|.
+name|validateXMLResource
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|fileName
+argument_list|,
+name|str
+argument_list|)
+decl_stmt|;
+name|info
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getMetadata
+argument_list|()
+operator|.
+name|setMimeType
+argument_list|(
+name|mimeType
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|collection
+operator|.
+name|store
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|info
+argument_list|,
+name|str
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// store as binary resource
 name|is
 operator|=
 operator|new
 name|StringBufferInputStream
 argument_list|(
-literal|" "
+literal|""
 argument_list|)
 expr_stmt|;
 name|collection
@@ -1862,7 +1928,7 @@ name|Date
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//			}
+block|}
 name|tm
 operator|.
 name|commit
@@ -1899,6 +1965,24 @@ operator|.
 name|closeFile
 argument_list|(
 name|is
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+name|resource
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 name|db
@@ -2030,7 +2114,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//may be, it's collection ... cheking ...
+comment|//may be, it's collection ... checking ...
 name|collection
 operator|=
 name|broker
