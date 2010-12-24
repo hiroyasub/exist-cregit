@@ -1454,6 +1454,14 @@ operator|new
 name|String
 index|[]
 block|{
+operator|(
+name|owner_
+operator|==
+literal|null
+operator|)
+condition|?
+literal|""
+else|:
 name|owner_
 operator|.
 name|getName
