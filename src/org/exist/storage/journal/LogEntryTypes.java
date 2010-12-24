@@ -155,15 +155,12 @@ decl_stmt|;
 specifier|private
 name|Class
 argument_list|<
+name|?
+extends|extends
 name|Loggable
 argument_list|>
 name|clazz
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 specifier|public
 name|LogEntry
 parameter_list|(
@@ -171,6 +168,11 @@ name|byte
 name|type
 parameter_list|,
 name|Class
+argument_list|<
+name|?
+extends|extends
+name|Loggable
+argument_list|>
 name|myClass
 parameter_list|)
 block|{
@@ -202,6 +204,8 @@ name|Exception
 block|{
 name|Constructor
 argument_list|<
+name|?
+extends|extends
 name|Loggable
 argument_list|>
 name|constructor
@@ -335,6 +339,8 @@ parameter_list|,
 name|Class
 argument_list|<
 name|?
+extends|extends
+name|Loggable
 argument_list|>
 name|clazz
 parameter_list|)
