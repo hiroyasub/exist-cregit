@@ -61,9 +61,11 @@ name|eclipse
 operator|.
 name|jetty
 operator|.
+name|http
+operator|.
 name|security
 operator|.
-name|Authenticator
+name|Constraint
 import|;
 end_import
 
@@ -124,16 +126,15 @@ parameter_list|(
 name|HttpSession
 name|session
 parameter_list|,
-name|Authenticator
-name|authenticator
-parameter_list|,
 name|UserIdentity
 name|userIdentity
 parameter_list|)
 block|{
 name|super
 argument_list|(
-name|authenticator
+name|Constraint
+operator|.
+name|__FORM_AUTH
 argument_list|,
 name|userIdentity
 argument_list|)
