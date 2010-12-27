@@ -323,7 +323,7 @@ block|{
 name|String
 name|txt
 init|=
-literal|"A problem ocurred while serializing the node set"
+literal|"A problem occurred while serializing the node set"
 decl_stmt|;
 name|LOG
 operator|.

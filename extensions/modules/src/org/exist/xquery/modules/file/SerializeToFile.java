@@ -1406,7 +1406,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Cannot serialize file. A problem ocurred while serializing the node set: "
+literal|"Cannot serialize file. A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
@@ -1431,7 +1431,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Cannot serialize file. A problem ocurred while serializing the node set: "
+literal|"Cannot serialize file. A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
@@ -1520,7 +1520,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Cannot serialize file. A problem ocurred while serializing the binary data: "
+literal|"Cannot serialize file. A problem occurred while serializing the binary data: "
 operator|+
 name|fnfe
 operator|.
@@ -1543,7 +1543,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Cannot serialize file. A problem ocurred while serializing the binary data: "
+literal|"Cannot serialize file. A problem occurred while serializing the binary data: "
 operator|+
 name|ioe
 operator|.

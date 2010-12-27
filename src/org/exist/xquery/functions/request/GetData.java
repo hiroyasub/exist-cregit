@@ -740,7 +740,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"An IO exception ocurred: "
+literal|"An IO exception occurred: "
 operator|+
 name|ioe
 operator|.
@@ -1134,7 +1134,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"An IO exception ocurred: "
+literal|"An IO exception occurred: "
 operator|+
 name|e
 operator|.

@@ -786,7 +786,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"A problem ocurred while serializing the node set: "
+literal|"A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
@@ -909,7 +909,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"A problem ocurred while serializing the node set: "
+literal|"A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
@@ -1190,7 +1190,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"A problem ocurred while serializing the node set: "
+literal|"A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
@@ -1213,7 +1213,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"A problem ocurred while serializing the node set: "
+literal|"A problem occurred while serializing the node set: "
 operator|+
 name|e
 operator|.
