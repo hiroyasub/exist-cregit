@@ -508,7 +508,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0070 : can not redefine '"
+name|ErrorCodes
+operator|.
+name|XQST0070
+argument_list|,
+literal|"can not redefine '"
 operator|+
 name|qn
 operator|+
@@ -532,7 +536,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0070 : can not redefine '"
+name|ErrorCodes
+operator|.
+name|XQST0070
+argument_list|,
+literal|"can not redefine '"
 operator|+
 name|qn
 operator|+
@@ -566,7 +574,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0085 : cannot undeclare a prefix "
+name|ErrorCodes
+operator|.
+name|XQST0085
+argument_list|,
+literal|"cannot undeclare a prefix "
 operator|+
 name|name
 operator|+
@@ -650,7 +662,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0071 : duplicate definition for '"
+name|ErrorCodes
+operator|.
+name|XQST0071
+argument_list|,
+literal|"duplicate definition for '"
 operator|+
 name|qn
 operator|+
@@ -897,7 +913,7 @@ name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -1205,7 +1221,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0040 '"
+name|ErrorCodes
+operator|.
+name|XQST0040
+argument_list|,
+literal|"'"
 operator|+
 name|attrQName
 operator|.
@@ -1280,6 +1300,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
 literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
 throw|;
@@ -1348,7 +1372,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|""
 operator|+
 name|qnitem
 operator|.
@@ -1357,6 +1385,30 @@ argument_list|()
 operator|+
 literal|"' is not a valid element name"
 argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|XPathException
+name|e
+parameter_list|)
+block|{
+name|e
+operator|.
+name|setLocation
+argument_list|(
+name|getLine
+argument_list|()
+argument_list|,
+name|getColumn
+argument_list|()
+argument_list|,
+name|getSource
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
 throw|;
 block|}
 comment|//Use the default namespace if specified
@@ -1414,7 +1466,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|qnitem
 operator|.
