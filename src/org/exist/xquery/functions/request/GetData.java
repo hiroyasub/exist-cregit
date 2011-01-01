@@ -23,16 +23,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -44,18 +34,6 @@ operator|.
 name|io
 operator|.
 name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
 import|;
 end_import
 
@@ -92,6 +70,22 @@ operator|.
 name|parsers
 operator|.
 name|SAXParserFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|input
+operator|.
+name|CloseShieldInputStream
 import|;
 end_import
 
@@ -711,7 +705,6 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|//first, get the content of the request
-comment|//byte[] bufRequestData = null;
 name|InputStream
 name|is
 init|=
@@ -726,7 +719,6 @@ operator|.
 name|getInputStream
 argument_list|()
 expr_stmt|;
-comment|/*long contentLength=request.getContentLength(); 				ByteArrayOutputStream bos = new ByteArrayOutputStream((contentLength> (long)Integer.MAX_VALUE)?Integer.MAX_VALUE:(int)contentLength); 				byte[] buf = new byte[256]; 				int l = 0; 				while ((l = is.read(buf))> -1) 				{ 					bos.write(buf, 0, l); 				} 				bufRequestData = bos.toByteArray();*/
 block|}
 catch|catch
 parameter_list|(
@@ -918,13 +910,18 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//TODO : we should be able to cope with context.getBaseURI()
+comment|//we have to use CloseShieldInputStream otherwise the parser closes the stream and we cant later reread
 name|InputSource
 name|src
 init|=
 operator|new
 name|InputSource
 argument_list|(
+operator|new
+name|CloseShieldInputStream
+argument_list|(
 name|is
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|SAXParser
