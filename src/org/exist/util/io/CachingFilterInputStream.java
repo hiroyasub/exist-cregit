@@ -67,7 +67,7 @@ specifier|static
 name|String
 name|INPUTSTREAM_CLOSED
 init|=
-literal|"The InputStream has been closed"
+literal|"The underlying InputStream has been closed"
 decl_stmt|;
 specifier|private
 name|boolean
@@ -109,6 +109,7 @@ specifier|final
 name|FilterInputStreamCache
 name|cache
 decl_stmt|;
+comment|/**      * @param cache The cache implementation      * @param src The source InputStream to cache reads for      */
 specifier|public
 name|CachingFilterInputStream
 parameter_list|(
@@ -137,6 +138,7 @@ operator|=
 name|cache
 expr_stmt|;
 block|}
+comment|/**      * Gets the cache implementation      */
 specifier|private
 name|FilterInputStreamCache
 name|getCache
@@ -155,6 +157,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|//TODO fix - this is not correct calculation. It does not account for data available in the underlying inputstream
 return|return
 operator|(
 name|getCache
@@ -381,7 +384,6 @@ name|srcOffset
 condition|)
 block|{
 comment|//copy data from the cache
-comment|//byte cacheData[] = getCache().toByteArray();
 name|int
 name|actualLen
 init|=
@@ -421,7 +423,6 @@ argument_list|,
 name|actualLen
 argument_list|)
 expr_stmt|;
-comment|//System.arraycopy(cache.toByteArray(), cacheOffset, b, off, actualLen);
 name|cacheOffset
 operator|+=
 name|actualLen
@@ -588,7 +589,7 @@ argument_list|()
 expr_stmt|;
 comment|//empty the cache
 block|}
-comment|/**      * We cant actually skip as we need to cache the data,      * however apart from the potentially increased I/O      * and Memory the result is the same      */
+comment|/**      * We cant actually skip as we need to read so that we can cache the data,      * however apart from the potentially increased I/O      * and Memory, the end result is the same      */
 annotation|@
 name|Override
 specifier|public

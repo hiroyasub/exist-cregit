@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Based on org.apache.commons.codec.binary.Base64OutputStream  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Hexadecimal encoding OutputStream  *  * Based on org.apache.commons.codec.binary.Base64OutputStream  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
