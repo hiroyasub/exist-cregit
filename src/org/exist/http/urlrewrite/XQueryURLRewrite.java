@@ -1995,7 +1995,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
-else|else
+if|else if
+condition|(
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+operator|>
+literal|1
+condition|)
 block|{
 name|response
 argument_list|(
