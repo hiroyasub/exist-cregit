@@ -520,7 +520,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the content of a POST request.If its a binary document xs:base64Binary is returned or if its an XML document a node() is returned. All other data is returned as an xs:string representaion. Returns an empty sequence if there is no data."
+literal|"Returns the content of a POST request. "
+operator|+
+literal|"If the HTTP Content-Type header in the request identifies it as a binary document, then xs:base64Binary is returned. "
+operator|+
+literal|"If its not a binary document, we attempt to parse it as XML and return a document-node(). "
+operator|+
+literal|"If its not a binary or XML document, any other data type is returned as an xs:string representation or "
+operator|+
+literal|"an empty sequence if there is no data to be read."
 argument_list|,
 literal|null
 argument_list|,
