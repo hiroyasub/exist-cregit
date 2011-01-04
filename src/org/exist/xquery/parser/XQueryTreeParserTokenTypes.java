@@ -291,6 +291,8 @@ name|xquery
 operator|.
 name|functions
 operator|.
+name|fn
+operator|.
 name|*
 import|;
 end_import
@@ -306,6 +308,18 @@ operator|.
 name|update
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|ElementValue
 import|;
 end_import
 
