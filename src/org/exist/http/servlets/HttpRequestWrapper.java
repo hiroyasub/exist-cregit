@@ -789,7 +789,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Get file item      *       * @param obj List or Fileitem      * @return First Fileitem in list or Fileitem.      */
+comment|/**      *  Convert object to FileItem, get FirstItem from list, or null      * if object or object in list is not a FileItem      *       * @param obj List or Fileitem      * @return First Fileitem in list or Fileitem.      */
 specifier|private
 name|FileItem
 name|getFileItem
@@ -805,32 +805,59 @@ operator|instanceof
 name|List
 condition|)
 block|{
-return|return
-operator|(
-name|FileItem
-operator|)
-operator|(
+comment|// Cast
+name|List
+name|list
+init|=
 operator|(
 name|List
 operator|)
 name|obj
-operator|)
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-return|;
-block|}
-else|else
+decl_stmt|;
+comment|// Return first FileItem object if present
+for|for
+control|(
+name|Object
+name|listObject
+range|:
+name|list
+control|)
+block|{
+if|if
+condition|(
+name|listObject
+operator|instanceof
+name|FileItem
+condition|)
 block|{
 return|return
 operator|(
 name|FileItem
 operator|)
+name|listObject
+return|;
+block|}
+block|}
+block|}
+if|else if
+condition|(
+name|obj
+operator|instanceof
+name|FileItem
+condition|)
+block|{
+comment|// Cast and return
+return|return
+operator|(
+name|FileItem
+operator|)
 name|obj
 return|;
 block|}
+comment|// object did not represent a List of FileItem's or FileItem.
+return|return
+literal|null
+return|;
 block|}
 comment|/**      * @param value      * @return      */
 specifier|private
@@ -1276,6 +1303,10 @@ decl_stmt|;
 if|if
 condition|(
 name|item
+operator|==
+literal|null
+operator|||
+name|item
 operator|.
 name|isFormField
 argument_list|()
@@ -1347,6 +1378,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|item
+operator|==
+literal|null
+operator|||
 name|item
 operator|.
 name|isFormField
