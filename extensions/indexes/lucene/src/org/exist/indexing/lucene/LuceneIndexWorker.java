@@ -3129,19 +3129,12 @@ name|parentNode
 init|=
 name|contextSet
 operator|.
-name|parentWithChild
+name|get
 argument_list|(
 name|storedNode
-argument_list|,
-literal|false
-argument_list|,
-literal|true
-argument_list|,
-name|NodeProxy
-operator|.
-name|UNKNOWN_NODE_LEVEL
 argument_list|)
 decl_stmt|;
+comment|// NodeProxy parentNode = contextSet.parentWithChild(storedNode, false, true, NodeProxy.UNKNOWN_NODE_LEVEL);
 if|if
 condition|(
 name|parentNode
