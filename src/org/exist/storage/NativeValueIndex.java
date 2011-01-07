@@ -8139,22 +8139,15 @@ condition|(
 name|returnAncestor
 condition|)
 block|{
+comment|//                                NodeProxy parentNode = contextSet.parentWithChild( storedNode, false, true, NodeProxy.UNKNOWN_NODE_LEVEL );
 name|NodeProxy
 name|parentNode
 init|=
 name|contextSet
 operator|.
-name|parentWithChild
+name|get
 argument_list|(
 name|storedNode
-argument_list|,
-literal|false
-argument_list|,
-literal|true
-argument_list|,
-name|NodeProxy
-operator|.
-name|UNKNOWN_NODE_LEVEL
 argument_list|)
 decl_stmt|;
 if|if
@@ -8784,17 +8777,14 @@ name|parentNode
 operator|=
 name|contextSet
 operator|.
-name|parentWithChild
+name|get
 argument_list|(
 name|storedDocument
 argument_list|,
 name|nodeId
-argument_list|,
-literal|false
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
+comment|//                            parentNode = contextSet.parentWithChild( storedDocument, nodeId, false, true );
 block|}
 else|else
 block|{

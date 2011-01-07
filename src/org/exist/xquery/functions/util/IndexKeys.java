@@ -798,6 +798,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+comment|// if we have 5 arguments, query the user-specified index
 if|if
 condition|(
 name|this
@@ -1208,6 +1209,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|// no index specified: use the range index
 block|}
 else|else
 block|{
@@ -1250,10 +1252,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|qnames
-operator|!=
-literal|null
-operator|&&
 name|allQNames
 operator|.
 name|length
