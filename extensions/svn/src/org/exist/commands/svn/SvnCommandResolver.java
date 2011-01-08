@@ -85,6 +85,15 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+name|resolver
+operator|.
+name|plug
+argument_list|(
+name|Update
+operator|.
+name|class
+argument_list|)
+expr_stmt|;
 name|org
 operator|.
 name|exist

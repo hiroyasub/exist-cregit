@@ -272,9 +272,6 @@ literal|1
 index|]
 expr_stmt|;
 block|}
-name|WorkingCopy
-name|wc
-init|=
 operator|new
 name|WorkingCopy
 argument_list|(
@@ -282,7 +279,7 @@ name|userName
 argument_list|,
 name|password
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|SVNRepositoryFactoryImpl
 operator|.
 name|setup
