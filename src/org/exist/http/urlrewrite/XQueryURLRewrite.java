@@ -2743,12 +2743,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-operator|(
-operator|(
-name|HttpServletResponse
-operator|)
 name|response
-operator|)
 operator|.
 name|containsHeader
 argument_list|(
