@@ -2925,6 +2925,11 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+name|output
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 specifier|private
 name|void
