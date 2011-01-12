@@ -6787,10 +6787,29 @@ argument_list|(
 literal|"?"
 argument_list|)
 condition|)
+block|{
 name|displayHelp
 argument_list|()
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"quit"
+argument_list|)
+condition|)
+block|{
+return|return
+literal|false
+return|;
 comment|//XXX:make it pluggable
+block|}
 if|else if
 condition|(
 name|havePluggableCommands
@@ -6819,23 +6838,6 @@ name|args
 argument_list|)
 expr_stmt|;
 comment|//****************************************************************
-block|}
-if|else if
-condition|(
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"quit"
-argument_list|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
 block|}
 else|else
 block|{
