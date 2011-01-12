@@ -983,6 +983,17 @@ name|mySignature
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|expr
+operator|.
+name|setLocation
+argument_list|(
+name|getLine
+argument_list|()
+argument_list|,
+name|getColumn
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// check return type if both types are not Type.ITEM
 name|int
 name|returnType
