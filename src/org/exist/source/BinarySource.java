@@ -38,6 +38,7 @@ name|BinarySource
 extends|extends
 name|AbstractSource
 block|{
+comment|//TODO replace this with a streaming approach
 specifier|private
 name|byte
 index|[]

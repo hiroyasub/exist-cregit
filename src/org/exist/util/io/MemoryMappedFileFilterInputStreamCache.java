@@ -57,16 +57,6 @@ name|java
 operator|.
 name|nio
 operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
 name|MappedByteBuffer
 import|;
 end_import
@@ -121,6 +111,7 @@ name|memoryMapSize
 init|=
 name|DEFAULT_MEMORY_MAP_SIZE
 decl_stmt|;
+comment|//private final ReadOnlyByteBufferAccessor bufAccessor;
 specifier|public
 name|MemoryMappedFileFilterInputStreamCache
 parameter_list|()
@@ -158,6 +149,8 @@ name|FileNotFoundException
 throws|,
 name|IOException
 block|{
+name|this
+operator|.
 name|channel
 operator|=
 operator|new
@@ -171,6 +164,8 @@ operator|.
 name|getChannel
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|buf
 operator|=
 name|channel
@@ -189,6 +184,7 @@ name|getMemoryMapSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//this.bufAccessor = new ReadOnlyByteBufferAccessor();
 block|}
 specifier|private
 name|long
@@ -285,6 +281,7 @@ name|position
 argument_list|)
 expr_stmt|;
 comment|//setting the position in the map() call above does not seem to work!
+comment|//bufAccessor.refresh();
 block|}
 annotation|@
 name|Override
@@ -578,27 +575,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-specifier|public
-name|FileChannel
-name|getChannel
-parameter_list|()
-block|{
-return|return
-name|channel
-return|;
-block|}
-specifier|public
-name|ByteBuffer
-name|getReadOnlyBuffer
-parameter_list|()
-block|{
-return|return
-name|buf
-operator|.
-name|asReadOnlyBuffer
-argument_list|()
-return|;
 block|}
 block|}
 end_class

@@ -198,6 +198,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/**      * Updates to the cache are not reflected in the underlying input stream      */
+comment|//TODO refactor this so that updates to the cache are reflected
+comment|/*@Override     public InputStream getIndependentInputStream() {         return new ByteArrayInputStream(cache.toByteArray());     }*/
 block|}
 end_class
 

@@ -47,7 +47,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|OutputStream
+name|InputStream
 import|;
 end_import
 
@@ -55,9 +55,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|io
 operator|.
-name|ByteBuffer
+name|OutputStream
 import|;
 end_import
 
@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * BinaryValueFromBinaryString is a special case of BinaryValue  * where the value is already encoded  *   * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by a pre-encoded String.  *  * Note - BinaryValueFromBinaryString is a special case of BinaryValue  * where the value is already encoded.  *   * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
@@ -248,6 +248,7 @@ operator|.
 name|getBytes
 argument_list|()
 decl_stmt|;
+comment|//TODO consider a more efficient approach for writting large strings
 name|os
 operator|.
 name|write
@@ -259,10 +260,12 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|ByteBuffer
-name|getReadOnlyBuffer
+name|InputStream
+name|getInputStream
 parameter_list|()
 block|{
+comment|//TODO consider a more efficient approach for writting large strings
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -299,6 +302,17 @@ name|ioe
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+operator|new
+name|InputStream
+argument_list|()
+block|{
+name|int
+name|offset
+init|=
+literal|0
+decl_stmt|;
+specifier|final
 name|byte
 name|data
 index|[]
@@ -308,27 +322,38 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
-name|ByteBuffer
-name|buf
-init|=
-name|ByteBuffer
-operator|.
-name|allocate
-argument_list|(
+annotation|@
+name|Override
+specifier|public
+name|int
+name|read
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|offset
+operator|>=
 name|data
 operator|.
 name|length
-argument_list|)
-decl_stmt|;
-name|buf
-operator|.
-name|put
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
+condition|)
+block|{
 return|return
-name|buf
+operator|-
+literal|1
+return|;
+block|}
+return|return
+name|data
+index|[
+name|offset
+operator|++
+index|]
+return|;
+block|}
+block|}
 return|;
 block|}
 annotation|@

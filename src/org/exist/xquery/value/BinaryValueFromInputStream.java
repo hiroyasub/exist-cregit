@@ -43,16 +43,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|ByteBuffer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -104,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by an InputStream  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
@@ -131,7 +121,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|final
-name|InputStream
+name|CachingFilterInputStream
 name|is
 decl_stmt|;
 specifier|private
@@ -155,23 +145,6 @@ argument_list|(
 name|binaryValueType
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|is
-operator|.
-name|markSupported
-argument_list|()
-condition|)
-block|{
-name|this
-operator|.
-name|is
-operator|=
-name|is
-expr_stmt|;
-block|}
-else|else
-block|{
 try|try
 block|{
 name|this
@@ -194,6 +167,7 @@ argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
+comment|//TODO make sure the cache is shutdown correctly when we are done!
 block|}
 catch|catch
 parameter_list|(
@@ -213,8 +187,6 @@ argument_list|,
 name|ioe
 argument_list|)
 throw|;
-block|}
-comment|//TODO make sure the cache is shutdown correctly when we are done!
 block|}
 comment|//mark the start of the stream so that we can re-read again as required
 name|is
@@ -363,34 +335,17 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|ByteBuffer
-name|getReadOnlyBuffer
+name|InputStream
+name|getInputStream
 parameter_list|()
 block|{
-if|if
-condition|(
-name|cache
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"Not supported yet."
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
 return|return
-name|cache
-operator|.
-name|getReadOnlyBuffer
-argument_list|()
+operator|new
+name|CachingFilterInputStream
+argument_list|(
+name|is
+argument_list|)
 return|;
-block|}
 block|}
 annotation|@
 name|Override
