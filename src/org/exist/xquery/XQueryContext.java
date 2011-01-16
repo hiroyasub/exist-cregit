@@ -489,6 +489,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|Context
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|memtree
 operator|.
 name|InMemoryXMLStreamReader
@@ -903,6 +915,8 @@ class|class
 name|XQueryContext
 implements|implements
 name|BinaryValueManager
+implements|,
+name|Context
 block|{
 specifier|public
 specifier|static

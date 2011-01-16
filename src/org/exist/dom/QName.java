@@ -19,6 +19,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|interpreter
+operator|.
+name|Context
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|ElementValue
@@ -58,18 +70,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
 import|;
 end_import
 
@@ -987,7 +987,7 @@ specifier|static
 name|QName
 name|parse
 parameter_list|(
-name|XQueryContext
+name|Context
 name|context
 parameter_list|,
 name|String
@@ -1078,7 +1078,7 @@ specifier|static
 name|QName
 name|parse
 parameter_list|(
-name|XQueryContext
+name|Context
 name|context
 parameter_list|,
 name|String
