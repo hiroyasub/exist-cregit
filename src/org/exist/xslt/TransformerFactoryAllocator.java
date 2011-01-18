@@ -365,8 +365,8 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+name|IllegalArgumentException
+name|iae
 parameter_list|)
 block|{
 name|LOG
@@ -387,7 +387,12 @@ name|value
 operator|+
 literal|", exception: "
 operator|+
-name|e
+name|iae
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|iae
 argument_list|)
 expr_stmt|;
 block|}
