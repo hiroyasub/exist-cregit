@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: LuceneMatchListener.java 12986 2010-10-22 16:06:42Z brihaye $  */
 end_comment
 
 begin_package
@@ -24,6 +24,20 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Analyzer
 import|;
 end_import
 
@@ -165,6 +179,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -229,7 +255,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamException
+name|XMLStreamConstants
 import|;
 end_import
 
@@ -241,7 +267,7 @@ name|xml
 operator|.
 name|stream
 operator|.
-name|XMLStreamReader
+name|XMLStreamException
 import|;
 end_import
 
@@ -303,10 +329,20 @@ name|match
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Query
+argument_list|>
 name|termMap
 decl_stmt|;
 specifier|private
 name|Map
+argument_list|<
+name|NodeId
+argument_list|,
+name|Offset
+argument_list|>
 name|nodesWithMatch
 decl_stmt|;
 specifier|private
@@ -473,6 +509,11 @@ name|nodesWithMatch
 operator|=
 operator|new
 name|TreeMap
+argument_list|<
+name|NodeId
+argument_list|,
+name|Offset
+argument_list|>
 argument_list|()
 expr_stmt|;
 comment|/* Check if an index is defined on an ancestor of the current node.         * If yes, scan the ancestor to get the offset of the first character         * in the current node. For example, if the indexed node is&lt;a>abc&lt;b>de&lt;/b></a>         * and we query for //a[text:ngram-contains(., 'de')]/b, proxy will be a&lt;b> node, but         * the offsets of the matches are relative to the start of&lt;a>.         */
@@ -581,9 +622,8 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|NodeProxy
-name|p
-init|=
+name|scanMatches
+argument_list|(
 operator|(
 name|NodeProxy
 operator|)
@@ -591,15 +631,13 @@ name|i
 operator|.
 name|next
 argument_list|()
-decl_stmt|;
-name|scanMatches
-argument_list|(
-name|p
 argument_list|)
 expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -675,6 +713,8 @@ name|attribs
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -697,9 +737,6 @@ decl_stmt|;
 name|Offset
 name|offset
 init|=
-operator|(
-name|Offset
-operator|)
 name|nodesWithMatch
 operator|.
 name|get
@@ -902,6 +939,9 @@ name|getConfig
 argument_list|(
 name|path
 argument_list|)
+operator|.
+name|next
+argument_list|()
 decl_stmt|;
 name|TextExtractor
 name|extractor
@@ -972,7 +1012,7 @@ name|ev
 condition|)
 block|{
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|END_ELEMENT
 case|:
@@ -998,7 +1038,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
@@ -1019,7 +1059,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|XMLStreamReader
+name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 case|:
@@ -1033,7 +1073,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
@@ -1105,14 +1145,48 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Use Lucene's analyzer to tokenize the text and find matching query terms
-name|TokenStream
-name|tokenStream
+comment|// retrieve the Analyzer for the NodeProxy that was used for indexing and querying
+name|Analyzer
+name|analyzer
 init|=
+name|idxConf
+operator|.
+name|getAnalyzer
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|analyzer
+operator|==
+literal|null
+condition|)
+block|{
+comment|// otherwise use system default Lucene analyzer (from conf.xml) to tokenize the text and find matching query terms
+name|analyzer
+operator|=
 name|index
 operator|.
 name|getDefaultAnalyzer
 argument_list|()
+expr_stmt|;
+block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Analyzer: "
+operator|+
+name|analyzer
+operator|+
+literal|" for path: "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
+name|TokenStream
+name|tokenStream
+init|=
+name|analyzer
 operator|.
 name|tokenStream
 argument_list|(
@@ -1170,9 +1244,6 @@ decl_stmt|;
 name|Query
 name|query
 init|=
-operator|(
-name|Query
-operator|)
 name|termMap
 operator|.
 name|get
@@ -1411,9 +1482,6 @@ decl_stmt|;
 name|Offset
 name|offset
 init|=
-operator|(
-name|Offset
-operator|)
 name|nodesWithMatch
 operator|.
 name|get
@@ -1552,9 +1620,6 @@ decl_stmt|;
 name|Offset
 name|offset
 init|=
-operator|(
-name|Offset
-operator|)
 name|nodesWithMatch
 operator|.
 name|get
@@ -1747,16 +1812,27 @@ name|getTerms
 parameter_list|()
 block|{
 name|Set
+argument_list|<
+name|Query
+argument_list|>
 name|queries
 init|=
 operator|new
 name|HashSet
+argument_list|<
+name|Query
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|termMap
 operator|=
 operator|new
 name|TreeMap
+argument_list|<
+name|String
+argument_list|,
+name|Query
+argument_list|>
 argument_list|()
 expr_stmt|;
 name|Match
@@ -1832,12 +1908,14 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
-name|query
-operator|=
-name|query
+name|LuceneUtil
 operator|.
-name|rewrite
+name|extractTerms
 argument_list|(
+name|query
+argument_list|,
+name|termMap
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -1873,15 +1951,6 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
-name|LuceneUtil
-operator|.
-name|extractTerms
-argument_list|(
-name|query
-argument_list|,
-name|termMap
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 name|nextMatch

@@ -344,7 +344,10 @@ specifier|public
 name|LuceneIndex
 parameter_list|()
 block|{
+comment|//Nothing special to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -526,6 +529,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|open
@@ -651,6 +656,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -697,6 +704,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sync
@@ -704,7 +713,10 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
+comment|//Nothing special to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -780,6 +792,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IndexWorker
 name|getWorker
@@ -798,6 +812,8 @@ name|broker
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|checkIndex
@@ -847,6 +863,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing special to do
 block|}
 block|}
 if|if
@@ -1085,6 +1102,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing special to do
 block|}
 block|}
 if|if
@@ -1232,6 +1250,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//Nothing special to do
 block|}
 block|}
 name|reopenReaders
@@ -1391,13 +1410,13 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
-comment|//        try {
-comment|//            cachedSearcher.close();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
-comment|//        } finally {
-comment|//            cachedSearcher = null;
-comment|//        }
+comment|//try {
+comment|//cachedSearcher.close();
+comment|//} catch (IOException e) {
+comment|//LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
+comment|//} finally {
+comment|//cachedSearcher = null;
+comment|//}
 block|}
 block|}
 end_class
