@@ -244,7 +244,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  * @serial 2006-03-10  * @version 1.1  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension GetWidthFunction   *   * Get's the width of an Image  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -330,7 +330,7 @@ literal|"the width in pixels"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * GetWidthFunction Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+comment|/**      * GetWidthFunction Constructor      *      * @param context	The Context of the calling XQuery      */
 specifier|public
 name|GetWidthFunction
 parameter_list|(
@@ -346,7 +346,9 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the xquery get-width() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the get-width() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A sequence representing the result of the get-width() function call 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the xquery get-width() function,      * it is really the main entry point of this class      *      * @param args		arguments from the get-width() function call      * @param contextSequence	the Context Sequence to operate on (not used here internally!)      * @return		A sequence representing the result of the get-width() function call      *      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -387,13 +389,9 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|image
-operator|=
-name|ImageIO
-operator|.
-name|read
-argument_list|(
-operator|(
+name|BinaryValue
+name|imageData
+init|=
 operator|(
 name|BinaryValue
 operator|)
@@ -406,7 +404,14 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-operator|)
+decl_stmt|;
+name|image
+operator|=
+name|ImageIO
+operator|.
+name|read
+argument_list|(
+name|imageData
 operator|.
 name|getInputStream
 argument_list|()
