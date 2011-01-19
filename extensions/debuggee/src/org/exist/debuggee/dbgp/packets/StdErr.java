@@ -176,6 +176,19 @@ name|getBytes
 argument_list|()
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"stderr ["
+operator|+
+name|transactionID
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 end_class
 

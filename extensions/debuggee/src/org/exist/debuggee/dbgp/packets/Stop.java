@@ -159,6 +159,19 @@ name|STOP
 operator|)
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"stop ["
+operator|+
+name|transactionID
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 end_class
 

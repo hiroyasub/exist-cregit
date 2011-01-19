@@ -231,6 +231,27 @@ name|getBytes
 argument_list|()
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"feature_set name = '"
+operator|+
+name|name
+operator|+
+literal|"' value = '"
+operator|+
+name|value
+operator|+
+literal|"' ["
+operator|+
+name|transactionID
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 end_class
 

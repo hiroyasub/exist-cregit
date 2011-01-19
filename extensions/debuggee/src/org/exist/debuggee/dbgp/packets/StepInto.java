@@ -161,6 +161,19 @@ name|STEP_INTO
 operator|)
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"step_into ["
+operator|+
+name|transactionID
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 end_class
 

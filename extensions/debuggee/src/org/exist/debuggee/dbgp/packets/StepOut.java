@@ -159,6 +159,19 @@ name|STEP_OUT
 operator|)
 return|;
 block|}
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"step_out ["
+operator|+
+name|transactionID
+operator|+
+literal|"]"
+return|;
+block|}
 block|}
 end_class
 

@@ -62,6 +62,18 @@ specifier|private
 name|XACMLSource
 name|fileuri
 decl_stmt|;
+specifier|private
+name|String
+name|idekey
+init|=
+literal|"1"
+decl_stmt|;
+specifier|private
+name|String
+name|idesession
+init|=
+literal|"1"
+decl_stmt|;
 specifier|public
 name|Init
 parameter_list|(
@@ -75,6 +87,39 @@ name|session
 argument_list|,
 literal|""
 argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|Init
+parameter_list|(
+name|IoSession
+name|session
+parameter_list|,
+name|String
+name|idesession
+parameter_list|,
+name|String
+name|idekey
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|session
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|idekey
+operator|=
+name|idekey
+expr_stmt|;
+name|this
+operator|.
+name|idesession
+operator|=
+name|idesession
 expr_stmt|;
 block|}
 specifier|public
@@ -116,16 +161,27 @@ name|init_message
 init|=
 literal|"<init "
 operator|+
-literal|"appid=\"7035\" "
+literal|"xmlns=\"urn:debugger_protocol_v1\" "
 operator|+
-literal|"idekey=\"1\" "
+literal|"xmlns:xdebug=\"http://xdebug.org/dbgp/xdebug\" "
 operator|+
-literal|"session=\"1\" "
+literal|"appid=\"eXist050705\" "
 operator|+
-literal|"thread=\"1\" "
+comment|//keep this as memory of creation
+literal|"idekey=\""
 operator|+
-literal|"parent=\"1\" "
+name|idekey
 operator|+
+literal|"\" "
+operator|+
+literal|"session=\""
+operator|+
+name|idesession
+operator|+
+literal|"\" "
+operator|+
+comment|//"thread=\"1\" " +
+comment|//"parent=\"1\" " +
 literal|"language=\"XQuery\" "
 operator|+
 literal|"protocol_version=\"1.0\" "
