@@ -47,6 +47,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|Sequence
@@ -67,7 +79,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * @return the {@link Context} used to create this query      */
 specifier|public
-name|Context
+name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
