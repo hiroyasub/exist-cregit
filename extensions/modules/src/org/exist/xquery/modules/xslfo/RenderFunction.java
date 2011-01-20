@@ -43,7 +43,29 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Properties
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -695,7 +717,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * Constructor for RenderFunction, which returns a new instance of this 	 * class. 	 *  	 * @param context 	 * @param signature 	 */
+comment|/**      * Constructor for RenderFunction, which returns a new instance of this      * class.      *      * @param context      * @param signature      */
 specifier|public
 name|RenderFunction
 parameter_list|(
@@ -714,7 +736,9 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * Actual implementation of the rendering process. When a function in this 	 * module is called, this method is executed with the given inputs. @param 	 * Sequence[] args (XSL-FO, mime-type, parameters) @param Sequence 	 * contextSequence (default sequence) 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], 	 *      org.exist.xquery.value.Sequence) 	 */
+comment|/*      * Actual implementation of the rendering process. When a function in this      * module is called, this method is executed with the given inputs. @param      * Sequence[] args (XSL-FO, mime-type, parameters) @param Sequence      * contextSequence (default sequence)      *      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      *      org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -853,12 +877,11 @@ decl_stmt|;
 comment|// set the parameters if any
 if|if
 condition|(
+operator|!
 name|parameters
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|Enumeration
@@ -869,13 +892,16 @@ operator|.
 name|keys
 argument_list|()
 decl_stmt|;
-while|while
-condition|(
-name|keys
+for|for
+control|(
+name|Entry
+name|parameter
+range|:
+name|parameters
 operator|.
-name|hasMoreElements
+name|entrySet
 argument_list|()
-condition|)
+control|)
 block|{
 name|String
 name|name
@@ -883,20 +909,21 @@ init|=
 operator|(
 name|String
 operator|)
-name|keys
+name|parameter
 operator|.
-name|nextElement
+name|getKey
 argument_list|()
 decl_stmt|;
 name|String
 name|value
 init|=
-name|parameters
+operator|(
+name|String
+operator|)
+name|parameter
 operator|.
-name|getProperty
-argument_list|(
-name|name
-argument_list|)
+name|getValue
+argument_list|()
 decl_stmt|;
 name|transformer
 operator|.
@@ -1123,7 +1150,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Setup the UserAgent for FOP, from given parameters * 	 *  	 * @param transformer 	 *            Created based on the XSLT, so containing any parameters to the 	 *            XSL-FO specified in the XQuery 	 * @param parameters 	 *            any user defined parameters to the XSL-FO process 	 * @return FOUserAgent The generated FOUserAgent to include any parameters 	 *         passed in 	 */
+comment|/**      * Setup the UserAgent for FOP, from given parameters *      *      * @param transformer      *            Created based on the XSLT, so containing any parameters to the      *            XSL-FO specified in the XQuery      * @param parameters      *            any user defined parameters to the XSL-FO process      * @return FOUserAgent The generated FOUserAgent to include any parameters      *         passed in      */
 specifier|private
 name|FOUserAgent
 name|setupFOUserAgent
@@ -1159,6 +1186,7 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|foUserAgent
 operator|.
 name|setAuthor
@@ -1171,6 +1199,7 @@ literal|"author"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|transformer
@@ -1182,6 +1211,7 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|foUserAgent
 operator|.
 name|setTitle
@@ -1194,6 +1224,7 @@ literal|"title"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|transformer
@@ -1205,6 +1236,7 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|foUserAgent
 operator|.
 name|setTitle
@@ -1217,6 +1249,7 @@ literal|"keywords"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|transformer
@@ -1280,7 +1313,7 @@ return|return
 name|foUserAgent
 return|;
 block|}
-comment|/** 	 * Extension of the Apache Avalon DefaultConfigurationBuilder Allows better 	 * integration with Nodes passed in from eXist as Configuration files 	 */
+comment|/**      * Extension of the Apache Avalon DefaultConfigurationBuilder Allows better      * integration with Nodes passed in from eXist as Configuration files      */
 specifier|private
 class|class
 name|FopConfigurationBuilder
