@@ -164,7 +164,7 @@ name|DISABLE_DEPRECATED_FUNCTIONS_BY_DEFAULT
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * Create a function call.  	 *  	 * This method handles all calls to built-in or user-defined 	 * functions. It also deals with constructor functions and 	 * optimizes some function calls like starts-with, ends-with or 	 * contains.  	 */
+comment|/**      * Create a function call.      *      * This method handles all calls to built-in or user-defined      * functions. It also deals with constructor functions and      * optimizes some function calls like starts-with, ends-with or      * contains.      */
 specifier|public
 specifier|static
 name|Expression
@@ -303,6 +303,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -320,6 +321,7 @@ argument_list|,
 literal|"err:XPST0017: Function near() requires two arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p1
 init|=
@@ -342,6 +344,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -359,6 +362,7 @@ argument_list|,
 literal|"Second argument to near is empty"
 argument_list|)
 throw|;
+block|}
 name|Expression
 name|e1
 init|=
@@ -556,6 +560,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -573,6 +578,7 @@ argument_list|,
 literal|"err:XPST0017: Function phrase() requires two arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p1
 init|=
@@ -595,6 +601,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -612,6 +619,7 @@ argument_list|,
 literal|"Second argument to phrase is empty"
 argument_list|)
 throw|;
+block|}
 name|Expression
 name|e1
 init|=
@@ -693,6 +701,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -710,6 +719,7 @@ argument_list|,
 literal|"err:XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|params
@@ -719,6 +729,7 @@ argument_list|()
 operator|>
 literal|3
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -736,6 +747,7 @@ argument_list|,
 literal|"err:XPST0017: Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p0
 init|=
@@ -771,6 +783,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -788,6 +801,7 @@ argument_list|,
 literal|"Second argument to starts-with is empty"
 argument_list|)
 throw|;
+block|}
 name|GeneralComparison
 name|op
 init|=
@@ -894,6 +908,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -911,6 +926,7 @@ argument_list|,
 literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|params
@@ -920,6 +936,7 @@ argument_list|()
 operator|>
 literal|3
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -937,6 +954,7 @@ argument_list|,
 literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p0
 init|=
@@ -972,6 +990,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -989,6 +1008,7 @@ argument_list|,
 literal|"Second argument to ends-with is empty"
 argument_list|)
 throw|;
+block|}
 name|GeneralComparison
 name|op
 init|=
@@ -1095,6 +1115,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1112,6 +1133,7 @@ argument_list|,
 literal|"err:XPST0017: Function contains() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|params
@@ -1121,6 +1143,7 @@ argument_list|()
 operator|>
 literal|3
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1138,6 +1161,7 @@ argument_list|,
 literal|"err:XPST0017: Function contains() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p0
 init|=
@@ -1173,6 +1197,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1190,6 +1215,7 @@ argument_list|,
 literal|"Second argument to contains is empty"
 argument_list|)
 throw|;
+block|}
 name|GeneralComparison
 name|op
 init|=
@@ -1296,6 +1322,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1313,6 +1340,7 @@ argument_list|,
 literal|"err:XPST0017: Function equals() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|params
@@ -1322,6 +1350,7 @@ argument_list|()
 operator|>
 literal|3
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1339,6 +1368,7 @@ argument_list|,
 literal|"err:XPST0017: Function equals() requires two or three arguments"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|p0
 init|=
@@ -1374,6 +1404,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1391,6 +1422,7 @@ argument_list|,
 literal|"Second argument to equals is empty"
 argument_list|)
 throw|;
+block|}
 name|GeneralComparison
 name|op
 init|=
@@ -1524,6 +1556,7 @@ argument_list|()
 operator|!=
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1541,6 +1574,7 @@ argument_list|,
 literal|"err:XPST0017: Wrong number of arguments for constructor function"
 argument_list|)
 throw|;
+block|}
 name|PathExpr
 name|arg
 init|=
@@ -1907,6 +1941,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1938,6 +1973,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
 name|StringBuilder
@@ -2179,6 +2215,7 @@ operator|.
 name|isReady
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2210,6 +2247,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 comment|// if not, postpone the function resolution
 comment|// register a forward reference with the root module, so it gets resolved
 comment|// when the main query has been compiled.
@@ -2265,6 +2303,7 @@ argument_list|()
 operator|==
 name|context
 condition|)
+block|{
 name|context
 operator|.
 name|addForwardReference
@@ -2272,7 +2311,9 @@ argument_list|(
 name|call
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|getRootContext
@@ -2283,6 +2324,7 @@ argument_list|(
 name|call
 argument_list|)
 expr_stmt|;
+block|}
 name|step
 operator|=
 name|call
