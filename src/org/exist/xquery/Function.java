@@ -233,6 +233,27 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**          * Returns the module to which this function belongs          */
+specifier|protected
+name|Module
+name|getParentModule
+parameter_list|()
+block|{
+return|return
+name|context
+operator|.
+name|getModule
+argument_list|(
+name|mySignature
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|)
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#returnsType() 	 */
 specifier|public
 name|int
