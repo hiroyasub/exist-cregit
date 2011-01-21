@@ -221,6 +221,11 @@ name|getName
 parameter_list|()
 function_decl|;
 specifier|public
+name|String
+name|getValue
+parameter_list|()
+function_decl|;
+specifier|public
 name|ElementAtExist
 name|getElement
 parameter_list|()
