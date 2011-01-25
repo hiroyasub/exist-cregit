@@ -41,6 +41,18 @@ name|org
 operator|.
 name|apache
 operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|lucene
 operator|.
 name|analysis
@@ -74,6 +86,21 @@ specifier|public
 class|class
 name|AnalyzerConfig
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|AnalyzerConfig
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -170,6 +197,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|analyzer
+operator|==
+literal|null
+condition|)
+return|return;
+if|if
+condition|(
 name|id
 operator|==
 literal|null
@@ -258,9 +292,10 @@ argument_list|(
 name|clazz
 argument_list|)
 condition|)
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+block|{
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Lucene index: analyzer class has to be"
 operator|+
@@ -273,7 +308,11 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
-throw|;
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 return|return
 operator|(
 name|Analyzer
@@ -290,9 +329,9 @@ name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Lucene index: analyzer class "
 operator|+
@@ -300,7 +339,7 @@ name|className
 operator|+
 literal|" not found."
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -308,9 +347,9 @@ name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Exception while instantiating analyzer class "
 operator|+
@@ -325,7 +364,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -333,9 +372,9 @@ name|InstantiationException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|DatabaseConfigurationException
+name|LOG
+operator|.
+name|warn
 argument_list|(
 literal|"Exception while instantiating analyzer class "
 operator|+
@@ -350,7 +389,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 return|return
