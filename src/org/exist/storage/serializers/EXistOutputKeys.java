@@ -100,6 +100,15 @@ name|XINCLUDE_PATH
 init|=
 literal|"xinclude-path"
 decl_stmt|;
+comment|/**      * Applies to JSON serialization only: preserve namespace prefixes in JSON properties      * by replacing ":" with "_", so element foo:bar becomes "foo_bar".      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSON_OUTPUT_NS_PREFIX
+init|=
+literal|"preserve-prefix"
+decl_stmt|;
 block|}
 end_class
 
