@@ -319,7 +319,14 @@ name|servletPath
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|boolean
+name|isMultipartContent
+init|=
+literal|false
+decl_stmt|;
 comment|// Use linkedhashmap to preserver order
+comment|// Object can be a single object, or a List of objects
 specifier|private
 name|Map
 argument_list|<
@@ -345,7 +352,7 @@ name|isFormDataParsed
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Constructs a wrapper for the given servlet request. multipart/form-data will be parsed      * when evailable/      *      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
+comment|/**      * Constructs a wrapper for the given servlet request. multipart/form-data       * will be parsed when available upon indication.      *      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
 specifier|public
 name|HttpRequestWrapper
 parameter_list|(
@@ -428,18 +435,23 @@ comment|// Get url-encoded parameters (url-ecoded from http GET and POST)
 name|parseParameters
 argument_list|()
 expr_stmt|;
-comment|// Get multi-part formdata parameters when it is a mpfd request
-comment|// and when instructed to do so
-if|if
-condition|(
-name|parseMultipart
-operator|&&
+comment|// Determine if request is a multipart
+name|isMultipartContent
+operator|=
 name|ServletFileUpload
 operator|.
 name|isMultipartContent
 argument_list|(
 name|servletRequest
 argument_list|)
+expr_stmt|;
+comment|// Get multi-part formdata parameters when it is a mpfd request
+comment|// and when instructed to do so
+if|if
+condition|(
+name|parseMultipart
+operator|&&
+name|isMultipartContent
 condition|)
 block|{
 comment|// Formdata is actually parsed
@@ -467,6 +479,8 @@ literal|" parameters."
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getAttribute
@@ -484,6 +498,8 @@ name|name
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Enumeration
 name|getAttributeNames
@@ -497,6 +513,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Returns an array of Cookies      */
+annotation|@
+name|Override
 specifier|public
 name|Cookie
 index|[]
@@ -952,6 +970,8 @@ return|;
 block|}
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getInputStream()      */
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInputStream
@@ -967,6 +987,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getCharacterEncoding
@@ -980,6 +1002,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getContentLength()      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getContentLength
@@ -1025,6 +1049,8 @@ name|retval
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getContentType()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContentType
@@ -1038,6 +1064,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getContextPath()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContextPath
@@ -1051,6 +1079,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getHeader(String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getHeader
@@ -1069,6 +1099,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getCharacterEncoding()      * @return An enumeration of header names      */
+annotation|@
+name|Override
 specifier|public
 name|Enumeration
 name|getHeaderNames
@@ -1082,6 +1114,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getHeaders(String)      */
+annotation|@
+name|Override
 specifier|public
 name|Enumeration
 name|getHeaders
@@ -1100,6 +1134,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getMethod()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getMethod
@@ -1113,6 +1149,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getParameter
@@ -1253,6 +1291,8 @@ literal|null
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+annotation|@
+name|Override
 specifier|public
 name|File
 name|getFileUploadParam
@@ -1329,6 +1369,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameter(String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getUploadedFileName
@@ -1423,6 +1465,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterNames()      */
+annotation|@
+name|Override
 specifier|public
 name|Enumeration
 name|getParameterNames
@@ -1441,6 +1485,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getParameterValues(String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -1695,6 +1741,8 @@ name|values
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getPathInfo()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPathInfo
@@ -1705,6 +1753,8 @@ name|pathInfo
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getPathTranslated()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPathTranslated
@@ -1718,6 +1768,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getProtocol()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProtocol
@@ -1731,6 +1783,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getQueryString()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getQueryString
@@ -1744,6 +1798,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteAddr()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRemoteAddr
@@ -1757,6 +1813,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteHost()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRemoteHost
@@ -1770,6 +1828,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemotePort()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getRemotePort
@@ -1783,6 +1843,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRemoteUser()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRemoteUser
@@ -1796,6 +1858,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestedSessionId()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRequestedSessionId
@@ -1809,6 +1873,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRequestURI
@@ -1822,6 +1888,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getRequestURL()      */
+annotation|@
+name|Override
 specifier|public
 name|StringBuffer
 name|getRequestURL
@@ -1835,6 +1903,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getScheme()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getScheme
@@ -1848,6 +1918,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getServerName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getServerName
@@ -1861,6 +1933,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getServerPort()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getServerPort
@@ -1874,6 +1948,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getServletPath()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getServletPath
@@ -1884,6 +1960,8 @@ name|servletPath
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getSession()      */
+annotation|@
+name|Override
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -1920,6 +1998,8 @@ return|;
 block|}
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getSession(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|SessionWrapper
 name|getSession
@@ -1961,6 +2041,8 @@ return|;
 block|}
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#getUserPrincipal()      */
+annotation|@
+name|Override
 specifier|public
 name|Principal
 name|getUserPrincipal
@@ -1974,6 +2056,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromCookie()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromCookie
@@ -1987,6 +2071,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdFromURL()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRequestedSessionIdFromURL
@@ -2000,6 +2086,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#isRequestedSessionIdValid()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRequestedSessionIdValid
@@ -2013,6 +2101,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#isSecure()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSecure
@@ -2026,6 +2116,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#isUserInRole(String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isUserInRole
@@ -2044,6 +2136,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#removeAttribute(String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttribute
@@ -2061,6 +2155,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#setAttribute(String, Object)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
@@ -2083,6 +2179,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * @see javax.servlet.http.HttpServletRequest#setCharacterEncoding(String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCharacterEncoding
@@ -2126,6 +2224,26 @@ name|servletPath
 operator|=
 name|arg0
 expr_stmt|;
+block|}
+comment|/**      *  Indicate if a form is processed.      *      * @return TRUE if a form is processed else FALSE.      */
+specifier|public
+name|boolean
+name|isFormDataParsed
+parameter_list|()
+block|{
+return|return
+name|isFormDataParsed
+return|;
+block|}
+comment|/**      *  Indicate if the request is a multi-part formdata request      *      * @return TRUE if request is multi-part/formdata request, else FALSE.      */
+specifier|public
+name|boolean
+name|isMultipartContent
+parameter_list|()
+block|{
+return|return
+name|isMultipartContent
+return|;
 block|}
 block|}
 end_class
