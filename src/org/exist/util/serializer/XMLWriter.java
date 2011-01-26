@@ -1715,17 +1715,8 @@ condition|)
 name|writeDeclaration
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|publicId
-operator|==
-literal|null
-operator|&&
-name|systemId
-operator|==
-literal|null
-condition|)
-return|return;
+comment|//		if (publicId == null&& systemId == null)
+comment|//			return;
 try|try
 block|{
 name|writer
