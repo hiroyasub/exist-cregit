@@ -1770,18 +1770,16 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|LOG
+name|value
+operator|=
+name|configuration
 operator|.
-name|warn
+name|getProperty
 argument_list|(
-literal|"skip unsupported configuration value type "
-operator|+
-name|field
-operator|.
-name|getType
-argument_list|()
+name|property
 argument_list|)
 expr_stmt|;
+comment|//LOG.warn("skip unsupported configuration value type "+field.getType());
 block|}
 if|if
 condition|(
