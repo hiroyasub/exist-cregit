@@ -196,6 +196,8 @@ name|responce
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"breakpoint_remove\" "
 operator|+
 literal|"transaction_id=\""

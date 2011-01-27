@@ -352,6 +352,8 @@ name|responce
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"breakpoint_update\" "
 operator|+
 literal|"transaction_id=\""

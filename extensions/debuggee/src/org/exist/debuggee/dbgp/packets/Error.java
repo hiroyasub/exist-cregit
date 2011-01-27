@@ -95,6 +95,8 @@ name|responce
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\""
 operator|+
 name|name

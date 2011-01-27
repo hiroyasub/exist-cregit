@@ -90,6 +90,8 @@ name|responce
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"step_out\" "
 operator|+
 literal|"status=\""

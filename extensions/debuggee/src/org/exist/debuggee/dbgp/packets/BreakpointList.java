@@ -157,7 +157,11 @@ name|responce
 operator|.
 name|append
 argument_list|(
-literal|"<response  command=\"breakpoint_list\" transaction_id=\""
+literal|"<response "
+operator|+
+name|namespaces
+operator|+
+literal|"command=\"breakpoint_list\" transaction_id=\""
 argument_list|)
 expr_stmt|;
 name|responce

@@ -690,6 +690,8 @@ name|head
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"source\" "
 operator|+
 literal|"success=\""

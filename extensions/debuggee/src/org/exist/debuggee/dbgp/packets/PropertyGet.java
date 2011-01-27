@@ -365,7 +365,11 @@ name|responce
 operator|.
 name|append
 argument_list|(
-literal|"<response command=\"property_get\" transaction_id=\""
+literal|"<response "
+operator|+
+name|namespaces
+operator|+
+literal|"command=\"property_get\" transaction_id=\""
 argument_list|)
 expr_stmt|;
 name|responce

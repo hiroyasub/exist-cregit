@@ -137,6 +137,8 @@ name|response
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"feature_get\" "
 operator|+
 literal|"feature=\""

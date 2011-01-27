@@ -92,6 +92,8 @@ name|responce
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"step_into\" "
 operator|+
 literal|"status=\""

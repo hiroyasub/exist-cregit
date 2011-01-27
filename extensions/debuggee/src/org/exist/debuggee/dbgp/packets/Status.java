@@ -115,6 +115,8 @@ name|response
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"status\" "
 operator|+
 literal|"status=\""

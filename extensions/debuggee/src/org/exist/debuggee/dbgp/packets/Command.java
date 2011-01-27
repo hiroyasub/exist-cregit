@@ -125,6 +125,16 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
+specifier|final
+specifier|static
+name|String
+name|namespaces
+init|=
+literal|"xmlns=\"urn:debugger_protocol_v1\" "
+operator|+
+literal|"xmlns:xdebug=\"http://xdebug.org/dbgp/xdebug\" "
+decl_stmt|;
+specifier|protected
 name|IoSession
 name|session
 decl_stmt|;
@@ -916,6 +926,7 @@ name|XACMLSource
 name|fileuri
 parameter_list|)
 block|{
+comment|//		System.out.println("getFileuri dbgp:"+fileuri.getType()+"://"+fileuri.getKey());
 if|if
 condition|(
 name|fileuri
@@ -955,6 +966,7 @@ operator|.
 name|getKey
 argument_list|()
 return|;
+comment|//		return "http://localhost:8080/eXist/admin/admin.xql";
 block|}
 block|}
 end_class

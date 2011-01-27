@@ -161,9 +161,7 @@ name|init_message
 init|=
 literal|"<init "
 operator|+
-literal|"xmlns=\"urn:debugger_protocol_v1\" "
-operator|+
-literal|"xmlns:xdebug=\"http://xdebug.org/dbgp/xdebug\" "
+name|namespaces
 operator|+
 literal|"appid=\"eXist050705\" "
 operator|+

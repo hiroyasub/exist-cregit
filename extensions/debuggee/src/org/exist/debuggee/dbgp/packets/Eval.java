@@ -215,6 +215,8 @@ name|head
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"eval\" "
 operator|+
 literal|"success=\""

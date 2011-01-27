@@ -303,6 +303,8 @@ name|response
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"context_get\" "
 operator|+
 literal|"context=\""

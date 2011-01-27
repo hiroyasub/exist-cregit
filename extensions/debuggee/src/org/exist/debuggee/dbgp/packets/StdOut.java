@@ -128,6 +128,8 @@ name|response
 init|=
 literal|"<response "
 operator|+
+name|namespaces
+operator|+
 literal|"command=\"stdout\" "
 operator|+
 literal|"success=\"0\" "
