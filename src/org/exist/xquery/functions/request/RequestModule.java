@@ -536,6 +536,18 @@ name|GetPathInfo
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|IsMultiPartContent
+operator|.
+name|signature
+argument_list|,
+name|IsMultiPartContent
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 static|static
@@ -594,7 +606,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDescription() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
 specifier|public
 name|String
 name|getDescription
@@ -604,7 +616,7 @@ return|return
 literal|"A module for dealing with HTTP requests."
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -614,7 +626,7 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
 specifier|public
 name|String
 name|getDefaultPrefix

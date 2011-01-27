@@ -362,6 +362,11 @@ parameter_list|)
 throws|throws
 name|UnsupportedEncodingException
 function_decl|;
+specifier|public
+name|boolean
+name|isMultipartContent
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

@@ -1754,7 +1754,11 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Collection does not exist"
+literal|"Collection "
+operator|+
+name|xmldbUri
+operator|+
+literal|" does not exist"
 argument_list|)
 expr_stmt|;
 name|transact
