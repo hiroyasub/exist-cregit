@@ -13,6 +13,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Observer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -99,6 +109,14 @@ specifier|public
 name|String
 name|getId
 parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|addObserver
+parameter_list|(
+name|Observer
+name|o
+parameter_list|)
 function_decl|;
 comment|/** 	 *  	 * @return 	 */
 specifier|public
