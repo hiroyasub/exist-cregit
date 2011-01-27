@@ -1272,6 +1272,7 @@ name|void
 name|reset
 parameter_list|()
 block|{
+comment|//System.out.println("reset");
 name|firstExpression
 operator|=
 literal|null
@@ -1334,6 +1335,7 @@ name|CommandContinuation
 name|command
 parameter_list|)
 block|{
+comment|//System.out.println("continuation command = "+command);
 if|if
 condition|(
 name|firstExpression
@@ -2106,6 +2108,15 @@ argument_list|(
 name|Debuggee
 operator|.
 name|SESSION
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|undeclareGlobalVariable
+argument_list|(
+name|Debuggee
+operator|.
+name|IDEKEY
 argument_list|)
 expr_stmt|;
 name|XQuery
