@@ -117,6 +117,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|response
+operator|.
+name|ResponseModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -658,6 +674,7 @@ operator|.
 name|hasParent
 argument_list|()
 condition|)
+block|{
 comment|// TODO: shouldn't this call setParentContext ? - sokolov
 name|this
 operator|.
@@ -671,6 +688,24 @@ name|from
 operator|)
 operator|.
 name|parentContext
+expr_stmt|;
+block|}
+comment|//workaround for shared context issue, remove after fix
+name|setModule
+argument_list|(
+name|ResponseModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|from
+operator|.
+name|getModule
+argument_list|(
+name|ResponseModule
+operator|.
+name|NAMESPACE_URI
+argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
