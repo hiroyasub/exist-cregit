@@ -2575,6 +2575,8 @@ literal|null
 operator|)
 argument_list|)
 expr_stmt|;
+comment|//TODO: XDEBUG_SESSION_STOP_NO_EXEC
+comment|//TODO: XDEBUG_SESSION_STOP
 comment|//if get "start new debug session" request
 name|String
 name|xdebug
@@ -2711,6 +2713,42 @@ block|}
 block|}
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|context
+operator|.
+name|requireDebugMode
+argument_list|()
+condition|)
+block|{
+name|String
+name|idekey
+init|=
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"KEY"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|idekey
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|Debuggee
+operator|.
+name|IDEKEY
+argument_list|,
+name|idekey
+argument_list|)
+expr_stmt|;
 block|}
 name|Sequence
 name|resultSequence
