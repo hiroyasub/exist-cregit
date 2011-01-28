@@ -263,7 +263,7 @@ return|;
 block|}
 comment|// Construct path as eXist-db XmldbURI
 name|XmldbURI
-name|uri
+name|xmldbUri
 init|=
 literal|null
 decl_stmt|;
@@ -335,7 +335,7 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 comment|// Create uri inside database
-name|uri
+name|xmldbUri
 operator|=
 name|XmldbURI
 operator|.
@@ -348,7 +348,7 @@ comment|// MacOsX finder specific files
 name|String
 name|documentSeqment
 init|=
-name|uri
+name|xmldbUri
 operator|.
 name|lastSegment
 argument_list|()
@@ -379,7 +379,7 @@ name|debug
 argument_list|(
 literal|"skipping MacOsX file '"
 operator|+
-name|uri
+name|xmldbUri
 operator|.
 name|lastSegment
 argument_list|()
@@ -420,7 +420,7 @@ name|getResourceType
 argument_list|(
 name|brokerPool
 argument_list|,
-name|uri
+name|xmldbUri
 argument_list|)
 condition|)
 block|{
@@ -433,7 +433,7 @@ name|MiltonDocument
 argument_list|(
 name|host
 argument_list|,
-name|uri
+name|xmldbUri
 argument_list|,
 name|brokerPool
 argument_list|)
@@ -447,7 +447,7 @@ name|MiltonCollection
 argument_list|(
 name|host
 argument_list|,
-name|uri
+name|xmldbUri
 argument_list|,
 name|brokerPool
 argument_list|)
@@ -488,7 +488,7 @@ name|debug
 argument_list|(
 literal|"Resource does not exist: '"
 operator|+
-name|uri
+name|xmldbUri
 operator|+
 literal|"'"
 argument_list|)
@@ -503,7 +503,7 @@ name|error
 argument_list|(
 literal|"Unkown resource type for "
 operator|+
-name|uri
+name|xmldbUri
 argument_list|)
 expr_stmt|;
 return|return
@@ -520,7 +520,7 @@ name|BrokerPool
 name|brokerPool
 parameter_list|,
 name|XmldbURI
-name|uri
+name|xmldbUri
 parameter_list|)
 block|{
 name|DBBroker
@@ -560,7 +560,7 @@ name|debug
 argument_list|(
 literal|"Path: "
 operator|+
-name|uri
+name|xmldbUri
 operator|.
 name|toString
 argument_list|()
@@ -591,7 +591,7 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|uri
+name|xmldbUri
 argument_list|,
 name|Lock
 operator|.
@@ -634,7 +634,7 @@ name|broker
 operator|.
 name|getXMLResource
 argument_list|(
-name|uri
+name|xmldbUri
 argument_list|,
 name|Lock
 operator|.
@@ -696,7 +696,7 @@ name|error
 argument_list|(
 literal|"Error determining nature of resource "
 operator|+
-name|uri
+name|xmldbUri
 operator|.
 name|toString
 argument_list|()
