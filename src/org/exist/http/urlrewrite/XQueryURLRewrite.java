@@ -1504,6 +1504,13 @@ name|get
 argument_list|(
 name|modifiedRequest
 operator|.
+name|getHeader
+argument_list|(
+literal|"Host"
+argument_list|)
+operator|+
+name|modifiedRequest
+operator|.
 name|getRequestURI
 argument_list|()
 argument_list|)
@@ -2184,6 +2191,13 @@ name|urlCache
 operator|.
 name|put
 argument_list|(
+name|modifiedRequest
+operator|.
+name|getHeader
+argument_list|(
+literal|"Host"
+argument_list|)
+operator|+
 name|request
 operator|.
 name|getRequestURI
