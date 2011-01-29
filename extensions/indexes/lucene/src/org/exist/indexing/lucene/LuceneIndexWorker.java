@@ -2926,6 +2926,19 @@ argument_list|,
 name|docs
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using analyzer "
+operator|+
+name|analyzer
+operator|+
+literal|" for "
+operator|+
+name|queryString
+argument_list|)
+expr_stmt|;
 name|QueryParser
 name|parser
 init|=
@@ -5413,9 +5426,6 @@ decl_stmt|;
 name|QName
 name|qname
 decl_stmt|;
-name|Analyzer
-name|analyzer
-decl_stmt|;
 name|LuceneIndexConfig
 name|idxConf
 decl_stmt|;
@@ -5449,17 +5459,6 @@ operator|.
 name|qname
 operator|=
 name|qname
-expr_stmt|;
-name|this
-operator|.
-name|analyzer
-operator|=
-name|config
-operator|.
-name|getAnalyzer
-argument_list|(
-name|path
-argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -5772,7 +5771,10 @@ if|if
 condition|(
 name|pending
 operator|.
-name|analyzer
+name|idxConf
+operator|.
+name|getAnalyzer
+argument_list|()
 operator|==
 literal|null
 condition|)
@@ -5784,6 +5786,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|writer
 operator|.
 name|addDocument
@@ -5792,9 +5795,13 @@ name|doc
 argument_list|,
 name|pending
 operator|.
-name|analyzer
+name|idxConf
+operator|.
+name|getAnalyzer
+argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
