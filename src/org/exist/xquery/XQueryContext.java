@@ -6188,6 +6188,11 @@ operator|.
 name|newInstance
 argument_list|(
 name|moduleParameters
+operator|.
+name|get
+argument_list|(
+name|namespaceURI
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
