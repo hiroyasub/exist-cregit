@@ -127,6 +127,9 @@ specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Group
 name|group
 parameter_list|)

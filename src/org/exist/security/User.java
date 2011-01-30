@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -115,6 +105,8 @@ parameter_list|(
 name|String
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/** 	 *  Get all groups this user belongs to 	 * 	 *@return    The groups value 	 */
 specifier|public

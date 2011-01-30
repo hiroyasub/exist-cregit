@@ -41,6 +41,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|regex
 operator|.
 name|Matcher
@@ -362,7 +374,7 @@ decl_stmt|;
 specifier|protected
 specifier|final
 name|AccountImpl
-name|ACCOUNT_UNKNOW
+name|ACCOUNT_UNKNOWN
 decl_stmt|;
 specifier|protected
 specifier|final
@@ -403,7 +415,7 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
-name|ACCOUNT_UNKNOW
+name|ACCOUNT_UNKNOWN
 operator|=
 operator|new
 name|AccountImpl
@@ -957,24 +969,6 @@ name|Override
 specifier|public
 specifier|synchronized
 name|boolean
-name|updateGroup
-parameter_list|(
-name|Group
-name|group
-parameter_list|)
-throws|throws
-name|PermissionDeniedException
-block|{
-comment|//nothing to do: the name or id can't be changed
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-specifier|synchronized
-name|boolean
 name|deleteGroup
 parameter_list|(
 name|Group
@@ -1273,6 +1267,30 @@ operator|+
 name|accountName
 operator|+
 literal|"' not found"
+argument_list|)
+throw|;
+if|if
+condition|(
+literal|"SYSTEM"
+operator|.
+name|equals
+argument_list|(
+name|accountName
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+argument_list|,
+literal|"Acount '"
+operator|+
+name|accountName
+operator|+
+literal|"' can not be used"
 argument_list|)
 throw|;
 name|Subject

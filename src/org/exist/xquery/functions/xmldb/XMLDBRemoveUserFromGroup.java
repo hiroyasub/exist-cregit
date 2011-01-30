@@ -71,31 +71,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Group
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Subject
 import|;
 end_import
 
@@ -256,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -399,10 +375,10 @@ if|if
 condition|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
-name|getUsername
+name|getName
 argument_list|()
 operator|.
 name|equals
@@ -419,11 +395,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Permission denied, calling user '"
+literal|"Permission denied, calling account '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -436,7 +412,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Invalid user"
+literal|"Invalid account"
 argument_list|,
 name|xPathException
 argument_list|)
@@ -467,115 +443,6 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|groupName
-operator|.
-name|equals
-argument_list|(
-literal|"dba"
-argument_list|)
-operator|&&
-operator|!
-name|context
-operator|.
-name|getUser
-argument_list|()
-operator|.
-name|hasDbaRole
-argument_list|()
-condition|)
-block|{
-name|XPathException
-name|xPathException
-init|=
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Permission denied, calling user '"
-operator|+
-name|context
-operator|.
-name|getUser
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' must be a DBA to remove users from the DBA group."
-argument_list|)
-decl_stmt|;
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Invalid user"
-argument_list|,
-name|xPathException
-argument_list|)
-expr_stmt|;
-throw|throw
-name|xPathException
-throw|;
-block|}
-if|if
-condition|(
-operator|!
-name|context
-operator|.
-name|getUser
-argument_list|()
-operator|.
-name|hasGroup
-argument_list|(
-name|groupName
-argument_list|)
-condition|)
-block|{
-name|XPathException
-name|xPathException
-init|=
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Permission denied, calling user '"
-operator|+
-name|context
-operator|.
-name|getUser
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' must be a memeber of '"
-operator|+
-name|groupName
-operator|+
-literal|"' to remove users from the '"
-operator|+
-name|groupName
-operator|+
-literal|"' group."
-argument_list|)
-decl_stmt|;
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Invalid user"
-argument_list|,
-name|xPathException
-argument_list|)
-expr_stmt|;
-throw|throw
-name|xPathException
-throw|;
-block|}
 name|logger
 operator|.
 name|info
@@ -591,39 +458,8 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|Subject
-name|currentSubject
-init|=
-name|context
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
-comment|//elevate privs
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|setSubject
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getSystemSubject
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|SecurityManager
 name|sm
 init|=
@@ -638,24 +474,6 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|Group
-name|group
-init|=
-name|sm
-operator|.
-name|getGroup
-argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|groupName
-argument_list|)
-decl_stmt|;
 name|Account
 name|account
 init|=
@@ -663,13 +481,7 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getUser
-argument_list|()
+literal|null
 argument_list|,
 name|userName
 argument_list|)
@@ -685,13 +497,7 @@ name|sm
 operator|.
 name|updateAccount
 argument_list|(
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getUser
-argument_list|()
+literal|null
 argument_list|,
 name|account
 argument_list|)
@@ -708,23 +514,25 @@ name|PermissionDeniedException
 name|pde
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
-literal|"Failed to remove user '"
-operator|+
-name|userName
-operator|+
-literal|"' from group '"
-operator|+
-name|groupName
-operator|+
-literal|"'"
+name|this
 argument_list|,
-name|pde
+literal|"Permission denied, calling account '"
+operator|+
+name|context
+operator|.
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' do not authorize to call this function."
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -752,16 +560,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 name|BooleanValue

@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SecurityManager is responsible for managing users and groups.  *   * There's only one SecurityManager for each database instance, which  * may be obtained by {@link BrokerPool#getSecurityManager()}.  *   * Users and groups are stored in the system collection, in document  * users.xml. While it is possible to edit this file by hand, it  * may lead to unexpected results, since SecurityManager reads   * users.xml only during database startup and shutdown.  */
+comment|/**  * SecurityManager is responsible for managing users and groups.  *   * There's only one SecurityManager for each database instance, which  * may be obtained by {@link BrokerPool#getSecurityManager()}.  *   */
 end_comment
 
 begin_interface
@@ -389,6 +389,27 @@ name|invokingUser
 parameter_list|,
 name|A
 name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+throws|,
+name|ConfigurationException
+function_decl|;
+parameter_list|<
+name|G
+extends|extends
+name|Group
+parameter_list|>
+name|boolean
+name|updateGroup
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|G
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException

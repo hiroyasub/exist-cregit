@@ -19,26 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -80,18 +60,6 @@ operator|.
 name|security
 operator|.
 name|Account
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|AuthenticationException
 import|;
 end_import
 
@@ -330,7 +298,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -437,7 +405,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Create a new user group, with an initial member. $group is the group name, $group-manager-username is the groups manager."
+literal|"Create a new user group, with an initial member. $group is the group name, $group-manager-username are the groups managers in addition to the current user."
 argument_list|,
 operator|new
 name|SequenceType
@@ -490,9 +458,9 @@ argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
 argument_list|)
-block|,     }
+block|, }
 decl_stmt|;
-comment|/**      * @param context      */
+comment|/** 	 * @param context 	 */
 specifier|public
 name|XMLDBCreateGroup
 parameter_list|(
@@ -511,7 +479,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,      *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, 	 * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -543,10 +511,10 @@ if|if
 condition|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
-name|getUsername
+name|getName
 argument_list|()
 operator|.
 name|equals
@@ -570,17 +538,17 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Permission denied, calling user '"
+literal|"Permission denied, calling account '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' must be an authenticated user to call this function."
+literal|"' must be an authenticated account to call this function."
 argument_list|)
 decl_stmt|;
 name|logger
@@ -627,7 +595,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 try|try
@@ -643,19 +611,14 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-name|List
-argument_list|<
-name|Account
-argument_list|>
-name|groupManagerAccounts
-init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|Account
-argument_list|>
-argument_list|()
-decl_stmt|;
+comment|// add the current user as a group manager
+name|group
+operator|.
+name|addManager
+argument_list|(
+name|currentUser
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|args
@@ -665,7 +628,8 @@ operator|==
 literal|2
 condition|)
 block|{
-comment|//find the group managers, this makes sure they all exist first!
+comment|// add the additional group managers, this also makes sure they
+comment|// all exist first!
 for|for
 control|(
 name|SequenceIterator
@@ -704,10 +668,7 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
+literal|null
 argument_list|,
 name|groupManager
 argument_list|)
@@ -728,56 +689,23 @@ operator|+
 name|groupManager
 argument_list|)
 expr_stmt|;
+comment|// throw exception is better -shabanovd
 return|return
 name|BooleanValue
 operator|.
 name|FALSE
 return|;
 block|}
-name|groupManagerAccounts
+name|group
 operator|.
-name|add
+name|addManager
 argument_list|(
 name|groupManagerAccount
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
-comment|//no group manager specified, so use the current user
-name|groupManagerAccounts
-operator|.
-name|add
-argument_list|(
-name|currentUser
-argument_list|)
-expr_stmt|;
-block|}
-comment|//TODO remove this once the security implementation supports group managers
-comment|//elevate to system user, so we can add groups to the user
-name|Subject
-name|systemUser
-init|=
-name|sm
-operator|.
-name|authenticate
-argument_list|(
-name|SecurityManager
-operator|.
-name|SYSTEM
-argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|systemUser
-argument_list|)
-expr_stmt|;
-comment|//create the group
+comment|// create the group
 name|group
 operator|=
 name|sm
@@ -787,35 +715,6 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
-comment|//add the managers to the group
-for|for
-control|(
-name|Account
-name|groupManagerAccount
-range|:
-name|groupManagerAccounts
-control|)
-block|{
-name|groupManagerAccount
-operator|.
-name|addGroup
-argument_list|(
-name|group
-argument_list|)
-expr_stmt|;
-name|sm
-operator|.
-name|updateAccount
-argument_list|(
-name|broker
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|groupManagerAccount
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|BooleanValue
 operator|.
@@ -828,17 +727,25 @@ name|PermissionDeniedException
 name|pde
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
-literal|"Failed to create group: "
-operator|+
-name|group
+name|this
 argument_list|,
-name|pde
+literal|"Permission denied, calling account '"
+operator|+
+name|context
+operator|.
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' do not authorize to call this function."
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -855,35 +762,6 @@ operator|+
 name|group
 argument_list|,
 name|exe
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AuthenticationException
-name|ae
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Failed to create group: "
-operator|+
-name|group
-argument_list|,
-name|ae
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-comment|//restore the original user
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|currentUser
 argument_list|)
 expr_stmt|;
 block|}

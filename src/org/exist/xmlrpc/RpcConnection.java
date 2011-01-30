@@ -19581,23 +19581,6 @@ name|rgroup
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|manager
-operator|.
-name|hasAdminPrivileges
-argument_list|(
-name|user
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"User is not allowed to remove groups"
-argument_list|)
-throw|;
 name|u
 operator|.
 name|remGroup

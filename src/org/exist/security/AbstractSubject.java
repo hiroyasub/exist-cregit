@@ -168,6 +168,8 @@ parameter_list|(
 name|String
 name|group
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 name|account
 operator|.

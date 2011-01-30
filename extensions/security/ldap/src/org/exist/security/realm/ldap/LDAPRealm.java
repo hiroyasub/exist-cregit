@@ -1889,7 +1889,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// TODO we dont support writting to LDAP
 return|return
 literal|false
 return|;
@@ -1900,6 +1900,9 @@ specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
 name|Group
 name|group
 parameter_list|)
@@ -1908,7 +1911,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// TODO we dont support writting to LDAP
 return|return
 literal|false
 return|;

@@ -751,6 +751,8 @@ name|realm
 operator|.
 name|updateGroup
 argument_list|(
+name|invokingUser
+argument_list|,
 name|group
 argument_list|)
 expr_stmt|;

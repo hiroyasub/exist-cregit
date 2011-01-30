@@ -133,6 +133,8 @@ argument_list|,
 name|id
 argument_list|,
 name|name
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
