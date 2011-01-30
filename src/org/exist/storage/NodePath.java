@@ -1298,8 +1298,7 @@ return|return
 name|h
 return|;
 block|}
-annotation|@
-name|Override
+comment|//s@Override
 specifier|public
 name|int
 name|compareTo

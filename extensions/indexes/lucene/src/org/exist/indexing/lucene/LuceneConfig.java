@@ -1315,8 +1315,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1330,8 +1329,7 @@ literal|null
 operator|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|LuceneIndexConfig
 name|next
@@ -1384,8 +1382,7 @@ return|return
 name|currentConfig
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|remove
