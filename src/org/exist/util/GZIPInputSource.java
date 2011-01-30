@@ -127,7 +127,7 @@ operator|-
 literal|1L
 expr_stmt|;
 block|}
-comment|/** 	 * Constructor which calls {@link #getFile()} 	 * @param gzipFile 	 * The file passed to {@link #getFile()} 	 */
+comment|/** 	 * Constructor  	 */
 specifier|public
 name|GZIPInputSource
 parameter_list|(

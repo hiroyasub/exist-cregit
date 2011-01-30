@@ -539,7 +539,7 @@ comment|// Do Nothing(R)
 block|}
 block|}
 block|}
-comment|/** 	 * The prefix string used when the temp file is going to be created 	 * @return 	 */
+comment|/** 	 * The prefix string used when the temp file is going to be created. 	 */
 specifier|public
 name|String
 name|getTempPrefix
@@ -549,7 +549,7 @@ return|return
 name|temp_prefix
 return|;
 block|}
-comment|/** 	 * The postfix string used when the temp file is going to be created 	 * @return 	 */
+comment|/** 	 * The postfix string used when the temp file is going to be createds 	 */
 specifier|public
 name|String
 name|getTempPostfix
@@ -1239,7 +1239,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * An easy way to obtain an InputStream 	 * @return 	 * @throws IOException 	 */
+comment|/** 	 * An easy way to obtain an InputStream          * s 	 * @throws IOException 	 */
 specifier|public
 name|InputStream
 name|getByteStream
@@ -1340,7 +1340,7 @@ else|:
 name|tempBuffer
 return|;
 block|}
-comment|/** 	 * Method to force materialization as a (temp)file the VirtualTempFile instance 	 * @return 	 * @throws IOException 	 */
+comment|/** 	 * Method to force materialization as a (temp)file the VirtualTempFile instance 	 *  	 * @throws IOException 	 */
 specifier|public
 name|File
 name|toFile
