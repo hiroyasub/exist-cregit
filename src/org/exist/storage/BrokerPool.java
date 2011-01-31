@@ -4110,7 +4110,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|//Seems dangerous and redundant as you myst acquire a broker yourself first, just use broker.getUser()
+comment|/*      * Seems dangerous and redundant as you must acquire a broker yourself first, just use broker.getUser()      *       * yes, you have to authenticate before any action      * try {      * 	broker = db.authenticate(...);      *       * 	...actions...      *       *  broker = db.getBroker();      * } finally {      *  db.release();      * }      */
 specifier|public
 name|Subject
 name|getSubject
