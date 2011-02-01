@@ -19337,16 +19337,23 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|Exception
-name|ee
-init|=
-name|e
-decl_stmt|;
 comment|//SENR0001 : OK
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|query
 operator|=
-literal|"declare option output-xml=text; \n"
+literal|"declare option exist:serialize 'method=text'; \n"
 operator|+
 literal|"//@* \n"
 expr_stmt|;
