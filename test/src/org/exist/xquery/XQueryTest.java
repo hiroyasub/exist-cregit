@@ -362,6 +362,14 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|attributesSERIALIZATION
+init|=
+literal|"attributes_serialization.xml"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|MODULE1_NAME
 init|=
 literal|"module1.xqm"
@@ -704,6 +712,22 @@ operator|+
 literal|"</game>"
 operator|+
 literal|"</series>"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|attributes
+init|=
+literal|"<blob>"
+operator|+
+literal|"<test att='a' />"
+operator|+
+literal|"<test att='b' />"
+operator|+
+literal|"<test att='c' />"
+operator|+
+literal|"</blob>"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -18504,7 +18528,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -18624,7 +18648,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -18868,7 +18892,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -18996,7 +19020,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -19126,7 +19150,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -19252,7 +19276,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-comment|// should not yield into exceptio
+comment|// should not yield into exception
 name|ex
 operator|.
 name|printStackTrace
@@ -19263,6 +19287,104 @@ argument_list|(
 name|ex
 operator|.
 name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+name|void
+name|testAttributesSerialization
+parameter_list|()
+block|{
+name|ResourceSet
+name|result
+decl_stmt|;
+name|String
+name|query
+decl_stmt|;
+try|try
+block|{
+name|XPathQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+name|attributesSERIALIZATION
+argument_list|,
+name|attributes
+argument_list|)
+decl_stmt|;
+name|query
+operator|=
+literal|"//@* \n"
+expr_stmt|;
+try|try
+block|{
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|Exception
+name|ee
+init|=
+name|e
+decl_stmt|;
+comment|//SENR0001 : OK
+block|}
+name|query
+operator|=
+literal|"declare option output-xml=text; \n"
+operator|+
+literal|"//@* \n"
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"XQuery: "
+operator|+
+name|query
+argument_list|,
+literal|3
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+name|fail
+argument_list|(
+name|e
+operator|.
+name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
