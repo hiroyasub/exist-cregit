@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -66,6 +76,18 @@ operator|.
 name|packets
 operator|.
 name|Command
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|debugger
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -150,20 +172,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|BooleanValue
 import|;
 end_import
 
@@ -315,7 +323,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|NODE
 argument_list|,
 name|Cardinality
 operator|.
@@ -431,9 +439,13 @@ argument_list|()
 expr_stmt|;
 comment|//XXX: make sure it executed
 return|return
-operator|new
-name|StringValue
+name|Utils
+operator|.
+name|nodeFromString
 argument_list|(
+name|getContext
+argument_list|()
+argument_list|,
 operator|new
 name|String
 argument_list|(
@@ -448,6 +460,24 @@ block|}
 catch|catch
 parameter_list|(
 name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|""
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
 name|e
 parameter_list|)
 block|{
