@@ -27,6 +27,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|debuggee
+operator|.
+name|Debuggee
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|indexing
 operator|.
 name|IndexManager
@@ -189,6 +201,12 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+function_decl|;
+comment|/** 	 *  	 * @return 	 */
+specifier|public
+name|Debuggee
+name|getDebuggee
+parameter_list|()
 function_decl|;
 block|}
 end_interface

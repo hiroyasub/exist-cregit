@@ -322,6 +322,17 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"ResponseImpl parsedResponse = "
+operator|+
+name|parsedResponse
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

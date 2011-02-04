@@ -1272,7 +1272,15 @@ name|void
 name|reset
 parameter_list|()
 block|{
-comment|//System.out.println("reset");
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"reset"
+argument_list|)
+expr_stmt|;
 name|firstExpression
 operator|=
 literal|null
@@ -1504,32 +1512,11 @@ name|stackGet
 parameter_list|()
 block|{
 comment|//wait, script didn't started
-while|while
-condition|(
-name|stack
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-condition|)
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-block|}
+comment|//		while (stack.size() == 0&& command == null)
+comment|//			try {
+comment|//				Thread.sleep(100);
+comment|//			} catch (InterruptedException e) {
+comment|//			}
 return|return
 name|stack
 return|;

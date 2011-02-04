@@ -232,6 +232,17 @@ name|message
 parameter_list|)
 block|{
 comment|//		session.write(message);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"messageReceived message = "
+operator|+
+name|message
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void

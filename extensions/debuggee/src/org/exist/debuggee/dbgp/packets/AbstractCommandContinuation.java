@@ -219,6 +219,14 @@ name|void
 name|disconnect
 parameter_list|()
 block|{
+if|if
+condition|(
+operator|!
+name|session
+operator|.
+name|isClosing
+argument_list|()
+condition|)
 name|session
 operator|.
 name|close
