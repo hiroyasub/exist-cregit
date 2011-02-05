@@ -1217,6 +1217,9 @@ name|permissions
 operator|.
 name|getOwner
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|c
@@ -1392,6 +1395,9 @@ argument_list|(
 name|permissions
 operator|.
 name|getOwnerGroup
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
