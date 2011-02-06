@@ -969,7 +969,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"The source-document (node tree)"
 argument_list|)
@@ -1086,7 +1086,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"The source-document (node tree)"
 argument_list|)
@@ -1195,7 +1195,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"The source-document (node tree)"
 argument_list|)
@@ -1286,7 +1286,7 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"The source-document (node tree)"
 argument_list|)
@@ -1473,18 +1473,13 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-name|Item
+name|Sequence
 name|inputNode
 init|=
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
 decl_stmt|;
 name|Item
 name|stylesheetItem
@@ -1983,10 +1978,16 @@ name|serializer
 operator|.
 name|toSAX
 argument_list|(
-operator|(
-name|NodeValue
-operator|)
 name|inputNode
+argument_list|,
+literal|1
+argument_list|,
+name|inputNode
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2425,10 +2426,16 @@ name|serializer
 operator|.
 name|toSAX
 argument_list|(
-operator|(
-name|NodeValue
-operator|)
 name|inputNode
+argument_list|,
+literal|1
+argument_list|,
+name|inputNode
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
