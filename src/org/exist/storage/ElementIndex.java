@@ -176,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** base class for {@link org.exist.storage.NativeElementIndex} */
+comment|/** base class for {@link org.exist.storage.structural.NativeStructuralIndex} */
 end_comment
 
 begin_class

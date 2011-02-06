@@ -348,7 +348,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * Find all nodes in the index matching a given QName. If a match is selected and returned depends on      * the specified {@link org.exist.xquery.NodeSelector}.      *      * This implementation does a scan through the index for a range of document ids in the input set.      * It will be fast for bulk-loading a large node set, but slow if you need to operate on a small      * context set.      *      * @param type      * @param docs      * @param qname      * @param selector      * @return      */
+comment|/**      * Find all nodes in the index matching a given QName. If a match is selected and returned depends on      * the specified {@link org.exist.xquery.NodeSelector}.      *      * This implementation does a scan through the index for a range of document ids in the input set.      * It will be fast for bulk-loading a large node set, but slow if you need to operate on a small      * context set.      *      * @param type      * @param docs      * @param qname      * @param selector      * @return nodeset      */
 specifier|public
 name|NodeSet
 name|findElementsByTagName

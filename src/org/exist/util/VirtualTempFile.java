@@ -543,7 +543,7 @@ comment|// Do Nothing(R)
 block|}
 block|}
 block|}
-comment|/** 	 * The prefix string used when the temp file is going to be created 	 * @return 	 */
+comment|/** 	 * The prefix string used when the temp file is going to be created 	 * @return prefix string 	 */
 specifier|public
 name|String
 name|getTempPrefix
@@ -553,7 +553,7 @@ return|return
 name|temp_prefix
 return|;
 block|}
-comment|/** 	 * The postfix string used when the temp file is going to be created 	 * @return 	 */
+comment|/** 	 * The postfix string used when the temp file is going to be created 	 * @return  postfix string 	 */
 specifier|public
 name|String
 name|getTempPostfix

@@ -983,7 +983,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve JMX output for the given categories and return a string of XML. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param categories 	 * @return 	 * @throws TransformerException 	 */
+comment|/** 	 * Retrieve JMX output for the given categories and return a string of XML. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param categories 	 * @return report 	 * @throws TransformerException 	 */
 specifier|public
 name|String
 name|generateReport
@@ -1037,7 +1037,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Ping the database to see if it is still responsive. 	 * This will first try to get a database broker object 	 * and if it succeeds, run a simple query. If the server does 	 * not respond within the given timeout, the method will return 	 * an error code -99 ({@link JMXtoXML#PING_TIMEOUT}). If there's an 	 * error on the server, the return value will be less than 0. Otherwise 	 * the return value is the response time in milliseconds. 	 *  	 * @param instance the name of the database instance (default instance is "exist") 	 * @param timeout a timeout in milliseconds 	 * @return 	 */
+comment|/** 	 * Ping the database to see if it is still responsive. 	 * This will first try to get a database broker object 	 * and if it succeeds, run a simple query. If the server does 	 * not respond within the given timeout, the method will return 	 * an error code -99 ({@link JMXtoXML#PING_TIMEOUT}). If there's an 	 * error on the server, the return value will be less than 0. Otherwise 	 * the return value is the response time in milliseconds. 	 *  	 * @param instance the name of the database instance (default instance is "exist") 	 * @param timeout a timeout in milliseconds 	 * @return Response time in msec, less than 0 in case of an error on server      * or PING_TIMEOUT when server does not respond in time 	 */
 specifier|public
 name|long
 name|ping
@@ -1246,7 +1246,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Retrieve JMX output for the given categories and return it as an XML DOM. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param errcode an optional error description 	 * @param categories 	 * @return 	 * @throws TransformerException 	 */
+comment|/** 	 * Retrieve JMX output for the given categories and return it as an XML DOM. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param errcode an optional error description 	 * @param categories 	 * @return xml report 	 * @throws TransformerException 	 */
 specifier|public
 name|Element
 name|generateXMLReport

@@ -128,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows queries against SQL Databases, returning an XML representation of the result  * set.</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   ljo  * @version  1.2  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  * @serial   2010-03-18  */
+comment|/**  * eXist SQL Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows queries against SQL Databases, returning an XML representation of the result  * set.</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   ljo  * @version  1.2  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   * @serial   2010-03-18  */
 end_comment
 
 begin_class

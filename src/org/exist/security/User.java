@@ -73,7 +73,7 @@ name|MD5_ENCODING
 init|=
 literal|2
 decl_stmt|;
-comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
+comment|/** 	 * Add the user to a group 	 * 	 * @param  name  The feature to be added to the Group attribute 	 */
 specifier|public
 name|Group
 name|addGroup

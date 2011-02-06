@@ -938,7 +938,7 @@ name|boolean
 name|inProtectedMode
 parameter_list|()
 function_decl|;
-comment|/** 	 * Should loaded documents be locked? 	 * 	 *<p>see #setLockDocumentsOnLoad(boolean)</p> 	 * 	 * @return   	 */
+comment|/** 	 * Should loaded documents be locked? 	 * 	 *<p>see #setLockDocumentsOnLoad(boolean)</p>   	 */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
@@ -987,7 +987,7 @@ name|boolean
 name|keepGlobals
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if whitespace between constructed element nodes should be stripped by default. 	 * 	 * @return   	 */
+comment|/** 	 * Returns true if whitespace between constructed element nodes should be stripped by default.  	 */
 specifier|public
 name|boolean
 name|stripWhitespace
@@ -1001,7 +1001,7 @@ name|boolean
 name|strip
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default. 	 * 	 * @return   	 */
+comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default.  	 */
 specifier|public
 name|boolean
 name|preserveNamespaces
@@ -1017,7 +1017,7 @@ name|boolean
 name|preserve
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default. 	 * 	 * @return   	 */
+comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default.  	 */
 specifier|public
 name|boolean
 name|inheritNamespaces
@@ -1033,7 +1033,7 @@ name|boolean
 name|inherit
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if order empty is set to gretest, otherwise false for order empty is least. 	 * 	 * @return   	 */
+comment|/** 	 * Returns true if order empty is set to gretest, otherwise false for order empty is least.  	 */
 specifier|public
 name|boolean
 name|orderEmptyGreatest
@@ -1103,7 +1103,7 @@ name|Module
 name|module
 parameter_list|)
 function_decl|;
-comment|/** 	 * For compiled expressions: check if the source of any module imported by the current query has changed since compilation. 	 * 	 * @return   	 */
+comment|/** 	 * For compiled expressions: check if the source of any module imported by the current query has changed since compilation.  	 */
 specifier|public
 name|boolean
 name|checkModulesValid
@@ -1119,7 +1119,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Load a built-in module from the given class name and assign it to the namespace URI. The specified class should be a subclass of {@link 	 * Module}. The method will try to instantiate the class. If the class is not found or an exception is thrown, the method will silently fail. The 	 * namespace URI has to be equal to the namespace URI declared by the module class. Otherwise, the module is not loaded. 	 * 	 * @param   namespaceURI 	 * @param   moduleClass 	 * 	 * @return   	 */
+comment|/** 	 * Load a built-in module from the given class name and assign it to the namespace URI. The specified class should be a subclass of {@link 	 * Module}. The method will try to instantiate the class. If the class is not found or an exception is thrown, the method will silently fail. The 	 * namespace URI has to be equal to the namespace URI declared by the module class. Otherwise, the module is not loaded. 	 * 	 * @param   namespaceURI 	 * @param   moduleClass  	 */
 specifier|public
 name|Module
 name|loadBuiltInModule
@@ -1181,7 +1181,7 @@ argument_list|>
 name|localFunctions
 parameter_list|()
 function_decl|;
-comment|/** 	 * Declare a local variable. This is called by variable binding expressions like "let" and "for". 	 * 	 * @param   var 	 * 	 * @return   	 * 	 * @throws  XPathException 	 */
+comment|/** 	 * Declare a local variable. This is called by variable binding expressions like "let" and "for". 	 * 	 * @param   var 	 * 	 * @throws  XPathException 	 */
 specifier|public
 name|LocalVariable
 name|declareVariableBinding
@@ -1192,7 +1192,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Declare a global variable as by "declare variable". 	 * 	 * @param   var 	 * 	 * @return   	 * 	 * @throws  XPathException 	 */
+comment|/** 	 * Declare a global variable as by "declare variable". 	 * 	 * @param   var 	 * 	 * @return  variable 	 * 	 * @throws  XPathException 	 */
 specifier|public
 name|Variable
 name|declareGlobalVariable
@@ -1307,7 +1307,7 @@ name|boolean
 name|backwardsCompatible
 parameter_list|)
 function_decl|;
-comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 * 	 *<p>In XPath 1.0 compatible mode, additional conversions will be applied to values if a numeric value is expected.</p> 	 * 	 * @return   	 */
+comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 * 	 *<p>In XPath 1.0 compatible mode, additional conversions will be applied to values if a numeric value is expected.</p>   	 */
 specifier|public
 name|boolean
 name|isBackwardsCompatible
@@ -1617,7 +1617,7 @@ name|void
 name|functionEnd
 parameter_list|()
 function_decl|;
-comment|/** 	 * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs 	 * to be optimized. 	 * 	 * @param   signature 	 * 	 * @return   	 */
+comment|/** 	 * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs 	 * to be optimized. 	 * 	 * @param   signature  	 */
 specifier|public
 name|boolean
 name|tailRecursiveCall
@@ -1753,7 +1753,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Store the supplied data to a temporary document fragment. 	 * 	 * @param   doc 	 * 	 * @return   	 * 	 * @throws  XPathException 	 */
+comment|/** 	 * Store the supplied data to a temporary document fragment. 	 * 	 * @param   doc 	 * 	 * @throws  XPathException 	 */
 specifier|public
 name|DocumentImpl
 name|storeTemporaryDoc

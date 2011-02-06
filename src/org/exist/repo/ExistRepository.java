@@ -172,7 +172,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO: ...  *  * @author Florent Georges  * @date   2010-09-22  */
+comment|/**  * TODO: ...  *  * @author Florent Georges  * @since   2010-09-22  */
 end_comment
 
 begin_class

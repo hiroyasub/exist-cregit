@@ -5849,7 +5849,7 @@ literal|0
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Optimize the Lucene index by merging all segments into a single one. This      * may take a while and write operations will be blocked during the optimize.      *      * @see http://lucene.apache.org/java/3_0_1/api/all/org/apache/lucene/index/IndexWriter.html#optimize()      */
+comment|/**      * Optimize the Lucene index by merging all segments into a single one. This      * may take a while and write operations will be blocked during the optimize.      *      * @see org.apache.lucene.index.IndexWriter#optimize()      */
 specifier|public
 name|void
 name|optimize

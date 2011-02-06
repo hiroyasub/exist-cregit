@@ -224,7 +224,7 @@ name|COLUMN
 init|=
 literal|"column"
 decl_stmt|;
-comment|/** 	 * Return the database version. 	 *  	 * @return 	 */
+comment|/** 	 * Return the database version. 	 *  	 * @return database version 	 */
 specifier|public
 name|String
 name|getVersion

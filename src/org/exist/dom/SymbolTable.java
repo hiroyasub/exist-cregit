@@ -1277,7 +1277,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *       * @param ostream      * @throws IOException      */
+comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *       * @param os outputstream      * @throws IOException      */
 specifier|protected
 specifier|synchronized
 name|void

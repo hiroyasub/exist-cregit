@@ -1678,7 +1678,7 @@ name|parser
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates an Item from a streamed representation      * @param parser Parser to read xml elements from      * @return      * @throws XMLStreamException      */
+comment|/**      * Creates an Item from a streamed representation      * @param parser Parser to read xml elements from      * @return item      * @throws XMLStreamException      */
 specifier|public
 specifier|static
 name|Item
@@ -1957,7 +1957,7 @@ name|getFirstChild
 argument_list|()
 return|;
 block|}
-comment|/**      * Creates an Item from a streamed representation      * @param reader      * @return      * @throws XMLStreamException      */
+comment|/**      * Creates an Item from a streamed representation      * @param reader      * @return item      * @throws XMLStreamException      */
 specifier|public
 specifier|static
 name|Item
@@ -2027,7 +2027,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a node from a string representation      * @param content      * @return      * @throws XMLStreamException      */
+comment|/**      * Creates a node from a string representation      * @param content      * @return node      * @throws XMLStreamException      */
 specifier|public
 specifier|static
 name|Node
@@ -2055,7 +2055,7 @@ name|reader
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a node from a streamed representation      * @param reader      * @return      * @throws XMLStreamException      */
+comment|/**      * Creates a node from a streamed representation      * @param reader      * @return item      * @throws XMLStreamException      */
 specifier|public
 specifier|static
 name|Node

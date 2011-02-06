@@ -715,7 +715,7 @@ name|digestPassword
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Create a new user with name and password      *      * @param user      *            Description of the Parameter      * @param password      *            Description of the Parameter      * @throws ConfigurationException      */
+comment|/**      * Create a new user with name and password      *      * @param realm      * @param name      * @param password      * @throws ConfigurationException      */
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -872,7 +872,15 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new user with name, password and primary group      *      *@param user      *            Description of the Parameter      *@param password      *            Description of the Parameter      *@param primaryGroup      *            Description of the Parameter      * @throws ConfigurationException      * @throws PermissionDeniedException      */
+comment|//    /**
+comment|//     * Create a new user with name, password and primary group
+comment|//     *
+comment|//     * @param name
+comment|//     * @param password
+comment|//     * @param primaryGroup
+comment|//     * @throws ConfigurationException
+comment|//     * @throws PermissionDeniedException
+comment|//     */
 comment|//	public AccountImpl(AbstractRealm realm, int id, String name, String password, String primaryGroup) throws ConfigurationException {
 comment|//		this(realm, id, name, password);
 comment|//		addGroup(primaryGroup);

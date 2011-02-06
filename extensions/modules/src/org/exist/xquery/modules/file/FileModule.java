@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension  *   * An extension module for the eXist Native XML Database that allows various file-oriented  * activities.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist File Module Extension  *   * An extension module for the eXist Native XML Database that allows various file-oriented  * activities.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class

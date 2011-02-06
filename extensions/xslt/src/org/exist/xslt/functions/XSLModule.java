@@ -448,7 +448,7 @@ name|class
 argument_list|)
 block|, 		}
 decl_stmt|;
-comment|/** 	 * @param functions 	 */
+comment|/** 	 * @param parameters 	 */
 specifier|public
 name|XSLModule
 parameter_list|(

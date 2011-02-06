@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Security Manager Module Extension  *  * An extension module for interacting with eXist-db Security Manager  *  * @author Adam Retter<adam@existsolutions.com>  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist Security Manager Module Extension  *  * An extension module for interacting with eXist-db Security Manager  *  * @author Adam Retter<adam@existsolutions.com>  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class

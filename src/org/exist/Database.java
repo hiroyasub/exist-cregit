@@ -130,25 +130,25 @@ name|Observer
 name|o
 parameter_list|)
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return SecurityManager 	 */
 specifier|public
 name|SecurityManager
 name|getSecurityManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return IndexManager 	 */
 specifier|public
 name|IndexManager
 name|getIndexManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return TransactionManager 	 */
 specifier|public
 name|TransactionManager
 name|getTransactionManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return CacheManager 	 */
 specifier|public
 name|CacheManager
 name|getCacheManager
@@ -160,7 +160,7 @@ name|void
 name|shutdown
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return Subject 	 */
 specifier|public
 name|Subject
 name|getSubject
@@ -202,7 +202,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/** 	 *  	 * @return 	 */
+comment|/** 	 *  	 * @return Debuggee 	 */
 specifier|public
 name|Debuggee
 name|getDebuggee

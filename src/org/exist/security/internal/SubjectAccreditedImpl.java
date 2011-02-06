@@ -55,7 +55,7 @@ specifier|final
 name|Object
 name|letterOfCredit
 decl_stmt|;
-comment|/** 	 *  	 * @param account 	 * @param letterOfCredit: the object the prove authentication 	 */
+comment|/** 	 *  	 * @param account 	 * @param letterOfCredit the object the prove authentication 	 */
 specifier|public
 name|SubjectAccreditedImpl
 parameter_list|(

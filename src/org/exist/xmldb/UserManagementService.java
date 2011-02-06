@@ -417,7 +417,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Delete a user from the database      *      *@param  user                User      *@exception  XMLDBException      */
+comment|/**      *  Delete a user from the database      *      *@param  account                User      *@exception  XMLDBException      */
 specifier|public
 name|void
 name|removeAccount

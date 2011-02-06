@@ -65,7 +65,7 @@ name|int
 name|getLength
 parameter_list|()
 function_decl|;
-comment|/**      * Retrieves the byte at offset off from the cache      *      * @param off The offset to read from      * @return The byte read from the offset      *      * @Throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is invalidated.      */
+comment|/**      * Retrieves the byte at offset off from the cache      *      * @param off The offset to read from      * @return The byte read from the offset      *      * @throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is invalidated.      */
 specifier|public
 name|byte
 name|get
@@ -76,7 +76,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Copies data from the cache to a buffer      *      * @param cacheOffset The offset in the cache to start copying data from      * @param b The buffer to write to      * @param off The offset in the buffer b at which to start writing      * @param len The length of data to copy      *      * @Throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is invalidated.      */
+comment|/**      * Copies data from the cache to a buffer      *      * @param cacheOffset The offset in the cache to start copying data from      * @param b The buffer to write to      * @param off The offset in the buffer b at which to start writing      * @param len The length of data to copy      *      * @throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is invalidated.      */
 specifier|public
 name|void
 name|copyTo
@@ -97,7 +97,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Invalidates the cache      *      * Destroys the cache and releases any underlying resources      *      * @Throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is already invalidated.      */
+comment|/**      * Invalidates the cache      *      * Destroys the cache and releases any underlying resources      *      * @throws IOException if an I/O error occurs. In particular, an IOException may be thrown if cache is already invalidated.      */
 specifier|public
 name|void
 name|invalidate

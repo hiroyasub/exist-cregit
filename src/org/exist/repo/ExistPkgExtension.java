@@ -184,7 +184,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TODO: To be moved into eXist code base...  *  * @author Florent Georges  * @date   2010-09-21  */
+comment|/**  * TODO: To be moved into eXist code base...  *  * @author Florent Georges  * @since   2010-09-21  */
 end_comment
 
 begin_class

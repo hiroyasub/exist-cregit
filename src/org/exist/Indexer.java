@@ -2410,18 +2410,25 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|/**      * set SAX parser feature. This method will catch (and ignore) exceptions if      * the used parser does not support a feature.      *       *@param factory      *@param feature      *@param value      */
-comment|//private void setFeature(SAXParserFactory factory, String feature, boolean value) {
-comment|//try {
-comment|//factory.setFeature(feature, value);
-comment|//} catch (SAXNotRecognizedException e) {
-comment|//LOG.warn(e);
-comment|//} catch (SAXNotSupportedException snse) {
-comment|//LOG.warn(snse);
-comment|//} catch (ParserConfigurationException pce) {
-comment|//LOG.warn(pce);
-comment|//}
-comment|//}
+comment|//    /**
+comment|//     * set SAX parser feature. This method will catch (and ignore) exceptions if
+comment|//     * the used parser does not support a feature.
+comment|//     *
+comment|//     *@param factory
+comment|//     *@param feature
+comment|//     *@param value
+comment|//     */
+comment|//    //private void setFeature(SAXParserFactory factory, String feature, boolean value) {
+comment|//        //try {
+comment|//            //factory.setFeature(feature, value);
+comment|//        //} catch (SAXNotRecognizedException e) {
+comment|//            //LOG.warn(e);
+comment|//        //} catch (SAXNotSupportedException snse) {
+comment|//            //LOG.warn(snse);
+comment|//        //} catch (ParserConfigurationException pce) {
+comment|//            //LOG.warn(pce);
+comment|//        //}
+comment|//    //}
 specifier|public
 name|void
 name|startCDATA

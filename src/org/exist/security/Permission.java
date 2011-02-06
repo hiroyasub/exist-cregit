@@ -121,7 +121,7 @@ name|int
 name|getUserPermissions
 parameter_list|()
 function_decl|;
-comment|/**      * Set the owner group by group id      *      * @param  group  The group id      */
+comment|/**      * Set the owner group by group id      *      * @param  id  The group id      */
 specifier|public
 name|void
 name|setGroup
@@ -196,7 +196,7 @@ name|int
 name|perm
 parameter_list|)
 function_decl|;
-comment|/**      * Set the owner passed as account id      *      * @param  user  The new owner id      */
+comment|/**      * Set the owner passed as account id      *      * @param  id  The new owner id      */
 specifier|public
 name|void
 name|setOwner

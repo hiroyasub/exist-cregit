@@ -695,7 +695,7 @@ return|return
 name|subject
 return|;
 block|}
-comment|/**      * Set the subject that is currently using this DBBroker object.      *      * @param user      */
+comment|/**      * Set the subject that is currently using this DBBroker object.      *      * @param subject      */
 comment|//TODO: this should be done in connection with authenticate (SecurityManager)
 specifier|public
 name|void

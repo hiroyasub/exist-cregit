@@ -762,7 +762,7 @@ operator|.
 name|XML
 return|;
 block|}
-comment|/**      * Determine if the passed mime type is text, i.e. may require a charset      * declaration.      *       * @param mimeType      * @return      */
+comment|/**      * Determine if the passed mime type is text, i.e. may require a charset      * declaration.      *       * @param mimeType      * @return TRUE if mimetype is for text content else FALSE      */
 specifier|public
 name|boolean
 name|isTextContent

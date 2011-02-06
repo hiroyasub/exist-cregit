@@ -685,7 +685,7 @@ operator|=
 name|this
 expr_stmt|;
 block|}
-comment|/** 	 * Initialize the security manager. 	 *  	 * Checks if the file users.xml exists in the system collection of the database. 	 * If not, it is created with two default users: admin and guest. 	 *   	 * @param pool 	 * @param sysBroker 	 */
+comment|/** 	 * Initialize the security manager. 	 *  	 * Checks if the file users.xml exists in the system collection of the database. 	 * If not, it is created with two default users: admin and guest. 	 *   	 * @param pool 	 * @param broker 	 */
 annotation|@
 name|Override
 specifier|public

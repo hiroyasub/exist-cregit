@@ -273,7 +273,7 @@ operator|>>
 literal|6
 return|;
 block|}
-comment|/**      *  Set the owner group      *      *@param  group  The new group value      */
+comment|/**      *  Set the owner group      *      *@param  groupName  The new group value      */
 annotation|@
 name|Override
 specifier|public
@@ -362,7 +362,7 @@ literal|3
 operator|)
 expr_stmt|;
 block|}
-comment|/**      *  Set the owner passed as User object      *      *@param  user  The new owner value      */
+comment|/**      *  Set the owner passed as User object      *      *@param  account  The new owner value      */
 annotation|@
 name|Override
 specifier|public
