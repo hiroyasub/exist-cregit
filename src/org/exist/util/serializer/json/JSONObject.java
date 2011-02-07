@@ -442,6 +442,7 @@ argument_list|()
 operator|==
 literal|null
 operator|&&
+operator|(
 name|firstChild
 operator|.
 name|getType
@@ -450,6 +451,9 @@ operator|==
 name|Type
 operator|.
 name|VALUE_TYPE
+operator|||
+name|asSimpleValue
+operator|)
 condition|)
 comment|// if there's only one child and if it is text, it is serialized as simple value
 name|firstChild
@@ -464,11 +468,6 @@ expr_stmt|;
 else|else
 block|{
 comment|// complex object
-if|if
-condition|(
-operator|!
-name|asSimpleValue
-condition|)
 name|writer
 operator|.
 name|write
@@ -581,11 +580,6 @@ literal|", "
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-operator|!
-name|asSimpleValue
-condition|)
 name|writer
 operator|.
 name|write
