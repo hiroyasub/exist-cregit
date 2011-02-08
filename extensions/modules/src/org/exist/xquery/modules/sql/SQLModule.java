@@ -570,14 +570,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|// remove it from the connections map
-name|connections
-operator|.
-name|remove
-argument_list|(
-name|conID
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -596,6 +588,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//empty the map
+name|connections
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 comment|// update the context
 name|xqueryContext
 operator|.
