@@ -270,7 +270,7 @@ name|ExecuteFunction
 operator|.
 name|class
 argument_list|)
-block|,  	}
+block|,}
 decl_stmt|;
 specifier|private
 specifier|static
@@ -336,7 +336,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/** 	 * Retrieves a previously stored Connection from the Context of an XQuery 	 *  	 * @param context 	 *            The Context of the XQuery containing the Connection 	 * @param connectionUID 	 *            The UID of the Connection to retrieve from the Context of the 	 *            XQuery 	 */
+comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery      *      * @param context      *            The Context of the XQuery containing the Connection      * @param connectionUID      *            The UID of the Connection to retrieve from the Context of the      *            XQuery      */
 specifier|public
 specifier|final
 specifier|static
@@ -394,7 +394,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Stores a Connection in the Context of an XQuery 	 *  	 * @param context 	 *            The Context of the XQuery to store the Connection in 	 * @param con 	 *            The connection to store 	 *  	 * @return A unique ID representing the connection 	 */
+comment|/**      * Stores a Connection in the Context of an XQuery      *      * @param context      *            The Context of the XQuery to store the Connection in      * @param con      *            The connection to store      *      * @return A unique ID representing the connection      */
 specifier|public
 specifier|final
 specifier|static
@@ -477,7 +477,7 @@ return|return
 name|conID
 return|;
 block|}
-comment|/** 	 * Closes all the open DB connections for the specified XQueryContext 	 *  	 * @param xqueryContext 	 *            The context to close JDBC connections for 	 */
+comment|/**      * Closes all the open DB connections for the specified XQueryContext      *      * @param xqueryContext      *            The context to close JDBC connections for      */
 specifier|private
 specifier|final
 specifier|static
@@ -610,7 +610,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Returns a Unique ID based on the System Time 	 *  	 * @return The Unique ID 	 */
+comment|/**      * Returns a Unique ID based on the System Time      *      * @return The Unique ID      */
 specifier|private
 specifier|static
 specifier|synchronized
@@ -623,7 +623,7 @@ name|currentConnectionUID
 operator|++
 return|;
 block|}
-comment|/** 	 * Resets the Module Context and closes any DB connections for the 	 * XQueryContext 	 *  	 * @param xqueryContext 	 *            The XQueryContext 	 */
+comment|/**      * Resets the Module Context and closes any DB connections for the      * XQueryContext      *      * @param xqueryContext      *            The XQueryContext      */
 specifier|public
 name|void
 name|reset
