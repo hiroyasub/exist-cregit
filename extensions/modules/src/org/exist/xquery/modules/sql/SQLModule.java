@@ -801,22 +801,13 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// remove it from the Connections map
+block|}
+comment|//empty the map
 name|connections
 operator|.
-name|remove
-argument_list|(
-name|conID
-argument_list|)
+name|clear
+argument_list|()
 expr_stmt|;
-name|con
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
 comment|// update the context
 name|xqueryContext
 operator|.
