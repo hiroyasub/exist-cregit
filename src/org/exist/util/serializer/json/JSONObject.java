@@ -50,7 +50,7 @@ name|JSONObject
 extends|extends
 name|JSONNode
 block|{
-specifier|private
+specifier|protected
 name|JSONNode
 name|firstChild
 init|=
@@ -62,6 +62,20 @@ name|asSimpleValue
 init|=
 literal|false
 decl_stmt|;
+specifier|public
+name|JSONObject
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|Type
+operator|.
+name|OBJECT_TYPE
+argument_list|,
+name|ANONYMOUS_OBJECT
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|JSONObject
 parameter_list|(
@@ -302,11 +316,10 @@ block|{
 if|if
 condition|(
 operator|!
-operator|(
 name|isRoot
-operator|||
-name|asSimpleValue
-operator|)
+operator|&&
+name|isNamed
+argument_list|()
 condition|)
 block|{
 name|writer
@@ -452,7 +465,18 @@ name|Type
 operator|.
 name|VALUE_TYPE
 operator|||
-name|asSimpleValue
+operator|(
+name|firstChild
+operator|.
+name|isArray
+argument_list|()
+operator|&&
+operator|!
+name|firstChild
+operator|.
+name|isNamed
+argument_list|()
+operator|)
 operator|)
 condition|)
 comment|// if there's only one child and if it is text, it is serialized as simple value
@@ -475,15 +499,15 @@ argument_list|(
 literal|"{ "
 argument_list|)
 expr_stmt|;
-name|boolean
-name|allowText
-init|=
-literal|false
-decl_stmt|;
 name|JSONNode
 name|next
 init|=
 name|firstChild
+decl_stmt|;
+name|boolean
+name|allowText
+init|=
+literal|false
 decl_stmt|;
 while|while
 condition|(
@@ -584,7 +608,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"} "
+literal|" }"
 argument_list|)
 expr_stmt|;
 block|}
