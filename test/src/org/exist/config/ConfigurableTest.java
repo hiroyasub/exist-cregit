@@ -153,6 +153,10 @@ literal|">"
 operator|+
 literal|"<valueInteger>5</valueInteger> "
 operator|+
+literal|"<spice name='black pepper'/>"
+operator|+
+literal|"<spice name='berbere'/>"
+operator|+
 literal|"</instance>"
 decl_stmt|;
 name|String
@@ -255,6 +259,50 @@ argument_list|(
 name|object
 operator|.
 name|someBoolean
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|object
+operator|.
+name|spices
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"black pepper"
+argument_list|,
+name|object
+operator|.
+name|spices
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|name
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"berbere"
+argument_list|,
+name|object
+operator|.
+name|spices
+operator|.
+name|get
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|name
 argument_list|)
 expr_stmt|;
 block|}
