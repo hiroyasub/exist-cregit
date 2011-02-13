@@ -892,7 +892,8 @@ operator|==
 literal|null
 condition|)
 return|return;
-comment|//throw error???
+comment|//if db corrupted it can lead to unrunnable issue
+comment|//throw new ConfigurationException("Collection '/db/system/security' can't be created.");
 name|collection
 operator|.
 name|setPermissions
