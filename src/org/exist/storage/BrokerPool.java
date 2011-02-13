@@ -379,6 +379,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|plugin
+operator|.
+name|PluginsManagerImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|scheduler
 operator|.
 name|Scheduler
@@ -1852,6 +1864,13 @@ comment|/**      * The security manager of the database instance.       */
 specifier|private
 name|SecurityManager
 name|securityManager
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * The plugin manager.      */
+specifier|private
+name|PluginsManagerImpl
+name|pluginManager
 init|=
 literal|null
 decl_stmt|;
@@ -3333,6 +3352,27 @@ argument_list|,
 name|Sync
 operator|.
 name|MAJOR_SYNC
+argument_list|)
+expr_stmt|;
+comment|//require to allow access by BrokerPool.getInstance();
+name|instances
+operator|.
+name|put
+argument_list|(
+name|instanceName
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
+comment|//create the plugin manager
+name|pluginManager
+operator|=
+operator|new
+name|PluginsManagerImpl
+argument_list|(
+name|this
+argument_list|,
+name|broker
 argument_list|)
 expr_stmt|;
 block|}
