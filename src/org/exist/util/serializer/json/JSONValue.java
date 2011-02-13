@@ -97,19 +97,6 @@ argument_list|(
 name|content
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"CONTENT: "
-operator|+
-name|this
-operator|.
-name|content
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|JSONValue
