@@ -8173,6 +8173,52 @@ if|if
 condition|(
 name|id
 operator|==
+literal|null
+condition|)
+block|{
+name|SanityCheck
+operator|.
+name|TRACE
+argument_list|(
+literal|"Node "
+operator|+
+name|node
+operator|.
+name|getDocument
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+operator|+
+literal|":"
+operator|+
+name|node
+operator|.
+name|getNodeId
+argument_list|()
+operator|+
+literal|" not found."
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|BTreeException
+argument_list|(
+literal|"node "
+operator|+
+name|node
+operator|.
+name|getNodeId
+argument_list|()
+operator|+
+literal|" not found."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|id
+operator|==
 name|NodeId
 operator|.
 name|DOCUMENT_NODE
