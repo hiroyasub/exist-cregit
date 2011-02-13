@@ -3972,6 +3972,22 @@ range|:
 name|contextSet
 control|)
 block|{
+comment|//ignore document elements to avoid NPE at getXMLStreamReader
+if|if
+condition|(
+name|NodeId
+operator|.
+name|ROOT_NODE
+operator|.
+name|equals
+argument_list|(
+name|current
+operator|.
+name|getNodeId
+argument_list|()
+argument_list|)
+condition|)
+continue|continue;
 name|NodeProxy
 name|parent
 init|=
