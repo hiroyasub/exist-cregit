@@ -845,6 +845,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|expath
+operator|.
+name|pkg
+operator|.
+name|repo
+operator|.
+name|FileSystemStorage
+import|;
+end_import
+
+begin_import
+import|import
 name|antlr
 operator|.
 name|RecognitionException
@@ -1695,11 +1709,10 @@ name|_repo
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-specifier|static
+specifier|public
 specifier|synchronized
 name|ExistRepository
-name|getRepo
+name|getRepository
 parameter_list|()
 throws|throws
 name|XPathException
@@ -1730,6 +1743,9 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|File
+name|repo_dir
+init|=
 operator|new
 name|File
 argument_list|(
@@ -1737,27 +1753,36 @@ name|existHome
 operator|+
 literal|"/webapp/WEB-INF/expathrepo"
 argument_list|)
+decl_stmt|;
+comment|// ensure the dir exists
+name|repo_dir
 operator|.
 name|mkdir
 argument_list|()
 expr_stmt|;
+name|FileSystemStorage
+name|storage
+init|=
+operator|new
+name|FileSystemStorage
+argument_list|(
+name|repo_dir
+argument_list|)
+decl_stmt|;
 name|_repo
 operator|=
 operator|new
 name|ExistRepository
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|existHome
-operator|+
-literal|"/webapp/WEB-INF/expathrepo"
-argument_list|)
+name|storage
 argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
+name|File
+name|repo_dir
+init|=
 operator|new
 name|File
 argument_list|(
@@ -1770,27 +1795,28 @@ argument_list|)
 operator|+
 literal|"/expathrepo"
 argument_list|)
+decl_stmt|;
+comment|// ensure the dir exists
+name|repo_dir
 operator|.
 name|mkdir
 argument_list|()
 expr_stmt|;
+name|FileSystemStorage
+name|storage
+init|=
+operator|new
+name|FileSystemStorage
+argument_list|(
+name|repo_dir
+argument_list|)
+decl_stmt|;
 name|_repo
 operator|=
 operator|new
 name|ExistRepository
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"java.io.tmpdir"
-argument_list|)
-operator|+
-literal|"/expathrepo"
-argument_list|)
+name|storage
 argument_list|)
 expr_stmt|;
 block|}
@@ -1834,7 +1860,7 @@ comment|// the repo and its eXist handler
 name|ExistRepository
 name|repo
 init|=
-name|getRepo
+name|getRepository
 argument_list|()
 decl_stmt|;
 comment|// try an internal module
@@ -5007,7 +5033,7 @@ literal|null
 operator|)
 return|;
 block|}
-comment|/**      * Should loaded documents be locked?      *      *<p>see #setLockDocumentsOnLoad(boolean)</p>       */
+comment|/**      * Should loaded documents be locked?      *      *<p>see #setLockDocumentsOnLoad(boolean)</p>      */
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
@@ -5393,7 +5419,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Returns true if whitespace between constructed element nodes should be stripped by default.       */
+comment|/**      * Returns true if whitespace between constructed element nodes should be stripped by default.      */
 specifier|public
 name|boolean
 name|stripWhitespace
@@ -9072,7 +9098,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs      * to be optimized.      *      * @param   signature       */
+comment|/**      * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs      * to be optimized.      *      * @param   signature      */
 specifier|public
 name|boolean
 name|tailRecursiveCall
