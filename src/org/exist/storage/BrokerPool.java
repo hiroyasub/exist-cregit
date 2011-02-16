@@ -3124,6 +3124,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|initialiseTriggersForSystemCollections
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 comment|//wake-up the security manager
 name|securityManager
 operator|.
@@ -3455,7 +3460,7 @@ comment|//TODO : make it protected ?
 comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJob(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJob(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
 comment|/**      * Initialise system collections, if it doesn't exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions The permissions to set on the created collection      */
 specifier|private
-name|Collection
+name|void
 name|initialiseSystemCollection
 parameter_list|(
 name|DBBroker
@@ -3601,9 +3606,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-return|return
-name|collection
-return|;
 block|}
 comment|/**      * Initialize required system collections, if they don't exist yet      *      * @param sysBroker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
 specifier|private
@@ -3629,9 +3631,6 @@ literal|0770
 argument_list|)
 expr_stmt|;
 comment|//create /db/etc
-name|Collection
-name|collection
-init|=
 name|initialiseSystemCollection
 argument_list|(
 name|broker
@@ -3641,6 +3640,29 @@ operator|.
 name|ETC_COLLECTION_URI
 argument_list|,
 literal|0774
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|initialiseTriggersForSystemCollections
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+throws|throws
+name|EXistException
+block|{
+name|Collection
+name|collection
+init|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|XmldbURI
+operator|.
+name|ETC_COLLECTION_URI
 argument_list|)
 decl_stmt|;
 comment|//initialize configurations watcher trigger
@@ -3654,11 +3676,6 @@ block|{
 name|CollectionConfigurationManager
 name|manager
 init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
 name|getConfigurationManager
 argument_list|()
 decl_stmt|;
