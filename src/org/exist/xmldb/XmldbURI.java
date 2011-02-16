@@ -260,6 +260,81 @@ name|DEFAULT_INSTANCE_NAME
 operator|+
 literal|"://"
 decl_stmt|;
+comment|/** 'db' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ROOT_COLLECTION_NAME
+init|=
+literal|"db"
+decl_stmt|;
+comment|/** '/db' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ROOT_COLLECTION
+init|=
+literal|"/"
+operator|+
+name|ROOT_COLLECTION_NAME
+decl_stmt|;
+comment|/** 'system' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SYSTEM_COLLECTION_NAME
+init|=
+literal|"system"
+decl_stmt|;
+comment|/** '/db/system' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SYSTEM_COLLECTION
+init|=
+name|ROOT_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|SYSTEM_COLLECTION_NAME
+decl_stmt|;
+comment|/** 'temp' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TEMP_COLLECTION_NAME
+init|=
+literal|"temp"
+decl_stmt|;
+comment|/** '/db/system/temp' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|TEMP_COLLECTION
+init|=
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/"
+operator|+
+name|TEMP_COLLECTION_NAME
+decl_stmt|;
+comment|/** '/db/system/config' collection name */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONFIG_COLLECTION
+init|=
+name|SYSTEM_COLLECTION
+operator|+
+literal|"/config"
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -268,8 +343,6 @@ name|ROOT_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|DBBroker
-operator|.
 name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
@@ -281,8 +354,6 @@ name|RELATIVE_ROOT_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|DBBroker
-operator|.
 name|ROOT_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
@@ -294,9 +365,21 @@ name|SYSTEM_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|DBBroker
-operator|.
 name|SYSTEM_COLLECTION
+argument_list|)
+decl_stmt|;
+comment|/** /db/etc */
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|ETC_COLLECTION_URI
+init|=
+name|ROOT_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"/etc"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -307,8 +390,6 @@ name|CONFIG_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|CollectionConfigurationManager
-operator|.
 name|CONFIG_COLLECTION
 argument_list|)
 decl_stmt|;
@@ -321,14 +402,10 @@ name|ROOT_COLLECTION_CONFIG_URI
 init|=
 name|create
 argument_list|(
-name|CollectionConfigurationManager
-operator|.
 name|CONFIG_COLLECTION
 operator|+
 literal|"/"
 operator|+
-name|DBBroker
-operator|.
 name|ROOT_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
@@ -340,8 +417,6 @@ name|METADATA_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|DBBroker
-operator|.
 name|SYSTEM_COLLECTION
 operator|+
 literal|"/metadata"
@@ -355,8 +430,6 @@ name|TEMP_COLLECTION_URI
 init|=
 name|create
 argument_list|(
-name|DBBroker
-operator|.
 name|TEMP_COLLECTION
 argument_list|)
 decl_stmt|;

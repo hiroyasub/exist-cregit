@@ -426,6 +426,9 @@ name|MATCH_ENDSWITH
 init|=
 literal|5
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.ROOT_COLLECTION_NAME, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
@@ -434,6 +437,9 @@ name|ROOT_COLLECTION_NAME
 init|=
 literal|"db"
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.ROOT_COLLECTION, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
@@ -444,6 +450,9 @@ literal|"/"
 operator|+
 name|ROOT_COLLECTION_NAME
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.SYSTEM_COLLECTION_NAME, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
@@ -452,6 +461,9 @@ name|SYSTEM_COLLECTION_NAME
 init|=
 literal|"system"
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.SYSTEM_COLLECTION, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
@@ -464,6 +476,9 @@ literal|"/"
 operator|+
 name|SYSTEM_COLLECTION_NAME
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.TEMP_COLLECTION_NAME, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
@@ -472,6 +487,9 @@ name|TEMP_COLLECTION_NAME
 init|=
 literal|"temp"
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.TEMP_COLLECTION, remove after 1.6
 specifier|public
 specifier|final
 specifier|static

@@ -347,6 +347,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//use XmldbURI.CONFIG_COLLECTION, remove after 1.6
 specifier|public
 specifier|final
 specifier|static
