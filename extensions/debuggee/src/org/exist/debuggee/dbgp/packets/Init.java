@@ -159,6 +159,8 @@ block|{
 name|String
 name|init_message
 init|=
+name|xml_declaration
+operator|+
 literal|"<init "
 operator|+
 name|namespaces
@@ -193,7 +195,13 @@ argument_list|(
 name|fileuri
 argument_list|)
 operator|+
-literal|"\"></init>"
+literal|"\">"
+operator|+
+comment|//			"<engine version=\"1.0.1\"><![CDATA[eXist Xdebug]]></engine>" +
+comment|//			"<author><![CDATA[Dmitriy Shabanov]]></author>" +
+comment|//			"<url><![CDATA[http://exist-db.org]]></url>" +
+comment|//			"<copyright><![CDATA[Copyright (c) 2009-2011 by eXist-db]]></copyright>" +
+literal|"</init>"
 decl_stmt|;
 return|return
 name|init_message

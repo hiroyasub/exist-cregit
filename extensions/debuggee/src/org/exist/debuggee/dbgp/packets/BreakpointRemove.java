@@ -194,6 +194,8 @@ block|{
 name|String
 name|responce
 init|=
+name|xml_declaration
+operator|+
 literal|"<response "
 operator|+
 name|namespaces

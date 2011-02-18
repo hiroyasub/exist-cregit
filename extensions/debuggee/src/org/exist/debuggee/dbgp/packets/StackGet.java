@@ -154,6 +154,13 @@ name|response
 operator|.
 name|append
 argument_list|(
+name|xml_declaration
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|append
+argument_list|(
 literal|"<response "
 operator|+
 name|namespaces

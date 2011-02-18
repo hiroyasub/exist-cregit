@@ -213,6 +213,8 @@ block|{
 name|String
 name|head
 init|=
+name|xml_declaration
+operator|+
 literal|"<response "
 operator|+
 name|namespaces

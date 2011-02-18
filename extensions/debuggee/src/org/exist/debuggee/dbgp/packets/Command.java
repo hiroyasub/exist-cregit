@@ -135,6 +135,14 @@ operator|+
 literal|"xmlns:xdebug=\"http://xdebug.org/dbgp/xdebug\" "
 decl_stmt|;
 specifier|protected
+specifier|final
+specifier|static
+name|String
+name|xml_declaration
+init|=
+literal|"<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"
+decl_stmt|;
+specifier|protected
 name|IoSession
 name|session
 decl_stmt|;
@@ -952,14 +960,15 @@ argument_list|()
 return|;
 else|else
 return|return
-literal|"dbgp:"
+literal|"dbgp://"
 operator|+
 name|fileuri
 operator|.
 name|getType
 argument_list|()
-operator|+
-literal|"://"
+operator|.
+name|toLowerCase
+argument_list|()
 operator|+
 name|fileuri
 operator|.

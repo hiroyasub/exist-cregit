@@ -135,6 +135,8 @@ block|{
 name|String
 name|response
 init|=
+name|xml_declaration
+operator|+
 literal|"<response "
 operator|+
 name|namespaces
