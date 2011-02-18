@@ -703,16 +703,18 @@ argument_list|()
 operator|+
 literal|"\" "
 operator|+
+literal|"encoding=\"base64\" "
+operator|+
 literal|"transaction_id=\""
 operator|+
 name|transactionID
 operator|+
-literal|"\">"
+literal|"\"><![CDATA["
 decl_stmt|;
 name|String
 name|tail
 init|=
-literal|"</response>"
+literal|"]]></response>"
 decl_stmt|;
 name|Base64Encoder
 name|enc

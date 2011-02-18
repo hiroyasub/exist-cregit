@@ -140,7 +140,7 @@ specifier|static
 name|String
 name|xml_declaration
 init|=
-literal|"<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n"
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
 decl_stmt|;
 specifier|protected
 name|IoSession
