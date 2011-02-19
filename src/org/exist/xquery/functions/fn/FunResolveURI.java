@@ -81,6 +81,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -581,7 +593,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FONS0005: base URI of the static context has not been assigned a value."
+name|ErrorCodes
+operator|.
+name|FONS0005
+argument_list|,
+literal|"base URI of the static context has not been assigned a value."
 argument_list|)
 throw|;
 name|base
@@ -641,12 +657,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
+name|ErrorCodes
+operator|.
+name|FORG0002
+argument_list|,
+literal|"invalid argument to fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+literal|null
 argument_list|,
 name|e
 argument_list|)
@@ -728,12 +750,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0002: invalid argument to fn:resolve-uri(): "
+name|ErrorCodes
+operator|.
+name|FORG0002
+argument_list|,
+literal|"invalid argument to fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|seq
 argument_list|,
 name|e
 argument_list|)
@@ -782,12 +810,18 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0009: unable to resolve a relative URI against a base URI in fn:resolve-uri(): "
+name|ErrorCodes
+operator|.
+name|FORG0009
+argument_list|,
+literal|"unable to resolve a relative URI against a base URI in fn:resolve-uri(): "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+literal|null
 argument_list|,
 name|e
 argument_list|)
