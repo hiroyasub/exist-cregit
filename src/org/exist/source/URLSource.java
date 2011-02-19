@@ -270,9 +270,6 @@ parameter_list|()
 block|{
 return|return
 name|url
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#isValid() 	 */

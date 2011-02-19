@@ -459,6 +459,33 @@ operator|+
 name|EMBEDDED_SERVER_AUTHORITY
 argument_list|)
 decl_stmt|;
+comment|/** 'xmldb:exist///db' */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOCAL_DB
+init|=
+name|EMBEDDED_SERVER_URI_PREFIX
+operator|+
+name|ROOT_COLLECTION
+decl_stmt|;
+comment|/** 'xmldb:exist///db' XmldbURI */
+specifier|public
+specifier|static
+specifier|final
+name|XmldbURI
+name|LOCAL_DB_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|EMBEDDED_SERVER_URI_PREFIX
+operator|+
+name|ROOT_COLLECTION
+argument_list|)
+decl_stmt|;
 comment|//TODO : deprecate when we split at root collection
 specifier|public
 specifier|final
