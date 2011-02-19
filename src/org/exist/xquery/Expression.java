@@ -190,6 +190,15 @@ name|NON_STREAMABLE
 init|=
 literal|512
 decl_stmt|;
+comment|/**      * Indicates that sequence .      */
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|UNORDERED
+init|=
+literal|1024
+decl_stmt|;
 comment|/**      * Indicates that no context id is supplied to an expression.      */
 specifier|public
 specifier|final
