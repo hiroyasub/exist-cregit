@@ -250,6 +250,12 @@ init|=
 literal|false
 decl_stmt|;
 specifier|protected
+name|boolean
+name|unordered
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
 name|Expression
 name|parent
 decl_stmt|;

@@ -292,6 +292,12 @@ literal|false
 decl_stmt|;
 specifier|private
 name|boolean
+name|keepUnOrdered
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|boolean
 name|hasOne
 init|=
 literal|false
@@ -454,6 +460,19 @@ name|documentIds
 argument_list|,
 literal|0
 argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|keepUnOrdered
+parameter_list|(
+name|boolean
+name|flag
+parameter_list|)
+block|{
+name|keepUnOrdered
+operator|=
+name|flag
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getPart</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param create a<code>boolean</code> value      * @param sizeHint an<code>int</code> value      * @return a<code>Part</code> value      */
@@ -2066,6 +2085,8 @@ block|{
 if|if
 condition|(
 name|isSorted
+operator|||
+name|keepUnOrdered
 condition|)
 return|return;
 if|if

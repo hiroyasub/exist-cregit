@@ -117,6 +117,8 @@ operator|new
 name|EmptySequence
 argument_list|()
 decl_stmt|;
+comment|/** 	 * The purpose of ordered and unordered flag is to set the ordering mode  	 * in the static context to ordered or unordered for a certain region in a query.  	 *  	 * @param flag 	 */
+comment|//	public void keepUnOrdered(boolean flag);
 comment|/** 	 * Add an item to the current sequence. An {@link XPathException} may be thrown 	 * if the item's type is incompatible with this type of sequence (e.g. if the sequence 	 * is a node set). 	 *  	 * The sequence may or may not allow duplicate values. 	 *  	 * @param item 	 * @throws XPathException 	 */
 specifier|public
 name|void

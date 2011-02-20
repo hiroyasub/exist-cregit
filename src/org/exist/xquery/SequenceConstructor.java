@@ -94,12 +94,6 @@ name|SequenceConstructor
 extends|extends
 name|PathExpr
 block|{
-specifier|protected
-name|boolean
-name|unordered
-init|=
-literal|false
-decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|SequenceConstructor
