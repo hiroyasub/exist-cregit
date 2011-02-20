@@ -509,7 +509,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0089: bound variable and positional variable have the same name"
+name|ErrorCodes
+operator|.
+name|XQST0089
+argument_list|,
+literal|"bound variable and positional variable have the same name"
 argument_list|)
 throw|;
 name|LocalVariable
@@ -1423,7 +1427,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid cardinality for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid cardinality for variable $"
 operator|+
 name|varName
 operator|+
@@ -1962,7 +1970,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid cardinality for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid cardinality for variable $"
 operator|+
 name|varName
 operator|+
@@ -2039,7 +2051,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Invalid type for variable $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid type for variable $"
 operator|+
 name|varName
 operator|+
