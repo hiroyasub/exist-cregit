@@ -425,7 +425,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: left item is not a node; got '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"left item is not a node; got '"
 operator|+
 name|Type
 operator|.
@@ -473,7 +477,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: right item is not a node; got '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"right item is not a node; got '"
 operator|+
 name|Type
 operator|.
@@ -695,7 +703,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 : the empty sequence cant be an atomic value"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"the empty sequence cant be an atomic value"
 argument_list|)
 throw|;
 block|}
@@ -736,7 +748,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 : the empty sequence cant be an atomic value"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"the empty sequence cant be an atomic value"
 argument_list|)
 throw|;
 block|}
