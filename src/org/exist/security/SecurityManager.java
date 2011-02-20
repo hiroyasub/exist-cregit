@@ -699,6 +699,12 @@ parameter_list|)
 throws|throws
 name|ConfigurationException
 function_decl|;
+comment|/**     * Particular web page for authentication.     *      * @return     */
+specifier|public
+name|String
+name|getAuthenticationEntryPoint
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -464,7 +464,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
+comment|/**  * OpenId authenticator servlet.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -721,13 +721,20 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//				this.getServletContext().getRequestDispatcher("/openid/login.xql")
-comment|//						.forward(req, resp);
+comment|//this.getServletContext().getRequestDispatcher("/openid/login.xql").forward(req, resp);
 name|resp
 operator|.
 name|sendRedirect
 argument_list|(
-literal|"openid/login.xql"
+name|OpenIDRealm
+operator|.
+name|instance
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getAuthenticationEntryPoint
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -758,15 +765,7 @@ argument_list|(
 name|req
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|principal
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(principal);
 name|String
 name|returnURL
 init|=
@@ -784,7 +783,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//			this.getServletContext().getRequestDispatcher("/openid/login.xql").forward(req, resp);
+comment|//this.getServletContext().getRequestDispatcher("/openid/login.xql").forward(req, resp);
 name|resp
 operator|.
 name|sendRedirect
@@ -805,7 +804,7 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
-comment|//			((XQueryURLRewrite.RequestWrapper)req).setUserPrincipal(principal);
+comment|//((XQueryURLRewrite.RequestWrapper)req).setUserPrincipal(principal);
 name|Subject
 name|subject
 init|=

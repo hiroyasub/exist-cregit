@@ -289,7 +289,7 @@ name|Realm
 implements|,
 name|Configurable
 block|{
-comment|//XXX: this class must be under org.exist.security.inyternal to be protected
+comment|//XXX: this class must be under org.exist.security.internal to be protected
 specifier|public
 specifier|final
 name|Map
