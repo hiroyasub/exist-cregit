@@ -94,6 +94,12 @@ name|SequenceConstructor
 extends|extends
 name|PathExpr
 block|{
+specifier|protected
+name|boolean
+name|unordered
+init|=
+literal|false
+decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
 name|SequenceConstructor
@@ -134,6 +140,19 @@ name|getFlags
 argument_list|()
 operator|&
 name|IN_PREDICATE
+operator|)
+operator|>
+literal|0
+expr_stmt|;
+name|unordered
+operator|=
+operator|(
+name|contextInfo
+operator|.
+name|getFlags
+argument_list|()
+operator|&
+name|UNORDERED
 operator|)
 operator|>
 literal|0
@@ -362,6 +381,13 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+name|result
+operator|.
+name|keepUnOrdered
+argument_list|(
+name|unordered
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Expression

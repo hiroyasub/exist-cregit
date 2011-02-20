@@ -301,18 +301,8 @@ name|TreeMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeSet
-import|;
-end_import
-
 begin_comment
-comment|/**  * A sequence that may contain a mixture of atomic values and nodes.  * @author wolf  */
+comment|/**  * A sequence that may contain a mixture of atomic values and nodes.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -399,6 +389,12 @@ decl_stmt|;
 specifier|private
 name|boolean
 name|enforceOrder
+init|=
+literal|false
+decl_stmt|;
+specifier|private
+name|boolean
+name|keepUnOrdered
 init|=
 literal|false
 decl_stmt|;
@@ -516,6 +512,19 @@ operator|.
 name|enforceOrder
 operator|=
 name|ordered
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|keepUnOrdered
+parameter_list|(
+name|boolean
+name|flag
+parameter_list|)
+block|{
+name|keepUnOrdered
+operator|=
+name|flag
 expr_stmt|;
 block|}
 specifier|public
@@ -1635,6 +1644,16 @@ operator|==
 name|UNSET_SIZE
 condition|)
 return|return;
+if|if
+condition|(
+name|keepUnOrdered
+condition|)
+block|{
+name|removeDuplicateNodes
+argument_list|()
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 operator|!
