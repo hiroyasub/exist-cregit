@@ -128,6 +128,13 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 decl_stmt|;
+comment|/**      * The purpose of ordered and unordered flag is to set the ordering mode in       * the static context to ordered or unordered for a certain region in a query.       */
+specifier|protected
+name|boolean
+name|unordered
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|AbstractExpression
 parameter_list|(
