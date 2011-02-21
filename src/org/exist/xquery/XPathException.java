@@ -688,6 +688,15 @@ name|column
 return|;
 block|}
 specifier|public
+name|ErrorCode
+name|getCode
+parameter_list|()
+block|{
+return|return
+name|errorCode
+return|;
+block|}
+specifier|public
 name|void
 name|addFunctionCall
 parameter_list|(
