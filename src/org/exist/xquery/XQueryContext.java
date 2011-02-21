@@ -2512,6 +2512,23 @@ operator|.
 name|globalVariables
 argument_list|)
 expr_stmt|;
+name|ctx
+operator|.
+name|attributes
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|(
+name|this
+operator|.
+name|attributes
+argument_list|)
+expr_stmt|;
 comment|// make imported modules available in the new context
 name|ctx
 operator|.
@@ -5406,6 +5423,11 @@ comment|//remove the context-vars, subsequent execution of the query
 comment|//may generate different values for the vars based on the
 comment|//content of the db
 name|XQueryContextVars
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|attributes
 operator|.
 name|clear
 argument_list|()
