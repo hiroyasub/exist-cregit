@@ -292,7 +292,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a random number between 0 and $max"
+literal|"Returns a random number between 0 (inclusive) and $max (exclusive), that is, a number greater than or equal to 0 but less than $max"
 argument_list|,
 operator|new
 name|SequenceType
@@ -311,7 +311,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The maximum value for the random number."
+literal|"A number to be used as the exclusive maximum value for the random number; the return value will be less than this number."
 argument_list|)
 block|}
 argument_list|,
