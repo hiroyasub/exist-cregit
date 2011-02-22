@@ -172,10 +172,12 @@ operator|)
 operator|<
 literal|0
 condition|)
+block|{
 name|cacheSize
 operator|=
 name|DEFAULT_CACHE_SIZE
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|maxCacheSize
@@ -193,6 +195,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -206,6 +209,7 @@ operator|+
 literal|" bytes max."
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|collectionCache
@@ -230,6 +234,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerCache
@@ -239,6 +245,8 @@ name|cache
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|deregisterCache
@@ -254,6 +262,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|requestMem
@@ -307,6 +317,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -344,6 +355,7 @@ operator|+
 name|realSize
 argument_list|)
 expr_stmt|;
+block|}
 name|collectionCache
 operator|.
 name|resize
@@ -370,18 +382,25 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkCaches
 parameter_list|()
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkDistribution
 parameter_list|()
 block|{
 block|}
+comment|/**      * @return Maximum size of all Caches in bytes      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getMaxTotal
@@ -391,6 +410,9 @@ return|return
 name|maxCacheSize
 return|;
 block|}
+comment|/**      * @return Maximum size of a single Cache in bytes      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getMaxSingle
@@ -400,6 +422,9 @@ return|return
 name|maxCacheSize
 return|;
 block|}
+comment|/**      * @return Current size of all Caches in bytes      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getCurrentSize
