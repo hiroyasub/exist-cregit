@@ -76,19 +76,22 @@ name|void
 name|checkCaches
 parameter_list|()
 function_decl|;
-comment|/**      * Called from the global minor sync event to check if a smaller      * cache wants to be resized. If a huge cache is availabe, the method      * might decide to shrink this cache by a certain amount to make      * room for the smaller cache to grow.      */
+comment|/**      * Called from the global minor sync event to check if a smaller      * cache wants to be resized. If a huge cache is available, the method      * might decide to shrink this cache by a certain amount to make      * room for the smaller cache to grow.      */
 name|void
 name|checkDistribution
 parameter_list|()
 function_decl|;
+comment|/**      * @return Maximum size of all Caches (unit of measurement is implementation defined)      */
 name|long
 name|getMaxTotal
 parameter_list|()
 function_decl|;
+comment|/**      * @return Maximum size of a single Cache in bytes (unit of measurement is implementation defined)      */
 name|long
 name|getMaxSingle
 parameter_list|()
 function_decl|;
+comment|/**      * @return Current size of all Caches in bytes (unit of measurement is implementation defined)      */
 name|long
 name|getCurrentSize
 parameter_list|()
