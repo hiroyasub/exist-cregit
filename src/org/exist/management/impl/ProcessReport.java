@@ -315,6 +315,8 @@ name|getScheduler
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|TabularData
 name|getScheduledJobs
@@ -485,6 +487,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|TabularData
 name|getRunningJobs
@@ -663,6 +667,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|TabularData
 name|getRunningQueries
