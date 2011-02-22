@@ -591,6 +591,8 @@ name|registerMBean
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerCache
@@ -626,6 +628,8 @@ name|cache
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|deregisterCache
@@ -692,6 +696,8 @@ name|getBuffers
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|requestMem
@@ -925,6 +931,8 @@ operator|)
 return|;
 block|}
 comment|/**      * Called from the global major sync event to check if caches can be shrinked. To be shrinked, the size of a cache needs to be larger than the      * factor defined by {@link #MIN_SHRINK_FACTOR} and its load needs to be lower than {@link #DEFAULT_SHRINK_THRESHOLD}.      *      *<p>If shrinked, the cache will be reset to the default initial cache size.</p>      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkCaches
@@ -1096,6 +1104,8 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkDistribution
@@ -1254,6 +1264,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/**      * @return Maximum size of all Caches in pages      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getMaxTotal
@@ -1265,6 +1278,9 @@ name|totalPageCount
 operator|)
 return|;
 block|}
+comment|/**      * @return Current size of all Caches in pages      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getCurrentSize
@@ -1273,6 +1289,20 @@ block|{
 return|return
 operator|(
 name|currentPageCount
+operator|)
+return|;
+block|}
+comment|/**      * @return Maximum size of a single Cache in bytes      */
+annotation|@
+name|Override
+specifier|public
+name|long
+name|getMaxSingle
+parameter_list|()
+block|{
+return|return
+operator|(
+name|maxCacheSize
 operator|)
 return|;
 block|}
@@ -1286,17 +1316,6 @@ operator|(
 name|currentPageCount
 operator|*
 name|pageSize
-operator|)
-return|;
-block|}
-specifier|public
-name|long
-name|getMaxSingle
-parameter_list|()
-block|{
-return|return
-operator|(
-name|maxCacheSize
 operator|)
 return|;
 block|}
