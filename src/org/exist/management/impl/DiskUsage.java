@@ -282,7 +282,7 @@ return|;
 block|}
 specifier|public
 name|long
-name|getDataDirectoryFreeDiskSpace
+name|getDataDirectoryFreeSpace
 parameter_list|()
 block|{
 name|File
