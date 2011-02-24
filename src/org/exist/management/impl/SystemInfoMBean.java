@@ -41,6 +41,11 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|String
+name|getOperatingSystem
+parameter_list|()
+function_decl|;
+specifier|public
+name|String
 name|getDefaultLocale
 parameter_list|()
 function_decl|;
