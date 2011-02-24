@@ -49,16 +49,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -70,16 +60,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 
@@ -476,18 +456,6 @@ operator|.
 name|util
 operator|.
 name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
 import|;
 end_import
 
@@ -1591,6 +1559,9 @@ decl_stmt|;
 comment|/** 	 * The number of inactive brokers for the database instance  	 */
 specifier|private
 name|Stack
+argument_list|<
+name|DBBroker
+argument_list|>
 name|inactiveBrokers
 init|=
 operator|new
@@ -1600,10 +1571,20 @@ decl_stmt|;
 comment|/** 	 * The number of active brokers for the database instance  	 */
 specifier|private
 name|Map
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 name|activeBrokers
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/**      * The configuration object for the database instance      */
@@ -2806,9 +2787,6 @@ comment|// at this stage, the database is still single-threaded, so reusing the 
 name|DBBroker
 name|broker
 init|=
-operator|(
-name|DBBroker
-operator|)
 name|inactiveBrokers
 operator|.
 name|peek
@@ -3502,12 +3480,22 @@ return|;
 block|}
 specifier|public
 name|Map
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 name|getActiveBrokers
 parameter_list|()
 block|{
 return|return
 operator|new
 name|HashMap
+argument_list|<
+name|Thread
+argument_list|,
+name|DBBroker
+argument_list|>
 argument_list|(
 name|activeBrokers
 argument_list|)
@@ -3885,9 +3873,6 @@ comment|//Try to get an active broker
 name|DBBroker
 name|broker
 init|=
-operator|(
-name|DBBroker
-operator|)
 name|activeBrokers
 operator|.
 name|get
@@ -4033,9 +4018,6 @@ block|}
 block|}
 name|broker
 operator|=
-operator|(
-name|DBBroker
-operator|)
 name|inactiveBrokers
 operator|.
 name|pop
@@ -4131,32 +4113,17 @@ block|}
 comment|//Broker is no more used : inactivate it
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|DBBroker
+name|inactiveBroker
+range|:
 name|inactiveBrokers
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
 control|)
 block|{
 if|if
 condition|(
 name|broker
 operator|==
-name|inactiveBrokers
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
+name|inactiveBroker
 condition|)
 block|{
 name|LOG
@@ -4199,7 +4166,7 @@ expr_stmt|;
 comment|// Cleanup the state of activeBrokers
 for|for
 control|(
-name|Object
+name|Thread
 name|t
 range|:
 name|activeBrokers
@@ -4243,10 +4210,8 @@ if|if
 condition|(
 name|activeBrokers
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 comment|//TODO : use a "clean" dedicated method (we have some below) ?
@@ -4344,12 +4309,11 @@ init|)
 block|{
 if|if
 condition|(
+operator|!
 name|activeBrokers
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|!=
-literal|0
 condition|)
 block|{
 while|while
@@ -4381,9 +4345,6 @@ expr_stmt|;
 name|DBBroker
 name|broker
 init|=
-operator|(
-name|DBBroker
-operator|)
 name|inactiveBrokers
 operator|.
 name|peek
@@ -4693,9 +4654,6 @@ comment|// No, might lead to a deadlock.
 name|DBBroker
 name|broker
 init|=
-operator|(
-name|DBBroker
-operator|)
 name|inactiveBrokers
 operator|.
 name|pop
@@ -4944,12 +4902,11 @@ decl_stmt|;
 comment|//Are there active brokers ?
 if|if
 condition|(
+operator|!
 name|activeBrokers
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|LOG
@@ -4965,12 +4922,11 @@ argument_list|)
 expr_stmt|;
 while|while
 condition|(
+operator|!
 name|activeBrokers
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 try|try
@@ -5108,9 +5064,6 @@ comment|//TODO : use get() then release the broker ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 name|broker
 operator|=
-operator|(
-name|DBBroker
-operator|)
 name|inactiveBrokers
 operator|.
 name|peek
