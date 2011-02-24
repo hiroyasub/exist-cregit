@@ -54,6 +54,8 @@ operator|=
 name|cache
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getType
@@ -66,6 +68,8 @@ name|getType
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getSize
@@ -78,6 +82,8 @@ name|getBuffers
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getUsed
@@ -90,6 +96,8 @@ name|getUsedBuffers
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getHits
@@ -102,6 +110,8 @@ name|getHits
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getFails
@@ -114,6 +124,8 @@ name|getFails
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getFileName

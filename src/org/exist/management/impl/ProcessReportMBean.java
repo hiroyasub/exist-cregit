@@ -47,6 +47,11 @@ name|TabularData
 name|getRunningQueries
 parameter_list|()
 function_decl|;
+specifier|public
+name|TabularData
+name|getRecentQueryHistory
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

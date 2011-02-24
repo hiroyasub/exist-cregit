@@ -64,6 +64,16 @@ name|TabularData
 name|getActiveBrokersMap
 parameter_list|()
 function_decl|;
+specifier|public
+name|long
+name|getUptime
+parameter_list|()
+function_decl|;
+specifier|public
+name|String
+name|getExistHome
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

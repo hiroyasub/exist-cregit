@@ -31,7 +31,7 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|long
-name|getDataDirectoryFreeDiskSpace
+name|getDataDirectoryFreeSpace
 parameter_list|()
 function_decl|;
 specifier|public

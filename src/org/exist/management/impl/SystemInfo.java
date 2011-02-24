@@ -67,6 +67,18 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class SystemInfo  *   * @author wessels  */
 end_comment
@@ -140,6 +152,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getExistVersion
@@ -156,6 +170,8 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getExistBuild
@@ -172,6 +188,8 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getSvnRevision
@@ -188,6 +206,8 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultLocale
@@ -203,6 +223,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultEncoding
@@ -219,6 +241,40 @@ argument_list|)
 operator|.
 name|getEncoding
 argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getOperatingSystem
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"os.name"
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"os.version"
+argument_list|)
+operator|+
+literal|" "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"os.arch"
+argument_list|)
 return|;
 block|}
 block|}

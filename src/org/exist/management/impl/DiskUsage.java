@@ -96,6 +96,11 @@ name|DiskUsage
 implements|implements
 name|DiskUsageMBean
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|private
 name|BrokerPool
 name|pool
@@ -139,6 +144,9 @@ block|{
 try|try
 block|{
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cls
 init|=
 name|dir
@@ -274,7 +282,7 @@ return|;
 block|}
 specifier|public
 name|long
-name|getDataDirectoryFreeDiskSpace
+name|getDataDirectoryFreeSpace
 parameter_list|()
 block|{
 name|File
