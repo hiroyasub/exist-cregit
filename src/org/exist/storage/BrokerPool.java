@@ -1973,6 +1973,11 @@ specifier|private
 specifier|final
 name|Calendar
 name|startupTime
+init|=
+name|Calendar
+operator|.
+name|getInstance
+argument_list|()
 decl_stmt|;
 comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
@@ -1996,13 +2001,6 @@ name|EXistException
 throws|,
 name|DatabaseConfigurationException
 block|{
-name|startupTime
-operator|=
-name|Calendar
-operator|.
-name|getInstance
-argument_list|()
-expr_stmt|;
 name|Integer
 name|anInteger
 decl_stmt|;
