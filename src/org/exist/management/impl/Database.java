@@ -103,6 +103,7 @@ literal|"owner"
 block|}
 decl_stmt|;
 specifier|private
+specifier|final
 name|BrokerPool
 name|pool
 decl_stmt|;
