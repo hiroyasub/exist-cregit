@@ -2693,6 +2693,13 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+name|newSeq
+operator|.
+name|keepUnOrdered
+argument_list|(
+name|unordered
+argument_list|)
+expr_stmt|;
 name|boolean
 name|hasSupplements
 init|=
