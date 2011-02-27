@@ -1282,19 +1282,12 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.XQueryContext#getBroker()      */
-specifier|public
-name|DBBroker
-name|getBroker
-parameter_list|()
-block|{
-return|return
-name|parentContext
-operator|.
-name|getBroker
-argument_list|()
-return|;
-block|}
+comment|//    /* (non-Javadoc)
+comment|//     * @see org.exist.xquery.XQueryContext#getBroker()
+comment|//     */
+comment|//    public DBBroker getBroker() {
+comment|//        return parentContext.getBroker();
+comment|//    }
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getDocumentBuilder() 	 */
 specifier|public
 name|MemTreeBuilder
