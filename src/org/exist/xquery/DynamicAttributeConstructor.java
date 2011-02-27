@@ -548,7 +548,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|nameSeq
 operator|.
@@ -579,7 +583,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004 '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|qn
 operator|.
@@ -725,7 +733,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XQDY0025: element has more than one attribute '"
+name|ErrorCodes
+operator|.
+name|XQDY0025
+argument_list|,
+literal|"element has more than one attribute '"
 operator|+
 name|qn
 operator|+

@@ -679,7 +679,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: too many operands at the left of "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"too many operands at the left of "
 operator|+
 name|Constants
 operator|.
@@ -702,7 +706,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: too many operands at the right of "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"too many operands at the right of "
 operator|+
 name|Constants
 operator|.
@@ -842,7 +850,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.
@@ -883,7 +895,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.
@@ -942,7 +958,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.
@@ -991,7 +1011,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.
@@ -1036,7 +1060,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FOAR0001: division by zero"
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
 argument_list|)
 throw|;
 comment|//If either operand is NaN then an error is raised [err:FOAR0002].
@@ -1058,7 +1086,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FOAR0002: division of "
+name|ErrorCodes
+operator|.
+name|FOAR0002
+argument_list|,
+literal|"division of "
 operator|+
 name|Type
 operator|.
@@ -1096,7 +1128,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FOAR0002: division of "
+name|ErrorCodes
+operator|.
+name|FOAR0002
+argument_list|,
+literal|"division of "
 operator|+
 name|Type
 operator|.
@@ -1134,7 +1170,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FOAR0002: division of "
+name|ErrorCodes
+operator|.
+name|FOAR0002
+argument_list|,
+literal|"division of "
 operator|+
 name|Type
 operator|.
@@ -1355,7 +1395,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.
@@ -1397,7 +1441,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"'"
 operator|+
 name|Type
 operator|.

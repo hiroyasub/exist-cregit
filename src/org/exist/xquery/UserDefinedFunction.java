@@ -568,7 +568,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPTY0004: Invalid cardinality for parameter $"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Invalid cardinality for parameter $"
 operator|+
 name|varName
 operator|+

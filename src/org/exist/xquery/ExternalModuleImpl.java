@@ -627,7 +627,11 @@ name|XPathException
 argument_list|(
 name|decl
 argument_list|,
-literal|"err:XQST0048: It is a static error if a function "
+name|ErrorCodes
+operator|.
+name|XQST0048
+argument_list|,
+literal|"It is a static error if a function "
 operator|+
 literal|"or variable declared in a library module is not in the target namespace of the library module."
 argument_list|)

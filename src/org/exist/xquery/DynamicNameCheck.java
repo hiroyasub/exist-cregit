@@ -513,11 +513,6 @@ argument_list|(
 name|expression
 argument_list|,
 name|iae
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|iae
 argument_list|)
 throw|;
 block|}

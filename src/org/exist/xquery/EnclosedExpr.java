@@ -508,7 +508,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQTY0024: An attribute may not appear after "
+name|ErrorCodes
+operator|.
+name|XQTY0024
+argument_list|,
+literal|"An attribute may not appear after "
 operator|+
 literal|"another child node."
 argument_list|)
@@ -594,9 +598,6 @@ argument_list|(
 name|this
 argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 throw|;
 comment|//throw new XPathException(getASTNode(),

@@ -928,7 +928,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0019: left operand of '/' must be a node. Got '"
+name|ErrorCodes
+operator|.
+name|XPTY0019
+argument_list|,
+literal|"left operand of '/' must be a node. Got '"
 operator|+
 name|Type
 operator|.
@@ -1312,7 +1316,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0018: Cannot mix nodes and atomic values in the result of a path expression."
+name|ErrorCodes
+operator|.
+name|XPTY0018
+argument_list|,
+literal|"Cannot mix nodes and atomic values in the result of a path expression."
 argument_list|)
 throw|;
 block|}

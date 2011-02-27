@@ -416,7 +416,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPST0081 : undeclared prefix '"
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"undeclared prefix '"
 operator|+
 name|test
 operator|.

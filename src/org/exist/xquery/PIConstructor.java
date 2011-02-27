@@ -258,7 +258,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPST0003 : The target 'xml' is not allowed in XML processing instructions."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"The target 'xml' is not allowed in XML processing instructions."
 argument_list|)
 throw|;
 block|}

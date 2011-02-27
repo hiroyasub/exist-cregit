@@ -173,7 +173,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002 : variable '$"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"variable '$"
 operator|+
 name|qname
 operator|+
@@ -194,7 +198,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQST0054: variable declaration of '$"
+name|ErrorCodes
+operator|.
+name|XQST0054
+argument_list|,
+literal|"variable declaration of '$"
 operator|+
 name|qname
 operator|+
@@ -345,7 +353,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002 : variable '$"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"variable '$"
 operator|+
 name|qname
 operator|+
@@ -372,7 +384,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002 : undefined value for variable '$"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"undefined value for variable '$"
 operator|+
 name|qname
 operator|+

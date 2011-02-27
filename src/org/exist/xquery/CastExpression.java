@@ -379,7 +379,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0080: cannot cast to "
+name|ErrorCodes
+operator|.
+name|XPST0080
+argument_list|,
+literal|"cannot cast to "
 operator|+
 name|Type
 operator|.
@@ -429,7 +433,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0051: cannot cast to "
+name|ErrorCodes
+operator|.
+name|XPST0051
+argument_list|,
+literal|"cannot cast to "
 operator|+
 name|Type
 operator|.
@@ -528,7 +536,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPTY0004: cardinality error: sequence with more than one item is not allowed here"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cardinality error: sequence with more than one item is not allowed here"
 argument_list|)
 throw|;
 try|try

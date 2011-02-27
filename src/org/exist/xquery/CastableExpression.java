@@ -396,7 +396,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0080: cannot convert to "
+name|ErrorCodes
+operator|.
+name|XPST0080
+argument_list|,
+literal|"cannot convert to "
 operator|+
 name|Type
 operator|.
@@ -444,7 +448,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0051: cannot convert to "
+name|ErrorCodes
+operator|.
+name|XPST0051
+argument_list|,
+literal|"cannot convert to "
 operator|+
 name|Type
 operator|.

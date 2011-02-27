@@ -428,7 +428,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XQDY0072 '"
+name|ErrorCodes
+operator|.
+name|XQDY0072
+argument_list|,
+literal|"'"
 operator|+
 name|buf
 operator|.
