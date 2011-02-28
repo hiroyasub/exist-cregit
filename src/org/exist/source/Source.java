@@ -49,6 +49,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -148,6 +160,18 @@ specifier|public
 name|long
 name|getCacheTimestamp
 parameter_list|()
+function_decl|;
+comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      * @return true if subject has the requested permissions      */
+specifier|public
+name|boolean
+name|validate
+parameter_list|(
+name|Subject
+name|subject
+parameter_list|,
+name|int
+name|perm
+parameter_list|)
 function_decl|;
 block|}
 end_interface
