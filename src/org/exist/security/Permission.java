@@ -65,6 +65,14 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|int
+name|EXECUTE
+init|=
+literal|1
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 name|USER_STRING
 init|=
