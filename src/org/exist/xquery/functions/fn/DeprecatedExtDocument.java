@@ -775,9 +775,6 @@ block|}
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|context
 operator|.
 name|getBroker
@@ -786,6 +783,10 @@ operator|.
 name|getXMLResource
 argument_list|(
 name|nextUri
+argument_list|,
+name|Permission
+operator|.
+name|READ
 argument_list|)
 decl_stmt|;
 if|if
@@ -795,37 +796,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-if|if
-condition|(
-operator|!
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|context
-operator|.
-name|getUser
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Insufficient privileges to read resource "
-operator|+
-name|next
-argument_list|)
-throw|;
 name|docs
 operator|.
 name|add
@@ -867,7 +837,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Permission denied: unable to load document "
+literal|"Permission denied: Insufficient privileges to read resource "
 operator|+
 name|next
 argument_list|)
