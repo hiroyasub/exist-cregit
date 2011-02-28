@@ -604,7 +604,7 @@ literal|":"
 operator|+
 name|node
 operator|.
-name|getNodeName
+name|getLocalName
 argument_list|()
 return|;
 block|}
