@@ -51,6 +51,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Subject
 import|;
 end_import
@@ -163,7 +175,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      * @return true if subject has the requested permissions      */
 specifier|public
-name|boolean
+name|void
 name|validate
 parameter_list|(
 name|Subject
@@ -172,6 +184,8 @@ parameter_list|,
 name|int
 name|perm
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 block|}
 end_interface

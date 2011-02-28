@@ -31,6 +31,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Subject
 import|;
 end_import
@@ -410,7 +422,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|boolean
+name|void
 name|validate
 parameter_list|(
 name|Subject
@@ -419,11 +431,10 @@ parameter_list|,
 name|int
 name|perm
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 comment|// TODO protected?
-return|return
-literal|true
-return|;
 block|}
 block|}
 end_class
