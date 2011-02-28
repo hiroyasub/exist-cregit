@@ -9963,15 +9963,39 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      *  get a document by its file name. The document's file name is used to      *  identify a document.      *      *@param  fileName absolute file name in the database;       *name can be given with or without the leading path /db/shakespeare.      *@return  The document value      *@exception  PermissionDeniedException       */
-annotation|@
-name|Override
 specifier|public
 name|Document
 name|getXMLResource
 parameter_list|(
 name|XmldbURI
 name|fileName
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+return|return
+name|getResource
+argument_list|(
+name|fileName
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+return|;
+block|}
+comment|/**      *  get a document by its file name. The document's file name is used to      *  identify a document.      *      *@param  fileName absolute file name in the database;       *name can be given with or without the leading path /db/shakespeare.      *@return  The document value      *@exception  PermissionDeniedException       */
+annotation|@
+name|Override
+specifier|public
+name|DocumentImpl
+name|getResource
+parameter_list|(
+name|XmldbURI
+name|fileName
+parameter_list|,
+name|int
+name|accessType
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -10043,7 +10067,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -10151,8 +10175,33 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//if (!doc.getPermissions().validate(getUser(), Permission.READ))
-comment|//throw new PermissionDeniedException("not allowed to read document");
+if|if
+condition|(
+operator|!
+name|doc
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|getSubject
+argument_list|()
+argument_list|,
+name|accessType
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"not allowed to read document '"
+operator|+
+name|fileName
+operator|+
+literal|"'"
+argument_list|)
+throw|;
 return|return
 name|doc
 return|;
@@ -10254,7 +10303,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission

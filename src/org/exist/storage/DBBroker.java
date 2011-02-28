@@ -974,7 +974,6 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      *       * deprecated Use XmldbURI instead!      *       * public abstract Document getXMLResource(String path) throws      * PermissionDeniedException;      */
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      */
 specifier|public
 specifier|abstract
 name|Document
@@ -982,6 +981,21 @@ name|getXMLResource
 parameter_list|(
 name|XmldbURI
 name|docURI
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      */
+specifier|public
+specifier|abstract
+name|DocumentImpl
+name|getResource
+parameter_list|(
+name|XmldbURI
+name|docURI
+parameter_list|,
+name|int
+name|accessType
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
