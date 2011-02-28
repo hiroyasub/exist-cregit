@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global pool for pre-compiled XQuery expressions. Expressions are  * stored and retrieved from the pool by comparing the {@link org.exist.source.Source}  * objects from which they were created. For each XQuery, a maximum of   * {@link #MAX_STACK_SIZE} compiled expressions are kept in the pool.  * An XQuery expression will be removed from the pool if it has not been  * used for a pre-defined timeout. These settings can be configured in conf.xml.  *   * @author wolf  */
+comment|/**  * Global pool for pre-compiled XQuery expressions. Expressions are stored and  * retrieved from the pool by comparing the {@link org.exist.source.Source}  * objects from which they were created. For each XQuery, a maximum of  * {@link #MAX_STACK_SIZE} compiled expressions are kept in the pool. An XQuery  * expression will be removed from the pool if it has not been used for a  * pre-defined timeout. These settings can be configured in conf.xml.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -298,7 +298,7 @@ name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 init|=
 literal|"db-connection.query-pool.timeout-check-interval"
 decl_stmt|;
-comment|/**      * @param conf      */
+comment|/** 	 * @param conf 	 */
 specifier|public
 name|XQueryPool
 parameter_list|(
@@ -432,7 +432,7 @@ name|timeout
 operator|=
 name|TIMEOUT
 expr_stmt|;
-comment|//TODO : check that it is inferior to t
+comment|// TODO : check that it is inferior to t
 if|if
 condition|(
 name|tci
@@ -455,7 +455,9 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"QueryPool: size = "
+literal|"QueryPool: "
+operator|+
+literal|"size = "
 operator|+
 name|nf
 operator|.
@@ -464,7 +466,9 @@ argument_list|(
 name|maxPoolSize
 argument_list|)
 operator|+
-literal|"; maxStackSize = "
+literal|"; "
+operator|+
+literal|"maxStackSize = "
 operator|+
 name|nf
 operator|.
@@ -473,7 +477,9 @@ argument_list|(
 name|maxStackSize
 argument_list|)
 operator|+
-literal|"; timeout = "
+literal|"; "
+operator|+
+literal|"timeout = "
 operator|+
 name|nf
 operator|.
@@ -482,7 +488,9 @@ argument_list|(
 name|timeout
 argument_list|)
 operator|+
-literal|"; timeoutCheckInterval = "
+literal|"; "
+operator|+
+literal|"timeoutCheckInterval = "
 operator|+
 name|nf
 operator|.
@@ -504,7 +512,7 @@ name|CompiledXQuery
 name|xquery
 parameter_list|)
 block|{
-comment|//   	 returnModules(xquery.getContext(), null);
+comment|// returnModules(xquery.getContext(), null);
 name|returnObject
 argument_list|(
 name|source
@@ -576,8 +584,9 @@ name|ExternalModule
 operator|)
 name|module
 decl_stmt|;
-comment|//             ((ModuleContext)extModule.getContext()).setParentContext(null);
-comment|// Don't return recursively, since all modules are listed in the top-level context
+comment|// ((ModuleContext)extModule.getContext()).setParentContext(null);
+comment|// Don't return recursively, since all modules are listed in the
+comment|// top-level context
 name|returnObject
 argument_list|(
 name|extModule
@@ -962,24 +971,27 @@ expr_stmt|;
 return|return
 name|query
 return|;
-comment|//      if (!borrowModules(broker, context)) {
-comment|//          // the compiled query is no longer valid: one of the imported
-comment|//          // modules may have changed
-comment|//          remove(source);
-comment|//          return null;
-comment|//      } else {
-comment|//      	if (query instanceof PathExpr) try {
-comment|//      		// This is necessary because eXist performs whole-expression analysis, so a function
-comment|//      		// can only be analyzed as part of the expression it's called from.  It might be better
-comment|//      		// to make module functions more stand-alone, so they only need to be analyzed
-comment|//      		// once.
-comment|//      		context.analyzeAndOptimizeIfModulesChanged((PathExpr) query);
-comment|//      	} catch (XPathException e) {
-comment|//      		remove(source);
-comment|//      		return null;
-comment|//      	}
-comment|//          return query;
-comment|//      }
+comment|// if (!borrowModules(broker, context)) {
+comment|// // the compiled query is no longer valid: one of the imported
+comment|// // modules may have changed
+comment|// remove(source);
+comment|// return null;
+comment|// } else {
+comment|// if (query instanceof PathExpr) try {
+comment|// // This is necessary because eXist performs whole-expression
+comment|// analysis, so a function
+comment|// // can only be analyzed as part of the expression it's called from.
+comment|// It might be better
+comment|// // to make module functions more stand-alone, so they only need to be
+comment|// analyzed
+comment|// // once.
+comment|// context.analyzeAndOptimizeIfModulesChanged((PathExpr) query);
+comment|// } catch (XPathException e) {
+comment|// remove(source);
+comment|// return null;
+comment|// }
+comment|// return query;
+comment|// }
 block|}
 specifier|private
 specifier|synchronized
@@ -1201,8 +1213,10 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-comment|// Modules that don't appear in the root context will be set in context.allModules by
-comment|// calling setModule below on the module that does import them directly.
+comment|// Modules that don't appear in the root context will be set in
+comment|// context.allModules by
+comment|// calling setModule below on the module that does import them
+comment|// directly.
 if|if
 condition|(
 name|context
