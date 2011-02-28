@@ -1865,26 +1865,25 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|String
-name|p_typed
-init|=
+if|if
+condition|(
+operator|(
+name|option
+operator|=
 name|request
 operator|.
 name|getParameter
 argument_list|(
 literal|"_typed"
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|p_typed
+operator|)
 operator|!=
 literal|null
 condition|)
 block|{
 if|if
 condition|(
-name|p_typed
+name|option
 operator|.
 name|toLowerCase
 argument_list|()
@@ -2199,8 +2198,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// query parameter specified, search method does all the rest of the
-comment|// work
+comment|// query parameter specified, search method does all the rest of the work
 try|try
 block|{
 name|search
@@ -7451,7 +7449,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Directly execute an XQuery stored as a binary document in the database. 	 */
+comment|/** 	 * Directly execute an XQuery stored as a binary document in the database. 	 * @throws PermissionDeniedException  	 */
 specifier|private
 name|void
 name|executeXQuery
@@ -7481,6 +7479,8 @@ throws|throws
 name|XPathException
 throws|,
 name|BadRequestException
+throws|,
+name|PermissionDeniedException
 block|{
 name|Source
 name|source
@@ -7915,7 +7915,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Directly execute an XProc stored as a XML document in the database. 	 */
+comment|/** 	 * Directly execute an XProc stored as a XML document in the database. 	 * @throws PermissionDeniedException  	 */
 specifier|private
 name|void
 name|executeXProc
@@ -7945,6 +7945,8 @@ throws|throws
 name|XPathException
 throws|,
 name|BadRequestException
+throws|,
+name|PermissionDeniedException
 block|{
 name|URLSource
 name|source

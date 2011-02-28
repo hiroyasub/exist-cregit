@@ -1897,7 +1897,7 @@ literal|true
 condition|)
 do|;
 block|}
-comment|/**      * The method<code>compile</code>      *      * @param broker a<code>DBBroker</code> value      * @param source a<code>Source</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>CompiledXQuery</code> value      * @exception XPathException if an error occurs      * @exception IOException if an error occurs      */
+comment|/**      * The method<code>compile</code>      *      * @param broker a<code>DBBroker</code> value      * @param source a<code>Source</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>CompiledXQuery</code> value      * @exception XPathException if an error occurs      * @exception IOException if an error occurs      * @throws PermissionDeniedException       */
 specifier|private
 name|CompiledXQuery
 name|compile
@@ -1920,6 +1920,8 @@ throws|throws
 name|XPathException
 throws|,
 name|IOException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XQuery
 name|xquery

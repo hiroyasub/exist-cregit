@@ -3127,9 +3127,8 @@ parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
+comment|//throws TriggerException {
 name|EventKey
 name|key
 init|=
@@ -3229,9 +3228,8 @@ parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
+comment|//throws TriggerException {
 name|EventKey
 name|key
 init|=
@@ -3334,9 +3332,8 @@ parameter_list|,
 name|XmldbURI
 name|newUri
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
+comment|//throws TriggerException {
 name|EventKey
 name|key
 init|=
@@ -3442,9 +3439,8 @@ parameter_list|,
 name|XmldbURI
 name|newUri
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
+comment|//throws TriggerException {
 name|EventKey
 name|key
 init|=
@@ -3544,9 +3540,8 @@ parameter_list|,
 name|XmldbURI
 name|uri
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
+comment|//throws TriggerException {
 name|EventKey
 name|key
 init|=

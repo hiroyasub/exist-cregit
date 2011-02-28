@@ -83,6 +83,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|AccessContext
@@ -1634,6 +1646,22 @@ name|e
 argument_list|)
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseException
+argument_list|(
+literal|"permission denied"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 finally|finally
 block|{
 name|db
@@ -3026,6 +3054,22 @@ operator|new
 name|DatabaseException
 argument_list|(
 literal|"unexpected exception"
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseException
+argument_list|(
+literal|"permission denied"
 argument_list|,
 name|e
 argument_list|)

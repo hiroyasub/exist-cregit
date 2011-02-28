@@ -3906,6 +3906,8 @@ throws|throws
 name|ServletException
 throws|,
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 comment|// Try to find the XQuery
 name|SourceInfo

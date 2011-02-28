@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|AccessContext
@@ -3082,6 +3094,8 @@ throws|throws
 name|XPathException
 throws|,
 name|SAXException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XQuery
 name|xquery

@@ -681,7 +681,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -835,7 +835,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1151,6 +1151,8 @@ throws|throws
 name|EXistException
 throws|,
 name|BadRequestException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XQuery
 name|xquery
@@ -1574,6 +1576,8 @@ throws|throws
 name|EXistException
 throws|,
 name|BadRequestException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XQuery
 name|xquery

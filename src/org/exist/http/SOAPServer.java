@@ -1033,7 +1033,7 @@ operator|=
 name|containerEncoding
 expr_stmt|;
 block|}
-comment|/**      * Compiles an XQuery or returns a cached version if one exists      *       * @param broker	The Database Broker to use      * @param xqSource	The XQuery source      * @param staticallyKnownDocuments	An array of XmldbURI's for documents that should be considered statically known by the XQuery      * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides      * @param request	The HttpServletRequest for the XQWS      * @param response	The HttpServletResponse for the XQWS      *       * @return The compiled XQuery      */
+comment|/**      * Compiles an XQuery or returns a cached version if one exists      *       * @param broker	The Database Broker to use      * @param xqSource	The XQuery source      * @param staticallyKnownDocuments	An array of XmldbURI's for documents that should be considered statically known by the XQuery      * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides      * @param request	The HttpServletRequest for the XQWS      * @param response	The HttpServletResponse for the XQWS      *       * @return The compiled XQuery      * @throws PermissionDeniedException       */
 specifier|private
 name|CompiledXQuery
 name|compileXQuery
@@ -1059,6 +1059,8 @@ name|response
 parameter_list|)
 throws|throws
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 comment|//Get the xquery service
 name|XQuery
@@ -1217,7 +1219,7 @@ return|return
 name|compiled
 return|;
 block|}
-comment|/**      * Creates an XQuery to call an XQWS function from a SOAP Request      *       * @param broker	The Database Broker to use      * @param xqwsFileUri	The XmldbURI of the XQWS file      * @param xqwsNamespace	The namespace of the xqws      * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides      * @param xqwsSOAPFunction	The Node from the SOAP request for the Function call from the Http Request      * @param xqwsDescription	The internal description of the XQWS      * @param request	The Http Servlet Request      * @param response The Http Servlet Response      *       * @return The compiled XQuery      */
+comment|/**      * Creates an XQuery to call an XQWS function from a SOAP Request      *       * @param broker	The Database Broker to use      * @param xqwsFileUri	The XmldbURI of the XQWS file      * @param xqwsNamespace	The namespace of the xqws      * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides      * @param xqwsSOAPFunction	The Node from the SOAP request for the Function call from the Http Request      * @param xqwsDescription	The internal description of the XQWS      * @param request	The Http Servlet Request      * @param response The Http Servlet Response      *       * @return The compiled XQuery      * @throws PermissionDeniedException       */
 specifier|private
 name|CompiledXQuery
 name|XQueryExecuteXQWSFunction
@@ -1239,6 +1241,8 @@ name|response
 parameter_list|)
 throws|throws
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 name|StringBuffer
 name|query
@@ -5757,7 +5761,7 @@ name|namespaceURL
 argument_list|)
 return|;
 block|}
-comment|/**          * Creates a simple XQuery to include an XQWS          *           * @param broker	The Database Broker to use          * @param xqwsFileUri	The XmldbURI of the XQWS file          * @param xqwsNamespace	The namespace of the xqws          * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides          *           * @return The compiled XQuery          */
+comment|/**          * Creates a simple XQuery to include an XQWS          *           * @param broker	The Database Broker to use          * @param xqwsFileUri	The XmldbURI of the XQWS file          * @param xqwsNamespace	The namespace of the xqws          * @param xqwsCollectionUri	The XmldbUri of the collection where the XQWS resides          *           * @return The compiled XQuery          * @throws PermissionDeniedException           */
 specifier|private
 name|CompiledXQuery
 name|XQueryIncludeXQWS
@@ -5776,6 +5780,8 @@ name|xqwsCollectionUri
 parameter_list|)
 throws|throws
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 comment|//Create a simple XQuery wrapper to access the module
 name|String

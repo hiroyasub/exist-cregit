@@ -79,6 +79,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|source
 operator|.
 name|Source
@@ -928,6 +952,8 @@ parameter_list|,
 name|Source
 name|source
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 name|CompiledXQuery
 name|query
@@ -951,6 +977,21 @@ condition|)
 return|return
 literal|null
 return|;
+comment|//check execution permission
+name|source
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getSubject
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|EXECUTE
+argument_list|)
+expr_stmt|;
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
 name|XQueryContext
