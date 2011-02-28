@@ -1407,7 +1407,7 @@ name|useDynamicContentType
 decl_stmt|;
 specifier|private
 name|boolean
-name|saveMode
+name|safeMode
 init|=
 literal|false
 decl_stmt|;
@@ -1432,7 +1432,7 @@ name|boolean
 name|useDynamicContentType
 parameter_list|,
 name|boolean
-name|saveMode
+name|safeMode
 parameter_list|)
 block|{
 name|this
@@ -1455,9 +1455,9 @@ name|useDynamicContentType
 expr_stmt|;
 name|this
 operator|.
-name|saveMode
+name|safeMode
 operator|=
-name|saveMode
+name|safeMode
 expr_stmt|;
 name|this
 operator|.
@@ -1624,7 +1624,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|saveMode
+name|safeMode
 condition|)
 block|{
 name|request
@@ -2004,7 +2004,7 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|saveMode
+name|safeMode
 condition|)
 block|{
 name|source
@@ -2417,7 +2417,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|saveMode
+name|safeMode
 operator|||
 operator|!
 name|collection
