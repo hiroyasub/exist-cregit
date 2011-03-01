@@ -73,6 +73,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -256,12 +268,15 @@ parameter_list|(
 name|HttpServletRequest
 name|request
 parameter_list|,
-name|CompiledXQuery
-name|compiled
+name|XQueryContext
+name|context
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//TODO: XDEBUG_SESSION_STOP_NO_EXEC
+comment|//TODO: XDEBUG_SESSION_STOP
+comment|//if get "start new debug session" request
 name|String
 name|xdebug
 init|=
@@ -279,10 +294,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|compiled
-operator|.
-name|getContext
-argument_list|()
+name|context
 operator|.
 name|declareVariable
 argument_list|(
@@ -313,10 +325,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|compiled
-operator|.
-name|getContext
-argument_list|()
+name|context
 operator|.
 name|declareVariable
 argument_list|(
@@ -380,10 +389,8 @@ literal|"XDEBUG_SESSION"
 argument_list|)
 condition|)
 block|{
-name|compiled
-operator|.
-name|getContext
-argument_list|()
+comment|//TODO: check for value?? ("eXistDB_XDebug" ? or leave "default") -shabanovd
+name|context
 operator|.
 name|declareVariable
 argument_list|(
@@ -405,6 +412,42 @@ block|}
 block|}
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|context
+operator|.
+name|requireDebugMode
+argument_list|()
+condition|)
+block|{
+name|String
+name|idekey
+init|=
+name|request
+operator|.
+name|getParameter
+argument_list|(
+literal|"KEY"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|idekey
+operator|!=
+literal|null
+condition|)
+name|context
+operator|.
+name|declareVariable
+argument_list|(
+name|Debuggee
+operator|.
+name|IDEKEY
+argument_list|,
+name|idekey
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

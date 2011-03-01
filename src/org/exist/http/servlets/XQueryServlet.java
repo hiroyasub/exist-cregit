@@ -113,18 +113,6 @@ name|servlet
 operator|.
 name|http
 operator|.
-name|Cookie
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|http
-operator|.
 name|HttpServlet
 import|;
 end_import
@@ -220,6 +208,30 @@ operator|.
 name|security
 operator|.
 name|AuthenticationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
 import|;
 end_import
 
@@ -559,7 +571,7 @@ name|exist
 operator|.
 name|debuggee
 operator|.
-name|Debuggee
+name|DebuggeeFactory
 import|;
 end_import
 
@@ -2213,6 +2225,43 @@ name|path
 argument_list|)
 condition|)
 block|{
+try|try
+block|{
+name|source
+operator|.
+name|validate
+argument_list|(
+name|user
+argument_list|,
+name|Permission
+operator|.
+name|READ
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|response
+operator|.
+name|sendError
+argument_list|(
+name|HttpServletResponse
+operator|.
+name|SC_FORBIDDEN
+argument_list|,
+literal|"Permission to view XQuery source for: "
+operator|+
+name|path
+operator|+
+literal|" denied. (no read access)"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 comment|//Show the source of the XQuery
 comment|//writeResourceAs(resource, broker, stylesheet, encoding, "text/plain", outputProperties, response);
 name|response
@@ -2507,181 +2556,15 @@ literal|null
 operator|)
 argument_list|)
 expr_stmt|;
-comment|//TODO: XDEBUG_SESSION_STOP_NO_EXEC
-comment|//TODO: XDEBUG_SESSION_STOP
-comment|//if get "start new debug session" request
-name|String
-name|xdebug
-init|=
+name|DebuggeeFactory
+operator|.
+name|checkForDebugRequest
+argument_list|(
 name|request
-operator|.
-name|getParameter
-argument_list|(
-literal|"XDEBUG_SESSION_START"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|xdebug
-operator|!=
-literal|null
-condition|)
-block|{
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|Debuggee
-operator|.
-name|SESSION
 argument_list|,
-name|xdebug
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//if have session
-name|xdebug
-operator|=
-name|request
-operator|.
-name|getParameter
-argument_list|(
-literal|"XDEBUG_SESSION"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|xdebug
-operator|!=
-literal|null
-condition|)
-block|{
 name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|Debuggee
-operator|.
-name|SESSION
-argument_list|,
-name|xdebug
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|//looking for session in cookies (FF XDebug Helper add-ons)
-name|Cookie
-index|[]
-name|cookies
-init|=
-name|request
-operator|.
-name|getCookies
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|cookies
-operator|!=
-literal|null
-condition|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|cookies
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-if|if
-condition|(
-name|cookies
-index|[
-name|i
-index|]
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"XDEBUG_SESSION"
-argument_list|)
-condition|)
-block|{
-comment|//TODO: check for value?? ("eXistDB_XDebug" ? or leave "default") -shabanovd
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|Debuggee
-operator|.
-name|SESSION
-argument_list|,
-name|cookies
-index|[
-name|i
-index|]
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
-block|}
-block|}
-block|}
-block|}
-if|if
-condition|(
-name|context
-operator|.
-name|requireDebugMode
-argument_list|()
-condition|)
-block|{
-name|String
-name|idekey
-init|=
-name|request
-operator|.
-name|getParameter
-argument_list|(
-literal|"KEY"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|idekey
-operator|!=
-literal|null
-condition|)
-name|context
-operator|.
-name|declareVariable
-argument_list|(
-name|Debuggee
-operator|.
-name|IDEKEY
-argument_list|,
-name|idekey
-argument_list|)
-expr_stmt|;
-block|}
 name|Sequence
 name|resultSequence
 decl_stmt|;
@@ -3390,30 +3273,6 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|// -jmvanel : never used locally
-comment|//	private static final class CachedQuery {
-comment|//
-comment|//		long lastModified;
-comment|//		String sourcePath;
-comment|//		CompiledExpression expression;
-comment|//
-comment|//		public CachedQuery(File sourceFile, CompiledExpression expression) {
-comment|//			this.sourcePath = sourceFile.getAbsolutePath();
-comment|//			this.lastModified = sourceFile.lastModified();
-comment|//			this.expression = expression;
-comment|//		}
-comment|//
-comment|//		public boolean isValid() {
-comment|//			File f = new File(sourcePath);
-comment|//			if(f.lastModified()> lastModified)
-comment|//				return false;
-comment|//			return true;
-comment|//		}
-comment|//
-comment|//		public CompiledExpression getExpression() {
-comment|//			return expression;
-comment|//		}
-comment|//	}
 block|}
 end_class
 
