@@ -1503,6 +1503,8 @@ throws|throws
 name|XPathException
 throws|,
 name|IOException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XQueryContext
 name|context

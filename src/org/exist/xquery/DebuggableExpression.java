@@ -596,6 +596,17 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Expression
+name|getParent
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
