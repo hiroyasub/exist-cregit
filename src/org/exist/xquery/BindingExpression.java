@@ -429,6 +429,9 @@ operator|.
 name|inputSequence
 operator|=
 name|sequence
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -455,6 +458,9 @@ operator|.
 name|returnExpr
 operator|=
 name|expr
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -481,6 +487,9 @@ operator|.
 name|whereExpr
 operator|=
 name|expr
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

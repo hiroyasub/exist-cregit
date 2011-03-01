@@ -5689,7 +5689,7 @@ block|}
 comment|/**      * Possibly switch operands to simplify execution.      */
 specifier|protected
 name|void
-name|simplify
+name|simplifyOperands
 parameter_list|()
 block|{
 comment|//Prefer nodes at the left hand

@@ -187,6 +187,9 @@ operator|.
 name|body
 operator|=
 name|body
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public

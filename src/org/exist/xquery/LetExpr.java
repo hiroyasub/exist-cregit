@@ -1764,6 +1764,17 @@ argument_list|,
 name|resultSequence
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|resultSequence
+operator|==
+literal|null
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 name|actualReturnType
 operator|=
 name|resultSequence

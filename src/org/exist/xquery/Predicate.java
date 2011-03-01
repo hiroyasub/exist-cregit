@@ -3717,6 +3717,17 @@ operator|+
 literal|"]"
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Expression
+name|simplify
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 

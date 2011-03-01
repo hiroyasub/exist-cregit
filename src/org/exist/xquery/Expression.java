@@ -301,6 +301,11 @@ name|int
 name|getDependencies
 parameter_list|()
 function_decl|;
+specifier|public
+name|Expression
+name|simplify
+parameter_list|()
+function_decl|;
 comment|/**      * Called to inform an expression that it should reset to its initial state.      *      * All cached data in the expression object should be dropped. For example,      * the xmldb:document() function calls this method whenever the input document      * set has changed.      * @param postOptimization      */
 specifier|public
 name|void
@@ -416,6 +421,11 @@ function_decl|;
 specifier|public
 name|boolean
 name|allowMixNodesInReturn
+parameter_list|()
+function_decl|;
+specifier|public
+name|Expression
+name|getParent
 parameter_list|()
 function_decl|;
 block|}

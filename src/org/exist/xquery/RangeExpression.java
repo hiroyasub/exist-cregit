@@ -1003,6 +1003,15 @@ operator|.
 name|INTEGER
 return|;
 block|}
+specifier|public
+name|Expression
+name|simplify
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 

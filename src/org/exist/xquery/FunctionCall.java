@@ -1574,14 +1574,13 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
-name|functionDef
+name|expression
 operator|.
 name|resetState
 argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
-comment|//TODO : reset expression ?
 block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)     */
 specifier|public

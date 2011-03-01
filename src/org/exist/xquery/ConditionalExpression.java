@@ -133,18 +133,27 @@ operator|.
 name|testExpr
 operator|=
 name|testExpr
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
 name|thenExpr
 operator|=
 name|thenExpr
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
 name|elseExpr
 operator|=
 name|elseExpr
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */

@@ -350,17 +350,19 @@ name|EnclosedExpr
 operator|||
 comment|//First, the intermediate PathExpr
 operator|(
-operator|(
-name|PathExpr
-operator|)
 name|getParent
 argument_list|()
-operator|)
+operator|!=
+literal|null
+operator|&&
+name|getParent
+argument_list|()
 operator|.
 name|getParent
 argument_list|()
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 name|result

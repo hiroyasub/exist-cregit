@@ -281,6 +281,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|Expression
+name|simplify
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 block|}
 end_class
 
