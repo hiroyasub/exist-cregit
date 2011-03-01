@@ -1203,7 +1203,7 @@ throws|throws
 name|AuthenticationException
 block|{
 name|Account
-name|user
+name|account
 init|=
 name|getAccount
 argument_list|(
@@ -1214,7 +1214,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|user
+name|account
 operator|==
 literal|null
 condition|)
@@ -1230,12 +1230,19 @@ literal|"Acount '"
 operator|+
 name|accountName
 operator|+
-literal|"' not found"
+literal|"' not found."
 argument_list|)
 throw|;
 if|if
 condition|(
 literal|"SYSTEM"
+operator|.
+name|equals
+argument_list|(
+name|accountName
+argument_list|)
+operator|||
+literal|"guest"
 operator|.
 name|equals
 argument_list|(
@@ -1254,11 +1261,36 @@ literal|"Acount '"
 operator|+
 name|accountName
 operator|+
-literal|"' can not be used"
+literal|"' can not be used."
 argument_list|)
 throw|;
+if|if
+condition|(
+operator|!
+name|account
+operator|.
+name|isEnabled
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_LOCKED
+argument_list|,
+literal|"Acount '"
+operator|+
+name|accountName
+operator|+
+literal|"' is dissabled."
+argument_list|)
+throw|;
+block|}
 name|Subject
-name|newUser
+name|subject
 init|=
 operator|new
 name|SubjectImpl
@@ -1266,21 +1298,21 @@ argument_list|(
 operator|(
 name|AccountImpl
 operator|)
-name|user
+name|account
 argument_list|,
 name|credentials
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|newUser
+name|subject
 operator|.
 name|isAuthenticated
 argument_list|()
 condition|)
 block|{
 return|return
-name|newUser
+name|subject
 return|;
 block|}
 throw|throw
