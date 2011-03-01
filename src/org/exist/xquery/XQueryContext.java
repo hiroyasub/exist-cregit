@@ -1701,6 +1701,12 @@ name|debuggeeJoint
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|int
+name|xqueryVersion
+init|=
+literal|10
+decl_stmt|;
 comment|// TODO: expath repo manageer, may change
 specifier|private
 specifier|static
@@ -12689,6 +12695,28 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|setXQueryVersion
+parameter_list|(
+name|int
+name|version
+parameter_list|)
+block|{
+name|xqueryVersion
+operator|=
+name|version
+expr_stmt|;
+block|}
+specifier|public
+name|int
+name|getXQueryVersion
+parameter_list|()
+block|{
+return|return
+name|xqueryVersion
+return|;
 block|}
 comment|// ====================================================================================
 specifier|private

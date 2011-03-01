@@ -51,7 +51,7 @@ name|ErrorCode
 name|XPST0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0001"
 argument_list|,
@@ -64,7 +64,7 @@ name|ErrorCode
 name|XPDY0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPDY0002"
 argument_list|,
@@ -77,7 +77,7 @@ name|ErrorCode
 name|XPST0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0003"
 argument_list|,
@@ -90,7 +90,7 @@ name|ErrorCode
 name|XPTY0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0004"
 argument_list|,
@@ -103,7 +103,7 @@ name|ErrorCode
 name|XPST0005
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0005"
 argument_list|,
@@ -116,7 +116,7 @@ name|ErrorCode
 name|XPTY0006
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0006"
 argument_list|,
@@ -129,7 +129,7 @@ name|ErrorCode
 name|XPTY0007
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0007"
 argument_list|,
@@ -142,7 +142,7 @@ name|ErrorCode
 name|XPST0008
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0008"
 argument_list|,
@@ -155,7 +155,7 @@ name|ErrorCode
 name|XPST0010
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0010"
 argument_list|,
@@ -168,7 +168,7 @@ name|ErrorCode
 name|XPST0017
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0017"
 argument_list|,
@@ -181,7 +181,7 @@ name|ErrorCode
 name|XPTY0018
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0018"
 argument_list|,
@@ -194,7 +194,7 @@ name|ErrorCode
 name|XPTY0019
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0019"
 argument_list|,
@@ -207,7 +207,7 @@ name|ErrorCode
 name|XPTY0020
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPTY0020"
 argument_list|,
@@ -220,7 +220,7 @@ name|ErrorCode
 name|XPDY0021
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPDY0021"
 argument_list|,
@@ -233,7 +233,7 @@ name|ErrorCode
 name|XPDY0050
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPDY0050"
 argument_list|,
@@ -246,7 +246,7 @@ name|ErrorCode
 name|XPST0051
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0051"
 argument_list|,
@@ -259,7 +259,7 @@ name|ErrorCode
 name|XPST0080
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0080"
 argument_list|,
@@ -272,7 +272,7 @@ name|ErrorCode
 name|XPST0081
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0081"
 argument_list|,
@@ -285,7 +285,7 @@ name|ErrorCode
 name|XPST0083
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XPST0083"
 argument_list|,
@@ -299,7 +299,7 @@ name|ErrorCode
 name|XQST0009
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0009"
 argument_list|,
@@ -312,7 +312,7 @@ name|ErrorCode
 name|XQST0012
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0012"
 argument_list|,
@@ -325,7 +325,7 @@ name|ErrorCode
 name|XQST0013
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0013"
 argument_list|,
@@ -338,7 +338,7 @@ name|ErrorCode
 name|XQST0014
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0014"
 argument_list|,
@@ -351,7 +351,7 @@ name|ErrorCode
 name|XQST0015
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0015"
 argument_list|,
@@ -364,7 +364,7 @@ name|ErrorCode
 name|XQST0016
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0016"
 argument_list|,
@@ -377,7 +377,7 @@ name|ErrorCode
 name|XQST0022
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0022"
 argument_list|,
@@ -390,7 +390,7 @@ name|ErrorCode
 name|XQTY0023
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQTY0023"
 argument_list|,
@@ -403,7 +403,7 @@ name|ErrorCode
 name|XQTY0024
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQTY0024"
 argument_list|,
@@ -416,7 +416,7 @@ name|ErrorCode
 name|XQDY0025
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0025"
 argument_list|,
@@ -429,7 +429,7 @@ name|ErrorCode
 name|XQDY0026
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0026"
 argument_list|,
@@ -442,7 +442,7 @@ name|ErrorCode
 name|XQDY0027
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0027"
 argument_list|,
@@ -455,7 +455,7 @@ name|ErrorCode
 name|XQTY0028
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQTY0028"
 argument_list|,
@@ -468,7 +468,7 @@ name|ErrorCode
 name|XQDY0029
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0029"
 argument_list|,
@@ -481,7 +481,7 @@ name|ErrorCode
 name|XQTY0030
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQTY0030"
 argument_list|,
@@ -494,7 +494,7 @@ name|ErrorCode
 name|XQST0031
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0031"
 argument_list|,
@@ -507,7 +507,7 @@ name|ErrorCode
 name|XQST0032
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0032"
 argument_list|,
@@ -520,7 +520,7 @@ name|ErrorCode
 name|XQST0033
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0033"
 argument_list|,
@@ -533,7 +533,7 @@ name|ErrorCode
 name|XQST0034
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0034"
 argument_list|,
@@ -546,7 +546,7 @@ name|ErrorCode
 name|XQST0035
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0035"
 argument_list|,
@@ -559,7 +559,7 @@ name|ErrorCode
 name|XQST0036
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0036"
 argument_list|,
@@ -572,7 +572,7 @@ name|ErrorCode
 name|XQST0037
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0037"
 argument_list|,
@@ -585,7 +585,7 @@ name|ErrorCode
 name|XQST0038
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0038"
 argument_list|,
@@ -598,7 +598,7 @@ name|ErrorCode
 name|XQST0039
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0039"
 argument_list|,
@@ -611,7 +611,7 @@ name|ErrorCode
 name|XQST0040
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0040"
 argument_list|,
@@ -624,7 +624,7 @@ name|ErrorCode
 name|XQDY0041
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0041"
 argument_list|,
@@ -637,7 +637,7 @@ name|ErrorCode
 name|XQST0042
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0042"
 argument_list|,
@@ -650,7 +650,7 @@ name|ErrorCode
 name|XQST0043
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0043"
 argument_list|,
@@ -663,7 +663,7 @@ name|ErrorCode
 name|XQDY0044
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0044"
 argument_list|,
@@ -676,7 +676,7 @@ name|ErrorCode
 name|XQST0045
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0045"
 argument_list|,
@@ -689,7 +689,7 @@ name|ErrorCode
 name|XQST0046
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0046"
 argument_list|,
@@ -702,7 +702,7 @@ name|ErrorCode
 name|XQST0047
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0047"
 argument_list|,
@@ -715,7 +715,7 @@ name|ErrorCode
 name|XQST0048
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0048"
 argument_list|,
@@ -728,7 +728,7 @@ name|ErrorCode
 name|XQST0049
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0049"
 argument_list|,
@@ -741,7 +741,7 @@ name|ErrorCode
 name|XQDY0052
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0052"
 argument_list|,
@@ -754,7 +754,7 @@ name|ErrorCode
 name|XQST0053
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0053"
 argument_list|,
@@ -767,7 +767,7 @@ name|ErrorCode
 name|XQST0054
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0054"
 argument_list|,
@@ -780,7 +780,7 @@ name|ErrorCode
 name|XQST0055
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0055"
 argument_list|,
@@ -793,7 +793,7 @@ name|ErrorCode
 name|XQST0056
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0056"
 argument_list|,
@@ -806,7 +806,7 @@ name|ErrorCode
 name|XQST0057
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0057"
 argument_list|,
@@ -819,7 +819,7 @@ name|ErrorCode
 name|XQST0058
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0058"
 argument_list|,
@@ -832,7 +832,7 @@ name|ErrorCode
 name|XQST0059
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0059"
 argument_list|,
@@ -845,7 +845,7 @@ name|ErrorCode
 name|XQST0060
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0060"
 argument_list|,
@@ -858,7 +858,7 @@ name|ErrorCode
 name|XQDY0061
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0061"
 argument_list|,
@@ -871,7 +871,7 @@ name|ErrorCode
 name|XQDY0062
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0062"
 argument_list|,
@@ -884,7 +884,7 @@ name|ErrorCode
 name|XQST0063
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0063"
 argument_list|,
@@ -897,7 +897,7 @@ name|ErrorCode
 name|XQDY0064
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0064"
 argument_list|,
@@ -910,7 +910,7 @@ name|ErrorCode
 name|XQST0065
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0065"
 argument_list|,
@@ -923,7 +923,7 @@ name|ErrorCode
 name|XQST0066
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0066"
 argument_list|,
@@ -936,7 +936,7 @@ name|ErrorCode
 name|XQST0067
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0067"
 argument_list|,
@@ -949,7 +949,7 @@ name|ErrorCode
 name|XQST0068
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0068"
 argument_list|,
@@ -962,7 +962,7 @@ name|ErrorCode
 name|XQST0069
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0069"
 argument_list|,
@@ -975,7 +975,7 @@ name|ErrorCode
 name|XQST0070
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0070"
 argument_list|,
@@ -988,7 +988,7 @@ name|ErrorCode
 name|XQST0071
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0071"
 argument_list|,
@@ -1001,7 +1001,7 @@ name|ErrorCode
 name|XQDY0072
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0072"
 argument_list|,
@@ -1014,7 +1014,7 @@ name|ErrorCode
 name|XQST0073
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0073"
 argument_list|,
@@ -1027,7 +1027,7 @@ name|ErrorCode
 name|XQDY0074
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0074"
 argument_list|,
@@ -1040,7 +1040,7 @@ name|ErrorCode
 name|XQST0075
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0075"
 argument_list|,
@@ -1053,7 +1053,7 @@ name|ErrorCode
 name|XQST0076
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0076"
 argument_list|,
@@ -1066,7 +1066,7 @@ name|ErrorCode
 name|XQST0077
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0077"
 argument_list|,
@@ -1079,7 +1079,7 @@ name|ErrorCode
 name|XQST0078
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0078"
 argument_list|,
@@ -1092,7 +1092,7 @@ name|ErrorCode
 name|XQST0079
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0079"
 argument_list|,
@@ -1105,7 +1105,7 @@ name|ErrorCode
 name|XQST0082
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0082"
 argument_list|,
@@ -1118,7 +1118,7 @@ name|ErrorCode
 name|XQDY0084
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0084"
 argument_list|,
@@ -1131,7 +1131,7 @@ name|ErrorCode
 name|XQST0085
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0085"
 argument_list|,
@@ -1144,7 +1144,7 @@ name|ErrorCode
 name|XQTY0086
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQTY0086"
 argument_list|,
@@ -1157,7 +1157,7 @@ name|ErrorCode
 name|XQST0087
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0087"
 argument_list|,
@@ -1170,7 +1170,7 @@ name|ErrorCode
 name|XQST0088
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0088"
 argument_list|,
@@ -1183,7 +1183,7 @@ name|ErrorCode
 name|XQST0089
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0089"
 argument_list|,
@@ -1196,7 +1196,7 @@ name|ErrorCode
 name|XQST0090
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0090"
 argument_list|,
@@ -1209,7 +1209,7 @@ name|ErrorCode
 name|XQDY0091
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0091"
 argument_list|,
@@ -1222,7 +1222,7 @@ name|ErrorCode
 name|XQDY0092
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQDY0092"
 argument_list|,
@@ -1235,7 +1235,7 @@ name|ErrorCode
 name|XQST0093
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"XQST0093"
 argument_list|,
@@ -1249,7 +1249,7 @@ name|ErrorCode
 name|FOER0000
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOER0000"
 argument_list|,
@@ -1262,7 +1262,7 @@ name|ErrorCode
 name|FOAR0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOAR0001"
 argument_list|,
@@ -1275,7 +1275,7 @@ name|ErrorCode
 name|FOAR0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOAR0002"
 argument_list|,
@@ -1288,7 +1288,7 @@ name|ErrorCode
 name|FOCA0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCA0001"
 argument_list|,
@@ -1301,7 +1301,7 @@ name|ErrorCode
 name|FOCA0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCA0002"
 argument_list|,
@@ -1314,7 +1314,7 @@ name|ErrorCode
 name|FOCA0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCA0003"
 argument_list|,
@@ -1327,7 +1327,7 @@ name|ErrorCode
 name|FOCA0005
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCA0005"
 argument_list|,
@@ -1340,7 +1340,7 @@ name|ErrorCode
 name|FOCA0006
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCA0006"
 argument_list|,
@@ -1353,7 +1353,7 @@ name|ErrorCode
 name|FOCH0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCH0001"
 argument_list|,
@@ -1366,7 +1366,7 @@ name|ErrorCode
 name|FOCH0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCH0002"
 argument_list|,
@@ -1379,7 +1379,7 @@ name|ErrorCode
 name|FOCH0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCH0003"
 argument_list|,
@@ -1392,7 +1392,7 @@ name|ErrorCode
 name|FOCH0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOCH0004"
 argument_list|,
@@ -1405,7 +1405,7 @@ name|ErrorCode
 name|FODC0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODC0001"
 argument_list|,
@@ -1418,7 +1418,7 @@ name|ErrorCode
 name|FODC0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODC0002"
 argument_list|,
@@ -1431,7 +1431,7 @@ name|ErrorCode
 name|FODC0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODC0003"
 argument_list|,
@@ -1444,7 +1444,7 @@ name|ErrorCode
 name|FODC0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODC0004"
 argument_list|,
@@ -1457,7 +1457,7 @@ name|ErrorCode
 name|FODC0005
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODC0005"
 argument_list|,
@@ -1470,7 +1470,7 @@ name|ErrorCode
 name|FODT0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODT0001"
 argument_list|,
@@ -1483,7 +1483,7 @@ name|ErrorCode
 name|FODT0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODT0002"
 argument_list|,
@@ -1496,7 +1496,7 @@ name|ErrorCode
 name|FODT0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FODT0003"
 argument_list|,
@@ -1509,7 +1509,7 @@ name|ErrorCode
 name|FONS0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FONS0004"
 argument_list|,
@@ -1522,7 +1522,7 @@ name|ErrorCode
 name|FONS0005
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FONS0005"
 argument_list|,
@@ -1535,7 +1535,7 @@ name|ErrorCode
 name|FORG0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0001"
 argument_list|,
@@ -1548,7 +1548,7 @@ name|ErrorCode
 name|FORG0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0002"
 argument_list|,
@@ -1561,7 +1561,7 @@ name|ErrorCode
 name|FORG0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0003"
 argument_list|,
@@ -1574,7 +1574,7 @@ name|ErrorCode
 name|FORG0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0004"
 argument_list|,
@@ -1587,7 +1587,7 @@ name|ErrorCode
 name|FORG0005
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0005"
 argument_list|,
@@ -1600,7 +1600,7 @@ name|ErrorCode
 name|FORG0006
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0006"
 argument_list|,
@@ -1613,7 +1613,7 @@ name|ErrorCode
 name|FORG0008
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0008"
 argument_list|,
@@ -1626,7 +1626,7 @@ name|ErrorCode
 name|FORG0009
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORG0009"
 argument_list|,
@@ -1639,7 +1639,7 @@ name|ErrorCode
 name|FORX0001
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORX0001"
 argument_list|,
@@ -1652,7 +1652,7 @@ name|ErrorCode
 name|FORX0002
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORX0002"
 argument_list|,
@@ -1665,7 +1665,7 @@ name|ErrorCode
 name|FORX0003
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORX0003"
 argument_list|,
@@ -1678,7 +1678,7 @@ name|ErrorCode
 name|FORX0004
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FORX0004"
 argument_list|,
@@ -1691,11 +1691,221 @@ name|ErrorCode
 name|FOTY0012
 init|=
 operator|new
-name|ErrorCode
+name|W3CErrorCode
 argument_list|(
 literal|"FOTY0012"
 argument_list|,
 literal|"Argument node does not have a typed value."
+argument_list|)
+decl_stmt|;
+comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */
+specifier|public
+specifier|static
+name|ErrorCode
+name|SENR0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SENR0001"
+argument_list|,
+literal|"It is an error if an item in S6 in sequence normalization is an attribute node or a namespace node."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0003
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0003"
+argument_list|,
+literal|"It is an error if the serializer is unable to satisfy the rules for either a well-formed XML document entity or a well-formed XML external general parsed entity, or both, except for content modified by the character expansion phase of serialization."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SEPM0004
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SEPM0004"
+argument_list|,
+literal|"It is an error to specify the doctype-system parameter, or to specify the standalone parameter with a value other than omit, if the instance of the data model contains text nodes or multiple element nodes as children of the root node."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0005
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0005"
+argument_list|,
+literal|"It is an error if the serialized result would contain an NCName Names that contains a character that is not permitted by the version of Namespaces in XML specified by the version parameter."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0006
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0006"
+argument_list|,
+literal|"It is an error if the serialized result would contain a character that is not permitted by the version of XML specified by the version parameter."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SESU0007
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SESU0007"
+argument_list|,
+literal|"It is an error if an output encoding other than UTF-8 or UTF-16 is requested and the serializer does not support that encoding."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0008
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0008"
+argument_list|,
+literal|"It is an error if a character that cannot be represented in the encoding that the serializer is using for output appears in a context where character references are not allowed (for example if the character occurs in the name of an element)."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SEPM0009
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SEPM0009"
+argument_list|,
+literal|"It is an error if the omit-xml-declaration parameter has the value yes, and the standalone attribute has a value other than omit; or the version parameter has a value other than 1.0 and the doctype-system parameter is specified."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SEPM0010
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SEPM0010"
+argument_list|,
+literal|"It is an error if the output method is xml, the value of the undeclare-prefixes parameter is yes, and the value of the version parameter is 1.0."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SESU0011
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SESU0011"
+argument_list|,
+literal|"It is an error if the value of the normalization-form parameter specifies a normalization form that is not supported by the serializer."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0012
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0012"
+argument_list|,
+literal|"It is an error if the value of the normalization-form parameter is fully-normalized and any relevant construct of the result begins with a combining character."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SESU0013
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SESU0013"
+argument_list|,
+literal|"It is an error if the serializer does not support the version of XML or HTML specified by the version parameter."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0014
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0014"
+argument_list|,
+literal|"It is an error to use the HTML output method when characters which are legal in XML but not in HTML, specifically the control characters #x7F-#x9F, appear in the instance of the data model."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SERE0015
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SERE0015"
+argument_list|,
+literal|"It is an error to use the HTML output method when> appears within a processing instruction in the data model instance being serialized."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|SEPM0016
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"SEPM0016"
+argument_list|,
+literal|"It is a an error if a parameter value is invalid for the defined domain."
+argument_list|)
+decl_stmt|;
+comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
+specifier|public
+specifier|static
+name|ErrorCode
+name|EXXQDY0001
+init|=
+operator|new
+name|EXistErrorCode
+argument_list|(
+literal|"EXXQDY0001"
+argument_list|,
+literal|"Index cannot be applied to the given expression."
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -1747,11 +1957,11 @@ name|code
 argument_list|,
 name|Namespaces
 operator|.
-name|XQUERY_XPATH_ERROR_NS
+name|EXIST_XQUERY_XPATH_ERROR_NS
 argument_list|,
 name|Namespaces
 operator|.
-name|XQUERY_XPATH_ERROR_PREFIX
+name|EXIST_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 expr_stmt|;
 name|this
@@ -1819,6 +2029,91 @@ literal|"):"
 operator|+
 name|description
 return|;
+block|}
+specifier|public
+name|String
+name|getDescription
+parameter_list|()
+block|{
+return|return
+name|description
+return|;
+block|}
+block|}
+specifier|public
+specifier|static
+class|class
+name|W3CErrorCode
+extends|extends
+name|ErrorCode
+block|{
+specifier|public
+name|W3CErrorCode
+parameter_list|(
+name|String
+name|code
+parameter_list|,
+name|String
+name|description
+parameter_list|)
+block|{
+name|super
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+name|code
+argument_list|,
+name|Namespaces
+operator|.
+name|W3C_XQUERY_XPATH_ERROR_NS
+argument_list|,
+name|Namespaces
+operator|.
+name|W3C_XQUERY_XPATH_ERROR_PREFIX
+argument_list|)
+argument_list|,
+name|description
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+specifier|static
+class|class
+name|EXistErrorCode
+extends|extends
+name|ErrorCode
+block|{
+specifier|public
+name|EXistErrorCode
+parameter_list|(
+name|String
+name|code
+parameter_list|,
+name|String
+name|description
+parameter_list|)
+block|{
+name|super
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+name|code
+argument_list|,
+name|Namespaces
+operator|.
+name|EXIST_XQUERY_XPATH_ERROR_NS
+argument_list|,
+name|Namespaces
+operator|.
+name|EXIST_XQUERY_XPATH_ERROR_PREFIX
+argument_list|)
+argument_list|,
+name|description
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

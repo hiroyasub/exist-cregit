@@ -530,6 +530,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// Define default values
 name|ErrorCode
 name|errorCode
 init|=
@@ -547,6 +548,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
+comment|// Enter if one or more parameters are supplied
 if|if
 condition|(
 name|args
@@ -556,6 +558,8 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// If there are 2 arguments or more supplied
+comment|// use 2nd argument for error description
 if|if
 condition|(
 name|args
@@ -576,6 +580,8 @@ name|getStringValue
 argument_list|()
 expr_stmt|;
 block|}
+comment|// If first argument is not empty, get qname from argument
+comment|// and construct error code
 if|if
 condition|(
 operator|!
@@ -609,6 +615,48 @@ operator|.
 name|getQName
 argument_list|()
 decl_stmt|;
+comment|//                 Set prefix if present
+name|String
+name|prefix
+init|=
+name|errorQName
+operator|.
+name|getPrefix
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|prefix
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|ns
+init|=
+name|errorQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+decl_stmt|;
+name|prefix
+operator|=
+name|getContext
+argument_list|()
+operator|.
+name|getPrefixForURI
+argument_list|(
+name|ns
+argument_list|)
+expr_stmt|;
+name|errorQName
+operator|.
+name|setPrefix
+argument_list|(
+name|prefix
+argument_list|)
+expr_stmt|;
+block|}
 name|errorCode
 operator|=
 operator|new
@@ -620,6 +668,7 @@ name|errorDesc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If there is a third argument, us it.
 if|if
 condition|(
 name|args
