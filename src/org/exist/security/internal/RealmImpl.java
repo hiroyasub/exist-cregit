@@ -345,6 +345,13 @@ specifier|final
 name|GroupImpl
 name|GROUP_UNKNOWN
 decl_stmt|;
+comment|//@ConfigurationFieldAsElement("allow-guest-authentication")
+specifier|public
+name|boolean
+name|allowGuestAuthentication
+init|=
+literal|true
+decl_stmt|;
 specifier|protected
 name|RealmImpl
 parameter_list|(
@@ -620,6 +627,8 @@ argument_list|,
 name|ACCOUNT_GUEST
 argument_list|)
 expr_stmt|;
+comment|//XXX: GROUP_DBA._addManager(ACCOUNT_ADMIN);
+comment|//XXX: GROUP_GUEST._addManager(ACCOUNT_ADMIN);
 name|sm
 operator|.
 name|lastUserId
@@ -1242,12 +1251,17 @@ argument_list|(
 name|accountName
 argument_list|)
 operator|||
+operator|(
+operator|!
+name|allowGuestAuthentication
+operator|&&
 literal|"guest"
 operator|.
 name|equals
 argument_list|(
 name|accountName
 argument_list|)
+operator|)
 condition|)
 throw|throw
 operator|new
