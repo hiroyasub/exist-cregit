@@ -1362,10 +1362,14 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
-name|freeLocalResources
+name|freeResources
 parameter_list|()
+throws|throws
+name|XMLDBException
 block|{
 if|if
 condition|(

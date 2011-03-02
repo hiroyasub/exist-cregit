@@ -1638,7 +1638,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|freeLocalResources
+name|freeResources
 argument_list|()
 expr_stmt|;
 name|content

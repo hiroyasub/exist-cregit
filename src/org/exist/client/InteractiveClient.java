@@ -13241,12 +13241,12 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|ExtendedResource
+name|EXistResource
 operator|)
 name|res
 operator|)
 operator|.
-name|freeLocalResources
+name|freeResources
 argument_list|()
 expr_stmt|;
 block|}

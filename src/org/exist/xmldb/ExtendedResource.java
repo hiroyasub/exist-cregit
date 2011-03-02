@@ -112,12 +112,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * It erases the internal reference to any file set with getContentIntoAFile, 	 * either explicitly or implicitly using, for instance, getStreamContent. 	 */
-specifier|public
-name|void
-name|freeLocalResources
-parameter_list|()
-function_decl|;
 block|}
 end_interface
 
