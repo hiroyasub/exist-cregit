@@ -1282,9 +1282,11 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
-name|freeLocalResources
+name|freeResources
 parameter_list|()
 block|{
 if|if

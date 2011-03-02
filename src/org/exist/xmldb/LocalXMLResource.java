@@ -2309,6 +2309,18 @@ name|InternalXMLSerializer
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|freeResources
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+comment|//dO nothing
+comment|//TODO consider unifying closeDocument() code into freeResources()
+block|}
 specifier|private
 class|class
 name|InternalXMLSerializer

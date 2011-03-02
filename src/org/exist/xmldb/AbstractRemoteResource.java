@@ -464,6 +464,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|finalize
@@ -471,7 +473,7 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|freeLocalResources
+name|freeResources
 argument_list|()
 expr_stmt|;
 name|super
@@ -480,9 +482,11 @@ name|finalize
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
-name|freeLocalResources
+name|freeResources
 parameter_list|()
 block|{
 name|vfile
@@ -795,7 +799,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|freeLocalResources
+name|freeResources
 argument_list|()
 expr_stmt|;
 name|boolean
