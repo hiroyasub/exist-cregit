@@ -594,7 +594,7 @@ name|vtmpfile
 operator|.
 name|setTempPrefix
 argument_list|(
-literal|"eXistARR"
+literal|"eXistRRS"
 argument_list|)
 expr_stmt|;
 name|vtmpfile
