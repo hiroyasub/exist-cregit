@@ -203,9 +203,6 @@ throws|throws
 name|OpenDataException
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=
@@ -228,9 +225,6 @@ name|STRING
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
 argument_list|(
 literal|1
 argument_list|,
@@ -241,9 +235,6 @@ argument_list|)
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
 argument_list|(
 literal|1
 argument_list|,
@@ -254,9 +245,6 @@ argument_list|)
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
 argument_list|(
 literal|1
 argument_list|,

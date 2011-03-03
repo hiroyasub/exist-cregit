@@ -180,9 +180,6 @@ name|getActiveBrokersMap
 parameter_list|()
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=

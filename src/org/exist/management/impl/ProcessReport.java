@@ -378,9 +378,6 @@ name|getScheduledJobs
 parameter_list|()
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=
@@ -549,9 +546,6 @@ name|getRunningJobs
 parameter_list|()
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=
@@ -728,9 +722,6 @@ name|getRunningQueries
 parameter_list|()
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=
@@ -929,9 +920,6 @@ name|getRecentQueryHistory
 parameter_list|()
 block|{
 name|OpenType
-argument_list|<
-name|?
-argument_list|>
 index|[]
 name|itemTypes
 init|=
