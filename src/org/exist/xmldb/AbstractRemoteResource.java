@@ -476,8 +476,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|protected
 name|void
 name|finalize
@@ -494,8 +493,7 @@ name|finalize
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|freeResources

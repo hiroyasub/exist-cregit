@@ -48,8 +48,7 @@ name|DummyAgent
 implements|implements
 name|Agent
 block|{
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|initDBInstance
@@ -60,8 +59,7 @@ parameter_list|)
 block|{
 comment|// do nothing
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|closeDBInstance
@@ -72,8 +70,7 @@ parameter_list|)
 block|{
 comment|// nothing to do
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|addMBean
@@ -92,8 +89,7 @@ name|DatabaseConfigurationException
 block|{
 comment|// just do nothing
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|changeStatus
@@ -107,8 +103,7 @@ parameter_list|)
 block|{
 comment|// nothing to do
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|void
 name|updateStatus

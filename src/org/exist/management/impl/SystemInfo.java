@@ -152,8 +152,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getExistVersion
@@ -170,8 +169,7 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getExistBuild
@@ -188,8 +186,7 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getSvnRevision
@@ -206,8 +203,7 @@ literal|"unknown"
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getDefaultLocale
@@ -223,8 +219,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getDefaultEncoding
@@ -243,8 +238,7 @@ name|getEncoding
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|// @Override
 specifier|public
 name|String
 name|getOperatingSystem
