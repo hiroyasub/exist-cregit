@@ -813,7 +813,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|TEMP_COLLECTION
 argument_list|)
@@ -887,7 +887,7 @@ name|user
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 name|child
@@ -908,7 +908,7 @@ name|setOwner
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|user
@@ -967,7 +967,7 @@ name|setGroup
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|group
@@ -1452,7 +1452,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1631,7 +1631,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3093,7 +3093,7 @@ name|setOwner
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|SecurityManager
@@ -3107,7 +3107,7 @@ name|setGroup
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|SecurityManager
@@ -3124,7 +3124,7 @@ name|setOwner
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|secman
@@ -3157,7 +3157,7 @@ name|setGroup
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|group
@@ -3332,7 +3332,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3348,7 +3348,7 @@ literal|"Write access to collection denied; account = "
 operator|+
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -3367,7 +3367,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3630,7 +3630,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3642,11 +3642,11 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"write access to collection denied; user="
+literal|"write access to collection denied; account="
 operator|+
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -3665,7 +3665,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3820,7 +3820,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3832,11 +3832,11 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"write access to collection denied; user="
+literal|"write access to collection denied; account="
 operator|+
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -3855,7 +3855,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5893,7 +5893,7 @@ name|user
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 name|metadata
@@ -5915,7 +5915,7 @@ name|setOwner
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|user
@@ -5978,7 +5978,7 @@ name|setGroup
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|group
@@ -6053,7 +6053,7 @@ name|equals
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|)
 condition|)
@@ -6082,7 +6082,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6109,7 +6109,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6124,7 +6124,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6151,7 +6151,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6167,7 +6167,7 @@ literal|"User '"
 operator|+
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
