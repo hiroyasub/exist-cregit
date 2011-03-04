@@ -281,18 +281,6 @@ name|ValueSequence
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|DOMException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -1162,7 +1150,7 @@ condition|(
 operator|!
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|hasDbaRole
@@ -1181,7 +1169,7 @@ literal|"Permission denied, calling user '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -1293,7 +1281,7 @@ condition|(
 operator|!
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|hasDbaRole
@@ -1312,7 +1300,7 @@ literal|"Permission denied, calling user '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
