@@ -292,7 +292,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension ScaleFunction   *   * Scale's an Image  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  * @serial 2007-01-16  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Image Module Extension ScaleFunction   *   * Scale's an Image  *   * @author Adam Retter<adam@exist-db.org>  * @author Loren Cahlander  * @serial 2007-01-16  * @version 1.0  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
