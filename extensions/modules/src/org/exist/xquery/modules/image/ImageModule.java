@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Image Module Extension  *  Copyright (C) 2006-09 Adam Retter<adam.retter@devon.gov.uk>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Image Module Extension  *  Copyright (C) 2006-09 Adam Retter<adam.retter@exist-db.org>  *  www.adamretter.co.uk  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -63,26 +63,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -96,28 +76,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|imageio
-operator|.
-name|ImageIO
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Base64Decoder
 import|;
 end_import
 
@@ -145,32 +103,6 @@ name|FunctionDef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Base64BinaryValueType
-import|;
-end_import
-
 begin_comment
 comment|/**  * eXist Image Module Extension  *   * An extension module for the eXist Native XML Database that allows operations  * on images stored in the eXist database.  *   * @author Adam Retter<adam@exist-db.org>  * @author ljo  * @serial 2006-03-10  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
@@ -182,7 +114,6 @@ name|ImageModule
 extends|extends
 name|AbstractInternalModule
 block|{
-comment|/*  * TODO: metadata extraction from images, especially JPEG's  */
 specifier|public
 specifier|final
 specifier|static
@@ -312,6 +243,8 @@ name|parameters
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -321,6 +254,8 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -330,6 +265,8 @@ return|return
 name|PREFIX
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -339,6 +276,8 @@ return|return
 literal|"A module for performing operations on Images stored in the eXist db"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getReleaseVersion
@@ -348,7 +287,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/** 	 * @author Rafael Troilo (rtroilo@gmail.com) 	 */
+comment|/**      * @author Rafael Troilo<rtroilo@gmail.com>      */
 specifier|protected
 specifier|static
 name|BufferedImage
