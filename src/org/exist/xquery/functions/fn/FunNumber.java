@@ -212,7 +212,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: number(object)  *  */
+comment|/**  * xpath-library function: number(object) $context/number()  *  */
 end_comment
 
 begin_class
@@ -390,6 +390,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -456,6 +458,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -474,12 +477,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -502,12 +507,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -515,6 +522,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -533,6 +541,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|arg
 operator|=
 name|getArgument
@@ -545,17 +554,21 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|arg
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|arg
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -565,6 +578,7 @@ argument_list|,
 literal|"XPDY0002: Undefined context item"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|arg
@@ -572,12 +586,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|DoubleValue
 operator|.
 name|NaN
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
@@ -618,6 +634,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -632,6 +649,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
