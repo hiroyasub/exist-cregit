@@ -281,6 +281,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|EXistException
 import|;
 end_import
@@ -1454,11 +1464,6 @@ name|modifiedDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/** The main database broker object providing access to storage and indexes. Every XQuery has its own DBBroker object. */
-specifier|protected
-name|DBBroker
-name|broker
-decl_stmt|;
 comment|/** A general-purpose map to set attributes in the current query context. */
 specifier|protected
 name|Map
@@ -1624,7 +1629,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|/** The profiler instance used by this context. */
-specifier|private
+specifier|protected
 name|Profiler
 name|profiler
 decl_stmt|;
@@ -1706,6 +1711,10 @@ name|int
 name|xqueryVersion
 init|=
 literal|10
+decl_stmt|;
+specifier|protected
+name|Database
+name|db
 decl_stmt|;
 comment|// TODO: expath repo manageer, may change
 specifier|private
@@ -1997,8 +2006,8 @@ block|}
 specifier|public
 name|XQueryContext
 parameter_list|(
-name|DBBroker
-name|broker
+name|Database
+name|db
 parameter_list|,
 name|AccessContext
 name|accessCtx
@@ -2011,13 +2020,13 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|broker
+name|db
 operator|=
-name|broker
+name|db
 expr_stmt|;
 name|loadDefaults
 argument_list|(
-name|broker
+name|db
 operator|.
 name|getConfiguration
 argument_list|()
@@ -2030,10 +2039,7 @@ operator|=
 operator|new
 name|Profiler
 argument_list|(
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
+name|db
 argument_list|)
 expr_stmt|;
 block|}
@@ -2054,11 +2060,11 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|broker
+name|db
 operator|=
 name|copyFrom
 operator|.
-name|broker
+name|db
 expr_stmt|;
 name|loadDefaultNS
 argument_list|()
@@ -2338,6 +2344,14 @@ operator|=
 name|from
 operator|.
 name|staticOptions
+expr_stmt|;
+name|this
+operator|.
+name|db
+operator|=
+name|from
+operator|.
+name|db
 expr_stmt|;
 block|}
 specifier|protected
@@ -2813,27 +2827,10 @@ parameter_list|()
 block|{
 comment|//if there is an existing user in the current http session
 comment|//then set the DBBroker user
-name|Subject
-name|user
-init|=
-name|getUserFromHttpSession
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|user
-operator|!=
-literal|null
-condition|)
-block|{
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|user
-argument_list|)
-expr_stmt|;
-block|}
+comment|//Subject user = getUserFromHttpSession();
+comment|//if( user != null ) {
+comment|//    broker.setUser( user );
+comment|//}
 comment|//Reset current context position
 name|setContextSequencePosition
 argument_list|(
@@ -4746,7 +4743,8 @@ literal|null
 condition|)
 block|{
 comment|// no path defined: return all documents in the db
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getAllXMLResources
 argument_list|(
@@ -4783,7 +4781,8 @@ try|try
 block|{
 name|collection
 operator|=
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getCollection
 argument_list|(
@@ -4804,7 +4803,8 @@ name|collection
 operator|.
 name|allDocs
 argument_list|(
-name|broker
+name|getBroker
+argument_list|()
 argument_list|,
 name|ndocs
 argument_list|,
@@ -4818,7 +4818,8 @@ else|else
 block|{
 name|doc
 operator|=
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
@@ -4848,9 +4849,10 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|broker
+name|getBroker
+argument_list|()
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6144,7 +6146,8 @@ argument_list|>
 argument_list|>
 argument_list|>
 operator|)
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()
@@ -6468,7 +6471,8 @@ parameter_list|()
 block|{
 return|return
 operator|(
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -7870,25 +7874,11 @@ name|getBroker
 parameter_list|()
 block|{
 return|return
-operator|(
-name|broker
-operator|)
-return|;
-block|}
-specifier|public
-name|void
-name|setBroker
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-name|this
+name|db
 operator|.
-name|broker
-operator|=
-name|broker
-expr_stmt|;
+name|getActiveBroker
+argument_list|()
+return|;
 block|}
 comment|/**      * Get the user which executes the current query.      *      * @return  user      * @deprecated use getSubject      */
 specifier|public
@@ -9432,7 +9422,8 @@ try|try
 block|{
 name|sourceDoc
 operator|=
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
@@ -9516,7 +9507,8 @@ operator|=
 operator|new
 name|DBSource
 argument_list|(
-name|broker
+name|getBroker
+argument_list|()
 argument_list|,
 operator|(
 name|BinaryDocument
@@ -9617,7 +9609,8 @@ name|SourceFactory
 operator|.
 name|getSource
 argument_list|(
-name|broker
+name|getBroker
+argument_list|()
 argument_list|,
 name|moduleLoadPath
 argument_list|,
@@ -9780,7 +9773,8 @@ init|=
 operator|(
 name|Map
 operator|)
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()
@@ -9826,7 +9820,8 @@ init|=
 operator|(
 name|Map
 operator|)
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()
@@ -9870,7 +9865,8 @@ block|{
 name|ExternalModule
 name|module
 init|=
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -9880,7 +9876,8 @@ argument_list|()
 operator|.
 name|borrowModule
 argument_list|(
-name|broker
+name|getBroker
+argument_list|()
 argument_list|,
 name|source
 argument_list|,
@@ -10648,7 +10645,11 @@ name|XPathException
 argument_list|(
 name|call
 argument_list|,
-literal|"err:XPST0017: Call to undeclared function: "
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Call to undeclared function: "
 operator|+
 name|call
 operator|.
@@ -11452,7 +11453,8 @@ block|{
 name|DocumentImpl
 name|targetDoc
 init|=
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|storeTempResource
 argument_list|(
@@ -12341,7 +12343,8 @@ operator|new
 name|ContextUpdateListener
 argument_list|()
 expr_stmt|;
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -12375,7 +12378,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()

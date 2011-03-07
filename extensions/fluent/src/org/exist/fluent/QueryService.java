@@ -3155,6 +3155,9 @@ block|{
 name|super
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|accessCtx
 argument_list|)

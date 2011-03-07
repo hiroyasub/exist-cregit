@@ -226,7 +226,8 @@ name|conf
 init|=
 name|context
 operator|.
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()

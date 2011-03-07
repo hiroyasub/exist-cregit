@@ -99,6 +99,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|triggers
@@ -1322,20 +1332,6 @@ comment|/** 	 * Get the DBBroker instance used for the current query. 	 * 	 *<p>
 specifier|public
 name|DBBroker
 name|getBroker
-parameter_list|()
-function_decl|;
-specifier|public
-name|void
-name|setBroker
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-function_decl|;
-comment|/** 	 * Get the user which executes the current query. 	 * 	 * @return  user 	 * @deprecated use getSubject 	 */
-specifier|public
-name|Subject
-name|getUser
 parameter_list|()
 function_decl|;
 comment|/** 	 * Get the subject which executes the current query. 	 * 	 * @return  subject 	 */

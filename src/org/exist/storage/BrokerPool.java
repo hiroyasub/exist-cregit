@@ -4287,6 +4287,36 @@ return|;
 block|}
 specifier|public
 name|DBBroker
+name|getActiveBroker
+parameter_list|()
+block|{
+comment|//throws EXistException {
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+comment|//Try to get an active broker
+name|DBBroker
+name|broker
+init|=
+name|activeBrokers
+operator|.
+name|get
+argument_list|(
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+argument_list|)
+decl_stmt|;
+return|return
+name|broker
+return|;
+block|}
+block|}
+specifier|public
+name|DBBroker
 name|getBroker
 parameter_list|()
 throws|throws

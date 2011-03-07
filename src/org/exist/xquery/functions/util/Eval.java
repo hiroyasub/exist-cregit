@@ -1653,13 +1653,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//get a new broker
-name|context
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 return|return
 name|doEval
 argument_list|(
@@ -2660,17 +2653,6 @@ argument_list|(
 name|innerContext
 argument_list|)
 expr_stmt|;
-name|compiled
-operator|.
-name|getContext
-argument_list|()
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-comment|//will then use a new broker for the new thread if this is eval-async
 block|}
 name|Sequence
 name|sequence

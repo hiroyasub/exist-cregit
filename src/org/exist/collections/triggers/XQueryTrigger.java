@@ -2591,13 +2591,6 @@ argument_list|()
 expr_stmt|;
 name|context
 operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
 name|getWatchDog
 argument_list|()
 operator|.

@@ -479,7 +479,7 @@ operator|=
 operator|new
 name|XSLContext
 argument_list|(
-name|broker
+name|pool
 argument_list|)
 expr_stmt|;
 comment|//

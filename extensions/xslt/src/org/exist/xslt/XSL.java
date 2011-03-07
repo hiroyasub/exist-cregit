@@ -37,16 +37,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|text
 operator|.
 name|NumberFormat
@@ -132,18 +122,6 @@ operator|.
 name|dom
 operator|.
 name|ElementAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|interpreter
-operator|.
-name|ContextAtExist
 import|;
 end_import
 
@@ -467,6 +445,9 @@ operator|new
 name|XSLContext
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|context

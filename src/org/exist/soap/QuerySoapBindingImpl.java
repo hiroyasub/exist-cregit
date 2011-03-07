@@ -2058,7 +2058,7 @@ init|=
 operator|new
 name|XQueryContext
 argument_list|(
-name|broker
+name|pool
 argument_list|,
 name|AccessContext
 operator|.

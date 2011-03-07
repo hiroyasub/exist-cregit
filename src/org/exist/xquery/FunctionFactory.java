@@ -1968,7 +1968,8 @@ name|String
 operator|)
 name|context
 operator|.
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()
@@ -2484,7 +2485,8 @@ name|Boolean
 operator|)
 name|context
 operator|.
-name|broker
+name|getBroker
+argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()

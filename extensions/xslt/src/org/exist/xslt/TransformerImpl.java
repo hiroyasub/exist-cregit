@@ -704,7 +704,7 @@ init|=
 operator|new
 name|XSLContext
 argument_list|(
-name|broker
+name|db
 argument_list|)
 decl_stmt|;
 name|context

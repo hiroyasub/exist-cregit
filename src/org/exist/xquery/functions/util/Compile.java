@@ -778,6 +778,9 @@ name|context
 operator|.
 name|getBroker
 argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|AccessContext
 operator|.

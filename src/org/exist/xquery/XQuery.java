@@ -351,6 +351,10 @@ begin_comment
 comment|/**  * @author wolf  */
 end_comment
 
+begin_comment
+comment|//TODO: it possible to have one per database
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -403,6 +407,9 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|accessCtx
 argument_list|)
@@ -784,14 +791,7 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
-name|AST
-name|treeAst
-init|=
-name|treeParser
-operator|.
-name|getAST
-argument_list|()
-decl_stmt|;
+comment|//AST treeAst = treeParser.getAST();
 throw|throw
 operator|new
 name|StaticXQueryException
@@ -1245,13 +1245,7 @@ condition|(
 name|resetContext
 condition|)
 block|{
-name|context
-operator|.
-name|setBroker
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
+comment|//context.setBroker(broker);
 name|context
 operator|.
 name|getWatchDog
@@ -1463,6 +1457,9 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|accessCtx
 argument_list|)
@@ -1513,6 +1510,9 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|accessCtx
 argument_list|)

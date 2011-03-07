@@ -173,6 +173,9 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|AccessContext
 operator|.

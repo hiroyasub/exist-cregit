@@ -107,6 +107,30 @@ name|TransactionManager
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|PerformanceStats
+import|;
+end_import
+
 begin_comment
 comment|/**  * Database controller, all operation synchronized by this instance. (singleton)  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -195,6 +219,11 @@ throws|throws
 name|EXistException
 function_decl|;
 specifier|public
+name|DBBroker
+name|getActiveBroker
+parameter_list|()
+function_decl|;
+specifier|public
 name|void
 name|release
 parameter_list|(
@@ -206,6 +235,17 @@ comment|/** 	 *  	 * @return Debuggee 	 */
 specifier|public
 name|Debuggee
 name|getDebuggee
+parameter_list|()
+function_decl|;
+specifier|public
+name|PerformanceStats
+name|getPerformanceStats
+parameter_list|()
+function_decl|;
+comment|//old configuration
+specifier|public
+name|Configuration
+name|getConfiguration
 parameter_list|()
 function_decl|;
 block|}
