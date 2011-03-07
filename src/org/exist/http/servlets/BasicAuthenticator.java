@@ -189,6 +189,30 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
+specifier|public
+name|Subject
+name|authenticate
+parameter_list|(
+name|HttpServletRequest
+name|request
+parameter_list|,
+name|HttpServletResponse
+name|response
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|authenticate
+argument_list|(
+name|request
+argument_list|,
+name|response
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.http.servlets.Authenticator#authenticate(javax.servlet.http 	 * .HttpServletRequest, javax.servlet.http.HttpServletResponse) 	 */
 specifier|public
 name|Subject
@@ -199,6 +223,9 @@ name|request
 parameter_list|,
 name|HttpServletResponse
 name|response
+parameter_list|,
+name|boolean
+name|sendChallenge
 parameter_list|)
 throws|throws
 name|IOException
@@ -408,6 +435,10 @@ condition|)
 block|{
 comment|// prompt for credentials
 comment|// LOG.debug("Sending BASIC auth challenge.");
+if|if
+condition|(
+name|sendChallenge
+condition|)
 name|sendChallenge
 argument_list|(
 name|request
@@ -449,6 +480,10 @@ name|e
 parameter_list|)
 block|{
 comment|// if authentication failed then send a challenge request again
+if|if
+condition|(
+name|sendChallenge
+condition|)
 name|sendChallenge
 argument_list|(
 name|request

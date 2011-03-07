@@ -184,6 +184,30 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
+specifier|public
+name|Subject
+name|authenticate
+parameter_list|(
+name|HttpServletRequest
+name|request
+parameter_list|,
+name|HttpServletResponse
+name|response
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|authenticate
+argument_list|(
+name|request
+argument_list|,
+name|response
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -195,6 +219,9 @@ name|request
 parameter_list|,
 name|HttpServletResponse
 name|response
+parameter_list|,
+name|boolean
+name|sendChallenge
 parameter_list|)
 throws|throws
 name|IOException
@@ -279,6 +306,10 @@ literal|null
 condition|)
 block|{
 comment|// If user does not exist then send a challenge request again
+if|if
+condition|(
+name|sendChallenge
+condition|)
 name|sendChallenge
 argument_list|(
 name|request
@@ -305,6 +336,10 @@ argument_list|)
 condition|)
 block|{
 comment|// If password is incorrect then send a challenge request again
+if|if
+condition|(
+name|sendChallenge
+condition|)
 name|sendChallenge
 argument_list|(
 name|request
