@@ -7896,13 +7896,8 @@ name|getUser
 parameter_list|()
 block|{
 return|return
-operator|(
-name|getBroker
+name|getSubject
 argument_list|()
-operator|.
-name|getUser
-argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the subject which executes the current query.      *      * @return  subject      */

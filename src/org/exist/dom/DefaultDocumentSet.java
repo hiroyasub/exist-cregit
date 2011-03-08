@@ -189,6 +189,9 @@ class|class
 name|DefaultDocumentSet
 extends|extends
 name|Int2ObjectHashMap
+argument_list|<
+name|DocumentImpl
+argument_list|>
 implements|implements
 name|MutableDocumentSet
 block|{
@@ -512,7 +515,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -613,7 +616,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission

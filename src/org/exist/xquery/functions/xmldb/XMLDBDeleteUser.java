@@ -385,7 +385,7 @@ name|contextUser
 init|=
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 if|if

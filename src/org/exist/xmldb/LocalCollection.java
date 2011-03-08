@@ -1902,7 +1902,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)

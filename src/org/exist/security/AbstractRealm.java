@@ -2192,7 +2192,7 @@ name|user
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 if|if

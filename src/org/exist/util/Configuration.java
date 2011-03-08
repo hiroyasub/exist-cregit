@@ -515,6 +515,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|FunctionFactory
@@ -1068,23 +1080,9 @@ name|configFilename
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|configFile
-operator|==
-literal|null
-condition|)
-block|{
-name|configFile
-operator|=
-name|ConfigurationHelper
-operator|.
-name|lookup
-argument_list|(
-name|configFilename
-argument_list|)
-expr_stmt|;
-block|}
+comment|//if( configFile == null ) {
+comment|//    configFile = ConfigurationHelper.lookup( configFilename );
+comment|//}
 if|if
 condition|(
 operator|!
@@ -1985,7 +1983,7 @@ name|list
 operator|.
 name|contains
 argument_list|(
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|TEMP_COLLECTION
 argument_list|)
@@ -1995,7 +1993,7 @@ name|list
 operator|.
 name|add
 argument_list|(
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|TEMP_COLLECTION
 argument_list|)

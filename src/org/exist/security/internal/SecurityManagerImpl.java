@@ -1711,7 +1711,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 try|try
@@ -1783,16 +1783,7 @@ operator|.
 name|getPrimaryGroup
 argument_list|()
 decl_stmt|;
-name|home
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setGroup
-argument_list|(
-name|group
-argument_list|)
-expr_stmt|;
+comment|//home.getPermissions().setGroup(group);
 name|home
 operator|.
 name|getPermissions

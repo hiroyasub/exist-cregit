@@ -5645,9 +5645,10 @@ block|{
 name|Serializer
 name|serializer
 init|=
-name|context
+name|getDatabase
+argument_list|()
 operator|.
-name|getBroker
+name|getActiveBroker
 argument_list|()
 operator|.
 name|getSerializer

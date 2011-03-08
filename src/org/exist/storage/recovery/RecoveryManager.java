@@ -472,10 +472,16 @@ literal|1
 argument_list|)
 expr_stmt|;
 name|Long2ObjectHashMap
+argument_list|<
+name|Loggable
+argument_list|>
 name|txnsStarted
 init|=
 operator|new
 name|Long2ObjectHashMap
+argument_list|<
+name|Loggable
+argument_list|>
 argument_list|()
 decl_stmt|;
 name|Checkpoint
@@ -887,10 +893,16 @@ try|try
 block|{
 comment|// map to track running transactions
 name|Long2ObjectHashMap
+argument_list|<
+name|Loggable
+argument_list|>
 name|runningTxns
 init|=
 operator|new
 name|Long2ObjectHashMap
+argument_list|<
+name|Loggable
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// ------- REDO ---------

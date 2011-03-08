@@ -188,11 +188,6 @@ argument_list|(
 name|expression
 argument_list|,
 name|te
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|te
 argument_list|)
 throw|;
 block|}
@@ -207,11 +202,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -252,11 +242,6 @@ argument_list|(
 name|expression
 argument_list|,
 name|te
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|te
 argument_list|)
 throw|;
 block|}
@@ -271,11 +256,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|expression
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|e
 argument_list|)

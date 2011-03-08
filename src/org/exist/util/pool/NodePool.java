@@ -207,10 +207,16 @@ name|maxActive
 decl_stmt|;
 specifier|private
 name|Int2ObjectHashMap
+argument_list|<
+name|Pool
+argument_list|>
 name|poolMap
 init|=
 operator|new
 name|Int2ObjectHashMap
+argument_list|<
+name|Pool
+argument_list|>
 argument_list|(
 literal|17
 argument_list|)

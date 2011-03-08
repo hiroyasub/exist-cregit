@@ -1033,11 +1033,6 @@ name|this
 argument_list|,
 name|ex
 operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ex
-operator|.
 name|getCause
 argument_list|()
 argument_list|)
@@ -1061,11 +1056,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
-argument_list|,
-name|ex
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|ex
 argument_list|)

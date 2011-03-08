@@ -8795,7 +8795,7 @@ expr_stmt|;
 return|return
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 return|;
 block|}

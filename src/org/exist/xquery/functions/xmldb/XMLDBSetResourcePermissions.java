@@ -639,7 +639,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|user

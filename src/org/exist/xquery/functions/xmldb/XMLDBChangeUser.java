@@ -477,7 +477,7 @@ name|LocalCollection
 argument_list|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|context

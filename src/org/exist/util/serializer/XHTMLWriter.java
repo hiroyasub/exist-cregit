@@ -87,10 +87,16 @@ block|{
 specifier|private
 specifier|static
 name|ObjectHashSet
+argument_list|<
+name|String
+argument_list|>
 name|emptyTags
 init|=
 operator|new
 name|ObjectHashSet
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 literal|31
 argument_list|)

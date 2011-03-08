@@ -131,18 +131,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|io
 operator|.
 name|ExistIOException
@@ -364,11 +352,6 @@ literal|"referenced as xs:anyURI, a node (element or returned by fn:doc()) "
 operator|+
 literal|"or as Java file objects."
 decl_stmt|;
-specifier|private
-specifier|final
-name|BrokerPool
-name|brokerPool
-decl_stmt|;
 comment|// Setup function signature
 specifier|public
 specifier|final
@@ -543,16 +526,6 @@ name|context
 argument_list|,
 name|signature
 argument_list|)
-expr_stmt|;
-name|brokerPool
-operator|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * @throws org.exist.xquery.XPathException       * @see BasicFunction#eval(Sequence[], Sequence)      */

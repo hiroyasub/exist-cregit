@@ -4774,7 +4774,7 @@ operator|&&
 operator|!
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|equals
@@ -5019,7 +5019,7 @@ name|user
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 comment|//TODO : strange that it is set *after* the sunc method has been called.

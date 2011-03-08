@@ -68,21 +68,7 @@ specifier|public
 class|class
 name|FreeList
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|FreeList
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//private final static Logger LOG = Logger.getLogger(FreeList.class);
 specifier|public
 specifier|final
 specifier|static

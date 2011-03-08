@@ -3348,7 +3348,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission

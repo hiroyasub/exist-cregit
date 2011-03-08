@@ -199,7 +199,7 @@ name|values
 init|=
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getMetadataKeys

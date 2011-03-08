@@ -31,18 +31,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -3750,8 +3738,6 @@ block|}
 comment|//Absolute path
 if|if
 condition|(
-name|DBBroker
-operator|.
 name|ROOT_COLLECTION
 operator|.
 name|equals
@@ -3773,8 +3759,6 @@ name|currentPath
 operator|.
 name|startsWith
 argument_list|(
-name|DBBroker
-operator|.
 name|ROOT_COLLECTION
 operator|+
 literal|"/"

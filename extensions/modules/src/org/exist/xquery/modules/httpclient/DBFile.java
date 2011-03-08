@@ -230,7 +230,7 @@ name|subject
 init|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 name|URL

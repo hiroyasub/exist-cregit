@@ -710,7 +710,8 @@ name|getUser
 parameter_list|()
 block|{
 return|return
-name|subject
+name|getSubject
+argument_list|()
 return|;
 block|}
 comment|/**      * Set the subject that is currently using this DBBroker object.      *      * @param subject      */

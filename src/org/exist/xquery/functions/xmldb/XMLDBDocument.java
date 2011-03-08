@@ -229,6 +229,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -832,7 +844,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FODC0002: can not access '"
+name|ErrorCodes
+operator|.
+name|FODC0002
+argument_list|,
+literal|"can not access '"
 operator|+
 name|nextUri
 operator|+

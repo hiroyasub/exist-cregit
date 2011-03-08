@@ -13,18 +13,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|EXistException
@@ -72,21 +60,7 @@ specifier|public
 class|class
 name|SystemTaskManager
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|SystemTaskManager
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
+comment|//private final static Logger LOG = Logger.getLogger(SystemTaskManager.class);
 comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
 specifier|private
 specifier|final
@@ -197,7 +171,7 @@ name|oldUser
 operator|=
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 expr_stmt|;
 name|broker

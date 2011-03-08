@@ -3240,7 +3240,7 @@ block|{
 name|Subject
 name|u
 init|=
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 try|try
@@ -3418,7 +3418,7 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3429,7 +3429,7 @@ argument_list|()
 operator|.
 name|setGroup
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getPrimaryGroup
@@ -3577,7 +3577,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3601,9 +3601,9 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"User '"
+literal|"Account '"
 operator|+
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -4252,7 +4252,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4328,7 +4328,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5373,7 +5373,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5403,7 +5403,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5484,7 +5484,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5800,7 +5800,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5814,7 +5814,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -5840,7 +5840,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5854,7 +5854,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -6037,7 +6037,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6051,7 +6051,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"User '"
 operator|+
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -8143,7 +8143,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8358,7 +8358,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8600,7 +8600,7 @@ comment|//store the currentUser
 name|Subject
 name|currentUser
 init|=
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 comment|//elevate getUser() to DBA_USER
@@ -11122,7 +11122,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11137,7 +11137,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11446,7 +11446,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11476,7 +11476,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11592,7 +11592,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11619,7 +11619,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -11649,7 +11649,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -12126,7 +12126,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -12156,7 +12156,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -12195,7 +12195,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -12304,7 +12304,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -12331,7 +12331,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -12359,7 +12359,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
