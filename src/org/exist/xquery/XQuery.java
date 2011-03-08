@@ -1479,7 +1479,7 @@ name|execute
 argument_list|(
 name|compiled
 argument_list|,
-literal|null
+name|contextSequence
 argument_list|)
 return|;
 block|}
@@ -1540,7 +1540,7 @@ name|execute
 argument_list|(
 name|compiled
 argument_list|,
-literal|null
+name|contextSequence
 argument_list|)
 return|;
 block|}
