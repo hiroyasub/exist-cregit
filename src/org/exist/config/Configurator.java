@@ -4743,7 +4743,7 @@ specifier|static
 name|FullXmldbURI
 name|getFullURI
 parameter_list|(
-name|BrokerPool
+name|Database
 name|db
 parameter_list|,
 name|XmldbURI

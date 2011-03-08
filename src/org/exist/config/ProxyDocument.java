@@ -19,6 +19,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Database
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|DocumentAtExist
@@ -34,18 +44,6 @@ operator|.
 name|dom
 operator|.
 name|NodeAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
 import|;
 end_import
 
@@ -99,7 +97,7 @@ name|E
 name|document
 decl_stmt|;
 specifier|public
-name|BrokerPool
+name|Database
 name|getDatabase
 parameter_list|()
 block|{

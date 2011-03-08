@@ -19,9 +19,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|BrokerPool
+name|Database
 import|;
 end_import
 
@@ -139,7 +137,7 @@ name|getURI
 parameter_list|()
 function_decl|;
 specifier|public
-name|BrokerPool
+name|Database
 name|getDatabase
 parameter_list|()
 function_decl|;

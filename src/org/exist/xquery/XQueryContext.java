@@ -7867,6 +7867,15 @@ name|raiseErrorOnFailedRetrieval
 operator|)
 return|;
 block|}
+specifier|public
+name|Database
+name|getDatabase
+parameter_list|()
+block|{
+return|return
+name|db
+return|;
+block|}
 comment|/**      * Get the DBBroker instance used for the current query.      *      *<p>The DBBroker is the main database access object, providing access to all internal database functions.</p>      *      * @return  DBBroker instance      */
 specifier|public
 name|DBBroker
