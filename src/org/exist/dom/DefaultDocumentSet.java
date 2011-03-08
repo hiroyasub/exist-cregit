@@ -189,9 +189,6 @@ class|class
 name|DefaultDocumentSet
 extends|extends
 name|Int2ObjectHashMap
-argument_list|<
-name|DocumentImpl
-argument_list|>
 implements|implements
 name|MutableDocumentSet
 block|{
