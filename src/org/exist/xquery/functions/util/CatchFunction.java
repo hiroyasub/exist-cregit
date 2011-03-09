@@ -284,7 +284,11 @@ literal|"the exception and calls $catch-code-blocks if it matches one of "
 operator|+
 literal|"the fully qualified Java class names specified in $java-classnames.  "
 operator|+
-literal|"A value of \"*\" in $java-classnames will catch all java exceptions"
+literal|"A value of \"*\" in $java-classnames will catch all java exceptions. "
+operator|+
+literal|"Inside the catch code block, the variable $util:exception will be bound to the java class name of the exception, "
+operator|+
+literal|"and $util:exception-message will be bound to the message produced by the exception."
 argument_list|,
 operator|new
 name|SequenceType
