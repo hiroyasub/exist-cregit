@@ -184,6 +184,12 @@ operator|new
 name|EmptyNodeSet
 argument_list|()
 decl_stmt|;
+comment|/** 	 * Get a copy of this node set which can be modified. 	 *  	 * @return the copy 	 */
+specifier|public
+name|NodeSet
+name|copy
+parameter_list|()
+function_decl|;
 comment|/** 	 * Return an iterator on the nodes in this list. The iterator returns nodes 	 * according to the internal ordering of nodes (i.e. level first), not in document- 	 * order. 	 *  	 */
 specifier|public
 name|NodeSetIterator

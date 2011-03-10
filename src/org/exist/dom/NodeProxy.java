@@ -804,6 +804,16 @@ operator|.
 name|PERSISTENT_NODE
 return|;
 block|}
+specifier|public
+name|NodeSet
+name|copy
+parameter_list|()
+block|{
+comment|// return this, because there's no other node in the set
+return|return
+name|this
+return|;
+block|}
 comment|/**      * Ordering first according to document ID; then if equal      * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
