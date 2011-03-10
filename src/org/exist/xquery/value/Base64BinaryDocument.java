@@ -81,6 +81,9 @@ block|}
 specifier|private
 name|Base64BinaryDocument
 parameter_list|(
+name|BinaryValueManager
+name|manager
+parameter_list|,
 name|InputStream
 name|is
 parameter_list|)
@@ -89,6 +92,8 @@ name|XPathException
 block|{
 name|super
 argument_list|(
+name|manager
+argument_list|,
 operator|new
 name|Base64BinaryValueType
 argument_list|()
@@ -117,6 +122,8 @@ init|=
 operator|new
 name|Base64BinaryDocument
 argument_list|(
+name|manager
+argument_list|,
 name|is
 argument_list|)
 decl_stmt|;

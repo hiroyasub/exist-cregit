@@ -30,6 +30,7 @@ specifier|public
 interface|interface
 name|FilterInputStreamCache
 block|{
+comment|//TODO ensure that FilterInputStreamCache implementations are enforced thread-safe
 comment|/**      * Writes len bytes from the specified byte array starting at offset off to the cache.      * The general contract for write(b, off, len) is that some of the bytes in the array b      * are written to the output stream in order; element b[off] is the first byte written      * and b[off+len-1] is the last byte written by this operation.      *      * If b is null, a NullPointerException is thrown.      *      * If off is negative, or len is negative, or off+len is greater than the length of the array b, then an IndexOutOfBoundsException is thrown.      *      * @param b the data.      * @param off the start offset in the data.      * @param len - the number of bytes to write.      *      * @throws IOException - if an I/O error occurs. In particular, an IOException is thrown if the cache is invalidated.      */
 specifier|public
 name|void

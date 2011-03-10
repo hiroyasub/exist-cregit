@@ -109,6 +109,7 @@ name|cacheOffset
 init|=
 literal|0
 decl_stmt|;
+comment|//TODO ensure that FilterInputStreamCache implementations are thread-safe
 comment|/**      * @param cache The cache implementation      * @param src The source InputStream to cache reads for      */
 specifier|public
 name|CachingFilterInputStream
