@@ -2800,17 +2800,37 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Prepares the current context before xquery execution.      */
+annotation|@
+name|Override
 specifier|public
 name|void
-name|prepare
+name|prepareForExecution
 parameter_list|()
 block|{
 comment|//if there is an existing user in the current http session
 comment|//then set the DBBroker user
-comment|//Subject user = getUserFromHttpSession();
-comment|//if( user != null ) {
-comment|//    broker.setUser( user );
-comment|//}
+name|Subject
+name|user
+init|=
+name|getUserFromHttpSession
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|user
+operator|!=
+literal|null
+condition|)
+block|{
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
+block|}
 comment|//Reset current context position
 name|setContextSequencePosition
 argument_list|(
@@ -7885,7 +7905,7 @@ argument_list|()
 return|;
 block|}
 comment|/**      * If there is a HTTP Session, and a User has been stored in the session then this will return the user object from the session.      *      * @return  The user or null if there is no session or no user      */
-specifier|private
+specifier|public
 name|Subject
 name|getUserFromHttpSession
 parameter_list|()

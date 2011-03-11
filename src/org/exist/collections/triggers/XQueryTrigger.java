@@ -454,7 +454,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the URL indicated by the parameter named "url".  *   * Any additional parameters will be declared as external variables with the type xs:string  *   * These external variables for the Trigger are accessible to the user XQuery statement  *<code>xxx:type</code> : the type of event for the Trigger. Either "prepare" or "finish"  *<code>xxx:collection</code> : the uri of the collection from which the event is triggered  *<code>xxx:uri</code> : the uri of the document or collection from which the event is triggered  *<code>xxx:new-uri</code> : the new uri of the document or collection from which the event is triggered  *<code>xxx:event</code> : the kind of triggered event  * xxx is the namespace prefix within the XQuery, can be set by the variable "bindingPrefix"  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Evgeny Gazdovsky<gazdovsky@gmail.com> */
+comment|/**  * A trigger that executes a user XQuery statement when invoked.  *   * The XQuery source executed is the value of the parameter named "query" or the  * query at the URL indicated by the parameter named "url".  *   * Any additional parameters will be declared as external variables with the type xs:string  *   * These external variables for the Trigger are accessible to the user XQuery statement  *<code>xxx:type</code> : the type of event for the Trigger. Either "prepareForExecution" or "finish"  *<code>xxx:collection</code> : the uri of the collection from which the event is triggered  *<code>xxx:uri</code> : the uri of the document or collection from which the event is triggered  *<code>xxx:new-uri</code> : the new uri of the document or collection from which the event is triggered  *<code>xxx:event</code> : the kind of triggered event  * xxx is the namespace prefix within the XQuery, can be set by the variable "bindingPrefix"  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Evgeny Gazdovsky<gazdovsky@gmail.com> */
 end_comment
 
 begin_class
@@ -1374,7 +1374,7 @@ return|return
 name|querySource
 return|;
 block|}
-comment|/** 	 * @link org.exist.collections.Trigger#prepare(java.lang.String, org.w3c.dom.Document) 	 */
+comment|/** 	 * @link org.exist.collections.Trigger#prepareForExecution(java.lang.String, org.w3c.dom.Document) 	 */
 specifier|public
 name|void
 name|prepare
@@ -1398,7 +1398,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//		LOG.debug("Preparing " + eventToString(event) + "XQuery trigger for document: '" + documentPath + "'");
-comment|//		prepare(event, broker, transaction, documentPath, (XmldbURI) null);
+comment|//		prepareForExecution(event, broker, transaction, documentPath, (XmldbURI) null);
 block|}
 specifier|private
 name|void
@@ -2583,7 +2583,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//reset& prepare for execution
+comment|//reset& prepareForExecution for execution
 name|compiledQuery
 operator|.
 name|reset
@@ -2600,7 +2600,7 @@ expr_stmt|;
 comment|//do any preparation before execution
 name|context
 operator|.
-name|prepare
+name|prepareForExecution
 argument_list|()
 expr_stmt|;
 return|return
@@ -3204,7 +3204,7 @@ comment|//        	//TODO : should we provide another contextSet ?
 comment|//	        NodeSet contextSet = NodeSet.EMPTY_SET;
 comment|//			service.execute(compiledQuery, contextSet);
 comment|//			//TODO : should we have a special processing ?
-comment|//			LOG.debug("Trigger fired for prepare");
+comment|//			LOG.debug("Trigger fired for prepareForExecution");
 comment|//        }
 comment|//        catch(XPathException e)
 comment|//        {

@@ -683,7 +683,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the user that is currently using this DBBroker object.      *      * @param user      */
+comment|/**      * Set the user that is currently using this DBBroker object.      *      * @param user      * @deprecated use setSubject      */
 specifier|public
 name|void
 name|setUser

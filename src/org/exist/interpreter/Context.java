@@ -604,7 +604,7 @@ function_decl|;
 comment|/** 	 * Prepares the current context before xquery execution. 	 */
 specifier|public
 name|void
-name|prepare
+name|prepareForExecution
 parameter_list|()
 function_decl|;
 specifier|public

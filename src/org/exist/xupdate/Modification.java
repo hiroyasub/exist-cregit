@@ -1308,7 +1308,7 @@ argument_list|()
 decl_stmt|;
 comment|// call the eventual triggers
 comment|// TODO -jmv separate loop on docs and not on nodes
-comment|//prepare Trigger
+comment|//prepareForExecution Trigger
 name|prepareTrigger
 argument_list|(
 name|transaction
@@ -1521,7 +1521,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/** 	 * Fires the prepareForExecution function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
 specifier|private
 name|void
 name|prepareTrigger
