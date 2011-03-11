@@ -446,6 +446,7 @@ argument_list|,
 name|requiredType
 argument_list|)
 return|;
+comment|/*          The problem is that if this UntypedAtomicValue is constructed from a text() node          stored in the database, which contains base64 or hex encoded data, then the string value could be huge          and it has already been constructed and stored in memort by UntypedAtomicValue          this should be defered           TODO replace UntypedAtomicValue with something that can allow lazily reading text()          values from the database.          */
 case|case
 name|Type
 operator|.
