@@ -1228,7 +1228,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|// prepareForExecution array for callback function arguments
+comment|// prepare array for callback function arguments
 name|Sequence
 name|params
 index|[]

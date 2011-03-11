@@ -2015,7 +2015,7 @@ name|TransformerConfigurationException
 throws|,
 name|TransformerException
 block|{
-comment|// prepareForExecution output tmp storage
+comment|// prepare output tmp storage
 name|File
 name|tmp
 init|=

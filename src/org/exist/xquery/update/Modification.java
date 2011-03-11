@@ -937,7 +937,7 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
-comment|//prepareForExecution Trigger
+comment|//prepare Trigger
 name|prepareTrigger
 argument_list|(
 name|transaction
@@ -1571,7 +1571,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Fires the prepareForExecution function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
 specifier|private
 name|void
 name|prepareTrigger
@@ -1585,7 +1585,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|//if we are doing a batch update then only call prepareForExecution for the first update to that document
+comment|//if we are doing a batch update then only call prepare for the first update to that document
 if|if
 condition|(
 name|context
@@ -1641,7 +1641,7 @@ return|return;
 block|}
 block|}
 block|}
-comment|//prepareForExecution the trigger
+comment|//prepare the trigger
 name|DocumentTrigger
 name|trigger
 init|=
