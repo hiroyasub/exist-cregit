@@ -565,6 +565,9 @@ operator|.
 name|getBytes
 argument_list|()
 argument_list|)
+operator|.
+name|trim
+argument_list|()
 argument_list|)
 operator|.
 name|getBytes
