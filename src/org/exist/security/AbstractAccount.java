@@ -520,54 +520,13 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
-comment|//TODO change once membersManbager is implemented correctly
-if|if
-condition|(
-operator|!
-operator|(
-operator|(
-name|user
-operator|!=
-literal|null
-operator|&&
-name|user
-operator|.
-name|hasDbaRole
-argument_list|()
-operator|)
-operator|||
 name|group
 operator|.
-name|isManager
+name|assertCanModifyGroup
 argument_list|(
 name|user
 argument_list|)
-operator|)
-condition|)
-block|{
-comment|//if(!((user != null&& user.hasDbaRole()) || user.hasGroup(group.getName()))){
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"User '"
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' is not allowed to change group '"
-operator|+
-name|group
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' memberships"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -621,6 +580,15 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+name|Account
+name|subject
+init|=
+name|getDatabase
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|Group
@@ -642,63 +610,13 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|Account
-name|user
-init|=
-name|getDatabase
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
-comment|//TODO change once membersManbager is implemented correctly
-if|if
-condition|(
-operator|!
-operator|(
-operator|(
-name|user
-operator|!=
-literal|null
-operator|&&
-name|user
-operator|.
-name|hasDbaRole
-argument_list|()
-operator|)
-operator|||
 name|group
 operator|.
-name|isManager
+name|assertCanModifyGroup
 argument_list|(
-name|user
+name|subject
 argument_list|)
-operator|)
-condition|)
-block|{
-comment|//if(!((user != null&& user.hasDbaRole()) || user.hasGroup(group.getName()))){
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"User '"
-operator|+
-name|user
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' is not allowed to change group '"
-operator|+
-name|group
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"' memberships"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|//remove from the group
 name|groups
 operator|.

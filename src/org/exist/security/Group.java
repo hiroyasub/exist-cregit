@@ -81,6 +81,16 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+specifier|public
+name|void
+name|assertCanModifyGroup
+parameter_list|(
+name|Account
+name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 block|}
 end_interface
 

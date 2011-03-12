@@ -489,6 +489,21 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|void
+name|assertCanModifyGroup
+parameter_list|(
+name|Account
+name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+comment|//do nothing
+comment|//TODO do we need to check any permissions?
+block|}
+annotation|@
+name|Override
+specifier|public
 name|Realm
 name|getRealm
 parameter_list|()
