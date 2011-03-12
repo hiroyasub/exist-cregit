@@ -699,7 +699,7 @@ parameter_list|)
 throws|throws
 name|ConfigurationException
 function_decl|;
-comment|/**     * Particular web page for authentication.     *      * @return     */
+comment|/**     * Particular web page for authentication.     *      * @return Authentication form location     */
 specifier|public
 name|String
 name|getAuthenticationEntryPoint

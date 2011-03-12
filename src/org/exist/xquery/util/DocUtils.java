@@ -1061,7 +1061,7 @@ return|return
 name|document
 return|;
 block|}
-comment|/** 	 * Utility function to parse an input stream into an in-memory DOM document. 	 *  	 * @param context 	 * @param istream 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Utility function to parse an input stream into an in-memory DOM document. 	 *  	 * @param context 	 * @param istream 	 * @return document 	 * @throws XPathException 	 */
 specifier|public
 specifier|static
 name|org

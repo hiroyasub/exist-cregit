@@ -173,7 +173,7 @@ name|long
 name|getCacheTimestamp
 parameter_list|()
 function_decl|;
-comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      * @return true if subject has the requested permissions      */
+comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      */
 specifier|public
 name|void
 name|validate
