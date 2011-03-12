@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2011 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -80,18 +80,6 @@ operator|.
 name|exist
 operator|.
 name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
 import|;
 end_import
 
@@ -382,18 +370,6 @@ specifier|private
 specifier|final
 specifier|static
 name|String
-name|URI
-init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
 name|TEST_COLLECTION
 init|=
 literal|"testXQueryTrigger"
@@ -425,7 +401,9 @@ literal|"			name='url' "
 operator|+
 literal|"			value='"
 operator|+
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -568,7 +546,9 @@ literal|"declare function trigger:logDocumentEvent($type as xs:string, $event as
 operator|+
 literal|"let $isLoggedIn := xmldb:login('"
 operator|+
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -580,7 +560,9 @@ literal|"xmldb:update("
 operator|+
 literal|"'"
 operator|+
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -631,7 +613,9 @@ literal|"declare function trigger:logCollectionEvent($type as xs:string, $event 
 operator|+
 literal|"let $isLoggedIn := xmldb:login('"
 operator|+
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -643,7 +627,9 @@ literal|"xmldb:update("
 operator|+
 literal|"'"
 operator|+
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1051,7 +1037,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -1178,7 +1166,7 @@ name|getCollection
 argument_list|(
 literal|"xmldb:exist://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,
