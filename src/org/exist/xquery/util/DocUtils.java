@@ -870,6 +870,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// relative collection Path: add the current module call URI
+try|try
+block|{
 name|pathUri
 operator|=
 name|XmldbURI
@@ -887,6 +889,15 @@ argument_list|(
 name|pathUri
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|//workaround: ignore Windows issue
+block|}
 comment|// try to open the document and acquire a lock
 name|doc
 operator|=

@@ -212,6 +212,8 @@ argument_list|(
 literal|"//localhost:8080/db/"
 argument_list|)
 expr_stmt|;
+comment|//XXX: this MUST work or no MS OS support at all
+comment|//XmldbURI.xmldbUriFor("D:\\workspace\\");
 block|}
 catch|catch
 parameter_list|(
