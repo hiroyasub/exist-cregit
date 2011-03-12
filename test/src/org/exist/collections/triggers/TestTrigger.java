@@ -439,6 +439,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|prepare
@@ -462,6 +464,8 @@ throws|throws
 name|TriggerException
 block|{
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|finish
@@ -705,8 +709,6 @@ parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
 block|}
 annotation|@
@@ -743,8 +745,6 @@ parameter_list|,
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
 block|}
 annotation|@
@@ -787,8 +787,6 @@ parameter_list|,
 name|XmldbURI
 name|newUri
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
 block|}
 annotation|@
@@ -831,8 +829,6 @@ parameter_list|,
 name|XmldbURI
 name|newUri
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
 block|}
 annotation|@
