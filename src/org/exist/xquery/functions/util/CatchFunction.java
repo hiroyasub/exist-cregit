@@ -356,6 +356,8 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"the results from the try-catch"
 argument_list|)
+argument_list|,
+literal|"Use the XQuery 3.0 try/catch expression in stead."
 argument_list|)
 decl_stmt|;
 comment|/**      * @param context      */
