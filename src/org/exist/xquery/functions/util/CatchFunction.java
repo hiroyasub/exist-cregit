@@ -738,12 +738,14 @@ name|e
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e
 throw|;
+block|}
 throw|throw
 operator|new
 name|XPathException
