@@ -390,6 +390,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// Get exception classes
 name|Sequence
 name|exceptionClasses
 init|=
@@ -405,6 +406,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+comment|// Try to evaluate try-code
 try|try
 block|{
 name|context
@@ -424,6 +426,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+comment|// Actually execute try-code
 return|return
 name|getArgument
 argument_list|(
@@ -453,11 +456,12 @@ name|mark
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Handle exception
 block|}
 catch|catch
 parameter_list|(
 name|Exception
-name|e
+name|expException
 parameter_list|)
 block|{
 name|logger
@@ -466,7 +470,7 @@ name|debug
 argument_list|(
 literal|"Caught exception in util:catch: "
 operator|+
-name|e
+name|expException
 operator|.
 name|getMessage
 argument_list|()
@@ -476,7 +480,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|e
+name|expException
 operator|instanceof
 name|XPathException
 operator|)
@@ -488,12 +492,12 @@ name|warn
 argument_list|(
 literal|"Exception: "
 operator|+
-name|e
+name|expException
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|e
+name|expException
 argument_list|)
 expr_stmt|;
 block|}
@@ -506,6 +510,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+comment|// Iterate over all exception parameters
 for|for
 control|(
 name|SequenceIterator
@@ -524,7 +529,7 @@ condition|;
 control|)
 block|{
 name|Item
-name|next
+name|currentItem
 init|=
 name|i
 operator|.
@@ -533,10 +538,11 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+comment|// Get value of execption argument
 name|String
 name|exClassName
 init|=
-name|next
+name|currentItem
 operator|.
 name|getStringValue
 argument_list|()
@@ -549,6 +555,7 @@ name|exClass
 init|=
 literal|null
 decl_stmt|;
+comment|// Get exception class, if available
 if|if
 condition|(
 operator|!
@@ -566,13 +573,14 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-name|next
+name|currentItem
 operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If value is '*' or if class actually matches
 if|if
 condition|(
 name|exClassName
@@ -589,7 +597,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|e
+name|expException
 operator|.
 name|getClass
 argument_list|()
@@ -602,7 +610,7 @@ name|exClass
 operator|.
 name|isInstance
 argument_list|(
-name|e
+name|expException
 argument_list|)
 condition|)
 block|{
@@ -612,7 +620,7 @@ name|debug
 argument_list|(
 literal|"Calling exception handler to process "
 operator|+
-name|e
+name|expException
 operator|.
 name|getClass
 argument_list|()
@@ -621,6 +629,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Make exception name and message available to query
 name|UtilModule
 name|myModule
 init|=
@@ -647,7 +656,7 @@ argument_list|,
 operator|new
 name|StringValue
 argument_list|(
-name|e
+name|expException
 operator|.
 name|getClass
 argument_list|()
@@ -668,13 +677,14 @@ argument_list|,
 operator|new
 name|StringValue
 argument_list|(
-name|e
+name|expException
 operator|.
 name|getMessage
 argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Execute catch-code
 return|return
 name|getArgument
 argument_list|(
@@ -725,7 +735,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|e
+name|expException
 argument_list|)
 throw|;
 block|}
@@ -734,7 +744,7 @@ block|}
 comment|// this type of exception is not caught: throw again
 if|if
 condition|(
-name|e
+name|expException
 operator|instanceof
 name|XPathException
 condition|)
@@ -743,7 +753,7 @@ throw|throw
 operator|(
 name|XPathException
 operator|)
-name|e
+name|expException
 throw|;
 block|}
 throw|throw
@@ -752,7 +762,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|e
+name|expException
 argument_list|)
 throw|;
 block|}
