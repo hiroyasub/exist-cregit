@@ -878,6 +878,28 @@ name|XPathException
 name|xpe
 parameter_list|)
 block|{
+comment|// Get message from string
+name|String
+name|message
+init|=
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+comment|// if the 9th position has a ":" it is probably a custom error text
+if|if
+condition|(
+literal|':'
+operator|==
+name|message
+operator|.
+name|charAt
+argument_list|(
+literal|8
+argument_list|)
+condition|)
+block|{
 name|String
 index|[]
 name|data
@@ -927,14 +949,23 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Parsed string for Errorcode. Qname='"
+literal|"Parsed string '"
+operator|+
+name|xpe
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"' for Errorcode. "
+operator|+
+literal|"Qname='"
 operator|+
 name|data
 index|[
 literal|0
 index|]
 operator|+
-literal|"' message="
+literal|"' message='"
 operator|+
 name|data
 index|[
@@ -946,6 +977,17 @@ argument_list|)
 expr_stmt|;
 return|return
 name|errorCode
+return|;
+block|}
+comment|// Fallback, create java error
+return|return
+operator|new
+name|ErrorCodes
+operator|.
+name|JavaErrorCode
+argument_list|(
+name|xpe
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */

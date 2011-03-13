@@ -1894,7 +1894,7 @@ argument_list|,
 literal|"It is a an error if a parameter value is invalid for the defined domain."
 argument_list|)
 decl_stmt|;
-comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
+comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][FO][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
 name|ErrorCode
@@ -1911,12 +1911,12 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|ErrorCode
-name|EXIST001
+name|EXISTD0001
 init|=
 operator|new
 name|ErrorCode
 argument_list|(
-literal|"EXIST001"
+literal|"EXISTD0001"
 argument_list|,
 literal|""
 argument_list|)
@@ -2112,6 +2112,49 @@ name|EXIST_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 argument_list|,
 name|description
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+specifier|static
+class|class
+name|JavaErrorCode
+extends|extends
+name|ErrorCode
+block|{
+specifier|public
+name|JavaErrorCode
+parameter_list|(
+name|Throwable
+name|throwable
+parameter_list|)
+block|{
+name|super
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+name|throwable
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|Namespaces
+operator|.
+name|EXIST_XQUERY_XPATH_ERROR_NS
+argument_list|,
+literal|"java"
+argument_list|)
+argument_list|,
+comment|// Namespaces.EXIST_XQUERY_XPATH_ERROR_PREFIX
+name|throwable
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
