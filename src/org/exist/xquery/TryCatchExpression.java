@@ -979,6 +979,40 @@ return|return
 name|errorCode
 return|;
 block|}
+comment|// Convert xpe to Throwable
+name|Throwable
+name|retVal
+init|=
+name|xpe
+decl_stmt|;
+comment|// Swap with cause if present
+name|Throwable
+name|cause
+init|=
+name|xpe
+operator|.
+name|getCause
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|cause
+operator|!=
+literal|null
+operator|&&
+operator|!
+operator|(
+name|cause
+operator|instanceof
+name|XPathException
+operator|)
+condition|)
+block|{
+name|retVal
+operator|=
+name|cause
+expr_stmt|;
+block|}
 comment|// Fallback, create java error
 return|return
 operator|new
@@ -986,7 +1020,7 @@ name|ErrorCodes
 operator|.
 name|JavaErrorCode
 argument_list|(
-name|xpe
+name|retVal
 argument_list|)
 return|;
 block|}
