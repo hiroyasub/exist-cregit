@@ -1110,10 +1110,16 @@ specifier|private
 specifier|final
 specifier|static
 name|Object2IntHashMap
+argument_list|<
+name|String
+argument_list|>
 name|typeCodes
 init|=
 operator|new
 name|Object2IntHashMap
+argument_list|<
+name|String
+argument_list|>
 argument_list|(
 literal|100
 argument_list|)
