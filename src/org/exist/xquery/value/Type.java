@@ -21,27 +21,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -76,6 +56,20 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|hashtable
+operator|.
+name|Int2ObjectHashMap
 import|;
 end_import
 
@@ -1091,24 +1085,19 @@ name|ENTITY
 argument_list|)
 expr_stmt|;
 block|}
-comment|//private final static Int2ObjectHashMap typeNames = new Int2ObjectHashMap(100);
 specifier|private
 specifier|final
 specifier|static
-name|Map
+name|Int2ObjectHashMap
 argument_list|<
-name|Integer
-argument_list|,
 name|String
 index|[]
 argument_list|>
 name|typeNames
 init|=
 operator|new
-name|HashMap
+name|Int2ObjectHashMap
 argument_list|<
-name|Integer
-argument_list|,
 name|String
 index|[]
 argument_list|>
@@ -1116,6 +1105,7 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+comment|//private final static Map<Integer, String[]> typeNames= new HashMap<Integer, String[]>(100);
 specifier|private
 specifier|final
 specifier|static
@@ -1632,9 +1622,6 @@ name|type
 parameter_list|)
 block|{
 return|return
-operator|(
-name|String
-operator|)
 name|typeNames
 operator|.
 name|get
