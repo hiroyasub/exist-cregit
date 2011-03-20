@@ -363,7 +363,7 @@ specifier|static
 name|XmldbURI
 name|ETC_COLLECTION_URI
 init|=
-name|ROOT_COLLECTION_URI
+name|SYSTEM_COLLECTION_URI
 operator|.
 name|append
 argument_list|(
