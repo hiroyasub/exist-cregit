@@ -11314,6 +11314,12 @@ operator|.
 name|listFiles
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|temp
+operator|!=
+literal|null
+condition|)
 for|for
 control|(
 name|int
