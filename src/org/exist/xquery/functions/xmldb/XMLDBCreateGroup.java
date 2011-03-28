@@ -715,6 +715,85 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
+comment|//TEMP - ESCALATE TO DBA :-(
+comment|//START TEMP - we also need to make every manager a member of the group otherwise
+comment|//they do not show up as group memebers automatically - this is a design problem because group
+comment|//membership is managed on the user and not the group, this needs to be fixed!
+comment|//see XMLDBAddUserToGroup also
+name|Subject
+name|currentSubject
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+comment|//escalate
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|sm
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//perform action
+for|for
+control|(
+name|Account
+name|manager
+range|:
+name|group
+operator|.
+name|getManagers
+argument_list|()
+control|)
+block|{
+name|manager
+operator|.
+name|addGroup
+argument_list|(
+name|group
+argument_list|)
+expr_stmt|;
+name|sm
+operator|.
+name|updateAccount
+argument_list|(
+name|sm
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|,
+name|manager
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|currentSubject
+argument_list|)
+expr_stmt|;
+block|}
+comment|//END TEMP
 return|return
 name|BooleanValue
 operator|.
