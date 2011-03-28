@@ -265,6 +265,16 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|void
+name|assertCanModifyAccount
+parameter_list|(
+name|Account
+name|user
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+specifier|public
+name|void
 name|setMetadataValue
 parameter_list|(
 name|AXSchemaType

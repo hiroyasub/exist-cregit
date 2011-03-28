@@ -375,6 +375,9 @@ name|getSource
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * Use constructor with errorCode and errorVal      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -421,7 +424,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param cause      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -435,7 +439,8 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param message      * @param cause      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -458,6 +463,8 @@ operator|=
 name|message
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -612,6 +619,8 @@ operator|=
 name|errorVal
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -652,6 +661,8 @@ operator|=
 name|column
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(

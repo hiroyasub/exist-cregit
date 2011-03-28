@@ -669,6 +669,26 @@ name|getMetadataKeys
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|assertCanModifyAccount
+parameter_list|(
+name|Account
+name|user
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+name|account
+operator|.
+name|assertCanModifyAccount
+argument_list|(
+name|user
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

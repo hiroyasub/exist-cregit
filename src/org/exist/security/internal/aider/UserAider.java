@@ -920,6 +920,21 @@ name|PermissionDeniedException
 block|{
 comment|//do nothing
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|assertCanModifyAccount
+parameter_list|(
+name|Account
+name|user
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+comment|//do nothing
+comment|//TODO do we need to check any permissions?
+block|}
 block|}
 end_class
 

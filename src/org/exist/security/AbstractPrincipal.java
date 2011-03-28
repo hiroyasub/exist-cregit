@@ -452,7 +452,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|String
 name|getName
 parameter_list|()

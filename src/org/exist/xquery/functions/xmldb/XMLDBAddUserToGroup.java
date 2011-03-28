@@ -243,6 +243,18 @@ name|SecurityManager
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Subject
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
@@ -536,6 +548,36 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
+comment|//TEMP - ESCALATE TO DBA :-(
+comment|/**                  * Security Manager has a fundamental flaw                  * Group Membership is stored in the Account XML: so you cannot                  * add a user to a group without modifying the users XML                  * this is a security issue as if you are not that user                  * you have to escalate to DBA - must redesign                  * Consider Unix /etc/groups design!                  */
+name|Subject
+name|currentSubject
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+comment|//escalate
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|sm
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//perform action
 name|sm
 operator|.
 name|updateAccount
@@ -551,6 +593,21 @@ argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|currentSubject
+argument_list|)
+expr_stmt|;
+block|}
+comment|//END TEMP
 return|return
 name|BooleanValue
 operator|.
@@ -595,6 +652,8 @@ name|getName
 argument_list|()
 operator|+
 literal|"' don not authorize to call this function."
+argument_list|,
+name|pde
 argument_list|)
 throw|;
 block|}
