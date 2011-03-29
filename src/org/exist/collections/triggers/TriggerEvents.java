@@ -653,7 +653,7 @@ name|add
 argument_list|(
 name|EVENTS
 operator|.
-name|MOVE_DOCUMENT
+name|DELETE_DOCUMENT
 argument_list|)
 expr_stmt|;
 break|break;
