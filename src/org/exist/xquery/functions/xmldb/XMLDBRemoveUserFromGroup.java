@@ -93,6 +93,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -493,6 +505,40 @@ argument_list|(
 name|groupName
 argument_list|)
 expr_stmt|;
+comment|//TEMP - ESCALATE TO DBA :-(
+comment|//START TEMP - Whilst we can remove the group from the user
+comment|//we cannot update the user because we do not have sufficient permissions
+comment|//in the real world we should not be able to do either. The modelling of group
+comment|//membership as a concern of user data is wrong! Should follow Unix approach.
+comment|//see XMLDBAddUserToGroup also
+name|Subject
+name|currentSubject
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
+try|try
+block|{
+comment|//escalate
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|sm
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//perform action
 name|sm
 operator|.
 name|updateAccount
@@ -502,6 +548,21 @@ argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|setSubject
+argument_list|(
+name|currentSubject
+argument_list|)
+expr_stmt|;
+block|}
+comment|//END TEMP
 return|return
 name|BooleanValue
 operator|.

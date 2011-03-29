@@ -719,7 +719,7 @@ comment|//TEMP - ESCALATE TO DBA :-(
 comment|//START TEMP - we also need to make every manager a member of the group otherwise
 comment|//they do not show up as group memebers automatically - this is a design problem because group
 comment|//membership is managed on the user and not the group, this needs to be fixed!
-comment|//see XMLDBAddUserToGroup also
+comment|//see XMLDBAddUserToGroup and XMLDBRemoveUserFromGroup also
 name|Subject
 name|currentSubject
 init|=

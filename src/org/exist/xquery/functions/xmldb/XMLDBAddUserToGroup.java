@@ -549,7 +549,7 @@ name|group
 argument_list|)
 expr_stmt|;
 comment|//TEMP - ESCALATE TO DBA :-(
-comment|/**                  * Security Manager has a fundamental flaw                  * Group Membership is stored in the Account XML: so you cannot                  * add a user to a group without modifying the users XML                  * this is a security issue as if you are not that user                  * you have to escalate to DBA - must redesign                  * Consider Unix /etc/groups design!                  */
+comment|/**                  * Security Manager has a fundamental flaw                  * Group Membership is stored in the Account XML: so you cannot                  * add a user to a group without modifying the users XML                  * this is a security issue as if you are not that user                  * you have to escalate to DBA - must redesign                  * Consider Unix /etc/groups design!                  * See XMLDBCreateGroup and XMLDRemoveUserFromGroup                  */
 name|Subject
 name|currentSubject
 init|=
