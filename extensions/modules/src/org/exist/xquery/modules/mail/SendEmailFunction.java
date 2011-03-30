@@ -1632,7 +1632,7 @@ name|smtpOut
 operator|.
 name|println
 argument_list|(
-literal|"MAIL FROM: "
+literal|"MAIL FROM:<"
 operator|+
 name|mail
 operator|.
@@ -1663,6 +1663,8 @@ argument_list|(
 literal|">"
 argument_list|)
 argument_list|)
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1673,12 +1675,14 @@ name|smtpOut
 operator|.
 name|println
 argument_list|(
-literal|"MAIL FROM: "
+literal|"MAIL FROM:<"
 operator|+
 name|mail
 operator|.
 name|getFrom
 argument_list|()
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1821,7 +1825,7 @@ name|smtpOut
 operator|.
 name|println
 argument_list|(
-literal|"RCPT TO: "
+literal|"RCPT TO:<"
 operator|+
 operator|(
 operator|(
@@ -1873,6 +1877,8 @@ argument_list|(
 literal|">"
 argument_list|)
 argument_list|)
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1882,7 +1888,7 @@ name|smtpOut
 operator|.
 name|println
 argument_list|(
-literal|"RCPT TO: "
+literal|"RCPT TO:<"
 operator|+
 operator|(
 operator|(
@@ -1895,6 +1901,8 @@ argument_list|(
 name|x
 argument_list|)
 operator|)
+operator|+
+literal|">"
 argument_list|)
 expr_stmt|;
 block|}
