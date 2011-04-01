@@ -159,8 +159,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//TODO this should NOT be in this interface! It should be in the EXPath Caller, otherwise we mix concerns and duplicate code.
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|outputHeaders
@@ -226,8 +225,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//TODO EXPath Caller should send QName, otherwise we duplicate code and reduce reuse!
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|startElem
@@ -272,8 +270,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|attribute
@@ -304,8 +301,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|startContent
@@ -315,8 +311,7 @@ name|HttpClientException
 block|{
 comment|//TODO this is not needed in eXist-db, it is very saxon specific
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|endElem

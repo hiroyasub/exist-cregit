@@ -287,8 +287,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -303,8 +302,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Sequence
 name|next
@@ -350,8 +348,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|serialize

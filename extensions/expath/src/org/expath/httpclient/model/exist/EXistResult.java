@@ -248,8 +248,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|add
@@ -297,8 +296,7 @@ throw|;
 block|}
 block|}
 comment|//TODO would be better if the EXPath API provided a stream!
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|add
@@ -346,8 +344,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|add
@@ -432,8 +429,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|add

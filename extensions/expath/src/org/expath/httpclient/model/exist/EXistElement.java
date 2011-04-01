@@ -267,8 +267,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Iterable
 argument_list|<
@@ -287,8 +286,7 @@ name|Attribute
 argument_list|>
 argument_list|()
 block|{
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -334,8 +332,7 @@ name|position
 init|=
 literal|0
 decl_stmt|;
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|hasNext
@@ -349,8 +346,7 @@ name|length
 operator|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Attribute
 name|next
@@ -386,8 +382,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|remove
@@ -407,8 +402,7 @@ block|}
 block|}
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Iterable
 argument_list|<
@@ -436,8 +430,7 @@ name|node
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getAttribute
@@ -476,8 +469,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Sequence
 name|getContent
@@ -582,8 +574,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getDisplayName
@@ -601,8 +592,7 @@ name|getNodeName
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getLocalName
@@ -620,8 +610,7 @@ name|getLocalName
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getNamespaceUri
@@ -637,8 +626,7 @@ name|getNamespaceURI
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|hasNoNsChild
@@ -721,8 +709,7 @@ return|return
 literal|false
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Iterable
 argument_list|<
@@ -755,8 +742,7 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Check the element {@code elem} does not have attributes other than {@code names}.      *      * {@code names} contains non-qualified names, for allowed attributes.  The      * element can have other attributes in other namespace (not in the HTTP      * Client namespace) but no attributes in no namespace.      *      * @param names The non-qualified names of allowed attributes (cannot be      * null, but can be empty.)      *      * @throws HttpClientException If the element contains an attribute in the      * HTTP Client namespace, or in no namespace and the name of which is not      * in {@code names}.      */
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|noOtherNCNameAttribute
@@ -964,8 +950,7 @@ operator|=
 name|inNamespaceURI
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1048,8 +1033,7 @@ operator|=
 name|inNamespaceURI
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1064,8 +1048,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Element
 name|next
@@ -1105,8 +1088,7 @@ name|context
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|remove

@@ -84,8 +84,7 @@ operator|=
 name|attribute
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getLocalName
@@ -98,8 +97,7 @@ name|getLocalName
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getNamespaceUri
@@ -112,8 +110,7 @@ name|getNamespaceURI
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|String
 name|getValue
@@ -126,8 +123,7 @@ name|getValue
 argument_list|()
 return|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|boolean
 name|getBoolean
