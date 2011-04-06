@@ -920,40 +920,6 @@ comment|//                || testCase.equals("fn-collection-5d")
 comment|//                || testCase.equals("fn-collection-9")
 comment|//                || testCase.equals("fn-collection-10d"))
 comment|//                return;
-comment|//        } else if (testGroup.equals("SeqExprCastSI")&& testCase.equals("casthcds9")) {
-comment|//            return;
-comment|//        } else if (testGroup.equals("NotationEQSI")) {
-comment|//            if (testCase.equals("Comp-notation-5")
-comment|//                || testCase.equals("Comp-notation-8")
-comment|//                || testCase.equals("Comp-notation-10")
-comment|//                || testCase.equals("Comp-notation-11")
-comment|//                || testCase.equals("Comp-notation-12")
-comment|//                || testCase.equals("Comp-notation-13")
-comment|//                || testCase.equals("Comp-notation-14")
-comment|//                || testCase.equals("Comp-notation-19")
-comment|//                || testCase.equals("Comp-notation-20")
-comment|//                || testCase.equals("Comp-notation-21"))
-comment|//                return;
-comment|//        } else if (testGroup.equals("SchemaImportProlog")) {
-comment|//            if (testCase.equals("schema-import-1")
-comment|//                || testCase.equals("schema-import-2")
-comment|//                || testCase.equals("schema-import-5")
-comment|//                || testCase.equals("schema-import-9")
-comment|//                || testCase.equals("schema-import-13")
-comment|//                || testCase.equals("schema-import-17")
-comment|//                || testCase.equals("schema-import-25"))
-comment|//                return;
-comment|//        } else if (testGroup.equals("STFLWORExpr")) {
-comment|//            /*UNDERSTAND: why it must throw FORG0006?
-comment|//                The test description:
-comment|//                    Test 'where' clause with heterogenous sequences. First item is a node
-comment|//                The XQuery 1.0: An XML Query Language (W3C Recommendation 23 January 2007)
-comment|//                2.4.3 Effective Boolean Value
-comment|//                    If its operand is a sequence whose first item is a node, fn:boolean returns true.
-comment|//            */
-comment|//            if (testCase.equals("ST-WhereExpr001"))
-comment|//                return;
-comment|//        }
 comment|//        if (testCase.equals("K2-NodeTest-11"))
 comment|//            return; //Added by p.b. as a quick attempt to work around current blocking code
 comment|//        if (testCase.equals("Constr-cont-document-3"))
@@ -2725,7 +2691,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//e.printStackTrace();
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 name|Assert
 operator|.
 name|fail
