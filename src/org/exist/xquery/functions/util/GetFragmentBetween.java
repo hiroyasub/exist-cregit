@@ -978,6 +978,14 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+name|int
+name|docChildStoredNodeType
+init|=
+name|docChildStoredNode
+operator|.
+name|getNodeType
+argument_list|()
+decl_stmt|;
 name|reader
 operator|=
 name|dbBroker
@@ -1003,6 +1011,12 @@ name|equals
 argument_list|(
 name|actualNodeId
 argument_list|)
+operator|&&
+name|docChildStoredNodeType
+operator|!=
+name|Node
+operator|.
+name|PROCESSING_INSTRUCTION_NODE
 condition|)
 block|{
 name|int
