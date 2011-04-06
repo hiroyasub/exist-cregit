@@ -369,7 +369,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The starting string against which to match a persomal name"
+literal|"The starting string against which to match a personal name"
 argument_list|)
 block|}
 argument_list|,
