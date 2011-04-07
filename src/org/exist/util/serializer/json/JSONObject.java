@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2011 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -509,6 +513,11 @@ name|allowText
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|skipMixedContentText
+init|=
+literal|false
+decl_stmt|;
 while|while
 condition|(
 name|next
@@ -529,8 +538,8 @@ name|VALUE_TYPE
 condition|)
 block|{
 comment|// if an element has attributes and text content, the text
-comment|// node is serialized as property "#text". Text in mixed content nodes
-comment|// is ignored though.
+comment|// node is serialized as property "#text".
+comment|// Text in mixed content nodes is ignored though.
 if|if
 condition|(
 name|allowText
@@ -555,6 +564,14 @@ expr_stmt|;
 name|allowText
 operator|=
 literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//writer.write("\"#mixed-content-text\" : ");
+name|skipMixedContentText
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -595,13 +612,30 @@ condition|(
 name|next
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|skipMixedContentText
+operator|&&
+operator|!
+name|isMixedContentTextLast
+argument_list|(
+name|next
+argument_list|,
+name|allowText
+argument_list|)
 condition|)
+block|{
 name|writer
 operator|.
 name|write
 argument_list|(
 literal|", "
 argument_list|)
+expr_stmt|;
+block|}
+name|skipMixedContentText
+operator|=
+literal|false
 expr_stmt|;
 block|}
 name|writer
@@ -612,6 +646,48 @@ literal|" }"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|private
+name|boolean
+name|isMixedContentTextLast
+parameter_list|(
+specifier|final
+name|JSONNode
+name|node
+parameter_list|,
+specifier|final
+name|boolean
+name|allowText
+parameter_list|)
+block|{
+if|if
+condition|(
+name|node
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|VALUE_TYPE
+operator|&&
+operator|!
+name|allowText
+operator|&&
+name|node
+operator|.
+name|equals
+argument_list|(
+name|getLastChild
+argument_list|()
+argument_list|)
+condition|)
+return|return
+literal|true
+return|;
+return|return
+literal|false
+return|;
 block|}
 annotation|@
 name|Override
