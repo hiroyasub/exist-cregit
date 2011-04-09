@@ -11335,6 +11335,13 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|istream
+operator|!=
+literal|null
+condition|)
+block|{
 name|document
 operator|.
 name|readDocumentMeta
@@ -11342,6 +11349,7 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
