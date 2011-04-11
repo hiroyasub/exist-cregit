@@ -560,6 +560,15 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
+specifier|final
+name|int
+name|mimeTypeSymbolsIndex
+init|=
+name|istream
+operator|.
+name|readInt
+argument_list|()
+decl_stmt|;
 name|mimeType
 operator|=
 name|pool
@@ -569,10 +578,7 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|(
-name|istream
-operator|.
-name|readInt
-argument_list|()
+name|mimeTypeSymbolsIndex
 argument_list|)
 expr_stmt|;
 name|pageCount
