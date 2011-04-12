@@ -498,6 +498,24 @@ name|iterator
 argument_list|()
 return|;
 block|}
+specifier|public
+name|Iterator
+argument_list|<
+name|QName
+argument_list|>
+name|getGlobalVariables
+parameter_list|()
+block|{
+return|return
+name|mGlobalVariables
+operator|.
+name|keySet
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#declareVariable(org.exist.dom.QName, java.lang.Object) 	 */
 specifier|public
 name|Variable

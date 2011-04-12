@@ -132,6 +132,15 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
+comment|/**      * Returns an iterator over all global variables in this modules, which were      * either declared with "declare variable" (for external modules) or set in the      * module implementation (internal modules).      *        * @return      */
+specifier|public
+name|Iterator
+argument_list|<
+name|QName
+argument_list|>
+name|getGlobalVariables
+parameter_list|()
+function_decl|;
 comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
 specifier|public
 name|void
