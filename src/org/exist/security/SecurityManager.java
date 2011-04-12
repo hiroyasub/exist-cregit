@@ -686,6 +686,33 @@ name|String
 name|startsWith
 parameter_list|)
 function_decl|;
+comment|/**     * Find all groups visible to the invokingUser     */
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findAllGroupNames
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|)
+function_decl|;
+comment|/**     * Find all members of a group     */
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findAllGroupMembers
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|groupName
+parameter_list|)
+function_decl|;
 comment|/**     * Process document, possible new sub-instance.     *       * @param document     * @throws ConfigurationException      */
 name|void
 name|processPramatter

@@ -360,6 +360,16 @@ name|NAME
 argument_list|(
 literal|"name"
 argument_list|)
+block|,
+name|DN
+argument_list|(
+literal|"dn"
+argument_list|)
+block|,
+name|MEMBER_OF
+argument_list|(
+literal|"memberOf"
+argument_list|)
 block|;
 specifier|private
 specifier|final

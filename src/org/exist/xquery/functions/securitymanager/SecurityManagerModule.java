@@ -231,7 +231,22 @@ name|GroupMembershipFunctions
 operator|.
 name|class
 argument_list|)
-block|,     }
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|FindGroupFunction
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|FindGroupFunction
+operator|.
+name|class
+argument_list|)
+block|}
 decl_stmt|;
 specifier|public
 name|SecurityManagerModule
