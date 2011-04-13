@@ -7036,18 +7036,7 @@ name|String
 name|s
 parameter_list|)
 block|{
-if|if
-condition|(
-name|s
-operator|.
-name|equals
-argument_list|(
-literal|"If-Modified-Since"
-argument_list|)
-condition|)
-return|return
-literal|null
-return|;
+comment|/*if (s.equals("If-Modified-Since"))                 return null;*/
 return|return
 name|super
 operator|.
@@ -7067,19 +7056,7 @@ name|String
 name|s
 parameter_list|)
 block|{
-if|if
-condition|(
-name|s
-operator|.
-name|equals
-argument_list|(
-literal|"If-Modified-Since"
-argument_list|)
-condition|)
-return|return
-operator|-
-literal|1
-return|;
+comment|/*if (s.equals("If-Modified-Since"))                 return -1;*/
 return|return
 name|super
 operator|.
