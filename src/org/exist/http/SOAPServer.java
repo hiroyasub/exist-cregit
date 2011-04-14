@@ -2655,8 +2655,6 @@ argument_list|,
 operator|new
 name|XPathException
 argument_list|(
-literal|null
-argument_list|,
 literal|"SAX exception while transforming node: "
 operator|+
 name|saxe
@@ -2702,8 +2700,6 @@ argument_list|,
 operator|new
 name|XPathException
 argument_list|(
-literal|null
-argument_list|,
 literal|"SAX exception while transforming node: "
 operator|+
 name|tce
@@ -2856,8 +2852,6 @@ argument_list|,
 operator|new
 name|XPathException
 argument_list|(
-literal|null
-argument_list|,
 literal|"Unable to construct an XML document from the SOAP Request, probably an invalid request: "
 operator|+
 name|e
@@ -3404,8 +3398,6 @@ argument_list|,
 operator|new
 name|XPathException
 argument_list|(
-literal|null
-argument_list|,
 literal|"SAX exception while transforming node: "
 operator|+
 name|saxe
@@ -3451,8 +3443,6 @@ argument_list|,
 operator|new
 name|XPathException
 argument_list|(
-literal|null
-argument_list|,
 literal|"SAX exception while transforming node: "
 operator|+
 name|tce
