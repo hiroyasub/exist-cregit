@@ -243,6 +243,17 @@ specifier|public
 name|boolean
 name|shutdown
 parameter_list|(
+name|String
+name|delay
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
+comment|/** 	 * Shut down the database after the specified delay (in milliseconds). 	 *  	 * @return true if the shutdown succeeded, false otherwise 	 * @throws PermissionDeniedException 	 */
+specifier|public
+name|boolean
+name|shutdown
+parameter_list|(
 name|long
 name|delay
 parameter_list|)
