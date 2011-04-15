@@ -84,6 +84,7 @@ name|MemoryMappedFileFilterInputStreamCache
 implements|implements
 name|FilterInputStreamCache
 block|{
+comment|//private final static long DEFAULT_MEMORY_MAP_SIZE = 64 * 1024; //64KB
 specifier|private
 specifier|final
 specifier|static
@@ -93,8 +94,10 @@ init|=
 literal|64
 operator|*
 literal|1024
+operator|*
+literal|1024
 decl_stmt|;
-comment|//64KB
+comment|//64MB
 specifier|private
 specifier|final
 name|FileChannel
