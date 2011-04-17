@@ -5915,6 +5915,19 @@ argument_list|(
 name|rightNode
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|saved
+operator|=
+literal|false
+expr_stmt|;
+name|cache
+operator|.
+name|add
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 comment|//            if (transaction != null&& isTransactional) {
 comment|//                Loggable log = new UpdatePageLoggable(transaction, fileId, page.getPageNum(), prefix, keys, nKeys, ptrs, nPtrs);
 comment|//                writeToLog(log, this);
