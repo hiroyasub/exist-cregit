@@ -466,9 +466,11 @@ name|xmldbURI
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|URI
 name|uri
 init|=
@@ -514,9 +516,11 @@ name|collectionPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|URI
 name|uri
 init|=
@@ -726,9 +730,9 @@ argument_list|(
 name|uri
 argument_list|)
 return|;
-comment|/* 		//TODO : get rid of this and use a more robust approach (dedicated constructor ?) -pb 		//TODO : use named constants   		index = path.lastIndexOf("/xmlrpc");        	         	 		if (index> lastIndex) { 			return false; 		}         	 		//TODO : use named constants   		index = path.lastIndexOf("/webdav");        	         	 		if (index> lastIndex) { 			return false; 		}   		*/
+comment|/*         //TODO : get rid of this and use a more robust approach (dedicated constructor ?) -pb         //TODO : use named constants         index = path.lastIndexOf("/xmlrpc");         if (index> lastIndex) {         return false;         }         //TODO : use named constants         index = path.lastIndexOf("/webdav");         if (index> lastIndex) {         return false;         }          */
 block|}
-comment|/** 	 * Contructs an XmldbURI from given URI. 	 * The provided URI must have the XMLDB_SCHEME ("xmldb") 	 * @param xmldbURI A string  	 * @throws URISyntaxException If the given string is not a valid xmldb URI. 	 */
+comment|/**      * Contructs an XmldbURI from given URI.      * The provided URI must have the XMLDB_SCHEME ("xmldb")      * @param xmldbURI A string      * @throws URISyntaxException If the given string is not a valid xmldb URI.      */
 specifier|protected
 name|XmldbURI
 parameter_list|(
@@ -851,7 +855,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context 	 * from the collection path as smartly as possible.  	 * One would probably prefer a split policy based on the presence of a well-known root collection. 	 * @param path The java.net.URI.getPath() provided. 	 * @throws URISyntaxException 	 */
+comment|/** Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context      * from the collection path as smartly as possible.      * One would probably prefer a split policy based on the presence of a well-known root collection.      * @param path The java.net.URI.getPath() provided.      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|splitPath
@@ -886,6 +890,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|encodedCollectionPath
 operator|=
 name|encodedCollectionPath
@@ -902,9 +907,10 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : check that collectionPath starts with DBBroker.ROOT_COLLECTION ?
 block|}
-comment|/** To be called before a context operation with another XmldbURI. 	 * @param uri 	 * @throws IllegalArgumentException 	 */
+comment|/** To be called before a context operation with another XmldbURI.      * @param uri      * @throws IllegalArgumentException      */
 specifier|protected
 name|void
 name|checkCompatibilityForContextOperation
@@ -945,6 +951,7 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -962,6 +969,7 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 comment|//case insensitive comparison
 if|if
 condition|(
@@ -993,6 +1001,7 @@ name|getHost
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1010,6 +1019,7 @@ name|getHost
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -1036,6 +1046,7 @@ operator|.
 name|getPort
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1053,6 +1064,7 @@ name|getPort
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -1083,6 +1095,7 @@ name|getCollectionPath
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1101,7 +1114,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** To be called before a collection path operation with another XmldbURI. 	 * @param uri 	 * @throws IllegalArgumentException 	 */
+block|}
+comment|/** To be called before a collection path operation with another XmldbURI.      * @param uri      * @throws IllegalArgumentException      */
 specifier|protected
 name|void
 name|checkCompatibilityForCollectionOperation
@@ -1142,6 +1156,7 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1159,6 +1174,7 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 comment|//case insensitive comparison
 if|if
 condition|(
@@ -1190,6 +1206,7 @@ name|getHost
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1207,6 +1224,7 @@ name|getHost
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -1233,6 +1251,7 @@ operator|.
 name|getPort
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1250,6 +1269,7 @@ name|getPort
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -1280,6 +1300,7 @@ name|getContext
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1298,9 +1319,10 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/* 	 * It is an error for any of the following private members to throw an exception. 	 */
-comment|/* 	private void setInstanceName(String instanceName) {		  		String oldInstanceName = this.instanceName; 		try { 			this.instanceName = instanceName; 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.instanceName = oldInstanceName; 			throw new IllegalArgumentException("Invalid URI: "+e.getMessage()); 		}			 	} 	 	private void setContext(String context) throws URISyntaxException { 		String oldContext = this.context; 		try { 			//trims any trailing slash  	    	if (context != null&& context.endsWith("/")) {   		 	    		//include root slash if we have a host 	    		if (this.getHost() != null) 	    			context = context.substring(0, context.length() - 1);  	    	} 			this.context = "".equals(context) ? null : context; 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.context = oldContext; 			throw e; 		} 	} 	 	private void setCollectionPath(String collectionPath) throws URISyntaxException { 		String oldCollectionPath = collectionPath; 		try { 			if (collectionPath == null) 				this.encodedCollectionPath = null; 			else {                 String escaped = URIUtils.escapeHtmlURI(collectionPath); 				 				this.encodedCollectionPath = escaped; 			} 			recomputeURI(); 		} catch (URISyntaxException e) { 			this.encodedCollectionPath = oldCollectionPath; 			throw e;     	} catch (UnsupportedEncodingException e) {         	wrappedURI = null;        	         	throw new URISyntaxException(this.toString(), e.getMessage());  	     	} 	} 	*/
-comment|/** 	 * This returns a proper heirarchical URI - the xmldb scheme is trimmed 	 * from the beginning.  The scheme will be the instance name, and all 	 * other fields will be populated as would be expected from a heirarchical 	 * URI 	 *  	 * @see #getXmldbURI 	 */
+block|}
+comment|/*      * It is an error for any of the following private members to throw an exception.      */
+comment|/*     private void setInstanceName(String instanceName) {     String oldInstanceName = this.instanceName;     try {     this.instanceName = instanceName;     recomputeURI();     } catch (URISyntaxException e) {     this.instanceName = oldInstanceName;     throw new IllegalArgumentException("Invalid URI: "+e.getMessage());     }     }      private void setContext(String context) throws URISyntaxException {     String oldContext = this.context;     try {     //trims any trailing slash     if (context != null&& context.endsWith("/")) {     //include root slash if we have a host     if (this.getHost() != null)     context = context.substring(0, context.length() - 1);     }     this.context = "".equals(context) ? null : context;     recomputeURI();     } catch (URISyntaxException e) {     this.context = oldContext;     throw e;     }     }      private void setCollectionPath(String collectionPath) throws URISyntaxException {     String oldCollectionPath = collectionPath;     try {     if (collectionPath == null)     this.encodedCollectionPath = null;     else {     String escaped = URIUtils.escapeHtmlURI(collectionPath);     this.encodedCollectionPath = escaped;     }     recomputeURI();     } catch (URISyntaxException e) {     this.encodedCollectionPath = oldCollectionPath;     throw e;     } catch (UnsupportedEncodingException e) {     wrappedURI = null;     throw new URISyntaxException(this.toString(), e.getMessage());     }     }      */
+comment|/**      * This returns a proper heirarchical URI - the xmldb scheme is trimmed      * from the beginning.  The scheme will be the instance name, and all      * other fields will be populated as would be expected from a heirarchical      * URI      *      * @see #getXmldbURI      */
 specifier|public
 name|URI
 name|getURI
@@ -1315,7 +1337,7 @@ name|encodedCollectionPath
 argument_list|)
 return|;
 block|}
-comment|/** 	 * This returns an xmldb uri.  This is the most generic sort of uri - the 	 * only fields set in the uri are scheme and schemeSpecificPart 	 */
+comment|/**      * This returns an xmldb uri.  This is the most generic sort of uri - the      * only fields set in the uri are scheme and schemeSpecificPart      */
 specifier|public
 name|URI
 name|getXmldbURI
@@ -1339,7 +1361,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Method to return the collection path with reserved characters  	 * percent encoded 	 *  	 * @return Returns the encoded collection path 	 */
+comment|/**      * Method to return the collection path with reserved characters      * percent encoded      *      * @return Returns the encoded collection path      */
 specifier|public
 name|String
 name|getRawCollectionPath
@@ -1360,9 +1382,11 @@ name|encodedCollectionPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 try|try
 block|{
 comment|//TODO: we might want to cache this value
@@ -1418,7 +1442,7 @@ else|:
 name|this
 return|;
 block|}
-comment|/** To be called each time a private member that interacts with the wrapped URI is modified. 	 * @throws URISyntaxException 	 */
+comment|/** To be called each time a private member that interacts with the wrapped URI is modified.      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|recomputeURI
@@ -1427,7 +1451,7 @@ throws|throws
 name|URISyntaxException
 block|{
 block|}
-comment|/** To be called each time a private member that interacts with the wrapped URI is modified. 	 * @throws URISyntaxException 	 */
+comment|/** To be called each time a private member that interacts with the wrapped URI is modified.      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|safeRecomputeURI
@@ -1447,7 +1471,7 @@ parameter_list|)
 block|{
 block|}
 block|}
-comment|/* 	 * Must be encoded! 	 */
+comment|/*      * Must be encoded!      */
 specifier|private
 name|void
 name|setCollectionPath
@@ -1570,6 +1594,7 @@ operator|instanceof
 name|XmldbURI
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ClassCastException
@@ -1577,6 +1602,7 @@ argument_list|(
 literal|"The provided Object is not an XmldbURI"
 argument_list|)
 throw|;
+block|}
 return|return
 name|getXmldbURI
 argument_list|()
@@ -1999,9 +2025,11 @@ argument_list|(
 name|toAppend
 argument_list|)
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 if|if
 condition|(
 literal|""
@@ -2100,7 +2128,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/** Ugly workaround for non-URI compliant pathes 	 * @param pseudoURI What is supposed to be a URI 	 * @return an supposedly correctly escaped URI<strong>string representation</string>      * @deprecated By definition, using this method is strongly discouraged 	 */
+comment|/** Ugly workaround for non-URI compliant pathes      * @param pseudoURI What is supposed to be a URI      * @return an supposedly correctly escaped URI<strong>string representation</string>      * @deprecated By definition, using this method is strongly discouraged      */
 specifier|public
 specifier|static
 name|String
@@ -2362,9 +2390,11 @@ name|this
 operator|==
 name|other
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|encodedCollectionPath
 operator|.
@@ -2491,9 +2521,11 @@ name|collectionPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 name|URI
 name|collectionPathURI
 init|=
@@ -2563,6 +2595,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -2570,6 +2603,7 @@ argument_list|(
 literal|"The provided URI is null"
 argument_list|)
 throw|;
+block|}
 name|String
 name|collectionPath
 init|=
@@ -2583,6 +2617,7 @@ name|collectionPath
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -2590,6 +2625,7 @@ argument_list|(
 literal|"The current collection path is null"
 argument_list|)
 throw|;
+block|}
 name|URI
 name|collectionPathURI
 decl_stmt|;
@@ -2629,6 +2665,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|collectionPathURI
 operator|=
 name|URI
@@ -2638,6 +2675,7 @@ argument_list|(
 name|collectionPath
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|collectionPathURI
 operator|.
@@ -2666,6 +2704,7 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -2673,10 +2712,11 @@ argument_list|(
 literal|"The provided child URI is null"
 argument_list|)
 throw|;
+block|}
 comment|//        if (child.isAbsolute())
 comment|//            return child;
 comment|//Old method:
-comment|/* 		String collectionPath = this.encodedCollectionPath; 		if (collectionPath == null) 			throw new NullPointerException("The current collection path is null");	 		URI collectionPathURI; 		//Adds a final slash if necessary 		if (!collectionPath.endsWith("/")) {             LOG.info("Added a final '/' to '" + collectionPath + "'");  			collectionPathURI = URI.create(collectionPath + "/");         } else 			collectionPathURI = URI.create(collectionPath); 		*/
+comment|/*         String collectionPath = this.encodedCollectionPath;         if (collectionPath == null)         throw new NullPointerException("The current collection path is null");         URI collectionPathURI;         //Adds a final slash if necessary         if (!collectionPath.endsWith("/")) {         LOG.info("Added a final '/' to '" + collectionPath + "'");         collectionPathURI = URI.create(collectionPath + "/");         } else         collectionPathURI = URI.create(collectionPath);          */
 name|String
 name|collectionPath
 init|=
@@ -2821,6 +2861,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -2828,6 +2869,7 @@ argument_list|(
 literal|"The provided URI is null"
 argument_list|)
 throw|;
+block|}
 name|String
 name|collectionPath
 init|=
@@ -2841,6 +2883,7 @@ name|collectionPath
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -2848,6 +2891,7 @@ argument_list|(
 literal|"The current collection path is null"
 argument_list|)
 throw|;
+block|}
 name|URI
 name|collectionPathURI
 decl_stmt|;
@@ -2887,6 +2931,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|collectionPathURI
 operator|=
 name|URI
@@ -2896,6 +2941,7 @@ argument_list|(
 name|collectionPath
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|collectionPathURI
 operator|.
@@ -3272,9 +3318,11 @@ name|currentPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|parentPath
 return|;
+block|}
 comment|//Absolute path
 if|if
 condition|(
@@ -3287,9 +3335,11 @@ argument_list|(
 name|currentPath
 argument_list|)
 condition|)
+block|{
 return|return
 name|currentPath
 return|;
+block|}
 comment|//Absolute path
 if|if
 condition|(
@@ -3304,9 +3354,11 @@ operator|+
 literal|"/"
 argument_list|)
 condition|)
+block|{
 return|return
 name|currentPath
 return|;
+block|}
 comment|//Kind of relative path : against all conventions ! -pb
 if|if
 condition|(
@@ -3317,6 +3369,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -3328,6 +3381,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//OK : let's process this so-called relative path
 if|if
 condition|(
@@ -3348,6 +3402,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 return|return
 name|parentPath
 operator|+
@@ -3358,6 +3413,7 @@ argument_list|(
 literal|1
 argument_list|)
 return|;
+block|}
 return|return
 name|parentPath
 operator|+
@@ -3374,11 +3430,13 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 return|return
 name|parentPath
 operator|+
 name|currentPath
 return|;
+block|}
 return|return
 name|parentPath
 operator|+
@@ -3402,7 +3460,7 @@ parameter_list|)
 block|{
 comment|//if (!fileName.startsWith("/"))
 comment|//    fileName = "/" + fileName;
-comment|/*if (!fileName.startsWith(ROOT_COLLECTION))             fileName = ROOT_COLLECTION + fileName;*/
+comment|/*if (!fileName.startsWith(ROOT_COLLECTION))         fileName = ROOT_COLLECTION + fileName;*/
 return|return
 name|checkPath
 argument_list|(
@@ -3447,6 +3505,7 @@ name|i
 operator|++
 control|)
 comment|//TODO : use dedicated function in XmldbURI
+block|{
 if|if
 condition|(
 name|name
@@ -3478,10 +3537,13 @@ argument_list|)
 operator|==
 literal|'/'
 condition|)
+block|{
 name|i
 operator|++
 expr_stmt|;
+block|}
 else|else
+block|{
 name|out
 operator|.
 name|append
@@ -3494,6 +3556,8 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 name|String
 name|name2
 init|=
@@ -3520,12 +3584,14 @@ argument_list|)
 operator|!=
 literal|'/'
 condition|)
+block|{
 name|name2
 operator|=
 literal|"/"
 operator|+
 name|name2
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3538,6 +3604,7 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 condition|)
+block|{
 name|name2
 operator|=
 name|DBBroker
@@ -3546,6 +3613,7 @@ name|ROOT_COLLECTION
 operator|+
 name|name2
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|name2
@@ -3562,6 +3630,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|name2
 operator|=
 name|name2
@@ -3578,6 +3647,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|name2
 return|;
@@ -3619,6 +3689,7 @@ name|i
 operator|++
 control|)
 comment|//TODO : use dedicated function in XmldbURI
+block|{
 if|if
 condition|(
 name|name
@@ -3650,10 +3721,13 @@ argument_list|)
 operator|==
 literal|'/'
 condition|)
+block|{
 name|i
 operator|++
 expr_stmt|;
+block|}
 else|else
+block|{
 name|out
 operator|.
 name|append
@@ -3666,6 +3740,8 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 name|String
 name|name2
 init|=
@@ -3692,12 +3768,14 @@ argument_list|)
 operator|!=
 literal|'/'
 condition|)
+block|{
 name|name2
 operator|=
 literal|"/"
 operator|+
 name|name2
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3710,6 +3788,7 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 condition|)
+block|{
 name|name2
 operator|=
 name|DBBroker
@@ -3718,6 +3797,7 @@ name|ROOT_COLLECTION
 operator|+
 name|name2
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|name2
@@ -3734,6 +3814,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|name2
 operator|=
 name|name2
@@ -3750,11 +3831,12 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|name2
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getAuthority()      */
 specifier|public
 name|String
 name|getAuthority
@@ -3764,7 +3846,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getFragment() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getFragment()      */
 specifier|public
 name|String
 name|getFragment
@@ -3774,7 +3856,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getPort() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getPort()      */
 specifier|public
 name|int
 name|getPort
@@ -3784,7 +3866,7 @@ return|return
 name|NO_PORT
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getQuery() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getQuery()      */
 specifier|public
 name|String
 name|getQuery
@@ -3794,7 +3876,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawAuthority() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawAuthority()      */
 specifier|public
 name|String
 name|getRawAuthority
@@ -3804,7 +3886,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getHost() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getHost()      */
 specifier|public
 name|String
 name|getHost
@@ -3814,7 +3896,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getUserInfo() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getUserInfo()      */
 specifier|public
 name|String
 name|getUserInfo
@@ -3824,7 +3906,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawFragment() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawFragment()      */
 specifier|public
 name|String
 name|getRawFragment
@@ -3834,7 +3916,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawQuery() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawQuery()      */
 specifier|public
 name|String
 name|getRawQuery
@@ -3844,7 +3926,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawUserInfo() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawUserInfo()      */
 specifier|public
 name|String
 name|getRawUserInfo
@@ -3854,7 +3936,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#hashCode() 	 */
+comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
 specifier|public
 name|int
 name|hashCode
