@@ -12484,6 +12484,13 @@ operator|&&
 name|prefix
 operator|!=
 literal|null
+operator|&&
+name|prefix
+operator|.
+name|getLength
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 comment|// if this is a leaf page, check the common prefix first
