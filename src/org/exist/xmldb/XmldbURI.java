@@ -1026,7 +1026,7 @@ name|uri
 argument_list|)
 operator|)
 return|;
-comment|/*             //TODO : get rid of this and use a more robust approach (dedicated constructor ?) -pb             //TODO : use named constants             index = path.lastIndexOf("/xmlrpc");             if (index> lastIndex) {                 return false;             }             //TODO : use named constants             index = path.lastIndexOf("/webdav");             if (index> lastIndex) {                 return false;             }             */
+comment|/*         //TODO : get rid of this and use a more robust approach (dedicated constructor ?) -pb         //TODO : use named constants         index = path.lastIndexOf("/xmlrpc");         if (index> lastIndex) {         return false;         }         //TODO : use named constants         index = path.lastIndexOf("/webdav");         if (index> lastIndex) {         return false;         }          */
 block|}
 comment|/**      * Feeds private members. Receives a URI with the xmldb: scheme already stripped      *      * @param   xmldbURI        DOCUMENT ME!      * @param   hadXmldbPrefix  DOCUMENT ME!      *      * @throws  URISyntaxException      */
 specifier|protected
@@ -1573,7 +1573,7 @@ throw|;
 block|}
 block|}
 comment|/*      * It is an error for any of the following private members to throw an exception.      */
-comment|/*     private void setInstanceName(String instanceName) {         String oldInstanceName = this.instanceName;         try {             this.instanceName = instanceName;             recomputeURI();         } catch (URISyntaxException e) {             this.instanceName = oldInstanceName;             throw new IllegalArgumentException("Invalid URI: "+e.getMessage());         }     }      private void setContext(String context) throws URISyntaxException {         String oldContext = this.context;         try {             //trims any trailing slash             if (context != null&& context.endsWith("/")) {                 //include root slash if we have a host                 if (this.getHost() != null)                     context = context.substring(0, context.length() - 1);             }             this.context = "".equals(context) ? null : context;             recomputeURI();         } catch (URISyntaxException e) {             this.context = oldContext;             throw e;         }     }      private void setCollectionPath(String collectionPath) throws URISyntaxException {         String oldCollectionPath = collectionPath;         try {             if (collectionPath == null)                 this.encodedCollectionPath = null;             else {                 String escaped = URIUtils.escapeHtmlURI(collectionPath);                 this.encodedCollectionPath = escaped;             }             recomputeURI();         } catch (URISyntaxException e) {             this.encodedCollectionPath = oldCollectionPath;             throw e;         } catch (UnsupportedEncodingException e) {             wrappedURI = null;             throw new URISyntaxException(this.toString(), e.getMessage());         }     }     */
+comment|/*     private void setInstanceName(String instanceName) {     String oldInstanceName = this.instanceName;     try {     this.instanceName = instanceName;     recomputeURI();     } catch (URISyntaxException e) {     this.instanceName = oldInstanceName;     throw new IllegalArgumentException("Invalid URI: "+e.getMessage());     }     }      private void setContext(String context) throws URISyntaxException {     String oldContext = this.context;     try {     //trims any trailing slash     if (context != null&& context.endsWith("/")) {     //include root slash if we have a host     if (this.getHost() != null)     context = context.substring(0, context.length() - 1);     }     this.context = "".equals(context) ? null : context;     recomputeURI();     } catch (URISyntaxException e) {     this.context = oldContext;     throw e;     }     }      private void setCollectionPath(String collectionPath) throws URISyntaxException {     String oldCollectionPath = collectionPath;     try {     if (collectionPath == null)     this.encodedCollectionPath = null;     else {     String escaped = URIUtils.escapeHtmlURI(collectionPath);     this.encodedCollectionPath = escaped;     }     recomputeURI();     } catch (URISyntaxException e) {     this.encodedCollectionPath = oldCollectionPath;     throw e;     } catch (UnsupportedEncodingException e) {     wrappedURI = null;     throw new URISyntaxException(this.toString(), e.getMessage());     }     }      */
 comment|/**      * This returns a proper heirarchical URI - the xmldb scheme is trimmed from the beginning. The scheme will be the instance name, and all other      * fields will be populated as would be expected from a heirarchical URI      *      * @return  DOCUMENT ME!      *      * @see     #getXmldbURI      */
 specifier|public
 name|URI
@@ -3090,7 +3090,7 @@ block|}
 comment|//        if (child.isAbsolute())
 comment|//            return child;
 comment|//Old method:
-comment|/*         String collectionPath = this.encodedCollectionPath;         if (collectionPath == null)             throw new NullPointerException("The current collection path is null");         URI collectionPathURI;         //Adds a final slash if necessary         if (!collectionPath.endsWith("/")) {             LOG.info("Added a final '/' to '" + collectionPath + "'");             collectionPathURI = URI.create(collectionPath + "/");         } else             collectionPathURI = URI.create(collectionPath);         */
+comment|/*         String collectionPath = this.encodedCollectionPath;         if (collectionPath == null)         throw new NullPointerException("The current collection path is null");         URI collectionPathURI;         //Adds a final slash if necessary         if (!collectionPath.endsWith("/")) {         LOG.info("Added a final '/' to '" + collectionPath + "'");         collectionPathURI = URI.create(collectionPath + "/");         } else         collectionPathURI = URI.create(collectionPath);          */
 name|String
 name|collectionPath
 init|=
@@ -3880,7 +3880,7 @@ parameter_list|)
 block|{
 comment|//if (!fileName.startsWith("/"))
 comment|//    fileName = "/" + fileName;
-comment|/*if (!fileName.startsWith(ROOT_COLLECTION))             fileName = ROOT_COLLECTION + fileName;*/
+comment|/*if (!fileName.startsWith(ROOT_COLLECTION))         fileName = ROOT_COLLECTION + fileName;*/
 return|return
 operator|(
 name|checkPath
