@@ -1051,17 +1051,38 @@ name|DocumentMetadata
 argument_list|()
 expr_stmt|;
 block|}
+comment|//copy metadata
 name|metadata
 operator|.
-name|setLastModified
+name|copyOf
 argument_list|(
 name|other
 operator|.
 name|getMetadata
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//update timestamp
+name|long
+name|timestamp
+init|=
+name|System
 operator|.
-name|getLastModified
+name|currentTimeMillis
 argument_list|()
+decl_stmt|;
+name|metadata
+operator|.
+name|setCreated
+argument_list|(
+name|timestamp
+argument_list|)
+expr_stmt|;
+name|metadata
+operator|.
+name|setLastModified
+argument_list|(
+name|timestamp
 argument_list|)
 expr_stmt|;
 comment|// reset pageCount: will be updated during storage
