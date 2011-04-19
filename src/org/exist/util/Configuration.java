@@ -5906,6 +5906,9 @@ argument_list|)
 expr_stmt|;
 name|AccountImpl
 operator|.
+name|getSecurityProperties
+argument_list|()
+operator|.
 name|setPasswordEncoding
 argument_list|(
 name|encoding

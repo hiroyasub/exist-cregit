@@ -4042,7 +4042,10 @@ condition|)
 block|{
 name|AccountImpl
 operator|.
-name|enablePasswordChecks
+name|getSecurityProperties
+argument_list|()
+operator|.
+name|enableCheckPasswords
 argument_list|(
 literal|false
 argument_list|)
@@ -4084,7 +4087,10 @@ finally|finally
 block|{
 name|AccountImpl
 operator|.
-name|enablePasswordChecks
+name|getSecurityProperties
+argument_list|()
+operator|.
+name|enableCheckPasswords
 argument_list|(
 literal|true
 argument_list|)
