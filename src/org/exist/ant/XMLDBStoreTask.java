@@ -97,18 +97,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|MimeTable
@@ -136,6 +124,18 @@ operator|.
 name|xmldb
 operator|.
 name|EXistResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -338,7 +338,7 @@ name|uri
 operator|.
 name|indexOf
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -430,7 +430,7 @@ name|getCollection
 argument_list|(
 name|baseURI
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,
@@ -447,7 +447,7 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,
@@ -1137,7 +1137,7 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1162,7 +1162,7 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1327,7 +1327,7 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
