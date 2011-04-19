@@ -129,6 +129,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -645,7 +657,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPDY0002: context sequence is empty and no argument specified"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"context sequence is empty and no argument specified"
 argument_list|)
 throw|;
 block|}
@@ -690,7 +706,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPTY0004: context item is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"context item is not a node"
 argument_list|)
 throw|;
 block|}
@@ -884,11 +904,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -1099,11 +1114,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|e
 argument_list|)
