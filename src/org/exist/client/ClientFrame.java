@@ -753,6 +753,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|SystemProperties
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|backup
 operator|.
 name|Backup
@@ -9574,60 +9584,18 @@ name|void
 name|AboutAction
 parameter_list|()
 block|{
-name|Properties
-name|sysProperties
-init|=
-name|InteractiveClient
-operator|.
-name|getSystemProperties
-argument_list|()
-decl_stmt|;
-comment|// Original text eXist version 1.0, Copyright (C) 2001-2006 Wolfgang Meier
 name|JOptionPane
 operator|.
 name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
-name|sysProperties
+name|client
 operator|.
-name|getProperty
-argument_list|(
-literal|"product-name"
-argument_list|)
-operator|+
-literal|" version "
-operator|+
-name|sysProperties
-operator|.
-name|getProperty
-argument_list|(
-literal|"product-version"
-argument_list|)
-operator|+
-literal|" (revision "
-operator|+
-name|sysProperties
-operator|.
-name|getProperty
-argument_list|(
-literal|"svn-revision"
-argument_list|)
-operator|+
-literal|") \n\n"
-operator|+
-literal|"Copyright (C) 2001-2009 Wolfgang Meier\n\n"
-operator|+
-literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
-operator|+
-literal|"This is free software, and you are welcome to\n"
-operator|+
-literal|"redistribute it under certain conditions;\n"
-operator|+
-literal|"for details read the license file."
+name|getNotice
+argument_list|()
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 class|class
 name|TableMouseListener
@@ -10319,14 +10287,6 @@ name|Properties
 name|properties
 parameter_list|)
 block|{
-name|Properties
-name|sysProperties
-init|=
-name|InteractiveClient
-operator|.
-name|getSystemProperties
-argument_list|()
-decl_stmt|;
 name|LoginPanel
 name|login
 init|=
@@ -10346,20 +10306,30 @@ literal|null
 argument_list|,
 name|login
 argument_list|,
-name|sysProperties
+name|SystemProperties
 operator|.
-name|getProperty
+name|getInstance
+argument_list|()
+operator|.
+name|getSystemProperty
 argument_list|(
 literal|"product-name"
+argument_list|,
+literal|"eXist-db"
 argument_list|)
 operator|+
 literal|" "
 operator|+
-name|sysProperties
+name|SystemProperties
 operator|.
-name|getProperty
+name|getInstance
+argument_list|()
+operator|.
+name|getSystemProperty
 argument_list|(
 literal|"product-version"
+argument_list|,
+literal|"unknown"
 argument_list|)
 operator|+
 literal|" Database Login"
