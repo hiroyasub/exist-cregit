@@ -427,6 +427,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/*                  Errata - the permissions should be read/written as an int and not a byte                  however changing this in 1.4.x would break .dbx                  backward compatibility in the 1.4 line.                  */
 name|ostream
 operator|.
 name|writeByte
@@ -527,6 +528,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+comment|/*                  Errata - the permissions should be read/written as an int and not a byte                  however changing this in 1.4.x would break .dbx                  backward compatibility in the 1.4 line.                  */
 specifier|final
 name|int
 name|perm
