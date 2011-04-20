@@ -63,9 +63,31 @@ parameter_list|)
 throws|throws
 name|URISyntaxException
 block|{
+name|this
+argument_list|(
+name|xmldbURI
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+specifier|protected
+name|FullXmldbURI
+parameter_list|(
+name|URI
+name|xmldbURI
+parameter_list|,
+name|boolean
+name|mustHaveXMLDB
+parameter_list|)
+throws|throws
+name|URISyntaxException
+block|{
 name|super
 argument_list|(
 name|xmldbURI
+argument_list|,
+name|mustHaveXMLDB
 argument_list|)
 expr_stmt|;
 block|}
@@ -1239,6 +1261,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+comment|//if (hadXmldbPrefix)
 return|return
 name|XMLDB_URI_PREFIX
 operator|+
@@ -1247,6 +1270,8 @@ operator|.
 name|toString
 argument_list|()
 return|;
+comment|//else
+comment|//	return wrappedURI.toString();
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
 specifier|public
