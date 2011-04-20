@@ -342,6 +342,14 @@ name|contextSet
 parameter_list|)
 function_decl|;
 specifier|public
+name|void
+name|setContextId
+parameter_list|(
+name|int
+name|contextId
+parameter_list|)
+function_decl|;
+specifier|public
 name|int
 name|getContextId
 parameter_list|()
