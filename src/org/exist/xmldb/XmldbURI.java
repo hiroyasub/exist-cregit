@@ -668,16 +668,8 @@ name|hadXmldbPrefix
 operator|=
 literal|true
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|mustHaveXMLDB
-condition|)
-block|{
-name|hadXmldbPrefix
-operator|=
-literal|true
-expr_stmt|;
+comment|//} else if (mustHaveXMLDB) {
+comment|//	hadXmldbPrefix = true;
 block|}
 name|parseURI
 argument_list|(
