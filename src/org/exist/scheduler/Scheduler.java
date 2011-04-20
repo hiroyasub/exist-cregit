@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist team  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2011 The eXist-db team  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -427,7 +427,7 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|BrokerPool
-name|brokerpool
+name|brokerPool
 decl_stmt|;
 specifier|private
 specifier|final
@@ -449,7 +449,7 @@ name|EXistException
 block|{
 name|this
 operator|.
-name|brokerpool
+name|brokerPool
 operator|=
 name|brokerpool
 expr_stmt|;
@@ -776,7 +776,7 @@ name|StdSchedulerFactory
 operator|.
 name|PROP_SCHED_INSTANCE_NAME
 argument_list|,
-name|brokerpool
+name|brokerPool
 operator|.
 name|getId
 argument_list|()
@@ -832,12 +832,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Unable to start the Scheduler: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete  DOCUMENT ME!      */
+comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs to complete before shutting down?      */
 specifier|public
 name|void
 name|shutdown
@@ -867,6 +874,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Unable to shutdown the Scheduler:"
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
@@ -903,6 +917,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Unable to determine the status of the Scheuler: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
@@ -1109,7 +1130,12 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -1133,7 +1159,6 @@ name|delay
 parameter_list|)
 block|{
 return|return
-operator|(
 name|createPeriodicJob
 argument_list|(
 name|period
@@ -1148,7 +1173,6 @@ name|SimpleTrigger
 operator|.
 name|REPEAT_INDEFINITELY
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1170,7 +1194,6 @@ name|params
 parameter_list|)
 block|{
 return|return
-operator|(
 name|createPeriodicJob
 argument_list|(
 name|period
@@ -1185,7 +1208,6 @@ name|SimpleTrigger
 operator|.
 name|REPEAT_INDEFINITELY
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1210,7 +1232,6 @@ name|repeatCount
 parameter_list|)
 block|{
 return|return
-operator|(
 name|createPeriodicJob
 argument_list|(
 name|period
@@ -1225,7 +1246,6 @@ name|repeatCount
 argument_list|,
 literal|true
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      * @param   unschedule   Unschedule job on XPathException?      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1417,22 +1437,23 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|//Successfully scheduled Job
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1448,7 +1469,6 @@ name|job
 parameter_list|)
 block|{
 return|return
-operator|(
 name|createCronJob
 argument_list|(
 name|cronExpression
@@ -1457,7 +1477,6 @@ name|job
 argument_list|,
 literal|null
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1476,7 +1495,6 @@ name|params
 parameter_list|)
 block|{
 return|return
-operator|(
 name|createCronJob
 argument_list|(
 name|cronExpression
@@ -1487,10 +1505,9 @@ name|params
 argument_list|,
 literal|true
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job 	 * @param   unschedule   Unschedule job on XPathException?.      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      * @param   unschedule   Unschedule job on XPathException?.      *      * @return  true if the job was successfully scheduled, false otherwise      */
 specifier|public
 name|boolean
 name|createCronJob
@@ -1605,15 +1622,18 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|pe
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|pe
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 catch|catch
@@ -1634,22 +1654,23 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|//Successfully scheduled Job
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 comment|/**      * Removes a Job from the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was deleted, false otherwise      */
@@ -1698,7 +1719,12 @@ literal|"Failed to delete job '"
 operator|+
 name|jobName
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -1708,7 +1734,7 @@ return|return
 name|deletedJob
 return|;
 block|}
-comment|/**      * Pauses a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  DOCUMENT ME!      */
+comment|/**      * Pauses a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was paused, false otherwise      */
 specifier|public
 name|boolean
 name|pauseJob
@@ -1756,7 +1782,12 @@ literal|"Failed to pause job '"
 operator|+
 name|jobName
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -1766,7 +1797,7 @@ return|return
 name|pausedJob
 return|;
 block|}
-comment|/**      * Resume a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  DOCUMENT ME!      */
+comment|/**      * Resume a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was resumed, false otherwise      */
 specifier|public
 name|boolean
 name|resumeJob
@@ -1814,7 +1845,12 @@ literal|"Failed to resume job '"
 operator|+
 name|jobName
 operator|+
-literal|"'"
+literal|"': "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -1858,7 +1894,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to get job group names"
+literal|"Failed to get job group names: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -1978,7 +2019,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to get scheduled jobs"
+literal|"Failed to get scheduled jobs: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -2081,7 +2127,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to get executing jobs"
+literal|"Failed to get executing jobs: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|se
 argument_list|)
@@ -2154,7 +2205,6 @@ argument_list|(
 literal|"/db/"
 argument_list|)
 operator|||
-operator|(
 name|jobConfig
 operator|.
 name|getResourceName
@@ -2166,7 +2216,6 @@ literal|':'
 argument_list|)
 operator|>
 literal|0
-operator|)
 condition|)
 block|{
 if|if
@@ -2196,7 +2245,7 @@ comment|//create an XQuery job
 name|Subject
 name|guestUser
 init|=
-name|brokerpool
+name|brokerPool
 operator|.
 name|getSecurityManager
 argument_list|()
@@ -2278,6 +2327,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Unable to set job name: "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2438,6 +2489,13 @@ name|jobConfig
 operator|.
 name|getResourceName
 argument_list|()
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -2585,7 +2643,7 @@ name|put
 argument_list|(
 literal|"brokerpool"
 argument_list|,
-name|brokerpool
+name|brokerPool
 argument_list|)
 expr_stmt|;
 comment|//if this is a system task job, store the SystemTask in the job's data map
