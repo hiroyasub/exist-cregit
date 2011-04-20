@@ -1505,37 +1505,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-name|j
-operator|!=
-name|xqwsSOAPFunctionParams
-operator|.
-name|getLength
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Input parameters number mismatch for "
-operator|+
-name|functionName
-operator|+
-literal|": expected="
-operator|+
-name|xqwsSOAPFunctionParams
-operator|.
-name|getLength
-argument_list|()
-operator|+
-literal|" got="
-operator|+
-name|j
-argument_list|)
-throw|;
-block|}
+comment|/* 	if(j!=xqwsSOAPFunctionParams.getLength()) { 		throw new XPathException("Input parameters number mismatch for "+functionName+": expected="+xqwsSOAPFunctionParams.getLength()+" got="+j); 	} 	*/
 comment|//remove last superflurous seperator
 if|if
 condition|(
