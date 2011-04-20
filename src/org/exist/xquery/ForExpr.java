@@ -1268,6 +1268,7 @@ operator|.
 name|isCached
 argument_list|()
 condition|)
+block|{
 name|setContext
 argument_list|(
 name|getExpressionId
@@ -1276,6 +1277,21 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|whereExpr
+operator|!=
+literal|null
+condition|)
+name|whereExpr
+operator|.
+name|setContextId
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|in
 operator|=
 name|applyWhereExpression
@@ -1299,6 +1315,7 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
+comment|//clearContext for whereExpr?
 block|}
 comment|// PreorderedValueSequence applies the order specs to all items
 comment|// in one single processing step
