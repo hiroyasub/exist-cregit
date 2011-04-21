@@ -265,6 +265,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -350,7 +362,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|Exception
+name|XPathException
 argument_list|(
 literal|"Cannot find Signature element"
 argument_list|)
@@ -399,6 +411,22 @@ argument_list|(
 name|valContext
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"valContext: "
+operator|+
+name|nl
+operator|.
+name|getLength
+argument_list|()
+operator|+
+literal|"\n"
+argument_list|)
+expr_stmt|;
 comment|// Validate the XMLSignature (generated above)
 name|boolean
 name|coreValidity
@@ -453,7 +481,7 @@ argument_list|)
 expr_stmt|;
 comment|// check the validation status of each Reference
 name|Iterator
-name|i
+name|iterator
 init|=
 name|signature
 operator|.
@@ -473,7 +501,7 @@ name|j
 init|=
 literal|0
 init|;
-name|i
+name|iterator
 operator|.
 name|hasNext
 argument_list|()
@@ -489,7 +517,7 @@ operator|(
 operator|(
 name|Reference
 operator|)
-name|i
+name|iterator
 operator|.
 name|next
 argument_list|()
@@ -818,6 +846,12 @@ literal|"<dsig:Reference URI=\"\">"
 operator|+
 literal|"<dsig:Transforms>"
 operator|+
+literal|"<dsig:Transform Algorithm=\"http://www.w3.org/TR/1999/REC-xpath-19991116\">"
+operator|+
+literal|"<dsig:XPath Filter=\"intersect\">/*</dsig:XPath>"
+operator|+
+literal|"</dsig:Transform>"
+operator|+
 literal|"<dsig:Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/>"
 operator|+
 literal|"</dsig:Transforms>"
@@ -850,12 +884,18 @@ literal|"</dsig:DSAKeyValue>"
 operator|+
 literal|"</dsig:KeyValue>"
 operator|+
+literal|"<dsig:X509Data><dsig:X509SubjectName>CN=Test Certificate,OU=JavaSoft,O=Sun,C=US</dsig:X509SubjectName><dsig:X509IssuerSerial><dsig:X509IssuerName>CN=Test Certificate,OU=JavaSoft,O=Sun,C=US</dsig:X509IssuerName><dsig:X509SerialNumber>1293552445</dsig:X509SerialNumber></dsig:X509IssuerSerial><dsig:X509Certificate>MIICyzCCAomgAwIBAgIETRoLPTALBgcqhkjOOAQDBQAwSTELMAkGA1UEBhMCVVMxDDAKBgNVBAoTA1N1bjERMA8GA1UECxMISmF2YVNvZnQxGTAXBgNVBAMTEFRlc3QgQ2VydGlmaWNhdGUwHhcNMTAxMjI4MTYwNzI1WhcNMTEwNjI2MTYwNzI1WjBJMQswCQYDVQQGEwJVUzEMMAoGA1UEChMDU3VuMREwDwYDVQQLEwhKYXZhU29mdDEZMBcGA1UEAxMQVGVzdCBDZXJ0aWZpY2F0ZTCCAbcwggEsBgcqhkjOOAQBMIIBHwKBgQD9f1OBHXUSKVLfSpwu7OTn9hG3UjzvRADDHj+AtlEmaUVdQCJR+1k9jVj6v8X1ujD2y5tVbNeBO4AdNG/yZmC3a5lQpaSfn+gEexAiwk+7qdf+t8Yb+DtX58aophUPBPuD9tPFHsMCNVQTWhaRMvZ1864rYdcq7/IiAxmd0UgBxwIVAJdgUI8VIwvMspK5gqLrhAvwWBz1AoGBAPfhoIXWmz3ey7yrXDa4V7l5lK+7+jrqgvlXTAs9B4JnUVlXjrrUWU/mcQcQgYC0SRZxI+hMKBYTt88JMozIpuE8FnqLVHyNKOCjrh4rs6Z1kW6jfwv6ITVi8ftiegEkO8yk8b6oUZCJqIPf4VrlnwaSi2ZegHtVJWQBTDv+z0kqA4GEAAKBgDb4fpsP1kDnlX5gnNu7uR/NPxweuq1+brJ6G3UX1z5fe1Zq+wEM3+Ic3G95fS+VWjWMn1rr0uQafyDhHPqN9yq9qPEftDK97jpYIEpZG0YvMQ94AaSC8cpqQwmTgzu6utNGaBhp8u5+tlA5Qj7uguHLeLBklThU7ESZaaL1bOtLMAsGByqGSM44BAMFAAMvADAsAhQP1O1m6w4ljJw5abm04R4uMexzEwIUN+h7BgZTo0He+mh4mw9E+Q4tnWs=</dsig:X509Certificate></dsig:X509Data>"
+operator|+
 literal|"</dsig:KeyInfo>"
 operator|+
 literal|"</dsig:Signature>"
 operator|+
 literal|"</data>"
 decl_stmt|;
+name|docString
+operator|=
+literal|"<data><a xml:id=\"type\">17</a><dsig:Signature xmlns:dsig=\"http://www.w3.org/2000/09/xmldsig#\"><dsig:SignedInfo><dsig:CanonicalizationMethod Algorithm=\"http://www.w3.org/TR/2001/REC-xml-c14n-20010315\"/><dsig:SignatureMethod Algorithm=\"http://www.w3.org/2000/09/xmldsig#dsa-sha1\"/><dsig:Reference URI=\"\"><dsig:Transforms><dsig:Transform Algorithm=\"http://www.w3.org/TR/1999/REC-xpath-19991116\"><dsig:XPath>/*</dsig:XPath></dsig:Transform><dsig:Transform Algorithm=\"http://www.w3.org/2000/09/xmldsig#enveloped-signature\"/></dsig:Transforms><dsig:DigestMethod Algorithm=\"http://www.w3.org/2001/04/xmlenc#sha256\"/><dsig:DigestValue>0jkA8y+iwbQf5qhC+XFg+DgwtPTHPB1aUHiziNAMbcA=</dsig:DigestValue></dsig:Reference></dsig:SignedInfo><dsig:SignatureValue>gcmejX13ooJ/Sas4BEGJCRxefARR166O7gGAMFJxExllWRoXE8KJxQ==</dsig:SignatureValue><dsig:KeyInfo><dsig:KeyValue><dsig:DSAKeyValue><dsig:P>/X9TgR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuAHTRv8mZgt2uZUKWkn5/oBHsQIsJPu6nX/rfGG/g7V+fGqKYVDwT7g/bTxR7DAjVUE1oWkTL2dfOuK2HXKu/yIgMZndFIAcc=</dsig:P><dsig:Q>l2BQjxUjC8yykrmCouuEC/BYHPU=</dsig:Q><dsig:G>9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSo=</dsig:G><dsig:Y>Nvh+mw/WQOeVfmCc27u5H80/HB66rX5usnobdRfXPl97Vmr7AQzf4hzcb3l9L5VaNYyfWuvS5Bp/IOEc+o33Kr2o8R+0Mr3uOlggSlkbRi8xD3gBpILxympDCZODO7q600ZoGGny7n62UDlCPu6C4ct4sGSVOFTsRJlpovVs60s=</dsig:Y></dsig:DSAKeyValue></dsig:KeyValue></dsig:KeyInfo></dsig:Signature></data>"
+expr_stmt|;
 name|DocumentBuilderFactory
 name|dbf
 init|=
@@ -914,6 +954,10 @@ expr_stmt|;
 block|}
 block|}
 end_class
+
+begin_comment
+comment|/*<data><a><b>23</b><c><d/></c></a><dsig:Signature xmlns:dsig="http://www.w3.org/2000/09/xmldsig#"><dsig:SignedInfo><dsig:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><dsig:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/><dsig:Reference URI="">  *<dsig:Transforms><dsig:Transform Algorithm="http://www.w3.org/TR/1999/REC-xpath-19991116"><dsig:XPath Filter="intersect">/*</dsig:XPath></dsig:Transform><dsig:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></dsig:Transforms>  *<dsig:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><dsig:DigestValue>0jkA8y+iwbQf5qhC+XFg+DgwtPTHPB1aUHiziNAMbcA=</dsig:DigestValue></dsig:Reference></dsig:SignedInfo><dsig:SignatureValue>gcmejX13ooJ/Sas4BEGJCRxefARR166O7gGAMFJxExllWRoXE8KJxQ==</dsig:SignatureValue><dsig:KeyInfo><dsig:KeyValue><dsig:DSAKeyValue><dsig:P>/X9TgR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuAHTRv8mZgt2uZUKWkn5/oBHsQIsJPu6nX/rfGG/g7V+fGqKYVDwT7g/bTxR7DAjVUE1oWkTL2dfOuK2HXKu/yIgMZndFIAcc=</dsig:P><dsig:Q>l2BQjxUjC8yykrmCouuEC/BYHPU=</dsig:Q><dsig:G>9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKLZl6Ae1UlZAFMO/7PSSo=</dsig:G><dsig:Y>Nvh+mw/WQOeVfmCc27u5H80/HB66rX5usnobdRfXPl97Vmr7AQzf4hzcb3l9L5VaNYyfWuvS5Bp/IOEc+o33Kr2o8R+0Mr3uOlggSlkbRi8xD3gBpILxympDCZODO7q600ZoGGny7n62UDlCPu6C4ct4sGSVOFTsRJlpovVs60s=</dsig:Y></dsig:DSAKeyValue></dsig:KeyValue><dsig:X509Data><dsig:X509SubjectName>CN=Test Certificate,OU=JavaSoft,O=Sun,C=US</dsig:X509SubjectName><dsig:X509IssuerSerial><dsig:X509IssuerName>CN=Test Certificate,OU=JavaSoft,O=Sun,C=US</dsig:X509IssuerName><dsig:X509SerialNumber>1293552445</dsig:X509SerialNumber></dsig:X509IssuerSerial><dsig:X509Certificate>MIICyzCCAomgAwIBAgIETRoLPTALBgcqhkjOOAQDBQAwSTELMAkGA1UEBhMCVVMxDDAKBgNVBAoTA1N1bjERMA8GA1UECxMISmF2YVNvZnQxGTAXBgNVBAMTEFRlc3QgQ2VydGlmaWNhdGUwHhcNMTAxMjI4MTYwNzI1WhcNMTEwNjI2MTYwNzI1WjBJMQswCQYDVQQGEwJVUzEMMAoGA1UEChMDU3VuMREwDwYDVQQLEwhKYXZhU29mdDEZMBcGA1UEAxMQVGVzdCBDZXJ0aWZpY2F0ZTCCAbcwggEsBgcqhkjOOAQBMIIBHwKBgQD9f1OBHXUSKVLfSpwu7OTn9hG3UjzvRADDHj+AtlEmaUVdQCJR+1k9jVj6v8X1ujD2y5tVbNeBO4AdNG/yZmC3a5lQpaSfn+gEexAiwk+7qdf+t8Yb+DtX58aophUPBPuD9tPFHsMCNVQTWhaRMvZ1864rYdcq7/IiAxmd0UgBxwIVAJdgUI8VIwvMspK5gqLrhAvwWBz1AoGBAPfhoIXWmz3ey7yrXDa4V7l5lK+7+jrqgvlXTAs9B4JnUVlXjrrUWU/mcQcQgYC0SRZxI+hMKBYTt88JMozIpuE8FnqLVHyNKOCjrh4rs6Z1kW6jfwv6ITVi8ftiegEkO8yk8b6oUZCJqIPf4VrlnwaSi2ZegHtVJWQBTDv+z0kqA4GEAAKBgDb4fpsP1kDnlX5gnNu7uR/NPxweuq1+brJ6G3UX1z5fe1Zq+wEM3+Ic3G95fS+VWjWMn1rr0uQafyDhHPqN9yq9qPEftDK97jpYIEpZG0YvMQ94AaSC8cpqQwmTgzu6utNGaBhp8u5+tlA5Qj7uguHLeLBklThU7ESZaaL1bOtLMAsGByqGSM44BAMFAAMvADAsAhQP1O1m6w4ljJw5abm04R4uMexzEwIUN+h7BgZTo0He+mh4mw9E+Q4tnWs=</dsig:X509Certificate></dsig:X509Data></dsig:KeyInfo></dsig:Signature></data>   */
+end_comment
 
 end_unit
 
