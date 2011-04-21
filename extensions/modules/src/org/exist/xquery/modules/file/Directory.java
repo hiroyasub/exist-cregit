@@ -388,7 +388,7 @@ condition|(
 operator|!
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|hasDbaRole
@@ -407,7 +407,7 @@ literal|"Permission denied, calling user '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -578,7 +578,7 @@ condition|)
 block|{
 name|entryType
 operator|=
-literal|"directroy"
+literal|"directory"
 expr_stmt|;
 block|}
 name|builder
@@ -590,9 +590,9 @@ name|QName
 argument_list|(
 name|entryType
 argument_list|,
-literal|null
+name|NAMESPACE_URI
 argument_list|,
-literal|null
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|null
