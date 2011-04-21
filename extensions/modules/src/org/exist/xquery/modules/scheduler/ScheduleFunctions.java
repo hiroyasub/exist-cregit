@@ -1551,7 +1551,7 @@ name|user
 init|=
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 comment|//Check if the user is a DBA
@@ -1728,6 +1728,10 @@ operator|)
 operator|.
 name|getLong
 argument_list|()
+expr_stmt|;
+name|isCron
+operator|=
+literal|false
 expr_stmt|;
 block|}
 try|try
