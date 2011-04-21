@@ -425,7 +425,7 @@ condition|(
 operator|!
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|hasDbaRole
@@ -444,7 +444,7 @@ literal|"Permission denied, calling user '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName
@@ -614,18 +614,13 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -635,18 +630,13 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//TODO : return an *Item* built with sw.toString()
