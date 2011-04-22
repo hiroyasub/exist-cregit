@@ -47,6 +47,10 @@ extends|extends
 name|AbstractSource
 block|{
 specifier|private
+name|File
+name|file
+decl_stmt|;
+specifier|private
 name|String
 name|filePath
 decl_stmt|;
@@ -77,6 +81,12 @@ name|boolean
 name|checkXQEncoding
 parameter_list|)
 block|{
+name|this
+operator|.
+name|file
+operator|=
+name|file
+expr_stmt|;
 name|this
 operator|.
 name|filePath
@@ -125,6 +135,15 @@ parameter_list|()
 block|{
 return|return
 name|filePath
+return|;
+block|}
+specifier|public
+name|File
+name|getFile
+parameter_list|()
+block|{
+return|return
+name|file
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid()      */
