@@ -157,6 +157,10 @@ literal|"jline-%latest%"
 block|,
 literal|"log4j-%latest%"
 block|,
+literal|"slf4j-api-%latest%"
+block|,
+literal|"slf4j-log4j12-%latest%"
+block|,
 literal|"sunxacml-%latest%"
 block|}
 decl_stmt|;
