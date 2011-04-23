@@ -568,7 +568,7 @@ name|fails
 operator|.
 name|append
 argument_list|(
-literal|"Test "
+literal|"Test '"
 operator|+
 name|test
 operator|.
@@ -577,14 +577,14 @@ argument_list|(
 literal|"n"
 argument_list|)
 operator|+
-literal|"in file "
+literal|"' in file '"
 operator|+
 name|file
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" failed.\n"
+literal|"' failed.\n"
 argument_list|)
 expr_stmt|;
 block|}
