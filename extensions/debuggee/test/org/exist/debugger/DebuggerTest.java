@@ -2237,32 +2237,160 @@ argument_list|,
 name|script
 argument_list|)
 expr_stmt|;
-comment|//		String url = "http://127.0.0.1:8080/exist/rest/db/test/script.xql";
-comment|//
-comment|//		for (int i = 0; i< 10; i++) {
-comment|//			Debugger debugger = DebuggerImpl.getDebugger();
-comment|//
-comment|//			System.out.println("init "+i);
-comment|//			DebuggingSource debuggerSource = debugger.init(url);
-comment|//
-comment|//			System.out.println("send stepInto");
-comment|//			debuggerSource.stepInto();
-comment|//			//Thread.sleep(1000);
-comment|//
-comment|//			System.out.println("send getStackFrames");
-comment|//			List<Location> stack = debuggerSource.getStackFrames();
-comment|//			assertEquals(1, stack.size());
-comment|//			assertEquals(8, stack.get(0).getLineBegin());
-comment|//			assertEquals(6, stack.get(0).getColumnBegin());
-comment|//
-comment|//			System.out.println("send stop");
-comment|//			debuggerSource.stop();
-comment|//			//Thread.sleep(1000);
-comment|//
-comment|//			System.out.println("stoped");
-comment|//
-comment|//			DebuggerImpl.shutdownDebugger();
-comment|//		}
+name|String
+name|url
+init|=
+literal|"http://127.0.0.1:8080/exist/rest/db/test/script.xql"
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|10
+condition|;
+name|i
+operator|++
+control|)
+block|{
+name|Debugger
+name|debugger
+init|=
+name|DebuggerImpl
+operator|.
+name|getDebugger
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"init "
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+name|DebuggingSource
+name|debuggerSource
+init|=
+name|debugger
+operator|.
+name|init
+argument_list|(
+name|url
+argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"send stepInto"
+argument_list|)
+expr_stmt|;
+name|debuggerSource
+operator|.
+name|stepInto
+argument_list|()
+expr_stmt|;
+comment|//Thread.sleep(1000);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"send getStackFrames"
+argument_list|)
+expr_stmt|;
+name|List
+argument_list|<
+name|Location
+argument_list|>
+name|stack
+init|=
+name|debuggerSource
+operator|.
+name|getStackFrames
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|stack
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|16
+argument_list|,
+name|stack
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getLineBegin
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|18
+argument_list|,
+name|stack
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getColumnBegin
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"send stop"
+argument_list|)
+expr_stmt|;
+name|debuggerSource
+operator|.
+name|stop
+argument_list|()
+expr_stmt|;
+comment|//Thread.sleep(1000);
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"stoped"
+argument_list|)
+expr_stmt|;
+name|DebuggerImpl
+operator|.
+name|shutdownDebugger
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|static
 name|org

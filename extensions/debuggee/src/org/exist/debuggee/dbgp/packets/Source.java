@@ -49,6 +49,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|debuggee
 operator|.
 name|dbgp
@@ -502,11 +512,7 @@ try|try
 block|{
 name|broker
 operator|=
-name|getJoint
-argument_list|()
-operator|.
-name|getContext
-argument_list|()
+name|db
 operator|.
 name|getBroker
 argument_list|()
@@ -555,6 +561,17 @@ block|{
 comment|//TODO: xml source???
 return|return;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+name|exception
+operator|=
+name|e
+expr_stmt|;
 block|}
 finally|finally
 block|{

@@ -149,18 +149,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -2160,10 +2148,8 @@ name|broker
 operator|=
 name|db
 operator|.
-name|get
-argument_list|(
-literal|null
-argument_list|)
+name|getBroker
+argument_list|()
 expr_stmt|;
 comment|//TODO: account required
 name|XQueryContext
@@ -2205,10 +2191,7 @@ expr_stmt|;
 name|XQuery
 name|service
 init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2245,10 +2228,7 @@ decl_stmt|;
 name|Serializer
 name|serializer
 init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getSerializer
 argument_list|()
