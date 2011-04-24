@@ -202,7 +202,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * JUnit tests generator from XQTS Catalog.  *   * @author @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * JUnit tests generator from XQTS Catalog.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class
