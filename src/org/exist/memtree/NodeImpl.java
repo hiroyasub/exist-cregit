@@ -287,6 +287,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Cardinality
@@ -3497,7 +3509,6 @@ parameter_list|()
 block|{
 comment|// do nothing: this is a single node
 block|}
-comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
 specifier|public
 name|String
 name|getBaseURI
@@ -3507,6 +3518,15 @@ return|return
 operator|(
 literal|null
 operator|)
+return|;
+block|}
+specifier|protected
+name|XmldbURI
+name|calculateBaseURI
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 specifier|public

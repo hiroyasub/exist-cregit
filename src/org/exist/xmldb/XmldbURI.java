@@ -511,7 +511,7 @@ specifier|private
 name|String
 name|encodedCollectionPath
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|hadXmldbPrefix
 init|=
@@ -668,8 +668,6 @@ name|hadXmldbPrefix
 operator|=
 literal|true
 expr_stmt|;
-comment|//} else if (mustHaveXMLDB) {
-comment|//	hadXmldbPrefix = true;
 block|}
 name|parseURI
 argument_list|(
@@ -677,6 +675,14 @@ name|xmldbURI
 argument_list|,
 name|hadXmldbPrefix
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|mustHaveXMLDB
+condition|)
+name|hadXmldbPrefix
+operator|=
+literal|true
 expr_stmt|;
 block|}
 specifier|protected
@@ -2483,6 +2489,8 @@ literal|0
 argument_list|,
 name|last
 argument_list|)
+argument_list|,
+name|hadXmldbPrefix
 argument_list|)
 operator|)
 return|;
@@ -2606,6 +2614,8 @@ operator|+
 literal|"/"
 operator|+
 name|toAppend
+argument_list|,
+name|hadXmldbPrefix
 argument_list|)
 operator|)
 return|;
@@ -2621,6 +2631,8 @@ argument_list|(
 name|prepend
 operator|+
 name|toAppend
+argument_list|,
+name|hadXmldbPrefix
 argument_list|)
 operator|)
 return|;

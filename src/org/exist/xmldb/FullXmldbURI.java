@@ -1261,7 +1261,10 @@ name|String
 name|toString
 parameter_list|()
 block|{
-comment|//if (hadXmldbPrefix)
+if|if
+condition|(
+name|hadXmldbPrefix
+condition|)
 return|return
 name|XMLDB_URI_PREFIX
 operator|+
@@ -1270,8 +1273,13 @@ operator|.
 name|toString
 argument_list|()
 return|;
-comment|//else
-comment|//	return wrappedURI.toString();
+else|else
+return|return
+name|wrappedURI
+operator|.
+name|toString
+argument_list|()
+return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
 specifier|public

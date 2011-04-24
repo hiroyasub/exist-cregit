@@ -39,6 +39,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -944,6 +956,15 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|protected
+name|XmldbURI
+name|calculateBaseURI
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
 specifier|public
