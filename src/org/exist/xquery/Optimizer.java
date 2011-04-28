@@ -512,9 +512,16 @@ name|PathExpr
 operator|)
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|warn
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"Parent expression of step is not a PathExpr: "
 operator|+
