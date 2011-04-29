@@ -320,6 +320,17 @@ literal|'\r'
 case|:
 break|break;
 case|case
+literal|'\t'
+case|:
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"\\t"
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
 literal|'"'
 case|:
 name|builder
