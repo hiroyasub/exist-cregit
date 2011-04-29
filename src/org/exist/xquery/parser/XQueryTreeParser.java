@@ -1620,7 +1620,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPST0003: Parse error: The zero-length string is not a valid XPath expression."
+name|eof
+argument_list|,
+literal|"err:XPST0003: EOF or zero-length string found where a valid XPath expression was expected."
 argument_list|)
 throw|;
 break|break;
