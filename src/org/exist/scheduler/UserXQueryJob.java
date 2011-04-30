@@ -647,6 +647,11 @@ name|compiled
 init|=
 literal|null
 decl_stmt|;
+name|XQueryContext
+name|context
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|//get the xquery
@@ -760,10 +765,6 @@ operator|.
 name|getXQueryPool
 argument_list|()
 expr_stmt|;
-specifier|final
-name|XQueryContext
-name|context
-decl_stmt|;
 comment|//try and get a pre-compiled query from the pool
 name|compiled
 operator|=
@@ -1111,6 +1112,19 @@ name|source
 argument_list|,
 name|compiled
 argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|context
+operator|!=
+literal|null
+condition|)
+block|{
+name|context
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
 expr_stmt|;
 block|}
 comment|//release the lock on the xquery resource
