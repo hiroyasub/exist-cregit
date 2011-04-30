@@ -18652,7 +18652,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>setUser</code>      *      * @param name a<code>String</code> value      * @param passwd a<code>String</code> value      * @param passwdDigest a<code>String</code> value      * @param groups a<code>Vector</code> value      * @param home a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>addAccount</code>      *      * @param name a<code>String</code> value      * @param passwd a<code>String</code> value      * @param passwdDigest a<code>String</code> value      * @param groups a<code>Vector</code> value      * @param home a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
