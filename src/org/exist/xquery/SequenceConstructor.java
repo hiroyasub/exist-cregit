@@ -637,6 +637,17 @@ operator|.
 name|ZERO_OR_MORE
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|allowMixNodesInReturn
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
 specifier|public
 name|void
