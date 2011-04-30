@@ -1088,6 +1088,19 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+if|if
+condition|(
+name|context
+operator|!=
+literal|null
+condition|)
+block|{
+name|context
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
+expr_stmt|;
+block|}
 comment|//return the compiled query to the pool
 if|if
 condition|(
@@ -1112,19 +1125,6 @@ name|source
 argument_list|,
 name|compiled
 argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|context
-operator|!=
-literal|null
-condition|)
-block|{
-name|context
-operator|.
-name|cleanupBinaryValueInstances
-argument_list|()
 expr_stmt|;
 block|}
 comment|//release the lock on the xquery resource
