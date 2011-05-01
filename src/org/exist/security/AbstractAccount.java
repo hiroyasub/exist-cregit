@@ -553,7 +553,10 @@ name|DBA_GROUP
 operator|.
 name|equals
 argument_list|(
-name|name
+name|group
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 condition|)
 block|{

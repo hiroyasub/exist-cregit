@@ -490,7 +490,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Unspecified User is not allowed to modify group '"
+literal|"Unspecified Account is not allowed to modify group '"
 operator|+
 name|getName
 argument_list|()
@@ -518,7 +518,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"User '"
+literal|"Account '"
 operator|+
 name|user
 operator|.
