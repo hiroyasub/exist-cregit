@@ -559,6 +559,16 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|visitDocumentConstructor
+parameter_list|(
+name|DocumentConstructor
+name|constructor
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+specifier|public
+name|void
 name|visitElementConstructor
 parameter_list|(
 name|ElementConstructor
