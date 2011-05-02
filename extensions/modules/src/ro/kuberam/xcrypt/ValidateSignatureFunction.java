@@ -682,45 +682,7 @@ block|}
 comment|//NodeValue inputNode = (NodeValue)args[0].itemAt(0);
 comment|//InputStream inputNodeStream = new NodeInputStream( serializer, inputNode );
 comment|//System.out.println( "inputNodeSerialized: " + inputNodeSerialized + "\n" );
-try|try
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"inputDOMDoc for validating: "
-operator|+
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-operator|+
-literal|"\n"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SAXException
-name|ex
-parameter_list|)
-block|{
-block|}
+comment|/*try {             System.out.println("inputDOMDoc for validating: " + serializer.serialize( (NodeValue)args[0].itemAt(0) ) + "\n");             } catch (SAXException ex) {}*/
 comment|//initialize the document builder
 name|DocumentBuilderFactory
 name|dbf
