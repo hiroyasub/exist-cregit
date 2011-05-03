@@ -7842,6 +7842,18 @@ name|XPathException
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDocId
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|0
+return|;
+block|}
 block|}
 end_class
 

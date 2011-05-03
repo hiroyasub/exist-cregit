@@ -819,6 +819,21 @@ name|getURI
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDocId
+parameter_list|()
+block|{
+return|return
+name|getProxyObject
+argument_list|()
+operator|.
+name|getDocId
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

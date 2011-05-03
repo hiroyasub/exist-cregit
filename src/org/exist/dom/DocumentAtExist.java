@@ -132,6 +132,11 @@ comment|//	public void setUserLock(User user);
 comment|//	public User getUserLock();
 comment|//	public Collection getCollection();
 specifier|public
+name|int
+name|getDocId
+parameter_list|()
+function_decl|;
+specifier|public
 name|XmldbURI
 name|getURI
 parameter_list|()
