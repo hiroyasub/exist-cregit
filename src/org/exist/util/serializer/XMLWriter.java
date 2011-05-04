@@ -556,6 +556,12 @@ name|void
 name|startElement
 parameter_list|(
 name|String
+name|namespaceUri
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
+name|String
 name|qname
 parameter_list|)
 throws|throws
@@ -758,6 +764,12 @@ specifier|public
 name|void
 name|endElement
 parameter_list|(
+name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
 name|String
 name|qname
 parameter_list|)

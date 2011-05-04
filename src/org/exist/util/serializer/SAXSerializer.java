@@ -886,6 +886,10 @@ name|receiver
 operator|.
 name|startElement
 argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;
@@ -2106,6 +2110,10 @@ name|receiver
 operator|.
 name|endElement
 argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;

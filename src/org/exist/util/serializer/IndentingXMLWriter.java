@@ -189,6 +189,12 @@ name|void
 name|startElement
 parameter_list|(
 name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
+name|String
 name|qname
 parameter_list|)
 throws|throws
@@ -205,6 +211,10 @@ name|super
 operator|.
 name|startElement
 argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;
@@ -267,6 +277,12 @@ name|void
 name|endElement
 parameter_list|(
 name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
+name|String
 name|qname
 parameter_list|)
 throws|throws
@@ -289,6 +305,10 @@ name|super
 operator|.
 name|endElement
 argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;
@@ -686,7 +706,6 @@ literal|false
 expr_stmt|;
 block|}
 specifier|protected
-specifier|final
 specifier|static
 name|boolean
 name|isWhiteSpace

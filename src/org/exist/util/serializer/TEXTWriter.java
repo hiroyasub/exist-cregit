@@ -180,6 +180,8 @@ operator|=
 name|writer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|reset
@@ -196,6 +198,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/**      * Set the output properties.      *      * @param properties outputProperties      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOutputProperties
@@ -244,6 +248,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Set a new writer. Calling this method will reset the state of the object.      *      * @param writer      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setWriter
@@ -259,6 +265,8 @@ operator|=
 name|writer
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -268,6 +276,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -277,10 +287,18 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
 parameter_list|(
+name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
 name|String
 name|qname
 parameter_list|)
@@ -289,6 +307,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -301,10 +321,18 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
 parameter_list|(
+name|String
+name|namespaceURI
+parameter_list|,
+name|String
+name|localName
+parameter_list|,
 name|String
 name|qname
 parameter_list|)
@@ -313,6 +341,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -325,6 +355,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|namespace
@@ -340,6 +372,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -355,6 +389,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -370,6 +406,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -410,6 +448,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -451,6 +491,8 @@ name|release
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -466,6 +508,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
@@ -478,6 +522,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cdataSection
@@ -529,6 +575,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentType
@@ -547,6 +595,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|closeStartTag
@@ -559,6 +609,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|writeDeclaration
@@ -568,6 +620,8 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|writeDoctype
@@ -581,7 +635,6 @@ block|{
 comment|// empty
 block|}
 specifier|private
-specifier|final
 name|void
 name|writeChars
 parameter_list|(
@@ -658,6 +711,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|writeCharacterReference

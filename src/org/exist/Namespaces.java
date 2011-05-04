@@ -252,6 +252,14 @@ name|SAX_VALIDATION_DYNAMIC
 init|=
 literal|"http://apache.org/xml/features/validation/dynamic"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XHTML_NS
+init|=
+literal|"http://www.w3.org/1999/xhtml"
+decl_stmt|;
 block|}
 end_interface
 
