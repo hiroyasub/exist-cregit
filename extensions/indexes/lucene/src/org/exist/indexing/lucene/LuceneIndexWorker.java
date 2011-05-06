@@ -1168,7 +1168,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Configuring lucene index"
+literal|"Configuring lucene index..."
 argument_list|)
 expr_stmt|;
 name|config
@@ -1286,6 +1286,7 @@ name|indexConf
 operator|!=
 literal|null
 condition|)
+block|{
 name|config
 operator|=
 operator|(
@@ -1300,6 +1301,23 @@ operator|.
 name|ID
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|config
+operator|!=
+literal|null
+condition|)
+comment|// Create a copy of the original LuceneConfig (there's only one per db instance),
+comment|// so we can safely work with it.
+name|config
+operator|=
+operator|new
+name|LuceneConfig
+argument_list|(
+name|config
+argument_list|)
+expr_stmt|;
+block|}
 name|mode
 operator|=
 name|newMode
