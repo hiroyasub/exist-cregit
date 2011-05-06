@@ -533,7 +533,7 @@ name|deepEquals
 argument_list|(
 name|caseItem
 argument_list|,
-name|opItem
+name|opVal
 argument_list|,
 name|defaultCollator
 argument_list|)
