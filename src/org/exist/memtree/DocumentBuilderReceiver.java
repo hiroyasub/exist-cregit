@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-10 The eXist-db project  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -288,18 +288,18 @@ operator|=
 name|declareNamespaces
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getDocument
 parameter_list|()
 block|{
 return|return
-operator|(
 name|builder
 operator|.
 name|getDocument
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
@@ -308,25 +308,27 @@ name|getContext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|builder
 operator|.
 name|getContext
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocumentLocator
 parameter_list|(
 name|Locator
-name|arg0
+name|locator
 parameter_list|)
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -355,6 +357,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -369,6 +373,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
@@ -420,18 +426,22 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
 parameter_list|(
 name|String
-name|arg0
+name|prefix
 parameter_list|)
 throws|throws
 name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -477,11 +487,9 @@ if|if
 condition|(
 name|explicitNSDecl
 operator|&&
-operator|(
 name|namespaces
 operator|!=
 literal|null
-operator|)
 condition|)
 block|{
 for|for
@@ -525,6 +533,8 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -603,18 +613,20 @@ block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
 parameter_list|(
 name|String
-name|arg0
+name|namespaceURI
 parameter_list|,
 name|String
-name|arg1
+name|localName
 parameter_list|,
 name|String
-name|arg2
+name|qName
 parameter_list|)
 throws|throws
 name|SAXException
@@ -625,6 +637,8 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -677,6 +691,8 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -696,6 +712,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#characters(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -725,6 +743,8 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
@@ -764,7 +784,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|SAXException
 argument_list|(
@@ -773,30 +792,33 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|ignorableWhitespace
 parameter_list|(
 name|char
 index|[]
-name|arg0
+name|ch
 parameter_list|,
 name|int
-name|arg1
+name|start
 parameter_list|,
 name|int
-name|arg2
+name|len
 parameter_list|)
 throws|throws
 name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -821,6 +843,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#cdataSection(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cdataSection
@@ -855,6 +879,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skippedEntity
@@ -867,6 +893,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endCDATA()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endCDATA
@@ -877,6 +905,8 @@ block|{
 comment|// TODO ignored
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endDTD()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDTD
@@ -886,6 +916,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startCDATA()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startCDATA
@@ -895,6 +927,8 @@ name|SAXException
 block|{
 comment|// TODO Ignored
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentType
@@ -924,6 +958,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
@@ -954,6 +990,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endEntity
@@ -966,6 +1004,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startEntity
@@ -978,6 +1018,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDTD
@@ -995,6 +1037,8 @@ throws|throws
 name|SAXException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|highlightText
@@ -1005,6 +1049,8 @@ parameter_list|)
 block|{
 comment|// not supported with this receiver
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCurrentNode
@@ -1054,9 +1100,11 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|qname
 return|;
+block|}
 name|XQueryContext
 name|context
 init|=
@@ -1103,12 +1151,16 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+operator|!
 name|inScopeNamespace
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|qname
 operator|.
 name|getNamespaceURI
 argument_list|()
+argument_list|)
 condition|)
 block|{
 name|String
@@ -1146,6 +1198,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|prefix
 operator|+=
 name|String
@@ -1155,6 +1208,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
