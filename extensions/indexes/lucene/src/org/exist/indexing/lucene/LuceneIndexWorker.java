@@ -6655,6 +6655,11 @@ control|)
 block|{
 name|extractor
 operator|.
+name|beforeCharacters
+argument_list|()
+expr_stmt|;
+name|extractor
+operator|.
 name|characters
 argument_list|(
 name|text
