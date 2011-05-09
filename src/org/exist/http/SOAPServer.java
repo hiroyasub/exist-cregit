@@ -3037,6 +3037,21 @@ argument_list|,
 literal|"Body"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|nlBody
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Style Parameter wrapped not supported yet"
+argument_list|)
+expr_stmt|;
+block|}
 name|Node
 name|nSOAPBody
 init|=
@@ -3047,6 +3062,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// DW: can return NULL ! case: style ParameterWrapped
 name|NodeList
 name|nlBodyChildren
 init|=
