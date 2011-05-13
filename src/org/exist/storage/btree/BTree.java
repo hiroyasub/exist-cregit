@@ -3588,6 +3588,12 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|private
+name|boolean
+name|allowUnload
+init|=
+literal|true
+decl_stmt|;
 specifier|public
 name|BTreeNode
 parameter_list|(
@@ -3794,7 +3800,7 @@ name|allowUnload
 parameter_list|()
 block|{
 return|return
-literal|true
+name|allowUnload
 return|;
 block|}
 comment|/** 		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
@@ -5359,6 +5365,12 @@ name|KEY_NOT_FOUND
 return|;
 else|else
 block|{
+try|try
+block|{
+name|allowUnload
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|transaction
@@ -5428,6 +5440,14 @@ expr_stmt|;
 return|return
 name|oldPtr
 return|;
+block|}
+finally|finally
+block|{
+name|allowUnload
+operator|=
+literal|true
+expr_stmt|;
+block|}
 block|}
 default|default :
 throw|throw
@@ -5522,6 +5542,12 @@ return|;
 case|case
 name|LEAF
 case|:
+try|try
+block|{
+name|allowUnload
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|idx
@@ -5715,6 +5741,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+block|}
+finally|finally
+block|{
+name|allowUnload
+operator|=
+literal|true
+expr_stmt|;
 block|}
 return|return
 operator|-
@@ -10407,6 +10441,12 @@ break|break;
 case|case
 name|LEAF
 case|:
+try|try
+block|{
+name|allowUnload
+operator|=
+literal|false
+expr_stmt|;
 switch|switch
 condition|(
 name|query
@@ -11594,6 +11634,14 @@ name|i
 expr_stmt|;
 block|}
 break|break;
+block|}
+block|}
+finally|finally
+block|{
+name|allowUnload
+operator|=
+literal|true
+expr_stmt|;
 block|}
 break|break;
 default|default :
