@@ -125,20 +125,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|io
-operator|.
-name|ExistIOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|MimeTable
@@ -513,7 +499,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Could not store document."
 argument_list|)
@@ -552,7 +538,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 name|ex
 operator|.

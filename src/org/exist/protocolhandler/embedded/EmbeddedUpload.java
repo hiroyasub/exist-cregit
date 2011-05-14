@@ -171,20 +171,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|io
-operator|.
-name|ExistIOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|lock
 operator|.
 name|Lock
@@ -592,7 +578,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Unauthorized user "
 operator|+
@@ -673,7 +659,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Resource "
 operator|+
@@ -696,7 +682,7 @@ argument_list|)
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Resource "
 operator|+
@@ -1034,7 +1020,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 name|ex
 operator|.

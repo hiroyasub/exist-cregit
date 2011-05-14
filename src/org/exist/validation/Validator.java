@@ -77,6 +77,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -106,20 +116,6 @@ operator|.
 name|storage
 operator|.
 name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|io
-operator|.
-name|ExistIOException
 import|;
 end_import
 
@@ -656,7 +652,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ExistIOException
+name|IOException
 name|ex
 parameter_list|)
 block|{
@@ -665,9 +661,6 @@ operator|.
 name|error
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|report
@@ -675,9 +668,6 @@ operator|.
 name|setThrowable
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1007,7 +997,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|ExistIOException
+name|IOException
 name|ex
 parameter_list|)
 block|{
@@ -1016,9 +1006,6 @@ operator|.
 name|error
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|report
@@ -1026,9 +1013,6 @@ operator|.
 name|setThrowable
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

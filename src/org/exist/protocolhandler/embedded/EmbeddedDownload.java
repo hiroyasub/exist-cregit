@@ -161,20 +161,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|io
-operator|.
-name|ExistIOException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|lock
 operator|.
 name|Lock
@@ -393,7 +379,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Unauthorized user "
 operator|+
@@ -471,7 +457,7 @@ block|{
 comment|// No collection, no document
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Resource "
 operator|+
@@ -489,7 +475,7 @@ block|{
 comment|// Collection
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Resource "
 operator|+
@@ -619,7 +605,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 name|ex
 operator|.

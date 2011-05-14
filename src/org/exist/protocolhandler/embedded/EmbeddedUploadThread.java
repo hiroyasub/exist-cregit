@@ -121,6 +121,8 @@ name|bis
 expr_stmt|;
 block|}
 comment|/**      * Start Thread.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run

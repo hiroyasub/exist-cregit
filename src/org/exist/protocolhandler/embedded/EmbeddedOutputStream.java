@@ -123,7 +123,7 @@ specifier|private
 name|EmbeddedUploadThread
 name|rt
 decl_stmt|;
-comment|/**      *  Constructor of EmbeddedOutputStream.       *       * @param xmldbURL Location of document in database.      * @throws MalformedURLException Thrown for illegalillegal URLs.      */
+comment|/**      *  Constructor of EmbeddedOutputStream.       *       * @param xmldbURL Location of document in database.      * @throws MalformedURLException Thrown for illegal URLs.      */
 specifier|public
 name|EmbeddedOutputStream
 parameter_list|(
@@ -174,6 +174,8 @@ literal|"Initializing EmbeddedUploadThread done"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -192,6 +194,8 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -217,6 +221,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -246,6 +252,8 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -259,6 +267,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|flush

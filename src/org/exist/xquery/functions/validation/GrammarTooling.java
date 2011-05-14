@@ -23,6 +23,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
 import|;
 end_import
@@ -186,20 +196,6 @@ operator|.
 name|storage
 operator|.
 name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|io
-operator|.
-name|ExistIOException
 import|;
 end_import
 
@@ -1011,7 +1007,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|ExistIOException
+name|IOException
 name|ex
 parameter_list|)
 block|{
@@ -1020,9 +1016,6 @@ operator|.
 name|debug
 argument_list|(
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1032,9 +1025,6 @@ argument_list|(
 name|this
 argument_list|,
 name|ex
-operator|.
-name|getCause
-argument_list|()
 argument_list|)
 throw|;
 block|}

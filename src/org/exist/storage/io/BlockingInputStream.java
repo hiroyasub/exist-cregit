@@ -314,7 +314,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"BlockingOutputStream closed with an exception."
 argument_list|,
@@ -431,7 +431,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Read operation interrupted."
 argument_list|,
@@ -700,7 +700,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"BlockingInputStream closed with exception."
 argument_list|,
@@ -714,7 +714,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Writing to closed stream"
 argument_list|,
@@ -811,7 +811,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Write operation interrupted."
 argument_list|,
@@ -877,7 +877,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"BlockingInputStream closed with an exception."
 argument_list|,
@@ -892,7 +892,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Closing non empty closed stream."
 argument_list|,
@@ -908,7 +908,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Close OutputStream operation interrupted."
 argument_list|,
@@ -967,7 +967,7 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"BlockingInputStream closed with an exception."
 argument_list|,
@@ -982,7 +982,7 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Flushing non empty closed stream."
 argument_list|,
@@ -998,7 +998,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|ExistIOException
+name|IOException
 argument_list|(
 literal|"Flush operation interrupted."
 argument_list|,
