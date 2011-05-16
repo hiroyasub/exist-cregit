@@ -1783,7 +1783,7 @@ operator|.
 name|getPrimaryGroup
 argument_list|()
 decl_stmt|;
-comment|//home.getPermissions().setGroup(group);
+comment|//home.getMode().setGroup(group);
 name|home
 operator|.
 name|getPermissions

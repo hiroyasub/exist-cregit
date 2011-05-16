@@ -536,7 +536,7 @@ name|add
 argument_list|(
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -552,7 +552,7 @@ name|Integer
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -664,7 +664,7 @@ name|add
 argument_list|(
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -680,7 +680,7 @@ name|Integer
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -2224,7 +2224,7 @@ index|[
 name|i
 index|]
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 operator|(
 operator|(
@@ -2437,7 +2437,7 @@ index|[
 name|i
 index|]
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 operator|(
 operator|(

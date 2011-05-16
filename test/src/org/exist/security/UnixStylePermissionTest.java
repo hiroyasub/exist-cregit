@@ -491,7 +491,7 @@ name|assertEquals
 argument_list|(
 name|permission
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 argument_list|,
 name|mockOwnerGroup2
@@ -501,7 +501,7 @@ name|assertEquals
 argument_list|(
 name|permission
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|,
 name|mode2
@@ -548,7 +548,7 @@ name|ownerGroup
 operator|=
 name|ownerGroup
 expr_stmt|;
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)

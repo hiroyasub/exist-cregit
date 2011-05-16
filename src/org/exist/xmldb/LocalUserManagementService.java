@@ -824,7 +824,7 @@ name|hasGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 argument_list|)
 condition|)
@@ -834,7 +834,7 @@ name|addGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1101,7 +1101,7 @@ name|hasGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 argument_list|)
 condition|)
@@ -1111,7 +1111,7 @@ name|addGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 argument_list|)
 expr_stmt|;

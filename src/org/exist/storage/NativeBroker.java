@@ -3411,7 +3411,7 @@ argument_list|()
 decl_stmt|;
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0777
 argument_list|)
@@ -3677,7 +3677,7 @@ argument_list|()
 decl_stmt|;
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0777
 argument_list|)
@@ -10405,7 +10405,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|//if (!doc.getPermissions().validate(getUser(), Permission.READ))
+comment|//if (!doc.getMode().validate(getUser(), Permission.READ))
 comment|//throw new PermissionDeniedException("not allowed to read document");
 if|if
 condition|(

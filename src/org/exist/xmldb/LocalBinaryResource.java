@@ -1977,7 +1977,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getPermissions() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getMode() 	 */
 specifier|public
 name|Permission
 name|getPermissions

@@ -2325,7 +2325,7 @@ index|]
 operator|=
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -2426,7 +2426,7 @@ argument_list|()
 argument_list|,
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -2550,7 +2550,7 @@ literal|'\t'
 operator|+
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|+
 literal|'\t'
@@ -2638,7 +2638,7 @@ argument_list|()
 argument_list|,
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName

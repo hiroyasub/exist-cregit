@@ -1691,7 +1691,7 @@ literal|"CDATA"
 argument_list|,
 name|currentPerms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -1718,7 +1718,7 @@ name|toOctalString
 argument_list|(
 name|currentPerms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -2179,7 +2179,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -2209,7 +2209,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)

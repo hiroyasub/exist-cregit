@@ -325,7 +325,7 @@ argument_list|()
 decl_stmt|;
 name|p
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|Permission
 operator|.

@@ -3972,7 +3972,7 @@ name|setGroup
 argument_list|(
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -3985,7 +3985,7 @@ name|setPermissions
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4148,7 +4148,7 @@ name|setGroup
 argument_list|(
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -4161,7 +4161,7 @@ name|setPermissions
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4517,7 +4517,7 @@ expr_stmt|;
 block|}
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)
@@ -4608,7 +4608,7 @@ condition|)
 block|{
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)
@@ -8341,7 +8341,7 @@ name|setGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -8354,7 +8354,7 @@ name|setPermissions
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8723,7 +8723,7 @@ name|setGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -8739,7 +8739,7 @@ name|setPermissions
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -9094,7 +9094,7 @@ name|setGroup
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -9110,7 +9110,7 @@ name|setPermissions
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;

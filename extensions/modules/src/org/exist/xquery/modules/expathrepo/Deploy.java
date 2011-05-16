@@ -2926,7 +2926,7 @@ name|mode
 operator|=
 name|permission
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 expr_stmt|;
 if|if
@@ -2958,7 +2958,7 @@ literal|0111
 expr_stmt|;
 name|permission
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)

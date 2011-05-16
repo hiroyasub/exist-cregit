@@ -257,7 +257,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getGroupPermissions
+name|getGroupMode
 parameter_list|()
 block|{
 return|return
@@ -287,7 +287,7 @@ annotation|@
 name|Override
 specifier|public
 name|Group
-name|getOwnerGroup
+name|getGroup
 parameter_list|()
 block|{
 return|return
@@ -299,7 +299,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getPermissions
+name|getMode
 parameter_list|()
 block|{
 return|return
@@ -311,7 +311,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getPublicPermissions
+name|getOtherMode
 parameter_list|()
 block|{
 return|return
@@ -325,7 +325,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getUserPermissions
+name|getOwnerMode
 parameter_list|()
 block|{
 return|return
@@ -410,7 +410,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|setGroupPermissions
+name|setGroupMode
 parameter_list|(
 name|int
 name|perm
@@ -513,7 +513,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|setPermissions
+name|setMode
 parameter_list|(
 name|String
 name|str
@@ -732,7 +732,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|setPermissions
+name|setMode
 parameter_list|(
 name|int
 name|perm
@@ -750,7 +750,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|setPublicPermissions
+name|setOtherMode
 parameter_list|(
 name|int
 name|perm
@@ -768,7 +768,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|setUserPermissions
+name|setOwnerMode
 parameter_list|(
 name|int
 name|perm
@@ -1584,7 +1584,7 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getId
@@ -1595,7 +1595,7 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;

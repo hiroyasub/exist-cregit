@@ -134,7 +134,7 @@ literal|"other"
 decl_stmt|;
 specifier|public
 name|int
-name|getGroupPermissions
+name|getGroupMode
 parameter_list|()
 function_decl|;
 comment|/**      * Gets the user who owns this resource      *      * @return The owner value      */
@@ -143,28 +143,28 @@ name|Account
 name|getOwner
 parameter_list|()
 function_decl|;
-comment|/**      * Gets the group       *      * @return The ownerGroup value      */
+comment|/**      * Gets the group       *      * @return The group value      */
 specifier|public
 name|Group
-name|getOwnerGroup
+name|getGroup
 parameter_list|()
 function_decl|;
-comment|/**      * Get the permissions      *      * @return The permissions value      */
+comment|/**      * Get the mode      *      * @return The mode value      */
 specifier|public
 name|int
-name|getPermissions
+name|getMode
 parameter_list|()
 function_decl|;
-comment|/**      * Get the active permissions for others      *      * @return The publicPermissions value      */
+comment|/**      * Get the active mode for others      *      * @return The mode value      */
 specifier|public
 name|int
-name|getPublicPermissions
+name|getOtherMode
 parameter_list|()
 function_decl|;
-comment|/**      * Get the active permissions for the owner      *      * @return The userPermissions value      */
+comment|/**      * Get the active mode for the owner      *      * @return The mode value      */
 specifier|public
 name|int
-name|getUserPermissions
+name|getOwnerMode
 parameter_list|()
 function_decl|;
 comment|/**      * Set the owner group by group id      *      * @param  id  The group id      */
@@ -233,10 +233,10 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**      * Sets permissions for group      *      * @param  perm  The new groupPermissions value      */
+comment|/**      * Sets mode for group      *      * @param  perm  The new group mode value      */
 specifier|public
 name|void
-name|setGroupPermissions
+name|setGroupMode
 parameter_list|(
 name|int
 name|perm
@@ -308,45 +308,45 @@ name|String
 name|user
 parameter_list|)
 function_decl|;
-comment|/**      *  Set permissions using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write permissions for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  str                  The new permissions      *@exception  SyntaxException  Description of the Exception      */
+comment|/**      *  Set mode using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write mode for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  modeStr                  The new mode      *@exception  SyntaxException  Description of the Exception      */
 specifier|public
 name|void
-name|setPermissions
+name|setMode
 parameter_list|(
 name|String
-name|str
+name|modeStr
 parameter_list|)
 throws|throws
 name|SyntaxException
 function_decl|;
-comment|/**      *  Set permissions      *      *@param  perm  The new permissions value      */
+comment|/**      *  Set mode      *      *@param  mode  The new mode value      */
 specifier|public
 name|void
-name|setPermissions
+name|setMode
 parameter_list|(
 name|int
-name|perm
+name|mode
 parameter_list|)
 function_decl|;
-comment|/**      *  Set permissions for others      *      *@param  perm  The new publicPermissions value      */
+comment|/**      *  Set mode for others      *      *@param  mode  The new mode value      */
 specifier|public
 name|void
-name|setPublicPermissions
+name|setOtherMode
 parameter_list|(
 name|int
-name|perm
+name|mode
 parameter_list|)
 function_decl|;
-comment|/**      *  Set permissions for the owner      *      *@param  perm  The new userPermissions value      */
+comment|/**      *  Set mode for the owner      *      *@param  mode  The new mode value      */
 specifier|public
 name|void
-name|setUserPermissions
+name|setOwnerMode
 parameter_list|(
 name|int
-name|perm
+name|mode
 parameter_list|)
 function_decl|;
-comment|/**      *  Format permissions       *      *@return    Description of the Return Value      */
+comment|/**      *  Format mode      *      *@return    Description of the Return Value      */
 annotation|@
 name|Override
 specifier|public
@@ -354,7 +354,7 @@ name|String
 name|toString
 parameter_list|()
 function_decl|;
-comment|/**      *  Check  if user has the requested permissions for this resource.      *      *@param  user  The user      *@param  perm  The requested permissions      *@return       true if user has the requested permissions      */
+comment|/**      *  Check  if user has the requested mode for this resource.      *      *@param  user  The user      *@param  mode  The requested mode      *@return       true if user has the requested mode      */
 specifier|public
 name|boolean
 name|validate
@@ -363,7 +363,7 @@ name|Subject
 name|user
 parameter_list|,
 name|int
-name|perm
+name|mode
 parameter_list|)
 function_decl|;
 specifier|public

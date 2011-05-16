@@ -532,7 +532,7 @@ name|IntegerValue
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 return|;

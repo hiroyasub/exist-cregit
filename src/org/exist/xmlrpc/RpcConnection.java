@@ -3268,7 +3268,7 @@ literal|"group"
 argument_list|,
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -3286,7 +3286,7 @@ name|Integer
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -3433,7 +3433,7 @@ literal|"group"
 argument_list|,
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -3452,7 +3452,7 @@ name|valueOf
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -3704,7 +3704,7 @@ literal|"group"
 argument_list|,
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -3722,7 +3722,7 @@ name|Integer
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -4169,7 +4169,7 @@ literal|"group"
 argument_list|,
 name|perms
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -4188,7 +4188,7 @@ name|valueOf
 argument_list|(
 name|perms
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -7719,7 +7719,7 @@ name|add
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -7736,7 +7736,7 @@ name|valueOf
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -8046,7 +8046,7 @@ name|add
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -8063,7 +8063,7 @@ name|valueOf
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -8174,7 +8174,7 @@ name|getItemCount
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>getPermissions</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+comment|/**      * The method<code>getMode</code>      *      * @param name a<code>String</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
@@ -8208,7 +8208,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getPermissions</code>      *      * @param uri a<code>XmldbURI</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>getMode</code>      *      * @param uri a<code>XmldbURI</code> value      * @return a<code>HashMap</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|private
 name|HashMap
 argument_list|<
@@ -8392,7 +8392,7 @@ literal|"group"
 argument_list|,
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -8411,7 +8411,7 @@ name|valueOf
 argument_list|(
 name|perm
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -17388,7 +17388,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+comment|/**      * The method<code>setMode</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
@@ -17432,7 +17432,7 @@ name|permissions
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>setMode</code>      *      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions a<code>String</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|private
 name|boolean
 name|setPermissions
@@ -17700,7 +17700,7 @@ literal|0
 condition|)
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)
@@ -17808,7 +17808,7 @@ literal|null
 condition|)
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)
@@ -18049,7 +18049,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
+comment|/**      * The method<code>setMode</code>      *      * @param resource a<code>String</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      * @exception URISyntaxException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
@@ -18093,7 +18093,7 @@ name|permissions
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
+comment|/**      * The method<code>setMode</code>      *      * @param uri a<code>XmldbURI</code> value      * @param owner a<code>String</code> value      * @param ownerGroup a<code>String</code> value      * @param permissions an<code>int</code> value      * @return a<code>boolean</code> value      * @exception EXistException if an error occurs      * @exception PermissionDeniedException if an error occurs      */
 specifier|private
 name|boolean
 name|setPermissions
@@ -18342,7 +18342,7 @@ expr_stmt|;
 block|}
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)
@@ -18442,7 +18442,7 @@ condition|)
 block|{
 name|perm
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|permissions
 argument_list|)

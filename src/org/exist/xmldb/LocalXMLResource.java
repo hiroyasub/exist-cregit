@@ -2446,7 +2446,7 @@ throws|,
 name|SAXNotSupportedException
 block|{
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xmldb.EXistResource#getPermissions() 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xmldb.EXistResource#getMode() 	 */
 specifier|public
 name|Permission
 name|getPermissions

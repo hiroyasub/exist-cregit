@@ -1394,7 +1394,7 @@ name|setSelectedItem
 argument_list|(
 name|permissions
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -1715,7 +1715,7 @@ name|userPerms
 argument_list|,
 name|permissions
 operator|.
-name|getUserPermissions
+name|getOwnerMode
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1744,7 +1744,7 @@ name|groupPerms
 argument_list|,
 name|permissions
 operator|.
-name|getGroupPermissions
+name|getGroupMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1773,7 +1773,7 @@ name|worldPerms
 argument_list|,
 name|permissions
 operator|.
-name|getPublicPermissions
+name|getOtherMode
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2058,7 +2058,7 @@ argument_list|)
 decl_stmt|;
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|perms
 argument_list|)

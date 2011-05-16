@@ -1100,7 +1100,7 @@ decl_stmt|;
 comment|// collection is world-writable
 name|perms
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0777
 argument_list|)
@@ -1143,7 +1143,7 @@ expr_stmt|;
 comment|// collection is world-writable
 name|perms
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0777
 argument_list|)
@@ -1232,7 +1232,7 @@ expr_stmt|;
 comment|// collection only accessible to user
 name|perms
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0777
 argument_list|)
@@ -1315,7 +1315,7 @@ expr_stmt|;
 comment|// collection only accessible to user
 name|perms
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0700
 argument_list|)

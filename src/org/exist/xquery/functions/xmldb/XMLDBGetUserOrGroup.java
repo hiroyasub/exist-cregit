@@ -586,7 +586,7 @@ name|StringValue
 argument_list|(
 name|perm
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName

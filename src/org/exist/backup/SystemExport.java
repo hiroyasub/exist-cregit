@@ -2146,7 +2146,7 @@ operator|.
 name|getPermissions
 argument_list|()
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -2176,7 +2176,7 @@ operator|.
 name|getPermissions
 argument_list|()
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)
@@ -3010,7 +3010,7 @@ operator|.
 name|getPermissions
 argument_list|()
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName
@@ -3040,7 +3040,7 @@ operator|.
 name|getPermissions
 argument_list|()
 operator|.
-name|getPermissions
+name|getMode
 argument_list|()
 argument_list|)
 argument_list|)

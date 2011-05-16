@@ -910,7 +910,7 @@ name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getPermissions</code>      *      * @return a<code>Permission</code> value      */
+comment|/**      * The method<code>getMode</code>      *      * @return a<code>Permission</code> value      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -920,7 +920,7 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param mode an<code>int</code> value      */
+comment|/**      * The method<code>setMode</code>      *      * @param mode an<code>int</code> value      */
 specifier|public
 name|void
 name|setPermissions
@@ -931,13 +931,13 @@ parameter_list|)
 block|{
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param mode a<code>String</code> value      * @exception SyntaxException if an error occurs      */
+comment|/**      * The method<code>setMode</code>      *      * @param mode a<code>String</code> value      * @exception SyntaxException if an error occurs      */
 specifier|public
 name|void
 name|setPermissions
@@ -950,13 +950,13 @@ name|SyntaxException
 block|{
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>setPermissions</code>      *      * @param perm a<code>Permission</code> value      */
+comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      */
 specifier|public
 name|void
 name|setPermissions

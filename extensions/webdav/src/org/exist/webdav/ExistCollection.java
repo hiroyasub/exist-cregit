@@ -584,7 +584,7 @@ name|ownerGroup
 operator|=
 name|permissions
 operator|.
-name|getOwnerGroup
+name|getGroup
 argument_list|()
 operator|.
 name|getName

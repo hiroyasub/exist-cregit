@@ -938,7 +938,7 @@ name|child
 operator|.
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|config
 operator|.
@@ -6786,7 +6786,7 @@ argument_list|)
 expr_stmt|;
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)
@@ -6832,7 +6832,7 @@ argument_list|)
 expr_stmt|;
 name|permissions
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 name|mode
 argument_list|)
