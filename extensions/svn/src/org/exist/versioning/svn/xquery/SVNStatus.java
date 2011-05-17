@@ -1134,7 +1134,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"last-changed-revision"
+literal|"working-revision"
 argument_list|,
 literal|""
 argument_list|,
