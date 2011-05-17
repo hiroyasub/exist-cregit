@@ -1150,7 +1150,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"locked"
+literal|"last-changed-revision"
 argument_list|,
 literal|""
 argument_list|,
