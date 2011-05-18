@@ -12095,13 +12095,6 @@ argument_list|(
 name|newName
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|setCollection
-argument_list|(
-name|destination
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|doc
@@ -12135,6 +12128,13 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
+name|doc
+operator|.
+name|setCollection
+argument_list|(
+name|destination
+argument_list|)
+expr_stmt|;
 name|destination
 operator|.
 name|addDocument
@@ -12169,6 +12169,13 @@ block|}
 else|else
 block|{
 comment|// binary resource
+name|doc
+operator|.
+name|setCollection
+argument_list|(
+name|destination
+argument_list|)
+expr_stmt|;
 name|destination
 operator|.
 name|addDocument
