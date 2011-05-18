@@ -3147,36 +3147,30 @@ name|long
 name|length
 parameter_list|()
 block|{
-try|try
-block|{
-name|init
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
 return|return
 literal|0
 return|;
+comment|//		try {
+comment|//			init();
+comment|//		} catch (IOException e) {
+comment|//			return 0;
+comment|//		}
+comment|//
+comment|//    	if (resource != null)
+comment|//    		return resource.getContentLength();
+comment|//
+comment|//    	return 0;
 block|}
-if|if
-condition|(
-name|resource
-operator|!=
-literal|null
-condition|)
+specifier|public
+name|String
+name|getPath
+parameter_list|()
+block|{
 return|return
-name|resource
+name|uri
 operator|.
-name|getContentLength
+name|toString
 argument_list|()
-return|;
-return|return
-literal|0
 return|;
 block|}
 block|}
