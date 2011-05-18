@@ -119,7 +119,7 @@ name|SVNAdd
 operator|.
 name|signature
 argument_list|,
-name|SVNCleanup
+name|SVNAdd
 operator|.
 name|class
 argument_list|)
@@ -234,18 +234,6 @@ operator|.
 name|signature
 argument_list|,
 name|SVNLog
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|SVNSynchronize
-operator|.
-name|signature
-argument_list|,
-name|SVNSynchronize
 operator|.
 name|class
 argument_list|)
