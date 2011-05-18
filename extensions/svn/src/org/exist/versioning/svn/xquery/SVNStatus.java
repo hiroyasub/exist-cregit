@@ -930,9 +930,6 @@ comment|//            + (isAddedWithHistory ? "+" : " ")
 comment|//            + (isSwitched ? "S" : " ")
 comment|//            + lockLabel
 comment|//            + remoteChangeType
-name|int
-name|nodeNr
-init|=
 name|builder
 operator|.
 name|startElement
@@ -941,7 +938,7 @@ name|ENTRY_ELEMENT
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|builder
 operator|.
 name|addAttribute
@@ -1049,31 +1046,10 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
+name|builder
 operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|status
-operator|.
-name|getFile
+name|endElement
 argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|status
-operator|.
-name|getContentsStatus
-argument_list|()
-operator|+
-literal|" / "
-operator|+
-name|status
-operator|.
-name|getRemoteContentsStatus
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}
