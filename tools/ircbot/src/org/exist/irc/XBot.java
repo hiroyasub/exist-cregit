@@ -1567,7 +1567,7 @@ argument_list|)
 decl_stmt|;
 name|perms
 operator|.
-name|setPermissions
+name|setMode
 argument_list|(
 literal|0744
 argument_list|)
