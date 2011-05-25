@@ -1155,12 +1155,6 @@ specifier|protected
 name|Serializer
 name|xmlSerializer
 decl_stmt|;
-specifier|protected
-name|boolean
-name|readOnly
-init|=
-literal|false
-decl_stmt|;
 comment|/** used to count the nodes inserted after the last memory check */
 specifier|protected
 name|int
@@ -1221,6 +1215,12 @@ decl_stmt|;
 specifier|protected
 name|Journal
 name|logManager
+decl_stmt|;
+specifier|protected
+name|boolean
+name|incrementalDocIds
+init|=
+literal|false
 decl_stmt|;
 comment|/** initialize database; read configuration, etc. */
 specifier|public
@@ -1466,6 +1466,38 @@ name|defaultIndexDepth
 operator|=
 name|DEFAULT_INDEX_DEPTH
 expr_stmt|;
+name|String
+name|docIdProp
+init|=
+operator|(
+name|String
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+name|BrokerPool
+operator|.
+name|DOC_ID_MODE_PROPERTY
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|docIdProp
+operator|!=
+literal|null
+condition|)
+block|{
+name|incrementalDocIds
+operator|=
+name|docIdProp
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"incremental"
+argument_list|)
+expr_stmt|;
+block|}
 name|indexConfiguration
 operator|=
 operator|(
@@ -1496,13 +1528,6 @@ name|SecurityManager
 operator|.
 name|SYSTEM_USER
 argument_list|)
-expr_stmt|;
-name|readOnly
-operator|=
-name|pool
-operator|.
-name|isReadOnly
-argument_list|()
 expr_stmt|;
 try|try
 block|{
@@ -1570,9 +1595,10 @@ operator|+
 literal|" is read-only!"
 argument_list|)
 expr_stmt|;
-name|readOnly
-operator|=
-literal|true
+name|pool
+operator|.
+name|setReadOnly
+argument_list|()
 expr_stmt|;
 block|}
 comment|//Initialize collections storage
@@ -1634,9 +1660,10 @@ operator|+
 literal|" is read-only!"
 argument_list|)
 expr_stmt|;
-name|readOnly
-operator|=
-literal|true
+name|pool
+operator|.
+name|setReadOnly
+argument_list|()
 expr_stmt|;
 block|}
 name|elementIndex
@@ -1669,7 +1696,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 name|LOG
 operator|.
@@ -2488,7 +2518,10 @@ name|isReadOnly
 parameter_list|()
 block|{
 return|return
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -3387,7 +3420,10 @@ else|else
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -3980,10 +4016,15 @@ throws|,
 name|LockException
 throws|,
 name|IOException
+throws|,
+name|EXistException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -4987,7 +5028,10 @@ name|LockException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -5673,7 +5717,10 @@ name|IOException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -6739,7 +6786,10 @@ return|return;
 block|}
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -7590,7 +7640,10 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -7974,7 +8027,10 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -11009,7 +11065,10 @@ name|LockException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -11724,7 +11783,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -12388,7 +12450,10 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -12805,7 +12870,10 @@ name|IOException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -13136,6 +13204,11 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+if|if
+condition|(
+name|incrementalDocIds
+condition|)
+return|return;
 name|Lock
 name|lock
 init|=
@@ -13358,6 +13431,13 @@ name|DocumentImpl
 operator|.
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
+if|if
+condition|(
+name|incrementalDocIds
+condition|)
+return|return
+name|freeDocId
+return|;
 name|Lock
 name|lock
 init|=
@@ -13547,7 +13627,7 @@ return|return
 name|freeDocId
 return|;
 block|}
-comment|/** get next Free Doc Id */
+comment|/** get next Free Doc Id       * @throws EXistException If there's no free document id */
 specifier|public
 name|int
 name|getNextResourceId
@@ -13558,6 +13638,8 @@ parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 name|int
 name|nextDocId
@@ -13665,6 +13747,30 @@ expr_stmt|;
 operator|++
 name|nextDocId
 expr_stmt|;
+if|if
+condition|(
+name|nextDocId
+operator|==
+literal|0x7FFFFFFF
+condition|)
+block|{
+name|pool
+operator|.
+name|setReadOnly
+argument_list|()
+expr_stmt|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"Max. number of document ids reached. Database is set to "
+operator|+
+literal|"read-only state. Please do a complete backup/restore to compact the db and "
+operator|+
+literal|"free document ids."
+argument_list|)
+throw|;
+block|}
 block|}
 name|byte
 index|[]
@@ -18087,7 +18193,10 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|readOnly
+name|pool
+operator|.
+name|isReadOnly
+argument_list|()
 condition|)
 throw|throw
 operator|new
@@ -18310,6 +18419,8 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|pool
+operator|.
 name|isReadOnly
 argument_list|()
 condition|)

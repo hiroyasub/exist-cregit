@@ -880,7 +880,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 * Get a new document id that does not yet exist within the collection. 	 */
+comment|/** 	 * Get a new document id that does not yet exist within the collection. 	 * @throws EXistException If the system has run out of document ids. 	 */
 specifier|public
 specifier|abstract
 name|int
@@ -892,6 +892,8 @@ parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 comment|/** 	 * Get the string value of the specified node. 	 *  	 * If addWhitespace is set to true, an extra space character will be added 	 * between adjacent elements in mixed content nodes. 	 */
 specifier|public
@@ -1345,7 +1347,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 * @throws EXistException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1369,6 +1371,8 @@ throws|,
 name|LockException
 throws|,
 name|IOException
+throws|,
+name|EXistException
 function_decl|;
 comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public

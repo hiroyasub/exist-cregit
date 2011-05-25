@@ -811,6 +811,22 @@ name|PROPERTY_NODES_BUFFER
 init|=
 literal|"db-connection.nodes-buffer"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DOC_ID_MODE_ATTRIBUTE
+init|=
+literal|"doc-ids"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DOC_ID_MODE_PROPERTY
+init|=
+literal|"db-connection.doc-ids.mode"
+decl_stmt|;
 comment|//TODO : inline the class ? or... make it configurable ?
 comment|// WM: inline. I don't think users need to be able to overwrite this.
 comment|// They can register their own shutdown hooks any time.
@@ -2815,8 +2831,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|broker
-operator|.
 name|isReadOnly
 argument_list|()
 condition|)
@@ -2827,10 +2841,6 @@ name|setEnabled
 argument_list|(
 literal|false
 argument_list|)
-expr_stmt|;
-name|isReadOnly
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|//Run the recovery process
@@ -3655,6 +3665,16 @@ block|{
 return|return
 name|isReadOnly
 return|;
+block|}
+specifier|public
+name|void
+name|setReadOnly
+parameter_list|()
+block|{
+name|isReadOnly
+operator|=
+literal|true
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
