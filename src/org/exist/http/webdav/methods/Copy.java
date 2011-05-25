@@ -1120,6 +1120,8 @@ throws|throws
 name|ServletException
 throws|,
 name|IOException
+throws|,
+name|EXistException
 block|{
 name|XmldbURI
 name|newCollectionName
