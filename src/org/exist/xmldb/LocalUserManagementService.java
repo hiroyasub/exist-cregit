@@ -1804,7 +1804,10 @@ throw|;
 block|}
 name|document
 operator|.
-name|setPermissions
+name|getPermissions
+argument_list|()
+operator|.
+name|setMode
 argument_list|(
 name|mode
 argument_list|)
@@ -2367,7 +2370,10 @@ throw|;
 block|}
 name|document
 operator|.
-name|setPermissions
+name|getPermissions
+argument_list|()
+operator|.
+name|setMode
 argument_list|(
 name|modeStr
 argument_list|)
