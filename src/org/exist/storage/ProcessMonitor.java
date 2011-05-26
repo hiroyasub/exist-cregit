@@ -717,6 +717,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Linked HashMap that has a fixed size      *      * Oldest items are removed when new items are added      * if the max size is exceeded      */
 specifier|public
 class|class
 name|FixedSizeLinkedHashMap
