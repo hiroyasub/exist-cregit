@@ -5897,10 +5897,7 @@ argument_list|)
 expr_stmt|;
 name|doc
 operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setMode
+name|setPermissions
 argument_list|(
 literal|0770
 argument_list|)

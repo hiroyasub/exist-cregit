@@ -6918,10 +6918,7 @@ argument_list|)
 decl_stmt|;
 name|resource
 operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setMode
+name|setPermissions
 argument_list|(
 name|permissions
 argument_list|)
@@ -6937,10 +6934,7 @@ try|try
 block|{
 name|resource
 operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setMode
+name|setPermissions
 argument_list|(
 name|mode
 argument_list|)

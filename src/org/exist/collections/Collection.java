@@ -5802,10 +5802,7 @@ condition|)
 block|{
 name|document
 operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|setMode
+name|setPermissions
 argument_list|(
 name|config
 operator|.
