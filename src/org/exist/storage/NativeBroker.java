@@ -8776,7 +8776,10 @@ argument_list|)
 decl_stmt|;
 name|targetDoc
 operator|.
-name|setPermissions
+name|getPermissions
+argument_list|()
+operator|.
+name|setMode
 argument_list|(
 literal|0771
 argument_list|)

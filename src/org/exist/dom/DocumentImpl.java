@@ -920,42 +920,6 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      * The method<code>setMode</code>      *      * @param mode an<code>int</code> value      */
-specifier|public
-name|void
-name|setPermissions
-parameter_list|(
-name|int
-name|mode
-parameter_list|)
-block|{
-name|permissions
-operator|.
-name|setMode
-argument_list|(
-name|mode
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * The method<code>setMode</code>      *      * @param mode a<code>String</code> value      * @exception SyntaxException if an error occurs      */
-specifier|public
-name|void
-name|setPermissions
-parameter_list|(
-name|String
-name|mode
-parameter_list|)
-throws|throws
-name|SyntaxException
-block|{
-name|permissions
-operator|.
-name|setMode
-argument_list|(
-name|mode
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      */
 specifier|public
 name|void
