@@ -404,6 +404,22 @@ name|ATTR_ITEM_TYPE
 init|=
 literal|"item-type"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|QName
+name|ROOT_ELEMENT_QNAME
+init|=
+operator|new
+name|QName
+argument_list|(
+name|SEQ_ELEMENT
+argument_list|,
+name|NAMESPACE
+argument_list|,
+name|PREFIX
+argument_list|)
+decl_stmt|;
 comment|/**      * Marshall a sequence in an xml based string representation      * @param broker      * @param seq Sequence to be marshalled      * @param handler Content handler for building the resulting string      * @throws XPathException      * @throws SAXException      */
 specifier|public
 specifier|static
