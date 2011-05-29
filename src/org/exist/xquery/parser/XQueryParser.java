@@ -47196,9 +47196,6 @@ init|=
 literal|null
 decl_stmt|;
 comment|//lexer.wsExplicit = true;
-try|try
-block|{
-comment|// for error handling
 name|boolean
 name|synPredMatched392
 init|=
@@ -47367,62 +47364,6 @@ name|getFilename
 argument_list|()
 argument_list|)
 throw|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|RecognitionException
-name|e
-parameter_list|)
-block|{
-if|if
-condition|(
-name|inputState
-operator|.
-name|guessing
-operator|==
-literal|0
-condition|)
-block|{
-name|lexer
-operator|.
-name|wsExplicit
-operator|=
-literal|false
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"err:XPST0003: Parse error: element name containing whitespace: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|" at line: "
-operator|+
-name|e
-operator|.
-name|getLine
-argument_list|()
-operator|+
-literal|" column: "
-operator|+
-name|e
-operator|.
-name|getColumn
-argument_list|()
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
-throw|throw
-name|e
-throw|;
-block|}
 block|}
 name|returnAST
 operator|=
@@ -52223,6 +52164,9 @@ name|name
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
+comment|// for error handling
 name|match
 argument_list|(
 name|LT
@@ -52568,7 +52512,7 @@ name|XPathException
 argument_list|(
 name|qn_AST
 argument_list|,
-literal|"found closing tag without opening tag: "
+literal|"err:XPST0003: Found closing tag without opening tag: "
 operator|+
 name|name
 argument_list|)
@@ -52600,7 +52544,7 @@ name|XPathException
 argument_list|(
 name|qn_AST
 argument_list|,
-literal|"found closing tag: "
+literal|"err:XPST0003: Found closing tag: "
 operator|+
 name|name
 operator|+
@@ -52785,6 +52729,47 @@ name|currentAST
 operator|.
 name|root
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RecognitionException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|inputState
+operator|.
+name|guessing
+operator|==
+literal|0
+condition|)
+block|{
+name|lexer
+operator|.
+name|wsExplicit
+operator|=
+literal|false
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|q_AST
+argument_list|,
+literal|"err:XPST0003: Static error: no closing end tag found for element constructor: "
+operator|+
+name|name
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
 name|returnAST
 operator|=
 name|elementWithAttributes_AST
@@ -52870,6 +52855,9 @@ name|name
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
+comment|// for error handling
 name|org
 operator|.
 name|exist
@@ -53425,6 +53413,47 @@ name|currentAST
 operator|.
 name|root
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RecognitionException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|inputState
+operator|.
+name|guessing
+operator|==
+literal|0
+condition|)
+block|{
+name|lexer
+operator|.
+name|wsExplicit
+operator|=
+literal|false
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|q_AST
+argument_list|,
+literal|"err:XPST0003: No closing end tag found for element constructor: "
+operator|+
+name|name
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
 name|returnAST
 operator|=
 name|elementWithoutAttributes_AST
