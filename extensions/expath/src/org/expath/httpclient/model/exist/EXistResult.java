@@ -385,25 +385,16 @@ name|HttpClientException
 block|{
 try|try
 block|{
-comment|//TODO badly formed HTML needs tidying into XHTML - would be better
-comment|//to have seperate methods for HTML and XML retrieval in EXPath.
-comment|//NodeValue nodeValue = ModuleUtils.sourceToXML(context, src);
 name|NodeValue
 name|nodeValue
 init|=
 name|ModuleUtils
 operator|.
-name|htmlToXHtml
+name|sourceToXML
 argument_list|(
 name|context
 argument_list|,
-literal|""
-argument_list|,
 name|src
-argument_list|,
-literal|null
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|result
