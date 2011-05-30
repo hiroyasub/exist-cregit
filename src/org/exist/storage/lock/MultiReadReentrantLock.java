@@ -1829,6 +1829,7 @@ return|;
 block|}
 comment|/**      * Check if the specified thread holds either a write or a read lock      * on the resource.      *      * @param owner the thread      * @return true if owner has a lock      */
 specifier|public
+specifier|synchronized
 name|boolean
 name|hasLock
 parameter_list|(
@@ -1846,7 +1847,7 @@ return|return
 literal|true
 return|;
 return|return
-name|hasReadLock
+name|isLockedForRead
 argument_list|(
 name|owner
 argument_list|)
