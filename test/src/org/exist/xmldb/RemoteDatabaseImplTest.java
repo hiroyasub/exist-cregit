@@ -318,10 +318,12 @@ block|{
 name|Permission
 name|p
 init|=
-name|PermissionFactory
+name|ums
 operator|.
-name|getPermission
-argument_list|()
+name|getPermissions
+argument_list|(
+name|adminCollection
+argument_list|)
 decl_stmt|;
 name|p
 operator|.
