@@ -834,6 +834,10 @@ operator|.
 name|WORKING
 argument_list|,
 literal|true
+argument_list|,
+operator|new
+name|InfoHandler
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1512,6 +1516,10 @@ operator|.
 name|WORKING
 argument_list|,
 literal|true
+argument_list|,
+operator|new
+name|InfoHandler
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
