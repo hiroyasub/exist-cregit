@@ -237,6 +237,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|BinaryDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -3147,19 +3159,48 @@ name|long
 name|length
 parameter_list|()
 block|{
+try|try
+block|{
+name|init
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
 return|return
 literal|0
 return|;
-comment|//		try {
-comment|//			init();
-comment|//		} catch (IOException e) {
-comment|//			return 0;
-comment|//		}
-comment|//
-comment|//    	if (resource != null)
-comment|//    		return resource.getContentLength();
-comment|//
-comment|//    	return 0;
+block|}
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//report size for binary resource only
+if|if
+condition|(
+name|resource
+operator|instanceof
+name|BinaryDocument
+condition|)
+block|{
+return|return
+name|resource
+operator|.
+name|getContentLength
+argument_list|()
+return|;
+block|}
+block|}
+return|return
+literal|0
+return|;
 block|}
 specifier|public
 name|String
