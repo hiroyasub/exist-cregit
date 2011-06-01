@@ -49,18 +49,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|BasicFunction
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|Cardinality
 import|;
 end_import
@@ -342,7 +330,7 @@ specifier|public
 class|class
 name|SVNLog
 extends|extends
-name|BasicFunction
+name|AbstractSVNFunction
 block|{
 specifier|public
 specifier|final
@@ -367,7 +355,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Retrieves the log entries from a subversion repository.\n\nThe return is formatted as follows:\n"
+literal|"Retrieves the log entries from a subversion repository."
+operator|+
+literal|"\n\nThe return is formatted as follows:\n"
 operator|+
 literal|"<log uri=\"\" start=\"\">\n"
 operator|+
@@ -385,59 +375,17 @@ literal|"</entry>\n"
 operator|+
 literal|"</log>\n\n"
 operator|+
-literal|"revtype values are 'A' (item added), 'D' (item deleted), 'M' (item modified), or 'R' (item replaced)."
+literal|"Revtype values are 'A' (item added), 'D' (item deleted), 'M' (item modified), or 'R' (item replaced)."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"repository-uri"
-argument_list|,
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The location in the subversion repository URI from which the logs should be retrieved"
-argument_list|)
+name|SVN_URI
 block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"username"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion username"
-argument_list|)
+name|LOGIN
 block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"password"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The subversion password"
-argument_list|)
+name|PASSWORD
 block|,
 operator|new
 name|FunctionParameterSequenceType
@@ -475,15 +423,15 @@ argument_list|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"logs"
+literal|"log"
 argument_list|,
 name|Type
 operator|.
-name|NODE
+name|ELEMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|EXACTLY_ONE
 argument_list|,
 literal|"a sequence containing the log entries"
 argument_list|)

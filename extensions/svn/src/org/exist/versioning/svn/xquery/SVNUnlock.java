@@ -35,9 +35,25 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|versioning
 operator|.
-name|*
+name|svn
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|versioning
+operator|.
+name|svn
+operator|.
+name|WorkingCopy
 import|;
 end_import
 
@@ -49,9 +65,43 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|value
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|FunctionParameterSequenceType
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -111,8 +161,22 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|tmatesoft
+operator|.
+name|svn
+operator|.
+name|core
+operator|.
+name|SVNException
+import|;
+end_import
+
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Apr 22, 2010  * Time: 9:48:14 AM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -120,7 +184,7 @@ specifier|public
 class|class
 name|SVNUnlock
 extends|extends
-name|BasicFunction
+name|AbstractSVNFunction
 block|{
 specifier|public
 specifier|final
@@ -151,37 +215,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"connection"
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The connection to a subversion repository"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"resource"
-argument_list|,
-name|Type
-operator|.
-name|ANY_URI
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The path to the resource."
-argument_list|)
+name|DB_PATH
 block|}
 argument_list|,
 operator|new
@@ -230,23 +264,75 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//        DAVRepositoryFactory.setup();
-comment|//        SVNRepositoryFactoryImpl.setup();
-comment|//        String uri = args[0].getStringValue();
-comment|//        try {
-comment|//            SVNRepository repo =
-comment|//                    SVNRepositoryFactory.create(SVNURL.parseURIDecoded(uri));
-comment|//            ISVNAuthenticationManager authManager =
-comment|//                    SVNWCUtil.createDefaultAuthenticationManager(args[1].getStringValue(), args[2].getStringValue());
-comment|//            repo.setAuthenticationManager(authManager);
-comment|//
-comment|//        } catch (SVNException e) {
-comment|//            throw new XPathException(this, e.getMessage(), e);
-comment|//        }
+name|WorkingCopy
+name|wc
+init|=
+operator|new
+name|WorkingCopy
+argument_list|(
+literal|""
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+name|String
+name|uri
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+name|Resource
+name|wcDir
+init|=
+operator|new
+name|Resource
+argument_list|(
+name|uri
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|wc
+operator|.
+name|unlock
+argument_list|(
+name|wcDir
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SVNException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 return|return
-literal|null
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
 return|;
-comment|//To change body of implemented methods use File | Settings | File Templates.
 block|}
 block|}
 end_class
