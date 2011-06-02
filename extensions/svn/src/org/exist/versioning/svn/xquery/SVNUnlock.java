@@ -209,7 +209,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Unlocks a resource in a subversion repository.\n\nThis is a stub and currently does nothing."
+literal|"Unlocks a resource in a subversion repository."
 argument_list|,
 operator|new
 name|SequenceType
