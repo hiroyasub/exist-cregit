@@ -4406,7 +4406,7 @@ literal|null
 condition|)
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|user
 argument_list|)
@@ -4545,7 +4545,7 @@ literal|null
 condition|)
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|user
 argument_list|)
@@ -4553,7 +4553,7 @@ expr_stmt|;
 else|else
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|securityManager
 operator|.
@@ -4720,6 +4720,24 @@ break|break;
 block|}
 block|}
 block|}
+name|Subject
+name|lastUser
+init|=
+name|broker
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
+name|broker
+operator|.
+name|setSubject
+argument_list|(
+name|securityManager
+operator|.
+name|getGuestSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|inactiveBrokers
 operator|.
 name|push
@@ -4772,10 +4790,7 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|broker
-operator|.
-name|getSubject
-argument_list|()
+name|lastUser
 operator|.
 name|equals
 argument_list|(
@@ -4789,16 +4804,6 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-name|broker
-operator|.
-name|setUser
-argument_list|(
-name|securityManager
-operator|.
-name|getGuestSubject
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//Inform the other threads that someone is gone
 name|this
 operator|.
@@ -5025,7 +5030,7 @@ decl_stmt|;
 comment|//TODO : strange that it is set *after* the sunc method has been called.
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|securityManager
 operator|.
@@ -5123,7 +5128,7 @@ comment|//After setting the SYSTEM_USER above we must change back to the DEFAULT
 comment|//broker.setUser(User.DEFAULT);
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|user
 argument_list|)
