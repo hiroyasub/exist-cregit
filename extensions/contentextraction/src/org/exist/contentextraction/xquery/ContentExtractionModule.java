@@ -141,6 +141,18 @@ name|ContentFunctions
 operator|.
 name|class
 argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|ContentFunctions
+operator|.
+name|streamContent
+argument_list|,
+name|ContentFunctions
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 comment|//    public final static QName EXCEPTION_QNAME =
