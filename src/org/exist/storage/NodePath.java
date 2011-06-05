@@ -913,16 +913,6 @@ argument_list|(
 name|component
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|prefix
-operator|==
-literal|null
-condition|)
-name|prefix
-operator|=
-literal|""
-expr_stmt|;
 name|String
 name|localName
 init|=
