@@ -584,6 +584,27 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitVariableDeclaration
+parameter_list|(
+name|VariableDeclaration
+name|decl
+parameter_list|)
+block|{
+name|decl
+operator|.
+name|getExpression
+argument_list|()
+operator|.
+name|accept
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

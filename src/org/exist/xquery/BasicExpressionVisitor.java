@@ -244,6 +244,18 @@ parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitVariableDeclaration
+parameter_list|(
+name|VariableDeclaration
+name|decl
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
 specifier|protected
 name|void
 name|processWrappers

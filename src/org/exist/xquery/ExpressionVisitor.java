@@ -230,6 +230,14 @@ name|VariableReference
 name|ref
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|visitVariableDeclaration
+parameter_list|(
+name|VariableDeclaration
+name|decl
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
