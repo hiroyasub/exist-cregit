@@ -201,6 +201,8 @@ implements|implements
 name|CompiledXQuery
 implements|,
 name|CompiledExpression
+implements|,
+name|RewritableExpression
 block|{
 specifier|protected
 specifier|final

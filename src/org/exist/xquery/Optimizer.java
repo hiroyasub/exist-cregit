@@ -274,7 +274,7 @@ operator|!
 operator|(
 name|parent
 operator|instanceof
-name|PathExpr
+name|RewritableExpression
 operator|)
 condition|)
 block|{
@@ -321,11 +321,11 @@ name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
-name|PathExpr
+name|RewritableExpression
 name|path
 init|=
 operator|(
-name|PathExpr
+name|RewritableExpression
 operator|)
 name|parent
 decl_stmt|;
@@ -515,7 +515,7 @@ operator|!
 operator|(
 name|parent
 operator|instanceof
-name|PathExpr
+name|RewritableExpression
 operator|)
 condition|)
 block|{
@@ -530,9 +530,17 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Parent expression of step is not a PathExpr: "
+literal|"Parent expression: "
 operator|+
 name|parent
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" of step does not implement RewritableExpression"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -562,11 +570,11 @@ name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
-name|PathExpr
+name|RewritableExpression
 name|path
 init|=
 operator|(
-name|PathExpr
+name|RewritableExpression
 operator|)
 name|parent
 decl_stmt|;
