@@ -275,6 +275,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|ExistIOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -1575,7 +1589,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|ExistIOException
 name|ex
 parameter_list|)
 block|{
@@ -1584,6 +1598,9 @@ operator|.
 name|error
 argument_list|(
 name|ex
+operator|.
+name|getCause
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|report
@@ -1635,7 +1652,7 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
-literal|"parse"
+literal|"jaxp"
 argument_list|)
 condition|)
 block|{
@@ -1665,7 +1682,7 @@ name|result
 return|;
 block|}
 else|else
-comment|/* isCalledAs("parse-report") */
+comment|/* isCalledAs("jaxp-report or jaxp-parse ") */
 block|{
 if|if
 condition|(
