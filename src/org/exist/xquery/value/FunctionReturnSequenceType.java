@@ -60,6 +60,14 @@ operator|=
 name|description
 expr_stmt|;
 block|}
+specifier|public
+name|FunctionReturnSequenceType
+parameter_list|()
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+block|}
 comment|/** 	 * @return the description 	 */
 specifier|public
 name|String

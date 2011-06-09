@@ -65,6 +65,23 @@ operator|=
 name|attributeName
 expr_stmt|;
 block|}
+specifier|public
+name|FunctionParameterSequenceType
+parameter_list|(
+name|String
+name|attributeName
+parameter_list|)
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|attributeName
+operator|=
+name|attributeName
+expr_stmt|;
+block|}
 comment|/** 	 * @return the attributeName 	 */
 specifier|public
 name|String
