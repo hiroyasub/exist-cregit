@@ -441,7 +441,7 @@ name|realmCollectionURL
 init|=
 name|SecurityManager
 operator|.
-name|SECURITY_COLLETION_URI
+name|SECURITY_COLLECTION_URI
 operator|.
 name|append
 argument_list|(

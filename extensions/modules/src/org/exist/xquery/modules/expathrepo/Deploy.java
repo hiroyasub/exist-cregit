@@ -2880,6 +2880,8 @@ parameter_list|,
 name|Permission
 name|permission
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 if|if
 condition|(
@@ -2887,6 +2889,7 @@ name|user
 operator|!=
 literal|null
 condition|)
+block|{
 name|permission
 operator|.
 name|setOwner
@@ -2894,12 +2897,14 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|group
 operator|!=
 literal|null
 condition|)
+block|{
 name|permission
 operator|.
 name|setGroup
@@ -2907,6 +2912,7 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
+block|}
 name|int
 name|mode
 decl_stmt|;
@@ -2917,11 +2923,14 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|mode
 operator|=
 name|perms
 expr_stmt|;
+block|}
 else|else
+block|{
 name|mode
 operator|=
 name|permission
@@ -2929,6 +2938,7 @@ operator|.
 name|getMode
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|mime
@@ -2950,12 +2960,14 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|mode
 operator|=
 name|mode
 operator||
 literal|0111
 expr_stmt|;
+block|}
 name|permission
 operator|.
 name|setMode

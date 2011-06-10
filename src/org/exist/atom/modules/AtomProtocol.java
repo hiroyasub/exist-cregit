@@ -6706,7 +6706,10 @@ try|try
 block|{
 name|collection
 operator|.
-name|setPermissions
+name|getPermissions
+argument_list|()
+operator|.
+name|setMode
 argument_list|(
 name|mode
 argument_list|)

@@ -551,6 +551,22 @@ index|]
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+index|[]
+name|getGroupIds
+parameter_list|()
+block|{
+return|return
+operator|new
+name|int
+index|[
+literal|0
+index|]
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
 annotation|@
 name|Override

@@ -357,6 +357,18 @@ name|Observer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|NativeClusterBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by Francesco Mondora.  *  * TODO ... verify TRANSACTION IN CLUSTER  * @author Francesco Mondora aka Makkina  * @author Michele Danieli aka cinde  * @author Nicola Breda aka maiale  *  *         Date: Aug 31, 2004  *         Time: 8:45:47 AM  *         Revision $Revision$  */
 end_comment
@@ -408,10 +420,18 @@ block|}
 specifier|public
 name|ClusterCollection
 parameter_list|(
+name|NativeClusterBroker
+name|broker
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|collection
@@ -1945,6 +1965,8 @@ name|mode
 parameter_list|)
 throws|throws
 name|LockException
+throws|,
+name|PermissionDeniedException
 block|{
 name|collection
 operator|.
@@ -1965,6 +1987,8 @@ throws|throws
 name|SyntaxException
 throws|,
 name|LockException
+throws|,
+name|PermissionDeniedException
 block|{
 name|collection
 operator|.

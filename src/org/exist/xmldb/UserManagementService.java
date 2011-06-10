@@ -11,6 +11,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -54,6 +64,22 @@ operator|.
 name|security
 operator|.
 name|User
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|ACEAider
 import|;
 end_import
 
@@ -150,6 +176,31 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|setPermissions
+parameter_list|(
+name|Collection
+name|child
+parameter_list|,
+name|String
+name|owner
+parameter_list|,
+name|String
+name|group
+parameter_list|,
+name|int
+name|mode
+parameter_list|,
+name|List
+argument_list|<
+name|ACEAider
+argument_list|>
+name|aces
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	 * Set permissions for the specified resource. 	 *  	 * @param resource 	 * @param perm 	 * @throws XMLDBException 	 */
 specifier|public
 name|void
@@ -164,6 +215,33 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|setPermissions
+parameter_list|(
+name|Resource
+name|resource
+parameter_list|,
+name|String
+name|owner
+parameter_list|,
+name|String
+name|group
+parameter_list|,
+name|int
+name|mode
+parameter_list|,
+name|List
+argument_list|<
+name|ACEAider
+argument_list|>
+name|aces
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|//public void setPermissions(Collection collection, String owner, String group, int mode) throws XMLDBException;
+comment|//public void setPermissions(Resource resource, String owner, String group, int mode) throws XMLDBException;
 comment|/**      *  Change owner and group of the current collection.      *      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void

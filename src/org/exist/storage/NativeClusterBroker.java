@@ -237,6 +237,8 @@ else|:
 operator|new
 name|ClusterCollection
 argument_list|(
+name|this
+argument_list|,
 name|c
 argument_list|)
 return|;
@@ -267,6 +269,8 @@ argument_list|,
 operator|new
 name|ClusterCollection
 argument_list|(
+name|this
+argument_list|,
 name|collection
 argument_list|)
 argument_list|)
@@ -312,6 +316,8 @@ else|:
 operator|new
 name|ClusterCollection
 argument_list|(
+name|this
+argument_list|,
 name|c
 argument_list|)
 return|;

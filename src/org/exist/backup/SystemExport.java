@@ -4406,6 +4406,8 @@ init|=
 operator|new
 name|Collection
 argument_list|(
+name|broker
+argument_list|,
 name|XmldbURI
 operator|.
 name|createInternal

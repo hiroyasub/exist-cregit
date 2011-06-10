@@ -77,7 +77,7 @@ name|internal
 operator|.
 name|aider
 operator|.
-name|UnixStylePermission
+name|UnixStylePermissionAider
 import|;
 end_import
 
@@ -519,7 +519,7 @@ block|{
 name|Permission
 name|perm
 init|=
-name|UnixStylePermission
+name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(

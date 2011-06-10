@@ -195,6 +195,21 @@ name|getGroups
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+index|[]
+name|getGroupIds
+parameter_list|()
+block|{
+return|return
+name|account
+operator|.
+name|getGroupIds
+argument_list|()
+return|;
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
 annotation|@
 name|Override

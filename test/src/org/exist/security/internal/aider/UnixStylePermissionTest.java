@@ -245,7 +245,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"a-----------"
+literal|"--s------"
 argument_list|,
 literal|2048
 argument_list|)
@@ -258,7 +258,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"-g----------"
+literal|"-----s---"
 argument_list|,
 literal|1024
 argument_list|)
@@ -271,7 +271,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"--s---------"
+literal|"--------t"
 argument_list|,
 literal|512
 argument_list|)
@@ -285,10 +285,10 @@ range|:
 name|securityTestPairs
 control|)
 block|{
-name|UnixStylePermission
+name|UnixStylePermissionAider
 name|perm
 init|=
-name|UnixStylePermission
+name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(
@@ -339,7 +339,7 @@ parameter_list|()
 throws|throws
 name|SyntaxException
 block|{
-name|UnixStylePermission
+name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(
@@ -364,7 +364,7 @@ parameter_list|()
 throws|throws
 name|SyntaxException
 block|{
-name|UnixStylePermission
+name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(

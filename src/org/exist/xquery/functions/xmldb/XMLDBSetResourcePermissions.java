@@ -83,6 +83,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|UserManagementService
@@ -264,7 +276,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Luigi P. Bai, finder@users.sf.net, 2004  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
+comment|/**  * @author Luigi P. Bai, finder@users.sf.net, 2004  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -742,24 +754,45 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|XMLDBException
-name|xe
+name|PermissionDeniedException
+name|pde
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Unable to change resource permissions"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Unable to change resource permissions"
+literal|"Unable to change resource permissions: "
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|XMLDBException
+name|xe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Unable to change resource permissions:"
+operator|+
+name|xe
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|xe
 argument_list|)

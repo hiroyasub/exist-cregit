@@ -490,6 +490,24 @@ implements|implements
 name|SecurityManager
 block|{
 specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_USER_ID
+init|=
+literal|1048571
+decl_stmt|;
+comment|//1 less than RealmImpl.UNKNOWN_ACCOUNT_ID
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_GROUP_ID
+init|=
+literal|1048572
+decl_stmt|;
+comment|//1 less than RealmImpl.UNKNOWN_GROUP_ID
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -870,7 +888,7 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|SECURITY_COLLETION_URI
+name|SECURITY_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 if|if
@@ -895,7 +913,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|SECURITY_COLLETION_URI
+name|SECURITY_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 if|if
@@ -2066,6 +2084,23 @@ name|int
 name|getNextGroupId
 parameter_list|()
 block|{
+if|if
+condition|(
+name|lastGroupId
+operator|+
+literal|1
+operator|==
+name|MAX_GROUP_ID
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"System has no more group-ids available"
+argument_list|)
+throw|;
+block|}
 return|return
 operator|++
 name|lastGroupId
@@ -2079,6 +2114,23 @@ name|int
 name|getNextAccountId
 parameter_list|()
 block|{
+if|if
+condition|(
+name|lastUserId
+operator|+
+literal|1
+operator|==
+name|MAX_USER_ID
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"System has no more user-ids available"
+argument_list|)
+throw|;
+block|}
 return|return
 operator|++
 name|lastUserId

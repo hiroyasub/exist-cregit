@@ -843,7 +843,23 @@ name|internal
 operator|.
 name|aider
 operator|.
-name|UnixStylePermission
+name|PermissionAiderFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|UnixStylePermissionAider
 import|;
 end_import
 
@@ -9076,8 +9092,9 @@ expr_stmt|;
 comment|//$NON-NLS-1$
 name|perm
 operator|=
-operator|new
-name|UnixStylePermission
+name|PermissionAiderFactory
+operator|.
+name|getPermission
 argument_list|(
 literal|""
 argument_list|,

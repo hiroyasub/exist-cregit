@@ -179,7 +179,7 @@ specifier|public
 specifier|final
 specifier|static
 name|XmldbURI
-name|SECURITY_COLLETION_URI
+name|SECURITY_COLLECTION_URI
 init|=
 name|XmldbURI
 operator|.

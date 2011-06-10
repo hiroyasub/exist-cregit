@@ -7946,7 +7946,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations01
+name|multipleConfigurations01
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -7967,7 +7967,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations02
+name|multipleConfigurations02
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -7988,7 +7988,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations03
+name|multipleConfigurations03
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8009,7 +8009,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations04
+name|multipleConfigurations04
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8030,7 +8030,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations05
+name|multipleConfigurations05
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8051,7 +8051,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations06
+name|multipleConfigurations06
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8072,7 +8072,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations07
+name|multipleConfigurations07
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8093,7 +8093,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations08
+name|multipleConfigurations08
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8114,7 +8114,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations09
+name|multipleConfigurations09
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8135,7 +8135,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations10
+name|multipleConfigurations10
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8156,7 +8156,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations11
+name|multipleConfigurations11
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8177,7 +8177,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations12
+name|multipleConfigurations12
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8198,7 +8198,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations13
+name|multipleConfigurations13
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8219,7 +8219,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations14
+name|multipleConfigurations14
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8240,7 +8240,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testMultipleConfigurations15
+name|multipleConfigurations15
 parameter_list|()
 block|{
 name|checkStoreConf
@@ -8509,6 +8509,30 @@ operator|.
 name|storeResource
 argument_list|(
 name|res
+argument_list|)
+expr_stmt|;
+name|UserManagementService
+name|ums
+init|=
+operator|(
+name|UserManagementService
+operator|)
+name|configColl
+operator|.
+name|getService
+argument_list|(
+literal|"UserManagementService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|ums
+operator|.
+name|chmod
+argument_list|(
+name|res
+argument_list|,
+literal|0744
 argument_list|)
 expr_stmt|;
 block|}

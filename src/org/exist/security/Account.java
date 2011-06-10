@@ -133,6 +133,14 @@ function_decl|;
 annotation|@
 name|Override
 specifier|public
+name|int
+index|[]
+name|getGroupIds
+parameter_list|()
+function_decl|;
+annotation|@
+name|Override
+specifier|public
 name|boolean
 name|hasDbaRole
 parameter_list|()

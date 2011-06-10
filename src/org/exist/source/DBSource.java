@@ -660,17 +660,30 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
+literal|"Subject '"
+operator|+
 name|subject
-argument_list|,
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' does not have "
+operator|+
+name|Integer
+operator|.
+name|toOctalString
+argument_list|(
+name|perm
+argument_list|)
+operator|+
+literal|" access to resource '"
+operator|+
 name|doc
 operator|.
 name|getURI
 argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|perm
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}

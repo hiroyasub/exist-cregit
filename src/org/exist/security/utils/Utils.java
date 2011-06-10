@@ -163,6 +163,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -174,6 +175,7 @@ operator|+
 literal|" can't be created."
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|.
 name|setPermissions

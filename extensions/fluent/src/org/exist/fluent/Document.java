@@ -450,11 +450,16 @@ name|permissions
 parameter_list|,
 name|DocumentMetadata
 name|docMetadata
+parameter_list|,
+name|Database
+name|db
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|permissions
+argument_list|,
+name|db
 argument_list|)
 expr_stmt|;
 name|this
@@ -797,6 +802,8 @@ name|doc
 operator|.
 name|getMetadata
 argument_list|()
+argument_list|,
+name|db
 argument_list|)
 expr_stmt|;
 return|return

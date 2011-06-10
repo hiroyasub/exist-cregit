@@ -116,6 +116,12 @@ name|getGroups
 parameter_list|()
 function_decl|;
 specifier|public
+name|int
+index|[]
+name|getGroupIds
+parameter_list|()
+function_decl|;
+specifier|public
 name|boolean
 name|hasDbaRole
 parameter_list|()

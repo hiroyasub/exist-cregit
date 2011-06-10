@@ -316,7 +316,8 @@ argument_list|(
 name|pageNr
 argument_list|)
 expr_stmt|;
-name|permissions
+name|getPermissions
+argument_list|()
 operator|.
 name|write
 argument_list|(
@@ -384,7 +385,8 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
-name|permissions
+name|getPermissions
+argument_list|()
 operator|.
 name|read
 argument_list|(
