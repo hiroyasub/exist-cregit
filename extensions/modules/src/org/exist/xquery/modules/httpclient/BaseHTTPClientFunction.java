@@ -1993,9 +1993,19 @@ block|{
 comment|//could not parse to xml
 name|logger
 operator|.
-name|debug
+name|info
 argument_list|(
-literal|"Could not parse http response content as XML: "
+literal|"Request for URI '"
+operator|+
+name|method
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"' Could not parse http response content as XML: "
 operator|+
 name|se
 operator|.
@@ -2005,6 +2015,51 @@ argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|String
+name|msg
+init|=
+literal|"Request for URI '"
+operator|+
+name|method
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"' Could not parse http response content as XML: "
+operator|+
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
+name|logger
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|,
+name|ioe
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|msg
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 if|if
 condition|(

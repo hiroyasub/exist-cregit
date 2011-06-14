@@ -29,6 +29,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -423,6 +433,27 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|saxe
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|HttpClientException
+argument_list|(
+literal|"Unable to add Source to result:"
+operator|+
+name|ioe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|ioe
 argument_list|)
 throw|;
 block|}
