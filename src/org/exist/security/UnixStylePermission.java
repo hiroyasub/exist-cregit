@@ -170,28 +170,6 @@ operator|=
 name|sm
 expr_stmt|;
 block|}
-comment|/**      * Construct a Permission with given permissions       *      * @param  sm    Description of the Parameter      * @param  mode  Description of the Parameter      */
-specifier|public
-name|UnixStylePermission
-parameter_list|(
-name|SecurityManager
-name|sm
-parameter_list|,
-name|int
-name|mode
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|sm
-argument_list|)
-expr_stmt|;
-name|setMode
-argument_list|(
-name|mode
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * Construct a permission with given user, group and permissions      *      * @param  invokingUser Description of the Parameter      * @param  sm           Description of the Parameter      * @param  user         Description of the Parameter      * @param  group        Description of the Parameter      * @param  mode  Description of the Parameter      */
 specifier|public
 name|UnixStylePermission
