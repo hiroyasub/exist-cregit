@@ -919,6 +919,17 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+name|boolean
+name|needsReset
+parameter_list|()
+block|{
+return|return
+name|currentArguments
+operator|!=
+literal|null
+return|;
+block|}
+specifier|public
 name|void
 name|accept
 parameter_list|(

@@ -315,6 +315,12 @@ name|boolean
 name|postOptimization
 parameter_list|)
 function_decl|;
+comment|/**      * Returns true if the expression object has not yet been reset, so      * {@link #resetState(boolean)} should be called.      * @return      */
+specifier|public
+name|boolean
+name|needsReset
+parameter_list|()
+function_decl|;
 comment|/**      * Start traversing the expression tree using the specified {@link ExpressionVisitor}.      * @param visitor      */
 specifier|public
 name|void

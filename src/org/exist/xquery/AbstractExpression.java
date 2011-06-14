@@ -260,6 +260,16 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+specifier|public
+name|boolean
+name|needsReset
+parameter_list|()
+block|{
+comment|// always return true unless a subclass overwrites this
+return|return
+literal|true
+return|;
+block|}
 comment|/**      * The default cardinality is {@link Cardinality#EXACTLY_ONE}.      */
 annotation|@
 name|Override

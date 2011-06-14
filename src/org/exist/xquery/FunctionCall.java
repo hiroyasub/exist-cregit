@@ -1574,6 +1574,15 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|expression
+operator|.
+name|needsReset
+argument_list|()
+operator|||
+name|postOptimization
+condition|)
 name|expression
 operator|.
 name|resetState

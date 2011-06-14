@@ -339,6 +339,15 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|needsReset
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+specifier|public
 name|void
 name|accept
 parameter_list|(
