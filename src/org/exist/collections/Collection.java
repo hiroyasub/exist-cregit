@@ -1023,6 +1023,8 @@ name|DocumentImpl
 operator|.
 name|UNKNOWN_DOCUMENT_ID
 condition|)
+try|try
+block|{
 name|doc
 operator|.
 name|setDocId
@@ -1037,6 +1039,16 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+comment|// abort
+return|return;
+block|}
 name|documents
 operator|.
 name|put
@@ -4942,6 +4954,9 @@ if|if
 condition|(
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|isReadOnly
 argument_list|()
 condition|)
@@ -6273,6 +6288,9 @@ block|{
 if|if
 condition|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|isReadOnly
 argument_list|()

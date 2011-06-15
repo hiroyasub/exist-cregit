@@ -1017,7 +1017,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Get a new document id that does not yet exist within the collection.      */
+comment|/**      * Get a new document id that does not yet exist within the collection.      * @throws EXistException       */
 specifier|public
 specifier|abstract
 name|int
@@ -1029,6 +1029,8 @@ parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
+throws|throws
+name|EXistException
 function_decl|;
 comment|/**      * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be added      * between adjacent elements in mixed content nodes.      */
 specifier|public
@@ -1492,7 +1494,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *  	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 * @throws TriggerException  	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *  	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 * @throws TriggerException  	 * @throws EXistException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1518,8 +1520,10 @@ throws|,
 name|IOException
 throws|,
 name|TriggerException
+throws|,
+name|EXistException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to copy 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException  	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1541,6 +1545,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|EXistException
 function_decl|;
 comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
 specifier|public
