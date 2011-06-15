@@ -1923,6 +1923,19 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+name|ErrorCode
+name|EXXQDY0002
+init|=
+operator|new
+name|EXistErrorCode
+argument_list|(
+literal|"EXXQDY0002"
+argument_list|,
+literal|"Error parsing XML."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
 class|class
 name|ErrorCode
 block|{

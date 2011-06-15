@@ -394,9 +394,11 @@ literal|"Parses the passed string value into an XML fragment. The string has to 
 operator|+
 literal|"well-formed XML. An empty sequence is returned if the argument is an "
 operator|+
-literal|"empty string or sequence. If the XML is not well-formed, the function returns an "
+literal|"empty string or sequence. If the XML is not well-formed, the function throws an "
 operator|+
-literal|"XML fragment to describe the error. The fragment has the form:<report><status>invalid</status><message>..."
+literal|"error (EXXQDY0002). An XML-formatted description of the error is contained in the error value and "
+operator|+
+literal|"can be accessed using XQuery 3.0 try-catch statement."
 argument_list|,
 operator|new
 name|SequenceType
@@ -723,14 +725,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
+argument_list|,
 literal|"Error while constructing XML parser: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -767,14 +771,16 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
+argument_list|,
 literal|"Error while parsing XML: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -816,9 +822,24 @@ argument_list|,
 name|builder
 argument_list|)
 decl_stmt|;
-return|return
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
+argument_list|,
+name|report
+operator|.
+name|toString
+argument_list|()
+argument_list|,
 name|result
-return|;
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
