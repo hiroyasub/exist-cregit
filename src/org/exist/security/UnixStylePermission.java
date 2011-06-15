@@ -314,6 +314,7 @@ operator|.
 name|getSystemSubject
 argument_list|()
 expr_stmt|;
+comment|// assigned value is never used?
 block|}
 name|setOwnerId
 argument_list|(
