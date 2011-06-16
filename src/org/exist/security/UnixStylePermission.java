@@ -253,6 +253,7 @@ name|account
 parameter_list|)
 block|{
 comment|//assume SYSTEM identity if user gets lost due to a database corruption - WTF???
+comment|//TODO this should eventually be replaced with a PermissionDeniedException
 if|if
 condition|(
 name|account
@@ -300,6 +301,8 @@ argument_list|(
 name|id
 argument_list|)
 decl_stmt|;
+comment|//assume SYSTEM identity if user gets lost due to a database corruption - WTF???
+comment|//TODO this should eventually be replaced with a PermissionDeniedException
 if|if
 condition|(
 name|account
@@ -314,11 +317,13 @@ operator|.
 name|getSystemSubject
 argument_list|()
 expr_stmt|;
-comment|// assigned value is never used?
 block|}
 name|setOwnerId
 argument_list|(
-name|id
+name|account
+operator|.
+name|getId
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
