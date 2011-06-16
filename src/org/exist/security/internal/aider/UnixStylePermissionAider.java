@@ -160,7 +160,7 @@ name|UnixStylePermissionAider
 extends|extends
 name|AbstractUnixStylePermission
 implements|implements
-name|Permission
+name|PermissionAider
 block|{
 comment|//owner, default to DBA
 specifier|private

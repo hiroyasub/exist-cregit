@@ -29,18 +29,6 @@ name|Logger
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-import|;
-end_import
-
 begin_comment
 comment|/**  * Instantiates an appropriate Permission class based on the current configuration  *  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -67,11 +55,11 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
-name|Permission
+name|PermissionAider
 name|getPermission
 parameter_list|()
 block|{
-name|Permission
+name|PermissionAider
 name|permission
 init|=
 literal|null
@@ -107,14 +95,14 @@ return|;
 block|}
 specifier|public
 specifier|static
-name|Permission
+name|PermissionAider
 name|getPermission
 parameter_list|(
 name|int
 name|mode
 parameter_list|)
 block|{
-name|Permission
+name|PermissionAider
 name|permission
 init|=
 literal|null
@@ -152,7 +140,7 @@ return|;
 block|}
 specifier|public
 specifier|static
-name|Permission
+name|PermissionAider
 name|getPermission
 parameter_list|(
 name|String
@@ -165,7 +153,7 @@ name|int
 name|mode
 parameter_list|)
 block|{
-name|Permission
+name|PermissionAider
 name|permission
 init|=
 literal|null
