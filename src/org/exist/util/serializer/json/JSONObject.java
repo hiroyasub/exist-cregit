@@ -442,7 +442,18 @@ name|firstChild
 operator|==
 literal|null
 condition|)
-comment|// an empty node gets a null value
+block|{
+comment|// an empty node gets a null value, unless its a specified array
+if|if
+condition|(
+name|getSerializationType
+argument_list|()
+operator|!=
+name|SerializationType
+operator|.
+name|AS_ARRAY
+condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -450,6 +461,8 @@ argument_list|(
 literal|"null"
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 if|else if
 condition|(
 name|firstChild
