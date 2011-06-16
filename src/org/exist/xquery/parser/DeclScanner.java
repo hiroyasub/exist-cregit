@@ -481,6 +481,8 @@ literal|"PRAGMA"
 block|,
 literal|"GTEQ"
 block|,
+literal|"SEQUENCE"
+block|,
 literal|"\"xpointer\""
 block|,
 literal|"opening parenthesis '('"
