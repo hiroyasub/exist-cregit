@@ -799,6 +799,10 @@ operator||=
 name|UPDATE
 expr_stmt|;
 break|break;
+case|case
+name|UNSET_CHAR
+case|:
+break|break;
 default|default:
 throw|throw
 operator|new
