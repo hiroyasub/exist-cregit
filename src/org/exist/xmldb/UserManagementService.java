@@ -140,7 +140,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An eXist-specific service which provides methods to manage users and  * permissions.  *  * @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  * An eXist-specific service which provides methods to manage users and  * permissions.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * @author Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_interface
@@ -151,12 +151,16 @@ extends|extends
 name|Service
 block|{
 comment|/**      *  Get the name of this service      *      *@return    The name      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
 parameter_list|()
 function_decl|;
 comment|/**      *  Get the version of this service      *      *@return    The version value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getVersion
@@ -420,6 +424,8 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      * Get a property defined by this service.      *      * @param  property            Description of the Parameter      * @return                     The property value      * @exception  XMLDBException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
@@ -431,6 +437,8 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      *  Set a property for this service.      *      * @param  property            The new property value      * @param  value               The new property value      * @exception  XMLDBException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
@@ -445,6 +453,8 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      *  Set the current collection for this service      *      *@param  collection          The new collection value      *@exception  XMLDBException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCollection
