@@ -1077,10 +1077,15 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|collection
+name|XmldbURI
 operator|.
-name|getPathURI
+name|create
+argument_list|(
+name|child
+operator|.
+name|getName
 argument_list|()
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -1103,9 +1108,9 @@ name|INVALID_COLLECTION
 argument_list|,
 literal|"Collection "
 operator|+
-name|collection
+name|child
 operator|.
-name|getPath
+name|getName
 argument_list|()
 operator|+
 literal|" not found"
@@ -1441,10 +1446,15 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|collection
+name|XmldbURI
 operator|.
-name|getPathURI
+name|create
+argument_list|(
+name|child
+operator|.
+name|getName
 argument_list|()
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -1468,9 +1478,9 @@ name|INVALID_COLLECTION
 argument_list|,
 literal|"Collection "
 operator|+
-name|collection
+name|child
 operator|.
-name|getPath
+name|getName
 argument_list|()
 operator|+
 literal|" not found"
