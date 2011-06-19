@@ -677,10 +677,15 @@ name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|collection
+name|XmldbURI
 operator|.
-name|getPathURI
+name|create
+argument_list|(
+name|child
+operator|.
+name|getName
 argument_list|()
+argument_list|)
 argument_list|,
 name|Lock
 operator|.
@@ -693,6 +698,7 @@ name|coll
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -703,14 +709,15 @@ name|INVALID_COLLECTION
 argument_list|,
 literal|"Collection "
 operator|+
-name|collection
+name|child
 operator|.
-name|getPath
+name|getName
 argument_list|()
 operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -769,6 +776,7 @@ name|getOwnerGroup
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|manager
 operator|.
 name|addGroup
@@ -779,6 +787,7 @@ name|getOwnerGroup
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|coll
 operator|.
 name|setPermissions
@@ -933,6 +942,7 @@ name|coll
 operator|!=
 literal|null
 condition|)
+block|{
 name|coll
 operator|.
 name|release
@@ -942,6 +952,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
