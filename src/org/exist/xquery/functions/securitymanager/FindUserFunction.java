@@ -341,7 +341,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The list of matcing usernames"
+literal|"The list of matching usernames"
 argument_list|)
 argument_list|)
 block|,
@@ -384,7 +384,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The list of matcing usernames"
+literal|"The list of matching usernames"
 argument_list|)
 argument_list|)
 block|}

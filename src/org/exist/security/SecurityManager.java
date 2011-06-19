@@ -698,6 +698,21 @@ name|Subject
 name|invokingUser
 parameter_list|)
 function_decl|;
+comment|/**     * Find groups by their group name     */
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findGroupnamesWhereGroupnameStarts
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|startsWith
+parameter_list|)
+function_decl|;
 comment|/**     * Find all members of a group     */
 specifier|public
 name|List

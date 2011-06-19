@@ -290,6 +290,22 @@ name|SecurityManager
 name|getSecurityManager
 parameter_list|()
 function_decl|;
+specifier|public
+name|Collection
+argument_list|<
+name|?
+extends|extends
+name|String
+argument_list|>
+name|findGroupnamesWhereGroupnameStarts
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|startsWith
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -306,6 +306,27 @@ name|List
 argument_list|<
 name|String
 argument_list|>
+name|findGroupnamesWhereGroupnameStarts
+parameter_list|(
+name|Subject
+name|invokingUser
+parameter_list|,
+name|String
+name|startsWith
+parameter_list|)
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
 name|findAllGroupNames
 parameter_list|(
 name|Subject
