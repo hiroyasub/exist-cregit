@@ -263,7 +263,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"find-groups-by-group-name"
+literal|"find-groups-by-groupname"
 argument_list|,
 name|SecurityManagerModule
 operator|.
