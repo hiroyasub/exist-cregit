@@ -330,7 +330,7 @@ decl_stmt|;
 specifier|private
 name|Map
 argument_list|<
-name|String
+name|Object
 argument_list|,
 name|Query
 argument_list|>
@@ -1828,7 +1828,7 @@ operator|=
 operator|new
 name|TreeMap
 argument_list|<
-name|String
+name|Object
 argument_list|,
 name|Query
 argument_list|>
@@ -1916,6 +1916,8 @@ argument_list|,
 name|termMap
 argument_list|,
 name|reader
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
