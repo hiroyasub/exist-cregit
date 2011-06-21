@@ -13494,6 +13494,24 @@ argument_list|,
 name|blob
 argument_list|)
 expr_stmt|;
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|blob
+argument_list|,
+name|StreamListener
+operator|.
+name|REMOVE_BINARY
+argument_list|)
+expr_stmt|;
+name|getIndexController
+argument_list|()
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * @param transaction      * @param document      */
 specifier|private

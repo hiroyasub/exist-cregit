@@ -121,6 +121,14 @@ name|REMOVE_SOME_NODES
 init|=
 literal|2
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|REMOVE_BINARY
+init|=
+literal|3
+decl_stmt|;
 comment|/**      * Retunrs the IndexWorker that owns this listener.      *       * @return the IndexWorker      */
 name|IndexWorker
 name|getWorker
