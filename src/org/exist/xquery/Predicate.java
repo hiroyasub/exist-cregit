@@ -1351,6 +1351,16 @@ name|EMPTY_SEQUENCE
 expr_stmt|;
 else|else
 block|{
+if|if
+condition|(
+name|executionMode
+operator|==
+name|UNKNOWN
+condition|)
+name|executionMode
+operator|=
+name|BOOLEAN
+expr_stmt|;
 name|int
 name|recomputedExecutionMode
 init|=
