@@ -1123,7 +1123,7 @@ specifier|public
 name|void
 name|analyzeAndOptimizeIfModulesChanged
 parameter_list|(
-name|PathExpr
+name|Expression
 name|expr
 parameter_list|)
 throws|throws
