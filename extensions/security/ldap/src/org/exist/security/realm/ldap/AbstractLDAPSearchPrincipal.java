@@ -411,6 +411,11 @@ argument_list|(
 literal|"memberOf"
 argument_list|)
 block|,
+name|MEMBER
+argument_list|(
+literal|"member"
+argument_list|)
+block|,
 name|PRIMARY_GROUP_TOKEN
 argument_list|(
 literal|"primaryGroupToken"
