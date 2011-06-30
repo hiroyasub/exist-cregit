@@ -696,6 +696,22 @@ literal|"Prefix/namespace mappings to be used for matching the paths. Pass an XM
 operator|+
 literal|"structure:<namespaces><namespace prefix=\"prefix\" uri=\"uri\"/></namespaces>."
 argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"userData"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"Additional data which will be passed to the callback function."
+argument_list|)
 block|}
 argument_list|,
 operator|new
@@ -886,6 +902,11 @@ argument_list|,
 name|ref
 argument_list|,
 name|mappings
+argument_list|,
+name|args
+index|[
+literal|4
+index|]
 argument_list|)
 return|;
 block|}
@@ -1232,6 +1253,9 @@ argument_list|,
 name|String
 argument_list|>
 name|mappings
+parameter_list|,
+name|Sequence
+name|data
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1309,6 +1333,8 @@ argument_list|(
 name|paths
 argument_list|,
 name|ref
+argument_list|,
+name|data
 argument_list|)
 decl_stmt|;
 try|try
@@ -1466,6 +1492,12 @@ name|lastPath
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|Sequence
+name|userData
+init|=
+literal|null
+decl_stmt|;
 name|ContentReceiver
 parameter_list|(
 name|NodePath
@@ -1474,6 +1506,9 @@ name|paths
 parameter_list|,
 name|FunctionReference
 name|ref
+parameter_list|,
+name|Sequence
+name|userData
 parameter_list|)
 block|{
 name|this
@@ -1487,6 +1522,12 @@ operator|.
 name|ref
 operator|=
 name|ref
+expr_stmt|;
+name|this
+operator|.
+name|userData
+operator|=
+name|userData
 expr_stmt|;
 block|}
 specifier|protected
@@ -1745,7 +1786,7 @@ init|=
 operator|new
 name|Sequence
 index|[
-literal|1
+literal|2
 index|]
 decl_stmt|;
 name|params
@@ -1754,6 +1795,13 @@ literal|0
 index|]
 operator|=
 name|root
+expr_stmt|;
+name|params
+index|[
+literal|1
+index|]
+operator|=
+name|userData
 expr_stmt|;
 name|FunctionCall
 name|call
