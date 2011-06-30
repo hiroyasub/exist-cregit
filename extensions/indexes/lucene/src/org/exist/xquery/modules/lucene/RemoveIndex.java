@@ -1,8 +1,4 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
-begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * \$Id\$  */
-end_comment
-
 begin_package
 package|package
 name|org
@@ -16,30 +12,6 @@ operator|.
 name|lucene
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|BinaryDocument
-import|;
-end_import
 
 begin_import
 import|import
@@ -278,40 +250,23 @@ end_import
 begin_class
 specifier|public
 class|class
-name|Index
+name|RemoveIndex
 extends|extends
 name|BasicFunction
 block|{
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|Index
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|signature
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"index"
+literal|"remove-index"
 argument_list|,
 name|LuceneModule
 operator|.
@@ -322,7 +277,15 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Index an arbitrary chunk of (non-XML) data with lucene. Syntax is inspired by Solar."
+literal|"Remove any (non-XML) Lucene index associated with the document identified by the "
+operator|+
+literal|"path parameter. This function will only remove indexes which were manually created by "
+operator|+
+literal|"the user via the ft:index function. Indexes defined in collection.xconf will NOT be "
+operator|+
+literal|"removed. They are maintained automatically by the database. Please note that non-XML indexes "
+operator|+
+literal|"will also be removed automatically if the associated document is deleted."
 argument_list|,
 operator|new
 name|SequenceType
@@ -343,46 +306,6 @@ name|ONE
 argument_list|,
 literal|"URI path of document in database."
 argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"solrExression"
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"XML syntax expected by Solr' add expression. Element should be called 'doc', e.g."
-operator|+
-literal|"<doc><field name=\"field1\">data1</field> "
-operator|+
-literal|"<field name=\"field2\" boost=\"value\">data2</field></doc> "
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"close"
-argument_list|,
-name|Type
-operator|.
-name|BOOLEAN
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"If true, close the Lucene document. Subsequent calls to ft:index will thus add to a "
-operator|+
-literal|"new Lucene document. If false, the document remains open and is not flushed to disk. "
-operator|+
-literal|"Call the ft:close function to explicitely close and flush the current document."
-argument_list|)
 block|}
 argument_list|,
 operator|new
@@ -399,55 +322,12 @@ argument_list|,
 literal|""
 argument_list|)
 argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"close"
-argument_list|,
-name|LuceneModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|LuceneModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Close the current Lucene document and flush it to disk. Subsequent calls to "
-operator|+
-literal|"ft:index will write to a new Lucene document."
-argument_list|,
-literal|null
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|EMPTY
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO
-argument_list|,
-literal|""
-argument_list|)
-argument_list|)
-block|}
 decl_stmt|;
-comment|/*      * Constructor      */
 specifier|public
-name|Index
+name|RemoveIndex
 parameter_list|(
 name|XQueryContext
 name|context
-parameter_list|,
-name|FunctionSignature
-name|signature
 parameter_list|)
 block|{
 name|super
@@ -480,36 +360,6 @@ init|=
 literal|null
 decl_stmt|;
 try|try
-block|{
-comment|// Retrieve Lucene
-name|LuceneIndexWorker
-name|index
-init|=
-operator|(
-name|LuceneIndexWorker
-operator|)
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getIndexController
-argument_list|()
-operator|.
-name|getWorkerByIndexId
-argument_list|(
-name|LuceneIndex
-operator|.
-name|ID
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"index"
-argument_list|)
-condition|)
 block|{
 comment|// Get first parameter, this is the document
 name|String
@@ -570,22 +420,27 @@ literal|" does not exist."
 argument_list|)
 throw|;
 block|}
-name|boolean
-name|flush
+comment|// Retrieve Lucene
+name|LuceneIndexWorker
+name|index
 init|=
-name|args
+operator|(
+name|LuceneIndexWorker
+operator|)
+name|context
 operator|.
-name|length
-operator|==
-literal|2
-operator|||
-name|args
-index|[
-literal|2
-index|]
-operator|.
-name|effectiveBooleanValue
+name|getBroker
 argument_list|()
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|getWorkerByIndexId
+argument_list|(
+name|LuceneIndex
+operator|.
+name|ID
+argument_list|)
 decl_stmt|;
 comment|// Note: code order is important here,
 name|index
@@ -596,65 +451,14 @@ name|doc
 argument_list|,
 name|StreamListener
 operator|.
-name|STORE
+name|REMOVE_BINARY
 argument_list|)
 expr_stmt|;
 name|index
 operator|.
-name|setMode
-argument_list|(
-name|StreamListener
-operator|.
-name|STORE
-argument_list|)
-expr_stmt|;
-comment|// Get 'solr' node from second parameter
-name|NodeValue
-name|descriptor
-init|=
-operator|(
-name|NodeValue
-operator|)
-name|args
-index|[
-literal|1
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-comment|// Pas document and index instructions to indexer
-name|index
-operator|.
-name|indexNonXML
-argument_list|(
-name|descriptor
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
 name|flush
-condition|)
-block|{
-comment|// Make sure things are written
-name|index
-operator|.
-name|writeNonXML
 argument_list|()
 expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|// "close"
-name|index
-operator|.
-name|writeNonXML
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -663,13 +467,6 @@ name|ex
 parameter_list|)
 block|{
 comment|// PermissionDeniedException
-name|logger
-operator|.
-name|error
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
