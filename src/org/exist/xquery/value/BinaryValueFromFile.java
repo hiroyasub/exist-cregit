@@ -514,6 +514,19 @@ block|}
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|toJavaObject
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|file
+return|;
+block|}
 block|}
 end_class
 

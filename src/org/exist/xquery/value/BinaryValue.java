@@ -678,6 +678,24 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      *       * @return      * @throws XPathException      */
+specifier|public
+name|Object
+name|toJavaObject
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|toJavaObject
+argument_list|(
+name|byte
+index|[]
+operator|.
+expr|class
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
