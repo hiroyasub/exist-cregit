@@ -52163,6 +52163,10 @@ name|String
 name|name
 init|=
 literal|null
+decl_stmt|,
+name|cname
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -52448,7 +52452,7 @@ argument_list|(
 name|END_TAG_START
 argument_list|)
 expr_stmt|;
-name|name
+name|cname
 operator|=
 name|qName
 argument_list|()
@@ -52514,7 +52518,7 @@ name|qn_AST
 argument_list|,
 literal|"err:XPST0003: Found closing tag without opening tag: "
 operator|+
-name|name
+name|cname
 argument_list|)
 throw|;
 name|String
@@ -52535,7 +52539,7 @@ name|prev
 operator|.
 name|equals
 argument_list|(
-name|name
+name|cname
 argument_list|)
 condition|)
 throw|throw
@@ -52546,7 +52550,7 @@ name|qn_AST
 argument_list|,
 literal|"err:XPST0003: Found closing tag: "
 operator|+
-name|name
+name|cname
 operator|+
 literal|"; expected: "
 operator|+
@@ -52597,7 +52601,7 @@ name|create
 argument_list|(
 name|ELEMENT
 argument_list|,
-name|name
+name|cname
 argument_list|)
 argument_list|)
 operator|.
@@ -52852,6 +52856,10 @@ literal|null
 decl_stmt|;
 name|String
 name|name
+init|=
+literal|null
+decl_stmt|,
+name|cname
 init|=
 literal|null
 decl_stmt|;
@@ -53131,7 +53139,7 @@ argument_list|(
 name|END_TAG_START
 argument_list|)
 expr_stmt|;
-name|name
+name|cname
 operator|=
 name|qName
 argument_list|()
@@ -53197,7 +53205,7 @@ name|qn_AST
 argument_list|,
 literal|"found additional closing tag: "
 operator|+
-name|name
+name|cname
 argument_list|)
 throw|;
 name|String
@@ -53218,7 +53226,7 @@ name|prev
 operator|.
 name|equals
 argument_list|(
-name|name
+name|cname
 argument_list|)
 condition|)
 throw|throw
@@ -53229,7 +53237,7 @@ name|qn_AST
 argument_list|,
 literal|"found closing tag: "
 operator|+
-name|name
+name|cname
 operator|+
 literal|"; expected: "
 operator|+
@@ -53280,7 +53288,7 @@ name|create
 argument_list|(
 name|ELEMENT
 argument_list|,
-name|name
+name|cname
 argument_list|)
 argument_list|)
 operator|.
