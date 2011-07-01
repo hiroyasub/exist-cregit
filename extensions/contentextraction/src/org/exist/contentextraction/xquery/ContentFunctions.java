@@ -676,7 +676,17 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The callback function. Expected signature: callback($node as node())"
+literal|"The callback function. Expected signature: "
+operator|+
+literal|"callback($node as node(), $userData as item()*, $retValue as item()*),"
+operator|+
+literal|"where $node is the currently processed node, $userData contains the data supplied in the "
+operator|+
+literal|"$userData parameter of stream-content, and $retValue is the return value of the previous "
+operator|+
+literal|"call to the callback function. The last two parameters are used for passing information "
+operator|+
+literal|"between the calling function and subsequent invocations of the callback function."
 argument_list|)
 block|,
 operator|new
@@ -1498,6 +1508,14 @@ name|userData
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|Sequence
+name|prevReturnData
+init|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+decl_stmt|;
 name|ContentReceiver
 parameter_list|(
 name|NodePath
@@ -1786,7 +1804,7 @@ init|=
 operator|new
 name|Sequence
 index|[
-literal|2
+literal|3
 index|]
 decl_stmt|;
 name|params
@@ -1802,6 +1820,13 @@ literal|1
 index|]
 operator|=
 name|userData
+expr_stmt|;
+name|params
+index|[
+literal|2
+index|]
+operator|=
+name|prevReturnData
 expr_stmt|;
 name|FunctionCall
 name|call
@@ -1827,6 +1852,10 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+name|prevReturnData
+operator|=
+name|ret
+expr_stmt|;
 name|result
 operator|.
 name|addAll
