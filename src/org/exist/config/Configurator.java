@@ -811,6 +811,7 @@ name|class
 argument_list|)
 condition|)
 block|{
+comment|//XXX: remove? this force to have annotation at superclass
 name|ConfigurationAnnotatedFields
 name|superFields
 init|=
