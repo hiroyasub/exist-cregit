@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: XMLDBIsAuthenticated.java 13941 2011-03-08 17:25:09Z shabanovd $  */
 end_comment
 
 begin_package
@@ -13,7 +13,7 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|xmldb
+name|securitymanager
 package|;
 end_package
 
@@ -162,11 +162,9 @@ comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a> 
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
 specifier|public
 class|class
-name|XMLDBIsAuthenticated
+name|IsExternallyAuthenticated
 extends|extends
 name|BasicFunction
 block|{
@@ -180,7 +178,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|XMLDBIsAuthenticated
+name|IsExternallyAuthenticated
 operator|.
 name|class
 argument_list|)
@@ -197,18 +195,18 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"is-authenticated"
+literal|"is-externally-authenticated"
 argument_list|,
-name|XMLDBModule
+name|SecurityManagerModule
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|XMLDBModule
+name|SecurityManagerModule
 operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the true() if current user from the xquery context is authenticated, false() otherwise."
+literal|"Returns the true() if current account is authenticated by external user, false() otherwise."
 argument_list|,
 literal|null
 argument_list|,
@@ -225,12 +223,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true() if user from the xquery context is authenticated, false() otherwise"
 argument_list|)
-argument_list|,
-literal|"Use sm.is-externally-authenticated() function."
 argument_list|)
 decl_stmt|;
 specifier|public
-name|XMLDBIsAuthenticated
+name|IsExternallyAuthenticated
 parameter_list|(
 name|XQueryContext
 name|context

@@ -109,6 +109,22 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isExternallyAuthenticated
+parameter_list|()
+block|{
+return|return
+operator|!
+operator|(
+name|letterOfCredit
+operator|instanceof
+name|SecurityManagerImpl
+operator|)
+return|;
+block|}
 block|}
 end_class
 

@@ -114,6 +114,18 @@ return|return
 name|authenticated
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isExternallyAuthenticated
+parameter_list|()
+block|{
+return|return
+name|isAuthenticated
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
