@@ -164,6 +164,7 @@ end_comment
 begin_class
 annotation|@
 name|Deprecated
+comment|//remove after 1.6
 specifier|public
 class|class
 name|XMLDBIsAuthenticated

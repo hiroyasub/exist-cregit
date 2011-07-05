@@ -1427,10 +1427,10 @@ extends|extends
 name|Servlet
 argument_list|>
 operator|)
-name|openid
+name|oauth
 argument_list|)
 argument_list|,
-literal|"/oauth"
+literal|"/oauth/*"
 argument_list|)
 expr_stmt|;
 name|String
