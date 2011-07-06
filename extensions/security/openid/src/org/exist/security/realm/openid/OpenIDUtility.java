@@ -61,6 +61,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SchemaType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Subject
 import|;
 end_import
@@ -304,7 +316,7 @@ literal|", "
 decl_stmt|;
 for|for
 control|(
-name|AXSchemaType
+name|SchemaType
 name|metadataKey
 range|:
 name|principal

@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SchemaType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -730,7 +742,7 @@ argument_list|)
 decl_stmt|;
 name|Set
 argument_list|<
-name|AXSchemaType
+name|SchemaType
 argument_list|>
 name|metadataKeys
 init|=
@@ -753,8 +765,8 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
-name|AXSchemaType
-name|axSchemaType
+name|SchemaType
+name|schemaType
 range|:
 name|metadataKeys
 control|)
@@ -766,7 +778,7 @@ argument_list|(
 operator|new
 name|AnyURIValue
 argument_list|(
-name|axSchemaType
+name|schemaType
 operator|.
 name|getNamespace
 argument_list|()

@@ -631,8 +631,8 @@ specifier|public
 name|String
 name|getMetadataValue
 parameter_list|(
-name|AXSchemaType
-name|axSchemaType
+name|SchemaType
+name|schemaType
 parameter_list|)
 block|{
 return|return
@@ -640,7 +640,7 @@ name|account
 operator|.
 name|getMetadataValue
 argument_list|(
-name|axSchemaType
+name|schemaType
 argument_list|)
 return|;
 block|}
@@ -650,8 +650,8 @@ specifier|public
 name|void
 name|setMetadataValue
 parameter_list|(
-name|AXSchemaType
-name|axSchemaType
+name|SchemaType
+name|schemaType
 parameter_list|,
 name|String
 name|value
@@ -661,7 +661,7 @@ name|account
 operator|.
 name|setMetadataValue
 argument_list|(
-name|axSchemaType
+name|schemaType
 argument_list|,
 name|value
 argument_list|)
@@ -672,7 +672,7 @@ name|Override
 specifier|public
 name|Set
 argument_list|<
-name|AXSchemaType
+name|SchemaType
 argument_list|>
 name|getMetadataKeys
 parameter_list|()

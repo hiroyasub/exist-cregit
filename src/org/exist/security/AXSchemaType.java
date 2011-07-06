@@ -21,6 +21,8 @@ begin_enum
 specifier|public
 enum|enum
 name|AXSchemaType
+implements|implements
+name|SchemaType
 block|{
 name|ALIAS_USERNAME
 argument_list|(

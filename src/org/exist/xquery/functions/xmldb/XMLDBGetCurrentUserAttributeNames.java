@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|AXSchemaType
+name|SchemaType
 import|;
 end_import
 
@@ -193,7 +193,7 @@ name|XPathException
 block|{
 name|Set
 argument_list|<
-name|AXSchemaType
+name|SchemaType
 argument_list|>
 name|values
 init|=
@@ -214,7 +214,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|AXSchemaType
+name|SchemaType
 name|value
 range|:
 name|values

@@ -169,6 +169,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SchemaType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -308,18 +320,6 @@ operator|.
 name|http
 operator|.
 name|HttpServletRequest
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|AXSchemaType
 import|;
 end_import
 
@@ -796,7 +796,7 @@ expr_stmt|;
 comment|//copy metadata
 for|for
 control|(
-name|AXSchemaType
+name|SchemaType
 name|metadataKey
 range|:
 name|from_user
@@ -989,7 +989,7 @@ expr_stmt|;
 comment|//copy metadata
 for|for
 control|(
-name|AXSchemaType
+name|SchemaType
 name|metadataKey
 range|:
 name|from_user
