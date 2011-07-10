@@ -100,6 +100,17 @@ specifier|public
 name|Account
 name|getAccount
 parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
+annotation|@
+name|Deprecated
+comment|//use getAccount(String name)
+specifier|public
+name|Account
+name|getAccount
+parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
@@ -127,6 +138,23 @@ specifier|public
 name|boolean
 name|updateAccount
 parameter_list|(
+name|Account
+name|account
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+throws|,
+name|ConfigurationException
+function_decl|;
+annotation|@
+name|Deprecated
+comment|//use updateAccount(Account account)
+specifier|public
+name|boolean
+name|updateAccount
+parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
@@ -144,9 +172,6 @@ specifier|public
 name|boolean
 name|deleteAccount
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|Account
 name|account
 parameter_list|)

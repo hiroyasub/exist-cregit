@@ -4172,7 +4172,6 @@ argument_list|(
 name|user
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -4184,13 +4183,10 @@ argument_list|,
 literal|"you are not allowed to remove users"
 argument_list|)
 throw|;
-block|}
 name|sm
 operator|.
 name|deleteAccount
 argument_list|(
-name|user
-argument_list|,
 name|u
 argument_list|)
 expr_stmt|;

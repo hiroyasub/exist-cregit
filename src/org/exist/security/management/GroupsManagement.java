@@ -100,6 +100,17 @@ specifier|public
 name|Group
 name|getGroup
 parameter_list|(
+name|String
+name|name
+parameter_list|)
+function_decl|;
+annotation|@
+name|Deprecated
+comment|//use getGroup(String name)
+specifier|public
+name|Group
+name|getGroup
+parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
@@ -123,6 +134,23 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|updateGroup
+parameter_list|(
+name|Group
+name|group
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+throws|,
+name|ConfigurationException
+function_decl|;
+annotation|@
+name|Deprecated
+comment|//use updateGroup(Group group)
 specifier|public
 name|boolean
 name|updateGroup

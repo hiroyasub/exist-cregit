@@ -2958,9 +2958,6 @@ specifier|public
 name|boolean
 name|deleteAccount
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|Account
 name|account
 parameter_list|)

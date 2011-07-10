@@ -727,9 +727,6 @@ name|metadata
 operator|.
 name|put
 argument_list|(
-operator|(
-name|AXSchemaType
-operator|)
 name|schemaType
 argument_list|,
 name|value
