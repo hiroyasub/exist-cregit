@@ -363,9 +363,6 @@ parameter_list|>
 name|void
 name|deleteAccount
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|A
 name|user
 parameter_list|)
@@ -598,11 +595,11 @@ name|iD
 parameter_list|)
 function_decl|;
 comment|//session manager part
-name|String
+name|void
 name|registerSession
 parameter_list|(
-name|Subject
-name|subject
+name|Session
+name|session
 parameter_list|)
 function_decl|;
 name|Subject

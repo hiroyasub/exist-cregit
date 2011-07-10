@@ -47,6 +47,11 @@ name|String
 name|getSessionId
 parameter_list|()
 function_decl|;
+specifier|public
+name|Session
+name|getSession
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
