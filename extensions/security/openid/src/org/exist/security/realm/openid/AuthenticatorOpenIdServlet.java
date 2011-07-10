@@ -2196,6 +2196,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//update metadata
+name|OpenIDRealm
+operator|.
+name|instance
+operator|.
+name|updateAccount
+argument_list|(
+name|principal
+argument_list|)
+expr_stmt|;
 name|OpenIDUtility
 operator|.
 name|registerUser
