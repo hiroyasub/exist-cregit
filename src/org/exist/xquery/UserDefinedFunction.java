@@ -1040,6 +1040,16 @@ operator|=
 name|call
 expr_stmt|;
 block|}
+specifier|protected
+name|Sequence
+index|[]
+name|getCurrentArguments
+parameter_list|()
+block|{
+return|return
+name|currentArguments
+return|;
+block|}
 block|}
 end_class
 

@@ -148,6 +148,10 @@ block|,
 name|TransformTest
 operator|.
 name|class
+block|,
+name|DeferredFunctionCallTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
