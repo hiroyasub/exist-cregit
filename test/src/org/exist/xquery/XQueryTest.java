@@ -8456,7 +8456,7 @@ argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
-literal|"<div xmlns='http://www.w3.org/1999/xhtml'><a href='#'>Link</a></div>"
+literal|"<div xmlns='http://www.w3.org/1999/xhtml'><a xmlns=\"\" href='#'>Link</a></div>"
 argument_list|,
 name|result
 operator|.
@@ -18777,7 +18777,7 @@ name|query
 argument_list|,
 literal|"<html xmlns=\"http://www.w3.org/1999/xhtml\">"
 operator|+
-literal|"<ul class=\"a\"/></html>"
+literal|"<ul xmlns=\"\" class=\"a\"/></html>"
 argument_list|,
 name|result
 operator|.

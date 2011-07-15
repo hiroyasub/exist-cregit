@@ -1367,6 +1367,13 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|pushInScopeNamespaces
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if
@@ -1542,6 +1549,11 @@ throw|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
 name|context
 operator|.
 name|popLocalVariables
