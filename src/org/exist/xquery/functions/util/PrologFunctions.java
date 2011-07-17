@@ -628,6 +628,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|saveState
+argument_list|()
+expr_stmt|;
 name|String
 name|prefix
 decl_stmt|;
@@ -688,6 +693,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|saveState
+argument_list|()
+expr_stmt|;
 name|String
 name|uri
 init|=
