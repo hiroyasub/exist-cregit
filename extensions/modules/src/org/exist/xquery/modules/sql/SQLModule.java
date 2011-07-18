@@ -91,16 +91,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -124,6 +114,20 @@ operator|.
 name|Map
 operator|.
 name|Entry
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|modules
+operator|.
+name|ModuleUtils
 import|;
 end_import
 
@@ -419,7 +423,6 @@ return|;
 block|}
 comment|/**      * Retrieves a previously stored Connection from the Context of an XQuery.      *      * @param   context        The Context of the XQuery containing the Connection      * @param   connectionUID  The UID of the Connection to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
 specifier|public
-specifier|final
 specifier|static
 name|Connection
 name|retrieveConnection
@@ -432,7 +435,8 @@ name|connectionUID
 parameter_list|)
 block|{
 return|return
-operator|(
+name|ModuleUtils
+operator|.
 name|retrieveObjectFromContextMap
 argument_list|(
 name|context
@@ -443,12 +447,10 @@ name|CONNECTIONS_CONTEXTVAR
 argument_list|,
 name|connectionUID
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the Connection in      * @param   con      The connection to store      *      * @return  A unique ID representing the connection      */
 specifier|public
-specifier|final
 specifier|static
 specifier|synchronized
 name|long
@@ -462,7 +464,8 @@ name|con
 parameter_list|)
 block|{
 return|return
-operator|(
+name|ModuleUtils
+operator|.
 name|storeObjectInContextMap
 argument_list|(
 name|context
@@ -473,12 +476,10 @@ name|CONNECTIONS_CONTEXTVAR
 argument_list|,
 name|con
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Retrieves a previously stored PreparedStatement from the Context of an XQuery.      *      * @param   context               The Context of the XQuery containing the PreparedStatement      * @param   preparedStatementUID  The UID of the PreparedStatement to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
 specifier|public
-specifier|final
 specifier|static
 name|PreparedStatementWithSQL
 name|retrievePreparedStatement
@@ -491,7 +492,8 @@ name|preparedStatementUID
 parameter_list|)
 block|{
 return|return
-operator|(
+name|ModuleUtils
+operator|.
 name|retrieveObjectFromContextMap
 argument_list|(
 name|context
@@ -502,12 +504,10 @@ name|PREPARED_STATEMENTS_CONTEXTVAR
 argument_list|,
 name|preparedStatementUID
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/**      * Stores a PreparedStatement in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the PreparedStatement in      * @param   stmt     preparedStatement The PreparedStatement to store      *      * @return  A unique ID representing the PreparedStatement      */
 specifier|public
-specifier|final
 specifier|static
 specifier|synchronized
 name|long
@@ -521,7 +521,8 @@ name|stmt
 parameter_list|)
 block|{
 return|return
-operator|(
+name|ModuleUtils
+operator|.
 name|storeObjectInContextMap
 argument_list|(
 name|context
@@ -532,173 +533,39 @@ name|PREPARED_STATEMENTS_CONTEXTVAR
 argument_list|,
 name|stmt
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * Retrieves a previously stored Object from the Context of an XQuery.      *      * @param   context         The Context of the XQuery containing the Object      * @param   contextMapName  DOCUMENT ME!      * @param   objectUID       The UID of the Object to retrieve from the Context of the XQuery      *      * @return  DOCUMENT ME!      */
-specifier|private
-specifier|static
-parameter_list|<
-name|T
-parameter_list|>
-name|T
-name|retrieveObjectFromContextMap
+comment|/**      * Resets the Module Context and closes any DB connections for the XQueryContext.      *      * @param  xqueryContext  The XQueryContext      */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|reset
 parameter_list|(
 name|XQueryContext
-name|context
-parameter_list|,
-name|String
-name|contextMapName
-parameter_list|,
-name|long
-name|objectUID
+name|xqueryContext
 parameter_list|)
 block|{
-comment|// get the existing connections map from the context
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
-name|map
-init|=
-operator|(
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
-operator|)
-name|context
+comment|// reset the module context
+name|super
 operator|.
-name|getXQueryContextVar
+name|reset
 argument_list|(
-name|contextMapName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|map
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-operator|(
-literal|null
-operator|)
-return|;
-block|}
-comment|// get the connection
-return|return
-operator|(
-name|map
-operator|.
-name|get
-argument_list|(
-name|objectUID
-argument_list|)
-operator|)
-return|;
-block|}
-comment|/**      * Stores an Object in the Context of an XQuery.      *      * @param   context         The Context of the XQuery to store the Object in      * @param   contextMapName  The name of the context map      * @param   o               The Object to store      *      * @return  A unique ID representing the Object      */
-specifier|private
-specifier|static
-specifier|synchronized
-parameter_list|<
-name|T
-parameter_list|>
-name|long
-name|storeObjectInContextMap
-parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
-name|String
-name|contextMapName
-parameter_list|,
-name|T
-name|o
-parameter_list|)
-block|{
-comment|// get the existing map from the context
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
-name|map
-init|=
-operator|(
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
-operator|)
-name|context
-operator|.
-name|getXQueryContextVar
-argument_list|(
-name|contextMapName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|map
-operator|==
-literal|null
-condition|)
-block|{
-comment|// if there is no map, create a new one
-name|map
-operator|=
-operator|new
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|T
-argument_list|>
-argument_list|()
-expr_stmt|;
-block|}
-comment|// get an id for the map
-name|long
-name|uid
-init|=
-name|getUID
-argument_list|()
-decl_stmt|;
-comment|// place the object in the map
-name|map
-operator|.
-name|put
-argument_list|(
-name|uid
-argument_list|,
-name|o
+name|xqueryContext
 argument_list|)
 expr_stmt|;
-comment|// store the map back in the context
-name|context
-operator|.
-name|setXQueryContextVar
+comment|// close any open PreparedStatements
+name|closeAllPreparedStatements
 argument_list|(
-name|contextMapName
-argument_list|,
-name|map
+name|xqueryContext
 argument_list|)
 expr_stmt|;
-return|return
-operator|(
-name|uid
-operator|)
-return|;
+comment|// close any open Connections
+name|closeAllConnections
+argument_list|(
+name|xqueryContext
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Closes all the open DB Connections for the specified XQueryContext.      *      * @param  xqueryContext  The context to close JDBC Connections for      */
 specifier|private
@@ -711,7 +578,7 @@ name|xqueryContext
 parameter_list|)
 block|{
 comment|// get the existing Connections map from the context
-name|HashMap
+name|Map
 argument_list|<
 name|Long
 argument_list|,
@@ -719,18 +586,12 @@ name|Connection
 argument_list|>
 name|connections
 init|=
-operator|(
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|Connection
-argument_list|>
-operator|)
-name|xqueryContext
+name|ModuleUtils
 operator|.
-name|getXQueryContextVar
+name|retrieveContextMap
 argument_list|(
+name|xqueryContext
+argument_list|,
 name|SQLModule
 operator|.
 name|CONNECTIONS_CONTEXTVAR
@@ -809,10 +670,12 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|// update the context
-name|xqueryContext
+name|ModuleUtils
 operator|.
-name|setXQueryContextVar
+name|storeContextMap
 argument_list|(
+name|xqueryContext
+argument_list|,
 name|SQLModule
 operator|.
 name|CONNECTIONS_CONTEXTVAR
@@ -833,7 +696,7 @@ name|xqueryContext
 parameter_list|)
 block|{
 comment|// get the existing PreparedStatements map from the context
-name|HashMap
+name|Map
 argument_list|<
 name|Long
 argument_list|,
@@ -841,18 +704,12 @@ name|PreparedStatementWithSQL
 argument_list|>
 name|preparedStatements
 init|=
-operator|(
-name|HashMap
-argument_list|<
-name|Long
-argument_list|,
-name|PreparedStatementWithSQL
-argument_list|>
-operator|)
-name|xqueryContext
+name|ModuleUtils
 operator|.
-name|getXQueryContextVar
+name|retrieveContextMap
 argument_list|(
+name|xqueryContext
+argument_list|,
 name|SQLModule
 operator|.
 name|PREPARED_STATEMENTS_CONTEXTVAR
@@ -934,10 +791,12 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|// update the context
-name|xqueryContext
+name|ModuleUtils
 operator|.
-name|setXQueryContextVar
+name|storeContextMap
 argument_list|(
+name|xqueryContext
+argument_list|,
 name|SQLModule
 operator|.
 name|PREPARED_STATEMENTS_CONTEXTVAR
@@ -946,53 +805,6 @@ name|preparedStatements
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/**      * Returns a Unique ID based on the System Time.      *      * @return  The Unique ID      */
-specifier|private
-specifier|static
-specifier|synchronized
-name|long
-name|getUID
-parameter_list|()
-block|{
-return|return
-operator|(
-name|currentUID
-operator|++
-operator|)
-return|;
-block|}
-comment|/**      * Resets the Module Context and closes any DB connections for the XQueryContext.      *      * @param  xqueryContext  The XQueryContext      */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|reset
-parameter_list|(
-name|XQueryContext
-name|xqueryContext
-parameter_list|)
-block|{
-comment|// reset the module context
-name|super
-operator|.
-name|reset
-argument_list|(
-name|xqueryContext
-argument_list|)
-expr_stmt|;
-comment|// close any open PreparedStatements
-name|closeAllPreparedStatements
-argument_list|(
-name|xqueryContext
-argument_list|)
-expr_stmt|;
-comment|// close any open Connections
-name|closeAllConnections
-argument_list|(
-name|xqueryContext
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

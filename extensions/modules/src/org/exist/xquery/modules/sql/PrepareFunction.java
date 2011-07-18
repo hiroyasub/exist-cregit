@@ -279,7 +279,7 @@ literal|"handle"
 argument_list|,
 name|Type
 operator|.
-name|INTEGER
+name|LONG
 argument_list|,
 name|Cardinality
 operator|.
