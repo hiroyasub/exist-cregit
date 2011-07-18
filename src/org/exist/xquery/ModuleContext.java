@@ -1934,6 +1934,24 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|saveState
+parameter_list|()
+block|{
+name|super
+operator|.
+name|saveState
+argument_list|()
+expr_stmt|;
+name|parentContext
+operator|.
+name|saveState
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
