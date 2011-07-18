@@ -688,6 +688,32 @@ name|collectionURI
 operator|.
 name|startsWith
 argument_list|(
+literal|"xmldb:exist://embedded-eXist-server"
+argument_list|)
+condition|)
+block|{
+comment|// Must be a LOCAL collection
+name|collection
+operator|=
+name|createLocalCollection
+argument_list|(
+name|collectionURI
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"xmldb:exist://embedded-eXist-server"
+argument_list|,
+literal|""
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|collectionURI
+operator|.
+name|startsWith
+argument_list|(
 literal|"xmldb:exist://localhost"
 argument_list|)
 condition|)
