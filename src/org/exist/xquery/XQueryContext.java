@@ -6559,11 +6559,20 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"XQST0045: function is in the forbidden namespace '"
+name|function
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQST0045
+argument_list|,
+literal|"Function '"
+operator|+
+name|name
+operator|+
+literal|"' is in the forbidden namespace '"
 operator|+
 name|Namespaces
 operator|.
@@ -6571,7 +6580,6 @@ name|XML_NS
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -6590,11 +6598,20 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"XQST0045: function is in the forbidden namespace '"
+name|function
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQST0045
+argument_list|,
+literal|"Function '"
+operator|+
+name|name
+operator|+
+literal|"' is in the forbidden namespace '"
 operator|+
 name|Namespaces
 operator|.
@@ -6602,7 +6619,6 @@ name|SCHEMA_NS
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -6621,11 +6637,20 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"XQST0045: function is in the forbidden namespace '"
+name|function
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQST0045
+argument_list|,
+literal|"Function '"
+operator|+
+name|name
+operator|+
+literal|"' is in the forbidden namespace '"
 operator|+
 name|Namespaces
 operator|.
@@ -6633,7 +6658,6 @@ name|SCHEMA_INSTANCE_NS
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -6652,11 +6676,20 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"XQST0045: function is in the forbidden namespace '"
+name|function
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQST0045
+argument_list|,
+literal|"Function '"
+operator|+
+name|name
+operator|+
+literal|"' is in the forbidden namespace '"
 operator|+
 name|Namespaces
 operator|.
@@ -6664,7 +6697,6 @@ name|XPATH_FUNCTIONS_NS
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -6681,13 +6713,21 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0060: every declared function name must have a non-null namespace URI"
+name|function
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQST0060
+argument_list|,
+literal|"Every declared function name must have a non-null namespace URI, but function '"
+operator|+
+name|name
+operator|+
+literal|"' does not meet this requirement."
 argument_list|)
-operator|)
 throw|;
 block|}
 name|declaredFunctions
