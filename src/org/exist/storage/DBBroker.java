@@ -924,6 +924,18 @@ name|int
 name|lockMode
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findCollectionsMatching
+parameter_list|(
+name|String
+name|regexp
+parameter_list|)
+function_decl|;
 comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *       * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public Collection getOrCreateCollection(Txn transaction, String name)      * throws PermissionDeniedException { return null; }      */
 comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *       * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param uri The collection's URI      * @return The collection or<code>null</code> if no collection matches the path      * @throws PermissionDeniedException      * @throws IOException      * @throws TriggerException       */
 specifier|public
