@@ -1894,7 +1894,7 @@ argument_list|,
 literal|"It is a an error if a parameter value is invalid for the defined domain."
 argument_list|)
 decl_stmt|;
-comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][FO][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
+comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
 name|ErrorCode
@@ -1911,19 +1911,6 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|ErrorCode
-name|EXISTD0001
-init|=
-operator|new
-name|ErrorCode
-argument_list|(
-literal|"EXISTD0001"
-argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
-name|ErrorCode
 name|EXXQDY0002
 init|=
 operator|new
@@ -1932,6 +1919,48 @@ argument_list|(
 literal|"EXXQDY0002"
 argument_list|,
 literal|"Error parsing XML."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|EXXQDY0003
+init|=
+operator|new
+name|EXistErrorCode
+argument_list|(
+literal|"EXXQDY0003"
+argument_list|,
+literal|"Only Supported for xquery version \"3.0\" and later."
+argument_list|)
+decl_stmt|;
+comment|/**      * EXPATH specific errors [EXP][DY|SE|ST][nnnn]      *       * EXP = EXPath      * DY = Dynamic      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCode
+name|EXPDY001
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH001"
+argument_list|,
+literal|"Package not found."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCode
+name|EXPDY002
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH002"
+argument_list|,
+literal|"Bad collection URI."
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -2060,7 +2089,7 @@ name|W3CErrorCode
 extends|extends
 name|ErrorCode
 block|{
-specifier|public
+specifier|private
 name|W3CErrorCode
 parameter_list|(
 name|String
@@ -2098,7 +2127,7 @@ name|EXistErrorCode
 extends|extends
 name|ErrorCode
 block|{
-specifier|public
+specifier|private
 name|EXistErrorCode
 parameter_list|(
 name|String
@@ -2122,6 +2151,44 @@ argument_list|,
 name|Namespaces
 operator|.
 name|EXIST_XQUERY_XPATH_ERROR_PREFIX
+argument_list|)
+argument_list|,
+name|description
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+specifier|public
+specifier|static
+class|class
+name|EXPathErrorCode
+extends|extends
+name|ErrorCode
+block|{
+specifier|private
+name|EXPathErrorCode
+parameter_list|(
+name|String
+name|code
+parameter_list|,
+name|String
+name|description
+parameter_list|)
+block|{
+name|super
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+name|code
+argument_list|,
+name|Namespaces
+operator|.
+name|EXPATH_ERROR_NS
+argument_list|,
+name|Namespaces
+operator|.
+name|EXPATH_ERROR_PREFIX
 argument_list|)
 argument_list|,
 name|description

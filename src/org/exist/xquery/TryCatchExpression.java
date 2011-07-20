@@ -453,31 +453,17 @@ operator|<
 literal|30
 condition|)
 block|{
-name|ErrorCode
-name|ec
-init|=
-operator|new
-name|EXistErrorCode
-argument_list|(
-literal|"EXXQDY0002"
-argument_list|,
-literal|"The try-catch expression is supported "
-operator|+
-literal|"for xquery version \"3.0\" and later."
-argument_list|)
-decl_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|ec
+name|this
 argument_list|,
-name|ec
+name|ErrorCodes
 operator|.
-name|getDescription
-argument_list|()
+name|EXXQDY0003
 argument_list|,
-literal|null
+literal|"The try-catch expression is supported for xquery version \"3.0\" and later."
 argument_list|)
 throw|;
 block|}

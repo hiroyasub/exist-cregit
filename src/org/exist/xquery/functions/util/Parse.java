@@ -336,20 +336,6 @@ name|Parse
 extends|extends
 name|BasicFunction
 block|{
-specifier|public
-specifier|static
-specifier|final
-name|ErrorCode
-name|EXUTLPARSE001
-init|=
-operator|new
-name|EXistErrorCode
-argument_list|(
-literal|"EXUTLPARSE001"
-argument_list|,
-literal|"Error parsing XML."
-argument_list|)
-decl_stmt|;
 specifier|protected
 specifier|static
 specifier|final
@@ -767,7 +753,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|EXUTLPARSE001
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
 argument_list|,
 literal|"Error while constructing XML parser: "
 operator|+
@@ -775,6 +763,13 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -811,7 +806,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|EXUTLPARSE001
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
 argument_list|,
 literal|"Error while parsing XML: "
 operator|+
@@ -819,6 +816,13 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -866,7 +870,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|EXUTLPARSE001
+name|ErrorCodes
+operator|.
+name|EXXQDY0002
 argument_list|,
 name|report
 operator|.

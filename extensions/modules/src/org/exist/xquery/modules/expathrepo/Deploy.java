@@ -1275,9 +1275,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ExpathPackageModule
+name|ErrorCodes
 operator|.
-name|EXPATH001
+name|EXPDY001
 argument_list|,
 literal|"Package "
 operator|+
@@ -1478,11 +1478,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ExpathPackageModule
+name|ErrorCodes
 operator|.
-name|EXPATH002
+name|EXPDY002
 argument_list|,
-literal|"Bad collection URI passed as parameter: "
+literal|"Bad collection URI: "
 operator|+
 name|args
 index|[
@@ -1491,6 +1491,13 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|,
+name|args
+index|[
+literal|1
+index|]
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1540,9 +1547,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ExpathPackageModule
+name|ErrorCodes
 operator|.
-name|EXPATH002
+name|EXPDY002
 argument_list|,
 literal|"Bad collection URI for<target> element: "
 operator|+
@@ -1550,6 +1557,13 @@ name|target
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

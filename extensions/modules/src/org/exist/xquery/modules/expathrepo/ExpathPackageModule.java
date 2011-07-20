@@ -147,34 +147,6 @@ name|RELEASED_IN_VERSION
 init|=
 literal|"eXist-1.5"
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|ErrorCode
-name|EXPATH001
-init|=
-operator|new
-name|EXistErrorCode
-argument_list|(
-literal|"EXPATH001"
-argument_list|,
-literal|"Package not found."
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|ErrorCode
-name|EXPATH002
-init|=
-operator|new
-name|EXistErrorCode
-argument_list|(
-literal|"EXPATH002"
-argument_list|,
-literal|"Bad collection URI."
-argument_list|)
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
