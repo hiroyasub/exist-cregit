@@ -640,6 +640,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+comment|//TODO This check should not even be here! Its up to the database to refuse access not requesting source
 if|if
 condition|(
 operator|!
