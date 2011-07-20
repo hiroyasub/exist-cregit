@@ -2053,6 +2053,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|innerContext
 decl_stmt|;
@@ -2109,6 +2110,7 @@ argument_list|)
 expr_stmt|;
 comment|//innerContext = context;
 block|}
+comment|//set module load path
 if|if
 condition|(
 name|Type
@@ -2148,6 +2150,12 @@ condition|)
 block|{
 name|uri
 operator|=
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI
+operator|.
+name|append
+argument_list|(
 operator|(
 operator|(
 name|XmldbURI
@@ -2157,12 +2165,13 @@ operator|)
 operator|.
 name|removeLastSegment
 argument_list|()
+argument_list|)
 operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-comment|//			} else if (key instanceof URL) {
-comment|//        		TODO: uri = ((URL) key).getParent()
+comment|//          } else if (key instanceof URL) {
+comment|//              TODO: uri = ((URL) key).getParent()
 block|}
 if|else if
 condition|(
@@ -2197,6 +2206,7 @@ name|uri
 operator|!=
 literal|null
 condition|)
+block|{
 name|innerContext
 operator|.
 name|setModuleLoadPath
@@ -2204,6 +2214,7 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//bind external vars?
 if|if
