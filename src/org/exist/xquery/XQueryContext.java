@@ -9289,20 +9289,63 @@ name|XPathException
 block|{
 if|if
 condition|(
-literal|""
+name|prefix
+operator|!=
+literal|null
+operator|&&
+operator|(
+name|prefix
 operator|.
 name|equals
 argument_list|(
-name|namespaceURI
+literal|"xml"
 argument_list|)
+operator|||
+name|prefix
+operator|.
+name|equals
+argument_list|(
+literal|"xmlns"
+argument_list|)
+operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0088: The first URILiteral in a module import must be of nonzero length."
+name|ErrorCodes
+operator|.
+name|XQST0070
+argument_list|,
+literal|"The prefix declared for a module import must not be 'xml' or 'xmlns'."
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|namespaceURI
+operator|!=
+literal|null
+operator|&&
+name|namespaceURI
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XQST0088
+argument_list|,
+literal|"The first URILiteral in a module import must be of nonzero length."
+argument_list|)
+throw|;
+block|}
 name|Module
 name|module
 init|=
@@ -9557,17 +9600,19 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"source for module "
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
+literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" not found in database"
+literal|" does not refer to anything."
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -9599,19 +9644,19 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"source for module "
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
+literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" is not an XQuery or "
-operator|+
-literal|"declares a wrong mime-type"
+literal|" does not refer to an XQuery."
 argument_list|)
-operator|)
 throw|;
 block|}
 name|moduleSource
@@ -9652,15 +9697,21 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"permission denied to read module source from "
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
+literal|"Permission denied to read module source from location hint URI '"
 operator|+
 name|location
+operator|+
+literal|"."
+argument_list|,
+name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 finally|finally
@@ -9694,18 +9745,21 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|e
+name|ErrorCodes
 operator|.
-name|getMessage
-argument_list|()
+name|XQST0059
+argument_list|,
+literal|"Invalid module location hint URI '"
+operator|+
+name|location
+operator|+
+literal|"."
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -9739,22 +9793,21 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"source location for module "
-operator|+
-name|namespaceURI
-operator|+
-literal|" should be a valid URL: "
-operator|+
-name|e
+name|ErrorCodes
 operator|.
-name|getMessage
-argument_list|()
+name|XQST0059
+argument_list|,
+literal|"Invalid module location hint URI '"
+operator|+
+name|location
+operator|+
+literal|"."
+argument_list|,
+name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -9764,26 +9817,25 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"source for module '"
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
+literal|"Source for module '"
 operator|+
 name|namespaceURI
 operator|+
-literal|"' not found at '"
+literal|"' not found module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"': "
-operator|+
+literal|"."
+argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -9793,26 +9845,21 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"Permission denied to access module '"
-operator|+
-name|namespaceURI
-operator|+
-literal|"' at '"
+name|ErrorCodes
+operator|.
+name|XQST0059
+argument_list|,
+literal|"Permission denied to read module source from location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"': "
-operator|+
+literal|"."
+argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|// we don't know if the module will get returned, oh well
