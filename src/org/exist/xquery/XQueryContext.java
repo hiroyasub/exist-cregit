@@ -1506,7 +1506,7 @@ name|baseURISetInProlog
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
+specifier|private
 name|String
 name|moduleLoadPath
 init|=
@@ -8610,6 +8610,8 @@ name|setInProlog
 expr_stmt|;
 block|}
 comment|/**      * Set the path to a base directory where modules should be loaded from. Relative module paths will be resolved against this directory. The      * property is usually set by the XQueryServlet or XQueryGenerator, but can also be specified manually.      *      * @param  path      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setModuleLoadPath
@@ -8625,15 +8627,15 @@ operator|=
 name|path
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getModuleLoadPath
 parameter_list|()
 block|{
 return|return
-operator|(
 name|moduleLoadPath
-operator|)
 return|;
 block|}
 comment|/**      * The method<code>isBaseURIDeclared.</code>      *      * @return  a<code>boolean</code> value      */
