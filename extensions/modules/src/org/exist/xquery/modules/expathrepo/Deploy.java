@@ -1275,7 +1275,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ErrorCodes
+name|EXPathErrorCode
 operator|.
 name|EXPDY001
 argument_list|,
@@ -1478,7 +1478,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ErrorCodes
+name|EXPathErrorCode
 operator|.
 name|EXPDY002
 argument_list|,
@@ -1547,7 +1547,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ErrorCodes
+name|EXPathErrorCode
 operator|.
 name|EXPDY002
 argument_list|,
