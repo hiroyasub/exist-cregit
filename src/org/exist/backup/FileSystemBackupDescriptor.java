@@ -468,27 +468,12 @@ literal|null
 condition|)
 block|{
 name|File
-name|parentDir
-init|=
-name|dir
-operator|.
-name|getParentFile
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|parentDir
-operator|!=
-literal|null
-condition|)
-block|{
-name|File
 name|propFile
 init|=
 operator|new
 name|File
 argument_list|(
-name|parentDir
+name|dir
 argument_list|,
 name|BACKUP_PROPERTIES
 argument_list|)
@@ -546,7 +531,6 @@ name|e
 parameter_list|)
 block|{
 comment|// do nothing, return null
-block|}
 block|}
 block|}
 return|return
