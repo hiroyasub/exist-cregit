@@ -115,7 +115,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Date
+name|Calendar
 import|;
 end_import
 
@@ -125,7 +125,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
+name|Date
 import|;
 end_import
 
@@ -185,7 +185,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|SimpleDateFormat
@@ -194,11 +194,7 @@ init|=
 operator|new
 name|SimpleDateFormat
 argument_list|(
-literal|"yyMMdd-HHmmss"
-argument_list|,
-name|Locale
-operator|.
-name|US
+literal|"yyyyMMddHHmmssS"
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -394,8 +390,12 @@ name|creationDateFormat
 operator|.
 name|format
 argument_list|(
-operator|new
-name|Date
+name|Calendar
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getTime
 argument_list|()
 argument_list|)
 decl_stmt|;
