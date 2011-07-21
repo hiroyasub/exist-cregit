@@ -224,6 +224,14 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
+name|int
+name|ZIP_OPT
+init|=
+literal|'z'
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|CLOptionDescriptor
 index|[]
 name|OPTIONS
@@ -318,6 +326,20 @@ argument_list|,
 name|INCREMENTAL_OPT
 argument_list|,
 literal|"create incremental backup (use with --export|-x)"
+argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"zip"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_DISALLOWED
+argument_list|,
+name|ZIP_OPT
+argument_list|,
+literal|"write output to a ZIP instead of a file system directory"
 argument_list|)
 block|}
 decl_stmt|;
@@ -497,6 +519,11 @@ name|direct
 init|=
 literal|false
 decl_stmt|;
+name|boolean
+name|zip
+init|=
+literal|false
+decl_stmt|;
 name|String
 name|exportTarget
 init|=
@@ -633,6 +660,16 @@ name|INCREMENTAL_OPT
 case|:
 block|{
 name|incremental
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+case|case
+name|ZIP_OPT
+case|:
+block|{
+name|zip
 operator|=
 literal|true
 expr_stmt|;

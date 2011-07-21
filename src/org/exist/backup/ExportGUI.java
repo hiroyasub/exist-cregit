@@ -316,6 +316,14 @@ operator|.
 name|swing
 operator|.
 name|JCheckBox
+name|zipBtn
+decl_stmt|;
+specifier|private
+name|javax
+operator|.
+name|swing
+operator|.
+name|JCheckBox
 name|incrementalBtn
 decl_stmt|;
 specifier|private
@@ -818,6 +826,14 @@ operator|new
 name|JCheckBox
 argument_list|(
 literal|"Direct access"
+argument_list|)
+expr_stmt|;
+name|zipBtn
+operator|=
+operator|new
+name|JCheckBox
+argument_list|(
+literal|"Create ZIP"
 argument_list|)
 expr_stmt|;
 name|outputDir
@@ -1534,6 +1550,13 @@ operator|.
 name|add
 argument_list|(
 name|directAccessBtn
+argument_list|)
+expr_stmt|;
+name|jToolBar1
+operator|.
+name|add
+argument_list|(
+name|zipBtn
 argument_list|)
 expr_stmt|;
 name|gridBagConstraints
@@ -2962,11 +2985,6 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
-name|displayMessage
-argument_list|(
-literal|"Starting export ..."
-argument_list|)
-expr_stmt|;
 name|selected
 operator|=
 name|incrementalBtn
@@ -2992,6 +3010,36 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
+name|selected
+operator|=
+name|zipBtn
+operator|.
+name|getSelectedObjects
+argument_list|()
+expr_stmt|;
+name|boolean
+name|zip
+init|=
+operator|(
+name|selected
+operator|!=
+literal|null
+operator|)
+operator|&&
+operator|(
+name|selected
+index|[
+literal|0
+index|]
+operator|!=
+literal|null
+operator|)
+decl_stmt|;
+name|displayMessage
+argument_list|(
+literal|"Starting export ..."
+argument_list|)
+expr_stmt|;
 name|SystemExport
 name|sysexport
 init|=
@@ -3018,7 +3066,7 @@ name|exportTarget
 argument_list|,
 name|incremental
 argument_list|,
-literal|true
+name|zip
 argument_list|,
 name|errorList
 argument_list|)
