@@ -1340,6 +1340,10 @@ comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
+operator|!=
+literal|null
+operator|&&
+name|user
 operator|.
 name|equals
 argument_list|(
@@ -1742,6 +1746,10 @@ comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
+operator|!=
+literal|null
+operator|&&
+name|user
 operator|.
 name|equals
 argument_list|(
@@ -2095,6 +2103,10 @@ comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
 name|user
+operator|!=
+literal|null
+operator|&&
+name|user
 operator|.
 name|equals
 argument_list|(
@@ -2369,6 +2381,10 @@ comment|// then send a challenge request to prompt the client for a username/pas
 comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
+name|user
+operator|!=
+literal|null
+operator|&&
 name|user
 operator|.
 name|equals
@@ -2743,6 +2759,10 @@ comment|// then send a challenge request to prompt the client for a username/pas
 comment|// Else return a FORBIDDEN Error
 if|if
 condition|(
+name|user
+operator|!=
+literal|null
+operator|&&
 name|user
 operator|.
 name|equals
