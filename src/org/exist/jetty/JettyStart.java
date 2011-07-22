@@ -2101,6 +2101,17 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|systemInfo
+parameter_list|()
+block|{
+name|BrokerPool
+operator|.
+name|systemInfo
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 

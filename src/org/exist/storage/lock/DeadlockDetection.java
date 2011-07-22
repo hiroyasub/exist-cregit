@@ -41,6 +41,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -800,7 +810,7 @@ name|writer
 operator|.
 name|println
 argument_list|(
-literal|"THREAD: "
+literal|"Thread: "
 operator|+
 name|name
 argument_list|)
@@ -814,10 +824,12 @@ condition|)
 block|{
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Lock type: "
-operator|+
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Lock type"
+argument_list|,
 name|info
 operator|.
 name|getLockType
@@ -826,10 +838,12 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Lock mode: "
-operator|+
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Lock mode"
+argument_list|,
 name|info
 operator|.
 name|getLockMode
@@ -838,10 +852,12 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Lock id: "
-operator|+
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Lock id"
+argument_list|,
 name|info
 operator|.
 name|getId
@@ -850,11 +866,15 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Held by: "
-operator|+
-name|arrayToString
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Held by"
+argument_list|,
+name|Arrays
+operator|.
+name|toString
 argument_list|(
 name|info
 operator|.
@@ -865,26 +885,53 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Read locks: "
-operator|+
-name|arrayToString
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Held by"
+argument_list|,
+name|Arrays
+operator|.
+name|toString
 argument_list|(
 name|info
 operator|.
-name|getReadLocks
+name|getOwners
 argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Wait for read: "
-operator|+
-name|arrayToString
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Held by"
+argument_list|,
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|info
+operator|.
+name|getOwners
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|format
+argument_list|(
+literal|"%20s: %s\n"
+argument_list|,
+literal|"Waiting for read"
+argument_list|,
+name|Arrays
+operator|.
+name|toString
 argument_list|(
 name|info
 operator|.
@@ -895,11 +942,15 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|println
+name|format
 argument_list|(
-literal|"Wait for write: "
-operator|+
-name|arrayToString
+literal|"%20s: %s\n\n"
+argument_list|,
+literal|"Waiting for write"
+argument_list|,
+name|Arrays
+operator|.
+name|toString
 argument_list|(
 name|info
 operator|.
@@ -914,24 +965,25 @@ specifier|public
 specifier|static
 name|void
 name|debug
-parameter_list|()
-block|{
-name|StringWriter
-name|sout
-init|=
-operator|new
-name|StringWriter
-argument_list|()
-decl_stmt|;
+parameter_list|(
 name|PrintWriter
 name|writer
-init|=
-operator|new
-name|PrintWriter
+parameter_list|)
+block|{
+name|writer
+operator|.
+name|println
 argument_list|(
-name|sout
+literal|"Threads currently waiting for a lock:"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+name|writer
+operator|.
+name|println
+argument_list|(
+literal|"====================================="
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -980,23 +1032,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|sout
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|//TODO: move to utils
 specifier|public
