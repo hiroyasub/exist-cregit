@@ -467,6 +467,20 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|dir
+operator|=
+name|dir
+operator|.
+name|getParentFile
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|dir
+operator|!=
+literal|null
+condition|)
+block|{
 name|File
 name|propFile
 init|=
@@ -531,6 +545,7 @@ name|e
 parameter_list|)
 block|{
 comment|// do nothing, return null
+block|}
 block|}
 block|}
 return|return

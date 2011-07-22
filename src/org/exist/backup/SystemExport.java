@@ -1097,15 +1097,7 @@ operator|=
 operator|new
 name|FileSystemWriter
 argument_list|(
-operator|new
-name|File
-argument_list|(
 name|backupFile
-argument_list|,
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION_NAME
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1933,22 +1925,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|current
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|equalsInternal
-argument_list|(
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-argument_list|)
-condition|)
-block|{
+comment|//        if( !current.getURI().equalsInternal( XmldbURI.ROOT_COLLECTION_URI ) ) {
 name|output
 operator|.
 name|newCollection
@@ -1969,7 +1946,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
+comment|//        }
 try|try
 block|{
 name|Writer
@@ -2576,28 +2553,13 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-operator|!
-name|current
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|equalsInternal
-argument_list|(
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-argument_list|)
-condition|)
-block|{
+comment|//            if( !current.getURI().equalsInternal( XmldbURI.ROOT_COLLECTION_URI ) ) {
 name|output
 operator|.
 name|closeCollection
 argument_list|()
 expr_stmt|;
-block|}
+comment|//            }
 block|}
 block|}
 specifier|private
