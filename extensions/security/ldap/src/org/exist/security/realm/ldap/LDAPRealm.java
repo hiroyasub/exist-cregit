@@ -2317,7 +2317,7 @@ operator|.
 name|getBlackList
 argument_list|()
 operator|.
-name|getRestrictionList
+name|getPrincipals
 argument_list|()
 expr_stmt|;
 block|}
@@ -2346,7 +2346,7 @@ operator|.
 name|getWhiteList
 argument_list|()
 operator|.
-name|getRestrictionList
+name|getPrincipals
 argument_list|()
 expr_stmt|;
 block|}
