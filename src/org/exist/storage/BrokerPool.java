@@ -5965,6 +5965,15 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|BrokerWatchdog
+name|getWatchdog
+parameter_list|()
+block|{
+return|return
+name|watchdog
+return|;
+block|}
 comment|//TODO : move this elsewhere
 specifier|public
 name|void
