@@ -89,6 +89,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|IdentityHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -1811,7 +1821,7 @@ argument_list|>
 name|activeBrokers
 init|=
 operator|new
-name|HashMap
+name|IdentityHashMap
 argument_list|<
 name|Thread
 argument_list|,
@@ -3977,6 +3987,15 @@ return|return
 name|maxBrokers
 return|;
 block|}
+specifier|public
+name|int
+name|total
+parameter_list|()
+block|{
+return|return
+name|brokersCount
+return|;
+block|}
 comment|/** 	 * Returns whether the database instance has been configured. 	 * 	 *@return<code>true</code> if the datbase instance is configured 	 */
 specifier|public
 specifier|final
@@ -4895,7 +4914,7 @@ condition|(
 name|syncRequired
 condition|)
 block|{
-comment|//Note that the broker is not yet really inactive ;-)
+comment|//Note t hat the broker is not yet really inactive ;-)
 name|sync
 argument_list|(
 name|broker

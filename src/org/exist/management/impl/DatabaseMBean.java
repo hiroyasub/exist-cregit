@@ -48,6 +48,10 @@ name|int
 name|getActiveBrokers
 parameter_list|()
 function_decl|;
+name|int
+name|getTotalBrokers
+parameter_list|()
+function_decl|;
 name|long
 name|getReservedMem
 parameter_list|()
