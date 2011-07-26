@@ -131,6 +131,13 @@ specifier|private
 name|String
 name|title
 decl_stmt|;
+comment|// Image type
+specifier|private
+name|String
+name|imageType
+init|=
+literal|"png"
+decl_stmt|;
 comment|// Labels
 specifier|private
 name|String
@@ -270,6 +277,15 @@ literal|false
 decl_stmt|;
 comment|// =========================
 comment|// Getters
+specifier|public
+name|String
+name|getImageType
+parameter_list|()
+block|{
+return|return
+name|imageType
+return|;
+block|}
 specifier|public
 name|String
 name|getTimeAxisLabel
@@ -2047,6 +2063,50 @@ block|}
 else|else
 block|{
 name|categoryItemLabelGeneratorNumberFormat
+operator|=
+name|value
+expr_stmt|;
+block|}
+block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"imageType"
+argument_list|)
+condition|)
+block|{
+name|String
+name|value
+init|=
+name|getValue
+argument_list|(
+name|child
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Value for 'imageType' cannot be parsed"
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+name|imageType
 operator|=
 name|value
 expr_stmt|;
