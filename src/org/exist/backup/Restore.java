@@ -775,7 +775,13 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+operator|new
+name|File
+argument_list|(
 name|contents
+argument_list|,
+literal|"db"
+argument_list|)
 argument_list|,
 name|BackupDescriptor
 operator|.
