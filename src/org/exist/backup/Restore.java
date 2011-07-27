@@ -659,6 +659,20 @@ argument_list|)
 expr_stmt|;
 do|do
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Contents: "
+operator|+
+name|contents
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|BackupDescriptor
 name|bd
 init|=
@@ -687,7 +701,13 @@ argument_list|(
 operator|new
 name|File
 argument_list|(
+operator|new
+name|File
+argument_list|(
 name|contents
+argument_list|,
+literal|"db"
+argument_list|)
 argument_list|,
 name|BackupDescriptor
 operator|.
