@@ -546,7 +546,7 @@ name|cause
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"exerr:EXXQDY0002"
+literal|"exerr:EXXQDY0003"
 argument_list|,
 name|ex
 operator|.
