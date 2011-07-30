@@ -343,6 +343,17 @@ operator|new
 name|LoggingCallback
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|afterCheckpoint
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 specifier|public
 name|void
 name|configure

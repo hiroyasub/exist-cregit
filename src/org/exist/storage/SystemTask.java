@@ -102,6 +102,11 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
+comment|/** 	 * @return true if a checkpoint should be generated before this system task 	 * runs. A checkpoint guarantees that all changes were written to disk. 	 */
+name|boolean
+name|afterCheckpoint
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
