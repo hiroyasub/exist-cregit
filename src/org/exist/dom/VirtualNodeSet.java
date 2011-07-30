@@ -1351,6 +1351,13 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+name|p
+operator|.
+name|addMatches
+argument_list|(
+name|proxy
+argument_list|)
+expr_stmt|;
 name|result
 operator|.
 name|add
