@@ -4613,13 +4613,6 @@ operator|.
 name|MAJOR_SYNC
 condition|)
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Major sync"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 if|if
@@ -4685,13 +4678,6 @@ name|cacheManager
 operator|.
 name|checkDistribution
 argument_list|()
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Minor sync"
-argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO : touch this.syncEvent and syncRequired ?
