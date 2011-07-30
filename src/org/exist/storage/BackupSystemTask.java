@@ -894,6 +894,17 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|afterCheckpoint
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

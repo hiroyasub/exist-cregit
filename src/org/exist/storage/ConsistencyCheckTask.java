@@ -360,6 +360,17 @@ name|MAX_PROP_NAME
 init|=
 literal|"max"
 decl_stmt|;
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|afterCheckpoint
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 specifier|public
 name|void
 name|configure

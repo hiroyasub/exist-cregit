@@ -222,6 +222,17 @@ operator|=
 name|destination
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|afterCheckpoint
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.SystemTask#configure(java.util.Properties)      */
 specifier|public
 name|void

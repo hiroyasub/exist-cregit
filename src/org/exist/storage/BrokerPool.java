@@ -303,6 +303,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|scheduler
+operator|.
+name|SystemTaskJob
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -400,6 +412,20 @@ operator|.
 name|sync
 operator|.
 name|Sync
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|sync
+operator|.
+name|SyncTask
 import|;
 end_import
 
@@ -2229,6 +2255,14 @@ literal|0
 condition|)
 block|{
 comment|//TODO : why not automatically register Sync in system tasks ?
+comment|//            scheduler.createPeriodicJob(2500, new Sync(), 2500);
+name|SyncTask
+name|syncTask
+init|=
+operator|new
+name|SyncTask
+argument_list|()
+decl_stmt|;
 name|scheduler
 operator|.
 name|createPeriodicJob
@@ -2236,8 +2270,15 @@ argument_list|(
 literal|2500
 argument_list|,
 operator|new
-name|Sync
+name|SystemTaskJob
+argument_list|(
+name|SyncTask
+operator|.
+name|getJobName
 argument_list|()
+argument_list|,
+name|syncTask
+argument_list|)
 argument_list|,
 literal|2500
 argument_list|)
@@ -4516,7 +4557,7 @@ comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and rel
 comment|// WM: the method will always be under control of the BrokerPool. It is guaranteed that no
 comment|// other brokers are active when it is called. That's why we don't need to synchronize here.
 comment|//TODO : make it protected ?
-specifier|protected
+specifier|public
 name|void
 name|sync
 parameter_list|(
@@ -4572,6 +4613,13 @@ operator|.
 name|MAJOR_SYNC
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Major sync"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if
@@ -4632,11 +4680,20 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 name|cacheManager
 operator|.
 name|checkDistribution
 argument_list|()
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Minor sync"
+argument_list|)
+expr_stmt|;
+block|}
 comment|//TODO : touch this.syncEvent and syncRequired ?
 comment|//After setting the SYSTEM_USER above we must change back to the DEFAULT User to prevent a security problem
 comment|//broker.setUser(User.DEFAULT);
@@ -4665,6 +4722,15 @@ operator|==
 name|SHUTDOWN
 condition|)
 return|return;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Triggering sync: "
+operator|+
+name|syncEvent
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|this
