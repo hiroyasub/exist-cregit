@@ -1271,19 +1271,39 @@ decl_stmt|;
 comment|/** 	 * Loaded modules. 	 */
 specifier|protected
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Module
+argument_list|>
 name|modules
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Module
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Loaded modules, including ones bubbled up from imported modules. 	 */
 specifier|protected
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Module
+argument_list|>
 name|allModules
 init|=
 operator|new
 name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Module
+argument_list|>
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Whether some modules were rebound to new instances since the last time this context's 	 * query was analyzed.  (This assumes that each context is attached to at most one query.) 	 */
@@ -9271,6 +9291,13 @@ operator|+
 literal|" is not a valid module"
 argument_list|)
 throw|;
+name|modExternal
+operator|.
+name|setRootExpression
+argument_list|(
+name|path
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!

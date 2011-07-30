@@ -834,6 +834,36 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+specifier|private
+name|Expression
+name|rootExpression
+init|=
+literal|null
+decl_stmt|;
+comment|/**      * Set the root expression for this context.      *      * @param  expr      */
+specifier|public
+name|void
+name|setRootExpression
+parameter_list|(
+name|Expression
+name|expr
+parameter_list|)
+block|{
+name|rootExpression
+operator|=
+name|expr
+expr_stmt|;
+block|}
+comment|/**      * Returns the root expression associated with this context.      *      * @return  root expression      */
+specifier|public
+name|Expression
+name|getRootExpression
+parameter_list|()
+block|{
+return|return
+name|rootExpression
+return|;
+block|}
 block|}
 end_class
 
