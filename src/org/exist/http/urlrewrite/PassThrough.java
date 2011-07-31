@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: PassThrough.java 12936 2010-10-14 14:05:15Z gev $  */
 end_comment
 
 begin_package
@@ -17,13 +17,31 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|w3c
+name|io
 operator|.
-name|dom
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
 operator|.
-name|Element
+name|servlet
+operator|.
+name|FilterChain
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|ServletException
 import|;
 end_import
 
@@ -53,31 +71,27 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|servlet
+name|exist
 operator|.
-name|FilterChain
+name|http
+operator|.
+name|servlets
+operator|.
+name|HttpResponseWrapper
 import|;
 end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|servlet
+name|w3c
 operator|.
-name|ServletException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|dom
 operator|.
-name|io
-operator|.
-name|IOException
+name|Element
 import|;
 end_import
 
@@ -167,6 +181,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doRewrite
@@ -187,7 +203,11 @@ name|IOException
 block|{
 name|setHeaders
 argument_list|(
+operator|new
+name|HttpResponseWrapper
+argument_list|(
 name|response
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|chain

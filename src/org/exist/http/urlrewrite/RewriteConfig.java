@@ -87,18 +87,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -137,6 +125,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|RegexTranslator
@@ -151,7 +151,11 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Constants
+name|util
+operator|.
+name|RegexTranslator
+operator|.
+name|RegexSyntaxException
 import|;
 end_import
 
@@ -394,6 +398,14 @@ name|MAP_ELEMENT
 init|=
 literal|"map"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PATTERN_ATTRIBUTE
+init|=
+literal|"pattern"
+decl_stmt|;
 comment|/**      * Adding server-name="www.example.com" to a root tag in the controller-config.xml file.<br/>      *<br/>      *  i.e.<br/>       *<br/>      *&lt;root server-name="example1.com" pattern="/*" path="xmldb:exist:///db/org/example1/"/&gt;<br/>      *&lt;root server-name="example2.com" pattern="/*" path="xmldb:exist:///db/org/example2/"/&gt;<br/>      *<br/>      *  Will redirect http://example1.com to /db/org/example1/<br/>      *  and http://example2.com to /db/org/example2/<br/>      *<br/>      *  If there is no server-name attribute on the root tag, then the server name is ignored while performing the URL rewriting.      *        */
 specifier|public
 specifier|final
@@ -402,14 +414,6 @@ name|String
 name|SERVER_NAME_ATTRIBUTE
 init|=
 literal|"server-name"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|PATTERN_ATTRIBUTE
-init|=
-literal|"pattern"
 decl_stmt|;
 comment|/**      * Maps a regular expression to an URLRewrite instance      */
 specifier|private
@@ -476,8 +480,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|RegexTranslator
-operator|.
 name|RegexSyntaxException
 name|e
 parameter_list|)
@@ -943,7 +945,7 @@ name|get
 argument_list|(
 name|urlRewrite
 operator|.
-name|user
+name|defaultUser
 argument_list|)
 expr_stmt|;
 name|doc

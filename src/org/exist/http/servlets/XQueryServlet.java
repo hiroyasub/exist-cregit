@@ -1276,32 +1276,11 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|request
-operator|.
-name|getCharacterEncoding
-argument_list|()
-operator|==
-literal|null
-condition|)
-try|try
-block|{
-name|request
-operator|.
-name|setCharacterEncoding
-argument_list|(
-name|formEncoding
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
-block|}
+comment|//        if (request.getCharacterEncoding() == null)
+comment|//            try {
+comment|//                request.setCharacterEncoding(formEncoding);
+comment|//            } catch (IllegalStateException e) {
+comment|//            }
 name|ServletOutputStream
 name|sout
 init|=
@@ -1325,17 +1304,7 @@ name|formEncoding
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|response
-operator|.
-name|setContentType
-argument_list|(
-name|contentType
-operator|+
-literal|"; charset="
-operator|+
-name|formEncoding
-argument_list|)
-expr_stmt|;
+comment|//        response.setContentType(contentType + "; charset=" + formEncoding);
 name|response
 operator|.
 name|addHeader
@@ -1598,15 +1567,7 @@ condition|)
 block|{
 comment|//Show the source of the XQuery
 comment|//writeResourceAs(resource, broker, stylesheet, encoding, "text/plain", outputProperties, response);
-name|response
-operator|.
-name|setContentType
-argument_list|(
-literal|"text/plain;charset="
-operator|+
-name|formEncoding
-argument_list|)
-expr_stmt|;
+comment|//                    response.setContentType("text/plain;charset=" + formEncoding);
 name|output
 operator|.
 name|write
@@ -1649,85 +1610,18 @@ comment|//-------------------------------
 comment|// Added by Igor Abade (igoravl@cosespseguros.com.br)
 comment|// Date: Aug/06/2004
 comment|//-------------------------------
-name|String
-name|contentType
-init|=
-name|this
-operator|.
-name|contentType
-decl_stmt|;
-try|try
-block|{
-name|contentType
-operator|=
-name|getServletContext
-argument_list|()
-operator|.
-name|getMimeType
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|contentType
-operator|==
-literal|null
-condition|)
-name|contentType
-operator|=
-name|this
-operator|.
-name|contentType
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|e
-parameter_list|)
-block|{
-name|contentType
-operator|=
-name|this
-operator|.
-name|contentType
-expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|contentType
-operator|.
-name|startsWith
-argument_list|(
-literal|"text/"
-argument_list|)
-operator|||
-operator|(
-name|contentType
-operator|.
-name|endsWith
-argument_list|(
-literal|"+xml"
-argument_list|)
-operator|)
-condition|)
-name|contentType
-operator|+=
-literal|";charset="
-operator|+
-name|formEncoding
-expr_stmt|;
-name|response
-operator|.
-name|setContentType
-argument_list|(
-name|contentType
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        String contentType = this.contentType;
+comment|//        try {
+comment|//            contentType = getServletContext().getMimeType(path);
+comment|//            if (contentType == null)
+comment|//                contentType = this.contentType;
+comment|//        } catch (Throwable e) {
+comment|//            contentType = this.contentType;
+comment|//        } finally {
+comment|//            if (contentType.startsWith("text/") || (contentType.endsWith("+xml")))
+comment|//                contentType += ";charset=" + formEncoding;
+comment|//            response.setContentType(contentType );
+comment|//        }
 comment|//-------------------------------
 comment|//        URI baseUri;
 comment|//        try {
