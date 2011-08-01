@@ -369,6 +369,18 @@ name|StringReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
 begin_comment
 comment|/**  * Low-level tests for fulltext index configuration and index updates.  */
 end_comment
@@ -5640,6 +5652,21 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+name|TextSearchEngine
+name|engine
+init|=
+name|broker
+operator|.
+name|getTextEngine
+argument_list|()
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"old FullText has been switched off by default"
+argument_list|,
+name|engine
+argument_list|)
+expr_stmt|;
 name|Occurrences
 index|[]
 name|occur
@@ -5652,10 +5679,7 @@ literal|null
 condition|)
 name|occur
 operator|=
-name|broker
-operator|.
-name|getTextEngine
-argument_list|()
+name|engine
 operator|.
 name|scanIndexTerms
 argument_list|(
@@ -5674,10 +5698,7 @@ expr_stmt|;
 else|else
 name|occur
 operator|=
-name|broker
-operator|.
-name|getTextEngine
-argument_list|()
+name|engine
 operator|.
 name|scanIndexTerms
 argument_list|(
