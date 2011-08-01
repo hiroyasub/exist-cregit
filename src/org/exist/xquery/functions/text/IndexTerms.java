@@ -149,6 +149,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -678,9 +690,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|Occurrences
-name|occur
-index|[]
+name|TextSearchEngine
+name|engine
 init|=
 name|context
 operator|.
@@ -689,6 +700,29 @@ argument_list|()
 operator|.
 name|getTextEngine
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|engine
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"The old fulltext engine has been disabled for "
+operator|+
+literal|"stability reasons. Please use the Lucene FT search instead."
+argument_list|)
+throw|;
+block|}
+name|Occurrences
+name|occur
+index|[]
+init|=
+name|engine
 operator|.
 name|scanIndexTerms
 argument_list|(

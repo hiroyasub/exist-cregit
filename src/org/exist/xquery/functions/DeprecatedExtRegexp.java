@@ -461,6 +461,18 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -1936,6 +1948,34 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|TextSearchEngine
+name|engine
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getTextEngine
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|engine
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"The old fulltext engine has been disabled for "
+operator|+
+literal|"stability reasons. Please use the Lucene FT search instead."
+argument_list|)
+throw|;
+block|}
 name|NodeSet
 name|hits
 index|[]
@@ -1972,13 +2012,7 @@ index|[
 name|k
 index|]
 operator|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getTextEngine
-argument_list|()
+name|engine
 operator|.
 name|getNodesContaining
 argument_list|(
