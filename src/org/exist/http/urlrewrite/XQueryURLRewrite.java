@@ -1053,8 +1053,7 @@ specifier|private
 name|RewriteConfig
 name|rewriteConfig
 decl_stmt|;
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|init
@@ -1139,8 +1138,7 @@ literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|doFilter
@@ -2876,6 +2874,9 @@ operator|new
 name|IOException
 argument_list|(
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -3883,8 +3884,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|void
 name|destroy
