@@ -297,6 +297,18 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the fulltext operators:&amp;= and |=.  *   * This is internally handled like a special function and thus inherits  * from {@link org.exist.xquery.Function}.  *   * @author wolf  */
 end_comment
@@ -1926,8 +1938,9 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
-name|Tokenizer
-name|tokenizer
+comment|// Can return NPE
+name|TextSearchEngine
+name|engine
 init|=
 name|context
 operator|.
@@ -1936,6 +1949,30 @@ argument_list|()
 operator|.
 name|getTextEngine
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|engine
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"The old fulltext engine has been disabled "
+operator|+
+literal|"for stability reasons. Please use the Lucene FT search "
+operator|+
+literal|"instead."
+argument_list|)
+throw|;
+block|}
+name|Tokenizer
+name|tokenizer
+init|=
+name|engine
 operator|.
 name|getTokenizer
 argument_list|()
