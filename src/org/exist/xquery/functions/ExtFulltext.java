@@ -1961,11 +1961,11 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"The old fulltext engine has been disabled "
+literal|"The legacy fulltext indexing has been disabled "
 operator|+
-literal|"for stability reasons. Please use the Lucene FT search "
+literal|"by default from version 1.4.1. Please consider migrating to "
 operator|+
-literal|"instead."
+literal|"the new full text indexing."
 argument_list|)
 throw|;
 block|}
