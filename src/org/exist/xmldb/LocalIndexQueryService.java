@@ -263,6 +263,18 @@ name|URISyntaxException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|TextSearchEngine
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -996,11 +1008,35 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-return|return
+name|TextSearchEngine
+name|engine
+init|=
 name|broker
 operator|.
 name|getTextEngine
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|engine
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"The legacy fulltext indexing has been disabled "
+operator|+
+literal|"by default from version 1.4.1. Please consider migrating to the "
+operator|+
+literal|"new full text indexing."
+argument_list|)
+throw|;
+block|}
+return|return
+name|engine
 operator|.
 name|scanIndexTerms
 argument_list|(
