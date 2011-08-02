@@ -2233,6 +2233,37 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// Can return NPE
+name|TextSearchEngine
+name|engine
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getTextEngine
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|engine
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"The legacy fulltext indexing has been disabled by "
+operator|+
+literal|"default from version 1.4.1. Please consider migrating to "
+operator|+
+literal|"the new full text indexing.."
+argument_list|)
+throw|;
+block|}
 name|NodeSet
 name|hits
 index|[]
@@ -2267,13 +2298,7 @@ index|[
 name|k
 index|]
 operator|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getTextEngine
-argument_list|()
+name|engine
 operator|.
 name|getNodesContaining
 argument_list|(
