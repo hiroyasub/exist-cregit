@@ -157,6 +157,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -501,9 +515,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ErrorCodes
+name|LuceneModule
 operator|.
-name|EXXQDY0004
+name|EXXQDYFT0001
 argument_list|,
 literal|"Permission denied to read document "
 operator|+
@@ -529,9 +543,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ErrorCodes
+name|LuceneModule
 operator|.
-name|EXXQDY0004
+name|EXXQDYFT0002
 argument_list|,
 literal|"IO error while reading document "
 operator|+
