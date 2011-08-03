@@ -1546,7 +1546,7 @@ control|)
 block|{
 name|acl
 index|[
-literal|0
+name|i
 index|]
 operator|=
 name|istream
