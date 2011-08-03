@@ -582,6 +582,8 @@ parameter_list|(
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 specifier|public
 name|void

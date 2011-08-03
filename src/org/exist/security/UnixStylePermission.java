@@ -1818,6 +1818,8 @@ parameter_list|(
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|ostream
 operator|.
