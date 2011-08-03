@@ -1565,6 +1565,8 @@ parameter_list|(
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 operator|.
@@ -1575,11 +1577,8 @@ argument_list|)
 expr_stmt|;
 name|ostream
 operator|.
-name|writeByte
+name|write
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|acl
 operator|.
 name|length
