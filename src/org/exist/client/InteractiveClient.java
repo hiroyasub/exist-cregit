@@ -1855,13 +1855,24 @@ operator|new
 name|InteractiveClient
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+operator|!
 name|client
 operator|.
 name|run
 argument_list|(
 name|args
 argument_list|)
+condition|)
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
+comment|// return non-zero exit status on failure
 block|}
 catch|catch
 parameter_list|(
@@ -1874,6 +1885,14 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+comment|// return non-zero exit status on exception
 block|}
 block|}
 comment|/**      * Register XML:DB driver and retrieve root collection.      *      * @exception Exception   Description of the Exception      */
@@ -3529,7 +3548,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse collection name into a valid URI: "
 operator|+
@@ -3600,7 +3619,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse resource name into a valid URI: "
 operator|+
@@ -3688,7 +3707,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse resource name into a valid URI: "
 operator|+
@@ -4064,7 +4083,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"An error occurred: "
 operator|+
@@ -4305,7 +4324,7 @@ name|NumberFormatException
 name|nfe
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"wrong argument"
 argument_list|)
@@ -4371,7 +4390,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse collection name into a valid URI: "
 operator|+
@@ -4787,7 +4806,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse collection name into a valid URI: "
 operator|+
@@ -6954,7 +6973,7 @@ argument_list|)
 expr_stmt|;
 else|else
 block|{
-name|messageln
+name|errorln
 argument_list|(
 name|getExceptionMessage
 argument_list|(
@@ -7022,7 +7041,7 @@ name|XMLDBException
 name|ex
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"XMLDB error: "
 operator|+
@@ -8448,6 +8467,8 @@ parameter_list|,
 name|XmldbURI
 name|base
 parameter_list|)
+throws|throws
+name|XMLDBException
 block|{
 name|File
 name|files
@@ -8811,36 +8832,9 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"uri syntax exception parsing "
-operator|+
-name|files
-index|[
-name|i
-index|]
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|messageln
-argument_list|(
-literal|"could not parse file "
 operator|+
 name|files
 index|[
@@ -9301,6 +9295,8 @@ parameter_list|,
 name|XmldbURI
 name|base
 parameter_list|)
+throws|throws
+name|XMLDBException
 block|{
 name|File
 name|files
@@ -9752,36 +9748,9 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"uri syntax exception parsing "
-operator|+
-name|files
-index|[
-name|i
-index|]
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|messageln
-argument_list|(
-literal|"could not parse file "
 operator|+
 name|files
 index|[
@@ -10849,7 +10818,7 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"uri syntax exception parsing a ZIP entry from "
 operator|+
@@ -10870,7 +10839,7 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"could not parse ZIP file "
 operator|+
@@ -11620,11 +11589,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
 literal|"creating '"
 operator|+
@@ -12873,6 +12838,9 @@ argument_list|(
 literal|"parameter -t needs a valid number"
 argument_list|)
 expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 break|break;
 case|case
@@ -12971,13 +12939,16 @@ name|FileNotFoundException
 name|e1
 parameter_list|)
 block|{
-name|messageln
+name|errorln
 argument_list|(
 literal|"Cannot open file "
 operator|+
 name|traceFile
 argument_list|)
 expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -13104,7 +13075,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"XMLDBException while removing collection: "
+literal|"XMLDBException while reindexing collection: "
 operator|+
 name|getExceptionMessage
 argument_list|(
@@ -13117,6 +13088,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|if
@@ -13189,6 +13163,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|if
@@ -13235,6 +13212,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|if
@@ -13408,6 +13388,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|else if
@@ -13457,7 +13440,7 @@ parameter_list|)
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
@@ -13474,6 +13457,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 block|}
@@ -13529,7 +13515,7 @@ parameter_list|)
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
@@ -13546,6 +13532,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 block|}
@@ -13741,6 +13730,9 @@ name|optionXpath
 operator|=
 literal|null
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|if
@@ -14002,6 +13994,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 comment|//		} else if (optionQueryFile != null) {
@@ -14050,6 +14045,9 @@ name|e
 argument_list|)
 argument_list|)
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -14071,6 +14069,9 @@ name|e
 argument_list|)
 argument_list|)
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 return|return
@@ -14119,9 +14120,9 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Reusable method for connecting to database.      * @return TRUE if successfull,      */
+comment|/**      *  Reusable method for connecting to database. Exits process on failure.      */
 specifier|private
-name|boolean
+name|void
 name|connectToDatabase
 parameter_list|()
 block|{
@@ -14181,17 +14182,14 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-literal|true
-return|;
 block|}
-comment|/**      * Main processing method for the InteractiveClient object      *      * @param args arguments from main()      */
+comment|/**      * Main processing method for the InteractiveClient object      *      * @param args arguments from main()      * @return true on success, false on failure      */
 specifier|public
-name|void
+name|boolean
 name|run
 parameter_list|(
 name|String
@@ -14201,14 +14199,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-if|if
-condition|(
-operator|!
-name|quiet
-condition|)
-name|printNotice
-argument_list|()
-expr_stmt|;
 comment|// Get exist home directory
 name|File
 name|home
@@ -14327,8 +14317,19 @@ literal|null
 condition|)
 block|{
 comment|// An error occured during parsing. exit program.
-return|return;
+return|return
+literal|false
+return|;
 block|}
+comment|// print copyright notice - after parsing command line options, or it can't be silenced!
+if|if
+condition|(
+operator|!
+name|quiet
+condition|)
+name|printNotice
+argument_list|()
+expr_stmt|;
 comment|// Fix "uri" property: Excalibur CLI can't parse dashes, so we need to URL encode them:
 name|properties
 operator|.
@@ -14375,13 +14376,9 @@ operator|!
 name|haveLoginData
 condition|)
 block|{
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 if|else if
@@ -14555,7 +14552,9 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|false
+return|;
 block|}
 name|boolean
 name|processingOK
@@ -14571,7 +14570,9 @@ operator|!
 name|processingOK
 condition|)
 block|{
-return|return;
+return|return
+literal|false
+return|;
 block|}
 if|if
 condition|(
@@ -14653,7 +14654,7 @@ parameter_list|)
 block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
@@ -14675,6 +14676,9 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 else|else
@@ -14767,13 +14771,9 @@ name|haveLoginData
 condition|)
 block|{
 comment|// pressed cancel
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 comment|// Need to shutdown ?? ask wolfgang
 name|shutdown
@@ -14801,13 +14801,9 @@ operator|.
 name|dispose
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 else|else
 block|{
@@ -14888,6 +14884,9 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 specifier|public
 specifier|final
@@ -15078,7 +15077,7 @@ name|e
 argument_list|)
 expr_stmt|;
 else|else
-name|messageln
+name|errorln
 argument_list|(
 literal|"Error while reading query history: "
 operator|+
@@ -15861,6 +15860,43 @@ name|msg
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|private
+specifier|final
+name|void
+name|errorln
+parameter_list|(
+name|String
+name|msg
+parameter_list|)
+block|{
+if|if
+condition|(
+name|startGUI
+operator|&&
+name|frame
+operator|!=
+literal|null
+condition|)
+name|frame
+operator|.
+name|display
+argument_list|(
+name|msg
+operator|+
+literal|'\n'
+argument_list|)
+expr_stmt|;
+else|else
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 name|Collection
