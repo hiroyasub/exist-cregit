@@ -765,6 +765,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+comment|// DW: can cause NPE
 throw|throw
 operator|new
 name|IllegalArgumentException
