@@ -249,6 +249,8 @@ name|save
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|ConfigurationException
 function_decl|;
 specifier|public
 name|boolean

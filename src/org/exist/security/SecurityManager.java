@@ -643,14 +643,12 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
+comment|/**     * @deprecated Will be removed, should be private to the SecurityManagerImpl     */
+annotation|@
+name|Deprecated
 specifier|public
 name|int
 name|getNextGroupId
-parameter_list|()
-function_decl|;
-specifier|public
-name|int
-name|getNextAccountId
 parameter_list|()
 function_decl|;
 comment|/**     * Find users by their personal name     */

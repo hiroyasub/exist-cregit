@@ -1517,6 +1517,8 @@ name|save
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|ConfigurationException
 block|{
 comment|//ignore in-memory nodes
 if|if
@@ -1590,7 +1592,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//throw new EXistException(e);
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{

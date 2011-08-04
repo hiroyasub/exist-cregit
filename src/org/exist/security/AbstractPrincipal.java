@@ -433,6 +433,8 @@ name|void
 name|save
 parameter_list|()
 throws|throws
+name|ConfigurationException
+throws|,
 name|PermissionDeniedException
 block|{
 if|if

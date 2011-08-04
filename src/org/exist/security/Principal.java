@@ -31,6 +31,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|config
+operator|.
+name|ConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|realm
@@ -76,6 +88,8 @@ name|void
 name|save
 parameter_list|()
 throws|throws
+name|ConfigurationException
+throws|,
 name|PermissionDeniedException
 function_decl|;
 block|}
