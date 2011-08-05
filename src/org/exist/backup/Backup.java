@@ -1933,8 +1933,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-try|try
-block|{
 name|writer
 operator|=
 operator|new
@@ -2015,34 +2013,6 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"An exception occurred while writing the resource: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-continue|continue;
-block|}
 block|}
 name|output
 operator|.
@@ -2446,6 +2416,9 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+name|e
+throw|;
 block|}
 block|}
 comment|// write subcollections
@@ -2796,7 +2769,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|Throwable
 name|e
 parameter_list|)
 block|{
@@ -2804,6 +2777,13 @@ name|e
 operator|.
 name|printStackTrace
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
 expr_stmt|;
 block|}
 block|}
