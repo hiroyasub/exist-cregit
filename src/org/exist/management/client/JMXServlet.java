@@ -218,7 +218,7 @@ block|{
 block|}
 specifier|protected
 name|void
-name|doGet
+name|service
 parameter_list|(
 name|HttpServletRequest
 name|req
