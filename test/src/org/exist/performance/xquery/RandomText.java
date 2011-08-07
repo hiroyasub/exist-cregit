@@ -361,6 +361,15 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|words
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|text
 operator|.
 name|append
@@ -378,6 +387,7 @@ argument_list|)
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 operator|new
@@ -476,6 +486,20 @@ operator|new
 name|ArrayList
 argument_list|()
 decl_stmt|;
+name|list
+operator|.
+name|add
+argument_list|(
+literal|"database"
+argument_list|)
+expr_stmt|;
+name|list
+operator|.
+name|add
+argument_list|(
+literal|"xquery"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
