@@ -175,6 +175,14 @@ extends|,
 name|Startable
 block|{
 specifier|public
+specifier|final
+specifier|static
+name|int
+name|DEFAULT_REALM_STORE_MODE
+init|=
+literal|0770
+decl_stmt|;
+specifier|public
 name|String
 name|getId
 parameter_list|()
