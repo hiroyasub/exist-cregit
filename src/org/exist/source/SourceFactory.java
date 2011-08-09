@@ -362,6 +362,12 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
 name|source
 operator|=
 operator|new
