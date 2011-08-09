@@ -92,6 +92,20 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|ErrorCode
+name|EXPDY003
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH003"
+argument_list|,
+literal|"Permission denied."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 name|EXPATH_ERROR_NS
 init|=
