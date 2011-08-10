@@ -948,7 +948,19 @@ name|removed
 operator|=
 literal|true
 expr_stmt|;
-comment|//getSecurityManager().addGroup(group.getId(), group);
+name|getSecurityManager
+argument_list|()
+operator|.
+name|addGroup
+argument_list|(
+name|group
+operator|.
+name|getId
+argument_list|()
+argument_list|,
+name|group
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
