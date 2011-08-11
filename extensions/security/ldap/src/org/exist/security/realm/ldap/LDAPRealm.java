@@ -441,6 +441,15 @@ init|=
 literal|"1.0"
 decl_stmt|;
 annotation|@
+name|ConfigurationFieldAsAttribute
+argument_list|(
+literal|"principals-are-case-insensitive"
+argument_list|)
+specifier|private
+name|boolean
+name|principalsAreCaseInsensitive
+decl_stmt|;
+annotation|@
 name|ConfigurationFieldAsElement
 argument_list|(
 literal|"context"
@@ -550,6 +559,31 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+specifier|private
+name|String
+name|ensureCase
+parameter_list|(
+name|String
+name|username
+parameter_list|)
+block|{
+if|if
+condition|(
+name|principalsAreCaseInsensitive
+condition|)
+block|{
+name|username
+operator|=
+name|username
+operator|.
+name|toLowerCase
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|username
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -565,6 +599,13 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
+name|username
+operator|=
+name|ensureCase
+argument_list|(
+name|username
+argument_list|)
+expr_stmt|;
 comment|// Binds using the username and password provided by the user.
 name|LdapContext
 name|ctx
@@ -1025,7 +1066,10 @@ name|getGroup
 argument_list|(
 name|invokingUser
 argument_list|,
+name|ensureCase
+argument_list|(
 name|additionalGroupName
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -1456,6 +1500,13 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|name
+operator|=
+name|ensureCase
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 comment|//first attempt to get the cached account
 name|Account
 name|acct
@@ -1524,15 +1575,6 @@ block|{
 comment|//found a user from ldap so cache them and return
 try|try
 block|{
-name|LDAPSearchContext
-name|search
-init|=
-name|ensureContextFactory
-argument_list|()
-operator|.
-name|getSearch
-argument_list|()
-decl_stmt|;
 name|String
 name|primaryGroup
 init|=
@@ -1555,7 +1597,10 @@ name|name
 argument_list|,
 name|ldapUser
 argument_list|,
+name|ensureCase
+argument_list|(
 name|primaryGroup
+argument_list|)
 argument_list|)
 return|;
 comment|//registerAccount(acct); //TODO do we need this
@@ -1633,7 +1678,7 @@ block|}
 block|}
 block|}
 comment|/**      * The binary data is in form:      * byte[0] - revision level      * byte[1] - count of sub-authorities      * byte[2-7] - 48 bit authority (big-endian)      * and then count x 32 bit sub authorities (little-endian)      *       * The String value is: S-Revision-Authority-SubAuthority[n]...      *       * http://forums.oracle.com/forums/thread.jspa?threadID=1155740&tstart=0      */
-specifier|public
+specifier|private
 specifier|static
 name|String
 name|decodeSID
@@ -1973,6 +2018,13 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|name
+operator|=
+name|ensureCase
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 name|Group
 name|grp
 init|=
@@ -2291,6 +2343,13 @@ name|AbstractLDAPSearchPrincipal
 name|searchPrinciple
 parameter_list|)
 block|{
+name|principalName
+operator|=
+name|ensureCase
+argument_list|(
+name|principalName
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|principalName
@@ -2396,7 +2455,10 @@ control|)
 block|{
 if|if
 condition|(
+name|ensureCase
+argument_list|(
 name|blackEntry
+argument_list|)
 operator|.
 name|equals
 argument_list|(
@@ -2434,7 +2496,10 @@ control|)
 block|{
 if|if
 condition|(
+name|ensureCase
+argument_list|(
 name|whiteEntry
+argument_list|)
 operator|.
 name|equals
 argument_list|(
@@ -3017,9 +3082,15 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
-comment|// TODO we dont support writting to LDAP
 return|return
-literal|false
+name|super
+operator|.
+name|updateGroup
+argument_list|(
+name|invokingUser
+argument_list|,
+name|group
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -3172,6 +3243,13 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+name|startsWith
+operator|=
+name|ensureCase
+argument_list|(
+name|startsWith
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -3322,6 +3400,8 @@ expr_stmt|;
 name|String
 name|username
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -3349,6 +3429,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -3432,6 +3513,13 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+name|startsWith
+operator|=
+name|ensureCase
+argument_list|(
+name|startsWith
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -3582,6 +3670,8 @@ expr_stmt|;
 name|String
 name|username
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -3609,6 +3699,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -3838,6 +3929,8 @@ expr_stmt|;
 name|String
 name|groupname
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -3865,6 +3958,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -3948,6 +4042,13 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+name|startsWith
+operator|=
+name|ensureCase
+argument_list|(
+name|startsWith
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -4098,6 +4199,8 @@ expr_stmt|;
 name|String
 name|groupname
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -4125,6 +4228,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -4343,6 +4447,8 @@ expr_stmt|;
 name|String
 name|groupname
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -4370,6 +4476,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -4453,6 +4560,13 @@ name|String
 name|groupName
 parameter_list|)
 block|{
+name|groupName
+operator|=
+name|ensureCase
+argument_list|(
+name|groupName
+argument_list|)
+expr_stmt|;
 name|List
 argument_list|<
 name|String
@@ -4653,6 +4767,8 @@ expr_stmt|;
 name|String
 name|member
 init|=
+name|ensureCase
+argument_list|(
 name|addDomainPostfix
 argument_list|(
 operator|(
@@ -4680,6 +4796,7 @@ argument_list|)
 operator|.
 name|get
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
