@@ -2387,7 +2387,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|VENDOR_ERROR
+name|PERMISSION_DENIED
 argument_list|,
 name|pde
 operator|.
@@ -2782,7 +2782,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|VENDOR_ERROR
+name|PERMISSION_DENIED
 argument_list|,
 name|pde
 operator|.
@@ -3052,7 +3052,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|VENDOR_ERROR
+name|PERMISSION_DENIED
 argument_list|,
 name|pde
 operator|.
@@ -3318,7 +3318,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|VENDOR_ERROR
+name|PERMISSION_DENIED
 argument_list|,
 name|pde
 operator|.
@@ -3346,6 +3346,8 @@ literal|null
 return|;
 block|}
 comment|/** 	 *  Get user information for specified user 	 * 	 *@param  name                Description of the Parameter 	 *@return                     The user value 	 *@exception  XMLDBException  Description of the Exception 	 */
+annotation|@
+name|Override
 specifier|public
 name|Account
 name|getAccount
@@ -3358,6 +3360,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -3380,6 +3383,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -3408,6 +3412,22 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|tab
+operator|==
+literal|null
+operator|||
+name|tab
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 name|GroupAider
 name|defaultGroup
 init|=
@@ -3561,9 +3581,22 @@ name|XmlRpcException
 name|e
 parameter_list|)
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/** 	 *  Get a list of all users currently defined 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
@@ -3895,6 +3928,12 @@ condition|(
 name|tab
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|tab
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|Group
