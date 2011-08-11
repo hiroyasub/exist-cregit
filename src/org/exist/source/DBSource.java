@@ -127,6 +127,22 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|internal
+operator|.
+name|aider
+operator|.
+name|UnixStylePermissionAider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -635,7 +651,7 @@ name|Subject
 name|subject
 parameter_list|,
 name|int
-name|perm
+name|mode
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -653,10 +669,22 @@ name|validate
 argument_list|(
 name|subject
 argument_list|,
-name|perm
+name|mode
 argument_list|)
 condition|)
 block|{
+name|String
+name|modeStr
+init|=
+operator|new
+name|UnixStylePermissionAider
+argument_list|(
+name|mode
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -668,16 +696,11 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' does not have "
+literal|"' does not have '"
 operator|+
-name|Integer
-operator|.
-name|toOctalString
-argument_list|(
-name|perm
-argument_list|)
+name|modeStr
 operator|+
-literal|" access to resource '"
+literal|"' access to resource '"
 operator|+
 name|doc
 operator|.
