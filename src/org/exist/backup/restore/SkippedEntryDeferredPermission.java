@@ -44,19 +44,26 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Represents the permissions for a skipped entry in the restore process, e.g. apply() does nothing  *  * @author  Adam Retter<adam@exist-db.org>  */
 end_comment
 
-begin_interface
+begin_class
 specifier|public
-interface|interface
+class|class
+name|SkippedEntryDeferredPermission
+implements|implements
 name|DeferredPermission
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|apply
 parameter_list|()
-function_decl|;
+block|{
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addACE
@@ -76,9 +83,10 @@ parameter_list|,
 name|int
 name|mode
 parameter_list|)
-function_decl|;
+block|{
 block|}
-end_interface
+block|}
+end_class
 
 end_unit
 

@@ -103,7 +103,7 @@ begin_class
 class|class
 name|CollectionDeferredPermission
 extends|extends
-name|DeferredPermission
+name|AbstractDeferredPermission
 argument_list|<
 name|Collection
 argument_list|>
