@@ -1908,7 +1908,7 @@ operator|.
 name|getId
 argument_list|()
 operator|+
-literal|"' throw exception for account '"
+literal|"' threw exception for account '"
 operator|+
 name|username
 operator|+
