@@ -1613,6 +1613,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Evaluation order is -       *       * 1) ACL ACEs are evaluated first      * 2) Classic Unix Style Permissions are evaluated second      *       * The first match is considered the authority      */
 annotation|@
 name|Override
 specifier|public
@@ -1626,7 +1627,6 @@ name|int
 name|mode
 parameter_list|)
 block|{
-comment|/*** START UNIX STYLE VALIDATION ***/
 comment|//group dba has full access
 if|if
 condition|(
@@ -1640,7 +1640,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|//check owner
 name|int
 name|userId
 init|=
@@ -1649,38 +1648,6 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|userId
-operator|==
-operator|(
-name|vector
-operator|>>>
-literal|32
-operator|)
-condition|)
-block|{
-comment|//check owner
-return|return
-operator|(
-name|mode
-operator|&
-operator|(
-operator|(
-name|vector
-operator|>>>
-literal|28
-operator|)
-operator|&
-literal|7
-operator|)
-operator|)
-operator|==
-name|mode
-return|;
-comment|//check owner mode
-block|}
-comment|//check group
 name|int
 name|userGroupIds
 index|[]
@@ -1690,77 +1657,6 @@ operator|.
 name|getGroupIds
 argument_list|()
 decl_stmt|;
-name|int
-name|groupId
-init|=
-operator|(
-name|int
-operator|)
-operator|(
-operator|(
-name|vector
-operator|>>>
-literal|8
-operator|)
-operator|&
-literal|1048575
-operator|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|userGroupId
-range|:
-name|userGroupIds
-control|)
-block|{
-if|if
-condition|(
-name|userGroupId
-operator|==
-name|groupId
-condition|)
-block|{
-return|return
-operator|(
-name|mode
-operator|&
-operator|(
-operator|(
-name|vector
-operator|>>>
-literal|4
-operator|)
-operator|&
-literal|7
-operator|)
-operator|)
-operator|==
-name|mode
-return|;
-block|}
-block|}
-comment|//check other
-if|if
-condition|(
-operator|(
-name|mode
-operator|&
-operator|(
-name|vector
-operator|&
-literal|7
-operator|)
-operator|)
-operator|==
-name|mode
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-comment|/*** END UNIX STYLE VALIDATION ***/
 comment|/*** START EXTENDED ACL VALIDATION ***/
 comment|//exact encoding is [target(3),id(20),mode(3),access_type(3)]
 comment|//check ACL
@@ -1921,6 +1817,111 @@ block|}
 block|}
 block|}
 comment|/*** END EXTENDED ACL VALIDATION ***/
+comment|/*** FALLBACK to UNIX STYLE VALIDATION ***/
+comment|//check owner
+if|if
+condition|(
+name|userId
+operator|==
+operator|(
+name|vector
+operator|>>>
+literal|32
+operator|)
+condition|)
+block|{
+comment|//check owner
+return|return
+operator|(
+name|mode
+operator|&
+operator|(
+operator|(
+name|vector
+operator|>>>
+literal|28
+operator|)
+operator|&
+literal|7
+operator|)
+operator|)
+operator|==
+name|mode
+return|;
+comment|//check owner mode
+block|}
+comment|//check group
+name|int
+name|groupId
+init|=
+operator|(
+name|int
+operator|)
+operator|(
+operator|(
+name|vector
+operator|>>>
+literal|8
+operator|)
+operator|&
+literal|1048575
+operator|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|userGroupId
+range|:
+name|userGroupIds
+control|)
+block|{
+if|if
+condition|(
+name|userGroupId
+operator|==
+name|groupId
+condition|)
+block|{
+return|return
+operator|(
+name|mode
+operator|&
+operator|(
+operator|(
+name|vector
+operator|>>>
+literal|4
+operator|)
+operator|&
+literal|7
+operator|)
+operator|)
+operator|==
+name|mode
+return|;
+block|}
+block|}
+comment|//check other
+if|if
+condition|(
+operator|(
+name|mode
+operator|&
+operator|(
+name|vector
+operator|&
+literal|7
+operator|)
+operator|)
+operator|==
+name|mode
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|/*** END FALLBACK to UNIX STYLE VALIDATION ***/
 return|return
 literal|false
 return|;
