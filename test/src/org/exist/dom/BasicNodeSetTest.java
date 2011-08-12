@@ -567,7 +567,7 @@ name|set
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -648,7 +648,7 @@ name|set
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -733,7 +733,7 @@ name|set
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -823,7 +823,7 @@ name|set
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -922,7 +922,7 @@ name|set
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -992,7 +992,7 @@ name|speakers
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1117,7 +1117,7 @@ name|speakers
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1220,7 +1220,7 @@ name|speakers
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1446,7 +1446,7 @@ name|scenes
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1598,7 +1598,7 @@ name|speakers
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1695,7 +1695,7 @@ name|lines
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1783,7 +1783,7 @@ name|speakers
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1899,7 +1899,7 @@ name|children
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -1997,7 +1997,7 @@ name|children
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -2095,7 +2095,7 @@ name|children
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -2193,7 +2193,7 @@ name|sections
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findElementsByTagName
@@ -2321,7 +2321,7 @@ name|children
 init|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2381,7 +2381,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2442,7 +2442,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2503,7 +2503,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2562,7 +2562,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2621,7 +2621,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2680,7 +2680,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2739,7 +2739,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
@@ -2798,7 +2798,7 @@ name|children
 operator|=
 name|broker
 operator|.
-name|getElementIndex
+name|getStructuralIndex
 argument_list|()
 operator|.
 name|findDescendantsByTagName
