@@ -5678,13 +5678,6 @@ operator|.
 name|getTextEngine
 argument_list|()
 decl_stmt|;
-name|Assume
-operator|.
-name|assumeNotNull
-argument_list|(
-name|engine
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|engine
