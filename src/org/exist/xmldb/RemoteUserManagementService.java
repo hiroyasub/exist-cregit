@@ -3581,22 +3581,9 @@ name|XmlRpcException
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|VENDOR_ERROR
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 block|}
 comment|/** 	 *  Get a list of all users currently defined 	 * 	 *@return                     The users value 	 *@exception  XMLDBException  Description of the Exception 	 */
