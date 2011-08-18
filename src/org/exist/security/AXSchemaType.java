@@ -196,6 +196,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespace
@@ -205,6 +207,8 @@ return|return
 name|namespace
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAlias

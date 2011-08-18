@@ -662,6 +662,19 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|clearMetadata
+parameter_list|()
+block|{
+name|account
+operator|.
+name|clearMetadata
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
