@@ -3842,6 +3842,10 @@ block|}
 comment|// content type != application/x-www-form-urlencoded
 if|if
 condition|(
+name|requestType
+operator|==
+literal|null
+operator|||
 operator|!
 name|requestType
 operator|.
@@ -5805,12 +5809,21 @@ name|mime
 operator|==
 literal|null
 condition|)
+block|{
 name|mime
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+name|contentType
+operator|=
+name|mime
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|transaction
