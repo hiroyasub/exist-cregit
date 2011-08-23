@@ -283,7 +283,6 @@ implements|implements
 name|Result
 block|{
 specifier|private
-specifier|final
 name|Sequence
 name|result
 init|=
@@ -567,6 +566,17 @@ operator|.
 name|ELEMENT
 argument_list|)
 decl_stmt|;
+comment|// the elem must always be added at the front, so if there are
+comment|// already other items, we create a new one, add the elem, then
+comment|// add the original items after
+if|if
+condition|(
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
 name|doc
 operator|.
 name|selectChildren
@@ -576,6 +586,37 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|Sequence
+name|buf
+init|=
+name|result
+decl_stmt|;
+name|result
+operator|=
+operator|new
+name|ValueSequence
+argument_list|()
+expr_stmt|;
+name|doc
+operator|.
+name|selectChildren
+argument_list|(
+name|kind
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|addAll
+argument_list|(
+name|buf
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
