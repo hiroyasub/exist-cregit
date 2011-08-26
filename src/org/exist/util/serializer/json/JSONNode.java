@@ -162,10 +162,14 @@ name|isNamed
 parameter_list|()
 block|{
 return|return
+operator|!
 name|getName
 argument_list|()
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|ANONYMOUS_OBJECT
+argument_list|)
 return|;
 block|}
 specifier|public

@@ -118,6 +118,15 @@ name|JSON_OUTPUT_NS_PREFIX
 init|=
 literal|"preserve-prefix"
 decl_stmt|;
+comment|/**      * Applies to JSON serialization only: sets the jsonp callback function      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSONP
+init|=
+literal|"jsonp"
+decl_stmt|;
 block|}
 end_class
 
