@@ -397,7 +397,7 @@ argument_list|()
 operator|.
 name|resolveResource
 argument_list|(
-literal|".saxon/classpath.txt"
+literal|".exist/classpath.txt"
 argument_list|)
 decl_stmt|;
 if|if
