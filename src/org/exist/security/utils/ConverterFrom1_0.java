@@ -262,6 +262,14 @@ specifier|public
 class|class
 name|ConverterFrom1_0
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|LEGACY_USERS_DOCUMENT_PATH
+init|=
+literal|"/db/system/users.xml"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
