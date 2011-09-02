@@ -438,7 +438,7 @@ return|return
 name|sm
 return|;
 block|}
-specifier|private
+specifier|protected
 name|void
 name|initialiseRealmStorage
 parameter_list|(

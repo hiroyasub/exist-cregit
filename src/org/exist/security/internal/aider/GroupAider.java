@@ -113,6 +113,18 @@ name|Realm
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  * Group details.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
@@ -313,6 +325,20 @@ specifier|public
 name|void
 name|save
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
+block|{
+comment|//do nothing
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|save
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
