@@ -239,7 +239,7 @@ name|class
 argument_list|)
 specifier|public
 class|class
-name|XMLDBSecurityTest
+name|XMLDBSecurityTest_ignore
 block|{
 specifier|private
 specifier|static
@@ -258,7 +258,7 @@ name|JettyStart
 name|server
 decl_stmt|;
 specifier|public
-name|XMLDBSecurityTest
+name|XMLDBSecurityTest_ignore
 parameter_list|(
 name|String
 name|baseUri
