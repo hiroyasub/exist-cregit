@@ -1437,7 +1437,6 @@ expr_stmt|;
 try|try
 block|{
 comment|// get the existing map from the context
-specifier|final
 name|Map
 argument_list|<
 name|Long
@@ -1468,8 +1467,29 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return;
+comment|//create a new map if it doesnt exist
+name|map
+operator|=
+operator|new
+name|HashMap
+argument_list|<
+name|Long
+argument_list|,
+name|T
+argument_list|>
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|setXQueryContextVar
+argument_list|(
+name|contextMapName
+argument_list|,
+name|map
+argument_list|)
+expr_stmt|;
 block|}
+comment|//modify the map
 name|modifier
 operator|.
 name|modify
@@ -1621,7 +1641,7 @@ argument_list|>
 name|map
 init|=
 operator|(
-name|HashMap
+name|Map
 argument_list|<
 name|Long
 argument_list|,
