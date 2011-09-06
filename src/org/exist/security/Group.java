@@ -31,6 +31,15 @@ extends|extends
 name|Principal
 block|{
 specifier|public
+specifier|final
+specifier|static
+name|int
+name|UNDEFINED_ID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+specifier|public
 name|boolean
 name|isManager
 parameter_list|(

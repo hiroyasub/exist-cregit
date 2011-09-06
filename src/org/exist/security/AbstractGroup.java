@@ -278,8 +278,7 @@ name|realm
 operator|.
 name|collectionGroups
 argument_list|,
-operator|-
-literal|1
+name|UNDEFINED_ID
 argument_list|,
 name|name
 argument_list|)
