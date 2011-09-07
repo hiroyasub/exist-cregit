@@ -346,9 +346,7 @@ literal|"Streams the binary data to the current servlet response output stream. 
 operator|+
 literal|"HTTP header is set to the value given in $content-type."
 operator|+
-literal|"This function only works within a servlet context, not within "
-operator|+
-literal|"Cocoon. Note: the servlet output stream will be closed afterwards and mime-type settings in the prolog "
+literal|"Note: the servlet output stream will be closed afterwards and mime-type settings in the prolog "
 operator|+
 literal|"will not be passed."
 argument_list|,
