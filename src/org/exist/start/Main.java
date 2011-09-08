@@ -2083,13 +2083,6 @@ name|_mode
 operator|.
 name|equals
 argument_list|(
-literal|"cluster"
-argument_list|)
-operator|||
-name|_mode
-operator|.
-name|equals
-argument_list|(
 literal|"standalone"
 argument_list|)
 condition|)

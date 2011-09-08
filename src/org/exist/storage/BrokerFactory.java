@@ -169,15 +169,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|plug
-argument_list|(
-literal|"NATIVE_CLUSTER"
-argument_list|,
-name|NativeBroker
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
+comment|//plug("NATIVE_CLUSTER", NativeBroker.class);
 block|}
 specifier|public
 specifier|static

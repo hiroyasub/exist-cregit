@@ -37,18 +37,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|cluster
-operator|.
-name|ClusterComunication
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|DefaultDocumentSet
@@ -640,41 +628,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-comment|//Cluster event send
-name|ClusterComunication
-name|clCommunication
-init|=
-name|ClusterComunication
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
-comment|//retrieve the cluster communication
-comment|//TODO: use xmldbURI?
-if|if
-condition|(
-name|clCommunication
-operator|!=
-literal|null
-condition|)
-comment|//if cluster is setting use the cluster communication behaviour
-name|clCommunication
-operator|.
-name|update
-argument_list|(
-name|resource
-argument_list|,
-name|c
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|xupdate
-argument_list|)
-expr_stmt|;
+comment|//Cluster event send (removed)
 name|LOG
 operator|.
 name|debug
