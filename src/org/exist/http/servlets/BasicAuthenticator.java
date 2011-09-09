@@ -250,6 +250,8 @@ name|password
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|credentials
@@ -341,6 +343,32 @@ name|p
 operator|+
 literal|1
 argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|iae
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Invalid BASIC authentication header received: "
+operator|+
+name|iae
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|iae
+argument_list|)
+expr_stmt|;
+name|credentials
+operator|=
+literal|null
 expr_stmt|;
 block|}
 comment|// get the user from the session if possible
