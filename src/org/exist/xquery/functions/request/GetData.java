@@ -1176,9 +1176,6 @@ operator|(
 name|NodeValue
 operator|)
 name|doc
-operator|.
-name|getDocumentElement
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
