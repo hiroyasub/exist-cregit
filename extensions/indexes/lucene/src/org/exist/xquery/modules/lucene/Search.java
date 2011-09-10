@@ -155,6 +155,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Dependency
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|FunctionSignature
 import|;
 end_import
@@ -556,6 +568,17 @@ index|]
 else|:
 name|contextSequence
 decl_stmt|;
+if|if
+condition|(
+name|pathSeq
+operator|==
+literal|null
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 comment|// Get first agument, these are the documents / collections to search in
 for|for
 control|(
@@ -763,6 +786,17 @@ block|}
 comment|// Return list of matching files.
 return|return
 name|report
+return|;
+block|}
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|CONTEXT_SET
 return|;
 block|}
 block|}

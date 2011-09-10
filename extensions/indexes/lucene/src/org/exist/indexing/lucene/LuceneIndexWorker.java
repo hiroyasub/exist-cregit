@@ -4694,17 +4694,6 @@ control|)
 block|{
 if|if
 condition|(
-name|doc
-operator|.
-name|endsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-comment|// When collection matches, return true, else continue
-if|if
-condition|(
 name|docUri
 operator|.
 name|startsWith
@@ -4716,25 +4705,6 @@ block|{
 return|return
 literal|true
 return|;
-block|}
-block|}
-else|else
-block|{
-comment|// When document matches, return true, else continue
-if|if
-condition|(
-name|docUri
-operator|.
-name|equals
-argument_list|(
-name|doc
-argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
 block|}
 block|}
 return|return
