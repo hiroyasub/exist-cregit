@@ -149,20 +149,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|realm
-operator|.
-name|Realm
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|EXistInputSource
@@ -375,18 +361,7 @@ block|{
 block|}
 else|else
 block|{
-name|Realm
-name|realm
-init|=
-name|sm
-operator|.
-name|getRealm
-argument_list|(
-name|RealmImpl
-operator|.
-name|ID
-argument_list|)
-decl_stmt|;
+comment|//Realm realm = sm.getRealm(RealmImpl.ID);
 comment|//			int nextGroupId = -1;
 comment|//			int nextUserId = -1;
 name|Element
@@ -624,7 +599,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|realm
+name|sm
 operator|.
 name|hasAccount
 argument_list|(
@@ -635,7 +610,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|realm
+name|sm
 operator|.
 name|updateAccount
 argument_list|(
@@ -647,7 +622,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|realm
+name|sm
 operator|.
 name|addAccount
 argument_list|(
@@ -744,7 +719,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|realm
+name|sm
 operator|.
 name|hasGroup
 argument_list|(
@@ -755,7 +730,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|realm
+name|sm
 operator|.
 name|updateGroup
 argument_list|(
@@ -767,7 +742,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|realm
+name|sm
 operator|.
 name|addGroup
 argument_list|(

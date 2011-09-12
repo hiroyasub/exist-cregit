@@ -2832,9 +2832,7 @@ expr_stmt|;
 name|Group
 name|grp
 init|=
-name|groupsByName
-operator|.
-name|get
+name|getGroup
 argument_list|(
 name|name
 argument_list|)

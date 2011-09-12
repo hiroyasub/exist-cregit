@@ -444,7 +444,7 @@ argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
-comment|//if we cant find the group in our own realm, try the default realm
+comment|//if we cant find the group in our own realm, try other realms
 if|if
 condition|(
 name|group
@@ -452,25 +452,13 @@ operator|==
 literal|null
 condition|)
 block|{
-name|Realm
-name|internalRealm
-init|=
+name|group
+operator|=
 name|getRealm
 argument_list|()
 operator|.
 name|getSecurityManager
 argument_list|()
-operator|.
-name|getRealm
-argument_list|(
-name|RealmImpl
-operator|.
-name|ID
-argument_list|)
-decl_stmt|;
-name|group
-operator|=
-name|internalRealm
 operator|.
 name|getGroup
 argument_list|(

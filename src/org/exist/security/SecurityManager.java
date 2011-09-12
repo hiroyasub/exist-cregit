@@ -608,13 +608,7 @@ argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
-name|Realm
-name|getRealm
-parameter_list|(
-name|String
-name|iD
-parameter_list|)
-function_decl|;
+comment|//Realm getRealm(String iD);
 comment|//session manager part
 name|void
 name|registerSession
@@ -663,14 +657,6 @@ parameter_list|(
 name|int
 name|id
 parameter_list|)
-function_decl|;
-comment|/**     * @deprecated Will be removed, should be private to the SecurityManagerImpl     */
-annotation|@
-name|Deprecated
-specifier|public
-name|int
-name|getNextGroupId
-parameter_list|()
 function_decl|;
 comment|/**     * Find users by their personal name     */
 specifier|public

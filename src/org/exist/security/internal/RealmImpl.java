@@ -21,6 +21,28 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|AbstractRealm
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|ArrayList
 import|;
 end_import
@@ -54,18 +76,6 @@ operator|.
 name|security
 operator|.
 name|AbstractAccount
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|AbstractRealm
 import|;
 end_import
 
@@ -496,9 +506,7 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|groupsById
-operator|.
-name|put
+name|addGroup
 argument_list|(
 name|GROUP_DBA
 operator|.
@@ -508,18 +516,13 @@ argument_list|,
 name|GROUP_DBA
 argument_list|)
 expr_stmt|;
-name|groupsByName
-operator|.
-name|put
+name|registerGroup
 argument_list|(
-name|GROUP_DBA
-operator|.
-name|getName
-argument_list|()
-argument_list|,
 name|GROUP_DBA
 argument_list|)
 expr_stmt|;
+comment|//sm.groupsById.put(GROUP_DBA.getId(), GROUP_DBA);
+comment|//groupsByName.put(GROUP_DBA.getName(), GROUP_DBA);
 comment|//System account
 name|ACCOUNT_SYSTEM
 operator|=
@@ -543,9 +546,7 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|usersById
-operator|.
-name|put
+name|addUser
 argument_list|(
 name|ACCOUNT_SYSTEM
 operator|.
@@ -555,18 +556,13 @@ argument_list|,
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
-name|usersByName
-operator|.
-name|put
+name|registerAccount
 argument_list|(
-name|ACCOUNT_SYSTEM
-operator|.
-name|getName
-argument_list|()
-argument_list|,
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
+comment|//sm.usersById.put(ACCOUNT_SYSTEM.getId(), ACCOUNT_SYSTEM);
+comment|//usersByName.put(ACCOUNT_SYSTEM.getName(), ACCOUNT_SYSTEM);
 comment|//guest group
 name|GROUP_GUEST
 operator|=
@@ -584,9 +580,7 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|groupsById
-operator|.
-name|put
+name|addGroup
 argument_list|(
 name|GROUP_GUEST
 operator|.
@@ -596,18 +590,13 @@ argument_list|,
 name|GROUP_GUEST
 argument_list|)
 expr_stmt|;
-name|groupsByName
-operator|.
-name|put
+name|registerGroup
 argument_list|(
-name|GROUP_GUEST
-operator|.
-name|getName
-argument_list|()
-argument_list|,
 name|GROUP_GUEST
 argument_list|)
 expr_stmt|;
+comment|//sm.groupsById.put(GROUP_GUEST.getId(), GROUP_GUEST);
+comment|//groupsByName.put(GROUP_GUEST.getName(), GROUP_GUEST);
 comment|//unknown account and group
 name|GROUP_UNKNOWN
 operator|=
@@ -830,14 +819,13 @@ return|return
 name|ID
 return|;
 block|}
-comment|/*@Override 	public void startUp(DBBroker broker) throws EXistException { 		super.startUp(broker); 	}*/
 annotation|@
 name|Override
 specifier|public
-specifier|synchronized
 name|boolean
 name|deleteAccount
 parameter_list|(
+specifier|final
 name|Account
 name|account
 parameter_list|)
@@ -852,16 +840,52 @@ name|account
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+name|usersByName
+operator|.
+name|modify2E
+argument_list|(
+operator|new
+name|PrincipalDbModify2E
+argument_list|<
+name|Account
+argument_list|,
+name|PermissionDeniedException
+argument_list|,
+name|EXistException
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Account
+argument_list|>
+name|principalDb
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
 name|AbstractAccount
 name|remove_account
 init|=
 operator|(
 name|AbstractAccount
 operator|)
-name|usersByName
+name|principalDb
 operator|.
 name|get
 argument_list|(
@@ -877,9 +901,15 @@ name|remove_account
 operator|==
 literal|null
 condition|)
-return|return
-literal|false
-return|;
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"No such account exists!"
+argument_list|)
+throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -928,11 +958,12 @@ name|hasDbaRole
 argument_list|()
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|" you are not allowed to delete '"
+literal|"You are not allowed to delete '"
 operator|+
 name|account
 operator|.
@@ -942,6 +973,7 @@ operator|+
 literal|"' user"
 argument_list|)
 throw|;
+block|}
 name|remove_account
 operator|.
 name|setRemoved
@@ -1066,7 +1098,7 @@ argument_list|,
 name|remove_account
 argument_list|)
 expr_stmt|;
-name|usersByName
+name|principalDb
 operator|.
 name|remove
 argument_list|(
@@ -1076,9 +1108,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 finally|finally
 block|{
@@ -1092,13 +1121,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
-specifier|synchronized
 name|boolean
 name|deleteGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -1113,16 +1149,52 @@ name|group
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+name|groupsByName
+operator|.
+name|modify2E
+argument_list|(
+operator|new
+name|PrincipalDbModify2E
+argument_list|<
+name|Group
+argument_list|,
+name|PermissionDeniedException
+argument_list|,
+name|EXistException
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Group
+argument_list|>
+name|principalDb
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
 name|AbstractPrincipal
 name|remove_group
 init|=
 operator|(
 name|AbstractPrincipal
 operator|)
-name|groupsByName
+name|principalDb
 operator|.
 name|get
 argument_list|(
@@ -1138,9 +1210,15 @@ name|remove_group
 operator|==
 literal|null
 condition|)
-return|return
-literal|false
-return|;
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Group does not exist!"
+argument_list|)
+throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1176,18 +1254,12 @@ name|hasDbaRole
 argument_list|()
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|" you ["
-operator|+
-name|subject
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"] are not allowed to delete '"
+literal|"You are not allowed to delete '"
 operator|+
 name|remove_group
 operator|.
@@ -1197,6 +1269,7 @@ operator|+
 literal|"' group"
 argument_list|)
 throw|;
+block|}
 name|remove_group
 operator|.
 name|setRemoved
@@ -1324,7 +1397,7 @@ operator|)
 name|remove_group
 argument_list|)
 expr_stmt|;
-name|groupsByName
+name|principalDb
 operator|.
 name|remove
 argument_list|(
@@ -1334,9 +1407,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 finally|finally
 block|{
@@ -1350,10 +1420,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
-specifier|synchronized
 name|Subject
 name|authenticate
 parameter_list|(
@@ -1366,13 +1442,12 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|accountName
 argument_list|)
 decl_stmt|;
@@ -1382,6 +1457,7 @@ name|account
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|AuthenticationException
@@ -1390,13 +1466,14 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_NOT_FOUND
 argument_list|,
-literal|"Acount '"
+literal|"Account '"
 operator|+
 name|accountName
 operator|+
 literal|"' not found."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 literal|"SYSTEM"
@@ -1418,6 +1495,7 @@ name|accountName
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|AuthenticationException
@@ -1426,13 +1504,14 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_NOT_FOUND
 argument_list|,
-literal|"Acount '"
+literal|"Account '"
 operator|+
 name|accountName
 operator|+
 literal|"' can not be used."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1450,7 +1529,7 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_LOCKED
 argument_list|,
-literal|"Acount '"
+literal|"Account '"
 operator|+
 name|accountName
 operator|+
@@ -1458,6 +1537,7 @@ literal|"' is dissabled."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1474,16 +1554,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|subject
 operator|.
 name|isAuthenticated
 argument_list|()
 condition|)
 block|{
-return|return
-name|subject
-return|;
-block|}
 throw|throw
 operator|new
 name|AuthenticationException
@@ -1499,6 +1576,10 @@ operator|+
 literal|"] "
 argument_list|)
 throw|;
+block|}
+return|return
+name|subject
+return|;
 block|}
 annotation|@
 name|Override
@@ -1564,10 +1645,47 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
 block|{
+return|return
+name|usersByName
+operator|.
+name|read
+argument_list|(
+operator|new
+name|PrincipalDbRead
+argument_list|<
+name|Account
+argument_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Account
+argument_list|>
+name|principalDb
+parameter_list|)
+block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1586,7 +1704,7 @@ control|(
 name|String
 name|userName
 range|:
-name|usersByName
+name|principalDb
 operator|.
 name|keySet
 argument_list|()
@@ -1615,6 +1733,10 @@ return|return
 name|userNames
 return|;
 block|}
+block|}
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -1627,10 +1749,47 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
 block|{
+return|return
+name|groupsByName
+operator|.
+name|read
+argument_list|(
+operator|new
+name|PrincipalDbRead
+argument_list|<
+name|Group
+argument_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Group
+argument_list|>
+name|principalDb
+parameter_list|)
+block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1649,7 +1808,7 @@ control|(
 name|String
 name|groupName
 range|:
-name|groupsByName
+name|principalDb
 operator|.
 name|keySet
 argument_list|()
@@ -1676,6 +1835,10 @@ block|}
 block|}
 return|return
 name|groupNames
+return|;
+block|}
+block|}
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1692,10 +1855,47 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
+specifier|final
 name|String
 name|fragment
 parameter_list|)
 block|{
+return|return
+name|groupsByName
+operator|.
+name|read
+argument_list|(
+operator|new
+name|PrincipalDbRead
+argument_list|<
+name|Group
+argument_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Group
+argument_list|>
+name|principalDb
+parameter_list|)
+block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1714,7 +1914,7 @@ control|(
 name|String
 name|groupName
 range|:
-name|groupsByName
+name|principalDb
 operator|.
 name|keySet
 argument_list|()
@@ -1746,6 +1946,10 @@ return|return
 name|groupNames
 return|;
 block|}
+block|}
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -1759,41 +1963,57 @@ name|Subject
 name|invokingUser
 parameter_list|)
 block|{
+return|return
+name|groupsByName
+operator|.
+name|read
+argument_list|(
+operator|new
+name|PrincipalDbRead
+argument_list|<
+name|Group
+argument_list|,
 name|List
 argument_list|<
 name|String
 argument_list|>
-name|groupNames
-init|=
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Group
+argument_list|>
+name|principalDb
+parameter_list|)
+block|{
+return|return
 operator|new
 name|ArrayList
 argument_list|<
 name|String
 argument_list|>
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|Group
-name|group
-range|:
-name|getGroups
-argument_list|()
-control|)
-block|{
-name|groupNames
-operator|.
-name|add
 argument_list|(
-name|group
+name|principalDb
 operator|.
-name|getName
+name|keySet
 argument_list|()
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-return|return
-name|groupNames
+block|}
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1808,10 +2028,47 @@ parameter_list|(
 name|Subject
 name|invokingUser
 parameter_list|,
+specifier|final
 name|String
 name|groupName
 parameter_list|)
 block|{
+return|return
+name|usersByName
+operator|.
+name|read
+argument_list|(
+operator|new
+name|PrincipalDbRead
+argument_list|<
+name|Account
+argument_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|execute
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Account
+argument_list|>
+name|principalDb
+parameter_list|)
+block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1830,7 +2087,9 @@ control|(
 name|Account
 name|account
 range|:
-name|getAccounts
+name|principalDb
+operator|.
+name|values
 argument_list|()
 control|)
 block|{
@@ -1860,45 +2119,10 @@ return|return
 name|groupMembers
 return|;
 block|}
-comment|//    @Override
-comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, Configuration config) throws ConfigurationException {
-comment|//        return new GroupImpl(realm, config);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, Configuration config) throws ConfigurationException {
-comment|//        return new AccountImpl(realm, config);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
-comment|//        return new GroupImpl(realm, config, true);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
-comment|//        return new AccountImpl(realm, config, true);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, int id, String name) throws ConfigurationException {
-comment|//        return new GroupImpl(realm, id, name);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public GroupImpl instantiateGroup(AbstractRealm realm, String name) throws ConfigurationException {
-comment|//        return new GroupImpl(realm, name);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, int id, Account from_account) throws ConfigurationException, PermissionDeniedException {
-comment|//        return new AccountImpl(realm, id, from_account);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public AccountImpl instantiateAccount(AbstractRealm realm, String username) throws ConfigurationException {
-comment|//        return new AccountImpl(realm, username);
-comment|//    }
+block|}
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
