@@ -6115,6 +6115,7 @@ literal|0
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
+comment|//TODO getNodeValue() on org.exist.dom.ElementImpl should return null according to W3C spec, and getTextContent() should be implemented!
 annotation|@
 name|Override
 specifier|public
