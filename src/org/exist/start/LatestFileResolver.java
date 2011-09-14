@@ -214,7 +214,11 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
+literal|"^"
+operator|+
 name|patternString
+operator|+
+literal|"$"
 argument_list|)
 decl_stmt|;
 name|File
