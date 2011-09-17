@@ -5324,13 +5324,7 @@ operator|.
 name|checkDistribution
 argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Minor sync"
-argument_list|)
-expr_stmt|;
+comment|//            LOG.debug("Minor sync");
 block|}
 comment|//TODO : touch this.syncEvent and syncRequired ?
 comment|//After setting the SYSTEM_USER above we must change back to the DEFAULT User to prevent a security problem
