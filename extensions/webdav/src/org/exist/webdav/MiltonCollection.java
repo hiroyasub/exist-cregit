@@ -967,12 +967,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"Create date="
 operator|+
@@ -1040,12 +1040,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"Create collection '"
 operator|+
@@ -1194,12 +1194,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"Create '"
 operator|+

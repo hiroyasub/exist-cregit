@@ -255,7 +255,27 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URI
 import|;
 end_import
 
@@ -281,6 +301,30 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Level
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|logging
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -300,6 +344,52 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|CountingOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|NullOutputStream
 import|;
 end_import
 
@@ -346,6 +436,18 @@ operator|.
 name|security
 operator|.
 name|Subject
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|VirtualTempFile
 import|;
 end_import
 
@@ -430,6 +532,13 @@ specifier|private
 name|ExistDocument
 name|existDocument
 decl_stmt|;
+specifier|private
+name|VirtualTempFile
+name|vtf
+init|=
+literal|null
+decl_stmt|;
+empty_stmt|;
 comment|// Only for PROPFIND the estimate size for an XML document must be shown
 specifier|private
 name|boolean
@@ -503,12 +612,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"DOCUMENT:"
 operator|+
@@ -601,6 +710,20 @@ name|BadRequestException
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|vtf
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing from database"
+argument_list|)
+expr_stmt|;
 name|existDocument
 operator|.
 name|stream
@@ -608,6 +731,69 @@ argument_list|(
 name|out
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Experimental. Does not work right, the virtual file
+comment|// Often does not contain the right amount of bytes.
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing from virtual file"
+operator|+
+name|vtf
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|InputStream
+name|is
+init|=
+name|vtf
+operator|.
+name|getByteStream
+argument_list|()
+decl_stmt|;
+name|IOUtils
+operator|.
+name|copy
+argument_list|(
+name|is
+argument_list|,
+name|out
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|is
+argument_list|)
+expr_stmt|;
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|out
+argument_list|)
+expr_stmt|;
+name|vtf
+operator|.
+name|delete
+argument_list|()
+expr_stmt|;
+name|vtf
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -672,42 +858,119 @@ name|Long
 name|getContentLength
 parameter_list|()
 block|{
-comment|// Only for PROPFIND the estimate size for an XML document must be shown
+name|Long
+name|size
+init|=
+literal|0L
+decl_stmt|;
+comment|//        // Only for PROPFIND the estimate size for an XML document must be shown
+comment|//        if(returnContentLenghtAsNull&& existDocument.isXmlDocument()){
+comment|//
+comment|//            try {
+comment|//                LOG.info("Serializing to virtual file");
+comment|//                vtf = new VirtualTempFile();
+comment|//                existDocument.stream(vtf);
+comment|//                vtf.flush();
+comment|//                vtf.close();
+comment|//
+comment|//            } catch (IOException ex) {
+comment|//                ex.printStackTrace();
+comment|//                LOG.error(ex);
+comment|//
+comment|//            } catch (PermissionDeniedException ex) {
+comment|//                LOG.error(ex);
+comment|//            }
+comment|//            size = vtf.length();
 if|if
 condition|(
-name|returnContentLenghtAsNull
-operator|&&
 name|existDocument
 operator|.
 name|isXmlDocument
 argument_list|()
 condition|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
+comment|// Note... this is rather inefficient; for a 'GET' this will
+comment|// be triggered at least TWICE
+comment|// Stream document to /dev/null and count bytes
+name|CountingOutputStream
+name|counter
+init|=
+operator|new
+name|CountingOutputStream
 argument_list|(
-literal|"Returning NULL for content length XML resource."
+operator|new
+name|NullOutputStream
+argument_list|()
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|existDocument
+operator|.
+name|stream
+argument_list|(
+name|counter
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
 block|}
-return|return
-literal|0L
-operator|+
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
+name|size
+operator|=
+name|counter
+operator|.
+name|getByteCount
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Actual size is known
+name|size
+operator|=
 name|existDocument
 operator|.
 name|getContentLength
 argument_list|()
+expr_stmt|;
+block|}
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Size of resource="
+operator|+
+name|size
+argument_list|)
+expr_stmt|;
+return|return
+name|size
 return|;
 block|}
 comment|/* ====================      * PropFindableResource      * ==================== */
@@ -747,22 +1010,6 @@ name|time
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Create date="
-operator|+
-name|createDate
-argument_list|)
-expr_stmt|;
 return|return
 name|createDate
 return|;

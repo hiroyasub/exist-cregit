@@ -39,16 +39,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|File
 import|;
 end_import
@@ -119,9 +109,39 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -1545,16 +1565,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|byte
-index|[]
-name|writeBuffer
-init|=
-operator|new
-name|byte
-index|[
-literal|65536
-index|]
-decl_stmt|;
+comment|//			byte[] writeBuffer=new byte[65536];
 name|InputStream
 name|input
 init|=
@@ -1566,59 +1577,32 @@ name|FileInputStream
 argument_list|(
 name|tempFile
 argument_list|)
-argument_list|,
-literal|655360
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|int
-name|readBytes
-decl_stmt|;
-while|while
-condition|(
-operator|(
-name|readBytes
-operator|=
-name|input
+name|IOUtils
 operator|.
-name|read
+name|copy
 argument_list|(
-name|writeBuffer
+name|input
 argument_list|,
-literal|0
-argument_list|,
-name|writeBuffer
-operator|.
-name|length
-argument_list|)
-operator|)
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
 name|out
-operator|.
-name|write
-argument_list|(
-name|writeBuffer
-argument_list|,
-literal|0
-argument_list|,
-name|readBytes
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-name|input
+name|IOUtils
 operator|.
-name|close
-argument_list|()
+name|closeQuietly
+argument_list|(
+name|input
+argument_list|)
 expr_stmt|;
-block|}
+comment|//			try {
+comment|//				int readBytes;
+comment|//				while((readBytes = input.read(writeBuffer,0,writeBuffer.length))!=-1) {
+comment|//					out.write(writeBuffer,0,readBytes);
+comment|//				}
+comment|//			} finally {
+comment|//				input.close();
+comment|//			}
 block|}
 if|else if
 condition|(

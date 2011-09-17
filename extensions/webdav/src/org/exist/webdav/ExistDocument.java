@@ -283,6 +283,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|VirtualTempFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|webdav
 operator|.
 name|exceptions
@@ -350,22 +362,8 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"New document object for "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
+comment|//        if(LOG.isDebugEnabled())
+comment|//            LOG.debug("New document object for " + uri);
 name|brokerPool
 operator|=
 name|pool
@@ -819,6 +817,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// don;t flush
+if|if
+condition|(
+operator|!
+operator|(
+name|os
+operator|instanceof
+name|VirtualTempFile
+operator|)
+condition|)
 name|os
 operator|.
 name|flush

@@ -1305,22 +1305,22 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|""
-operator|+
 name|method
 operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"  "
+literal|" "
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|" (write="
 operator|+
 name|method
 operator|.
 name|isWrite
 operator|+
-literal|" for "
-operator|+
-name|resourceXmldbUri
+literal|")"
 argument_list|)
 expr_stmt|;
 comment|/*          * First perform checks on Milton authentication          */
@@ -1544,12 +1544,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isTraceEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"URI is null"
 argument_list|)
@@ -1645,22 +1645,8 @@ name|time
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Modified date="
-operator|+
-name|modifiedDate
-argument_list|)
-expr_stmt|;
+comment|//        if(LOG.isDebugEnabled())
+comment|//            LOG.debug("Modified date=" + modifiedDate);
 return|return
 name|modifiedDate
 return|;
