@@ -845,9 +845,9 @@ decl_stmt|;
 comment|// Show (restimated) size for PROPFIND only
 name|mdoc
 operator|.
-name|setReturnContentLenghtAsNull
+name|setIsPropFind
 argument_list|(
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 name|allResources

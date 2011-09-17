@@ -542,24 +542,24 @@ empty_stmt|;
 comment|// Only for PROPFIND the estimate size for an XML document must be shown
 specifier|private
 name|boolean
-name|returnContentLenghtAsNull
+name|isPropFind
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|/**      * Set to TRUE if for an XML document an estimated document must be returned. Otherwise      * for content length NULL is returned.      */
 specifier|public
 name|void
-name|setReturnContentLenghtAsNull
+name|setIsPropFind
 parameter_list|(
 name|boolean
-name|returnContentLenghtAsNull
+name|isPropFind
 parameter_list|)
 block|{
 name|this
 operator|.
-name|returnContentLenghtAsNull
+name|isPropFind
 operator|=
-name|returnContentLenghtAsNull
+name|isPropFind
 expr_stmt|;
 block|}
 comment|/**      *  Constructor of representation of a Document in the Milton framework, without subject information.      * To be called by the resource factory.      *      * @param host  FQ host name including port number.      * @param uri   Path on server indicating path of resource      * @param brokerPool Handle to Exist database.      */
@@ -740,12 +740,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Serializing from virtual file"
-operator|+
-name|vtf
-operator|.
-name|length
-argument_list|()
+literal|"Serializing from buffer"
 argument_list|)
 expr_stmt|;
 name|InputStream
@@ -775,13 +770,6 @@ operator|.
 name|closeQuietly
 argument_list|(
 name|is
-argument_list|)
-expr_stmt|;
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|out
 argument_list|)
 expr_stmt|;
 name|vtf
@@ -818,6 +806,16 @@ argument_list|(
 name|this
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -861,26 +859,8 @@ block|{
 name|Long
 name|size
 init|=
-literal|0L
+literal|null
 decl_stmt|;
-comment|//        // Only for PROPFIND the estimate size for an XML document must be shown
-comment|//        if(returnContentLenghtAsNull&& existDocument.isXmlDocument()){
-comment|//
-comment|//            try {
-comment|//                LOG.info("Serializing to virtual file");
-comment|//                vtf = new VirtualTempFile();
-comment|//                existDocument.stream(vtf);
-comment|//                vtf.flush();
-comment|//                vtf.close();
-comment|//
-comment|//            } catch (IOException ex) {
-comment|//                ex.printStackTrace();
-comment|//                LOG.error(ex);
-comment|//
-comment|//            } catch (PermissionDeniedException ex) {
-comment|//                LOG.error(ex);
-comment|//            }
-comment|//            size = vtf.length();
 if|if
 condition|(
 name|existDocument
@@ -889,8 +869,26 @@ name|isXmlDocument
 argument_list|()
 condition|)
 block|{
-comment|// Note... this is rather inefficient; for a 'GET' this will
-comment|// be triggered at least TWICE
+if|if
+condition|(
+name|isPropFind
+condition|)
+block|{
+comment|// For PROPFIND the actual size must be calculated
+comment|// by serializing the document.
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing XML to /dev/null to determine size"
+operator|+
+literal|" ("
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
 comment|// Stream document to /dev/null and count bytes
 name|CountingOutputStream
 name|counter
@@ -951,6 +949,80 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// Serialize to virtual file for re-use by sendContent()
+try|try
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Serializing XML to virtual file"
+operator|+
+literal|" ("
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+name|vtf
+operator|=
+operator|new
+name|VirtualTempFile
+argument_list|()
+expr_stmt|;
+name|existDocument
+operator|.
+name|stream
+argument_list|(
+name|vtf
+argument_list|)
+expr_stmt|;
+name|vtf
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+argument_list|)
+expr_stmt|;
+block|}
+name|size
+operator|=
+name|vtf
+operator|.
+name|length
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 comment|// Actual size is known
 name|size
 operator|=
@@ -964,9 +1036,15 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Size of resource="
+literal|"Size="
 operator|+
 name|size
+operator|+
+literal|" ("
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 return|return
