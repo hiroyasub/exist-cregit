@@ -998,10 +998,15 @@ name|ex
 parameter_list|)
 block|{
 comment|// oops
+name|LOG
+operator|.
+name|error
+argument_list|(
 name|ex
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -1011,10 +1016,15 @@ name|ex
 parameter_list|)
 block|{
 comment|// oops
+name|LOG
+operator|.
+name|error
+argument_list|(
 name|ex
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 return|return
@@ -1059,6 +1069,16 @@ name|ex
 parameter_list|)
 block|{
 comment|// oops
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|path
@@ -1106,6 +1126,13 @@ name|String
 name|password
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1139,6 +1166,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1170,6 +1204,13 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1216,6 +1257,13 @@ operator|.
 name|initMetadata
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1253,22 +1301,22 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|""
-operator|+
 name|method
 operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"  "
+literal|" "
+operator|+
+name|resourceXmldbUri
+operator|+
+literal|" (write="
 operator|+
 name|method
 operator|.
 name|isWrite
 operator|+
-literal|" for "
-operator|+
-name|resourceXmldbUri
+literal|")"
 argument_list|)
 expr_stmt|;
 comment|/*          * First perform checks on Milton authentication          */
@@ -1279,6 +1327,13 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1308,7 +1363,7 @@ operator|.
 name|getTag
 argument_list|()
 decl_stmt|;
-comment|// Get URI. no idea why value is null.s
+comment|// Get URI. no idea why value is null.
 name|String
 name|authURI
 init|=
@@ -1325,6 +1380,13 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1369,6 +1431,13 @@ comment|// The correct TAG is returned!
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1401,6 +1470,13 @@ operator|.
 name|writeAllowed
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1427,6 +1503,13 @@ operator|.
 name|readAllowed
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1453,9 +1536,16 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|debug
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"URI is null"
 argument_list|)
@@ -1473,6 +1563,13 @@ literal|"write"
 else|:
 literal|"read"
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1542,15 +1639,8 @@ name|time
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Modified date="
-operator|+
-name|modifiedDate
-argument_list|)
-expr_stmt|;
+comment|//        if(LOG.isDebugEnabled())
+comment|//            LOG.debug("Modified date=" + modifiedDate);
 return|return
 name|modifiedDate
 return|;
