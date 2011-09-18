@@ -301,30 +301,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -546,7 +522,7 @@ name|isPropFind
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Set to TRUE if for an XML document an estimated document must be returned. Otherwise      * for content length NULL is returned.      */
+comment|/**      * Set to TRUE if getContentLength is used for PROPFIND.      */
 specifier|public
 name|void
 name|setIsPropFind

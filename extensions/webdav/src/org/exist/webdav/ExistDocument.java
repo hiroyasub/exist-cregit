@@ -362,8 +362,22 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
-comment|//        if(LOG.isDebugEnabled())
-comment|//            LOG.debug("New document object for " + uri);
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"New document object for "
+operator|+
+name|uri
+argument_list|)
+expr_stmt|;
 name|brokerPool
 operator|=
 name|pool
