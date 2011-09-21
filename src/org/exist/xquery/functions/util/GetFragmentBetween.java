@@ -1017,6 +1017,12 @@ operator|!=
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
+operator|&&
+name|docChildStoredNodeType
+operator|!=
+name|Node
+operator|.
+name|COMMENT_NODE
 condition|)
 block|{
 name|int
