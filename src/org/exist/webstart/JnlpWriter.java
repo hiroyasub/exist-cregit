@@ -315,6 +315,13 @@ argument_list|,
 literal|"xmldb:exist:"
 argument_list|)
 operator|.
+name|replaceFirst
+argument_list|(
+literal|"https:"
+argument_list|,
+literal|"xmldb:exist:"
+argument_list|)
+operator|.
 name|replaceAll
 argument_list|(
 literal|"-"

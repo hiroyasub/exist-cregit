@@ -133,6 +133,12 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|external
+operator|.
+name|org
+operator|.
 name|apache
 operator|.
 name|commons
@@ -144,6 +150,10 @@ operator|.
 name|ByteArrayOutputStream
 import|;
 end_import
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
 
 begin_comment
 comment|/**  *   * This class is a cross-over of many others, but mainly File and OutputStream  *   * @author jmfernandez  *  */
