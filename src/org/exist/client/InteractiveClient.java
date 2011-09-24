@@ -1262,7 +1262,7 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|SSL
+name|ENABLE_SSL
 init|=
 literal|"ssl"
 decl_stmt|;
@@ -1293,7 +1293,7 @@ specifier|static
 name|String
 name|URI_DEFAULT
 init|=
-literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
+literal|"xmldb:exist://localhost:8443/exist/xmlrpc"
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -1399,6 +1399,15 @@ operator|.
 name|setProperty
 argument_list|(
 literal|"expand-xincludes"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|defaultProps
+operator|.
+name|setProperty
+argument_list|(
+name|ENABLE_SSL
 argument_list|,
 literal|"true"
 argument_list|)
@@ -1983,7 +1992,7 @@ name|properties
 operator|.
 name|getProperty
 argument_list|(
-name|SSL
+name|ENABLE_SSL
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1644,11 +1644,17 @@ literal|"LoginPanel.48"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// only enable if prefened SSL port is present
 name|enableSSL
 operator|.
 name|setSelected
 argument_list|(
-literal|true
+name|uri
+operator|.
+name|contains
+argument_list|(
+literal|":8443"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|enableSSL
@@ -3751,7 +3757,7 @@ name|setProperty
 argument_list|(
 name|InteractiveClient
 operator|.
-name|SSL
+name|ENABLE_SSL
 argument_list|,
 literal|""
 operator|+
