@@ -73,6 +73,18 @@ name|XmlRpcClientConfigImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SSLHelper
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Retrieve a document from the database using XMLRPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Retrieve<remotedoc>  *  *  @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *  created    August 1, 2002  */
 end_comment
@@ -138,6 +150,20 @@ name|usage
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Initialize HTTPS connection to accept selfsigned certificates
+comment|// and the Hostname is not validated
+name|SSLHelper
+name|sh
+init|=
+operator|new
+name|SSLHelper
+argument_list|()
+decl_stmt|;
+name|sh
+operator|.
+name|initialize
+argument_list|()
+expr_stmt|;
 name|XmlRpcClient
 name|client
 init|=

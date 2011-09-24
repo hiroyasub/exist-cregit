@@ -275,7 +275,7 @@ end_expr_stmt
 
 begin_comment
 unit|}
-comment|/**      *  Initialize HttpsURLConnection with a non validating SSL trust manager and a      * dummy hostname verifier.      *       * @param sslAllowSelfsigned    Set to TRUE to allow selfsigned certificates      * @param sslVerifyHostname     Set to FALSE for not verifying hostnames.      * @return       */
+comment|/**      *  Initialize HttpsURLConnection with (optionally) a non validating SSL       * trust manager and (optionally) a dummy hostname verifier.      *       * @param sslAllowSelfsigned    Set to TRUE to allow selfsigned certificates      * @param sslVerifyHostname     Set to FALSE for not verifying hostnames.      * @return TRUE if initialization was OK, else FALSE      */
 end_comment
 
 begin_function
@@ -415,6 +415,27 @@ expr_stmt|;
 block|}
 return|return
 literal|true
+return|;
+block|}
+end_function
+
+begin_comment
+comment|/**      *  Initialize HttpsURLConnection with  a non validating SSL       * trust manager and a dummy hostname verifier. Note that this makes      * the SSL connection less secure!      *       * @return TRUE if initialization was OK, else FALSE      */
+end_comment
+
+begin_function
+specifier|public
+name|boolean
+name|initialize
+parameter_list|()
+block|{
+return|return
+name|initialize
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
 return|;
 block|}
 end_function

@@ -207,6 +207,17 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+comment|// Set to TRUE to connectect over HTTPS-uri
+comment|// like 'xmldb:exist://localhost:8443/exist/xmlrpc' (port changed 8080->8443)
+name|database
+operator|.
+name|setProperty
+argument_list|(
+literal|"ssl-enable"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 name|DatabaseManager
 operator|.
 name|registerDatabase
