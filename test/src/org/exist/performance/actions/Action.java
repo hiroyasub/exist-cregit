@@ -17,6 +17,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -120,6 +130,15 @@ parameter_list|()
 function_decl|;
 name|String
 name|getLastResult
+parameter_list|()
+function_decl|;
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getNamespaces
 parameter_list|()
 function_decl|;
 block|}
