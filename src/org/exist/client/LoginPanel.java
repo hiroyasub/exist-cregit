@@ -1706,6 +1706,7 @@ operator|.
 name|getText
 argument_list|()
 decl_stmt|;
+comment|// Replace default ports if available
 if|if
 condition|(
 name|enableSSL
@@ -1740,6 +1741,29 @@ literal|":8080"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Force URLs to start with "xmldb:exist:"
+name|URL
+operator|=
+name|URL
+operator|.
+name|replace
+argument_list|(
+literal|"http:"
+argument_list|,
+literal|"xmldb:exist:"
+argument_list|)
+expr_stmt|;
+name|URL
+operator|=
+name|URL
+operator|.
+name|replace
+argument_list|(
+literal|"https:"
+argument_list|,
+literal|"xmldb:exist:"
+argument_list|)
+expr_stmt|;
 name|cur_url
 operator|.
 name|setText
