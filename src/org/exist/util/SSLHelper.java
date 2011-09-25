@@ -154,6 +154,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
 name|TrustManager
 index|[]
 name|nonvalidatingTrustManager
@@ -161,23 +162,31 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|static
 name|HostnameVerifier
 name|dummyHostnameVerifier
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Initializing constructor.      */
-specifier|public
+specifier|private
 name|SSLHelper
 parameter_list|()
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Initialize"
-argument_list|)
-expr_stmt|;
+comment|// No
+block|}
+specifier|private
+specifier|static
+name|void
+name|createTrustManager
+parameter_list|()
+block|{
+if|if
+condition|(
+name|nonvalidatingTrustManager
+operator|==
+literal|null
+condition|)
+block|{
 comment|// Create trust manager that does not validate certificate chains
 name|nonvalidatingTrustManager
 operator|=
@@ -235,17 +244,25 @@ comment|// Alway trust
 block|}
 block|}
 block|}
+empty_stmt|;
+block|}
 end_class
 
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
-
-begin_comment
+begin_function
+unit|}      private
+specifier|static
+name|void
+name|createHostnameVerifier
+parameter_list|()
+block|{
+if|if
+condition|(
+name|dummyHostnameVerifier
+operator|==
+literal|null
+condition|)
+block|{
 comment|// Create dummy HostnameVerifier
-end_comment
-
-begin_expr_stmt
 name|dummyHostnameVerifier
 operator|=
 operator|new
@@ -271,15 +288,17 @@ return|;
 block|}
 block|}
 expr_stmt|;
-end_expr_stmt
+block|}
+block|}
+end_function
 
 begin_comment
-unit|}
 comment|/**      *  Initialize HttpsURLConnection with (optionally) a non validating SSL       * trust manager and (optionally) a dummy hostname verifier.      *       * @param sslAllowSelfsigned    Set to TRUE to allow selfsigned certificates      * @param sslVerifyHostname     Set to FALSE for not verifying hostnames.      * @return TRUE if initialization was OK, else FALSE      */
 end_comment
 
 begin_function
-unit|public
+specifier|public
+specifier|static
 name|boolean
 name|initialize
 parameter_list|(
@@ -290,6 +309,13 @@ name|boolean
 name|sslVerifyHostname
 parameter_list|)
 block|{
+comment|// Set it up
+name|createTrustManager
+argument_list|()
+expr_stmt|;
+name|createHostnameVerifier
+argument_list|()
+expr_stmt|;
 name|SSLContext
 name|sc
 init|=
@@ -380,7 +406,6 @@ literal|false
 return|;
 block|}
 block|}
-comment|//
 name|HttpsURLConnection
 operator|.
 name|setDefaultSSLSocketFactory
@@ -425,6 +450,7 @@ end_comment
 
 begin_function
 specifier|public
+specifier|static
 name|boolean
 name|initialize
 parameter_list|()

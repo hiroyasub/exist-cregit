@@ -153,13 +153,6 @@ block|}
 comment|// Initialize HTTPS connection to accept selfsigned certificates
 comment|// and the Hostname is not validated
 name|SSLHelper
-name|sh
-init|=
-operator|new
-name|SSLHelper
-argument_list|()
-decl_stmt|;
-name|sh
 operator|.
 name|initialize
 argument_list|()
