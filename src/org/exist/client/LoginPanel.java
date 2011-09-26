@@ -3781,7 +3781,7 @@ name|setProperty
 argument_list|(
 name|InteractiveClient
 operator|.
-name|ENABLE_SSL
+name|SSL_ENABLE
 argument_list|,
 literal|""
 operator|+

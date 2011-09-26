@@ -1262,9 +1262,9 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|ENABLE_SSL
+name|SSL_ENABLE
 init|=
-literal|"ssl"
+literal|"ssl-enable"
 decl_stmt|;
 comment|// values
 specifier|protected
@@ -1407,9 +1407,9 @@ name|defaultProps
 operator|.
 name|setProperty
 argument_list|(
-name|ENABLE_SSL
+name|SSL_ENABLE
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1992,7 +1992,7 @@ name|properties
 operator|.
 name|getProperty
 argument_list|(
-name|ENABLE_SSL
+name|SSL_ENABLE
 argument_list|)
 argument_list|)
 expr_stmt|;
