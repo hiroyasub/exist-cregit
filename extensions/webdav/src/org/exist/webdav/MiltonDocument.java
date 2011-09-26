@@ -646,7 +646,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"org.exist.webdav.GUESTIMATE_XML_SIZE"
+literal|"org.exist.webdav.METHOD_XML_SIZE"
 argument_list|,
 name|METHOD_EXACT
 argument_list|)
