@@ -480,6 +480,29 @@ name|isPropFind
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|METHOD_EXACT
+init|=
+literal|"exact"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|METHOD_GUESS
+init|=
+literal|"approximate"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
+name|propfindMethod
+init|=
+literal|null
+decl_stmt|;
 comment|/**      * Set to TRUE if getContentLength is used for PROPFIND.      */
 specifier|public
 name|void
@@ -608,6 +631,25 @@ name|existDocument
 operator|.
 name|initMetadata
 argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|propfindMethod
+operator|==
+literal|null
+condition|)
+block|{
+name|propfindMethod
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.exist.webdav.GUESTIMATE_XML_SIZE"
+argument_list|,
+name|METHOD_EXACT
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -808,6 +850,17 @@ condition|(
 name|isPropFind
 condition|)
 block|{
+comment|// PROPFIND
+if|if
+condition|(
+name|METHOD_EXACT
+operator|.
+name|equals
+argument_list|(
+name|propfindMethod
+argument_list|)
+condition|)
+block|{
 comment|// For PROPFIND the actual size must be calculated
 comment|// by serializing the document.
 name|LOG
@@ -876,6 +929,18 @@ operator|.
 name|getByteCount
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Use estimated document size
+name|size
+operator|=
+name|existDocument
+operator|.
+name|getContentLength
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -953,6 +1018,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// Non XML document
 comment|// Actual size is known
 name|size
 operator|=
