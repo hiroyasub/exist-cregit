@@ -484,6 +484,14 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|METHOD_NULL
+init|=
+literal|"null"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|METHOD_EXACT
 init|=
 literal|"exact"
@@ -930,9 +938,24 @@ name|getByteCount
 argument_list|()
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|METHOD_NULL
+operator|.
+name|equals
+argument_list|(
+name|propfindMethod
+argument_list|)
+condition|)
+block|{
+name|size
+operator|=
+literal|null
+expr_stmt|;
+block|}
 else|else
 block|{
-comment|// Use estimated document size
+comment|// Use estimated document size (METHOD_GUESS)
 name|size
 operator|=
 name|existDocument
