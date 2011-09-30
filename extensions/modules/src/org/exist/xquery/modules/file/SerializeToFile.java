@@ -905,17 +905,12 @@ throw|;
 block|}
 comment|//check the file output path
 name|String
-name|path
+name|inputPath
 init|=
 name|args
 index|[
 literal|1
 index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
@@ -923,10 +918,11 @@ decl_stmt|;
 name|File
 name|file
 init|=
-operator|new
-name|File
+name|FileModuleHelper
+operator|.
+name|getFile
 argument_list|(
-name|path
+name|inputPath
 argument_list|)
 decl_stmt|;
 if|if

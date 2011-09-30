@@ -429,7 +429,7 @@ operator|.
 name|FALSE
 decl_stmt|;
 name|String
-name|path
+name|inputPath
 init|=
 name|args
 index|[
@@ -447,10 +447,11 @@ decl_stmt|;
 name|File
 name|file
 init|=
-operator|new
-name|File
+name|FileModuleHelper
+operator|.
+name|getFile
 argument_list|(
-name|path
+name|inputPath
 argument_list|)
 decl_stmt|;
 if|if
