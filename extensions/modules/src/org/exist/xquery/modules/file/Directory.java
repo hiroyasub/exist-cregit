@@ -31,16 +31,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|URI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Date
@@ -320,7 +310,9 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"List all files and directories under the specified directory. This method is only available to the DBA role."
+literal|"List all files and directories under the specified directory. "
+operator|+
+literal|"This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -329,19 +321,19 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"directory"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The directory path in the file system."
+literal|"The directory path or URI in the file system."
 argument_list|)
-block|,         }
+block|,             }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType

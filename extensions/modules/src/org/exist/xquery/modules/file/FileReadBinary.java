@@ -59,26 +59,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -319,7 +299,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -329,7 +309,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A string representing a URL, eg file://etc."
+literal|"The directory path or URI in the file system."
 argument_list|)
 block|}
 argument_list|,

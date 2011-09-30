@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file or directory"
+literal|"The full path or URI to the file or directory"
 argument_list|)
 block|}
 argument_list|,

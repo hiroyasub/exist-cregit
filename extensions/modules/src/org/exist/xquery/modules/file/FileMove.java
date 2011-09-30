@@ -267,7 +267,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|,
 operator|new
@@ -283,7 +283,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|}
 argument_list|,

@@ -491,17 +491,17 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|,
 operator|new
@@ -532,7 +532,9 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"true on success - false if the specified file can not be created or is not writable.  The empty sequence is returned if the argument sequence is empty."
+literal|"true on success - false if the specified file can not be "
+operator|+
+literal|"created or is not writable.  The empty sequence is returned if the argument sequence is empty."
 argument_list|)
 argument_list|)
 block|,
@@ -588,17 +590,17 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|,
 operator|new
@@ -645,7 +647,9 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"true on success - false if the specified file can not be created or is not writable.  The empty sequence is returned if the argument sequence is empty."
+literal|"true on success - false if the specified file can "
+operator|+
+literal|"not be created or is not writable.  The empty sequence is returned if the argument sequence is empty."
 argument_list|)
 argument_list|)
 block|,
@@ -691,17 +695,17 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|NODE
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|}
 argument_list|,
@@ -762,17 +766,17 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|,
 operator|new

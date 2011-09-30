@@ -322,7 +322,9 @@ argument_list|,
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"List all files, including their file size and modification time, found in or below a directory, $directory. Files are located in the server's "
+literal|"List all files, including their file size and modification time, "
+operator|+
+literal|"found in or below a directory, $directory. Files are located in the server's "
 operator|+
 literal|"file system, using filename patterns, $pattern.  File pattern matching is based "
 operator|+
@@ -339,17 +341,17 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"directory"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The base directory path in the file system where the files are located."
+literal|"The base directory path or URI in the file system where the files are located."
 argument_list|)
 block|,
 operator|new
@@ -380,7 +382,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"a node fragment that shows all matching filenames, including their file size and modification time, and the subdirectory they were found in"
+literal|"a node fragment that shows all matching "
+operator|+
+literal|"filenames, including their file size and modification time, and "
+operator|+
+literal|"the subdirectory they were found in"
 argument_list|)
 argument_list|)
 block|}

@@ -255,7 +255,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|}
 argument_list|,

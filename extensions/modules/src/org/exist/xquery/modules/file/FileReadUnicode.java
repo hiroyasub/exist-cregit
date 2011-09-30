@@ -69,16 +69,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -296,7 +286,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found.  This method is only available to the DBA role."
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped "
+operator|+
+literal|"off if found.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -305,7 +297,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -315,7 +307,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The URL to the file, e.g. file://etc."
+literal|"The directory path or URI in the file system."
 argument_list|)
 block|}
 argument_list|,
@@ -351,7 +343,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found.  This method is only available to the DBA role."
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped "
+operator|+
+literal|"off if found.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -360,7 +354,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -370,7 +364,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The URL to the file, e.g. file://etc."
+literal|"The directory path or URI in the file system."
 argument_list|)
 block|,
 operator|new
