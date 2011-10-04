@@ -5890,9 +5890,9 @@ specifier|final
 name|TimeZone
 name|thisTZ
 init|=
-name|TimeZone
+name|rightNow
 operator|.
-name|getDefault
+name|getTimeZone
 argument_list|()
 decl_stmt|;
 name|int
@@ -5904,12 +5904,11 @@ name|getOffset
 argument_list|(
 name|rightNow
 operator|.
-name|get
-argument_list|(
-name|Calendar
+name|getTime
+argument_list|()
 operator|.
-name|DATE
-argument_list|)
+name|getTime
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//get timezone offset in milliseconds
