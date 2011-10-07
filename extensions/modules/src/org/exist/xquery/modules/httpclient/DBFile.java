@@ -207,8 +207,6 @@ name|connection
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.commons.httpclient.methods.multipart.PartSource#createInputStream() 	 */
-annotation|@
-name|Override
 specifier|public
 name|InputStream
 name|createInputStream
@@ -225,8 +223,6 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.commons.httpclient.methods.multipart.PartSource#getFileName() 	 */
-annotation|@
-name|Override
 specifier|public
 name|String
 name|getFileName
@@ -243,8 +239,6 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.apache.commons.httpclient.methods.multipart.PartSource#getLength() 	 */
-annotation|@
-name|Override
 specifier|public
 name|long
 name|getLength

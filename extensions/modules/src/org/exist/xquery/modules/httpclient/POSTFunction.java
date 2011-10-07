@@ -1149,11 +1149,6 @@ operator|new
 name|DBFile
 argument_list|(
 name|url
-operator|.
-name|substring
-argument_list|(
-literal|13
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
