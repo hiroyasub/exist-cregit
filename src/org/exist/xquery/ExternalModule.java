@@ -60,6 +60,17 @@ name|ExternalModule
 extends|extends
 name|Module
 block|{
+specifier|public
+name|void
+name|setNamespace
+parameter_list|(
+name|String
+name|prefix
+parameter_list|,
+name|String
+name|namespace
+parameter_list|)
+function_decl|;
 comment|/** 	 * Declare a new function. Called by the XQuery compiler 	 * when parsing a library module for every function declaration. 	 *  	 * @param func 	 */
 specifier|public
 name|void

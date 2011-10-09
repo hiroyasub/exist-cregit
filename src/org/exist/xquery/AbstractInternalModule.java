@@ -257,7 +257,17 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
+specifier|public
+name|boolean
+name|isReady
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+comment|// internal modules don't need to be compiled
+block|}
+comment|/* (non-Javadoc)       * @see org.exist.xquery.Module#getNamespaceURI()       */
 specifier|public
 specifier|abstract
 name|String

@@ -577,6 +577,11 @@ name|module
 operator|.
 name|isInternalModule
 argument_list|()
+operator|&&
+name|module
+operator|.
+name|isReady
+argument_list|()
 condition|)
 block|{
 operator|(
@@ -633,6 +638,9 @@ parameter_list|()
 block|{
 return|return
 name|parentContext
+operator|.
+name|getRootContext
+argument_list|()
 return|;
 block|}
 specifier|public

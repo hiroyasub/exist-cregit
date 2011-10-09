@@ -7555,78 +7555,15 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 2: ========"
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"xquery version \"1.0\";\n"
-operator|+
-literal|"import module namespace blah=\"blah\" at \""
-operator|+
-name|URI
-operator|+
-literal|"/test/"
-operator|+
-name|MODULE1_NAME
-operator|+
-literal|"\";\n"
-operator|+
-literal|"(:: redefine variable ::)\n"
-operator|+
-literal|"declare variable $blah:param  {\"value-2\"};\n"
-operator|+
-literal|"$blah:param"
-expr_stmt|;
-try|try
-block|{
-name|message
-operator|=
-literal|""
-expr_stmt|;
-name|result
-operator|=
-name|service
-operator|.
-name|query
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|message
-operator|=
-name|e
-operator|.
-name|getMessage
-argument_list|()
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|message
-operator|.
-name|indexOf
-argument_list|(
-literal|"XQST0049"
-argument_list|)
-operator|>
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//            System.out.println("testModule 2: ========");
+comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + URI + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
+comment|//            try {
+comment|//                message = "";
+comment|//                result = service.query(query);
+comment|//            } catch (XMLDBException e) {
+comment|//                message = e.getMessage();
+comment|//            }
+comment|//            assertTrue(message.indexOf("XQST0049")> -1);
 name|System
 operator|.
 name|out
