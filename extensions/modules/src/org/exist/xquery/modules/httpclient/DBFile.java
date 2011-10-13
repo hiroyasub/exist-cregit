@@ -184,6 +184,9 @@ operator|new
 name|IOException
 argument_list|(
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -198,6 +201,9 @@ operator|new
 name|IOException
 argument_list|(
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 throw|;
 block|}
