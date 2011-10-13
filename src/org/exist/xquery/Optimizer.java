@@ -296,27 +296,6 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-if|if
-condition|(
-name|LOG
-operator|.
-name|isTraceEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|trace
-argument_list|(
-literal|"Rewriting expression: "
-operator|+
-name|ExpressionDumper
-operator|.
-name|dump
-argument_list|(
-name|locationStep
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|hasOptimized
 operator|=
 literal|true
@@ -370,11 +349,84 @@ expr_stmt|;
 comment|// Replace the old expression with the pragma
 name|path
 operator|.
-name|replaceExpression
+name|replace
 argument_list|(
 name|locationStep
 argument_list|,
 name|extension
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Rewritten expression: "
+operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|parent
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Expression
+name|previous
+init|=
+name|path
+operator|.
+name|getPrevious
+argument_list|(
+name|extension
+argument_list|)
+decl_stmt|;
+comment|//                if (previous != null&& previous != path.getFirst()&& previous instanceof Step) {
+comment|//                	Step prevStep = (Step) previous;
+comment|//                	int reverseAxis = reverseAxis(locationStep.getAxis());
+comment|//                	if (reverseAxis != Constants.UNKNOWN_AXIS&& !prevStep.hasPredicates()&&
+comment|//                			!prevStep.getTest().isWildcardTest()) {
+comment|//                		if (LOG.isTraceEnabled())
+comment|//                			LOG.trace("Rewriting step " + ExpressionDumper.dump(prevStep) + " to use ancestor axis");
+comment|//                		path.remove(prevStep);
+comment|//                		locationStep.setAxis(Constants.DESCENDANT_AXIS);
+comment|//                		prevStep.setAxis(reverseAxis);
+comment|//
+comment|//                		Predicate predicate = new Predicate(context);
+comment|//                		predicate.add(prevStep);
+comment|//                		locationStep.addPredicate(predicate);
+comment|//
+comment|//                	}
+comment|//                }
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+operator|&&
+name|previous
+operator|!=
+literal|null
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Previous expression: "
+operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|previous
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -619,7 +671,7 @@ expr_stmt|;
 comment|// Replace the old expression with the pragma
 name|path
 operator|.
-name|replaceExpression
+name|replace
 argument_list|(
 name|filtered
 argument_list|,
@@ -854,7 +906,7 @@ argument_list|)
 expr_stmt|;
 name|path
 operator|.
-name|replaceExpression
+name|replace
 argument_list|(
 name|and
 argument_list|,
@@ -1031,6 +1083,56 @@ block|}
 block|}
 return|return
 literal|true
+return|;
+block|}
+specifier|private
+name|int
+name|reverseAxis
+parameter_list|(
+name|int
+name|axis
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|axis
+condition|)
+block|{
+case|case
+name|Constants
+operator|.
+name|CHILD_AXIS
+case|:
+return|return
+name|Constants
+operator|.
+name|PARENT_AXIS
+return|;
+case|case
+name|Constants
+operator|.
+name|DESCENDANT_AXIS
+case|:
+return|return
+name|Constants
+operator|.
+name|ANCESTOR_AXIS
+return|;
+case|case
+name|Constants
+operator|.
+name|DESCENDANT_SELF_AXIS
+case|:
+return|return
+name|Constants
+operator|.
+name|ANCESTOR_SELF_AXIS
+return|;
+block|}
+return|return
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
 return|;
 block|}
 comment|/**      * Try to find an expression object implementing interface Optimizable.      */
