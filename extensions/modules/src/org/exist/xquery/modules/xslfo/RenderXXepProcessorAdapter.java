@@ -164,7 +164,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|RenderHouseXepProcessorAdapter
+name|RenderXXepProcessorAdapter
 implements|implements
 name|ProcessorAdapter
 block|{
