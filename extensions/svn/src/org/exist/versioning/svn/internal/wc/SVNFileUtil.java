@@ -8525,7 +8525,7 @@ return|return
 operator|new
 name|Resource
 argument_list|(
-literal|"/config/subversion"
+literal|"/system/etc/subversion"
 argument_list|)
 return|;
 block|}
