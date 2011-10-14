@@ -1205,7 +1205,7 @@ name|replace
 argument_list|(
 literal|'/'
 argument_list|,
-name|File
+name|Resource
 operator|.
 name|separatorChar
 argument_list|)

@@ -10552,7 +10552,7 @@ name|getAdminFile
 argument_list|(
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
@@ -10566,7 +10566,7 @@ name|adminDir
 argument_list|,
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
@@ -10579,7 +10579,7 @@ name|getAdminFile
 argument_list|(
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
@@ -10593,7 +10593,7 @@ name|adminDir
 argument_list|,
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
@@ -10606,7 +10606,7 @@ name|getAdminFile
 argument_list|(
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
@@ -10620,7 +10620,7 @@ name|adminDir
 argument_list|,
 literal|"tmp"
 operator|+
-name|File
+name|Resource
 operator|.
 name|separatorChar
 operator|+
