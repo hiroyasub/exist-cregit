@@ -430,6 +430,19 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+specifier|public
+name|boolean
+name|matches
+parameter_list|(
+name|QName
+name|name
+parameter_list|)
+block|{
+comment|// always false because there's no name
+return|return
+literal|false
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#isWildcardTest()      */
 specifier|public
 name|boolean

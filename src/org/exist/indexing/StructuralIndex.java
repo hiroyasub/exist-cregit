@@ -69,6 +69,18 @@ name|NodeSelector
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+import|;
+end_import
+
 begin_comment
 comment|/**  * Core interface for structural indexes. The structural index provides access to elements and attributes  * through their name and relation.  */
 end_comment
@@ -186,6 +198,33 @@ name|qname
 parameter_list|,
 name|int
 name|axis
+parameter_list|,
+name|DocumentSet
+name|docs
+parameter_list|,
+name|NodeSet
+name|contextSet
+parameter_list|,
+name|int
+name|contextId
+parameter_list|)
+function_decl|;
+comment|/**      * Find all nodes matching a given node test, axis and type. Used to evaluate wildcard      * expressions like //*, //pfx:*.      */
+specifier|public
+name|NodeSet
+name|scanByType
+parameter_list|(
+name|byte
+name|type
+parameter_list|,
+name|int
+name|axis
+parameter_list|,
+name|NodeTest
+name|test
+parameter_list|,
+name|boolean
+name|useSelfAsContext
 parameter_list|,
 name|DocumentSet
 name|docs

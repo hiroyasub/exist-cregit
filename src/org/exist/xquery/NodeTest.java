@@ -111,6 +111,14 @@ name|XMLStreamReader
 name|reader
 parameter_list|)
 function_decl|;
+specifier|public
+name|boolean
+name|matches
+parameter_list|(
+name|QName
+name|name
+parameter_list|)
+function_decl|;
 comment|/**      * The method<code>isWildcardTest</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
