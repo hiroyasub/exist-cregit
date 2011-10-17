@@ -2324,6 +2324,13 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 decl_stmt|;
+name|contextSet
+operator|.
+name|setTrackMatches
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|/* 		 * //Uncomment the lines below which are intended to work around a 		 * VirtualNodeSet bug //No need to say that performance can suffer ! 		 * NodeSet nodes; if (contextIsVirtual) { ArraySet copy = new 		 * ArraySet(contextSet.getLength()); for (Iterator i = 		 * contextSet.iterator(); i.hasNext();) { copy.add((Item)i.next()); } 		 * nodes = super.eval(copy, null).toNodeSet(); } else nodes = 		 * super.eval(contextSet, null).toNodeSet(); //End of work-around 		 */
 comment|// Comment the line below if you have uncommented the lines above :-)
 name|NodeSet
@@ -2584,6 +2591,13 @@ argument_list|,
 literal|null
 argument_list|,
 name|result
+argument_list|)
+expr_stmt|;
+name|contextSet
+operator|.
+name|setTrackMatches
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 return|return
