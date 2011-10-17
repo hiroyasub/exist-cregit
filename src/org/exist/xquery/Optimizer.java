@@ -377,6 +377,9 @@ name|parent
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Check if there's an additional step before the optimizable expression and
+comment|// rewrite it to use the ancestor axis. This will change //a/b[c = "d"] into
+comment|// //b[c = "d"][ancestor::a].
 name|Expression
 name|previous
 init|=
@@ -387,23 +390,138 @@ argument_list|(
 name|extension
 argument_list|)
 decl_stmt|;
-comment|//                if (previous != null&& previous != path.getFirst()&& previous instanceof Step) {
-comment|//                	Step prevStep = (Step) previous;
-comment|//                	int reverseAxis = reverseAxis(locationStep.getAxis());
-comment|//                	if (reverseAxis != Constants.UNKNOWN_AXIS&& !prevStep.hasPredicates()&&
-comment|//                			!prevStep.getTest().isWildcardTest()) {
-comment|//                		if (LOG.isTraceEnabled())
-comment|//                			LOG.trace("Rewriting step " + ExpressionDumper.dump(prevStep) + " to use ancestor axis");
-comment|//                		path.remove(prevStep);
-comment|//                		locationStep.setAxis(Constants.DESCENDANT_AXIS);
-comment|//                		prevStep.setAxis(reverseAxis);
-comment|//
-comment|//                		Predicate predicate = new Predicate(context);
-comment|//                		predicate.add(prevStep);
-comment|//                		locationStep.addPredicate(predicate);
-comment|//
-comment|//                	}
-comment|//                }
+if|if
+condition|(
+name|previous
+operator|!=
+literal|null
+operator|&&
+name|previous
+operator|!=
+name|path
+operator|.
+name|getFirst
+argument_list|()
+operator|&&
+name|previous
+operator|instanceof
+name|Step
+condition|)
+block|{
+name|Step
+name|prevStep
+init|=
+operator|(
+name|Step
+operator|)
+name|previous
+decl_stmt|;
+name|int
+name|reverseAxis
+init|=
+name|reverseAxis
+argument_list|(
+name|locationStep
+operator|.
+name|getAxis
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|reverseAxis
+operator|!=
+name|Constants
+operator|.
+name|UNKNOWN_AXIS
+operator|&&
+operator|!
+name|prevStep
+operator|.
+name|hasPredicates
+argument_list|()
+operator|&&
+operator|!
+name|prevStep
+operator|.
+name|getTest
+argument_list|()
+operator|.
+name|isWildcardTest
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Rewriting step "
+operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|prevStep
+argument_list|)
+operator|+
+literal|" to use ancestor axis"
+argument_list|)
+expr_stmt|;
+name|path
+operator|.
+name|remove
+argument_list|(
+name|prevStep
+argument_list|)
+expr_stmt|;
+name|locationStep
+operator|.
+name|setAxis
+argument_list|(
+name|Constants
+operator|.
+name|DESCENDANT_AXIS
+argument_list|)
+expr_stmt|;
+name|prevStep
+operator|.
+name|setAxis
+argument_list|(
+name|reverseAxis
+argument_list|)
+expr_stmt|;
+name|Predicate
+name|predicate
+init|=
+operator|new
+name|Predicate
+argument_list|(
+name|context
+argument_list|)
+decl_stmt|;
+name|predicate
+operator|.
+name|add
+argument_list|(
+name|prevStep
+argument_list|)
+expr_stmt|;
+name|locationStep
+operator|.
+name|addPredicate
+argument_list|(
+name|predicate
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|LOG
