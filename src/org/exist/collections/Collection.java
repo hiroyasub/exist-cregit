@@ -7694,17 +7694,17 @@ return|;
 comment|//System collection has no configuration
 if|if
 condition|(
-name|DBBroker
-operator|.
-name|SYSTEM_COLLECTION
-operator|.
-name|equals
-argument_list|(
 name|getURI
 argument_list|()
 operator|.
 name|getRawCollectionPath
 argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+name|DBBroker
+operator|.
+name|SYSTEM_COLLECTION
 argument_list|)
 condition|)
 return|return
