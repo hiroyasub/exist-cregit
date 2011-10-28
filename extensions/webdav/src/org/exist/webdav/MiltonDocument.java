@@ -648,6 +648,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// GUESS works for all except Finder
 name|propfindMethod
 operator|=
 name|System
@@ -656,7 +657,7 @@ name|getProperty
 argument_list|(
 literal|"org.exist.webdav.METHOD_XML_SIZE"
 argument_list|,
-name|METHOD_EXACT
+name|METHOD_GUESS
 argument_list|)
 expr_stmt|;
 block|}
