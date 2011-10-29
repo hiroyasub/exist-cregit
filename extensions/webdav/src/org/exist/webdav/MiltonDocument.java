@@ -21,7 +21,7 @@ name|bradmcevoy
 operator|.
 name|http
 operator|.
-name|CollectionResource
+name|Auth
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|bradmcevoy
 operator|.
 name|http
 operator|.
-name|Auth
+name|CollectionResource
 import|;
 end_import
 
@@ -273,16 +273,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|URI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Date
@@ -322,38 +312,6 @@ operator|.
 name|io
 operator|.
 name|IOUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|CountingOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|NullOutputStream
 import|;
 end_import
 
@@ -524,6 +482,37 @@ name|isPropFind
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|METHOD_NULL
+init|=
+literal|"null"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|METHOD_EXACT
+init|=
+literal|"exact"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|METHOD_GUESS
+init|=
+literal|"approximate"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
+name|propfindMethod
+init|=
+literal|null
+decl_stmt|;
 comment|/**      * Set to TRUE if getContentLength is used for PROPFIND.      */
 specifier|public
 name|void
@@ -652,6 +641,25 @@ name|existDocument
 operator|.
 name|initMetadata
 argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|propfindMethod
+operator|==
+literal|null
+condition|)
+block|{
+name|propfindMethod
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"org.exist.webdav.METHOD_XML_SIZE"
+argument_list|,
+name|METHOD_GUESS
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -848,6 +856,17 @@ condition|(
 name|isPropFind
 condition|)
 block|{
+comment|// PROPFIND
+if|if
+condition|(
+name|METHOD_EXACT
+operator|.
+name|equals
+argument_list|(
+name|propfindMethod
+argument_list|)
+condition|)
+block|{
 comment|// For PROPFIND the actual size must be calculated
 comment|// by serializing the document.
 name|LOG
@@ -864,16 +883,12 @@ literal|")"
 argument_list|)
 expr_stmt|;
 comment|// Stream document to /dev/null and count bytes
-name|CountingOutputStream
+name|ByteCountOutputStream
 name|counter
 init|=
 operator|new
-name|CountingOutputStream
-argument_list|(
-operator|new
-name|NullOutputStream
+name|ByteCountOutputStream
 argument_list|()
-argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -920,6 +935,52 @@ operator|.
 name|getByteCount
 argument_list|()
 expr_stmt|;
+try|try
+block|{
+name|counter
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ex
+parameter_list|)
+block|{
+comment|// ignores
+block|}
+block|}
+if|else if
+condition|(
+name|METHOD_NULL
+operator|.
+name|equals
+argument_list|(
+name|propfindMethod
+argument_list|)
+condition|)
+block|{
+comment|// return null, menaing unknowns
+name|size
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Use estimated document size (METHOD_GUESS) (default)
+name|size
+operator|=
+literal|0L
+operator|+
+name|existDocument
+operator|.
+name|getContentLength
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -997,6 +1058,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// Non XML document
 comment|// Actual size is known
 name|size
 operator|=
