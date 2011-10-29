@@ -139,7 +139,7 @@ operator|.
 name|class
 argument_list|)
 block|,
-comment|//snew FunctionDef( DirectoryList.signatures[0],           DirectoryList.class ),
+comment|//new FunctionDef( DirectoryList.signatures[0],           DirectoryList.class ),
 operator|new
 name|FunctionDef
 argument_list|(
@@ -245,36 +245,8 @@ operator|.
 name|class
 argument_list|)
 block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|SerializeToFile
-operator|.
-name|signatures
-index|[
-literal|2
-index|]
-argument_list|,
-name|SerializeToFile
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|SerializeToFile
-operator|.
-name|signatures
-index|[
-literal|3
-index|]
-argument_list|,
-name|SerializeToFile
-operator|.
-name|class
-argument_list|)
-block|,
+comment|//new FunctionDef( SerializeToFile.signatures[2], 		SerializeToFile.class ),
+comment|//new FunctionDef( SerializeToFile.signatures[3],         SerializeToFile.class ),
 operator|new
 name|FunctionDef
 argument_list|(
