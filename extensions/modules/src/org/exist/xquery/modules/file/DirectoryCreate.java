@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: DirectoryCreate.java 15423 2011-09-30 20:50:11Z dizzzz $  */
 end_comment
 
 begin_package
@@ -196,19 +196,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#canRead()   * @author Andrzej Taramina  * @author Loren Cahlander  *  */
+comment|/**  * @see java.io.File#mkdir()   * @see java.io.File#mkdirs()   *  * @author Dannes Wessels  *  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|FileIsReadable
+name|DirectoryCreate
 extends|extends
 name|BasicFunction
 block|{
 specifier|private
-specifier|static
 specifier|final
+specifier|static
 name|Logger
 name|logger
 init|=
@@ -216,7 +216,7 @@ name|Logger
 operator|.
 name|getLogger
 argument_list|(
-name|FileIsReadable
+name|DirectoryCreate
 operator|.
 name|class
 argument_list|)
@@ -235,7 +235,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"is-readable"
+literal|"mkdir"
 argument_list|,
 name|FileModule
 operator|.
@@ -246,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Tests if a file is readable.  This method is only available to the DBA role."
+literal|"Create a directory.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path or URI to the file"
+literal|"The full path or URI to the directory"
 argument_list|)
 block|}
 argument_list|,
@@ -280,14 +280,70 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"true if file can be read"
+literal|"true if successful, false otherwise"
+argument_list|)
+argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"mkdirs"
+argument_list|,
+name|FileModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|FileModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Create a directory including any necessary but nonexistent parent directories. "
+operator|+
+literal|"This method is only available to the DBA role."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"path"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The full path or URI to the directory"
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"true if successful, false otherwise"
 argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
-name|FileIsReadable
+name|DirectoryCreate
 parameter_list|(
 name|XQueryContext
 name|context
@@ -304,7 +360,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -366,7 +422,7 @@ name|xPathException
 throw|;
 block|}
 name|Sequence
-name|readable
+name|created
 init|=
 name|BooleanValue
 operator|.
@@ -379,6 +435,11 @@ name|args
 index|[
 literal|0
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
@@ -395,23 +456,54 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|isCalledAs
+argument_list|(
+literal|"mkdir"
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
 name|file
 operator|.
-name|canRead
+name|mkdir
 argument_list|()
 condition|)
 block|{
-name|readable
+name|created
 operator|=
 name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
 block|}
+block|}
+if|else if
+condition|(
+name|isCalledAs
+argument_list|(
+literal|"mkdirs"
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|file
+operator|.
+name|mkdirs
+argument_list|()
+condition|)
+block|{
+name|created
+operator|=
+name|BooleanValue
+operator|.
+name|TRUE
+expr_stmt|;
+block|}
+block|}
 return|return
-operator|(
-name|readable
-operator|)
+name|created
 return|;
 block|}
 block|}

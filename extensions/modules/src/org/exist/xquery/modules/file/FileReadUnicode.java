@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,26 @@ operator|.
 name|file
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
+import|;
+end_import
 
 begin_import
 import|import
@@ -44,16 +64,6 @@ operator|.
 name|net
 operator|.
 name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
 import|;
 end_import
 
@@ -276,7 +286,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found.  This method is only available to the DBA role."
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped "
+operator|+
+literal|"off if found.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -285,7 +297,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -295,7 +307,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The URL to the file, e.g. file://etc."
+literal|"The directory path or URI in the file system."
 argument_list|)
 block|}
 argument_list|,
@@ -331,7 +343,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped off if found.  This method is only available to the DBA role."
+literal|"Reads the contents of a file.  Unicode BOM (Byte Order Marker) will be stripped "
+operator|+
+literal|"off if found.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -340,7 +354,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"url"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -350,7 +364,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The URL to the file, e.g. file://etc."
+literal|"The directory path or URI in the file system."
 argument_list|)
 block|,
 operator|new
@@ -467,33 +481,38 @@ name|xPathException
 throw|;
 block|}
 name|String
-name|arg
+name|inputPath
 init|=
 name|args
 index|[
 literal|0
 index|]
 operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-operator|.
 name|getStringValue
 argument_list|()
+decl_stmt|;
+name|File
+name|file
+init|=
+name|FileModuleHelper
+operator|.
+name|getFile
+argument_list|(
+name|inputPath
+argument_list|)
 decl_stmt|;
 name|StringWriter
 name|sw
 decl_stmt|;
 try|try
 block|{
-name|URL
-name|url
+name|FileInputStream
+name|fis
 init|=
 operator|new
-name|URL
+name|FileInputStream
 argument_list|(
-name|arg
+name|file
 argument_list|)
 decl_stmt|;
 name|UnicodeReader
@@ -513,22 +532,12 @@ operator|=
 operator|new
 name|UnicodeReader
 argument_list|(
-name|url
-operator|.
-name|openStream
-argument_list|()
+name|fis
 argument_list|,
-name|arg
-operator|=
 name|args
 index|[
 literal|1
 index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
@@ -542,10 +551,7 @@ operator|=
 operator|new
 name|UnicodeReader
 argument_list|(
-name|url
-operator|.
-name|openStream
-argument_list|()
+name|fis
 argument_list|)
 expr_stmt|;
 block|}
@@ -614,18 +620,11 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -635,18 +634,11 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//TODO : return an *Item* built with sw.toString()

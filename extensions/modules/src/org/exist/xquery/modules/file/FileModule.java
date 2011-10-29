@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,6 +16,26 @@ operator|.
 name|file
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
 
 begin_import
 import|import
@@ -54,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension  *   * An extension module for the eXist Native XML Database that allows various file-oriented  * activities.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[])  */
+comment|/**  * eXist File Module Extension  *   * An extension module for the eXist Native XML Database that allows various file-oriented  * activities.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class
@@ -107,14 +127,29 @@ block|{
 operator|new
 name|FunctionDef
 argument_list|(
-name|DirectoryListFunction
+name|Directory
 operator|.
 name|signatures
 index|[
 literal|0
 index|]
 argument_list|,
-name|DirectoryListFunction
+name|Directory
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|DirectoryList
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|DirectoryList
 operator|.
 name|class
 argument_list|)
@@ -149,21 +184,7 @@ operator|.
 name|class
 argument_list|)
 block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|FileReadBinary
-operator|.
-name|signatures
-index|[
-literal|0
-index|]
-argument_list|,
-name|FileReadBinary
-operator|.
-name|class
-argument_list|)
-block|,
+comment|//new FunctionDef( FileReadBinary.signatures[0], 			FileReadBinary.class ),
 operator|new
 name|FunctionDef
 argument_list|(
@@ -194,36 +215,10 @@ operator|.
 name|class
 argument_list|)
 block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|SerializeToFile
-operator|.
-name|signatures
-index|[
-literal|0
-index|]
-argument_list|,
-name|SerializeToFile
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|SerializeToFile
-operator|.
-name|signatures
-index|[
-literal|1
-index|]
-argument_list|,
-name|SerializeToFile
-operator|.
-name|class
-argument_list|)
-block|,
+comment|//new FunctionDef( SerializeToFile.signatures[0], 		SerializeToFile.class ),
+comment|//new FunctionDef( SerializeToFile.signatures[1],         SerializeToFile.class ),
+comment|//new FunctionDef( SerializeToFile.signatures[2], 		SerializeToFile.class ),
+comment|//new FunctionDef( SerializeToFile.signatures[3],         SerializeToFile.class ),
 operator|new
 name|FunctionDef
 argument_list|(
@@ -295,6 +290,63 @@ literal|0
 index|]
 argument_list|,
 name|FileDelete
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|FileMove
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|FileMove
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|DirectoryCreate
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
+argument_list|,
+name|DirectoryCreate
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|DirectoryCreate
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
+argument_list|,
+name|DirectoryCreate
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Sync
+operator|.
+name|signature
+argument_list|,
+name|Sync
 operator|.
 name|class
 argument_list|)

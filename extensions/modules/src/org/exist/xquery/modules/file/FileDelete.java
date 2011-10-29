@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Andrzej Taramina  *  */
+comment|/**  * @see java.io.File#delete()   *  * @author Andrzej Taramina  *  */
 end_comment
 
 begin_class
@@ -246,7 +246,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Delete a file.  This method is only available to the DBA role."
+literal|"Delete a file or directory.  This method is only available to the DBA role."
 argument_list|,
 operator|new
 name|SequenceType
@@ -255,7 +255,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"filepath"
+literal|"path"
 argument_list|,
 name|Type
 operator|.
@@ -265,7 +265,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The full path to the file"
+literal|"The full path or URI to the file"
 argument_list|)
 block|}
 argument_list|,
@@ -373,17 +373,12 @@ operator|.
 name|FALSE
 decl_stmt|;
 name|String
-name|path
+name|inputPath
 init|=
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
 operator|.
 name|getStringValue
 argument_list|()
@@ -391,10 +386,11 @@ decl_stmt|;
 name|File
 name|file
 init|=
-operator|new
-name|File
+name|FileModuleHelper
+operator|.
+name|getFile
 argument_list|(
-name|path
+name|inputPath
 argument_list|)
 decl_stmt|;
 if|if
