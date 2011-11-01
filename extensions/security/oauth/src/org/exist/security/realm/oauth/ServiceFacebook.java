@@ -223,7 +223,7 @@ name|security
 operator|.
 name|internal
 operator|.
-name|SubjectAccreditedImpl
+name|HttpSessionAuthentication
 import|;
 end_import
 
@@ -235,11 +235,9 @@ name|exist
 operator|.
 name|security
 operator|.
-name|realm
+name|internal
 operator|.
-name|openid
-operator|.
-name|SessionAuthentication
+name|SubjectAccreditedImpl
 import|;
 end_import
 
@@ -851,7 +849,7 @@ name|Authentication
 name|cached
 init|=
 operator|new
-name|SessionAuthentication
+name|HttpSessionAuthentication
 argument_list|(
 name|session
 argument_list|,
@@ -862,7 +860,7 @@ name|session
 operator|.
 name|setAttribute
 argument_list|(
-name|SessionAuthentication
+name|HttpSessionAuthentication
 operator|.
 name|__J_AUTHENTICATED
 argument_list|,
