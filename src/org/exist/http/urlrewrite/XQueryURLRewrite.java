@@ -4257,6 +4257,11 @@ return|;
 block|}
 finally|finally
 block|{
+name|queryContext
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
+expr_stmt|;
 name|xqyPool
 operator|.
 name|returnCompiledXQuery
