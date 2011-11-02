@@ -2657,6 +2657,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
+expr_stmt|;
 name|xquery
 operator|.
 name|getXQueryPool
