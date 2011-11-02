@@ -581,7 +581,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -602,7 +602,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -620,7 +620,7 @@ name|Subject
 name|invokingUser
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -641,7 +641,7 @@ name|String
 name|groupName
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -664,7 +664,7 @@ name|String
 name|fragment
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -685,7 +685,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -708,7 +708,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -728,7 +728,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -749,7 +749,7 @@ name|EXistException
 throws|,
 name|ConfigurationException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -770,7 +770,7 @@ name|EXistException
 throws|,
 name|ConfigurationException
 block|{
-comment|// TODO Auto-generated method stub
+comment|// Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -887,6 +887,39 @@ name|service
 return|;
 block|}
 block|}
+name|StringBuilder
+name|b
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|ServiceConfig
+name|service
+range|:
+name|serviceConfigList
+control|)
+block|{
+name|b
+operator|.
+name|append
+argument_list|(
+name|service
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|Exception
@@ -895,7 +928,14 @@ literal|"No<service> defined for path='"
 operator|+
 name|path
 operator|+
-literal|"'."
+literal|"', configurated services: ["
+operator|+
+name|b
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"]."
 argument_list|)
 throw|;
 block|}
