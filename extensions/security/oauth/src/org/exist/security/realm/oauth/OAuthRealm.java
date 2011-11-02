@@ -848,6 +848,19 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+if|if
+condition|(
+name|path
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"Path does not defined."
+argument_list|)
+throw|;
 for|for
 control|(
 name|ServiceConfig

@@ -4456,6 +4456,21 @@ condition|)
 block|{
 continue|continue;
 block|}
+comment|//ignore mapped fields for now, TODO: need to code back mapping.
+if|if
+condition|(
+name|field
+operator|.
+name|isAnnotationPresent
+argument_list|(
+name|NewClass
+operator|.
+name|class
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 name|String
 name|referenceBy
 init|=
