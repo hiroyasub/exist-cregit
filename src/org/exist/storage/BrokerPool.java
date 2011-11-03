@@ -841,6 +841,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|PROPERTY_EXPORT_ONLY
+init|=
+literal|"db-connection.emergency"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|DOC_ID_MODE_ATTRIBUTE
 init|=
 literal|"doc-ids"
@@ -2583,6 +2591,19 @@ argument_list|(
 name|SIGNAL_STARTUP
 argument_list|)
 expr_stmt|;
+name|boolean
+name|exportOnly
+init|=
+operator|(
+name|Boolean
+operator|)
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_EXPORT_ONLY
+argument_list|)
+decl_stmt|;
 comment|//REFACTOR : construct then configure
 name|cacheManager
 operator|=
@@ -2989,6 +3010,11 @@ block|}
 block|}
 block|}
 comment|/* initialise required collections if they dont exist yet */
+if|if
+condition|(
+operator|!
+name|exportOnly
+condition|)
 name|initialiseSystemCollections
 argument_list|(
 name|broker

@@ -853,6 +853,15 @@ name|XmldbURI
 name|getURI
 parameter_list|()
 block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+return|return
+name|fileURI
+return|;
 return|return
 name|collection
 operator|.
