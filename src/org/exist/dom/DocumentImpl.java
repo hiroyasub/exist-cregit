@@ -917,6 +917,19 @@ name|XmldbURI
 name|getURI
 parameter_list|()
 block|{
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|fileURI
+return|;
+block|}
+else|else
+block|{
 return|return
 name|collection
 operator|.
@@ -928,6 +941,7 @@ argument_list|(
 name|fileURI
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 name|boolean

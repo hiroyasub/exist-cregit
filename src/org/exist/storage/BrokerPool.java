@@ -1037,6 +1037,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|PROPERTY_EXPORT_ONLY
+init|=
+literal|"db-connection.emergency"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|DOC_ID_MODE_ATTRIBUTE
 init|=
 literal|"doc-ids"
@@ -2805,6 +2813,19 @@ argument_list|(
 name|SIGNAL_STARTUP
 argument_list|)
 expr_stmt|;
+name|boolean
+name|exportOnly
+init|=
+operator|(
+name|Boolean
+operator|)
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_EXPORT_ONLY
+argument_list|)
+decl_stmt|;
 comment|//create the security manager
 name|securityManager
 operator|=
@@ -3220,11 +3241,18 @@ block|}
 block|}
 block|}
 comment|/* initialise required collections if they dont exist yet */
+if|if
+condition|(
+operator|!
+name|exportOnly
+condition|)
+block|{
 name|initialiseSystemCollections
 argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
