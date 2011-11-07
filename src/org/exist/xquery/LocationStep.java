@@ -303,7 +303,7 @@ specifier|protected
 name|boolean
 name|useDirectAttrSelect
 init|=
-literal|true
+literal|false
 decl_stmt|;
 specifier|protected
 name|boolean
