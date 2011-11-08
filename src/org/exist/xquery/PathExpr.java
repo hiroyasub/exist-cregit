@@ -1208,8 +1208,8 @@ comment|//TODO : reconsider since that may be expensive (type evaluation)
 operator|!
 operator|(
 name|this
-operator|.
-name|inPredicate
+operator|instanceof
+name|Predicate
 operator|&&
 name|Type
 operator|.
