@@ -2602,6 +2602,8 @@ operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_EXPORT_ONLY
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//REFACTOR : construct then configure
