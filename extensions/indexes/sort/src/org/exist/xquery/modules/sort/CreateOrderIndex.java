@@ -736,9 +736,13 @@ decl_stmt|;
 name|int
 name|logChunk
 init|=
+literal|1
+operator|+
+operator|(
 name|len
 operator|/
 literal|20
+operator|)
 decl_stmt|;
 for|for
 control|(
@@ -822,6 +826,7 @@ name|logChunk
 operator|==
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -837,6 +842,7 @@ operator|+
 literal|" to sort index."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|call
