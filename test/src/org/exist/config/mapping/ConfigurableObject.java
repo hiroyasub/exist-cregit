@@ -126,7 +126,7 @@ operator|=
 literal|"org/exist/config/mapping/MappedÐ¡lass.xml"
 argument_list|)
 specifier|protected
-name|MappedÐ¡lass
+name|MappedClass
 name|subclasses
 decl_stmt|;
 specifier|private
