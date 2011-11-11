@@ -187,7 +187,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|BasicFunction
+name|Cardinality
 import|;
 end_import
 
@@ -199,7 +199,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
+name|Function
 import|;
 end_import
 
@@ -264,6 +264,20 @@ operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Item
 import|;
 end_import
 
@@ -388,7 +402,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Delivers the fragment between two nodes (normally milestones) of a document.  * It leads to more performance for most XML documents because it  * determines the fragment directly by the EmbeddedXmlReader and not by   * XQL operators.  * @author Josef Willenborg, Max Planck Institute for the History of Science,  * http://www.mpiwg-berlin.mpg.de, jwillenborg@mpiwg-berlin.mpg.de   */
+comment|/**  * Delivers the fragment between two nodes (normally milestones) of a document.  * It leads to more performance for most XML documents because it  * determines the fragment directly by the EmbeddedXmlReader and not by   * XQL operators.  * @author Josef Willenborg, Max Planck Institute for the history of science,  * http://www.mpiwg-berlin.mpg.de, jwillenborg@mpiwg-berlin.mpg.de   */
 end_comment
 
 begin_class
@@ -396,7 +410,7 @@ specifier|public
 class|class
 name|GetFragmentBetween
 extends|extends
-name|BasicFunction
+name|Function
 block|{
 specifier|protected
 specifier|static
@@ -438,6 +452,8 @@ argument_list|)
 argument_list|,
 literal|"Returns an xml fragment or a sequence of nodes between two elements (normally milestone elements). "
 operator|+
+literal|"This function works only on documents which are stored in eXist DB."
+operator|+
 literal|"The $beginning-node represents the first node/milestone element, $ending-node, the second one. "
 operator|+
 literal|"The third argument, $make-fragment, is "
@@ -446,9 +462,15 @@ literal|"a boolean value for the path completion. If it is set to true() the "
 operator|+
 literal|"result sequence is wrapped into a parent element node. "
 operator|+
+literal|"The fourth argument, display-root-namespace, is "
+operator|+
+literal|"a boolean value for displaying the root node namespace. If it is set to true() the "
+operator|+
+literal|"attribute \"xmlns\" in the root node of the result sequence is determined explicitely from the $beginning-node. "
+operator|+
 literal|"Example call of the function for getting the fragment between two TEI page break element nodes: "
 operator|+
-literal|"  let $fragment := util:get-fragment-between(//pb[1], //pb[2], true())"
+literal|"  let $fragment := util:get-fragment-between(//pb[1], //pb[2], true(), true())"
 argument_list|,
 operator|new
 name|SequenceType
@@ -501,6 +523,22 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"The flag make a fragment."
 argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"display-root-namespace"
+argument_list|,
+name|Type
+operator|.
+name|BOOLEAN
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"Display the namespace of the root node of the fragment."
+argument_list|)
 block|}
 argument_list|,
 operator|new
@@ -514,8 +552,10 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the string containing the fragments between the two node/milestone elements."
+literal|"the string containing the fragment between the two node/milestone elements."
 argument_list|)
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -533,36 +573,79 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get the fragment between two elements (normally milestone elements) of a document     * @param args 1. first node (e.g. pb[10])  2. second node (e.g.: pb[11]) 3. pathCompletion:    * open and closing tags before and after the fragment are appended (Default: true)      * @return the fragment between the two nodes    * @throws XPathException    */
+comment|/**    * Get the fragment between two elements (normally milestone elements) of a document     * @param args 1. first node (e.g. pb[10])  2. second node (e.g.: pb[11]) 3. pathCompletion:    * open and closing tags before and after the fragment are appended (Default: true)     * 4. Display the namespace of the root node of the fragment (Default: false)    * @return the fragment between the two nodes    * @throws XPathException    */
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
 name|Sequence
-index|[]
-name|args
-parameter_list|,
-name|Sequence
 name|contextSequence
+parameter_list|,
+name|Item
+name|contextItem
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|int
+name|argumentCount
+init|=
+name|getArgumentCount
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|argumentCount
+operator|<
+literal|2
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"requires at least 2 arguments"
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"requires at least 2 arguments"
+argument_list|)
+throw|;
+block|}
 name|Sequence
 name|ms1
 init|=
-name|args
-index|[
+name|getArgument
+argument_list|(
 literal|0
-index|]
+argument_list|)
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|)
 decl_stmt|;
 name|Sequence
 name|ms2
 init|=
-name|args
-index|[
+name|getArgument
+argument_list|(
 literal|1
-index|]
+argument_list|)
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -654,14 +737,6 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
-name|Sequence
-name|seqPathCompletion
-init|=
-name|args
-index|[
-literal|2
-index|]
-decl_stmt|;
 name|boolean
 name|pathCompletion
 init|=
@@ -670,22 +745,65 @@ decl_stmt|;
 comment|// default
 if|if
 condition|(
-operator|!
-operator|(
-name|seqPathCompletion
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-operator|==
-literal|null
-operator|)
+name|argumentCount
+operator|>
+literal|2
 condition|)
 block|{
+name|Sequence
+name|seqPathCompletion
+init|=
+name|getArgument
+argument_list|(
+literal|2
+argument_list|)
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|)
+decl_stmt|;
 name|pathCompletion
 operator|=
 name|seqPathCompletion
+operator|.
+name|effectiveBooleanValue
+argument_list|()
+expr_stmt|;
+block|}
+name|boolean
+name|displayRootNamespace
+init|=
+literal|false
+decl_stmt|;
+comment|// default
+if|if
+condition|(
+name|argumentCount
+operator|>
+literal|3
+condition|)
+block|{
+name|Sequence
+name|seqDisplayRootNamespace
+init|=
+name|getArgument
+argument_list|(
+literal|3
+argument_list|)
+operator|.
+name|eval
+argument_list|(
+name|contextSequence
+argument_list|,
+name|contextItem
+argument_list|)
+decl_stmt|;
+name|displayRootNamespace
+operator|=
+name|seqDisplayRootNamespace
 operator|.
 name|effectiveBooleanValue
 argument_list|()
@@ -716,6 +834,8 @@ name|ms1Node
 operator|.
 name|getParentNode
 argument_list|()
+argument_list|,
+name|displayRootNamespace
 argument_list|)
 decl_stmt|;
 name|String
@@ -752,6 +872,8 @@ name|ms2Node
 operator|.
 name|getParentNode
 argument_list|()
+argument_list|,
+name|displayRootNamespace
 argument_list|)
 decl_stmt|;
 name|closingElementsOfMsTo
@@ -2359,6 +2481,9 @@ name|getNodeXPath
 parameter_list|(
 name|Node
 name|n
+parameter_list|,
+name|boolean
+name|setRootNamespace
 parameter_list|)
 block|{
 comment|//if at the document level just return /
@@ -2386,6 +2511,8 @@ argument_list|(
 name|nodeToXPath
 argument_list|(
 name|n
+argument_list|,
+name|setRootNamespace
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -2424,6 +2551,8 @@ argument_list|,
 name|nodeToXPath
 argument_list|(
 name|n
+argument_list|,
+name|setRootNamespace
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2443,6 +2572,9 @@ name|nodeToXPath
 parameter_list|(
 name|Node
 name|n
+parameter_list|,
+name|boolean
+name|setRootNamespace
 parameter_list|)
 block|{
 name|StringBuilder
@@ -2459,6 +2591,70 @@ name|n
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|setRootNamespace
+condition|)
+block|{
+comment|// set namespace only if node is root node
+name|Node
+name|parentNode
+init|=
+name|n
+operator|.
+name|getParentNode
+argument_list|()
+decl_stmt|;
+name|short
+name|parentNodeType
+init|=
+name|parentNode
+operator|.
+name|getNodeType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|parentNodeType
+operator|==
+name|Node
+operator|.
+name|DOCUMENT_NODE
+condition|)
+block|{
+name|String
+name|nsUri
+init|=
+name|n
+operator|.
+name|getNamespaceURI
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|nsUri
+operator|!=
+literal|null
+condition|)
+block|{
+name|xpath
+operator|.
+name|append
+argument_list|(
+literal|"[@"
+operator|+
+literal|"xmlns"
+operator|+
+literal|" eq \""
+operator|+
+name|nsUri
+operator|+
+literal|"\"]"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 name|NamedNodeMap
 name|attrs
 init|=
