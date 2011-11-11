@@ -614,6 +614,19 @@ condition|)
 block|{
 comment|//responseAttributes = OAuthUtil.parseQueryString(response);
 block|}
+if|if
+condition|(
+name|responseAttributes
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|OAuthException
+argument_list|(
+literal|"Get response, but no account information."
+argument_list|)
+throw|;
 name|String
 name|id
 init|=
