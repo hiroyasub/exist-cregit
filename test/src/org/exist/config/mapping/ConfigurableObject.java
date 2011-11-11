@@ -119,11 +119,11 @@ name|NewClass
 argument_list|(
 name|name
 operator|=
-literal|"org.exist.config.mapping.MappedÐ¡lass"
+literal|"org.exist.config.mapping.MappedClass"
 argument_list|,
 name|mapper
 operator|=
-literal|"org/exist/config/mapping/MappedÐ¡lass.xml"
+literal|"org/exist/config/mapping/Mapping.xml"
 argument_list|)
 specifier|protected
 name|MappedClass
