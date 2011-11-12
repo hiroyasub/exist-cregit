@@ -2580,6 +2580,16 @@ argument_list|)
 expr_stmt|;
 name|wrappedReq
 operator|.
+name|setBasePath
+argument_list|(
+name|modifiedRequest
+operator|.
+name|getBasePath
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|wrappedReq
+operator|.
 name|setCharacterEncoding
 argument_list|(
 name|wrappedResponse
