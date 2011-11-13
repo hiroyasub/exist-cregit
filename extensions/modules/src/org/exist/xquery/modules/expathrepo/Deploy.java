@@ -1440,6 +1440,8 @@ name|cleanup
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1513,6 +1515,8 @@ argument_list|,
 name|packageDir
 argument_list|,
 name|path
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 return|return
@@ -1790,6 +1794,8 @@ argument_list|,
 name|packageDir
 argument_list|,
 name|path
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1847,6 +1853,8 @@ argument_list|,
 name|packageDir
 argument_list|,
 name|path
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2593,6 +2601,9 @@ name|tempDir
 parameter_list|,
 name|String
 name|fileName
+parameter_list|,
+name|boolean
+name|preInstall
 parameter_list|)
 throws|throws
 name|XPathException
@@ -2744,6 +2755,22 @@ argument_list|,
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|preInstall
+condition|)
+comment|// when running pre-setup scripts, base path should point to directory
+comment|// because the target collection does not yet exist
+name|ctx
+operator|.
+name|setModuleLoadPath
+argument_list|(
+name|tempDir
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CompiledXQuery
