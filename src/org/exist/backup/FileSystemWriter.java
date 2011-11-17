@@ -93,6 +93,30 @@ name|Properties
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of BackupWriter that writes to the file system.  */
 end_comment
@@ -196,8 +220,9 @@ name|file
 decl_stmt|;
 if|if
 condition|(
-operator|new
-name|File
+name|XmldbURI
+operator|.
+name|createInternal
 argument_list|(
 name|name
 argument_list|)
