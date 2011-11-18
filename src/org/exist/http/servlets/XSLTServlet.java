@@ -1030,7 +1030,7 @@ name|sourceObj
 operator|=
 name|seq
 operator|.
-name|get
+name|itemAt
 argument_list|(
 literal|0
 argument_list|)
