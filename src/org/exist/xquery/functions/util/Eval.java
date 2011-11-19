@@ -1119,8 +1119,7 @@ name|id
 init|=
 literal|0
 decl_stmt|;
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Thread
 name|newThread
@@ -1578,8 +1577,7 @@ operator|=
 name|args
 expr_stmt|;
 block|}
-annotation|@
-name|Override
+comment|//@Override
 specifier|public
 name|Sequence
 name|call
