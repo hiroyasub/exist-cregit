@@ -2713,6 +2713,7 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|new
 name|BooleanValue
@@ -2721,6 +2722,7 @@ name|effectiveBooleanValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2729,13 +2731,34 @@ name|String
 operator|.
 name|class
 condition|)
-comment|// return Long.toString(value);
+block|{
 return|return
 name|value
 operator|.
 name|toString
 argument_list|()
 return|;
+block|}
+if|else if
+condition|(
+name|target
+operator|==
+name|BigInteger
+operator|.
+name|class
+condition|)
+block|{
+return|return
+operator|new
+name|BigInteger
+argument_list|(
+name|value
+operator|.
+name|toByteArray
+argument_list|()
+argument_list|)
+return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2744,10 +2767,12 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|value
 return|;
 comment|// Long(value);
+block|}
 throw|throw
 operator|new
 name|XPathException

@@ -1013,6 +1013,23 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+specifier|public
+specifier|abstract
+name|DocumentImpl
+name|getResourceById
+parameter_list|(
+name|int
+name|collectionId
+parameter_list|,
+name|byte
+name|resourceType
+parameter_list|,
+name|int
+name|documentId
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 comment|/**      * deprecated Use XmldbURI instead!      *       * public abstract DocumentImpl getXMLResource(String docPath, int lockMode)      * throws PermissionDeniedException;      */
 comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock.      *       * @return the document or null if no document could be found at the      *         specified location.      */
 specifier|public
