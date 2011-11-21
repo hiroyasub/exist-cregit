@@ -569,11 +569,11 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
-name|CollectionNameOrId
+name|CollectionName
 operator|.
-name|collectionNameSignature
+name|signature
 argument_list|,
-name|CollectionNameOrId
+name|CollectionName
 operator|.
 name|class
 argument_list|)
