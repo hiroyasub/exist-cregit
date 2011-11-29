@@ -1285,7 +1285,7 @@ argument_list|)
 operator|==
 name|File
 operator|.
-name|pathSeparatorChar
+name|separatorChar
 condition|)
 name|path
 operator|=
