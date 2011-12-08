@@ -81,6 +81,18 @@ name|bradmcevoy
 operator|.
 name|http
 operator|.
+name|HttpManager
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
 name|LockInfo
 import|;
 end_import
@@ -236,6 +248,34 @@ operator|.
 name|exceptions
 operator|.
 name|PreConditionFailedException
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
+name|webdav
+operator|.
+name|DefaultUserAgentHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
+name|webdav
+operator|.
+name|UserAgentHelper
 import|;
 end_import
 
@@ -462,6 +502,14 @@ name|MoveableResource
 implements|,
 name|CopyableResource
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|METHOD_XML_SIZE
+init|=
+literal|"org.exist.webdav.METHOD_XML_SIZE"
+decl_stmt|;
 specifier|private
 name|ExistDocument
 name|existDocument
@@ -481,33 +529,27 @@ init|=
 literal|false
 decl_stmt|;
 specifier|private
+enum|enum
+name|SIZE_METHOD
+block|{
+name|NULL
+block|,
+name|EXACT
+block|,
+name|APPROXIMATE
+block|}
+empty_stmt|;
+specifier|private
 specifier|static
-specifier|final
-name|String
-name|METHOD_NULL
+name|SIZE_METHOD
+name|sizeMethod
 init|=
-literal|"null"
+literal|null
 decl_stmt|;
 specifier|private
 specifier|static
-specifier|final
-name|String
-name|METHOD_EXACT
-init|=
-literal|"exact"
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|METHOD_GUESS
-init|=
-literal|"approximate"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|propfindMethod
+name|UserAgentHelper
+name|userAgentHelper
 init|=
 literal|null
 decl_stmt|;
@@ -573,6 +615,20 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|userAgentHelper
+operator|==
+literal|null
+condition|)
+block|{
+name|userAgentHelper
+operator|=
+operator|new
+name|DefaultUserAgentHelper
+argument_list|()
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -643,23 +699,80 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|propfindMethod
+name|sizeMethod
 operator|==
 literal|null
 condition|)
 block|{
-comment|// GUESS works for all except Finder
-name|propfindMethod
-operator|=
+comment|// get user supplied preferred size determination approach
+name|String
+name|systemProp
+init|=
 name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"org.exist.webdav.METHOD_XML_SIZE"
-argument_list|,
-name|METHOD_GUESS
+name|METHOD_XML_SIZE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|systemProp
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Default method
+name|sizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|APPROXIMATE
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Try to parse from environment property
+try|try
+block|{
+name|sizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|valueOf
+argument_list|(
+name|systemProp
+operator|.
+name|toUpperCase
+argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Set preffered default
+name|sizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|APPROXIMATE
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 comment|/* ================      * GettableResource      * ================ */
@@ -854,24 +967,42 @@ name|isXmlDocument
 argument_list|()
 condition|)
 block|{
+comment|// For PROPFIND it is performance wise a bad idea to pre-serialize
+comment|// all documents just to determine the file size. For finder there
+comment|// is just no choice.
 if|if
 condition|(
 name|isPropFind
 condition|)
 block|{
-comment|// PROPFIND
+comment|// MacOsX has a bad reputation
+name|boolean
+name|isMacFinder
+init|=
+name|userAgentHelper
+operator|.
+name|isMacFinder
+argument_list|(
+name|HttpManager
+operator|.
+name|request
+argument_list|()
+operator|.
+name|getUserAgentHeader
+argument_list|()
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|METHOD_EXACT
+name|isMacFinder
+operator|||
+name|SIZE_METHOD
 operator|.
-name|equals
-argument_list|(
-name|propfindMethod
-argument_list|)
+name|EXACT
+operator|==
+name|sizeMethod
 condition|)
 block|{
-comment|// For PROPFIND the actual size must be calculated
-comment|// by serializing the document.
 name|LOG
 operator|.
 name|debug
@@ -882,7 +1013,9 @@ literal|" ("
 operator|+
 name|resourceXmldbUri
 operator|+
-literal|")"
+literal|") MacFinder="
+operator|+
+name|isMacFinder
 argument_list|)
 expr_stmt|;
 comment|// Stream document to /dev/null and count bytes
@@ -941,12 +1074,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|METHOD_NULL
+name|SIZE_METHOD
 operator|.
-name|equals
-argument_list|(
-name|propfindMethod
-argument_list|)
+name|NULL
+operator|==
+name|sizeMethod
 condition|)
 block|{
 name|size
@@ -956,7 +1088,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Use estimated document size (METHOD_GUESS)
+comment|// Use estimated document size (Approximate)
+comment|// this is the default method
 name|size
 operator|=
 name|existDocument
@@ -968,7 +1101,9 @@ block|}
 block|}
 else|else
 block|{
+comment|// GET
 comment|// Serialize to virtual file for re-use by sendContent()
+comment|// Serialization has to be done anyway, do it immediately
 try|try
 block|{
 name|LOG
