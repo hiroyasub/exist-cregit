@@ -506,9 +506,17 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|METHOD_XML_SIZE
+name|PROPFIND_METHOD_XML_SIZE
 init|=
-literal|"org.exist.webdav.METHOD_XML_SIZE"
+literal|"org.exist.webdav.PROPFIND_METHOD_XML_SIZE"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GET_METHOD_XML_SIZE
+init|=
+literal|"org.exist.webdav.GET_METHOD_XML_SIZE"
 decl_stmt|;
 specifier|private
 name|ExistDocument
@@ -542,7 +550,14 @@ empty_stmt|;
 specifier|private
 specifier|static
 name|SIZE_METHOD
-name|sizeMethod
+name|propfindSizeMethod
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+specifier|static
+name|SIZE_METHOD
+name|getSizeMethod
 init|=
 literal|null
 decl_stmt|;
@@ -697,9 +712,10 @@ name|initMetadata
 argument_list|()
 expr_stmt|;
 block|}
+comment|// PROPFIND method
 if|if
 condition|(
-name|sizeMethod
+name|propfindSizeMethod
 operator|==
 literal|null
 condition|)
@@ -712,7 +728,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-name|METHOD_XML_SIZE
+name|PROPFIND_METHOD_XML_SIZE
 argument_list|)
 decl_stmt|;
 if|if
@@ -722,8 +738,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// Default method
-name|sizeMethod
+comment|// Default method is approximate
+name|propfindSizeMethod
 operator|=
 name|SIZE_METHOD
 operator|.
@@ -735,7 +751,7 @@ block|{
 comment|// Try to parse from environment property
 try|try
 block|{
-name|sizeMethod
+name|propfindSizeMethod
 operator|=
 name|SIZE_METHOD
 operator|.
@@ -765,7 +781,85 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Set preffered default
-name|sizeMethod
+name|propfindSizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|APPROXIMATE
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|// GET method
+if|if
+condition|(
+name|getSizeMethod
+operator|==
+literal|null
+condition|)
+block|{
+comment|// get user supplied preferred size determination approach
+name|String
+name|systemProp
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|GET_METHOD_XML_SIZE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|systemProp
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Default method is NULL
+name|getSizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|NULL
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Try to parse from environment property
+try|try
+block|{
+name|getSizeMethod
+operator|=
+name|SIZE_METHOD
+operator|.
+name|valueOf
+argument_list|(
+name|systemProp
+operator|.
+name|toUpperCase
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Set preffered default
+name|getSizeMethod
 operator|=
 name|SIZE_METHOD
 operator|.
@@ -954,27 +1048,35 @@ name|Long
 name|getContentLength
 parameter_list|()
 block|{
+comment|// Note
+comment|// Whilst for non-XML documents the exact size of the documents can
+comment|// be determined by checking the administration, this is not possible
+comment|// for XML documents.
+comment|//
+comment|// For XML documents by default the 'approximate' size is available
+comment|// which can be sufficient (pagesize * nr of pages). Exact size
+comment|// is dependant on many factors, the serialization parameters.
+comment|//
+comment|// The approximate size is a good indication of the size of document
+comment|// but some WebDAV client, mainly the MacOsX Finder version, can
+comment|// not deal with this guesstimate, resulting in incomplete or overcomplete
+comment|// documents.
+comment|//
+comment|// Special for this, two system variables can be set to change the
+comment|// way the size is calculated. Supported values are
+comment|// NULL, EXACT, APPROXIMATE
+comment|//
+comment|// PROPFIND: Unfortunately both NULL and APPROXIMATE do not work for
+comment|// MacOsX Finder. The default behaviour for the Finder 'user-agent' is
+comment|// exact, for the others it is approximate.
+comment|// This behaviour is swiched by the system properties.
+comment|//
+comment|// GET: the NULL value seems to be working well for macosx too.
 name|Long
 name|size
 init|=
 literal|null
 decl_stmt|;
-if|if
-condition|(
-name|existDocument
-operator|.
-name|isXmlDocument
-argument_list|()
-condition|)
-block|{
-comment|// For PROPFIND it is performance wise a bad idea to pre-serialize
-comment|// all documents just to determine the file size. For finder there
-comment|// is just no choice.
-if|if
-condition|(
-name|isPropFind
-condition|)
-block|{
 comment|// MacOsX has a bad reputation
 name|boolean
 name|isMacFinder
@@ -994,15 +1096,35 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|existDocument
+operator|.
+name|isXmlDocument
+argument_list|()
+condition|)
+block|{
+comment|// XML document, exact size is not (directly) known)
+if|if
+condition|(
+name|isPropFind
+condition|)
+block|{
+comment|// PROPFIND
+comment|// In this scensario the XML document is not actually
+comment|// downloaded, only the size needs to be known.
+comment|// This is the most expensive scenario
+if|if
+condition|(
 name|isMacFinder
 operator|||
 name|SIZE_METHOD
 operator|.
 name|EXACT
 operator|==
-name|sizeMethod
+name|propfindSizeMethod
 condition|)
 block|{
+comment|// Returns the exact size, default behaviour for Finder,
+comment|// or when set by a system property
 name|LOG
 operator|.
 name|debug
@@ -1018,7 +1140,7 @@ operator|+
 name|isMacFinder
 argument_list|)
 expr_stmt|;
-comment|// Stream document to /dev/null and count bytes
+comment|// Stream document to '/dev/null' and count bytes
 name|ByteCountOutputStream
 name|counter
 init|=
@@ -1038,21 +1160,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
+name|Exception
 name|ex
 parameter_list|)
 block|{
@@ -1078,9 +1186,11 @@ name|SIZE_METHOD
 operator|.
 name|NULL
 operator|==
-name|sizeMethod
+name|propfindSizeMethod
 condition|)
 block|{
+comment|// Returns size unknown. This is not supported
+comment|// by MacOsX finder
 name|size
 operator|=
 literal|null
@@ -1088,8 +1198,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Use estimated document size (Approximate)
-comment|// this is the default method
+comment|// Returns the estimated document size. This is the
+comment|// default value, but not suitable for MacOsX Finder.
 name|size
 operator|=
 name|existDocument
@@ -1102,8 +1212,19 @@ block|}
 else|else
 block|{
 comment|// GET
-comment|// Serialize to virtual file for re-use by sendContent()
-comment|// Serialization has to be done anyway, do it immediately
+comment|// In this scenario, the document will actually be downloaded
+comment|// in the next step.
+if|if
+condition|(
+name|SIZE_METHOD
+operator|.
+name|EXACT
+operator|==
+name|getSizeMethod
+condition|)
+block|{
+comment|// Return the exact size by pre-serializing the document
+comment|// to a buffer first. isMacFinder is not needed
 try|try
 block|{
 name|LOG
@@ -1140,21 +1261,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
+name|Exception
 name|ex
 parameter_list|)
 block|{
@@ -1174,11 +1281,48 @@ name|length
 argument_list|()
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|SIZE_METHOD
+operator|.
+name|APPROXIMATE
+operator|==
+name|getSizeMethod
+condition|)
+block|{
+comment|// Return approximate size, be warned to use this
+name|size
+operator|=
+name|existDocument
+operator|.
+name|getContentLength
+argument_list|()
+expr_stmt|;
+name|vtf
+operator|=
+literal|null
+expr_stmt|;
+comment|// force live serialization
 block|}
 else|else
 block|{
-comment|// Non XML document
-comment|// Actual size is known
+comment|// Return no size, the whole file will be downloaded
+comment|// Works well for macosx finder
+name|size
+operator|=
+literal|null
+expr_stmt|;
+name|vtf
+operator|=
+literal|null
+expr_stmt|;
+comment|// force live serialization
+block|}
+block|}
+block|}
+else|else
+block|{
+comment|// Non XML document, actual size is known
 name|size
 operator|=
 name|existDocument
