@@ -4333,7 +4333,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Update the specified account without update user's password 	 * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/** 	 * Update the specified account without update user's password 	 * Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 *  	 * modified by Chris Tomlinson to remove handling of home which 	 * breaks the call on updateAccount in RpcConnection since there is 	 * no parameter to receive it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|addUserGroup
@@ -4387,25 +4387,6 @@ argument_list|(
 name|gl
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|user
-operator|.
-name|getHome
-argument_list|()
-operator|!=
-literal|null
-condition|)
-name|params
-operator|.
-name|add
-argument_list|(
-name|user
-operator|.
-name|getHome
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|parent
 operator|.
 name|getClient
@@ -4443,7 +4424,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  Update the specified user removing a group from user's group 	 *  method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@param  rmgroup             Description of group to remove  	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/** 	 *  Update the specified user removing a group from user's group 	 *  method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 *  	 * modified by Chris Tomlinson to remove handling of home which 	 * breaks the call on updateAccount in RpcConnection since there is 	 * no parameter to receive it 	 * 	 *@param  user                Description of the Parameter 	 *@param  rmgroup             Description of group to remove  	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|removeGroup
@@ -4471,7 +4452,7 @@ argument_list|<
 name|Object
 argument_list|>
 argument_list|(
-literal|1
+literal|3
 argument_list|)
 decl_stmt|;
 name|params
@@ -4500,25 +4481,6 @@ argument_list|(
 name|gl
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|user
-operator|.
-name|getHome
-argument_list|()
-operator|!=
-literal|null
-condition|)
-name|params
-operator|.
-name|add
-argument_list|(
-name|user
-operator|.
-name|getHome
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|params
 operator|.
 name|add
@@ -4533,7 +4495,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"setUser"
+literal|"updateAccount"
 argument_list|,
 name|params
 argument_list|)
