@@ -3642,62 +3642,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|File
-name|modsFile
-init|=
-operator|new
-name|File
-argument_list|(
-name|MODS_DIR
-argument_list|,
-literal|"eXist/exist-articles.xml"
-argument_list|)
-decl_stmt|;
-name|XMLResource
-name|doc
-init|=
-operator|(
-name|XMLResource
-operator|)
-name|testCollection
-operator|.
-name|createResource
-argument_list|(
-name|modsFile
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-literal|"XMLResource"
-argument_list|)
-decl_stmt|;
-name|doc
-operator|.
-name|setContent
-argument_list|(
-name|modsFile
-argument_list|)
-expr_stmt|;
-name|testCollection
-operator|.
-name|storeResource
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|testCollection
-operator|.
-name|getResource
-argument_list|(
-name|modsFile
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// File has been removed
+comment|// File modsFile = new File(MODS_DIR, "eXist/exist-articles.xml");
+comment|//       XMLResource doc =
+comment|//           (XMLResource) testCollection.createResource(
+comment|//                   modsFile.getName(), "XMLResource" );
+comment|//       doc.setContent(modsFile);
+comment|//       testCollection.storeResource(doc);
+comment|//       assertNotNull(testCollection.getResource(modsFile.getName()));
 block|}
 catch|catch
 parameter_list|(
