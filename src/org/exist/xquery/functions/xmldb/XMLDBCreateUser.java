@@ -252,7 +252,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  * @author Luigi P. Bai, finder@users.sf.net, 2004  *  */
+comment|/**  * @author wolf  * @author Luigi P. Bai, finder@users.sf.net, 2004  *   */
 end_comment
 
 begin_class
@@ -416,7 +416,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, 	 *         org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, 	 * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -524,7 +524,8 @@ argument_list|(
 name|pass
 argument_list|)
 expr_stmt|;
-comment|// changed by wolf: the first group is always the primary group, so we don't need
+comment|// changed by wolf: the first group is always the primary group, so we
+comment|// don't need
 comment|// an additional argument
 name|Sequence
 name|groups
@@ -712,15 +713,43 @@ operator|+
 name|user
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|logger
+operator|.
+name|debug
+argument_list|(
+literal|"Failed to create user: "
+operator|+
+name|user
+argument_list|,
+name|xe
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Failed to create new user "
+literal|"Failed to create new user '"
 operator|+
 name|user
+operator|+
+literal|"' by "
+operator|+
+name|context
+operator|.
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|xe
 argument_list|)
