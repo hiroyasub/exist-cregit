@@ -9,9 +9,13 @@ name|org
 operator|.
 name|exist
 operator|.
+name|atom
+operator|.
 name|http
 operator|.
 name|webdav
+operator|.
+name|methods
 package|;
 end_package
 
@@ -65,6 +69,22 @@ name|org
 operator|.
 name|exist
 operator|.
+name|atom
+operator|.
+name|http
+operator|.
+name|webdav
+operator|.
+name|WebDAVMethod
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|Subject
@@ -84,15 +104,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for all WebDAV methods.  *   * @author wolf  */
+comment|/**  * @author wolf  */
 end_comment
 
-begin_interface
+begin_class
 specifier|public
-interface|interface
+class|class
+name|Options
+implements|implements
 name|WebDAVMethod
 block|{
-comment|/** 	 * Process a WebDAV request. The collection and resource parameters 	 * are set to the corresponding objects selected by the request path. 	 * The user parameter represents a valid database user. 	 *  	 * @param user 	 * @param request 	 * @param response 	 * @param path 	 * @throws ServletException 	 * @throws IOException 	 */
+specifier|public
 name|void
 name|process
 parameter_list|(
@@ -112,9 +134,39 @@ throws|throws
 name|ServletException
 throws|,
 name|IOException
-function_decl|;
+block|{
+comment|// TODO DWES changed to 2 ; check regression
+name|response
+operator|.
+name|addHeader
+argument_list|(
+literal|"DAV"
+argument_list|,
+literal|"1, 2"
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|addHeader
+argument_list|(
+literal|"Allow"
+argument_list|,
+literal|"OPTIONS, GET, HEAD, PUT, PROPFIND, MKCOL, LOCK, UNLOCK, DELETE, COPY, MOVE"
+argument_list|)
+expr_stmt|;
+comment|// MS specific
+name|response
+operator|.
+name|addHeader
+argument_list|(
+literal|"MS-Author-Via"
+argument_list|,
+literal|"DAV"
+argument_list|)
+expr_stmt|;
 block|}
-end_interface
+block|}
+end_class
 
 end_unit
 

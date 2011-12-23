@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|atom
+operator|.
 name|http
 operator|.
 name|webdav
@@ -171,6 +173,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|atom
+operator|.
 name|http
 operator|.
 name|webdav
@@ -184,6 +188,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|atom
 operator|.
 name|http
 operator|.

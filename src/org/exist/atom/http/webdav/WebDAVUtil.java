@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|atom
+operator|.
 name|http
 operator|.
 name|webdav
