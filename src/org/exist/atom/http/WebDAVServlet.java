@@ -2174,11 +2174,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|DocumentImpl
-name|feedDoc
-init|=
-literal|null
-decl_stmt|;
+comment|//DocumentImpl feedDoc = null;
 name|TransactionManager
 name|transact
 init|=
