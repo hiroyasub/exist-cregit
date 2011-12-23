@@ -418,7 +418,7 @@ specifier|static
 name|String
 name|COLLECTION_XQ
 init|=
-literal|"org/exist/http/webdav/methods/collection.xq"
+literal|"org/exist/atom/http/webdav/methods/collection.xq"
 decl_stmt|;
 comment|// We use an XQuery to list collection contents
 specifier|private
