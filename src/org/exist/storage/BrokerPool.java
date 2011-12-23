@@ -4393,11 +4393,7 @@ name|Subject
 name|subject
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
+comment|//synchronized(this) {
 comment|//Try to get an active broker
 name|DBBroker
 name|broker
@@ -4430,7 +4426,7 @@ return|return
 literal|true
 return|;
 block|}
-block|}
+comment|//}
 return|return
 literal|false
 return|;
@@ -4441,11 +4437,7 @@ name|Subject
 name|getSubject
 parameter_list|()
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
+comment|//synchronized(this) {
 comment|//Try to get an active broker
 name|DBBroker
 name|broker
@@ -4474,7 +4466,7 @@ name|getSubject
 argument_list|()
 return|;
 block|}
-block|}
+comment|//}
 return|return
 name|securityManager
 operator|.
@@ -4488,11 +4480,7 @@ name|getActiveBroker
 parameter_list|()
 block|{
 comment|//throws EXistException {
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
+comment|//synchronized(this) {
 comment|//Try to get an active broker
 name|DBBroker
 name|broker
@@ -4510,7 +4498,7 @@ decl_stmt|;
 return|return
 name|broker
 return|;
-block|}
+comment|//}
 block|}
 specifier|public
 name|DBBroker
@@ -4557,11 +4545,6 @@ literal|"' is not available"
 argument_list|)
 throw|;
 block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 comment|//Try to get an active broker
 name|DBBroker
 name|broker
@@ -4655,6 +4638,11 @@ parameter_list|)
 block|{
 block|}
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 comment|//Are there any available brokers ?
 if|if
 condition|(
@@ -4802,11 +4790,6 @@ operator|==
 literal|null
 condition|)
 return|return;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 comment|//TOUNDERSTAND (pb) : why maintain reference counters rather than pushing the brokers to the stack ?
 comment|//TODO : first check that the broker is active ! If not, return immediately.
 name|broker
@@ -4827,6 +4810,11 @@ block|{
 comment|//it is still in use and thus can't be marked as inactive
 return|return;
 block|}
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 comment|//Broker is no more used : inactivate it
 for|for
 control|(
