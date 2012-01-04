@@ -2591,6 +2591,11 @@ name|docSize
 operator|=
 literal|0
 expr_stmt|;
+comment|/*           * Reset node id count          *           * We set this to 1 instead of 0 to match the InMemmory serializer which          * considers the Document to be the first node with an id.          */
+name|nodeFactoryInstanceCnt
+operator|=
+literal|1
+expr_stmt|;
 block|}
 specifier|public
 name|void
