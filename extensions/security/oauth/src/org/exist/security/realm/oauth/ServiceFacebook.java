@@ -411,11 +411,7 @@ name|contentType
 operator|=
 literal|""
 expr_stmt|;
-name|String
-name|charset
-init|=
-literal|""
-decl_stmt|;
+comment|//String charset = "";
 name|int
 name|semicolonPos
 init|=
@@ -458,8 +454,7 @@ literal|"charset"
 argument_list|)
 condition|)
 block|{
-name|charset
-operator|=
+comment|//charset =
 name|_charset
 operator|.
 name|substring
