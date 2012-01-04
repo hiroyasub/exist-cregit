@@ -4304,20 +4304,6 @@ range|:
 name|qnames
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"QNAME: "
-operator|+
-name|qname
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|field
 init|=
