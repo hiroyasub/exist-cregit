@@ -751,7 +751,27 @@ argument_list|,
 name|username
 argument_list|)
 decl_stmt|;
-comment|/*if(account == null) {             account = (AbstractAccount) createAccountInDatabase(null, username);         }*/
+if|if
+condition|(
+name|account
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+argument_list|,
+literal|"Account '"
+operator|+
+name|username
+operator|+
+literal|"' can not be found."
+argument_list|)
+throw|;
 return|return
 operator|new
 name|AuthenticatedLdapSubjectAccreditedImpl
