@@ -1842,8 +1842,6 @@ name|instance
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|accountName
 argument_list|)
 decl_stmt|;

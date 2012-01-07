@@ -686,8 +686,6 @@ name|AbstractAccount
 operator|)
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|username
 argument_list|)
 decl_stmt|;
