@@ -1972,6 +1972,24 @@ name|AuthenticationException
 block|{
 if|if
 condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Authentication try for '"
+operator|+
+name|username
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
 literal|"jsessionid"
 operator|.
 name|equals
@@ -2765,6 +2783,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Account must have realm id."
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ConfigurationException
@@ -2791,6 +2816,13 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Account must have name."
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|ConfigurationException

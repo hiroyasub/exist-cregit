@@ -1860,6 +1860,24 @@ name|PermissionDeniedException
 throws|,
 name|NamingException
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Saving account '"
+operator|+
+name|username
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 comment|//get (or create) the primary group if it doesnt exist
 specifier|final
 name|Group
@@ -1973,6 +1991,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|AuthenticationException
@@ -2434,6 +2459,24 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Get request for account '"
+operator|+
+name|name
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 comment|//first attempt to get the cached account
 name|Account
 name|acct
@@ -2452,6 +2495,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Cached used."
+argument_list|)
+expr_stmt|;
 return|return
 name|acct
 return|;
@@ -2472,6 +2522,17 @@ argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"LDAP search return '"
+operator|+
+name|ldapUser
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|ldapUser
@@ -2560,24 +2621,7 @@ argument_list|,
 name|ne
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-operator|new
-name|AuthenticationException
-argument_list|(
-name|AuthenticationException
-operator|.
-name|UNNOWN_EXCEPTION
-argument_list|,
-name|ne
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//LOG.error(new AuthenticationException(AuthenticationException.UNNOWN_EXCEPTION, ne.getMessage()));
 return|return
 literal|null
 return|;
