@@ -2084,7 +2084,9 @@ control|)
 block|{
 try|try
 block|{
-return|return
+name|Subject
+name|subject
+init|=
 name|realm
 operator|.
 name|authenticate
@@ -2093,6 +2095,34 @@ name|username
 argument_list|,
 name|credentials
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Authenticated by '"
+operator|+
+name|realm
+operator|.
+name|getId
+argument_list|()
+operator|+
+literal|"' as '"
+operator|+
+name|subject
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
+return|return
+name|subject
 return|;
 block|}
 catch|catch
