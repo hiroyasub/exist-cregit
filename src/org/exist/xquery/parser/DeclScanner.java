@@ -721,6 +721,8 @@ literal|"fulltext operator '&='"
 block|,
 literal|"fulltext operator '|='"
 block|,
+literal|"||"
+block|,
 literal|"\"to\""
 block|,
 literal|"-"
