@@ -85,6 +85,10 @@ name|XQueryTest
 operator|.
 name|class
 block|,
+name|AnnotationsTest
+operator|.
+name|class
+block|,
 name|EntitiesTest
 operator|.
 name|class
