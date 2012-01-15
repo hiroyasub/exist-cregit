@@ -501,6 +501,14 @@ name|ErrorCodes
 operator|.
 name|FOER0000
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_DESCRIPTION
+init|=
+literal|"An error has been raised by the query"
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -539,7 +547,7 @@ decl_stmt|;
 name|String
 name|errorDesc
 init|=
-literal|"An error has been raised by the query"
+name|DEFAULT_DESCRIPTION
 decl_stmt|;
 name|Sequence
 name|errorVal

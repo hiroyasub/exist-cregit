@@ -770,9 +770,9 @@ literal|"xquery version '3.0';"
 operator|+
 literal|"try { a + 7 } "
 operator|+
-literal|"catch * ($errcode, $errdesc, $errval) "
+literal|"catch * "
 operator|+
-literal|"{  $errcode, $errdesc } "
+literal|"{  $err:code, $err:description } "
 decl_stmt|;
 try|try
 block|{
@@ -1176,9 +1176,9 @@ literal|"try {"
 operator|+
 literal|" fn:error( fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000') ) "
 operator|+
-literal|"} catch * ($errcode) "
+literal|"} catch * "
 operator|+
-literal|"{ $errcode }"
+literal|"{ $err:code }"
 decl_stmt|;
 try|try
 block|{
@@ -1254,9 +1254,9 @@ literal|"try {"
 operator|+
 literal|" fn:error( fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000') ) "
 operator|+
-literal|"} catch * ($errcode , $errdescr, $errval) "
+literal|"} catch * "
 operator|+
-literal|"{ $errcode }"
+literal|"{ $err:code }"
 decl_stmt|;
 try|try
 block|{
@@ -1332,9 +1332,9 @@ literal|"try {"
 operator|+
 literal|" fn:error(fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000'), 'TEST') "
 operator|+
-literal|"} catch * ($errcode, $errdesc, $errval) "
+literal|"} catch * "
 operator|+
-literal|"{ $errcode, $errdesc }"
+literal|"{ $err:code, $err:description }"
 decl_stmt|;
 try|try
 block|{
@@ -1434,9 +1434,9 @@ literal|"try {"
 operator|+
 literal|" fn:error(fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000'), 'TEST') "
 operator|+
-literal|"} catch * ($errcode, $errdesc) "
+literal|"} catch *  "
 operator|+
-literal|"{ $errcode, $errdesc }"
+literal|"{ $err:code, $err:description }"
 decl_stmt|;
 try|try
 block|{
@@ -1535,9 +1535,9 @@ literal|"try {"
 operator|+
 literal|" fn:error(fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000'), 'TEST',<ab/>) "
 operator|+
-literal|"} catch * ($errcode, $errdesc, $errval) "
+literal|"} catch *  "
 operator|+
-literal|"{ $errcode, $errdesc, $errval }"
+literal|"{ $err:code, $err:description, $err:value }"
 decl_stmt|;
 try|try
 block|{
@@ -1664,9 +1664,9 @@ literal|"xquery version '3.0';"
 operator|+
 literal|"try { a + 7 } "
 operator|+
-literal|"catch * ($errcode, $errdesc, $errval) "
+literal|"catch *  "
 operator|+
-literal|"{  $errcode, $errdesc, empty($errval) } "
+literal|"{  $err:code, $err:description, empty($err:value) } "
 decl_stmt|;
 try|try
 block|{
@@ -1894,7 +1894,7 @@ literal|"     fn:error(fn:QName('http://foo.com', 'ERRORNAME'), 'ERRORTEXT') "
 operator|+
 literal|"} "
 operator|+
-literal|"catch foo:ERRORNAME ($code) { $code } "
+literal|"catch foo:ERRORNAME { $err:code } "
 operator|+
 literal|"catch *  { 'bad' } "
 decl_stmt|;

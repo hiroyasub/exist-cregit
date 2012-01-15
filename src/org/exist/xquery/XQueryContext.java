@@ -3143,7 +3143,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//Bind it
 if|if
 condition|(
 name|uri
@@ -3154,6 +3153,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|//Bind it
 name|staticNamespaces
 operator|.
 name|put
@@ -3174,9 +3174,9 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Nothing to bind
 else|else
 block|{
+comment|//Nothing to bind
 comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
 name|LOG
 operator|.
@@ -3192,8 +3192,8 @@ expr_stmt|;
 block|}
 block|}
 else|else
-comment|//This prefix was bound
 block|{
+comment|//This prefix was bound
 comment|//Unbind it
 if|if
 condition|(
@@ -3362,9 +3362,9 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//Nothing to bind (not sure if it should raise an error though)
 else|else
 block|{
+comment|//Nothing to bind (not sure if it should raise an error though)
 comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
 name|LOG
 operator|.
@@ -3398,15 +3398,9 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0033: Namespace prefix '"
-operator|+
-name|prefix
-operator|+
-literal|"' is already bound to a different uri '"
-operator|+
-name|prevURI
-operator|+
-literal|"'"
+name|ErrorCodes
+operator|.
+name|XQST0033
 argument_list|)
 operator|)
 throw|;
