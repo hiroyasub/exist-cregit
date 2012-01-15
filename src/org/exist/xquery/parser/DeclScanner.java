@@ -459,6 +459,8 @@ literal|"DEF_COLLATION_DECL"
 block|,
 literal|"DEF_FUNCTION_NS_DECL"
 block|,
+literal|"ANNOT_DECL"
+block|,
 literal|"GLOBAL_VAR"
 block|,
 literal|"FUNCTION_DECL"
@@ -553,6 +555,8 @@ literal|"\"function\""
 block|,
 literal|"\"variable\""
 block|,
+literal|"MOD"
+block|,
 literal|"\"import\""
 block|,
 literal|"\"encoding\""
@@ -596,6 +600,8 @@ block|,
 literal|"\"external\""
 block|,
 literal|"\"schema\""
+block|,
+literal|"\":\""
 block|,
 literal|"\"as\""
 block|,
