@@ -86,7 +86,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|QName
-name|getQName
+name|getName
 parameter_list|()
 block|{
 return|return
