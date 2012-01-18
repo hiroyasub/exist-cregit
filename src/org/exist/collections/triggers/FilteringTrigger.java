@@ -159,31 +159,42 @@ name|DocumentTrigger
 block|{
 comment|// The output handlers to which SAX events should be
 comment|// forwarded
-specifier|protected
+specifier|private
 name|ContentHandler
 name|outputHandler
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|LexicalHandler
 name|lexicalOutputHandler
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Collection
 name|collection
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|validating
 init|=
 literal|true
 decl_stmt|;
-comment|/** 	 * Configure the trigger. The default implementation just stores the parent collection 	 * reference into the field {@link #collection collection}. Use method {@link #getCollection() getCollection} 	 * to later retrieve the collection.  	 */
+specifier|protected
+name|Collection
+name|getCollection
+parameter_list|()
+block|{
+return|return
+name|collection
+return|;
+block|}
+comment|/**      * Configure the trigger. The default implementation just stores the parent collection      * reference into the field {@link #collection collection}. Use method {@link #getCollection() getCollection}      * to later retrieve the collection.       */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -215,6 +226,8 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setValidating
@@ -230,6 +243,8 @@ operator|=
 name|validating
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isValidating
@@ -239,15 +254,8 @@ return|return
 name|validating
 return|;
 block|}
-specifier|public
-name|Collection
-name|getCollection
-parameter_list|()
-block|{
-return|return
-name|collection
-return|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|ContentHandler
 name|getInputHandler
@@ -257,6 +265,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|LexicalHandler
 name|getLexicalInputHandler
@@ -266,6 +276,8 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|ContentHandler
 name|getOutputHandler
@@ -275,6 +287,8 @@ return|return
 name|outputHandler
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|LexicalHandler
 name|getLexicalOutputHandler
@@ -284,6 +298,8 @@ return|return
 name|lexicalOutputHandler
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOutputHandler
@@ -297,6 +313,8 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setLexicalOutputHandler
@@ -310,6 +328,8 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocumentLocator
@@ -326,6 +346,8 @@ name|locator
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -339,6 +361,8 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -352,6 +376,8 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
@@ -375,6 +401,8 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
@@ -393,6 +421,8 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -426,6 +456,8 @@ name|attributes
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -454,6 +486,8 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -483,6 +517,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -512,6 +548,8 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -535,6 +573,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skippedEntity
@@ -553,6 +593,8 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDTD
@@ -581,6 +623,8 @@ name|systemId
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDTD
@@ -594,6 +638,8 @@ name|endDTD
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startEntity
@@ -612,6 +658,8 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endEntity
@@ -630,6 +678,8 @@ name|arg0
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startCDATA
@@ -643,6 +693,8 @@ name|startCDATA
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endCDATA
@@ -656,6 +708,8 @@ name|endCDATA
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment

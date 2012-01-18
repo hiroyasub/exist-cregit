@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -36,18 +36,6 @@ operator|.
 name|collections
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationException
 import|;
 end_import
 
@@ -146,7 +134,9 @@ name|FilteringTrigger
 implements|implements
 name|DocumentTrigger
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.FilteringTrigger#configure(java.util.Map) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.collections.FilteringTrigger#configure(java.util.Map)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -231,7 +221,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.collections.Trigger#prepare(org.exist.storage.DBBroker, org.exist.collections.Collection, java.lang.String, org.w3c.dom.Document) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.collections.Trigger#prepare(org.exist.storage.DBBroker, org.exist.collections.Collection, java.lang.String, org.w3c.dom.Document)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|prepare
@@ -266,7 +258,8 @@ name|documentName
 operator|+
 literal|" into collection "
 operator|+
-name|collection
+name|getCollection
+argument_list|()
 operator|.
 name|getURI
 argument_list|()
@@ -278,6 +271,7 @@ name|existingDocument
 operator|!=
 literal|null
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -297,6 +291,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|out
@@ -313,7 +308,8 @@ operator|new
 name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
-name|collection
+name|getCollection
+argument_list|()
 operator|.
 name|getDocuments
 argument_list|(
@@ -341,6 +337,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|System
 operator|.
 name|out
@@ -361,6 +358,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|finish
