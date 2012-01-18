@@ -84,6 +84,25 @@ operator|=
 name|value
 expr_stmt|;
 block|}
+specifier|public
+name|QName
+name|getQName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
+block|}
+specifier|public
+name|LiteralValue
+index|[]
+name|getValue
+parameter_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
 block|}
 end_class
 
