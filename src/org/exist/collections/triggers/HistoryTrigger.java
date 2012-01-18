@@ -247,7 +247,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|super
 operator|.
@@ -303,7 +303,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 argument_list|)

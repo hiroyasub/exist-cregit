@@ -99,11 +99,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|collections
+name|log4j
 operator|.
-name|Collection
+name|Logger
 import|;
 end_import
 
@@ -115,7 +115,7 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfigurationException
+name|Collection
 import|;
 end_import
 
@@ -468,6 +468,18 @@ name|DocumentTrigger
 implements|,
 name|CollectionTrigger
 block|{
+specifier|protected
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|getClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -915,7 +927,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|this
 operator|.

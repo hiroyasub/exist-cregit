@@ -63,18 +63,6 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
 name|triggers
 operator|.
 name|CollectionTrigger
@@ -2011,7 +1999,7 @@ name|Map
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 comment|// nothing to do
 block|}

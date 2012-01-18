@@ -207,6 +207,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test trigger to check if trigger configuration is working properly.  */
 end_comment
@@ -220,6 +232,18 @@ name|FilteringTrigger
 implements|implements
 name|DocumentTrigger
 block|{
+specifier|protected
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|getClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -260,7 +284,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|super
 operator|.
@@ -335,8 +359,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|getLogger
-argument_list|()
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -416,7 +439,7 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.

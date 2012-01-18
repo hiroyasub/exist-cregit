@@ -226,13 +226,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
-function_decl|;
-comment|/** 	 * Returns a Logger object. Use this to log debugging information. 	 *  	 */
-specifier|public
-name|Logger
-name|getLogger
-parameter_list|()
+name|TriggerException
 function_decl|;
 block|}
 end_interface

@@ -141,11 +141,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|collections
+name|log4j
 operator|.
-name|Collection
+name|Logger
 import|;
 end_import
 
@@ -157,7 +157,7 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfigurationException
+name|Collection
 import|;
 end_import
 
@@ -272,6 +272,18 @@ name|FilteringTrigger
 implements|implements
 name|DocumentTrigger
 block|{
+specifier|protected
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|getClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 name|SAXTransformerFactory
 name|factory
@@ -331,7 +343,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|super
 operator|.
@@ -371,7 +383,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 literal|"STXTransformerTrigger requires an attribute 'src'"
 argument_list|)
@@ -460,7 +472,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 literal|"stylesheet "
 operator|+
@@ -479,7 +491,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 literal|"stylesheet "
 operator|+
@@ -514,7 +526,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.
@@ -533,7 +545,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.
@@ -552,7 +564,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.
@@ -568,8 +580,7 @@ else|else
 block|{
 try|try
 block|{
-name|getLogger
-argument_list|()
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -610,7 +621,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.

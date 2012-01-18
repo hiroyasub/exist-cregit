@@ -49,11 +49,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|collections
+name|log4j
 operator|.
-name|Collection
+name|Logger
 import|;
 end_import
 
@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfigurationException
+name|Collection
 import|;
 end_import
 
@@ -248,6 +248,18 @@ name|FilteringTrigger
 implements|implements
 name|DocumentTrigger
 block|{
+specifier|protected
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|getClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 specifier|private
 name|DocumentImpl
 name|doc
@@ -291,7 +303,7 @@ name|Map
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|super
 operator|.
@@ -362,7 +374,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 argument_list|)
@@ -394,8 +406,7 @@ condition|)
 comment|// doesn't exist yet: create it
 try|try
 block|{
-name|getLogger
-argument_list|()
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -461,7 +472,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 name|e
 operator|.
@@ -517,8 +528,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|getLogger
-argument_list|()
+name|LOG
 operator|.
 name|debug
 argument_list|(

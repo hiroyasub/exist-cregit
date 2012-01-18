@@ -398,7 +398,7 @@ name|String
 name|events
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|Set
 argument_list|<
@@ -496,7 +496,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|CollectionConfigurationException
+name|TriggerException
 argument_list|(
 literal|"Unknown event type '"
 operator|+
@@ -536,7 +536,7 @@ name|String
 name|events
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|Set
 argument_list|<

@@ -157,18 +157,6 @@ name|FilteringTrigger
 implements|implements
 name|DocumentTrigger
 block|{
-specifier|protected
-name|Logger
-name|LOG
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|getClass
-argument_list|()
-argument_list|)
-decl_stmt|;
 comment|// The output handlers to which SAX events should be
 comment|// forwarded
 specifier|protected
@@ -218,7 +206,7 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|CollectionConfigurationException
+name|TriggerException
 block|{
 name|this
 operator|.
@@ -321,15 +309,6 @@ name|lexicalOutputHandler
 operator|=
 name|handler
 expr_stmt|;
-block|}
-specifier|public
-name|Logger
-name|getLogger
-parameter_list|()
-block|{
-return|return
-name|LOG
-return|;
 block|}
 specifier|public
 name|void

@@ -1806,47 +1806,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/** 	 * Starts a batch Transaction. 	 * 	 * @throws  TransactionException   	 * @throws TriggerException  	 */
-specifier|public
-name|void
-name|startBatchTransaction
-parameter_list|()
-throws|throws
-name|TransactionException
-throws|,
-name|TriggerException
-function_decl|;
-comment|/** 	 * Determines if a batch transaction should be performed. 	 * 	 * @return  true if a batch update transaction should be performed 	 */
-specifier|public
-name|boolean
-name|hasBatchTransaction
-parameter_list|()
-function_decl|;
-comment|/** 	 * Get the Transaction for the batch. 	 * 	 * @return  The Transaction 	 */
-specifier|public
-name|Txn
-name|getBatchTransaction
-parameter_list|()
-function_decl|;
-comment|/** 	 * Set's that a trigger should be executed for the provided document as part of the batch transaction. 	 * 	 * @param  doc  The document to trigger for 	 */
-specifier|public
-name|void
-name|setBatchTransactionTrigger
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|)
-function_decl|;
-comment|/** 	 * Completes a batch transaction, by committing the transaction and calling finish on any triggers set by setBatchTransactionTrigger(). 	 * 	 * @throws TransactionException   	 * @throws TriggerException  	 */
-specifier|public
-name|void
-name|finishBatchTransaction
-parameter_list|()
-throws|throws
-name|TransactionException
-throws|,
-name|TriggerException
-function_decl|;
 specifier|public
 name|void
 name|registerUpdateListener

@@ -1543,18 +1543,19 @@ operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|getDocumentTrigger
+name|getConfiguration
+argument_list|(
+name|broker
+argument_list|)
+operator|.
+name|getDocumentTriggerProxies
+argument_list|()
+operator|.
+name|instantiateVisitor
 argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|trigger
-operator|!=
-literal|null
-condition|)
-block|{
 name|trigger
 operator|.
 name|beforeUpdateDocument
@@ -1578,7 +1579,6 @@ argument_list|,
 name|trigger
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**  	 * Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
 specifier|private
