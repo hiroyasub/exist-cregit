@@ -415,6 +415,16 @@ name|description
 expr_stmt|;
 block|}
 specifier|public
+name|Annotation
+index|[]
+name|getAnnotations
+parameter_list|()
+block|{
+return|return
+name|annotations
+return|;
+block|}
+specifier|public
 name|QName
 name|getName
 parameter_list|()
