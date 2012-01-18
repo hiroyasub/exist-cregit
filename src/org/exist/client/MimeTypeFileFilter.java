@@ -35,7 +35,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|List
 import|;
 end_import
 
@@ -81,7 +81,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
@@ -124,6 +124,8 @@ name|mimeType
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
@@ -139,10 +141,12 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 comment|//permit directories to be viewed
 return|return
 literal|true
 return|;
+block|}
 name|int
 name|extensionOffset
 init|=
@@ -164,9 +168,11 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//check the extension is that of a file as defined in mime-types.xml
 name|String
 name|fileExtension
@@ -211,6 +217,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -259,10 +267,12 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|description
 operator|+=
 literal|' '
 expr_stmt|;
+block|}
 block|}
 return|return
 name|description

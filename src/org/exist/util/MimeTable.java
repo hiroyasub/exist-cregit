@@ -69,6 +69,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -90,16 +110,6 @@ operator|.
 name|util
 operator|.
 name|TreeMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Vector
 import|;
 end_import
 
@@ -281,12 +291,14 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
 name|MimeTable
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|instance
 return|;
@@ -307,6 +319,7 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
@@ -315,6 +328,7 @@ argument_list|(
 name|f
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|instance
 return|;
@@ -338,6 +352,7 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
@@ -348,6 +363,7 @@ argument_list|,
 name|src
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|instance
 return|;
@@ -546,7 +562,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
@@ -567,7 +583,7 @@ argument_list|)
 return|;
 block|}
 specifier|public
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
@@ -577,14 +593,14 @@ name|String
 name|mimeType
 parameter_list|)
 block|{
-name|Vector
+name|List
 argument_list|<
 name|String
 argument_list|>
 name|extns
 init|=
 operator|new
-name|Vector
+name|ArrayList
 argument_list|<
 name|String
 argument_list|>
@@ -729,9 +745,11 @@ name|ext
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|MimeType
 name|type
 init|=
@@ -748,9 +766,11 @@ name|type
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|type
 operator|.
@@ -849,9 +869,11 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|fileName
 operator|.
@@ -1469,6 +1491,8 @@ literal|64
 argument_list|)
 decl_stmt|;
 comment|/* (non-Javadoc)          * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -1755,6 +1779,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String, java.lang.String)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -1938,6 +1964,8 @@ block|}
 block|}
 block|}
 comment|/* (non-Javadoc)          * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
