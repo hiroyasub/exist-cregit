@@ -516,6 +516,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|collection
@@ -546,6 +548,17 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
+return|return;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
 name|collection
 operator|.
 name|release
@@ -556,7 +569,6 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-return|return;
 comment|//TODO : release collection lock here ?
 block|}
 if|if

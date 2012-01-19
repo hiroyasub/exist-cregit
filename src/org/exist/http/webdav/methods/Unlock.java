@@ -379,6 +379,8 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|collection
@@ -436,8 +438,25 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|//TODO : release collection lock here ?
-comment|//It is used below though...
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+name|collection
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|User
 name|lock
