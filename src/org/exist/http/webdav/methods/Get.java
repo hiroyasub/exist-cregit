@@ -546,6 +546,15 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+name|collection
+operator|.
+name|release
+argument_list|(
+name|Lock
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 block|}
 return|return;
 comment|//TODO : release collection lock here ?
