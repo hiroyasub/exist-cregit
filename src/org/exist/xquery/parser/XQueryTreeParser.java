@@ -24897,15 +24897,8 @@ name|getText
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|var
-operator|.
-name|setCardinality
-argument_list|(
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
-expr_stmt|;
+comment|//this doesnt make any sense!
+comment|//var.setCardinality(Cardinality.ZERO_OR_MORE);
 name|vars
 operator|.
 name|add
