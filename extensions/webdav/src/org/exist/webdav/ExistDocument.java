@@ -1926,6 +1926,7 @@ operator|.
 name|createOpaqueLockToken
 argument_list|()
 expr_stmt|;
+comment|//inputToken.setTimeOut(inputToken.getTimeOut());
 name|inputToken
 operator|.
 name|setTimeOut
