@@ -362,6 +362,8 @@ comment|/**  * Servlet to redirect HTTP requests. The request is passed to an XQ
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|RedirectorServlet
