@@ -143,18 +143,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|BufferStats
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|CacheManager
 import|;
 end_import
@@ -288,6 +276,18 @@ operator|.
 name|btree
 operator|.
 name|Value
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BufferStats
 import|;
 end_import
 
@@ -658,7 +658,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node. Within a page, a node is  * identified by a unique id, called tuple id (tid). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tid | length | data |  *   * 3) Relocated record:  *  | tid | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tid | address pointer |  *   * tid and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tid are used to indicate the type of the record  * (see {@link org.exist.storage.dom.ItemId}).  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the main storage for XML nodes. Nodes are stored in document order.  * Every document gets its own sequence of pages, which is bound to the writing  * thread to avoid conflicting writes. The page structure is as follows:  *  | page header | (tid1 node-data, tid2 node-data, ..., tidn node-data) |  *   * node-data contains the raw binary data of the node. Within a page, a node is  * identified by a unique id, called tuple id (tuple id). Every node can thus be  * located by a virtual address pointer, which consists of the page id and the  * tid. Both components are encoded in a long value (with additional bits used  * for optional flags). The address pointer is used to reference nodes from the  * indexes. It should thus remain unchanged during the life-time of a document.  *   * However, XUpdate requests may insert new nodes in the middle of a page. In  * these cases, the page will be split and the upper portion of the page is  * copied to a split page. The record in the original page will be replaced by a  * forward link, pointing to the new location of the node data in the split  * page.  *   * As a consequence, the class has to distinguish three different types of data  * records:  *   * 1) Ordinary record:  *  | tuple id | length | data |  *   * 3) Relocated record:  *  | tuple id | length | address pointer to original location | data |  *   * 2) Forward link:  *  | tuple id | address pointer |  *   * tuple id and length each use two bytes (short), address pointers 8 bytes (long).  * The upper two bits of the tuple id are used to indicate the type of the record  * (see {@link org.exist.storage.dom.ItemId}).  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -1448,6 +1448,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|add
 argument_list|(
@@ -1458,6 +1459,7 @@ argument_list|,
 literal|false
 argument_list|)
 return|;
+block|}
 block|}
 comment|/**      * Append a value to the current page. If overflowPage is true, the value      * will be saved into its own, reserved chain of pages. The current page      * will just contain a link to the first overflow page.      *       * @param value      * @param overflowPage      * @return the virtual storage address of the value      * @throws ReadOnlyException      */
 specifier|private
@@ -1513,10 +1515,6 @@ comment|// does value fit into current data page?
 if|if
 condition|(
 name|page
-operator|==
-literal|null
-operator|||
-name|page
 operator|.
 name|len
 operator|+
@@ -1543,20 +1541,14 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|page
-operator|!=
-literal|null
-condition|)
-block|{
+comment|//Removed null check on page -pb
 if|if
 condition|(
 name|isTransactional
@@ -1574,7 +1566,7 @@ name|UpdateHeaderLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -1589,12 +1581,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -1610,7 +1602,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -1647,7 +1639,6 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|isTransactional
@@ -1710,7 +1701,7 @@ expr_stmt|;
 block|}
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -1719,11 +1710,11 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|short
-name|tid
+name|tupleID
 init|=
-name|ph
+name|pageHeader
 operator|.
-name|getNextTID
+name|getNextTupleID
 argument_list|()
 decl_stmt|;
 if|if
@@ -1746,7 +1737,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|tid
+name|tupleID
 argument_list|,
 name|value
 argument_list|)
@@ -1766,7 +1757,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|tid
+name|tupleID
 argument_list|,
 name|page
 operator|.
@@ -1839,12 +1830,12 @@ name|len
 operator|+=
 name|vlen
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -1884,7 +1875,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|tid
+name|tupleID
 argument_list|)
 return|;
 block|}
@@ -2285,7 +2276,7 @@ return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
-comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc      *                     the document to which the new node belongs.      * @param address      *                     the storage address of the node after which the new value      *                     should be inserted.      * @param value      *                     the value of the new node.      */
+comment|/**      * Insert a new node after the node located at the specified address.      *       * If the previous node is in the middle of a page, the page is split. If      * the node is appended at the end and the page does not have enough room      * for the node, a new page is added to the page sequence.      *       * @param doc       the document to which the new node belongs.      * @param address   the storage address of the node after which the       *                  new value should be inserted.      * @param value     the value of the new node.      */
 specifier|public
 name|long
 name|insertAfter
@@ -2534,9 +2525,6 @@ name|hasRoom
 argument_list|()
 condition|)
 block|{
-comment|//				 LOG.debug("copying data in page " + rec.getPage().getPageNum()
-comment|//				 + "; offset = " + rec.offset + "; dataLen = "
-comment|//				 + dataLen + "; valueLen = " + value.length);
 specifier|final
 name|int
 name|end
@@ -2677,7 +2665,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -2772,7 +2760,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// adjust page links
-name|nph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -2788,7 +2776,7 @@ name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -2896,7 +2884,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|nph
+name|newPageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -2913,7 +2901,7 @@ name|nextPage
 init|=
 name|getCurrentPage
 argument_list|(
-name|nph
+name|newPageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -3073,7 +3061,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-comment|//rec.getPage().getPageHeader().setRecordCount((short) 1);
 comment|//enough space in split page
 block|}
 else|else
@@ -3159,7 +3146,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -3231,7 +3218,7 @@ argument_list|)
 expr_stmt|;
 block|}
 name|long
-name|nextPageNr
+name|nextPageNo
 init|=
 name|rec
 operator|.
@@ -3244,14 +3231,14 @@ operator|.
 name|getNextDataPage
 argument_list|()
 decl_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|nextPageNr
+name|nextPageNo
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -3274,7 +3261,7 @@ literal|null
 condition|)
 block|{
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|rec
 operator|.
@@ -3292,7 +3279,7 @@ name|UpdateHeaderLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -3310,12 +3297,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -3352,11 +3339,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|nextPageNo
+operator|!=
 name|Page
 operator|.
 name|NO_PAGE
-operator|!=
-name|nextPageNr
 condition|)
 block|{
 specifier|final
@@ -3365,12 +3352,12 @@ name|nextPage
 init|=
 name|getCurrentPage
 argument_list|(
-name|nextPageNr
+name|nextPageNo
 argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nextph
+name|pageHeader
 init|=
 name|nextPage
 operator|.
@@ -3404,17 +3391,17 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|nextph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 argument_list|,
-name|nextph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|nextph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -3430,7 +3417,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|nextph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -3575,7 +3562,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getNextTID
+name|getNextTupleID
 argument_list|()
 decl_stmt|;
 if|if
@@ -3744,7 +3731,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 operator|>=
 name|ItemId
@@ -3756,7 +3743,6 @@ operator|.
 name|triggerDefrag
 argument_list|()
 expr_stmt|;
-comment|//rec.getPage().cleanUp();
 name|rec
 operator|.
 name|getPage
@@ -3909,7 +3895,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"page "
+literal|"page: "
 operator|+
 name|rec
 operator|.
@@ -3919,7 +3905,7 @@ operator|.
 name|getPageNum
 argument_list|()
 operator|+
-literal|": no split required. Next :"
+literal|": no split required. Next page:"
 operator|+
 name|rec
 operator|.
@@ -3932,7 +3918,7 @@ operator|.
 name|getNextDataPage
 argument_list|()
 operator|+
-literal|" Previous :"
+literal|" Previous page:"
 operator|+
 name|rec
 operator|.
@@ -3963,7 +3949,7 @@ return|;
 block|}
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|rec
 operator|.
@@ -3978,7 +3964,7 @@ specifier|final
 name|int
 name|oldDataLen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -4080,8 +4066,7 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
-comment|// the old rec.page now contains a copy of the data up to the split
-comment|// point
+comment|// the old rec.page now contains a copy of the data up to the split point
 name|rec
 operator|.
 name|getPage
@@ -4093,7 +4078,7 @@ name|rec
 operator|.
 name|offset
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -4157,9 +4142,9 @@ name|Page
 operator|.
 name|NO_PAGE
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4183,11 +4168,11 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4219,16 +4204,16 @@ name|rec
 operator|.
 name|offset
 operator|+
-literal|": new: "
+literal|": New page: "
 operator|+
 name|nextSplitPage
 operator|.
 name|getPageNum
 argument_list|()
 operator|+
-literal|"; next: "
+literal|"; Next page: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -4311,7 +4296,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|newph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -4348,14 +4333,14 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4375,7 +4360,7 @@ name|UpdateHeaderLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -4393,12 +4378,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -4414,17 +4399,17 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|newph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -4437,11 +4422,11 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -4459,7 +4444,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -4469,7 +4454,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -4481,7 +4466,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -4743,7 +4728,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|newph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -4781,9 +4766,9 @@ name|Page
 operator|.
 name|NO_PAGE
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4848,17 +4833,17 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|newph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -4951,7 +4936,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/* 	     * if the record has already been relocated, read the original 	     * storage address and update the link there. 	     */
+comment|/*              * if the record has already been relocated, read the original              * storage address and update the link there.              */
 if|if
 condition|(
 name|ItemId
@@ -5118,6 +5103,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|backLink
 operator|=
 name|StorageAddress
@@ -5143,7 +5129,8 @@ name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/*              * save the record to the split page: 	     */
+block|}
+comment|/*              * save the record to the split page:             */
 if|if
 condition|(
 name|isTransactional
@@ -5398,7 +5385,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|newph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -5435,14 +5422,14 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -5462,7 +5449,7 @@ name|UpdateHeaderLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -5480,12 +5467,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -5501,17 +5488,17 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|newph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -5524,11 +5511,11 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|newph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -5546,7 +5533,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -5556,7 +5543,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -5568,7 +5555,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -5793,8 +5780,7 @@ operator|+
 literal|" is empty. Remove it"
 argument_list|)
 expr_stmt|;
-comment|// if nothing has been copied to the last split page,
-comment|// remove it
+comment|// if nothing has been copied to the last split page, remove it
 comment|//dataCache.remove(nextSplitPage);
 if|if
 condition|(
@@ -5888,7 +5874,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -5939,7 +5925,7 @@ argument_list|()
 operator|.
 name|setNextDataPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -6078,9 +6064,9 @@ expr_stmt|;
 block|}
 block|}
 name|long
-name|nextPageNr
+name|nextPageNo
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -6091,7 +6077,7 @@ name|Page
 operator|.
 name|NO_PAGE
 operator|!=
-name|nextPageNr
+name|nextPageNo
 condition|)
 block|{
 specifier|final
@@ -6100,7 +6086,7 @@ name|nextPage
 init|=
 name|getCurrentPage
 argument_list|(
-name|nextPageNr
+name|nextPageNo
 argument_list|)
 decl_stmt|;
 if|if
@@ -6229,7 +6215,7 @@ name|UpdateHeaderLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -6247,12 +6233,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -6271,7 +6257,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -6282,7 +6268,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -6294,7 +6280,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -6463,8 +6449,6 @@ name|vlen
 expr_stmt|;
 block|}
 block|}
-comment|// LOG.debug("page " + page.getPageNum() + " has " + count + "
-comment|// records.");
 return|return
 name|count
 return|;
@@ -6695,7 +6679,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"[illegal length : "
+literal|"[Illegal length : "
 operator|+
 name|vlen
 operator|+
@@ -6757,7 +6741,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"element"
+literal|"element "
 argument_list|)
 expr_stmt|;
 name|int
@@ -6831,6 +6815,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -6898,7 +6883,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|" children : "
+literal|" children: "
 operator|+
 name|children
 argument_list|)
@@ -6907,7 +6892,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|" attributes : "
+literal|" attributes: "
 operator|+
 name|attributes
 argument_list|)
@@ -6924,7 +6909,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"(unable to read the node ID at : "
+literal|"(unable to read the node ID at: "
 operator|+
 name|readOffset
 argument_list|)
@@ -6968,6 +6953,13 @@ operator|.
 name|CDATA_SECTION_NODE
 case|:
 block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"["
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|Signatures
@@ -6990,7 +6982,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"text"
+literal|"text "
 argument_list|)
 expr_stmt|;
 else|else
@@ -6998,7 +6990,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"CDATA"
+literal|"CDATA "
 argument_list|)
 expr_stmt|;
 name|int
@@ -7241,7 +7233,14 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"attribute"
+literal|"["
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"attribute "
 argument_list|)
 expr_stmt|;
 name|int
@@ -7667,6 +7666,7 @@ expr_stmt|;
 break|break;
 block|}
 default|default:
+block|{
 name|buf
 operator|.
 name|append
@@ -7679,6 +7679,7 @@ argument_list|(
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|pos
@@ -7695,7 +7696,7 @@ literal|"; records in page: "
 operator|+
 name|count
 operator|+
-literal|" (header says "
+literal|" (header says: "
 operator|+
 name|page
 operator|.
@@ -7719,7 +7720,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7986,7 +7987,7 @@ block|{
 comment|// Should never happen here
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Method terminated"
 argument_list|)
@@ -7999,74 +8000,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|//	private final static class ChildNode {
-comment|//		StoredNode node;
-comment|//		int index = 0;
-comment|//
-comment|//		public ChildNode(StoredNode node) {
-comment|//			this.node = node;
-comment|//		}
-comment|//	}
-comment|//
-comment|//	private long findNode(StoredNode node, NodeId target, Iterator iter) {
-comment|//		if (!lock.hasLock())
-comment|//			LOG.warn("the file doesn't own a lock");
-comment|//        if (node.hasChildNodes()) {
-comment|//			for (int i = 0; i< node.getChildCount(); i++) {
-comment|//				StoredNode child = (StoredNode) iter.next();
-comment|//
-comment|//				SanityCheck.ASSERT(child != null, "Next node missing.");
-comment|//
-comment|//				if (target.equals(child.getNodeId())) {
-comment|//					return ((NodeIterator) iter).currentAddress();
-comment|//				}
-comment|//				long p;
-comment|//				if ((p = findNode(child, target, iter)) != StoredNode.UNKNOWN_NODE_IMPL_ADDRESS)
-comment|//					return p;
-comment|//			}
-comment|//		}
-comment|//		return StoredNode.UNKNOWN_NODE_IMPL_ADDRESS;
-comment|//	}
-comment|/**      * Find a node by searching for a known ancestor in the index. If an      * ancestor is found, it is traversed to locate the specified descendant      * node.      *      * @param node      * @return The node's adress or<code>KEY_NOT_FOUND</code> if the node can not be found.      * @throws IOException      * @throws BTreeException      */
-comment|//	protected long findValue2(Object lockObject, NodeProxy node) throws IOException,
-comment|//			BTreeException {
-comment|//		if (!lock.hasLock())
-comment|//			LOG.warn("the file doesn't own a lock");
-comment|//		final DocumentImpl doc = (DocumentImpl) node.getDocument();
-comment|//		final NativeBroker.NodeRef nodeRef = new NativeBroker.NodeRef(doc.getDocId(), node.getNodeId());
-comment|//		// first try to find the node in the index
-comment|//		final long p = findValue(nodeRef);
-comment|//		if (p == KEY_NOT_FOUND) {
-comment|//            Thread.dumpStack();
-comment|//            // node not found in index: try to find the nearest available
-comment|//			// ancestor and traverse it
-comment|//			NodeId id = node.getNodeId();
-comment|//			long parentPointer = KEY_NOT_FOUND;
-comment|//			do {
-comment|//				id = id.getParentId();
-comment|//				if (id == NodeId.DOCUMENT_NODE) {
-comment|//					SanityCheck.TRACE("Node " + node.getDocument().getDocId() + ":" + node.getNodeId() + " not found.");
-comment|//					throw new BTreeException("node " + node.getNodeId() + " not found.");
-comment|//				}
-comment|//				NativeBroker.NodeRef parentRef = new NativeBroker.NodeRef(doc.getDocId(), id);
-comment|//				try {
-comment|//					parentPointer = findValue(parentRef);
-comment|//				} catch (BTreeException bte) {
-comment|//					LOG.info("report me", bte);
-comment|//				}
-comment|//			} while (parentPointer == KEY_NOT_FOUND);
-comment|//
-comment|//			final Iterator iter = new NodeIterator(lockObject, this, node.getDocument(), parentPointer);
-comment|//			final StoredNode n = (StoredNode) iter.next();
-comment|//			final long address = findNode(n, node.getNodeId(), iter);
-comment|//			if (address == StoredNode.UNKNOWN_NODE_IMPL_ADDRESS) {
-comment|//				LOG.warn("Node data location not found for node " + node.getNodeId());
-comment|//				return KEY_NOT_FOUND;
-comment|//			} else
-comment|//				return address;
-comment|//		} else
-comment|//			return p;
-comment|//	}
+comment|/**      * Retrieve node at virtual address.      *       * @param p The virtual address      * @return  The reference of the node      */
 specifier|protected
 name|long
 name|findValue
@@ -8204,7 +8138,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"node "
+literal|"Node "
 operator|+
 name|node
 operator|.
@@ -8252,7 +8186,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"node "
+literal|"Node "
 operator|+
 name|node
 operator|.
@@ -8299,7 +8233,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"report me"
 argument_list|,
@@ -8396,12 +8330,14 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|cursor
 operator|.
 name|getCurrentPosition
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 if|if
@@ -8463,7 +8399,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"node "
+literal|"Node "
 operator|+
 name|node
 operator|.
@@ -8476,11 +8412,13 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 return|return
 name|p
 return|;
 block|}
-comment|/**      * Find matching nodes for the given query.      *       * @param query      *                     Description of the Parameter      * @return Description of the Return Value      * @exception IOException      *                           Description of the Exception      * @exception BTreeException      *                           Description of the Exception      */
+block|}
+comment|/**      * Find matching nodes for the given query.      *       * @param query Description of the Parameter      * @return Description of the Return Value      * @exception IOException Description of the Exception      * @exception BTreeException Description of the Exception      */
 specifier|public
 name|ArrayList
 argument_list|<
@@ -8554,7 +8492,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Flush all buffers to disk.      *       * @return Description of the Return Value      * @exception DBException      *                           Description of the Exception      */
+comment|/**  * Flush all buffers to disk.  *   * @return Description of the Return Value  * @exception DBException Description of the Exception  */
 specifier|public
 name|boolean
 name|flush
@@ -8606,7 +8544,6 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|// closeDocument();
 return|return
 name|flushed
 return|;
@@ -8922,7 +8859,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|bte
 argument_list|)
@@ -8930,7 +8867,6 @@ expr_stmt|;
 return|return
 literal|null
 return|;
-comment|// key not found
 block|}
 catch|catch
 parameter_list|(
@@ -8940,7 +8876,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -8950,7 +8886,6 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Retrieve a node described by the given NodeProxy.      *       * @param node      *                     Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|Value
 name|get
@@ -9024,6 +8959,7 @@ expr_stmt|;
 return|return
 literal|null
 return|;
+comment|//TODO : throw exception ?
 block|}
 catch|catch
 parameter_list|(
@@ -9041,9 +8977,10 @@ expr_stmt|;
 return|return
 literal|null
 return|;
+comment|//TODO : throw exception ?
 block|}
 block|}
-comment|/**      * Retrieve node at virtual address p.      *       * @param p      *                     Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Retrieve node at virtual address.      *       * @param p The virtual address      * @param warnIfMissing Whether or not a warning should be output       * if the not can not be found       * @return  The node      */
 specifier|public
 name|Value
 name|get
@@ -9110,7 +9047,7 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"object at "
+literal|"Object at "
 operator|+
 name|StorageAddress
 operator|.
@@ -9122,6 +9059,7 @@ operator|+
 literal|" not found."
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 return|return
 literal|null
 return|;
@@ -9220,6 +9158,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|v
 operator|=
 operator|new
@@ -9239,6 +9178,7 @@ argument_list|,
 name|vlen
 argument_list|)
 expr_stmt|;
+block|}
 name|v
 operator|.
 name|setAddress
@@ -9271,7 +9211,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"the file doesn't own a lock"
+literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
 try|try
@@ -9302,16 +9242,18 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"io error while loading overflow value"
+literal|"IO error while loading overflow value"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 return|return
 literal|null
 return|;
 block|}
 block|}
+comment|/**      * Remove the overflow value.      *       * @param transaction   The current transaction      * @param pnum  The pointer to the value      */
 specifier|public
 name|void
 name|removeOverflowValue
@@ -9365,16 +9307,16 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"io error while removing overflow value"
+literal|"IO error while removing overflow value"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set the last page in the sequence to which nodes are currently appended.      *       * @param page      *                     The new currentPage value      */
+comment|/**      * Set the current page.      *       * @param page  The new page      */
 specifier|private
 specifier|final
 name|void
@@ -9406,10 +9348,6 @@ name|getPageNum
 argument_list|()
 condition|)
 return|return;
-comment|// pages.remove(owner);
-comment|// LOG.debug("current page set: " + page.getPage().getPageNum() + " by " +
-comment|// owner.hashCode() +
-comment|// "; thread: " + Thread.currentThread().getName());
 name|pages
 operator|.
 name|put
@@ -9425,7 +9363,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Retrieve the last page in the current sequence.      *       * @return The currentPage value      */
+comment|/**      * Retrieve the last page in the current sequence.      *       * @return The current page      */
 specifier|private
 specifier|final
 name|DOMPage
@@ -9476,9 +9414,6 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// LOG.debug("new page created: " + page.getPage().getPageNum() + " by "
-comment|// + owner +
-comment|// "; thread: " + Thread.currentThread().getName());
 name|dataCache
 operator|.
 name|add
@@ -9532,6 +9467,7 @@ name|page
 return|;
 block|}
 else|else
+block|{
 return|return
 name|getCurrentPage
 argument_list|(
@@ -9539,7 +9475,8 @@ name|pnum
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve the page with page number p      *       * @param p      *                     Description of the Parameter      * @return The currentPage value      */
+block|}
+comment|/**      * Retrieve the current page      *       * @param p Description of the Parameter      * @return The current page      */
 specifier|protected
 specifier|final
 name|DOMPage
@@ -9569,7 +9506,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// LOG.debug("Loading page " + p + " from file");
 name|page
 operator|=
 operator|new
@@ -9610,10 +9546,8 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
-comment|// SanityCheck.TRACE("current doc closed by: " + owner +
-comment|// "; thread: " + Thread.currentThread().getName());
 block|}
-comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException      *                           Description of the Exception      */
+comment|/**      * Open the file.      *       * @return Description of the Return Value      * @exception DBException   Description of the Exception      */
 specifier|public
 name|boolean
 name|open
@@ -9630,7 +9564,7 @@ name|FILE_FORMAT_VERSION_ID
 argument_list|)
 return|;
 block|}
-comment|/**      * Put a new key/value pair.      *       * @param key      *                     Description of the Parameter      * @param value      *                     Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Put a new key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|long
 name|put
@@ -9692,9 +9626,10 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//TODO : throw exception ?
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -9709,9 +9644,10 @@ name|BTreeException
 name|bte
 parameter_list|)
 block|{
+comment|//TODO : throw exception ?
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|bte
 argument_list|)
@@ -9779,7 +9715,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"the file doesn't own a write lock"
+literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
 try|try
@@ -9800,11 +9736,12 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 block|{
+comment|//TODO : throw exception ?
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"value not found : "
+literal|"Value not found: "
 operator|+
 name|key
 argument_list|)
@@ -9827,6 +9764,7 @@ name|BTreeException
 name|bte
 parameter_list|)
 block|{
+comment|//TODO : throw exception ?
 name|LOG
 operator|.
 name|warn
@@ -9841,6 +9779,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//TODO : throw exception ?
 name|LOG
 operator|.
 name|warn
@@ -9874,7 +9813,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|rec
 operator|.
@@ -10055,10 +9994,10 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"page length< 0"
+literal|"Page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -10070,7 +10009,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
@@ -10089,7 +10028,7 @@ condition|)
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getRecordCount
 argument_list|()
@@ -10100,7 +10039,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"empty page seems to have record !"
+literal|"Empty page seems to have record !"
 argument_list|)
 expr_stmt|;
 if|if
@@ -10128,12 +10067,12 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -10170,7 +10109,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//rec.getPage().cleanUp();
 name|rec
 operator|.
 name|getPage
@@ -10202,21 +10140,6 @@ name|long
 name|p
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-name|lock
-operator|.
-name|isLockedForWrite
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"the file doesn't own a write lock"
-argument_list|)
-expr_stmt|;
 name|removeNode
 argument_list|(
 literal|null
@@ -10248,7 +10171,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"the file doesn't own a write lock"
+literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -10273,7 +10196,7 @@ name|LENGTH_TID
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|rec
 operator|.
@@ -10460,11 +10383,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"io error while removing overflow page"
+literal|"IO error while removing overflow page"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
 name|realLen
 operator|+=
@@ -10571,7 +10495,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -10654,13 +10578,16 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
+block|}
 name|rec
 operator|.
 name|getPage
@@ -10671,7 +10598,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -10683,7 +10610,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
@@ -10717,7 +10644,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getRecordCount
 argument_list|()
@@ -10761,7 +10688,7 @@ operator|.
 name|getPage
 argument_list|()
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -10771,7 +10698,7 @@ operator|.
 name|getPage
 argument_list|()
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -10808,7 +10735,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//rec.getPage().cleanUp();
 name|rec
 operator|.
 name|getPage
@@ -10892,13 +10818,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"btree error while removing node"
+literal|"BTree error while removing node"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -10910,11 +10837,12 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"io error while removing node"
+literal|"IO error while removing node"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
 block|}
 comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page      */
@@ -10941,10 +10869,9 @@ argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
-comment|//dataCache.remove(page);
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -10953,7 +10880,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -10969,7 +10896,7 @@ name|next
 init|=
 name|getCurrentPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -10982,13 +10909,12 @@ argument_list|()
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//			 LOG.debug(next.getPageNum() + ".prev = " + ph.getPrevDataPage());
 name|next
 operator|.
 name|setDirty
@@ -11006,7 +10932,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -11022,7 +10948,7 @@ name|prev
 init|=
 name|getCurrentPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -11035,13 +10961,12 @@ argument_list|()
 operator|.
 name|setNextDataPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//			 LOG.debug(prev.getPageNum() + ".next = " + ph.getNextDataPage());
 name|prev
 operator|.
 name|setDirty
@@ -11059,7 +10984,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -11068,7 +10993,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -11077,23 +11002,23 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -11133,11 +11058,12 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
 if|if
 condition|(
@@ -11181,8 +11107,6 @@ argument_list|(
 literal|"the file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
-comment|//		 StringBuilder debug = new StringBuilder();
-comment|//		 debug.append("Removed pages: ");
 name|long
 name|pnum
 init|=
@@ -11195,28 +11119,31 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|pnum
+operator|==
 name|Page
 operator|.
 name|NO_PAGE
-operator|==
-name|pnum
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"tried to remove unknown page. p = "
+literal|"Tried to remove unknown page. p = "
 operator|+
 name|pnum
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
+block|}
 while|while
 condition|(
+name|pnum
+operator|!=
 name|Page
 operator|.
 name|NO_PAGE
-operator|!=
-name|pnum
 condition|)
 block|{
 specifier|final
@@ -11230,7 +11157,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -11256,12 +11183,12 @@ name|transaction
 argument_list|,
 name|pnum
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -11274,12 +11201,12 @@ name|page
 operator|.
 name|len
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
-name|getCurrentTID
+name|getCurrentTupleID
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getRecordCount
 argument_list|()
@@ -11297,14 +11224,14 @@ expr_stmt|;
 block|}
 name|pnum
 operator|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -11313,7 +11240,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -11322,23 +11249,23 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -11384,7 +11311,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Error while removing page: "
 operator|+
@@ -11396,9 +11323,9 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow the exception ? -pb
 block|}
 block|}
-comment|//		 LOG.debug(debug.toString());
 block|}
 specifier|public
 name|String
@@ -11437,7 +11364,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"; docId "
+literal|"; docId: "
 argument_list|)
 operator|.
 name|append
@@ -11450,7 +11377,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-literal|':'
+literal|": "
 argument_list|)
 expr_stmt|;
 name|long
@@ -11476,11 +11403,11 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
+name|pnum
+operator|!=
 name|Page
 operator|.
 name|NO_PAGE
-operator|!=
-name|pnum
 condition|)
 block|{
 specifier|final
@@ -11494,7 +11421,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -11522,7 +11449,7 @@ argument_list|)
 expr_stmt|;
 name|pnum
 operator|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -11542,9 +11469,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Commented out since DocmentImpl has no more internal address
-comment|//buf.append("; Document metadata at "
-comment|//		+ StorageAddress.toString(doc.getInternalAddress()));
 return|return
 name|buf
 operator|.
@@ -11563,7 +11487,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/**      * The current object owning this file.      *       * @param obj      *                     The new ownerObject value      */
+comment|/**      * The current object owning this file.      *       * @param obj   The new ownerObject value      */
 specifier|public
 specifier|synchronized
 specifier|final
@@ -11571,33 +11495,30 @@ name|void
 name|setOwnerObject
 parameter_list|(
 name|Object
-name|obj
+name|ownerObject
 parameter_list|)
 block|{
-comment|// if(owner != obj&& obj != null)
-comment|// LOG.debug("owner set -> " + obj.hashCode());
 if|if
 condition|(
-name|obj
+name|ownerObject
 operator|==
 literal|null
 condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"setOwnerObject(null)"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	  if (owner != null&& owner != obj) { 	  if (!(obj instanceof NativeBroker)) 	  LOG.warn("changing owner from " + owner + " to " + obj);			 	  } 	*/
 name|owner
 operator|=
-name|obj
+name|ownerObject
 expr_stmt|;
 block|}
-comment|/**      * Update the key/value pair.      *       * @param key      *                     Description of the Parameter      * @param value      *                     Description of the Parameter      * @return Description of the Return Value      */
+comment|/**      * Update the key/value pair.      *       * @param key   Description of the Parameter      * @param value Description of the Parameter      * @return Description of the Return Value      */
 specifier|public
 name|boolean
 name|update
@@ -11632,6 +11553,7 @@ operator|==
 name|KEY_NOT_FOUND
 condition|)
 block|{
+comment|//TODO : transform to error ? -pb
 name|LOG
 operator|.
 name|warn
@@ -11661,6 +11583,7 @@ name|BTreeException
 name|bte
 parameter_list|)
 block|{
+comment|//TODO : rethrow exception ? -pb
 name|LOG
 operator|.
 name|warn
@@ -11683,6 +11606,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//TODO : rethrow exception ? -pb
 name|LOG
 operator|.
 name|warn
@@ -11728,7 +11652,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"the file doesn't own a write lock"
+literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -11798,7 +11722,15 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"shrinked"
+literal|"Value too short: expected: "
+operator|+
+name|value
+operator|.
+name|length
+operator|+
+literal|"; got: "
+operator|+
+name|vlen
 argument_list|)
 throw|;
 block|}
@@ -11815,7 +11747,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"value too long: expected: "
+literal|"Value too long: expected: "
 operator|+
 name|value
 operator|.
@@ -11855,11 +11787,12 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"tid< 0"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 name|Loggable
 name|loggable
@@ -12015,7 +11948,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// fallback to a btree lookup if the node could not be found
+comment|// fallback to a BTree lookup if the node could not be found
 comment|// by its storage address
 name|address
 operator|=
@@ -12041,13 +11974,14 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"node value not found : "
 operator|+
 name|node
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return
 literal|null
 return|;
@@ -12070,8 +12004,9 @@ argument_list|,
 literal|"Node data could not be found!"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
-comment|// we collect the string values in binary format and append to a ByteArrayOutputStream
+comment|// we collect the string values in binary format and append them to a ByteArrayOutputStream
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -12117,6 +12052,8 @@ argument_list|()
 decl_stmt|;
 name|String
 name|value
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -12146,8 +12083,9 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : why not store another string like "OOOPS !" ?
+comment|//TODO : why not log another string like "OOOPS !" ?
 comment|//then return null
+comment|//TODO : throw exception ? -pb
 name|value
 operator|=
 operator|new
@@ -12169,13 +12107,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"btree error while reading node value"
+literal|"BTree error while reading node value"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -12185,16 +12124,18 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"io error while reading node value"
+literal|"IO error while reading node value"
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
+comment|//TODO : remove if exceptions thrown...
 return|return
-literal|""
+literal|null
 return|;
 block|}
 comment|/**      * Recursive method to retrieve the string values of the root node      * and all its descendants.      */
@@ -12246,7 +12187,7 @@ do|do
 block|{
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|rec
 operator|.
@@ -12262,7 +12203,7 @@ name|rec
 operator|.
 name|offset
 operator|>
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -12273,7 +12214,7 @@ specifier|final
 name|long
 name|nextPage
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -12291,7 +12232,9 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"bad link to next page! offset: "
+literal|"Bad link to next page! "
+operator|+
+literal|"offset: "
 operator|+
 name|rec
 operator|.
@@ -12299,12 +12242,12 @@ name|offset
 operator|+
 literal|"; len: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
 operator|+
-literal|": "
+literal|"Page info : "
 operator|+
 name|rec
 operator|.
@@ -12317,6 +12260,7 @@ name|getPageInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 name|rec
@@ -12348,7 +12292,7 @@ expr_stmt|;
 block|}
 comment|//Position the stream at the very beginning of the record
 name|short
-name|tid
+name|tupleID
 init|=
 name|ByteConversion
 operator|.
@@ -12372,7 +12316,7 @@ name|rec
 operator|.
 name|setTID
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 expr_stmt|;
 if|if
@@ -12388,7 +12332,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// this is a link: skip it
+comment|// This is a link: skip it
 comment|//We position the offset *after* the next TID
 name|rec
 operator|.
@@ -12402,11 +12346,13 @@ operator|)
 expr_stmt|;
 block|}
 else|else
-comment|// ok: node found
+block|{
+comment|//OK: node found
 name|foundNext
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
@@ -12414,7 +12360,7 @@ operator|!
 name|foundNext
 condition|)
 do|;
-comment|// read the page len
+comment|// read the page length
 specifier|final
 name|short
 name|vlen
@@ -12446,7 +12392,7 @@ name|offset
 operator|+=
 name|LENGTH_DATA_LENGTH
 expr_stmt|;
-comment|// check if the node was relocated
+comment|//Check if the node was relocated
 if|if
 condition|(
 name|ItemId
@@ -12459,12 +12405,14 @@ name|getTID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 name|byte
 index|[]
 name|data
@@ -12495,7 +12443,7 @@ operator|==
 name|OVERFLOW
 condition|)
 block|{
-comment|// if we have an overflow value, load it from the overflow page
+comment|//If we have an overflow value, load it from the overflow page
 specifier|final
 name|long
 name|op
@@ -12563,7 +12511,7 @@ name|StoredNode
 operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
-comment|// switch on the node type
+comment|//Switch on the node type
 switch|switch
 condition|(
 name|type
@@ -12707,6 +12655,7 @@ if|if
 condition|(
 name|extraWhitespace
 condition|)
+block|{
 name|os
 operator|.
 name|write
@@ -12717,6 +12666,7 @@ operator|)
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return;
 block|}
@@ -12802,6 +12752,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+block|{
 if|if
 condition|(
 name|isTopNode
@@ -12954,11 +12905,13 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
+block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+block|{
 if|if
 condition|(
 name|isTopNode
@@ -13031,12 +12984,14 @@ expr_stmt|;
 block|}
 break|break;
 block|}
+block|}
 if|if
 condition|(
 operator|!
 name|inOverflow
 condition|)
-comment|// if it isn't an overflow value, add the value length to the current offset
+block|{
+comment|//If it isn't an overflow value, add the value length to the current offset
 comment|//We position the offset *after* the next TID
 name|rec
 operator|.
@@ -13046,6 +13001,7 @@ name|realLen
 operator|+
 name|LENGTH_TID
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|RecordPos
@@ -13092,7 +13048,7 @@ literal|"the file doesn't own a lock"
 argument_list|)
 expr_stmt|;
 name|long
-name|pageNr
+name|pageNo
 init|=
 name|StorageAddress
 operator|.
@@ -13113,7 +13069,7 @@ argument_list|)
 decl_stmt|;
 while|while
 condition|(
-name|pageNr
+name|pageNo
 operator|!=
 name|Page
 operator|.
@@ -13126,7 +13082,7 @@ name|page
 init|=
 name|getCurrentPage
 argument_list|(
-name|pageNr
+name|pageNo
 argument_list|)
 decl_stmt|;
 name|dataCache
@@ -13153,7 +13109,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|pageNr
+name|pageNo
 operator|=
 name|page
 operator|.
@@ -13165,7 +13121,7 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|pageNr
+name|pageNo
 operator|==
 name|page
 operator|.
@@ -13177,11 +13133,12 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"circular link to next page on "
+literal|"Circular link to next page on "
 operator|+
-name|pageNr
+name|pageNo
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 return|return
 literal|null
 return|;
@@ -13219,13 +13176,8 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-comment|//				 LOG.debug("following link on " + pageNr +
-comment|//				 " to page "
-comment|//				 + StorageAddress.pageFromPointer(forwardLink)
-comment|//				 + "; tid="
-comment|//				 + StorageAddress.tidFromPointer(forwardLink));
 comment|// load the link page
-name|pageNr
+name|pageNo
 operator|=
 name|StorageAddress
 operator|.
@@ -13251,6 +13203,7 @@ name|rec
 return|;
 block|}
 block|}
+comment|//TODO : throw exception ? -pb
 return|return
 literal|null
 return|;
@@ -13303,7 +13256,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -13312,7 +13265,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|nph
+name|newPageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -13338,30 +13291,30 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setStatus
 argument_list|(
 name|RECORD
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -13390,7 +13343,7 @@ name|getWorkSize
 argument_list|()
 index|]
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -13409,16 +13362,16 @@ name|ItemId
 operator|.
 name|UNKNOWN_ID
 condition|)
-name|nph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|loggable
 operator|.
 name|nextTID
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -13445,7 +13398,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|nph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -13455,7 +13408,7 @@ name|NO_PAGE
 argument_list|)
 expr_stmt|;
 else|else
-name|nph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -13474,7 +13427,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -13484,7 +13437,7 @@ name|NO_PAGE
 argument_list|)
 expr_stmt|;
 else|else
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -13502,7 +13455,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to redo "
 operator|+
@@ -13521,6 +13474,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exc eption ?
 block|}
 block|}
 name|dataCache
@@ -13552,17 +13506,16 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-comment|//dataCache.remove(page);
 try|try
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -13571,7 +13524,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -13580,23 +13533,23 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -13654,6 +13607,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : exception ?
 block|}
 block|}
 specifier|protected
@@ -13677,7 +13631,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -13686,7 +13640,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -13792,12 +13746,12 @@ name|len
 operator|+=
 name|vlen
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -13813,16 +13767,16 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|loggable
 operator|.
 name|tid
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -13901,7 +13855,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -13936,6 +13890,7 @@ argument_list|,
 literal|"Record not found!"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 comment|//Position the stream at the very beginning of the record
 specifier|final
 name|int
@@ -13947,7 +13902,7 @@ name|offset
 operator|-
 name|LENGTH_TID
 decl_stmt|;
-comment|// get the record length
+comment|//Get the record length
 specifier|final
 name|short
 name|vlen
@@ -13965,7 +13920,7 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-comment|// end offset
+comment|//End offset
 specifier|final
 name|int
 name|end
@@ -13982,12 +13937,12 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
-comment|// remove old value
+comment|//Remove old value
 name|System
 operator|.
 name|arraycopy
@@ -14031,14 +13986,17 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+comment|//TODO : exception ?
+block|}
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -14047,12 +14005,11 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -14465,7 +14422,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -14474,7 +14431,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -14663,10 +14620,12 @@ name|l
 operator|==
 name|OVERFLOW
 condition|)
+block|{
 name|l
 operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
+block|}
 comment|// end offset
 specifier|final
 name|int
@@ -14684,7 +14643,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -14741,14 +14700,17 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+comment|//TODO : throw exception ? -pb
+block|}
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -14757,12 +14719,12 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -14772,7 +14734,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -14788,7 +14749,6 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
-comment|//		LOG.debug(debugPageContents(page));
 block|}
 specifier|protected
 name|void
@@ -14811,7 +14771,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -14842,7 +14802,7 @@ if|if
 condition|(
 name|offset
 operator|<
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -14919,7 +14879,7 @@ name|data
 argument_list|,
 name|end
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -14978,7 +14938,7 @@ operator|+
 literal|"; len: "
 operator|+
 operator|(
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -15182,12 +15142,12 @@ name|vlen
 operator|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -15196,7 +15156,6 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -15235,7 +15194,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -15244,7 +15203,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -15291,7 +15250,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|nph
+name|newPageHeader
 init|=
 name|newPage
 operator|.
@@ -15315,7 +15274,8 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|nph
+block|{
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -15324,6 +15284,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 specifier|final
@@ -15339,14 +15300,14 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|oph
+name|oldPageHeader
 init|=
 name|oldPage
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -15356,7 +15317,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|oph
+name|oldPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -15391,7 +15352,8 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|nph
+block|{
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -15400,6 +15362,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 specifier|final
@@ -15415,14 +15378,14 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|oph
+name|oldPageHeader
 init|=
 name|oldPage
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|oph
+name|oldPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -15432,7 +15395,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|nph
+name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -15456,9 +15419,9 @@ name|oldPage
 argument_list|)
 expr_stmt|;
 block|}
-name|nph
+name|newPageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
@@ -15488,7 +15451,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Error during undo: "
 operator|+
@@ -15500,6 +15463,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -15523,7 +15487,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -15532,7 +15496,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -15549,10 +15513,9 @@ name|page
 argument_list|)
 condition|)
 block|{
-comment|//dataCache.remove(page);
 try|try
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -15561,7 +15524,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -15570,7 +15533,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLen
 argument_list|(
@@ -15580,23 +15543,23 @@ name|getWorkSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -15654,6 +15617,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 block|}
@@ -15680,7 +15644,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -15694,14 +15658,14 @@ operator|.
 name|page
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
 name|RECORD
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -15710,7 +15674,7 @@ operator|.
 name|nextPage
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -15719,9 +15683,9 @@ operator|.
 name|prevPage
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
@@ -15733,7 +15697,7 @@ name|oldTid
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -15742,7 +15706,7 @@ operator|.
 name|oldRecCnt
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -15822,6 +15786,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -15852,7 +15817,7 @@ argument_list|()
 expr_stmt|;
 specifier|final
 name|PageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -15864,7 +15829,7 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
@@ -15873,7 +15838,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -15901,7 +15866,7 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -15913,7 +15878,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -15923,7 +15888,7 @@ name|nextPage
 argument_list|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -15971,6 +15936,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -16032,6 +15998,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -16062,7 +16029,7 @@ argument_list|()
 expr_stmt|;
 specifier|final
 name|PageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -16071,7 +16038,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -16122,6 +16089,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -16152,7 +16120,7 @@ argument_list|()
 expr_stmt|;
 specifier|final
 name|PageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -16164,7 +16132,7 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
@@ -16182,7 +16150,7 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -16194,7 +16162,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -16241,6 +16209,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|protected
@@ -16264,7 +16233,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -16273,7 +16242,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -16294,7 +16263,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -16362,7 +16331,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -16509,12 +16478,12 @@ name|value
 operator|.
 name|length
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -16523,9 +16492,9 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
@@ -16574,7 +16543,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -16658,7 +16627,7 @@ name|offset
 operator|+
 name|LENGTH_TID
 decl_stmt|;
-comment|//TOUNDERSTAND Strange : in the lines above, the offset seems to be positionned after the TID
+comment|//TOUNDERSTAND Strange : in the lines above, the offset seems to be positionned *after* the TID
 name|short
 name|l
 init|=
@@ -16721,7 +16690,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -16837,7 +16806,7 @@ argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -16846,12 +16815,12 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -16861,7 +16830,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -16898,7 +16866,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -16907,7 +16875,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -16983,12 +16951,12 @@ literal|0
 condition|)
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -16997,7 +16965,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -17044,7 +17012,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17077,12 +17045,12 @@ literal|0
 condition|)
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -17091,7 +17059,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17101,7 +17069,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -17138,7 +17105,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17147,7 +17114,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -17215,9 +17182,9 @@ name|len
 operator|+=
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
@@ -17229,7 +17196,7 @@ name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -17238,7 +17205,7 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17248,12 +17215,11 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -17291,7 +17257,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17372,12 +17338,12 @@ literal|0
 condition|)
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -17386,12 +17352,12 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17401,7 +17367,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -17438,7 +17403,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17447,7 +17412,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -17481,7 +17446,7 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17528,7 +17493,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17552,7 +17517,7 @@ operator|.
 name|offset
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17598,7 +17563,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17607,7 +17572,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -17741,13 +17706,13 @@ name|len
 operator|+=
 name|vlen
 expr_stmt|;
-comment|//TODO : why 2 occurences of ph.incRecordCount(); ?
-name|ph
+comment|//TOUNDERSTAND : why 2 occurences of ph.incRecordCount(); ?
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -17756,9 +17721,9 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
@@ -17770,12 +17735,12 @@ name|tid
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|incRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -17785,7 +17750,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -17811,7 +17775,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page: "
 operator|+
@@ -17862,7 +17826,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -17913,7 +17877,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// get the record length
+comment|// get the record's length
 specifier|final
 name|short
 name|vlen
@@ -17931,7 +17895,6 @@ operator|.
 name|offset
 argument_list|)
 decl_stmt|;
-comment|// end offset
 specifier|final
 name|int
 name|end
@@ -17950,7 +17913,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -17993,7 +17956,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -18063,14 +18026,17 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
-name|ph
+comment|//TODO : throw exception ? -pb
+block|}
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -18079,12 +18045,12 @@ operator|.
 name|len
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|decRecordCount
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -18094,7 +18060,6 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//page.cleanUp();
 name|page
 operator|.
 name|setDirty
@@ -18131,7 +18096,7 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
@@ -18140,7 +18105,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -18167,7 +18132,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -18186,7 +18151,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -18195,7 +18160,7 @@ operator|.
 name|prevPage
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -18244,14 +18209,14 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 name|page
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -18260,7 +18225,7 @@ operator|.
 name|oldPrev
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -18269,7 +18234,7 @@ operator|.
 name|oldNext
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -18442,7 +18407,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -18519,7 +18484,7 @@ name|NO_PAGE
 decl_stmt|;
 specifier|protected
 name|short
-name|tid
+name|tupleID
 init|=
 name|ItemId
 operator|.
@@ -18610,28 +18575,30 @@ name|void
 name|decRecordCount
 parameter_list|()
 block|{
+comment|//TODO : negative check ? -pb
 operator|--
 name|records
 expr_stmt|;
 block|}
 specifier|public
 name|short
-name|getCurrentTID
+name|getCurrentTupleID
 parameter_list|()
 block|{
+comment|//TODO : overflow check ? -pb
 return|return
-name|tid
+name|tupleID
 return|;
 block|}
 specifier|public
 name|short
-name|getNextTID
+name|getNextTupleID
 parameter_list|()
 block|{
 if|if
 condition|(
 operator|++
-name|tid
+name|tupleID
 operator|==
 name|ItemId
 operator|.
@@ -18645,7 +18612,7 @@ literal|"no spare ids on page"
 argument_list|)
 throw|;
 return|return
-name|tid
+name|tupleID
 return|;
 block|}
 specifier|public
@@ -18654,7 +18621,7 @@ name|hasRoom
 parameter_list|()
 block|{
 return|return
-name|tid
+name|tupleID
 operator|<
 name|ItemId
 operator|.
@@ -18663,15 +18630,15 @@ return|;
 block|}
 specifier|public
 name|void
-name|setNextTID
+name|setNextTupleID
 parameter_list|(
 name|short
-name|tid
+name|tupleID
 parameter_list|)
 block|{
 if|if
 condition|(
-name|tid
+name|tupleID
 operator|>
 name|ItemId
 operator|.
@@ -18681,16 +18648,16 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"TID overflow! TID = "
+literal|"TuoleID overflow! TupleID = "
 operator|+
-name|tid
+name|tupleID
 argument_list|)
 throw|;
 name|this
 operator|.
-name|tid
+name|tupleID
 operator|=
-name|tid
+name|tupleID
 expr_stmt|;
 block|}
 specifier|public
@@ -18823,7 +18790,7 @@ name|offset
 operator|+=
 name|LENGTH_PREV_PAGE_POINTER
 expr_stmt|;
-name|tid
+name|tupleID
 operator|=
 name|ByteConversion
 operator|.
@@ -18929,7 +18896,7 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
-name|tid
+name|tupleID
 argument_list|,
 name|data
 argument_list|,
@@ -18959,13 +18926,16 @@ operator|.
 name|getWorkSize
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"too long !"
+literal|"data too long for file header !"
 argument_list|)
 expr_stmt|;
+comment|//TODO  :throw exception ? -pb
+block|}
 name|dataLen
 operator|=
 name|len
@@ -19034,7 +19004,7 @@ name|Page
 name|page
 decl_stmt|;
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 decl_stmt|;
 comment|// fields required by Cacheable
 name|int
@@ -19068,7 +19038,7 @@ operator|=
 name|createNewPage
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|=
 operator|(
 name|DOMFilePageHeader
@@ -19078,7 +19048,6 @@ operator|.
 name|getPageHeader
 argument_list|()
 expr_stmt|;
-comment|// LOG.debug("Created new page: " + page.getPageNum());
 name|data
 operator|=
 operator|new
@@ -19125,7 +19094,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -19135,6 +19104,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+comment|//TODO  :throw exception ? -pb
 block|}
 block|}
 specifier|public
@@ -19172,7 +19142,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 operator|(
 name|DOMFilePageHeader
@@ -19182,21 +19152,21 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
 name|RECORD
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDirty
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -19205,7 +19175,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -19214,7 +19184,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -19223,23 +19193,23 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -19263,7 +19233,6 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
-comment|//LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
 return|return
 name|page
 return|;
@@ -19276,7 +19245,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -19298,7 +19267,7 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -19322,7 +19291,7 @@ condition|;
 control|)
 block|{
 name|short
-name|tid
+name|tupleID
 init|=
 name|ByteConversion
 operator|.
@@ -19343,7 +19312,7 @@ name|ItemId
 operator|.
 name|matches
 argument_list|(
-name|tid
+name|tupleID
 argument_list|,
 name|targetId
 argument_list|)
@@ -19355,7 +19324,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 condition|)
 block|{
@@ -19368,7 +19337,7 @@ name|pos
 argument_list|,
 name|this
 argument_list|,
-name|tid
+name|tupleID
 argument_list|,
 literal|true
 argument_list|)
@@ -19385,7 +19354,7 @@ name|pos
 argument_list|,
 name|this
 argument_list|,
-name|tid
+name|tupleID
 argument_list|)
 expr_stmt|;
 block|}
@@ -19397,7 +19366,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 condition|)
 block|{
@@ -19434,7 +19403,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"page = "
 operator|+
@@ -19451,9 +19420,9 @@ literal|"; vlen = "
 operator|+
 name|vlen
 operator|+
-literal|"; tid = "
+literal|"; tupleID = "
 operator|+
-name|tid
+name|tupleID
 operator|+
 literal|"; target = "
 operator|+
@@ -19467,7 +19436,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 condition|)
 block|{
@@ -19491,17 +19460,19 @@ name|vlen
 operator|==
 name|OVERFLOW
 condition|)
+block|{
 name|pos
 operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
 name|rec
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getKey() 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getKey()          */
 specifier|public
 name|long
 name|getKey
@@ -19514,7 +19485,7 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getReferenceCount() 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
 specifier|public
 name|int
 name|getReferenceCount
@@ -19529,6 +19500,7 @@ name|int
 name|decReferenceCount
 parameter_list|()
 block|{
+comment|//TODO : check if the decrementation is allowed ? -pb
 return|return
 name|refCount
 operator|>
@@ -19545,6 +19517,7 @@ name|int
 name|incReferenceCount
 parameter_list|()
 block|{
+comment|//TODO : check uf the incrementation is allowed ? -pb
 if|if
 condition|(
 name|refCount
@@ -19560,7 +19533,7 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setReferenceCount(int) 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)          */
 specifier|public
 name|void
 name|setReferenceCount
@@ -19574,7 +19547,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
 specifier|public
 name|void
 name|setTimestamp
@@ -19590,7 +19563,7 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
 specifier|public
 name|int
 name|getTimestamp
@@ -19606,7 +19579,7 @@ name|getPageHeader
 parameter_list|()
 block|{
 return|return
-name|ph
+name|pageHeader
 return|;
 block|}
 specifier|public
@@ -19672,7 +19645,7 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|=
 operator|(
 name|DOMFilePageHeader
@@ -19684,7 +19657,7 @@ argument_list|()
 expr_stmt|;
 name|len
 operator|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -19724,7 +19697,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -19757,13 +19730,13 @@ block|{
 if|if
 condition|(
 operator|!
-name|ph
+name|pageHeader
 operator|.
 name|isDirty
 argument_list|()
 condition|)
 return|return;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
@@ -19791,11 +19764,12 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
 expr_stmt|;
+comment|//TODO : thow exception ? -pb
 block|}
 block|}
 specifier|public
@@ -19847,7 +19821,7 @@ operator|.
 name|lastWrittenLsn
 argument_list|()
 operator|<
-name|ph
+name|pageHeader
 operator|.
 name|getLsn
 argument_list|()
@@ -19867,7 +19841,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see org.exist.storage.cache.Cacheable#allowUnload() 		 */
+comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#allowUnload()          */
 specifier|public
 name|boolean
 name|allowUnload
@@ -19877,7 +19851,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* 		 * (non-Javadoc) 		 *  		 * @see java.lang.Object#equals(java.lang.Object) 		 */
+comment|/*          * (non-Javadoc)          *           * @see java.lang.Object#equals(java.lang.Object)          */
 specifier|public
 name|boolean
 name|equals
@@ -19924,7 +19898,7 @@ return|return
 name|invalidated
 return|;
 block|}
-comment|/** 		 * Walk through the page after records have been removed. Set the tid 		 * counter to the next spare id that can be used for following 		 * insertions. 		 */
+comment|/**          * Walk through the page after records have been removed. Set the tid          * counter to the next spare id that can be used for following          * insertions.          */
 specifier|public
 name|void
 name|cleanUp
@@ -19934,13 +19908,13 @@ specifier|final
 name|int
 name|dlen
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
 decl_stmt|;
 name|short
-name|maxTID
+name|maxTupleID
 init|=
 literal|0
 decl_stmt|;
@@ -19965,7 +19939,7 @@ operator|++
 control|)
 block|{
 name|short
-name|tid
+name|tupleID
 init|=
 name|ByteConversion
 operator|.
@@ -19986,7 +19960,7 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 operator|>
 name|ItemId
@@ -19996,7 +19970,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|debugPageContents
 argument_list|(
@@ -20008,7 +19982,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"TID overflow in page "
+literal|"TupleID overflow in page "
 operator|+
 name|getPageNum
 argument_list|()
@@ -20021,27 +19995,29 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 operator|>
-name|maxTID
+name|maxTupleID
 condition|)
-name|maxTID
+block|{
+name|maxTupleID
 operator|=
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 condition|)
 block|{
@@ -20075,7 +20051,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|tid
+name|tupleID
 argument_list|)
 condition|)
 block|{
@@ -20095,6 +20071,7 @@ name|vlen
 expr_stmt|;
 block|}
 else|else
+block|{
 name|pos
 operator|+=
 name|vlen
@@ -20107,15 +20084,14 @@ name|vlen
 expr_stmt|;
 block|}
 block|}
-name|ph
+block|}
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
-name|maxTID
+name|maxTupleID
 argument_list|)
 expr_stmt|;
-comment|//Uncommented because of recovery runs where both are not in sync
-comment|/* 		      if (ph.getRecordCount() != recordCount) 		      LOG.warn("page record count differs from computed record count"); 		    */
 block|}
 block|}
 comment|/**      * This represents an overflow page. Overflow pages are created if the node      * data exceeds the size of one page. An overflow page is a sequence of      * DOMPages.      *       * @author wolf      *       */
@@ -20187,7 +20163,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
 operator|(
 name|DOMFilePageHeader
@@ -20197,21 +20173,21 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
 name|RECORD
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDirty
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
@@ -20220,7 +20196,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
@@ -20229,7 +20205,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -20238,23 +20214,23 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
-name|setNextTID
+name|setNextTupleID
 argument_list|(
 name|ItemId
 operator|.
 name|UNKNOWN_ID
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setDataLength
 argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setRecordCount
 argument_list|(
@@ -20278,7 +20254,6 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
-comment|//LOG.debug("New page: " + page.getPageNum() + "; " + page.getPageInfo());
 return|return
 name|page
 return|;
@@ -20291,7 +20266,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -20690,7 +20665,7 @@ name|pageCount
 operator|++
 expr_stmt|;
 block|}
-comment|// TODO what if remaining length=0?
+comment|// TODO what if remaining length == 0 ?
 block|}
 catch|catch
 parameter_list|(
@@ -20700,9 +20675,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"io error while writing overflow page"
+literal|"IO error while writing overflow page"
 argument_list|,
 name|ex
 argument_list|)
@@ -21029,7 +21004,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"io error while loading overflow page "
 operator|+
@@ -21045,6 +21020,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : too soft ? throw the exception ?
 break|break;
 block|}
 operator|++
@@ -21178,6 +21154,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|//TODO : move higher ?
 specifier|public
 specifier|synchronized
 specifier|final
