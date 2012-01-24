@@ -12,7 +12,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-05 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  *    *  This file is in part based on code from the dbXML Group. The original license  *  statement is included below:  *    *  -------------------------------------------------------------------------------------------------  *  dbXML License, Version 1.0  *  *  Copyright (c) 1999-2001 The dbXML Group, L.L.C.  *  All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by  *  The dbXML Group (http://www.dbxml.com/)."  *  Alternately, this acknowledgment may appear in the software  *  itself, if and wherever such third-party acknowledgments normally  *  appear.  *  *  4. The names "dbXML" and "The dbXML Group" must not be used to  *  endorse or promote products derived from this software without  *  prior written permission. For written permission, please contact  *  info@dbxml.com.  *  *  5. Products derived from this software may not be called "dbXML",  *  nor may "dbXML" appear in their name, without prior written  *  permission of The dbXML Group.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE DBXML GROUP OR ITS CONTRIBUTORS  *  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,  *  OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR  *  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING  *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  */
+comment|/* *  eXist Open Source Native XML Database  *  Copyright (C) 2001-05 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  *    *  This file is in part based on code from the dbXML Group. The original license  *  statement is included below:  *    *  -------------------------------------------------------------------------------------------------  *  dbXML License, Version 1.0  *  *  Copyright (c) 1999-2001 The dbXML Group, L.L.C.  *  All rights reserved.  *  *  Redistribution and use in source and binary forms, with or without  *  modification, are permitted provided that the following conditions  *  are met:  *  *  1. Redistributions of source code must retain the above copyright  *  notice, this list of conditions and the following disclaimer.  *  *  2. Redistributions in binary form must reproduce the above copyright  *  notice, this list of conditions and the following disclaimer in  *  the documentation and/or other materials provided with the  *  distribution.  *  *  3. The end-user documentation included with the redistribution,  *  if any, must include the following acknowledgment:  *  "This product includes software developed by  *  The dbXML Group (http://www.dbxml.com/)."  *  Alternately, this acknowledgment may appear in the software  *  itself, if and wherever such third-party acknowledgments normally  *  appear.  *  *  4. The names "dbXML" and "The dbXML Group" must not be used to  *  endorse or promote products derived from this software without  *  prior written permission. For written permission, please contact  *  info@dbxml.com.  *  *  5. Products derived from this software may not be called "dbXML",  *  nor may "dbXML" appear in their name, without prior written  *  permission of The dbXML Group.  *  *  THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESSED OR IMPLIED  *  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES  *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE  *  DISCLAIMED.  IN NO EVENT SHALL THE DBXML GROUP OR ITS CONTRIBUTORS  *  BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,  *  OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *  OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR  *  BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF  *  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING  *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS  *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  */
 end_comment
 
 begin_import
@@ -318,7 +318,6 @@ name|LEAF
 init|=
 literal|1
 decl_stmt|;
-comment|/** Type of BTreeNode/Page */
 specifier|protected
 specifier|final
 specifier|static
@@ -344,7 +343,7 @@ name|LOG_INSERT_VALUE
 init|=
 literal|0x20
 decl_stmt|;
-comment|/** Log entry type for creation of a new btree node */
+comment|/** Log entry type for creation of a new BTree node */
 specifier|public
 specifier|final
 specifier|static
@@ -399,7 +398,7 @@ literal|0x26
 decl_stmt|;
 static|static
 block|{
-comment|// register the log entry types used for the btree
+comment|// register the log entry types used for the BTree
 name|LogEntryTypes
 operator|.
 name|addEntryType
@@ -682,7 +681,6 @@ return|return
 operator|-
 literal|1
 return|;
-comment|//		throw new RuntimeException("getFileVersion() called");
 block|}
 specifier|public
 name|boolean
@@ -712,9 +710,11 @@ literal|true
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -814,8 +814,6 @@ name|void
 name|initCache
 parameter_list|()
 block|{
-comment|//        cache = new LRDCache(cacheManager.getDefaultInitialSize(), 1.5,
-comment|//            growthThreshold, CacheManager.BTREE_CACHE);
 name|cache
 operator|=
 operator|new
@@ -900,7 +898,7 @@ operator|=
 name|factor
 expr_stmt|;
 block|}
-comment|/** 	 *  addValue adds a Value to the BTree and associates a pointer with it. The 	 *  pointer can be used for referencing any type of data, it just so happens 	 *  that dbXML uses it for referencing pages of associated data in the BTree 	 *  file or other files. 	 * 	 *@param  value               The Value to add 	 *@param  pointer             The pointer to associate with it 	 *@return                     The previous value for the pointer (or -1) 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/**      *  addValue adds a Value to the BTree and associates a pointer with it. The      *  pointer can be used for referencing any type of data, it just so happens      *  that dbXML uses it for referencing pages of associated data in the BTree      *  file or other files.      *      *@param  value               The Value to add      *@param  pointer             The pointer to associate with it      *@return                     The previous value for the pointer (or -1)      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|addValue
@@ -959,7 +957,7 @@ name|pointer
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  removeValue removes a Value from the BTree and returns the associated 	 *  pointer for it. 	 * 	 *@param  value               The Value to remove 	 *@return                     The pointer that was associated with it 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/**      *  removeValue removes a Value from the BTree and returns the associated      *  pointer for it.      *      *@param  value               The Value to remove      *@return                     The pointer that was associated with it      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|removeValue
@@ -1008,7 +1006,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  findValue finds a Value in the BTree and returns the associated pointer 	 *  for it. 	 * 	 *@param  value               The Value to find 	 *@return                     The pointer that was associated with it 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/**      *  findValue finds a Value in the BTree and returns the associated pointer      *  for it.      *      *@param  value               The Value to find      *@return                     The pointer that was associated with it      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|findValue
@@ -1031,7 +1029,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  query performs a query against the BTree and performs callback 	 *  operations to report the search results. 	 * 	 *@param  query               The IndexQuery to use (or null for everything) 	 *@param  callback            The callback instance 	 *@exception  IOException     Description of the Exception 	 *@exception  BTreeException  Description of the Exception 	 */
+comment|/**      *  query performs a query against the BTree and performs callback      *  operations to report the search results.      *      *@param  query               The IndexQuery to use (or null for everything)      *@param  callback            The callback instance      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
 specifier|public
 name|void
 name|query
@@ -1369,7 +1367,7 @@ name|next
 init|=
 name|page
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -1547,7 +1545,7 @@ name|next
 operator|=
 name|nextPage
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -1677,7 +1675,7 @@ name|next
 init|=
 name|page
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -1712,7 +1710,7 @@ name|BTreeNode
 name|getBTreeNode
 parameter_list|(
 name|long
-name|page
+name|pageNum
 parameter_list|)
 block|{
 try|try
@@ -1727,7 +1725,7 @@ name|cache
 operator|.
 name|get
 argument_list|(
-name|page
+name|pageNum
 argument_list|)
 decl_stmt|;
 if|if
@@ -1738,11 +1736,11 @@ literal|null
 condition|)
 block|{
 name|Page
-name|p
+name|page
 init|=
 name|getPage
 argument_list|(
-name|page
+name|pageNum
 argument_list|)
 decl_stmt|;
 name|node
@@ -1750,7 +1748,7 @@ operator|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|false
 argument_list|)
@@ -1766,7 +1764,7 @@ name|increment
 init|=
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -1798,11 +1796,11 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"Failed to get btree node on page "
+literal|"Failed to get BTree node on page "
 operator|+
-name|page
+name|pageNum
 argument_list|,
 name|e
 argument_list|)
@@ -1833,7 +1831,7 @@ block|{
 try|try
 block|{
 name|Page
-name|p
+name|page
 init|=
 name|getFreePage
 argument_list|(
@@ -1846,7 +1844,7 @@ init|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|true
 argument_list|)
@@ -1872,7 +1870,7 @@ name|fileId
 argument_list|,
 name|status
 argument_list|,
-name|p
+name|page
 operator|.
 name|getPageNum
 argument_list|()
@@ -1903,7 +1901,7 @@ expr_stmt|;
 block|}
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
@@ -1933,7 +1931,6 @@ operator|.
 name|write
 argument_list|()
 expr_stmt|;
-comment|//cache.add(node);
 return|return
 name|node
 return|;
@@ -1946,9 +1943,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"Failed to create a btree node"
+literal|"Failed to create a BTree node"
 argument_list|,
 name|e
 argument_list|)
@@ -2067,7 +2064,7 @@ literal|null
 condition|)
 block|{
 name|Page
-name|p
+name|page
 init|=
 name|getPage
 argument_list|(
@@ -2082,7 +2079,7 @@ operator|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|false
 argument_list|)
@@ -2204,7 +2201,7 @@ return|return
 name|metrics
 return|;
 block|}
-comment|/* Flush the dirty data to the disk and cleans up the cache. 	 * @see org.exist.storage.btree.Paged#flush() 	 * @return<code>true</code> if something had to be cleaned 	 */
+comment|/* Flush the dirty data to the disk and cleans up the cache.      * @see org.exist.storage.btree.Paged#flush()      * @return<code>true</code> if something had to be cleaned      */
 specifier|public
 name|boolean
 name|flush
@@ -2212,12 +2209,6 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-comment|//        try {
-comment|//            TreeMetrics metrics = treeStatistics();
-comment|//            metrics.toLogger();
-comment|//        } catch (IOException e) {
-comment|//            e.printStackTrace();
-comment|//        }
 name|boolean
 name|flushed
 init|=
@@ -2253,9 +2244,11 @@ operator|!
 name|isReadOnly
 argument_list|()
 condition|)
+block|{
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|close
@@ -2329,7 +2322,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//        	writer.write(' ');
 block|}
 name|writer
 operator|.
@@ -2379,21 +2371,21 @@ operator|++
 control|)
 block|{
 name|Page
-name|p
+name|page
 init|=
 name|getPage
 argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|p
+name|page
 operator|.
 name|read
 argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -2405,22 +2397,22 @@ name|LEAF
 condition|)
 block|{
 name|BTreeNode
-name|btn
+name|node
 init|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|btn
+name|node
 operator|.
 name|read
 argument_list|()
 expr_stmt|;
-name|btn
+name|node
 operator|.
 name|scanRaw
 argument_list|(
@@ -2432,7 +2424,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* --------------------------------------------------------------------------------- 	 * Methods used by recovery and transaction management 	 * --------------------------------------------------------------------------------- */
+comment|/* -------------------------------------------------------------------------      * Methods used by recovery and transaction management      * ---------------------------------------------------------------------- */
 specifier|private
 name|void
 name|writeToLog
@@ -2551,7 +2543,7 @@ comment|// node is not yet loaded. Load it
 try|try
 block|{
 name|Page
-name|p
+name|page
 init|=
 name|getPage
 argument_list|(
@@ -2560,7 +2552,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
-name|p
+name|page
 operator|.
 name|read
 argument_list|()
@@ -2568,7 +2560,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|(
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -2578,7 +2570,7 @@ argument_list|()
 operator|==
 name|BRANCH
 operator|||
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -2589,7 +2581,7 @@ operator|==
 name|LEAF
 operator|)
 operator|&&
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -2606,7 +2598,7 @@ name|requiresRedo
 argument_list|(
 name|loggable
 argument_list|,
-name|p
+name|page
 argument_list|)
 condition|)
 block|{
@@ -2616,7 +2608,7 @@ operator|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|false
 argument_list|)
@@ -2636,14 +2628,14 @@ operator|=
 operator|new
 name|BTreeNode
 argument_list|(
-name|p
+name|page
 argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setStatus
 argument_list|(
@@ -2671,7 +2663,7 @@ expr_stmt|;
 block|}
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -2683,7 +2675,7 @@ argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|parentPage
 operator|=
@@ -2696,7 +2688,7 @@ name|increment
 init|=
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -2807,7 +2799,7 @@ argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -2849,7 +2841,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -2870,7 +2862,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -3036,7 +3028,7 @@ name|pointer
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -3088,7 +3080,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -3109,7 +3101,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -3194,7 +3186,7 @@ argument_list|()
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -3240,7 +3232,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -3261,7 +3253,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to undo: "
 operator|+
@@ -3335,7 +3327,7 @@ name|length
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setValueCount
 argument_list|(
@@ -3363,7 +3355,7 @@ argument_list|()
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -3409,7 +3401,7 @@ condition|)
 block|{
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|parentPage
 operator|=
@@ -3419,7 +3411,7 @@ name|parentNum
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -3471,7 +3463,7 @@ condition|)
 block|{
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -3482,7 +3474,7 @@ argument_list|)
 expr_stmt|;
 name|node
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setLsn
 argument_list|(
@@ -3524,7 +3516,7 @@ name|page
 decl_stmt|;
 specifier|private
 name|BTreePageHeader
-name|ph
+name|pageHeader
 decl_stmt|;
 comment|/** stores the keys in this page */
 specifier|private
@@ -3610,7 +3602,7 @@ name|page
 operator|=
 name|page
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|=
 operator|(
 name|BTreePageHeader
@@ -3643,7 +3635,7 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setValueCount
 argument_list|(
@@ -3674,7 +3666,8 @@ name|parent
 operator|!=
 literal|null
 condition|)
-name|ph
+block|{
+name|pageHeader
 operator|.
 name|parentPage
 operator|=
@@ -3685,8 +3678,10 @@ operator|.
 name|getPageNum
 argument_list|()
 expr_stmt|;
+block|}
 else|else
-name|ph
+block|{
+name|pageHeader
 operator|.
 name|parentPage
 operator|=
@@ -3694,6 +3689,7 @@ name|Page
 operator|.
 name|NO_PAGE
 expr_stmt|;
+block|}
 name|saved
 operator|=
 literal|false
@@ -3707,7 +3703,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|parentPage
 operator|!=
@@ -3719,7 +3715,7 @@ block|{
 return|return
 name|getBTreeNode
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|parentPage
 argument_list|)
@@ -3777,7 +3773,7 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/** 		 * @see org.exist.storage.cache.Cacheable#setTimestamp(int) 		 */
+comment|/**          * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
 specifier|public
 name|void
 name|setTimestamp
@@ -3803,7 +3799,7 @@ return|return
 name|allowUnload
 return|;
 block|}
-comment|/** 		 * @see org.exist.storage.cache.Cacheable#getTimestamp() 		 */
+comment|/**          * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
 specifier|public
 name|int
 name|getTimestamp
@@ -3819,7 +3815,7 @@ name|isInnerPage
 parameter_list|()
 block|{
 return|return
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -3841,6 +3837,7 @@ condition|(
 name|isDirty
 argument_list|()
 condition|)
+block|{
 try|try
 block|{
 name|write
@@ -3871,7 +3868,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"IO error while writing page: "
 operator|+
@@ -3883,6 +3880,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|false
@@ -3949,7 +3947,7 @@ name|vals
 operator|.
 name|length
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setValueCount
 argument_list|(
@@ -3989,7 +3987,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** 		 * Returns the raw data size (in bytes) required by this node. 		 *  		 * @return The data length 		 */
+comment|/**          * Returns the raw data size (in bytes) required by this node.          *           * @return The data length          */
 specifier|private
 name|int
 name|getDataLen
@@ -4006,7 +4004,7 @@ else|:
 name|currentDataLen
 return|;
 block|}
-comment|/** 		 * Recalculates the raw data size (in bytes) required by this node. 		 *  		 * @return the data length 		 */
+comment|/**          * Recalculates the raw data size (in bytes) required by this node.          *           * @return the data length          */
 specifier|private
 name|int
 name|recalculateDataLen
@@ -4033,15 +4031,17 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|currentDataLen
 operator|+=
 literal|2
 operator|*
 name|nKeys
 expr_stmt|;
+block|}
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4059,7 +4059,7 @@ literal|2
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4089,7 +4089,7 @@ control|)
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4166,7 +4166,7 @@ return|return
 name|currentDataLen
 return|;
 block|}
-comment|/** 		 * Add the raw data size required to store the value to the internal 		 * data size of this node. 		 *   		 */
+comment|/**          * Add the raw data size required to store the value to the internal          * data size of this node.          *            */
 specifier|private
 name|void
 name|adjustDataLen
@@ -4189,7 +4189,7 @@ return|return;
 block|}
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4312,16 +4312,18 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
 operator|==
 name|LEAF
 condition|)
+block|{
 name|currentDataLen
 operator|++
 expr_stmt|;
+block|}
 block|}
 name|currentDataLen
 operator|+=
@@ -4336,10 +4338,12 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|currentDataLen
 operator|+=
 literal|2
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|int
@@ -4397,7 +4401,7 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getValueCount
 argument_list|()
@@ -4459,7 +4463,7 @@ decl_stmt|;
 comment|// it this is a branch node, read the common prefix
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4519,7 +4523,7 @@ block|}
 block|}
 name|nKeys
 operator|=
-name|ph
+name|pageHeader
 operator|.
 name|getValueCount
 argument_list|()
@@ -4580,7 +4584,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -4708,7 +4712,7 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"prefixLen = "
 operator|+
@@ -4761,7 +4765,7 @@ block|}
 comment|//	Read in the pointers
 name|nPtrs
 operator|=
-name|ph
+name|pageHeader
 operator|.
 name|getPointerCount
 argument_list|()
@@ -4816,8 +4820,6 @@ operator|+=
 literal|8
 expr_stmt|;
 block|}
-comment|//            if (getFile().getName().equals("structure.dbx"))
-comment|//                System.out.println("nKeys: " + nKeys + "; size: " + p);
 block|}
 comment|/**          * Write the node to the underlying page.          *           * @throws IOException          */
 specifier|private
@@ -4854,7 +4856,7 @@ if|if
 condition|(
 name|nKeys
 operator|!=
-name|ph
+name|pageHeader
 operator|.
 name|getValueCount
 argument_list|()
@@ -4869,7 +4871,7 @@ name|nKeys
 operator|+
 literal|" valueCount: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getValueCount
 argument_list|()
@@ -4878,7 +4880,7 @@ throw|;
 comment|// if this is a branch node, write out the common prefix
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5008,7 +5010,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5225,9 +5227,6 @@ operator|+=
 literal|8
 expr_stmt|;
 block|}
-comment|//            System.out.println(getFile().getName() + " - " + ph.getStatus() + ": " + page.getPageNum() +
-comment|//                ": written = " + p +
-comment|//                "; keys = " + nKeys);
 name|writeValue
 argument_list|(
 name|page
@@ -5244,7 +5243,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**          * Retrieve the child node at index idx.          *           * @param idx          * @return The BTree node          * @throws IOException          */
+comment|/**          * Retrieve the child node at guven index.          *           * @param idx The index          * @return The BTree node          * @throws IOException          */
 specifier|private
 name|BTreeNode
 name|getChildNode
@@ -5257,7 +5256,7 @@ name|IOException
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5312,7 +5311,7 @@ argument_list|)
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5498,7 +5497,7 @@ argument_list|)
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5616,8 +5615,6 @@ name|saved
 operator|=
 literal|false
 expr_stmt|;
-comment|//write();
-comment|//cache.add(this);
 return|return
 name|oldPtr
 return|;
@@ -5694,7 +5691,6 @@ argument_list|(
 name|idx
 argument_list|)
 expr_stmt|;
-comment|//recalculateDataLen();
 if|if
 condition|(
 name|mustSplit
@@ -5761,7 +5757,7 @@ name|BTreeException
 argument_list|(
 literal|"Invalid Page Type In addValue: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -5962,10 +5958,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//            if (transaction != null&& isTransactional) {
-comment|//                Loggable log = new UpdatePageLoggable(transaction, fileId, page.getPageNum(), prefix, keys, nKeys, ptrs, nPtrs);
-comment|//                writeToLog(log, this);
-comment|//            }
 name|boolean
 name|split
 init|=
@@ -6047,7 +6039,7 @@ specifier|final
 name|short
 name|vc
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getValueCount
 argument_list|()
@@ -6068,7 +6060,7 @@ expr_stmt|;
 comment|// Split the node into two nodes
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -6421,7 +6413,6 @@ operator|.
 name|length
 index|]
 expr_stmt|;
-comment|//.getSeparator(rightVals[0]);
 break|break;
 default|default :
 throw|throw
@@ -6575,7 +6566,7 @@ name|createBTreeNode
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -6608,7 +6599,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -6670,7 +6661,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -6913,7 +6904,7 @@ name|createBTreeNode
 argument_list|(
 name|transaction
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -6946,7 +6937,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -6994,7 +6985,7 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -7039,17 +7030,17 @@ expr_stmt|;
 block|}
 name|rNode
 operator|.
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
@@ -7221,7 +7212,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7312,7 +7303,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/////////////////////////////////////////////////////////////////
 comment|/**          * Locate the given value in the keys and return the          * associated pointer.          */
 specifier|private
 name|long
@@ -7336,7 +7326,7 @@ argument_list|)
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7380,7 +7370,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"unexpected "
+literal|"Unexpected "
 operator|+
 name|idx
 operator|+
@@ -7422,15 +7412,16 @@ block|{
 return|return
 name|KEY_NOT_FOUND
 return|;
-comment|//throw new BTreeException("Value doesn't exist");
 block|}
 else|else
+block|{
 return|return
 name|ptrs
 index|[
 name|idx
 index|]
 return|;
+block|}
 default|default :
 throw|throw
 operator|new
@@ -7467,6 +7458,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|//TODO : add something here ! -pb
 block|}
 return|return
 name|writer
@@ -7489,7 +7481,7 @@ name|metrics
 operator|.
 name|addPage
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7497,7 +7489,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7586,7 +7578,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7611,7 +7603,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7632,7 +7624,7 @@ name|writer
 argument_list|,
 name|prefix
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7661,7 +7653,7 @@ name|Long
 operator|.
 name|toString
 argument_list|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -7712,7 +7704,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7728,7 +7720,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7800,7 +7792,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -7841,7 +7833,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}.          *           * @param query          * @param callback          * @throws IOException          * @throws BTreeException          * @throws TerminatedException 		 */
+comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}.          *           * @param query          * @param callback          * @throws IOException          * @throws BTreeException          * @throws TerminatedException          */
 specifier|private
 name|void
 name|query
@@ -7939,7 +7931,7 @@ literal|0
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -8149,6 +8141,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -8184,6 +8177,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -8227,6 +8221,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -8262,6 +8257,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 comment|// If it's not implemented, we walk the tree
@@ -8279,6 +8275,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|getChildNode
 argument_list|(
 name|i
@@ -8291,6 +8288,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 break|break;
@@ -8448,6 +8446,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -8507,6 +8506,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 break|break;
 case|case
@@ -8666,6 +8666,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|!
@@ -8708,6 +8709,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -8743,6 +8745,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -8793,6 +8796,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -8906,6 +8910,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -8970,6 +8975,7 @@ name|TRUNC_RIGHT
 condition|)
 break|break;
 block|}
+block|}
 break|break;
 default|default :
 comment|// If it's not implemented, it falls right through
@@ -8987,6 +8993,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|query
@@ -9014,6 +9021,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 break|break;
@@ -9028,10 +9036,11 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 comment|// No Query - Just Walk The Tree
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -9054,6 +9063,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|getChildNode
 argument_list|(
 name|i
@@ -9066,6 +9076,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|LEAF
@@ -9084,6 +9095,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|query
@@ -9124,6 +9136,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 throw|throw
@@ -9133,6 +9146,7 @@ argument_list|(
 literal|"Invalid Page Type In query"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|/**          * Search for keys matching the given {@link IndexQuery} and          * report the to the specified {@link BTreeCallback}. This specialized          * method only considers keys whose value starts with the specified keyPrefix.          *           * @param query          * @param callback          * @throws IOException          * @throws BTreeException          * @throws TerminatedException          */
@@ -9211,7 +9225,7 @@ argument_list|)
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -9769,10 +9783,11 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 comment|// No Query - Just Walk The Tree
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -9795,6 +9810,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|getChildNode
 argument_list|(
 name|i
@@ -9807,6 +9823,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|LEAF
@@ -9825,6 +9842,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|query
@@ -9861,6 +9879,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 throw|throw
@@ -9870,6 +9889,7 @@ argument_list|(
 literal|"Invalid Page Type In query"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|protected
@@ -9948,7 +9968,7 @@ block|{
 name|long
 name|next
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextPage
 argument_list|()
@@ -10084,7 +10104,7 @@ literal|0
 decl_stmt|;
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -10258,6 +10278,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|!
@@ -10281,6 +10302,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 case|case
 name|IndexQuery
 operator|.
@@ -10305,6 +10327,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -10342,6 +10365,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -10367,6 +10391,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -10404,6 +10429,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default :
 comment|// If it's not implemented, we walk the tree
@@ -10421,6 +10447,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|getChildNode
 argument_list|(
 name|i
@@ -10435,6 +10462,7 @@ argument_list|,
 name|callback
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 break|break;
@@ -10567,6 +10595,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|i
@@ -10654,6 +10683,7 @@ name|recalculateDataLen
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -10724,6 +10754,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -10851,6 +10882,7 @@ expr_stmt|;
 operator|--
 name|i
 expr_stmt|;
+block|}
 block|}
 block|}
 break|break;
@@ -11077,6 +11109,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|!
@@ -11092,6 +11125,7 @@ operator|<=
 name|rightIdx
 operator|)
 condition|)
+block|{
 if|if
 condition|(
 name|query
@@ -11187,6 +11221,8 @@ expr_stmt|;
 operator|--
 name|i
 expr_stmt|;
+block|}
+block|}
 block|}
 break|break;
 case|case
@@ -11228,6 +11264,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -11251,6 +11288,7 @@ name|leftIdx
 operator|)
 operator|)
 condition|)
+block|{
 if|if
 condition|(
 name|query
@@ -11347,6 +11385,8 @@ operator|--
 name|i
 expr_stmt|;
 block|}
+block|}
+block|}
 break|break;
 case|case
 name|IndexQuery
@@ -11387,6 +11427,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|(
@@ -11520,6 +11561,7 @@ name|TRUNC_RIGHT
 condition|)
 break|break;
 block|}
+block|}
 break|break;
 default|default :
 comment|// If it's not implemented, it falls right through
@@ -11537,6 +11579,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|query
@@ -11633,6 +11676,7 @@ operator|--
 name|i
 expr_stmt|;
 block|}
+block|}
 break|break;
 block|}
 block|}
@@ -11655,10 +11699,11 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 comment|// No Query - Just Walk The Tree
 switch|switch
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -11783,6 +11828,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|query
@@ -11888,6 +11934,7 @@ operator|--
 name|i
 expr_stmt|;
 block|}
+block|}
 break|break;
 default|default :
 throw|throw
@@ -11897,6 +11944,7 @@ argument_list|(
 literal|"Invalid Page Type In query"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|private
@@ -12412,7 +12460,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -12527,7 +12575,7 @@ index|]
 operator|=
 name|val
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setValueCount
 argument_list|(
@@ -12573,7 +12621,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|ph
+name|pageHeader
 operator|.
 name|setValueCount
 argument_list|(
@@ -12691,7 +12739,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getStatus
 argument_list|()
@@ -13051,7 +13099,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|////////////////////////////////////////////////////////////////////
 comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(int pageSize)      */
 specifier|public
 name|FileHeader
@@ -13223,8 +13270,6 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
-comment|//buf.append(cache.getBuffers()).append(" / ");
-comment|//buf.append(cache.getUsedBuffers()).append(" / ");
 name|buf
 operator|.
 name|append
@@ -13286,8 +13331,6 @@ operator|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//buf.append(cache.getHits()).append(" / ");
-comment|//buf.append(cache.getFails());
 name|LOGSTATS
 operator|.
 name|info
@@ -13298,10 +13341,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        try {
-comment|//            treeStatistics().toLogger();
-comment|//        } catch (IOException e) {
-comment|//        }
 block|}
 specifier|protected
 class|class
@@ -13524,7 +13563,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/** 		 *  The root page of the storage tree 		 * 		 *@param  rootPage  The new rootPage value 		 */
+comment|/**          *  Set the root page of the storage tree          *          *@param  rootPage The new rootPage value          */
 specifier|public
 specifier|final
 name|void
@@ -13546,7 +13585,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  The root page of the storage tree 		 * 		 *@return    The rootPage value 		 */
+comment|/**          *  Get the root page of the storage tree          *          *@return The rootPage value          */
 specifier|public
 specifier|final
 name|long
@@ -13669,8 +13708,6 @@ argument_list|,
 name|offset
 argument_list|)
 expr_stmt|;
-comment|//if (getStatus() == UNUSED)
-comment|//	return;
 name|parentPage
 operator|=
 name|ByteConversion
@@ -13781,7 +13818,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  The number of values stored by this page 		 * 		 *@return    The valueCount value 		 */
+comment|/**          *  The number of values stored by this page          *          *@return    The valueCount value          */
 specifier|public
 specifier|final
 name|short
@@ -13792,7 +13829,7 @@ return|return
 name|valueCount
 return|;
 block|}
-comment|/** 		 *  The number of pointers stored by this page 		 * 		 *@return    The pointerCount value 		 */
+comment|/**          *  The number of pointers stored by this page          *          *@return    The pointerCount value          */
 specifier|public
 specifier|final
 name|short
