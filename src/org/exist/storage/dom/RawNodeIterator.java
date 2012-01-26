@@ -229,7 +229,7 @@ name|offset
 decl_stmt|;
 specifier|private
 name|short
-name|lastTID
+name|lastTupleID
 init|=
 name|ItemId
 operator|.
@@ -239,13 +239,13 @@ specifier|private
 name|DOMFile
 operator|.
 name|DOMPage
-name|p
+name|page
 init|=
 literal|null
 decl_stmt|;
 specifier|private
 name|long
-name|page
+name|pageNum
 decl_stmt|;
 specifier|private
 name|DBBroker
@@ -414,7 +414,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|page
+name|pageNum
 operator|=
 name|rec
 operator|.
@@ -435,7 +435,7 @@ name|DOMFile
 operator|.
 name|LENGTH_TID
 expr_stmt|;
-name|p
+name|page
 operator|=
 name|rec
 operator|.
@@ -516,7 +516,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire read lock on "
 operator|+
@@ -550,9 +550,9 @@ block|{
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -562,7 +562,7 @@ if|if
 condition|(
 name|offset
 operator|>=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -572,7 +572,7 @@ comment|// load next page in chain
 name|long
 name|nextPage
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -594,7 +594,7 @@ name|TRACE
 argument_list|(
 literal|"bad link to next "
 operator|+
-name|p
+name|page
 operator|.
 name|page
 operator|.
@@ -603,7 +603,7 @@ argument_list|()
 operator|+
 literal|"; previous: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -612,20 +612,20 @@ literal|"; offset = "
 operator|+
 name|offset
 operator|+
-literal|"; lastTID = "
+literal|"; lastTupleID = "
 operator|+
-name|lastTID
+name|lastTupleID
 argument_list|)
 expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
-name|page
+name|pageNum
 operator|=
 name|nextPage
 expr_stmt|;
-name|p
+name|page
 operator|=
 name|db
 operator|.
@@ -634,12 +634,11 @@ argument_list|(
 name|nextPage
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug(" -> " + nextPage + "; len = " + p.len + "; " + p.page.getPageInfo());
 name|db
 operator|.
 name|addToBuffer
 argument_list|(
-name|p
+name|page
 argument_list|)
 expr_stmt|;
 name|offset
@@ -647,14 +646,14 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// extract the tid
-name|lastTID
+comment|// extract the tuple id
+name|lastTupleID
 operator|=
 name|ByteConversion
 operator|.
 name|byteToShort
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -674,7 +673,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -685,9 +684,6 @@ name|DOMFile
 operator|.
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-comment|//System.out.println("skipping link on p " + page + " -> " +
-comment|//StorageAddress.pageFromPointer(link));
-comment|//continue the iteration
 continue|continue;
 block|}
 comment|// read data length
@@ -698,7 +694,7 @@ name|ByteConversion
 operator|.
 name|byteToShort
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -720,7 +716,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Got negative length"
 operator|+
@@ -741,7 +737,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -753,7 +749,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -764,7 +760,7 @@ name|ByteConversion
 operator|.
 name|byteToLong
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -802,7 +798,7 @@ name|ByteConversion
 operator|.
 name|byteToLong
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -846,7 +842,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while loading overflow value: "
 operator|+
@@ -857,7 +853,7 @@ argument_list|()
 operator|+
 literal|"; originating page: "
 operator|+
-name|p
+name|page
 operator|.
 name|page
 operator|.
@@ -877,7 +873,7 @@ operator|=
 operator|new
 name|Value
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -899,7 +895,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Error while deserializing node: "
 operator|+
@@ -913,7 +909,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Reading from offset: "
 operator|+
@@ -932,7 +928,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -954,27 +950,27 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"illegal node on page "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageNum
 argument_list|()
 operator|+
-literal|"; tid = "
+literal|"; tupleID = "
 operator|+
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 operator|+
 literal|"; next = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -984,7 +980,7 @@ argument_list|()
 operator|+
 literal|"; prev = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -1002,7 +998,7 @@ operator|)
 operator|+
 literal|"; len = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -1011,8 +1007,6 @@ name|getDataLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug(db.debugPageContents(p));
-comment|//LOG.debug(p.dumpPage());
 return|return
 literal|null
 return|;
@@ -1023,7 +1017,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -1048,19 +1042,18 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|page
+name|pageNum
 argument_list|,
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//YES ! needed because of the continue statement above
 block|}
 do|while
 condition|(
@@ -1111,13 +1104,13 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|page
+name|pageNum
 argument_list|,
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 argument_list|)
 return|;

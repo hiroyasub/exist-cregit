@@ -2440,7 +2440,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -9098,7 +9098,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -9883,7 +9883,7 @@ argument_list|()
 argument_list|,
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|,
 name|rec
@@ -10245,7 +10245,7 @@ name|isLink
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -10276,7 +10276,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -10466,7 +10466,7 @@ argument_list|()
 argument_list|,
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|,
 name|startOffset
@@ -11698,7 +11698,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -11778,7 +11778,7 @@ name|getId
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 operator|<
@@ -11812,7 +11812,7 @@ argument_list|()
 argument_list|,
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|,
 name|value
@@ -12314,7 +12314,7 @@ argument_list|)
 decl_stmt|;
 name|rec
 operator|.
-name|setTID
+name|setTupleID
 argument_list|(
 name|tupleID
 argument_list|)
@@ -12327,13 +12327,13 @@ name|isLink
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
 block|{
 comment|// This is a link: skip it
-comment|//We position the offset *after* the next TID
+comment|//We position the offset *after* the next TupleID
 name|rec
 operator|.
 name|offset
@@ -12401,7 +12401,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -14146,7 +14146,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
@@ -14338,7 +14338,7 @@ name|isRelocated
 argument_list|(
 name|rec
 operator|.
-name|getTID
+name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
