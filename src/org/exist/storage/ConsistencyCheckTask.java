@@ -633,12 +633,12 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 condition|)
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Consistency check is paused."
 argument_list|)
@@ -867,13 +867,13 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Starting backup..."
 argument_list|)
@@ -932,7 +932,7 @@ if|if
 condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
+name|isInfoEnabled
 argument_list|()
 operator|&&
 name|lastExportedBackup
@@ -942,7 +942,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Created backup to file: "
 operator|+
