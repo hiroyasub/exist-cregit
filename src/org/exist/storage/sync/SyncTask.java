@@ -86,11 +86,6 @@ name|SyncTask
 implements|implements
 name|SystemTask
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 specifier|private
 specifier|final
 specifier|static
