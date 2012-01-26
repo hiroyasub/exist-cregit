@@ -243,6 +243,27 @@ return|return
 name|subject
 return|;
 block|}
+specifier|public
+name|boolean
+name|isValid
+parameter_list|()
+block|{
+return|return
+operator|(
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+operator|-
+name|lastUse
+operator|>
+literal|30
+operator|*
+literal|1000
+operator|)
+return|;
+comment|//30 seconds
+block|}
 block|}
 end_class
 
