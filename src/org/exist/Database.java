@@ -63,6 +63,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|scheduler
+operator|.
+name|Scheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|SecurityManager
@@ -188,6 +200,12 @@ comment|/** 	 *  	 * @return CacheManager 	 */
 specifier|public
 name|CacheManager
 name|getCacheManager
+parameter_list|()
+function_decl|;
+comment|/**       *       * @return Scheduler      */
+specifier|public
+name|Scheduler
+name|getScheduler
 parameter_list|()
 function_decl|;
 comment|/** 	 *  	 */
