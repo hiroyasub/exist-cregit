@@ -1998,8 +1998,6 @@ parameter_list|,
 name|Map
 name|parameters
 parameter_list|)
-throws|throws
-name|TriggerException
 block|{
 comment|// nothing to do
 block|}
