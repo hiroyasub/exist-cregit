@@ -651,13 +651,13 @@ literal|"content"
 argument_list|,
 name|Type
 operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The XML PUT payload/content. If it is an XML Node it will be serialized, any other type will be atomized into a string."
+literal|"The XML PUT payload/content. If it is an XML Node it will be serialized. If it is a binary stream it pass as it, any other type will be atomized into a string."
 argument_list|)
 decl_stmt|;
 specifier|protected
