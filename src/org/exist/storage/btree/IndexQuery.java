@@ -559,7 +559,7 @@ operator|>
 literal|0
 return|;
 case|case
-name|LEQ
+name|GEQ
 case|:
 return|return
 name|value
@@ -571,7 +571,7 @@ index|[
 literal|0
 index|]
 argument_list|)
-operator|<=
+operator|>=
 literal|0
 return|;
 case|case
@@ -591,7 +591,7 @@ operator|<
 literal|0
 return|;
 case|case
-name|GEQ
+name|LEQ
 case|:
 return|return
 name|value
@@ -603,7 +603,7 @@ index|[
 literal|0
 index|]
 argument_list|)
-operator|>=
+operator|<=
 literal|0
 return|;
 comment|// Range Comparisons
@@ -777,7 +777,6 @@ return|;
 case|case
 name|TRUNC_RIGHT
 case|:
-comment|/* 	      if(vals[0].getLength()> value.getLength()) { 	      byte[] temp = new byte[value.getLength()]; 	      System.arraycopy(vals[0].getData(), 0, temp, 0, value.getLength()); 	      return (new Value(temp)).compareTo(value) == 0; 	      } 	      if(value.getLength()> vals[0].getLength()) { 	      byte[] temp = new byte[vals[0].getLength()]; 	      System.arraycopy(value.getData(), 0, temp, 0, vals[0].getLength()); 	      return (new Value(temp)).compareTo(vals[0]) == 0; 	      } 	      return vals[0].compareTo(value) == 0; 	    */
 return|return
 name|value
 operator|.

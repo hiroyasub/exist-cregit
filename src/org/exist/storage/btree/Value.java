@@ -123,18 +123,24 @@ name|Value
 name|value
 parameter_list|)
 block|{
+name|this
+operator|.
 name|data
 operator|=
 name|value
 operator|.
 name|data
 expr_stmt|;
+name|this
+operator|.
 name|pos
 operator|=
 name|value
 operator|.
 name|pos
 expr_stmt|;
+name|this
+operator|.
 name|len
 operator|=
 name|value
@@ -156,6 +162,8 @@ name|data
 operator|=
 name|data
 expr_stmt|;
+name|this
+operator|.
 name|len
 operator|=
 name|data
@@ -273,7 +281,7 @@ return|return
 name|address
 return|;
 block|}
-comment|/** 	 * getData retrieves the data being stored by the Value as a byte array. 	 * 	 * @return The Data 	 */
+comment|/**      * getData retrieves the data being stored by the Value as a byte array.      *      * @return The Data      */
 specifier|public
 name|byte
 index|[]
@@ -349,7 +357,7 @@ return|return
 name|pos
 return|;
 block|}
-comment|/** 	 * getLength retrieves the length of the data being stored by the Value. 	 * 	 * @return The Value length 	 */
+comment|/**      * getLength retrieves the length of the data being stored by the Value.      *      * @return The Value length      */
 specifier|public
 specifier|final
 name|int
@@ -464,7 +472,6 @@ name|Value
 name|value
 parameter_list|)
 block|{
-comment|//final int dlen = value.len;
 specifier|final
 name|int
 name|stop
@@ -654,7 +661,6 @@ name|Value
 name|value
 parameter_list|)
 block|{
-comment|//int size = value.len;
 for|for
 control|(
 name|int
@@ -976,6 +982,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|data
@@ -995,6 +1002,7 @@ condition|)
 return|return
 literal|false
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -1327,7 +1335,6 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//            buf.append(' ');
 block|}
 return|return
 name|buf

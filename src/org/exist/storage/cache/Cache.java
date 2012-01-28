@@ -54,7 +54,7 @@ name|String
 name|getType
 parameter_list|()
 function_decl|;
-comment|/** 	 * Add the item to the cache. If it is already in the cache, 	 * update the references. 	 *  	 * @param item 	 */
+comment|/**      * Add the item to the cache. If it is already in the cache,      * update the references.      *       * @param item      */
 specifier|public
 name|void
 name|add
@@ -63,7 +63,7 @@ name|Cacheable
 name|item
 parameter_list|)
 function_decl|;
-comment|/** 	 * Add the item to the cache. If it is already in the cache, 	 * update the references. 	 *  	 * @param item 	 * @param initialRefCount the initial reference count for the item 	 */
+comment|/**      * Add the item to the cache. If it is already in the cache,      * update the references.      *       * @param item      * @param initialRefCount the initial reference count for the item      */
 specifier|public
 name|void
 name|add
@@ -75,7 +75,7 @@ name|int
 name|initialRefCount
 parameter_list|)
 function_decl|;
-comment|/** 	 * Retrieve an item from the cache. 	 *  	 * @param item 	 * @return the item in the cache or null if it does not exist. 	 */
+comment|/**      * Retrieve an item from the cache.      *       * @param item      * @return the item in the cache or null if it does not exist.      */
 specifier|public
 name|Cacheable
 name|get
@@ -84,7 +84,7 @@ name|Cacheable
 name|item
 parameter_list|)
 function_decl|;
-comment|/** 	 * Retrieve an item by its key. 	 *  	 * @param key a unique key, usually the page number 	 * @return the item in the cache or null if it does not exist. 	 */
+comment|/**      * Retrieve an item by its key.      *       * @param key a unique key, usually the page number      * @return the item in the cache or null if it does not exist.      */
 specifier|public
 name|Cacheable
 name|get
@@ -93,7 +93,7 @@ name|long
 name|key
 parameter_list|)
 function_decl|;
-comment|/** 	 * Remove an item from the cache. 	 *  	 * @param item 	 */
+comment|/**      * Remove an item from the cache.      *       * @param item      */
 specifier|public
 name|void
 name|remove
@@ -108,13 +108,13 @@ name|boolean
 name|hasDirtyItems
 parameter_list|()
 function_decl|;
-comment|/** 	 * Call release on all items, but without 	 * actually removing them from the cache. 	 *  	 * This gives the items a chance to write all 	 * unwritten data to disk. 	 */
+comment|/**      * Call release on all items, but without      * actually removing them from the cache.      *       * This gives the items a chance to write all      * unwritten data to disk.      */
 specifier|public
 name|boolean
 name|flush
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the size of this cache. 	 *  	 * @return size 	 */
+comment|/**      * Get the size of this cache.      *       * @return size      */
 specifier|public
 name|int
 name|getBuffers
@@ -144,19 +144,19 @@ name|CacheManager
 name|manager
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the number of buffers currently used. 	 *  	 */
+comment|/**      * Get the number of buffers currently used.      *       */
 specifier|public
 name|int
 name|getUsedBuffers
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the number of times where an object has been successfully 	 * loaded from the cache. 	 */
+comment|/**      * Get the number of times where an object has been successfully      * loaded from the cache.      */
 specifier|public
 name|int
 name|getHits
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the number of times where an object could not be 	 * found in the cache. 	 *  	 * @return number of times where an object could not be 	 * found in the cache 	 */
+comment|/**      * Get the number of times where an object could not be      * found in the cache.      *       * @return number of times where an object could not be      * found in the cache      */
 specifier|public
 name|int
 name|getFails

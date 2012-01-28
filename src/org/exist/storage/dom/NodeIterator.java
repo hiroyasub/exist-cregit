@@ -253,7 +253,7 @@ name|offset
 decl_stmt|;
 specifier|private
 name|short
-name|lastTID
+name|lastTupleID
 init|=
 name|ItemId
 operator|.
@@ -263,13 +263,13 @@ specifier|private
 name|DOMFile
 operator|.
 name|DOMPage
-name|p
+name|page
 init|=
 literal|null
 decl_stmt|;
 specifier|private
 name|long
-name|page
+name|pageNum
 decl_stmt|;
 specifier|private
 name|long
@@ -346,7 +346,7 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/** 	 *  Returns the internal virtual address of the node at the iterator's 	 * current position. 	 * 	 *@return    The currentAddress value 	 */
+comment|/**      *  Returns the internal virtual address of the node at the iterator's      * current position.      *      *@return    The currentAddress value      */
 specifier|public
 name|long
 name|currentAddress
@@ -360,18 +360,18 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|page
+name|pageNum
 argument_list|,
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Are there more nodes to be read? 	 * 	 *@return    Description of the Return Value 	 */
+comment|/**      *  Are there more nodes to be read?      *      *@return    Description of the Return Value      */
 specifier|public
 name|boolean
 name|hasNext
@@ -444,16 +444,16 @@ argument_list|()
 operator|.
 name|add
 argument_list|(
-name|p
+name|page
 argument_list|)
 expr_stmt|;
 specifier|final
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -462,7 +462,7 @@ if|if
 condition|(
 name|offset
 operator|<
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -472,7 +472,7 @@ literal|true
 return|;
 if|else if
 condition|(
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
@@ -534,7 +534,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 *  Returns the next node in document order.  	 */
+comment|/**      *  Returns the next node in document order.       */
 specifier|public
 name|StoredNode
 name|next
@@ -615,9 +615,9 @@ block|{
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
-name|ph
+name|pageHeader
 init|=
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -627,7 +627,7 @@ if|if
 condition|(
 name|offset
 operator|>=
-name|ph
+name|pageHeader
 operator|.
 name|getDataLength
 argument_list|()
@@ -635,16 +635,16 @@ condition|)
 block|{
 comment|// load next page in chain
 name|long
-name|nextPage
+name|nextPageNum
 init|=
-name|ph
+name|pageHeader
 operator|.
 name|getNextDataPage
 argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|nextPage
+name|nextPageNum
 operator|==
 name|Page
 operator|.
@@ -657,7 +657,7 @@ name|TRACE
 argument_list|(
 literal|"bad link to next "
 operator|+
-name|p
+name|page
 operator|.
 name|page
 operator|.
@@ -666,7 +666,7 @@ argument_list|()
 operator|+
 literal|"; previous: "
 operator|+
-name|ph
+name|pageHeader
 operator|.
 name|getPrevDataPage
 argument_list|()
@@ -675,9 +675,9 @@ literal|"; offset = "
 operator|+
 name|offset
 operator|+
-literal|"; lastTID = "
+literal|"; lastTupleID = "
 operator|+
-name|lastTID
+name|lastTupleID
 argument_list|)
 expr_stmt|;
 name|System
@@ -690,7 +690,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -698,25 +698,25 @@ return|return
 literal|null
 return|;
 block|}
-name|page
+name|pageNum
 operator|=
-name|nextPage
+name|nextPageNum
 expr_stmt|;
-name|p
+name|page
 operator|=
 name|db
 operator|.
 name|getCurrentPage
 argument_list|(
-name|nextPage
+name|nextPageNum
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug(" -> " + nextPage + "; len = " + p.len + "; " + p.page.getPageInfo());
+comment|//LOG.debug(" -> " + nextPage + "; len = " + page.len + "; " + page.page.getPageInfo());
 name|db
 operator|.
 name|addToBuffer
 argument_list|(
-name|p
+name|page
 argument_list|)
 expr_stmt|;
 name|offset
@@ -724,14 +724,14 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// extract the tid
-name|lastTID
+comment|// extract the tuple ID
+name|lastTupleID
 operator|=
 name|ByteConversion
 operator|.
 name|byteToShort
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -751,7 +751,7 @@ name|ItemId
 operator|.
 name|isLink
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -762,8 +762,6 @@ name|DOMFile
 operator|.
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-comment|//System.out.println("skipping link on p " + page + " -> " +
-comment|//StorageAddress.pageFromPointer(link));
 comment|//continue the iteration
 continue|continue;
 block|}
@@ -775,7 +773,7 @@ name|ByteConversion
 operator|.
 name|byteToShort
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -797,7 +795,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Got negative length"
 operator|+
@@ -818,7 +816,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -830,7 +828,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -841,7 +839,7 @@ name|ByteConversion
 operator|.
 name|byteToLong
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -855,7 +853,7 @@ operator|.
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
-comment|//	overflow page? load the overflow value
+comment|//overflow page? load the overflow value
 if|if
 condition|(
 name|vlen
@@ -879,7 +877,7 @@ name|ByteConversion
 operator|.
 name|byteToLong
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -897,7 +895,7 @@ block|{
 specifier|final
 name|byte
 index|[]
-name|odata
+name|overflowValue
 init|=
 name|db
 operator|.
@@ -912,11 +910,11 @@ name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
-name|odata
+name|overflowValue
 argument_list|,
 literal|0
 argument_list|,
-name|odata
+name|overflowValue
 operator|.
 name|length
 argument_list|,
@@ -945,7 +943,7 @@ argument_list|()
 operator|+
 literal|"; originating page: "
 operator|+
-name|p
+name|page
 operator|.
 name|page
 operator|.
@@ -966,7 +964,7 @@ name|StoredNode
 operator|.
 name|deserialize
 argument_list|(
-name|p
+name|page
 operator|.
 name|data
 argument_list|,
@@ -992,7 +990,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Error while deserializing node: "
 operator|+
@@ -1006,7 +1004,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Reading from offset: "
 operator|+
@@ -1025,7 +1023,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1039,7 +1037,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1061,11 +1059,11 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"illegal node on page "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageNum
 argument_list|()
@@ -1076,12 +1074,12 @@ name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 operator|+
 literal|"; next = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -1091,7 +1089,7 @@ argument_list|()
 operator|+
 literal|"; prev = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -1109,7 +1107,7 @@ operator|)
 operator|+
 literal|"; len = "
 operator|+
-name|p
+name|page
 operator|.
 name|getPageHeader
 argument_list|()
@@ -1128,7 +1126,7 @@ name|db
 operator|.
 name|debugPageContents
 argument_list|(
-name|p
+name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1142,7 +1140,7 @@ name|ItemId
 operator|.
 name|isRelocated
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 condition|)
 block|{
@@ -1167,13 +1165,13 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|page
+name|pageNum
 argument_list|,
 name|ItemId
 operator|.
 name|getId
 argument_list|(
-name|lastTID
+name|lastTupleID
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1186,7 +1184,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-comment|//YES ! needed because of the continue statement above
 block|}
 do|while
 condition|(
@@ -1208,7 +1205,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -1227,7 +1224,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -1263,7 +1260,7 @@ name|BTreeException
 throws|,
 name|IOException
 block|{
-comment|//	position the iterator at the start of the first value
+comment|//Position the iterator at the start of the first value
 if|if
 condition|(
 name|node
@@ -1344,7 +1341,7 @@ name|addr
 argument_list|)
 expr_stmt|;
 block|}
-name|page
+name|pageNum
 operator|=
 name|rec
 operator|.
@@ -1354,7 +1351,7 @@ operator|.
 name|getPageNum
 argument_list|()
 expr_stmt|;
-name|p
+name|page
 operator|=
 name|rec
 operator|.
@@ -1414,7 +1411,7 @@ argument_list|(
 literal|"Node not found at specified address."
 argument_list|)
 throw|;
-name|page
+name|pageNum
 operator|=
 name|rec
 operator|.
@@ -1435,7 +1432,7 @@ name|DOMFile
 operator|.
 name|LENGTH_TID
 expr_stmt|;
-name|p
+name|page
 operator|=
 name|rec
 operator|.
@@ -1454,30 +1451,29 @@ return|;
 block|}
 if|else if
 condition|(
-name|page
+name|pageNum
 operator|!=
 name|Page
 operator|.
 name|NO_PAGE
 condition|)
 block|{
-name|p
+name|page
 operator|=
 name|db
 operator|.
 name|getCurrentPage
 argument_list|(
-name|page
+name|pageNum
 argument_list|)
 expr_stmt|;
 name|db
 operator|.
 name|addToBuffer
 argument_list|(
-name|p
+name|page
 argument_list|)
 expr_stmt|;
-comment|//			LOG.debug("reading " + p.page.getPageNum() + "; " + p.page.hashCode());
 return|return
 literal|true
 return|;
@@ -1486,7 +1482,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * Remove the current node. This implementation just 	 * decrements the node count. It does not actually remove 	 * the node's value, but removes a page if 	 * node count == 0. Use this method only if you want to 	 * delete an entire document, not to remove a single node. 	 */
+comment|/**      * Remove the current node. This implementation just      * decrements the node count. It does not actually remove      * the node's value, but removes a page if      * node count == 0. Use this method only if you want to      * delete an entire document, not to remove a single node.      */
 specifier|public
 name|void
 name|remove
@@ -1500,7 +1496,7 @@ literal|"remove() method not implemented"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 *  Reposition the iterator at the address of the proxy node. 	 * 	 *@param  node  The new to value 	 */
+comment|/**      *  Reposition the iterator at the address of the proxy node.      *      *@param  node  The new to value      */
 specifier|public
 name|void
 name|setTo
@@ -1540,7 +1536,7 @@ name|node
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Reposition the iterate at a given address. 	 * 	 *@param  address  The new to value 	 */
+comment|/**      *  Reposition the iterate at a given address.      *      *@param  address  The new to value      */
 specifier|public
 name|void
 name|setTo

@@ -608,7 +608,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  createFileHeader must be implemented by a Paged implementation in order 	 *  to create an appropriate subclass instance of a FileHeader. 	 * 	 *@return    a new FileHeader 	 */
+comment|/**      *  createFileHeader must be implemented by a Paged implementation in order      *  to create an appropriate subclass instance of a FileHeader.      *      *@return A new file header      */
 specifier|public
 specifier|abstract
 name|FileHeader
@@ -618,7 +618,7 @@ name|int
 name|pageSize
 parameter_list|)
 function_decl|;
-comment|/** 	 *  createPageHeader must be implemented by a Paged implementation in order 	 *  to create an appropriate subclass instance of a PageHeader. 	 * 	 *@return    a new PageHeader 	 */
+comment|/**      *  createPageHeader must be implemented by a Paged implementation in order      *  to create an appropriate subclass instance of a PageHeader.      *      *@return A new page header      */
 specifier|public
 specifier|abstract
 name|PageHeader
@@ -635,7 +635,7 @@ operator|!
 name|fileIsNew
 return|;
 block|}
-comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.  	 * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
+comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.       * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
 specifier|public
 name|boolean
 name|flush
@@ -691,7 +691,7 @@ return|return
 name|flushed
 return|;
 block|}
-comment|/** 	 * Backup the entire contents of the underlying file to  	 * an output stream. 	 *  	 * @param os 	 * @throws IOException 	 */
+comment|/**      * Backup the entire contents of the underlying file to       * an output stream.      *       * @param os      * @throws IOException      */
 specifier|public
 name|void
 name|backupToStream
@@ -751,7 +751,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  getFile returns the file object for this Paged. 	 * 	 *@return    The File 	 */
+comment|/**      *  getFile returns the file object for this Paged.      *      *@return    The File      */
 specifier|public
 specifier|final
 name|File
@@ -762,7 +762,7 @@ return|return
 name|file
 return|;
 block|}
-comment|/** 	 *  getFileHeader returns the FileHeader 	 * 	 *@return    The FileHeader 	 */
+comment|/**      *  getFileHeader returns the FileHeader      *      *@return    The FileHeader      */
 specifier|public
 name|FileHeader
 name|getFileHeader
@@ -792,9 +792,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : forward the exception ? -pb
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to close data file: "
 operator|+
@@ -826,7 +827,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Returns the first free page it can find, either by reusing a deleted page 	 * or by appending a new one to secondary storage. 	 * 	 * @param reuseDeleted if set to false, the method will not try to reuse a 	 * previously deleted page. This is required by btree page split operations to avoid  	 * concurrency conflicts within a transaction. 	 * 	 * @return a free page 	 * @throws  IOException 	 */
+comment|/**      * Returns the first free page it can find, either by reusing a deleted page      * or by appending a new one to secondary storage.      *      * @param reuseDeleted if set to false, the method will not try to reuse a      * previously deleted page. This is required by btree page split operations to avoid       * concurrency conflicts within a transaction.      *      * @return a free page      * @throws  IOException      */
 specifier|protected
 specifier|final
 name|Page
@@ -839,7 +840,7 @@ throws|throws
 name|IOException
 block|{
 name|Page
-name|p
+name|page
 init|=
 literal|null
 decl_stmt|;
@@ -867,7 +868,7 @@ name|NO_PAGE
 condition|)
 block|{
 comment|// Steal a deleted page
-name|p
+name|page
 operator|=
 operator|new
 name|Page
@@ -875,7 +876,7 @@ argument_list|(
 name|pageNum
 argument_list|)
 expr_stmt|;
-name|p
+name|page
 operator|.
 name|read
 argument_list|()
@@ -884,7 +885,7 @@ name|fileHeader
 operator|.
 name|firstFreePage
 operator|=
-name|p
+name|page
 operator|.
 name|header
 operator|.
@@ -919,8 +920,6 @@ name|fileHeader
 operator|.
 name|totalCount
 expr_stmt|;
-comment|//				if(getFile().getName().equals("words.dbx"))
-comment|//					System.out.println("growing the file: " + fileHeader.totalCount);
 if|if
 condition|(
 name|pageNum
@@ -949,7 +948,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|p
+name|page
 operator|=
 operator|new
 name|Page
@@ -957,17 +956,15 @@ argument_list|(
 name|pageNum
 argument_list|)
 expr_stmt|;
-name|p
+name|page
 operator|.
 name|read
 argument_list|()
 expr_stmt|;
 block|}
-comment|//			if(getFile().getName().equals("dom.dbx"))
-comment|//				printFreeSpaceList();
 block|}
-comment|// Initialize The Page Header (Cleanly)
-name|p
+comment|// Cleanly initialize The Page Header
+name|page
 operator|.
 name|header
 operator|.
@@ -978,7 +975,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
-name|p
+name|page
 operator|.
 name|header
 operator|.
@@ -1001,10 +998,10 @@ name|write
 argument_list|()
 expr_stmt|;
 return|return
-name|p
+name|page
 return|;
 block|}
-comment|/** 	 *  getPage returns the page specified by pageNum. 	 * 	 *@param  pageNum       The Page number 	 *@return               The requested Page 	 *@throws  IOException  if an Exception occurs 	 */
+comment|/**      *  getPage returns the page specified by pageNum.      *      *@param  pageNum       The Page number      *@return               The requested Page      *@throws IOException  if an exception occurs      */
 specifier|protected
 specifier|final
 name|Page
@@ -1024,7 +1021,7 @@ name|pageNum
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  Gets the opened attribute of the Paged object 	 * 	 *@return    The opened value 	 */
+comment|/**      *  Gets the opened attribute of the Paged object      *      *@return    The opened value      */
 specifier|public
 name|boolean
 name|isOpened
@@ -1080,11 +1077,15 @@ argument_list|()
 operator|+
 literal|" has a storage format incompatible with this "
 operator|+
-literal|"version of eXist. You need to upgrade your database by creating a backup, cleaning "
+literal|"version of eXist. You need to upgrade your database by creating a backup,"
 operator|+
-literal|" your data directory and restoring the data. In some cases, a reindex may be sufficient. "
+literal|"cleaning your data directory and restoring the data. In some cases,"
 operator|+
-literal|"Please follow the instructions for the version you installed. File version is: "
+literal|"a reindex may be sufficient. "
+operator|+
+literal|"Please follow the instructions for the version you installed."
+operator|+
+literal|"File version is: "
 operator|+
 name|expectedVersion
 operator|+
@@ -1101,9 +1102,11 @@ literal|true
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1139,7 +1142,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 *  Debug 	 * 	 *@exception  IOException  Description of the Exception 	 */
+comment|/**      *  Debug      *      *@exception  IOException  Description of the Exception      */
 specifier|public
 name|void
 name|printFreeSpaceList
@@ -1232,86 +1235,7 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
-specifier|private
-name|boolean
-name|isRemovedPage
-parameter_list|(
-name|long
-name|pageNum
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|long
-name|nextNum
-init|=
-name|fileHeader
-operator|.
-name|firstFreePage
-decl_stmt|;
-while|while
-condition|(
-name|nextNum
-operator|!=
-name|Page
-operator|.
-name|NO_PAGE
-condition|)
-block|{
-if|if
-condition|(
-name|nextNum
-operator|==
-name|pageNum
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Page "
-operator|+
-name|pageNum
-operator|+
-literal|" has already been removed"
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|dumpStack
-argument_list|()
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-name|Page
-name|next
-init|=
-name|getPage
-argument_list|(
-name|nextNum
-argument_list|)
-decl_stmt|;
-name|next
-operator|.
-name|read
-argument_list|()
-expr_stmt|;
-name|nextNum
-operator|=
-name|next
-operator|.
-name|header
-operator|.
-name|nextPage
-expr_stmt|;
-block|}
-return|return
-literal|false
-return|;
-block|}
-comment|/** 	 *  setFile sets the file object for this Paged. 	 * 	 *@param  file  The File 	 */
+comment|/**      *  setFile sets the file object for this Paged.      *      *@param  file  The File      */
 specifier|protected
 specifier|final
 name|void
@@ -1417,7 +1341,6 @@ argument_list|,
 literal|"r"
 argument_list|)
 expr_stmt|;
-comment|//TODO : log this !!!
 name|LOG
 operator|.
 name|warn
@@ -1474,7 +1397,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  unlinkPages unlinks a set of pages starting at the specified Page. 	 * 	 *@param  page          The starting Page to unlink 	 *@throws  IOException  if an Exception occurs 	 */
+comment|/**      *  Unlinks a set of pages starting at the specified page.      *      *@param  page          The starting Page to unlink      *@throws  IOException  If an exception occurs      */
 specifier|protected
 name|void
 name|unlinkPages
@@ -1485,6 +1408,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//Mmmmh... is this null test accurate ? -pb
 if|if
 condition|(
 name|page
@@ -1492,8 +1416,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//			if(isRemovedPage(page.getPageNum()))
-comment|//				return;
 comment|// Walk the chain and add it to the unused list
 name|page
 operator|.
@@ -1554,7 +1476,7 @@ block|}
 else|else
 block|{
 name|long
-name|first
+name|firstFreePage
 init|=
 name|fileHeader
 operator|.
@@ -1575,7 +1497,7 @@ name|header
 operator|.
 name|setNextPage
 argument_list|(
-name|first
+name|firstFreePage
 argument_list|)
 expr_stmt|;
 block|}
@@ -1594,7 +1516,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  unlinkPages unlinks a set of pages starting at the specified page 	 *  number. 	 * 	 *@param  pageNum       Description of the Parameter 	 *@throws  IOException  if an Exception occurs 	 */
+comment|/**      *  Unlinks a set of pages starting at the specified page      *  number.      *      *@param pageNum A page number      *@throws IOException if an exception occurs      */
 specifier|protected
 specifier|final
 name|void
@@ -1642,7 +1564,7 @@ name|NO_PAGE
 condition|)
 block|{
 name|long
-name|next
+name|firstFreePageNum
 init|=
 name|fileHeader
 operator|.
@@ -1651,7 +1573,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|next
+name|firstFreePageNum
 operator|==
 name|page
 operator|.
@@ -1678,21 +1600,21 @@ expr_stmt|;
 return|return;
 block|}
 name|Page
-name|p
+name|firstFreePage
 init|=
 name|getPage
 argument_list|(
-name|next
+name|firstFreePageNum
 argument_list|)
 decl_stmt|;
-name|p
+name|firstFreePage
 operator|.
 name|read
 argument_list|()
 expr_stmt|;
-name|next
+name|firstFreePageNum
 operator|=
-name|p
+name|firstFreePage
 operator|.
 name|header
 operator|.
@@ -1701,7 +1623,7 @@ argument_list|()
 expr_stmt|;
 while|while
 condition|(
-name|next
+name|firstFreePageNum
 operator|!=
 name|Page
 operator|.
@@ -1710,14 +1632,14 @@ condition|)
 block|{
 if|if
 condition|(
-name|next
+name|firstFreePageNum
 operator|==
 name|page
 operator|.
 name|pageNum
 condition|)
 block|{
-name|p
+name|firstFreePage
 operator|.
 name|header
 operator|.
@@ -1731,7 +1653,7 @@ name|getNextPage
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|p
+name|firstFreePage
 operator|.
 name|header
 operator|.
@@ -1740,7 +1662,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|p
+name|firstFreePage
 operator|.
 name|write
 argument_list|(
@@ -1749,21 +1671,21 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|p
+name|firstFreePage
 operator|=
 name|getPage
 argument_list|(
-name|next
+name|firstFreePageNum
 argument_list|)
 expr_stmt|;
-name|p
+name|firstFreePage
 operator|.
 name|read
 argument_list|()
 expr_stmt|;
-name|next
+name|firstFreePageNum
 operator|=
-name|p
+name|firstFreePage
 operator|.
 name|header
 operator|.
@@ -1773,7 +1695,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 *  writeValue writes the multi-Paged Value starting at the specified Page. 	 * 	 *@param  page          The starting Page 	 *@param  value         The Value to write 	 *@throws  IOException  if an Exception occurs 	 */
+comment|/**      *  Writes the multi-paged value starting at the specified Page.      *      *@param  page          The starting Page      *@param  value         The value to write      *@throws  IOException  if an Exception occurs      */
 specifier|protected
 specifier|final
 name|void
@@ -1821,14 +1743,14 @@ throws|throws
 name|IOException
 block|{
 name|PageHeader
-name|hdr
+name|pageHeader
 init|=
 name|page
 operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-name|hdr
+name|pageHeader
 operator|.
 name|dataLen
 operator|=
@@ -1842,7 +1764,7 @@ name|data
 operator|.
 name|length
 operator|!=
-name|hdr
+name|pageHeader
 operator|.
 name|dataLen
 condition|)
@@ -1850,7 +1772,7 @@ block|{
 comment|//TODO : where to get this 64 from ?
 if|if
 condition|(
-name|hdr
+name|pageHeader
 operator|.
 name|dataLen
 operator|!=
@@ -1876,7 +1798,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|hdr
+name|pageHeader
 operator|.
 name|dataLen
 operator|=
@@ -1893,7 +1815,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  writeValue writes the multi-Paged Value starting at the specified page 	 *  number. 	 * 	 *@param  page          The starting page number 	 *@param  value         The Value to write 	 *@throws  IOException  if an Exception occurs 	 */
+comment|/**      *  Writes the multi-Paged Value starting at the specified page number.      *      *@param  page          The starting page number      *@param  value         The Value to write      *@throws  IOException  if an Exception occurs      */
 specifier|protected
 specifier|final
 name|void
@@ -1919,7 +1841,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 *  FileHeader 	 * 	 *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 */
+comment|/**      *  FileHeader      *      *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>      */
 specifier|public
 specifier|abstract
 class|class
@@ -2005,7 +1927,7 @@ name|PAGE_SIZE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the FileHeader object 		 * 		 *@param  pageCount  Description of the Parameter 		 */
+comment|/**          *  Constructor for the FileHeader object          *          *@param  pageCount  Description of the Parameter          */
 specifier|public
 name|FileHeader
 parameter_list|(
@@ -2150,7 +2072,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The first free page in unused secondary space 		 * 		 *@return    The firstFreePage value 		 */
+comment|/**          *  The first free page in unused secondary space          *          *@return    The firstFreePage value          */
 specifier|public
 specifier|final
 name|long
@@ -2161,7 +2083,7 @@ return|return
 name|firstFreePage
 return|;
 block|}
-comment|/** 		 *  The size of the FileHeader. Usually 1 OS Page 		 * 		 *@return    The headerSize value 		 */
+comment|/**          *  The size of the FileHeader. Usually 1 OS Page          *          *@return The size value          */
 specifier|public
 specifier|final
 name|short
@@ -2172,7 +2094,7 @@ return|return
 name|headerSize
 return|;
 block|}
-comment|/** 		 *  The last free page in unused secondary space 		 * 		 *@return    The lastFreePage value 		 */
+comment|/**          *  The last free page in unused secondary space          *          *@return    The lastFreePage value          */
 specifier|public
 specifier|final
 name|long
@@ -2183,7 +2105,7 @@ return|return
 name|lastFreePage
 return|;
 block|}
-comment|/** 		 *  The maximum number of bytes a key can be. 256 is good 		 * 		 *@return    The maxKeySize value 		 */
+comment|/**          *  The maximum number of bytes a key can be. 256 is good          *          *@return    The maxKeySize value          */
 specifier|public
 name|int
 name|getMaxKeySize
@@ -2193,7 +2115,7 @@ return|return
 name|maxKeySize
 return|;
 block|}
-comment|/** 		 *  The number of pages in primary storage 		 * 		 *@return    The pageCount value 		 */
+comment|/**          *  The number of pages in primary storage          *          *@return    The pageCount value          */
 specifier|public
 specifier|final
 name|long
@@ -2204,7 +2126,7 @@ return|return
 name|pageCount
 return|;
 block|}
-comment|/** 		 *  The size of a page header. 64 is sufficient 		 * 		 *@return    The pageHeaderSize value 		 */
+comment|/**          *  The size of a page header. 64 is sufficient          *          *@return    The pageHeaderSize value          */
 specifier|public
 specifier|final
 name|byte
@@ -2215,7 +2137,7 @@ return|return
 name|pageHeaderSize
 return|;
 block|}
-comment|/** 		 *  The size of a page. Usually a multiple of a FS block 		 * 		 *@return    The pageSize value 		 */
+comment|/**          *  The size of a page. Usually a multiple of a FS block          *          *@return The page size          */
 specifier|public
 specifier|final
 name|int
@@ -2226,7 +2148,7 @@ return|return
 name|pageSize
 return|;
 block|}
-comment|/** 		 *  The number of records being managed by the file (not pages) 		 * 		 *@return    The recordCount value 		 */
+comment|/**          *  The number of records being managed by the file (not pages)          *          *@return    The number of records          */
 specifier|public
 specifier|final
 name|long
@@ -2237,7 +2159,7 @@ return|return
 name|recordCount
 return|;
 block|}
-comment|/** 		 *  The number of total pages in the file 		 * 		 *@return    The totalCount value 		 */
+comment|/**          *  The total number of pages in the file          *          *@return    The total number of pages          */
 specifier|public
 specifier|final
 name|long
@@ -2248,7 +2170,7 @@ return|return
 name|totalCount
 return|;
 block|}
-comment|/** 		 *  Gets the workSize attribute of the FileHeader object 		 * 		 *@return    The workSize value 		 */
+comment|/**          *  Gets the workSize attribute of the FileHeader object          *          *@return    The workSize value          */
 specifier|public
 specifier|final
 name|int
@@ -2285,7 +2207,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 * Returns whether this page has been modified or not. 		 * 		 *@return<code>true</code> if this page has been modified 		 */
+comment|/**          * Returns whether this page has been modified or not.          *          *@return<code>true</code> if this page has been modified          */
 specifier|public
 specifier|final
 name|boolean
@@ -2574,7 +2496,7 @@ return|return
 name|OFFSET_REMAINDER
 return|;
 block|}
-comment|/** 		 *  Sets the dirty attribute of the FileHeader object 		 * 		 *@param  dirty  The new dirty value 		 */
+comment|/**          *  Sets the dirty attribute of the FileHeader object          *          *@param  dirty  The new dirty value          */
 specifier|public
 specifier|final
 name|void
@@ -2591,7 +2513,7 @@ operator|=
 name|dirty
 expr_stmt|;
 block|}
-comment|/** 		 *  The first free page in unused secondary space 		 * 		 *@param  firstFreePage  The new firstFreePage value 		 */
+comment|/**          *  The first free page in unused secondary space          *          *@param  firstFreePage  The new first free page number          */
 specifier|public
 specifier|final
 name|void
@@ -2612,7 +2534,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The size of the FileHeader. Usually 1 OS Page 		 * 		 *@param  headerSize  The new headerSize value 		 */
+comment|/**          *  The size of the FileHeader. Usually 1 OS Page          *          *@param  headerSize  The new headerSize value          */
 specifier|public
 specifier|final
 name|void
@@ -2633,7 +2555,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The last free page in unused secondary space 		 * 		 *@param  lastFreePage  The new lastFreePage value 		 */
+comment|/**          *  The last free page in unused secondary space          *          *@param  lastFreePage  The new lastFreePage value          */
 specifier|public
 specifier|final
 name|void
@@ -2654,7 +2576,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The maximum number of bytes a key can be. 256 is good 		 * 		 *@param  maxKeySize  The new maxKeySize value 		 */
+comment|/**          *  The maximum number of bytes a key can be. 256 is good          *          *@param  maxKeySize  The new maximum size for a key          */
 specifier|public
 specifier|final
 name|void
@@ -2675,7 +2597,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The number of pages in primary storage 		 * 		 *@param  pageCount  The new pageCount value 		 */
+comment|/**          *  The number of pages in primary storage          *          *@param  pageCount  The new pageCount value          */
 specifier|public
 specifier|final
 name|void
@@ -2696,7 +2618,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The size of a page header. 64 is sufficient 		 * 		 *@param  pageHeaderSize  The new pageHeaderSize value 		 */
+comment|/**          *  The size of a page header. 64 is sufficient          *          *@param  pageHeaderSize  The new pageHeaderSize value          */
 specifier|public
 specifier|final
 name|void
@@ -2720,7 +2642,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The size of a page. Usually a multiple of a FS block 		 * 		 *@param  pageSize  The new pageSize value 		 */
+comment|/**          *  The size of a page. Usually a multiple of a FS block          *          *@param  pageSize  The new pageSize value          */
 specifier|public
 specifier|final
 name|void
@@ -2744,7 +2666,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The number of records being managed by the file (not pages) 		 * 		 *@param  recordCount  The new recordCount value 		 */
+comment|/**          *  The number of records being managed by the file (not pages)          *          *@param  recordCount  The new recordCount value          */
 specifier|public
 specifier|final
 name|void
@@ -2765,7 +2687,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The number of total pages in the file 		 * 		 *@param  totalCount  The new totalCount value 		 */
+comment|/**          *  The number of total pages in the file          *          *@param  totalCount  The new totalCount value          */
 specifier|public
 specifier|final
 name|void
@@ -2820,7 +2742,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Page 	 */
+comment|/**      *  Page      */
 specifier|public
 specifier|final
 class|class
@@ -2872,7 +2794,7 @@ name|createPageHeader
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 		 *  Constructor for the Page object 		 * 		 *@param  pageNum          Description of the Parameter 		 *@exception  IOException  Description of the Exception 		 */
+comment|/**          *  Constructor for the Page object          *          *@param  pageNum          Description of the Parameter          *@exception  IOException  Description of the Exception          */
 specifier|public
 name|Page
 parameter_list|(
@@ -2917,7 +2839,7 @@ name|refCount
 operator|--
 expr_stmt|;
 block|}
-comment|/** 		 *  Gets the offset attribute of the Page object 		 * 		 *@return    The offset value 		 */
+comment|/**          *  Gets the offset attribute of the Page object          *          *@return    The offset value          */
 specifier|public
 name|long
 name|getOffset
@@ -2927,7 +2849,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/** 		 *  Gets the pageHeader attribute of the Page object 		 * 		 *@return    The pageHeader value 		 */
+comment|/**          *  Gets the pageHeader attribute of the Page object          *          *@return    The pageHeader value          */
 specifier|public
 name|PageHeader
 name|getPageHeader
@@ -2937,7 +2859,7 @@ return|return
 name|header
 return|;
 block|}
-comment|/** 		 *  Gets the pageInfo attribute of the Page object 		 * 		 *@return    The pageInfo value 		 */
+comment|/**          *  Gets the pageInfo attribute of the Page object          *          *@return    The pageInfo value          */
 specifier|public
 name|String
 name|getPageInfo
@@ -3035,7 +2957,6 @@ name|IOException
 block|{
 try|try
 block|{
-comment|//				dumpPage();
 if|if
 condition|(
 name|raf
@@ -3272,6 +3193,7 @@ name|length
 argument_list|)
 throw|;
 else|else
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -3292,6 +3214,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|raf
@@ -3308,7 +3231,6 @@ argument_list|(
 name|offset
 argument_list|)
 expr_stmt|;
-comment|//raf.write(data);
 name|raf
 operator|.
 name|write
@@ -3317,7 +3239,7 @@ name|tempPageData
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.lang.Object#equals(java.lang.Object) 		 */
+comment|/* (non-Javadoc)          * @see java.lang.Object#equals(java.lang.Object)          */
 specifier|public
 name|boolean
 name|equals
@@ -3339,7 +3261,7 @@ operator|==
 name|pageNum
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.lang.Comparable#compareTo(java.lang.Object) 		 */
+comment|/* (non-Javadoc)          * @see java.lang.Comparable#compareTo(java.lang.Object)          */
 specifier|public
 name|int
 name|compareTo
@@ -3539,7 +3461,7 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 		 *  The length of the Data 		 * 		 *@return    The dataLen value 		 */
+comment|/**          *  The length of the Data          *          *@return    The dataLen value          */
 specifier|public
 specifier|final
 name|int
@@ -3550,7 +3472,7 @@ return|return
 name|dataLen
 return|;
 block|}
-comment|/** 		 *  The next page for this Record (if overflowed) 		 * 		 *@return    The nextPage value 		 */
+comment|/**          *  The next page for this Record (if overflowed)          *          *@return    The nextPage value          */
 specifier|public
 specifier|final
 name|long
@@ -3561,7 +3483,7 @@ return|return
 name|nextPage
 return|;
 block|}
-comment|/** 		 *  The status of this page (UNUSED, RECORD, DELETED, etc...) 		 * - jmv - DESIGN_NOTE : 44 calls to this functions, mostly with switch; 		 * the "state" design pattern is appropriate to eliminate these non - object oriented switches, 		 * and put together all the behavior related to one state.  		 *  		 *@return    The status value 		 */
+comment|/**          *  The status of this page (UNUSED, RECORD, DELETED, etc...)          * - jmv - DESIGN_NOTE : 44 calls to this functions, mostly with switch;          * the "state" design pattern is appropriate to eliminate these non - object oriented switches,          * and put together all the behavior related to one state.           *           *@return    The status value          */
 specifier|public
 specifier|final
 name|byte
@@ -3572,7 +3494,7 @@ return|return
 name|status
 return|;
 block|}
-comment|/** 		 *  Gets the dirty attribute of the PageHeader object 		 * 		 *@return    The dirty value 		 */
+comment|/**          *  Gets the dirty attribute of the PageHeader object          *          *@return    The dirty value          */
 specifier|public
 specifier|final
 name|boolean
@@ -3762,7 +3684,7 @@ return|return
 name|offset
 return|;
 block|}
-comment|/** 		 *  The length of the Data 		 * 		 *@param  dataLen  The new dataLen value 		 */
+comment|/**          *  The length of the Data          *          *@param  dataLen  The new dataLen value          */
 specifier|public
 specifier|final
 name|void
@@ -3799,7 +3721,7 @@ operator|=
 name|dirty
 expr_stmt|;
 block|}
-comment|/** 		 *  The next page for this Record (if overflowed) 		 * 		 *@param  nextPage  The new nextPage value 		 */
+comment|/**          *  The next page for this Record (if overflowed)          *          *@param  nextPage  The new nextPage value          */
 specifier|public
 specifier|final
 name|void
@@ -3820,7 +3742,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 		 *  The status of this page (UNUSED, RECORD, DELETED, etc...) 		 * 		 *@param  status  The new status value 		 */
+comment|/**          *  The status of this page (UNUSED, RECORD, DELETED, etc...)          *          *@param  status  The new status value          */
 specifier|public
 specifier|final
 name|void
@@ -3961,6 +3883,7 @@ literal|0
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -3968,6 +3891,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|buf

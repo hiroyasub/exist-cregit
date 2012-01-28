@@ -93,8 +93,6 @@ name|Cacheable
 name|item
 parameter_list|)
 block|{
-comment|//        if (map.size() == max)
-comment|//            removeNext((BTreeCacheable) item);
 name|map
 operator|.
 name|put
