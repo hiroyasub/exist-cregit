@@ -657,6 +657,16 @@ name|javax
 operator|.
 name|servlet
 operator|.
+name|ServletConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
 name|ServletException
 import|;
 end_import
@@ -708,6 +718,18 @@ operator|.
 name|servlet
 operator|.
 name|ServletInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServlet
 import|;
 end_import
 
@@ -908,15 +930,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A filter to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * Please read the<a href="http://exist-db.org/urlrewrite.html">documentation</a> for further information.   */
+comment|/**  * A servlet to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * Please read the<a href="http://exist-db.org/urlrewrite.html">documentation</a> for further information.   */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|XQueryURLRewrite
-implements|implements
-name|Filter
+extends|extends
+name|HttpServlet
 block|{
 specifier|private
 specifier|static
@@ -997,7 +1019,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 specifier|private
-name|FilterConfig
+name|ServletConfig
 name|config
 decl_stmt|;
 specifier|private
@@ -1053,7 +1075,7 @@ specifier|public
 name|void
 name|init
 parameter_list|(
-name|FilterConfig
+name|ServletConfig
 name|filterConfig
 parameter_list|)
 throws|throws
@@ -1110,18 +1132,15 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|void
-name|doFilter
+name|service
 parameter_list|(
-name|ServletRequest
+name|HttpServletRequest
 name|servletRequest
 parameter_list|,
-name|ServletResponse
+name|HttpServletResponse
 name|servletResponse
-parameter_list|,
-name|FilterChain
-name|filterChain
 parameter_list|)
 throws|throws
 name|IOException
@@ -1354,8 +1373,6 @@ argument_list|(
 name|modifiedRequest
 argument_list|,
 name|response
-argument_list|,
-name|filterChain
 argument_list|)
 expr_stmt|;
 block|}
@@ -1897,6 +1914,8 @@ argument_list|(
 operator|new
 name|PassThrough
 argument_list|(
+name|config
+argument_list|,
 name|elem
 argument_list|,
 name|modifiedRequest
@@ -1936,6 +1955,8 @@ argument_list|(
 operator|new
 name|PassThrough
 argument_list|(
+name|config
+argument_list|,
 name|elem
 argument_list|,
 name|modifiedRequest
@@ -2164,6 +2185,8 @@ argument_list|(
 operator|new
 name|PassThrough
 argument_list|(
+name|config
+argument_list|,
 name|modifiedRequest
 argument_list|)
 argument_list|)
@@ -2225,8 +2248,6 @@ argument_list|,
 name|modifiedRequest
 argument_list|,
 name|wrappedResponse
-argument_list|,
-name|filterChain
 argument_list|)
 expr_stmt|;
 name|int
@@ -2661,8 +2682,6 @@ argument_list|,
 name|wrappedReq
 argument_list|,
 name|wrappedResponse
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 comment|// catch errors in the view
@@ -3253,9 +3272,6 @@ name|request
 parameter_list|,
 name|HttpServletResponse
 name|response
-parameter_list|,
-name|FilterChain
-name|filterChain
 parameter_list|)
 throws|throws
 name|IOException
@@ -3391,13 +3407,11 @@ argument_list|(
 name|request
 argument_list|,
 name|response
-argument_list|,
-name|filterChain
 argument_list|)
 expr_stmt|;
 block|}
 specifier|protected
-name|FilterConfig
+name|ServletConfig
 name|getConfig
 parameter_list|()
 block|{

@@ -1074,9 +1074,6 @@ name|request
 parameter_list|,
 name|HttpServletResponse
 name|response
-parameter_list|,
-name|FilterChain
-name|chain
 parameter_list|)
 throws|throws
 name|ServletException

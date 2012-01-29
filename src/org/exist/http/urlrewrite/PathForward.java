@@ -69,6 +69,16 @@ name|javax
 operator|.
 name|servlet
 operator|.
+name|ServletConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
 name|ServletException
 import|;
 end_import
@@ -93,7 +103,7 @@ extends|extends
 name|Forward
 block|{
 specifier|private
-name|FilterConfig
+name|ServletConfig
 name|filterConfig
 decl_stmt|;
 specifier|private
@@ -105,7 +115,7 @@ decl_stmt|;
 specifier|public
 name|PathForward
 parameter_list|(
-name|FilterConfig
+name|ServletConfig
 name|filterConfig
 parameter_list|,
 name|Element

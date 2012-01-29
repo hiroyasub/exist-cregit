@@ -245,6 +245,16 @@ name|javax
 operator|.
 name|servlet
 operator|.
+name|ServletConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
 name|ServletException
 import|;
 end_import
@@ -1375,7 +1385,7 @@ specifier|private
 name|URLRewrite
 name|parseAction
 parameter_list|(
-name|FilterConfig
+name|ServletConfig
 name|config
 parameter_list|,
 name|String
