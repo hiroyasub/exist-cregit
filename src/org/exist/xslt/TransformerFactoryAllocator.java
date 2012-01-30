@@ -190,7 +190,7 @@ block|{
 name|SAXTransformerFactory
 name|factory
 decl_stmt|;
-comment|//get the transformer class name from conf.xml
+comment|//Get the transformer class name from conf.xml
 name|String
 name|transformerFactoryClassName
 init|=
@@ -207,11 +207,7 @@ argument_list|(
 name|PROPERTY_TRANSFORMER_CLASS
 argument_list|)
 decl_stmt|;
-comment|//		if( LOG.isDebugEnabled() ) {
-comment|//          LOG.debug( "transformerFactoryClassName=" + transformerFactoryClassName );
-comment|//          LOG.debug( "javax.xml.transform.TransformerFactory=" + System.getProperty( "javax.xml.transform.TransformerFactory" ) );
-comment|//		}
-comment|// was a TransformerFactory class specified?
+comment|//Was a TransformerFactory class specified?
 if|if
 condition|(
 name|transformerFactoryClassName
@@ -219,7 +215,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//no, use the system default
+comment|//No, use the system default
 name|factory
 operator|=
 operator|(
@@ -233,7 +229,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//try and load the specified TransformerFactory class
+comment|//Try and load the specified TransformerFactory class
 try|try
 block|{
 name|factory
@@ -279,6 +275,11 @@ name|attributes
 init|=
 operator|(
 name|Hashtable
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 operator|)
 name|pool
 operator|.
@@ -352,7 +353,9 @@ name|debug
 argument_list|(
 literal|"Set transformer attribute: "
 operator|+
-literal|", name: "
+literal|", "
+operator|+
+literal|"name: "
 operator|+
 name|name
 operator|+
@@ -442,7 +445,7 @@ literal|"'. Using default TrAX Transformer Factory instead."
 argument_list|)
 expr_stmt|;
 block|}
-comment|//fallback to system default
+comment|//Fallback to system default
 name|factory
 operator|=
 operator|(
@@ -480,7 +483,7 @@ literal|"' is not a TrAX Transformer Factory. Using default TrAX Transformer Fac
 argument_list|)
 expr_stmt|;
 block|}
-comment|//fallback to system default
+comment|//Fallback to system default
 name|factory
 operator|=
 operator|(
@@ -520,7 +523,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//fallback to system default
+comment|//Fallback to system default
 name|factory
 operator|=
 operator|(

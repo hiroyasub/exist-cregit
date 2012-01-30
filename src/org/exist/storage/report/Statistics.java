@@ -124,7 +124,7 @@ specifier|public
 class|class
 name|Statistics
 block|{
-comment|/** generate index statistics 	 * @param conf 	 * @param indexStats 	 */
+comment|/** generate index statistics      * @param conf      * @param indexStats      */
 specifier|public
 specifier|static
 name|void
@@ -154,7 +154,7 @@ name|getProperty
 argument_list|(
 name|DOMFile
 operator|.
-name|FILE_KEY_IN_CONFIG
+name|CONFIG_KEY_FOR_FILE
 argument_list|)
 decl_stmt|;
 if|if

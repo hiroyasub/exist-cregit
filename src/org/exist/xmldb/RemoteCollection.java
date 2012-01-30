@@ -15,166 +15,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
-name|XmlRpcException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
-name|client
-operator|.
-name|XmlRpcClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|internal
-operator|.
-name|aider
-operator|.
-name|UnixStylePermissionAider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|Compressor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|EXistInputSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|InputSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Resource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Service
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -327,11 +167,49 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|xmlrpc
+operator|.
+name|XmlRpcException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|xmlrpc
+operator|.
+name|client
+operator|.
+name|XmlRpcClient
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|security
 operator|.
 name|ACLPermission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Permission
 import|;
 end_import
 
@@ -379,6 +257,112 @@ name|PermissionAiderFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Compressor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|EXistInputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Service
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
 begin_comment
 comment|/**  * A remote implementation of the Collection interface. This  * implementation communicates with the server through the XMLRPC  * protocol.  *  * @author wolf  * Updated Andy Foster - Updated code to allow child collection cache to  * resync with the remote collection.  */
 end_comment
@@ -390,8 +374,8 @@ name|RemoteCollection
 implements|implements
 name|CollectionImpl
 block|{
-comment|// max size of a resource to be send to the server
-comment|// if the resource exceeds this limit, the data is split into
+comment|// Max size of a resource to be send to the server.
+comment|// If the resource exceeds this limit, the data is split into
 comment|// junks and uploaded to the server via the update() call
 specifier|private
 specifier|static
@@ -676,7 +660,7 @@ name|ErrorCodes
 operator|.
 name|UNKNOWN_ERROR
 argument_list|,
-literal|"failed to close collection"
+literal|"Failed to close collection"
 argument_list|,
 name|e
 argument_list|)
@@ -743,9 +727,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|Resource
-name|r
-decl_stmt|;
 if|if
 condition|(
 name|type
@@ -755,8 +736,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
-name|r
-operator|=
+return|return
 operator|new
 name|RemoteXMLResource
 argument_list|(
@@ -772,7 +752,7 @@ name|newId
 argument_list|,
 literal|null
 argument_list|)
-expr_stmt|;
+return|;
 if|else if
 condition|(
 name|type
@@ -782,8 +762,7 @@ argument_list|(
 literal|"BinaryResource"
 argument_list|)
 condition|)
-name|r
-operator|=
+return|return
 operator|new
 name|RemoteBinaryResource
 argument_list|(
@@ -791,7 +770,7 @@ name|this
 argument_list|,
 name|newId
 argument_list|)
-expr_stmt|;
+return|;
 else|else
 throw|throw
 operator|new
@@ -801,14 +780,11 @@ name|ErrorCodes
 operator|.
 name|UNKNOWN_RESOURCE_TYPE
 argument_list|,
-literal|"unknown resource type: "
+literal|"Unknown resource type: "
 operator|+
 name|type
 argument_list|)
 throw|;
-return|return
-name|r
-return|;
 block|}
 specifier|public
 name|Collection
@@ -863,7 +839,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|// AF get the child collection refreshing cache from server if not found
+comment|// AF: get the child collection refreshing cache from server if not found
 return|return
 name|getChildCollection
 argument_list|(
@@ -873,7 +849,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|// AF - NEW METHOD
+comment|// AF: NEW METHOD
 specifier|protected
 name|Collection
 name|getChildCollection
@@ -965,7 +941,6 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|// return the found collection
 return|return
 name|foundCollection
 return|;
@@ -977,7 +952,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//  AF Always refresh cache for latest set - if (childCollections == null)
+comment|//AF: always refresh cache for latest set - if (childCollections == null)
 name|readCollection
 argument_list|()
 expr_stmt|;
@@ -1086,7 +1061,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/* 		    if(name != null) 		        return name; 		    else 		    */
 return|return
 name|XmldbURI
 operator|.
@@ -1519,7 +1493,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *  Returns a list of collection names naming all child collections of the 	 *  current collection. Only the name of the collection is returned - not 	 *  the entire path to the collection. 	 * 	 *@return                     Description of the Return Value 	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/**      *  Returns a list of collection names naming all child collections of the      *  current collection. Only the name of the collection is returned - not      *  the entire path to the collection.      *      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|String
 index|[]
@@ -1723,7 +1697,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.CollectionImpl#getResources() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#getResources()      */
 specifier|public
 name|String
 index|[]
@@ -2248,6 +2222,7 @@ argument_list|(
 literal|"content-length"
 argument_list|)
 condition|)
+block|{
 name|contentLen
 operator|=
 operator|(
@@ -2265,6 +2240,7 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|type
@@ -3190,7 +3166,7 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 argument_list|,
-literal|"failed to read resource from file "
+literal|"Failed to read resource from file "
 operator|+
 name|file
 operator|.
@@ -3567,7 +3543,7 @@ name|xre
 operator|==
 literal|null
 condition|?
-literal|"unknown error"
+literal|"Unknown error"
 else|:
 name|xre
 operator|.
@@ -3740,7 +3716,7 @@ name|XmlRpcException
 name|xre
 parameter_list|)
 block|{
-comment|/* the error code previously was INVALID_RESOURCE, but this was also thrown 		     * in case of insufficient persmissions. As you cannot tell here any more what the 		     * error really was, use UNKNOWN_ERROR. The reason is in XmlRpcResponseProcessor#processException 		     * which will only pass on the error message. 		     */
+comment|/* the error code previously was INVALID_RESOURCE, but this was also thrown              * in case of insufficient permissions. As you cannot tell here any more what the              * error really was, use UNKNOWN_ERROR.               * The reason is in XmlRpcResponseProcessor#processException              * which will only pass on the error message.              */
 throw|throw
 operator|new
 name|XMLDBException
@@ -3781,7 +3757,7 @@ init|=
 literal|null
 decl_stmt|;
 name|String
-name|descstring
+name|descString
 init|=
 literal|"<unknown>"
 decl_stmt|;
@@ -3804,7 +3780,7 @@ operator|.
 name|getStreamContent
 argument_list|()
 expr_stmt|;
-name|descstring
+name|descString
 operator|=
 operator|(
 operator|(
@@ -3914,7 +3890,7 @@ operator|instanceof
 name|EXistInputSource
 condition|)
 block|{
-name|descstring
+name|descString
 operator|=
 operator|(
 operator|(
@@ -4417,7 +4393,7 @@ name|INVALID_RESOURCE
 argument_list|,
 literal|"failed to read resource from "
 operator|+
-name|descstring
+name|descString
 argument_list|,
 name|e
 argument_list|)

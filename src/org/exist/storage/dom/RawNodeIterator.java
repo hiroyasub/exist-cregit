@@ -605,7 +605,7 @@ literal|"; previous: "
 operator|+
 name|pageHeader
 operator|.
-name|getPrevDataPage
+name|getPreviousDataPage
 argument_list|()
 operator|+
 literal|"; offset = "
@@ -629,7 +629,7 @@ name|page
 operator|=
 name|db
 operator|.
-name|getCurrentPage
+name|getDOMPage
 argument_list|(
 name|nextPage
 argument_list|)
@@ -985,7 +985,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 operator|.
-name|getPrevDataPage
+name|getPreviousDataPage
 argument_list|()
 operator|+
 literal|"; offset = "

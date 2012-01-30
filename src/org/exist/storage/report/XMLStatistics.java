@@ -194,7 +194,7 @@ specifier|public
 name|ContentHandler
 name|contentHandler
 decl_stmt|;
-comment|/** 	 * @param contentHandler 	 */
+comment|/**      * @param contentHandler      */
 specifier|public
 name|XMLStatistics
 parameter_list|(
@@ -364,7 +364,6 @@ name|PROPERTY_DATA_DIR
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// values added for cache used % calc - Gary Larsen
 name|addValue
 argument_list|(
 literal|"cache-size"
@@ -635,7 +634,7 @@ name|getProperty
 argument_list|(
 name|DOMFile
 operator|.
-name|FILE_KEY_IN_CONFIG
+name|CONFIG_KEY_FOR_FILE
 argument_list|)
 decl_stmt|;
 name|genBufferDetails
@@ -1145,7 +1144,7 @@ name|elem
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @param contentHandler 	 */
+comment|/**      * @param contentHandler      */
 specifier|public
 name|void
 name|setContentHandler

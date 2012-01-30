@@ -639,16 +639,6 @@ specifier|private
 name|AccessContext
 name|accessCtx
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|LocalCollection
-parameter_list|()
-block|{
-block|}
 comment|/**      * Create a collection with no parent (root collection).      *      * @param user      * @param brokerPool      * @param collection      * @throws XMLDBException      */
 specifier|public
 name|LocalCollection
@@ -1384,7 +1374,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//TODO: api change to XmldbURI?
+comment|//TODO: API change to XmldbURI ?
 name|Collection
 name|collection
 init|=
@@ -1435,7 +1425,7 @@ operator|+
 literal|".xml"
 argument_list|)
 expr_stmt|;
-comment|// check if this id does already exist
+comment|// check if this ID does already exist
 if|if
 condition|(
 name|collection
@@ -1492,7 +1482,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//TODO: api change to XmldbURI?
+comment|//TODO: API change to XmldbURI?
 specifier|public
 name|Resource
 name|createResource
@@ -1610,7 +1600,7 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 argument_list|,
-literal|"unknown resource type: "
+literal|"Unknown resource type: "
 operator|+
 name|type
 argument_list|)
@@ -1630,7 +1620,7 @@ return|return
 name|r
 return|;
 block|}
-comment|//TODO: api change to XmldbURI?
+comment|//TODO: API change to XmldbURI ?
 specifier|public
 name|org
 operator|.
@@ -1719,7 +1709,7 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"You are not allowed to access this collection"
+literal|"You are not allowed to read this collection"
 argument_list|)
 throw|;
 if|if
@@ -1775,7 +1765,6 @@ argument_list|,
 name|accessCtx
 argument_list|)
 return|;
-else|else
 return|return
 literal|null
 return|;
@@ -1837,7 +1826,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//TODO: api change to XmldbURI?
+comment|//TODO: API change to XmldbURI?
 specifier|public
 name|String
 name|getName
@@ -2007,7 +1996,7 @@ name|ErrorCodes
 operator|.
 name|UNKNOWN_ERROR
 argument_list|,
-literal|"error while retrieving parent collection: "
+literal|"Error while retrieving parent collection: "
 operator|+
 name|e
 operator|.
@@ -2211,7 +2200,7 @@ name|ErrorCodes
 operator|.
 name|PERMISSION_DENIED
 argument_list|,
-literal|"not allowed to read collection"
+literal|"Not allowed to read collection"
 argument_list|)
 throw|;
 name|DocumentImpl
@@ -2310,7 +2299,7 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 argument_list|,
-literal|"unknown resource type"
+literal|"Unknown resource type"
 argument_list|)
 throw|;
 operator|(
@@ -2349,7 +2338,7 @@ name|ErrorCodes
 operator|.
 name|UNKNOWN_ERROR
 argument_list|,
-literal|"error while retrieving resource: "
+literal|"Error while retrieving resource: "
 operator|+
 name|e
 operator|.
@@ -2732,7 +2721,6 @@ expr_stmt|;
 return|return
 name|services
 return|;
-comment|// jmv null;
 block|}
 specifier|public
 name|boolean
@@ -2745,7 +2733,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|//TODO: api change to XmldbURI?
+comment|//TODO: API change to XmldbURI?
 specifier|public
 name|String
 index|[]
@@ -2824,6 +2812,7 @@ condition|;
 name|j
 operator|++
 control|)
+block|{
 name|collections
 index|[
 name|j
@@ -2837,6 +2826,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|collections
 return|;
@@ -2994,8 +2984,8 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|// Include only when (1) locktoken is present or (2)
-comment|// locktoken indicates that it is not a null resource
+comment|// Include only when (1) lockToken is present or (2)
+comment|// lockToken indicates that it is not a null resource
 name|LockToken
 name|lock
 init|=
@@ -3107,7 +3097,7 @@ name|ErrorCodes
 operator|.
 name|UNKNOWN_ERROR
 argument_list|,
-literal|"error while retrieving resource: "
+literal|"Error while retrieving resource: "
 operator|+
 name|e
 operator|.
@@ -3361,7 +3351,7 @@ name|ErrorCodes
 operator|.
 name|INVALID_RESOURCE
 argument_list|,
-literal|"resource "
+literal|"Resource "
 operator|+
 name|resURI
 operator|+
@@ -4294,6 +4284,7 @@ name|root
 operator|!=
 literal|null
 condition|)
+block|{
 name|info
 operator|=
 name|collection
@@ -4311,7 +4302,9 @@ operator|.
 name|root
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|info
 operator|=
 name|collection
@@ -4329,6 +4322,7 @@ operator|.
 name|content
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Notice : the document should now have a Lock.WRITE_LOCK update lock
 comment|//TODO : check that no exception occurs in order to allow it to be released
 name|info
@@ -4528,7 +4522,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//        	e.printStackTrace();
 name|transact
 operator|.
 name|abort
@@ -4853,7 +4846,7 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
-comment|//You probably will have to call this methed from this cast :
+comment|//You probably will have to call this method from this cast :
 comment|//((org.exist.xmldb.CollectionImpl)collection).getURI()
 specifier|public
 name|XmldbURI
@@ -4895,8 +4888,6 @@ literal|""
 argument_list|)
 expr_stmt|;
 comment|//No port ;-)
-comment|//        if (-1 != -1)
-comment|//            accessor.append(":").append(-1);
 comment|//No context ;-)
 comment|//accessor.append(getContext());
 try|try
