@@ -4011,6 +4011,13 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|sm
+operator|==
+literal|null
+condition|)
+return|return;
 name|sm
 operator|.
 name|sessions
@@ -4083,6 +4090,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|entry
+operator|==
+literal|null
+operator|||
 operator|!
 name|entry
 operator|.
