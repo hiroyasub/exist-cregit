@@ -1807,11 +1807,6 @@ operator|.
 name|PROPERTY_ENFORCE_INDEX_USE
 argument_list|,
 name|enforceIndexUse
-operator|.
-name|equals
-argument_list|(
-literal|"always"
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
