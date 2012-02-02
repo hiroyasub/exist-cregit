@@ -1649,7 +1649,7 @@ name|Type
 operator|.
 name|ITEM
 return|;
-name|boolean
+name|Boolean
 name|enforceIndexUse
 init|=
 operator|(
@@ -1798,6 +1798,9 @@ expr_stmt|;
 if|if
 condition|(
 name|enforceIndexUse
+operator|.
+name|booleanValue
+argument_list|()
 condition|)
 return|return
 name|indexType
