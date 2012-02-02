@@ -954,6 +954,14 @@ name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_ATTRIBUTE
 init|=
 literal|"raise-error-on-failed-retrieval"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ENFORCE_INDEX_USE_ATTRIBUTE
+init|=
+literal|"enforce-index-use"
+decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
 specifier|static
@@ -1010,6 +1018,14 @@ name|boolean
 name|XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL_DEFAULT
 init|=
 literal|false
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROPERTY_ENFORCE_INDEX_USE
+init|=
+literal|"xquery.enforce-index-use"
 decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
@@ -11301,6 +11317,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|param
+operator|!=
+literal|null
+operator|&&
 literal|"enable"
 operator|.
 name|equals
@@ -11781,7 +11801,7 @@ throw|;
 block|}
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Stored: "
 operator|+
@@ -11795,6 +11815,10 @@ operator|+
 name|targetDoc
 operator|.
 name|getURI
+argument_list|()
+argument_list|,
+operator|new
+name|Throwable
 argument_list|()
 argument_list|)
 expr_stmt|;
