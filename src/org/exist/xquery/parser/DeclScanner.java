@@ -429,6 +429,8 @@ literal|"PREFIX_WILDCARD"
 block|,
 literal|"FUNCTION"
 block|,
+literal|"DYNAMIC_FCALL"
+block|,
 literal|"UNARY_MINUS"
 block|,
 literal|"UNARY_PLUS"
@@ -766,6 +768,8 @@ block|,
 literal|"\"document-node\""
 block|,
 literal|"\"document\""
+block|,
+literal|"HASH"
 block|,
 literal|"."
 block|,
