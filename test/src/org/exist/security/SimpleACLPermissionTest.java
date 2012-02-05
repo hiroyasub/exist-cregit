@@ -254,7 +254,7 @@ name|WRITE
 operator||
 name|Permission
 operator|.
-name|UPDATE
+name|EXECUTE
 decl_stmt|;
 annotation|@
 name|Test
@@ -528,7 +528,7 @@ specifier|final
 name|String
 name|mode
 init|=
-literal|"rwu"
+literal|"rwx"
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
 comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
@@ -761,7 +761,7 @@ specifier|final
 name|String
 name|mode
 init|=
-literal|"rwu"
+literal|"rwx"
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
 comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);

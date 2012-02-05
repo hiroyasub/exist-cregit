@@ -585,6 +585,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.IndexQueryService#configure(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configureCollection
@@ -992,8 +994,6 @@ argument_list|,
 name|docs
 argument_list|,
 name|inclusive
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 return|return

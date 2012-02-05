@@ -322,7 +322,9 @@ init|=
 name|root
 operator|.
 name|collectionIterator
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 init|;
 name|i
 operator|.

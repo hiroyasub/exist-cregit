@@ -488,14 +488,15 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -503,6 +504,7 @@ argument_list|(
 literal|"permission to update document denied"
 argument_list|)
 throw|;
+block|}
 name|parent
 operator|=
 operator|(

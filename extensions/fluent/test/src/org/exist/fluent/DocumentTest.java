@@ -64,6 +64,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -122,6 +124,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -170,6 +174,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -218,6 +224,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -280,6 +288,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"original"
 argument_list|)
 argument_list|,
@@ -303,7 +313,9 @@ argument_list|,
 name|Name
 operator|.
 name|keepCreate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -393,6 +405,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"original.xml"
 argument_list|)
 argument_list|,
@@ -416,7 +430,9 @@ argument_list|,
 name|Name
 operator|.
 name|keepCreate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -506,6 +522,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"original"
 argument_list|)
 argument_list|,
@@ -526,7 +544,9 @@ argument_list|,
 name|Name
 operator|.
 name|keepCreate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -616,6 +636,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"original.xml"
 argument_list|)
 argument_list|,
@@ -636,7 +658,9 @@ argument_list|,
 name|Name
 operator|.
 name|keepCreate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals

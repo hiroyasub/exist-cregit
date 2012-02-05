@@ -819,6 +819,25 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|EXistException
 name|ee
 parameter_list|)
@@ -854,6 +873,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 name|Collection
 name|policyCollection
@@ -876,7 +897,9 @@ condition|(
 name|policyCollection
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 operator|==
 literal|0
 condition|)
@@ -1052,6 +1075,8 @@ throws|,
 name|ProcessingException
 throws|,
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 name|QName
 name|idAttributeQName
@@ -1116,6 +1141,8 @@ parameter_list|,
 name|boolean
 name|recursive
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 name|Collection
 name|policyCollection
@@ -1140,7 +1167,9 @@ init|=
 name|policyCollection
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1170,8 +1199,6 @@ argument_list|,
 name|documentSet
 argument_list|,
 name|recursive
-argument_list|,
-literal|false
 argument_list|)
 return|;
 block|}
@@ -1184,6 +1211,8 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+block|{
+try|try
 block|{
 name|Collection
 name|policyCollection
@@ -1364,6 +1393,26 @@ return|return
 name|policyCollection
 return|;
 block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Error creating policy collection"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
 comment|/** 	* Returns the single policy (or policy set) document that has the 	* attribute specified by attributeQName with the value 	* attributeValue, null if none match, or throws a 	*<code>ProcessingException</code> if more than one match.  This is 	* performed by a QName range index lookup and so it requires a range 	* index to be given on the attribute. 	*  	* @param attributeQName The name of the attribute 	* @param attributeValue The value of the attribute 	* @param broker the broker to use to access the database 	* @return The referenced policy. 	* @throws ProcessingException if there is an error finding 	*	the policy (or policy set) documents. 	* @throws XPathException if there is an error performing 	*	the index lookup 	*/
 specifier|public
 name|DocumentImpl
@@ -1382,6 +1431,8 @@ throws|throws
 name|ProcessingException
 throws|,
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 name|DocumentSet
 name|documentSet
@@ -1499,6 +1550,8 @@ throws|throws
 name|ProcessingException
 throws|,
 name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 if|if
 condition|(

@@ -2040,6 +2040,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|PermissionDeniedException
 block|{
 comment|// iterate over child documents
 name|MutableDocumentSet
@@ -2059,8 +2061,6 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|childDocs
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 for|for
@@ -2152,7 +2152,12 @@ init|=
 name|col
 operator|.
 name|collectionIterator
+argument_list|(
+name|context
+operator|.
+name|getBroker
 argument_list|()
+argument_list|)
 init|;
 name|itChildCols
 operator|.

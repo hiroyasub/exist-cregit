@@ -1102,7 +1102,7 @@ name|perms
 operator|.
 name|setMode
 argument_list|(
-literal|0777
+literal|0744
 argument_list|)
 expr_stmt|;
 name|broker
@@ -1145,7 +1145,7 @@ name|perms
 operator|.
 name|setMode
 argument_list|(
-literal|0777
+literal|0744
 argument_list|)
 expr_stmt|;
 name|broker
@@ -1234,7 +1234,7 @@ name|perms
 operator|.
 name|setMode
 argument_list|(
-literal|0777
+literal|0744
 argument_list|)
 expr_stmt|;
 name|broker

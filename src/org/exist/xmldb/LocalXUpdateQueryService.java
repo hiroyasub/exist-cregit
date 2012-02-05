@@ -459,8 +459,6 @@ argument_list|,
 name|docs
 argument_list|,
 literal|true
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}

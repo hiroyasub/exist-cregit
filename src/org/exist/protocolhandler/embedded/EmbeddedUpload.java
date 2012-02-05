@@ -677,6 +677,8 @@ name|collection
 operator|.
 name|hasChildCollection
 argument_list|(
+name|broker
+argument_list|,
 name|documentUri
 argument_list|)
 condition|)

@@ -691,6 +691,20 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|int
+name|getUserMask
+parameter_list|()
+block|{
+comment|//TODO make this configurable
+return|return
+name|Permission
+operator|.
+name|DEFAULT_UMASK
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|void
 name|clearMetadata
 parameter_list|()

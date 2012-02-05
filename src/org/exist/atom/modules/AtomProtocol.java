@@ -1812,7 +1812,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 throw|throw
@@ -2509,7 +2509,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 throw|throw
@@ -3904,7 +3904,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 throw|throw
@@ -3962,7 +3962,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 block|{
@@ -4276,7 +4276,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 throw|throw
@@ -5260,7 +5260,7 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 throw|throw

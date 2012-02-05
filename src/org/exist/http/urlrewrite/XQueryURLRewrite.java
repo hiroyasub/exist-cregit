@@ -4587,6 +4587,8 @@ name|subColl
 operator|.
 name|hasChildCollection
 argument_list|(
+name|broker
+argument_list|,
 name|XmldbURI
 operator|.
 name|createInternal
@@ -5053,6 +5055,30 @@ operator|.
 name|warn
 argument_list|(
 literal|"Bad URI for base path: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Permission denied while scanning for XQueryURLRewrite controllers: "
 operator|+
 name|e
 operator|.

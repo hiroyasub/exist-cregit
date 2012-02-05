@@ -327,6 +327,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module1"
 argument_list|)
 argument_list|,
@@ -395,6 +397,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module1"
 argument_list|)
 argument_list|,
@@ -463,6 +467,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module1"
 argument_list|)
 argument_list|,
@@ -490,6 +496,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module2"
 argument_list|)
 argument_list|,
@@ -588,6 +596,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module1"
 argument_list|)
 argument_list|,
@@ -615,6 +625,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module2"
 argument_list|)
 argument_list|,
@@ -680,6 +692,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"module"
 argument_list|)
 argument_list|,
@@ -707,6 +721,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"doc1"
 argument_list|)
 argument_list|,
@@ -729,6 +745,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"doc2"
 argument_list|)
 argument_list|,
@@ -817,6 +835,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"doc1"
 argument_list|)
 argument_list|,
@@ -839,6 +859,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"doc2"
 argument_list|)
 argument_list|,

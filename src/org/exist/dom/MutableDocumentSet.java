@@ -106,9 +106,6 @@ parameter_list|,
 name|String
 index|[]
 name|paths
-parameter_list|,
-name|boolean
-name|checkPermissions
 parameter_list|)
 function_decl|;
 name|void

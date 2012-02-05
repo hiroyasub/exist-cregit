@@ -15790,7 +15790,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|", Copyright (C) 2001-2011 Wolfgang Meier\n"
+literal|", Copyright (C) 2001-2011 The eXist-db Project\n"
 argument_list|)
 expr_stmt|;
 name|builder

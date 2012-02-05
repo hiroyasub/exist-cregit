@@ -261,7 +261,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -304,6 +306,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -406,6 +410,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -501,6 +507,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo1"
 argument_list|)
 argument_list|)
@@ -542,6 +550,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo2"
 argument_list|)
 argument_list|)
@@ -630,7 +640,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -1075,7 +1087,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -1106,7 +1120,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -1159,7 +1175,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -1276,6 +1294,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -1380,6 +1400,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -1547,6 +1569,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -1663,6 +1687,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -1713,6 +1739,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"bar"
 argument_list|)
 argument_list|)
@@ -1784,6 +1812,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|)
@@ -1830,6 +1860,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"bar"
 argument_list|)
 argument_list|)
@@ -1889,6 +1921,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"test"
 argument_list|)
 argument_list|,
@@ -1953,6 +1987,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"test"
 argument_list|)
 argument_list|,
@@ -2042,6 +2078,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -2231,6 +2269,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -2418,6 +2458,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,
@@ -2618,6 +2660,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"foo"
 argument_list|)
 argument_list|,

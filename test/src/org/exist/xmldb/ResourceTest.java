@@ -55,18 +55,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|Account
 import|;
 end_import
@@ -2130,9 +2118,7 @@ name|ums
 operator|.
 name|chmod
 argument_list|(
-name|Permission
-operator|.
-name|DEFAULT_PERM
+literal|"rwxr-xr-x"
 argument_list|)
 expr_stmt|;
 comment|//store sample files as guest

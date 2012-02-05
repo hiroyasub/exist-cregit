@@ -507,6 +507,18 @@ name|AST
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Provides the actual implementations for the methods defined in  * {@link org.exist.soap.Query}.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -1720,7 +1732,9 @@ index|[
 name|collection
 operator|.
 name|getChildCollectionCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 index|]
 decl_stmt|;
 name|int
@@ -1736,7 +1750,9 @@ init|=
 name|collection
 operator|.
 name|collectionIterator
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 init|;
 name|i
 operator|.
@@ -1775,7 +1791,9 @@ index|[
 name|collection
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 index|]
 decl_stmt|;
 name|j
@@ -1872,6 +1890,23 @@ operator|new
 name|RemoteException
 argument_list|(
 name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RemoteException
+argument_list|(
+name|pde
 operator|.
 name|getMessage
 argument_list|()

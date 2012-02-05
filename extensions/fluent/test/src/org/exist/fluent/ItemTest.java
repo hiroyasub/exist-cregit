@@ -208,6 +208,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"test"
 argument_list|)
 argument_list|)
@@ -331,6 +333,8 @@ name|Name
 operator|.
 name|create
 argument_list|(
+name|db
+argument_list|,
 literal|"test"
 argument_list|)
 argument_list|)

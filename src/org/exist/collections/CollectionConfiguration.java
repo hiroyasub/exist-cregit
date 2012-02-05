@@ -582,7 +582,7 @@ name|defCollPermissions
 init|=
 name|Permission
 operator|.
-name|DEFAULT_PERM
+name|DEFAULT_COLLECTION_PERM
 decl_stmt|;
 specifier|private
 name|int
@@ -590,7 +590,7 @@ name|defResPermissions
 init|=
 name|Permission
 operator|.
-name|DEFAULT_PERM
+name|DEFAULT_RESOURCE_PERM
 decl_stmt|;
 specifier|private
 name|String

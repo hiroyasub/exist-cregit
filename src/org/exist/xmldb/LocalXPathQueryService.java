@@ -2028,6 +2028,24 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+literal|"Permission denied on document"
+argument_list|)
+throw|;
+block|}
 block|}
 do|while
 condition|(

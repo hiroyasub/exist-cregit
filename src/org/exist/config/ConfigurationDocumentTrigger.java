@@ -1138,7 +1138,7 @@ name|aclPermissionInUse
 init|=
 name|PermissionFactory
 operator|.
-name|getPermission
+name|getDefaultResourcePermission
 argument_list|()
 operator|instanceof
 name|ACLPermission

@@ -1056,7 +1056,9 @@ operator|+
 name|top
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|MutableDocumentSet
@@ -1073,8 +1075,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|XmldbURI

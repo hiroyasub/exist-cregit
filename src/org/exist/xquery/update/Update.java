@@ -884,18 +884,37 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"permission to update document denied"
+literal|"User '"
+operator|+
+name|context
+operator|.
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' does not have permission to write to the document '"
+operator|+
+name|doc
+operator|.
+name|getDocumentURI
+argument_list|()
+operator|+
+literal|"'!"
 argument_list|)
 throw|;
+block|}
 name|doc
 operator|.
 name|getMetadata

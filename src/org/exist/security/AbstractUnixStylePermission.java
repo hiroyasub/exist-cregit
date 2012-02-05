@@ -88,7 +88,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * The symbolic mode is described by the following grammar:      *      * mode         ::= clause [, clause ...]      * clause       ::= [who ...] [action ...] action      * action       ::= op [perm ...]      * who          ::= a | u | g | o      * op           ::= + | - | =      * perm         ::= r | s | t | w | u      */
+comment|/**      * The symbolic mode is described by the following grammar:      *      * mode         ::= clause [, clause ...]      * clause       ::= [who ...] [action ...] action      * action       ::= op [perm ...]      * who          ::= a | u | g | o      * op           ::= + | - | =      * perm         ::= r | s | t | w | x      */
 specifier|private
 name|void
 name|setUnixSymbolicMode
@@ -184,11 +184,11 @@ name|WRITE
 expr_stmt|;
 break|break;
 case|case
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 case|:
 name|perm
 operator||=
-name|UPDATE
+name|EXECUTE
 expr_stmt|;
 break|break;
 case|case
@@ -684,7 +684,7 @@ literal|false
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|update]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
+comment|/**      *  Set mode using a string. The string has the      * following syntax:      *      * [user|group|other]=[+|-][read|write|execute]      *      * For example, to set read and write mode for the group, but      * not for others:      *      * group=+read,+write,other=-read,-write      *      * The new settings are or'ed with the existing settings.      *      *@param  existSymbolicMode                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated setUnixSymbolicMode should be used instead      */
 annotation|@
 name|Deprecated
 specifier|private
@@ -831,7 +831,7 @@ name|s
 operator|.
 name|endsWith
 argument_list|(
-name|UPDATE_STRING
+name|EXECUTE_STRING
 operator|.
 name|toLowerCase
 argument_list|()
@@ -840,7 +840,7 @@ condition|)
 block|{
 name|perm
 operator|=
-name|UPDATE
+name|EXECUTE
 expr_stmt|;
 block|}
 else|else
@@ -1023,12 +1023,12 @@ operator|)
 expr_stmt|;
 break|break;
 case|case
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 case|:
 name|mode
 operator||=
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 name|shift
 operator|)
@@ -1121,7 +1121,7 @@ name|STICKY_CHAR
 operator|+
 name|WRITE_CHAR
 operator|+
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|+
 literal|"])+)+),?)+"
 argument_list|)
@@ -1171,7 +1171,7 @@ name|WRITE_STRING
 operator|+
 literal|"|"
 operator|+
-name|UPDATE_STRING
+name|EXECUTE_STRING
 operator|+
 literal|"),?)+)+"
 argument_list|)
@@ -1205,7 +1205,7 @@ name|READ_CHAR
 operator|+
 name|WRITE_CHAR
 operator|+
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|+
 name|SETUID_CHAR
 operator|+
@@ -1217,7 +1217,7 @@ name|READ_CHAR
 operator|+
 name|WRITE_CHAR
 operator|+
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|+
 name|SETGID_CHAR
 operator|+
@@ -1229,7 +1229,7 @@ name|READ_CHAR
 operator|+
 name|WRITE_CHAR
 operator|+
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|+
 name|STICKY_CHAR
 operator|+

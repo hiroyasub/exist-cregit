@@ -357,7 +357,11 @@ init|=
 name|root
 operator|.
 name|collectionIterator
-argument_list|()
+argument_list|(
+name|tx
+operator|.
+name|broker
+argument_list|)
 init|;
 name|it
 operator|.

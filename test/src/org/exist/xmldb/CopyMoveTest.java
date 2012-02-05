@@ -534,9 +534,7 @@ name|ums
 operator|.
 name|chmod
 argument_list|(
-name|Permission
-operator|.
-name|DEFAULT_PERM
+literal|"rwxr-xr-x"
 argument_list|)
 expr_stmt|;
 block|}

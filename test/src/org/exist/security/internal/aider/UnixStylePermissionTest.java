@@ -141,7 +141,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"rwurwurwu"
+literal|"rwxrwxrwx"
 argument_list|,
 literal|511
 argument_list|)
@@ -154,7 +154,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"rwurwu---"
+literal|"rwxrwx---"
 argument_list|,
 literal|504
 argument_list|)
@@ -167,7 +167,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"rwu------"
+literal|"rwx------"
 argument_list|,
 literal|448
 argument_list|)
@@ -180,7 +180,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"------rwu"
+literal|"------rwx"
 argument_list|,
 literal|7
 argument_list|)
@@ -193,7 +193,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"---rwurwu"
+literal|"---rwxrwx"
 argument_list|,
 literal|63
 argument_list|)
@@ -219,7 +219,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"rwur--r--"
+literal|"rwxr--r--"
 argument_list|,
 literal|484
 argument_list|)
@@ -232,7 +232,7 @@ argument_list|(
 operator|new
 name|SecurityTestPair
 argument_list|(
-literal|"rwur--r--"
+literal|"rwxr--r--"
 argument_list|,
 literal|484
 argument_list|)
@@ -343,7 +343,7 @@ name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(
-literal|"rwu"
+literal|"rwx"
 argument_list|)
 expr_stmt|;
 block|}
@@ -368,7 +368,7 @@ name|UnixStylePermissionAider
 operator|.
 name|fromString
 argument_list|(
-literal|"rwxrwxrwx"
+literal|"rwurwurwu"
 argument_list|)
 expr_stmt|;
 block|}

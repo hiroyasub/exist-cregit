@@ -138,7 +138,7 @@ name|RealmImpl
 operator|.
 name|DBA_GROUP_ID
 argument_list|,
-name|DEFAULT_PERM
+literal|0
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -192,6 +192,8 @@ argument_list|(
 name|sm
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|vector
 operator|=
 name|encodeAsBitVector
@@ -1433,7 +1435,7 @@ name|mode
 expr_stmt|;
 comment|//new otherMode
 block|}
-comment|/**      *  Format mode      *      *@return the mode formatted as a string e.g. 'rwurwurwu'      */
+comment|/**      *  Format mode      *      *@return the mode formatted as a string e.g. 'rwxrwxrwx'      */
 annotation|@
 name|Override
 specifier|public
@@ -1499,7 +1501,7 @@ operator|(
 name|vector
 operator|&
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 literal|28
 operator|)
@@ -1509,7 +1511,7 @@ literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|SETUID_CHAR
@@ -1563,7 +1565,7 @@ operator|(
 name|vector
 operator|&
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 literal|4
 operator|)
@@ -1573,7 +1575,7 @@ literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|SETGID_CHAR
@@ -1618,14 +1620,14 @@ operator|(
 operator|(
 name|vector
 operator|&
-name|UPDATE
+name|EXECUTE
 operator|)
 operator|==
 literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|STICKY_CHAR

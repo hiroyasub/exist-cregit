@@ -289,6 +289,8 @@ name|TriggerException
 block|{
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
@@ -382,6 +384,8 @@ throw|;
 block|}
 block|}
 comment|// try to retrieve the contents file
+try|try
+block|{
 name|this
 operator|.
 name|doc
@@ -404,8 +408,6 @@ operator|==
 literal|null
 condition|)
 comment|// doesn't exist yet: create it
-try|try
-block|{
 name|LOG
 operator|.
 name|debug

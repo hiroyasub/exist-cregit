@@ -167,6 +167,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provide concurrent access to the index structure. Implements the core operations on the index.  * The methods in this class are used in a multi-threaded environment. Every thread accessing the  * database will have exactly one IndexWorker for every index. {@link org.exist.indexing.Index#getWorker(DBBroker)}  * should thus return a new IndexWorker whenever it is  called. Implementations of IndexWorker have  * to take care of synchronizing access to shared resources.  */
 end_comment
@@ -300,6 +312,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/**       * Checking index could be delegated to a worker. Use this method to do so.      * @param broker The broker that will perform the operation      * @return Whether or not the index if in a suitable state      */
 name|boolean

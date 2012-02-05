@@ -166,7 +166,7 @@ literal|false
 decl_stmt|;
 specifier|protected
 name|boolean
-name|updateAllowed
+name|executeAllowed
 init|=
 literal|false
 decl_stmt|;
@@ -219,7 +219,7 @@ name|isUpdateAllowed
 parameter_list|()
 block|{
 return|return
-name|updateAllowed
+name|executeAllowed
 return|;
 block|}
 specifier|protected

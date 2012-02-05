@@ -29,16 +29,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|StringTokenizer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -58,18 +48,6 @@ operator|.
 name|security
 operator|.
 name|Group
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
 import|;
 end_import
 
@@ -150,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unix style permission details.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * Unix style permission details.  *   * @author Adam Retter<adam@exist-db.org>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -174,8 +152,6 @@ decl_stmt|;
 specifier|private
 name|int
 name|mode
-init|=
-name|DEFAULT_PERM
 decl_stmt|;
 specifier|public
 name|UnixStylePermissionAider
@@ -779,7 +755,7 @@ operator|(
 name|mode
 operator|&
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 literal|6
 operator|)
@@ -789,7 +765,7 @@ literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|SETUID_CHAR
@@ -843,7 +819,7 @@ operator|(
 name|mode
 operator|&
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 literal|3
 operator|)
@@ -853,7 +829,7 @@ literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|SETGID_CHAR
@@ -898,14 +874,14 @@ operator|(
 operator|(
 name|mode
 operator|&
-name|UPDATE
+name|EXECUTE
 operator|)
 operator|==
 literal|0
 condition|?
 name|UNSET_CHAR
 else|:
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 operator|)
 else|:
 name|STICKY_CHAR
@@ -1051,12 +1027,12 @@ operator|)
 expr_stmt|;
 break|break;
 case|case
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 case|:
 name|mode
 operator||=
 operator|(
-name|UPDATE
+name|EXECUTE
 operator|<<
 operator|(
 literal|6

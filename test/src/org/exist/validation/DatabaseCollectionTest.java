@@ -365,7 +365,7 @@ name|chmod
 argument_list|(
 name|Permission
 operator|.
-name|DEFAULT_PERM
+name|DEFAULT_COLLECTION_PERM
 argument_list|)
 expr_stmt|;
 name|assertNotNull

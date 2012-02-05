@@ -89,6 +89,18 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -323,6 +335,8 @@ operator|new
 name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|int
@@ -396,6 +410,26 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+throw|;
+block|}
 name|NodeSet
 name|result
 init|=
@@ -454,6 +488,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -468,6 +503,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

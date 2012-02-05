@@ -3022,7 +3022,7 @@ name|indexOf
 argument_list|(
 name|Permission
 operator|.
-name|UPDATE_CHAR
+name|EXECUTE_CHAR
 argument_list|)
 operator|>
 operator|-
@@ -3033,7 +3033,7 @@ name|mode
 operator||=
 name|Permission
 operator|.
-name|UPDATE
+name|EXECUTE
 expr_stmt|;
 block|}
 name|Subject

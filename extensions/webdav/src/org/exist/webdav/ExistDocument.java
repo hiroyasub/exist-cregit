@@ -636,7 +636,7 @@ operator|.
 name|WRITE
 argument_list|)
 expr_stmt|;
-name|updateAllowed
+name|executeAllowed
 operator|=
 name|permissions
 operator|.
@@ -646,7 +646,7 @@ name|subject
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|EXECUTE
 argument_list|)
 expr_stmt|;
 name|ownerUser

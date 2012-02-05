@@ -80,7 +80,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -166,7 +168,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -252,7 +256,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|)
 operator|.
 name|elem
@@ -407,7 +413,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -547,7 +555,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -695,7 +705,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -830,7 +842,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.
@@ -902,7 +916,9 @@ argument_list|(
 name|Name
 operator|.
 name|generate
-argument_list|()
+argument_list|(
+name|db
+argument_list|)
 argument_list|,
 name|Source
 operator|.

@@ -427,6 +427,10 @@ throws|throws
 name|EXistException
 throws|,
 name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 name|this
 operator|.
@@ -1083,6 +1087,10 @@ name|broker
 parameter_list|)
 throws|throws
 name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 name|Collection
 name|root
@@ -1116,6 +1124,10 @@ name|configCollection
 parameter_list|)
 throws|throws
 name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 if|if
 condition|(
@@ -1150,7 +1162,9 @@ init|=
 name|configCollection
 operator|.
 name|collectionIterator
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 init|;
 name|i
 operator|.
@@ -1218,6 +1232,10 @@ name|configCollection
 parameter_list|)
 throws|throws
 name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 if|if
 condition|(
@@ -1228,7 +1246,9 @@ operator|&&
 name|configCollection
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 operator|>
 literal|0
 condition|)
@@ -1767,6 +1787,8 @@ name|broker
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|PermissionDeniedException
 block|{
 name|String
 name|configuration

@@ -2596,7 +2596,7 @@ name|user
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 block|{
@@ -2876,7 +2876,7 @@ name|user
 argument_list|,
 name|Permission
 operator|.
-name|UPDATE
+name|WRITE
 argument_list|)
 condition|)
 block|{
@@ -3250,6 +3250,8 @@ operator|.
 name|Collection
 name|collection
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 if|if
 condition|(
@@ -3287,7 +3289,9 @@ index|[
 name|collection
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 index|]
 decl_stmt|;
 name|Iterator
@@ -3471,6 +3475,8 @@ name|collection
 parameter_list|)
 throws|throws
 name|XMLDBException
+throws|,
+name|PermissionDeniedException
 block|{
 if|if
 condition|(
@@ -3508,7 +3514,9 @@ index|[
 name|collection
 operator|.
 name|getChildCollectionCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 index|]
 decl_stmt|;
 name|Iterator
@@ -3520,7 +3528,9 @@ init|=
 name|collection
 operator|.
 name|collectionIterator
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 decl_stmt|;
 name|int
 name|i
@@ -4810,6 +4820,8 @@ name|reader
 parameter_list|)
 throws|throws
 name|XMLDBException
+throws|,
+name|PermissionDeniedException
 block|{
 name|DocumentImpl
 name|document
@@ -4902,6 +4914,8 @@ name|reader
 parameter_list|)
 throws|throws
 name|XMLDBException
+throws|,
+name|PermissionDeniedException
 block|{
 name|org
 operator|.
@@ -5590,6 +5604,8 @@ name|T
 name|databaseItem
 parameter_list|)
 throws|throws
+name|PermissionDeniedException
+throws|,
 name|XMLDBException
 function_decl|;
 block|}

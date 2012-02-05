@@ -201,6 +201,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Internally used to dispatch an operation to each of the  * registered indexes. An IndexController instance can be  * retrieved via {@link org.exist.storage.DBBroker#getIndexController()}.  *   */
 end_comment
@@ -643,6 +655,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 for|for
 control|(

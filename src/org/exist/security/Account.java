@@ -290,6 +290,12 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Get the umask of the user      */
+specifier|public
+name|int
+name|getUserMask
+parameter_list|()
+function_decl|;
 specifier|public
 name|void
 name|setMetadataValue

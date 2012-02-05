@@ -227,6 +227,18 @@ name|FileFilter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * DOCUMENT ME!  *  * @author  wolf  */
 end_comment
@@ -3480,6 +3492,27 @@ argument_list|(
 literal|"ERROR: Failed to retrieve database broker: "
 operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"ERROR: Failed to retrieve database broker: "
+operator|+
+name|pde
 operator|.
 name|getMessage
 argument_list|()

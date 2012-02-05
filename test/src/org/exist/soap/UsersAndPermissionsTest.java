@@ -857,15 +857,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-specifier|public
-name|void
-name|testRemoveThisEmptyTest
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|//        assertEquals(1,1);
-block|}
 block|}
 end_class
 

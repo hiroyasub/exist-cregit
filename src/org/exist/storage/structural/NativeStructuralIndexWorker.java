@@ -247,6 +247,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Internal default implementation of the structural index. It uses a single btree, in which  * each key represents a sequence of: [type, qname, documentId, nodeId]. The btree value is just a  * long pointing to the storage address of the actual node in dom.dbx.  */
 end_comment
@@ -3283,6 +3295,8 @@ return|return
 name|qnames
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeCollection
@@ -3293,6 +3307,8 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 for|for
 control|(

@@ -4753,6 +4753,8 @@ literal|null
 condition|)
 block|{
 comment|// no path defined: return all documents in the db
+try|try
+block|{
 name|getBroker
 argument_list|()
 operator|.
@@ -4761,6 +4763,42 @@ argument_list|(
 name|ndocs
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Permission denied to read resource all resources"
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Permission denied to read resource all resources"
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 block|{
@@ -4817,8 +4855,6 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|ndocs
-argument_list|,
-literal|true
 argument_list|,
 literal|true
 argument_list|)

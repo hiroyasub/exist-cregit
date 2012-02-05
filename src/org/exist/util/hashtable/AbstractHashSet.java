@@ -159,6 +159,17 @@ name|items
 return|;
 block|}
 specifier|public
+name|boolean
+name|isEmpty
+parameter_list|()
+block|{
+return|return
+name|items
+operator|==
+literal|0
+return|;
+block|}
+specifier|public
 specifier|abstract
 name|Iterator
 argument_list|<

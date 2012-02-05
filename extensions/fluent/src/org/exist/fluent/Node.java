@@ -99,6 +99,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|io
 operator|.
 name|VariableByteOutputStream
@@ -1684,6 +1696,8 @@ name|Name
 operator|.
 name|overwrite
 argument_list|(
+name|db
+argument_list|,
 name|document
 argument_list|()
 operator|.

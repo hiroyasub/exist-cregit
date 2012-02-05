@@ -143,6 +143,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -1565,6 +1577,25 @@ argument_list|(
 literal|"Failed to get document for RemoteXMLResource: "
 operator|+
 name|xe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Failed to get document: "
+operator|+
+name|pde
 operator|.
 name|getMessage
 argument_list|()

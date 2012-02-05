@@ -191,6 +191,18 @@ name|PolicyFinderResult
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/* *Added new constructor to AnyURIValue to accept a URI */
 end_comment
@@ -344,6 +356,28 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+return|return
+name|XACMLUtil
+operator|.
+name|errorResult
+argument_list|(
+literal|"Error while finding policy: "
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
 name|EXistException
 name|ee
 parameter_list|)
@@ -385,6 +419,8 @@ parameter_list|,
 name|EvaluationCtx
 name|context
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
 name|DocumentSet
 name|mainPolicyDocs

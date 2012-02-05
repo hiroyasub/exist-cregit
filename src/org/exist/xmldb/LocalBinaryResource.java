@@ -243,6 +243,18 @@ name|Date
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -2193,6 +2205,7 @@ name|Lock
 operator|.
 name|NO_LOCK
 condition|)
+block|{
 try|try
 block|{
 name|document
@@ -2214,6 +2227,33 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+literal|"Permission denied for document "
+operator|+
+name|docId
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
 name|LockException
 name|e
 parameter_list|)
@@ -2232,7 +2272,11 @@ name|docId
 argument_list|)
 throw|;
 block|}
+block|}
 else|else
+block|{
+try|try
+block|{
 name|document
 operator|=
 name|parent
@@ -2247,12 +2291,42 @@ argument_list|,
 name|docId
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|PERMISSION_DENIED
+argument_list|,
+literal|"Permission denied for document "
+operator|+
+name|docId
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
+block|}
 if|if
 condition|(
 name|document
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2262,6 +2336,7 @@ operator|.
 name|INVALID_RESOURCE
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|document
@@ -2273,6 +2348,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2288,6 +2364,7 @@ operator|+
 literal|" is not a binary resource"
 argument_list|)
 throw|;
+block|}
 return|return
 name|document
 return|;

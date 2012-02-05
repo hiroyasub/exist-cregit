@@ -453,6 +453,18 @@ name|List
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -916,8 +928,6 @@ name|ndocs
 argument_list|,
 name|includeSubCollections
 argument_list|,
-literal|true
-argument_list|,
 name|context
 operator|.
 name|getProtectedDocs
@@ -976,6 +986,49 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"FODC0002: can not access collection '"
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|pde
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|line
+argument_list|,
+name|column
+argument_list|,
+literal|"FODC0002: can not access collection '"
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"'"
+argument_list|,
+name|pde
 argument_list|)
 throw|;
 block|}

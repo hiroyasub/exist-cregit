@@ -662,6 +662,8 @@ operator|new
 name|DefaultDocumentSet
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|context
 operator|.
 name|getBroker
@@ -672,6 +674,30 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Permission denied: Insufficient privileges to read resources: "
+operator|+
+name|pde
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pde
+argument_list|)
+throw|;
+block|}
 comment|//	        }
 block|}
 else|else

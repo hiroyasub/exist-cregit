@@ -871,6 +871,8 @@ parameter_list|(
 name|MutableDocumentSet
 name|docs
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -907,6 +909,8 @@ parameter_list|(
 name|XmldbURI
 name|uri
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return deprecated Use XmldbURI instead!      *       * public abstract Collection getCollection(String name, long address);      */
 comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return Database collection      *       * public abstract Collection getCollection(XmldbURI uri, long address);      */
@@ -923,6 +927,8 @@ parameter_list|,
 name|int
 name|lockMode
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1356,6 +1362,8 @@ name|doc
 parameter_list|)
 function_decl|;
 comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *       * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|abstract
 name|void
@@ -1782,6 +1790,8 @@ specifier|abstract
 name|void
 name|cleanUpTempResources
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 * @param forceRemoval Should temporary resources be forcefully removed 	 */
 specifier|public
@@ -1792,6 +1802,8 @@ parameter_list|(
 name|boolean
 name|forceRemoval
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 comment|/** Convenience method that allows to check available memory during broker-related processes. 	 * This method should eventually trigger flush() events. 	 */
 specifier|public
@@ -1812,6 +1824,8 @@ parameter_list|,
 name|MutableDocumentSet
 name|result
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 function_decl|;
 specifier|public
 name|int

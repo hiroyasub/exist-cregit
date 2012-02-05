@@ -101,6 +101,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|PermissionDeniedException
 import|;
 end_import
@@ -964,6 +976,19 @@ name|PermissionDeniedException
 block|{
 comment|//do nothing
 comment|//TODO do we need to check any permissions?
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getUserMask
+parameter_list|()
+block|{
+return|return
+name|Permission
+operator|.
+name|DEFAULT_UMASK
+return|;
 block|}
 block|}
 end_class

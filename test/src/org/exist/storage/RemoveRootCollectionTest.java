@@ -163,7 +163,9 @@ argument_list|,
 name|root
 operator|.
 name|getChildCollectionCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -173,7 +175,9 @@ argument_list|,
 name|root
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -220,7 +224,9 @@ argument_list|,
 name|root
 operator|.
 name|getChildCollectionCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -230,7 +236,9 @@ argument_list|,
 name|root
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -279,7 +287,9 @@ argument_list|,
 name|root
 operator|.
 name|getChildCollectionCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -289,7 +299,9 @@ argument_list|,
 name|root
 operator|.
 name|getDocumentCount
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

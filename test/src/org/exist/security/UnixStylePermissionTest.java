@@ -1649,7 +1649,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwsrwurwu"
+literal|"rwsrwxrwx"
 argument_list|,
 name|permission
 operator|.
@@ -1675,7 +1675,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwurwsrwu"
+literal|"rwxrwsrwx"
 argument_list|,
 name|permission
 operator|.
@@ -1701,7 +1701,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwurwurwt"
+literal|"rwxrwxrwt"
 argument_list|,
 name|permission
 operator|.
@@ -1831,7 +1831,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwurwurwu"
+literal|"rwxrwxrwx"
 argument_list|,
 name|permission
 operator|.
@@ -1855,7 +1855,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwurwu---"
+literal|"rwxrwx---"
 argument_list|,
 name|permission
 operator|.
@@ -1879,7 +1879,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwu------"
+literal|"rwx------"
 argument_list|,
 name|permission
 operator|.
@@ -1903,7 +1903,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"---rwu---"
+literal|"---rwx---"
 argument_list|,
 name|permission
 operator|.
@@ -1927,7 +1927,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"------rwu"
+literal|"------rwx"
 argument_list|,
 name|permission
 operator|.
@@ -1951,7 +1951,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwur--r--"
+literal|"rwxr--r--"
 argument_list|,
 name|permission
 operator|.
@@ -1975,7 +1975,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rwur-----"
+literal|"rwxr-----"
 argument_list|,
 name|permission
 operator|.
@@ -2059,7 +2059,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"user=+read,+write,-update"
+literal|"user=+read,+write,-execute"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2092,7 +2092,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"user=+update,group=+update,other=+update"
+literal|"user=+execute,group=+execute,other=+execute"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2125,7 +2125,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"user=+update,group=+update,other=+update"
+literal|"user=+execute,group=+execute,other=+execute"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2158,7 +2158,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"user=-read,-write,-update,group=-read,-write,-update,other=-read,-write,-update"
+literal|"user=-read,-write,-execute,group=-read,-write,-execute,other=-read,-write,-execute"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2247,7 +2247,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"u+rw-u"
+literal|"u+rw-x"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2280,7 +2280,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"u+u,g+u,o+u"
+literal|"u+x,g+x,o+x"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2313,7 +2313,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"u+u,g+u,o+u"
+literal|"u+x,g+x,o+x"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2346,7 +2346,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"u-rwu,g-rwu,o-rwu"
+literal|"u-rwx,g-rwx,o-rwx"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2468,7 +2468,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"rwurwurwu"
+literal|"rwxrwxrwx"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2501,7 +2501,7 @@ name|permission
 operator|.
 name|setMode
 argument_list|(
-literal|"--u--u--u"
+literal|"--x--x--x"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2612,6 +2612,12 @@ operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
 name|mockSecurityManager
+argument_list|,
+literal|1
+argument_list|,
+literal|1
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 for|for
@@ -2728,19 +2734,6 @@ name|TestableUnixStylePermissionWithCurrentSubject
 extends|extends
 name|UnixStylePermission
 block|{
-specifier|public
-name|TestableUnixStylePermissionWithCurrentSubject
-parameter_list|(
-name|SecurityManager
-name|sm
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|sm
-argument_list|)
-expr_stmt|;
-block|}
 specifier|public
 name|TestableUnixStylePermissionWithCurrentSubject
 parameter_list|(

@@ -748,35 +748,14 @@ operator|=
 name|fileURI
 expr_stmt|;
 comment|// the permissions assigned to this document
-name|Subject
-name|currentSubject
-init|=
-name|pool
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 name|this
 operator|.
 name|permissions
 operator|=
 name|PermissionFactory
 operator|.
-name|getPermission
-argument_list|(
-name|currentSubject
-operator|.
-name|getId
+name|getDefaultResourcePermission
 argument_list|()
-argument_list|,
-name|currentSubject
-operator|.
-name|getDefaultGroup
-argument_list|()
-operator|.
-name|getId
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -969,7 +948,9 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      */
+comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      *       * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setPermissions
@@ -983,7 +964,9 @@ operator|=
 name|perm
 expr_stmt|;
 block|}
-comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      */
+comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      *       * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setMetadata

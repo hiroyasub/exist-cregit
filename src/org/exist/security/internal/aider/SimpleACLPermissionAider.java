@@ -87,6 +87,7 @@ implements|implements
 name|ACLPermission
 block|{
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|ACEAider
