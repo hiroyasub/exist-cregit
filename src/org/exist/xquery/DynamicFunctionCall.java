@@ -176,11 +176,11 @@ name|ExpressionDumper
 name|dumper
 parameter_list|)
 block|{
-name|ExpressionDumper
+name|functionExpr
 operator|.
 name|dump
 argument_list|(
-name|functionExpr
+name|dumper
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -198,11 +198,11 @@ range|:
 name|arguments
 control|)
 block|{
-name|ExpressionDumper
+name|arg
 operator|.
 name|dump
 argument_list|(
-name|arg
+name|dumper
 argument_list|)
 expr_stmt|;
 block|}

@@ -467,6 +467,8 @@ literal|"GLOBAL_VAR"
 block|,
 literal|"FUNCTION_DECL"
 block|,
+literal|"FUNCTION_INLINE"
+block|,
 literal|"PROLOG"
 block|,
 literal|"OPTION"

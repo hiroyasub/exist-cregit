@@ -493,6 +493,13 @@ name|functionDef
 operator|.
 name|getName
 argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|functionDef
+operator|.
+name|getName
+argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
