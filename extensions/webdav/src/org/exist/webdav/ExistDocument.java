@@ -3073,7 +3073,7 @@ comment|// Check if Resource is already locked.
 if|if
 condition|(
 name|userLock
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
