@@ -69,9 +69,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|axis
+name|commons
 operator|.
-name|encoding
+name|codec
+operator|.
+name|binary
 operator|.
 name|Base64
 import|;
@@ -357,7 +359,7 @@ comment|//base64 encode the hash
 return|return
 name|Base64
 operator|.
-name|encode
+name|encodeBase64String
 argument_list|(
 name|hash
 argument_list|(
