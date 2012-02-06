@@ -31,16 +31,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -326,7 +316,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|EXistException
+name|Exception
 name|e
 parameter_list|)
 block|{
