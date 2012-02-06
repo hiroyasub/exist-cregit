@@ -1060,38 +1060,9 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-if|if
-condition|(
-operator|!
-name|getPermissionsNoLock
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission to write to Collection denied for "
-operator|+
-name|this
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|// Wrong place for checking permissions. This method is called when reading
+comment|// the list of documents for the collection, NOT for creating a collection.
+comment|/*if(!getPermissionsNoLock().validate(broker.getSubject(), Permission.WRITE)) {             throw new PermissionDeniedException("Permission to write to Collection denied for " + this.getURI());         }*/
 if|if
 condition|(
 name|doc
