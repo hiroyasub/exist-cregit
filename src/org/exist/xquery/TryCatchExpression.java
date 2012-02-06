@@ -2108,6 +2108,15 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+if|if
+condition|(
+name|t
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 name|StringWriter
 name|sw
 init|=
