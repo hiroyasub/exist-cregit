@@ -365,6 +365,20 @@ name|Observable
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+operator|.
+name|SubCollectionEntry
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is the base class for all database backends. All the basic database  * operations like storing, removing or index access are provided by subclasses  * of this class.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -1937,6 +1951,15 @@ name|backup
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|readCollectionEntry
+parameter_list|(
+name|SubCollectionEntry
+name|entry
+parameter_list|)
 function_decl|;
 block|}
 end_class
