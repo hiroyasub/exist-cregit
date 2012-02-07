@@ -67,8 +67,6 @@ block|{
 specifier|private
 name|String
 name|id
-init|=
-literal|""
 decl_stmt|;
 specifier|private
 name|Subject
@@ -256,7 +254,7 @@ name|currentTimeMillis
 argument_list|()
 operator|-
 name|lastUse
-operator|>
+operator|<=
 literal|30
 operator|*
 literal|1000
