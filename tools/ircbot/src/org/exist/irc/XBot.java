@@ -1766,8 +1766,6 @@ name|PermissionFactory
 operator|.
 name|getPermission
 argument_list|(
-literal|null
-argument_list|,
 name|properties
 operator|.
 name|getProperty
