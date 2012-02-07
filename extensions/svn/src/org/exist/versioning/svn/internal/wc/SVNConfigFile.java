@@ -177,11 +177,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|jfree
+name|apache
 operator|.
-name|util
+name|log4j
 operator|.
-name|Log
+name|Logger
 import|;
 end_import
 
@@ -248,6 +248,20 @@ decl_stmt|;
 specifier|private
 name|long
 name|myLastModified
+decl_stmt|;
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|SVNConfigFile
+operator|.
+name|class
+argument_list|)
 decl_stmt|;
 specifier|public
 name|SVNConfigFile
@@ -1774,7 +1788,7 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|Log
+name|LOG
 operator|.
 name|debug
 argument_list|(
