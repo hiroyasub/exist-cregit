@@ -448,7 +448,7 @@ name|tag
 argument_list|)
 return|;
 block|}
-specifier|private
+specifier|protected
 name|String
 name|currentTag
 decl_stmt|;
