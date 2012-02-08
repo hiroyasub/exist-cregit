@@ -1420,7 +1420,9 @@ name|void
 name|getCollectionResources
 parameter_list|(
 name|Collection
-name|collection
+operator|.
+name|InternalAccess
+name|collectionInternalAccess
 parameter_list|)
 function_decl|;
 comment|/* *      * Retrieve the binary data stored under the resource descriptor      * BinaryDocument.      *       * @param blob      *            the binary document descriptor      * @return the document binary data      */
