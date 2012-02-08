@@ -1911,7 +1911,7 @@ operator|=
 operator|new
 name|JCheckBox
 argument_list|(
-literal|"update"
+literal|"execute"
 argument_list|,
 operator|(
 name|current
