@@ -1599,6 +1599,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+else|else
+block|{
 name|ElementImpl
 name|target
 init|=
@@ -1663,6 +1665,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 name|ElementImpl
