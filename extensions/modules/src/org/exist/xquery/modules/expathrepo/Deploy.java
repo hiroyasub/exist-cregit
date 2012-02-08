@@ -2274,6 +2274,8 @@ argument_list|()
 decl_stmt|;
 name|setPermissions
 argument_list|(
+literal|false
+argument_list|,
 name|MimeType
 operator|.
 name|XML_TYPE
@@ -2890,6 +2892,8 @@ argument_list|)
 expr_stmt|;
 name|setPermissions
 argument_list|(
+literal|true
+argument_list|,
 literal|null
 argument_list|,
 name|collection
@@ -3217,6 +3221,8 @@ argument_list|()
 decl_stmt|;
 name|setPermissions
 argument_list|(
+literal|false
+argument_list|,
 name|mime
 argument_list|,
 name|permission
@@ -3301,6 +3307,8 @@ argument_list|()
 decl_stmt|;
 name|setPermissions
 argument_list|(
+literal|false
+argument_list|,
 name|mime
 argument_list|,
 name|permission
@@ -3367,6 +3375,9 @@ specifier|private
 name|void
 name|setPermissions
 parameter_list|(
+name|boolean
+name|isCollection
+parameter_list|,
 name|MimeType
 name|mime
 parameter_list|,
@@ -3434,6 +3445,9 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|isCollection
+operator|||
+operator|(
 name|mime
 operator|!=
 literal|null
@@ -3452,6 +3466,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+operator|)
 condition|)
 block|{
 name|mode
