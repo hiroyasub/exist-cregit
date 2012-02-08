@@ -1684,9 +1684,38 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|// Wrong place for checking permissions. This method is called when reading
-comment|// the list of documents for the collection, NOT for creating a collection.
-comment|/*if(!getPermissionsNoLock().validate(broker.getSubject(), Permission.WRITE)) {             throw new PermissionDeniedException("Permission to write to Collection denied for " + this.getURI());         }*/
+if|if
+condition|(
+operator|!
+name|getPermissionsNoLock
+argument_list|()
+operator|.
+name|validate
+argument_list|(
+name|broker
+operator|.
+name|getSubject
+argument_list|()
+argument_list|,
+name|Permission
+operator|.
+name|WRITE
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Permission to write to Collection denied for "
+operator|+
+name|this
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|doc
@@ -1722,6 +1751,58 @@ name|e
 parameter_list|)
 block|{
 comment|// abort
+return|return;
+block|}
+name|documents
+operator|.
+name|put
+argument_list|(
+name|doc
+operator|.
+name|getFileURI
+argument_list|()
+operator|.
+name|getRawCollectionPath
+argument_list|()
+argument_list|,
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Add a document to the collection, used by DocumentCallback      *      * @param  doc      */
+comment|//TODO: redesign to make this method private
+specifier|public
+name|void
+name|addDocumentInternal
+parameter_list|(
+name|DocumentImpl
+name|doc
+parameter_list|)
+block|{
+if|if
+condition|(
+name|doc
+operator|.
+name|getDocId
+argument_list|()
+operator|==
+name|DocumentImpl
+operator|.
+name|UNKNOWN_DOCUMENT_ID
+condition|)
+block|{
+comment|//throw new EXistException("Document must have ID.");
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Document must have ID. ["
+operator|+
+name|doc
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 name|documents

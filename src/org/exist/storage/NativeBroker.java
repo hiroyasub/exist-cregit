@@ -22436,14 +22436,8 @@ argument_list|)
 expr_stmt|;
 name|collection
 operator|.
-name|addDocument
+name|addDocumentInternal
 argument_list|(
-literal|null
-argument_list|,
-name|NativeBroker
-operator|.
-name|this
-argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
@@ -22477,22 +22471,6 @@ argument_list|(
 literal|"IOException while reading document data"
 argument_list|,
 name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"PermissionDeniedException while reading document data"
-argument_list|,
-name|pde
 argument_list|)
 expr_stmt|;
 block|}
