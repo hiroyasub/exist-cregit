@@ -726,10 +726,6 @@ operator|=
 name|IS_DBA
 operator||
 name|IS_OWNER
-argument_list|,
-name|group
-operator|=
-name|IS_MEMBER
 argument_list|)
 specifier|private
 name|void
