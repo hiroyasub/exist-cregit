@@ -154,7 +154,7 @@ specifier|public
 class|class
 name|NodeSetHelper
 block|{
-comment|/**      * For two given sets of potential parent and child nodes, find those nodes      * from the child set that actually have parents in the parent set, i.e. the      * parent-child relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * child nodes found in this node set for each parent node. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those parent nodes, for      * which children have been found.      *       * @param dl      *            a node set containing potential child nodes      * @param al      *            a node set containing potential parent nodes      * @param mode      *            selection mode      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the      *            selection.      */
+comment|/**      * For two given sets of potential parent and child nodes, find those nodes      * from the child set that actually have parents in the parent set, i.e. the      * parent-child relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * child nodes found in this node set for each parent node. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those parent nodes, for      * which children have been found.      *       * @param dl A node set containing potential child nodes      * @param al A node set containing potential parent nodes      * @param mode Selection mode      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -614,7 +614,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * For two given sets of potential ancestor and descendant nodes, find those      * nodes from the descendant set that actually have ancestors in the      * ancestor set, i.e. the ancestor-descendant relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * descendant nodes found in this node set for each ancestor. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *       * @param dl      *            a node set containing potential descendant nodes      * @param al      *            a node set containing potential ancestor nodes      * @param mode      *            selection mode      * @param includeSelf      *            if true, check if the ancestor node itself is contained in the      *            set of descendant nodes (descendant-or-self axis)      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the      *            selection.      *       */
+comment|/**      * For two given sets of potential ancestor and descendant nodes, find those      * nodes from the descendant set that actually have ancestors in the      * ancestor set, i.e. the ancestor-descendant relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * descendant nodes found in this node set for each ancestor. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *       * @param dl A node set containing potential descendant nodes      * @param al A node set containing potential ancestor nodes      * @param mode Selection mode      * @param includeSelf If true, check if the ancestor node itself is contained       * in the set of descendant nodes (descendant-or-self axis)      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current       * context will be added to each result of the selection.      *       */
 specifier|public
 specifier|static
 name|NodeSet
@@ -1195,7 +1195,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * For two sets of potential ancestor and descendant nodes, return all the      * real ancestors having a descendant in the descendant set.      *       * @param al      *            node set containing potential ancestors      * @param dl      *            node set containing potential descendants      * @param includeSelf      *            if true, check if the ancestor node itself is contained in      *            this node set (ancestor-or-self axis)      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      */
+comment|/**      * For two sets of potential ancestor and descendant nodes, return all the      * real ancestors having a descendant in the descendant set.      *       * @param al Node set containing potential ancestors      * @param dl Node set containing potential descendants      * @param includeSelf If true, check if the ancestor node itself       * is contained in this node set (ancestor-or-self axis)      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the of the      * selection.      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -1634,7 +1634,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Select all nodes from the passed set of potential siblings, which are      * preceding siblings of the nodes in the other set.      *       * @param candidates      *            the node set to check      * @param references      *            a node set containing potential siblings      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * preceding siblings of the nodes in the other set.      *       * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},       * the current context will be added to each result of the of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -1911,7 +1911,6 @@ argument_list|()
 operator|)
 condition|)
 block|{
-comment|//Why did I have to invert the test ? ----------------------------^^^^^
 comment|// wrong parent: proceed
 name|firstCandidate
 operator|=
@@ -2093,7 +2092,6 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
-comment|// TODO : break ?
 name|candidate
 operator|=
 operator|(
@@ -2156,7 +2154,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Select all nodes from the passed set of potential siblings, which are      * following siblings of the nodes in the other set.      *       * @param candidates      *            the node set to check      * @param references      *            a node set containing potential siblings      * @param contextId      *            used to track context nodes when evaluating predicate      *            expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *            the current context will be added to each result of the of the      *            selection.      */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * following siblings of the nodes in the other set.      *       * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
@@ -2435,7 +2433,6 @@ argument_list|()
 operator|)
 condition|)
 block|{
-comment|//Why did I have to invert the test ? ----------------------------^^^^^
 comment|// wrong parent: proceed
 name|firstCandidate
 operator|=

@@ -618,7 +618,7 @@ name|CHILD_AXIS
 condition|)
 block|{
 comment|//WARNING : get() realizes virtual node sets
-comment|//TODO : investigate more efficent solutions
+comment|//TODO : investigate more efficient solutions
 name|NodeProxy
 name|parent
 init|=
@@ -745,7 +745,7 @@ name|DESCENDANT_SELF_AXIS
 condition|)
 block|{
 comment|//WARNING : get() realizes virtual node sets
-comment|//TODO : investigate more efficent solutions
+comment|//TODO : investigate more efficient solutions
 name|NodeProxy
 name|parent
 init|=
@@ -817,7 +817,7 @@ name|candidateFirstParent
 return|;
 block|}
 block|}
-comment|// We need a real parent : keep the candidate and continue to ierate from this one
+comment|// We need a real parent : keep the candidate and continue to iterate from this one
 return|return
 name|getFirstParent
 argument_list|(
@@ -837,7 +837,7 @@ return|;
 block|}
 comment|// is the node's parent in the context set?
 comment|//WARNING : get() realizes virtual node sets
-comment|//TODO : investigate more efficent solutions
+comment|//TODO : investigate more efficient solutions
 name|NodeProxy
 name|parentOfSelf
 init|=
@@ -878,7 +878,7 @@ condition|)
 block|{
 comment|// if we are on the descendant axis, we return the first node
 comment|// we found while walking bottom-up.
-comment|// Otherwise, we return the last one (which is node)
+comment|// Otherwise, we return the last one (which is the node itself)
 name|self
 operator|=
 name|candidateFirstParent
@@ -1977,12 +1977,6 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
-comment|//TODO : is this StroredNode construction necessary ?
-comment|//Iterator domIter = proxy.getDocument().getBroker().getNodeIterator(new StoredNode(proxy));
-comment|//StoredNode node = (StoredNode) domIter.next();
-comment|//node.setOwnerDocument(proxy.getDocument());
-comment|//node.setNodeId(proxy.getNodeId());
-comment|//addChildren(proxy, result, node, domIter, 0);
 name|addChildren
 argument_list|(
 name|proxy
@@ -3512,7 +3506,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-comment|//result.append("Virtual#").append(super.toString());
 return|return
 name|result
 operator|.

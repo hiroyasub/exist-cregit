@@ -1131,7 +1131,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1152,7 +1152,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1173,7 +1173,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1242,9 +1242,6 @@ argument_list|(
 name|siblingId
 argument_list|)
 return|;
-comment|//PreviousSiblingVisitor visitor = new PreviousSiblingVisitor(this);
-comment|//((StoredNode) parent).accept(visitor);
-comment|//return visitor.last;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNextSibling()      */
 specifier|public
@@ -1418,7 +1415,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1439,7 +1436,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1460,7 +1457,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1506,14 +1503,6 @@ argument_list|(
 name|siblingId
 argument_list|)
 return|;
-comment|//Iterator iterator = getBroker().getNodeIterator(this);
-comment|//iterator.next();
-comment|//getLastNode(iterator, this);
-comment|//if (iterator.hasNext()) {
-comment|//StoredNode sibling = (StoredNode) iterator.next();
-comment|//return sibling.nodeId.isSiblingOf(nodeId) ? sibling : null;
-comment|//}
-comment|//return null;
 block|}
 specifier|protected
 name|StoredNode
@@ -1594,7 +1583,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1615,7 +1604,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1636,7 +1625,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Internal error while reading child nodes: "
 operator|+
@@ -1665,10 +1654,6 @@ block|}
 return|return
 literal|null
 return|;
-comment|//final Iterator iterator = getBroker().getNodeIterator(node);
-comment|//TODO : hasNext() test ? -pb
-comment|//iterator.next();
-comment|//return getLastNode(iterator, node);
 block|}
 specifier|protected
 name|StoredNode
@@ -1926,7 +1911,6 @@ expr_stmt|;
 name|clear
 argument_list|()
 expr_stmt|;
-comment|//NodeObjectPool.getInstance().returnNode(this);
 name|NodePool
 operator|.
 name|getInstance
@@ -2001,7 +1985,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while reading node: "
 operator|+

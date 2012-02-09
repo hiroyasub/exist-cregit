@@ -725,7 +725,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      * Constructs a match starting with this match and followed by the other match if possible      *      * @param other      *            a match following this match      * @param minDistance      *            the minimum distance between this and the other match      * @param maxDistance      *            the maximum distance between this and the other match      * @return a match starting with this match and followed by the other match in the specified distance range if such      *         a match exists or null if no such match found      */
+comment|/**      * Constructs a match starting with this match and followed by the other match if possible      *      * @param other a match following this match      * @param minDistance the minimum distance between this and the other match      * @param maxDistance the maximum distance between this and the other match      * @return a match starting with this match and followed by       *  the other match in the specified distance range if such      *  a match exists or null if no such match found      */
 specifier|public
 name|Match
 name|followedBy
@@ -953,7 +953,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Expand the match backwards by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand      *            the minimum number of characters to expand this match by      * @param maxExpand      *            the maximum number of characters to expand this match by      * @return the expanded match if possible, or null if no offset is far enough from the start.      */
+comment|/**      * Expand the match backwards by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @return The expanded match if possible, or null if no offset is far enough from the start.      */
 specifier|public
 name|Match
 name|expandBackward
@@ -1098,7 +1098,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand      *            the minimum number of characters to expand this match by      * @param maxExpand      *            the maximum number of characters to expand this match by      * @param dataLength      *            the length of the valued of the node, limiting the expansion      * @return the expanded match if possible, or null if no offset is far enough from the end.      */
+comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @param dataLength The length of the valued of the node, limiting the expansion      * @return The expanded match if possible, or null if no offset is far enough from the end.      */
 specifier|public
 name|Match
 name|expandForward
@@ -1339,7 +1339,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Creates a match containing only those offsets starting at the given position.      *      * @param pos      *            required offset      * @return a match containing only offsets starting at the given position, or null if no such offset exists.      */
+comment|/**      * Creates a match containing only those offsets starting at the given position.      *      * @param pos Required offset      * @return a match containing only offsets starting at the given position,       * or null if no such offset exists.      */
 specifier|public
 name|Match
 name|filterOffsetsStartingAt
@@ -1385,7 +1385,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a match containing only those offsets ending at the given position.      *      * @param pos      *            required position of the end of the matches      * @return a match containing only offsets ending at the given position, or null if no such offset exists.      */
+comment|/**      * Creates a match containing only those offsets ending at the given position.      *      * @param pos Required position of the end of the matches      * @return A match containing only offsets ending at the given position,       * or null if no such offset exists.      */
 specifier|public
 name|Match
 name|filterOffsetsEndingAt
@@ -1435,7 +1435,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a match containing only non-overlapping offsets, preferring longer matches, and then matches from left to      * right.      *      * @return a match containing only non-overlapping offsets      */
+comment|/**      * Creates a match containing only non-overlapping offsets,       * preferring longer matches, and then matches from left to right.      *      * @return a match containing only non-overlapping offsets      */
 specifier|public
 name|Match
 name|filterOutOverlappingOffsets
@@ -1933,7 +1933,7 @@ name|matchTerm
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Used to sort matches. Terms are compared by their string  	 * length to have the longest string first. 	 *  	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+comment|/**      * Used to sort matches. Terms are compared by their string       * length to have the longest string first.      *       * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 annotation|@
 name|Override
 specifier|public

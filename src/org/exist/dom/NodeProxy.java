@@ -1028,7 +1028,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot compare persistent node with in-memory node"
+literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
 name|NodeProxy
@@ -1096,7 +1096,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot compare persistent node with in-memory node"
+literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
 name|NodeProxy
@@ -1177,7 +1177,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"cannot compare persistent node with in-memory node"
+literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
 name|NodeProxy
@@ -1331,9 +1331,6 @@ name|short
 name|nodeType
 parameter_list|)
 block|{
-comment|//        if (this.nodeType != UNKNOWN_NODE_TYPE&& this.nodeType != nodeType)
-comment|//            throw new IllegalArgumentException("Node type already affected");
-comment|//            throw new IllegalArgumentException("Node type already affected");
 name|this
 operator|.
 name|nodeType
@@ -1956,7 +1953,6 @@ name|getNextDirect
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        System.out.println(debugContext());
 block|}
 comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      * @param addContextId an<code>int</code> value      */
 specifier|public
@@ -1998,8 +1994,6 @@ name|int
 name|contextId
 parameter_list|)
 block|{
-comment|//        context = null;
-comment|//        return;
 if|if
 condition|(
 name|contextId
@@ -2223,7 +2217,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
-comment|//TODO : return Type.DOCUMENT for somein-memory nodes :
+comment|//TODO : return Type.DOCUMENT for some in-memory nodes :
 comment|//http://sourceforge.net/tracker/index.php?func=detail&aid=1730690&group_id=17691&atid=117691
 comment|//Ideally compute this when proxy is constructed
 return|return
@@ -2464,6 +2458,7 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : raise an exception here ! -pb
 block|}
 finally|finally
 block|{
@@ -2528,6 +2523,7 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : raise an exception here !
 block|}
 finally|finally
 block|{
@@ -2749,6 +2745,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|receiver
 operator|.
 name|addReferenceNode
@@ -2756,6 +2753,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
@@ -3081,6 +3079,7 @@ name|boolean
 name|cached
 parameter_list|)
 block|{
+comment|//TODO : return something useful ? -pb
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 specifier|public
@@ -3796,9 +3795,6 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
-comment|//        MutableDocumentSet docs = new DefaultDocumentSet(1);
-comment|//        docs.add(doc);
-comment|//        return docs;
 return|return
 name|this
 return|;
@@ -3860,6 +3856,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 block|}
 return|;
@@ -4194,7 +4191,7 @@ name|this
 argument_list|)
 expr_stmt|;
 name|NodeId
-name|pid
+name|parentID
 init|=
 name|nodeId
 operator|.
@@ -4203,7 +4200,7 @@ argument_list|()
 decl_stmt|;
 while|while
 condition|(
-name|pid
+name|parentID
 operator|!=
 literal|null
 condition|)
@@ -4217,7 +4214,7 @@ argument_list|(
 name|getDocument
 argument_list|()
 argument_list|,
-name|pid
+name|parentID
 argument_list|,
 name|Node
 operator|.
@@ -4263,9 +4260,9 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
-name|pid
+name|parentID
 operator|=
-name|pid
+name|parentID
 operator|.
 name|getParentId
 argument_list|()
@@ -4969,7 +4966,6 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
-comment|//        System.out.println("Retrieving child nodes for " + node + ": " + children.getLength());
 name|NewArrayNodeSet
 name|result
 init|=
@@ -5246,7 +5242,7 @@ literal|"Method not supported"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#nextItem() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
 specifier|public
 name|Item
 name|nextItem
@@ -5346,6 +5342,7 @@ name|void
 name|remove
 parameter_list|()
 block|{
+comment|//Raise exception ? -pb
 block|}
 block|}
 return|;
@@ -5953,14 +5950,6 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//        System.out.println("Retrieving child nodes for " + node + ": " + children.getLength());
-name|NewArrayNodeSet
-name|result
-init|=
-operator|new
-name|NewArrayNodeSet
-argument_list|()
-decl_stmt|;
 name|StoredNode
 name|child
 decl_stmt|;

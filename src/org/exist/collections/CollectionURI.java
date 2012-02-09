@@ -51,9 +51,6 @@ name|String
 name|path
 parameter_list|)
 block|{
-comment|//    	uri = new char[path.length()];
-comment|//        path.getChars(0, path.length(), uri, 0);
-comment|//        length = path.length();
 name|append
 argument_list|(
 name|path

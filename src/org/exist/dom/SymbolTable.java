@@ -1060,8 +1060,7 @@ name|key
 argument_list|)
 expr_stmt|;
 break|break;
-default|default:
-comment|//do nothing
+comment|//Removed default clause
 block|}
 block|}
 comment|/**      * Legacy method: read a symbol table written by a previous eXist version.      *       * @param istream      * @throws IOException      */
@@ -1353,7 +1352,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"file not found: "
+literal|"File not found: "
 operator|+
 name|this
 operator|.
@@ -1375,7 +1374,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"io error occurred while creating "
+literal|"IO error occurred while creating "
 operator|+
 name|this
 operator|.
@@ -1460,7 +1459,9 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Symbol table was created by an older or newer version of eXist"
+literal|"Symbol table was created by an older"
+operator|+
+literal|"or newer version of eXist"
 operator|+
 literal|" (file id: "
 operator|+
@@ -1496,7 +1497,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"could not read "
+literal|"Could not read "
 operator|+
 name|this
 operator|.
@@ -1518,7 +1519,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"io error occurred while reading "
+literal|"IO error occurred while reading "
 operator|+
 name|this
 operator|.
@@ -1616,6 +1617,7 @@ parameter_list|()
 throws|throws
 name|EXistException
 block|{
+comment|//Noting to do ? -pb
 block|}
 specifier|private
 name|OutputStream
@@ -1841,57 +1843,7 @@ name|id
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|void
-name|ensureCapacity
-parameter_list|()
-block|{
-if|if
-condition|(
-name|offset
-operator|==
-name|symbolsById
-operator|.
-name|length
-condition|)
-block|{
-name|String
-index|[]
-name|newSymbolsById
-init|=
-operator|new
-name|String
-index|[
-operator|(
-name|offset
-operator|*
-literal|3
-operator|)
-operator|/
-literal|2
-index|]
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|symbolsById
-argument_list|,
-literal|0
-argument_list|,
-name|newSymbolsById
-argument_list|,
-literal|0
-argument_list|,
-name|offset
-argument_list|)
-expr_stmt|;
-name|symbolsById
-operator|=
-name|newSymbolsById
-expr_stmt|;
-block|}
-block|}
+comment|/* Apparently unused. Commented out -pb         private void ensureCapacity() {             if(offset == symbolsById.length) {                 String[] newSymbolsById = new String[(offset * 3) / 2];                 System.arraycopy(symbolsById, 0, newSymbolsById, 0, offset);                 symbolsById = newSymbolsById;             }         }         */
 specifier|protected
 name|String
 index|[]
@@ -2037,7 +1989,8 @@ argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
-comment|//TODO we use "++offset" here instead of "offset++", because the system expects id's to start at 1, not 0
+comment|//TODO we use "++offset" here instead of "offset++",
+comment|//because the system expects id's to start at 1, not 0
 name|write
 argument_list|(
 name|id
@@ -2303,7 +2256,7 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|/*              For attributes, Dont store '@' in in-memory mapping of id -> attrName              enables faster retrieval              */
+comment|/*              For attributes, Don't store '@' in in-memory mapping of id -> attrName              enables faster retrieval              */
 if|if
 condition|(
 name|name

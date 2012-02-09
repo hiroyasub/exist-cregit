@@ -384,7 +384,6 @@ operator|.
 name|TEXT_NODE
 argument_list|)
 expr_stmt|;
-comment|//            text = (TextImpl)NodeObjectPool.getInstance().borrowNode(TextImpl.class);
 else|else
 name|text
 operator|=
@@ -796,10 +795,12 @@ argument_list|()
 return|;
 block|}
 else|else
+block|{
 return|return
 name|toString
 argument_list|()
 return|;
+block|}
 block|}
 specifier|public
 name|String
@@ -841,7 +842,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace() 	 */
+comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace()      */
 specifier|public
 name|boolean
 name|isElementContentWhitespace
@@ -852,7 +853,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#getWholeText() 	 */
+comment|/** ? @see org.w3c.dom.Text#getWholeText()      */
 specifier|public
 name|String
 name|getWholeText
@@ -863,7 +864,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      */
 specifier|public
 name|Text
 name|replaceWholeText
@@ -879,7 +880,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 specifier|public
 name|String
 name|getBaseURI
@@ -903,11 +904,12 @@ operator|.
 name|getBaseURI
 argument_list|()
 return|;
+else|else
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -923,7 +925,7 @@ return|return
 literal|0
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
 specifier|public
 name|String
 name|getTextContent
@@ -936,7 +938,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
 specifier|public
 name|void
 name|setTextContent
@@ -949,7 +951,7 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isSameNode
@@ -963,7 +965,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
 specifier|public
 name|String
 name|lookupPrefix
@@ -977,7 +979,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -991,7 +993,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -1005,7 +1007,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isEqualNode
@@ -1019,7 +1021,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
 specifier|public
 name|Object
 name|getFeature
@@ -1036,7 +1038,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
 specifier|public
 name|Object
 name|setUserData
@@ -1056,7 +1058,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
 specifier|public
 name|Object
 name|getUserData

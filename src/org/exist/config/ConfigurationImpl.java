@@ -1388,7 +1388,6 @@ block|}
 return|return
 name|properties
 return|;
-comment|/*         Set<String> properties = new HashSet<String>();         Map<String, Boolean> map = new HashMap<String, Boolean>();         //XXX: detect single element as field value         NodeList children = getChildNodes();         for (int i = 0; i< children.getLength(); i++) {             Node child = children.item(i);             if (child.getNodeType() == Node.ATTRIBUTE_NODE) {                 //properties.add(child.getNodeName());             } else if (child.getNodeType() == Node.ELEMENT_NODE) {                 map.put(child.getNodeName(), map.containsKey(child.getNodeName()));             }         }         for (Entry<String, Boolean> entry : map.entrySet()) {             if (!entry.getValue())                 properties.add(entry.getKey());         }          return properties;          */
 block|}
 annotation|@
 name|Override
@@ -1596,7 +1595,6 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//Configurator.save(getProxyObject().getDocumentAtExist());
 block|}
 catch|catch
 parameter_list|(
@@ -1707,7 +1705,6 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//Configurator.save(getProxyObject().getDocumentAtExist());
 block|}
 catch|catch
 parameter_list|(
@@ -1798,7 +1795,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//LOG.warn("Configuration must have id ["+obj+"] to perform 'equals'.");
 return|return
 literal|false
 return|;
@@ -1887,7 +1883,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//LOG.warn("Configuration must have id ["+obj+"] to perform 'equals'.");
 return|return
 literal|false
 return|;

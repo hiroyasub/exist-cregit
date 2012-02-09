@@ -156,6 +156,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|!
@@ -169,10 +170,14 @@ name|i
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 literal|false
 expr_stmt|;
+break|break;
+block|}
+block|}
 return|return
 name|result
 return|;

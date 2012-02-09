@@ -341,12 +341,6 @@ name|docIter
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|CollectionIterator
-name|collectionIter
-init|=
-literal|null
-decl_stmt|;
 comment|//  used to keep track of the type of added items.
 specifier|private
 name|int
@@ -1795,7 +1789,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//array[i].addContextNode(contextId, parent);
 name|nodes
 index|[
 name|i
@@ -1861,7 +1854,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -2177,7 +2169,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//array[i].addContextNode(contextId, parent);
 name|nodes
 index|[
 name|i
@@ -2243,7 +2234,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -2384,8 +2374,7 @@ name|boolean
 name|copyMatches
 parameter_list|)
 block|{
-comment|// do a binary search to pick some node in the range of valid child
-comment|// ids
+comment|// do a binary search to pick some node in the range of valid child ids
 name|int
 name|low
 init|=
@@ -3069,10 +3058,6 @@ block|}
 block|}
 block|}
 name|docIter
-operator|=
-literal|null
-expr_stmt|;
-name|collectionIter
 operator|=
 literal|null
 expr_stmt|;
@@ -5270,15 +5255,6 @@ block|{
 return|return
 name|this
 return|;
-comment|//        if(cachedDocuments != null)
-comment|//            return cachedDocuments;
-comment|//        sort();
-comment|//        cachedDocuments = new DefaultDocumentSet(documentCount);
-comment|//        for (int i = 0; i< documentCount; i++) {
-comment|//            cachedDocuments.add(nodes[documentOffsets[i]].getDocument(), false);
-comment|//        }
-comment|//        isSorted = true;
-comment|//        return cachedDocuments;
 block|}
 comment|/**      * The method<code>setDocumentSet</code>      *      * @param docs a<code>DocumentSet</code> value      */
 specifier|public
@@ -6186,155 +6162,45 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The class<code>CollectionIterator</code>      *      */
-specifier|private
-class|class
-name|CollectionIterator
-implements|implements
-name|Iterator
-argument_list|<
-name|Collection
-argument_list|>
-block|{
-name|Collection
-name|nextCollection
-init|=
-literal|null
-decl_stmt|;
-name|int
-name|currentDoc
-init|=
-literal|0
-decl_stmt|;
-name|CollectionIterator
-parameter_list|()
-block|{
-name|findNext
-argument_list|()
-expr_stmt|;
-block|}
-specifier|private
-name|void
-name|findNext
-parameter_list|()
-block|{
-while|while
-condition|(
-name|currentDoc
-operator|<
-name|documentCount
-condition|)
-block|{
-if|if
-condition|(
-name|nextCollection
-operator|==
-literal|null
-operator|||
-name|nextCollection
-operator|!=
-name|nodes
-index|[
-name|documentOffsets
-index|[
-name|currentDoc
-index|]
-index|]
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getCollection
-argument_list|()
-condition|)
-block|{
-name|nextCollection
-operator|=
-name|nodes
-index|[
-name|documentOffsets
-index|[
-name|currentDoc
-index|]
-index|]
-operator|.
-name|getDocument
-argument_list|()
-operator|.
-name|getCollection
-argument_list|()
-expr_stmt|;
-return|return;
-block|}
-name|currentDoc
-operator|++
-expr_stmt|;
-block|}
-name|nextCollection
-operator|=
-literal|null
-expr_stmt|;
-block|}
+comment|//Unused : commented out -pb
+comment|//private class CollectionIterator implements Iterator<Collection> {
+comment|//Collection nextCollection = null;
+comment|//int currentDoc = 0;
+comment|//CollectionIterator() {
+comment|//findNext();
+comment|//}
+comment|//private void findNext() {
+comment|//while (currentDoc< documentCount) {
+comment|//if (nextCollection == null ||
+comment|//nextCollection != nodes[documentOffsets[currentDoc]].getDocument().getCollection()) {
+comment|//nextCollection = nodes[documentOffsets[currentDoc]].getDocument().getCollection();
+comment|//return;
+comment|//}
+comment|//currentDoc++;
+comment|//}
+comment|//nextCollection = null;
+comment|//}
 comment|/**          * The method<code>hasNext</code>          *          * @return a<code>boolean</code> value          */
-specifier|public
-name|boolean
-name|hasNext
-parameter_list|()
-block|{
-return|return
-name|nextCollection
-operator|!=
-literal|null
-return|;
-block|}
+comment|//public boolean hasNext() {
+comment|//return nextCollection != null;
+comment|//}
 comment|/**          * The method<code>next</code>          *          * @return an<code>Object</code> value          */
-specifier|public
-name|Collection
-name|next
-parameter_list|()
-block|{
-name|Collection
-name|current
-init|=
-name|nextCollection
-decl_stmt|;
-name|findNext
-argument_list|()
-expr_stmt|;
-return|return
-name|current
-return|;
-block|}
+comment|//public Collection next() {
+comment|//Collection current = nextCollection;
+comment|//findNext();
+comment|//return current;
+comment|//}
 comment|/**          * The method<code>remove</code>          *          */
-specifier|public
-name|void
-name|remove
-parameter_list|()
-block|{
+comment|//public void remove() {
 comment|// not needed
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|()
-throw|;
-block|}
-specifier|protected
-name|CollectionIterator
-name|reset
-parameter_list|()
-block|{
-name|nextCollection
-operator|=
-literal|null
-expr_stmt|;
-name|currentDoc
-operator|=
-literal|0
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-block|}
+comment|//throw new IllegalStateException();
+comment|//}
+comment|//protected CollectionIterator reset() {
+comment|//nextCollection = null;
+comment|//currentDoc = 0;
+comment|//return this;
+comment|//}
+comment|//}
 comment|/*      * (non-Javadoc)      *      * @see org.exist.dom.AbstractNodeSet#hasChanged(int)      */
 specifier|public
 name|boolean
