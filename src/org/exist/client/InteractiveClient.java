@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2011 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -875,6 +875,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|validation
+operator|.
+name|service
+operator|.
+name|ValidationService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|CollectionManagementServiceImpl
@@ -1272,7 +1286,7 @@ specifier|static
 name|String
 name|EDIT_CMD
 init|=
-literal|"xemacs $file"
+literal|"emacsclient -t $file"
 decl_stmt|;
 specifier|protected
 specifier|static
@@ -1733,6 +1747,16 @@ expr_stmt|;
 name|messageln
 argument_list|(
 literal|"                     argument shows current settings."
+argument_list|)
+expr_stmt|;
+name|messageln
+argument_list|(
+literal|"validate [document]  validate xml document with system xml catalog."
+argument_list|)
+expr_stmt|;
+name|messageln
+argument_list|(
+literal|"validate [document] [grammar]  validate xml document with "
 argument_list|)
 expr_stmt|;
 name|messageln
@@ -3391,10 +3415,15 @@ name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
+name|URIUtils
+operator|.
+name|urlEncodeUtf8
+argument_list|(
 name|args
 index|[
 literal|1
 index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -6932,6 +6961,117 @@ block|{
 return|return
 literal|false
 return|;
+block|}
+if|else if
+condition|(
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+literal|"validate"
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|<
+literal|2
+condition|)
+name|messageln
+argument_list|(
+literal|"missing document name."
+argument_list|)
+expr_stmt|;
+else|else
+block|{
+name|ValidationService
+name|validationService
+init|=
+operator|(
+name|ValidationService
+operator|)
+name|current
+operator|.
+name|getService
+argument_list|(
+literal|"ValidationService"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
+name|boolean
+name|valid
+init|=
+literal|false
+decl_stmt|;
+if|if
+condition|(
+name|args
+operator|.
+name|length
+operator|==
+literal|2
+condition|)
+block|{
+name|valid
+operator|=
+name|validationService
+operator|.
+name|validateResource
+argument_list|(
+name|args
+index|[
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|valid
+operator|=
+name|validationService
+operator|.
+name|validateResource
+argument_list|(
+name|args
+index|[
+literal|1
+index|]
+argument_list|,
+name|args
+index|[
+literal|2
+index|]
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|valid
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"document is valid."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|messageln
+argument_list|(
+literal|"document is not valid."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|//XXX:make it pluggable
 block|}
 if|else if
@@ -15784,14 +15924,14 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|", Copyright (C) 2001-2011 The eXist-db Project\n"
+literal|", Copyright (C) 2001-2012 The eXist-db Project\n"
 argument_list|)
 expr_stmt|;
 name|builder
 operator|.
 name|append
 argument_list|(
-literal|"eXist comes with ABSOLUTELY NO WARRANTY.\n"
+literal|"eXist-db comes with ABSOLUTELY NO WARRANTY.\n"
 argument_list|)
 expr_stmt|;
 name|builder
