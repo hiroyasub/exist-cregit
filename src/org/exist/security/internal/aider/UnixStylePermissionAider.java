@@ -1379,6 +1379,24 @@ literal|"Not supported yet."
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|isCurrentSubjectInGroup
+parameter_list|(
+name|int
+name|groupId
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not supported yet."
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

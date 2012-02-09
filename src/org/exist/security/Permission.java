@@ -642,6 +642,14 @@ name|boolean
 name|isCurrentSubjectInGroup
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|isCurrentSubjectInGroup
+parameter_list|(
+name|int
+name|groupId
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
