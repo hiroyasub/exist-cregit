@@ -224,7 +224,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"EXPath HTTP Client http://expath.org/spec/http-client"
+literal|"EXPath ZIP Module http://expath.org/spec/zip"
 return|;
 block|}
 annotation|@
