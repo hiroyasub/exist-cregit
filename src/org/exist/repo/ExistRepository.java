@@ -526,7 +526,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot find module from expath repository, but it should be there"
+literal|"Cannot find module class from EXPath repository: "
+operator|+
+name|name
 argument_list|,
 name|ex
 argument_list|)
@@ -542,7 +544,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Problem instantiating module from expath repository"
+literal|"Problem instantiating module class from EXPath repository: "
+operator|+
+name|name
 argument_list|,
 name|ex
 argument_list|)
@@ -558,7 +562,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot access expath repository directory"
+literal|"Problem instantiating module class from EXPath repository: "
+operator|+
+name|name
 argument_list|,
 name|ex
 argument_list|)
@@ -574,7 +580,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"The module ctor threw an exception"
+literal|"Problem instantiating module class from EXPath repository: "
+operator|+
+name|name
 argument_list|,
 name|ex
 argument_list|)
@@ -590,7 +598,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Problem casting module from expath repository"
+literal|"The class configured in EXPath repository is not a Module: "
+operator|+
+name|name
 argument_list|,
 name|ex
 argument_list|)
