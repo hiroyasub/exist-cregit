@@ -633,7 +633,7 @@ name|ObjectHashSet
 argument_list|<
 name|XmldbURI
 argument_list|>
-name|subcollections
+name|subCollections
 init|=
 operator|new
 name|ObjectHashSet
@@ -713,6 +713,10 @@ name|isTempCollection
 init|=
 literal|false
 decl_stmt|;
+specifier|private
+name|Permission
+name|permissions
+decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
@@ -720,16 +724,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-comment|//Nothing to do
-comment|// the permissions assigned to this collection
-name|Subject
-name|currentSubject
-init|=
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
+comment|//The permissions assigned to this collection
 name|permissions
 operator|=
 name|PermissionFactory
@@ -738,10 +733,6 @@ name|getDefaultCollectionPermission
 argument_list|()
 expr_stmt|;
 block|}
-specifier|private
-name|Permission
-name|permissions
-decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
@@ -890,14 +881,14 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|subcollections
+name|subCollections
 operator|.
 name|contains
 argument_list|(
 name|childName
 argument_list|)
 condition|)
-name|subcollections
+name|subCollections
 operator|.
 name|add
 argument_list|(
@@ -909,7 +900,6 @@ condition|(
 name|isNew
 condition|)
 block|{
-comment|//Account user = broker.getSubject();
 name|child
 operator|.
 name|setCreationTime
@@ -920,7 +910,6 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/* child.permissions.setOwner(broker.getSubject(), user);             CollectionConfiguration config = getConfiguration(broker);             String group = user.getPrimaryGroup();             if (config != null){                 group = config.getDefCollGroup(user);                 child.permissions.setMode(config.getDefCollPermissions());             }             child.permissions.setGroup(broker.getSubject(), group);              */
 block|}
 block|}
 specifier|public
@@ -966,7 +955,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|contains
 argument_list|(
@@ -1354,16 +1343,16 @@ name|Iterator
 argument_list|<
 name|XmldbURI
 argument_list|>
-name|itSubCollection
+name|subCollectionIterator
 init|=
-name|subcollections
+name|subCollections
 operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
 while|while
 condition|(
-name|itSubCollection
+name|subCollectionIterator
 operator|.
 name|hasNext
 argument_list|()
@@ -1373,7 +1362,7 @@ specifier|final
 name|XmldbURI
 name|subCollectionURI
 init|=
-name|itSubCollection
+name|subCollectionIterator
 operator|.
 name|next
 argument_list|()
@@ -1640,14 +1629,14 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
-name|subcollections
+name|subCollections
 operator|.
 name|remove
 argument_list|(
 name|childName
 argument_list|)
 expr_stmt|;
-name|subcollections
+name|subCollections
 operator|.
 name|add
 argument_list|(
@@ -1715,6 +1704,7 @@ name|DocumentImpl
 operator|.
 name|UNKNOWN_DOCUMENT_ID
 condition|)
+block|{
 try|try
 block|{
 name|doc
@@ -1738,8 +1728,23 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Collection error "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 comment|// abort
 return|return;
+block|}
 block|}
 name|documents
 operator|.
@@ -1873,7 +1878,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|stableIterator
 argument_list|()
@@ -1961,13 +1966,13 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|stableIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Load all collections below this collections      * and return them in a List.      *      * @return List      */
+comment|/**      * Return the collections below this collection      *      * @return List      */
 specifier|public
 name|List
 argument_list|<
@@ -2021,7 +2026,7 @@ name|ArrayList
 argument_list|<
 name|Collection
 argument_list|>
-name|cl
+name|collectionList
 init|=
 operator|new
 name|ArrayList
@@ -2029,7 +2034,7 @@ argument_list|<
 name|Collection
 argument_list|>
 argument_list|(
-name|subcollections
+name|subCollections
 operator|.
 name|size
 argument_list|()
@@ -2061,7 +2066,7 @@ name|XmldbURI
 argument_list|>
 name|i
 init|=
-name|subcollections
+name|subCollections
 operator|.
 name|iterator
 argument_list|()
@@ -2110,7 +2115,7 @@ name|READ
 argument_list|)
 condition|)
 block|{
-name|cl
+name|collectionList
 operator|.
 name|add
 argument_list|(
@@ -2128,7 +2133,8 @@ argument_list|)
 operator|>
 literal|0
 condition|)
-name|cl
+comment|//Recursive call
+name|collectionList
 operator|.
 name|addAll
 argument_list|(
@@ -2178,7 +2184,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|cl
+name|collectionList
 return|;
 block|}
 specifier|public
@@ -2281,7 +2287,7 @@ comment|// get a list of subcollection URIs. We will process them after unlockin
 comment|// otherwise we may deadlock ourselves
 name|subColls
 operator|=
-name|subcollections
+name|subCollections
 operator|.
 name|keys
 argument_list|()
@@ -2484,7 +2490,7 @@ comment|// get a list of subcollection URIs. We will process them after unlockin
 comment|// otherwise we may deadlock ourselves
 name|subColls
 operator|=
-name|subcollections
+name|subCollections
 operator|.
 name|keys
 argument_list|()
@@ -3185,7 +3191,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|size
 argument_list|()
@@ -3285,7 +3291,7 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|&&
-name|subcollections
+name|subCollections
 operator|.
 name|isEmpty
 argument_list|()
@@ -4110,7 +4116,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|contains
 argument_list|(
@@ -4136,9 +4142,9 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : ouch ! -pb
+comment|//TODO : ouch ! Should we return at any price ? Xithout even logging ? -pb
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|contains
 argument_list|(
@@ -4203,7 +4209,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|subcollections
+name|subCollections
 operator|.
 name|contains
 argument_list|(
@@ -4349,14 +4355,14 @@ name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|subcollections
+name|subCollections
 operator|.
 name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
 name|XmldbURI
-name|childColl
+name|childCollectionURI
 decl_stmt|;
 for|for
 control|(
@@ -4366,7 +4372,7 @@ name|XmldbURI
 argument_list|>
 name|i
 init|=
-name|subcollections
+name|subCollections
 operator|.
 name|iterator
 argument_list|()
@@ -4378,7 +4384,7 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|childColl
+name|childCollectionURI
 operator|=
 name|i
 operator|.
@@ -4389,7 +4395,7 @@ name|ostream
 operator|.
 name|writeUTF
 argument_list|(
-name|childColl
+name|childCollectionURI
 operator|.
 name|toString
 argument_list|()
@@ -4463,7 +4469,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-name|subcollections
+name|subCollections
 operator|=
 operator|new
 name|ObjectHashSet
@@ -4496,7 +4502,7 @@ name|i
 operator|++
 control|)
 block|{
-name|subcollections
+name|subCollections
 operator|.
 name|add
 argument_list|(
@@ -4709,7 +4715,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-name|subcollections
+name|subCollections
 operator|.
 name|remove
 argument_list|(
