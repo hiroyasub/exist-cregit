@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Static methods to deal with the signature of a node stored  *  in the first byte of the node data in the persistent dom.  *    *  The bits in the signature are used as follows:  *    *<pre>  *  8 4 2 1 8 4 2 1  *  T T T N 0 0 I I  *</pre>  *    *   where T = node type, N = has-namespace flag, I = no of bytes used to store  *   the name of the node (local name for elements and attributes).  */
+comment|/**  *  Static methods to deal with the signature of a node stored  *  in the first byte of the node data in the persistent DOM.  *    *  The bits in the signature are used as follows:  *    *<pre>  *  8 4 2 1 8 4 2 1  *  T T T N 0 0 I I  *</pre>  *    *   where T = node type, N = has-namespace flag, I = number of bytes used   *   to store the name of the node (local name for elements and attributes).  */
 end_comment
 
 begin_class
@@ -95,7 +95,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|IntContent
+name|intContent
 init|=
 literal|0x1
 decl_stmt|;
@@ -103,7 +103,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|ByteContent
+name|byteContent
 init|=
 literal|0x3
 decl_stmt|;
@@ -111,7 +111,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|NoContent
+name|noContent
 init|=
 literal|0x0
 decl_stmt|;
@@ -119,7 +119,7 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|ShortContent
+name|shortContent
 init|=
 literal|0x2
 decl_stmt|;
@@ -140,24 +140,25 @@ name|type
 condition|)
 block|{
 case|case
-name|IntContent
+name|intContent
 case|:
 return|return
 literal|4
 return|;
 case|case
-name|ShortContent
+name|shortContent
 case|:
 return|return
 literal|2
 return|;
 case|case
-name|ByteContent
+name|byteContent
 case|:
 return|return
 literal|1
 return|;
 block|}
+comment|//TODO : throw an exception there ? -pb
 return|return
 literal|0
 return|;
@@ -182,7 +183,7 @@ operator|.
 name|MAX_VALUE
 condition|)
 return|return
-name|IntContent
+name|intContent
 return|;
 if|else if
 condition|(
@@ -193,7 +194,7 @@ operator|.
 name|MAX_VALUE
 condition|)
 return|return
-name|ShortContent
+name|shortContent
 return|;
 if|else if
 condition|(
@@ -202,11 +203,11 @@ operator|>
 literal|0
 condition|)
 return|return
-name|ByteContent
+name|byteContent
 return|;
 else|else
 return|return
-name|NoContent
+name|noContent
 return|;
 block|}
 comment|/**      *  From the signature in byte 0 of the node data,      *  extract the node type and return a constant      *  as defined in {@link Node}.      */
@@ -290,6 +291,7 @@ operator|.
 name|CDATA_SECTION_NODE
 return|;
 block|}
+comment|//TODO : thorw exception here -pb
 name|System
 operator|.
 name|err
@@ -329,7 +331,7 @@ name|type
 condition|)
 block|{
 case|case
-name|IntContent
+name|intContent
 case|:
 return|return
 operator|(
@@ -345,7 +347,7 @@ name|pos
 argument_list|)
 return|;
 case|case
-name|ShortContent
+name|shortContent
 case|:
 return|return
 operator|(
@@ -361,7 +363,7 @@ name|pos
 argument_list|)
 return|;
 case|case
-name|ByteContent
+name|byteContent
 case|:
 return|return
 operator|(
@@ -403,7 +405,7 @@ name|type
 condition|)
 block|{
 case|case
-name|IntContent
+name|intContent
 case|:
 name|ByteConversion
 operator|.
@@ -418,7 +420,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|ShortContent
+name|shortContent
 case|:
 name|ByteConversion
 operator|.
@@ -436,7 +438,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|ByteContent
+name|byteContent
 case|:
 name|data
 index|[
@@ -450,6 +452,7 @@ name|size
 expr_stmt|;
 break|break;
 block|}
+comment|//TODO : throw exception here ? -pb
 block|}
 block|}
 end_class

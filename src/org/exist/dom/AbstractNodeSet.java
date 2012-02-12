@@ -1285,12 +1285,6 @@ operator|.
 name|getParentId
 argument_list|()
 decl_stmt|;
-comment|//Filter out the temporary nodes wrapper element
-comment|// Moved the parentID != NodeId.DOCUMENT_NODE test inside for /a/parent::node() to work
-comment|// correctly.
-comment|// Added the needed test parentID != null, detected in org.exist.xquery.OptimizerTest
-comment|// "//node()[parent::mods:title&= 'ethnic']" which caused an NPE here
-comment|// since I dont know when. /ljo
 if|if
 condition|(
 name|parentID
@@ -1744,15 +1738,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//        for (Iterator i = other.iterator(); i.hasNext();) {
-comment|//            l = (NodeProxy) i.next();
-comment|//            if (contains(l)) {
-comment|//                if ((p = r.get(l)) != null) {
-comment|//                    p.addMatches(l);
-comment|//                } else
-comment|//                    r.add(l);
-comment|//            }
-comment|//        }
 return|return
 name|r
 return|;
@@ -1765,7 +1750,6 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
-comment|//ExtArrayNodeSet r = new ExtArrayNodeSet();
 name|AVLTreeNodeSet
 name|r
 init|=
@@ -2312,7 +2296,6 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-comment|//if (!result.contains(context)) {
 if|if
 condition|(
 name|Expression
@@ -2378,7 +2361,6 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
-comment|//}
 block|}
 name|contextNode
 operator|=

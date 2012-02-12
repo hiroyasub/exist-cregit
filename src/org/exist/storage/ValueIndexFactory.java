@@ -286,13 +286,6 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|EXistException
@@ -414,7 +407,9 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Could not deserialize xs:dateTime data type for range index key: "
+literal|"Could not deserialize xs:dateTime data type"
+operator|+
+literal|"for range index key: "
 operator|+
 name|Type
 operator|.
@@ -506,7 +501,9 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Could not deserialize xs:date data type for range index key: "
+literal|"Could not deserialize xs:date data type"
+operator|+
+literal|" for range index key: "
 operator|+
 name|Type
 operator|.
@@ -534,7 +531,9 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"Could not deserialize xs:date data type for range index key: "
+literal|"Could not deserialize xs:date data type"
+operator|+
+literal|" for range index key: "
 operator|+
 name|Type
 operator|.
@@ -811,7 +810,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @param value 	 * @param offset 	 * @throws EXistException 	 */
+comment|/**      * @param value      * @param offset      * @throws EXistException      */
 specifier|public
 specifier|final
 specifier|static
@@ -840,7 +839,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/** 	 * @deprecated 	 * @param value 	 * @param offset 	 * @param caseSensitive 	 * @throws EXistException 	 */
+comment|/**      * @deprecated      * @param value      * @param offset      * @param caseSensitive      * @throws EXistException      */
 specifier|public
 specifier|final
 specifier|static
@@ -1009,7 +1008,6 @@ literal|12
 index|]
 decl_stmt|;
 comment|// allocate an appropriately sized
-comment|// byte array for holding Type,long
 name|data
 index|[
 name|offset
@@ -1022,7 +1020,7 @@ name|Type
 operator|.
 name|DATE_TIME
 expr_stmt|;
-comment|// put the Type in the byte array
+comment|// put the type in the byte array
 name|ByteConversion
 operator|.
 name|intToByteH
@@ -1202,7 +1200,6 @@ literal|7
 index|]
 decl_stmt|;
 comment|// allocate an appropriately sized
-comment|// byte array for holding Type,long
 name|data
 index|[
 name|offset
@@ -1215,7 +1212,6 @@ name|Type
 operator|.
 name|DATE
 expr_stmt|;
-comment|// put the Type in the byte array
 name|ByteConversion
 operator|.
 name|intToByteH

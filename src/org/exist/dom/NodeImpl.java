@@ -134,7 +134,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
+comment|/**      * @see org.w3c.dom.Node#cloneNode(boolean)      */
 specifier|public
 name|Node
 name|cloneNode

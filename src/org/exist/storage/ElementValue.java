@@ -118,7 +118,7 @@ name|LENGTH_TYPE
 init|=
 literal|1
 decl_stmt|;
-comment|//sizeof byte
+comment|//size of byte
 specifier|public
 specifier|static
 name|int

@@ -144,6 +144,7 @@ specifier|public
 name|NodePath
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|NodePath
@@ -960,6 +961,7 @@ operator|+
 name|prefix
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 name|prefix
 operator|=
 literal|null
@@ -1212,14 +1214,9 @@ block|{
 if|if
 condition|(
 name|obj
-operator|==
+operator|!=
 literal|null
-condition|)
-return|return
-literal|false
-return|;
-if|if
-condition|(
+operator|&&
 name|obj
 operator|instanceof
 name|NodePath

@@ -19,16 +19,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -201,7 +191,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Permission
+name|Account
 import|;
 end_import
 
@@ -213,7 +203,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Account
+name|Permission
 import|;
 end_import
 
@@ -436,14 +426,7 @@ name|TRIGGER_ELEMENT
 init|=
 literal|"trigger"
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|EVENT_ATTRIBUTE
-init|=
-literal|"event"
-decl_stmt|;
+comment|//private final static String EVENT_ATTRIBUTE = "event";
 specifier|private
 specifier|final
 specifier|static
@@ -460,22 +443,8 @@ name|PARAMETER_ELEMENT
 init|=
 literal|"parameter"
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|PARAM_NAME_ATTRIBUTE
-init|=
-literal|"name"
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|PARAM_VALUE_ATTRIBUTE
-init|=
-literal|"value"
-decl_stmt|;
+comment|//private final static String PARAM_NAME_ATTRIBUTE = "name";
+comment|//private final static String PARAM_VALUE_ATTRIBUTE = "value";
 comment|/** First level element in a collection configuration document */
 specifier|private
 specifier|final
@@ -1011,7 +980,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//createTrigger(broker, (Element)node, checkOnly);
 block|}
 block|}
 block|}
@@ -1185,7 +1153,9 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for permissions in configuration document : "
+literal|"Illegal value for permissions in "
+operator|+
+literal|"configuration document : "
 operator|+
 name|e
 operator|.
@@ -1200,7 +1170,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Ilegal value for permissions in configuration document : "
+literal|"Ilegal value for permissions in "
+operator|+
+literal|"configuration document : "
 operator|+
 name|e
 operator|.
@@ -1272,7 +1244,9 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for permissions in configuration document : "
+literal|"Illegal value for permissions in configuration "
+operator|+
+literal|"document : "
 operator|+
 name|e
 operator|.
@@ -1287,7 +1261,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Ilegal value for permissions in configuration document : "
+literal|"Ilegal value for permissions in configuration "
+operator|+
+literal|"document : "
 operator|+
 name|e
 operator|.
@@ -1381,6 +1357,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//? Seems inconsistent : what does "checkOnly" means then ?
 if|if
 condition|(
 name|checkOnly
@@ -1389,7 +1366,9 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for group in configuration document : "
+literal|"Ilegal value "
+operator|+
+literal|"for group in configuration document : "
 operator|+
 name|groupOpt
 argument_list|)
@@ -1465,6 +1444,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//? Seems inconsistent : what does "checkOnly" means then ?
 if|if
 condition|(
 name|checkOnly
@@ -1473,7 +1453,9 @@ throw|throw
 operator|new
 name|CollectionConfigurationException
 argument_list|(
-literal|"Ilegal value for group in configuration document : "
+literal|"Ilegal value "
+operator|+
+literal|"for group in configuration document : "
 operator|+
 name|groupOpt
 argument_list|)
@@ -1772,15 +1754,6 @@ return|return
 name|indexSpec
 return|;
 block|}
-comment|//TODO: code
-comment|//public boolean triggerRegistered(Class<?> triggerClass) {
-comment|//        for (int i = 0; i< triggers.length; i++) {
-comment|//            if (oldtriggers[i] != null&& oldtriggers[i].getTriggerClass() == triggerClass)
-comment|//                return true;
-comment|//        }
-comment|//  return false;
-comment|//}
-comment|/* 	private void createTrigger(DBBroker broker, Element node, boolean testConfig)             throws CollectionConfigurationException {          		String eventAttr = node.getAttribute(EVENT_ATTRIBUTE); 		if(eventAttr == null) { 			throwOrLog("'" + node.getNodeName() +                     "' requires an attribute '"+ EVENT_ATTRIBUTE + "'", testConfig);                     return;                 }                 String classAttr = node.getAttribute(CLASS_ATTRIBUTE);                         if(classAttr == null) {                                 throwOrLog("'" + node.getNodeName() +                             "' requires an attribute '"+ CLASS_ATTRIBUTE + "'", testConfig);                     return;                 }                  TriggerConfig trigger = instantiate(broker, node, classAttr, testConfig);         if (!testConfig) {         	triggers = trigger;         }     }           @SuppressWarnings("unchecked")     private TriggerConfig instantiate(DBBroker broker, Element node, String classname, boolean testOnly)         throws CollectionConfigurationException {             try {                     Class<?> clazz = Class.forName(classname);                     if(!Trigger.class.isAssignableFrom(clazz)) {                             throwOrLog("Trigger's class '" + classname + "' is not assignable from '" + Trigger.class + "'", testOnly);             return null;         }          TriggerConfig triggerConf = new TriggerConfig((Class<Trigger>) clazz);         triggerConf.setParameters(ParametersExtractor.extract(node.getElementsByTagNameNS(NAMESPACE, PARAMETER_ELEMENT)));          return triggerConf;     } catch (ClassNotFoundException e) {         if (testOnly)             throw new CollectionConfigurationException(e.getMessage(), e);         else             LOG.warn("Trigger class not found: " + e.getMessage(), e);             }     return null;     } */
 specifier|public
 name|DocumentTriggerProxies
 name|getDocumentTriggerProxies
@@ -1958,7 +1931,6 @@ argument_list|,
 name|parameters
 argument_list|)
 decl_stmt|;
-comment|/*             if (nlParameter.getLength()> 0) {                 Map<String, String> parameters = new HashMap<String, String>(nlParameter.getLength());                 for (int i = 0 ; i< nlParameter.getLength();  i++) {                     Element param = (Element)nlParameter.item(i);                     //TODO : rely on schema-driven validation -pb                     String name = param.getAttribute(PARAM_NAME_ATTRIBUTE);                     if(name == null) {                         throwOrLog("Expected attribute '" + PARAM_NAME_ATTRIBUTE +                                 "' for element '" + PARAMETER_ELEMENT + "' in trigger's configuration.", testOnly);                     } else {                         String value = param.getAttribute(PARAM_VALUE_ATTRIBUTE);                         if(value == null) {                             throwOrLog("Expected attribute '" + PARAM_VALUE_ATTRIBUTE +                                     "' for element '" + PARAMETER_ELEMENT + "' in trigger's configuration.", testOnly);                         } else {                             parameters.put(name, value);                         }                     }                 }             } */
 return|return
 name|triggerProxys
 return|;
@@ -2063,10 +2035,6 @@ argument_list|>
 name|triggerClass
 parameter_list|)
 block|{
-comment|//        for (int i = 0; i< triggers.length; i++) {
-comment|//            if (oldtriggers[i] != null&& oldtriggers[i].getTriggerClass() == triggerClass)
-comment|//                return true;
-comment|//}
 return|return
 literal|false
 return|;
@@ -2106,13 +2074,6 @@ argument_list|(
 literal|'\n'
 argument_list|)
 expr_stmt|;
-comment|//		for (int i = 0 ; i< oldtriggers.length; i++) {
-comment|//			TriggerConfig trigger = oldtriggers[i];
-comment|//			if (trigger != null) {
-comment|//				result.append(Trigger.EVENTS[i]);
-comment|//				result.append('\t').append(trigger.toString()).append('\n');
-comment|//			}
-comment|//		}
 return|return
 name|result
 operator|.

@@ -66,7 +66,7 @@ specifier|public
 class|class
 name|StorageAddress
 block|{
-comment|/** 	 *  Create virtual address from page number and offset (tid) 	 * 	 *@param  page    page number 	 *@param  tid     offset  	 *@return         new virtual address in a long 	 */
+comment|/**      *  Create virtual address from page number and offset (tid)      *      *@param  page    Page number      *@param  tid     Tuple identifier      *@return         Virtual address of the tuple      */
 specifier|public
 specifier|final
 specifier|static
@@ -143,7 +143,7 @@ operator|<<
 literal|32
 return|;
 block|}
-comment|/** 	 *  Get the tid (tuple id) from a virtual address. 	 * 	 *@param  pointer   	 *@return          the tid encoded in this address 	 */
+comment|/**      *  Get the tuple identifier from a virtual address.      *      *@param  pointer The address      *@return The tuple ID at this address      */
 specifier|public
 specifier|final
 specifier|static
@@ -165,7 +165,7 @@ literal|0xFFFFL
 operator|)
 return|;
 block|}
-comment|/** 	 *  Get the page from a virtual address. 	 * 	 *@param  pointer   	 *@return          the page encoded in this address 	 */
+comment|/**      *  Get the page number from a virtual address.      *      *@param  pointer The address      *@return The page number      */
 specifier|public
 specifier|final
 specifier|static
@@ -191,7 +191,7 @@ literal|0xFFFFFFFFL
 operator|)
 return|;
 block|}
-comment|/** 	 * Get the type indicator from a virtual address. 	 *  	 * Returns a short corresponding to the type constants defined 	 * in {@link org.exist.xquery.value.Type}. 	 *  	 * @param pointer 	 * @return type indicator from a virtual address 	 */
+comment|/**      * Get the type indicator from a virtual address.      *       * Returns a short corresponding to the type constants defined      * in {@link org.exist.xquery.value.Type}.      *       * @param pointer The address      * @return The type indicator      */
 specifier|public
 specifier|final
 specifier|static
@@ -267,7 +267,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/** 	 * Returns true if the page number and tid of the two storage 	 * addresses is equal. The type indicator is ignored. 	 *  	 * @param p0 	 * @param p1 	 * @return true if the page number and tid of the two storage addresses is equal 	 */
+comment|/**      * Returns<code>true</code> if the page number and the tuple ID of the two storage      * addresses are equal. The type indicator is ignored.      *       * @param p0 The first storage address      * @param p1 The second storage address      * @return<code>true</code> if the page number and the tuple ID      * of the two storage addresses are equal      */
 specifier|public
 specifier|final
 specifier|static

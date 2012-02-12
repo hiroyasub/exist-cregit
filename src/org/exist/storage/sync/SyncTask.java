@@ -149,6 +149,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
