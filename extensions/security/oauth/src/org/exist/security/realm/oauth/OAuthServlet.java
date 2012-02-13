@@ -117,18 +117,6 @@ name|scribe
 operator|.
 name|model
 operator|.
-name|Verb
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|scribe
-operator|.
-name|model
-operator|.
 name|Verifier
 import|;
 end_import
@@ -142,18 +130,6 @@ operator|.
 name|oauth
 operator|.
 name|OAuthService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|scribe
-operator|.
-name|utils
-operator|.
-name|OAuthEncoder
 import|;
 end_import
 
