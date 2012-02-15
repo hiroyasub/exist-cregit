@@ -476,7 +476,7 @@ name|repositoryBaseURI
 parameter_list|()
 block|{
 return|return
-literal|"'http://localhost/test-svn'"
+literal|"'http://localhost:9080/svn/testRepo'"
 return|;
 block|}
 specifier|private
@@ -777,6 +777,15 @@ argument_list|(
 literal|"create-database"
 argument_list|,
 literal|"true"
+argument_list|)
+expr_stmt|;
+name|database
+operator|.
+name|setProperty
+argument_list|(
+literal|"configuration"
+argument_list|,
+literal|"../../conf.xml"
 argument_list|)
 expr_stmt|;
 name|DatabaseManager
