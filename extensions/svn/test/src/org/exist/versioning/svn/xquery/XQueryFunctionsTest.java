@@ -541,8 +541,14 @@ name|testAccount
 parameter_list|()
 block|{
 return|return
-literal|"'test'"
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"svn_username"
+argument_list|)
 return|;
+comment|//return "'test'";
 block|}
 specifier|private
 name|String
@@ -550,8 +556,14 @@ name|testPassword
 parameter_list|()
 block|{
 return|return
-literal|"'test'"
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"svn_password"
+argument_list|)
 return|;
+comment|//return "'test'";
 block|}
 specifier|public
 name|void
