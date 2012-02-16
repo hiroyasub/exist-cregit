@@ -632,7 +632,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Register a thread as waiting for a resource lock.      *      * @param waiter the thread      * @param lock the lock object      */
+comment|/**      * Register a thread as waiting for a resource lock.      *      * @param waiter the thread      * @param collectionLock the lock object      */
 specifier|public
 specifier|static
 name|void
