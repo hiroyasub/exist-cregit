@@ -1723,6 +1723,13 @@ name|userLock
 operator|!=
 literal|null
 operator|&&
+name|userLock
+operator|.
+name|getName
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|userLock
 operator|.
@@ -1749,7 +1756,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource is locked."
+literal|"Resource is locked by user "
+operator|+
+name|userLock
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"."
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1814,6 +1828,7 @@ operator|.
 name|createOpaqueLockToken
 argument_list|()
 expr_stmt|;
+comment|//inputToken.setTimeOut(inputToken.getTimeOut());
 name|inputToken
 operator|.
 name|setTimeOut
@@ -2933,7 +2948,7 @@ comment|// Check if Resource is already locked.
 if|if
 condition|(
 name|userLock
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
@@ -2961,6 +2976,13 @@ throw|;
 block|}
 if|if
 condition|(
+name|userLock
+operator|.
+name|getName
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|userLock
 operator|.
