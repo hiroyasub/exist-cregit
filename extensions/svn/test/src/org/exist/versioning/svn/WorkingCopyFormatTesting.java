@@ -184,7 +184,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|WorkingCopyFormatTest
+name|WorkingCopyFormatTesting
 block|{
 specifier|public
 specifier|static

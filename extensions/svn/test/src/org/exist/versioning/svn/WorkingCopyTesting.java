@@ -306,7 +306,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|WorkingCopyTest
+name|WorkingCopyTesting
 block|{
 specifier|private
 specifier|static
