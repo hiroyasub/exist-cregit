@@ -471,7 +471,7 @@ operator|+
 name|testPassword
 argument_list|()
 operator|+
-literal|")<result>"
+literal|")</result>"
 argument_list|)
 expr_stmt|;
 block|}
