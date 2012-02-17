@@ -451,7 +451,7 @@ literal|"then xmldb:remove($destination-path )"
 operator|+
 literal|"else() "
 operator|+
-literal|"return subversion:checkout("
+literal|"return<result pass=\"true\">subversion:checkout("
 operator|+
 name|repositoryBaseURI
 argument_list|()
@@ -471,7 +471,7 @@ operator|+
 name|testPassword
 argument_list|()
 operator|+
-literal|")"
+literal|")<result>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -511,7 +511,12 @@ literal|" "
 operator|+
 literal|"let $target-file := '1.xml' "
 operator|+
-literal|"let $checkout-collection := '/db/test-svn/checkout' "
+literal|"let $checkout-collection := "
+operator|+
+name|destinationPath
+argument_list|()
+operator|+
+literal|" "
 operator|+
 literal|"let $file-path := concat($checkout-collection, '/', $target-file) "
 operator|+
@@ -537,13 +542,13 @@ literal|"let $list2 := subversion:list($checkout-collection) "
 operator|+
 literal|"return "
 operator|+
-literal|"<results>"
+literal|"<result pass=\"true\">"
 operator|+
 literal|"<list1>{$list1}</list1>"
 operator|+
 literal|"<list2>{$list2}</list2>"
 operator|+
-literal|"</results>"
+literal|"</result>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -725,7 +730,7 @@ name|root
 operator|.
 name|getElementsByTagName
 argument_list|(
-literal|"test"
+literal|"result"
 argument_list|)
 decl_stmt|;
 for|for
@@ -862,6 +867,15 @@ name|rootCollection
 decl_stmt|;
 annotation|@
 name|Before
+annotation|@
+name|SuppressWarnings
+argument_list|(
+block|{
+literal|"rawtypes"
+block|,
+literal|"unchecked"
+block|}
+argument_list|)
 specifier|public
 name|void
 name|setUpBefore
