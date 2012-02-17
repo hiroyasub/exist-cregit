@@ -532,13 +532,13 @@ literal|"let $add := subversion:add($file-path) "
 operator|+
 literal|"let $commit-1 := subversion:commit($checkout-collection, 'Test of Commit after Add', $test-user, $test-password) "
 operator|+
-literal|"let $list1 := subversion:list($checkout-collection) "
+literal|"let $list1 := subversion:info($checkout-collection) "
 operator|+
 literal|"let $delete := subversion:delete($file-path) "
 operator|+
 literal|"let $commit-2 := subversion:commit($checkout-collection, 'Test of Commit after Delete', $test-user, $test-password) "
 operator|+
-literal|"let $list2 := subversion:list($checkout-collection) "
+literal|"let $list2 := subversion:info($checkout-collection) "
 operator|+
 literal|"return "
 operator|+
