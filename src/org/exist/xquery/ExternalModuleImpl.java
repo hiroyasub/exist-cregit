@@ -862,6 +862,10 @@ parameter_list|)
 block|{
 return|return
 name|mSource
+operator|!=
+literal|null
+operator|&&
+name|mSource
 operator|.
 name|isValid
 argument_list|(
