@@ -179,7 +179,6 @@ name|Lock
 operator|.
 name|NO_LOCK
 decl_stmt|;
-comment|//	private long timeOut_ = 240000L;
 specifier|private
 name|Stack
 argument_list|<
@@ -482,7 +481,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                LOG.warn("DEADLOCK detected on " + getId() + ": " + owner_.getName() + " -> " + caller.getName());
 name|waitingOnResource
 operator|.
 name|suspendWaiting
@@ -552,7 +550,6 @@ return|;
 block|}
 else|else
 block|{
-comment|//				long start = System.currentTimeMillis();
 name|DeadlockDetection
 operator|.
 name|addCollectionWaiter
@@ -562,7 +559,6 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-comment|//                LOG.warn(caller.getName() + " waiting on lock held by " + owner_.getName());
 try|try
 block|{
 for|for
@@ -594,7 +590,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                            LOG.warn("DEADLOCK detected after wakeUp: " + owner_.getName() + " -> " + caller.getName());
 name|waitingOnResource
 operator|.
 name|suspendWaiting
@@ -815,48 +810,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|// else {
-comment|//							long waitTime = timeOut_ - (System.currentTimeMillis() - start);
-comment|//							if (waitTime<= 0) {
-comment|//								// blocking thread found: if the lock is read only, remove it
-comment|//								if (writeLocks == 0) {
-comment|//						our			System.out.println("releasing blocking thread " + owner_.getName() + " on " + id_ + " (" + modeStack.size() + " acquisitions)");
-comment|//									if (DEBUG) {
-comment|//										LOG.debug("Lock was acquired by :");
-comment|//										while (!seStack.isEmpty()) {
-comment|//											StackTraceElement[] se = (StackTraceElement[])seStack.pop();
-comment|//											LOG.debug(se);
-comment|//									    	se = null;
-comment|//										}
-comment|//									}
-comment|//									owner_ = caller;
-comment|//									while (!modeStack.isEmpty()) {
-comment|//								    	Integer top = (Integer)modeStack.pop();
-comment|//								    	top = null;
-comment|//									}
-comment|//									holds_ = 1;
-comment|//									modeStack.push(new Integer(mode));
-comment|//									if (DEBUG) {
-comment|//										Throwable t = new Throwable();
-comment|//										seStack.push(t.getStackTrace());
-comment|//									}
-comment|//									mode_ = mode;
-comment|//                                    DeadlockDetection.clearCollectionWaiter(owner_);
-comment|//                                    return true;
-comment|//								} else
-comment|//									LOG.warn("Write lock timed out");
-comment|//									if (DEBUG) {
-comment|//										LOG.debug("Lock was acquired by :");
-comment|//										while (!seStack.isEmpty()) {
-comment|//											StackTraceElement[] se = (StackTraceElement[])seStack.pop();
-comment|//											LOG.debug(se);
-comment|//									    	se = null;
-comment|//										}
-comment|//									}
-comment|//                                DeadlockDetection.clearCollectionWaiter(owner_);
-comment|//                                throw new LockException("time out while acquiring a lock");
-comment|//							}
-comment|//						}
 block|}
 block|}
 catch|catch
@@ -872,7 +825,7 @@ throw|throw
 operator|new
 name|LockException
 argument_list|(
-literal|"interrupted while waiting for lock"
+literal|"Interrupted while waiting for lock"
 argument_list|)
 throw|;
 block|}
@@ -1146,14 +1099,16 @@ operator|.
 name|currentThread
 argument_list|()
 operator|+
-literal|" released a lock on "
+literal|" Released a lock on "
 operator|+
 name|getId
 argument_list|()
 operator|+
-literal|" it didn't hold. Either the "
+literal|" it didn't hold."
 operator|+
-literal|"thread was interrupted or it never acquired the lock. The lock was owned by: "
+literal|" Either the thread was interrupted or it never acquired the lock."
+operator|+
+literal|" The lock was owned by: "
 operator|+
 name|owner_
 argument_list|)
@@ -1256,8 +1211,6 @@ operator|.
 name|WRITE_LOCK
 condition|)
 block|{
-comment|//            if (isCollectionLock)
-comment|//                LOG.warn(owner_.getName() + " RELEASED WRITE lock", new Throwable());
 name|writeLocks
 operator|--
 expr_stmt|;
@@ -1267,26 +1220,12 @@ condition|(
 name|DEBUG
 condition|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|StackTraceElement
-index|[]
-name|se
-init|=
 name|seStack
 operator|.
 name|pop
 argument_list|()
-decl_stmt|;
-name|se
-operator|=
-literal|null
 expr_stmt|;
 block|}
-comment|//        LOG.debug("Lock " + getId() + " released by " + owner_.getName());
 if|if
 condition|(
 operator|--
@@ -1391,7 +1330,7 @@ literal|" does not support releasing multiple locks"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * Return the number of unreleased acquires performed 	 * by the current thread. 	 * Returns zero if current thread does not hold lock. 	 **/
+comment|/**      * Return the number of unreleased acquires performed      * by the current thread.      * Returns zero if current thread does not hold lock.      **/
 specifier|public
 specifier|synchronized
 name|long

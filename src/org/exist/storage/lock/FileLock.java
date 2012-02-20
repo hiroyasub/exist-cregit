@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Cooperative inter-process file locking, used to synchronize access to database files across  * processes, i.e. across different Java VMs or separate database instances within one  * VM. This is similar to the native file locks provided by Java NIO. However, the NIO  * implementation has various problems. Among other things, we observed that locks  * were not properly released on WinXP.  *   * FileLock implements a cooperative approach. The class attempts to write a lock file  * at the specified location. Every lock file stores 1) a magic word to make sure that the  * file was really written by eXist, 2) a heartbeat timestamp. The procedure for acquiring the  * lock in {@link #tryLock()} is as follows:  *   * If a lock file does already exist in the specified location, we check its heartbeat timestamp.  * If the timestamp is more than {@link #HEARTBEAT} milliseconds in the past, we assume  * that the lock is stale and its owner process has died. The lock file is removed and we create  * a new one.  *   * If the heartbeat indicates that the owner process is still alive, the lock  * attempt is aborted and {@link #tryLock()} returns false.  *   * Otherwise, we create a new lock file and start a daemon thread to periodically update  * the lock file's heartbeat value.  *   * @author Wolfgang Meier  *   */
+comment|/**  * Cooperative inter-process file locking, used to synchronize access to database files across  * processes, i.e. across different Java VMs or separate database instances within one  * VM. This is similar to the native file locks provided by Java NIO. However, the NIO  * implementation has various problems. Among other things, we observed that locks  * were not properly released on WinXP.  *   * FileLock implements a cooperative approach. The class attempts to write a lock file  * at the specified location. Every lock file stores 1) a magic word to make sure that the  * file was really written by eXist, 2) a heartbeat timestamp. The procedure for acquiring the  * lock in {@link #tryLock()} is as follows:  *   * If a lock file does already exist in the specified location, we check its heartbeat timestamp.  * If the timestamp is more than {@link #HEARTBEAT} milliseconds in the past, we assume  * that the lock is stale and its owner process has died. The lock file is removed and we create  * a new one.  *   * If the heartbeat indicates that the owner process is still alive, the lock  * attempt is aborted and {@link #tryLock()} returns false.  *   * Otherwise, we create a new lock file and start a daemon thread to periodically update  * the lock file's heart-beat value.  *   * @author Wolfgang Meier  *   */
 end_comment
 
 begin_class
@@ -219,7 +219,7 @@ name|channel
 init|=
 literal|null
 decl_stmt|;
-comment|/** Temp buffer used for writing */
+comment|/** Temporary buffer used for writing */
 specifier|private
 specifier|final
 name|ByteBuffer
@@ -359,18 +359,18 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|// check if there's a heartbeat. if not, remove the stale .lck file and try again
+comment|//Check if there's a heart-beat. If not, remove the stale .lck file and try again
 if|if
 condition|(
 name|checkHeartbeat
 argument_list|()
 condition|)
 block|{
-comment|// there seems to be a heartbeat...
-comment|// sometimes Java does not properly delete files, so we may have an old
-comment|// lock file from a previous db run, which has not timed out yet. We thus
-comment|// give the db a second chance and wait for HEARTBEAT + 100 milliseconds
-comment|// before we check the heartbeat a second time.
+comment|//There seems to be a heart-beat...
+comment|//Sometimes Java does not properly delete files, so we may have an old
+comment|//lock file from a previous db run, which has not timed out yet. We thus
+comment|//give the db a second chance and wait for HEARTBEAT + 100 milliseconds
+comment|//before we check the heart-beat a second time.
 synchronized|synchronized
 init|(
 name|this
@@ -404,7 +404,7 @@ block|}
 block|}
 try|try
 block|{
-comment|// close the open channel, so it can be read again
+comment|//Close the open channel, so it can be read again
 if|if
 condition|(
 name|channel
@@ -490,7 +490,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|//Schedule the heartbeat for the file lock
+comment|//Schedule the heart-beat for the file lock
 name|Properties
 name|params
 init|=

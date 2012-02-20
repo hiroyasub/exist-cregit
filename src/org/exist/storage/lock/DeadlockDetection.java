@@ -247,7 +247,7 @@ init|(
 name|latch
 init|)
 block|{
-comment|// check if threadB is waiting for a resource lock
+comment|//Check if threadB is waiting for a resource lock
 name|WaitingThread
 name|waitingThread
 init|=
@@ -258,7 +258,7 @@ argument_list|(
 name|threadB
 argument_list|)
 decl_stmt|;
-comment|// if lock != null, check if thread B waits for a resource lock currently held by thread A
+comment|//If lock != null, check if thread B waits for a resource lock currently held by thread A
 if|if
 condition|(
 name|waitingThread
@@ -266,7 +266,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//            	LOG.debug("deadlockCheck: " + threadB.getName() + " -> " + waitingThread.getLock().hasLock(threadA));
 return|return
 name|waitingThread
 operator|.
@@ -306,7 +305,7 @@ init|(
 name|latch
 init|)
 block|{
-comment|// check if threadB is waiting for a resource lock
+comment|//Check if threadB is waiting for a resource lock
 name|WaitingThread
 name|waitingThread
 init|=
@@ -317,7 +316,7 @@ argument_list|(
 name|threadB
 argument_list|)
 decl_stmt|;
-comment|// if lock != null, check if thread B waits for a resource lock currently held by thread A
+comment|//If lock != null, check if thread B waits for a resource lock currently held by thread A
 if|if
 condition|(
 name|waitingThread
@@ -433,10 +432,6 @@ operator|==
 name|owner
 condition|)
 block|{
-comment|//System.out.println("Waiter: " + waiter.getName() + " Thread: " + t.getName() + " == " + owner.getName() +
-comment|//" type: " + wt.getLockType());
-comment|//debug(t.getName(), l.getLockInfo());
-comment|// the thread acquired the lock in the meantime
 return|return
 literal|false
 return|;
@@ -509,9 +504,6 @@ operator|==
 name|owner
 condition|)
 block|{
-comment|//System.out.println("Thread " + t.getName() + " == " + owner.getName());
-comment|//debug(t.getName(), l.getLockInfo());
-comment|//the thread acquired the lock in the meantime
 return|return
 literal|false
 return|;
@@ -1041,12 +1033,12 @@ name|arrayToString
 parameter_list|(
 name|Object
 index|[]
-name|a
+name|array
 parameter_list|)
 block|{
 if|if
 condition|(
-name|a
+name|array
 operator|==
 literal|null
 condition|)
@@ -1055,7 +1047,7 @@ literal|"null"
 return|;
 if|if
 condition|(
-name|a
+name|array
 operator|.
 name|length
 operator|==
@@ -1080,7 +1072,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|a
+name|array
 operator|.
 name|length
 condition|;
@@ -1113,7 +1105,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-name|a
+name|array
 index|[
 name|i
 index|]
@@ -1122,7 +1114,7 @@ literal|null
 condition|?
 literal|"null"
 else|:
-name|a
+name|array
 index|[
 name|i
 index|]

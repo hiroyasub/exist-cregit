@@ -99,6 +99,9 @@ class|class
 name|LockedDocumentMap
 extends|extends
 name|Int2ObjectHashMap
+argument_list|<
+name|Object
+argument_list|>
 block|{
 specifier|public
 name|LockedDocumentMap
@@ -117,7 +120,7 @@ name|void
 name|add
 parameter_list|(
 name|DocumentImpl
-name|doc
+name|document
 parameter_list|)
 block|{
 name|LockedDocument
@@ -128,7 +131,7 @@ name|LockedDocument
 operator|)
 name|get
 argument_list|(
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -146,12 +149,12 @@ operator|=
 operator|new
 name|LockedDocument
 argument_list|(
-name|doc
+name|document
 argument_list|)
 expr_stmt|;
 name|put
 argument_list|(
-name|doc
+name|document
 operator|.
 name|getDocId
 argument_list|()
@@ -182,7 +185,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 name|LockedDocument
-name|d
+name|lockedDocument
 decl_stmt|;
 for|for
 control|(
@@ -216,7 +219,7 @@ operator|==
 name|REMOVED
 condition|)
 continue|continue;
-name|d
+name|lockedDocument
 operator|=
 operator|(
 name|LockedDocument
@@ -230,7 +233,7 @@ name|docs
 operator|.
 name|add
 argument_list|(
-name|d
+name|lockedDocument
 operator|.
 name|document
 argument_list|)
@@ -270,7 +273,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 name|LockedDocument
-name|d
+name|lockedDocument
 decl_stmt|;
 for|for
 control|(
@@ -304,7 +307,7 @@ operator|==
 name|REMOVED
 condition|)
 continue|continue;
-name|d
+name|lockedDocument
 operator|=
 operator|(
 name|LockedDocument
@@ -316,7 +319,7 @@ index|]
 expr_stmt|;
 if|if
 condition|(
-name|d
+name|lockedDocument
 operator|.
 name|document
 operator|.
@@ -338,7 +341,7 @@ name|targetSet
 operator|.
 name|add
 argument_list|(
-name|d
+name|lockedDocument
 operator|.
 name|document
 argument_list|)
@@ -354,10 +357,7 @@ name|unlock
 parameter_list|()
 block|{
 name|LockedDocument
-name|d
-decl_stmt|;
-name|Lock
-name|dlock
+name|lockedDocument
 decl_stmt|;
 for|for
 control|(
@@ -391,7 +391,7 @@ operator|==
 name|REMOVED
 condition|)
 continue|continue;
-name|d
+name|lockedDocument
 operator|=
 operator|(
 name|LockedDocument
@@ -403,7 +403,7 @@ index|]
 expr_stmt|;
 name|unlockDocument
 argument_list|(
-name|d
+name|lockedDocument
 argument_list|)
 expr_stmt|;
 block|}
@@ -417,10 +417,7 @@ name|keep
 parameter_list|)
 block|{
 name|LockedDocument
-name|d
-decl_stmt|;
-name|Lock
-name|dlock
+name|lockedDocument
 decl_stmt|;
 for|for
 control|(
@@ -454,7 +451,7 @@ operator|==
 name|REMOVED
 condition|)
 continue|continue;
-name|d
+name|lockedDocument
 operator|=
 operator|(
 name|LockedDocument
@@ -471,7 +468,7 @@ name|keep
 operator|.
 name|contains
 argument_list|(
-name|d
+name|lockedDocument
 operator|.
 name|document
 operator|.
@@ -489,7 +486,7 @@ name|REMOVED
 expr_stmt|;
 name|unlockDocument
 argument_list|(
-name|d
+name|lockedDocument
 argument_list|)
 expr_stmt|;
 block|}
@@ -503,20 +500,20 @@ name|void
 name|unlockDocument
 parameter_list|(
 name|LockedDocument
-name|d
+name|lockedDocument
 parameter_list|)
 block|{
 name|Lock
-name|dlock
+name|documentLock
 init|=
-name|d
+name|lockedDocument
 operator|.
 name|document
 operator|.
 name|getUpdateLock
 argument_list|()
 decl_stmt|;
-name|dlock
+name|documentLock
 operator|.
 name|release
 argument_list|(
@@ -524,17 +521,11 @@ name|Lock
 operator|.
 name|WRITE_LOCK
 argument_list|,
-name|d
+name|lockedDocument
 operator|.
 name|locksAcquired
 argument_list|)
 expr_stmt|;
-comment|//for (int i = 0; i< d.locksAcquired; i++) {
-comment|//dlock.release(Lock.READ_LOCK);
-comment|//}
-comment|//if (dlock.isLockedForRead(Thread.currentThread())) {
-comment|//System.out.println("Thread is still LOCKED: " + Thread.currentThread().getName());
-comment|//}
 block|}
 specifier|private
 specifier|static

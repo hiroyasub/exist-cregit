@@ -727,7 +727,7 @@ name|MAX_TOKEN_LENGTH
 init|=
 literal|2048
 decl_stmt|;
-comment|/** The datastore for this token index */
+comment|/** The data-store for this token index */
 specifier|protected
 name|BFile
 name|dbTokens
@@ -816,7 +816,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** 	 * Checks if the given string could be a regular expression. 	 *  	 * @param str The string 	 */
+comment|/**      * Checks if the given string could be a regular expression.      *       * @param str The string      */
 specifier|public
 specifier|final
 specifier|static
@@ -944,10 +944,11 @@ case|:
 return|return
 literal|true
 return|;
-block|}
+default|default:
 return|return
 literal|false
 return|;
+block|}
 block|}
 specifier|public
 name|int
@@ -1057,7 +1058,6 @@ operator|==
 name|ATTRIBUTE_NOT_BY_QNAME
 condition|)
 block|{
-comment|//final DocumentImpl doc = (DocumentImpl)node.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|tokenizer
 operator|.
@@ -1099,7 +1099,31 @@ operator|>
 name|MAX_TOKEN_LENGTH
 condition|)
 block|{
-comment|//	            	LOG.warn("Token length exceeded " + MAX_TOKEN_LENGTH + ": " + token.getText().substring(0,20) + "...");
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Token length exceeded "
+operator|+
+name|MAX_TOKEN_LENGTH
+operator|+
+literal|": "
+operator|+
+name|token
+operator|.
+name|getText
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|20
+argument_list|)
+operator|+
+literal|"..."
+argument_list|)
+expr_stmt|;
 continue|continue;
 block|}
 if|if
@@ -1194,8 +1218,9 @@ name|boolean
 name|remove
 parameter_list|)
 block|{
+comment|//Nothing actually done
 block|}
-comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param node The text node to be indexed      * @param indexingHint      *                if<code>true</code>, given text is indexed as a single token      *                if<code>false</code>, it is tokenized before being indexed      */
+comment|/**      * Indexes the tokens contained in a text node.      *       * @param indexSpec The index configuration      * @param node The text node to be indexed      * @param indexingHint      * if<code>true</code>, given text is indexed as a single token      * if<code>false</code>, it is tokenized before being indexed      */
 comment|//TODO : use an indexSpec member in order to get rid of<code>noTokenizing</code>
 specifier|public
 name|void
@@ -1225,7 +1250,6 @@ operator|==
 name|DO_NOT_TOKENIZE
 condition|)
 block|{
-comment|//final DocumentImpl doc = (DocumentImpl)node.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 specifier|final
 name|XMLString
@@ -1268,7 +1292,6 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//invertedIndex.setDocument(doc);
 name|invertedIndex
 operator|.
 name|addText
@@ -1322,7 +1345,31 @@ operator|>
 name|MAX_TOKEN_LENGTH
 condition|)
 block|{
-comment|//	                	LOG.warn("Token length exceeded " + MAX_TOKEN_LENGTH + ": " + token.getText().substring(0,20) + "...");
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Token length exceeded "
+operator|+
+name|MAX_TOKEN_LENGTH
+operator|+
+literal|": "
+operator|+
+name|token
+operator|.
+name|getText
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|20
+argument_list|)
+operator|+
+literal|"..."
+argument_list|)
+expr_stmt|;
 continue|continue;
 block|}
 if|if
@@ -1363,7 +1410,6 @@ block|{
 continue|continue;
 block|}
 block|}
-comment|//invertedIndex.setDocument(doc);
 name|invertedIndex
 operator|.
 name|addText
@@ -1402,7 +1448,6 @@ name|boolean
 name|remove
 parameter_list|)
 block|{
-comment|//final DocumentImpl doc = (DocumentImpl)parent.getOwnerDocument();
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|TextToken
 name|token
@@ -1571,7 +1616,6 @@ block|{
 continue|continue;
 block|}
 block|}
-comment|//invertedIndex.setDocument(doc);
 if|if
 condition|(
 name|indexingHint
@@ -1878,6 +1922,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -1897,6 +1942,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -1916,6 +1962,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO: throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -2050,7 +2097,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**           * Get all nodes whose content exactly matches the give expression. 	 */
+comment|/**           * Get all nodes whose content exactly matches the give expression.      */
 specifier|public
 name|NodeSet
 name|getNodesExact
@@ -2219,7 +2266,6 @@ name|getSymbols
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//                LOG.debug("Using qname: " + qname.toString() + " " + key.dump() + " '" + key.toString() + "'");
 block|}
 specifier|final
 name|Lock
@@ -2350,7 +2396,6 @@ name|m
 operator|++
 control|)
 block|{
-comment|//                        NodeId nodeId = broker.getBrokerPool().getNodeFactory().createFromStream(is);
 name|NodeId
 name|nodeId
 init|=
@@ -2712,7 +2757,7 @@ name|freq
 argument_list|)
 expr_stmt|;
 block|}
-comment|// otherwise, we add all text nodes without check
+comment|//Otherwise, we add all text nodes without check
 block|}
 else|else
 block|{
@@ -2798,6 +2843,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -2829,7 +2875,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return ?
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -2909,8 +2955,9 @@ operator|.
 name|toLowerCase
 argument_list|()
 expr_stmt|;
-comment|// if the regexp starts with a char sequence, we restrict the index scan to entries starting with
-comment|// the same sequence. Otherwise, we have to scan the whole index.
+comment|//If the regexp starts with a char sequence, we restrict the index scan
+comment|//to entries starting with the same sequence. Otherwise, we have to scan
+comment|//the whole index.
 name|CharSequence
 name|start
 init|=
@@ -3028,12 +3075,13 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : throw exception ? -pb
 return|return
 literal|null
 return|;
 block|}
 block|}
-comment|/* Return all nodes for wich the matcher matches. 	 * @see org.exist.storage.TextSearchEngine#getNodes(org.exist.xquery.XQueryContext, org.exist.dom.DocumentSet, org.exist.dom.NodeSet, org.exist.storage.TermMatcher, java.lang.CharSequence) 	 */
+comment|/* Return all nodes for wich the matcher matches.      * @see org.exist.storage.TextSearchEngine#getNodes(org.exist.xquery.XQueryContext, org.exist.dom.DocumentSet, org.exist.dom.NodeSet, org.exist.storage.TermMatcher, java.lang.CharSequence)      */
 specifier|public
 name|NodeSet
 name|getNodes
@@ -3330,6 +3378,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3349,7 +3398,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO return null ? rethrow ? -pb
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3369,7 +3418,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO return null ? rethrow ? -pb
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -3527,6 +3576,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3546,6 +3596,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3565,6 +3616,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO: throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3584,6 +3636,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -3840,6 +3893,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3859,6 +3913,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3878,6 +3933,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -3897,6 +3953,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -4252,6 +4309,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4271,6 +4329,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4290,6 +4349,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -4309,6 +4369,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -4406,7 +4467,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Collect all words in a document to be removed      *       * @param words      *                Description of the Parameter      * @param domIterator      *                Description of the Parameter      */
+comment|/**      * Collect all words in a document to be removed      *       * @param words Description of the Parameter      * @param domIterator Description of the Parameter      */
 comment|//TODO : unify functionalities with storeText -pb
 specifier|private
 name|void
@@ -4631,6 +4692,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throwexception ? -pb
 block|}
 break|break;
 case|case
@@ -4828,9 +4890,6 @@ name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
-comment|//val = new String(data,
-comment|//        1 + Signatures.getLength(idSizeType), data.length
-comment|//                - 1 - Signatures.getLength(idSizeType));
 name|LOG
 operator|.
 name|error
@@ -4843,6 +4902,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 break|break;
 default|default :
@@ -4939,7 +4999,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * This inner class is responsible for actually storing the list of 	 * occurrences. 	 *  	 * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 */
+comment|/**      * This inner class is responsible for actually storing the list of      * occurrences.      *       * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>      */
 specifier|final
 class|class
 name|InvertedIndex
@@ -5912,7 +5972,6 @@ argument_list|(
 name|currentSection
 argument_list|)
 expr_stmt|;
-comment|//                    os.writeByte(currentSection == QNAME_SECTION ? TEXT_SECTION : currentSection);
 name|os
 operator|.
 name|writeInt
@@ -5979,7 +6038,6 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
-comment|//                            occurences.nodes[m].write(os);
 block|}
 catch|catch
 parameter_list|(
@@ -6001,6 +6059,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 name|int
 name|freq
@@ -6286,6 +6345,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -6312,6 +6372,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 block|}
 catch|catch
 parameter_list|(
@@ -6343,6 +6404,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -6727,9 +6789,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|//EOF is expected here
-comment|//}
 comment|//Store new data, if relevant
 if|if
 condition|(
@@ -6830,6 +6889,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -6861,6 +6921,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -6892,6 +6953,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -6921,7 +6983,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 		 * Remove the entries in the current list from the index. 		 */
+comment|/**          * Remove the entries in the current list from the index.          */
 comment|//TODO: use VariableInputStream
 specifier|public
 name|void
@@ -7650,8 +7712,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//} catch (ReadOnlyException e) {
-comment|//LOG.warn("Read-only error on '" + dbTokens.getFile().getName() + "' (inverted index)", e);
+comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -7683,6 +7744,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 finally|finally
 block|{
@@ -7789,7 +7851,7 @@ name|a
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.dbxml.core.filer.BTreeCallback#indexInfo(org.dbxml.core.data.Value, long) 		 */
+comment|/* (non-Javadoc)          * @see org.dbxml.core.filer.BTreeCallback#indexInfo(org.dbxml.core.data.Value, long)          */
 specifier|public
 name|boolean
 name|indexInfo
@@ -7882,6 +7944,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ?
 return|return
 literal|true
 return|;
@@ -8590,8 +8653,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//} catch (EOFException e) {
-comment|// EOFExceptions are normal
 block|}
 catch|catch
 parameter_list|(
@@ -8623,7 +8684,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return early -pb
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 comment|//TOUNDERSTAND : why sort here ? -pb
@@ -8716,7 +8777,7 @@ operator|=
 name|byQName
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.dbxml.core.filer.BTreeCallback#indexInfo(org.dbxml.core.data.Value, long) 		 */
+comment|/* (non-Javadoc)          * @see org.dbxml.core.filer.BTreeCallback#indexInfo(org.dbxml.core.data.Value, long)          */
 specifier|public
 name|boolean
 name|indexInfo
@@ -8800,6 +8861,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return
 literal|true
 return|;
@@ -9013,7 +9075,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid section type  in '"
+literal|"Invalid section type in '"
 operator|+
 name|dbTokens
 operator|.
@@ -9099,8 +9161,6 @@ block|}
 block|}
 block|}
 block|}
-comment|//} catch(EOFException e) {
-comment|//EOFExceptions are expected
 block|}
 catch|catch
 parameter_list|(
@@ -9132,7 +9192,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|//TODO : return early -pb
+comment|//TODO : throw exception ? -pb
 block|}
 return|return
 literal|true

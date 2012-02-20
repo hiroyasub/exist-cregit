@@ -627,7 +627,6 @@ name|FILE_KEY_IN_CONFIG
 init|=
 literal|"db-connection.values"
 decl_stmt|;
-comment|//TODO : find the real semantics
 specifier|public
 specifier|static
 specifier|final
@@ -756,7 +755,7 @@ comment|/** The broker that is using this value index. */
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/** The datastore for this value index. */
+comment|/** The data-store for this value index. */
 specifier|protected
 name|BFile
 name|dbValues
@@ -765,7 +764,7 @@ specifier|protected
 name|Configuration
 name|config
 decl_stmt|;
-comment|/**      * A collection of key-value pairs that pending modifications for this value index. The keys are {@link org.exist.xquery.value.AtomicValue atomic      * values} that implement {@link Indexable Indexable}. The values are {@link org.exist.util.LongLinkedList lists} containing the nodes GIDs      * (global identifiers.      */
+comment|/**      * A collection of key-value pairs that pending modifications for this value index.      * The keys are {@link org.exist.xquery.value.AtomicValue atomic values}      * that implement {@link Indexable Indexable}.      * The values are {@link org.exist.util.LongLinkedList lists} containing the nodes GIDs      * (global identifiers).      */
 specifier|protected
 name|Map
 argument_list|<
@@ -790,7 +789,7 @@ specifier|private
 name|DocumentImpl
 name|doc
 decl_stmt|;
-comment|/** Work output Stream taht should be cleared before every use. */
+comment|/** Work output Stream that should be cleared before every use. */
 specifier|private
 name|VariableByteOutputStream
 name|os
@@ -1140,6 +1139,7 @@ name|Throwable
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 name|pending
 index|[
 name|section
@@ -1157,7 +1157,7 @@ operator|=
 name|document
 expr_stmt|;
 block|}
-comment|/**      * Store the given element's value in the value index.      *      * @param  node       The element      * @param  content    The string representation of the value      * @param  xpathType  The value type      * @param  indexType  DOCUMENT ME!      * @param  remove     DOCUMENT ME!      */
+comment|/**      * Store the given element's value in the value index.      *      * @param  node The element      * @param  content The string representation of the value      * @param  xpathType The value type      * @param  indexType DOCUMENT ME!      * @param  remove DOCUMENT ME!      */
 specifier|public
 name|void
 name|storeElement

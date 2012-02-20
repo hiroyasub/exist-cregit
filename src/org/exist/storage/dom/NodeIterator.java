@@ -371,7 +371,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      *  Are there more nodes to be read?      *      *@return    Description of the Return Value      */
+comment|/**      *  Are there more nodes to be read?      *      *@return<code>true</code> if there is at least one more node to read      */
 specifier|public
 name|boolean
 name|hasNext
@@ -420,6 +420,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|false
 return|;
@@ -485,6 +486,7 @@ return|return
 literal|false
 return|;
 else|else
+comment|//Mmmmh... strange -pb
 return|return
 literal|true
 return|;
@@ -503,6 +505,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -517,6 +520,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 block|}
 finally|finally
 block|{
@@ -583,6 +587,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|null
 return|;
@@ -622,7 +627,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-comment|// next value larger than length of the current page?
+comment|//Next value larger than length of the current page?
 if|if
 condition|(
 name|offset
@@ -633,7 +638,7 @@ name|getDataLength
 argument_list|()
 condition|)
 block|{
-comment|// load next page in chain
+comment|//Load next page in chain
 name|long
 name|nextPageNum
 init|=
@@ -694,6 +699,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|null
 return|;
@@ -711,7 +717,6 @@ argument_list|(
 name|nextPageNum
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug(" -> " + nextPage + "; len = " + page.len + "; " + page.page.getPageInfo());
 name|db
 operator|.
 name|addToBuffer
@@ -724,7 +729,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// extract the tuple ID
+comment|//Extract the tuple ID
 name|lastTupleID
 operator|=
 name|ByteConversion
@@ -744,7 +749,7 @@ name|DOMFile
 operator|.
 name|LENGTH_TID
 expr_stmt|;
-comment|//	check if this is just a link to a relocated node
+comment|//Check if this is just a link to a relocated node
 if|if
 condition|(
 name|ItemId
@@ -755,17 +760,17 @@ name|lastTupleID
 argument_list|)
 condition|)
 block|{
-comment|// skip this
+comment|//Skip this
 name|offset
 operator|+=
 name|DOMFile
 operator|.
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
-comment|//continue the iteration
+comment|//Continue the iteration
 continue|continue;
 block|}
-comment|// read data length
+comment|//Read data length
 name|short
 name|vlen
 init|=
@@ -832,7 +837,7 @@ name|lastTupleID
 argument_list|)
 condition|)
 block|{
-comment|// found a relocated node. Read the original address
+comment|//Found a relocated node. Read the original address
 name|backLink
 operator|=
 name|ByteConversion
@@ -853,7 +858,7 @@ operator|.
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
-comment|//overflow page? load the overflow value
+comment|//Overflow page? Load the overflow value
 if|if
 condition|(
 name|vlen
@@ -951,8 +956,9 @@ name|getPageInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : rethrow exception ? -pb
 block|}
-comment|// normal node
+comment|//Normal node
 block|}
 else|else
 block|{
@@ -1130,6 +1136,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw an exception here ? -pb
 return|return
 literal|null
 return|;
@@ -1215,6 +1222,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : re-throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -1234,6 +1242,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : re-throw exception ? -pb
 block|}
 finally|finally
 block|{

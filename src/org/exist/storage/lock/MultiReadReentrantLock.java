@@ -418,11 +418,10 @@ name|thisThread
 argument_list|)
 expr_stmt|;
 block|}
-comment|//LOG.debug("readLock acquired by thread: " + Thread.currentThread().getName());
 name|waitingForReadLock
 operator|--
 expr_stmt|;
-comment|// add acquired lock to the current list of read locks
+comment|//Add acquired lock to the current list of read locks
 name|outstandingReadLocks
 operator|.
 name|add
@@ -475,7 +474,6 @@ block|{
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//LOG.debug("acquired additional write lock on " + getId());
 return|return
 literal|true
 return|;
@@ -497,7 +495,6 @@ expr_stmt|;
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//LOG.debug( "writeLock on " + getId() + " acquired without waiting by " + writeLockedThread.getName());
 return|return
 literal|true
 return|;
@@ -510,9 +507,6 @@ condition|)
 return|return
 literal|false
 return|;
-comment|//if (writeLockedThread == thisThread) {
-comment|//LOG.debug("nested write lock: " + outstandingWriteLocks);
-comment|//}
 name|deadlockCheck
 argument_list|()
 expr_stmt|;
@@ -600,8 +594,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//LOG.debug("writeLock wait on " + getId() + ". held by " + (writeLockedThread == null ? "null" : writeLockedThread.getName())
-comment|// + ". outstanding: " + outstandingWriteLocks);
 if|if
 condition|(
 name|LockOwner
@@ -708,7 +700,7 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-comment|// Don't throw the exception now, leave the synchronized block and clean up first
+comment|//Don't throw the exception now, leave the synchronized block and clean up first
 name|exceptionCaught
 operator|=
 name|e
@@ -731,8 +723,6 @@ condition|)
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
-comment|//testing
-comment|//LOG.debug( "writeLock on " + getId() + " acquired by " + writeLockedThread.getName());
 block|}
 synchronized|synchronized
 init|(
@@ -912,6 +902,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 break|break;
+comment|//TODO : use READ_LOCK ? -pb
 default|default:
 name|releaseRead
 argument_list|(
@@ -948,6 +939,7 @@ name|count
 argument_list|)
 expr_stmt|;
 break|break;
+comment|//TODO : use READ_LOCK ? -pb
 default|default:
 name|releaseRead
 argument_list|(
@@ -976,7 +968,6 @@ operator|==
 name|writeLockedThread
 condition|)
 block|{
-comment|//log.info( "outstandingWriteLocks= " + outstandingWriteLocks );
 if|if
 condition|(
 name|outstandingWriteLocks
@@ -987,9 +978,6 @@ name|outstandingWriteLocks
 operator|-=
 name|count
 expr_stmt|;
-comment|//else {
-comment|//LOG.info("extra lock release, writelocks are " + outstandingWriteLocks + "and done was called");
-comment|//}
 if|if
 condition|(
 name|outstandingWriteLocks
@@ -997,12 +985,10 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//LOG.debug("writeLock released for a nested writeLock request: " + outstandingWriteLocks +
-comment|//"; thread: " + writeLockedThread.getName());
 return|return;
 block|}
-comment|// if another thread is waiting for a write lock, we immediately pass control to it.
-comment|// no further checks should be required here.
+comment|//If another thread is waiting for a write lock, we immediately
+comment|//pass control to it. No further checks should be required here.
 if|if
 condition|(
 name|grantWriteLockAfterRead
@@ -1041,9 +1027,6 @@ operator|.
 name|getThread
 argument_list|()
 expr_stmt|;
-comment|//if (LOG.isDebugEnabled()) {
-comment|//  LOG.debug("writeLock released and before notifying a write lock waiting thread " + writeLockedThread);
-comment|//}
 synchronized|synchronized
 init|(
 name|writeLockedThread
@@ -1055,10 +1038,6 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|//if (LOG.isDebugEnabled()) {
-comment|//  LOG.debug("writeLock released by " + Thread.currentThread().getName() +
-comment|//  " after notifying a write lock waiting thread " + writeLockedThread.getName());
-comment|//}
 block|}
 else|else
 block|{
@@ -1073,8 +1052,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|//LOG.debug("writeLock " + Thread.currentThread().getName() + " released, notified waiting readers");
-comment|// wake up pending read locks
+comment|//Wake up pending read locks
 name|notifyAll
 argument_list|()
 expr_stmt|;
@@ -1096,11 +1074,10 @@ name|Throwable
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
-comment|//LOG.debug("writeLock released: " + getId() + "; outstanding: " + outstandingWriteLocks +
-comment|//"; thread: " + Thread.currentThread().getName() + " suspended: " + suspendedThreads.size());
 block|}
-comment|/**      * Threads call this method to relinquish a lock that they previously got      * from this object.      *      * @throws IllegalStateException if called when there are no outstanding locks or there is a      *                               write lock issued to a different thread.      */
+comment|/**      * Threads call this method to relinquish a lock that they previously got      * from this object.      *      * @throws IllegalStateException if called when there are no outstanding locks or there is a      * write lock issued to a different thread.      */
 specifier|private
 specifier|synchronized
 name|void
@@ -1124,10 +1101,6 @@ argument_list|(
 name|count
 argument_list|)
 expr_stmt|;
-comment|//            if (LOG.isDebugEnabled()) {
-comment|//                LOG.debug("readLock on " + getId() + " released by " + Thread.currentThread().getName());
-comment|//                LOG.debug("remaining read locks: " + listReadLocks());
-comment|//            }
 if|if
 condition|(
 name|writeLockedThread
@@ -1170,10 +1143,6 @@ operator|.
 name|getThread
 argument_list|()
 expr_stmt|;
-comment|//                if (LOG.isDebugEnabled()) {
-comment|//                    LOG.debug("readLock released and before notifying a write lock waiting thread " + writeLockedThread);
-comment|//                    LOG.debug("remaining read locks: " + outstandingReadLocks.size());
-comment|//                }
 synchronized|synchronized
 init|(
 name|writeLockedThread
@@ -1185,9 +1154,6 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|//                if (LOG.isDebugEnabled()) {
-comment|//                    LOG.debug("readLock released and after notifying a write lock waiting thread " + writeLockedThread);
-comment|//                }
 block|}
 return|return;
 block|}
@@ -1242,6 +1208,7 @@ argument_list|(
 literal|"ILLEGAL RELEASE"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 specifier|public
@@ -1421,11 +1388,6 @@ parameter_list|()
 throws|throws
 name|DeadlockException
 block|{
-comment|//    	if (writeLockedThread != null) {
-comment|//    		Lock lock = DeadlockDetection.isWaitingFor(writeLockedThread);
-comment|//    		if (lock != null&& lock.hasLock())
-comment|//    			throw new DeadlockException();
-comment|//    	}
 for|for
 control|(
 name|LockOwner
@@ -1454,7 +1416,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                LOG.debug("Checking for deadlock...");
 name|lock
 operator|.
 name|wakeUp
@@ -1521,10 +1482,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            for (int i = 0; i< waiters.size(); i++) {
-comment|//                WaitingThread wt = (WaitingThread) waiters.get(i);
-comment|//                LOG.debug("Waiter: " + wt.getThread().getName() + " -> " + wt.getLock().getId());
-comment|//            }
 return|return
 name|waiters
 operator|.
@@ -1568,7 +1525,7 @@ operator|.
 name|currentThread
 argument_list|()
 decl_stmt|;
-comment|// walk through outstanding read locks
+comment|//Walk through outstanding read locks
 for|for
 control|(
 name|LockOwner
@@ -1577,7 +1534,7 @@ range|:
 name|outstandingReadLocks
 control|)
 block|{
-comment|// if the read lock is owned by the current thread, all is ok and we continue
+comment|//If the read lock is owned by the current thread, all is OK and we continue
 if|if
 condition|(
 name|next
@@ -1588,9 +1545,9 @@ operator|!=
 name|waiter
 condition|)
 block|{
-comment|// otherwise, check if the lock belongs to a thread which is currently blocked
-comment|// by a lock owned by the current thread. if yes, it will be safe to grant the
-comment|// write lock: the other thread will be blocked anyway.
+comment|//Otherwise, check if the lock belongs to a thread which is currently blocked
+comment|//by a lock owned by the current thread. if yes, it will be safe to grant the
+comment|//write lock: the other thread will be blocked anyway.
 if|if
 condition|(
 operator|!
@@ -1623,7 +1580,7 @@ name|boolean
 name|grantWriteLockAfterRead
 parameter_list|()
 block|{
-comment|// waiting write locks?
+comment|//Waiting write locks?
 if|if
 condition|(
 name|waitingForWriteLock
@@ -1638,7 +1595,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// yes, check read locks
+comment|//Yes, check read locks
 specifier|final
 name|int
 name|size
@@ -1655,7 +1612,7 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// grant lock if all read locks are held by the write thread
+comment|//Grant lock if all read locks are held by the write thread
 name|WaitingThread
 name|waiter
 init|=
@@ -1776,7 +1733,7 @@ range|:
 name|outstandingReadLocks
 control|)
 block|{
-comment|// if the read lock is owned by the current thread, all is ok and we continue
+comment|//If the read lock is owned by the current thread, all is OK and we continue
 if|if
 condition|(
 name|next
@@ -1787,9 +1744,9 @@ operator|!=
 name|waiting
 condition|)
 block|{
-comment|// otherwise, check if the lock belongs to a thread which is currently blocked
-comment|// by a lock owned by the current thread. if yes, it will be safe to grant the
-comment|// write lock: the other thread will be blocked anyway.
+comment|//Otherwise, check if the lock belongs to a thread which is currently blocked
+comment|//by a lock owned by the current thread. if yes, it will be safe to grant the
+comment|//write lock: the other thread will be blocked anyway.
 if|if
 condition|(
 operator|!
@@ -2065,59 +2022,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|String
-name|listReadLocks
-parameter_list|()
-block|{
-name|StringBuffer
-name|buf
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|LockOwner
-name|owner
-range|:
-name|outstandingReadLocks
-control|)
-block|{
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|' '
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-name|owner
-operator|.
-name|getOwner
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|buf
-operator|.
-name|toString
-argument_list|()
-return|;
 block|}
 annotation|@
 name|Override

@@ -584,9 +584,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//private final static int VALIDATION_ENABLED = 0;
-comment|//private final static int VALIDATION_AUTO = 1;
-comment|//private final static int VALIDATION_DISABLED = 2;
 specifier|public
 specifier|final
 specifier|static
@@ -684,14 +681,10 @@ comment|// fields required by the collections cache
 specifier|private
 name|int
 name|refCount
-init|=
-literal|0
 decl_stmt|;
 specifier|private
 name|int
 name|timestamp
-init|=
-literal|0
 decl_stmt|;
 specifier|private
 name|Lock
@@ -703,15 +696,11 @@ comment|/** user-defined Reader */
 specifier|private
 name|XMLReader
 name|userReader
-init|=
-literal|null
 decl_stmt|;
 comment|/** is this a temporary collection? */
 specifier|private
 name|boolean
 name|isTempCollection
-init|=
-literal|false
 decl_stmt|;
 specifier|private
 name|Permission
@@ -1742,7 +1731,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-comment|// abort
+comment|// TODO : re-raise the exception ? -pb
 return|return;
 block|}
 block|}
@@ -1799,7 +1788,9 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission denied to remove document from collection: "
+literal|"Permission denied to remove"
+operator|+
+literal|" document from collection: "
 operator|+
 name|path
 argument_list|)
@@ -1819,7 +1810,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Return an iterator over all subcollections.      *      * The list of subcollections is copied first, so modifications      * via the iterator have no affect.      *      * @return    Description of the Return Value      */
+comment|/**      *  Return an iterator over all sub-collections.      *      * The list of sub-collections is copied first, so modifications      * via the iterator have no effect.      *      * @return An iterator over the collections      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -1856,7 +1847,9 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission to list sub-collections denied on "
+literal|"Permission to list sub-collections"
+operator|+
+literal|" denied on "
 operator|+
 name|this
 operator|.
@@ -1920,6 +1913,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      *  Return an iterator over all sub-collections.      *      * The list of sub-collections is copied first, so modifications      * via the iterator have no effect.      *      * @return An iterator over the collections      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -1956,7 +1950,9 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission to list sub-collections denied on "
+literal|"Permission to list sub-collections"
+operator|+
+literal|" denied on "
 operator|+
 name|this
 operator|.
@@ -2264,7 +2260,7 @@ condition|)
 block|{
 try|try
 block|{
-comment|// acquire a lock on the collection
+comment|//Acquire a lock on the collection
 name|getLock
 argument_list|()
 operator|.
@@ -2275,7 +2271,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|// add all docs in this collection to the returned set
+comment|//Add all docs in this collection to the returned set
 name|getDocuments
 argument_list|(
 name|broker
@@ -2283,8 +2279,8 @@ argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
-comment|// get a list of subcollection URIs. We will process them after unlocking this collection.
-comment|// otherwise we may deadlock ourselves
+comment|//Get a list of sub-collection URIs. We will process them
+comment|//after unlocking this collection. otherwise we may deadlock ourselves
 name|subColls
 operator|=
 name|subCollections
@@ -2367,7 +2363,7 @@ operator|.
 name|NO_LOCK
 argument_list|)
 decl_stmt|;
-comment|// a collection may have been removed in the meantime, so check first
+comment|//A collection may have been removed in the meantime, so check first
 if|if
 condition|(
 name|child
@@ -2463,7 +2459,7 @@ condition|)
 block|{
 try|try
 block|{
-comment|// acquire a lock on the collection
+comment|//Acquire a lock on the collection
 name|getLock
 argument_list|()
 operator|.
@@ -2474,7 +2470,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-comment|// add all docs in this collection to the returned set
+comment|//Add all documents in this collection to the returned set
 name|getDocuments
 argument_list|(
 name|broker
@@ -2486,8 +2482,9 @@ argument_list|,
 name|lockType
 argument_list|)
 expr_stmt|;
-comment|// get a list of subcollection URIs. We will process them after unlocking this collection.
-comment|// otherwise we may deadlock ourselves
+comment|//Get a list of sub-collection URIs. We will process them
+comment|//after unlocking this collection.
+comment|//otherwise we may deadlock ourselves
 name|subColls
 operator|=
 name|subCollections
@@ -2559,7 +2556,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2594,7 +2591,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// process the child collections
+comment|//Process the child collections
 for|for
 control|(
 name|int
@@ -2987,7 +2984,7 @@ return|return
 name|paths
 return|;
 block|}
-comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for      * write.      *      * @return A boolean value where true indicates it may be unloaded.      */
+comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for write.      *      * @return A boolean value where true indicates it may be unloaded.      */
 annotation|@
 name|Override
 specifier|public

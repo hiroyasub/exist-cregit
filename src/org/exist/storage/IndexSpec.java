@@ -218,7 +218,6 @@ name|FULLTEXT_ELEMENT
 init|=
 literal|"fulltext"
 decl_stmt|;
-comment|//private final static Logger LOG = Logger.getLogger(IndexSpec.class);
 specifier|private
 name|FulltextIndexSpec
 name|ftSpec
@@ -309,7 +308,7 @@ name|index
 argument_list|)
 decl_stmt|;
 name|NodeList
-name|cl
+name|childNodes
 init|=
 name|index
 operator|.
@@ -325,7 +324,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|cl
+name|childNodes
 operator|.
 name|getLength
 argument_list|()
@@ -337,7 +336,7 @@ block|{
 name|Node
 name|node
 init|=
-name|cl
+name|childNodes
 operator|.
 name|item
 argument_list|(
@@ -547,7 +546,7 @@ argument_list|()
 operator|.
 name|configure
 argument_list|(
-name|cl
+name|childNodes
 argument_list|,
 name|namespaces
 argument_list|)

@@ -354,7 +354,7 @@ block|{
 try|try
 block|{
 name|long
-name|addr
+name|address
 init|=
 name|db
 operator|.
@@ -371,7 +371,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|addr
+name|address
 operator|==
 name|BTree
 operator|.
@@ -390,7 +390,7 @@ name|db
 operator|.
 name|findRecord
 argument_list|(
-name|addr
+name|address
 argument_list|)
 expr_stmt|;
 block|}
@@ -475,7 +475,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 *  Returns the raw data of the next node in document order.      * @return the raw data of the node      */
+comment|/**      *  Returns the raw data of the next node in document order.      * @return the raw data of the node      */
 specifier|public
 name|Value
 name|next
@@ -529,6 +529,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|null
 return|;
@@ -557,7 +558,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
-comment|// next value larger than length of the current page?
+comment|//Next value larger than length of the current page?
 if|if
 condition|(
 name|offset
@@ -568,7 +569,7 @@ name|getDataLength
 argument_list|()
 condition|)
 block|{
-comment|// load next page in chain
+comment|//Load next page in chain
 name|long
 name|nextPage
 init|=
@@ -592,7 +593,7 @@ name|SanityCheck
 operator|.
 name|TRACE
 argument_list|(
-literal|"bad link to next "
+literal|"Bad link to next page "
 operator|+
 name|page
 operator|.
@@ -617,6 +618,7 @@ operator|+
 name|lastTupleID
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|null
 return|;
@@ -646,7 +648,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// extract the tuple id
+comment|//Extract the tuple id
 name|lastTupleID
 operator|=
 name|ByteConversion
@@ -666,7 +668,7 @@ name|DOMFile
 operator|.
 name|LENGTH_TID
 expr_stmt|;
-comment|//	check if this is just a link to a relocated node
+comment|//Check if this is just a link to a relocated node
 if|if
 condition|(
 name|ItemId
@@ -677,7 +679,7 @@ name|lastTupleID
 argument_list|)
 condition|)
 block|{
-comment|// skip this
+comment|//Skip this
 name|offset
 operator|+=
 name|DOMFile
@@ -686,9 +688,9 @@ name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
 continue|continue;
 block|}
-comment|// read data length
+comment|//Read data length
 name|short
-name|vlen
+name|valueLength
 init|=
 name|ByteConversion
 operator|.
@@ -709,7 +711,7 @@ name|LENGTH_DATA_LENGTH
 expr_stmt|;
 if|if
 condition|(
-name|vlen
+name|valueLength
 operator|<
 literal|0
 condition|)
@@ -720,7 +722,7 @@ name|error
 argument_list|(
 literal|"Got negative length"
 operator|+
-name|vlen
+name|valueLength
 operator|+
 literal|" at offset "
 operator|+
@@ -774,17 +776,17 @@ operator|.
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
-comment|//	overflow page? load the overflow value
+comment|//Overflow page? load the overflow value
 if|if
 condition|(
-name|vlen
+name|valueLength
 operator|==
 name|DOMFile
 operator|.
 name|OVERFLOW
 condition|)
 block|{
-name|vlen
+name|valueLength
 operator|=
 name|DOMFile
 operator|.
@@ -879,12 +881,12 @@ name|data
 argument_list|,
 name|offset
 argument_list|,
-name|vlen
+name|valueLength
 argument_list|)
 expr_stmt|;
 name|offset
 operator|+=
-name|vlen
+name|valueLength
 expr_stmt|;
 block|}
 catch|catch
@@ -917,7 +919,7 @@ name|offset
 operator|+
 literal|"; len = "
 operator|+
-name|vlen
+name|valueLength
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -993,7 +995,7 @@ operator|+
 operator|(
 name|offset
 operator|-
-name|vlen
+name|valueLength
 operator|)
 operator|+
 literal|"; len = "
@@ -1007,6 +1009,7 @@ name|getDataLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception here ? -pb
 return|return
 literal|null
 return|;
