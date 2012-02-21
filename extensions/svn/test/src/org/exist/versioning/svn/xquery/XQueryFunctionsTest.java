@@ -606,6 +606,28 @@ argument_list|()
 operator|+
 literal|" "
 operator|+
+literal|"let $tmp := subversion:checkout("
+operator|+
+name|repositoryBaseURI
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|destinationPath
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|testAccount
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|testPassword
+argument_list|()
+operator|+
+literal|") "
+operator|+
 literal|"let $file := "
 operator|+
 literal|"if (doc-available($file-path)) "
