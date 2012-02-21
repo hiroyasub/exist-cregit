@@ -399,46 +399,6 @@ name|void
 name|test_001
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|repositoryBaseURI
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|destinationPath
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|testAccount
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|testPassword
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|test
 argument_list|(
 literal|"xquery version \"1.0\"; "
@@ -486,39 +446,37 @@ name|test
 argument_list|(
 literal|"xquery version \"1.0\"; "
 operator|+
-literal|"(: get the data from the module :) "
-operator|+
-literal|"let $test-url := "
+literal|"let $url := "
 operator|+
 name|repositoryBaseURI
 argument_list|()
 operator|+
 literal|" "
 operator|+
-literal|"let $test-user := "
+literal|"let $user := "
 operator|+
 name|testAccount
 argument_list|()
 operator|+
 literal|" "
 operator|+
-literal|"let $test-password := "
+literal|"let $password := "
 operator|+
 name|testPassword
 argument_list|()
 operator|+
 literal|" "
 operator|+
-literal|"let $target-file := '1.xml' "
+literal|"let $target-file := 'test.xml' "
 operator|+
-literal|"let $checkout-collection := "
+literal|"let $collection := "
 operator|+
 name|destinationPath
 argument_list|()
 operator|+
 literal|" "
 operator|+
-literal|"let $file-path := concat($checkout-collection, '/', $target-file) "
+literal|"let $file-path := concat($collection, '/', $target-file) "
 operator|+
 literal|"let $file := "
 operator|+
@@ -530,15 +488,15 @@ literal|"else xmldb:store($checkout-collection, $target-file,<test>{current-date
 operator|+
 literal|"let $add := subversion:add($file-path) "
 operator|+
-literal|"let $commit-1 := subversion:commit($checkout-collection, 'Test of Commit after Add', $test-user, $test-password) "
+literal|"let $commit-1 := subversion:commit($collection, 'Test of Commit after Add', $user, $password) "
 operator|+
-literal|"let $list1 := subversion:info($checkout-collection) "
+literal|"let $list1 := subversion:info($collection) "
 operator|+
 literal|"let $delete := subversion:delete($file-path) "
 operator|+
-literal|"let $commit-2 := subversion:commit($checkout-collection, 'Test of Commit after Delete', $test-user, $test-password) "
+literal|"let $commit-2 := subversion:commit($collection, 'Test of Commit after Delete', $user, $password) "
 operator|+
-literal|"let $list2 := subversion:info($checkout-collection) "
+literal|"let $list2 := subversion:info($collection) "
 operator|+
 literal|"return "
 operator|+
@@ -547,6 +505,265 @@ operator|+
 literal|"<list1>{$list1}</list1>"
 operator|+
 literal|"<list2>{$list2}</list2>"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|test_003
+parameter_list|()
+block|{
+name|test
+argument_list|(
+literal|"xquery version \"1.0\"; "
+operator|+
+literal|"<result pass=\"true\">"
+operator|+
+literal|"subversion:get-latest-revision-number("
+operator|+
+name|destinationPath
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|testAccount
+argument_list|()
+operator|+
+literal|", "
+operator|+
+name|testPassword
+argument_list|()
+operator|+
+literal|")"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|test_004
+parameter_list|()
+block|{
+name|test
+argument_list|(
+literal|"xquery version \"1.0\"; "
+operator|+
+literal|"<result pass=\"true\">"
+operator|+
+literal|"subversion:clean-up("
+operator|+
+name|destinationPath
+argument_list|()
+operator|+
+literal|")"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|test_010
+parameter_list|()
+block|{
+name|test
+argument_list|(
+literal|"xquery version \"3.0\"; "
+operator|+
+literal|"let $collection := '/db/test/svn/checkout' "
+operator|+
+literal|"let $target-file := 'test.xml'"
+operator|+
+literal|"let $file-path := concat($collection, '/', $target-file) "
+operator|+
+literal|"let $url := "
+operator|+
+name|repositoryBaseURI
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $user := "
+operator|+
+name|testAccount
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $password := "
+operator|+
+name|testPassword
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $file := "
+operator|+
+literal|"if (doc-available($file-path)) "
+operator|+
+literal|"then () "
+operator|+
+literal|"else xmldb:store($collection, $target-file,<test>{current-dateTime()}</test>) "
+operator|+
+literal|"let $initial-owner := xmldb:get-owner($collection, $target-file) "
+operator|+
+literal|"let $initial-group := xmldb:get-group($collection, $target-file) "
+operator|+
+literal|"let $initial-permissions := xmldb:get-permissions($collection, $target-file) "
+operator|+
+literal|"let $commit := system:as-user('guest', 'guest', subversion:commit($file-path, 'Test Commit', $user, $password)) "
+operator|+
+literal|"let $final-owner := xmldb:get-owner($collection, $target-file) "
+operator|+
+literal|"let $final-group := xmldb:get-group($collection, $target-file) "
+operator|+
+literal|"let $final-permissions := xmldb:get-permissions($collection, $target-file) "
+operator|+
+literal|"return<result pass=\"true\"> "
+operator|+
+literal|"<BeforeCommit owner='{$initial-owner}' group='{$initial-group}' perms='{xmldb:permissions-to-string($initial-permissions)}'/>"
+operator|+
+literal|"<AfterCommit owner='{$final-owner}' group='{$final-group}' perms='{xmldb:permissions-to-string($final-permissions)}'/>"
+operator|+
+literal|"<revision>{$commit}</revision>"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|test_011
+parameter_list|()
+block|{
+name|String
+name|common
+init|=
+literal|"xquery version \"3.0\"; "
+operator|+
+literal|"let $collection := '/db/test/commit' "
+operator|+
+literal|"let $target-file := 'test.xml'"
+operator|+
+literal|"let $file-path := concat($collection, '/', $target-file) "
+operator|+
+literal|"let $url := "
+operator|+
+name|repositoryBaseURI
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $user := "
+operator|+
+name|testAccount
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $password := "
+operator|+
+name|testPassword
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $checkout-rel-path := concat($url, '/commit') "
+operator|+
+literal|"let $login := xmldb:login($collection, 'guest', 'guest') "
+operator|+
+literal|"return<result pass='true'>"
+decl_stmt|;
+name|test
+argument_list|(
+name|common
+operator|+
+literal|"{if (xmldb:collection-available($collection)) "
+operator|+
+literal|"then ('Removing Old Files', xmldb:remove($collection)) "
+operator|+
+literal|"else()}"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+name|test
+argument_list|(
+name|common
+operator|+
+literal|"{subversion:checkout($checkout-rel-path, $collection, $test-user, $test-password)}"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+name|test
+argument_list|(
+name|common
+operator|+
+literal|"{let $result := xmldb:get-child-collections($collection) "
+operator|+
+literal|"return "
+operator|+
+literal|"if ( $result = '.svn') "
+operator|+
+literal|"then "
+operator|+
+literal|"<test>"
+operator|+
+literal|"result = {$result} (expecting '.svn') "
+operator|+
+literal|"passed"
+operator|+
+literal|"</test> "
+operator|+
+literal|"else<test>fail</test>"
+operator|+
+literal|"}"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+name|test
+argument_list|(
+name|common
+operator|+
+literal|"{"
+operator|+
+literal|"let $timestamp := current-dateTime() "
+operator|+
+literal|"let $new-message := concat('Updated Message ', $timestamp) "
+operator|+
+literal|"let $update := update value doc($new-file-path) "
+operator|+
+literal|"return "
+operator|+
+literal|"doc($new-file-path) "
+operator|+
+literal|"}"
+operator|+
+literal|"</result>"
+argument_list|)
+expr_stmt|;
+name|test
+argument_list|(
+name|common
+operator|+
+literal|"{"
+operator|+
+literal|"subversion:commit($collection, 'Test Modify Commit From Unit Test', $user, $password)"
+operator|+
+literal|"}"
 operator|+
 literal|"</result>"
 argument_list|)
