@@ -6767,7 +6767,7 @@ operator|.
 name|length
 argument_list|()
 condition|?
-literal|null
+name|path
 else|:
 name|path
 operator|.
