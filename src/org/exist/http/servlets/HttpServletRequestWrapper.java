@@ -2423,6 +2423,12 @@ block|{
 return|return
 name|request
 operator|.
+name|getSession
+argument_list|()
+operator|.
+name|getServletContext
+argument_list|()
+operator|.
 name|getRealPath
 argument_list|(
 name|path
