@@ -392,6 +392,44 @@ specifier|public
 class|class
 name|XQueryFunctionsTest
 block|{
+name|String
+name|common
+init|=
+literal|"xquery version \"3.0\"; "
+operator|+
+literal|"let $collection := '/db/test/commit' "
+operator|+
+literal|"let $target-file := 'test.xml'"
+operator|+
+literal|"let $file-path := concat($collection, '/', $target-file) "
+operator|+
+literal|"let $url := "
+operator|+
+name|repositoryBaseURI
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $user := "
+operator|+
+name|testAccount
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $password := "
+operator|+
+name|testPassword
+argument_list|()
+operator|+
+literal|" "
+operator|+
+literal|"let $checkout-rel-path := concat($url, '/commit') "
+operator|+
+literal|"let $login := xmldb:login($collection, 'guest', 'guest') "
+operator|+
+literal|"return<result pass='true'>"
+decl_stmt|;
 annotation|@
 name|Test
 specifier|public
@@ -416,12 +454,7 @@ operator|+
 name|repositoryBaseURI
 argument_list|()
 operator|+
-literal|", "
-operator|+
-name|destinationPath
-argument_list|()
-operator|+
-literal|", "
+literal|", '/db/test/svn/checkout', "
 operator|+
 name|testAccount
 argument_list|()
@@ -469,12 +502,7 @@ literal|" "
 operator|+
 literal|"let $target-file := 'test.xml' "
 operator|+
-literal|"let $collection := "
-operator|+
-name|destinationPath
-argument_list|()
-operator|+
-literal|" "
+literal|"let $collection := '/db/test/svn/checkout' "
 operator|+
 literal|"let $file-path := concat($collection, '/', $target-file) "
 operator|+
@@ -525,10 +553,7 @@ literal|"<result pass=\"true\">"
 operator|+
 literal|"subversion:get-latest-revision-number("
 operator|+
-name|destinationPath
-argument_list|()
-operator|+
-literal|", "
+literal|"'/db/test/svn/checkout', "
 operator|+
 name|testAccount
 argument_list|()
@@ -559,10 +584,7 @@ literal|"<result pass=\"true\">"
 operator|+
 literal|"subversion:clean-up("
 operator|+
-name|destinationPath
-argument_list|()
-operator|+
-literal|")"
+literal|"'/db/test/svn/checkout')"
 operator|+
 literal|"</result>"
 argument_list|)
@@ -611,12 +633,7 @@ operator|+
 name|repositoryBaseURI
 argument_list|()
 operator|+
-literal|", "
-operator|+
-name|destinationPath
-argument_list|()
-operator|+
-literal|", "
+literal|", $collection, "
 operator|+
 name|testAccount
 argument_list|()
@@ -669,44 +686,6 @@ name|void
 name|test_011
 parameter_list|()
 block|{
-name|String
-name|common
-init|=
-literal|"xquery version \"3.0\"; "
-operator|+
-literal|"let $collection := '/db/test/commit' "
-operator|+
-literal|"let $target-file := 'test.xml'"
-operator|+
-literal|"let $file-path := concat($collection, '/', $target-file) "
-operator|+
-literal|"let $url := "
-operator|+
-name|repositoryBaseURI
-argument_list|()
-operator|+
-literal|" "
-operator|+
-literal|"let $user := "
-operator|+
-name|testAccount
-argument_list|()
-operator|+
-literal|" "
-operator|+
-literal|"let $password := "
-operator|+
-name|testPassword
-argument_list|()
-operator|+
-literal|" "
-operator|+
-literal|"let $checkout-rel-path := concat($url, '/commit') "
-operator|+
-literal|"let $login := xmldb:login($collection, 'guest', 'guest') "
-operator|+
-literal|"return<result pass='true'>"
-decl_stmt|;
 name|test
 argument_list|(
 name|common
@@ -790,15 +769,6 @@ operator|+
 literal|"</result>"
 argument_list|)
 expr_stmt|;
-block|}
-specifier|private
-name|String
-name|destinationPath
-parameter_list|()
-block|{
-return|return
-literal|"'/db/test-svn/checkout'"
-return|;
 block|}
 specifier|private
 name|String
