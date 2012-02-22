@@ -6799,9 +6799,10 @@ name|pathInfo
 operator|==
 literal|null
 condition|)
-name|pathInfo
-operator|=
-literal|"."
+name|super
+operator|.
+name|getPathTranslated
+argument_list|()
 expr_stmt|;
 return|return
 name|super
