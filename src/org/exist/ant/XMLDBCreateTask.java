@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -48,18 +38,6 @@ operator|.
 name|ant
 operator|.
 name|Project
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
 import|;
 end_import
 
@@ -117,8 +95,30 @@ name|CollectionManagementService
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
 begin_comment
-comment|/**  * an ant task to create a empty collection  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to create a empty collection.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -150,11 +150,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -209,11 +211,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -315,6 +319,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -322,6 +327,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -361,6 +367,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -368,6 +375,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -386,7 +394,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param collection      */
+comment|/**      * DOCUMENT ME!      *      * @param  collection      */
 specifier|public
 name|void
 name|setCollection
@@ -403,7 +411,6 @@ name|collection
 expr_stmt|;
 block|}
 specifier|private
-specifier|final
 name|Collection
 name|mkcol
 parameter_list|(
@@ -429,7 +436,8 @@ name|Collection
 name|current
 init|=
 name|root
-decl_stmt|,
+decl_stmt|;
+name|Collection
 name|c
 decl_stmt|;
 name|XmldbURI
@@ -604,7 +612,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|current
+operator|)
 return|;
 block|}
 block|}

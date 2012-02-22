@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  */
+comment|/**  * DOCUMENT ME!  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -98,11 +98,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 if|if
@@ -113,11 +115,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"missing required parameter: dir"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -196,6 +200,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -203,6 +208,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -221,7 +227,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param dir      */
+comment|/**      * DOCUMENT ME!      *      * @param  dir      */
 specifier|public
 name|void
 name|setDir

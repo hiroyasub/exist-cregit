@@ -45,6 +45,34 @@ begin_import
 import|import
 name|org
 operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|security
@@ -81,36 +109,8 @@ name|SyntaxException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Resource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
 begin_comment
-comment|/**  * an ant task to change permissions on a resource  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to change permissions on a resource.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -279,6 +279,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -286,6 +287,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -322,6 +324,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -329,6 +332,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

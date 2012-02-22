@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -134,7 +134,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  * @author andrzej@chaeron.com  */
+comment|/**  * DOCUMENT ME!  *  * @author  wolf  * @author  andrzej@chaeron.com  */
 end_comment
 
 begin_class
@@ -187,7 +187,7 @@ name|failonerror
 init|=
 literal|true
 decl_stmt|;
-comment|/**      * @param driver      */
+comment|/**      * DOCUMENT ME!      *      * @param  driver      */
 specifier|public
 name|void
 name|setDriver
@@ -203,7 +203,7 @@ operator|=
 name|driver
 expr_stmt|;
 block|}
-comment|/**      * @param password      */
+comment|/**      * DOCUMENT ME!      *      * @param  password      */
 specifier|public
 name|void
 name|setPassword
@@ -219,7 +219,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/**      * @param user      */
+comment|/**      * DOCUMENT ME!      *      * @param  user      */
 specifier|public
 name|void
 name|setUser
@@ -235,7 +235,7 @@ operator|=
 name|user
 expr_stmt|;
 block|}
-comment|/**      * @param uri      */
+comment|/**      * DOCUMENT ME!      *      * @param  uri      */
 specifier|public
 name|void
 name|setUri
@@ -251,7 +251,7 @@ operator|=
 name|uri
 expr_stmt|;
 block|}
-comment|/**      * @param create      */
+comment|/**      * DOCUMENT ME!      *      * @param  create      */
 specifier|public
 name|void
 name|setInitdb
@@ -316,8 +316,8 @@ name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 name|Database
-name|allDataBases
 index|[]
+name|allDataBases
 init|=
 name|DatabaseManager
 operator|.
@@ -456,7 +456,8 @@ name|Collection
 name|current
 init|=
 name|rootCollection
-decl_stmt|,
+decl_stmt|;
+name|Collection
 name|collection
 decl_stmt|;
 name|String
@@ -623,7 +624,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|current
+operator|)
 return|;
 block|}
 block|}

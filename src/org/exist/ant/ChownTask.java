@@ -45,18 +45,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Account
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -81,8 +69,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
+import|;
+end_import
+
 begin_comment
-comment|/**  * an ant task to change permissions on a resource  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to change permissions on a resource.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -125,21 +125,27 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|name
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|group
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"Must specify user and group"
 argument_list|)
+operator|)
 throw|;
 block|}
 try|try
@@ -218,6 +224,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -225,6 +232,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

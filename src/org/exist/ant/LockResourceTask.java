@@ -45,18 +45,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Account
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -81,8 +69,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
+import|;
+end_import
+
 begin_comment
-comment|/**  * an ant task to lock a resource for a user  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to lock a resource for a user.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -119,21 +119,27 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+operator|(
 name|resource
 operator|==
 literal|null
+operator|)
 operator|||
+operator|(
 name|name
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"Must specify user and resource name"
 argument_list|)
+operator|)
 throw|;
 block|}
 try|try
@@ -170,11 +176,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -224,11 +232,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -280,6 +290,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -287,6 +298,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

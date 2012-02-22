@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to check for the existance of a collection or resource  * to be used as a ant condition  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to check for the existance of a collection or resource to be used as a ant condition.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -132,7 +132,7 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @return returns true if the eval is successful.      * @throws BuildException      * @see org.apache.tools.ant.taskdefs.condition.Condition#eval()      */
+comment|/**      * DOCUMENT ME!      *      * @return  returns true if the eval is successful.      *      * @throws  BuildException      *      * @see     org.apache.tools.ant.taskdefs.condition.Condition#eval()      */
 specifier|public
 name|boolean
 name|eval
@@ -153,11 +153,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -213,13 +215,17 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|(
 name|base
 operator|!=
 literal|null
+operator|)
 operator|&&
+operator|(
 name|resource
 operator|!=
 literal|null
+operator|)
 condition|)
 block|{
 name|log
@@ -288,10 +294,12 @@ literal|false
 expr_stmt|;
 block|}
 return|return
+operator|(
 name|exist
+operator|)
 return|;
 block|}
-comment|/**      * @param resource      */
+comment|/**      * DOCUMENT ME!      *      * @param  resource      */
 specifier|public
 name|void
 name|setResource

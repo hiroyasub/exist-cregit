@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -48,30 +38,6 @@ operator|.
 name|ant
 operator|.
 name|Project
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|CollectionManagementServiceImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
 import|;
 end_import
 
@@ -129,8 +95,42 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|CollectionManagementServiceImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
 begin_comment
-comment|/**  * an ant task to move a collection or resource to a new name  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to move a collection or resource to a new name.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -180,30 +180,38 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 if|if
 condition|(
+operator|(
 name|resource
 operator|==
 literal|null
+operator|)
 operator|&&
+operator|(
 name|collection
 operator|==
 literal|null
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"Missing parameter: either resource or collection should be specified"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -258,11 +266,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -357,11 +367,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -470,6 +482,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -477,6 +490,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -516,6 +530,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -523,6 +538,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -541,7 +557,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param collection      */
+comment|/**      * DOCUMENT ME!      *      * @param  collection      */
 specifier|public
 name|void
 name|setCollection
@@ -557,7 +573,7 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
-comment|/**      * @param resource      */
+comment|/**      * DOCUMENT ME!      *      * @param  resource      */
 specifier|public
 name|void
 name|setResource

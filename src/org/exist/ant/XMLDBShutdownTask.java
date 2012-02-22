@@ -45,18 +45,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|DatabaseInstanceManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -93,8 +81,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|DatabaseInstanceManager
+import|;
+end_import
+
 begin_comment
-comment|/**  * an ant task to shutdown a XMLDB database  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  *<p/>  *         slightly modified by:  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to shutdown a XMLDB database.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  *  *<p>slightly modified by:</p>  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -120,11 +120,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -179,11 +181,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -254,6 +258,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -261,6 +266,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

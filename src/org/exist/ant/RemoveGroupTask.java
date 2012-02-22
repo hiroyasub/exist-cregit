@@ -41,18 +41,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Group
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api
@@ -63,8 +51,20 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Group
+import|;
+end_import
+
 begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Aug 25, 2010  * Time: 3:09:13 PM  * To change this template use File | Settings | File Templates.  */
+comment|/**  * Created by IntelliJ IDEA. User: lcahlander Date: Aug 25, 2010 Time: 3:09:13 PM To change this template use File | Settings | File Templates.  */
 end_comment
 
 begin_class
@@ -101,11 +101,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"You have to specify a name"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|log
@@ -185,6 +187,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -192,6 +195,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

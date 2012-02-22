@@ -82,7 +82,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to list the sub-collections or resources in a collection  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to list the sub-collections or resources in a collection.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -130,30 +130,38 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"You have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 if|if
 condition|(
+operator|(
 name|hasCollections
 operator|==
 literal|false
+operator|)
 operator|&&
+operator|(
 name|hasResources
 operator|==
 literal|false
+operator|)
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"You have at least one of collections or resources or both"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -208,11 +216,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -459,6 +469,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -466,6 +477,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

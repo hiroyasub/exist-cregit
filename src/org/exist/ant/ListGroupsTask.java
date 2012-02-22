@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to list groups  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to list groups.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -233,6 +233,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -240,6 +241,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else

@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Ant task to execute an XQuery.  *   * The query is either passed as nested text in the element,  * or via an attribute "query".  *   * Please note that the task doesn't output the query results.  *   * @author wolf  */
+comment|/**  * Ant task to execute an XQuery.  *  *<p>The query is either passed as nested text in the element, or via an attribute "query".</p>  *  *<p>Please note that the task doesn't output the query results.</p>  *  * @author  wolf  */
 end_comment
 
 begin_class
@@ -162,11 +162,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
+operator|)
 throw|;
 block|}
 if|if
@@ -209,11 +211,13 @@ literal|null
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify a query"
 argument_list|)
+operator|)
 throw|;
 block|}
 name|log
@@ -276,11 +280,13 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -357,6 +363,7 @@ name|failonerror
 condition|)
 block|{
 throw|throw
+operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -364,6 +371,7 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
+operator|)
 throw|;
 block|}
 else|else
@@ -382,7 +390,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param query      */
+comment|/**      * DOCUMENT ME!      *      * @param  query      */
 specifier|public
 name|void
 name|setQuery
