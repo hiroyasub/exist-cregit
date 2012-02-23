@@ -2365,6 +2365,11 @@ throw|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
+expr_stmt|;
 comment|//            if (keepLocks)
 comment|//                reservedBroker = broker;
 comment|//            else

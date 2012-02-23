@@ -279,6 +279,7 @@ operator|.
 name|force
 argument_list|()
 expr_stmt|;
+comment|//TODO revisit this based on the comment below, I now believe setting position in map does work, but you have to have the correct offset added in as well! Adam
 name|int
 name|position
 init|=

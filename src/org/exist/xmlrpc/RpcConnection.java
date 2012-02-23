@@ -1884,6 +1884,14 @@ name|unlock
 argument_list|()
 expr_stmt|;
 block|}
+name|compiled
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|cleanupBinaryValueInstances
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|compiled
