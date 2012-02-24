@@ -281,6 +281,11 @@ operator|=
 name|base
 expr_stmt|;
 block|}
+name|setPermissions
+argument_list|(
+name|root
+argument_list|)
+expr_stmt|;
 name|log
 argument_list|(
 literal|"Created collection "
