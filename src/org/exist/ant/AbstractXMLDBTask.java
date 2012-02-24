@@ -918,6 +918,13 @@ name|BuildException
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|permissions
+operator|!=
+literal|null
+condition|)
+block|{
 name|setPermissions
 argument_list|(
 literal|null
@@ -935,6 +942,7 @@ literal|"1.0"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1000,6 +1008,13 @@ throws|throws
 name|BuildException
 block|{
 try|try
+block|{
+if|if
+condition|(
+name|permissions
+operator|!=
+literal|null
+condition|)
 block|{
 comment|// if the permissions string doesn't match the Unix Perms Regex, we assume permissions are specified
 comment|// in eXist's own syntax (user=+write,...). Otherwise, we assume a unix style
@@ -1087,6 +1102,7 @@ argument_list|(
 name|permissions
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
