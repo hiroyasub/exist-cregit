@@ -191,6 +191,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|/**          * Check the applicability of these bugs to this code:          *  http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038          *  http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6417205 (fixed in 1.6)          */
 name|this
 operator|.
 name|raf
