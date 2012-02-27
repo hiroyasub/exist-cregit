@@ -142,25 +142,16 @@ return|;
 block|}
 else|else
 block|{
-if|if
-condition|(
-name|WINDOWS_PLATFORM
-condition|)
-block|{
+comment|//TODO enable MemoryMappedFileFilterInputStreamCache as the default on non-windows platforms
+comment|//if(WINDOWS_PLATFORM) {
 return|return
 operator|new
 name|FileFilterInputStreamCache
 argument_list|()
 return|;
-block|}
-else|else
-block|{
-return|return
-operator|new
-name|MemoryMappedFileFilterInputStreamCache
-argument_list|()
-return|;
-block|}
+comment|//} else {
+comment|//    return new MemoryMappedFileFilterInputStreamCache();
+comment|//}
 block|}
 block|}
 block|}

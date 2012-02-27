@@ -194,6 +194,12 @@ name|MemoryMappedFileFilterInputStreamCache
 operator|.
 name|class
 block|}
+block|,
+block|{
+name|FileFilterInputStreamCache
+operator|.
+name|class
+block|}
 block|}
 decl_stmt|;
 return|return
