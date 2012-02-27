@@ -94,13 +94,13 @@ specifier|static
 name|long
 name|DEFAULT_MEMORY_MAP_SIZE
 init|=
-literal|4
+literal|64
 operator|*
 literal|1024
 operator|*
 literal|1024
 decl_stmt|;
-comment|//4MB
+comment|//64MB
 specifier|private
 specifier|final
 name|RandomAccessFile

@@ -146,13 +146,13 @@ else|else
 block|{
 comment|//TODO enable MemoryMappedFileFilterInputStreamCache as the default on non-windows platforms
 comment|//if(WINDOWS_PLATFORM) {
+comment|//return new FileFilterInputStreamCache();
+comment|//} else {
 return|return
 operator|new
-name|FileFilterInputStreamCache
+name|MemoryMappedFileFilterInputStreamCache
 argument_list|()
 return|;
-comment|//} else {
-comment|//    return new MemoryMappedFileFilterInputStreamCache();
 comment|//}
 block|}
 block|}
