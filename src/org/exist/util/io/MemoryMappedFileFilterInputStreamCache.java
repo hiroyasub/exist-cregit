@@ -100,7 +100,7 @@ literal|1024
 operator|*
 literal|1024
 decl_stmt|;
-comment|//64MB
+comment|//4MB
 specifier|private
 specifier|final
 name|RandomAccessFile
@@ -167,7 +167,7 @@ condition|)
 block|{
 name|tempFile
 operator|=
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 operator|.
 name|getInstance
 argument_list|()
@@ -642,7 +642,7 @@ name|externalFile
 operator|)
 condition|)
 block|{
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 operator|.
 name|getInstance
 argument_list|()
@@ -654,7 +654,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*     @Override     protected void finalize() throws Throwable {         super.finalize(); 	if(tempFile != null) {             boolean deletedFile = tempFile.delete();             System.out.println("deleted=" + deletedFile);         }     }*/
 block|}
 end_class
 

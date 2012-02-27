@@ -77,7 +77,21 @@ name|util
 operator|.
 name|io
 operator|.
-name|MemoryMappedFileFilterInputStreamCache
+name|FilterInputStreamCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FilterInputStreamCacheFactory
 import|;
 end_import
 
@@ -125,7 +139,7 @@ name|CachingFilterInputStream
 name|is
 decl_stmt|;
 specifier|private
-name|MemoryMappedFileFilterInputStreamCache
+name|FilterInputStreamCache
 name|cache
 decl_stmt|;
 specifier|protected
@@ -156,8 +170,9 @@ name|this
 operator|.
 name|cache
 operator|=
-operator|new
-name|MemoryMappedFileFilterInputStreamCache
+name|FilterInputStreamCacheFactory
+operator|.
+name|getCacheInstance
 argument_list|()
 expr_stmt|;
 name|this
@@ -172,7 +187,6 @@ argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
-comment|//TODO make sure the cache is shutdown correctly when we are done!
 block|}
 catch|catch
 parameter_list|(

@@ -114,7 +114,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 block|{
 specifier|private
 specifier|final
@@ -126,7 +126,7 @@ name|LogFactory
 operator|.
 name|getLog
 argument_list|(
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 operator|.
 name|class
 argument_list|)
@@ -162,16 +162,16 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 name|instance
 init|=
 operator|new
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 argument_list|()
 decl_stmt|;
 specifier|public
 specifier|static
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 name|getInstance
 parameter_list|()
 block|{
@@ -180,7 +180,7 @@ name|instance
 return|;
 block|}
 specifier|private
-name|MemoryMappedTemporaryFileManager
+name|TemporaryFileManager
 parameter_list|()
 block|{
 specifier|final

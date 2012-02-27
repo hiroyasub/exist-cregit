@@ -199,7 +199,7 @@ name|util
 operator|.
 name|io
 operator|.
-name|MemoryMappedFileFilterInputStreamCache
+name|FilterInputStreamCacheFactory
 import|;
 end_import
 
@@ -725,8 +725,9 @@ block|{
 comment|//we have to cache the input stream, so we can reread it, as we may use it twice (once for xml attempt and once for string attempt)
 name|cache
 operator|=
-operator|new
-name|MemoryMappedFileFilterInputStreamCache
+name|FilterInputStreamCacheFactory
+operator|.
+name|getCacheInstance
 argument_list|()
 expr_stmt|;
 name|is
