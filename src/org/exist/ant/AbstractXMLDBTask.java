@@ -1016,12 +1016,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// if the permissions string doesn't match the Unix Perms Regex, we assume permissions are specified
-comment|// in eXist's own syntax (user=+write,...). Otherwise, we assume a unix style
-comment|// permission string
+comment|// if the permissions string matches the Unix Perms Regex, we use a unix style
+comment|// permission string approach, otherwise we assume permissions are specified
+comment|// in eXist's own syntax (user=+write,...).
 if|if
 condition|(
-operator|!
 name|permissions
 operator|.
 name|matches
@@ -1030,6 +1029,7 @@ name|UNIX_PERMS_REGEX
 argument_list|)
 condition|)
 block|{
+comment|// Unix-style permissions string provided
 name|Permission
 name|perm
 init|=
@@ -1076,6 +1076,7 @@ block|}
 block|}
 else|else
 block|{
+comment|// eXist-style syntax for permission string (eg. user=+write,...)
 if|if
 condition|(
 name|res
