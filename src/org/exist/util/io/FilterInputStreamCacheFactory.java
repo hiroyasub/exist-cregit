@@ -90,6 +90,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"filterInputStreamCache"
+argument_list|,
+literal|""
 argument_list|)
 decl_stmt|;
 if|if
