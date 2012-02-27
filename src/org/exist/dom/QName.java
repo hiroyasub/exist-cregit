@@ -87,7 +87,6 @@ argument_list|<
 name|QName
 argument_list|>
 block|{
-comment|/*     public final static QName DOCUMENT_QNAME = new QName("#document", "", null);     public final static QName TEXT_QNAME = new QName("#text", "", null);     public final static QName COMMENT_QNAME = new QName("#comment", "", null);     public final static QName DOCTYPE_QNAME = new QName("#doctype", "", null);     */
 specifier|public
 specifier|final
 specifier|static
@@ -154,7 +153,7 @@ name|prefix_
 init|=
 literal|null
 decl_stmt|;
-comment|//TODO : use ElementValue.UNKNOWN and type explicitely ?
+comment|//TODO : use ElementValue.UNKNOWN and type explicitly ?
 specifier|private
 name|byte
 name|nameType_
@@ -1043,20 +1042,24 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 name|namespaceURI
 operator|=
 name|defaultNS
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|namespaceURI
 operator|==
 literal|null
 condition|)
+block|{
 name|namespaceURI
 operator|=
 literal|""
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|QName

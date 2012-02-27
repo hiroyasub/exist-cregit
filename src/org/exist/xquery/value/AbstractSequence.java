@@ -165,7 +165,7 @@ name|AbstractSequence
 implements|implements
 name|Sequence
 block|{
-comment|/** To retain compatibility with eXist versions before september 20th 2005 , 	 * for conversion to boolean; 	 * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12 */
+comment|/** To retain compatibility with eXist versions before september 20th 2005 ,      * for conversion to boolean;      * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12 */
 specifier|private
 specifier|static
 specifier|final
@@ -486,7 +486,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
 specifier|public
 specifier|abstract
 name|void
@@ -533,7 +533,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 specifier|public
 specifier|abstract
 name|Item
@@ -580,8 +580,9 @@ name|StoredNode
 name|newNode
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
-comment|/** See 	 *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a> 	 * @see org.exist.xquery.value.Sequence#effectiveBooleanValue() 	 */
+comment|/** See      *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a>      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -695,9 +696,8 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 return|;
-comment|/*  		// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,  		//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true. 		if(first instanceof StringValue) 			return ((StringValue)first).effectiveBooleanValue(); 		else if(first instanceof AnyURIValue) 			return ((AnyURIValue)first).effectiveBooleanValue(); 		else if(first instanceof UntypedAtomicValue) 			return ((UntypedAtomicValue)first).effectiveBooleanValue(); 		//If its operand is a singleton value of type xs:boolean or derived from xs:boolean,  		//fn:boolean returns the value of its operand unchanged. 		else if(first instanceof BooleanValue) 			return ((BooleanValue)first).getValue(); 		//If its operand is a singleton value of any numeric type or derived from a numeric type,  		//fn:boolean returns false if the operand value is NaN or is numerically equal to zero;  		//otherwise it returns true.		 		else if(first instanceof NumericValue) 			return ((NumericValue)first).effectiveBooleanValue(); 		else { 			if (OLD_EXIST_VERSION_COMPATIBILITY) 				return true; 			// In all other cases, fn:boolean raises a type error [err:FORG0006]. 			throw new XPathException( 				"err:FORG0006: effectiveBooleanValue: sequence of length 1, " + 				"but not castable to a number or Boolean"); 		} 		 		*/
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -776,7 +776,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toJavaObject(java.lang.Class)      */
 specifier|public
 name|Object
 name|toJavaObject
@@ -1116,7 +1116,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
 specifier|public
 name|boolean
 name|isCached
@@ -1127,7 +1127,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setIsCached(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
 specifier|public
 name|void
 name|setIsCached

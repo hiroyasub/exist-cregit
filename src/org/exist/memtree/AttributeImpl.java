@@ -217,14 +217,12 @@ name|getNodeId
 parameter_list|()
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|attrNodeId
 index|[
 name|nodeNumber
 index|]
-operator|)
 return|;
 block|}
 annotation|@
@@ -235,14 +233,12 @@ name|getQName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|attrName
 index|[
 name|nodeNumber
 index|]
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getName()      */
@@ -252,13 +248,11 @@ name|getName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getStringValue
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
@@ -270,13 +264,11 @@ name|getNodeName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getStringValue
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeType()      */
@@ -288,11 +280,9 @@ name|getNodeType
 parameter_list|()
 block|{
 return|return
-operator|(
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
@@ -304,11 +294,9 @@ name|getType
 parameter_list|()
 block|{
 return|return
-operator|(
 name|Type
 operator|.
 name|ATTRIBUTE
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
@@ -320,13 +308,11 @@ name|getLocalName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getLocalName
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
@@ -338,13 +324,11 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
@@ -356,13 +340,11 @@ name|getPrefix
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getQName
 argument_list|()
 operator|.
 name|getPrefix
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -411,9 +393,7 @@ name|getFirstChild
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getSpecified()      */
@@ -423,9 +403,7 @@ name|getSpecified
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getValue()      */
@@ -435,14 +413,12 @@ name|getValue
 parameter_list|()
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|attrValue
 index|[
 name|nodeNumber
 index|]
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
@@ -456,14 +432,12 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|attrValue
 index|[
 name|nodeNumber
 index|]
-operator|)
 return|;
 block|}
 annotation|@
@@ -476,14 +450,12 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|attrValue
 index|[
 name|nodeNumber
 index|]
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setNodeValue(java.lang.String)      */
@@ -499,7 +471,8 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// This method was added to enable the SQL XQuery Exztension Module to change the value of an attribute after the fact - Andrzej
+comment|//This method was added to enable the SQL XQuery Extension Module
+comment|//to change the value of an attribute after the fact - Andrzej
 name|document
 operator|.
 name|attrValue
@@ -531,7 +504,6 @@ parameter_list|()
 block|{
 return|return
 operator|(
-operator|(
 name|Element
 operator|)
 name|document
@@ -545,7 +517,6 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
-operator|)
 return|;
 block|}
 annotation|@
@@ -608,20 +579,16 @@ literal|0
 condition|)
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|parent
 argument_list|)
-operator|)
 return|;
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 annotation|@
@@ -632,10 +599,8 @@ name|selectParentNode
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getParentNode
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
@@ -646,12 +611,10 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return  DOCUMENT ME!      */
+comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return DOCUMENT ME!      */
 specifier|public
 name|boolean
 name|isId
@@ -678,11 +641,9 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
-operator|(
 name|Type
 operator|.
 name|ATTRIBUTE
-operator|)
 return|;
 block|}
 annotation|@

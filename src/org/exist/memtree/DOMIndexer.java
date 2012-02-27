@@ -475,7 +475,7 @@ name|void
 name|store
 parameter_list|()
 block|{
-comment|// create a wrapper element as root node
+comment|//Create a wrapper element as root node
 name|ElementImpl
 name|elem
 init|=
@@ -618,7 +618,7 @@ name|top
 argument_list|)
 expr_stmt|;
 block|}
-comment|// close the wrapper element
+comment|//Close the wrapper element
 name|stack
 operator|.
 name|pop

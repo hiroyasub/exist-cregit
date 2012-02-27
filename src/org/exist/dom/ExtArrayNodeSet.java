@@ -2162,7 +2162,6 @@ name|isSorted
 operator|=
 literal|true
 expr_stmt|;
-comment|//System.out.println("sort took " + (System.currentTimeMillis() - start) + "ms.");
 block|}
 comment|/**      * The method<code>sortInDocumentOrder</code>      *      */
 specifier|public
@@ -2217,7 +2216,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectAncestorDescendant(org.exist.dom.NodeSet, int, boolean, boolean)      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.AbstractNodeSet#selectAncestorDescendant(org.exist.dom.NodeSet,      * int, boolean, boolean)      */
 annotation|@
 name|Override
 specifier|public
@@ -2539,15 +2538,6 @@ block|{
 return|return
 name|this
 return|;
-comment|//if(cachedDocuments != null)
-comment|//  return cachedDocuments;
-comment|//cachedDocuments = new DefaultDocumentSet(partCount);
-comment|//sort();
-comment|//for (int i = 0; i< partCount; i++) {
-comment|//  cachedDocuments.add(parts[i].getDocument(), false);
-comment|//}
-comment|//isSorted = true;
-comment|//return cachedDocuments;
 block|}
 comment|/**      * The method<code>setDocumentSet</code>      *      * @param docs a<code>DocumentSet</code> value      */
 specifier|public
@@ -4034,7 +4024,7 @@ comment|// just check if this node has already been added. We only
 comment|// check the last entry, which should avoid most of the likely
 comment|// duplicates. The remaining duplicates are removed by
 comment|// removeDuplicates().
-comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                NodeId nodeId = p.getNodeId();                if (!NodeId.ROOT_NODE.equals(nodeId)) {                if (length> 0&&                array[length - 1].getNodeId().equals(nodeId)) {		              */
+comment|/* ljo's modification, currently breaks the test suite (in-memory vs stored nodes ?) :                NodeId nodeId = p.getNodeId();                if (!NodeId.ROOT_NODE.equals(nodeId)) {                if (length> 0&&                array[length - 1].getNodeId().equals(nodeId)) {             */
 if|if
 condition|(
 name|length
@@ -4084,7 +4074,6 @@ operator|.
 name|length
 condition|)
 block|{
-comment|//int newLength = (length * 3)/2 + 1;
 specifier|final
 name|int
 name|newLength
@@ -4450,8 +4439,8 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-comment|// do a binary search to pick some node in the range of valid child
-comment|// ids
+comment|// do a binary search to pick some node in the range
+comment|// of valid child ids
 name|int
 name|low
 init|=
@@ -4874,7 +4863,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i
@@ -4940,7 +4928,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//parent.addContextNode(contextId, array[i]);
 name|parent
 operator|.
 name|deepCopyContext
@@ -5233,7 +5220,6 @@ operator|!=
 name|contextId
 condition|)
 block|{
-comment|//array[i].addContextNode(contextId, parent);
 name|array
 index|[
 name|i

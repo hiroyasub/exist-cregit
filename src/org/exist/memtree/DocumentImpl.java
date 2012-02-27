@@ -801,11 +801,6 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
 name|NullPointerException
@@ -1065,12 +1060,9 @@ index|[
 name|size
 index|]
 operator|=
-operator|(
-operator|(
 name|qname
 operator|!=
 literal|null
-operator|)
 condition|?
 name|namePool
 operator|.
@@ -1080,7 +1072,6 @@ name|qname
 argument_list|)
 else|:
 literal|null
-operator|)
 expr_stmt|;
 name|alpha
 index|[
@@ -1111,7 +1102,7 @@ name|void
 name|addChars
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|char
 index|[]
@@ -1147,11 +1138,9 @@ operator|=
 operator|new
 name|char
 index|[
-operator|(
 name|len
 operator|>
 name|CHAR_BUF_SIZE
-operator|)
 condition|?
 name|len
 else|:
@@ -1237,14 +1226,14 @@ expr_stmt|;
 block|}
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|nextChar
 expr_stmt|;
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|len
@@ -1274,7 +1263,7 @@ name|void
 name|addChars
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|CharSequence
 name|s
@@ -1298,6 +1287,7 @@ operator|(
 name|s
 operator|==
 literal|null
+operator|)
 condition|?
 literal|0
 else|:
@@ -1305,7 +1295,6 @@ name|s
 operator|.
 name|length
 argument_list|()
-operator|)
 decl_stmt|;
 if|if
 condition|(
@@ -1409,14 +1398,14 @@ expr_stmt|;
 block|}
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|nextChar
 expr_stmt|;
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|len
@@ -1456,7 +1445,7 @@ name|void
 name|appendChars
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|char
 index|[]
@@ -1571,12 +1560,12 @@ expr_stmt|;
 block|}
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|+
 name|len
@@ -1606,7 +1595,7 @@ name|void
 name|appendChars
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|CharSequence
 name|s
@@ -1722,12 +1711,12 @@ expr_stmt|;
 block|}
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|+
 name|len
@@ -1767,7 +1756,7 @@ name|void
 name|addReferenceNode
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|NodeProxy
 name|proxy
@@ -1814,7 +1803,7 @@ name|proxy
 expr_stmt|;
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|nextRef
@@ -1826,7 +1815,7 @@ name|void
 name|replaceReferenceNode
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|CharSequence
 name|ch
@@ -1834,7 +1823,7 @@ parameter_list|)
 block|{
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|Node
@@ -1845,7 +1834,7 @@ name|references
 index|[
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 index|]
 operator|=
@@ -1853,7 +1842,7 @@ literal|null
 expr_stmt|;
 name|addChars
 argument_list|(
-name|nodeNr
+name|nodeNum
 argument_list|,
 name|ch
 argument_list|)
@@ -1865,7 +1854,6 @@ name|hasReferenceNodes
 parameter_list|()
 block|{
 return|return
-operator|(
 operator|(
 name|references
 operator|!=
@@ -1880,7 +1868,6 @@ index|]
 operator|!=
 literal|null
 operator|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -1888,7 +1875,7 @@ name|int
 name|addAttribute
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|QName
 name|qname
@@ -1916,7 +1903,7 @@ block|}
 if|if
 condition|(
 operator|(
-name|nodeNr
+name|nodeNum
 operator|>
 literal|0
 operator|)
@@ -1924,7 +1911,7 @@ operator|&&
 operator|(
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|!=
 name|Node
@@ -1957,11 +1944,11 @@ decl_stmt|;
 name|int
 name|attrN
 decl_stmt|;
-comment|// check if an attribute with the same qname exists in the parent element
+comment|//Check if an attribute with the same qname exists in the parent element
 while|while
 condition|(
 operator|(
-name|nodeNr
+name|nodeNum
 operator|>
 literal|0
 operator|)
@@ -1979,7 +1966,7 @@ index|[
 name|prevAttr
 index|]
 operator|==
-name|nodeNr
+name|nodeNum
 operator|)
 condition|)
 block|{
@@ -2031,7 +2018,6 @@ return|;
 block|}
 else|else
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -2045,7 +2031,6 @@ name|qname
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -2076,7 +2061,7 @@ index|[
 name|nextAttr
 index|]
 operator|=
-name|nodeNr
+name|nodeNum
 expr_stmt|;
 name|attrName
 index|[
@@ -2108,7 +2093,7 @@ if|if
 condition|(
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|<
 literal|0
@@ -2116,7 +2101,7 @@ condition|)
 block|{
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|nextAttr
@@ -2134,7 +2119,7 @@ name|int
 name|addNamespace
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|,
 name|QName
 name|qname
@@ -2189,13 +2174,13 @@ index|[
 name|nextNamespace
 index|]
 operator|=
-name|nodeNr
+name|nodeNum
 expr_stmt|;
 if|if
 condition|(
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|<
 literal|0
@@ -2203,17 +2188,15 @@ condition|)
 block|{
 name|alphaLen
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|nextNamespace
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nextNamespace
 operator|++
-operator|)
 return|;
 block|}
 specifier|public
@@ -2221,16 +2204,14 @@ name|short
 name|getTreeLevel
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 block|{
 return|return
-operator|(
 name|treeLevel
 index|[
-name|nodeNr
+name|nodeNum
 index|]
-operator|)
 return|;
 block|}
 specifier|public
@@ -2239,11 +2220,9 @@ name|getLastNode
 parameter_list|()
 block|{
 return|return
-operator|(
 name|size
 operator|-
 literal|1
-operator|)
 return|;
 block|}
 annotation|@
@@ -2254,9 +2233,7 @@ name|getDocument
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 specifier|public
@@ -2264,7 +2241,7 @@ name|short
 name|getNodeType
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 block|{
 if|if
@@ -2276,26 +2253,22 @@ literal|null
 operator|)
 operator|||
 operator|(
-name|nodeNr
+name|nodeNum
 operator|<
 literal|0
 operator|)
 condition|)
 block|{
 return|return
-operator|(
 operator|-
 literal|1
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
-operator|)
 return|;
 block|}
 specifier|private
@@ -2893,21 +2866,19 @@ name|NodeImpl
 name|getAttribute
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -2915,21 +2886,19 @@ name|NodeImpl
 name|getNamespaceNode
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 operator|new
 name|NamespaceNode
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -2937,33 +2906,30 @@ name|NodeImpl
 name|getNode
 parameter_list|(
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
 if|if
 condition|(
-name|nodeNr
+name|nodeNum
 operator|==
 literal|0
 condition|)
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 if|if
 condition|(
-name|nodeNr
+name|nodeNum
 operator|>=
 name|size
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -2973,7 +2939,6 @@ name|HIERARCHY_REQUEST_ERR
 argument_list|,
 literal|"node not found"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|NodeImpl
@@ -2983,7 +2948,7 @@ switch|switch
 condition|(
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 condition|)
 block|{
@@ -2992,7 +2957,6 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3000,17 +2964,15 @@ name|ElementImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|Node
 operator|.
 name|TEXT_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3018,17 +2980,15 @@ name|TextImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|Node
 operator|.
 name|COMMENT_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3036,17 +2996,15 @@ name|CommentImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3054,17 +3012,15 @@ name|ProcessingInstructionImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3072,17 +3028,15 @@ name|CDATASectionImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 case|case
 name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 case|:
-block|{
 name|node
 operator|=
 operator|new
@@ -3090,15 +3044,12 @@ name|ReferenceNode
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
 expr_stmt|;
 break|break;
-block|}
 default|default:
-block|{
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -3108,14 +3059,10 @@ name|NOT_FOUND_ERR
 argument_list|,
 literal|"node not found"
 argument_list|)
-operator|)
 throw|;
 block|}
-block|}
 return|return
-operator|(
 name|node
-operator|)
 return|;
 block|}
 specifier|public
@@ -3131,13 +3078,10 @@ literal|0
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 return|return
-operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -3147,7 +3091,6 @@ name|nextAttr
 operator|-
 literal|1
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getParentNode()      */
@@ -3159,9 +3102,7 @@ name|getParentNode
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getDoctype()      */
@@ -3171,9 +3112,7 @@ name|getDoctype
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getImplementation()      */
@@ -3205,9 +3144,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -3227,9 +3164,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -3244,9 +3179,7 @@ name|version
 parameter_list|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -3305,13 +3238,11 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 name|int
-name|nodeNr
+name|nodeNum
 init|=
 literal|1
 decl_stmt|;
@@ -3319,7 +3250,7 @@ while|while
 condition|(
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|!=
 name|Node
@@ -3331,34 +3262,30 @@ if|if
 condition|(
 name|next
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|<
-name|nodeNr
+name|nodeNum
 condition|)
 return|return
-operator|(
 literal|null
-operator|)
 return|;
-name|nodeNr
+name|nodeNum
 operator|=
 name|next
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 expr_stmt|;
 block|}
 return|return
 operator|(
-operator|(
 name|Element
 operator|)
 name|getNode
 argument_list|(
-name|nodeNr
+name|nodeNum
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getFirstChild()      */
@@ -3376,17 +3303,13 @@ operator|>
 literal|1
 condition|)
 return|return
-operator|(
 name|getNode
 argument_list|(
 literal|1
 argument_list|)
-operator|)
 return|;
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -3453,9 +3376,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|count
-operator|)
 return|;
 block|}
 specifier|public
@@ -3512,9 +3433,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|count
-operator|)
 return|;
 block|}
 specifier|public
@@ -3557,9 +3476,7 @@ index|]
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|count
-operator|)
 return|;
 block|}
 specifier|public
@@ -3603,15 +3520,11 @@ name|level
 operator|)
 condition|)
 return|return
-operator|(
 name|nextNode
-operator|)
 return|;
 return|return
-operator|(
 operator|-
 literal|1
-operator|)
 return|;
 block|}
 specifier|public
@@ -3632,7 +3545,6 @@ index|]
 decl_stmt|;
 return|return
 operator|(
-operator|(
 name|nextNr
 operator|<
 name|nodeNumber
@@ -3642,7 +3554,6 @@ operator|-
 literal|1
 else|:
 name|nextNr
-operator|)
 return|;
 block|}
 comment|/**      * The method<code>getParentNodeFor.</code>      *      * @param   nodeNumber  an<code>int</code> value      *      * @return  an<code>int</code> value      */
@@ -3678,9 +3589,7 @@ index|]
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nextNode
-operator|)
 return|;
 block|}
 annotation|@
@@ -3952,9 +3861,7 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 name|ElementImpl
@@ -3980,9 +3887,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|root
-operator|)
 return|;
 block|}
 name|int
@@ -4053,19 +3958,15 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|getNode
 argument_list|(
 name|nextNode
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -4084,9 +3985,7 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 name|ElementImpl
@@ -4119,9 +4018,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|attr
-operator|)
 return|;
 block|}
 name|int
@@ -4199,17 +4096,13 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|attr
-operator|)
 return|;
 block|}
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|private
@@ -4292,9 +4185,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 operator|++
@@ -4303,9 +4194,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 specifier|private
@@ -4388,7 +4277,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|AttributeImpl
 argument_list|(
@@ -4396,7 +4284,6 @@ name|this
 argument_list|,
 name|attr
 argument_list|)
-operator|)
 return|;
 block|}
 operator|++
@@ -4405,9 +4292,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 annotation|@
@@ -4430,9 +4315,7 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 name|NodeImpl
@@ -4462,9 +4345,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 name|next
@@ -4479,9 +4360,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 annotation|@
@@ -4512,9 +4391,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 if|if
@@ -4525,9 +4402,7 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 name|NodeImpl
@@ -4557,9 +4432,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 if|if
@@ -4575,9 +4448,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 name|next
@@ -4592,9 +4463,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 annotation|@
@@ -4617,9 +4486,7 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 name|NodeImpl
@@ -4649,9 +4516,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 if|if
@@ -4665,9 +4530,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 name|next
@@ -4682,9 +4545,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|/*     * (non-Javadoc)     *     * @see org.w3c.dom.Document#createElement(java.lang.String)     */
@@ -4723,7 +4584,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -4736,11 +4596,10 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 name|int
-name|nodeNr
+name|nodeNum
 init|=
 name|addNode
 argument_list|(
@@ -4757,15 +4616,13 @@ name|qn
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 operator|new
 name|ElementImpl
 argument_list|(
 name|this
 argument_list|,
-name|nodeNr
+name|nodeNum
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createDocumentFragment()      */
@@ -4776,9 +4633,7 @@ parameter_list|()
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createTextNode(java.lang.String)      */
@@ -4792,9 +4647,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createComment(java.lang.String)      */
@@ -4808,9 +4661,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createCDATASection(java.lang.String)      */
@@ -4826,9 +4677,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createProcessingInstruction(java.lang.String,      *           java.lang.String)      */
@@ -4847,9 +4696,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createAttribute(java.lang.String)      */
@@ -4865,9 +4712,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createEntityReference(java.lang.String)      */
@@ -4883,9 +4728,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementsByTagName(java.lang.String)      */
@@ -4904,7 +4747,6 @@ operator|new
 name|NodeListImpl
 argument_list|()
 decl_stmt|;
-comment|//int nodeNr = 1;
 for|for
 control|(
 name|int
@@ -4967,9 +4809,7 @@ block|}
 block|}
 block|}
 return|return
-operator|(
 name|nl
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#importNode(org.w3c.dom.Node, boolean)      */
@@ -4988,9 +4828,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createElementNS(java.lang.String,      *           java.lang.String)      */
@@ -5009,9 +4847,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#createAttributeNS(java.lang.String,      *           java.lang.String)      */
@@ -5030,9 +4866,7 @@ name|DOMException
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementsByTagNameNS(java.lang.String,      *           java.lang.String)      */
@@ -5049,9 +4883,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getElementById(java.lang.String)      */
@@ -5065,9 +4897,7 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getOwnerDocument()      */
@@ -5085,9 +4915,7 @@ name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param   node      * @param   receiver      *      * @throws  SAXException  DOCUMENT ME!      */
@@ -5216,8 +5044,6 @@ block|{
 break|break;
 block|}
 comment|//No nextNode if the top node is a Document node
-comment|//                if (top != null&& top.nodeNumber == 0)
-comment|//                    break;
 name|nextNode
 operator|=
 operator|(
@@ -5953,7 +5779,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -5966,7 +5791,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 name|DocumentImpl
@@ -5983,9 +5807,7 @@ name|computeNodeIds
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 name|newDoc
-operator|)
 return|;
 block|}
 catch|catch
@@ -5995,7 +5817,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|DOMException
 argument_list|(
@@ -6008,7 +5829,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -6052,19 +5872,15 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|getNode
 argument_list|(
 name|i
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|private
@@ -6174,12 +5990,12 @@ name|NodeId
 name|id
 parameter_list|,
 name|int
-name|nodeNr
+name|nodeNum
 parameter_list|)
 block|{
 name|nodeId
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|=
 name|id
@@ -6188,7 +6004,7 @@ if|if
 condition|(
 name|nodeKind
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|==
 name|Node
@@ -6211,7 +6027,7 @@ name|document
 operator|.
 name|alpha
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 decl_stmt|;
 if|if
@@ -6240,7 +6056,7 @@ index|[
 name|attr
 index|]
 operator|==
-name|nodeNr
+name|nodeNum
 operator|)
 condition|)
 block|{
@@ -6268,14 +6084,14 @@ name|nextNode
 init|=
 name|getFirstChildFor
 argument_list|(
-name|nodeNr
+name|nodeNum
 argument_list|)
 decl_stmt|;
 while|while
 condition|(
 name|nextNode
 operator|>
-name|nodeNr
+name|nodeNum
 condition|)
 block|{
 name|computeNodeIds
@@ -6298,7 +6114,7 @@ if|if
 condition|(
 name|nextNode
 operator|>
-name|nodeNr
+name|nodeNum
 condition|)
 block|{
 name|nextId
@@ -6454,7 +6270,7 @@ operator|.
 name|nextRef
 expr_stmt|;
 block|}
-comment|/**      * Stream the specified document fragment to a receiver. This method is called by the serializer to output in-memory nodes.      *      * @param   serializer      * @param   node      * @param   receiver      *      * @throws  SAXException      */
+comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param   serializer      * @param   node      * @param   receiver      *      * @throws  SAXException      */
 specifier|public
 name|void
 name|streamTo
@@ -6673,7 +6489,7 @@ index|[
 name|nr
 index|]
 decl_stmt|;
-comment|// output required namespace declarations
+comment|//Output required namespace declarations
 name|int
 name|ns
 init|=
@@ -6773,7 +6589,7 @@ name|ns
 expr_stmt|;
 block|}
 block|}
-comment|// create the attribute list
+comment|//Create the attribute list
 name|AttrList
 name|attribs
 init|=
@@ -7098,7 +6914,7 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// end all prefix mappings used for the element
+comment|//End all prefix mappings used for the element
 name|int
 name|nr
 init|=
@@ -7218,20 +7034,16 @@ literal|1
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|context
 operator|.
 name|storeTemporaryDoc
 argument_list|(
 name|this
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -7277,9 +7089,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|count
-operator|)
 return|;
 block|}
 annotation|@
@@ -7343,9 +7153,7 @@ name|getLocalName
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|""
-operator|)
 return|;
 block|}
 annotation|@
@@ -7356,9 +7164,7 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|""
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getInputEncoding()      *      * @return  DOCUMENT ME!      */
@@ -7369,9 +7175,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getXmlEncoding()      *      * @return  DOCUMENT ME!      */
@@ -7382,9 +7186,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getXmlStandalone()      *      * @return  DOCUMENT ME!      */
@@ -7395,9 +7197,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#setXmlStandalone(boolean)      *      * @param   xmlStandalone  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
@@ -7421,9 +7221,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      *      * @param   xmlVersion  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
@@ -7447,9 +7245,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#setStrictErrorChecking(boolean)      *      * @param  strictErrorChecking  DOCUMENT ME!      */
@@ -7470,9 +7266,7 @@ name|getDocumentURI
 parameter_list|()
 block|{
 return|return
-operator|(
 name|documentURI
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      *      * @param  documentURI  DOCUMENT ME!      */
@@ -7504,9 +7298,7 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#getDomConfig()      *      * @return  DOCUMENT ME!      */
@@ -7517,9 +7309,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Document#normalizeDocument()      */
@@ -7549,9 +7339,7 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -7575,9 +7363,7 @@ name|getContext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|context
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
@@ -7665,11 +7451,11 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
+name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|//System.out.println( "memtree/DocumentImpl::getBaseURI() exception catched: " );
+comment|//TODO : make something !
 block|}
 block|}
 return|return
@@ -7690,11 +7476,9 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
-operator|(
 name|Type
 operator|.
 name|DOCUMENT
-operator|)
 return|;
 block|}
 annotation|@
@@ -7733,7 +7517,7 @@ literal|1
 condition|)
 block|{
 name|int
-name|nodeNr
+name|nodeNum
 init|=
 literal|1
 decl_stmt|;
@@ -7748,7 +7532,7 @@ name|append
 argument_list|(
 name|getNode
 argument_list|(
-name|nodeNr
+name|nodeNum
 argument_list|)
 operator|.
 name|toString
@@ -7759,19 +7543,19 @@ if|if
 condition|(
 name|next
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 operator|<
-name|nodeNr
+name|nodeNum
 condition|)
 block|{
 break|break;
 block|}
-name|nodeNr
+name|nodeNum
 operator|=
 name|next
 index|[
-name|nodeNr
+name|nodeNum
 index|]
 expr_stmt|;
 block|}
@@ -7803,14 +7587,12 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 name|document
 operator|.
 name|next
 index|[
 name|nextNode
 index|]
-operator|)
 return|;
 block|}
 annotation|@

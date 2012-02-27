@@ -430,8 +430,6 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/*     protected void write(DataOutput ostream) throws IOException {         ostream.writeUTF(name);         ostream.writeUTF(systemId != null ? systemId : "");         ostream.writeUTF(publicId != null ? publicId : "");     }*/
-comment|/*     protected void read(VariableByteArrayInput istream) throws IOException {         name = istream.readUTF();         systemId = istream.readUTF();         if (systemId.length() == 0)             systemId = null;         publicId = istream.readUTF();         if (publicId.length() == 0)             publicId = null;     }      */
 block|}
 end_class
 

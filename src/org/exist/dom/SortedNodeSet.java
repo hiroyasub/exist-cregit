@@ -731,6 +731,7 @@ argument_list|(
 name|re
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
@@ -747,6 +748,7 @@ argument_list|(
 name|tse
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
@@ -763,6 +765,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
@@ -779,6 +782,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ! -pb
 block|}
 finally|finally
 block|{
@@ -1094,7 +1098,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|//TODO : evaluate both semantics
+comment|//TODO : evaluate both semantics (length/item count)
 annotation|@
 name|Override
 specifier|public
@@ -1154,6 +1158,7 @@ name|p
 argument_list|)
 return|;
 block|}
+comment|//TODO : evaluate both semantics (item/itemAt)
 annotation|@
 name|Override
 specifier|public
@@ -1271,6 +1276,9 @@ specifier|public
 name|SortedNodeSetIterator
 parameter_list|(
 name|Iterator
+argument_list|<
+name|IteratorItem
+argument_list|>
 name|i
 parameter_list|)
 block|{
@@ -1560,6 +1568,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ! -pb
 block|}
 block|}
 annotation|@

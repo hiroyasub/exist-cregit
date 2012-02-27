@@ -397,7 +397,6 @@ operator|=
 name|token
 expr_stmt|;
 block|}
-comment|//
 specifier|public
 name|byte
 name|getResourceType

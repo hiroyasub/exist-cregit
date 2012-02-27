@@ -704,7 +704,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Constructs a match starting with this match and continued by the other match if possible      *      * @param other      *            a match continuing this match      * @return a match starting with this match and continued by the other match if such a match exists or null if no      *         continuous match found      */
+comment|/**      * Constructs a match starting with this match and continued by the other match if possible      *      * @param other a match continuing this match      * @return a match starting with this match and continued by the other match      * if such a match exists or null if no continuous match found      */
 specifier|public
 name|Match
 name|continuedBy
@@ -953,7 +953,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Expand the match backwards by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @return The expanded match if possible, or null if no offset is far enough from the start.      */
+comment|/**      * Expand the match backwards by at least minExpand up to maxExpand characters.      * The match is expanded as much as possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @return The expanded match if possible, or null if no offset is far enough from the start.      */
 specifier|public
 name|Match
 name|expandBackward
@@ -1098,7 +1098,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters. The match is expanded as much as      * possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @param dataLength The length of the valued of the node, limiting the expansion      * @return The expanded match if possible, or null if no offset is far enough from the end.      */
+comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters.      * The match is expanded as much as possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @param dataLength The length of the valued of the node, limiting the expansion      * @return The expanded match if possible, or null if no offset is far enough from the end.      */
 specifier|public
 name|Match
 name|expandForward

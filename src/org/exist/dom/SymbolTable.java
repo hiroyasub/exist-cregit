@@ -1940,6 +1940,7 @@ block|{
 return|return
 literal|""
 return|;
+comment|//TODO : raise an exception ? -pb
 block|}
 return|return
 name|symbolsById
@@ -1989,7 +1990,7 @@ argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
-comment|//TODO we use "++offset" here instead of "offset++",
+comment|//we use "++offset" here instead of "offset++",
 comment|//because the system expects id's to start at 1, not 0
 name|write
 argument_list|(
@@ -2084,6 +2085,7 @@ operator|+
 name|id
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
 block|}
 name|writeEntry
 argument_list|(
@@ -2157,6 +2159,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO :throw exception -pb
 block|}
 catch|catch
 parameter_list|(
@@ -2173,6 +2176,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception -pb
 block|}
 block|}
 specifier|private

@@ -1203,7 +1203,6 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 operator|+
-operator|+
 name|nodeIdLen
 operator|+
 name|LENGTH_ATTRIBUTES_COUNT
@@ -1783,7 +1782,6 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
-comment|//node = (ElementImpl) NodeObjectPool.getInstance().borrowNode(ElementImpl.class);
 else|else
 name|node
 operator|=
@@ -3614,7 +3612,8 @@ expr_stmt|;
 return|return
 literal|null
 return|;
-comment|// TODO: implement document fragments so we can return all newly appended children
+comment|// TODO: implement document fragments so
+comment|//we can return all newly appended children
 case|case
 name|Node
 operator|.
@@ -3877,7 +3876,7 @@ name|DOMException
 operator|.
 name|INVALID_MODIFICATION_ERR
 argument_list|,
-literal|"too many attributes"
+literal|"Too many attributes"
 argument_list|)
 throw|;
 name|elem
@@ -3942,7 +3941,6 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
-comment|//getBroker().getIndexController().startElement(transaction, elem, lastPath, listener);
 name|elem
 operator|.
 name|setChildCount
@@ -4089,7 +4087,6 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
-comment|//getBroker().getIndexController().characters(transaction, text, lastPath, listener);
 name|last
 operator|.
 name|setNode
@@ -4325,6 +4322,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|attrName
 operator|.
 name|setNameType
@@ -4334,6 +4332,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|insertNodeAfter
@@ -4375,7 +4374,6 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
-comment|//getBroker().getIndexController().attribute(transaction, attrib, lastPath, listener);
 name|last
 operator|.
 name|setNode
@@ -4546,7 +4544,7 @@ name|DOMException
 operator|.
 name|INVALID_MODIFICATION_ERR
 argument_list|,
-literal|"unknown node type: "
+literal|"Unknown node type: "
 operator|+
 name|child
 operator|.
@@ -5450,7 +5448,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|// Workaround: xerces sometimes returns null for getLocalName() !!!!
+comment|//Workaround: Xerces sometimes returns null for getLocalName() !!!!
 name|String
 name|localName
 init|=
@@ -6337,7 +6335,9 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"setAttributeNS(String namespaceURI, String qualifiedName, String value) not implemented on class "
+literal|"setAttributeNS(String namespaceURI, String qualifiedName,"
+operator|+
+literal|"String value) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -7108,7 +7108,7 @@ name|DOMException
 operator|.
 name|WRONG_DOCUMENT_ERR
 argument_list|,
-literal|"wrong node type"
+literal|"Wrong node type"
 argument_list|)
 throw|;
 name|NodeListImpl
@@ -8251,7 +8251,7 @@ operator|.
 name|nextSibling
 argument_list|()
 decl_stmt|;
-comment|// append new content
+comment|//Append new content
 name|appendChildren
 argument_list|(
 name|transaction
@@ -8387,7 +8387,7 @@ name|DOMException
 operator|.
 name|WRONG_DOCUMENT_ERR
 argument_list|,
-literal|"wrong node type"
+literal|"Wrong node type"
 argument_list|)
 throw|;
 if|if
@@ -8407,7 +8407,7 @@ name|DOMException
 operator|.
 name|WRONG_DOCUMENT_ERR
 argument_list|,
-literal|"wrong node type"
+literal|"Wrong node type"
 argument_list|)
 throw|;
 name|StoredNode
@@ -8449,7 +8449,7 @@ name|DOMException
 operator|.
 name|NOT_FOUND_ERR
 argument_list|,
-literal|"node is not a child of this element"
+literal|"Node is not a child of this element"
 argument_list|)
 throw|;
 if|if
@@ -8596,7 +8596,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
-comment|// check if the change affects any ancestor nodes, which then need to be reindexed later
+comment|//Check if the change affects any ancestor nodes, which then need to be reindexed later
 name|StoredNode
 name|reindexRoot
 init|=
@@ -8612,7 +8612,7 @@ argument_list|,
 name|oldPath
 argument_list|)
 decl_stmt|;
-comment|// Remove indexes
+comment|//Remove indexes
 if|if
 condition|(
 name|reindexRoot
@@ -8639,7 +8639,7 @@ operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
-comment|// TODO: fix once range index has been moved to new architecture
+comment|//TODO: fix once range index has been moved to new architecture
 name|StoredNode
 name|valueReindexRoot
 init|=
@@ -8665,7 +8665,7 @@ argument_list|(
 name|valueReindexRoot
 argument_list|)
 expr_stmt|;
-comment|// Remove the actual node data
+comment|//Remove the actual node data
 name|broker
 operator|.
 name|removeNode
@@ -8694,7 +8694,7 @@ name|oldNode
 operator|.
 name|nodeId
 expr_stmt|;
-comment|// Reinsert the new node data
+comment|//Reinsert the new node data
 name|broker
 operator|.
 name|insertNodeAfter
@@ -8761,7 +8761,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// Recreate indexes on ancestor nodes
+comment|//Recreate indexes on ancestor nodes
 name|broker
 operator|.
 name|getIndexController
@@ -9230,7 +9230,7 @@ name|DOMException
 operator|.
 name|WRONG_DOCUMENT_ERR
 argument_list|,
-literal|"wrong node type"
+literal|"Wrong node type"
 argument_list|)
 throw|;
 name|StoredNode
@@ -9701,7 +9701,7 @@ name|DOMException
 operator|.
 name|WRONG_DOCUMENT_ERR
 argument_list|,
-literal|"wrong node type"
+literal|"Wrong node type"
 argument_list|)
 throw|;
 name|StoredNode
@@ -9735,7 +9735,7 @@ name|DOMException
 operator|.
 name|NOT_FOUND_ERR
 argument_list|,
-literal|"node is not a child of this element"
+literal|"Node is not a child of this element"
 argument_list|)
 throw|;
 name|StoredNode
@@ -9950,7 +9950,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
-comment|// reindex if required
+comment|//Reindex if required
 specifier|final
 name|DocumentImpl
 name|owner
@@ -10344,7 +10344,9 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"setIdAttributeNS(String namespaceURI, String localName, boolean isId) not implemented on class "
+literal|"setIdAttributeNS(String namespaceURI, String localName,"
+operator|+
+literal|" boolean isId) not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -10386,31 +10388,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|//    @Override
-comment|//    public String getBaseURI() {
-comment|//        String baseURI = getAttributeNS(Namespaces.XML_NS, "base");
-comment|//        if ( baseURI == null || "".equals(baseURI)) {
-comment|//            StoredNode parent = getParentStoredNode();
-comment|//            if (parent != null)
-comment|//                return parent.getBaseURI();
-comment|//        }
-comment|//
-comment|//        baseURI = "";
-comment|//        StoredNode parent = getParentStoredNode();
-comment|//        while (parent != null&& parent.getBaseURI() != null) {
-comment|//            if ("".equals(baseURI)) {
-comment|//                baseURI = parent.getBaseURI();
-comment|//            } else {
-comment|//                baseURI = parent.getBaseURI() + "/" + baseURI;
-comment|//            }
-comment|//            parent = parent.getParentStoredNode();
-comment|//            if (parent == null) return baseURI;
-comment|//        }
-comment|//        if ("".equals(baseURI)) {
-comment|//            baseURI = getDocument().getBaseURI();
-comment|//        }
-comment|//        return baseURI;
-comment|//    }
 annotation|@
 name|Override
 specifier|public
@@ -10441,7 +10418,7 @@ literal|""
 return|;
 comment|//UNDERSTAND: is it ok?
 block|}
-comment|//please, keep in sync with org.exist.memtree.ElementImpl
+comment|//Please, keep in sync with org.exist.memtree.ElementImpl
 specifier|protected
 name|XmldbURI
 name|calculateBaseURI
@@ -10998,7 +10975,9 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"setUserData(String key, Object data, UserDataHandler handler) not implemented on class "
+literal|"setUserData(String key, Object data, UserDataHandler handler) "
+operator|+
+literal|"not implemented on class "
 operator|+
 name|getClass
 argument_list|()

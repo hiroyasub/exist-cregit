@@ -157,9 +157,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#deleteData(int, int)      */
@@ -186,7 +184,6 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 operator|new
 name|String
 argument_list|(
@@ -208,7 +205,6 @@ index|[
 name|nodeNumber
 index|]
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -217,10 +213,8 @@ name|getNodeValue
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getData
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
@@ -229,13 +223,11 @@ name|getLength
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getData
 argument_list|()
 operator|.
 name|length
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#substringData(int, int)      */
@@ -253,9 +245,7 @@ throws|throws
 name|DOMException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#replaceData(int, int, java.lang.String)      */
@@ -323,9 +313,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#getWholeText()      *      * @return  DOCUMENT ME!      */
@@ -336,9 +324,7 @@ parameter_list|()
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      *      * @param   content  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
@@ -354,9 +340,7 @@ name|DOMException
 block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -365,11 +349,9 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
-operator|(
 name|Type
 operator|.
 name|CDATA_SECTION
-operator|)
 return|;
 block|}
 specifier|public
@@ -424,16 +406,14 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|"} "
+literal|"}"
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
@@ -442,9 +422,7 @@ name|getFirstChild
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 annotation|@

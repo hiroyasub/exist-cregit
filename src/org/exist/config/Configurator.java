@@ -706,7 +706,6 @@ name|Configuration
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|/*private static Map<Class<Configurable>, Map<String, Field>> map =         new HashMap<Class<Configurable>, Map<String, Field>>();     */
 comment|//TODO should be replaced with a naturally ordered List, we need to maintain the order of XML elements based on the order of class members!!!
 specifier|protected
 specifier|static
@@ -720,7 +719,6 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
-comment|/*if (map.containsKey(clazz))             return map.get(clazz);*/
 name|ConfigurationAnnotatedFields
 name|fields
 init|=
@@ -906,6 +904,7 @@ argument_list|(
 name|annotation
 argument_list|)
 return|;
+else|else
 return|return
 literal|null
 return|;
@@ -1158,7 +1157,6 @@ name|equals
 argument_list|(
 literal|"java.lang.String"
 argument_list|)
-comment|//&& method.getParameterTypes()[0].getName().equals("org.exist.config.Configuration")
 condition|)
 return|return
 name|method
@@ -1238,7 +1236,6 @@ name|class
 argument_list|)
 condition|)
 block|{
-comment|//LOG.info("no configuration name at "+instance.getClass());
 return|return
 literal|null
 return|;
@@ -1281,7 +1278,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"no configuration ["
+literal|"No configuration ["
 operator|+
 name|configName
 operator|+
@@ -1353,7 +1350,7 @@ name|instance
 operator|+
 literal|", "
 operator|+
-literal|"because allready in use by "
+literal|"because already in use by "
 operator|+
 name|configurable
 argument_list|)
@@ -1426,7 +1423,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-comment|//LOG.info("no properties for "+instance.getClass()+" @ "+configuration);
 return|return
 name|configuration
 return|;
@@ -1463,7 +1459,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"unused property "
+literal|"Unused property "
 operator|+
 name|property
 operator|+
@@ -1973,7 +1969,6 @@ argument_list|(
 name|property
 argument_list|)
 expr_stmt|;
-comment|//LOG.warn("skip unsupported configuration value type "+field.getType());
 block|}
 if|if
 condition|(
@@ -2066,7 +2061,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"configuration error: \n"
+literal|"Configuration error: \n"
 operator|+
 literal|" config: "
 operator|+
@@ -2106,7 +2101,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"security error: "
+literal|"Security error: "
 operator|+
 name|e
 operator|.
@@ -2369,7 +2364,6 @@ name|remove
 argument_list|()
 expr_stmt|;
 continue|continue;
-comment|//current_conf = org.exist.config.mapper.Constructor.getConfiguration(obj);
 block|}
 else|else
 block|{
@@ -2429,7 +2423,7 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
-comment|//lookup for new configuration, update if found
+comment|//Lookup for new configuration, update if found
 name|boolean
 name|found
 init|=
@@ -2800,20 +2794,22 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Filed must have 'ConfigurationFieldClassMask' annotation ["
+literal|"Field must have 'ConfigurationFieldClassMask' annotation ["
 operator|+
 name|conf
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"], skip instance creation."
+literal|"], skipping instance creation."
 argument_list|)
 expr_stmt|;
+block|}
 continue|continue;
 block|}
 name|String
@@ -2850,9 +2846,9 @@ block|,
 literal|""
 block|}
 expr_stmt|;
-comment|//LOG.warn("Subconfiguration don't have 'id' property ["+conf.getName()+"], skip instance creation.");
 block|}
 else|else
+block|{
 name|objs
 operator|=
 operator|new
@@ -2867,6 +2863,7 @@ block|,
 name|id
 block|}
 expr_stmt|;
+block|}
 name|String
 name|clazzName
 init|=
@@ -2882,8 +2879,6 @@ argument_list|,
 name|objs
 argument_list|)
 decl_stmt|;
-comment|//String clazzName = "org.exist.security.realm."+id.toLowerCase()+"."+id+"Realm";
-comment|//org.exist.security.realm.openid.OpenIDRealm
 name|Class
 argument_list|<
 name|?
@@ -2967,7 +2962,7 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-comment|//ignore if database starting-up
+comment|//ignore if database is starting-up
 block|}
 if|if
 condition|(
@@ -3039,7 +3034,9 @@ literal|"Class ["
 operator|+
 name|clazzName
 operator|+
-literal|"] not found, skip instance creation."
+literal|"] not found, "
+operator|+
+literal|"skip instance creation."
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -3077,7 +3074,9 @@ literal|"Class ["
 operator|+
 name|clazzName
 operator|+
-literal|"] constructor (with Configuration) not found, skip instance creation."
+literal|"] constructor "
+operator|+
+literal|"(with Configuration) not found, skip instance creation."
 argument_list|)
 expr_stmt|;
 continue|continue;
@@ -3137,13 +3136,6 @@ operator|+
 literal|"] startup, skip instance creation."
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
 continue|continue;
 block|}
 block|}
@@ -3199,17 +3191,6 @@ return|return
 name|configuration
 return|;
 block|}
-specifier|private
-specifier|static
-name|void
-name|proccessExternalObject
-parameter_list|()
-block|{
-comment|// TODO Auto-generated method stub
-block|}
-comment|//public static Configuration parse(InputStream is) throws ExceptionConfiguration {
-comment|//throw new ExceptionConfiguration("parser was not implemented");
-comment|//}
 specifier|public
 specifier|static
 name|Configuration
@@ -3249,9 +3230,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//public static Configuration parseDefault() throws ExceptionConfiguration {
-comment|//throw new ExceptionConfiguration("default configuration parser was not implemented");
-comment|//}
 specifier|public
 specifier|static
 name|Configuration
@@ -3552,6 +3530,7 @@ argument_list|(
 name|iae
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 catch|catch
@@ -3567,6 +3546,7 @@ argument_list|(
 name|iae
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 catch|catch
@@ -3582,6 +3562,7 @@ argument_list|(
 name|ite
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 name|QName
@@ -3834,6 +3815,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw eception ? -pb
 return|return;
 block|}
 name|field
@@ -3871,6 +3853,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception , -pb
 return|return;
 block|}
 catch|catch
@@ -3886,6 +3869,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 name|QName
@@ -4810,8 +4794,7 @@ operator|+
 literal|"] - skiped"
 argument_list|)
 expr_stmt|;
-comment|//unsupported type - skip
-comment|//buf.append(field.get(instance));
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 if|if
@@ -5874,6 +5857,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return
 literal|null
 return|;
@@ -5889,7 +5873,6 @@ return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
-comment|//throw new ConfigurationException("The configuration file can't be found, url = "+collection.getURI().append(fileURL));
 name|ElementAtExist
 name|confElement
 init|=
@@ -5911,7 +5894,6 @@ return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
-comment|//throw new ConfigurationException("The configuration file is empty, url = "+collection.getURI().append(fileURL));
 name|conf
 operator|=
 operator|new
@@ -6009,7 +5991,6 @@ return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
-comment|//throw new ConfigurationException("The configuration file is empty, url = "+collection.getURI().append(fileURL));
 name|conf
 operator|=
 operator|new
@@ -6765,8 +6746,6 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|//hotConfigs.clear();
-comment|//map.clear();
 block|}
 specifier|public
 specifier|static

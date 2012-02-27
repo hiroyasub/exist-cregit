@@ -860,8 +860,6 @@ operator|.
 name|PROCESSING_INSTRUCTION_NODE
 argument_list|)
 expr_stmt|;
-comment|//pi = (ProcessingInstructionImpl)
-comment|//NodeObjectPool.getInstance().borrowNode(ProcessingInstructionImpl.class);
 else|else
 name|pi
 operator|=

@@ -516,7 +516,7 @@ name|int
 name|start
 parameter_list|,
 name|int
-name|howmany
+name|howMany
 parameter_list|)
 throws|throws
 name|DOMException
@@ -529,7 +529,7 @@ name|data
 argument_list|,
 name|start
 argument_list|,
-name|howmany
+name|howMany
 argument_list|)
 expr_stmt|;
 block|}

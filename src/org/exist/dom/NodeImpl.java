@@ -536,7 +536,9 @@ name|DOMException
 operator|.
 name|NOT_SUPPORTED_ERR
 argument_list|,
-literal|"insertAfter(Txn transaction, NodeList nodes, Node refChild) not implemented on class "
+literal|"insertAfter(Txn transaction, NodeList nodes, Node refChild) "
+operator|+
+literal|"not implemented on class "
 operator|+
 name|getClass
 argument_list|()
@@ -616,7 +618,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getLastChild() 	 */
+comment|/**      * @see org.w3c.dom.Node#getLastChild()      */
 specifier|public
 name|Node
 name|getLastChild
@@ -933,7 +935,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI() 	 */
+comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 specifier|public
 name|String
 name|getBaseURI
@@ -966,7 +968,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -995,7 +997,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent() 	 */
+comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
 specifier|public
 name|String
 name|getTextContent
@@ -1021,7 +1023,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
 specifier|public
 name|void
 name|setTextContent
@@ -1050,7 +1052,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isSameNode
@@ -1077,7 +1079,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
 specifier|public
 name|String
 name|lookupPrefix
@@ -1104,7 +1106,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -1131,7 +1133,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -1158,7 +1160,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|isEqualNode
@@ -1185,7 +1187,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
 specifier|public
 name|Object
 name|getFeature
@@ -1215,7 +1217,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
 specifier|public
 name|Object
 name|getUserData
@@ -1287,7 +1289,6 @@ init|=
 name|getQName
 argument_list|()
 decl_stmt|;
-comment|//if (nodeName != null) {
 specifier|final
 name|String
 name|prefix
@@ -1306,8 +1307,6 @@ literal|""
 else|:
 name|prefix
 return|;
-comment|//}
-comment|//return "";
 block|}
 comment|/**      *  Sets the prefix attribute of the NodeImpl object      *      *@param  prefix            The new prefix value      *@exception  DOMException  Description of the Exception      */
 specifier|public
@@ -1347,20 +1346,13 @@ name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
-name|QName
-name|nodeName
-init|=
+return|return
 name|getQName
 argument_list|()
-decl_stmt|;
-comment|//if (nodeName != null)
-return|return
-name|nodeName
 operator|.
 name|getNamespaceURI
 argument_list|()
 return|;
-comment|//return "";
 block|}
 comment|/**      * @see org.w3c.dom.Node#getLocalName()      */
 comment|//TODO : remove default value
@@ -1369,42 +1361,27 @@ name|String
 name|getLocalName
 parameter_list|()
 block|{
-name|QName
-name|nodeName
-init|=
+return|return
 name|getQName
 argument_list|()
-decl_stmt|;
-comment|//if (nodeName != null)
-return|return
-name|nodeName
 operator|.
 name|getLocalName
 argument_list|()
 return|;
-comment|//return "";
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeName()      */
-comment|//TODO : remove default value
 specifier|public
 name|String
 name|getNodeName
 parameter_list|()
 block|{
-name|QName
-name|nodeName
-init|=
+return|return
 name|getQName
 argument_list|()
-decl_stmt|;
-comment|//if(nodeName != null)
-return|return
-name|nodeName
 operator|.
 name|getStringValue
 argument_list|()
 return|;
-comment|//return "";
 block|}
 block|}
 end_class

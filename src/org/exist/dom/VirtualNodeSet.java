@@ -2154,6 +2154,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 if|if
@@ -2173,6 +2174,7 @@ argument_list|(
 literal|"DOC == NULL"
 argument_list|)
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 return|return;
 block|}
 name|child
@@ -2677,6 +2679,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+comment|//TODO : throw exception ,
 block|}
 catch|catch
 parameter_list|(
@@ -2689,6 +2692,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+comment|//TODO : throw exception ? -pb
 block|}
 block|}
 comment|/**      * Realize the node set. This should only be done if the      * wildcard step is the last step in a path expression.      *      */
