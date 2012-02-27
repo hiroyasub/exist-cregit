@@ -94,7 +94,7 @@ specifier|static
 name|long
 name|DEFAULT_MEMORY_MAP_SIZE
 init|=
-literal|64
+literal|4
 operator|*
 literal|1024
 operator|*
