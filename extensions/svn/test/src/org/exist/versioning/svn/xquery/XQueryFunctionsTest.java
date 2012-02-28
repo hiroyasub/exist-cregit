@@ -512,7 +512,7 @@ literal|"if (doc-available($file-path)) "
 operator|+
 literal|"then () "
 operator|+
-literal|"else xmldb:store($checkout-collection, $target-file,<test>{current-dateTime()}</test>) "
+literal|"else xmldb:store($collection, $target-file,<test>{current-dateTime()}</test>) "
 operator|+
 literal|"let $add := subversion:add($file-path) "
 operator|+
