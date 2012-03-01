@@ -863,7 +863,7 @@ return|return
 name|var
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -916,6 +916,7 @@ name|XQueryContext
 name|xqueryContext
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 end_class

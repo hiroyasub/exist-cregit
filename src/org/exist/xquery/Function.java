@@ -206,8 +206,7 @@ name|argumentsChecked
 init|=
 literal|false
 decl_stmt|;
-comment|//	private XQueryAST astNode = null;
-comment|/** 	 * Internal constructor. Subclasses should<b>always</b> call this and 	 * pass the current context and their function signature. 	 *  	 * @param context 	 * @param signature 	 */
+comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *       * @param context      * @param signature      */
 specifier|protected
 name|Function
 parameter_list|(
@@ -243,7 +242,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Returns the module to which this function belongs          */
+comment|/**      * Returns the module to which this function belongs      */
 specifier|protected
 name|Module
 name|getParentModule
@@ -264,7 +263,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -315,7 +314,7 @@ name|getPrimaryType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
@@ -354,7 +353,7 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Create a built-in function from the specified class. 	 * @return the created function or null if the class could not be initialized. 	 */
+comment|/**      * Create a built-in function from the specified class.      * @return the created function or null if the class could not be initialized.      */
 specifier|public
 specifier|static
 name|Function
@@ -480,6 +479,7 @@ name|NoSuchMethodException
 name|e
 parameter_list|)
 block|{
+comment|//Ignore ? -pb
 block|}
 comment|// not found: check if the constructor takes two arguments
 if|if
@@ -680,7 +680,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * Set the parent expression of this function, i.e. the 	 * expression from which the function is called. 	 *  	 * @param parent 	 */
+comment|/**      * Set the parent expression of this function, i.e. the      * expression from which the function is called.      *       * @param parent      */
 specifier|public
 name|void
 name|setParent
@@ -696,7 +696,7 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the expression from which this function 	 * gets called.          */
+comment|/**      * Returns the expression from which this function gets called.      */
 specifier|public
 name|Expression
 name|getParent
@@ -706,7 +706,7 @@ return|return
 name|parent
 return|;
 block|}
-comment|/** 	 * Set the (static) arguments for this function from a list of expressions. 	 *  	 * This will also check the type and cardinality of the 	 * passed argument expressions. 	 *  	 * @param arguments 	 * @throws XPathException 	 */
+comment|/**      * Set the (static) arguments for this function from a list of expressions.      *       * This will also check the type and cardinality of the      * passed argument expressions.      *       * @param arguments      * @throws XPathException      */
 specifier|public
 name|void
 name|setArguments
@@ -748,7 +748,7 @@ name|this
 argument_list|,
 literal|"err:XPST0017: "
 operator|+
-literal|"number of arguments to function "
+literal|"number of arguments of function "
 operator|+
 name|getName
 argument_list|()
@@ -921,7 +921,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 * Statically check an argument against the sequence type specified in 	 * the signature. 	 *  	 * @param expr 	 * @param type 	 * @return The passed expression 	 * @throws XPathException 	 */
+comment|/**      * Statically check an argument against the sequence type specified in      * the signature.      *       * @param expr      * @param type      * @return The passed expression      * @throws XPathException      */
 specifier|protected
 name|Expression
 name|checkArgument
@@ -1493,7 +1493,6 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
-comment|//if (!(type.getPrimaryType() == Type.ATOMIC))
 name|expr
 operator|=
 operator|new
@@ -1892,7 +1891,7 @@ return|return
 name|args
 return|;
 block|}
-comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos 	 */
+comment|/**      * Get an argument expression by its position in the      * argument list.      *       * @param pos      */
 specifier|public
 name|Expression
 name|getArgument
@@ -1908,7 +1907,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Get the number of arguments passed to this function. 	 *  	 * @return number of arguments 	 */
+comment|/**      * Get the number of arguments passed to this function.      *       * @return number of arguments      */
 specifier|public
 name|int
 name|getArgumentCount
@@ -1930,7 +1929,7 @@ name|axis
 parameter_list|)
 block|{
 block|}
-comment|/** 	 * Return the name of this function. 	 *  	 * @return name of this function 	 */
+comment|/**      * Return the name of this function.      *       * @return name of this function      */
 specifier|public
 name|QName
 name|getName
@@ -1943,7 +1942,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Get the signature of this function. 	 *  	 * @return signature of this function 	 */
+comment|/**      * Get the signature of this function.      *       * @return signature of this function      */
 specifier|public
 name|FunctionSignature
 name|getSignature
@@ -1976,7 +1975,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies

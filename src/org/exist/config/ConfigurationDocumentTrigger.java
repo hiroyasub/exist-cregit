@@ -306,6 +306,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -463,6 +464,7 @@ argument_list|,
 name|pde
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -482,6 +484,7 @@ argument_list|,
 name|ee
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
 block|}
 block|}
 break|break;
@@ -537,6 +540,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO : use XmldbURI methos ! not String.equals()
 if|if
 condition|(
 name|uri
@@ -593,6 +597,7 @@ argument_list|,
 name|pde
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
 block|}
 catch|catch
 parameter_list|(
@@ -612,6 +617,7 @@ argument_list|,
 name|ee
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
 block|}
 block|}
 block|}
@@ -633,6 +639,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -712,6 +719,7 @@ operator|.
 name|SECURITY_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 try|try
 block|{
 name|broker
@@ -752,6 +760,8 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+comment|//TODO : raise exception ? -pb
+block|}
 block|}
 block|}
 annotation|@
@@ -772,6 +782,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -825,6 +836,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -881,6 +893,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -934,6 +947,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -982,11 +996,10 @@ argument_list|(
 name|conf
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 comment|//XXX: inform object that configuration was deleted
 block|}
 block|}
-comment|/**          * Mappings from User ids that were used in UnixStylePermission version of eXist-db to ACLPermission version of eXist-db          */
+comment|/**      * Mappings from User ids that were used in UnixStylePermission version of eXist-db to ACLPermission version of eXist-db      */
 specifier|final
 specifier|static
 name|Map
@@ -1054,7 +1067,7 @@ name|GUEST_ACCOUNT_ID
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Mappings from group ids that were used in UnixStylePermission version of eXist-db to ACLPermission version of eXist-db          */
+comment|/**      * Mappings from group ids that were used in UnixStylePermission version of eXist-db to ACLPermission version of eXist-db      */
 specifier|final
 specifier|static
 name|Map

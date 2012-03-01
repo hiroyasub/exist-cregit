@@ -67,7 +67,7 @@ block|{
 name|Expression
 name|expression
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|AtomicToString
 parameter_list|(
@@ -116,7 +116,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,      * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -281,7 +281,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -293,7 +293,7 @@ operator|.
 name|STRING
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#preselect(org.exist.dom.DocumentSet) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#preselect(org.exist.dom.DocumentSet)      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -331,7 +331,7 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState

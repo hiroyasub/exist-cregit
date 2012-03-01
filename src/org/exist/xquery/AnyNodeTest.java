@@ -100,7 +100,7 @@ name|AnyNodeTest
 implements|implements
 name|NodeTest
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#getName() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#getName()      */
 specifier|public
 name|QName
 name|getName
@@ -110,7 +110,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#isWildcardTest() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#isWildcardTest()      */
 specifier|public
 name|boolean
 name|isWildcardTest
@@ -120,7 +120,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.w3c.dom.Node)      */
 specifier|public
 name|boolean
 name|matches
@@ -142,7 +142,7 @@ name|ATTRIBUTE_NODE
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
 specifier|public
 name|boolean
 name|matches
@@ -185,6 +185,7 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_TYPE
 condition|)
+block|{
 return|return
 name|matches
 argument_list|(
@@ -194,6 +195,7 @@ name|getNode
 argument_list|()
 argument_list|)
 return|;
+block|}
 return|return
 name|proxy
 operator|.
@@ -296,7 +298,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#toString() 	 */
+comment|/* (non-Javadoc)      * @see java.lang.Object#toString()      */
 specifier|public
 name|String
 name|toString
@@ -315,6 +317,7 @@ name|int
 name|nodeType
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 specifier|public
 name|int

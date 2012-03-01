@@ -88,8 +88,9 @@ specifier|public
 name|AnalyzeContextInfo
 parameter_list|()
 block|{
+comment|//Nothing to do
 block|}
-comment|/** 	 * Create a new AnalyzeContextInfo using the given parent and flags. 	 *  	 * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class. 	 */
+comment|/**      * Create a new AnalyzeContextInfo using the given parent and flags.      *       * @param parent the parent expression which calls this method      * @param flags int value containing a set of flags. See the constants defined      * in this class. 	 */
 specifier|public
 name|AnalyzeContextInfo
 parameter_list|(
@@ -113,7 +114,7 @@ operator|=
 name|flags
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new object as a clone of other. 	 *  	 * @param other 	 */
+comment|/**      * Create a new object as a clone of other.      *       * @param other      */
 specifier|public
 name|AnalyzeContextInfo
 parameter_list|(
@@ -193,7 +194,7 @@ return|return
 name|context
 return|;
 block|}
-comment|/** 	 * Returns the current context id. The context id is used 	 * to keep track of the context node set within a predicate 	 * expression or where-clause. The id identifies the ancestor  	 * expression to which the context applies. 	 *  	 * @return  current context id. 	 */
+comment|/**      * Returns the current context id. The context id is used      * to keep track of the context node set within a predicate      * expression or where-clause. The id identifies the ancestor       * expression to which the context applies.      *       * @return  current context id.      */
 specifier|public
 name|int
 name|getContextId
@@ -218,7 +219,7 @@ operator|=
 name|contextId
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the processing flags. Every expression may pass 	 * execution hints to its child expressions, encoded as bit flags.  	 *  	 * @return processing flags 	 */
+comment|/**      * Returns the processing flags. Every expression may pass      * execution hints to its child expressions, encoded as bit flags.       *       * @return processing flags      */
 specifier|public
 name|int
 name|getFlags
@@ -228,7 +229,7 @@ return|return
 name|flags
 return|;
 block|}
-comment|/** 	 * Sets the processing flags to be passed to a child expression. 	 *  	 * @param flags 	 */
+comment|/**      * Sets the processing flags to be passed to a child expression.      *       * @param flags      */
 specifier|public
 name|void
 name|setFlags
@@ -271,7 +272,7 @@ operator|~
 name|flag
 expr_stmt|;
 block|}
-comment|/** 	 * Returns the parent of the current expression. 	 */
+comment|/**      * Returns the parent of the current expression.      */
 specifier|public
 name|Expression
 name|getParent
