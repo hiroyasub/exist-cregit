@@ -438,7 +438,6 @@ operator|==
 name|Type
 operator|.
 name|NAMESPACE
-comment|/*|| 		               next.getType() == Type.DOCUMENT*/
 condition|)
 throw|throw
 operator|new
@@ -526,7 +525,7 @@ name|nextItem
 argument_list|()
 expr_stmt|;
 comment|// if item is a node, flush any collected character data and
-comment|//	copy the node to the target doc.
+comment|// copy the node to the target doc.
 block|}
 if|else if
 condition|(
@@ -655,8 +654,6 @@ name|nextItem
 argument_list|()
 expr_stmt|;
 block|}
-comment|//TODO : design like below ? -pb
-comment|/* 		         		         		        //TODO : wondering whether we shouldn't iterate over a nodeset as the specs would tend to say. -pb	         		         		        SequenceIterator i = contentSeq.iterate(); 		        Item next = i.nextItem(); 		        while(next != null) { 		            context.proceed(this, builder); 		             					if (Type.subTypeOf(next.getType(), Type.NODE)) { 						//flush any collected character data 						if (buf != null&& buf.length()> 0) { 							receiver.characters(buf); 							buf.setLength(0); 						}					 						// copy the node to the target doc 						if(next.getType() == Type.ATTRIBUTE) { 							throw new XPathException(getASTNode(), "XPTY0004 : Found a node of type " +  								Type.getTypeName(next.getType()) +  " inside a document constructor");							 						} else if (next.getType() == Type.DOCUMENT) {		 							//TODO : definitely broken, but that's the way to do 							for (int j = 0 ; j< ((DocumentImpl)next).getChildCount(); j++) {								 								((DocumentImpl)next).getNode(j).copyTo(context.getBroker(), receiver); 							}							 						} else if (Type.subTypeOf(next.getType(), Type.TEXT)) { 							//TODO 							buf.append("#text"); 						} else { 							next.copyTo(context.getBroker(), receiver); 						} 					} else {					 					    if(buf == null) 					        buf = new StringBuilder(); 						//else if (buf.length()> 0) 						//	buf.append(' '); 						buf.append(next.getStringValue());						 					} 					next = i.nextItem(); 					*/
 block|}
 comment|// flush remaining character data
 if|if

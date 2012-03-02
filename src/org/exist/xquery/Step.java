@@ -351,7 +351,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//context.("t")
 if|if
 condition|(
 name|test
@@ -593,7 +592,7 @@ return|return
 name|axis
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int)      */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -827,8 +826,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|//TODO : not sure about this one...
-comment|/*     	public int getDependencies() { 		if (test == null) 			return Dependency.CONTEXT_SET; 		else 			return Dependency.CONTEXT_SET + Dependency.CONTEXT_ITEM; 	} 	*/
 specifier|public
 name|int
 name|returnsType
@@ -845,7 +842,6 @@ name|SELF_AXIS
 condition|)
 block|{
 comment|//Type.ITEM by default : this may change *after* evaluation
-comment|//            LOG.debug("My static type: " + Type.getTypeName(staticReturnType));
 return|return
 name|staticReturnType
 return|;
@@ -907,7 +903,7 @@ return|return
 name|test
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState

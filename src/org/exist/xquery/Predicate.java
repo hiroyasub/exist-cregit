@@ -302,7 +302,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.PathExpr#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -346,7 +346,7 @@ return|return
 name|deps
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see 	 * org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo) 	 */
+comment|/*      * (non-Javadoc)      *       * @see      * org.exist.xquery.PathExpr#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
@@ -493,8 +493,7 @@ name|executionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
-comment|// Case 3: all other cases, boolean evaluation (that can be "promoted"
-comment|// later)
+comment|// Case 3: all other cases, boolean evaluation (that can be "promoted" later)
 else|else
 name|executionMode
 operator|=
@@ -581,6 +580,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 decl_stmt|;
+comment|// set flag to signal subexpression that we are in a predicate
 name|newContextInfo
 operator|.
 name|addFlag
@@ -588,9 +588,6 @@ argument_list|(
 name|IN_PREDICATE
 argument_list|)
 expr_stmt|;
-comment|// set flag to signal
-comment|// subexpression that we are in
-comment|// a predicate
 name|newContextInfo
 operator|.
 name|removeFlag
@@ -872,8 +869,7 @@ name|BOOLEAN
 expr_stmt|;
 block|}
 block|}
-comment|// If there is no dependency on the context item, try a
-comment|// positional promotion
+comment|// If there is no dependency on the context item, try a positional promotion
 if|if
 condition|(
 name|executionMode
@@ -891,10 +887,10 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
+operator|&&
 comment|// Hack : GeneralComparison lies on its dependencies
 comment|// TODO : try to remove this since our dependency
 comment|// computation should now be better
-operator|&&
 operator|!
 operator|(
 operator|(
@@ -992,7 +988,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-comment|/* 					 *  					 * WARNING : this sequence will be evaluated with 					 * preloadable nodesets ! 					 */
+comment|/*                      *                       * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
 name|innerSeq
 operator|=
 name|inner
@@ -1030,10 +1026,8 @@ name|recomputedExecutionMode
 operator|=
 name|NODE
 expr_stmt|;
-comment|// Try to promote a boolean evaluation to a positional
-comment|// one
-comment|// Only if we have an actual *singleton* of numeric
-comment|// items
+comment|// Try to promote a boolean evaluation to a positional one
+comment|// Only if we have an actual *singleton* of numeric items
 block|}
 if|else if
 condition|(
@@ -1100,7 +1094,7 @@ argument_list|,
 literal|"Node selection"
 argument_list|)
 expr_stmt|;
-comment|//TODO:				result = selectByNodeSet(contextSequence);
+comment|//TODO: result = selectByNodeSet(contextSequence);
 break|break;
 case|case
 name|BOOLEAN
@@ -1133,7 +1127,7 @@ argument_list|,
 literal|"Boolean evaluation"
 argument_list|)
 expr_stmt|;
-comment|//TODO:				result = evalBoolean(contextSequence, inner);
+comment|//TODO: result = evalBoolean(contextSequence, inner);
 break|break;
 case|case
 name|POSITIONAL
@@ -1184,8 +1178,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO:				result = selectByPosition(outerSequence, contextSequence, mode,
-comment|//						innerSeq);
+comment|//TODO: result = selectByPosition(outerSequence, contextSequence, mode, innerSeq);
 break|break;
 default|default:
 throw|throw
@@ -1455,10 +1448,10 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 argument_list|)
+operator|&&
 comment|// Hack : GeneralComparison lies on its dependencies
 comment|// TODO : try to remove this since our dependency
 comment|// computation should now be better
-operator|&&
 operator|!
 operator|(
 operator|(
@@ -1556,7 +1549,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
-comment|/* 					 *  					 * WARNING : this sequence will be evaluated with 					 * preloadable nodesets ! 					 */
+comment|/*                      *                       * WARNING : this sequence will be evaluated with                      * preloadable nodesets !                      */
 name|innerSeq
 operator|=
 name|inner
@@ -1594,10 +1587,8 @@ name|recomputedExecutionMode
 operator|=
 name|NODE
 expr_stmt|;
-comment|// Try to promote a boolean evaluation to a positional
-comment|// one
-comment|// Only if we have an actual *singleton* of numeric
-comment|// items
+comment|// Try to promote a boolean evaluation to a positional one
+comment|// Only if we have an actual *singleton* of numeric items
 block|}
 if|else if
 condition|(
@@ -1818,7 +1809,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param contextSequence 	 * @param inner 	 * @return The result of the boolean evaluation of the predicate. 	 * @throws XPathException 	 */
+comment|/**      * @param contextSequence      * @param inner      * @return The result of the boolean evaluation of the predicate.      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|evalBoolean
@@ -2291,7 +2282,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param contextSequence 	 * @return The result of the node set evaluation of the predicate. 	 * @throws XPathException 	 */
+comment|/**      * @param contextSequence      * @return The result of the node set evaluation of the predicate.      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|selectByNodeSet
@@ -2331,8 +2322,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|/* 		 * //Uncomment the lines below which are intended to work around a 		 * VirtualNodeSet bug //No need to say that performance can suffer ! 		 * NodeSet nodes; if (contextIsVirtual) { ArraySet copy = new 		 * ArraySet(contextSet.getLength()); for (Iterator i = 		 * contextSet.iterator(); i.hasNext();) { copy.add((Item)i.next()); } 		 * nodes = super.eval(copy, null).toNodeSet(); } else nodes = 		 * super.eval(contextSet, null).toNodeSet(); //End of work-around 		 */
-comment|// Comment the line below if you have uncommented the lines above :-)
 name|NodeSet
 name|nodes
 init|=
@@ -2348,7 +2337,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
-comment|/* 		 * if the predicate expression returns results from the cache we can 		 * also return the cached result. 		 */
+comment|/*          * if the predicate expression returns results from the cache we can          * also return the cached result.          */
 if|if
 condition|(
 name|cached
@@ -2604,7 +2593,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param outerSequence 	 * @param contextSequence 	 * @param mode 	 * @param innerSeq 	 * @return The result of the positional evaluation of the predicate. 	 * @throws XPathException 	 */
+comment|/**      * @param outerSequence      * @param contextSequence      * @param mode      * @param innerSeq      * @return The result of the positional evaluation of the predicate.      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|selectByPosition
@@ -2730,11 +2719,6 @@ operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
-comment|// outerNodeSet = new NewArrayNodeSet();
-comment|// for (int i = 0 ; i< outerSequence.getItemCount() ; i++)
-comment|// {
-comment|// outerNodeSet.add(outerSequence.itemAt(i));
-comment|// }
 block|}
 else|else
 name|outerNodeSet
@@ -2744,17 +2728,12 @@ operator|.
 name|toNodeSet
 argument_list|()
 expr_stmt|;
-comment|// Comment the line below if you have uncommented the lines
-comment|// above :-)
 comment|// TODO: in some cases, especially with in-memory nodes,
 comment|// outerSequence.toNodeSet() will generate a document
 comment|// which will be different from the one(s) in contextSet
 comment|// ancestors will thus be empty :-(
 comment|// A special treatment of VirtualNodeSet does not seem to be
-comment|// required
-comment|// anymore, at least for trunk:
-comment|// if (outerSequence instanceof VirtualNodeSet)
-comment|// ((VirtualNodeSet)outerSequence).realize();
+comment|// required anymore
 name|Sequence
 name|ancestors
 init|=
@@ -2941,8 +2920,7 @@ argument_list|()
 condition|)
 block|{
 comment|// ... whereas we don't want a sorted array here
-comment|// TODO : rename this method as getInDocumentOrder ?
-comment|// -pb
+comment|// TODO : rename this method as getInDocumentOrder ? -pb
 name|p
 operator|=
 name|temp
@@ -2964,10 +2942,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Commented out : but this is probably more
-comment|// complicated (see test case in the same
-comment|// commit)
-comment|// p.clearContext(Expression.IGNORE_CONTEXT);
 name|result
 operator|.
 name|add
@@ -2976,8 +2950,7 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO : does null make sense here ? Well...
-comment|// sometimes ;-)
+comment|// TODO : does null make sense here ? Well... sometimes ;-)
 block|}
 block|}
 block|}
@@ -3187,14 +3160,11 @@ literal|false
 expr_stmt|;
 break|break;
 default|default:
-comment|// temp = contextSet.selectAncestorDescendant(p,
-comment|// NodeSet.DESCENDANT, false, false);
-comment|// break;
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Tested unknown axis"
+literal|"Tried to test unknown axis"
 argument_list|)
 throw|;
 block|}
@@ -3235,8 +3205,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-comment|// Non integers return... nothing, not even an error
-comment|// !
+comment|// Non integers return... nothing, not even an error !
 if|if
 condition|(
 operator|!
@@ -3305,8 +3274,7 @@ name|pos
 argument_list|)
 decl_stmt|;
 comment|// for the current context: filter out those
-comment|// context items
-comment|// not selected by the positional predicate
+comment|// context items not selected by the positional predicate
 name|ContextItem
 name|ctx
 init|=
@@ -3644,7 +3612,7 @@ return|return
 name|executionMode
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.PathExpr#resetState()      */
 specifier|public
 name|void
 name|resetState

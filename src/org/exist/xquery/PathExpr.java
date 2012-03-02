@@ -1203,7 +1203,7 @@ name|CONTEXT_POSITION
 argument_list|)
 operator|)
 operator|&&
-comment|//A positionnal predicate will be evaluated one time
+comment|//A positional predicate will be evaluated one time
 comment|//TODO : reconsider since that may be expensive (type evaluation)
 operator|!
 operator|(
@@ -1461,7 +1461,6 @@ operator|=
 name|result
 expr_stmt|;
 block|}
-comment|// instanceof VariableDeclaration might be unneeded /ljo
 if|if
 condition|(
 name|gotAtomicResult
@@ -1472,11 +1471,6 @@ operator|.
 name|allowMixNodesInReturn
 argument_list|()
 operator|&&
-comment|//                !(expr instanceof TextConstructor)&&
-comment|//!(expr instanceof VariableDeclaration)&&
-comment|//                !(expr instanceof VariableReference)&&
-comment|//                !(expr instanceof LetExpr)&&
-comment|//                !(expr instanceof EnclosedExpr)&&
 operator|!
 name|Type
 operator|.
@@ -1719,7 +1713,6 @@ name|ExpressionDumper
 name|dumper
 parameter_list|)
 block|{
-comment|//        dumper.startIndent();
 name|Expression
 name|next
 init|=
@@ -1822,7 +1815,6 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
-comment|//        dumper.endIndent();
 block|}
 specifier|public
 name|String
@@ -1983,7 +1975,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-comment|//Not so simple. ITEM should be retuned in some circumstances that have to be determined
+comment|//Not so simple. ITEM should be re-tuned in some circumstances that have to be determined
 return|return
 name|Type
 operator|.
@@ -2404,7 +2396,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#isValid() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#isValid()      */
 specifier|public
 name|boolean
 name|isValid

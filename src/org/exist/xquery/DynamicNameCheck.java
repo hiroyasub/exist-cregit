@@ -141,7 +141,7 @@ operator|=
 name|expression
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -698,7 +698,7 @@ name|localName
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -710,7 +710,7 @@ operator|.
 name|nodeType
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -734,7 +734,7 @@ name|postOptimization
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
@@ -760,7 +760,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
 name|void
 name|dump

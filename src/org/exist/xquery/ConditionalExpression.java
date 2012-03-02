@@ -155,7 +155,7 @@ name|simplify
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -198,7 +198,7 @@ return|return
 name|elseExpr
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
@@ -271,7 +271,7 @@ name|contextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,       * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -378,7 +378,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet)      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -551,7 +551,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -574,7 +574,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -710,6 +710,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -726,6 +727,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|//Nothing to do
 block|}
 comment|/* END RewritableExpression API */
 block|}
