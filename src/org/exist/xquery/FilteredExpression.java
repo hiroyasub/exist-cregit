@@ -198,7 +198,7 @@ specifier|private
 name|Expression
 name|parent
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|FilteredExpression
 parameter_list|(
@@ -326,7 +326,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -493,9 +493,9 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// If the current step is an // abbreviated step, we have to treat the predicate
-comment|// specially to get the context position right. //a[1] translates to /descendant-or-self::node()/a[1],
-comment|// so we need to return the 1st a from any parent of a.
-comment|//
+comment|// specially to get the context position right. //a[1] translates
+comment|//to /descendant-or-self::node()/a[1], so we need to return the
+comment|//1st a from any parent of a.
 comment|// If the predicate is known to return a node set, no special treatment is required.
 if|if
 condition|(
@@ -703,6 +703,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|processPredicate
@@ -712,6 +713,7 @@ argument_list|,
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -868,7 +870,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -881,7 +883,7 @@ name|returnsType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -921,7 +923,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int)      */
 specifier|public
 name|void
 name|setPrimaryAxis
@@ -963,7 +965,7 @@ operator|=
 name|abbrev
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies

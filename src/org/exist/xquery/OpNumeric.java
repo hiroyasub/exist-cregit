@@ -683,7 +683,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"too many operands at the left of "
+literal|"Too many operands at the left of "
 operator|+
 name|Constants
 operator|.
@@ -710,7 +710,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"too many operands at the right of "
+literal|"Too many operands at the right of "
 operator|+
 name|Constants
 operator|.
@@ -1064,7 +1064,7 @@ name|ErrorCodes
 operator|.
 name|FOAR0001
 argument_list|,
-literal|"division by zero"
+literal|"Division by zero"
 argument_list|)
 throw|;
 comment|//If either operand is NaN then an error is raised [err:FOAR0002].
@@ -1090,7 +1090,7 @@ name|ErrorCodes
 operator|.
 name|FOAR0002
 argument_list|,
-literal|"division of "
+literal|"Division of "
 operator|+
 name|Type
 operator|.
@@ -1132,7 +1132,7 @@ name|ErrorCodes
 operator|.
 name|FOAR0002
 argument_list|,
-literal|"division of "
+literal|"Division of "
 operator|+
 name|Type
 operator|.
@@ -1174,7 +1174,7 @@ name|ErrorCodes
 operator|.
 name|FOAR0002
 argument_list|,
-literal|"division of "
+literal|"Division of "
 operator|+
 name|Type
 operator|.
@@ -1486,7 +1486,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"unknown numeric operator "
+literal|"Unknown numeric operator "
 operator|+
 name|operator
 argument_list|)

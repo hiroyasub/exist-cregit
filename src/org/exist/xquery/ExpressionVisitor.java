@@ -34,7 +34,7 @@ specifier|public
 interface|interface
 name|ExpressionVisitor
 block|{
-comment|/** 	 * Default fallback method if no other method matches 	 * the object's type. 	 *  	 * @param expression 	 */
+comment|/**      * Default fallback method if no other method matches      * the object's type.      *       * @param expression      */
 specifier|public
 name|void
 name|visit

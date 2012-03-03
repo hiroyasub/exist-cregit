@@ -127,7 +127,7 @@ specifier|final
 name|int
 name|relation
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|NodeComparison
 parameter_list|(
@@ -178,16 +178,16 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//add(new DynamicCardinalityCheck(context, Cardinality.ZERO_OR_ONE, right,
-comment|//        new Error(Error.NODE_COMP_TYPE_MISMATCH)));
-comment|//add(left);
 name|add
 argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
+comment|//add(new DynamicCardinalityCheck(context, Cardinality.ZERO_OR_ONE, right,
+comment|//        new Error(Error.NODE_COMP_TYPE_MISMATCH)));
+comment|//add(left);
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -203,7 +203,7 @@ operator|.
 name|CONTEXT_ITEM
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
@@ -215,7 +215,7 @@ operator|.
 name|ZERO_OR_ONE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BinaryOp#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BinaryOp#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -227,7 +227,7 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -707,7 +707,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"the empty sequence cant be an atomic value"
+literal|"The empty sequence cant be an atomic value"
 argument_list|)
 throw|;
 block|}
@@ -752,7 +752,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"the empty sequence cant be an atomic value"
+literal|"The empty sequence cant be an atomic value"
 argument_list|)
 throw|;
 block|}

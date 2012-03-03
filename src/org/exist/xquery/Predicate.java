@@ -2700,34 +2700,12 @@ case|:
 block|{
 name|NodeSet
 name|outerNodeSet
+init|=
+name|outerSequence
+operator|.
+name|toNodeSet
+argument_list|()
 decl_stmt|;
-comment|// Ugly and costly processing of VirtualNodeSets
-comment|// TODO : CORRECT THIS !!!
-if|if
-condition|(
-name|outerSequence
-operator|instanceof
-name|VirtualNodeSet
-condition|)
-block|{
-comment|// Looks like we don't need to treat VirtualNodeSet
-comment|// specially here.
-name|outerNodeSet
-operator|=
-name|outerSequence
-operator|.
-name|toNodeSet
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-name|outerNodeSet
-operator|=
-name|outerSequence
-operator|.
-name|toNodeSet
-argument_list|()
-expr_stmt|;
 comment|// TODO: in some cases, especially with in-memory nodes,
 comment|// outerSequence.toNodeSet() will generate a document
 comment|// which will be different from the one(s) in contextSet

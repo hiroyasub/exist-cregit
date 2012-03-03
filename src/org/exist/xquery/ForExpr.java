@@ -243,7 +243,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * A "for" expression may have an optional positional variable whose 	 * QName can be set via this method. 	 *  	 * @param var 	 */
+comment|/**      * A "for" expression may have an optional positional variable whose      * QName can be set via this method.      *       * @param var      */
 specifier|public
 name|void
 name|setPositionalVariable
@@ -755,7 +755,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * This implementation tries to process the "where" clause in advance, i.e. in one single 	 * step. This is possible if the input sequence is a node set and the where expression 	 * has no dependencies on other variables than those declared in this "for" statement. 	 *  	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
+comment|/**      * This implementation tries to process the "where" clause in advance, i.e. in one single      * step. This is possible if the input sequence is a node set and the where expression      * has no dependencies on other variables than those declared in this "for" statement.      *       * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1201,6 +1201,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|var
 operator|.
 name|setContextDocs
@@ -1208,6 +1209,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 comment|// See if we can process the "where" clause in a single step (instead of
 comment|// calling the where expression for each item in the input sequence)
 comment|// This is possible if the input sequence is a node set and has no
@@ -1315,7 +1317,6 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
-comment|//clearContext for whereExpr?
 block|}
 comment|// PreorderedValueSequence applies the order specs to all items
 comment|// in one single processing step
@@ -1339,7 +1340,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Otherwise, if there's an order by clause, wrap the result into
-comment|// zan OrderedValueSequence. OrderedValueSequence will compute
+comment|// an OrderedValueSequence. OrderedValueSequence will compute
 comment|// order expressions for every item when it is added to the result sequence.
 if|if
 condition|(
@@ -1357,6 +1358,7 @@ operator|&&
 operator|!
 name|fastOrderBy
 condition|)
+block|{
 name|resultSequence
 operator|=
 operator|new
@@ -1370,6 +1372,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|resultSequence
@@ -1424,7 +1427,8 @@ argument_list|(
 name|atVal
 argument_list|)
 expr_stmt|;
-comment|//Type.EMPTY is *not* a subtype of other types ; the tests below would fail without this prior cardinality check
+comment|//Type.EMPTY is *not* a subtype of other types ;
+comment|//the tests below would fail without this prior cardinality check
 if|if
 condition|(
 name|in
@@ -1539,7 +1543,6 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
-comment|//				atVal.setValue(p); // seb: this does not create a new Value. the old Value is referenced from results
 if|if
 condition|(
 name|positionalVariable
@@ -1666,6 +1669,7 @@ condition|)
 continue|continue;
 block|}
 else|else
+block|{
 name|val
 operator|=
 name|contextItem
@@ -1673,6 +1677,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 comment|//Reset the context position
 name|context
 operator|.
@@ -1696,6 +1701,7 @@ name|returnExpr
 operator|instanceof
 name|BindingExpression
 condition|)
+block|{
 operator|(
 operator|(
 name|BindingExpression
@@ -1715,6 +1721,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// otherwise call the return expression and add results to resultSequence
+block|}
 else|else
 block|{
 name|val
@@ -1737,7 +1744,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/* bv : special processing for groupby :                 	if returnExpr is a Binding expression, pass the groupedSequence.                   	Else, add item to groupedSequence and don't evaluate here !                   */
+comment|/* bv : special processing for groupby :                     if returnExpr is a Binding expression, pass the groupedSequence.                       Else, add item to groupedSequence and don't evaluate here !                        */
 if|if
 condition|(
 name|returnExpr
@@ -1853,8 +1860,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//context.setContextPosition(k); //bv : not tested
-comment|// set the grouping variable to current group nodes
 name|groupVar
 operator|.
 name|setValue
@@ -2166,7 +2171,7 @@ return|return
 name|resultSequence
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
