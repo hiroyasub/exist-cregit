@@ -537,7 +537,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return

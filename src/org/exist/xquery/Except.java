@@ -151,7 +151,7 @@ name|right
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CombiningExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.CombiningExpression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -351,7 +351,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"except operand is not a node sequence"
+literal|"Operand is not a node sequence"
 argument_list|)
 throw|;
 name|result
@@ -404,7 +404,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"except operand is not a node sequence"
+literal|"Operand is not a node sequence"
 argument_list|)
 throw|;
 if|if

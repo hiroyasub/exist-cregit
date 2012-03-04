@@ -361,7 +361,7 @@ name|Type
 operator|.
 name|ITEM
 return|;
-comment|// unknown until the reference is resolved
+comment|// Unknown until the reference is resolved
 block|}
 annotation|@
 name|Override

@@ -222,7 +222,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -466,7 +466,7 @@ name|e
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xquery.StaticContext) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xquery.StaticContext)      */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -514,7 +514,7 @@ operator|+
 name|qname
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -581,6 +581,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : don't ignore ? -pb
 block|}
 return|return
 name|Type
@@ -588,7 +589,7 @@ operator|.
 name|ITEM
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -634,6 +635,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : don't ignore ? -pb
 block|}
 return|return
 name|Dependency
@@ -645,7 +647,7 @@ operator|.
 name|CONTEXT_ITEM
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
@@ -699,6 +701,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+comment|//TODO : don't ignore ?
 block|}
 return|return
 name|Cardinality
@@ -707,7 +710,7 @@ name|ZERO_OR_MORE
 return|;
 comment|// unknown cardinality
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -744,7 +747,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return

@@ -402,6 +402,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
 literal|"The name expression should evaluate to a single value"
 argument_list|)
 throw|;
@@ -452,6 +456,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
 argument_list|,
 literal|"The name expression should evaluate to a "
 operator|+
@@ -727,7 +735,7 @@ name|contentSeq
 argument_list|)
 throw|;
 name|int
-name|nodeNr
+name|nodeNo
 init|=
 name|builder
 operator|.
@@ -756,7 +764,7 @@ operator|)
 operator|.
 name|getNode
 argument_list|(
-name|nodeNr
+name|nodeNo
 argument_list|)
 decl_stmt|;
 if|if

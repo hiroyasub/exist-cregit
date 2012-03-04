@@ -1468,7 +1468,7 @@ operator|&&
 operator|!
 name|expr
 operator|.
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 argument_list|()
 operator|&&
 operator|!
@@ -1643,7 +1643,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 if|if
@@ -1663,13 +1663,13 @@ argument_list|(
 literal|0
 argument_list|)
 operator|.
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 argument_list|()
 return|;
 return|return
 name|super
 operator|.
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 argument_list|()
 return|;
 block|}

@@ -1048,7 +1048,6 @@ name|fastOrderBy
 init|=
 literal|false
 decl_stmt|;
-comment|// checkOrderSpecs(in);
 name|LocalVariable
 name|var
 decl_stmt|;
@@ -2123,11 +2122,13 @@ throw|;
 comment|//trigger the old behaviour
 block|}
 else|else
+block|{
 name|var
 operator|.
 name|checkType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|actualReturnType
 operator|=

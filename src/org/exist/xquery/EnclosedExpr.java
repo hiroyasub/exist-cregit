@@ -130,7 +130,7 @@ name|EnclosedExpr
 extends|extends
 name|PathExpr
 block|{
-comment|/** 	 *  	 */
+comment|/**      *       */
 specifier|public
 name|EnclosedExpr
 parameter_list|(
@@ -144,7 +144,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.StaticContext,      * org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -372,7 +372,7 @@ name|builder
 argument_list|)
 expr_stmt|;
 comment|// if item is an atomic value, collect the string values of all
-comment|// following atomic values and seperate them by a space.
+comment|// following atomic values and separate them by a space.
 if|if
 condition|(
 name|Type
@@ -439,8 +439,8 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
-comment|// if item is a node, flush any collected character data and
-comment|//	copy the node to the target doc.
+comment|//If the item is a node, flush any collected character data and
+comment|//copy the node to the target doc.
 block|}
 if|else if
 condition|(
@@ -512,9 +512,7 @@ name|ErrorCodes
 operator|.
 name|XQTY0024
 argument_list|,
-literal|"An attribute may not appear after "
-operator|+
-literal|"another child node."
+literal|"An attribute may not appear after another child node."
 argument_list|)
 throw|;
 name|next
@@ -600,9 +598,6 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-comment|//throw new XPathException(getASTNode(),
-comment|//	"Encountered SAX exception while serializing enclosed expression: "
-comment|//		+ ExpressionDumper.dump(this));
 block|}
 if|if
 condition|(
@@ -739,7 +734,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return

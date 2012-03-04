@@ -65,6 +65,10 @@ name|Expression
 name|getFirst
 parameter_list|()
 function_decl|;
+name|boolean
+name|allowMixedNodesInReturn
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

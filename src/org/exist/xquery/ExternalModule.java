@@ -71,7 +71,7 @@ name|String
 name|namespace
 parameter_list|)
 function_decl|;
-comment|/** 	 * Declare a new function. Called by the XQuery compiler 	 * when parsing a library module for every function declaration. 	 *  	 * @param func 	 */
+comment|/**      * Declare a new function. Called by the XQuery compiler      * when parsing a library module for every function declaration.      *       * @param func      */
 specifier|public
 name|void
 name|declareFunction
@@ -80,7 +80,7 @@ name|UserDefinedFunction
 name|func
 parameter_list|)
 function_decl|;
-comment|/** 	 * Try to find the function identified by qname. Returns null 	 * if the function is undefined. 	 *  	 * @param qname 	 */
+comment|/**      * Try to find the function identified by qname. Returns null      * if the function is undefined.      *       * @param qname      */
 specifier|public
 name|UserDefinedFunction
 name|getFunction
@@ -112,13 +112,13 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Get the source object this module has been read from. 	 * 	 * This is required for query access control. 	 * @return The source object this module has been read from. 	 */
+comment|/**      * Get the source object this module has been read from.      *      * This is required for query access control.      * @return The source object this module has been read from.      */
 specifier|public
 name|Source
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the source object this module has been read from. 	 *  	 * This is required to check the validity of a compiled expression. 	 * @param source 	 */
+comment|/**      * Set the source object this module has been read from.      *       * This is required to check the validity of a compiled expression.      * @param source      */
 specifier|public
 name|void
 name|setSource
@@ -132,7 +132,7 @@ name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the XQueryContext of this module. This will be a sub-context 	 * of the main context as parts of the static context are shared.  	 *  	 * @param context 	 */
+comment|/**      * Set the XQueryContext of this module. This will be a sub-context      * of the main context as parts of the static context are shared.       *       * @param context      */
 specifier|public
 name|void
 name|setContext
@@ -141,7 +141,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/** 	 * Is this module still valid or should it be reloaded from its source? 	 */
+comment|/**      * Is this module still valid or should it be reloaded from its source?      */
 specifier|public
 name|boolean
 name|moduleIsValid

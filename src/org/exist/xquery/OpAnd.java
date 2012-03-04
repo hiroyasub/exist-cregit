@@ -227,12 +227,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -435,12 +437,14 @@ condition|(
 operator|!
 name|rl
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|boolean
@@ -480,18 +484,20 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
-comment|// immediately return false if the left operand is false
+comment|//Immediately return false if the left operand is false
 if|if
 condition|(
 operator|!
 name|rl
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Sequence

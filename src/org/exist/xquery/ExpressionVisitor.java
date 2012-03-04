@@ -85,7 +85,6 @@ name|GeneralComparison
 name|comparison
 parameter_list|)
 function_decl|;
-comment|/** Found a CastExpression */
 specifier|public
 name|void
 name|visitCastExpr

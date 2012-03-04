@@ -160,6 +160,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 operator|!
@@ -181,7 +182,8 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -413,7 +415,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return

@@ -185,7 +185,7 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[]) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])      */
 specifier|public
 name|void
 name|analyze
@@ -310,7 +310,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Save the local variable stack
+comment|//Save the local variable stack
 name|LocalVariable
 name|mark
 init|=
@@ -346,7 +346,7 @@ argument_list|(
 name|varContextInfo
 argument_list|)
 expr_stmt|;
-comment|// Declare the iteration variable
+comment|//Declare the iteration variable
 name|LocalVariable
 name|inVar
 init|=
@@ -486,6 +486,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|orderBy
 index|[
 name|i
@@ -496,6 +497,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -520,6 +522,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|groupBy
 index|[
 name|i
@@ -530,6 +533,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|returnExpr
 operator|.
@@ -552,7 +556,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -846,7 +850,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Save the local variable stack
+comment|//Save the local variable stack
 name|LocalVariable
 name|mark
 init|=
@@ -1059,7 +1063,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 block|}
-comment|// Check if we can speed up the processing of the "order by" clause.
+comment|//Check if we can speed up the processing of the "order by" clause.
 name|fastOrderBy
 operator|=
 name|in
@@ -1072,8 +1076,8 @@ argument_list|(
 name|in
 argument_list|)
 expr_stmt|;
-comment|//  PreorderedValueSequence applies the order specs to all items
-comment|// in one single processing step
+comment|//PreorderedValueSequence applies the order specs to all items
+comment|//in one single processing step
 if|if
 condition|(
 name|fastOrderBy
@@ -1096,9 +1100,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Otherwise, if there's an order by clause, wrap the result into
-comment|// an OrderedValueSequence. OrderedValueSequence will compute
-comment|// order expressions for every item when it is added to the result sequence.
+comment|//Otherwise, if there's an order by clause, wrap the result into
+comment|//an OrderedValueSequence. OrderedValueSequence will compute
+comment|//order expressions for every item when it is added to the result sequence.
 if|if
 condition|(
 name|resultSequence
@@ -1453,6 +1457,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1497,6 +1502,7 @@ argument_list|,
 name|in
 argument_list|)
 throw|;
+block|}
 comment|//Here is an attempt to process the nodes correctly
 block|}
 else|else
@@ -1638,7 +1644,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|// set the grouping variable to current group nodes
+comment|//Set the grouping variable to current group nodes
 name|groupVar
 operator|.
 name|setValue
@@ -1651,7 +1657,7 @@ operator|.
 name|checkType
 argument_list|()
 expr_stmt|;
-comment|//set value of grouping keys for the current group
+comment|//Set value of grouping keys for the current group
 for|for
 control|(
 name|int
@@ -1691,7 +1697,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//evaluate real return expression
+comment|//Evaluate real return expression
 name|Sequence
 name|val
 init|=
@@ -1738,8 +1744,6 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
-comment|//            // Restore the local variable stack
-comment|//            context.popLocalVariables(mark);
 if|if
 condition|(
 name|context
@@ -1802,14 +1806,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
 parameter_list|()
 block|{
 comment|//TODO: let must return "return expression type"
-comment|//return returnExpr.returnsType();
 if|if
 condition|(
 name|sequenceType
@@ -2472,7 +2475,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return

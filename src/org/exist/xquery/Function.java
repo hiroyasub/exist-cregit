@@ -479,9 +479,9 @@ name|NoSuchMethodException
 name|e
 parameter_list|)
 block|{
-comment|//Ignore ? -pb
+comment|//Don't ignore ? -pb
 block|}
-comment|// not found: check if the constructor takes two arguments
+comment|//Not found: check if the constructor takes two arguments
 if|if
 condition|(
 name|construct
@@ -746,9 +746,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:XPST0017: "
-operator|+
-literal|"number of arguments of function "
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Number of arguments of function "
 operator|+
 name|getName
 argument_list|()
@@ -1351,7 +1353,7 @@ name|getPrimaryType
 argument_list|()
 expr_stmt|;
 block|}
-comment|// if the required type is an atomic type, convert the argument to an atomic
+comment|//If the required type is an atomic type, convert the argument to an atomic
 if|if
 condition|(
 name|Type
@@ -1451,7 +1453,7 @@ comment|//Strict argument check : we may move this, or a part hereof, to Untyped
 block|}
 else|else
 block|{
-comment|// if the required type is an atomic type, convert the argument to an atomic
+comment|//If the required type is an atomic type, convert the argument to an atomic
 if|if
 condition|(
 name|Type
@@ -1572,7 +1574,7 @@ argument_list|,
 name|returnType
 argument_list|)
 operator|||
-comment|//because () is seen as a node
+comment|//Because () is seen as a node
 operator|(
 name|type
 operator|.

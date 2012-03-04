@@ -293,7 +293,6 @@ literal|"near"
 argument_list|)
 condition|)
 block|{
-comment|// near(node-set, string)
 name|step
 operator|=
 name|near
@@ -316,7 +315,6 @@ literal|"phrase"
 argument_list|)
 condition|)
 block|{
-comment|// phrase(node-set, string)
 name|step
 operator|=
 name|phrase
@@ -339,7 +337,6 @@ literal|"starts-with"
 argument_list|)
 condition|)
 block|{
-comment|// starts-with(node-set, string)
 name|step
 operator|=
 name|startsWith
@@ -364,7 +361,6 @@ literal|"ends-with"
 argument_list|)
 condition|)
 block|{
-comment|// ends-with(node-set, string)
 name|step
 operator|=
 name|endsWith
@@ -389,7 +385,6 @@ literal|"contains"
 argument_list|)
 condition|)
 block|{
-comment|// contains(node-set, string)
 name|step
 operator|=
 name|contains
@@ -414,7 +409,6 @@ literal|"equals"
 argument_list|)
 condition|)
 block|{
-comment|// equals(node-set, string)
 name|step
 operator|=
 name|equals
@@ -429,8 +423,8 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Check if the namespace belongs to one of the schema namespaces.
-comment|// If yes, the function is a constructor function
+comment|//Check if the namespace belongs to one of the schema namespaces.
+comment|//If yes, the function is a constructor function
 block|}
 if|else if
 condition|(
@@ -466,8 +460,8 @@ argument_list|,
 name|qname
 argument_list|)
 expr_stmt|;
-comment|// Check if the namespace URI starts with "java:". If yes, treat the function call as a call to
-comment|// an arbitrary Java function.
+comment|//Check if the namespace URI starts with "java:". If yes, treat
+comment|//the function call as a call to an arbitrary Java function.
 block|}
 if|else if
 condition|(
@@ -493,8 +487,8 @@ name|qname
 argument_list|)
 expr_stmt|;
 block|}
-comment|// None of the above matched: function is either a builtin function or
-comment|// a user-defined function
+comment|//None of the above matched: function is either a built-in function or
+comment|//a user-defined function
 if|if
 condition|(
 name|step
@@ -606,7 +600,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to near is empty"
+literal|"Second argument of near() is empty"
 argument_list|)
 throw|;
 block|}
@@ -712,7 +706,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Max distance argument to near is empty"
+literal|"Max distance argument of near() is empty"
 argument_list|)
 throw|;
 block|}
@@ -769,7 +763,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Min distance argument to near is empty"
+literal|"Min distance argument of near() is empty"
 argument_list|)
 throw|;
 block|}
@@ -872,7 +866,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to phrase is empty"
+literal|"Second argument of phrase() is empty"
 argument_list|)
 throw|;
 block|}
@@ -1066,7 +1060,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to starts-with is empty"
+literal|"Second argument of starts-with() is empty"
 argument_list|)
 throw|;
 block|}
@@ -1285,7 +1279,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to ends-with is empty"
+literal|"Second argument of ends-with() is empty"
 argument_list|)
 throw|;
 block|}
@@ -1504,7 +1498,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to contains is empty"
+literal|"Second argument of contains() is empty"
 argument_list|)
 throw|;
 block|}
@@ -1545,7 +1539,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"Rewritten contains as a general comparison with left and right truncations"
+literal|"Rewritten contains() as a general comparison with left and right truncations"
 argument_list|)
 expr_stmt|;
 name|op
@@ -1723,7 +1717,7 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Second argument to equals is empty"
+literal|"Second argument of equals() is empty"
 argument_list|)
 throw|;
 block|}
@@ -1764,7 +1758,7 @@ name|OPTIMIZATIONS
 argument_list|,
 literal|"OPTIMIZATION"
 argument_list|,
-literal|"Rewritten contains as a general comparison with no truncations"
+literal|"Rewritten contains() as a general comparison with no truncations"
 argument_list|)
 expr_stmt|;
 name|op
@@ -2008,7 +2002,9 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"Java binding is disabled in the current configuration (see conf.xml). Call to "
+literal|"Java binding is disabled in the current configuration (see conf.xml)."
+operator|+
+literal|" Call to "
 operator|+
 name|qname
 operator|.
@@ -2108,7 +2104,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Function belongs to a module
+comment|//Function belongs to a module
 if|if
 condition|(
 name|module
@@ -2135,7 +2131,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// function is from an imported XQuery module
+comment|//Function is from an imported XQuery module
 name|fn
 operator|=
 name|getXQueryModuleFunction
@@ -2200,7 +2196,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// for internal modules: create a new function instance from the class
+comment|//For internal modules: create a new function instance from the class
 name|FunctionDef
 name|def
 init|=
@@ -2241,7 +2237,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|//search xpath namespace
+comment|//Search xpath namespace
 name|Module
 name|_module_
 init|=
@@ -2663,7 +2659,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// create a forward reference which will be resolved later
+comment|//Create a forward reference which will be resolved later
 name|fc
 operator|=
 operator|new
@@ -2801,10 +2797,10 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
-block|}
-comment|// if not, postpone the function resolution
-comment|// register a forward reference with the root module, so it gets resolved
+comment|// If not, postpone the function resolution
+comment|// Register a forward reference with the root module, so it gets resolved
 comment|// when the main query has been compiled.
+block|}
 else|else
 block|{
 name|fc

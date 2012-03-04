@@ -434,7 +434,7 @@ name|XPathException
 function_decl|;
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 function_decl|;
 specifier|public

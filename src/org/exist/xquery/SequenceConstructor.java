@@ -94,7 +94,7 @@ name|SequenceConstructor
 extends|extends
 name|PathExpr
 block|{
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|SequenceConstructor
 parameter_list|(
@@ -255,7 +255,7 @@ name|staticType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -613,7 +613,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -625,7 +625,7 @@ operator|.
 name|ITEM
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#getCardinality() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
 specifier|public
 name|int
 name|getCardinality
@@ -641,14 +641,14 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|allowMixNodesInReturn
+name|allowMixedNodesInReturn
 parameter_list|()
 block|{
 return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState
