@@ -78,7 +78,7 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-literal|"org.exist.xquery.test.Annotations"
+literal|"org.exist.xquery.xUnit.Annotations"
 argument_list|)
 decl_stmt|;
 name|clazz
