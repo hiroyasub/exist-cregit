@@ -12182,6 +12182,15 @@ block|}
 finally|finally
 block|{
 comment|//TOUNDERSTAND : by whom is this lock acquired ? -pb
+comment|// If we don't check for the NO_LOCK we'll pop someone else's lock off
+if|if
+condition|(
+name|lockMode
+operator|!=
+name|Lock
+operator|.
+name|NO_LOCK
+condition|)
 name|collection
 operator|.
 name|release
