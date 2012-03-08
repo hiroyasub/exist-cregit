@@ -300,6 +300,8 @@ argument_list|(
 name|MATCH_ATTR
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|path
 operator|=
 operator|new
@@ -328,6 +330,26 @@ operator|+
 name|matchPath
 argument_list|)
 throw|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"Lucene module: invalid qname in configuration: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 name|String
 name|name
