@@ -434,7 +434,7 @@ specifier|final
 name|Configuration
 name|config
 decl_stmt|;
-comment|/**      * Create and Start a new Scheduler.      *      * @param   brokerpool  The brokerpool for which this scheduler is intended      * @param   config      DOCUMENT ME!      *      * @throws  EXistException  DOCUMENT ME!      */
+comment|/**      * Create and Start a new Scheduler.      *      * @param   brokerpool  The broker pool for which this scheduler is intended      * @param   config      DOCUMENT ME!      *      * @throws  EXistException  DOCUMENT ME!      */
 specifier|public
 name|Scheduler
 parameter_list|(
@@ -723,6 +723,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 block|}
 block|}
@@ -844,7 +845,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs to complete before shutting down?      */
+comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs      * to complete before shutting down?      */
 specifier|public
 name|void
 name|shutdown

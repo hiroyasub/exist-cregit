@@ -660,7 +660,6 @@ name|sequenceItSelf
 operator|=
 literal|true
 expr_stmt|;
-comment|//				setContentExpr(valueOf);
 block|}
 if|else if
 condition|(
@@ -682,7 +681,6 @@ operator|.
 name|validate
 argument_list|()
 expr_stmt|;
-comment|//				setContentExpr(applyTemplates);
 block|}
 if|else if
 condition|(
@@ -701,7 +699,6 @@ operator|.
 name|validate
 argument_list|()
 expr_stmt|;
-comment|//				setContentExpr(expr);
 block|}
 if|else if
 condition|(
@@ -729,13 +726,12 @@ name|sequenceItSelf
 operator|=
 literal|true
 expr_stmt|;
-comment|//				setContentExpr(text);
 block|}
 else|else
 block|{
 name|compileError
 argument_list|(
-literal|"unsupported subelement "
+literal|"Unsupported sub-element "
 operator|+
 name|expr
 argument_list|)
@@ -851,10 +847,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//	public void addText(String text) {
-comment|//    	value = new LiteralValue(context, new StringValue(text));
-comment|//		constructor.setContentExpr(value);
-comment|//    }
 specifier|public
 name|Sequence
 name|eval
@@ -1324,7 +1316,7 @@ expr_stmt|;
 try|try
 block|{
 name|int
-name|nodeNr
+name|nodeNo
 init|=
 name|builder
 operator|.
@@ -1344,7 +1336,7 @@ argument_list|()
 operator|.
 name|getAttribute
 argument_list|(
-name|nodeNr
+name|nodeNo
 argument_list|)
 expr_stmt|;
 block|}
@@ -1603,6 +1595,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+comment|//TODO : consider other prefix ! ("xs" is also quite common) -pb
 name|result
 operator|.
 name|append

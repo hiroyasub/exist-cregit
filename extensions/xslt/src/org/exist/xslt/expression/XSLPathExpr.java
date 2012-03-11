@@ -329,7 +329,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xslt.instruct.Expression#compileError(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xslt.instruct.Expression#compileError(java.lang.String)      */
 specifier|public
 name|void
 name|compileError
@@ -348,7 +348,7 @@ name|code
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xslt.instruct.Expression#compileError(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xslt.instruct.Expression#compileError(java.lang.String, java.lang.String)      */
 specifier|public
 name|void
 name|compileError
@@ -677,9 +677,9 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//UNDERSTAND: what is whitespace?		text = StringValue.trimWhitespace(text);
+comment|//UNDERSTAND: what is whitespace? text = StringValue.trimWhitespace(text);
 name|Text
-name|constructer
+name|constructor
 init|=
 operator|new
 name|Text
@@ -695,7 +695,7 @@ argument_list|)
 decl_stmt|;
 name|add
 argument_list|(
-name|constructer
+name|constructor
 argument_list|)
 expr_stmt|;
 block|}
@@ -1028,7 +1028,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @deprecated Use {@link #process(XSLContext,SequenceIterator)} instead 	 */
+comment|/**      * @deprecated Use {@link #process(XSLContext,SequenceIterator)} instead      */
 specifier|public
 name|void
 name|process

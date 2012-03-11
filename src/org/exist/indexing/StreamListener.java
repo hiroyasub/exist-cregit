@@ -129,7 +129,7 @@ name|REMOVE_BINARY
 init|=
 literal|3
 decl_stmt|;
-comment|/**      * Retunrs the IndexWorker that owns this listener.      *       * @return the IndexWorker      */
+comment|/**      * Returns the IndexWorker that owns this listener.      *       * @return the IndexWorker      */
 name|IndexWorker
 name|getWorker
 parameter_list|()

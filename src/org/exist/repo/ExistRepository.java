@@ -495,7 +495,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"The namespace in the Java module does not match the namespace in the package descriptor: "
+literal|"The namespace in the Java module "
+operator|+
+literal|"does not match the namespace in the package descriptor: "
 operator|+
 name|namespace
 operator|+
@@ -623,7 +625,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Try to instantiate the class using the ctor with a Map parameter, or the default ctor.      */
+comment|/**      * Try to instantiate the class using the constructor with a Map parameter,       * or the default constructor.      */
 specifier|private
 name|Module
 name|instantiateModule
@@ -702,7 +704,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Cannot find suitable constructor for module from expath repository"
+literal|"Cannot find suitable constructor "
+operator|+
+literal|"for module from expath repository"
 argument_list|,
 name|exx
 argument_list|)
@@ -772,7 +776,7 @@ operator|.
 name|latest
 argument_list|()
 decl_stmt|;
-comment|// FIXME: Rely on having a filesystem storage, that's probably a bad design!
+comment|// FIXME: Rely on having a file system storage, that's probably a bad design!
 name|FileSystemResolver
 name|resolver
 init|=

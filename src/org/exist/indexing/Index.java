@@ -136,7 +136,7 @@ parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-comment|/**      * Closes the index and removes it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are reindexed.      */
+comment|/**      * Closes the index and removes it completely, including all resources and files      * associated to it. This method is called during database repair before the      * db contents are re-indexed.      */
 name|void
 name|remove
 parameter_list|()
