@@ -863,6 +863,21 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Sequence
+name|tail
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 comment|/**      * Ordering first according to document ID; then if equal      * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int

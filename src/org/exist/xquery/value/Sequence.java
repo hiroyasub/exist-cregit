@@ -208,6 +208,13 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
+specifier|public
+name|Sequence
+name|tail
+parameter_list|()
+throws|throws
+name|XPathException
+function_decl|;
 comment|/** 	 * Try to convert the sequence into an atomic value. The target type should be specified by 	 * using one of the constants defined in class {@link Type}. An {@link XPathException} 	 * is thrown if the conversion is impossible. 	 *  	 * @param requiredType one of the type constants defined in class {@link Type} 	 * @throws XPathException 	 */
 specifier|public
 name|AtomicValue

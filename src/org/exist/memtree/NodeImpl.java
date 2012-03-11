@@ -1555,6 +1555,19 @@ operator|)
 return|;
 block|}
 block|}
+specifier|public
+name|Sequence
+name|tail
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getChildNodes()      */
 specifier|public
 name|NodeList
