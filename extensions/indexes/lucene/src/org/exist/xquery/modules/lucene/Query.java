@@ -1429,7 +1429,7 @@ throw|;
 block|}
 name|LOG
 operator|.
-name|debug
+name|trace
 argument_list|(
 literal|"Lucene query took "
 operator|+
