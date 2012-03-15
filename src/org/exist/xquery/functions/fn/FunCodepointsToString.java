@@ -310,11 +310,13 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Creates an xs:string from a sequence of code points. Returns the zero-length string if "
+literal|"Creates an xs:string from a sequence of code points. Returns the "
 operator|+
-literal|"$codepoints is the empty sequence. If any of the code points in $codepoints is not a legal XML character, "
+literal|"zero-length string if $codepoints is the empty sequence. "
 operator|+
-literal|"an error is raised"
+literal|"If any of the code points in $codepoints is not a "
+operator|+
+literal|"legal XML character, an error is raised"
 argument_list|,
 operator|new
 name|SequenceType
@@ -335,7 +337,7 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"The codepoints as a sequence of xs:integer values"
 argument_list|)
-block|, 				}
+block|,             }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -348,7 +350,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the string constructed from the codepoints if valid"
+literal|"The string constructed from the codepoints if valid"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -466,12 +468,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
 name|StringBuilder
@@ -541,23 +545,10 @@ name|next
 argument_list|)
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"err:FOCH0001: Codepoint "
-operator|+
-name|next
-operator|+
-literal|" is not a valid character."
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 literal|"err:FOCH0001: Codepoint "
 operator|+
 name|next

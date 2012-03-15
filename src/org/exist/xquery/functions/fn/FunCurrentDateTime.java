@@ -242,9 +242,9 @@ argument_list|)
 argument_list|,
 literal|"Returns the xs:dateTime (with timezone) that is current at some time "
 operator|+
-literal|"during the evaluation of a query or transformation in which fn:current-dateTime() "
+literal|"during the evaluation of a query or transformation in which "
 operator|+
-literal|"is executed."
+literal|"fn:current-dateTime() is executed."
 argument_list|,
 literal|null
 argument_list|,
@@ -259,7 +259,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the date-time current within query execution time span"
+literal|"the date-time current "
+operator|+
+literal|"within query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -282,11 +284,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the xs:time (with timezone) that is current at "
+literal|"Returns the xs:time (with timezone) that is current at some time "
 operator|+
-literal|"some time during the evaluation of a query or transformation "
+literal|"during the evaluation of a query or transformation in which "
 operator|+
-literal|"in which fn:current-time() is executed."
+literal|"fn:current-time() is executed."
 argument_list|,
 literal|null
 argument_list|,
@@ -301,7 +303,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the time current within query execution time span"
+literal|"the time current "
+operator|+
+literal|"within query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -324,9 +328,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the xs:date (with timezone) that is current at some "
+literal|"Returns the xs:date (with timezone) that is current at some time "
 operator|+
-literal|"time during the evaluation of a query or transformation in which "
+literal|"during the evaluation of a query or transformation in which "
 operator|+
 literal|"fn:current-date() is executed."
 argument_list|,
@@ -343,7 +347,9 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the date current within the query execution time span"
+literal|"the date current "
+operator|+
+literal|"within the query execution time span"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -541,26 +547,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"can't handle function "
-operator|+
-name|mySignature
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|getLocalName
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|Error
 argument_list|(
-literal|"can't handle function "
+literal|"Can't handle function "
 operator|+
 name|mySignature
 operator|.

@@ -352,13 +352,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Accepts two or more xdt:anyAtomicType arguments, $atomizable-values, and converts them "
+literal|"Accepts two or more xdt:anyAtomicType arguments, $atomizable-values, "
 operator|+
-literal|"to xs:string. Returns the xs:string that is the concatenation of the values "
+literal|"and converts them to xs:string. Returns the xs:string that is the "
 operator|+
-literal|"of its arguments after conversion. If any of the arguments is the empty sequence, "
+literal|"concatenation of the values of its arguments after conversion. "
 operator|+
-literal|"the argument is treated as the zero-length string."
+literal|"If any of the arguments is the empty sequence, the argument "
+operator|+
+literal|"is treated as the zero-length string."
 argument_list|,
 operator|new
 name|SequenceType
@@ -393,7 +395,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the concatenated values"
+literal|"The concatenated values"
 argument_list|)
 argument_list|,
 literal|true
@@ -414,7 +416,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Why a specific method here ?
 specifier|public
 name|int
 name|returnsType
@@ -426,7 +427,7 @@ operator|.
 name|STRING
 return|;
 block|}
-comment|/** 	 * Overloaded function: no static type checking. 	 *  	 * @see org.exist.xquery.Function#setArguments(java.util.List) 	 */
+comment|/**      * Overloaded function: no static type checking.      *       * @see org.exist.xquery.Function#setArguments(java.util.List)      */
 specifier|public
 name|void
 name|setArguments
@@ -511,7 +512,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//Why a specific method here ?
 specifier|public
 name|void
 name|analyze
@@ -691,13 +691,6 @@ operator|<
 literal|2
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"fn:concat() requires at least two arguments"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -708,7 +701,7 @@ name|ErrorCodes
 operator|.
 name|XPST0017
 argument_list|,
-literal|"Concat requires at least two arguments"
+literal|"concat() requires at least two arguments"
 argument_list|)
 throw|;
 block|}

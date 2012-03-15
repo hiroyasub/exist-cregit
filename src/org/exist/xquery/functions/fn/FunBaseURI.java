@@ -355,7 +355,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the base URI from the context item"
+literal|"The base URI from the context item"
 argument_list|)
 argument_list|)
 block|,
@@ -372,9 +372,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the value of the base URI property for $uri. If $uri is the empty "
+literal|"Returns the value of the base URI property for $uri. "
 operator|+
-literal|"sequence, the empty sequence is returned."
+literal|"If $uri is the empty sequence, the empty sequence is returned."
 argument_list|,
 operator|new
 name|SequenceType
@@ -442,7 +442,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the base URI from the static context"
+literal|"The base URI from the static context"
 argument_list|)
 argument_list|)
 block|}
@@ -466,7 +466,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      * org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -649,13 +649,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"err:XPDY0002: context sequence is empty and no argument specified"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -666,7 +659,7 @@ name|ErrorCodes
 operator|.
 name|XPDY0002
 argument_list|,
-literal|"context sequence is empty and no argument specified"
+literal|"Context sequence is empty and no argument specified"
 argument_list|)
 throw|;
 block|}
@@ -698,13 +691,6 @@ name|NODE
 argument_list|)
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"err:XPTY0004: context item is not a node"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -715,7 +701,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"context item is not a node"
+literal|"Context item is not a node"
 argument_list|)
 throw|;
 block|}
@@ -861,6 +847,7 @@ name|DOCUMENT_NODE
 operator|)
 condition|)
 block|{
+comment|//Nothing to do
 empty_stmt|;
 block|}
 if|else if
@@ -952,23 +939,14 @@ name|URISyntaxException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}

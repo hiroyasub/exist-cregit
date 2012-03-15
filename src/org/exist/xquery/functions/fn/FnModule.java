@@ -1128,18 +1128,6 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
-name|DeprecatedFunItemAt
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedFunItemAt
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
 name|FunInScopePrefixes
 operator|.
 name|signature
@@ -1826,18 +1814,6 @@ operator|.
 name|signature
 argument_list|,
 name|FunStringJoin
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|FunStringPad
-operator|.
-name|signature
-argument_list|,
-name|FunStringPad
 operator|.
 name|class
 argument_list|)
@@ -2175,55 +2151,6 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
-name|DeprecatedExtXCollection
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedExtXCollection
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|DeprecatedExtDoctype
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedExtDoctype
-operator|.
-name|class
-argument_list|)
-block|,
-comment|//		new FunctionDef(DeprecatedExtDocument.signature, DeprecatedExtDocument.class),
-operator|new
-name|FunctionDef
-argument_list|(
-name|DeprecatedExtRegexp
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedExtRegexp
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|DeprecatedExtRegexpOr
-operator|.
-name|signature
-argument_list|,
-name|DeprecatedExtRegexpOr
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
 name|QNameFunctions
 operator|.
 name|localNameFromQName
@@ -2476,7 +2403,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDescription() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
 specifier|public
 name|String
 name|getDescription
@@ -2486,7 +2413,7 @@ return|return
 literal|"A module with the XQuery/XPath Core Library Functions"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getNamespaceURI() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
 specifier|public
 name|String
 name|getNamespaceURI
@@ -2498,7 +2425,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Module#getDefaultPrefix() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
 specifier|public
 name|String
 name|getDefaultPrefix

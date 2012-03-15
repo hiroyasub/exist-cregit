@@ -211,7 +211,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the context's default collation. E.g. http://www.w3.org/2005/xpath-functions/collation/codepoint."
+literal|"Returns the context's default collation. E.g. http://www.w3.org/"
+operator|+
+literal|"2005/xpath-functions/collation/codepoint."
 argument_list|,
 literal|null
 argument_list|,

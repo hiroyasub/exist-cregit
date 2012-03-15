@@ -241,9 +241,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the absolute value of the argument $number. If the argument is negative "
+literal|"Returns the absolute value of the argument $number."
 operator|+
-literal|"returns -$number otherwise returns $number."
+literal|"If the argument is negative returns -$number otherwise returns $number."
 argument_list|,
 operator|new
 name|SequenceType
@@ -277,11 +277,11 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the absolute value of the argument"
+literal|"The absolute value of the argument"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|FunAbs
 parameter_list|(
@@ -297,7 +297,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval

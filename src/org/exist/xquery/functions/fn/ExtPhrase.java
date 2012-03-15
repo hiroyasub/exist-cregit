@@ -307,7 +307,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 	 *  	 * @param context 	 */
+comment|/**      *       * @param context      */
 specifier|public
 name|ExtPhrase
 parameter_list|(
@@ -359,28 +359,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -462,7 +448,7 @@ name|hits
 argument_list|)
 return|;
 block|}
-comment|/** 	 *  	 * @param context 	 * @param result 	 */
+comment|/**      *       * @param context      * @param result      */
 specifier|private
 name|Sequence
 name|exactMatch
@@ -503,7 +489,7 @@ operator|.
 name|getTokenizer
 argument_list|()
 decl_stmt|;
-comment|// define search phrase for matches
+comment|//Define search phrase for matches
 name|String
 name|matchTerm
 init|=
@@ -552,7 +538,7 @@ operator|+
 literal|"\\W*"
 expr_stmt|;
 block|}
-comment|// iterate on results
+comment|//Iterate on results
 for|for
 control|(
 name|NodeProxy
@@ -565,7 +551,7 @@ name|Vector
 argument_list|<
 name|NodeId
 argument_list|>
-name|matchGid
+name|matchNodeIDs
 init|=
 operator|new
 name|Vector
@@ -574,7 +560,7 @@ name|NodeId
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// get first match
+comment|//Get first match
 name|Match
 name|nextMatch
 init|=
@@ -583,7 +569,7 @@ operator|.
 name|getMatches
 argument_list|()
 decl_stmt|;
-comment|// remove previously found matches on current
+comment|//Remove previously found matches on current
 name|current
 operator|.
 name|setMatches
@@ -591,7 +577,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// iterate on attach matches, with unicity of related nodeproxy gid
+comment|//Iterate on attach matches, with unicity of related nodeproxy gid
 name|String
 name|term
 decl_stmt|;
@@ -610,11 +596,11 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
-comment|// if current gid has not been previously processed
+comment|//If current node id has not been previously processed
 if|if
 condition|(
 operator|!
-name|matchGid
+name|matchNodeIDs
 operator|.
 name|contains
 argument_list|(
@@ -647,8 +633,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|// add it in gid array
-name|matchGid
+name|matchNodeIDs
 operator|.
 name|add
 argument_list|(
@@ -744,7 +729,7 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// all terms found
+comment|//All terms found
 if|if
 condition|(
 name|match
@@ -795,7 +780,7 @@ expr_stmt|;
 name|frequency
 operator|++
 expr_stmt|;
-comment|// start again on fist term
+comment|//Start again on fist term
 name|j
 operator|=
 literal|0
@@ -850,7 +835,7 @@ index|]
 argument_list|)
 condition|)
 block|{
-comment|// first search term found: start again
+comment|//First search term found: start again
 name|j
 operator|=
 literal|1
@@ -873,7 +858,7 @@ continue|continue;
 block|}
 else|else
 block|{
-comment|//	reset
+comment|//Reset
 name|j
 operator|=
 literal|0
@@ -892,7 +877,7 @@ index|]
 expr_stmt|;
 block|}
 block|}
-comment|// if phrase found
+comment|//If phrase found
 if|if
 condition|(
 name|frequency
@@ -900,7 +885,7 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|// add new match to current
+comment|//Add new match to current
 name|current
 operator|.
 name|addMatch
@@ -908,7 +893,7 @@ argument_list|(
 name|match
 argument_list|)
 expr_stmt|;
-comment|// add current to result
+comment|//Add current to result
 name|r
 operator|.
 name|add
@@ -916,14 +901,14 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
-comment|// reset frequency
+comment|//Reset frequency
 name|frequency
 operator|=
 literal|0
 expr_stmt|;
 block|}
 block|}
-comment|// process next match
+comment|//Process next match
 name|nextMatch
 operator|=
 name|nextMatch
@@ -933,12 +918,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//		LOG.debug("found " + r.getLength());
 return|return
 name|r
 return|;
 block|}
-comment|/** 	 *  	 * @param context 	 * @param result 	 * @return 	 */
+comment|/**      *       * @param context      * @param result      * @return      */
 specifier|private
 name|Sequence
 name|patternMatch
@@ -954,7 +938,7 @@ name|NodeSet
 name|result
 parameter_list|)
 block|{
-comment|// generate list of search term patterns
+comment|//Generate list of search term patterns
 name|Pattern
 name|patterns
 index|[]
@@ -1067,7 +1051,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 block|}
-comment|// walk through hits
+comment|//Walk through hits
 name|ExtArrayNodeSet
 name|r
 init|=
@@ -1117,7 +1101,7 @@ name|NodeId
 argument_list|>
 argument_list|()
 decl_stmt|;
-comment|// get first match
+comment|//Get first match
 name|nextMatch
 operator|=
 name|current
@@ -1125,7 +1109,7 @@ operator|.
 name|getMatches
 argument_list|()
 expr_stmt|;
-comment|// remove previously found matches on current
+comment|//Remove previously found matches on current
 name|current
 operator|.
 name|setMatches
@@ -1133,7 +1117,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-comment|// iterate on attach matches, with unicity of related nodeproxy gid
+comment|//Iterate on attach matches, with unicity of related nodeproxy gid
 while|while
 condition|(
 name|nextMatch
@@ -1166,7 +1150,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
-comment|// if current gid has not been previously processed
+comment|//If current node id has not been previously processed
 if|if
 condition|(
 operator|!
@@ -1192,7 +1176,7 @@ argument_list|,
 name|nodeId
 argument_list|)
 decl_stmt|;
-comment|// add it in gid array
+comment|//Add it in node id array
 name|matchGid
 operator|.
 name|add
@@ -1229,7 +1213,6 @@ operator|.
 name|length
 condition|)
 block|{
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1329,7 +1312,7 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// all terms found
+comment|//All terms found
 if|if
 condition|(
 name|matchTable
@@ -1340,7 +1323,7 @@ name|matchTerm
 argument_list|)
 condition|)
 block|{
-comment|// previously found matchTerm
+comment|//Previously found matchTerm
 name|Match
 name|match
 init|=
@@ -1409,12 +1392,11 @@ name|match
 argument_list|)
 expr_stmt|;
 block|}
-comment|// start again on fist term
+comment|//Start again on fist term
 name|j
 operator|=
 literal|0
 expr_stmt|;
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1430,7 +1412,6 @@ continue|continue;
 block|}
 else|else
 block|{
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1455,7 +1436,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
-comment|// first search term found: start again
+comment|//First search term found: start again
 name|j
 operator|=
 literal|1
@@ -1476,12 +1457,11 @@ continue|continue;
 block|}
 else|else
 block|{
-comment|// reset
+comment|//Reset
 name|j
 operator|=
 literal|0
 expr_stmt|;
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1496,7 +1476,7 @@ expr_stmt|;
 continue|continue;
 block|}
 block|}
-comment|// one or more match found
+comment|//One or more match found
 if|if
 condition|(
 name|matchTable
@@ -1542,7 +1522,7 @@ name|match
 argument_list|)
 expr_stmt|;
 block|}
-comment|// add current to result
+comment|//Add current to result
 name|r
 operator|.
 name|add
@@ -1552,7 +1532,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// process next match
+comment|//Process next match
 name|nextMatch
 operator|=
 name|nextMatch

@@ -416,9 +416,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true iff every item in $items-1 is deep-equal to the item at the same position in $items-2, "
+literal|"Returns true() iff every item in $items-1 is deep-equal to the item "
 operator|+
-literal|"false otherwise. If both $items-1 and $items-2 are the empty sequence, returns true(). "
+literal|"at the same position in $items-2, false() otherwise. "
+operator|+
+literal|"If both $items-1 and $items-2 are the empty sequence, returns true(). "
 argument_list|,
 operator|new
 name|SequenceType
@@ -485,9 +487,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true iff every item in $items-1 is deep-equal to the item at the same position in $items-2, "
+literal|"Returns true() iff every item in $items-1 is deep-equal to the item "
 operator|+
-literal|"false otherwise. If both $items-1 and $items-2 are the empty sequence, returns true(). "
+literal|"at the same position in $items-2, false() otherwise. "
+operator|+
+literal|"If both $items-1 and $items-2 are the empty sequence, returns true(). "
 operator|+
 literal|"Comparison collation is specified by $collation-uri. "
 operator|+
@@ -756,12 +760,14 @@ operator|.
 name|getItemCount
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|result
@@ -1031,8 +1037,6 @@ literal|false
 return|;
 block|}
 block|}
-comment|//		assert Type.subTypeOf(a.getType(), Type.NODE);
-comment|//		assert Type.subTypeOf(b.getType(), Type.NODE);
 if|if
 condition|(
 name|a
@@ -1074,7 +1078,8 @@ literal|true
 return|;
 try|try
 block|{
-comment|//Don't use this shortcut for in-memory nodes since the symbol table is ignored.
+comment|//Don't use this shortcut for in-memory nodes
+comment|//since the symbol table is ignored.
 if|if
 condition|(
 name|nva
@@ -1318,24 +1323,6 @@ argument_list|()
 argument_list|)
 return|;
 default|default:
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"unexpected item type "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|a
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
@@ -1353,7 +1340,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 catch|catch
@@ -1635,7 +1621,9 @@ return|return
 literal|false
 return|;
 block|}
-if|else 						if
+else|else
+block|{
+if|if
 condition|(
 operator|!
 name|safeEquals
@@ -1654,6 +1642,7 @@ condition|)
 return|return
 literal|false
 return|;
+block|}
 break|break;
 case|case
 name|Node
@@ -1675,16 +1664,6 @@ literal|false
 return|;
 break|break;
 default|default:
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"unexpected node type "
-operator|+
-name|nodeTypeA
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
@@ -1694,7 +1673,6 @@ operator|+
 name|nodeTypeA
 argument_list|)
 throw|;
-block|}
 block|}
 name|a
 operator|=
@@ -1850,7 +1828,8 @@ name|a
 operator|.
 name|getAttributes
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+name|NamedNodeMap
 name|nnmb
 init|=
 name|b

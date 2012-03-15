@@ -321,7 +321,7 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|FunDoc
 parameter_list|(
@@ -337,7 +337,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Function#getDependencies() 	 */
+comment|/**      * @see org.exist.xquery.Function#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -349,7 +349,7 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
+comment|/**      * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -512,9 +512,9 @@ comment|// TODO: disabled cache for now as it may cause concurrency issues
 comment|// better use compile-time inspection and maybe a pragma to mark those
 comment|// sections in the query that can be safely cached.
 comment|// check if we can return a cached sequence
-comment|//    		if (cached != null&& path.equals(cachedPath)) {
-comment|//    			return cached;
-comment|//    		}
+comment|//if (cached != null&& path.equals(cachedPath)) {
+comment|//return cached;
+comment|//}
 try|try
 block|{
 name|result
@@ -543,21 +543,6 @@ name|isRaiseErrorOnFailedRetrieval
 argument_list|()
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|ErrorCodes
-operator|.
-name|FODC0002
-operator|+
-literal|" Can not access '"
-operator|+
-name|path
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -578,9 +563,9 @@ name|arg
 argument_list|)
 throw|;
 block|}
-comment|//			TODO: we still need a final decision about this. Also check base-uri.
-comment|//			if (result == Sequence.EMPTY_SEQUENCE)
-comment|//				throw new XPathException(this, path + " is not an XML document");
+comment|//TODO: we still need a final decision about this. Also check base-uri.
+comment|//if (result == Sequence.EMPTY_SEQUENCE)
+comment|//throw new XPathException(this, path + " is not an XML document");
 name|DocumentSet
 name|docs
 init|=
@@ -614,16 +599,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -766,7 +741,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization 	 */
+comment|/**      * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization      */
 specifier|public
 name|void
 name|resetState

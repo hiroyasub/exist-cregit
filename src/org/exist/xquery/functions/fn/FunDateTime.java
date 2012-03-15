@@ -499,12 +499,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|args
@@ -515,6 +517,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -533,6 +536,7 @@ literal|0
 index|]
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 name|args
@@ -543,6 +547,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -561,6 +566,7 @@ literal|1
 index|]
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
 name|DateValue
@@ -607,7 +613,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-comment|//Apparently, the specs have changes in this area
 if|if
 condition|(
 operator|!
@@ -702,11 +707,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* else {     				if (!((DayTimeDurationValue)dv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     	        		throw new XPathException(this, ErrorCodes.FORG0008, "Operands have different timezones");     			} */
-block|}
-else|else
-block|{
-comment|/*     			if (!tv.getTimezone().isEmpty()) {     				if (!((DayTimeDurationValue)tv.getTimezone().itemAt(0)).getStringValue().equals("PT0S"))     					throw new XPathException(this, ErrorCodes.FORG0008, "Operands have different timezones");     			}     			*/
 block|}
 name|String
 name|dtv
@@ -816,6 +816,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -831,7 +832,9 @@ operator|+
 literal|"Z"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -845,6 +848,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

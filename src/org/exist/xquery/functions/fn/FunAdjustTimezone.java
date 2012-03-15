@@ -733,6 +733,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|time
@@ -740,6 +741,7 @@ operator|.
 name|withoutTimezone
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 name|DayTimeDurationValue
@@ -770,6 +772,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|time
@@ -779,6 +782,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

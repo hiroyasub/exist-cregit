@@ -19,18 +19,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -69,9 +57,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|apache
 operator|.
-name|EXistException
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -81,9 +71,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|fulltext
-operator|.
-name|FTIndex
+name|EXistException
 import|;
 end_import
 
@@ -120,6 +108,18 @@ operator|.
 name|dom
 operator|.
 name|NodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|fulltext
+operator|.
+name|FTIndex
 import|;
 end_import
 
@@ -183,7 +183,67 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|AnalyzeContextInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|PerformanceStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -310,7 +370,7 @@ name|FULLTEXT_AND
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.ExtFulltext#analyze(org.exist.xquery.AnalyzeContextInfo) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.functions.ExtFulltext#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
 name|void
 name|analyze
@@ -389,7 +449,8 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
+comment|//The expression can be called multiple times, so we need to
+comment|//clear the previous preselectResult
 name|preselectResult
 operator|=
 literal|null
@@ -458,7 +519,7 @@ name|getInt
 argument_list|()
 expr_stmt|;
 block|}
-comment|// get the search terms
+comment|//Get the search terms
 name|String
 name|arg
 init|=
@@ -492,32 +553,18 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
-comment|// lookup the terms in the fulltext index. returns one node set for each term
+comment|//Lookup the terms in the full-text index. returns one node set for each term
 name|NodeSet
 index|[]
 name|hits
@@ -547,7 +594,7 @@ argument_list|,
 name|terms
 argument_list|)
 decl_stmt|;
-comment|// walk through the matches and compute the combined node set
+comment|//Walk through the matches and compute the combined node set
 name|preselectResult
 operator|=
 name|hits
@@ -823,28 +870,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -952,7 +985,7 @@ name|NodeSet
 name|result
 parameter_list|)
 block|{
-comment|// walk through hits and calculate term-distances
+comment|//Walk through hits and calculate term-distances
 name|NodeSet
 name|r
 init|=
@@ -1086,8 +1119,7 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|// that else would cause some words to be ignored in the
-comment|// matching
+comment|//That else would cause some words to be ignored in the matching
 if|if
 condition|(
 name|word
@@ -1121,7 +1153,7 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// all terms found
+comment|//All terms found
 if|if
 condition|(
 name|withIn
@@ -1165,7 +1197,7 @@ index|]
 argument_list|)
 condition|)
 block|{
-comment|// first search term found: start again
+comment|//First search term found: start again
 name|j
 operator|=
 literal|1
@@ -1199,7 +1231,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// LOG.debug("found " + r.getLength());
 return|return
 name|r
 return|;
@@ -1218,8 +1249,10 @@ parameter_list|,
 name|NodeSet
 name|result
 parameter_list|)
+throws|throws
+name|XPathException
 block|{
-comment|// generate list of search term patterns
+comment|//Generate list of search term patterns
 name|Pattern
 name|patterns
 index|[]
@@ -1313,26 +1346,21 @@ name|PatternSyntaxException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
-literal|"malformed pattern"
+literal|"Malformed pattern: "
 operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|patterns
+index|[
+name|i
+index|]
 argument_list|)
-expr_stmt|;
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
+throw|;
 block|}
 block|}
-comment|// walk through hits and calculate term-distances
+comment|//Walk through hits and calculate term-distances
 name|ExtArrayNodeSet
 name|r
 init|=
@@ -1399,7 +1427,6 @@ operator|.
 name|length
 condition|)
 block|{
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1450,12 +1477,11 @@ operator|>
 name|max_distance
 condition|)
 block|{
-comment|// reset
+comment|//Reset
 name|j
 operator|=
 literal|0
 expr_stmt|;
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1521,7 +1547,7 @@ operator|.
 name|length
 condition|)
 block|{
-comment|// all terms found
+comment|//All terms found
 if|if
 condition|(
 name|withIn
@@ -1539,7 +1565,6 @@ break|break;
 block|}
 else|else
 block|{
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1564,12 +1589,11 @@ name|matches
 argument_list|()
 condition|)
 block|{
-comment|// first search term found: start again
+comment|//First search term found: start again
 name|j
 operator|=
 literal|1
 expr_stmt|;
-comment|//Pattern term = patterns[j];
 name|matcher
 operator|=
 name|matchers
@@ -1601,7 +1625,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.functions.ExtFulltext#dump(org.exist.xquery.util.ExpressionDumper) 	 */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.functions.ExtFulltext#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
 name|void
 name|dump

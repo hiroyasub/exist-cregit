@@ -271,7 +271,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the number of items in the argument sequence"
+literal|"The number of items in the argument sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;

@@ -241,7 +241,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Computes the xs:boolean value of the sequence $items."
+literal|"Computes the xs:boolean value of the sequence items."
 argument_list|,
 operator|new
 name|SequenceType
@@ -275,7 +275,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the boolean value, ebv, of the items"
+literal|"The boolean value, ebv, of the items"
 argument_list|)
 argument_list|)
 decl_stmt|;

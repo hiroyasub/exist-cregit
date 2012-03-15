@@ -255,7 +255,15 @@ name|FunctionSignature
 argument_list|(
 name|fnAnalyzeString
 argument_list|,
-literal|"Analyzes a string using a regular expression, returning an XML structure that identifies which parts of the input string matched or failed to match the regular expression, and in the case of matched substrings, which substrings matched each capturing group in the regular expression."
+literal|"Analyzes a string using a regular expression, returning an XML "
+operator|+
+literal|"structure that identifies which parts of the input string matched "
+operator|+
+literal|"or failed to match the regular expression, and in the case of "
+operator|+
+literal|"matched substrings, which substrings matched each "
+operator|+
+literal|"capturing group in the regular expression."
 argument_list|,
 operator|new
 name|SequenceType
@@ -305,7 +313,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The result of the analyisis"
+literal|"The result of the analysis"
 argument_list|)
 argument_list|)
 block|,
@@ -314,7 +322,15 @@ name|FunctionSignature
 argument_list|(
 name|fnAnalyzeString
 argument_list|,
-literal|"Analyzes a string using a regular expression, returning an XML structure that identifies which parts of the input string matched or failed to match the regular expression, and in the case of matched substrings, which substrings matched each capturing group in the regular expression."
+literal|"Analyzes a string using a regular expression, returning an XML "
+operator|+
+literal|"structure that identifies which parts of the input string matched "
+operator|+
+literal|"or failed to match the regular expression, and in the case of "
+operator|+
+literal|"matched substrings, which substrings matched each "
+operator|+
+literal|"capturing group in the regular expression."
 argument_list|,
 operator|new
 name|SequenceType
@@ -380,7 +396,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The result of the analyisis"
+literal|"The result of the analysis"
 argument_list|)
 argument_list|)
 block|}

@@ -331,7 +331,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//Used to detect overflows : currently not used.
 specifier|private
 name|boolean
 name|gotInfinity
@@ -357,9 +356,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the average of the values in the input sequence $values, that is, the "
+literal|"Returns the average of the values in the input sequence $values, "
 operator|+
-literal|"sum of the values divided by the number of values."
+literal|"that is, the sum of the values divided by the number of values."
 argument_list|,
 operator|new
 name|SequenceType
@@ -393,11 +392,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the average of the values in the input sequence"
+literal|"The average of the values in the input sequence"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|FunAvg
 parameter_list|(
@@ -413,7 +412,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -551,12 +550,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|SequenceIterator
@@ -583,7 +584,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
-comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
+comment|//Any values of type xdt:untypedAtomic are cast to xs:double
 if|if
 condition|(
 name|value
@@ -616,29 +617,6 @@ name|ComputableValue
 operator|)
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"err:FORG0006: '"
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|value
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|"("
-operator|+
-name|value
-operator|+
-literal|")' can not be an operand in a sum"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -649,8 +627,6 @@ name|ErrorCodes
 operator|.
 name|FORG0006
 argument_list|,
-literal|""
-operator|+
 name|Type
 operator|.
 name|getTypeName
@@ -665,7 +641,9 @@ literal|"("
 operator|+
 name|value
 operator|+
-literal|") can not be an operand in a sum"
+literal|") "
+operator|+
+literal|"can not be an operand in a sum"
 argument_list|,
 name|value
 argument_list|)
@@ -702,7 +680,7 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
-comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
+comment|//Any value of type xdt:untypedAtomic are cast to xs:double
 if|if
 condition|(
 name|value
@@ -735,29 +713,6 @@ name|ComputableValue
 operator|)
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"err:FORG0006: '"
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|value
-operator|.
-name|getType
-argument_list|()
-argument_list|)
-operator|+
-literal|"("
-operator|+
-name|value
-operator|+
-literal|")' can not be an operand in a sum"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -879,22 +834,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|ErrorCodes
-operator|.
-name|FORG0006
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -963,8 +902,9 @@ name|isInfinite
 argument_list|()
 condition|)
 block|{
-comment|//Throw an overflow eception here since we get an infinity
+comment|//Throw an overflow exception here since we get an infinity
 comment|//whereas is hasn't been provided by the sequence
+comment|//TODO ? -pb
 block|}
 block|}
 if|if

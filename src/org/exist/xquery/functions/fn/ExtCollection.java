@@ -510,9 +510,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the documents contained in the collections "
+literal|"Returns the documents contained in the collections specified in "
 operator|+
-literal|"specified in the input sequence. "
+literal|"the input sequence. "
 operator|+
 name|XMLDBModule
 operator|.
@@ -538,7 +538,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The collection-uris for which to include the documents"
+literal|"The collection-URIs for which to include the documents"
 argument_list|)
 block|}
 argument_list|,
@@ -553,7 +553,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"the document nodes contained in or under the given collections"
+literal|"The document nodes contained in or under the given collections"
 argument_list|)
 argument_list|,
 literal|true
@@ -565,38 +565,13 @@ name|includeSubCollections
 init|=
 literal|false
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|List
-argument_list|<
-name|?
-argument_list|>
-name|cachedArgs
-init|=
-literal|null
-decl_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|Sequence
-name|cached
-init|=
-literal|null
-decl_stmt|;
 specifier|private
 name|UpdateListener
 name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|ExtCollection
 parameter_list|(
@@ -768,23 +743,22 @@ decl_stmt|;
 comment|// TODO: disabled cache for now as it may cause concurrency issues
 comment|// better use compile-time inspection and maybe a pragma to mark those
 comment|// sections in the query that can be safely cached
-comment|//		boolean cacheIsValid = false;
-comment|//		if(cachedArgs != null)
-comment|//		    cacheIsValid = compareArguments(cachedArgs, args);
-comment|//		if(cacheIsValid) {
-comment|//		    // if the expression occurs in a nested context, we might have cached the
-comment|//            // document set
-comment|//            if (context.getProfiler().isEnabled())
-comment|//                context.getProfiler().end(this, "fn:collection: loading documents", cached);
-comment|//		    return cached;
-comment|//        }
-comment|// build the document set
+comment|// boolean cacheIsValid = false;
+comment|// if (cachedArgs != null)
+comment|//    cacheIsValid = compareArguments(cachedArgs, args);
+comment|// if (cacheIsValid) {
+comment|//If the expression occurs in a nested context, we might have cached the
+comment|//document set
+comment|//if (context.getProfiler().isEnabled())
+comment|//context.getProfiler().end(this, "fn:collection: loading documents", cached);
+comment|//return cached;
+comment|// }
+comment|//Build the document set
 name|DocumentSet
 name|docs
 init|=
 literal|null
 decl_stmt|;
-comment|//        DocumentSet docs = new DocumentSet(521);
 try|try
 block|{
 if|if
@@ -799,7 +773,6 @@ condition|)
 block|{
 comment|//TODO : add default collection to the context
 comment|//If the value of the default collection is undefined an error is raised [err:FODC0002].
-comment|//throw new XPathException("FODC0002: unknown collection '" + uri + "'");
 name|docs
 operator|=
 name|context
@@ -865,23 +838,10 @@ name|isRaiseErrorOnFailedRetrieval
 argument_list|()
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"FODC0002: can not access collection '"
-operator|+
-name|uri
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 literal|"FODC0002: can not access collection '"
 operator|+
 name|uri
@@ -958,34 +918,16 @@ argument_list|,
 name|column
 argument_list|)
 expr_stmt|;
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"FODC0002: can not access collection '"
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 literal|"FODC0002: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -995,30 +937,10 @@ name|PermissionDeniedException
 name|pde
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"FODC0002: can not access collection '"
-operator|+
-name|pde
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|"'"
-argument_list|,
-name|pde
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|line
-argument_list|,
-name|column
-argument_list|,
 literal|"FODC0002: can not access collection '"
 operator|+
 name|pde
@@ -1027,8 +949,6 @@ name|getMessage
 argument_list|()
 operator|+
 literal|"'"
-argument_list|,
-name|pde
 argument_list|)
 throw|;
 block|}
@@ -1142,18 +1062,16 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
+throw|throw
+operator|new
+name|XPathException
 argument_list|(
-literal|"Could not acquire lock on document "
-operator|+
-name|doc
+name|e
 operator|.
-name|getURI
+name|getMessage
 argument_list|()
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 finally|finally
 block|{
@@ -1172,14 +1090,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|cached
-operator|=
-name|result
-expr_stmt|;
-name|cachedArgs
-operator|=
-name|args
-expr_stmt|;
 name|registerUpdateListener
 argument_list|()
 expr_stmt|;
@@ -1318,99 +1228,6 @@ return|return
 name|args
 return|;
 block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|boolean
-name|compareArguments
-parameter_list|(
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|args1
-parameter_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|args2
-parameter_list|)
-block|{
-if|if
-condition|(
-name|args1
-operator|.
-name|size
-argument_list|()
-operator|!=
-name|args2
-operator|.
-name|size
-argument_list|()
-condition|)
-return|return
-literal|false
-return|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|args1
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|String
-name|arg1
-init|=
-name|args1
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-name|String
-name|arg2
-init|=
-name|args2
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|arg1
-operator|.
-name|equals
-argument_list|(
-name|arg2
-argument_list|)
-condition|)
-return|return
-literal|false
-return|;
-block|}
-return|return
-literal|true
-return|;
-block|}
 specifier|protected
 name|void
 name|registerUpdateListener
@@ -1440,15 +1257,7 @@ name|int
 name|event
 parameter_list|)
 block|{
-comment|// clear all
-name|cached
-operator|=
-literal|null
-expr_stmt|;
-name|cachedArgs
-operator|=
-literal|null
-expr_stmt|;
+comment|//Nothing to do (previously was cache management)
 block|}
 specifier|public
 name|void
@@ -1529,14 +1338,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
-name|cached
-operator|=
-literal|null
-expr_stmt|;
-name|cachedArgs
-operator|=
-literal|null
-expr_stmt|;
+comment|//Nothing more to do (previously was cache management)
 block|}
 block|}
 end_class

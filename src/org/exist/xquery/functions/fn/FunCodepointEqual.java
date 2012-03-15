@@ -267,9 +267,11 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns true or false depending on whether the value of $string-1 is equal to the value of $string-2, "
+literal|"Returns true or false depending on whether the value of $string-1 "
 operator|+
-literal|"according to the Unicode code point collation."
+literal|"is equal to the value of $string-2, according to the Unicode "
+operator|+
+literal|"code point collation."
 argument_list|,
 operator|new
 name|SequenceType
@@ -306,7 +308,7 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"The second string"
 argument_list|)
-block|, 				}
+block|,             }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -470,7 +472,7 @@ name|Collations
 operator|.
 name|compare
 argument_list|(
-comment|//TODO : how ugly ! WE should be able to use Collations.CODEPOINT here ! -pb
+comment|//TODO : how ugly ! We should be able to use Collations.CODEPOINT here ! -pb
 name|context
 operator|.
 name|getDefaultCollator

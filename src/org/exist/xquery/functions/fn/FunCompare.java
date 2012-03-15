@@ -277,7 +277,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the collatable comparison between $string-1 and $string-2, "
+literal|"Returns the collatable comparison between $string-1 and $string-2, using $collation-uri. "
 operator|+
 literal|"-1 if $string-1 is inferior to $string-2, 0 if $string-1 is equal "
 operator|+
@@ -287,7 +287,7 @@ literal|"If either comparand is the empty sequence, the empty sequence is "
 operator|+
 literal|"returned. "
 operator|+
-literal|"Please remember to specify the collation in the context or use "
+literal|"Please remember to specify the collation in the context or use, "
 operator|+
 literal|"the three argument version if you don't want the system default."
 argument_list|,
@@ -339,7 +339,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"-1 if $string-1 is inferior to $string-2, 0 if $string-1 is equal to $string-2, 1 if $string-1 is superior to $string-2. If either comparand is the empty sequence, the empty sequence is returned."
+literal|"-1 if $string-1 is inferior to $string-2, "
+operator|+
+literal|"0 if $string-1 is equal to $string-2, "
+operator|+
+literal|"1 if $string-1 is superior to $string-2. "
+operator|+
+literal|"If either comparand is the empty sequence, the empty sequence is returned."
 argument_list|)
 argument_list|)
 block|,
@@ -356,7 +362,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the collatable comparison using $collation-uri between $string-1 and $string-2, "
+literal|"Returns the collatable comparison between $string-1 and $string-2, using $collation-uri. "
 operator|+
 literal|"-1 if $string-1 is inferior to $string-2, 0 if $string-1 is equal "
 operator|+
@@ -430,7 +436,13 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"-1 if $string-1 is inferior to $string-2, 0 if $string-1 is equal to $string-2, 1 if $string-1 is superior to $string-2. If either comparand is the empty sequence, the empty sequence is returned."
+literal|"-1 if $string-1 is inferior to $string-2, "
+operator|+
+literal|"0 if $string-1 is equal to $string-2, "
+operator|+
+literal|"1 if $string-1 is superior to $string-2. "
+operator|+
+literal|"If either comparand is the empty sequence, the empty sequence is returned."
 argument_list|)
 argument_list|)
 block|}
@@ -610,12 +622,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Collator

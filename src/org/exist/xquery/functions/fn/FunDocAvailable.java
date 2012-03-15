@@ -226,7 +226,9 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns whether or not the document, $document-uri, specified in the input sequence is available. "
+literal|"Returns whether or not the document, $document-uri, "
+operator|+
+literal|"specified in the input sequence is available. "
 operator|+
 name|XMLDBModule
 operator|.
@@ -283,7 +285,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Function#getDependencies() 	 */
+comment|/**      * @see org.exist.xquery.Function#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -295,7 +297,7 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
+comment|/**      * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -433,12 +435,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -481,16 +485,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -535,7 +529,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization 	 */
+comment|/**      * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization      */
 specifier|public
 name|void
 name|resetState

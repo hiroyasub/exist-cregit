@@ -273,13 +273,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
+literal|"Returns an xs:boolean indicating whether or not the value of "
 operator|+
-literal|"contains (at the beginning, at the end, or anywhere within) at least "
+literal|"$source-string contains (at the beginning, at the end, "
 operator|+
-literal|"one sequence of collation units that provides a minimal match to the "
+literal|"or anywhere within) at least one sequence of collation units "
 operator|+
-literal|"collation units in the value of $substring, according to the default collation."
+literal|"that provides a minimal match to the collation units in "
+operator|+
+literal|"the value of $substring, according to the default collation."
 argument_list|,
 operator|new
 name|SequenceType
@@ -346,13 +348,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
+literal|"Returns an xs:boolean indicating whether or not the value of "
 operator|+
-literal|"contains (at the beginning, at the end, or anywhere within) at least "
+literal|"$source-string contains (at the beginning, at the end, "
 operator|+
-literal|"one sequence of collation units that provides a minimal match to the "
+literal|"or anywhere within) at least one sequence of collation units "
 operator|+
-literal|"collation units in the value of $substring, according to the collation that is "
+literal|"that provides a minimal match to the collation units in "
+operator|+
+literal|"the value of $substring, according to the collation that is "
 operator|+
 literal|"specified in $collation-uri."
 operator|+
@@ -599,12 +603,14 @@ argument_list|(
 name|s2
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -634,12 +640,14 @@ argument_list|(
 name|s1
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Collator

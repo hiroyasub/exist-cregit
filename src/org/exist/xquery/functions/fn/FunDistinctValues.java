@@ -370,9 +370,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a sequence where duplicate values of $atomic-values, based on value equality, "
+literal|"Returns a sequence where duplicate values of $atomic-values, "
 operator|+
-literal|"have been deleted."
+literal|"based on value equality, have been deleted."
 argument_list|,
 operator|new
 name|SequenceType
@@ -427,7 +427,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns a sequence where duplicate values of $atomic-values, based on value equality specified by collation $collation-uri, "
+literal|"Returns a sequence where duplicate values of $atomic-values, "
+operator|+
+literal|"based on value equality specified by collation $collation-uri, "
 operator|+
 literal|"have been deleted."
 argument_list|,
@@ -502,7 +504,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -514,9 +516,7 @@ operator|.
 name|ATOMIC
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
-comment|/* 	public int getDependencies() { 		int deps = Dependency.CONTEXT_SET; 		if (getArgumentCount() == 1) 			deps |= getArgument(0).getDependencies(); 		return deps; 	} 	*/
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -765,7 +765,8 @@ name|isNaN
 argument_list|()
 condition|)
 block|{
-comment|//although NaN does not equal itself, if $arg contains multiple NaN values a single NaN is returned.
+comment|//although NaN does not equal itself, if $arg
+comment|//contains multiple NaN values a single NaN is returned.
 if|if
 condition|(
 operator|!
@@ -885,7 +886,7 @@ operator|=
 name|collator
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object) 		 */
+comment|/* (non-Javadoc)          * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)          */
 specifier|public
 name|int
 name|compare
@@ -996,8 +997,8 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|//throw new IllegalArgumentException("cannot compare values");
-comment|//Values that cannot be compared, i.e. the eq operator is not defined for their types, are considered to be distinct
+comment|//Values that cannot be compared, i.e. the eq operator
+comment|//is not defined for their types, are considered to be distinct
 return|return
 name|Constants
 operator|.

@@ -131,7 +131,7 @@ literal|"'lang=sv-SE;strength=primary;decomposition=standard' "
 operator|+
 literal|"or 'swedish'."
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/**      * @param context      * @param signature      */
 specifier|public
 name|CollatingFunction
 parameter_list|(
@@ -207,12 +207,14 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|context
 operator|.
 name|getDefaultCollator
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 end_class

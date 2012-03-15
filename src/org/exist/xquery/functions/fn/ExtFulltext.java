@@ -339,7 +339,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"builtin-old-ft-functions-and-operators"
+literal|"Builtin-old-ft-functions-and-operators"
 argument_list|,
 name|Function
 operator|.
@@ -924,7 +924,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// the expression can be called multiple times, so we need to clear the previous preselectResult
+comment|//The expression can be called multiple times, so we need to clear the previous preselectResult
 name|preselectResult
 operator|=
 literal|null
@@ -937,7 +937,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-comment|// get the search terms
+comment|//Get the search terms
 name|String
 name|arg
 init|=
@@ -971,32 +971,18 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
-comment|// lookup the terms in the fulltext index. returns one node set for each term
+comment|//Lookup the terms in the full-text index. returns one node set for each term
 name|NodeSet
 index|[]
 name|hits
@@ -1026,7 +1012,7 @@ argument_list|,
 name|terms
 argument_list|)
 decl_stmt|;
-comment|// walk through the matches and compute the combined node set
+comment|//Walk through the matches and compute the combined node set
 if|if
 condition|(
 name|hits
@@ -1172,8 +1158,8 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// if we were optimizing and the preselect did not return anything,
-comment|// we won't have any matches and can return
+comment|//If we were optimizing and the preselect did not return anything,
+comment|//we won't have any matches and can return
 if|if
 condition|(
 name|preselectResult
@@ -1230,8 +1216,8 @@ expr_stmt|;
 name|NodeSet
 name|result
 decl_stmt|;
-comment|// if the expression does not depend on the current context item,
-comment|// we can evaluate it in one single step
+comment|//If the expression does not depend on the current context item,
+comment|//we can evaluate it in one single step
 if|if
 condition|(
 name|path
@@ -1299,7 +1285,7 @@ name|getResult
 argument_list|()
 return|;
 block|}
-comment|// do we optimize this expression?
+comment|//Do we optimize this expression?
 if|if
 condition|(
 name|contextStep
@@ -1311,7 +1297,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// no optimization: process the whole expression
+comment|//No optimization: process the whole expression
 name|NodeSet
 name|nodes
 init|=
@@ -1449,7 +1435,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
-comment|// otherwise we have to walk through each item in the context
+comment|//Otherwise we have to walk through each item in the context
 block|}
 else|else
 block|{
@@ -1679,7 +1665,7 @@ name|getBroker
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//We have a fulltext index
+comment|//We have a full-text index
 if|if
 condition|(
 name|config
@@ -1714,7 +1700,7 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"cannot use index on QName: "
+literal|"Cannot use index on QName: "
 operator|+
 name|contextQName
 operator|+
@@ -1768,28 +1754,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|this
-argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
 argument_list|)
 throw|;
 block|}
@@ -1927,7 +1899,7 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#getDependencies() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.functions.Function#getDependencies()      */
 specifier|public
 name|int
 name|getDependencies
@@ -2073,18 +2045,11 @@ operator|==
 literal|null
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"no search terms"
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"no search terms"
+literal|"No search terms"
 argument_list|)
 throw|;
 block|}
@@ -2164,9 +2129,9 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|=
-operator|(
 name|type
 operator|==
 name|Constants
@@ -2192,19 +2157,21 @@ index|[
 name|k
 index|]
 argument_list|)
-operator|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
 return|;
 block|}
 else|else
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 block|}
 specifier|protected
 name|NodeSet
@@ -2348,7 +2315,7 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#resetState()      */
 specifier|public
 name|void
 name|resetState

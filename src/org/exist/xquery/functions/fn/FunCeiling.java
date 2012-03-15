@@ -275,7 +275,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"the non-fractional number not less than $number"
+literal|"The non-fractional number not less than $number"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -442,12 +442,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|NumericValue
