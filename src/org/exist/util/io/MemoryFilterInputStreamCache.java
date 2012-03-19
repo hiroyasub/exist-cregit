@@ -192,6 +192,13 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|cache
+operator|!=
+literal|null
+condition|)
+block|{
 name|cache
 operator|.
 name|close
@@ -201,6 +208,7 @@ name|cache
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Updates to the cache are not reflected in the underlying input stream      */
 comment|//TODO refactor this so that updates to the cache are reflected
