@@ -141,6 +141,17 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getCacheClass
+parameter_list|()
+block|{
+return|return
+literal|"org.exist.util.io.MemoryFilterInputStreamCache"
+return|;
+block|}
 block|}
 end_class
 

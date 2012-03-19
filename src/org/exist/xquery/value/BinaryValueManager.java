@@ -33,6 +33,11 @@ name|void
 name|cleanupBinaryValueInstances
 parameter_list|()
 function_decl|;
+specifier|public
+name|String
+name|getCacheClass
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
