@@ -727,7 +727,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[match-all(mods:title, '.*ploy.*')]"
+literal|"declare namespace mods='http://www.loc.gov/mods/v3'; //mods:titleInfo[text:match-all(mods:title, '.*ploy.*')]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -821,7 +821,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//SPEECH[match-all(LINE, 'love')]"
+literal|"//SPEECH[text:match-all(LINE, 'love')]"
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -878,7 +878,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//SPEECH[match-all(LINE, 'fenny', 'snake')]/LINE[1]"
+literal|"//SPEECH[text:match-all(LINE, 'fenny', 'snake')]/LINE[1]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
