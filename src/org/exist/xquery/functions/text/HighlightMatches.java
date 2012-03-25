@@ -530,14 +530,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|FunctionCall
-name|call
-init|=
-name|func
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
 name|context
 operator|.
 name|pushDocumentContext
@@ -627,7 +619,7 @@ name|p
 argument_list|,
 name|result
 argument_list|,
-name|call
+name|func
 argument_list|,
 name|args
 index|[
@@ -660,7 +652,7 @@ parameter_list|,
 name|Sequence
 name|result
 parameter_list|,
-name|FunctionCall
+name|FunctionReference
 name|callback
 parameter_list|,
 name|Sequence

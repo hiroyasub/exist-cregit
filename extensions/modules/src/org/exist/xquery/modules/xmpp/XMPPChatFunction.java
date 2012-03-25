@@ -646,18 +646,10 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|FunctionCall
-name|chatListenerFunction
-init|=
-name|chatListenerFunctionRef
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
 name|FunctionSignature
 name|chatListenerFunctionSig
 init|=
-name|chatListenerFunction
+name|chatListenerFunctionRef
 operator|.
 name|getSignature
 argument_list|()
@@ -678,7 +670,7 @@ argument_list|(
 literal|"Chat listener function must take at least 3 arguments."
 argument_list|)
 throw|;
-name|chatListenerFunction
+name|chatListenerFunctionRef
 operator|.
 name|setContext
 argument_list|(
@@ -714,7 +706,7 @@ name|chatHandle
 argument_list|,
 name|contextSequence
 argument_list|,
-name|chatListenerFunction
+name|chatListenerFunctionRef
 argument_list|,
 name|listenerParam
 argument_list|)
@@ -770,7 +762,7 @@ name|long
 name|chatHandle
 decl_stmt|;
 specifier|private
-name|FunctionCall
+name|FunctionReference
 name|chatListenerFunction
 decl_stmt|;
 specifier|private
@@ -786,7 +778,7 @@ parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|,
-name|FunctionCall
+name|FunctionReference
 name|chatListenerFunction
 parameter_list|,
 name|Sequence

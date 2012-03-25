@@ -505,7 +505,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|// check how the function was called and prepare callback
-name|FunctionCall
+name|FunctionReference
 name|call
 init|=
 literal|null
@@ -518,9 +518,8 @@ literal|"create-index-callback"
 argument_list|)
 condition|)
 block|{
-name|FunctionReference
-name|ref
-init|=
+name|call
+operator|=
 operator|(
 name|FunctionReference
 operator|)
@@ -533,13 +532,6 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
-name|call
-operator|=
-name|ref
-operator|.
-name|getFunctionCall
-argument_list|()
 expr_stmt|;
 block|}
 if|else if

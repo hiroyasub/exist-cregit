@@ -783,14 +783,6 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
-name|FunctionCall
-name|call
-init|=
-name|ref
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
 name|Sequence
 name|result
 init|=
@@ -1189,7 +1181,7 @@ name|result
 operator|.
 name|addAll
 argument_list|(
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(
@@ -1514,7 +1506,7 @@ name|result
 operator|.
 name|addAll
 argument_list|(
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(

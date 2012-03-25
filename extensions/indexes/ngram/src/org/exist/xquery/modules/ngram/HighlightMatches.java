@@ -561,14 +561,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|FunctionCall
-name|call
-init|=
-name|func
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
 name|NGramIndexWorker
 name|index
 init|=
@@ -613,7 +605,7 @@ init|=
 operator|new
 name|MatchCallback
 argument_list|(
-name|call
+name|func
 argument_list|,
 name|docBuilder
 argument_list|)
@@ -849,7 +841,7 @@ implements|implements
 name|NGramMatchCallback
 block|{
 specifier|private
-name|FunctionCall
+name|FunctionReference
 name|callback
 decl_stmt|;
 specifier|private
@@ -859,7 +851,7 @@ decl_stmt|;
 specifier|private
 name|MatchCallback
 parameter_list|(
-name|FunctionCall
+name|FunctionReference
 name|callback
 parameter_list|,
 name|DocumentBuilderReceiver

@@ -180,22 +180,22 @@ name|FunctionCall
 extends|extends
 name|Function
 block|{
-specifier|private
+specifier|protected
 name|UserDefinedFunction
 name|functionDef
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Expression
 name|expression
 decl_stmt|;
 comment|// the name of the function. Used for forward references.
-specifier|private
+specifier|protected
 name|QName
 name|name
 init|=
 literal|null
 decl_stmt|;
-specifier|private
+specifier|protected
 name|List
 argument_list|<
 name|Expression
@@ -210,7 +210,7 @@ name|recursive
 init|=
 literal|false
 decl_stmt|;
-specifier|private
+specifier|protected
 name|VariableReference
 name|varDeps
 index|[]

@@ -430,7 +430,7 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|private
-name|FunctionCall
+name|FunctionReference
 name|entryFilterFunction
 init|=
 literal|null
@@ -442,7 +442,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|FunctionCall
+name|FunctionReference
 name|entryDataFunction
 init|=
 literal|null
@@ -537,9 +537,8 @@ argument_list|(
 literal|"No entry-filter function provided."
 argument_list|)
 throw|;
-name|FunctionReference
-name|entryFilterFunctionRef
-init|=
+name|entryFilterFunction
+operator|=
 operator|(
 name|FunctionReference
 operator|)
@@ -552,13 +551,6 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
-name|entryFilterFunction
-operator|=
-name|entryFilterFunctionRef
-operator|.
-name|getFunctionCall
-argument_list|()
 expr_stmt|;
 name|FunctionSignature
 name|entryFilterFunctionSig
@@ -616,9 +608,8 @@ argument_list|(
 literal|"No entry-data function provided."
 argument_list|)
 throw|;
-name|FunctionReference
-name|entryDataFunctionRef
-init|=
+name|entryDataFunction
+operator|=
 operator|(
 name|FunctionReference
 operator|)
@@ -631,13 +622,6 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
-name|entryDataFunction
-operator|=
-name|entryDataFunctionRef
-operator|.
-name|getFunctionCall
-argument_list|()
 expr_stmt|;
 name|FunctionSignature
 name|entryDataFunctionSig

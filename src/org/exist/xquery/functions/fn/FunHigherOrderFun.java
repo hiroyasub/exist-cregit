@@ -724,15 +724,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|FunctionCall
-name|call
-init|=
 name|ref
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
-name|call
 operator|.
 name|analyze
 argument_list|(
@@ -785,7 +777,7 @@ decl_stmt|;
 name|Sequence
 name|r
 init|=
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(
@@ -852,7 +844,7 @@ decl_stmt|;
 name|Sequence
 name|r
 init|=
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(
@@ -930,7 +922,7 @@ argument_list|()
 decl_stmt|;
 name|zero
 operator|=
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(
@@ -1018,7 +1010,7 @@ name|result
 operator|=
 name|foldRight
 argument_list|(
-name|call
+name|ref
 argument_list|,
 name|zero
 argument_list|,
@@ -1074,7 +1066,7 @@ block|{
 name|Sequence
 name|r
 init|=
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(
@@ -1121,8 +1113,8 @@ specifier|private
 name|Sequence
 name|foldRight
 parameter_list|(
-name|FunctionCall
-name|call
+name|FunctionReference
+name|ref
 parameter_list|,
 name|Sequence
 name|zero
@@ -1164,7 +1156,7 @@ name|tailResult
 init|=
 name|foldRight
 argument_list|(
-name|call
+name|ref
 argument_list|,
 name|zero
 argument_list|,
@@ -1177,7 +1169,7 @@ name|contextSequence
 argument_list|)
 decl_stmt|;
 return|return
-name|call
+name|ref
 operator|.
 name|evalFunction
 argument_list|(

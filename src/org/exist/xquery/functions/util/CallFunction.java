@@ -477,14 +477,6 @@ name|FunctionReference
 operator|)
 name|item0
 decl_stmt|;
-name|FunctionCall
-name|call
-init|=
-name|ref
-operator|.
-name|getFunctionCall
-argument_list|()
-decl_stmt|;
 comment|// pass the remaining parameters to the function call
 name|List
 argument_list|<
@@ -531,14 +523,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|call
+name|ref
 operator|.
 name|setArguments
 argument_list|(
 name|params
 argument_list|)
 expr_stmt|;
-name|call
+name|ref
 operator|.
 name|analyze
 argument_list|(
@@ -553,7 +545,7 @@ argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
 return|return
-name|call
+name|ref
 operator|.
 name|eval
 argument_list|(
