@@ -763,14 +763,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[fn:match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-all(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[fn:match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-all(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -795,14 +795,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[fn:match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-any(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[fn:match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-any(LINE, 'skirts', 'nor.*')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -2002,7 +2002,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|//Since we use the deprecated fn:match-all() function, we have to be sure is is enabled
+comment|//Since we use the deprecated text:match-all() function, we have to be sure is is enabled
 name|Configuration
 name|config
 init|=
