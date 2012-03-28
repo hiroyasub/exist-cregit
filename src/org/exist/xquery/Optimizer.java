@@ -432,6 +432,34 @@ name|Step
 operator|)
 name|previous
 decl_stmt|;
+if|if
+condition|(
+name|prevStep
+operator|.
+name|getAxis
+argument_list|()
+operator|==
+name|Constants
+operator|.
+name|CHILD_AXIS
+operator|&&
+operator|!
+operator|(
+name|path
+operator|.
+name|getPrevious
+argument_list|(
+name|prevStep
+argument_list|)
+operator|instanceof
+name|LocationStep
+operator|)
+condition|)
+block|{
+comment|// Do not rewrite this step if it is the first step after a root step and
+comment|// the axis is the child axis!
+break|break;
+block|}
 name|reverseAxis
 operator|=
 name|reverseAxis
