@@ -767,6 +767,18 @@ parameter_list|)
 throws|throws
 name|ConfigurationException
 function_decl|;
+name|void
+name|processPramatterBeforeSave
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|ConfigurationException
+function_decl|;
 comment|/**     * Particular web page for authentication.     *      * @return Authentication form location     */
 specifier|public
 name|String
