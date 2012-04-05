@@ -22459,6 +22459,13 @@ name|getDefaultFunctionNamespace
 argument_list|()
 argument_list|)
 expr_stmt|;
+else|else
+name|qn
+operator|=
+name|InlineFunction
+operator|.
+name|INLINE_FUNCTION_QNAME
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
