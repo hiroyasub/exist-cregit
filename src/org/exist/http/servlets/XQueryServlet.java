@@ -2834,6 +2834,15 @@ comment|//        Throwable t = e.getCause();
 comment|//        if (t != null)
 comment|//            out.print(XMLUtil.encodeAttrMarkup(t.getMessage()));
 comment|//        else
+if|if
+condition|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|!=
+literal|null
+condition|)
 name|out
 operator|.
 name|print
