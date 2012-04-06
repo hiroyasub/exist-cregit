@@ -287,6 +287,17 @@ name|TEST
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|getCacheClass
+parameter_list|()
+block|{
+return|return
+literal|"org.exist.util.io.FileFilterInputStreamCache"
+return|;
+comment|//return "org.exist.util.io.MemoryMappedFileFilterInputStreamCache";
+comment|//return "org.exist.util.io.MemoryFilterInputStreamCache";
+block|}
 block|}
 block|}
 end_class
