@@ -821,7 +821,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//SPEECH[text:match-all(LINE, 'love')]"
+literal|"//SPEECH[text:match-all(LINE, 'love', 'w')]"
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -859,7 +859,7 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//SPEECH[text:match-all(LINE, 'love$')]"
+literal|"//SPEECH[text:match-all(LINE, 'love', 'w')]"
 argument_list|)
 expr_stmt|;
 name|assertEquals
