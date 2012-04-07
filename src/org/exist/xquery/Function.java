@@ -959,6 +959,10 @@ condition|(
 name|type
 operator|==
 literal|null
+operator|||
+name|expr
+operator|instanceof
+name|Placeholder
 condition|)
 return|return
 name|expr

@@ -136,6 +136,15 @@ operator|=
 name|fcall
 expr_stmt|;
 block|}
+specifier|public
+name|FunctionCall
+name|getCall
+parameter_list|()
+block|{
+return|return
+name|functionCall
+return|;
+block|}
 comment|/**      * Get the signature of the function.      *       * @return signature of this function      */
 specifier|public
 name|FunctionSignature

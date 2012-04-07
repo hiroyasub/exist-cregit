@@ -125,7 +125,9 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"inline"
+literal|""
+argument_list|,
+literal|""
 argument_list|)
 decl_stmt|;
 specifier|private
