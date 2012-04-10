@@ -6673,11 +6673,6 @@ name|int
 name|event
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|context
-init|)
-block|{
 name|cached
 operator|=
 literal|null
@@ -6738,7 +6733,6 @@ name|currentSet
 operator|=
 literal|null
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
