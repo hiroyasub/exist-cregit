@@ -2687,6 +2687,14 @@ name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|transact
+operator|.
+name|commit
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+comment|// bugID 3419602
 return|return
 name|getLastChild
 argument_list|()
