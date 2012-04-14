@@ -680,6 +680,27 @@ operator|.
 name|getSourceKey
 argument_list|()
 expr_stmt|;
+name|source
+operator|=
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s [%d:%d]"
+argument_list|,
+name|source
+argument_list|,
+name|function
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|function
+operator|.
+name|getColumn
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|stats
 operator|.
 name|recordFunctionCall

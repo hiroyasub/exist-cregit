@@ -1088,12 +1088,7 @@ name|Error
 operator|.
 name|FUNC_PARAM_CARDINALITY
 argument_list|,
-name|String
-operator|.
-name|valueOf
-argument_list|(
 name|argPosition
-argument_list|)
 argument_list|,
 name|mySignature
 argument_list|)
