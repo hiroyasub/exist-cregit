@@ -751,6 +751,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|ElementValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|IndexSpec
 import|;
 end_import
@@ -2269,6 +2281,8 @@ name|searchAndProcess
 argument_list|(
 name|contextId
 argument_list|,
+name|qname
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -2627,6 +2641,8 @@ name|searchAndProcess
 argument_list|(
 name|contextId
 argument_list|,
+name|qname
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -2763,6 +2779,8 @@ name|searchAndProcess
 argument_list|(
 name|contextId
 argument_list|,
+literal|null
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -2798,6 +2816,9 @@ name|searchAndProcess
 parameter_list|(
 name|int
 name|contextId
+parameter_list|,
+name|QName
+name|qname
 parameter_list|,
 name|DocumentSet
 name|docs
@@ -2846,6 +2867,8 @@ argument_list|,
 name|searcher
 argument_list|,
 name|contextId
+argument_list|,
+name|qname
 argument_list|,
 name|docs
 argument_list|,
@@ -2984,6 +3007,8 @@ name|searchAndProcess
 argument_list|(
 name|contextId
 argument_list|,
+literal|null
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -3028,6 +3053,9 @@ name|searcher
 parameter_list|,
 name|int
 name|contextId
+parameter_list|,
+name|QName
+name|qname
 parameter_list|,
 name|DocumentSet
 name|docs
@@ -3125,6 +3153,34 @@ argument_list|,
 name|nodeId
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|qname
+operator|!=
+literal|null
+condition|)
+name|storedNode
+operator|.
+name|setNodeType
+argument_list|(
+name|qname
+operator|.
+name|getNameType
+argument_list|()
+operator|==
+name|ElementValue
+operator|.
+name|ATTRIBUTE
+condition|?
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+else|:
+name|Node
+operator|.
+name|ELEMENT_NODE
+argument_list|)
+expr_stmt|;
 comment|// if a context set is specified, we can directly check if the
 comment|// matching node is a descendant of one of the nodes
 comment|// in the context set.
