@@ -719,16 +719,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
-name|item
-operator|.
-name|addContextNode
-argument_list|(
-name|getExpressionId
-argument_list|()
-argument_list|,
-name|item
-argument_list|)
-expr_stmt|;
+comment|//    					item.addContextNode(getExpressionId(), item);
 if|if
 condition|(
 name|contextId
@@ -781,6 +772,7 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 condition|)
+block|{
 name|argSet
 operator|=
 name|argSeq
@@ -793,7 +785,9 @@ argument_list|(
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|argSet
 operator|=
 name|argSeq
@@ -807,6 +801,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 operator|(
