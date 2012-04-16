@@ -261,9 +261,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the string value of $suffix is a suffix of the "
+literal|"Returns true() if the string value of $suffix is a suffix of the "
 operator|+
-literal|"string value of $source-string, false otherwise. If either $source-string or $suffix is the empty "
+literal|"string value of $source-string, false() otherwise. "
+operator|+
+literal|"If either $source-string or $suffix is the empty "
 operator|+
 literal|"sequence, the empty sequence is returned."
 argument_list|,
@@ -332,15 +334,13 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns true if the string value of $suffix is a suffix of the "
+literal|"Returns true() if the string value of $suffix is a suffix of the "
 operator|+
 literal|"string value of $source-string using collation $collation-uri, "
 operator|+
-literal|" false otherwise. If "
+literal|"false() otherwise. If either $source-string or $suffix is "
 operator|+
-literal|"either $source-string or $suffix is the empty sequence, the empty sequence"
-operator|+
-literal|" is returned. "
+literal|"the empty sequence, the empty sequence is returned. "
 operator|+
 name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
@@ -361,7 +361,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The source-string"
+literal|"The source string"
 argument_list|)
 block|,
 operator|new
@@ -639,19 +639,23 @@ name|getStringValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

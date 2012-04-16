@@ -291,9 +291,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the absolute URI of the resource from which the document node $document-node "
+literal|"Returns the absolute URI of the resource from which the "
 operator|+
-literal|"was constructed, if none such URI exists returns the empty sequence. "
+literal|"document node $document-node was constructed. "
+operator|+
+literal|"If none such URI exists returns the empty sequence. "
 operator|+
 literal|"If $document-node is the empty sequence, returns the empty sequence."
 argument_list|,
@@ -333,7 +335,7 @@ literal|"the document URI of $document-node"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/**      *       */
 specifier|public
 name|FunDocumentURI
 parameter_list|(
@@ -349,7 +351,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval

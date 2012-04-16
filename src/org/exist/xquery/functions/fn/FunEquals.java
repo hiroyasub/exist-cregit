@@ -277,11 +277,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
+literal|"Returns an xs:boolean indicating whether or not the value of "
 operator|+
-literal|"equals the "
+literal|"$source-string  equals the collation units in the value of "
 operator|+
-literal|"collation units in the value of $substring, according to the default collation. This function is similar to the '=' expression, except that it uses the default collation for comparisons."
+literal|"$substring, according to the default collation. "
+operator|+
+literal|"This function is similar to the '=' expression, except that "
+operator|+
+literal|"it uses the default collation for comparisons."
 argument_list|,
 operator|new
 name|SequenceType
@@ -348,13 +352,15 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns an xs:boolean indicating whether or not the value of $source-string "
+literal|"Returns an xs:boolean indicating whether or not the value of "
 operator|+
-literal|"cequals the "
+literal|"$source-string equals the  collation units in the value of "
 operator|+
-literal|"collation units in the value of $substring, according to the collation that is "
+literal|"$substring, according to the collation that is specified in "
 operator|+
-literal|"specified in $collation-uri. This function is similar to the '=' expression, except that it uses the specified collation for comparisons."
+literal|"$collation-uri. This function is similar to the '=' expression, "
+operator|+
+literal|"except that it uses the specified collation for comparisons."
 operator|+
 name|THIRD_REL_COLLATION_ARG_EXAMPLE
 argument_list|,
@@ -680,6 +686,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//TODO : raise exception ? -pb
 name|collator
 operator|=
 name|Collations
@@ -748,9 +755,7 @@ name|result
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|result
-operator|)
 return|;
 block|}
 block|}

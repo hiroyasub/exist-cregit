@@ -255,7 +255,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Escapes reserved characters in $uri-part by replacing it with its percent-encoded form as described in [RFC 3986]. If $uri-part is the empty sequence, returns the zero-length string."
+literal|"Escapes reserved characters in $uri-part by replacing it "
+operator|+
+literal|"with its percent-encoded form as described in [RFC 3986]. "
+operator|+
+literal|"If $uri-part is the empty sequence, returns the zero-length string."
 argument_list|,
 operator|new
 name|SequenceType
@@ -448,6 +452,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 comment|//If $uri-part is the empty sequence, returns the zero-length string.
 name|result
 operator|=
@@ -455,6 +460,7 @@ name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String

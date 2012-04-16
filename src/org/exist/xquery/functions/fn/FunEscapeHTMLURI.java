@@ -255,9 +255,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Replaces all nonprintable ASCII characters in the string value of $html-uri by an escape sequence represented "
+literal|"Replaces all non-printable ASCII characters in the string value of "
 operator|+
-literal|"as a hexadecimal octet in the form %XX. If $html-uri is the empty sequence, "
+literal|"$html-uri by an escape sequence represented as a hexadecimal octet "
+operator|+
+literal|"in the form %XX. If $html-uri is the empty sequence, "
 operator|+
 literal|"returns the zero-length string."
 argument_list|,
@@ -452,12 +454,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String

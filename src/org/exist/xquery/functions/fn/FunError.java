@@ -252,9 +252,13 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Indicates that an irrecoverable error has occurred. The "
+literal|"Indicates that an irrecoverable error has occurred. "
 operator|+
-literal|"script will terminate immediately with an exception using the default qname, 'http://www.w3.org/2004/07/xqt-errors#err:FOER0000', and the default error message, 'An error has been raised by the query'."
+literal|"The script will terminate immediately with an exception using "
+operator|+
+literal|"the default qname, 'http://www.w3.org/2004/07/xqt-errors#err:FOER0000', "
+operator|+
+literal|"and the default error message, 'An error has been raised by the query'."
 argument_list|,
 literal|null
 argument_list|,
@@ -284,9 +288,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Indicates that an irrecoverable error has occurred. The "
+literal|"Indicates that an irrecoverable error has occurred. "
 operator|+
-literal|"script will terminate immediately with an exception using $qname and the default message, 'An error has been raised by the query'."
+literal|"The script will terminate immediately with an exception using "
+operator|+
+literal|"$qname and the default message, 'An error has been raised by the query'."
 argument_list|,
 operator|new
 name|SequenceType
@@ -335,9 +341,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Indicates that an irrecoverable error has occurred. The "
+literal|"Indicates that an irrecoverable error has occurred. "
 operator|+
-literal|"script will terminate immediately with an exception using $qname and $message."
+literal|"The script will terminate immediately with an exception using "
+operator|+
+literal|"$qname and $message."
 argument_list|,
 operator|new
 name|SequenceType
@@ -402,9 +410,11 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Indicates that an irrecoverable error has occurred. The "
+literal|"Indicates that an irrecoverable error has occurred. "
 operator|+
-literal|"script will terminate immediately with an exception using $qname and $message with $error-object appended."
+literal|"The script will terminate immediately with an exception using "
+operator|+
+literal|"$qname and $message with $error-object appended."
 argument_list|,
 operator|new
 name|SequenceType
@@ -471,7 +481,7 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|, 	}
+block|,     }
 decl_stmt|;
 specifier|public
 name|FunError
@@ -623,7 +633,6 @@ operator|.
 name|getQName
 argument_list|()
 decl_stmt|;
-comment|//                 Set prefix if present
 name|String
 name|prefix
 init|=
@@ -676,7 +685,7 @@ name|errorDesc
 argument_list|)
 expr_stmt|;
 block|}
-comment|// If there is a third argument, us it.
+comment|// If there is a third argument, use it.
 if|if
 condition|(
 name|args
