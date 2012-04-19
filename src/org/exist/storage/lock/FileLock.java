@@ -621,6 +621,18 @@ return|return
 name|lockFile
 return|;
 block|}
+specifier|public
+name|long
+name|getFreeSpace
+parameter_list|()
+block|{
+return|return
+name|lockFile
+operator|.
+name|getFreeSpace
+argument_list|()
+return|;
+block|}
 comment|/**      * Check if the lock has an active heartbeat, i.e. if it was updated      * during the past {@link #HEARTBEAT} milliseconds.      *       * @return true if there's an active heartbeat      */
 specifier|private
 name|boolean
