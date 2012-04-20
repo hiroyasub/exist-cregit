@@ -319,6 +319,17 @@ block|{
 comment|// Perhaps we should not free resources here
 comment|// but an explicit remove implies you want
 comment|// to free resources
+if|if
+condition|(
+name|results
+index|[
+name|pos
+index|]
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// Prevent NPE
 name|results
 index|[
 name|pos
@@ -334,6 +345,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -365,9 +377,9 @@ name|results
 index|[
 name|pos
 index|]
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
 name|results
 index|[
 name|pos
