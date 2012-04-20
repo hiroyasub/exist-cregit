@@ -12148,18 +12148,21 @@ comment|/*         SymbolTable syms = broker.getSymbols();         String[] pfx 
 name|loadDefaultNS
 argument_list|()
 expr_stmt|;
-comment|// Switch: enable optimizer
-name|String
-name|param
+comment|//XXX: is it different from config at method parameter?
+name|Configuration
+name|conf
 init|=
-operator|(
-name|String
-operator|)
 name|getBroker
 argument_list|()
 operator|.
 name|getConfiguration
 argument_list|()
+decl_stmt|;
+comment|// Switch: enable optimizer
+name|Object
+name|param
+init|=
+name|conf
 operator|.
 name|getProperty
 argument_list|(
@@ -12176,6 +12179,9 @@ operator|)
 operator|&&
 name|param
 operator|.
+name|toString
+argument_list|()
+operator|.
 name|equals
 argument_list|(
 literal|"yes"
@@ -12184,14 +12190,7 @@ expr_stmt|;
 comment|// Switch: Backward compatibility
 name|param
 operator|=
-operator|(
-name|String
-operator|)
-name|getBroker
-argument_list|()
-operator|.
-name|getConfiguration
-argument_list|()
+name|conf
 operator|.
 name|getProperty
 argument_list|(
@@ -12208,6 +12207,9 @@ operator|)
 operator|||
 name|param
 operator|.
+name|toString
+argument_list|()
+operator|.
 name|equals
 argument_list|(
 literal|"yes"
@@ -12221,11 +12223,7 @@ operator|(
 operator|(
 name|Boolean
 operator|)
-name|getBroker
-argument_list|()
-operator|.
-name|getConfiguration
-argument_list|()
+name|conf
 operator|.
 name|getProperty
 argument_list|(
