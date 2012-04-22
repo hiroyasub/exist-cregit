@@ -686,7 +686,7 @@ name|addAll
 argument_list|(
 name|args
 index|[
-literal|2
+literal|1
 index|]
 argument_list|)
 expr_stmt|;
