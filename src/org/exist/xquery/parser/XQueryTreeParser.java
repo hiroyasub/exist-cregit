@@ -30855,13 +30855,7 @@ operator|.
 name|ATTRIBUTE_AXIS
 condition|)
 block|{
-name|qname
-operator|.
-name|setNamespaceURI
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
+comment|//qname.setNamespaceURI(null);
 name|test
 operator|=
 operator|new
