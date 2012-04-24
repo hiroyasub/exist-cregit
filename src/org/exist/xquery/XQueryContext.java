@@ -6535,19 +6535,13 @@ name|getPDP
 parameter_list|()
 block|{
 return|return
-operator|(
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
+name|db
 operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
 name|getPDP
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Declare a user-defined function. All user-defined functions are kept in a single hash map.      *      * @param   function      *      * @throws  XPathException      */
