@@ -390,7 +390,7 @@ comment|//        // better use compile-time inspection and maybe a pragma to ma
 comment|//        // sections in the query that can be safely cached
 comment|//        if (cachedDocs != null&& cachedDocs.equalDocs(ds)) return cached;
 comment|// check if the loaded documents should remain locked
-name|NodeSet
+name|NewArrayNodeSet
 name|result
 init|=
 operator|new
@@ -546,6 +546,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|result
+operator|.
+name|updateNoSort
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|context

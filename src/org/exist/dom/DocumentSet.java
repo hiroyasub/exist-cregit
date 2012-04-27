@@ -109,13 +109,6 @@ name|int
 name|getDocumentCount
 parameter_list|()
 function_decl|;
-name|DocumentImpl
-name|getDocumentAt
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
-function_decl|;
 specifier|public
 name|DocumentImpl
 name|getDoc
