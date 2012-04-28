@@ -1607,8 +1607,6 @@ decl_stmt|;
 name|Permission
 name|permission
 init|=
-name|permission
-operator|=
 operator|new
 name|UnixStylePermission
 argument_list|(
@@ -1631,8 +1629,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -1659,8 +1655,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|UnixStylePermission
 argument_list|(
@@ -1683,8 +1677,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -1711,8 +1703,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|UnixStylePermission
 argument_list|(
@@ -1735,8 +1725,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -1763,8 +1751,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|UnixStylePermission
 argument_list|(
@@ -1789,8 +1775,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|UnixStylePermission
 argument_list|(
@@ -1813,8 +1797,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new

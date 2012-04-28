@@ -539,8 +539,6 @@ name|mockSecurityManager
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|userName
 argument_list|)
 argument_list|)
@@ -772,8 +770,6 @@ name|mockSecurityManager
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|groupName
 argument_list|)
 argument_list|)

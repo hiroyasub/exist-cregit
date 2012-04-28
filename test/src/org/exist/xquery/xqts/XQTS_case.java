@@ -1021,11 +1021,7 @@ name|script
 init|=
 literal|""
 decl_stmt|;
-name|DateTimeValue
-name|scriptDateTime
-init|=
-literal|null
-decl_stmt|;
+comment|//DateTimeValue scriptDateTime = null;
 name|NodeListImpl
 name|inputFiles
 init|=

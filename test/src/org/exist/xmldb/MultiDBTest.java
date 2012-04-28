@@ -14,30 +14,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -272,7 +248,7 @@ name|i
 operator|+
 literal|"://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -954,7 +930,7 @@ name|i
 operator|+
 literal|"://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,

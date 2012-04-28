@@ -111,18 +111,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Account
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|AuthenticationException
 import|;
 end_import
@@ -148,20 +136,6 @@ operator|.
 name|security
 operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|internal
-operator|.
-name|RealmImpl
 import|;
 end_import
 
@@ -262,6 +236,18 @@ operator|.
 name|serializer
 operator|.
 name|SAXSerializer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -444,7 +430,7 @@ literal|"<para>First paragraph in second section.</para>"
 operator|+
 literal|"           {collection('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

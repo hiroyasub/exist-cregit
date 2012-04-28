@@ -29,18 +29,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|test
 operator|.
 name|TestConstants
@@ -245,7 +233,7 @@ name|uri
 init|=
 literal|"xmldb:exist://localhost:8088/xmlrpc"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;

@@ -3361,7 +3361,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -3731,7 +3731,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

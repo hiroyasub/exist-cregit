@@ -195,18 +195,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|Base64Encoder
@@ -2270,7 +2258,7 @@ name|encode
 argument_list|(
 literal|"doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -2400,7 +2388,7 @@ name|assertEquals
 argument_list|(
 name|response
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -2470,7 +2458,7 @@ name|response
 argument_list|,
 name|SERVER_URI
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

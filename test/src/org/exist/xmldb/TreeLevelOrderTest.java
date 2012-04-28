@@ -720,7 +720,7 @@ literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -735,7 +735,7 @@ literal|"$doc := xdb:store(\""
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -839,7 +839,7 @@ name|append
 argument_list|(
 literal|"let $survey := xmldb:document(concat('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1040,7 +1040,7 @@ name|getCollection
 argument_list|(
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,

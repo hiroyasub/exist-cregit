@@ -41,16 +41,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
-operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|xmldb
 operator|.
 name|api

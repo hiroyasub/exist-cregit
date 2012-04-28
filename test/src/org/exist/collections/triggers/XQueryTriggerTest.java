@@ -478,21 +478,8 @@ literal|"</xu:update>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|MODIFIED_DOCUMENT_CONTENT
-init|=
-name|DOCUMENT_CONTENT
-operator|.
-name|replaceAll
-argument_list|(
-literal|"<price>18.4</price>"
-argument_list|,
-literal|"<price>15.2</price>"
-argument_list|)
-decl_stmt|;
+comment|//    private final static String MODIFIED_DOCUMENT_CONTENT =
+comment|//    	DOCUMENT_CONTENT.replaceAll("<price>18.4</price>", "<price>15.2</price>");
 specifier|private
 specifier|final
 specifier|static

@@ -67,16 +67,6 @@ name|javax
 operator|.
 name|servlet
 operator|.
-name|FilterChain
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
 name|ServletException
 import|;
 end_import

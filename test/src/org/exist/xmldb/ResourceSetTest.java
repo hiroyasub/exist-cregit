@@ -63,18 +63,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -100,11 +88,9 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 specifier|private
 specifier|final
@@ -179,50 +165,15 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ClassNotFoundException
+name|Exception
 name|e
 parameter_list|)
 block|{
-comment|// TODO Auto-generated catch block
 name|e
 operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InstantiationException
-name|e
-parameter_list|)
-block|{
-comment|// TODO Auto-generated catch block
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalAccessException
-name|e
-parameter_list|)
-block|{
-comment|// TODO Auto-generated catch block
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-comment|// TODO Auto-generated catch block
 name|fail
 argument_list|(
 name|e
@@ -237,7 +188,7 @@ name|XPathPrefix
 operator|=
 literal|"xmldb:document('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

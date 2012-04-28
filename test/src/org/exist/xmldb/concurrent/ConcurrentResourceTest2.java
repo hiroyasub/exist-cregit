@@ -21,9 +21,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XmldbURI
 import|;
 end_import
 
@@ -90,11 +90,9 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 specifier|private
 specifier|final
@@ -106,7 +104,7 @@ literal|"declare default element namespace 'http://www.loc.gov/mods/v3';"
 operator|+
 literal|"collection(\""
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -122,7 +120,7 @@ literal|"declare default element namespace 'http://www.loc.gov/mods/v3';"
 operator|+
 literal|"<result>{for $t in distinct-values(\""
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

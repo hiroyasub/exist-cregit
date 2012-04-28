@@ -163,13 +163,7 @@ name|ATOM_NS
 init|=
 literal|"http://www.w3.org/2005/Atom"
 decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|ATOM_PREFIX
-init|=
-literal|"atom"
-decl_stmt|;
+comment|//    private static String ATOM_PREFIX = "atom";
 annotation|@
 name|Test
 specifier|public

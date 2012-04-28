@@ -1845,11 +1845,6 @@ block|}
 comment|// @TODO create reader for xml
 comment|/*      * SetUp / TearDown functions      *      */
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-annotation|@
 name|BeforeClass
 specifier|public
 specifier|static

@@ -15,9 +15,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -29,7 +29,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|DatabaseInstanceManager
+name|XmldbURI
 import|;
 end_import
 
@@ -285,15 +285,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|service

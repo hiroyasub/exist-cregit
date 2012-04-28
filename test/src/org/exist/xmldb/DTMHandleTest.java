@@ -31,18 +31,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -586,7 +574,7 @@ literal|"let $isLoggedIn := xdb:login(\""
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -601,7 +589,7 @@ literal|"$doc := xdb:store(\""
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -705,7 +693,7 @@ name|append
 argument_list|(
 literal|"let $survey := xmldb:document(concat('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -908,7 +896,7 @@ name|getCollection
 argument_list|(
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,

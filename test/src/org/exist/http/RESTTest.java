@@ -41,9 +41,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XmldbURI
 import|;
 end_import
 
@@ -101,7 +101,7 @@ name|COLLECTION_ROOT_URL
 init|=
 name|REST_URL
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;

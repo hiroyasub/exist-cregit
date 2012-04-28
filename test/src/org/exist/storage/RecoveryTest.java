@@ -1205,7 +1205,7 @@ name|assertNotNull
 argument_list|(
 literal|"Document '"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1274,7 +1274,7 @@ name|assertNotNull
 argument_list|(
 literal|"Document '"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1366,7 +1366,7 @@ name|assertNull
 argument_list|(
 literal|"Document '"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

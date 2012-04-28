@@ -859,9 +859,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
-name|SAXSerializer
-name|serializer
-init|=
+comment|//            SAXSerializer serializer =
 operator|new
 name|SAXSerializer
 argument_list|(
@@ -871,7 +869,7 @@ operator|new
 name|Properties
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//n.toSAX(null, serializer, new Properties());
 name|assertEquals
 argument_list|(

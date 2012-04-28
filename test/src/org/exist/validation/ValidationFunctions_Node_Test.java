@@ -23,243 +23,93 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|*
-import|;
-end_import
+begin_comment
+comment|//import static org.junit.Assert.*;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Appender
-import|;
-end_import
+begin_comment
+comment|//
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|BasicConfigurator
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Appender;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|ConsoleAppender
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.BasicConfigurator;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Layout
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.ConsoleAppender;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Layout;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|PatternLayout
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.Logger;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-import|;
-end_import
+begin_comment
+comment|//import org.apache.log4j.PatternLayout;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UnixStylePermission
-import|;
-end_import
+begin_comment
+comment|//import org.exist.security.Permission;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
+begin_comment
+comment|//import org.exist.security.UnixStylePermission;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ConfigurationHelper
-import|;
-end_import
+begin_comment
+comment|//
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|DatabaseInstanceManager
-import|;
-end_import
+begin_comment
+comment|//import org.exist.storage.DBBroker;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|UserManagementService
-import|;
-end_import
+begin_comment
+comment|//import org.exist.util.ConfigurationHelper;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|DatabaseManager
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xmldb.DatabaseInstanceManager;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Collection
-import|;
-end_import
+begin_comment
+comment|//import org.exist.xmldb.UserManagementService;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Database
-import|;
-end_import
+begin_comment
+comment|//
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ResourceSet
-import|;
-end_import
+begin_comment
+comment|//import org.xmldb.api.DatabaseManager;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
+begin_comment
+comment|//import org.xmldb.api.base.Collection;
+end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XPathQueryService
-import|;
-end_import
+begin_comment
+comment|//import org.xmldb.api.base.Database;
+end_comment
+
+begin_comment
+comment|//import org.xmldb.api.base.ResourceSet;
+end_comment
+
+begin_comment
+comment|//import org.xmldb.api.modules.CollectionManagementService;
+end_comment
+
+begin_comment
+comment|//import org.xmldb.api.modules.XPathQueryService;
+end_comment
 
 begin_comment
 comment|/**  *  Set of Tests for validation:validate($a) and validation:validate($a, $b)  * regaring validatin using XSD's.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */

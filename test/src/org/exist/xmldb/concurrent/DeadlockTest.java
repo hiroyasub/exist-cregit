@@ -41,9 +41,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|DatabaseInstanceManager
+name|XmldbURI
 import|;
 end_import
 
@@ -142,11 +142,9 @@ specifier|private
 name|String
 name|rootCollection
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 specifier|private
 name|Collection

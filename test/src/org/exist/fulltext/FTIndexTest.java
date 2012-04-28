@@ -6316,7 +6316,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|CollectionConfigurationManager
+name|XmldbURI
 operator|.
 name|CONFIG_COLLECTION
 operator|+

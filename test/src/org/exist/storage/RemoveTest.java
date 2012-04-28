@@ -159,6 +159,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xupdate
 operator|.
 name|Modification
@@ -539,7 +551,7 @@ name|assertNotNull
 argument_list|(
 literal|"Document '"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

@@ -19,9 +19,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|DatabaseInstanceManager
+name|XmldbURI
 import|;
 end_import
 
@@ -184,7 +184,7 @@ specifier|static
 name|String
 name|TEST_DB_PWD
 init|=
-literal|null
+literal|""
 decl_stmt|;
 specifier|private
 name|XPathQueryService
@@ -379,11 +379,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 name|TEST_DB_USER
 argument_list|,
