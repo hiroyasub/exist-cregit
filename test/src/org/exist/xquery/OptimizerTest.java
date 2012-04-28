@@ -41,18 +41,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|Configuration
@@ -92,6 +80,18 @@ operator|.
 name|xmldb
 operator|.
 name|IndexQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -811,15 +811,13 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+name|r
+operator|=
 name|execute
 argument_list|(
 literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
 argument_list|,
 literal|false
-argument_list|,
-literal|"Query should return same number of results."
-argument_list|,
-name|r
 argument_list|)
 expr_stmt|;
 name|execute
@@ -916,65 +914,6 @@ expr_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|ttt
-parameter_list|()
-block|{
-comment|//Test old and new functions
-name|int
-name|r
-init|=
-literal|78
-decl_stmt|;
-comment|//execute("//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]", false);
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
-argument_list|,
-literal|false
-argument_list|,
-literal|"Query should return same number of results."
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', '^nor.*$'))]"
 argument_list|,
 literal|true
 argument_list|,
@@ -2143,15 +2082,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
