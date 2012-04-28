@@ -171,9 +171,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XQueryService
 import|;
 end_import
 
@@ -185,7 +185,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|XmldbURI
 import|;
 end_import
 
@@ -328,7 +328,7 @@ name|uri
 operator|.
 name|indexOf
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -412,7 +412,7 @@ name|getCollection
 argument_list|(
 name|baseURI
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,
@@ -429,7 +429,7 @@ name|root
 argument_list|,
 name|baseURI
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,

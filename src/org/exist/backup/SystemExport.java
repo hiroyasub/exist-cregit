@@ -551,7 +551,7 @@ name|XmldbURI
 operator|.
 name|createInternal
 argument_list|(
-name|NativeBroker
+name|XmldbURI
 operator|.
 name|TEMP_COLLECTION
 argument_list|)
@@ -1096,7 +1096,7 @@ name|ZipWriter
 argument_list|(
 name|backupFile
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)

@@ -31,18 +31,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|Constants
@@ -4246,7 +4234,7 @@ name|name2
 operator|.
 name|startsWith
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -4254,7 +4242,7 @@ condition|)
 block|{
 name|name2
 operator|=
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -4446,7 +4434,7 @@ name|name2
 operator|.
 name|startsWith
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -4454,7 +4442,7 @@ condition|)
 block|{
 name|name2
 operator|=
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

@@ -307,30 +307,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -502,7 +478,7 @@ expr_stmt|;
 comment|//Get the indexes for the root collection
 name|actionGetTriggers
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -642,7 +618,7 @@ name|client
 operator|.
 name|getCollection
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -698,7 +674,7 @@ argument_list|()
 operator|.
 name|indexOf
 argument_list|(
-name|CollectionConfigurationManager
+name|XmldbURI
 operator|.
 name|CONFIG_COLLECTION
 argument_list|)

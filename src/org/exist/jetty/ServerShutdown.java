@@ -95,18 +95,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|ConfigurationHelper
@@ -122,6 +110,18 @@ operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -581,7 +581,7 @@ name|uri
 operator|.
 name|endsWith
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -590,7 +590,7 @@ name|uri
 operator|=
 name|uri
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 expr_stmt|;

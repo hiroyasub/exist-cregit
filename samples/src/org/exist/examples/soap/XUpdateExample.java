@@ -93,9 +93,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XmldbURI
 import|;
 end_import
 
@@ -233,7 +233,7 @@ argument_list|)
 argument_list|,
 literal|"UTF-8"
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -248,7 +248,7 @@ name|xupdateResource
 argument_list|(
 name|session
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -266,7 +266,7 @@ name|getResource
 argument_list|(
 name|session
 argument_list|,
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+

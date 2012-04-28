@@ -27,18 +27,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
@@ -54,6 +42,18 @@ operator|.
 name|xmldb
 operator|.
 name|XQueryService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -202,7 +202,7 @@ name|URI_DB1
 init|=
 literal|"xmldb:exist://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;
@@ -213,7 +213,7 @@ name|URI_DB2
 init|=
 literal|"xmldb:test://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;

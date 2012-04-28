@@ -31,18 +31,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|IndexQueryService
@@ -413,7 +401,7 @@ expr_stmt|;
 comment|//Get the indexes for the root collection
 name|actionGetIndexes
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)
@@ -554,7 +542,7 @@ name|client
 operator|.
 name|getCollection
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)

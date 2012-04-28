@@ -2223,9 +2223,6 @@ name|void
 name|boosts
 parameter_list|()
 block|{
-name|DocumentSet
-name|docs
-init|=
 name|configureAndStore
 argument_list|(
 name|COLLECTION_CONFIG6
@@ -2234,7 +2231,7 @@ name|XML6
 argument_list|,
 literal|"test.xml"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -2357,9 +2354,6 @@ name|void
 name|queryTranslation
 parameter_list|()
 block|{
-name|DocumentSet
-name|docs
-init|=
 name|configureAndStore
 argument_list|(
 name|COLLECTION_CONFIG1
@@ -2368,7 +2362,7 @@ name|XML7
 argument_list|,
 literal|"test.xml"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -3436,16 +3430,13 @@ argument_list|(
 literal|"Test removal of multiple documents ..."
 argument_list|)
 expr_stmt|;
-name|DocumentSet
-name|docs
-init|=
 name|configureAndStore
 argument_list|(
 name|COLLECTION_CONFIG1
 argument_list|,
 literal|"samples/shakespeare"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=

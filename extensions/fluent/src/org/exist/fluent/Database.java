@@ -525,7 +525,7 @@ name|db
 operator|.
 name|getFolder
 argument_list|(
-name|CollectionConfigurationManager
+name|XmldbURI
 operator|.
 name|CONFIG_COLLECTION
 operator|+
@@ -1228,7 +1228,7 @@ specifier|final
 name|String
 name|ROOT_PREFIX
 init|=
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 decl_stmt|;
