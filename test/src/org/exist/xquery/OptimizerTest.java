@@ -763,14 +763,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[text:match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-all(LINE, ('skirts', 'nor.*'))]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[text:match-all(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-all(LINE, ('skirts', 'nor.*'))]"
 argument_list|,
 literal|true
 argument_list|,
@@ -795,14 +795,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[text:match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[text:match-any(LINE, 'skirts', 'nor.*')]"
+literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
 argument_list|,
 literal|true
 argument_list|,
@@ -916,6 +916,65 @@ expr_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|ttt
+parameter_list|()
+block|{
+comment|//Test old and new functions
+name|int
+name|r
+init|=
+literal|78
+decl_stmt|;
+comment|//execute("//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]", false);
+name|execute
+argument_list|(
+literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
+argument_list|,
+literal|false
+argument_list|,
+literal|"Query should return same number of results."
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[text:match-any(LINE, ('skirts', '^nor.*$'))]"
 argument_list|,
 literal|true
 argument_list|,
