@@ -39,9 +39,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XmldbURI
 import|;
 end_import
 
@@ -95,7 +95,7 @@ name|setURI
 argument_list|(
 literal|"xmldb:exist://localhost:8088/xmlrpc"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|)

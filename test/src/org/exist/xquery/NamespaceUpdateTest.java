@@ -15,9 +15,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XmldbURI
 import|;
 end_import
 
@@ -154,11 +154,9 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 specifier|private
 specifier|final

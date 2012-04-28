@@ -19,9 +19,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XQueryService
 import|;
 end_import
 
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|XmldbURI
 import|;
 end_import
 
@@ -752,7 +752,7 @@ name|append
 argument_list|(
 literal|"let $loggedIn := xdb:login(\""
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -765,7 +765,7 @@ name|append
 argument_list|(
 literal|"$doc := xdb:store(\""
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -887,7 +887,7 @@ name|append
 argument_list|(
 literal|"<xu:append select=\"xmldb:xcollection('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -930,7 +930,7 @@ literal|"let $isLoggedIn := xdb:login('"
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -945,7 +945,7 @@ literal|"$mods := xdb:update(\""
 operator|+
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1024,7 +1024,7 @@ name|append
 argument_list|(
 literal|"let $survey := xmldb:document(concat('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1267,7 +1267,7 @@ name|getCollection
 argument_list|(
 name|eXistUrl
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 argument_list|,

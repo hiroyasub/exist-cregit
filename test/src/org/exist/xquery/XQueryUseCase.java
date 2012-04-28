@@ -91,9 +91,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|xmldb
 operator|.
-name|DBBroker
+name|XQueryService
 import|;
 end_import
 
@@ -105,7 +105,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|XmldbURI
 import|;
 end_import
 
@@ -200,23 +200,6 @@ specifier|public
 class|class
 name|XQueryUseCase
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|URI
-init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
-operator|.
-name|ROOT_COLLECTION
-decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -286,15 +269,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 block|}

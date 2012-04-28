@@ -53,18 +53,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
@@ -80,6 +68,18 @@ operator|.
 name|xmldb
 operator|.
 name|EXistResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -468,11 +468,9 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 specifier|private
 specifier|final
@@ -829,15 +827,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
@@ -4838,7 +4834,7 @@ name|query
 operator|=
 literal|"let $v as document-node() :=  doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -6862,7 +6858,7 @@ literal|"declare namespace x = \"http://www.foo.com\"; \n"
 operator|+
 literal|"let $a := doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -6914,7 +6910,7 @@ literal|"declare namespace y = \"http://exist.sourceforge.net/dc-ext\"; \n"
 operator|+
 literal|"let $a := doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -9199,7 +9195,7 @@ name|query
 operator|=
 literal|"doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -9374,7 +9370,7 @@ name|query
 operator|=
 literal|"doc('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -9443,7 +9439,7 @@ name|query
 operator|=
 literal|"doc-available('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -9565,7 +9561,7 @@ name|query
 operator|=
 literal|"doc-available('"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -18343,16 +18339,13 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|result
-init|=
 name|service
 operator|.
 name|query
 argument_list|(
 name|query
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -18413,16 +18406,13 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|result
-init|=
 name|service
 operator|.
 name|query
 argument_list|(
 name|query
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

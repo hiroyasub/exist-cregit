@@ -97,18 +97,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
@@ -124,6 +112,18 @@ operator|.
 name|xmldb
 operator|.
 name|EXistResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
 import|;
 end_import
 
@@ -303,11 +303,9 @@ specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://"
-operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 decl_stmt|;
 comment|//    private final static String DRIVER = "org.exist.xmldb.DatabaseImpl";
 specifier|private
@@ -764,7 +762,7 @@ literal|"import module namespace itg-modules = \"http://localhost:80/itg/xquery\
 operator|+
 literal|"\"xmldb:exist://"
 operator|+
-name|DBBroker
+name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
@@ -1030,22 +1028,11 @@ literal|"'hi from module 4'"
 operator|+
 literal|"};"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|module5
-init|=
-literal|"module namespace mod5 = 'urn:module5';"
-operator|+
-literal|"declare variable $mod5:testvar := 'variable works' ;"
-operator|+
-literal|"declare function mod5:showMe() as xs:string {"
-operator|+
-literal|"concat('hi from module 5: ',$mod5:testvar)"
-operator|+
-literal|"};"
-decl_stmt|;
+comment|//    private static final String module5 = "module namespace mod5 = 'urn:module5';" +
+comment|//    "declare variable $mod5:testvar := 'variable works' ;"+
+comment|//    "declare function mod5:showMe() as xs:string {" +
+comment|//    "concat('hi from module 5: ',$mod5:testvar)" +
+comment|//    "};";
 annotation|@
 name|Test
 argument_list|(
@@ -1704,16 +1691,13 @@ argument_list|(
 name|index_module
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|execute
-init|=
 name|xqService
 operator|.
 name|execute
 argument_list|(
 name|query
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1783,16 +1767,13 @@ argument_list|(
 name|index_module
 argument_list|)
 decl_stmt|;
-name|ResourceSet
-name|execute
-init|=
 name|xqService
 operator|.
 name|execute
 argument_list|(
 name|query
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 block|}
 annotation|@
 name|Test

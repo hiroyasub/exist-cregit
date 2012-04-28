@@ -659,14 +659,11 @@ argument_list|,
 name|mockSeq
 argument_list|)
 decl_stmt|;
-name|Sequence
-name|result
-init|=
 name|dfc
 operator|.
 name|execute
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|/** end interesting bit ***/
 name|verify
 argument_list|(
