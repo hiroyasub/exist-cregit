@@ -13,9 +13,15 @@ name|validation
 package|;
 end_package
 
-begin_comment
-comment|//import org.junit.*;
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|*
+import|;
+end_import
 
 begin_comment
 comment|//import static org.junit.Assert.*;
@@ -124,10 +130,14 @@ comment|//    private static XPathQueryService service;
 comment|//    private static Collection root = null;
 comment|//    private static Database database = null;
 comment|//
-comment|//    @Test
-comment|//    public void noTest() {
-comment|//
-comment|//    }
+annotation|@
+name|Test
+specifier|public
+name|void
+name|noTest
+parameter_list|()
+block|{
+block|}
 comment|//    public static void initLog4J(){
 comment|//        Layout layout = new PatternLayout("%d [%t] %-5p (%F [%M]:%L) - %m %n");
 comment|//        Appender appender=new ConsoleAppender(layout);
