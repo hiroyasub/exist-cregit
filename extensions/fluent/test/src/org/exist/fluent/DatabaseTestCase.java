@@ -107,18 +107,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -388,7 +376,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|DBBroker
+name|XmldbURI
 operator|.
 name|SYSTEM_COLLECTION_NAME
 argument_list|)

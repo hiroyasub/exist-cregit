@@ -356,7 +356,7 @@ specifier|static
 name|String
 name|CONFIG_COLLECTION
 init|=
-name|DBBroker
+name|XmldbURI
 operator|.
 name|SYSTEM_COLLECTION
 operator|+
