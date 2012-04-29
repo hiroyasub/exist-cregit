@@ -61,18 +61,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|XMLFilenameFilter
@@ -540,6 +528,9 @@ name|Exception
 block|{
 comment|// initialize driver
 name|Class
+argument_list|<
+name|?
+argument_list|>
 name|cl
 init|=
 name|Class
@@ -583,15 +574,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist://"
-operator|+
 name|XmldbURI
 operator|.
-name|ROOT_COLLECTION
+name|LOCAL_DB
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
