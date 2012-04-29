@@ -106,6 +106,20 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|ErrorCode
+name|EXPDY004
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH004"
+argument_list|,
+literal|"Error in descriptor found."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 name|EXPATH_ERROR_NS
 init|=
