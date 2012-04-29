@@ -713,6 +713,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|close
 parameter_list|()
@@ -728,6 +729,9 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|commit
+argument_list|()
+expr_stmt|;
 name|cachedWriter
 operator|.
 name|close
@@ -767,6 +771,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|synchronized
 name|void
 name|sync
 parameter_list|()
@@ -774,63 +779,9 @@ throws|throws
 name|DBException
 block|{
 comment|//Nothing special to do
-comment|//TODO consider if this is the correct place to commit index changes?
-try|try
-block|{
-if|if
-condition|(
-name|cachedWriter
-operator|!=
-literal|null
-condition|)
-name|cachedWriter
-operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CorruptIndexException
-name|cie
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Detected corrupt Lucence index on writer release and commit: "
-operator|+
-name|cie
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|cie
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Detected Lucence index issue on writer release and commit: "
-operator|+
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ioe
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -954,6 +905,12 @@ name|defaultAnalyzer
 return|;
 block|}
 specifier|protected
+name|boolean
+name|needsCommit
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
 specifier|synchronized
 name|IndexWriter
 name|getWriter
@@ -1067,13 +1024,54 @@ argument_list|(
 literal|"IndexWriter was not obtained from getWriter()."
 argument_list|)
 throw|;
-comment|//TODO consider if this is the correct place to commit index changes?
+name|needsCommit
+operator|=
+literal|true
+expr_stmt|;
+name|writerUseCount
+operator|--
+expr_stmt|;
+name|notifyAll
+argument_list|()
+expr_stmt|;
+name|waitForReadersAndReopen
+argument_list|()
+expr_stmt|;
+block|}
+specifier|protected
+name|void
+name|commit
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|needsCommit
+condition|)
+return|return;
 try|try
 block|{
-name|writer
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Committing lucene index"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|cachedWriter
+operator|!=
+literal|null
+condition|)
+name|cachedWriter
 operator|.
 name|commit
 argument_list|()
+expr_stmt|;
+name|needsCommit
+operator|=
+literal|false
 expr_stmt|;
 block|}
 catch|catch
@@ -1118,24 +1116,6 @@ name|ioe
 argument_list|)
 expr_stmt|;
 block|}
-name|writerUseCount
-operator|--
-expr_stmt|;
-comment|//        if (writerUseCount == 0) {
-comment|//            try {
-comment|//                cachedWriter.close();
-comment|//            } catch (IOException e) {
-comment|//                LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
-comment|//            } finally {
-comment|//                cachedWriter = null;
-comment|//            }
-comment|//        }
-name|notifyAll
-argument_list|()
-expr_stmt|;
-name|waitForReadersAndReopen
-argument_list|()
-expr_stmt|;
 block|}
 specifier|protected
 specifier|synchronized
@@ -1145,6 +1125,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|commit
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|cachedReader
@@ -1211,13 +1194,6 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
-comment|//        try {
-comment|//            cachedReader.close();
-comment|//        } catch (IOException e) {
-comment|//            LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
-comment|//        } finally {
-comment|//            cachedReader = null;
-comment|//        }
 block|}
 specifier|protected
 specifier|synchronized
@@ -1459,33 +1435,32 @@ operator|==
 literal|null
 condition|)
 return|return;
-name|IndexReader
-name|oldReader
-init|=
-name|cachedReader
-decl_stmt|;
 try|try
 block|{
 name|cachedReader
-operator|=
-name|cachedReader
-operator|.
-name|reopen
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|oldReader
-operator|!=
-name|cachedReader
-condition|)
-block|{
-name|oldReader
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
+name|cachedReader
+operator|=
+literal|null
+expr_stmt|;
+if|if
+condition|(
+name|cachedSearcher
+operator|!=
+literal|null
+condition|)
+name|cachedSearcher
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|cachedSearcher
+operator|=
+literal|null
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1508,20 +1483,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|cachedSearcher
-operator|!=
-literal|null
-condition|)
-name|cachedSearcher
-operator|=
-operator|new
-name|IndexSearcher
-argument_list|(
-name|cachedReader
-argument_list|)
-expr_stmt|;
 block|}
 specifier|protected
 specifier|synchronized
@@ -1531,6 +1492,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|commit
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|cachedSearcher
@@ -1600,13 +1564,6 @@ expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
-comment|//try {
-comment|//cachedSearcher.close();
-comment|//} catch (IOException e) {
-comment|//LOG.warn("Exception while closing lucene index: " + e.getMessage(), e);
-comment|//} finally {
-comment|//cachedSearcher = null;
-comment|//}
 block|}
 block|}
 end_class
