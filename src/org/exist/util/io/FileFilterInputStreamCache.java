@@ -21,12 +21,32 @@ name|java
 operator|.
 name|io
 operator|.
-name|*
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|RandomAccessFile
 import|;
 end_import
 
 begin_comment
-comment|/**  * Cache implementation for CachingFilterInputStream  * Backed by a Random Access File  *   * Probably slowed than MemoryMappedFileFilterInputStreamCache  * for multiple reads, but uses a fixed small amount of memory.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Cache implementation for CachingFilterInputStream  * Backed by a Random Access File  *   * Probably slower than MemoryMappedFileFilterInputStreamCache  * for multiple reads, but uses a fixed small amount of memory.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
