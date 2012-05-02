@@ -2090,6 +2090,13 @@ condition|(
 name|np
 operator|!=
 literal|null
+operator|&&
+name|np
+operator|.
+name|getMatches
+argument_list|()
+operator|!=
+literal|null
 condition|)
 name|p
 operator|.
