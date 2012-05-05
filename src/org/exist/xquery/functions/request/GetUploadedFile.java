@@ -91,6 +91,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -321,6 +331,20 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -408,7 +432,7 @@ name|BASE64_BINARY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"the base64 encoded data from the uploaded file"
 argument_list|)
@@ -576,8 +600,11 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+name|List
+argument_list|<
 name|File
-name|file
+argument_list|>
+name|files
 init|=
 name|request
 operator|.
@@ -588,7 +615,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|file
+name|files
 operator|==
 literal|null
 condition|)
@@ -608,23 +635,26 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-else|else
-block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Uploaded file: "
-operator|+
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|/* InputStream is = null;             try {                 is = new BufferedInputStream(new FileInputStream(file));                 byte buf[] = new byte[1024];                 int read = -1;                 ByteArrayOutputStream baos = new ByteArrayOutputStream();                 while ((read = is.read(buf)) != -1) {                     baos.write(buf, 0, read);                 }                  return new Base64Binary(baos.toByteArray());              } catch (FileNotFoundException fnfe) {                 throw new XPathException(this, fnfe.getMessage(), fnfe);              } catch (IOException ioe) {                 throw new XPathException(this, ioe.getMessage(), ioe);              } finally {                 if (is != null) {                     try {                         is.close();                     } catch (IOException ioe) {                         logger.warn(ioe.getMessage(), ioe);                     }                 }             } */
-return|return
+name|ValueSequence
+name|result
+init|=
+operator|new
+name|ValueSequence
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|File
+name|file
+range|:
+name|files
+control|)
+block|{
+name|result
+operator|.
+name|add
+argument_list|(
 name|BinaryValueFromFile
 operator|.
 name|getInstance
@@ -637,6 +667,11 @@ argument_list|()
 argument_list|,
 name|file
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|result
 return|;
 block|}
 else|else

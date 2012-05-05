@@ -77,6 +77,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -197,7 +207,10 @@ name|arg0
 parameter_list|)
 function_decl|;
 specifier|public
+name|List
+argument_list|<
 name|File
+argument_list|>
 name|getFileUploadParam
 parameter_list|(
 name|String
@@ -205,7 +218,10 @@ name|parameter
 parameter_list|)
 function_decl|;
 specifier|public
+name|List
+argument_list|<
 name|String
+argument_list|>
 name|getUploadedFileName
 parameter_list|(
 name|String

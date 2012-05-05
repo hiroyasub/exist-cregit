@@ -29,6 +29,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -235,6 +245,20 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|ValueSequence
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam.retter@exist-db.org>  */
 end_comment
@@ -322,9 +346,9 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"the size of the uploaded file"
+literal|"the size of the uploaded files"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -480,8 +504,11 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+name|List
+argument_list|<
 name|File
-name|file
+argument_list|>
+name|files
 init|=
 name|request
 operator|.
@@ -492,7 +519,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|file
+name|files
 operator|==
 literal|null
 condition|)
@@ -503,7 +530,25 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-return|return
+name|ValueSequence
+name|result
+init|=
+operator|new
+name|ValueSequence
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|File
+name|file
+range|:
+name|files
+control|)
+block|{
+name|result
+operator|.
+name|add
+argument_list|(
 operator|new
 name|DoubleValue
 argument_list|(
@@ -512,6 +557,11 @@ operator|.
 name|length
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|result
 return|;
 block|}
 else|else
