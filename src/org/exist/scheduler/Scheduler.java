@@ -2433,9 +2433,17 @@ argument_list|(
 literal|"System jobs must extend SystemTask"
 argument_list|)
 expr_stmt|;
+comment|// throw exception? will be handled nicely
 block|}
 block|}
 else|else
+block|{
+if|if
+condition|(
+name|jobObject
+operator|instanceof
+name|JobDescription
+condition|)
 block|{
 name|job
 operator|=
@@ -2466,6 +2474,25 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Startup job "
+operator|+
+name|jobConfig
+operator|.
+name|getJobName
+argument_list|()
+operator|+
+literal|"  must extend org.exist.scheduler.StartupJob"
+argument_list|)
+expr_stmt|;
+comment|// throw exception? will be handled nicely
+block|}
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2473,6 +2500,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|// Throwable?
 name|LOG
 operator|.
 name|error
