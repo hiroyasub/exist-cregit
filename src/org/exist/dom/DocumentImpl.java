@@ -4253,24 +4253,10 @@ name|String
 name|getDocumentURI
 parameter_list|()
 block|{
-comment|//TODO : easy to implement once we have stabule base-URIs -pb
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getDocumentURI not implemented on class "
-operator|+
-name|getClass
+return|return
+name|getBaseURI
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+return|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      */
 specifier|public
