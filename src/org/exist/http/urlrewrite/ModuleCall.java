@@ -418,6 +418,8 @@ argument_list|(
 name|fqn
 argument_list|,
 name|arity
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 else|else

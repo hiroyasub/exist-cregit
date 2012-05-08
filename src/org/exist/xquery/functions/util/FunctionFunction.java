@@ -542,6 +542,8 @@ argument_list|(
 name|qname
 argument_list|,
 name|arity
+argument_list|,
+name|context
 argument_list|)
 expr_stmt|;
 block|}

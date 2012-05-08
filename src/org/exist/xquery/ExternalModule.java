@@ -90,7 +90,12 @@ name|qname
 parameter_list|,
 name|int
 name|arity
+parameter_list|,
+name|XQueryContext
+name|callerContext
 parameter_list|)
+throws|throws
+name|XPathException
 function_decl|;
 specifier|public
 name|void

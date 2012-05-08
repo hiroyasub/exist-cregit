@@ -514,6 +514,8 @@ argument_list|(
 name|functionName
 argument_list|,
 name|arity
+argument_list|,
+name|context
 argument_list|)
 operator|!=
 literal|null

@@ -514,11 +514,13 @@ name|expression
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * For calls to functions in external modules, check that the instance of the function we were 	 * bound to matches the current implementation of the module bound to our context.  If not, 	 * rebind to the correct instance, but don't bother resetting the signature since it's guaranteed 	 * (I hope!) to be the same. 	 */
+comment|/** 	 * For calls to functions in external modules, check that the instance of the function we were 	 * bound to matches the current implementation of the module bound to our context.  If not, 	 * rebind to the correct instance, but don't bother resetting the signature since it's guaranteed 	 * (I hope!) to be the same. 	 * @throws XPathException  	 */
 specifier|private
 name|void
 name|updateFunction
 parameter_list|()
+throws|throws
+name|XPathException
 block|{
 if|if
 condition|(
@@ -619,6 +621,8 @@ argument_list|()
 argument_list|,
 name|getArgumentCount
 argument_list|()
+argument_list|,
+name|modContext
 argument_list|)
 decl_stmt|;
 if|if
