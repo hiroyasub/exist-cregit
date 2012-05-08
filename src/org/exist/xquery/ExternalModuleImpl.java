@@ -486,14 +486,6 @@ operator|.
 name|getSignature
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|isPrivate
-argument_list|(
-name|signature
-argument_list|)
-condition|)
 name|signatures
 operator|.
 name|add
