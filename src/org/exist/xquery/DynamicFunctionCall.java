@@ -277,7 +277,12 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"Expected exactly one item for the function to be called"
+literal|"Expected exactly one item for the function to be called, got "
+operator|+
+name|funcSeq
+operator|.
+name|getItemCount
+argument_list|()
 argument_list|)
 throw|;
 name|Item
@@ -292,14 +297,20 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
 name|item0
 operator|.
 name|getType
 argument_list|()
-operator|!=
+argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
+argument_list|)
 condition|)
 throw|throw
 operator|new
@@ -409,11 +420,17 @@ argument_list|(
 name|arguments
 argument_list|)
 expr_stmt|;
+comment|// need to create a new AnalyzeContextInfo to avoid memory leak
+comment|// cachedContextInfo will stay in memory
 name|ref
 operator|.
 name|analyze
 argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
 name|cachedContextInfo
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
