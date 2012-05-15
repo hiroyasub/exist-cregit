@@ -73,6 +73,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -829,7 +841,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FOCH0003: unknown normalization form"
+name|ErrorCodes
+operator|.
+name|FOCH0003
+argument_list|,
+literal|"unknown normalization form"
 argument_list|)
 throw|;
 block|}

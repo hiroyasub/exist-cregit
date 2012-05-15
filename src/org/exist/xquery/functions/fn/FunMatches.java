@@ -285,6 +285,20 @@ name|xquery
 operator|.
 name|value
 operator|.
+name|StringValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
 name|Type
 import|;
 end_import
@@ -3081,12 +3095,22 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0001: Invalid regular expression: "
+name|ErrorCodes
+operator|.
+name|FORX0001
+argument_list|,
+literal|"Invalid regular expression: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|pattern
+argument_list|)
 argument_list|,
 name|e
 argument_list|)

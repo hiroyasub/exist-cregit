@@ -765,6 +765,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
 literal|"function id requires one argument"
 argument_list|)
 throw|;

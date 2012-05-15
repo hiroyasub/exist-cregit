@@ -109,6 +109,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -686,7 +698,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0002: Undefined context item"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"Undefined context item"
 argument_list|)
 throw|;
 name|Sequence
@@ -717,7 +733,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: Context item is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Context item is not a node"
 argument_list|)
 throw|;
 else|else
@@ -852,7 +872,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0004: Sequence returned more than one item !"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Sequence returned more than one item !"
 argument_list|)
 throw|;
 block|}

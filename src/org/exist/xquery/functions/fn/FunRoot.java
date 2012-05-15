@@ -657,11 +657,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|int
-name|j
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -677,8 +672,6 @@ operator|.
 name|hasNext
 argument_list|()
 condition|;
-name|j
-operator|++
 control|)
 block|{
 name|item

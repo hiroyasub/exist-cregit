@@ -61,6 +61,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -424,7 +436,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORG0004: fn:one-or-more called with a sequence containing zero items"
+name|ErrorCodes
+operator|.
+name|FORG0004
+argument_list|,
+literal|"fn:one-or-more called with a sequence containing zero items"
 argument_list|)
 throw|;
 if|if

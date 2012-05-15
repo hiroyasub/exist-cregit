@@ -169,6 +169,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Expression
 import|;
 end_import
@@ -711,6 +723,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
 literal|"function id requires one argument"
 argument_list|)
 throw|;
@@ -812,7 +828,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002: no node or context item for fn:idref"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"no node or context item for fn:idref"
 argument_list|)
 throw|;
 if|if
@@ -843,7 +863,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: fn:idref() argument is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"fn:idref() argument is not a node"
 argument_list|)
 throw|;
 name|NodeValue
@@ -923,7 +947,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPDY0002: no context item specified"
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
+literal|"no context item specified"
 argument_list|)
 throw|;
 if|else if
@@ -949,7 +977,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"XPTY0004: context item is not a node"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"context item is not a node"
 argument_list|)
 throw|;
 else|else

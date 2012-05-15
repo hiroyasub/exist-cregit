@@ -85,6 +85,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Function
 import|;
 end_import
@@ -656,7 +668,11 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"FORX0003: regular expression could match empty string"
+name|ErrorCodes
+operator|.
+name|FORX0003
+argument_list|,
+literal|"regular expression could match empty string"
 argument_list|)
 throw|;
 block|}
@@ -799,12 +815,22 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"err:FORX0001: Invalid regular expression: "
+name|ErrorCodes
+operator|.
+name|FORX0001
+argument_list|,
+literal|"Invalid regular expression: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|pattern
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
