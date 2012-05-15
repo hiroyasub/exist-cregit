@@ -157,6 +157,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -513,7 +525,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|lexicalValue
 operator|+
@@ -1348,6 +1364,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"illegal timezone offset "
 operator|+
 name|offset
