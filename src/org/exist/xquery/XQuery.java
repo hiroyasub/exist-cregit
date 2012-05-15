@@ -480,8 +480,6 @@ name|ioe
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|ioe
 argument_list|)
 throw|;
 block|}
@@ -584,7 +582,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0087: unsupported encoding "
+name|ErrorCodes
+operator|.
+name|XQST0087
+argument_list|,
+literal|"unsupported encoding "
 operator|+
 name|e
 operator|.
