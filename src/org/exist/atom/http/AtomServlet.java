@@ -581,7 +581,7 @@ return|return
 name|LOG
 return|;
 block|}
-comment|/**      * A user principal object that implements XmldbPrincipal      */
+comment|/** 	 * A user principal object that implements XmldbPrincipal 	 */
 specifier|static
 class|class
 name|UserXmldbPrincipal
@@ -675,7 +675,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Module contexts that default to using the servlet's config      */
+comment|/** 	 * Module contexts that default to using the servlet's config 	 */
 class|class
 name|ModuleContext
 implements|implements
@@ -836,7 +836,7 @@ specifier|private
 name|Subject
 name|defaultUser
 decl_stmt|;
-comment|/*      * (non-Javadoc)      *       * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)      */
+comment|/* 	 * (non-Javadoc) 	 *  	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig) 	 */
 annotation|@
 name|Override
 specifier|public
@@ -1408,8 +1408,7 @@ expr_stmt|;
 continue|continue;
 block|}
 comment|// What I want but can't have because of JDK 1.4
-comment|// URI baseURI =
-comment|// URI.create(methodConf.getBaseURI());
+comment|// URI baseURI = URI.create(methodConf.getBaseURI());
 name|URI
 name|baseURI
 init|=
