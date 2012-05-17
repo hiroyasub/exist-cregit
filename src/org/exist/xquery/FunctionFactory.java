@@ -624,7 +624,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function near() requires two arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function near() requires two arguments"
 argument_list|)
 throw|;
 block|}
@@ -890,7 +894,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function phrase() requires two arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function phrase() requires two arguments"
 argument_list|)
 throw|;
 block|}
@@ -1043,7 +1051,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function starts-with() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1071,7 +1083,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function starts-with() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1262,7 +1278,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1290,7 +1310,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017 : Function ends-with() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1481,7 +1505,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function contains() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1509,7 +1537,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function contains() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1700,7 +1732,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function equals() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function equals() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1728,7 +1764,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function equals() requires two or three arguments"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function equals() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
@@ -1932,7 +1972,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Wrong number of arguments for constructor function"
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Wrong number of arguments for constructor function"
 argument_list|)
 throw|;
 block|}
@@ -2403,7 +2447,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function "
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function "
 operator|+
 name|qname
 operator|.
@@ -2430,13 +2478,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"err:XPST0017: "
-argument_list|)
-expr_stmt|;
 name|buf
 operator|.
 name|append
@@ -2529,6 +2570,10 @@ name|ast
 operator|.
 name|getColumn
 argument_list|()
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0017
 argument_list|,
 name|buf
 operator|.
@@ -2847,7 +2892,11 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
-literal|"err:XPST0017: Function "
+name|ErrorCodes
+operator|.
+name|XPST0017
+argument_list|,
+literal|"Function "
 operator|+
 name|qname
 operator|.
