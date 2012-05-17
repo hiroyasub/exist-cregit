@@ -5477,23 +5477,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Reloads the security manager of the database instance. This method is           * called for example when the<code>users.xml</code> file has been changed. 	 *  	 * @param broker A broker responsible for executing the job          *          *  TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and           *  release one when we're done?          *  WM: this is called from the Collection.store() methods to signal           *  that /db/system/users.xml has changed.          *  A broker is already available in these methods, so we use it here.          */
-specifier|public
-name|void
-name|reloadSecurityManager
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-comment|//XXX: reload
-comment|//		try {
-comment|//			securityManager.attach(this, broker);
-comment|//		} catch (EXistException e) {
-comment|//			LOG.debug("Security manager reloaded failed: "+e.getMessage());
-comment|//		}
-comment|//		LOG.debug("Security manager reloaded");
-block|}
 specifier|public
 name|long
 name|getMajorSyncPeriod

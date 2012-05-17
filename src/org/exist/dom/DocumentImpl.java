@@ -4882,6 +4882,16 @@ return|return
 literal|false
 return|;
 block|}
+specifier|public
+name|Object
+name|getUUID
+parameter_list|()
+block|{
+comment|// TODO Auto-generated method stub
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 
