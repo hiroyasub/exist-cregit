@@ -684,6 +684,13 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+name|super
+operator|.
+name|analyze
+argument_list|(
+name|cachedContextInfo
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
