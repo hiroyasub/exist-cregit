@@ -4015,7 +4015,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * Initialize required system collections, if they don't exist yet      *      * @param sysBroker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
+comment|/**      * Initialize required system collections, if they don't exist yet      *      * @param broker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
 specifier|private
 name|void
 name|initialiseSystemCollections
@@ -5959,11 +5959,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|boolean
-name|hangingThreads
-init|=
-literal|false
-decl_stmt|;
 name|long
 name|waitStart
 init|=
@@ -6055,10 +6050,6 @@ name|warn
 argument_list|(
 literal|"Not all threads returned. Forcing shutdown ..."
 argument_list|)
-expr_stmt|;
-name|hangingThreads
-operator|=
-literal|true
 expr_stmt|;
 break|break;
 block|}
@@ -6185,26 +6176,12 @@ argument_list|(
 name|SIGNAL_SHUTDOWN
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|hangingThreads
-condition|)
 comment|// do not write a checkpoint if some threads did not return before shutdown
 comment|// there might be dirty transactions
 name|transactionManager
 operator|.
 name|shutdown
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-else|else
-name|transactionManager
-operator|.
-name|shutdown
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// deregister JMX MBeans
 name|AgentFactory
