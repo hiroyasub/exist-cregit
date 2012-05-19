@@ -115,9 +115,9 @@ argument_list|)
 argument_list|,
 literal|"Calls Lucene's optimize method to merge all index segments "
 operator|+
-literal|"into a single one. This function should be called after adding a larger "
+literal|"into a single one. This is a costly operation and should not be used "
 operator|+
-literal|"bunch of documents or if no further changes are expected for a while. "
+literal|"except for data sets which can be expected to remain unchanged for a while. "
 operator|+
 literal|"The optimize will block the index for other write operations and may take "
 operator|+
