@@ -180,6 +180,13 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+name|functionExpr
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
