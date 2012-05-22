@@ -1151,6 +1151,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|String
+name|v
+init|=
+literal|null
+decl_stmt|;
 comment|// process the remaining attributes
 for|for
 control|(
@@ -1252,6 +1257,33 @@ operator|+
 literal|"' is a duplicate attribute name"
 argument_list|)
 throw|;
+name|v
+operator|=
+name|attrValues
+operator|.
+name|getStringValue
+argument_list|()
+expr_stmt|;
+comment|//normalize xml:id
+if|if
+condition|(
+name|attrQName
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"xml:id"
+argument_list|)
+condition|)
+name|v
+operator|=
+name|v
+operator|.
+name|trim
+argument_list|()
+expr_stmt|;
 name|attrs
 operator|.
 name|addAttribute
@@ -1273,10 +1305,7 @@ argument_list|()
 argument_list|,
 literal|"CDATA"
 argument_list|,
-name|attrValues
-operator|.
-name|getStringValue
-argument_list|()
+name|v
 argument_list|)
 expr_stmt|;
 block|}
