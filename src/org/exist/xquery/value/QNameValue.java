@@ -57,6 +57,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -84,10 +96,6 @@ name|QNameValue
 extends|extends
 name|AtomicValue
 block|{
-specifier|private
-name|XQueryContext
-name|context
-decl_stmt|;
 specifier|private
 name|QName
 name|qname
@@ -122,20 +130,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: An empty string is not a valid lexical representation of xs:QName."
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"An empty string is not a valid lexical representation of xs:QName."
 argument_list|)
 throw|;
-name|this
-operator|.
-name|context
-operator|=
-name|context
-expr_stmt|;
-comment|//UNDERSTAND: do we need context here??? -shabanovd
-try|try
-block|{
-name|this
-operator|.
 name|qname
 operator|=
 name|QName
@@ -154,21 +155,6 @@ literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 name|stringValue
 operator|=
 name|computeStringValue
@@ -185,12 +171,6 @@ name|QName
 name|name
 parameter_list|)
 block|{
-name|this
-operator|.
-name|context
-operator|=
-name|context
-expr_stmt|;
 name|this
 operator|.
 name|qname
@@ -450,7 +430,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004 : cannot apply operator to QName"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot apply operator to QName"
 argument_list|)
 throw|;
 block|}
@@ -745,7 +729,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0006: value of type "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"value of type "
 operator|+
 name|Type
 operator|.
