@@ -3034,7 +3034,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0070: Namespace predefined prefix '"
+name|ErrorCodes
+operator|.
+name|XQST0070
+argument_list|,
+literal|"Namespace predefined prefix '"
 operator|+
 name|prefix
 operator|+
@@ -3060,7 +3064,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0070: Namespace URI '"
+name|ErrorCodes
+operator|.
+name|XQST0070
+argument_list|,
+literal|"Namespace URI '"
 operator|+
 name|uri
 operator|+
