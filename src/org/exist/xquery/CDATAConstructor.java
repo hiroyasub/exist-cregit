@@ -264,6 +264,19 @@ condition|(
 name|literalCharacters
 condition|)
 block|{
+comment|//Empty CDATA sections generate no text nodes
+if|if
+condition|(
+name|cdata
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
 name|nodeNr
 operator|=
 name|builder
