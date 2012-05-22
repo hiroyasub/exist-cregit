@@ -64,6 +64,10 @@ name|beginLine
 decl_stmt|;
 comment|//	private int endColumn;
 comment|//	private int endLine;
+specifier|private
+name|int
+name|level
+decl_stmt|;
 specifier|public
 name|LocationImpl
 parameter_list|(
@@ -79,12 +83,6 @@ operator|.
 name|getAttributes
 argument_list|()
 decl_stmt|;
-name|Integer
-name|level
-init|=
-literal|null
-decl_stmt|;
-comment|//UNDERSTAND: is level required???
 for|for
 control|(
 name|int
@@ -256,6 +254,15 @@ parameter_list|()
 block|{
 return|return
 name|beginLine
+return|;
+block|}
+specifier|public
+name|int
+name|getLevel
+parameter_list|()
+block|{
+return|return
+name|level
 return|;
 block|}
 specifier|public

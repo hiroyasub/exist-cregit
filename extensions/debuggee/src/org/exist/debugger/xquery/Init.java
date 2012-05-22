@@ -358,8 +358,6 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|""
-argument_list|,
 name|e
 argument_list|)
 throw|;
