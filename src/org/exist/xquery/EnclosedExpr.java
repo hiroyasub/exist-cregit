@@ -43,6 +43,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|memtree
+operator|.
+name|TextImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -493,6 +505,38 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+comment|//It is possible for a text node constructor to construct a text node containing a zero-length string.
+comment|//However, if used in the content of a constructed element or document node,
+comment|//such a text node will be deleted or merged with another text node.
+if|if
+condition|(
+name|next
+operator|instanceof
+name|TextImpl
+operator|&&
+operator|(
+operator|(
+name|TextImpl
+operator|)
+name|next
+operator|)
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|next
+operator|=
+name|i
+operator|.
+name|nextItem
+argument_list|()
+expr_stmt|;
+continue|continue;
+block|}
 if|if
 condition|(
 name|buf
