@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -197,7 +209,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: The value '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"The value '"
 operator|+
 name|duration
 operator|+
@@ -274,7 +290,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -585,7 +605,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot cast 'xs:yearMonthDuration(\""
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot cast 'xs:yearMonthDuration(\""
 operator|+
 name|getStringValue
 argument_list|()
@@ -719,7 +743,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FOCA0005: Operand is not a number"
+name|ErrorCodes
+operator|.
+name|FOCA0005
+argument_list|,
+literal|"Operand is not a number"
 argument_list|)
 throw|;
 block|}
@@ -741,7 +769,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FODT0002: Multiplication by infinity overflow"
+name|ErrorCodes
+operator|.
+name|FODT0002
+argument_list|,
+literal|"Multiplication by infinity overflow"
 argument_list|)
 throw|;
 block|}
@@ -882,7 +914,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FOCA0005: Operand is not a number"
+name|ErrorCodes
+operator|.
+name|FOCA0005
+argument_list|,
+literal|"Operand is not a number"
 argument_list|)
 throw|;
 block|}
@@ -925,7 +961,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FODT0002: Division by zero overflow"
+name|ErrorCodes
+operator|.
+name|FODT0002
+argument_list|,
+literal|"Division by zero overflow"
 argument_list|)
 throw|;
 block|}
@@ -1020,6 +1060,19 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|x
+operator|=
+name|x
+operator|.
+name|setScale
+argument_list|(
+literal|0
+argument_list|,
+name|BigDecimal
+operator|.
+name|ROUND_UP
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|YearMonthDurationValue
@@ -1059,7 +1112,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0006: value of type "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"value of type "
 operator|+
 name|Type
 operator|.
