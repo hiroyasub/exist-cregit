@@ -69,6 +69,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -1035,7 +1047,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0081: No namespace defined for prefix "
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"No namespace defined for prefix "
 operator|+
 name|prefix
 argument_list|)
