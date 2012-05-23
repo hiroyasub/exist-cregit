@@ -1070,7 +1070,7 @@ literal|0
 argument_list|,
 name|BigDecimal
 operator|.
-name|ROUND_UP
+name|ROUND_HALF_UP
 argument_list|)
 expr_stmt|;
 return|return
