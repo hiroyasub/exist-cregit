@@ -45,6 +45,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -277,7 +289,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot convert 'xs:boolean("
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot convert 'xs:boolean("
 operator|+
 name|value
 operator|+
@@ -439,7 +455,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: cannot convert 'xs:boolean("
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot convert 'xs:boolean("
 operator|+
 name|value
 operator|+

@@ -61,6 +61,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -183,7 +195,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: A hexBinary value must contain an even number of characters"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"A hexBinary value must contain an even number of characters"
 argument_list|)
 throw|;
 block|}
@@ -203,7 +219,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: Invalid hexadecimal digit"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"Invalid hexadecimal digit"
 argument_list|)
 throw|;
 block|}

@@ -87,6 +87,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -180,7 +192,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot compare unordered "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot compare unordered "
 operator|+
 name|Type
 operator|.
@@ -218,7 +234,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot compare "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot compare "
 operator|+
 name|Type
 operator|.
@@ -264,7 +284,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot compare "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot compare "
 operator|+
 name|Type
 operator|.
@@ -997,7 +1021,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot add "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot add "
 operator|+
 name|Type
 operator|.
@@ -1074,7 +1102,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: Tried to substract "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -1174,7 +1206,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: Tried to substract "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Tried to substract "
 operator|+
 name|Type
 operator|.
@@ -1376,7 +1412,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: Tried to convert '"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Tried to convert '"
 operator|+
 operator|(
 name|NumericValue

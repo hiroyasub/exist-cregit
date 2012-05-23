@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -246,7 +258,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -637,7 +653,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOCA0002: cannot convert ' xs:float(\""
+name|ErrorCodes
+operator|.
+name|FOCA0002
+argument_list|,
+literal|"cannot convert ' xs:float(\""
 operator|+
 name|getStringValue
 argument_list|()
@@ -697,7 +717,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot cast '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot cast '"
 operator|+
 name|Type
 operator|.

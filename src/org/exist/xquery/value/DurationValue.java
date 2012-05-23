@@ -89,6 +89,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -338,7 +350,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -1446,7 +1462,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operand type: "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1533,7 +1553,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operand type: "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1618,7 +1642,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|""
 operator|+
 name|Type
 operator|.
@@ -1677,7 +1705,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operand type: "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1724,7 +1756,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1755,7 +1791,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1783,7 +1823,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1811,7 +1855,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1839,7 +1887,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1867,7 +1919,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: invalid operation on "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"invalid operation on "
 operator|+
 name|Type
 operator|.
@@ -1969,7 +2025,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot convert value of type "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"cannot convert value of type "
 operator|+
 name|Type
 operator|.
@@ -1999,7 +2059,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0006: value of type "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"value of type "
 operator|+
 name|Type
 operator|.

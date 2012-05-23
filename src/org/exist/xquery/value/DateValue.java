@@ -69,6 +69,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -432,7 +444,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: can not convert "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert "
 operator|+
 name|Type
 operator|.

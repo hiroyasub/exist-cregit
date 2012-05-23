@@ -117,6 +117,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -1138,7 +1150,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot cast '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot cast '"
 operator|+
 name|Type
 operator|.
@@ -1924,7 +1940,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPTY0004: can not compare xs:string('"
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"can not compare xs:string('"
 operator|+
 name|value
 operator|+
@@ -2740,7 +2760,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Ampersands (&) must be escaped."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Ampersands (&) must be escaped."
 argument_list|)
 throw|;
 block|}
@@ -2762,7 +2786,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Ampersands (&) must be escaped (missing ;)."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Ampersands (&) must be escaped (missing ;)."
 argument_list|)
 throw|;
 block|}
@@ -2799,7 +2827,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Ampersands (&) must be escaped (following character was not a name start character)."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Ampersands (&) must be escaped (following character was not a name start character)."
 argument_list|)
 throw|;
 block|}
@@ -2930,7 +2962,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Invalid character ("
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Invalid character ("
 operator|+
 name|ch
 operator|+
@@ -3323,7 +3359,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XPST0003 : Invalid character in character reference ("
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Invalid character in character reference ("
 operator|+
 name|ch
 operator|+
@@ -3589,7 +3629,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"XQST0090 : Character number zero (0) is not allowed."
+name|ErrorCodes
+operator|.
+name|XQST0090
+argument_list|,
+literal|"Character number zero (0) is not allowed."
 argument_list|)
 throw|;
 block|}

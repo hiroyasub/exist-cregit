@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -260,7 +272,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -592,7 +608,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert "
 operator|+
 name|Type
 operator|.
@@ -626,7 +646,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert "
 operator|+
 name|Type
 operator|.
@@ -736,7 +760,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert "
 operator|+
 name|Type
 operator|.
@@ -774,7 +802,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert "
 operator|+
 name|Type
 operator|.
@@ -811,7 +843,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FOCA0003: Value is out of range for type xs:integer"
+name|ErrorCodes
+operator|.
+name|FOCA0003
+argument_list|,
+literal|"Value is out of range for type xs:integer"
 argument_list|)
 throw|;
 return|return
@@ -846,7 +882,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot cast '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot cast '"
 operator|+
 name|Type
 operator|.

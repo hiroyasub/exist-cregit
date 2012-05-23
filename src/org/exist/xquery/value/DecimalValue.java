@@ -113,6 +113,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -266,7 +278,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -308,7 +324,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: cannot construct "
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot construct "
 operator|+
 name|Type
 operator|.
@@ -890,7 +910,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: cannot convert  '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot convert  '"
 operator|+
 name|Type
 operator|.
@@ -1646,7 +1670,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOAR0001: division by zero"
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
 argument_list|)
 throw|;
 name|BigInteger

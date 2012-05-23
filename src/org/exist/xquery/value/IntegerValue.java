@@ -53,6 +53,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -380,6 +392,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
 literal|"failed to convert '"
 operator|+
 name|stringValue
@@ -447,7 +463,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert '"
 operator|+
 name|stringValue
 operator|+
@@ -472,7 +492,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0001: can not convert '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"can not convert '"
 operator|+
 name|stringValue
 operator|+
@@ -1396,7 +1420,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: cannot convert '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"cannot convert '"
 operator|+
 name|Type
 operator|.
@@ -1827,7 +1855,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOAR0001 : division by zero"
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
 argument_list|)
 throw|;
 comment|//http://www.w3.org/TR/xpath20/#mapping : numeric; but xs:decimal if both operands are xs:integer
@@ -1944,7 +1976,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FOAR0001: division by zero"
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
 argument_list|)
 throw|;
 name|ComputableValue

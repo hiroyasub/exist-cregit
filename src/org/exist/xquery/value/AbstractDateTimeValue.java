@@ -970,7 +970,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FORG0006: effective boolean value invalid operand type: "
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"effective boolean value invalid operand type: "
 operator|+
 name|Type
 operator|.
@@ -1184,7 +1188,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FODT0003: duration "
+name|ErrorCodes
+operator|.
+name|FODT0003
+argument_list|,
+literal|"duration "
 operator|+
 name|offset
 operator|+
@@ -1230,7 +1238,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FODT0003: duration "
+name|ErrorCodes
+operator|.
+name|FODT0003
+argument_list|,
+literal|"duration "
 operator|+
 name|offset
 operator|+
@@ -2249,7 +2261,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|dateValue
 operator|+
@@ -2429,7 +2445,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -2462,7 +2482,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -2642,7 +2666,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -2675,7 +2703,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -2865,7 +2897,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -2918,7 +2954,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3118,7 +3158,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3151,7 +3195,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3333,7 +3381,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3366,7 +3418,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3475,7 +3531,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3508,7 +3568,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3617,7 +3681,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3650,7 +3718,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3759,7 +3831,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3792,7 +3868,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3901,7 +3981,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -3934,7 +4018,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -4061,7 +4149,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
@@ -4094,7 +4186,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FORG0001: illegal lexical form for date-time-like value '"
+name|ErrorCodes
+operator|.
+name|FORG0001
+argument_list|,
+literal|"illegal lexical form for date-time-like value '"
 operator|+
 name|timeValue
 operator|+
