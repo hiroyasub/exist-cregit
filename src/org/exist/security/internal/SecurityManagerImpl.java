@@ -2890,6 +2890,39 @@ name|getRealmId
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|registeredRealm
+operator|.
+name|hasGroup
+argument_list|(
+name|group
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+literal|"The group '"
+operator|+
+name|group
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' at realm '"
+operator|+
+name|group
+operator|.
+name|getRealmId
+argument_list|()
+operator|+
+literal|"' already exist."
+argument_list|)
+throw|;
 specifier|final
 name|GroupImpl
 name|newGroup
