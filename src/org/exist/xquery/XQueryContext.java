@@ -12475,7 +12475,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|//TODO : ignored because it should never happen
+comment|//ignored because it should never happen
 name|LOG
 operator|.
 name|debug
@@ -12506,8 +12506,13 @@ operator|new
 name|ContextUpdateListener
 argument_list|()
 expr_stmt|;
+name|DBBroker
+name|broker
+init|=
 name|getBroker
 argument_list|()
+decl_stmt|;
+name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -12541,8 +12546,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|DBBroker
+name|broker
+init|=
 name|getBroker
 argument_list|()
+decl_stmt|;
+name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
