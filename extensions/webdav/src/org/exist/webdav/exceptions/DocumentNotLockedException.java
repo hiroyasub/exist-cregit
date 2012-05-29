@@ -26,6 +26,15 @@ name|DocumentNotLockedException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+operator|-
+literal|4907184035845864493L
+decl_stmt|;
 specifier|public
 name|DocumentNotLockedException
 parameter_list|()

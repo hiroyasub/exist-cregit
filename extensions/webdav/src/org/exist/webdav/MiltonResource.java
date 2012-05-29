@@ -901,7 +901,13 @@ name|existToken
 operator|.
 name|setTimeOut
 argument_list|(
-name|existToken
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|LockToken
 operator|.
 name|NO_LOCK_TIMEOUT
 argument_list|)

@@ -26,6 +26,14 @@ name|EXistWebdavException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|6789177932722513095L
+decl_stmt|;
 specifier|public
 name|EXistWebdavException
 parameter_list|()

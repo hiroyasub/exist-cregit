@@ -26,6 +26,14 @@ name|DocumentAlreadyLockedException
 extends|extends
 name|Exception
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|7229034225491130620L
+decl_stmt|;
 specifier|public
 name|DocumentAlreadyLockedException
 parameter_list|()
