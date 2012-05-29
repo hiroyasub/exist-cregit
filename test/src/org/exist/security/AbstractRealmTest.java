@@ -407,8 +407,6 @@ name|mockRealm
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|groupName
 argument_list|)
 argument_list|)
@@ -498,8 +496,6 @@ name|mockRealm
 operator|.
 name|updateGroup
 argument_list|(
-literal|null
-argument_list|,
 name|mockGroup
 argument_list|)
 expr_stmt|;

@@ -376,8 +376,6 @@ name|mockRealm
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|testGroupName
 argument_list|)
 argument_list|)
