@@ -674,9 +674,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|updateFunction
-argument_list|()
-expr_stmt|;
+comment|//updateFunction();
 name|contextInfo
 operator|.
 name|setParent
