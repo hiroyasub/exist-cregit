@@ -423,17 +423,12 @@ name|LEGACY_USERS_DOCUMENT_PATH
 argument_list|)
 condition|)
 block|{
+comment|//            	Subject currectSubject = broker.getSubject();
 try|try
 block|{
-name|ConverterFrom1_0
-operator|.
-name|convert
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
+name|SecurityManager
+name|sm
+init|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -441,6 +436,13 @@ argument_list|()
 operator|.
 name|getSecurityManager
 argument_list|()
+decl_stmt|;
+comment|//                	broker.setSubject(sm.getSystemSubject());
+name|ConverterFrom1_0
+operator|.
+name|convert
+argument_list|(
+name|sm
 argument_list|,
 name|document
 argument_list|)
@@ -485,6 +487,8 @@ name|ee
 argument_list|)
 expr_stmt|;
 comment|//TODO : raise exception ? -pb
+comment|//                } finally {
+comment|//                	broker.setSubject(currectSubject);
 block|}
 block|}
 break|break;
@@ -556,17 +560,12 @@ name|LEGACY_USERS_DOCUMENT_PATH
 argument_list|)
 condition|)
 block|{
+comment|//        	Subject currectSubject = broker.getSubject();
 try|try
 block|{
-name|ConverterFrom1_0
-operator|.
-name|convert
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
+name|SecurityManager
+name|sm
+init|=
 name|broker
 operator|.
 name|getBrokerPool
@@ -574,6 +573,13 @@ argument_list|()
 operator|.
 name|getSecurityManager
 argument_list|()
+decl_stmt|;
+comment|//            	broker.setSubject(sm.getSystemSubject());
+name|ConverterFrom1_0
+operator|.
+name|convert
+argument_list|(
+name|sm
 argument_list|,
 name|document
 argument_list|)
@@ -618,6 +624,8 @@ name|ee
 argument_list|)
 expr_stmt|;
 comment|//TODO : raise exception ? -pb
+comment|//            } finally {
+comment|//            	broker.setSubject(currectSubject);
 block|}
 block|}
 block|}

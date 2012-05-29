@@ -319,9 +319,6 @@ specifier|static
 name|void
 name|convert
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|SecurityManager
 name|sm
 parameter_list|,
@@ -614,8 +611,6 @@ name|sm
 operator|.
 name|updateAccount
 argument_list|(
-name|invokingUser
-argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
@@ -734,8 +729,6 @@ name|sm
 operator|.
 name|updateGroup
 argument_list|(
-name|invokingUser
-argument_list|,
 name|group
 argument_list|)
 expr_stmt|;
