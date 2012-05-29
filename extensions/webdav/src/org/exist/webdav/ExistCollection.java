@@ -764,10 +764,15 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|collectionURIs
-operator|=
-literal|null
-expr_stmt|;
+comment|//return empty list
+return|return
+operator|new
+name|ArrayList
+argument_list|<
+name|XmldbURI
+argument_list|>
+argument_list|()
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -782,10 +787,15 @@ argument_list|(
 name|pde
 argument_list|)
 expr_stmt|;
-name|collectionURIs
-operator|=
-literal|null
-expr_stmt|;
+comment|//return empty list
+return|return
+operator|new
+name|ArrayList
+argument_list|<
+name|XmldbURI
+argument_list|>
+argument_list|()
+return|;
 block|}
 finally|finally
 block|{
@@ -926,10 +936,15 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|documentURIs
-operator|=
-literal|null
-expr_stmt|;
+comment|//return empty list
+return|return
+operator|new
+name|ArrayList
+argument_list|<
+name|XmldbURI
+argument_list|>
+argument_list|()
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -944,10 +959,15 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|documentURIs
-operator|=
-literal|null
-expr_stmt|;
+comment|//return empty list
+return|return
+operator|new
+name|ArrayList
+argument_list|<
+name|XmldbURI
+argument_list|>
+argument_list|()
+return|;
 block|}
 finally|finally
 block|{
@@ -1343,6 +1363,7 @@ argument_list|(
 literal|"Collection already exists"
 argument_list|)
 expr_stmt|;
+comment|//XXX: double "abort" is bad thing!!!
 name|transact
 operator|.
 name|abort
@@ -1962,9 +1983,6 @@ argument_list|(
 name|fis
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
 name|collection
 operator|.
 name|addBinaryResource
@@ -1987,7 +2005,7 @@ operator|.
 name|longValue
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|bis
 operator|.
 name|close

@@ -1788,10 +1788,14 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
-comment|// throw exception?
+comment|//return null; // throw exception?
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"No resource found."
+argument_list|)
+throw|;
 block|}
 comment|// Get current userlock
 name|Account
@@ -2026,6 +2030,12 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
 name|txnManager
 operator|.
 name|abort
@@ -2050,6 +2060,13 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//dead code, remove?
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
 name|txnManager
 operator|.
 name|abort
@@ -2057,6 +2074,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+comment|//-----------------------
 throw|throw
 name|e
 throw|;
@@ -3088,10 +3106,14 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
-comment|// throw exception?
+comment|//return null; // throw exception?
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"No resource found."
+argument_list|)
+throw|;
 block|}
 comment|// Get current userlock
 name|Account
@@ -3313,6 +3335,12 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
 name|txnManager
 operator|.
 name|abort
@@ -3337,6 +3365,13 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+comment|//dead code, remove?
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
 name|txnManager
 operator|.
 name|abort
@@ -3344,6 +3379,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+comment|//------------------------
 throw|throw
 name|e
 throw|;
