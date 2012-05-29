@@ -313,49 +313,7 @@ name|collections
 operator|.
 name|triggers
 operator|.
-name|CollectionTrigger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|CollectionTriggerProxies
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
 name|CollectionTriggersVisitor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|DocumentTrigger
 import|;
 end_import
 
@@ -3438,7 +3396,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|setUser
+name|setSubject
 argument_list|(
 name|pool
 operator|.
@@ -3481,7 +3439,7 @@ return|;
 block|}
 finally|finally
 block|{
-name|setUser
+name|setSubject
 argument_list|(
 name|u
 argument_list|)
@@ -4901,6 +4859,14 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5009,6 +4975,14 @@ name|src
 operator|.
 name|getURI
 argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5098,6 +5072,14 @@ name|dest
 operator|.
 name|getURI
 argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5148,6 +5130,14 @@ name|dest
 operator|.
 name|getURI
 argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5196,6 +5186,14 @@ operator|+
 name|dest
 operator|.
 name|getURI
+argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 throw|;
@@ -5269,6 +5267,14 @@ operator|+
 name|srcSubDoc
 operator|.
 name|getURI
+argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 throw|;
@@ -5348,6 +5354,14 @@ name|newDestSubDoc
 operator|.
 name|getURI
 argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -5389,6 +5403,14 @@ operator|+
 name|dest
 operator|.
 name|getURI
+argument_list|()
+operator|+
+literal|" by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 throw|;
@@ -5551,7 +5573,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself"
+literal|"Cannot move collection to itself '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -5572,7 +5601,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself"
+literal|"Cannot move collection to itself '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -6183,7 +6219,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself"
+literal|"Cannot move collection to itself '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -6212,7 +6255,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself"
+literal|"Cannot move collection to itself '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -6290,7 +6340,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on collection "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on collection "
 operator|+
 name|parent
 operator|.
@@ -6329,7 +6387,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on collection to move collection "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on collection to move collection "
 operator|+
 name|collection
 operator|.
@@ -6365,7 +6431,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on collection "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on collection "
 operator|+
 name|parent
 operator|.
@@ -9564,7 +9638,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"insufficient privileges on collection "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on collection "
 operator|+
 name|collection
 operator|.
@@ -9768,7 +9850,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"insufficient privileges on collection "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on collection "
 operator|+
 name|collection
 operator|.
@@ -11829,7 +11919,13 @@ literal|"Permission denied to read collection '"
 operator|+
 name|collUri
 operator|+
-literal|"'"
+literal|"' by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -11888,7 +11984,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"not allowed to read document '"
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" not allowed to read document '"
 operator|+
 name|fileName
 operator|+
@@ -12068,7 +12172,13 @@ literal|"Permission denied to read collection '"
 operator|+
 name|collUri
 operator|+
-literal|"'"
+literal|"' by "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 name|DocumentImpl
@@ -13238,7 +13348,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges to copy resource "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges to copy resource "
 operator|+
 name|doc
 operator|.
@@ -13270,7 +13388,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges to copy resource "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"have insufficient privileges to copy resource "
 operator|+
 name|doc
 operator|.
@@ -13362,7 +13488,22 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Execute access is not granted on the destination collection."
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have no execute access on the destination collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -13396,7 +13537,22 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Write access is not granted on the destination collection."
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have no write access on the destination collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -13421,7 +13577,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot copy resource to itself"
+literal|"Cannot copy resource to itself '"
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -13448,7 +13611,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Resource with same name exists in target collection and write is denied"
+literal|"Resource with same name exists in target collection '"
+operator|+
+name|oldDoc
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' and write is denied."
 argument_list|)
 throw|;
 block|}
@@ -13655,6 +13825,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -13974,7 +14146,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on source Collection to move resource "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on source Collection to move resource "
 operator|+
 name|doc
 operator|.
@@ -14030,7 +14210,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on destination Collection to move resource "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on destination Collection to move resource "
 operator|+
 name|doc
 operator|.
@@ -14066,7 +14254,15 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Insufficient privileges on destination Collection to move resource "
+literal|"Account "
+operator|+
+name|getSubject
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" have insufficient privileges on destination Collection to move resource "
 operator|+
 name|doc
 operator|.
@@ -14154,7 +14350,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move resource to itself"
+literal|"Cannot move resource to itself '"
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -14521,6 +14724,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
