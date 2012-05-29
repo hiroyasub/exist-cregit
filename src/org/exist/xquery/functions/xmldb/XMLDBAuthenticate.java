@@ -828,6 +828,26 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|userName
+operator|==
+literal|null
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Unable to authenticate username == NULL"
+argument_list|)
+expr_stmt|;
+return|return
+name|BooleanValue
+operator|.
+name|FALSE
+return|;
+block|}
 name|String
 name|password
 init|=
@@ -1037,7 +1057,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|user
 argument_list|)
