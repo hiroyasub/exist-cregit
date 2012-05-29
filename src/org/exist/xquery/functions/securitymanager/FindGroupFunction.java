@@ -540,9 +540,7 @@ operator|=
 name|securityManager
 operator|.
 name|findAllGroupNames
-argument_list|(
-name|currentUser
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
@@ -574,8 +572,6 @@ name|securityManager
 operator|.
 name|findGroupnamesWhereGroupnameStarts
 argument_list|(
-name|currentUser
-argument_list|,
 name|startsWith
 argument_list|)
 expr_stmt|;
@@ -609,8 +605,6 @@ name|securityManager
 operator|.
 name|findGroupnamesWhereGroupnameContains
 argument_list|(
-name|currentUser
-argument_list|,
 name|fragment
 argument_list|)
 expr_stmt|;

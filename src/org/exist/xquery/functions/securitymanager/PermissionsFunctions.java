@@ -349,20 +349,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
@@ -2095,10 +2081,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|pde
 argument_list|)
@@ -2146,6 +2129,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Permission to retrieve permissions is denied for user '"
 operator|+
 name|context

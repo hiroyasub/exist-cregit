@@ -213,18 +213,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|realm
 operator|.
 name|Realm
@@ -392,15 +380,6 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Subject
-name|invokingUser
-init|=
-name|context
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
-specifier|final
 name|Account
 name|ldapAccount
 init|=
@@ -408,8 +387,6 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-name|invokingUser
-argument_list|,
 name|accountName
 argument_list|)
 decl_stmt|;
@@ -419,7 +396,6 @@ name|ldapAccount
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|XPathException
@@ -431,15 +407,12 @@ operator|+
 literal|"' does not exist!"
 argument_list|)
 throw|;
-block|}
 try|try
 block|{
 name|ldapRealm
 operator|.
 name|refreshAccountFromLdap
 argument_list|(
-name|invokingUser
-argument_list|,
 name|ldapAccount
 argument_list|)
 expr_stmt|;
@@ -454,10 +427,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|pde
 argument_list|)
@@ -473,10 +443,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|ae
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|ae
 argument_list|)
@@ -573,6 +540,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"The LDAP Realm is not in use!"
 argument_list|,
 name|ex
@@ -589,6 +558,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Permission to access the LDAP Realm is denied: "
 operator|+
 name|se
@@ -610,6 +581,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Permission to access the LDAP Realm is denied: "
 operator|+
 name|iae
@@ -631,6 +604,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Permission to access the LDAP Realm is denied: "
 operator|+
 name|iae
@@ -652,6 +627,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"An error occured whilst accessing the LDAP Realm: "
 operator|+
 name|ite

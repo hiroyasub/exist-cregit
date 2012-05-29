@@ -635,8 +635,6 @@ name|securityManager
 operator|.
 name|getAccount
 argument_list|(
-name|currentUser
-argument_list|,
 name|username
 argument_list|)
 decl_stmt|;
@@ -735,8 +733,6 @@ name|securityManager
 operator|.
 name|getAccount
 argument_list|(
-name|currentUser
-argument_list|,
 name|username
 argument_list|)
 decl_stmt|;

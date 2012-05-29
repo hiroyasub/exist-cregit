@@ -410,8 +410,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-name|currentSubject
-argument_list|,
 name|args
 index|[
 literal|0
@@ -498,8 +496,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-name|currentSubject
-argument_list|,
 name|successorGroupName
 argument_list|)
 expr_stmt|;
@@ -512,8 +508,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-name|currentSubject
-argument_list|,
 literal|"guest"
 argument_list|)
 expr_stmt|;
@@ -526,8 +520,6 @@ name|sm
 operator|.
 name|deleteGroup
 argument_list|(
-name|currentSubject
-argument_list|,
 name|group
 operator|.
 name|getName
@@ -545,10 +537,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|ee
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|ee
 argument_list|)
@@ -570,10 +559,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|pde
 argument_list|)

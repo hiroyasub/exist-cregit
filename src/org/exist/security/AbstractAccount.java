@@ -411,8 +411,6 @@ argument_list|()
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
@@ -434,8 +432,6 @@ argument_list|()
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|name
 argument_list|)
 expr_stmt|;

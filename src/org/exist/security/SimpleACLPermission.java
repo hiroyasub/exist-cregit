@@ -858,8 +858,6 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|targetName
 argument_list|)
 decl_stmt|;
@@ -906,8 +904,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-literal|null
-argument_list|,
 name|targetName
 argument_list|)
 decl_stmt|;

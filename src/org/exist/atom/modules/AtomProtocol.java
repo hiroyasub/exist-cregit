@@ -6786,11 +6786,6 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|owner
 argument_list|)
 expr_stmt|;
@@ -7019,11 +7014,6 @@ argument_list|()
 operator|.
 name|setOwner
 argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|owner
 argument_list|)
 expr_stmt|;

@@ -347,8 +347,6 @@ argument_list|()
 operator|.
 name|getExternalGroup
 argument_list|(
-literal|null
-argument_list|,
 name|name
 argument_list|)
 expr_stmt|;

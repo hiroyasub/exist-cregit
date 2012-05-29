@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -436,6 +426,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 operator|new
 name|PermissionDeniedException
 argument_list|(
@@ -483,8 +475,6 @@ name|setAccountMetadata
 argument_list|(
 name|broker
 argument_list|,
-name|currentUser
-argument_list|,
 name|username
 argument_list|,
 name|metadataAttributeNamespace
@@ -499,6 +489,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Unknown function"
 argument_list|)
 throw|;
@@ -515,9 +507,6 @@ name|setAccountMetadata
 parameter_list|(
 name|DBBroker
 name|broker
-parameter_list|,
-name|Subject
-name|currentUser
 parameter_list|,
 name|String
 name|username
@@ -551,8 +540,6 @@ name|securityManager
 operator|.
 name|getAccount
 argument_list|(
-name|currentUser
-argument_list|,
 name|username
 argument_list|)
 decl_stmt|;
@@ -613,10 +600,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|pde
 argument_list|)
@@ -632,10 +616,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|ee
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|ee
 argument_list|)

@@ -478,11 +478,6 @@ name|manager
 operator|.
 name|getGroup
 argument_list|(
-name|context
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|groupName
 argument_list|)
 decl_stmt|;
@@ -545,11 +540,6 @@ name|manager
 operator|.
 name|findAllGroupMembers
 argument_list|(
-name|context
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|groupName
 argument_list|)
 decl_stmt|;
@@ -596,10 +586,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|pde
 argument_list|)

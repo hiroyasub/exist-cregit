@@ -1590,9 +1590,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -1616,9 +1613,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNamePartStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -1642,9 +1636,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereUsernameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 specifier|final
 name|String
 name|startsWith
@@ -1746,9 +1737,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 specifier|final
 name|String
 name|startsWith
@@ -1852,9 +1840,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameContains
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 specifier|final
 name|String
 name|fragment
@@ -1958,10 +1943,7 @@ argument_list|<
 name|String
 argument_list|>
 name|findAllGroupNames
-parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|)
+parameter_list|()
 block|{
 return|return
 name|groupsByName
@@ -2025,9 +2007,6 @@ name|String
 argument_list|>
 name|findAllGroupMembers
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 specifier|final
 name|String
 name|groupName

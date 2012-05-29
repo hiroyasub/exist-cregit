@@ -233,9 +233,6 @@ specifier|public
 name|Group
 name|getExternalGroup
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -247,9 +244,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -261,9 +255,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNamePartStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -275,9 +266,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereUsernameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -288,10 +276,7 @@ argument_list|<
 name|String
 argument_list|>
 name|findAllGroupNames
-parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|)
+parameter_list|()
 function_decl|;
 specifier|public
 name|List
@@ -300,9 +285,6 @@ name|String
 argument_list|>
 name|findAllGroupMembers
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|groupName
 parameter_list|)
@@ -321,9 +303,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -337,9 +316,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameContains
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|fragment
 parameter_list|)

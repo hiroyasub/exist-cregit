@@ -1132,9 +1132,6 @@ specifier|public
 name|Account
 name|refreshAccountFromLdap
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 specifier|final
 name|Account
 name|account
@@ -1161,6 +1158,15 @@ name|int
 name|UPDATE_METADATA
 init|=
 literal|2
+decl_stmt|;
+name|Subject
+name|invokingUser
+init|=
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -4176,9 +4182,6 @@ specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|Group
 name|group
 parameter_list|)
@@ -4192,8 +4195,6 @@ name|super
 operator|.
 name|updateGroup
 argument_list|(
-name|invokingUser
-argument_list|,
 name|group
 argument_list|)
 return|;
@@ -4532,9 +4533,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -4570,7 +4568,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -4811,9 +4813,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereNamePartStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -4849,7 +4848,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -5140,9 +5143,6 @@ name|String
 argument_list|>
 name|findUsernamesWhereUsernameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -5178,7 +5178,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -5675,9 +5679,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameStarts
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|startsWith
 parameter_list|)
@@ -5713,7 +5714,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -5954,9 +5959,6 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameContains
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|fragment
 parameter_list|)
@@ -5992,7 +5994,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -6234,10 +6240,7 @@ argument_list|<
 name|String
 argument_list|>
 name|findAllGroupNames
-parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|)
+parameter_list|()
 block|{
 name|List
 argument_list|<
@@ -6263,7 +6266,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|LDAPSearchContext
@@ -6492,9 +6499,6 @@ name|String
 argument_list|>
 name|findAllGroupMembers
 parameter_list|(
-name|Subject
-name|invokingUser
-parameter_list|,
 name|String
 name|groupName
 parameter_list|)
@@ -6543,7 +6547,11 @@ name|ctx
 operator|=
 name|getContext
 argument_list|(
-name|invokingUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getCurrentSubject
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//find the dn of the group
@@ -6812,45 +6820,6 @@ return|return
 name|groupMembers
 return|;
 block|}
-comment|//    @Override
-comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, Configuration config) throws ConfigurationException {
-comment|//        return new LDAPGroupImpl(realm, config);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
-comment|//        return new LDAPGroupImpl(realm, config, removed);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, int id, String name) throws ConfigurationException {
-comment|//        return new LDAPGroupImpl(realm, id, name);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPGroupImpl instantiateGroup(AbstractRealm realm, String name) throws ConfigurationException {
-comment|//        return new LDAPGroupImpl(realm, name);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, String username) throws ConfigurationException {
-comment|//        return new LDAPAccountImpl(realm, username);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, Configuration config) throws ConfigurationException {
-comment|//        return new LDAPAccountImpl(realm, config);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, Configuration config, boolean removed) throws ConfigurationException {
-comment|//        return new LDAPAccountImpl(realm, config, removed);
-comment|//    }
-comment|//
-comment|//    @Override
-comment|//    public LDAPAccountImpl instantiateAccount(AbstractRealm realm, int id, Account from_account) throws ConfigurationException, PermissionDeniedException {
-comment|//        return new LDAPAccountImpl(realm, id, from_account);
-comment|//    }
 specifier|private
 specifier|final
 class|class

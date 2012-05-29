@@ -572,8 +572,6 @@ name|securityManager
 operator|.
 name|findUsernamesWhereUsernameStarts
 argument_list|(
-name|currentUser
-argument_list|,
 name|startsWith
 argument_list|)
 expr_stmt|;
@@ -595,8 +593,6 @@ name|securityManager
 operator|.
 name|findUsernamesWhereNameStarts
 argument_list|(
-name|currentUser
-argument_list|,
 name|startsWith
 argument_list|)
 expr_stmt|;
@@ -618,8 +614,6 @@ name|securityManager
 operator|.
 name|findUsernamesWhereNamePartStarts
 argument_list|(
-name|currentUser
-argument_list|,
 name|startsWith
 argument_list|)
 expr_stmt|;
