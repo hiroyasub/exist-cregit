@@ -37,16 +37,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|debuggee
 operator|.
 name|Debuggee
@@ -542,7 +532,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|EXistException
+name|Throwable
 name|e
 parameter_list|)
 block|{
@@ -551,6 +541,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|Module
+operator|.
+name|DEBUG001
 argument_list|,
 name|e
 argument_list|)

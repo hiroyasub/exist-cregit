@@ -17,16 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -38,16 +28,6 @@ operator|.
 name|session
 operator|.
 name|IoSession
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|EXistException
 import|;
 end_import
 
@@ -444,7 +424,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|EXistException
+name|Throwable
 name|e
 parameter_list|)
 block|{
@@ -454,21 +434,9 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
+name|Module
+operator|.
+name|DEBUG001
 argument_list|,
 name|e
 argument_list|)
