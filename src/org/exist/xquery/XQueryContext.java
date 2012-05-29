@@ -3354,6 +3354,16 @@ argument_list|(
 name|ErrorCodes
 operator|.
 name|XQST0033
+argument_list|,
+literal|"prefix '"
+operator|+
+name|prefix
+operator|+
+literal|"' bind to '"
+operator|+
+name|prevURI
+operator|+
+literal|"'"
 argument_list|)
 operator|)
 throw|;
