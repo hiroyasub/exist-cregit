@@ -1975,6 +1975,23 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|username
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|AuthenticationException
+argument_list|(
+name|AuthenticationException
+operator|.
+name|ACCOUNT_NOT_FOUND
+argument_list|,
+literal|"Account NULL not found"
+argument_list|)
+throw|;
+if|if
+condition|(
 literal|"jsessionid"
 operator|.
 name|equals
@@ -2254,7 +2271,7 @@ name|AuthenticationException
 operator|.
 name|ACCOUNT_NOT_FOUND
 argument_list|,
-literal|"User ["
+literal|"Account ["
 operator|+
 name|username
 operator|+
