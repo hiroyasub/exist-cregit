@@ -618,13 +618,12 @@ condition|(
 name|principalsAreCaseInsensitive
 condition|)
 block|{
-name|username
-operator|=
+return|return
 name|username
 operator|.
 name|toLowerCase
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 return|return
 name|username
@@ -636,6 +635,7 @@ specifier|public
 name|Subject
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|username
 parameter_list|,
@@ -645,13 +645,14 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-name|username
-operator|=
+name|String
+name|name
+init|=
 name|ensureCase
 argument_list|(
 name|username
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// Binds using the username and password provided by the user.
 name|LdapContext
 name|ctx
@@ -667,7 +668,7 @@ argument_list|()
 operator|.
 name|getLdapContext
 argument_list|(
-name|username
+name|name
 argument_list|,
 name|String
 operator|.
@@ -687,7 +688,7 @@ name|getAccount
 argument_list|(
 name|ctx
 argument_list|,
-name|username
+name|name
 argument_list|)
 decl_stmt|;
 if|if
@@ -706,7 +707,7 @@ name|ACCOUNT_NOT_FOUND
 argument_list|,
 literal|"Account '"
 operator|+
-name|username
+name|name
 operator|+
 literal|"' can not be found."
 argument_list|)

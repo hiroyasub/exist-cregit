@@ -273,6 +273,7 @@ specifier|public
 name|Subject
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|accountName
 parameter_list|,
@@ -282,7 +283,6 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;

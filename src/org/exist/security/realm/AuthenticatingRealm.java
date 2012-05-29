@@ -51,6 +51,7 @@ block|{
 name|Subject
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|accountName
 parameter_list|,

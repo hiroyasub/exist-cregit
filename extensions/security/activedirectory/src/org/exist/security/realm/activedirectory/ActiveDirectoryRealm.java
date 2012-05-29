@@ -427,6 +427,7 @@ specifier|public
 name|Subject
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|username
 parameter_list|,
