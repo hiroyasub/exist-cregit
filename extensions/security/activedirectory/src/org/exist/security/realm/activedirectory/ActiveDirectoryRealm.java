@@ -725,7 +725,7 @@ expr_stmt|;
 comment|//elevate to system privs
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|getSecurityManager
 argument_list|()
@@ -789,7 +789,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|currentSubject
 argument_list|)
