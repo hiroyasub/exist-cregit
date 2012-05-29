@@ -1339,11 +1339,6 @@ argument_list|()
 operator|.
 name|getGroup
 argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|groupOpt
 argument_list|)
 operator|!=
@@ -1426,11 +1421,6 @@ argument_list|()
 operator|.
 name|getGroup
 argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
 name|groupOpt
 argument_list|)
 operator|!=

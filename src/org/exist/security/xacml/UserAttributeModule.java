@@ -486,8 +486,6 @@ argument_list|()
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|uid
 argument_list|)
 decl_stmt|;

@@ -493,8 +493,6 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|userName
 argument_list|)
 decl_stmt|;
@@ -543,8 +541,6 @@ name|sm
 operator|.
 name|updateAccount
 argument_list|(
-literal|null
-argument_list|,
 name|account
 argument_list|)
 expr_stmt|;

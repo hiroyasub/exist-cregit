@@ -291,8 +291,6 @@ name|secman
 operator|.
 name|getAccount
 argument_list|(
-literal|null
-argument_list|,
 name|digest
 operator|.
 name|username

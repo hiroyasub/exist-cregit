@@ -428,8 +428,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-name|currentUser
-argument_list|,
 name|groupName
 argument_list|)
 decl_stmt|;
