@@ -4062,8 +4062,6 @@ name|sm
 operator|.
 name|getAccount
 argument_list|(
-name|user
-argument_list|,
 name|name
 argument_list|)
 return|;
@@ -4279,8 +4277,6 @@ name|sm
 operator|.
 name|getGroup
 argument_list|(
-name|user
-argument_list|,
 name|name
 argument_list|)
 return|;
@@ -4662,8 +4658,6 @@ name|sm
 operator|.
 name|deleteGroup
 argument_list|(
-name|user
-argument_list|,
 name|group
 operator|.
 name|getName
@@ -4787,8 +4781,6 @@ name|sm
 operator|.
 name|updateAccount
 argument_list|(
-name|user
-argument_list|,
 name|u
 argument_list|)
 expr_stmt|;
