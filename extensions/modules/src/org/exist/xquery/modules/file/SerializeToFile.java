@@ -699,7 +699,7 @@ literal|"path"
 argument_list|,
 name|Type
 operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
