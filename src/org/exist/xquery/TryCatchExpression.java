@@ -495,6 +495,23 @@ name|xpe
 argument_list|)
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|errorCode
+operator|==
+name|ErrorCodes
+operator|.
+name|ERROR
+condition|)
+block|{
+name|errorCode
+operator|=
+name|extractErrorCode
+argument_list|(
+name|xpe
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
