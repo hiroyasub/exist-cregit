@@ -359,9 +359,6 @@ name|Realm
 implements|,
 name|Configurable
 block|{
-comment|//XXX: this class must be under org.exist.security.internal to be protected
-comment|//public final Map<String, Account> usersByName = new HashMap<String, Account>(65);
-comment|//public final Map<String, Group> groupsByName = new HashMap<String, Group>(65);
 specifier|protected
 specifier|final
 name|PrincipalDbByName
