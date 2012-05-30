@@ -1248,6 +1248,18 @@ if|if
 condition|(
 operator|!
 operator|(
+operator|(
+operator|(
+name|Group
+operator|)
+name|remove_group
+operator|)
+operator|.
+name|isManager
+argument_list|(
+name|subject
+argument_list|)
+operator|||
 name|subject
 operator|.
 name|hasDbaRole
@@ -1259,14 +1271,21 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"You are not allowed to delete '"
+literal|"Account '"
+operator|+
+name|subject
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' can not delete a group '"
 operator|+
 name|remove_group
 operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' group"
+literal|"'."
 argument_list|)
 throw|;
 block|}
