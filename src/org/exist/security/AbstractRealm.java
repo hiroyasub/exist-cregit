@@ -487,6 +487,7 @@ specifier|protected
 name|void
 name|initialiseRealmStorage
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -651,11 +652,6 @@ operator|new
 name|EXistException
 argument_list|(
 name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|pde
 argument_list|)
 throw|;
 block|}
@@ -676,11 +672,6 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
 name|ioe
 argument_list|)
 throw|;
@@ -703,11 +694,6 @@ operator|new
 name|EXistException
 argument_list|(
 name|le
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|le
 argument_list|)
 throw|;
 block|}
@@ -728,11 +714,6 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-name|te
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
 name|te
 argument_list|)
 throw|;
@@ -943,6 +924,7 @@ specifier|private
 name|void
 name|loadRemovedGroupsFromRealmStorage
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1272,6 +1254,7 @@ specifier|private
 name|void
 name|loadRemovedAccountsFromRealmStorage
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1401,6 +1384,7 @@ specifier|public
 name|void
 name|startUp
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1446,11 +1430,6 @@ operator|new
 name|EXistException
 argument_list|(
 name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|pde
 argument_list|)
 throw|;
 block|}
@@ -1464,11 +1443,6 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-name|le
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
 name|le
 argument_list|)
 throw|;
@@ -2576,6 +2550,7 @@ specifier|public
 name|Group
 name|getExternalGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3086,6 +3061,7 @@ name|String
 argument_list|>
 name|findUsernamesWhereNameStarts
 parameter_list|(
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
@@ -3108,6 +3084,7 @@ name|String
 argument_list|>
 name|findUsernamesWhereUsernameStarts
 parameter_list|(
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
@@ -3149,6 +3126,7 @@ name|String
 argument_list|>
 name|findAllGroupMembers
 parameter_list|(
+specifier|final
 name|String
 name|groupName
 parameter_list|)
@@ -3171,6 +3149,7 @@ name|String
 argument_list|>
 name|findUsernamesWhereNamePartStarts
 parameter_list|(
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
@@ -3199,6 +3178,7 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameStarts
 parameter_list|(
+specifier|final
 name|String
 name|startsWith
 parameter_list|)
@@ -3227,6 +3207,7 @@ name|String
 argument_list|>
 name|findGroupnamesWhereGroupnameContains
 parameter_list|(
+specifier|final
 name|String
 name|fragment
 parameter_list|)

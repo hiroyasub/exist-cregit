@@ -99,18 +99,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|SecurityManager
 import|;
 end_import
@@ -233,6 +221,7 @@ specifier|public
 name|Group
 name|getExternalGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -285,6 +274,7 @@ name|String
 argument_list|>
 name|findAllGroupMembers
 parameter_list|(
+specifier|final
 name|String
 name|groupName
 parameter_list|)
