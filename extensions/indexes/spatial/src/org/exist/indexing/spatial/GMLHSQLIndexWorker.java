@@ -465,124 +465,12 @@ parameter_list|,
 name|NodeId
 name|nodeId
 parameter_list|,
-name|Connection
-name|conn
+name|PreparedStatement
+name|ps
 parameter_list|)
 throws|throws
 name|SQLException
 block|{
-name|PreparedStatement
-name|ps
-init|=
-name|conn
-operator|.
-name|prepareStatement
-argument_list|(
-literal|"INSERT INTO "
-operator|+
-name|GMLHSQLIndex
-operator|.
-name|TABLE_NAME
-operator|+
-literal|"("
-operator|+
-comment|/*1*/
-literal|"DOCUMENT_URI, "
-operator|+
-comment|/*2*/
-literal|"NODE_ID_UNITS, "
-operator|+
-comment|/*3*/
-literal|"NODE_ID, "
-operator|+
-comment|/*4*/
-literal|"GEOMETRY_TYPE, "
-operator|+
-comment|/*5*/
-literal|"SRS_NAME, "
-operator|+
-comment|/*6*/
-literal|"WKT, "
-operator|+
-comment|/*7*/
-literal|"WKB, "
-operator|+
-comment|/*8*/
-literal|"MINX, "
-operator|+
-comment|/*9*/
-literal|"MAXX, "
-operator|+
-comment|/*10*/
-literal|"MINY, "
-operator|+
-comment|/*11*/
-literal|"MAXY, "
-operator|+
-comment|/*12*/
-literal|"CENTROID_X, "
-operator|+
-comment|/*13*/
-literal|"CENTROID_Y, "
-operator|+
-comment|/*14*/
-literal|"AREA, "
-operator|+
-comment|//Boundary ?
-comment|/*15*/
-literal|"EPSG4326_WKT, "
-operator|+
-comment|/*16*/
-literal|"EPSG4326_WKB, "
-operator|+
-comment|/*17*/
-literal|"EPSG4326_MINX, "
-operator|+
-comment|/*18*/
-literal|"EPSG4326_MAXX, "
-operator|+
-comment|/*19*/
-literal|"EPSG4326_MINY, "
-operator|+
-comment|/*20*/
-literal|"EPSG4326_MAXY, "
-operator|+
-comment|/*21*/
-literal|"EPSG4326_CENTROID_X, "
-operator|+
-comment|/*22*/
-literal|"EPSG4326_CENTROID_Y, "
-operator|+
-comment|/*23*/
-literal|"EPSG4326_AREA,"
-operator|+
-comment|//Boundary ?
-comment|/*24*/
-literal|"IS_CLOSED, "
-operator|+
-comment|/*25*/
-literal|"IS_SIMPLE, "
-operator|+
-comment|/*26*/
-literal|"IS_VALID"
-operator|+
-literal|") VALUES ("
-operator|+
-literal|"?, ?, ?, ?, ?, "
-operator|+
-literal|"?, ?, ?, ?, ?, "
-operator|+
-literal|"?, ?, ?, ?, ?, "
-operator|+
-literal|"?, ?, ?, ?, ?, "
-operator|+
-literal|"?, ?, ?, ?, ?, "
-operator|+
-literal|"?"
-operator|+
-literal|")"
-argument_list|)
-decl_stmt|;
 try|try
 block|{
 name|Geometry
@@ -634,6 +522,11 @@ throw|throw
 name|ee
 throw|;
 block|}
+name|ps
+operator|.
+name|clearParameters
+argument_list|()
+expr_stmt|;
 comment|/*DOCUMENT_URI*/
 name|ps
 operator|.
@@ -1065,21 +958,15 @@ return|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|ps
-operator|!=
-literal|null
-condition|)
-name|ps
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|//Let's help the garbage collector...
 name|geometry
 operator|=
 literal|null
+expr_stmt|;
+name|ps
+operator|.
+name|clearParameters
+argument_list|()
 expr_stmt|;
 block|}
 block|}
