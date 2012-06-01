@@ -149,9 +149,6 @@ argument_list|(
 name|duration
 argument_list|)
 expr_stmt|;
-comment|//Take care : not the same one than above !
-comment|//TODO : sort this out ! test case :
-comment|//xs:yearMonthDuration("P1000Y6M") + xs:yearMonthDuration("P0Y0M")
 if|if
 condition|(
 operator|!
@@ -803,8 +800,6 @@ name|product
 init|=
 name|fromDecimalMonths
 argument_list|(
-name|isFactorNegative
-argument_list|,
 operator|new
 name|BigDecimal
 argument_list|(
@@ -824,6 +819,14 @@ name|setScale
 argument_list|(
 literal|0
 argument_list|,
+operator|(
+name|isFactorNegative
+operator|)
+condition|?
+name|BigDecimal
+operator|.
+name|ROUND_HALF_DOWN
+else|:
 name|BigDecimal
 operator|.
 name|ROUND_HALF_UP
@@ -1009,8 +1012,6 @@ name|quotient
 init|=
 name|fromDecimalMonths
 argument_list|(
-name|isDivisorNegative
-argument_list|,
 operator|new
 name|BigDecimal
 argument_list|(
@@ -1027,9 +1028,17 @@ argument_list|()
 argument_list|,
 literal|20
 argument_list|,
+operator|(
+name|isDivisorNegative
+operator|)
+condition|?
 name|BigDecimal
 operator|.
-name|ROUND_HALF_EVEN
+name|ROUND_HALF_DOWN
+else|:
+name|BigDecimal
+operator|.
+name|ROUND_HALF_UP
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -1058,33 +1067,12 @@ specifier|private
 name|YearMonthDurationValue
 name|fromDecimalMonths
 parameter_list|(
-name|boolean
-name|isFactorNegative
-parameter_list|,
 name|BigDecimal
 name|x
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-if|if
-condition|(
-operator|!
-name|isFactorNegative
-condition|)
-name|x
-operator|=
-name|x
-operator|.
-name|setScale
-argument_list|(
-literal|0
-argument_list|,
-name|BigDecimal
-operator|.
-name|ROUND_HALF_UP
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|YearMonthDurationValue
