@@ -35,6 +35,16 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_comment
 comment|/**  *	note: some of these tests rely on local timezone override to -05:00, done in super.setUp()  *  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
@@ -815,6 +825,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Ignore
 specifier|public
 name|void
 name|testConvert7
