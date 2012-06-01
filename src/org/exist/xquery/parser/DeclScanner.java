@@ -471,6 +471,8 @@ literal|"FUNCTION_INLINE"
 block|,
 literal|"FUNCTION_TEST"
 block|,
+literal|"MAP_TEST"
+block|,
 literal|"PROLOG"
 block|,
 literal|"OPTION"
@@ -622,6 +624,8 @@ block|,
 literal|"+"
 block|,
 literal|"\"item\""
+block|,
+literal|"\"map\""
 block|,
 literal|"\"for\""
 block|,
