@@ -517,23 +517,8 @@ argument_list|(
 name|lexicalValue
 argument_list|)
 expr_stmt|;
-name|lexicalValue
-operator|=
-name|normalizeDate
-argument_list|(
-name|lexicalValue
-argument_list|)
-expr_stmt|;
-name|lexicalValue
-operator|=
-name|normalizeTime
-argument_list|(
-name|getType
-argument_list|()
-argument_list|,
-name|lexicalValue
-argument_list|)
-expr_stmt|;
+comment|//lexicalValue = normalizeDate(lexicalValue);
+comment|//lexicalValue = normalizeTime(getType(), lexicalValue);
 try|try
 block|{
 name|this
