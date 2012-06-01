@@ -6618,7 +6618,7 @@ name|this
 argument_list|,
 name|transaction
 argument_list|,
-name|destination
+name|collection
 argument_list|,
 name|srcURI
 argument_list|)
