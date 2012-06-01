@@ -2186,6 +2186,25 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|Float
+operator|.
+name|valueOf
+argument_list|(
+name|value
+argument_list|)
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

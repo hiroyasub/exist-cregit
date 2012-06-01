@@ -647,6 +647,14 @@ name|FUNCTION_REFERENCE
 init|=
 literal|101
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAP
+init|=
+literal|102
+decl_stmt|;
 comment|/**      * Special type constant to indicate that an item has been      * fulltext indexed.      */
 specifier|public
 specifier|final
@@ -1084,6 +1092,13 @@ argument_list|,
 name|ENTITY
 argument_list|)
 expr_stmt|;
+name|defineSubType
+argument_list|(
+name|FUNCTION_REFERENCE
+argument_list|,
+name|MAP
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 specifier|final
@@ -1217,6 +1232,13 @@ argument_list|(
 name|FUNCTION_REFERENCE
 argument_list|,
 literal|"function"
+argument_list|)
+expr_stmt|;
+name|defineBuiltInType
+argument_list|(
+name|MAP
+argument_list|,
+literal|"map"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType

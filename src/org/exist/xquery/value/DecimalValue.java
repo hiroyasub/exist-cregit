@@ -2306,7 +2306,21 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|value
+operator|.
+name|hashCode
+argument_list|()
+return|;
+block|}
+comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)     */
 specifier|public
 name|int
 name|conversionPreference
