@@ -1025,11 +1025,8 @@ name|divisor
 operator|.
 name|abs
 argument_list|()
-argument_list|)
-operator|.
-name|setScale
-argument_list|(
-literal|2
+argument_list|,
+literal|0
 argument_list|,
 operator|(
 name|isDivisorNegative
@@ -1037,11 +1034,11 @@ operator|)
 condition|?
 name|BigDecimal
 operator|.
-name|ROUND_DOWN
+name|ROUND_HALF_DOWN
 else|:
 name|BigDecimal
 operator|.
-name|ROUND_UP
+name|ROUND_HALF_UP
 argument_list|)
 argument_list|)
 decl_stmt|;
