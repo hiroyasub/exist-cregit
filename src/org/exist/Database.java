@@ -253,6 +253,7 @@ name|DBBroker
 name|getActiveBroker
 parameter_list|()
 function_decl|;
+comment|//throws EXistException;
 specifier|public
 name|void
 name|release
