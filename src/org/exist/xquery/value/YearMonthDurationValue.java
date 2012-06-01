@@ -1029,7 +1029,7 @@ argument_list|)
 operator|.
 name|setScale
 argument_list|(
-literal|0
+literal|2
 argument_list|,
 operator|(
 name|isDivisorNegative
