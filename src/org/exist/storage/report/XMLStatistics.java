@@ -466,7 +466,7 @@ name|valueOf
 argument_list|(
 name|instance
 operator|.
-name|active
+name|countActiveBrokers
 argument_list|()
 argument_list|)
 argument_list|)

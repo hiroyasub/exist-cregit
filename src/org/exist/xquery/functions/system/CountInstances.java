@@ -415,7 +415,7 @@ name|count
 operator|=
 name|bp
 operator|.
-name|active
+name|countActiveBrokers
 argument_list|()
 expr_stmt|;
 block|}

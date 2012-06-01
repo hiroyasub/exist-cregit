@@ -191,7 +191,7 @@ block|{
 return|return
 name|pool
 operator|.
-name|active
+name|countActiveBrokers
 argument_list|()
 return|;
 block|}

@@ -4220,11 +4220,26 @@ return|return
 name|instanceName
 return|;
 block|}
-comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *@return The brokers count 	 */
+comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *	@return The brokers count 	 *	@deprecated use countActiveBrokers 	 */
 comment|//TODO : rename as getActiveBrokers ?
 specifier|public
 name|int
 name|active
+parameter_list|()
+block|{
+return|return
+name|activeBrokers
+operator|.
+name|size
+argument_list|()
+return|;
+block|}
+comment|/** 	 * Returns the number of brokers currently serving requests for the database instance. 	 *  	 * @return The active brokers count. 	 */
+annotation|@
+name|Override
+specifier|public
+name|int
+name|countActiveBrokers
 parameter_list|()
 block|{
 return|return
@@ -5080,7 +5095,6 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-comment|//TODO : Is this test accurate ?
 comment|// might be null as release() is often called within a finally block
 if|if
 condition|(
@@ -5089,8 +5103,7 @@ operator|==
 literal|null
 condition|)
 return|return;
-comment|//TOUNDERSTAND (pb) : why maintain reference counters rather than pushing the brokers to the stack ?
-comment|//TODO : first check that the broker is active ! If not, return immediately.
+comment|//first check that the broker is active ! If not, return immediately.
 name|broker
 operator|.
 name|decReferenceCount

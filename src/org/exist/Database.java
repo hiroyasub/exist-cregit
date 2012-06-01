@@ -262,6 +262,12 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
+comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *	@return The brokers count 	 */
+specifier|public
+name|int
+name|countActiveBrokers
+parameter_list|()
+function_decl|;
 comment|/** 	 *  	 * @return Debuggee 	 */
 specifier|public
 name|Debuggee

@@ -449,7 +449,7 @@ literal|"<tr><td>Active instances:</td><td>"
 operator|+
 name|pool
 operator|.
-name|active
+name|countActiveBrokers
 argument_list|()
 operator|+
 literal|"</td></tr>"

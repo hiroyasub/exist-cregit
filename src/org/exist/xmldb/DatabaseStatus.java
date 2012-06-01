@@ -176,7 +176,7 @@ name|runningBrokers
 operator|=
 name|pool
 operator|.
-name|active
+name|countActiveBrokers
 argument_list|()
 expr_stmt|;
 name|availableBrokers
