@@ -508,7 +508,7 @@ return|return
 name|canonicalCalendar
 return|;
 block|}
-specifier|protected
+specifier|public
 name|XMLGregorianCalendar
 name|getTrimmedCalendar
 parameter_list|()
