@@ -711,6 +711,10 @@ block|}
 name|String
 name|dtv
 init|=
+operator|(
+operator|(
+name|DateTimeValue
+operator|)
 name|dv
 operator|.
 name|convertTo
@@ -719,8 +723,12 @@ name|Type
 operator|.
 name|DATE_TIME
 argument_list|)
+operator|)
 operator|.
-name|getStringValue
+name|getTrimmedCalendar
+argument_list|()
+operator|.
+name|toXMLFormat
 argument_list|()
 decl_stmt|;
 if|if

@@ -1874,9 +1874,10 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+comment|//assertEquals( "2005-12-19T16:22:40.006+01:00", r );
 name|assertEquals
 argument_list|(
-literal|"2005-12-19T16:22:40.006+01:00"
+literal|"2005-12-19T15:22:40.006Z"
 argument_list|,
 name|r
 argument_list|)
@@ -2158,9 +2159,10 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+comment|//assertEquals( "2005-12-19T16:29:40.321+01:00", r );
 name|assertEquals
 argument_list|(
-literal|"2005-12-19T16:29:40.321+01:00"
+literal|"2005-12-19T15:29:40.321Z"
 argument_list|,
 name|r
 argument_list|)
@@ -4003,9 +4005,10 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+comment|//assertEquals( "2007-05-02T15:12:52.421+02:00", r );
 name|assertEquals
 argument_list|(
-literal|"2007-05-02T15:12:52.421+02:00"
+literal|"2007-05-02T13:12:52.421Z"
 argument_list|,
 name|r
 argument_list|)
@@ -4161,9 +4164,10 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+comment|//assertEquals("2007-08-23T00:01:02.062+02:00", r);
 name|assertEquals
 argument_list|(
-literal|"2007-08-23T00:01:02.062+02:00"
+literal|"2007-08-22T22:01:02.062Z"
 argument_list|,
 name|r
 argument_list|)
