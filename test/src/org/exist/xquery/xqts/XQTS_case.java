@@ -51,6 +51,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|Reader
 import|;
 end_import
@@ -2148,6 +2158,7 @@ literal|"*"
 argument_list|)
 condition|)
 empty_stmt|;
+comment|//TODO:check e.getCode()
 comment|//                else if (error.indexOf(expectedError) != -1)
 comment|//                    ;
 comment|//                else {
@@ -2168,11 +2179,67 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+name|StringBuilder
+name|message
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+name|message
+operator|.
+name|append
+argument_list|(
+name|e
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|message
+operator|.
+name|append
+argument_list|(
+literal|"\n during script evaluation:\n"
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|message
+operator|.
+name|append
+argument_list|(
+name|readFileAsString
+argument_list|(
+name|caseScript
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e1
+parameter_list|)
+block|{
+name|message
+operator|.
+name|append
+argument_list|(
+literal|"ERROR - "
+operator|+
+name|e1
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|Assert
 operator|.
 name|fail
 argument_list|(
-name|e
+name|message
 operator|.
 name|toString
 argument_list|()
