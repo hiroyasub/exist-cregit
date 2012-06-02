@@ -2937,7 +2937,7 @@ argument_list|(
 name|m
 argument_list|)
 block|,
-literal|"Timezone minutes"
+literal|"timezone minutes"
 block|}
 argument_list|)
 argument_list|)
@@ -2963,6 +2963,32 @@ operator|-
 literal|1
 operator|)
 expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|DatatypeMessageFormatter
+operator|.
+name|formatMessage
+argument_list|(
+literal|null
+argument_list|,
+literal|"InvalidFieldValue"
+argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
+literal|"do not defined"
+block|,
+literal|"timezone"
+block|}
+argument_list|)
+argument_list|)
+throw|;
 block|}
 break|break;
 default|default :
