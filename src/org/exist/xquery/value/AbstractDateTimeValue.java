@@ -694,7 +694,7 @@ block|{
 name|String
 name|r
 init|=
-name|getCanonicalOrTrimmedCalendar
+name|getTrimmedCalendar
 argument_list|()
 operator|.
 name|toXMLFormat
