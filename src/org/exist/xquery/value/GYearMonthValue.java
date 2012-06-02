@@ -497,7 +497,7 @@ if|if
 condition|(
 name|this
 operator|.
-name|getTrimmedCalendar
+name|getCanonicalOrTrimmedCalendar
 argument_list|()
 operator|.
 name|compare
@@ -509,7 +509,7 @@ operator|)
 name|other
 operator|)
 operator|.
-name|getTrimmedCalendar
+name|getCanonicalOrTrimmedCalendar
 argument_list|()
 argument_list|)
 operator|==
@@ -615,7 +615,7 @@ name|r
 init|=
 name|this
 operator|.
-name|getTrimmedCalendar
+name|getCanonicalOrTrimmedCalendar
 argument_list|()
 operator|.
 name|compare
@@ -627,7 +627,7 @@ operator|)
 name|other
 operator|)
 operator|.
-name|getTrimmedCalendar
+name|getCanonicalOrTrimmedCalendar
 argument_list|()
 argument_list|)
 decl_stmt|;
