@@ -143,7 +143,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"11:00:00Z"
+literal|"10:00:00-01:00"
 argument_list|,
 name|v
 operator|.
@@ -798,7 +798,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"15:00:00Z"
+literal|"10:00:00-05:00"
 argument_list|,
 name|v2
 operator|.
@@ -848,7 +848,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"17:00:00Z"
+literal|"12:00:00-05:00"
 argument_list|,
 name|v2
 operator|.
@@ -902,7 +902,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"20:00:00Z"
+literal|"10:00:00-10:00"
 argument_list|,
 name|v2
 operator|.
@@ -956,7 +956,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"17:00:00Z"
+literal|"07:00:00-10:00"
 argument_list|,
 name|v2
 operator|.
@@ -1010,7 +1010,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"17:00:00Z"
+literal|"03:00:00+10:00"
 argument_list|,
 name|v2
 operator|.
@@ -1190,7 +1190,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"10:00:00Z"
+literal|"00:00:00+14:00"
 argument_list|,
 name|v2
 operator|.

@@ -143,7 +143,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2005-10-11Z"
+literal|"2005-10-11-01:00"
 argument_list|,
 name|v
 operator|.
@@ -771,7 +771,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2002-03-07Z"
+literal|"2002-03-07-05:00"
 argument_list|,
 name|v2
 operator|.
@@ -821,7 +821,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2002-03-07Z"
+literal|"2002-03-07-05:00"
 argument_list|,
 name|v2
 operator|.
@@ -875,7 +875,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2002-03-07Z"
+literal|"2002-03-07-10:00"
 argument_list|,
 name|v2
 operator|.
@@ -929,7 +929,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2002-03-06Z"
+literal|"2002-03-06-10:00"
 argument_list|,
 name|v2
 operator|.
@@ -1109,7 +1109,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"2002-03-06Z"
+literal|"2002-03-07+14:00"
 argument_list|,
 name|v2
 operator|.
