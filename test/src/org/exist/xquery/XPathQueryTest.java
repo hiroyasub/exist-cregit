@@ -5019,13 +5019,14 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|//assertEquals("XPath: " + query, "--12-05:00", resource.getContent().toString());
 name|assertEquals
 argument_list|(
 literal|"XPath: "
 operator|+
 name|query
 argument_list|,
-literal|"--12-05:00"
+literal|"--12Z"
 argument_list|,
 name|resource
 operator|.
