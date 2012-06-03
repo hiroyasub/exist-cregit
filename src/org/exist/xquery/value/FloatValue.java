@@ -926,6 +926,15 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|value
+operator|==
+literal|0
+condition|)
+return|return
+name|this
+return|;
 comment|/* use the decimal rounding method */
 return|return
 operator|(
