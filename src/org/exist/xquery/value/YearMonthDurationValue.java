@@ -311,6 +311,15 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|DurationValue
+name|wrap
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
 specifier|protected
 name|Duration
 name|canonicalZeroDuration

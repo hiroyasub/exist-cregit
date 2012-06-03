@@ -301,6 +301,15 @@ throw|;
 block|}
 block|}
 specifier|public
+name|DurationValue
+name|wrap
+parameter_list|()
+block|{
+return|return
+name|this
+return|;
+block|}
+specifier|public
 name|int
 name|getType
 parameter_list|()
