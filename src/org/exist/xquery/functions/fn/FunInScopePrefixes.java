@@ -1278,10 +1278,6 @@ operator|.
 name|ElementImpl
 condition|)
 block|{
-name|prefixes
-operator|.
-name|putAll
-argument_list|(
 operator|(
 operator|(
 name|org
@@ -1296,7 +1292,8 @@ name|element
 operator|)
 operator|.
 name|getNamespaceMap
-argument_list|()
+argument_list|(
+name|prefixes
 argument_list|)
 expr_stmt|;
 block|}
@@ -1372,7 +1369,7 @@ block|}
 if|if
 condition|(
 name|namespaceURI
-operator|!=
+operator|==
 literal|null
 operator|&&
 name|namespaceURI
