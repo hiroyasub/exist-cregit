@@ -2052,6 +2052,24 @@ name|INTEGER
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|other
+operator|.
+name|isZero
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
+argument_list|)
+throw|;
 comment|// long ov = ((IntegerValue) other).value.longValue();
 name|BigInteger
 name|ov
@@ -2065,27 +2083,6 @@ operator|)
 operator|.
 name|value
 decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-operator|(
-name|IntegerValue
-operator|)
-name|other
-operator|)
-operator|.
-name|effectiveBooleanValue
-argument_list|()
-condition|)
-comment|// if (ov == 0)
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"division by zero"
-argument_list|)
-throw|;
 return|return
 operator|new
 name|IntegerValue
