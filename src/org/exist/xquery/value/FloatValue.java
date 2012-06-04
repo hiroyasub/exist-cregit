@@ -849,7 +849,7 @@ return|;
 if|if
 condition|(
 name|value
-operator|>
+operator|>=
 operator|-
 literal|0.5
 operator|&&
