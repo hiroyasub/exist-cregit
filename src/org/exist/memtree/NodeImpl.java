@@ -3641,7 +3641,7 @@ if|if
 condition|(
 name|nodeNumber
 operator|<
-literal|2
+literal|1
 condition|)
 block|{
 return|return;
