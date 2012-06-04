@@ -1030,7 +1030,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|//Copied from Saxon
 if|if
 condition|(
 name|Double
@@ -1039,38 +1038,21 @@ name|isNaN
 argument_list|(
 name|value
 argument_list|)
-condition|)
-block|{
-return|return
-name|this
-return|;
-block|}
-if|if
-condition|(
+operator|||
 name|Double
 operator|.
 name|isInfinite
 argument_list|(
 name|value
 argument_list|)
-condition|)
-block|{
-return|return
-name|this
-return|;
-block|}
-if|if
-condition|(
+operator|||
 name|value
 operator|==
 literal|0.0
 condition|)
-block|{
 return|return
 name|this
 return|;
-comment|// handles the negative zero case
-block|}
 if|if
 condition|(
 name|value
@@ -1082,7 +1064,6 @@ name|value
 operator|<
 literal|0.0
 condition|)
-block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1091,7 +1072,6 @@ operator|-
 literal|0.0
 argument_list|)
 return|;
-block|}
 if|if
 condition|(
 name|value
@@ -1106,7 +1086,6 @@ name|Long
 operator|.
 name|MAX_VALUE
 condition|)
-block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1119,11 +1098,7 @@ name|value
 argument_list|)
 argument_list|)
 return|;
-block|}
-comment|// A double holds fewer significant digits than a long. Therefore,
-comment|// if the double is outside the range of a long, it cannot have
-comment|// any signficant digits after the decimal point. So in this
-comment|// case, we return the original value unchanged
+comment|//too big return original value unchanged
 return|return
 name|this
 return|;
@@ -1141,9 +1116,33 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|precision
+operator|==
+literal|null
+condition|)
+return|return
+name|round
+argument_list|()
+return|;
+if|if
+condition|(
+name|Double
+operator|.
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
+operator|||
+name|Double
+operator|.
+name|isInfinite
+argument_list|(
+name|value
+argument_list|)
+operator|||
 name|value
 operator|==
-literal|0
+literal|0.0
 condition|)
 return|return
 name|this

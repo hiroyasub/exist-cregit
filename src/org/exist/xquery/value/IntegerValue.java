@@ -1549,6 +1549,16 @@ block|{
 if|if
 condition|(
 name|precision
+operator|==
+literal|null
+condition|)
+return|return
+name|round
+argument_list|()
+return|;
+if|if
+condition|(
+name|precision
 operator|.
 name|getInt
 argument_list|()

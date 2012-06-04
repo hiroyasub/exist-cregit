@@ -823,7 +823,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|//Copied from Saxon
 if|if
 condition|(
 name|Float
@@ -832,24 +831,14 @@ name|isNaN
 argument_list|(
 name|value
 argument_list|)
-condition|)
-return|return
-name|this
-return|;
-if|if
-condition|(
+operator|||
 name|Float
 operator|.
 name|isInfinite
 argument_list|(
 name|value
 argument_list|)
-condition|)
-return|return
-name|this
-return|;
-if|if
-condition|(
+operator|||
 name|value
 operator|==
 literal|0.0
@@ -857,7 +846,6 @@ condition|)
 return|return
 name|this
 return|;
-comment|// handles the negative zero case
 if|if
 condition|(
 name|value
@@ -891,7 +879,6 @@ name|Integer
 operator|.
 name|MAX_VALUE
 condition|)
-block|{
 return|return
 operator|new
 name|FloatValue
@@ -907,10 +894,7 @@ name|value
 argument_list|)
 argument_list|)
 return|;
-block|}
-comment|// if the float is larger than the maximum int, then
-comment|// it can't have any significant digits after the decimal
-comment|// point, so return it unchanged
+comment|//too big return original value unchanged
 return|return
 name|this
 return|;
@@ -928,9 +912,33 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|precision
+operator|==
+literal|null
+condition|)
+return|return
+name|round
+argument_list|()
+return|;
+if|if
+condition|(
+name|Float
+operator|.
+name|isNaN
+argument_list|(
+name|value
+argument_list|)
+operator|||
+name|Float
+operator|.
+name|isInfinite
+argument_list|(
+name|value
+argument_list|)
+operator|||
 name|value
 operator|==
-literal|0
+literal|0.0
 condition|)
 return|return
 name|this
