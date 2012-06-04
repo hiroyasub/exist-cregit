@@ -1132,6 +1132,10 @@ name|XPathException
 block|{
 if|if
 condition|(
+name|localName_
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|XMLChar
 operator|.
