@@ -1589,6 +1589,29 @@ name|other
 argument_list|)
 return|;
 block|}
+if|if
+condition|(
+operator|(
+operator|(
+name|DecimalValue
+operator|)
+name|other
+operator|)
+operator|.
+name|isZero
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|FOAR0001
+argument_list|,
+literal|"division by zero"
+argument_list|)
+throw|;
 comment|//Copied from Saxon 8.6.1
 name|int
 name|scale
