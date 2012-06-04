@@ -57,16 +57,6 @@ name|XPathException
 import|;
 end_import
 
-begin_import
-import|import
-name|sun
-operator|.
-name|util
-operator|.
-name|LocaleServiceProviderPool
-import|;
-end_import
-
 begin_class
 specifier|public
 specifier|abstract
@@ -549,6 +539,15 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+if|if
+condition|(
+name|obj
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 if|if
 condition|(
 name|NumericValue
