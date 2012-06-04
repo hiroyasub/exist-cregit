@@ -375,6 +375,25 @@ try|try
 block|{
 if|if
 condition|(
+name|contentSeq
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|receiver
+operator|.
+name|startDocument
+argument_list|()
+expr_stmt|;
+name|receiver
+operator|.
+name|endDocument
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
 operator|!
 name|contentSeq
 operator|.
