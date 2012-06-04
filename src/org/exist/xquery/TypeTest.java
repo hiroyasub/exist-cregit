@@ -299,22 +299,12 @@ name|toString
 parameter_list|()
 block|{
 return|return
-name|nodeType
-operator|==
 name|Type
 operator|.
-name|NODE
-condition|?
-literal|"node()"
-else|:
-name|Type
-operator|.
-name|NODETYPES
-index|[
+name|getTypeName
+argument_list|(
 name|nodeType
-index|]
-operator|+
-literal|"()"
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
