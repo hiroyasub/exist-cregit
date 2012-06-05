@@ -267,27 +267,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-block|{
 return|return
 name|END_OF_STREAM
 return|;
-block|}
-if|else if
-condition|(
-name|b
-operator|.
-name|length
-operator|>
-name|available
-argument_list|()
-condition|)
-block|{
-name|len
-operator|=
-name|available
-argument_list|()
-expr_stmt|;
-block|}
 name|int
 name|currentPosition
 init|=
