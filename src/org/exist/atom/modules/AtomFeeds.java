@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * AtomProtocol.java  *  * Created on June 16, 2006, 11:39 AM  *  * (C) R. Alexander Milowski alex@milowski.com  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2006-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -388,7 +388,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author R. Alexander Milowski  */
+comment|/**  *   * @author R. Alexander Milowski  */
 end_comment
 
 begin_class
@@ -733,7 +733,7 @@ argument_list|)
 throw|;
 block|}
 comment|// Return the collection feed
-comment|//String charset = getContext().getDefaultCharset();
+comment|// String charset = getContext().getDefaultCharset();
 if|if
 condition|(
 name|returnContent
@@ -822,7 +822,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//Do we have permission to read the resource
+comment|// Do we have permission to read the resource
 if|if
 condition|(
 operator|!
@@ -978,7 +978,7 @@ operator|.
 name|getDefaultCharset
 argument_list|()
 decl_stmt|;
-comment|//Serialize the document
+comment|// Serialize the document
 try|try
 block|{
 name|response

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * AtomProtocol.java  *  * Created on June 16, 2006, 11:39 AM  *  * (C) R. Alexander Milowski alex@milowski.com  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2006-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -698,7 +698,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author R. Alexander Milowski  */
+comment|/**  *   * @author R. Alexander Milowski  */
 end_comment
 
 begin_class
@@ -767,7 +767,7 @@ argument_list|(
 name|ENTRY_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
-comment|//private static final String ENTRY_XPOINTER = "xpointer(/entry)";
+comment|// private static final String ENTRY_XPOINTER = "xpointer(/entry)";
 specifier|final
 specifier|static
 class|class
@@ -1576,7 +1576,7 @@ name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : We should probably unlock the collection here
+comment|// TODO : We should probably unlock the collection here
 name|collection
 operator|.
 name|store
@@ -2175,7 +2175,7 @@ name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : We should probably unlock the collection here
+comment|// TODO : We should probably unlock the collection here
 name|collection
 operator|.
 name|store
@@ -2242,6 +2242,7 @@ argument_list|(
 literal|"Done!"
 argument_list|)
 expr_stmt|;
+comment|//XXX: response outside of try-block
 name|response
 operator|.
 name|setStatusCode
@@ -2284,7 +2285,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-comment|/*                  response.setContentType(Atom.MIME_TYPE+"; charset="+charset);                  OutputStreamWriter w = new OutputStreamWriter(response.getOutputStream(),charset);                  Transformer identity = TransformerFactory.newInstance().newTransformer();                  identity.transform(new DOMSource(doc),new StreamResult(w));                  w.flush();                  w.close();                   */
+comment|/* 					 * response.setContentType(Atom.MIME_TYPE+"; charset="+charset 					 * ); OutputStreamWriter w = new 					 * OutputStreamWriter(response.getOutputStream(),charset); 					 * Transformer identity = 					 * TransformerFactory.newInstance().newTransformer(); 					 * identity.transform(new DOMSource(doc),new 					 * StreamResult(w)); w.flush(); w.close(); 					 */
 block|}
 catch|catch
 parameter_list|(
@@ -2392,7 +2393,7 @@ argument_list|,
 name|ex
 argument_list|)
 throw|;
-comment|/*               } catch (IOException ex) {                  throw new EXistException("Internal error while serializing result.",ex);               } catch (TransformerException ex) {                  throw new EXistException("Serialization error.",ex);                   */
+comment|/* 					 * } catch (IOException ex) { throw new 					 * EXistException("Internal error while serializing result." 					 * ,ex); } catch (TransformerException ex) { throw new 					 * EXistException("Serialization error.",ex); 					 */
 block|}
 finally|finally
 block|{
@@ -2402,7 +2403,6 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
-block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -2415,7 +2415,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 else|else
@@ -2442,7 +2441,6 @@ name|collection
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -2457,7 +2455,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
-block|}
 name|DocumentImpl
 name|feedDoc
 init|=
@@ -2476,7 +2473,6 @@ name|feedDoc
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -2491,7 +2487,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
-block|}
 if|if
 condition|(
 operator|!
@@ -2592,12 +2587,10 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
-block|{
 name|filename
 operator|=
 literal|null
 expr_stmt|;
-block|}
 name|count
 operator|++
 expr_stmt|;
@@ -2859,12 +2852,10 @@ name|title
 operator|==
 literal|null
 condition|)
-block|{
 name|title
 operator|=
 name|filename
 expr_stmt|;
-block|}
 name|String
 name|created
 init|=
@@ -2992,7 +2983,6 @@ name|entryDoc
 operator|!=
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3004,7 +2994,6 @@ operator|+
 literal|" already exists."
 argument_list|)
 throw|;
-block|}
 name|IndexInfo
 name|info
 init|=
@@ -3021,7 +3010,7 @@ argument_list|,
 name|mediaEntry
 argument_list|)
 decl_stmt|;
-comment|//TODO : We should probably unlock the collection here
+comment|// TODO : We should probably unlock the collection here
 name|collection
 operator|.
 name|store
@@ -3087,6 +3076,7 @@ argument_list|(
 literal|"Done!"
 argument_list|)
 expr_stmt|;
+comment|//XXX: response outside ty-block
 name|response
 operator|.
 name|setStatusCode
@@ -3251,7 +3241,6 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
-block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -3264,7 +3253,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch
@@ -3860,7 +3848,6 @@ name|feedDoc
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -3875,7 +3862,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
-block|}
 name|feedDoc
 operator|=
 name|collection
@@ -3936,7 +3922,6 @@ argument_list|)
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -3944,7 +3929,6 @@ argument_list|(
 literal|"The feed metadata sent does not contain a title."
 argument_list|)
 throw|;
-block|}
 if|if
 condition|(
 operator|!
@@ -3965,7 +3949,6 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3978,7 +3961,6 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
-block|}
 name|TransactionManager
 name|transact
 init|=
@@ -4117,7 +4099,6 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
-block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -4130,7 +4111,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 if|else if
@@ -4152,7 +4132,6 @@ name|collection
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4167,7 +4146,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
-block|}
 name|String
 name|id
 init|=
@@ -4184,7 +4162,6 @@ name|id
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4192,7 +4169,6 @@ argument_list|(
 literal|"The 'id' parameter for the entry is missing."
 argument_list|)
 throw|;
-block|}
 name|LOG
 operator|.
 name|debug
@@ -4353,7 +4329,6 @@ name|entryDoc
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4363,7 +4338,6 @@ operator|+
 name|id
 argument_list|)
 throw|;
-block|}
 comment|// Lock the entry
 name|entryDoc
 operator|.
@@ -4473,7 +4447,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-comment|/*                response.setStatusCode(200);                response.setContentType(Atom.MIME_TYPE+"; charset="+charset);                OutputStreamWriter w = new OutputStreamWriter(response.getOutputStream(),charset);                Transformer identity = TransformerFactory.newInstance().newTransformer();                identity.transform(new DOMSource(entry),new StreamResult(w));                w.flush();                w.close();                 */
+comment|/* 					 * response.setStatusCode(200); 					 * response.setContentType(Atom. 					 * MIME_TYPE+"; charset="+charset); OutputStreamWriter w = 					 * new 					 * OutputStreamWriter(response.getOutputStream(),charset); 					 * Transformer identity = 					 * TransformerFactory.newInstance().newTransformer(); 					 * identity.transform(new DOMSource(entry),new 					 * StreamResult(w)); w.flush(); w.close(); 					 */
 block|}
 catch|catch
 parameter_list|(
@@ -4497,7 +4471,7 @@ argument_list|,
 name|ex
 argument_list|)
 throw|;
-comment|/*             } catch (IOException ex) {                throw new EXistException("I/O exception during serialization of entry response.",ex);             } catch (TransformerException ex) {                throw new EXistException("Serialization error.",ex);                 */
+comment|/* 					 * } catch (IOException ex) { throw new EXistException( 					 * "I/O exception during serialization of entry response." 					 * ,ex); } catch (TransformerException ex) { throw new 					 * EXistException("Serialization error.",ex); 					 */
 block|}
 finally|finally
 block|{
@@ -4507,7 +4481,6 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
-block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -4520,14 +4493,12 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|entryDoc
 operator|!=
 literal|null
 condition|)
-block|{
 name|entryDoc
 operator|.
 name|getUpdateLock
@@ -4540,7 +4511,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 else|else
@@ -5085,7 +5055,6 @@ name|collection
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -5100,7 +5069,6 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
-block|}
 name|String
 name|id
 init|=
@@ -5231,7 +5199,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Get the feed
-comment|//LOG.info("Acquiring lock on feed document...");
+comment|// LOG.info("Acquiring lock on feed document...");
 name|feedDoc
 operator|=
 name|collection
@@ -5339,7 +5307,6 @@ name|entryDoc
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -5351,7 +5318,6 @@ operator|+
 literal|" cannot be found."
 argument_list|)
 throw|;
-block|}
 name|Element
 name|entry
 init|=
@@ -5979,7 +5945,8 @@ operator|.
 name|getLocalName
 argument_list|()
 decl_stmt|;
-comment|// Skip server controls updated, published, and id elements
+comment|// Skip server controls updated, published, and id
+comment|// elements
 if|if
 condition|(
 name|lname
@@ -6340,7 +6307,6 @@ name|child
 range|:
 name|toRemove
 control|)
-block|{
 name|target
 operator|.
 name|removeChild
@@ -6350,7 +6316,6 @@ argument_list|,
 name|child
 argument_list|)
 expr_stmt|;
-block|}
 name|NodeList
 name|nl
 init|=
@@ -6493,9 +6458,7 @@ argument_list|(
 literal|"edit"
 argument_list|)
 condition|)
-block|{
 continue|continue;
-block|}
 block|}
 block|}
 name|DOMDB
@@ -6613,7 +6576,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**     * Apply permissions to a collection. Owner, owner group and access permissions     * can be set when creating a new feed by passing an element&lt;exist:permissions&gt;     * in the document, e.g.:     *     *<pre>&lt;exist:permissions mode="0775" owner="editor" group="users"/&gt;</pre>     */
+comment|/** 	 * Apply permissions to a collection. Owner, owner group and access 	 * permissions can be set when creating a new feed by passing an element 	 *&lt;exist:permissions&gt; in the document, e.g.: 	 *  	 *<pre> 	 *&lt;exist:permissions mode="0775" owner="editor" group="users"/&gt; 	 *</pre> 	 */
 specifier|protected
 name|void
 name|setPermissions
