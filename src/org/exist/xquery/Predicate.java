@@ -2024,7 +2024,14 @@ argument_list|,
 name|item
 argument_list|)
 decl_stmt|;
-comment|// TODO : introduce a check in innerSeq.hasOne() ?
+if|if
+condition|(
+name|innerSeq
+operator|.
+name|hasOne
+argument_list|()
+condition|)
+block|{
 name|NumericValue
 name|nv
 init|=
@@ -2060,6 +2067,8 @@ argument_list|(
 name|nv
 argument_list|)
 expr_stmt|;
+block|}
+comment|//XXX: else error or nothing?
 block|}
 for|for
 control|(
