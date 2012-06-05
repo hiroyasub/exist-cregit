@@ -485,6 +485,20 @@ name|api
 operator|.
 name|base
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
 name|Resource
 import|;
 end_import
@@ -965,6 +979,11 @@ name|nextItem
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//		        StringWriter writer = new StringWriter();
+comment|//		        Properties outputProperties = new Properties();
+comment|//		        outputProperties.setProperty("indent", "yes");
+comment|//		        SAXSerializer serializer = new SAXSerializer(writer, outputProperties);
+comment|//		        xmldbResource.getContentAsSAX(serializer);
 name|String
 name|res
 init|=
@@ -1843,14 +1862,32 @@ if|else if
 condition|(
 name|r
 operator|instanceof
-name|Resource
+name|LocalXMLResource
 condition|)
-return|return
+name|res
+operator|=
 operator|(
-name|Resource
+name|LocalXMLResource
 operator|)
 name|r
-return|;
+expr_stmt|;
+else|else
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+literal|"unknown object "
+operator|+
+name|r
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+throw|;
 try|try
 block|{
 name|Field
