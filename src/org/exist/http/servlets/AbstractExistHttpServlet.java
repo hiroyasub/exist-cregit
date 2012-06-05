@@ -287,6 +287,14 @@ name|AbstractExistHttpServlet
 extends|extends
 name|HttpServlet
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|804071766041263220L
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
