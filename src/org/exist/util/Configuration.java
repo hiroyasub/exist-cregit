@@ -8963,6 +8963,22 @@ name|obj
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|removeProperty
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+name|config
+operator|.
+name|remove
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Takes the passed string and converts it to a non-null<code>Boolean</code> object. If value is null, the specified default value is used.      * Otherwise, Boolean.TRUE is returned if and only if the passed string equals&quot;yes&quot; or&quot;true&quot;, ignoring case.      *      * @param   value         The string to parse      * @param   defaultValue  The default if the string is null      *      * @return  The parsed<code>Boolean</code>      */
 specifier|public
 specifier|static
