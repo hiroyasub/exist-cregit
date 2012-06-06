@@ -1617,6 +1617,11 @@ name|ok
 init|=
 literal|false
 decl_stmt|;
+name|Exception
+name|error
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
 literal|"runtime-error"
@@ -1627,11 +1632,6 @@ name|scenario
 argument_list|)
 condition|)
 block|{
-name|Exception
-name|error
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 comment|//compile
@@ -1794,17 +1794,12 @@ name|error
 operator|!=
 literal|null
 operator|&&
-name|error
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|contains
-argument_list|(
 name|expectedError
-argument_list|)
+operator|!=
+literal|null
 condition|)
 block|{
+comment|// error.getMessage().contains(expectedError)) {
 name|ok
 operator|=
 literal|true
