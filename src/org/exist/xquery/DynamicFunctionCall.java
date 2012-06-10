@@ -290,6 +290,15 @@ name|funcSeq
 operator|.
 name|getItemCount
 argument_list|()
+operator|+
+literal|". Expression: "
+operator|+
+name|ExpressionDumper
+operator|.
+name|dump
+argument_list|(
+name|functionExpr
+argument_list|)
 argument_list|)
 throw|;
 name|Item
