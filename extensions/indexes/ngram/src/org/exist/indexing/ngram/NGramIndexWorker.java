@@ -4117,18 +4117,6 @@ name|codepoint
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"NGRAM: "
-operator|+
-name|bld
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|ngrams
 index|[
 name|next
