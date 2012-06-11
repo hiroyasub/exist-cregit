@@ -595,7 +595,7 @@ name|K
 argument_list|,
 name|V
 argument_list|>
-name|readOp
+name|writeOp
 parameter_list|)
 block|{
 name|writeLock
@@ -605,7 +605,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|readOp
+name|writeOp
 operator|.
 name|execute
 argument_list|(
