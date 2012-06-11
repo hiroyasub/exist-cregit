@@ -87,25 +87,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|expath
 operator|.
 name|pkg
 operator|.
 name|repo
 operator|.
-name|*
+name|FileSystemStorage
 import|;
 end_import
 
@@ -133,9 +121,7 @@ name|pkg
 operator|.
 name|repo
 operator|.
-name|tui
-operator|.
-name|BatchUserInteraction
+name|PackageException
 import|;
 end_import
 
@@ -143,11 +129,29 @@ begin_import
 import|import
 name|org
 operator|.
-name|jedit
+name|expath
 operator|.
-name|syntax
+name|pkg
 operator|.
-name|InputHandler
+name|repo
+operator|.
+name|UserInteractionStrategy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|expath
+operator|.
+name|pkg
+operator|.
+name|repo
+operator|.
+name|tui
+operator|.
+name|BatchUserInteraction
 import|;
 end_import
 
@@ -245,16 +249,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -294,6 +288,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+comment|//TODO: I think this will never happen with the current setup. Class needs a little more cleanup.
 if|if
 condition|(
 name|args
@@ -333,7 +328,7 @@ index|]
 operator|.
 name|startsWith
 argument_list|(
-literal|"pass="
+literal|"pass:"
 argument_list|)
 condition|)
 block|{
@@ -482,7 +477,7 @@ index|]
 operator|.
 name|split
 argument_list|(
-literal|"="
+literal|":"
 argument_list|)
 decl_stmt|;
 name|String
