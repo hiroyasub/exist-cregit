@@ -431,6 +431,17 @@ name|setProperty
 argument_list|(
 name|EXistOutputKeys
 operator|.
+name|OUTPUT_DOCTYPE
+argument_list|,
+literal|"yes"
+argument_list|)
+expr_stmt|;
+name|OUTPUT_PROPERTIES
+operator|.
+name|setProperty
+argument_list|(
+name|EXistOutputKeys
+operator|.
 name|EXPAND_XINCLUDES
 argument_list|,
 literal|"no"
