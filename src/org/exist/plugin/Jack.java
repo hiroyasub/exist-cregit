@@ -21,7 +21,13 @@ begin_interface
 specifier|public
 interface|interface
 name|Jack
-block|{  }
+block|{
+specifier|public
+name|void
+name|stop
+parameter_list|()
+function_decl|;
+block|}
 end_interface
 
 end_unit
