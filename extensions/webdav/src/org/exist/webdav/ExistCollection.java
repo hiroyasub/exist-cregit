@@ -1035,7 +1035,7 @@ init|=
 literal|null
 decl_stmt|;
 name|TransactionManager
-name|transact
+name|txnManager
 init|=
 name|brokerPool
 operator|.
@@ -1045,7 +1045,7 @@ decl_stmt|;
 name|Txn
 name|txn
 init|=
-name|transact
+name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
@@ -1082,7 +1082,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1102,7 +1102,7 @@ name|collection
 argument_list|)
 expr_stmt|;
 comment|// Commit change
-name|transact
+name|txnManager
 operator|.
 name|commit
 argument_list|(
@@ -1137,7 +1137,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1158,7 +1158,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1179,7 +1179,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1200,7 +1200,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1308,7 +1308,7 @@ init|=
 literal|null
 decl_stmt|;
 name|TransactionManager
-name|transact
+name|txnManager
 init|=
 name|brokerPool
 operator|.
@@ -1318,7 +1318,7 @@ decl_stmt|;
 name|Txn
 name|txn
 init|=
-name|transact
+name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
@@ -1364,7 +1364,7 @@ literal|"Collection already exists"
 argument_list|)
 expr_stmt|;
 comment|//XXX: double "abort" is bad thing!!!
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1407,7 +1407,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 comment|// Commit change
-name|transact
+name|txnManager
 operator|.
 name|commit
 argument_list|(
@@ -1442,7 +1442,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1466,7 +1466,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1487,7 +1487,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1511,7 +1511,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1775,7 +1775,7 @@ expr_stmt|;
 block|}
 comment|// Start transaction
 name|TransactionManager
-name|transact
+name|txnManager
 init|=
 name|brokerPool
 operator|.
@@ -1785,7 +1785,7 @@ decl_stmt|;
 name|Txn
 name|txn
 init|=
-name|transact
+name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
@@ -1834,7 +1834,7 @@ operator|+
 literal|" does not exist"
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2013,7 +2013,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Commit change
-name|transact
+name|txnManager
 operator|.
 name|commit
 argument_list|(
@@ -2048,7 +2048,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2076,7 +2076,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2104,7 +2104,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2132,7 +2132,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2162,7 +2162,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2186,7 +2186,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(

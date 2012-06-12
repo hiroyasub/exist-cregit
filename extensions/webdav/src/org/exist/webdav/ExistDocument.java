@@ -1121,7 +1121,7 @@ init|=
 literal|null
 decl_stmt|;
 name|TransactionManager
-name|transact
+name|txnManager
 init|=
 name|brokerPool
 operator|.
@@ -1131,7 +1131,7 @@ decl_stmt|;
 name|Txn
 name|txn
 init|=
-name|transact
+name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
@@ -1192,7 +1192,7 @@ argument_list|(
 literal|"Collection does not exist"
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1229,7 +1229,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1283,7 +1283,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Commit change
-name|transact
+name|txnManager
 operator|.
 name|commit
 argument_list|(
@@ -1320,7 +1320,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1341,7 +1341,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1362,7 +1362,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -1383,7 +1383,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
@@ -2163,7 +2163,7 @@ init|=
 literal|null
 decl_stmt|;
 name|TransactionManager
-name|transact
+name|txnManager
 init|=
 name|brokerPool
 operator|.
@@ -2171,9 +2171,9 @@ name|getTransactionManager
 argument_list|()
 decl_stmt|;
 name|Txn
-name|transaction
+name|txn
 init|=
-name|transact
+name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
@@ -2331,16 +2331,16 @@ name|broker
 operator|.
 name|storeXMLResource
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
-name|transact
+name|txnManager
 operator|.
 name|commit
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 block|}
@@ -2350,11 +2350,11 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -2374,11 +2374,11 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-name|transact
+name|txnManager
 operator|.
 name|abort
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 name|LOG
