@@ -91,6 +91,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -108,28 +118,6 @@ operator|.
 name|triggers
 operator|.
 name|TriggerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|EXistException
 import|;
 end_import
 
@@ -307,6 +295,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|VirtualTempFile
 import|;
 end_import
@@ -460,6 +460,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -469,6 +470,7 @@ operator|+
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|=
 name|pool
@@ -785,7 +787,7 @@ return|return
 name|isXmlDocument
 return|;
 block|}
-comment|/**      *  Stream document to framework.      */
+comment|/**      * Stream document to framework.      */
 specifier|public
 name|void
 name|stream
@@ -805,6 +807,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -812,6 +815,7 @@ argument_list|(
 literal|"Stream started"
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|startTime
 init|=
@@ -930,11 +934,13 @@ operator|instanceof
 name|VirtualTempFile
 operator|)
 condition|)
+block|{
 name|os
 operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1064,6 +1070,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1084,6 +1091,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 comment|/**      * Remove document from database.      */
 name|void
 name|delete
@@ -1096,6 +1104,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1105,6 +1114,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1297,6 +1307,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1304,6 +1315,7 @@ argument_list|(
 literal|"Document deleted sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1425,6 +1437,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1432,6 +1445,7 @@ argument_list|(
 literal|"Finished delete"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Get lock token from database.      */
@@ -1447,6 +1461,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1456,6 +1471,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1534,6 +1550,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1545,6 +1562,7 @@ operator|+
 literal|" does not contain userlock"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1581,6 +1599,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1588,6 +1607,7 @@ argument_list|(
 literal|"Document meta data does not contain a LockToken"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1599,6 +1619,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1606,6 +1627,7 @@ argument_list|(
 literal|"Successfully retrieved token"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|token
 return|;
@@ -1680,6 +1702,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1687,6 +1710,7 @@ argument_list|(
 literal|"Finished probe lock"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Lock document.      */
@@ -1711,6 +1735,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1720,6 +1745,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1779,6 +1805,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1788,6 +1815,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 comment|//return null; // throw exception?
 throw|throw
 operator|new
@@ -1821,13 +1849,15 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource was already locked locked."
+literal|"Resource was already locked locked, ignored."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1855,6 +1885,12 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+operator|&&
+operator|!
+name|subject
+operator|.
+name|hasDbaRole
+argument_list|()
 condition|)
 block|{
 if|if
@@ -1864,6 +1900,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1878,6 +1915,7 @@ operator|+
 literal|"."
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -1909,6 +1947,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1916,6 +1955,7 @@ argument_list|(
 literal|"Shared locks are not implemented."
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|EXistException
@@ -2006,6 +2046,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2013,6 +2054,7 @@ argument_list|(
 literal|"Successfully retrieved token"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|inputToken
 return|;
@@ -2036,6 +2078,7 @@ name|txnManager
 operator|!=
 literal|null
 condition|)
+block|{
 name|txnManager
 operator|.
 name|abort
@@ -2043,6 +2086,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;
@@ -2067,6 +2111,7 @@ name|txnManager
 operator|!=
 literal|null
 condition|)
+block|{
 name|txnManager
 operator|.
 name|abort
@@ -2074,6 +2119,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 comment|//-----------------------
 throw|throw
 name|e
@@ -2116,6 +2162,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2123,6 +2170,7 @@ argument_list|(
 literal|"Finished create lock"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Unlock document in database.      */
@@ -2143,6 +2191,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2152,6 +2201,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -2283,6 +2333,12 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+operator|&&
+operator|!
+name|subject
+operator|.
+name|hasDbaRole
+argument_list|()
 condition|)
 block|{
 name|LOG
@@ -2428,6 +2484,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2435,6 +2492,7 @@ argument_list|(
 literal|"Finished create lock"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Copy document or collection in database.      */
@@ -2460,6 +2518,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2479,6 +2538,7 @@ operator|+
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|newNameUri
 init|=
@@ -2748,6 +2808,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2759,6 +2820,7 @@ operator|+
 literal|"d sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2961,6 +3023,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2970,6 +3033,7 @@ operator|+
 name|mode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -2995,6 +3059,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3008,6 +3073,7 @@ operator|+
 name|token
 argument_list|)
 expr_stmt|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -3032,6 +3098,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3039,6 +3106,7 @@ argument_list|(
 literal|"token is null"
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|EXistException
@@ -3097,6 +3165,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3106,6 +3175,7 @@ operator|+
 name|xmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 comment|//return null; // throw exception?
 throw|throw
 operator|new
@@ -3139,6 +3209,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3146,6 +3217,7 @@ argument_list|(
 literal|"Resource was not locked."
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|DocumentNotLockedException
@@ -3176,6 +3248,12 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+operator|&&
+operator|!
+name|subject
+operator|.
+name|hasDbaRole
+argument_list|()
 condition|)
 block|{
 if|if
@@ -3185,6 +3263,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3197,6 +3276,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3240,6 +3320,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3247,6 +3328,7 @@ argument_list|(
 literal|"Token does not match"
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3311,6 +3393,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3318,6 +3401,7 @@ argument_list|(
 literal|"Successfully retrieved token"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|lockToken
 return|;
@@ -3341,6 +3425,7 @@ name|txnManager
 operator|!=
 literal|null
 condition|)
+block|{
 name|txnManager
 operator|.
 name|abort
@@ -3348,6 +3433,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;
@@ -3372,6 +3458,7 @@ name|txnManager
 operator|!=
 literal|null
 condition|)
+block|{
 name|txnManager
 operator|.
 name|abort
@@ -3379,6 +3466,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 comment|//------------------------
 throw|throw
 name|e
@@ -3421,6 +3509,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3428,6 +3517,7 @@ argument_list|(
 literal|"Finished create lock"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
