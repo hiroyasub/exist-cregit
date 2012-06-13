@@ -143,18 +143,6 @@ name|PermissionDeniedException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -269,7 +257,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|documentName
@@ -426,7 +414,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|documentPath
@@ -446,7 +434,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -461,7 +449,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|uri
 argument_list|,
@@ -479,7 +467,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -498,7 +486,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -513,7 +501,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -534,7 +522,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -553,7 +541,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -571,7 +559,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|newUri
 argument_list|,
@@ -589,7 +577,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -611,7 +599,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -629,7 +617,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|newUri
 argument_list|,
@@ -647,7 +635,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -669,7 +657,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -684,7 +672,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -705,7 +693,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
