@@ -22,6 +22,12 @@ specifier|public
 interface|interface
 name|Jack
 block|{
+comment|/** 	 * This method called during synchronization. 	 */
+specifier|public
+name|void
+name|sync
+parameter_list|()
+function_decl|;
 comment|/** 	 * This method called during shutdown. 	 */
 specifier|public
 name|void
