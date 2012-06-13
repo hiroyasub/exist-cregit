@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2008-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2008-2012 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -2249,6 +2249,7 @@ operator|+
 literal|"], remove the object."
 argument_list|)
 expr_stmt|;
+comment|//XXX: remove by method call
 name|iterator
 operator|.
 name|remove
@@ -2370,6 +2371,7 @@ operator|+
 literal|"]."
 argument_list|)
 expr_stmt|;
+comment|//XXX: remove by method call
 name|iterator
 operator|.
 name|remove
@@ -6037,52 +6039,14 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|Collection
-name|collection
-init|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|uri
-operator|.
-name|removeLastSegment
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|collection
-operator|==
-literal|null
-condition|)
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Collection URI = "
-operator|+
-name|uri
-operator|.
-name|removeLastSegment
-argument_list|()
-operator|+
-literal|" not found."
-argument_list|)
-throw|;
 return|return
 name|save
 argument_list|(
-name|instance
-argument_list|,
 name|broker
 argument_list|,
-name|collection
+name|instance
 argument_list|,
 name|uri
-operator|.
-name|lastSegment
-argument_list|()
 argument_list|)
 return|;
 block|}
@@ -6097,20 +6061,6 @@ operator|new
 name|IOException
 argument_list|(
 name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-name|pde
 argument_list|)
 throw|;
 block|}

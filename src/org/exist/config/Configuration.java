@@ -80,7 +80,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * Configuration interface provide methods to read settings.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_interface
@@ -100,6 +100,7 @@ name|ID
 init|=
 literal|"id"
 decl_stmt|;
+comment|/**      * Return sub configuration by name.      *        * @param name      * @return      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -108,6 +109,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**      * Return list of sub configurations by name.      *       * @param name      * @return      */
 specifier|public
 name|List
 argument_list|<
@@ -119,6 +121,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**      * Return set of properties configuration have.      *       * @return      */
 specifier|public
 name|Set
 argument_list|<
@@ -127,6 +130,7 @@ argument_list|>
 name|getProperties
 parameter_list|()
 function_decl|;
+comment|/**      * Check presents of setting by name.      *       * @param name      * @return      */
 specifier|public
 name|boolean
 name|hasProperty
@@ -135,6 +139,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**      * Return property string value.      *       * @param property      * @return      */
 specifier|public
 name|String
 name|getProperty
@@ -143,6 +148,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
+comment|/**      * Return property map value.      *       * @param property      * @return      */
 specifier|public
 name|Map
 argument_list|<
@@ -156,6 +162,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
+comment|/**      * Return property integer value.      *       * @param property      * @return      */
 specifier|public
 name|Integer
 name|getPropertyInteger
@@ -164,6 +171,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
+comment|/**      * Return property long value.      *       * @param property      * @return      */
 specifier|public
 name|Long
 name|getPropertyLong
@@ -172,6 +180,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
+comment|/**      * Return property boolean value.      *       * @param property      * @return      */
 specifier|public
 name|Boolean
 name|getPropertyBoolean
@@ -180,39 +189,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-specifier|public
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|getPropertyClass
-parameter_list|(
-name|String
-name|propertySecurityClass
-parameter_list|)
-function_decl|;
-specifier|public
-name|void
-name|setProperty
-parameter_list|(
-name|String
-name|property
-parameter_list|,
-name|String
-name|value
-parameter_list|)
-function_decl|;
-specifier|public
-name|void
-name|setProperty
-parameter_list|(
-name|String
-name|property
-parameter_list|,
-name|Integer
-name|value
-parameter_list|)
-function_decl|;
+comment|/**      * Keep at internal map object associated with key.      *       * @param name      * @param object      * @return      */
 specifier|public
 name|Object
 name|putObject
@@ -224,6 +201,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
+comment|/**      * Get object associated by key from internal map.      *       * @param name      * @return      */
 specifier|public
 name|Object
 name|getObject
@@ -232,21 +210,25 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
+comment|/**      * Configuration name.      *       * @return      */
 specifier|public
 name|String
 name|getName
 parameter_list|()
 function_decl|;
+comment|/**      * Return configuration's String value.      *        * @return      */
 specifier|public
 name|String
 name|getValue
 parameter_list|()
 function_decl|;
+comment|/**      * Return element associated with configuration.      *        * @return      */
 specifier|public
 name|ElementAtExist
 name|getElement
 parameter_list|()
 function_decl|;
+comment|/**      * Perform check for changers.      *       * @param document      */
 specifier|public
 name|void
 name|checkForUpdates
@@ -255,6 +237,7 @@ name|ElementAtExist
 name|document
 parameter_list|)
 function_decl|;
+comment|/**      * Save configuration.      *       * @throws PermissionDeniedException      * @throws ConfigurationException      */
 specifier|public
 name|void
 name|save
@@ -264,6 +247,7 @@ name|PermissionDeniedException
 throws|,
 name|ConfigurationException
 function_decl|;
+comment|/**      * Save configuration.      *       * @param broker      * @throws PermissionDeniedException      * @throws ConfigurationException      */
 specifier|public
 name|void
 name|save
