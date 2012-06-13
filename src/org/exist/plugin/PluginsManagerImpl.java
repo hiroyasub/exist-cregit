@@ -545,14 +545,24 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//load defined at configuration
-for|for
-control|(
+comment|//UNDERSTAND: call save?
+block|}
+specifier|public
+name|String
+name|version
+parameter_list|()
+block|{
+return|return
+name|version
+return|;
+block|}
+specifier|public
+name|void
+name|addPlugin
+parameter_list|(
 name|String
 name|className
-range|:
-name|runPlugins
-control|)
+parameter_list|)
 block|{
 comment|//check if already run
 if|if
@@ -564,7 +574,7 @@ argument_list|(
 name|className
 argument_list|)
 condition|)
-continue|continue;
+return|return;
 try|try
 block|{
 name|Class
@@ -629,6 +639,13 @@ argument_list|,
 name|plgn
 argument_list|)
 expr_stmt|;
+name|runPlugins
+operator|.
+name|add
+argument_list|(
+name|className
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -642,16 +659,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-block|}
-specifier|public
-name|String
-name|version
-parameter_list|()
-block|{
-return|return
-name|version
-return|;
 block|}
 specifier|public
 name|void
