@@ -546,6 +546,12 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//UNDERSTAND: call save?
+comment|//Temporary for testing
+name|addPlugin
+argument_list|(
+literal|"org.exist.storage.md.Plugin"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|String
@@ -653,11 +659,7 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//e.printStackTrace();
 block|}
 block|}
 specifier|public

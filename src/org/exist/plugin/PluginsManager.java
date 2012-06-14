@@ -36,6 +36,14 @@ name|Database
 name|getDatabase
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|addPlugin
+parameter_list|(
+name|String
+name|className
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
