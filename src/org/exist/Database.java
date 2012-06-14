@@ -185,6 +185,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|NotificationService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|ProcessMonitor
 import|;
 end_import
@@ -381,6 +393,11 @@ argument_list|>
 name|getDocumentTriggers
 parameter_list|()
 function_decl|;
+specifier|public
+name|DocumentTrigger
+name|getDocumentTrigger
+parameter_list|()
+function_decl|;
 comment|/** 	 * Master Collection triggers. 	 *   	 * @return 	 */
 specifier|public
 name|Collection
@@ -391,6 +408,11 @@ name|getCollectionTriggers
 parameter_list|()
 function_decl|;
 specifier|public
+name|CollectionTrigger
+name|getCollectionTrigger
+parameter_list|()
+function_decl|;
+specifier|public
 name|ProcessMonitor
 name|getProcessMonitor
 parameter_list|()
@@ -398,6 +420,11 @@ function_decl|;
 specifier|public
 name|boolean
 name|isReadOnly
+parameter_list|()
+function_decl|;
+specifier|public
+name|NotificationService
+name|getNotificationService
 parameter_list|()
 function_decl|;
 block|}
