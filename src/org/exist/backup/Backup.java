@@ -2325,7 +2325,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|currentPerms
+name|perms
+index|[
+name|i
+index|]
 operator|instanceof
 name|ACLPermission
 condition|)
@@ -2756,7 +2759,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|public
+specifier|static
 name|void
 name|writeUnixStylePermissionAttributes
 parameter_list|(
@@ -2839,7 +2843,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|public
+specifier|static
 name|void
 name|writeACLPermission
 parameter_list|(
