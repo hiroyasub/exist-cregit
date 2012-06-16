@@ -971,6 +971,10 @@ comment|// check cardinality if expected cardinality is not zero or more
 name|boolean
 name|cardinalityMatches
 init|=
+name|expr
+operator|instanceof
+name|VariableReference
+operator|||
 name|type
 operator|.
 name|getCardinality
