@@ -396,7 +396,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The flag on whether the cookie is to be secure (eg. only transferred using HTTPS)"
+literal|"The flag for whether the cookie is to be secure (i.e., only transferred using HTTPS)"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -418,7 +418,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The flag on whether the cookie is to be secure (eg. only transferred using HTTPS)"
+literal|"The cookie domain"
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -440,7 +440,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The flag on whether the cookie is to be secure (eg. only transferred using HTTPS)"
+literal|"The cookie path"
 argument_list|)
 decl_stmt|;
 specifier|public
