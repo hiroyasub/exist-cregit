@@ -145,7 +145,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"eXist-1.5"
+literal|"eXist-2.0"
 decl_stmt|;
 specifier|private
 specifier|final

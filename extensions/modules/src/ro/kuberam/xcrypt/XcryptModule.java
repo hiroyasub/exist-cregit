@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Java Cryptographic Extension  *  Copyright (C) 2010 Claudius Teodorescu at http://kuberam.ro  *    *  Released under LGPL License - http://gnu.org/licenses/lgpl.html.  *    */
+comment|/*  *  eXist Java Cryptographic Extension  *  Copyright (C) 2010 Claudius Teodorescu at http://kuberam.ro  *    *  Released under LGPL License - http://gnu.org/licenses/lgpl.html.  *    *  * $Id$  */
 end_comment
 
 begin_package
@@ -130,7 +130,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"eXist-1.5"
+literal|"eXist-2.0"
 decl_stmt|;
 specifier|public
 specifier|final

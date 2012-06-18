@@ -151,7 +151,7 @@ specifier|static
 name|String
 name|RELEASED_IN_VERSION
 init|=
-literal|"eXist-1.5 (spymemcached in trunk)"
+literal|"eXist-2.0 (spymemcached-based)"
 decl_stmt|;
 specifier|private
 specifier|static
