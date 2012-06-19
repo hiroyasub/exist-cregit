@@ -300,6 +300,8 @@ literal|"/"
 operator|+
 name|TEMP_COLLECTION_NAME
 decl_stmt|;
+annotation|@
+name|Deprecated
 comment|/** '/db/system/config' collection name */
 specifier|public
 specifier|final
@@ -310,6 +312,18 @@ init|=
 name|SYSTEM_COLLECTION
 operator|+
 literal|"/config"
+decl_stmt|;
+comment|/** '/db' collection **/
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|DB
+init|=
+name|create
+argument_list|(
+name|ROOT_COLLECTION
+argument_list|)
 decl_stmt|;
 specifier|public
 specifier|final
@@ -331,6 +345,18 @@ init|=
 name|create
 argument_list|(
 name|ROOT_COLLECTION_NAME
+argument_list|)
+decl_stmt|;
+comment|/** '/db/system' **/
+specifier|public
+specifier|final
+specifier|static
+name|XmldbURI
+name|SYSTEM
+init|=
+name|create
+argument_list|(
+name|SYSTEM_COLLECTION
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -355,22 +381,6 @@ init|=
 name|create
 argument_list|(
 name|CONFIG_COLLECTION
-argument_list|)
-decl_stmt|;
-comment|//TODO : create using resolve()
-specifier|public
-specifier|final
-specifier|static
-name|XmldbURI
-name|ROOT_COLLECTION_CONFIG_URI
-init|=
-name|create
-argument_list|(
-name|CONFIG_COLLECTION
-operator|+
-literal|"/"
-operator|+
-name|ROOT_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
 specifier|public
