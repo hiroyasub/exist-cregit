@@ -31,6 +31,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -938,6 +948,25 @@ argument_list|,
 name|VALUE1
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|" * "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|ds
+operator|.
+name|toArray
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|1
@@ -1998,20 +2027,21 @@ name|broker
 argument_list|)
 expr_stmt|;
 name|Collection
-name|root
+name|parent
 init|=
 name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|XmldbURI
+name|col3uri
 operator|.
-name|ROOT_COLLECTION_URI
+name|removeLastSegment
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-name|root
+name|parent
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -2021,9 +2051,7 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|TestConstants
-operator|.
-name|TEST_COLLECTION_URI
+name|col1uri
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2084,7 +2112,7 @@ name|txn
 argument_list|,
 name|col
 argument_list|,
-name|root
+name|parent
 argument_list|,
 name|col3uri
 operator|.
@@ -2237,9 +2265,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|TestConstants
-operator|.
-name|TEST_COLLECTION_URI
+name|col1uri
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2981,6 +3007,9 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|clean
+argument_list|()
+expr_stmt|;
 name|txnManager
 operator|=
 name|pool
@@ -3023,9 +3052,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|TestConstants
-operator|.
-name|TEST_COLLECTION_URI
+name|col1uri
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3051,9 +3078,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|TestConstants
-operator|.
-name|TEST_COLLECTION_URI2
+name|col2uri
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3413,9 +3438,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|TestConstants
-operator|.
-name|TEST_COLLECTION_URI
+name|col1uri
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3432,6 +3455,9 @@ argument_list|,
 name|col
 argument_list|)
 expr_stmt|;
+comment|//            col = broker.getOrCreateCollection(txn, col2uri);
+comment|//            assertNotNull(col);
+comment|//        	broker.removeCollection(txn, col);
 name|col
 operator|=
 name|broker
@@ -3440,7 +3466,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|col2uri
+name|col3uri
 argument_list|)
 expr_stmt|;
 name|assertNotNull

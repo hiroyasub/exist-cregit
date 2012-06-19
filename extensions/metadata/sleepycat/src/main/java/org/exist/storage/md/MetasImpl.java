@@ -172,7 +172,6 @@ specifier|protected
 name|String
 name|uri
 decl_stmt|;
-comment|//	protected byte rType = 0;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -356,7 +355,6 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
-comment|//		rType = doc.getResourceType();
 block|}
 specifier|public
 name|EntityCursor
