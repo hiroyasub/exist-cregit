@@ -892,153 +892,40 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|v
-argument_list|)
-expr_stmt|;
-comment|//this possible a bug, but NPE should be avoided (TODO: write lock required)
-if|if
-condition|(
-name|addIfmissing
-operator|&&
-name|v
-operator|==
-literal|null
-condition|)
-block|{
-comment|//check that document exist
-name|BrokerPool
-name|pool
-init|=
-literal|null
-decl_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|pool
-operator|=
-name|BrokerPool
-operator|.
-name|getInstance
-argument_list|()
-expr_stmt|;
-name|broker
-operator|=
-name|pool
-operator|.
-name|get
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-name|Collection
-name|col
-init|=
-name|broker
-operator|.
-name|getCollection
-argument_list|(
-name|uri
-operator|.
-name|removeLastSegment
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|col
-operator|!=
-literal|null
-condition|)
-block|{
-name|DocumentImpl
-name|_doc
-init|=
-name|col
-operator|.
-name|getDocument
-argument_list|(
-name|broker
-argument_list|,
-name|uri
-operator|.
-name|lastSegment
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|_doc
-operator|!=
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"metas for document "
-operator|+
-name|uri
-operator|+
-literal|" get lost!"
-argument_list|)
-expr_stmt|;
-return|return
-name|_addMetas
-argument_list|(
-name|_doc
-argument_list|)
-return|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|pool
-operator|!=
-literal|null
-condition|)
-name|pool
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
+comment|//			System.out.println(v);
+comment|//
+comment|//
+comment|//			//this possible a bug, but NPE should be avoided (TODO: write lock required)
+comment|//			if (addIfmissing&& v == null) {
+comment|//
+comment|//				//check that document exist
+comment|//				BrokerPool pool = null;
+comment|//				DBBroker broker = null;
+comment|//				try {
+comment|//					pool = BrokerPool.getInstance();
+comment|//					broker = pool.get(null);
+comment|//
+comment|//					Collection col = broker.getCollection(uri.removeLastSegment());
+comment|//					if (col != null) {
+comment|//						DocumentImpl _doc = col.getDocument(broker, uri.lastSegment());
+comment|//
+comment|//						if (_doc != null) {
+comment|//							LOG.error("metas for document "+uri+" get lost!");
+comment|//							return _addMetas(_doc);
+comment|//						}
+comment|//
+comment|//					}
+comment|//				} catch (Exception e) {
+comment|//					LOG.error(e);
+comment|//					return null;
+comment|//
+comment|//				} finally {
+comment|//					if (pool != null)
+comment|//						pool.release(broker);
+comment|//				}
+comment|//
+comment|//				return null;
+comment|//			}
 return|return
 name|v
 return|;
