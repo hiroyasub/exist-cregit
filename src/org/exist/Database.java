@@ -137,6 +137,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|AuthenticationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -321,6 +333,19 @@ throws|throws
 name|EXistException
 function_decl|;
 comment|//TODO: remove 'throws EXistException'?
+specifier|public
+name|DBBroker
+name|authenticate
+parameter_list|(
+name|String
+name|username
+parameter_list|,
+name|Object
+name|credentials
+parameter_list|)
+throws|throws
+name|AuthenticationException
+function_decl|;
 comment|/* 	 * @Deprecated ? 	 * try { 	 * 	broker = database.authenticate(account, credentials); 	 *  	 * 	broker1 = database.get(); 	 * 	broker2 = database.get(); 	 * 	... 	 * 	brokerN = database.get(); 	 *  	 * } finally { 	 * 	database.release(broker); 	 * } 	 */
 specifier|public
 name|DBBroker
