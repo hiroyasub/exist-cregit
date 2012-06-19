@@ -27390,6 +27390,15 @@ name|path
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 name|collection
 operator|.
 name|setTriggersEnabled

@@ -2402,6 +2402,19 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
+specifier|public
+name|boolean
+name|setTriggersEnabled
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 block|}
 end_interface
 
