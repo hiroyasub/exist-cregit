@@ -782,6 +782,18 @@ name|Realm
 argument_list|>
 argument_list|()
 decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsElement
+argument_list|(
+literal|"events"
+argument_list|)
+comment|//@ConfigurationFieldClassMask("org.exist.security.internal.SMEvents")
+specifier|private
+name|SMEvents
+name|events
+init|=
+literal|null
+decl_stmt|;
 specifier|private
 name|Collection
 name|collection
@@ -2113,7 +2125,6 @@ name|subject
 operator|==
 literal|null
 condition|)
-block|{
 throw|throw
 operator|new
 name|AuthenticationException
@@ -2129,7 +2140,19 @@ operator|+
 literal|"] not found"
 argument_list|)
 throw|;
-block|}
+if|if
+condition|(
+name|events
+operator|!=
+literal|null
+condition|)
+name|events
+operator|.
+name|authenticated
+argument_list|(
+name|subject
+argument_list|)
+expr_stmt|;
 comment|//TODO: validate session
 return|return
 name|subject
@@ -2180,6 +2203,19 @@ operator|+
 name|subject
 operator|+
 literal|"'."
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|events
+operator|!=
+literal|null
+condition|)
+name|events
+operator|.
+name|authenticated
+argument_list|(
+name|subject
 argument_list|)
 expr_stmt|;
 return|return
