@@ -97,17 +97,6 @@ name|UserDefinedFunction
 name|function
 parameter_list|)
 block|{
-if|if
-condition|(
-name|function
-operator|.
-name|getCaller
-argument_list|()
-operator|.
-name|isRecursive
-argument_list|()
-condition|)
-return|return;
 name|function
 operator|.
 name|getFunctionBody
