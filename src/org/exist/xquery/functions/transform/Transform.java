@@ -2723,6 +2723,14 @@ operator|.
 name|getDocumentURI
 argument_list|()
 decl_stmt|;
+comment|/* 						 * This must be checked because in the event the stylesheet is  						 * an in-memory document, it will cause an NPE 						 */
+if|if
+condition|(
+name|uri
+operator|!=
+literal|null
+condition|)
+block|{
 name|uri
 operator|=
 name|uri
@@ -2750,6 +2758,7 @@ name|uri
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|templates
 operator|=
@@ -2784,6 +2793,14 @@ operator|.
 name|getDocumentURI
 argument_list|()
 decl_stmt|;
+comment|/* 					 * This must be checked because in the event the stylesheet is  					 * an in-memory document, it will cause an NPE 					 */
+if|if
+condition|(
+name|uri
+operator|!=
+literal|null
+condition|)
+block|{
 name|uri
 operator|=
 name|uri
@@ -2811,6 +2828,7 @@ name|uri
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|String
 name|stylesheet
