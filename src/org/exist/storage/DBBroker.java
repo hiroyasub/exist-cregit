@@ -1743,15 +1743,6 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 */
-specifier|public
-specifier|abstract
-name|void
-name|cleanUpTempResources
-parameter_list|()
-throws|throws
-name|PermissionDeniedException
-function_decl|;
 comment|/** 	 * Clean up temporary resources. Called by the sync daemon. 	 *  	 * @param forceRemoval Should temporary resources be forcefully removed 	 */
 specifier|public
 specifier|abstract
