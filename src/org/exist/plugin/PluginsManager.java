@@ -23,6 +23,18 @@ name|Database
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|BackupHandler
+import|;
+end_import
+
 begin_comment
 comment|/**  * Plugins manager interface provide way to access database environment.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -43,6 +55,11 @@ parameter_list|(
 name|String
 name|className
 parameter_list|)
+function_decl|;
+specifier|public
+name|BackupHandler
+name|getBackupHandler
+parameter_list|()
 function_decl|;
 block|}
 end_interface

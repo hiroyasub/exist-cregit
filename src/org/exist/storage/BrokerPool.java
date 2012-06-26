@@ -7123,7 +7123,7 @@ block|}
 block|}
 specifier|public
 name|PluginsManager
-name|getPluginManager
+name|getPluginsManager
 parameter_list|()
 block|{
 return|return

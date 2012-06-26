@@ -2458,7 +2458,7 @@ argument_list|)
 expr_stmt|;
 name|pool
 operator|.
-name|getPluginManager
+name|getPluginsManager
 argument_list|()
 operator|.
 name|addPlugin
@@ -2979,7 +2979,7 @@ argument_list|)
 expr_stmt|;
 name|pool
 operator|.
-name|getPluginManager
+name|getPluginsManager
 argument_list|()
 operator|.
 name|addPlugin
