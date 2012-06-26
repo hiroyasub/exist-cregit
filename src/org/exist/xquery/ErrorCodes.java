@@ -1894,6 +1894,33 @@ argument_list|,
 literal|"It is a an error if a parameter value is invalid for the defined domain."
 argument_list|)
 decl_stmt|;
+comment|/* XQuery 3.0 functions and operators */
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOFD1340
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOFD1340"
+argument_list|,
+literal|"Invalid date/time formatting picture string"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOFD1350
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOFD1350"
+argument_list|,
+literal|" Invalid date/time formatting component"
+argument_list|)
+decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
