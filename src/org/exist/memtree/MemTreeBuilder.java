@@ -379,7 +379,7 @@ argument_list|,
 name|p
 argument_list|)
 else|:
-literal|""
+literal|null
 expr_stmt|;
 block|}
 name|QName
