@@ -419,6 +419,10 @@ name|println
 argument_list|(
 literal|"afterMoveDocument "
 operator|+
+name|oldUri
+operator|+
+literal|" to "
+operator|+
 name|document
 operator|.
 name|getURI

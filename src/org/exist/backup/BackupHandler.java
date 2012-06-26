@@ -59,7 +59,21 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|Attributes
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|helpers
+operator|.
+name|AttributesImpl
 import|;
 end_import
 
@@ -79,7 +93,7 @@ parameter_list|(
 name|Collection
 name|colection
 parameter_list|,
-name|Attributes
+name|AttributesImpl
 name|attrs
 parameter_list|)
 function_decl|;
@@ -93,6 +107,8 @@ parameter_list|,
 name|SAXSerializer
 name|serializer
 parameter_list|)
+throws|throws
+name|SAXException
 function_decl|;
 specifier|public
 name|void
@@ -101,7 +117,7 @@ parameter_list|(
 name|DocumentAtExist
 name|document
 parameter_list|,
-name|Attributes
+name|AttributesImpl
 name|attrs
 parameter_list|)
 function_decl|;
@@ -115,6 +131,8 @@ parameter_list|,
 name|SAXSerializer
 name|serializer
 parameter_list|)
+throws|throws
+name|SAXException
 function_decl|;
 block|}
 end_interface

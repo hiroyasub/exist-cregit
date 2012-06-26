@@ -213,7 +213,21 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|Attributes
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|helpers
+operator|.
+name|AttributesImpl
 import|;
 end_import
 
@@ -1100,7 +1114,7 @@ parameter_list|(
 name|Collection
 name|colection
 parameter_list|,
-name|Attributes
+name|AttributesImpl
 name|attrs
 parameter_list|)
 block|{
@@ -1151,6 +1165,8 @@ parameter_list|,
 name|SAXSerializer
 name|serializer
 parameter_list|)
+throws|throws
+name|SAXException
 block|{
 for|for
 control|(
@@ -1196,7 +1212,7 @@ parameter_list|(
 name|DocumentAtExist
 name|document
 parameter_list|,
-name|Attributes
+name|AttributesImpl
 name|attrs
 parameter_list|)
 block|{
@@ -1247,6 +1263,8 @@ parameter_list|,
 name|SAXSerializer
 name|serializer
 parameter_list|)
+throws|throws
+name|SAXException
 block|{
 for|for
 control|(
