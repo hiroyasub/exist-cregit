@@ -2258,8 +2258,6 @@ name|Calendar
 operator|.
 name|DAY_OF_WEEK
 argument_list|)
-operator|-
-literal|1
 return|;
 block|}
 specifier|public

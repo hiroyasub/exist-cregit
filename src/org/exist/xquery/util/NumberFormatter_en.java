@@ -90,6 +90,8 @@ return|return
 name|MONTHS
 index|[
 name|month
+operator|-
+literal|1
 index|]
 return|;
 block|}
@@ -107,6 +109,8 @@ return|return
 name|DAYS
 index|[
 name|day
+operator|-
+literal|1
 index|]
 return|;
 block|}
