@@ -62,6 +62,7 @@ name|EXACTLY_ONE
 init|=
 name|ONE
 decl_stmt|;
+comment|/** indicator '+' **/
 specifier|public
 specifier|final
 specifier|static
@@ -72,6 +73,7 @@ name|ONE
 operator||
 name|MANY
 decl_stmt|;
+comment|/** indicator '*' **/
 specifier|public
 specifier|final
 specifier|static
@@ -84,6 +86,7 @@ name|ONE
 operator||
 name|MANY
 decl_stmt|;
+comment|/** indicator '?' **/
 specifier|public
 specifier|final
 specifier|static
