@@ -240,6 +240,8 @@ argument_list|)
 throw|;
 block|}
 comment|//mark the start of the stream so that we can re-read again as required
+name|this
+operator|.
 name|is
 operator|.
 name|mark
