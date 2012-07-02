@@ -146,6 +146,11 @@ name|Database
 name|getDatabase
 parameter_list|()
 function_decl|;
+specifier|public
+name|Object
+name|getUUID
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

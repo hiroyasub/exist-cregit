@@ -7652,9 +7652,19 @@ name|int
 name|getDocId
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|0
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|getUUID
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}
