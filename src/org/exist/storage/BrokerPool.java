@@ -3387,6 +3387,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|//create the plugin manager
+name|pluginManager
+operator|=
+operator|new
+name|PluginsManagerImpl
+argument_list|(
+name|this
+argument_list|,
+name|broker
+argument_list|)
+expr_stmt|;
 comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
@@ -3434,6 +3445,14 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+comment|//wake-up the plugins manager
+name|pluginManager
+operator|.
+name|startUp
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
 comment|//wake-up the security manager
 name|securityManager
 operator|.
@@ -3653,17 +3672,6 @@ argument_list|(
 name|instanceName
 argument_list|,
 name|this
-argument_list|)
-expr_stmt|;
-comment|//create the plugin manager
-name|pluginManager
-operator|=
-operator|new
-name|PluginsManagerImpl
-argument_list|(
-name|this
-argument_list|,
-name|broker
 argument_list|)
 expr_stmt|;
 block|}
