@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentImpl
+name|DocumentAtExist
 import|;
 end_import
 
@@ -185,7 +185,7 @@ block|}
 specifier|protected
 name|MetasImpl
 parameter_list|(
-name|DocumentImpl
+name|DocumentAtExist
 name|doc
 parameter_list|)
 block|{
@@ -241,6 +241,29 @@ name|uri
 operator|.
 name|toString
 argument_list|()
+expr_stmt|;
+block|}
+specifier|protected
+name|MetasImpl
+parameter_list|(
+name|String
+name|uri
+parameter_list|,
+name|String
+name|uuid
+parameter_list|)
+block|{
+name|this
+operator|.
+name|uri
+operator|=
+name|uri
+expr_stmt|;
+name|this
+operator|.
+name|uuid
+operator|=
+name|uuid
 expr_stmt|;
 block|}
 specifier|public
@@ -341,7 +364,7 @@ specifier|protected
 name|void
 name|update
 parameter_list|(
-name|DocumentImpl
+name|DocumentAtExist
 name|doc
 parameter_list|)
 block|{
