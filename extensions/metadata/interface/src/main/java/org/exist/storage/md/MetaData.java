@@ -55,6 +55,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|DocumentAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -170,7 +182,7 @@ specifier|abstract
 name|Metas
 name|addMetas
 parameter_list|(
-name|DocumentImpl
+name|DocumentAtExist
 name|doc
 parameter_list|)
 function_decl|;

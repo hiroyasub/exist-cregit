@@ -35,6 +35,18 @@ name|BackupHandler
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|RestoreHandler
+import|;
+end_import
+
 begin_comment
 comment|/**  * Plugins manager interface provide way to access database environment.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -59,6 +71,11 @@ function_decl|;
 specifier|public
 name|BackupHandler
 name|getBackupHandler
+parameter_list|()
+function_decl|;
+specifier|public
+name|RestoreHandler
+name|getRestoreHandler
 parameter_list|()
 function_decl|;
 block|}
