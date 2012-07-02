@@ -311,6 +311,7 @@ name|SYSTEM_COLLECTION
 operator|+
 literal|"/config"
 decl_stmt|;
+comment|/** /db/system/config **/
 specifier|public
 specifier|final
 specifier|static
@@ -325,20 +326,17 @@ name|CONFIG_COLLECTION
 argument_list|)
 decl_stmt|;
 comment|//TODO : create using resolve()
+comment|/** /db/system/config/db **/
 specifier|public
 specifier|final
 specifier|static
 name|XmldbURI
 name|ROOT_COLLECTION_CONFIG_URI
 init|=
-name|XmldbURI
+name|CONFIG_COLLECTION_URI
 operator|.
-name|create
+name|append
 argument_list|(
-name|CONFIG_COLLECTION
-operator|+
-literal|"/"
-operator|+
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_NAME
