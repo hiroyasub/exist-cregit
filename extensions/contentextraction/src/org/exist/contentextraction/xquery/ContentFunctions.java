@@ -1312,7 +1312,7 @@ name|paths
 decl_stmt|;
 specifier|private
 name|DocumentBuilderReceiver
-name|receiver
+name|docBuilderReceiver
 init|=
 literal|null
 decl_stmt|;
@@ -1496,6 +1496,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+comment|// if current xpath is one of required paths
 if|if
 condition|(
 name|matches
@@ -1503,7 +1504,7 @@ argument_list|(
 name|currentPath
 argument_list|)
 operator|&&
-name|receiver
+name|docBuilderReceiver
 operator|==
 literal|null
 condition|)
@@ -1518,30 +1519,31 @@ name|pushDocumentContext
 argument_list|()
 expr_stmt|;
 name|MemTreeBuilder
-name|builder
+name|memBuilder
 init|=
 name|context
 operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
-name|receiver
+name|docBuilderReceiver
 operator|=
 operator|new
 name|DocumentBuilderReceiver
 argument_list|(
-name|builder
+name|memBuilder
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Create element in result
 if|if
 condition|(
-name|receiver
+name|docBuilderReceiver
 operator|!=
 literal|null
 condition|)
 block|{
-name|receiver
+name|docBuilderReceiver
 operator|.
 name|startElement
 argument_list|(
@@ -1566,18 +1568,20 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|receiver
+name|docBuilderReceiver
 operator|!=
 literal|null
 condition|)
 block|{
-name|receiver
+comment|// Add end element
+name|docBuilderReceiver
 operator|.
 name|endElement
 argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+comment|// If path was to be matched path
 if|if
 condition|(
 name|currentPath
@@ -1588,14 +1592,16 @@ name|lastPath
 argument_list|)
 condition|)
 block|{
+comment|// Retrieve result in mem document
 name|Document
 name|doc
 init|=
-name|receiver
+name|docBuilderReceiver
 operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+comment|// Get the root
 name|NodeImpl
 name|root
 init|=
@@ -1607,7 +1613,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
-name|receiver
+name|docBuilderReceiver
 operator|=
 literal|null
 expr_stmt|;
@@ -1620,6 +1626,7 @@ operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+comment|// Construct parameters
 name|Sequence
 index|[]
 name|params
@@ -1653,6 +1660,7 @@ name|prevReturnData
 expr_stmt|;
 try|try
 block|{
+comment|// Send data to callback function
 name|Sequence
 name|ret
 init|=
@@ -1700,6 +1708,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// reduce xpath
 name|currentPath
 operator|.
 name|removeLastComponent
@@ -1722,12 +1731,12 @@ comment|// DW: receiver is null for subsequent<p> elements.
 comment|// Need to figure out about the design of class
 if|if
 condition|(
-name|receiver
+name|docBuilderReceiver
 operator|!=
 literal|null
 condition|)
 block|{
-name|receiver
+name|docBuilderReceiver
 operator|.
 name|characters
 argument_list|(
@@ -1753,12 +1762,12 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|receiver
+name|docBuilderReceiver
 operator|!=
 literal|null
 condition|)
 block|{
-name|receiver
+name|docBuilderReceiver
 operator|.
 name|attribute
 argument_list|(
