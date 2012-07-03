@@ -1377,6 +1377,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**          *  Check if content of current (node) path should be retrieved.          *           * @param path Xpath to current node          *           * @return TRUE if path is in to-be-retrieved paths          */
 specifier|private
 name|boolean
 name|matches
@@ -1717,6 +1718,8 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|// DW: receiver is null for subsequent<p> elements.
+comment|// Need to figure out about the design of class
 if|if
 condition|(
 name|receiver
