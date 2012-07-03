@@ -174,7 +174,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|ParseContext
-name|context
+name|parseContext
 init|=
 operator|new
 name|ParseContext
@@ -184,7 +184,7 @@ specifier|public
 name|ContentExtraction
 parameter_list|()
 block|{
-name|context
+name|parseContext
 operator|.
 name|set
 argument_list|(
@@ -235,7 +235,7 @@ name|contentHandler
 argument_list|,
 name|metadata
 argument_list|,
-name|context
+name|parseContext
 argument_list|)
 expr_stmt|;
 block|}
@@ -333,7 +333,7 @@ argument_list|)
 argument_list|,
 name|metadata
 argument_list|,
-name|context
+name|parseContext
 argument_list|)
 expr_stmt|;
 block|}

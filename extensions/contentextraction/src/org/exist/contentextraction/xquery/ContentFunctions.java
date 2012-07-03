@@ -631,6 +631,7 @@ literal|"stream-content"
 argument_list|)
 condition|)
 block|{
+comment|/* binary content */
 name|BinaryValue
 name|binary
 init|=
@@ -647,6 +648,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/* callback function */
 name|FunctionReference
 name|ref
 init|=
