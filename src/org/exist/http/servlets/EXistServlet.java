@@ -1760,12 +1760,9 @@ name|doDelete
 argument_list|(
 name|broker
 argument_list|,
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
 name|path
-argument_list|)
+argument_list|,
+name|request
 argument_list|,
 name|response
 argument_list|)
