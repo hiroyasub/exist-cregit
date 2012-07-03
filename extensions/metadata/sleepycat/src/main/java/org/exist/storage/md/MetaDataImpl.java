@@ -1186,8 +1186,8 @@ name|m
 return|;
 block|}
 specifier|protected
-name|MetaImpl
-name|addMeta
+name|Meta
+name|_addMeta
 parameter_list|(
 name|Metas
 name|doc

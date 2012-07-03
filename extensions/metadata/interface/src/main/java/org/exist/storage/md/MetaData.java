@@ -186,7 +186,46 @@ name|DocumentAtExist
 name|doc
 parameter_list|)
 function_decl|;
-comment|//	public abstract Metas getMetas(DocumentImpl doc);
+comment|//low level
+specifier|protected
+specifier|abstract
+name|Meta
+name|_addMeta
+parameter_list|(
+name|Metas
+name|metas
+parameter_list|,
+name|String
+name|uuid
+parameter_list|,
+name|String
+name|key
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+function_decl|;
+specifier|protected
+specifier|abstract
+name|Metas
+name|_addMetas
+parameter_list|(
+name|String
+name|uri
+parameter_list|,
+name|String
+name|uuid
+parameter_list|)
+function_decl|;
+specifier|public
+specifier|abstract
+name|Metas
+name|getMetas
+parameter_list|(
+name|DocumentAtExist
+name|doc
+parameter_list|)
+function_decl|;
 specifier|public
 specifier|abstract
 name|Metas
@@ -196,7 +235,6 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-comment|//	public abstract void delMetas(DocumentImpl doc);
 specifier|public
 specifier|abstract
 name|void

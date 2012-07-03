@@ -416,7 +416,7 @@ name|MetaDataImpl
 operator|.
 name|_
 operator|.
-name|addMeta
+name|_addMeta
 argument_list|(
 name|this
 argument_list|,
