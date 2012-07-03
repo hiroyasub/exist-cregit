@@ -17,13 +17,11 @@ end_package
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|sleepycat
+name|util
 operator|.
-name|persist
-operator|.
-name|EntityCursor
+name|List
 import|;
 end_import
 
@@ -61,11 +59,11 @@ name|value
 parameter_list|)
 function_decl|;
 specifier|public
-name|EntityCursor
+name|List
 argument_list|<
-name|MetaImpl
+name|Meta
 argument_list|>
-name|keys
+name|metas
 parameter_list|()
 function_decl|;
 block|}

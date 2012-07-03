@@ -344,7 +344,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"beforeDeleteCollection "
+literal|"beforeMoveCollection "
 operator|+
 name|collection
 operator|.
@@ -384,9 +384,11 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|MetaDataImpl
+name|Plugin
 operator|.
 name|_
+operator|.
+name|md
 operator|.
 name|moveMetas
 argument_list|(
@@ -517,9 +519,11 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|MetaDataImpl
+name|Plugin
 operator|.
 name|_
+operator|.
+name|md
 operator|.
 name|delMetas
 argument_list|(
