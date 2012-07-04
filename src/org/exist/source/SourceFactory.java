@@ -273,6 +273,17 @@ argument_list|,
 name|location
 argument_list|)
 decl_stmt|;
+name|File
+name|f4
+init|=
+operator|new
+name|File
+argument_list|(
+literal|"/"
+operator|+
+name|location
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|f2
@@ -297,6 +308,19 @@ block|{
 name|f
 operator|=
 name|f3
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|f4
+operator|.
+name|canRead
+argument_list|()
+condition|)
+block|{
+name|f
+operator|=
+name|f4
 expr_stmt|;
 block|}
 else|else
