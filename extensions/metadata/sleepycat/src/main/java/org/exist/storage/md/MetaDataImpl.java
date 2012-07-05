@@ -1532,21 +1532,6 @@ argument_list|(
 name|oldUri
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"moveMetas "
-operator|+
-name|oldUri
-operator|+
-literal|" to "
-operator|+
-name|newUri
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|ms
