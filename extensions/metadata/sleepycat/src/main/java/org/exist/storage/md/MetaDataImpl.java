@@ -849,19 +849,6 @@ operator|+
 literal|" "
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getMetas "
-operator|+
-name|uri
-operator|+
-literal|" "
-argument_list|)
-expr_stmt|;
 name|EntityJoin
 argument_list|<
 name|String
