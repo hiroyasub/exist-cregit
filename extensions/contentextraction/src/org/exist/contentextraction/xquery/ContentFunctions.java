@@ -1299,7 +1299,7 @@ name|ref
 decl_stmt|;
 specifier|private
 name|NodePath
-name|currentPath
+name|currentElementPath
 init|=
 operator|new
 name|NodePath
@@ -1318,7 +1318,7 @@ literal|null
 decl_stmt|;
 specifier|private
 name|NodePath
-name|lastPath
+name|startElementPath
 init|=
 literal|null
 decl_stmt|;
@@ -1489,19 +1489,20 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|currentPath
+name|currentElementPath
 operator|.
 name|addComponent
 argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-comment|// if current xpath is one of required paths
+comment|// if current path is one of required paths
+comment|// and there is a docReceiver (=data must be collected)
 if|if
 condition|(
 name|matches
 argument_list|(
-name|currentPath
+name|currentElementPath
 argument_list|)
 operator|&&
 name|docBuilderReceiver
@@ -1509,9 +1510,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|lastPath
+name|startElementPath
 operator|=
-name|currentPath
+name|currentElementPath
 expr_stmt|;
 name|context
 operator|.
@@ -1535,7 +1536,7 @@ name|memBuilder
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Create element in result
+comment|// Add element to result
 if|if
 condition|(
 name|docBuilderReceiver
@@ -1566,6 +1567,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|// not null means data must be collecterd
 if|if
 condition|(
 name|docBuilderReceiver
@@ -1584,15 +1586,15 @@ expr_stmt|;
 comment|// If path was to be matched path
 if|if
 condition|(
-name|currentPath
+name|currentElementPath
 operator|.
 name|match
 argument_list|(
-name|lastPath
+name|startElementPath
 argument_list|)
 condition|)
 block|{
-comment|// Retrieve result in mem document
+comment|// Retrieve result as document
 name|Document
 name|doc
 init|=
@@ -1617,7 +1619,7 @@ name|docBuilderReceiver
 operator|=
 literal|null
 expr_stmt|;
-name|lastPath
+name|startElementPath
 operator|=
 literal|null
 expr_stmt|;
@@ -1708,8 +1710,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// reduce xpath
-name|currentPath
+comment|// reduce path
+comment|// DW: should be earlier? currentElementPath is one level wrong
+name|currentElementPath
 operator|.
 name|removeLastComponent
 argument_list|()
