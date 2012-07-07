@@ -132,7 +132,7 @@ name|ErrorCodes
 operator|.
 name|EXXQDY0003
 argument_list|,
-literal|"switch expression is not available before XQuery 3.0"
+literal|"string concatenation operator is not available before XQuery 3.0"
 argument_list|)
 throw|;
 block|}
@@ -150,12 +150,13 @@ specifier|public
 name|void
 name|add
 parameter_list|(
-name|Expression
-name|expr
+name|PathExpr
+name|pathExpr
 parameter_list|)
 block|{
+name|Expression
 name|expr
-operator|=
+init|=
 operator|new
 name|DynamicCardinalityCheck
 argument_list|(
@@ -165,7 +166,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-name|expr
+name|pathExpr
 argument_list|,
 operator|new
 name|Error
@@ -175,7 +176,7 @@ operator|.
 name|FUNC_PARAM_CARDINALITY
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 operator|!
