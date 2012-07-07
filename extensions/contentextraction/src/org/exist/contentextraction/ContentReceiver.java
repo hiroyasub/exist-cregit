@@ -256,6 +256,7 @@ specifier|private
 name|XQueryContext
 name|context
 decl_stmt|;
+comment|/**      *  Receiver constructor      *       * @param context The XQuery context      * @param paths   Paths that must be extracted from the TIKA XHTML document      * @param ref     Reference to callback function      * @param userData Additional user supplied datas      */
 specifier|public
 name|ContentReceiver
 parameter_list|(
@@ -298,6 +299,7 @@ operator|=
 name|userData
 expr_stmt|;
 block|}
+comment|/**      *  Get the result of the content extraction      *       * @return       */
 specifier|public
 name|Sequence
 name|getResult
@@ -810,6 +812,7 @@ name|node
 parameter_list|)
 block|{
 block|}
+comment|/**      * Does not return anything.      *       * @return NULL      */
 annotation|@
 name|Override
 specifier|public
