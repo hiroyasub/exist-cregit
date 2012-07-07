@@ -176,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dulip Withanage<dulip.withanage@gmail.com>  * @version 1.0  */
+comment|/**  * @author Dulip Withanage<dulip.withanage@gmail.com>  * @author Dannes Wessels<dannes@exist-db.org>  *   * @version 1.1  */
 end_comment
 
 begin_class
@@ -255,6 +255,12 @@ decl_stmt|;
 specifier|private
 name|XQueryContext
 name|context
+decl_stmt|;
+specifier|private
+name|boolean
+name|sendDataToCB
+init|=
+literal|false
 decl_stmt|;
 comment|/**      *  Receiver constructor      *       * @param context The XQuery context      * @param paths   Paths that must be extracted from the TIKA XHTML document      * @param ref     Reference to callback function      * @param userData Additional user supplied datas      */
 specifier|public
@@ -421,6 +427,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|// Calculate path to current element
 name|currentElementPath
 operator|.
 name|addComponent
@@ -428,29 +435,41 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
-comment|// if current path is one of required paths
-comment|// and there is a docReceiver (=data must be collected)
+comment|// Current path matches wanted path
 if|if
 condition|(
 name|matches
 argument_list|(
 name|currentElementPath
 argument_list|)
-operator|&&
-name|docBuilderReceiver
-operator|==
-literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|sendDataToCB
+condition|)
+block|{
+comment|// Data is already sent to callback, ignore
+block|}
+else|else
+block|{
+comment|// New element match, new data
+comment|// Save reference to current path
 name|startElementPath
 operator|=
+operator|new
+name|NodePath
+argument_list|(
 name|currentElementPath
+argument_list|)
 expr_stmt|;
+comment|// Store old fragment in stack
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+comment|// Create new receiver
 name|MemTreeBuilder
 name|memBuilder
 init|=
@@ -467,13 +486,16 @@ argument_list|(
 name|memBuilder
 argument_list|)
 expr_stmt|;
+comment|// Switch on retrievel
+name|sendDataToCB
+operator|=
+literal|true
+expr_stmt|;
 block|}
-comment|// Add element to result
+block|}
 if|if
 condition|(
-name|docBuilderReceiver
-operator|!=
-literal|null
+name|sendDataToCB
 condition|)
 block|{
 name|docBuilderReceiver
@@ -499,15 +521,12 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-comment|// not null means data must be collecterd
+comment|// Send end element to result
 if|if
 condition|(
-name|docBuilderReceiver
-operator|!=
-literal|null
+name|sendDataToCB
 condition|)
 block|{
-comment|// Add end element
 name|docBuilderReceiver
 operator|.
 name|endElement
@@ -515,9 +534,12 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If path was to be matched path
 if|if
 condition|(
+name|sendDataToCB
+operator|&&
 name|currentElementPath
 operator|.
 name|match
@@ -526,26 +548,27 @@ name|startElementPath
 argument_list|)
 condition|)
 block|{
+comment|// flush the collected data
 name|sendDataToCallback
 argument_list|()
 expr_stmt|;
+comment|// get back from stack
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+comment|// Switch off retrieval
+name|sendDataToCB
+operator|=
+literal|false
+expr_stmt|;
 name|docBuilderReceiver
 operator|=
 literal|null
 expr_stmt|;
-name|startElementPath
-operator|=
-literal|null
-expr_stmt|;
 block|}
-block|}
-comment|// reduce path
-comment|// DW: should be earlier? currentElementPath is one level wrong
+comment|// calculate new path
 name|currentElementPath
 operator|.
 name|removeLastComponent
@@ -564,13 +587,9 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-comment|// DW: receiver is null for subsequent<p> elements.
-comment|// Need to figure out about the design of class
 if|if
 condition|(
-name|docBuilderReceiver
-operator|!=
-literal|null
+name|sendDataToCB
 condition|)
 block|{
 name|docBuilderReceiver
@@ -599,9 +618,7 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|docBuilderReceiver
-operator|!=
-literal|null
+name|sendDataToCB
 condition|)
 block|{
 name|docBuilderReceiver
