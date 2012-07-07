@@ -109,6 +109,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|XSLT_XQUERY_SERIALIZATION_NS
+init|=
+literal|"http://www.w3.org/2010/xslt-xquery-serialization"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|W3C_XQUERY_XPATH_ERROR_NS
 init|=
 literal|"http://www.w3.org/2005/xqt-errors/"
