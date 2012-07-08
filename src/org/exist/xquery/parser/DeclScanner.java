@@ -763,6 +763,8 @@ literal|"single slash '/'"
 block|,
 literal|"double slash '//'"
 block|,
+literal|"BANG"
+block|,
 literal|"\"text\""
 block|,
 literal|"\"node\""
