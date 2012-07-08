@@ -1698,6 +1698,19 @@ argument_list|,
 literal|"Argument node does not have a typed value."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOTY0013
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOTY0013"
+argument_list|,
+literal|"The argument to fn:data() contains a function item."
+argument_list|)
+decl_stmt|;
 comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */
 specifier|public
 specifier|static
