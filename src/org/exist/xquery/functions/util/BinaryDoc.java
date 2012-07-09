@@ -23,6 +23,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -246,6 +256,20 @@ operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Base64BinaryDocumentFromFile
 import|;
 end_import
 
@@ -632,6 +656,7 @@ literal|"binary-doc"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|BinaryDocument
 name|bin
 init|=
@@ -640,32 +665,39 @@ name|BinaryDocument
 operator|)
 name|doc
 decl_stmt|;
-name|InputStream
-name|is
+comment|//InputStream is = context.getBroker().getBinaryResource(bin);
+specifier|final
+name|File
+name|f
 init|=
 name|context
 operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getBinaryResource
+name|getCollectionBinaryFileFsPath
 argument_list|(
 name|bin
+operator|.
+name|getURI
+argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/*                 long binaryLength = context.getBroker().getBinaryResourceSize(bin);                  byte[] data = new byte[(binaryLength> (long)Integer.MAX_VALUE)?Integer.MAX_VALUE:(int)binaryLength];                 is.read(data);                 is.close(); */
-name|Base64BinaryDocument
+specifier|final
+name|Base64BinaryDocumentFromFile
 name|b64doc
 init|=
-name|Base64BinaryDocument
+name|Base64BinaryDocumentFromFile
 operator|.
 name|getInstance
 argument_list|(
 name|context
 argument_list|,
-name|is
+name|f
 argument_list|)
 decl_stmt|;
+comment|/*                 long binaryLength = context.getBroker().getBinaryResourceSize(bin);                  byte[] data = new byte[(binaryLength> (long)Integer.MAX_VALUE)?Integer.MAX_VALUE:(int)binaryLength];                 is.read(data);                 is.close(); */
+comment|//Base64BinaryDocument b64doc = Base64BinaryDocument.getInstance(context, is);
 name|b64doc
 operator|.
 name|setUrl
@@ -742,37 +774,6 @@ literal|": permission denied to read resource"
 argument_list|)
 throw|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-name|path
-operator|+
-literal|": I/O error while reading resource"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|path
-operator|+
-literal|": I/O error while reading resource"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 finally|finally
 block|{
 if|if
@@ -781,6 +782,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -793,6 +795,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
