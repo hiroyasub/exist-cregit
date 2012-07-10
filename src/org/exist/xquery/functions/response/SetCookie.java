@@ -372,7 +372,7 @@ name|DURATION
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The xs:duration of the cookie"
 argument_list|)
