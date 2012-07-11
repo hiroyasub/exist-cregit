@@ -867,6 +867,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+name|receiver
+operator|.
+name|setCurrentNode
+argument_list|(
+name|node
+argument_list|)
+expr_stmt|;
 name|String
 name|defaultNS
 init|=
