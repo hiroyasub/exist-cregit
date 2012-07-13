@@ -52,15 +52,15 @@ name|LRUCache
 implements|implements
 name|Cache
 block|{
-specifier|private
+specifier|protected
 name|int
 name|max
 decl_stmt|;
-specifier|private
+specifier|protected
 name|SequencedLongHashMap
 name|map
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Accounting
 name|accounting
 decl_stmt|;
@@ -79,7 +79,7 @@ specifier|private
 name|String
 name|fileName
 decl_stmt|;
-specifier|private
+specifier|protected
 name|CacheManager
 name|cacheManager
 init|=
@@ -525,8 +525,7 @@ name|getFirstEntry
 argument_list|()
 return|;
 block|}
-specifier|private
-specifier|final
+specifier|protected
 name|void
 name|removeOne
 parameter_list|(
@@ -802,7 +801,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|protected
 name|void
 name|shrink
 parameter_list|(
