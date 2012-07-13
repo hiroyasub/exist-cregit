@@ -796,7 +796,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|protected
 name|void
 name|shrink
 parameter_list|(
