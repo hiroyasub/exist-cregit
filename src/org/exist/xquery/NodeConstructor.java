@@ -185,7 +185,24 @@ return|return
 name|in_docs
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+return|return
+name|Dependency
+operator|.
+name|CONTEXT_SET
+operator||
+name|Dependency
+operator|.
+name|CONTEXT_ITEM
+return|;
+block|}
+comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#returnsType()     */
 specifier|public
 name|int
 name|returnsType
