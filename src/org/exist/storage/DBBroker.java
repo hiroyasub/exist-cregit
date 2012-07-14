@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -1905,15 +1895,6 @@ name|readCollectionEntry
 parameter_list|(
 name|SubCollectionEntry
 name|entry
-parameter_list|)
-function_decl|;
-specifier|public
-specifier|abstract
-name|File
-name|getCollectionBinaryFileFsPath
-parameter_list|(
-name|XmldbURI
-name|uri
 parameter_list|)
 function_decl|;
 block|}
