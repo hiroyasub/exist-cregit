@@ -127,6 +127,13 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|POM_PROP
+init|=
+literal|"/META-INF/maven/com.ettrema/milton-api/pom.properties"
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -165,7 +172,7 @@ name|class
 operator|.
 name|getResourceAsStream
 argument_list|(
-literal|"/milton.properties"
+name|POM_PROP
 argument_list|)
 decl_stmt|;
 if|if
@@ -217,7 +224,7 @@ name|props
 operator|.
 name|getProperty
 argument_list|(
-literal|"milton.version"
+literal|"version"
 argument_list|)
 decl_stmt|;
 if|if
