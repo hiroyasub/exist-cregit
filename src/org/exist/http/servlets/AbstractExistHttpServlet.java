@@ -1245,8 +1245,23 @@ expr_stmt|;
 if|if
 condition|(
 name|principal
-operator|instanceof
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|XmldbPrincipal
+operator|.
+name|class
+operator|.
+name|isAssignableFrom
+argument_list|(
+name|principal
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
 condition|)
 block|{
 name|String
@@ -1335,6 +1350,7 @@ operator|)
 name|principal
 return|;
 block|}
+block|}
 comment|// Secondly try basic authentication
 name|String
 name|auth
@@ -1374,7 +1390,6 @@ argument_list|,
 name|response
 argument_list|)
 return|;
-comment|/*          * byte[] c = Base64.decode(auth.substring(6).getBytes()); String s =          * new String(c); int p = s.indexOf(':'); if (p ==          * Constants.STRING_NOT_FOUND) { return null; } String username =          * s.substring(0, p); String password = s.substring(p + 1);          *           * User user = pool.getSecurityManager().getUser(username); if (user ==          * null) return null; if (!user.validate(password)) return null; return          * user;          */
 block|}
 specifier|protected
 name|boolean
