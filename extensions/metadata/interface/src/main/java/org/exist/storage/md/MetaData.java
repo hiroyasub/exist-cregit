@@ -178,6 +178,15 @@ name|DocumentAtExist
 name|doc
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|Meta
+name|getMeta
+parameter_list|(
+name|String
+name|uuid
+parameter_list|)
+function_decl|;
 comment|//low level
 specifier|protected
 specifier|abstract

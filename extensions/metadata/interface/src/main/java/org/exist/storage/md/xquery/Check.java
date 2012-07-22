@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -325,10 +329,14 @@ name|Type
 import|;
 end_import
 
+begin_comment
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+end_comment
+
 begin_class
 specifier|public
 class|class
-name|Create
+name|Check
 extends|extends
 name|BasicFunction
 block|{
@@ -374,7 +382,7 @@ argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */
 specifier|public
-name|Create
+name|Check
 parameter_list|(
 name|XQueryContext
 name|context
@@ -461,6 +469,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|e
 argument_list|)
 throw|;
@@ -509,6 +519,9 @@ block|{
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|i
 init|=
 name|col
@@ -528,9 +541,6 @@ block|{
 name|XmldbURI
 name|childName
 init|=
-operator|(
-name|XmldbURI
-operator|)
 name|i
 operator|.
 name|next
@@ -595,6 +605,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|DocumentImpl
+argument_list|>
 name|itChildDocs
 init|=
 name|childDocs
@@ -612,9 +625,6 @@ block|{
 name|DocumentImpl
 name|childDoc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|itChildDocs
 operator|.
 name|next
