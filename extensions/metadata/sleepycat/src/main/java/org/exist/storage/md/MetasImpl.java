@@ -302,7 +302,7 @@ parameter_list|(
 name|String
 name|key
 parameter_list|,
-name|String
+name|Object
 name|value
 parameter_list|)
 block|{
@@ -341,9 +341,10 @@ else|else
 block|{
 name|m
 operator|.
+name|setValue
+argument_list|(
 name|value
-operator|=
-name|value
+argument_list|)
 expr_stmt|;
 name|MetaDataImpl
 operator|.

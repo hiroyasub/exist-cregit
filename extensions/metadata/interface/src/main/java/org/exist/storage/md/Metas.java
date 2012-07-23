@@ -54,7 +54,7 @@ parameter_list|(
 name|String
 name|key
 parameter_list|,
-name|String
+name|Object
 name|value
 parameter_list|)
 function_decl|;
