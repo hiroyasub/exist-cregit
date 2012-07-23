@@ -2260,7 +2260,7 @@ continue|continue;
 block|}
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"Unconfigured instance ["
 operator|+
