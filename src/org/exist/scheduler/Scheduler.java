@@ -790,7 +790,7 @@ return|return
 name|properties
 return|;
 block|}
-specifier|private
+specifier|protected
 name|org
 operator|.
 name|quartz
