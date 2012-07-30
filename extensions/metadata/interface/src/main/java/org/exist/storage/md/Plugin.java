@@ -1065,14 +1065,11 @@ name|currentMetas
 operator|=
 name|md
 operator|.
-name|_addMetas
+name|replaceMetas
 argument_list|(
 name|document
 operator|.
 name|getURI
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 argument_list|,
 name|uuid
