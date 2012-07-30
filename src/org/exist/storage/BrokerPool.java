@@ -1741,7 +1741,7 @@ specifier|final
 name|int
 name|DEFAULT_COLLECTION_BUFFER_SIZE
 init|=
-literal|512
+literal|64
 decl_stmt|;
 specifier|public
 specifier|static
