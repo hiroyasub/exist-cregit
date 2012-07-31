@@ -4082,11 +4082,16 @@ block|{
 name|int
 name|codepoint
 init|=
+name|Character
+operator|.
+name|toLowerCase
+argument_list|(
 name|text
 operator|.
 name|codePointAt
 argument_list|(
 name|offset
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|offset
