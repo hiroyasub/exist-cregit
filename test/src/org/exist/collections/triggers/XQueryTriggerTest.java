@@ -529,74 +529,7 @@ literal|"import module namespace util='http://exist-db.org/xquery/util'; "
 operator|+
 literal|""
 operator|+
-literal|"declare function trigger:logDocumentEvent($type as xs:string, $event as xs:string, $uri as xs:anyURI) {"
-operator|+
-literal|"let $isLoggedIn := xmldb:login('"
-operator|+
-name|XmldbURI
-operator|.
-name|LOCAL_DB
-operator|+
-literal|"/"
-operator|+
-name|TEST_COLLECTION
-operator|+
-literal|"', 'admin', '') return "
-operator|+
-literal|"xmldb:update("
-operator|+
-literal|"'"
-operator|+
-name|XmldbURI
-operator|.
-name|LOCAL_DB
-operator|+
-literal|"/"
-operator|+
-name|TEST_COLLECTION
-operator|+
-literal|"', "
-operator|+
-literal|"<xu:modifications xmlns:xu='http://www.xmldb.org/xupdate' version='1.0'>"
-operator|+
-literal|"<xu:append select='/events'>"
-operator|+
-literal|"<xu:element name='event'>"
-operator|+
-literal|"<xu:attribute name='time'>{current-dateTime()}</xu:attribute>"
-operator|+
-literal|"<xu:attribute name='type'>{$type}</xu:attribute>"
-operator|+
-literal|"<xu:attribute name='event'>{$event}</xu:attribute>"
-operator|+
-comment|//"<xu:element name='collection'>{$log:collection}</xu:element>" +
-literal|"<xu:element name='uri'>{$uri}</xu:element>"
-operator|+
-literal|"{"
-operator|+
-literal|"if ($new-uri) then"
-operator|+
-literal|"<xu:element name='new-uri'>{$new-uri}</xu:element>"
-operator|+
-literal|"else ()"
-operator|+
-literal|"}"
-operator|+
-literal|"<xu:element name='document'>{if (util:is-binary-doc($uri)) then util:binary-doc($uri) else doc($uri)}</xu:element>"
-operator|+
-literal|"</xu:element>"
-operator|+
-literal|"</xu:append>"
-operator|+
-literal|"</xu:modifications>"
-operator|+
-literal|")"
-operator|+
-literal|"};"
-operator|+
-literal|""
-operator|+
-literal|"declare function trigger:logCollectionEvent($type as xs:string, $event as xs:string, $objectType as xs:string, $uri as xs:anyURI) {"
+literal|"declare function trigger:logEvent($type as xs:string, $event as xs:string, $objectType as xs:string, $uri as xs:anyURI) {"
 operator|+
 literal|"let $isLoggedIn := xmldb:login('"
 operator|+
@@ -656,7 +589,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-create-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'create', 'collection', $uri)"
+literal|"trigger:logEvent('before', 'create', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -664,7 +597,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-create-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'create', 'collection', $uri)"
+literal|"trigger:logEvent('after', 'create', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -672,7 +605,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-update-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'update', 'collection', $uri)"
+literal|"trigger:logEvent('before', 'update', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -680,7 +613,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-update-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'update', 'collection', $uri)"
+literal|"trigger:logEvent('after', 'update', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -688,7 +621,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-copy-collection($uri as xs:anyURI, $new-uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'copy', 'collection', $uri)"
+literal|"trigger:logEvent('before', 'copy', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -696,7 +629,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-copy-collection($new-uri as xs:anyURI, $uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'copy', 'collection', $new-uri)"
+literal|"trigger:logEvent('after', 'copy', 'collection', $new-uri)"
 operator|+
 literal|"};"
 operator|+
@@ -704,7 +637,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-move-collection($uri as xs:anyURI, $new-uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'move', 'collection', $uri)"
+literal|"trigger:logEvent('before', 'move', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -712,7 +645,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-move-collection($new-uri as xs:anyURI, $uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'move', 'collection', $new-uri)"
+literal|"trigger:logEvent('after', 'move', 'collection', $new-uri)"
 operator|+
 literal|"};"
 operator|+
@@ -720,7 +653,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-delete-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'delete', 'collection', $uri)"
+literal|"trigger:logEvent('before', 'delete', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -728,7 +661,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-delete-collection($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'delete', 'collection', $uri)"
+literal|"trigger:logEvent('after', 'delete', 'collection', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -737,7 +670,7 @@ operator|+
 comment|//DOCUMENT EVENTS
 literal|"declare function trigger:before-create-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'create', 'document', $uri)"
+literal|"trigger:logEvent('before', 'create', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -745,7 +678,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-create-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'create', 'document', $uri)"
+literal|"trigger:logEvent('after', 'create', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -753,7 +686,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-update-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'update', 'document', $uri)"
+literal|"trigger:logEvent('before', 'update', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -761,7 +694,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-update-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'update', 'document', $uri)"
+literal|"trigger:logEvent('after', 'update', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -769,7 +702,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-copy-document($uri as xs:anyURI, $new-uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'copy', 'document', $uri)"
+literal|"trigger:logEvent('before', 'copy', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -777,7 +710,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-copy-document($new-uri as xs:anyURI, $uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'copy', 'document', $new-uri)"
+literal|"trigger:logEvent('after', 'copy', 'document', $new-uri)"
 operator|+
 literal|"};"
 operator|+
@@ -785,7 +718,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-move-document($uri as xs:anyURI, $new-uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'move', 'document', $uri)"
+literal|"trigger:logEvent('before', 'move', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -793,7 +726,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-move-document($new-uri as xs:anyURI, $uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'move', 'document', $new-uri)"
+literal|"trigger:logEvent('after', 'move', 'document', $new-uri)"
 operator|+
 literal|"};"
 operator|+
@@ -801,7 +734,7 @@ literal|""
 operator|+
 literal|"declare function trigger:before-delete-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('before', 'delete', 'document', $uri)"
+literal|"trigger:logEvent('before', 'delete', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
@@ -809,7 +742,7 @@ literal|""
 operator|+
 literal|"declare function trigger:after-delete-document($uri as xs:anyURI) {"
 operator|+
-literal|"trigger:logCollectionEvent('after', 'delete', 'document', $uri)"
+literal|"trigger:logEvent('after', 'delete', 'document', $uri)"
 operator|+
 literal|"};"
 operator|+
