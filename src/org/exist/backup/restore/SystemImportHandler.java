@@ -1435,23 +1435,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//exclude /db/system collection and sub-collections, as these have already been restored
-if|if
-condition|(
-operator|(
-name|currentCollection
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|startsWith
-argument_list|(
-name|XmldbURI
-operator|.
-name|SYSTEM
-argument_list|)
-operator|)
-condition|)
-return|return;
+comment|//        if ((currentCollection.getURI().startsWith(XmldbURI.SYSTEM)))
+comment|//            return;
 comment|//parse the sub-collection descriptor and restore
 specifier|final
 name|BackupDescriptor
