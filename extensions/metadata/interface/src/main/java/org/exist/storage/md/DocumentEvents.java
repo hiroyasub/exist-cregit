@@ -223,20 +223,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterCreateDocument "
-operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterCreateDocument "+document.getURI());
 name|Plugin
 operator|.
 name|_
@@ -286,20 +273,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterUpdateDocument "
-operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterUpdateDocument "+document.getURI());
 block|}
 annotation|@
 name|Override
@@ -344,20 +318,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterCopyDocument "
-operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterCopyDocument "+document.getURI());
 name|Plugin
 operator|.
 name|_
@@ -415,24 +376,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterMoveDocument "
-operator|+
-name|oldUri
-operator|+
-literal|" to "
-operator|+
-name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterMoveDocument "+oldUri+" to "+document.getURI());
 name|Plugin
 operator|.
 name|_
@@ -487,17 +431,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterDeleteDocument "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterDeleteDocument "+uri);
 name|Plugin
 operator|.
 name|_
