@@ -217,7 +217,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"set-pair"
+literal|"set-value"
 argument_list|,
 name|Plugin
 operator|.
@@ -237,7 +237,7 @@ init|=
 operator|new
 name|QName
 argument_list|(
-literal|"set-pair-by-url"
+literal|"set-value-by-url"
 argument_list|,
 name|Plugin
 operator|.
@@ -254,7 +254,7 @@ specifier|final
 name|String
 name|DESCRIPTION
 init|=
-literal|"Set document key/value pair."
+literal|"Set document's key/value pair."
 decl_stmt|;
 specifier|private
 specifier|static
@@ -334,75 +334,12 @@ literal|"value"
 argument_list|,
 name|Type
 operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The value."
-argument_list|)
-block|}
-argument_list|,
-name|RETURN
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-name|NAME
-argument_list|,
-name|DESCRIPTION
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"document"
-argument_list|,
-name|Type
-operator|.
 name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"key"
-argument_list|,
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The key."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"value"
-argument_list|,
-name|Type
-operator|.
-name|DOCUMENT
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"The value."
 argument_list|)
 block|}
@@ -410,6 +347,16 @@ argument_list|,
 name|RETURN
 argument_list|)
 block|,
+comment|//		new FunctionSignature(
+comment|//				NAME,
+comment|//				DESCRIPTION,
+comment|//				new SequenceType[] {
+comment|//					 new FunctionParameterSequenceType("document", Type.ITEM, Cardinality.EXACTLY_ONE, "The document."),
+comment|//					 new FunctionParameterSequenceType("key", Type.STRING, Cardinality.EXACTLY_ONE, "The key."),
+comment|//					 new FunctionParameterSequenceType("value", Type.DOCUMENT, Cardinality.EXACTLY_ONE, "The value.")
+comment|//				},
+comment|//				RETURN
+comment|//			),
 operator|new
 name|FunctionSignature
 argument_list|(
