@@ -287,7 +287,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
