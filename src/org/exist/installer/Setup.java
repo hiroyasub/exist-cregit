@@ -467,45 +467,13 @@ operator|++
 control|)
 block|{
 name|String
-index|[]
-name|appParams
+name|name
 init|=
 name|args
 index|[
 name|i
 index|]
-operator|.
-name|split
-argument_list|(
-literal|":"
-argument_list|)
 decl_stmt|;
-name|String
-name|name
-init|=
-name|appParams
-index|[
-literal|0
-index|]
-decl_stmt|;
-name|String
-name|onOff
-init|=
-name|appParams
-index|[
-literal|1
-index|]
-decl_stmt|;
-if|if
-condition|(
-literal|"on"
-operator|.
-name|equals
-argument_list|(
-name|onOff
-argument_list|)
-condition|)
-block|{
 try|try
 block|{
 name|File
@@ -622,7 +590,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 name|String
 name|xquery
 init|=
@@ -692,7 +659,16 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Starting the installation process for each application..."
+literal|"\n=== Starting the installation process for each application... ==="
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"\nPLEASE DO NOT ABORT\n"
 argument_list|)
 expr_stmt|;
 try|try
@@ -734,7 +710,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"App installation completed."
+literal|"=== App installation completed. ==="
 argument_list|)
 expr_stmt|;
 block|}
