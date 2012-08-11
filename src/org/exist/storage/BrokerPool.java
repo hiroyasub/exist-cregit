@@ -760,6 +760,15 @@ name|SIGNAL_WRITABLE
 init|=
 literal|"writable"
 decl_stmt|;
+comment|/*** ready for writable operations */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_STARTED
+init|=
+literal|"started"
+decl_stmt|;
 comment|/*** running shutdown sequence */
 specifier|public
 specifier|final
@@ -3747,6 +3756,13 @@ name|scheduler
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|statusReporter
+operator|.
+name|setStatus
+argument_list|(
+name|SIGNAL_STARTED
+argument_list|)
 expr_stmt|;
 name|statusReporter
 operator|.
@@ -6879,6 +6895,7 @@ name|status
 expr_stmt|;
 block|}
 specifier|public
+specifier|synchronized
 name|void
 name|setStatus
 parameter_list|(
@@ -6891,6 +6908,9 @@ operator|.
 name|status
 operator|=
 name|status
+expr_stmt|;
+name|notify
+argument_list|()
 expr_stmt|;
 block|}
 specifier|public
@@ -6959,6 +6979,22 @@ comment|// nothing to do
 block|}
 block|}
 block|}
+name|BrokerPool
+operator|.
+name|this
+operator|.
+name|setChanged
+argument_list|()
+expr_stmt|;
+name|BrokerPool
+operator|.
+name|this
+operator|.
+name|notifyObservers
+argument_list|(
+name|status
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
