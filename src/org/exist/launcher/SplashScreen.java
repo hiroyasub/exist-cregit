@@ -39,6 +39,10 @@ name|URL
 import|;
 end_import
 
+begin_comment
+comment|/**  * Display a splash screen showing the eXist-db logo and a status line.  *  * @author Wolfgang Meier  */
+end_comment
+
 begin_class
 specifier|public
 class|class

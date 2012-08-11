@@ -195,6 +195,10 @@ name|Observer
 import|;
 end_import
 
+begin_comment
+comment|/**  * A launcher for the eXist-db server integrated with the desktop.  * Shows a splash screen during startup and registers a tray icon  * in the system bar.  *  * @author Wolfgang Meier  */
+end_comment
+
 begin_class
 specifier|public
 class|class

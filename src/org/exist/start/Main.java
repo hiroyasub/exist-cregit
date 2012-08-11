@@ -1910,7 +1910,7 @@ condition|)
 block|{
 name|_classname
 operator|=
-literal|"org.exist.launcher.Launcher"
+literal|"org.exist.launcher.LauncherWrapper"
 expr_stmt|;
 name|_mode
 operator|=
@@ -2005,11 +2005,11 @@ else|else
 block|{
 name|_classname
 operator|=
-literal|"org.exist.launcher.Launcher"
+literal|"org.exist.launcher.LauncherWrapper"
 expr_stmt|;
 name|_mode
 operator|=
-literal|"jetty"
+literal|"other"
 expr_stmt|;
 block|}
 if|if
