@@ -108,6 +108,11 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|setAlwaysOnTop
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// add the image label
 name|JLabel
 name|imageLabel
