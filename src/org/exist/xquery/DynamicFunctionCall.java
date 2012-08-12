@@ -450,13 +450,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
-return|return
+name|Sequence
+name|result
+init|=
 name|ref
 operator|.
 name|eval
 argument_list|(
 name|contextSequence
 argument_list|)
+decl_stmt|;
+name|ref
+operator|.
+name|resetState
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 block|}

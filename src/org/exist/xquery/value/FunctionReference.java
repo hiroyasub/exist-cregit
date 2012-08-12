@@ -39,6 +39,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -58,6 +70,21 @@ name|FunctionReference
 extends|extends
 name|AtomicValue
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|FunctionReference
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|protected
 name|FunctionCall
 name|functionCall
@@ -258,6 +285,17 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|resetState
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
+block|{
+comment|//        LOG.debug("Resetting state of function item " + functionCall.getSignature().toString());
+comment|//        functionCall.resetState(postOptimization);
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
