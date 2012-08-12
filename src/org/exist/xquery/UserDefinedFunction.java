@@ -1025,6 +1025,10 @@ name|contextDocs
 operator|=
 literal|null
 expr_stmt|;
+name|closureVariables
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 specifier|public
