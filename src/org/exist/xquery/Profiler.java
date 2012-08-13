@@ -588,7 +588,10 @@ name|recordQuery
 argument_list|(
 name|context
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|,
 operator|(
@@ -668,6 +671,7 @@ name|function
 operator|instanceof
 name|InternalFunctionCall
 condition|)
+block|{
 name|source
 operator|=
 operator|(
@@ -686,7 +690,9 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|source
 operator|=
 name|function
@@ -694,9 +700,13 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 expr_stmt|;
+block|}
 name|source
 operator|=
 name|String
@@ -797,7 +807,10 @@ name|indexType
 argument_list|,
 name|context
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|,
 name|mode

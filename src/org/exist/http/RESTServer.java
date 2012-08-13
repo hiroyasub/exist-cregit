@@ -1352,7 +1352,7 @@ literal|"yes"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|Properties

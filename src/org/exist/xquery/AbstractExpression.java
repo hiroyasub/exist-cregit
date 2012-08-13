@@ -461,7 +461,7 @@ block|{
 return|return
 name|context
 operator|.
-name|getSource
+name|getXacmlSource
 argument_list|()
 return|;
 block|}

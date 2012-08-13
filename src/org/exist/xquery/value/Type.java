@@ -729,6 +729,8 @@ argument_list|,
 name|CDATA_SECTION
 argument_list|)
 expr_stmt|;
+comment|//THIS type system is broken - some of the below should be sub-types of ANY_SIMPLE_TYPE
+comment|//and some should not!
 name|defineSubType
 argument_list|(
 name|ITEM

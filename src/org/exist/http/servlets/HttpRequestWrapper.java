@@ -362,6 +362,24 @@ name|isFormDataParsed
 init|=
 literal|false
 decl_stmt|;
+comment|/**      * Constructs a wrapper for the given servlet request. multipart/form-data       * will be parsed when available upon indication.      *      * Defaults to UTF-8 encoding      *       * @param servletRequest The request as viewed by the servlet      */
+specifier|public
+name|HttpRequestWrapper
+parameter_list|(
+name|HttpServletRequest
+name|servletRequest
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|servletRequest
+argument_list|,
+literal|"UTF-8"
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Constructs a wrapper for the given servlet request. multipart/form-data       * will be parsed when available upon indication.      *      * @param servletRequest The request as viewed by the servlet      * @param formEncoding The encoding of the request's forms      * @param containerEncoding The encoding of the servlet      */
 specifier|public
 name|HttpRequestWrapper
