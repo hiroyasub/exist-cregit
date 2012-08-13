@@ -237,6 +237,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|source
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|stax
 operator|.
 name|ExtendedXMLStreamReader
@@ -657,25 +669,26 @@ specifier|public
 name|void
 name|setSource
 parameter_list|(
-name|XACMLSource
+name|Source
 name|source
 parameter_list|)
 function_decl|;
 specifier|public
-name|XACMLSource
+name|Source
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the Source Key of the XQuery associated with this context. 	 * 	 * @return  source key 	 */
 specifier|public
-name|String
-name|getSourceKey
-parameter_list|()
+name|void
+name|setXacmlSource
+parameter_list|(
+name|XACMLSource
+name|xacmlSource
+parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the Source Type of the XQuery associated with this context. 	 * 	 * @return  source type 	 */
 specifier|public
-name|String
-name|getSourceType
+name|XACMLSource
+name|getXacmlSource
 parameter_list|()
 function_decl|;
 comment|/** 	 * Declare a user-defined static prefix/namespace mapping. 	 * 	 *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the 	 * database. These default mappings need not to be declared explicitely.</p> 	 * 	 * @param   prefix 	 * @param   uri 	 * 	 * @throws  XPathException   	 */

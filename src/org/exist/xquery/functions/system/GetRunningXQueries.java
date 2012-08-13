@@ -581,7 +581,10 @@ argument_list|)
 argument_list|,
 name|context
 operator|.
-name|getSourceType
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -665,7 +668,10 @@ name|characters
 argument_list|(
 name|context
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;

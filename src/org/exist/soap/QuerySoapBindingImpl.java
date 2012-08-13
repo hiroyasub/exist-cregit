@@ -2104,7 +2104,7 @@ argument_list|)
 decl_stmt|;
 name|context
 operator|.
-name|setSource
+name|setXacmlSource
 argument_list|(
 name|XACMLSource
 operator|.

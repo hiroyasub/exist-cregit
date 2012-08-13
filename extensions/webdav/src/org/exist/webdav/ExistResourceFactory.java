@@ -753,6 +753,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Return broker to pool
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
 name|brokerPool
 operator|.
 name|release
@@ -760,6 +767,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

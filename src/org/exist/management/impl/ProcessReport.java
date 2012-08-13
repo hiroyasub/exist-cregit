@@ -854,7 +854,10 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|getSourceType
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getType
 argument_list|()
 block|,
 name|watchdogs
@@ -865,7 +868,10 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 block|,
 name|Boolean

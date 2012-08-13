@@ -642,7 +642,10 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|getSourceKey
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 decl_stmt|;
 synchronized|synchronized

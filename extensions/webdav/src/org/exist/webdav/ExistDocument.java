@@ -731,6 +731,13 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
 name|brokerPool
 operator|.
 name|release
@@ -738,6 +745,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|isInitialized
 operator|=
 literal|true
@@ -3495,6 +3503,13 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
 name|brokerPool
 operator|.
 name|release
@@ -3502,6 +3517,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG

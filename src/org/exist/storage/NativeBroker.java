@@ -569,6 +569,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|AbstractUnixStylePermission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Account
 import|;
 end_import
@@ -12131,7 +12143,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Account "
+literal|"Account '"
 operator|+
 name|getSubject
 argument_list|()
@@ -12139,7 +12151,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" not allowed to read document '"
+literal|"' not allowed requested access to document '"
 operator|+
 name|fileName
 operator|+

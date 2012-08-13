@@ -437,6 +437,8 @@ comment|//TODO : replace by something like this
 comment|/*         if (prefix_ != null&& prefix_.length()> 0)             return prefix_ + ':' + localName_;         if (needsNamespaceDecl()) {             if (prefix_ != null&& prefix_.length()> 0)                 return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_;             return "{" + namespaceURI_ + "}" + localName_;         } else              return localName_;         */
 block|}
 comment|/**      * Compares two QNames by comparing namespace URI      * and local names. The prefixes are not relevant.      *       * @see java.lang.Comparable#compareTo(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
@@ -556,10 +558,20 @@ condition|(
 name|obj
 operator|==
 literal|null
+operator|||
+operator|!
+operator|(
+name|obj
+operator|instanceof
+name|QName
+operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|QName
 name|other
 init|=
@@ -568,6 +580,7 @@ name|QName
 operator|)
 name|obj
 decl_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=
@@ -582,15 +595,18 @@ name|cmp
 operator|!=
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|prefix_
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|other
 operator|.
@@ -602,6 +618,7 @@ literal|true
 else|:
 literal|false
 return|;
+block|}
 if|else if
 condition|(
 name|other
@@ -610,10 +627,13 @@ name|prefix_
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 else|else
+block|{
 return|return
 name|prefix_
 operator|.
@@ -625,6 +645,8 @@ name|prefix_
 argument_list|)
 return|;
 block|}
+block|}
+comment|/**       * Checks two QNames for simply equality. Two QNames are simply equal      * if their namespace URIs and local names are equal.      *       * @see java.lang.Object#equals(java.lang.Object)      */
 specifier|public
 name|boolean
 name|equalsSimple
