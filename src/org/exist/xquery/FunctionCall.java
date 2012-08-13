@@ -29,16 +29,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -166,6 +156,16 @@ operator|.
 name|value
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
 import|;
 end_import
 
@@ -399,7 +399,6 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 condition|)
-block|{
 name|expression
 operator|=
 operator|new
@@ -423,7 +422,6 @@ name|FUNC_RETURN_CARDINALITY
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|Type
@@ -440,7 +438,6 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
-block|{
 name|expression
 operator|=
 operator|new
@@ -451,7 +448,6 @@ argument_list|,
 name|expression
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|Type
@@ -468,7 +464,6 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
-block|{
 name|expression
 operator|=
 operator|new
@@ -492,7 +487,6 @@ name|FUNC_RETURN_TYPE
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 if|else if
 condition|(
 name|returnType
@@ -504,7 +498,6 @@ name|Type
 operator|.
 name|ITEM
 condition|)
-block|{
 name|expression
 operator|=
 operator|new
@@ -520,7 +513,6 @@ argument_list|,
 name|expression
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/** 	 * For calls to functions in external modules, check that the instance of the function we were 	 * bound to matches the current implementation of the module bound to our context.  If not, 	 * rebind to the correct instance, but don't bother resetting the signature since it's guaranteed 	 * (I hope!) to be the same. 	 * @throws XPathException  	 */
 specifier|private
@@ -760,34 +752,6 @@ name|functionEnd
 argument_list|()
 expr_stmt|;
 block|}
-name|context
-operator|.
-name|functionStart
-argument_list|(
-name|functionDef
-operator|.
-name|getSignature
-argument_list|()
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|expression
-operator|.
-name|analyze
-argument_list|(
-name|newContextInfo
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|context
-operator|.
-name|functionEnd
-argument_list|()
-expr_stmt|;
-block|}
 name|varDeps
 operator|=
 operator|new
@@ -813,7 +777,6 @@ name|i
 operator|++
 control|)
 block|{
-specifier|final
 name|Expression
 name|arg
 init|=
@@ -822,7 +785,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-specifier|final
 name|VariableReference
 name|varRef
 init|=
@@ -880,8 +842,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|int
 name|getArgumentCount
@@ -893,14 +853,13 @@ name|arguments
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 name|super
 operator|.
 name|getArgumentCount
 argument_list|()
 return|;
-block|}
+else|else
 return|return
 name|arguments
 operator|.
@@ -917,9 +876,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**       * Evaluates all arguments, then forwards them to the user-defined function.      *       * The return value of the user-defined function will be checked against the      * provided function signature.      *       * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
-annotation|@
-name|Override
+comment|/**  	 * Evaluates all arguments, then forwards them to the user-defined function. 	 *  	 * The return value of the user-defined function will be checked against the 	 * provided function signature. 	 *  	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -1004,7 +961,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
 name|Variable
 name|var
 init|=
@@ -1022,7 +978,6 @@ name|var
 operator|!=
 literal|null
 condition|)
-block|{
 name|contextDocs
 index|[
 name|i
@@ -1034,8 +989,7 @@ name|getContextDocs
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|//System.out.println("found " + seq[i].getLength() + " for " + getArgument(i).pprint());
+comment|//			System.out.println("found " + seq[i].getLength() + " for " + getArgument(i).pprint());
 block|}
 catch|catch
 parameter_list|(
@@ -1081,7 +1035,6 @@ name|e
 throw|;
 block|}
 block|}
-specifier|final
 name|Sequence
 name|result
 init|=
@@ -1096,14 +1049,101 @@ argument_list|,
 name|contextDocs
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|functionDef
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getAnnotations
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+for|for
+control|(
+name|Annotation
+name|ann
+range|:
+name|functionDef
+operator|.
+name|getSignature
+argument_list|()
+operator|.
+name|getAnnotations
+argument_list|()
+control|)
+block|{
+name|AnnotationTrigger
+name|trigger
+init|=
+name|ann
+operator|.
+name|getTrigger
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|trigger
+operator|instanceof
+name|AnnotationTriggerOnResult
+condition|)
+block|{
+try|try
+block|{
+operator|(
+operator|(
+name|AnnotationTriggerOnResult
+operator|)
+name|trigger
+operator|)
+operator|.
+name|trigger
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"function '"
+operator|+
+name|getSignature
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'. "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+block|}
 try|try
 block|{
 comment|//Don't check deferred calls : it would result in a stack overflow
 comment|//TODO : find a solution or... is it already here ?
-comment|//Don't test on empty sequences since they can have several types
-comment|//TODO : add a prior cardinality check on wether an empty result is allowed or not
-comment|//TODO : should we introduce a deffered type check on VirtualNodeSet
-comment|// and trigger it when the nodeSet is realized ?
 if|if
 condition|(
 operator|!
@@ -1113,6 +1153,10 @@ operator|instanceof
 name|DeferredFunctionCall
 operator|)
 operator|&&
+comment|//Don't test on empty sequences since they can have several types
+comment|//TODO : add a prior cardinality check on wether an empty result is allowed or not
+comment|//TODO : should we introduce a deffered type check on VirtualNodeSet
+comment|// and trigger it when the nodeSet is realized ?
 operator|!
 operator|(
 name|result
@@ -1126,7 +1170,6 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-block|{
 name|getSignature
 argument_list|()
 operator|.
@@ -1142,7 +1185,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|XPathException
@@ -1154,10 +1196,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
-argument_list|,
-name|ErrorCodes
-operator|.
-name|XPTY0004
 argument_list|,
 literal|"err:XPTY0004: return type of function '"
 operator|+
@@ -1174,16 +1212,10 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-argument_list|,
 name|e
 argument_list|)
 throw|;
 block|}
-comment|//Annotation Triggers are bad design, disabled as breaks RESTXQ - Adam.
-comment|/*for (Annotation ann : functionDef.getSignature().getAnnotations()) {             AnnotationTrigger trigger = ann.getTrigger();             if (trigger instanceof AnnotationTriggerOnResult) {                 try {                     ((AnnotationTriggerOnResult) trigger).trigger(result);                 } catch (Throwable e) {                     throw new XPathException(this, "function '" + getSignature().getName() + "'. " + e.getMessage(), e);                 }             }         }*/
 return|return
 name|result
 return|;
@@ -1290,7 +1322,6 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1309,14 +1340,12 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1339,11 +1368,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 comment|//check access to the method
 try|try
 block|{
-specifier|final
 name|ExistPDP
 name|pdp
 init|=
@@ -1359,7 +1386,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
 name|RequestCtx
 name|request
 init|=
@@ -1386,7 +1412,6 @@ name|request
 operator|!=
 literal|null
 condition|)
-block|{
 name|pdp
 operator|.
 name|evaluate
@@ -1396,14 +1421,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 catch|catch
 parameter_list|(
 name|PermissionDeniedException
 name|pde
 parameter_list|)
 block|{
-specifier|final
 name|XPathException
 name|xe
 init|=
@@ -1450,7 +1473,7 @@ name|isRecursive
 argument_list|()
 condition|)
 block|{
-comment|//LOG.warn("Tail recursive function: " + functionDef.getSignature().toString());
+comment|//            LOG.warn("Tail recursive function: " + functionDef.getSignature().toString());
 return|return
 operator|new
 name|DeferredFunctionCallImpl
@@ -1490,7 +1513,6 @@ name|getSignature
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -1520,7 +1542,6 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1531,7 +1552,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-block|}
 name|long
 name|start
 init|=
@@ -1577,18 +1597,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|trace
-argument_list|(
-literal|"Executing function: "
-operator|+
-name|functionDef
-operator|.
-name|getSignature
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//    				 LOG.debug("Executing function: " + functionDef.getSignature());
 name|returnSeq
 operator|=
 operator|(
@@ -1612,7 +1621,6 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1632,7 +1640,6 @@ name|start
 operator|)
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|context
@@ -1640,7 +1647,6 @@ operator|.
 name|isProfilingEnabled
 argument_list|()
 condition|)
-block|{
 name|context
 operator|.
 name|getProfiler
@@ -1655,7 +1661,6 @@ argument_list|,
 name|returnSeq
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 name|returnSeq
 return|;
@@ -1666,7 +1671,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|// append location of the function call to the exception message:
 if|if
 condition|(
 name|e
@@ -1676,7 +1680,6 @@ argument_list|()
 operator|<=
 literal|0
 condition|)
-block|{
 name|e
 operator|.
 name|setLocation
@@ -1686,7 +1689,7 @@ argument_list|,
 name|column
 argument_list|)
 expr_stmt|;
-block|}
+comment|// append location of the function call to the exception message:
 name|e
 operator|.
 name|addFunctionCall
@@ -1729,9 +1732,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @see org.exist.xquery.PathExpr#resetState()      */
-annotation|@
-name|Override
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.PathExpr#resetState() 	 */
 specifier|public
 name|void
 name|resetState
@@ -1756,7 +1757,6 @@ argument_list|()
 operator|||
 name|postOptimization
 condition|)
-block|{
 name|expression
 operator|.
 name|resetState
@@ -1765,10 +1765,7 @@ name|postOptimization
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/**      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)      */
-annotation|@
-name|Override
+comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)     */
 specifier|public
 name|void
 name|setContextDocSet
@@ -1792,8 +1789,6 @@ name|contextSet
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|public
 name|void
 name|accept
@@ -1915,8 +1910,6 @@ operator|=
 name|contextDocs
 expr_stmt|;
 block|}
-annotation|@
-name|Override
 specifier|protected
 name|Sequence
 name|execute
@@ -1929,7 +1922,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
-comment|//context.stackEnter(expression);
+comment|//            context.stackEnter(expression);
 name|context
 operator|.
 name|functionStart
@@ -1940,7 +1933,6 @@ name|getSignature
 argument_list|()
 argument_list|)
 expr_stmt|;
-specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -1963,7 +1955,6 @@ argument_list|,
 name|contextDocs
 argument_list|)
 expr_stmt|;
-specifier|final
 name|Sequence
 name|returnSeq
 init|=
@@ -1976,13 +1967,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
-name|LOG
-operator|.
-name|trace
-argument_list|(
-literal|"Returning from execute()"
-argument_list|)
-expr_stmt|;
+comment|//                LOG.debug("Returning from execute()");
 return|return
 name|returnSeq
 return|;
@@ -1993,7 +1978,6 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-comment|// append location of the function call to the exception message:
 if|if
 condition|(
 name|e
@@ -2003,7 +1987,6 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-block|{
 name|e
 operator|.
 name|setLocation
@@ -2013,7 +1996,7 @@ argument_list|,
 name|column
 argument_list|)
 expr_stmt|;
-block|}
+comment|// append location of the function call to the exception message:
 name|e
 operator|.
 name|addFunctionCall
@@ -2043,7 +2026,7 @@ operator|.
 name|functionEnd
 argument_list|()
 expr_stmt|;
-comment|//context.stackLeave(expression);
+comment|//                context.stackLeave(expression);
 name|context
 operator|.
 name|popDocumentContext

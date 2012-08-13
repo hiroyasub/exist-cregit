@@ -518,7 +518,7 @@ name|XMLDBModule
 operator|.
 name|COLLECTION_URI
 operator|+
-literal|" Documents contained in subcollections are also included. If no value is supplied, the statically know documents are used, for the REST Server this could be the addressed collection."
+literal|" Documents contained in subcollections are also included."
 argument_list|,
 operator|new
 name|SequenceType
