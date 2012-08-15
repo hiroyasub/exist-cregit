@@ -839,6 +839,11 @@ name|EMPTY_SEQUENCE
 operator|)
 return|;
 block|}
+name|boolean
+name|preparedStmt
+init|=
+literal|false
+decl_stmt|;
 comment|//setup the SQL statement
 name|String
 name|sql
@@ -948,6 +953,10 @@ operator|==
 literal|4
 condition|)
 block|{
+name|preparedStmt
+operator|=
+literal|true
+expr_stmt|;
 comment|//get the prepared statement
 name|long
 name|statementUID
@@ -2428,9 +2437,16 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
+name|rs
+operator|=
+literal|null
+expr_stmt|;
 block|}
 if|if
 condition|(
+operator|!
+name|preparedStmt
+operator|&&
 name|stmt
 operator|!=
 literal|null
@@ -2460,16 +2476,11 @@ name|se
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|// explicitly ready for Garbage Collection
-name|rs
-operator|=
-literal|null
-expr_stmt|;
 name|stmt
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
