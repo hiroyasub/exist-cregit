@@ -75,6 +75,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -294,6 +306,13 @@ comment|//	            expression.reset();
 comment|//                context.reset();
 comment|//	        	broker.getBrokerPool().getProcessMonitor().queryCompleted(context.getWatchDog());
 comment|//	        }
+block|}
+catch|catch
+parameter_list|(
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
 block|}
 catch|catch
 parameter_list|(
