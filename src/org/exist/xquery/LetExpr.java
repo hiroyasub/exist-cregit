@@ -1593,6 +1593,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}

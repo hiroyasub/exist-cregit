@@ -410,6 +410,11 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+name|Sequence
+name|result
+init|=
+literal|null
+decl_stmt|;
 comment|// Try to evaluate try-code
 try|try
 block|{
@@ -431,7 +436,8 @@ decl_stmt|;
 try|try
 block|{
 comment|// Actually execute try-code
-return|return
+name|result
+operator|=
 name|getArgument
 argument_list|(
 literal|1
@@ -443,6 +449,9 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 finally|finally
@@ -457,6 +466,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|result
 argument_list|)
 expr_stmt|;
 block|}

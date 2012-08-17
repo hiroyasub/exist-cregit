@@ -532,6 +532,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|result
 argument_list|)
 expr_stmt|;
 block|}

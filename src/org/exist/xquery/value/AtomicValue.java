@@ -1254,6 +1254,18 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|destroy
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|)
+block|{
+comment|// nothing to be done by default
+block|}
 specifier|private
 specifier|final
 specifier|static

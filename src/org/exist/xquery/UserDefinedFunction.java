@@ -99,16 +99,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -499,6 +489,11 @@ argument_list|(
 name|closureVariables
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|result
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|QName
@@ -692,9 +687,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|Sequence
 name|result
-init|=
+operator|=
 name|body
 operator|.
 name|eval
@@ -703,7 +697,7 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -716,6 +710,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|result
 argument_list|)
 expr_stmt|;
 name|context

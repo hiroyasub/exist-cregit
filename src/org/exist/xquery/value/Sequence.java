@@ -369,6 +369,14 @@ name|int
 name|previousState
 parameter_list|)
 function_decl|;
+comment|/**      * Clean up any resources used by the items in this sequence.      */
+name|void
+name|destroy
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

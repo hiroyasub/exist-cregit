@@ -609,6 +609,8 @@ expr_stmt|;
 comment|//... because is makes some conversions
 name|Sequence
 name|satisfiesSeq
+init|=
+literal|null
 decl_stmt|;
 comment|//Binds the variable : now in scope
 name|LocalVariable
@@ -651,6 +653,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|satisfiesSeq
 argument_list|)
 expr_stmt|;
 block|}

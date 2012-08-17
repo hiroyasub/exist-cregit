@@ -710,6 +710,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark1
+argument_list|,
+name|catchResultSeq
 argument_list|)
 expr_stmt|;
 block|}
@@ -750,6 +752,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark0
+argument_list|,
+name|catchResultSeq
 argument_list|)
 expr_stmt|;
 block|}

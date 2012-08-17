@@ -1508,6 +1508,11 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|returnSeq
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -1540,9 +1545,8 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|Sequence
 name|returnSeq
-init|=
+operator|=
 name|expression
 operator|.
 name|eval
@@ -1551,7 +1555,7 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 while|while
 condition|(
 name|returnSeq
@@ -1712,6 +1716,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|returnSeq
 argument_list|)
 expr_stmt|;
 name|context
@@ -1951,6 +1957,11 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+name|Sequence
+name|returnSeq
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 comment|/*                   Ensure that the arguments are set for a deferred function                   as reset may alreay have been called before our deferred execution                  */
@@ -1963,10 +1974,8 @@ argument_list|,
 name|contextDocs
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Sequence
 name|returnSeq
-init|=
+operator|=
 name|expression
 operator|.
 name|eval
@@ -1975,7 +1984,7 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|LOG
 operator|.
 name|trace
@@ -2036,6 +2045,8 @@ operator|.
 name|popLocalVariables
 argument_list|(
 name|mark
+argument_list|,
+name|returnSeq
 argument_list|)
 expr_stmt|;
 name|context

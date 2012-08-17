@@ -3764,6 +3764,18 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|destroy
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
 specifier|public
 name|boolean
 name|isCacheable

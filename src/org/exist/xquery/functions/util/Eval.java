@@ -2402,9 +2402,15 @@ operator|=
 name|initContextSequence
 expr_stmt|;
 block|}
+name|Sequence
+name|result
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
-return|return
+name|result
+operator|=
 name|execute
 argument_list|(
 name|evalContext
@@ -2422,6 +2428,9 @@ name|exprContext
 argument_list|,
 name|cache
 argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 finally|finally
@@ -2439,6 +2448,8 @@ argument_list|,
 name|expr
 argument_list|,
 name|sequence
+argument_list|,
+name|result
 argument_list|)
 expr_stmt|;
 block|}
@@ -2508,6 +2519,9 @@ name|expr
 parameter_list|,
 name|Sequence
 name|sequence
+parameter_list|,
+name|Sequence
+name|resultSequence
 parameter_list|)
 block|{
 if|if

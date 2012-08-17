@@ -3533,6 +3533,16 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|public
+name|void
+name|destroy
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|)
+block|{
+comment|// nothing to do
+block|}
 specifier|protected
 name|XmldbURI
 name|calculateBaseURI
