@@ -218,7 +218,7 @@ specifier|public
 class|class
 name|XQueryCompiler
 block|{
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|String
