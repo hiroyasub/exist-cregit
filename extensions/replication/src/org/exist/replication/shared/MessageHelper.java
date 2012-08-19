@@ -218,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author wessels  */
+comment|/**  *  Helper class for retrieving (meta)data from an in eXist stored document.  *   * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -282,7 +282,14 @@ name|EXIST_RESOURCE_MODE
 init|=
 literal|"exist.resource.permission.mode"
 decl_stmt|;
-empty_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXIST_MESSAGE_CONTENTENCODING
+init|=
+literal|"exist.message.content-encoding"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -383,6 +390,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// This is the weak spot, the data is serialized into
+comment|// a byte array. Better to have an overloap to a file,
 name|byte
 index|[]
 name|payload

@@ -370,7 +370,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Dannes Wessels  */
+comment|/**  *  JMS listener for receiving m  *   * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -2683,14 +2683,6 @@ name|txn
 argument_list|,
 name|sourcePath
 argument_list|)
-decl_stmt|;
-name|Permission
-name|perm
-init|=
-name|newCollection
-operator|.
-name|getPermissions
-argument_list|()
 decl_stmt|;
 comment|// Set owner,group and permissions
 name|Permission

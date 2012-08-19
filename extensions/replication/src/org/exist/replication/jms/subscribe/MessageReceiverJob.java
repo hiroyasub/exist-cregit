@@ -99,20 +99,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|replication
-operator|.
-name|shared
-operator|.
-name|ClientParameters
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|scheduler
 operator|.
 name|JobException
@@ -385,12 +371,7 @@ operator|.
 name|AUTO_ACKNOWLEDGE
 argument_list|)
 decl_stmt|;
-comment|// TODO switch
-name|boolean
-name|isDurable
-init|=
-literal|true
-decl_stmt|;
+comment|// Set durable messaging, when required
 if|if
 condition|(
 name|parameters

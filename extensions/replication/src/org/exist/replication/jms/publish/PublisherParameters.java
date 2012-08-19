@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Dannes Wessels  */
+comment|/**  * Publisher specific properties.  *   * @author Dannes Wessels dannes@exist-db.org  */
 end_comment
 
 begin_class
