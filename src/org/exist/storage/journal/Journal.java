@@ -1142,6 +1142,19 @@ name|e
 argument_list|)
 throw|;
 block|}
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|trackOperation
+argument_list|(
+name|loggable
+operator|.
+name|getTransactionId
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Returns the last LSN physically written to the journal.      *       * @return last written LSN      */
 specifier|public
@@ -1346,7 +1359,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *       * @param txnId      * @param switchLogFiles      * @throws TransactionException      */
+comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *      * @param txnId      * @param switchLogFiles      * @throws TransactionException      */
 specifier|public
 name|void
 name|checkpoint
@@ -2020,6 +2033,13 @@ condition|(
 name|checkpoint
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Transaction journal cleanly shutting down with checkpoint..."
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|writeToLog
