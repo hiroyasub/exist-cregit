@@ -1493,7 +1493,7 @@ literal|"Account '"
 operator|+
 name|accountName
 operator|+
-literal|"' is dissabled."
+literal|"' is disabled."
 argument_list|)
 throw|;
 block|}
