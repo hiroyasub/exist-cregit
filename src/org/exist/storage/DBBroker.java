@@ -1309,6 +1309,20 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|storeMetadata
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
+name|DocumentImpl
+name|doc
+parameter_list|)
+throws|throws
+name|TriggerException
+function_decl|;
 comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *       * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      */
 annotation|@
 name|Deprecated

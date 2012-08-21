@@ -1862,7 +1862,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource was already locked locked, ignored."
+literal|"Resource was already locked, ignored."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1935,7 +1935,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|// Check for request fo shared lock. @@TODO
+comment|// Check for request for shared lock. @@TODO
 if|if
 condition|(
 name|inputToken
@@ -2033,7 +2033,7 @@ argument_list|()
 expr_stmt|;
 name|broker
 operator|.
-name|storeXMLResource
+name|storeMetadata
 argument_list|(
 name|txn
 argument_list|,
@@ -2131,6 +2131,44 @@ block|}
 comment|//-----------------------
 throw|throw
 name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|TriggerException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+comment|//dead code, remove?
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
+block|{
+name|txnManager
+operator|.
+name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
+comment|//-----------------------
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+name|e
+argument_list|)
 throw|;
 block|}
 finally|finally

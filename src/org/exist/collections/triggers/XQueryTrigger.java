@@ -4641,6 +4641,46 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+comment|// TODO Auto-generated method stub
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+comment|// TODO Auto-generated method stub
+block|}
 comment|/*public String toString() { 		return "collection=" + collection + "\n" + 			"modifiedDocument=" + TriggerStatePerThread.getModifiedDocument() + "\n" + 			( query != null ? query.substring(0, 40 ) : null ); 	}*/
 block|}
 end_class
