@@ -109,6 +109,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -128,6 +138,20 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|serializers
+operator|.
+name|EXistOutputKeys
 import|;
 end_import
 
@@ -583,6 +607,30 @@ argument_list|,
 literal|"the path to new resource if sucessfully stored, otherwise the emtpty sequence"
 argument_list|)
 decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|Properties
+name|SERIALIZATION_PROPERTIES
+init|=
+operator|new
+name|Properties
+argument_list|()
+decl_stmt|;
+static|static
+block|{
+name|SERIALIZATION_PROPERTIES
+operator|.
+name|setProperty
+argument_list|(
+name|EXistOutputKeys
+operator|.
+name|EXPAND_XINCLUDES
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 specifier|final
 specifier|static
@@ -1248,7 +1296,7 @@ argument_list|()
 argument_list|,
 name|serializer
 argument_list|,
-literal|null
+name|SERIALIZATION_PROPERTIES
 argument_list|)
 expr_stmt|;
 name|resource
@@ -1293,7 +1341,7 @@ argument_list|()
 argument_list|,
 name|handler
 argument_list|,
-literal|null
+name|SERIALIZATION_PROPERTIES
 argument_list|)
 expr_stmt|;
 name|handler
