@@ -404,6 +404,14 @@ condition|)
 return|return
 name|inputSource
 return|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -561,6 +569,13 @@ operator|.
 name|release
 argument_list|(
 name|broker
+argument_list|)
+expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
 argument_list|)
 expr_stmt|;
 block|}
@@ -848,6 +863,14 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1002,6 +1025,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 return|return
@@ -1088,6 +1118,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1270,6 +1308,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|doClose
@@ -1385,6 +1430,14 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1484,6 +1537,13 @@ operator|.
 name|release
 argument_list|(
 name|broker
+argument_list|)
+expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
 argument_list|)
 expr_stmt|;
 block|}
@@ -1714,6 +1774,14 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1791,6 +1859,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getLastModificationTime() 	 */
@@ -1816,6 +1891,14 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1893,6 +1976,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.AbstractEXistResource#getMimeType()      */
@@ -1910,6 +2000,14 @@ condition|)
 return|return
 name|mimeType
 return|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -1987,6 +2085,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getMode() 	 */
@@ -2012,6 +2117,14 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -2085,6 +2198,13 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#getContentLength() 	 */
@@ -2110,6 +2230,14 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+name|Subject
+name|preserveSubject
+init|=
+name|pool
+operator|.
+name|getSubject
+argument_list|()
+decl_stmt|;
 name|DBBroker
 name|broker
 init|=
@@ -2175,6 +2303,13 @@ operator|.
 name|release
 argument_list|(
 name|broker
+argument_list|)
+expr_stmt|;
+name|pool
+operator|.
+name|setSubject
+argument_list|(
+name|preserveSubject
 argument_list|)
 expr_stmt|;
 block|}
