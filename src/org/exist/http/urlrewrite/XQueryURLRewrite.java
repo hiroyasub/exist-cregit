@@ -2678,12 +2678,15 @@ operator|.
 name|getData
 argument_list|()
 expr_stmt|;
-name|modifiedRequest
-operator|.
-name|setAttribute
-argument_list|(
-name|RQ_ATTR_ERROR
-argument_list|,
+name|String
+name|msg
+init|=
+name|data
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
 operator|new
 name|String
 argument_list|(
@@ -2691,6 +2694,14 @@ name|data
 argument_list|,
 literal|"UTF-8"
 argument_list|)
+decl_stmt|;
+name|modifiedRequest
+operator|.
+name|setAttribute
+argument_list|(
+name|RQ_ATTR_ERROR
+argument_list|,
+name|msg
 argument_list|)
 expr_stmt|;
 name|applyViews
@@ -3209,7 +3220,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Process a rewrite action. Method checks if the target path is mapped      * to another action in controller-config.xml. If yes, replaces the current action      * with the new action.      *      * @param action      * @param request      * @param response      * @param filterChain      * @throws IOException      * @throws ServletException      */
+comment|/**      * Process a rewrite action. Method checks if the target path is mapped      * to another action in controller-config.xml. If yes, replaces the current action      * with the new action.      *      * @param action      * @param request      * @param response      * @throws IOException      * @throws ServletException      */
 specifier|protected
 name|void
 name|doRewrite
