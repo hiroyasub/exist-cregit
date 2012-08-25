@@ -590,69 +590,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|String
-name|xquery
-init|=
-literal|"import module namespace repo=\"http://exist-db.org/xquery/repo\" "
-operator|+
-literal|"at \"java:org.exist.xquery.modules.expathrepo.ExpathPackageModule\"; ("
-decl_stmt|;
-name|StringBuilder
-name|prolog
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|String
-name|uri
-range|:
-name|uris
-control|)
-block|{
-if|if
-condition|(
-name|prolog
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-name|prolog
-operator|.
-name|append
-argument_list|(
-literal|", "
-argument_list|)
-expr_stmt|;
-name|prolog
-operator|.
-name|append
-argument_list|(
-literal|" repo:deploy(\""
-operator|+
-name|uri
-operator|+
-literal|"\")"
-argument_list|)
-expr_stmt|;
-block|}
-name|prolog
-operator|.
-name|append
-argument_list|(
-literal|')'
-argument_list|)
-expr_stmt|;
-name|xquery
-operator|=
-name|xquery
-operator|+
-name|prolog
-expr_stmt|;
 name|System
 operator|.
 name|out
@@ -671,6 +608,54 @@ argument_list|(
 literal|"\nPLEASE DO NOT ABORT\n"
 argument_list|)
 expr_stmt|;
+name|String
+name|prolog
+init|=
+literal|"import module namespace repo=\"http://exist-db.org/xquery/repo\" "
+operator|+
+literal|"at \"java:org.exist.xquery.modules.expathrepo.ExpathPackageModule\";\n"
+decl_stmt|;
+for|for
+control|(
+name|String
+name|uri
+range|:
+name|uris
+control|)
+block|{
+name|StringBuilder
+name|xquery
+init|=
+operator|new
+name|StringBuilder
+argument_list|(
+name|prolog
+argument_list|)
+decl_stmt|;
+name|xquery
+operator|.
+name|append
+argument_list|(
+literal|" repo:deploy(\""
+operator|+
+name|uri
+operator|+
+literal|"\")"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|print
+argument_list|(
+literal|"Installing app package: "
+operator|+
+name|uri
+operator|+
+literal|"... "
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|query
@@ -678,6 +663,9 @@ operator|.
 name|query
 argument_list|(
 name|xquery
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -698,9 +686,21 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"An error occurred while deploying applications. Some applications may "
+literal|"An error occurred while deploying application: "
 operator|+
-literal|"not have been installed correctly. You can install them later using the package repository."
+name|uri
+operator|+
+literal|". You can install it later using the package repository."
+argument_list|)
+expr_stmt|;
+block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"DONE."
 argument_list|)
 expr_stmt|;
 block|}
