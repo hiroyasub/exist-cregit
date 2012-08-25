@@ -9696,8 +9696,9 @@ name|indexOf
 argument_list|(
 literal|':'
 argument_list|)
-operator|<
-literal|0
+operator|==
+operator|-
+literal|1
 operator|)
 operator|&&
 name|moduleLoadPath
