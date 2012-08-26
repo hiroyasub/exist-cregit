@@ -10744,6 +10744,13 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+name|modContext
+operator|.
+name|setSource
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
 name|modExternal
 operator|.
 name|setIsReady
