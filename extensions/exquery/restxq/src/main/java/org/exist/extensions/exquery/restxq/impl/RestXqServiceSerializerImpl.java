@@ -459,7 +459,6 @@ argument_list|,
 name|sax
 argument_list|)
 expr_stmt|;
-comment|//Marshaller.marshall(broker, results, start, howmany, serializer.getContentHandler());
 name|serializer
 operator|.
 name|toSAX
