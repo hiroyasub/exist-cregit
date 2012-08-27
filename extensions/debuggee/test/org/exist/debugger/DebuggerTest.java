@@ -280,16 +280,26 @@ decl_stmt|;
 comment|//if resource don't exist throw exception
 try|try
 block|{
+comment|// jetty.port.jetty
 name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xquery/fibo.xql"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"The resource don't exist, but debugger din't throw exception."
+literal|"The resource don't exist, but debugger don't throw exception."
 argument_list|,
 literal|null
 argument_list|)
@@ -321,6 +331,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -328,7 +339,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/fibo.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -399,6 +419,7 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -406,7 +427,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/fibo.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1148,6 +1178,7 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -1155,7 +1186,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/fibo.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1311,6 +1351,7 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -1318,7 +1359,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/fibo.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1506,6 +1556,7 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -1513,7 +1564,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/fibo.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1703,6 +1763,7 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
 init|=
@@ -1710,7 +1771,16 @@ name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/xquery/debug-test.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/debug-test.xql"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1904,11 +1974,21 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/exist/logo.jpg"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/logo.jpg"
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1965,11 +2045,21 @@ argument_list|(
 literal|"sending init request"
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|debugger
 operator|.
 name|init
 argument_list|(
-literal|"http://127.0.0.1:8080/notExist/fibo.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/notExist/fibo.xql"
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2025,10 +2115,20 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// jetty.port.jetty
 name|String
 name|url
 init|=
-literal|"http://127.0.0.1:8080/exist/xquery/json-test.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xquery/json-test.xql"
 decl_stmt|;
 for|for
 control|(
@@ -2237,10 +2337,20 @@ argument_list|,
 name|script
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|String
 name|url
 init|=
-literal|"http://127.0.0.1:8080/exist/rest/db/test/script.xql"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/rest/db/test/script.xql"
 decl_stmt|;
 for|for
 control|(

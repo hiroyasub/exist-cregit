@@ -491,6 +491,7 @@ argument_list|,
 name|verification
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|req
 operator|.
 name|addBodyParameter
@@ -499,7 +500,16 @@ name|OAuthConstants
 operator|.
 name|REDIRECT_URI
 argument_list|,
-literal|"http://localhost:8080/oauth/cook2gl"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/oauth/cook2gl"
 argument_list|)
 expr_stmt|;
 name|req

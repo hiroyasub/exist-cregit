@@ -419,10 +419,20 @@ name|String
 name|arguments
 parameter_list|)
 block|{
+comment|// jetty.port.jetty
 name|String
 name|target
 init|=
-literal|"http://127.0.0.1:8080/exist/"
+literal|"http://127.0.0.1:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/"
 operator|+
 name|arguments
 decl_stmt|;

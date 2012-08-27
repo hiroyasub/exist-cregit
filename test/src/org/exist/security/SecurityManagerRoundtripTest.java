@@ -289,6 +289,7 @@ literal|"xmldb:exist://"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.standalone
 name|params
 operator|.
 name|add
@@ -297,7 +298,16 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"xmldb:exist://localhost:8088/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 block|}
 argument_list|)
 expr_stmt|;

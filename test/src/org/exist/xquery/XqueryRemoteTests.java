@@ -89,11 +89,21 @@ literal|"Test for org.exist.xquery"
 argument_list|)
 decl_stmt|;
 comment|//$JUnit-BEGIN$
+comment|// jetty.port.standalone
 name|XPathQueryTest
 operator|.
 name|setURI
 argument_list|(
-literal|"xmldb:exist://localhost:8088/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 operator|+
 name|XmldbURI
 operator|.

@@ -79,6 +79,7 @@ literal|"jetty"
 block|}
 argument_list|)
 expr_stmt|;
+comment|// jetty.port.jetty
 name|manager
 operator|=
 operator|new
@@ -86,7 +87,16 @@ name|ClientsManager
 argument_list|(
 literal|5
 argument_list|,
-literal|"http://localhost:8080/exist/admin"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/admin"
 argument_list|)
 expr_stmt|;
 name|manager

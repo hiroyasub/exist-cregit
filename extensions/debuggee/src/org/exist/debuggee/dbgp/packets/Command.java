@@ -1038,7 +1038,8 @@ operator|.
 name|getKey
 argument_list|()
 return|;
-comment|//		return "http://localhost:8080/eXist/admin/admin.xql";
+comment|// jetty.port.jetty
+comment|//		return "http://localhost:" + System.getProperty("jetty.port") + "/eXist/admin/admin.xql";
 block|}
 block|}
 end_class

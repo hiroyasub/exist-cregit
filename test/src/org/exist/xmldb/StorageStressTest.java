@@ -156,13 +156,23 @@ init|=
 literal|null
 decl_stmt|;
 comment|//TODO : why a remote test ?
+comment|// jetty.port.standalone
 specifier|protected
 specifier|final
 specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8088/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 decl_stmt|;
 comment|//protected final static String URI = "xmldb:exist://";
 specifier|public

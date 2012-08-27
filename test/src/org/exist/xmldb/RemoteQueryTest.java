@@ -226,12 +226,22 @@ name|RemoteQueryTest
 extends|extends
 name|RemoteDBTest
 block|{
+comment|// jetty.port.standalone
 specifier|private
 specifier|static
 name|String
 name|uri
 init|=
-literal|"xmldb:exist://localhost:8088/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 operator|+
 name|XmldbURI
 operator|.

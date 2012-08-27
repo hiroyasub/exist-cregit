@@ -85,13 +85,21 @@ specifier|abstract
 class|class
 name|RESTTest
 block|{
+comment|// jetty.port.standalone
 specifier|protected
 specifier|final
 specifier|static
 name|String
 name|REST_URL
 init|=
-literal|"http://localhost:8088"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
 decl_stmt|;
 specifier|protected
 specifier|final

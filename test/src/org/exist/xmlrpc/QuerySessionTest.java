@@ -266,13 +266,23 @@ literal|"declare variable $n external;"
 operator|+
 literal|"//chapter[@xml:id = $n]"
 decl_stmt|;
+comment|// jetty.port.standalone
 specifier|private
 specifier|final
 specifier|static
 name|String
 name|baseURI
 init|=
-literal|"xmldb:exist://localhost:8088/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 decl_stmt|;
 specifier|private
 specifier|final

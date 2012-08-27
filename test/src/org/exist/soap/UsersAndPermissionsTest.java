@@ -64,18 +64,6 @@ name|mn
 init|=
 literal|null
 decl_stmt|;
-specifier|static
-name|String
-name|query_url
-init|=
-literal|"http://localhost:8080/exist/services/Query"
-decl_stmt|;
-specifier|static
-name|String
-name|admin_url
-init|=
-literal|"http://localhost:8080/exist/services/Admin"
-decl_stmt|;
 name|String
 name|testUser
 init|=
@@ -174,6 +162,8 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
+name|XQueryTest
+operator|.
 name|query_url
 argument_list|)
 argument_list|)
@@ -194,6 +184,8 @@ argument_list|(
 operator|new
 name|URL
 argument_list|(
+name|XQueryTest
+operator|.
 name|admin_url
 argument_list|)
 argument_list|)

@@ -823,13 +823,23 @@ name|HttpClient
 argument_list|()
 decl_stmt|;
 comment|// connect to a login page to retrieve session ID
+comment|// jetty.port.jetty
 name|PostMethod
 name|method
 init|=
 operator|new
 name|PostMethod
 argument_list|(
-literal|"http://localhost:8080/exist/rest/test/text.xq"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/rest/test/text.xq"
 argument_list|)
 decl_stmt|;
 name|System

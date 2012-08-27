@@ -91,13 +91,23 @@ name|class
 argument_list|)
 expr_stmt|;
 block|}
+comment|// jetty.port.jetty
 specifier|private
 specifier|final
 specifier|static
 name|String
 name|URI
 init|=
-literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xmlrpc"
 operator|+
 name|XmldbURI
 operator|.

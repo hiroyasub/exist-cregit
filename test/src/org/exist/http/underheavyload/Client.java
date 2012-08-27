@@ -279,13 +279,23 @@ literal|1000
 argument_list|)
 expr_stmt|;
 comment|// connect to a page you're interested...
+comment|// jetty.port.jetty
 name|PostMethod
 name|getMethod
 init|=
 operator|new
 name|PostMethod
 argument_list|(
-literal|"http://localhost:8080/exist/admin/admin.xql?panel=xqueries"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/admin/admin.xql?panel=xqueries"
 argument_list|)
 decl_stmt|;
 comment|// ...using the session ID retrieved before
@@ -352,8 +362,18 @@ name|manager
 operator|==
 literal|null
 condition|)
+comment|// jetty.port.jetty
 return|return
-literal|"http://localhost:8080/exist/admin"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/admin"
 return|;
 else|else
 return|return

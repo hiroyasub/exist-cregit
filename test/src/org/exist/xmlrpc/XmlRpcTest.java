@@ -259,13 +259,23 @@ name|server
 init|=
 literal|null
 decl_stmt|;
+comment|// jetty.port.standalone
 specifier|private
 specifier|final
 specifier|static
 name|String
 name|URI
 init|=
-literal|"http://localhost:8088/xmlrpc"
+literal|"http://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
 decl_stmt|;
 specifier|private
 specifier|final

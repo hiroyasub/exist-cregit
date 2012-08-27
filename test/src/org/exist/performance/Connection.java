@@ -84,11 +84,21 @@ specifier|private
 name|String
 name|id
 decl_stmt|;
+comment|// jetty.port.jetty
 specifier|private
 name|String
 name|base
 init|=
-literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+operator|+
+literal|"/exist/xmlrpc"
 decl_stmt|;
 specifier|private
 name|String
