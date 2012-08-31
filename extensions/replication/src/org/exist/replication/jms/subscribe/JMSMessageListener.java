@@ -1590,24 +1590,25 @@ name|vtf
 argument_list|)
 decl_stmt|;
 name|InputStream
-name|bis
+name|byteInputStream
 init|=
 name|vt
 operator|.
 name|getByteStream
 argument_list|()
 decl_stmt|;
+comment|// DW: future improvement: determine compression based on property.
 name|GZIPInputStream
 name|gis
 init|=
 operator|new
 name|GZIPInputStream
 argument_list|(
-name|bis
+name|byteInputStream
 argument_list|)
 decl_stmt|;
 name|InputSource
-name|is
+name|inputsource
 init|=
 operator|new
 name|InputSource
@@ -1628,7 +1629,7 @@ name|broker
 argument_list|,
 name|docURI
 argument_list|,
-name|is
+name|inputsource
 argument_list|)
 decl_stmt|;
 name|doc
@@ -1649,7 +1650,7 @@ name|mimeType
 argument_list|)
 expr_stmt|;
 comment|// reconstruct gzip input stream
-name|bis
+name|byteInputStream
 operator|.
 name|reset
 argument_list|()
@@ -1659,10 +1660,10 @@ operator|=
 operator|new
 name|GZIPInputStream
 argument_list|(
-name|bis
+name|byteInputStream
 argument_list|)
 expr_stmt|;
-name|is
+name|inputsource
 operator|=
 operator|new
 name|InputSource
@@ -1680,12 +1681,12 @@ name|broker
 argument_list|,
 name|info
 argument_list|,
-name|is
+name|inputsource
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|is
+name|inputsource
 operator|.
 name|getByteStream
 argument_list|()

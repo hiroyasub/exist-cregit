@@ -1618,6 +1618,46 @@ name|TriggerException
 block|{
 comment|// Ignored
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+comment|// ToDo to be implemented
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+comment|// ToDO to be implemented
+block|}
 block|}
 end_class
 
