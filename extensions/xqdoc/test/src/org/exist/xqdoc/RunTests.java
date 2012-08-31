@@ -696,7 +696,7 @@ init|=
 operator|(
 name|DatabaseInstanceManager
 operator|)
-name|testCollection
+name|root
 operator|.
 name|getService
 argument_list|(
