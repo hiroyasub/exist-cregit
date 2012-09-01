@@ -323,14 +323,6 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-name|xquery
-operator|.
-name|getContext
-argument_list|()
-operator|.
 name|prepareForExecution
 argument_list|()
 expr_stmt|;
@@ -393,6 +385,20 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+comment|//reset the query and context
+name|xquery
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+name|xquery
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|queries
 operator|.
 name|push
