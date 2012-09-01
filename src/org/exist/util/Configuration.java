@@ -2631,24 +2631,24 @@ comment|// Note: can't throw an exception here since this would create
 comment|// problems with test cases and jar dependencies
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"Configuration problem: failed to load class for module "
+literal|"Configuration problem: class not found for module '"
 operator|+
 name|uri
 operator|+
-literal|"; class: "
+literal|"' (ClassNotFoundException); class:'"
 operator|+
 name|clazz
 operator|+
-literal|"; message: "
+literal|"'; message:'"
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|e
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2660,7 +2660,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Module "
 operator|+
