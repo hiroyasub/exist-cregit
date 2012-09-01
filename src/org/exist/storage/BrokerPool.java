@@ -2864,7 +2864,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**Initializes the database instance. 	 * @throws EXistException 	 */
+comment|/**      * Initializes the database instance.      * @throws EXistException      */
 specifier|protected
 name|void
 name|initialize
@@ -2881,6 +2881,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2892,6 +2893,7 @@ operator|+
 literal|"'..."
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Flag to indicate that we are initializing
 name|status
 operator|=
@@ -2910,6 +2912,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+specifier|final
 name|boolean
 name|exportOnly
 init|=
@@ -3006,10 +3009,12 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 name|bufferSize
 operator|=
 name|DEFAULT_COLLECTION_BUFFER_SIZE
 expr_stmt|;
+block|}
 name|collectionCache
 operator|=
 operator|new
@@ -3033,6 +3038,7 @@ name|collectionCache
 argument_list|)
 expr_stmt|;
 comment|// compute how much memory should be reserved for caches to grow
+specifier|final
 name|Runtime
 name|rt
 init|=
@@ -3194,6 +3200,7 @@ comment|//TODO : this broker is *not* marked as active and *might* be reused by 
 comment|// at this stage, the database is still single-threaded, so reusing the broker later is not a problem.
 comment|//DBBroker broker = inactiveBrokers.peek();
 comment|// dmitriy: Security issue: better to use proper get()/release() way, because of subprocesses (SecurityManager as example)
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -3266,6 +3273,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -3466,6 +3474,7 @@ operator|.
 name|isXACMLEnabled
 argument_list|()
 condition|)
+block|{
 name|securityManager
 operator|.
 name|getPDP
@@ -3474,6 +3483,7 @@ operator|.
 name|initializePolicyCollection
 argument_list|()
 expr_stmt|;
+block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 if|if
@@ -3528,6 +3538,7 @@ name|booleanValue
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ConsistencyCheckTask
 name|task
 init|=
@@ -3535,6 +3546,7 @@ operator|new
 name|ConsistencyCheckTask
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|props
 init|=
@@ -3684,7 +3696,7 @@ comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(bro
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
 comment|/* TODO: start adam */
 comment|//Schedule the system tasks
-comment|/*for (int i = 0; i< systemTasks.size(); i++) { 	    	//TODO : remove first argument when SystemTask has a getPeriodicity() method 	        initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i)); 	    }		 		systemTasksPeriods = null;*/
+comment|/*for (int i = 0; i< systemTasks.size(); i++) {             //TODO : remove first argument when SystemTask has a getPeriodicity() method             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));         }		 		systemTasksPeriods = null;*/
 comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
@@ -3701,9 +3713,11 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|createBroker
 argument_list|()
 expr_stmt|;
+block|}
 comment|// register some MBeans to provide access to this instance
 name|AgentFactory
 operator|.
@@ -3722,6 +3736,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3733,6 +3748,7 @@ operator|+
 literal|"' initialized"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//setup any configured jobs
 comment|//scheduler.setupConfiguredJobs();
 comment|//execute any startup jobs
