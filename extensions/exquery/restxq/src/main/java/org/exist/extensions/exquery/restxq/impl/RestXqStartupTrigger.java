@@ -54,6 +54,8 @@ name|RestXqStartupTrigger
 implements|implements
 name|StartupTrigger
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
