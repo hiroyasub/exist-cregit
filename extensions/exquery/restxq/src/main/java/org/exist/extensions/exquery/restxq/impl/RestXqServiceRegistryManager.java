@@ -23,6 +23,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|storage
@@ -68,6 +80,21 @@ class|class
 name|RestXqServiceRegistryManager
 block|{
 specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|RestXqServiceRegistryManager
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|private
 specifier|static
 name|RestXqServiceRegistryImpl
 name|registry
@@ -99,6 +126,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Initialising RESTXQ..."
+argument_list|)
+expr_stmt|;
 name|registry
 operator|=
 operator|new
@@ -125,7 +159,7 @@ name|RestXqServiceCompiledXQueryCacheCleanupListener
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//add persistence listener, must load registry before listening for registered events
+comment|//add persistence listener
 name|persistence
 operator|=
 operator|new
@@ -136,16 +170,25 @@ argument_list|,
 name|registry
 argument_list|)
 expr_stmt|;
+comment|//load registry
 name|persistence
 operator|.
 name|loadRegistry
 argument_list|()
 expr_stmt|;
+comment|//NOTE: must load registry before listening for registered events
 name|registry
 operator|.
 name|addListener
 argument_list|(
 name|persistence
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"RESTXQ is ready."
 argument_list|)
 expr_stmt|;
 block|}

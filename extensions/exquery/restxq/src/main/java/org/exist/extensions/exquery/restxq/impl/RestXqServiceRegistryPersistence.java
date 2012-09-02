@@ -478,6 +478,18 @@ name|File
 name|fRegistry
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Loading RESTXQ registry from: "
+operator|+
+name|fRegistry
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|LineNumberReader
 name|reader
 init|=
@@ -785,6 +797,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"RESTXQ registry loaded."
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -885,6 +904,18 @@ name|delete
 argument_list|()
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Updating new RESTXQ registry on disk: "
+operator|+
+name|fNewRegistry
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|PrintWriter
 name|writer
 init|=
@@ -1193,6 +1224,18 @@ argument_list|(
 name|fNewRegistry
 argument_list|,
 name|fRegistry
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Replaced RESTXQ registry with new registry: "
+operator|+
+name|fRegistry
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
