@@ -65,6 +65,18 @@ name|HttpResponse
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exquery
+operator|.
+name|http
+operator|.
+name|HttpStatus
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
@@ -84,6 +96,7 @@ decl_stmt|;
 specifier|public
 name|HttpServletResponseAdapter
 parameter_list|(
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
@@ -101,9 +114,11 @@ specifier|public
 name|void
 name|setHeader
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -124,9 +139,11 @@ specifier|public
 name|void
 name|setStatus
 parameter_list|(
-name|int
+specifier|final
+name|HttpStatus
 name|status
 parameter_list|,
+specifier|final
 name|String
 name|reason
 parameter_list|)
@@ -136,6 +153,9 @@ operator|.
 name|setStatus
 argument_list|(
 name|status
+operator|.
+name|getStatus
+argument_list|()
 argument_list|,
 name|reason
 argument_list|)
@@ -147,7 +167,8 @@ specifier|public
 name|void
 name|setStatus
 parameter_list|(
-name|int
+specifier|final
+name|HttpStatus
 name|status
 parameter_list|)
 block|{
@@ -156,6 +177,9 @@ operator|.
 name|setStatus
 argument_list|(
 name|status
+operator|.
+name|getStatus
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -165,6 +189,7 @@ specifier|public
 name|boolean
 name|containsHeader
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -184,6 +209,7 @@ specifier|public
 name|void
 name|setContentType
 parameter_list|(
+specifier|final
 name|String
 name|contentType
 parameter_list|)
