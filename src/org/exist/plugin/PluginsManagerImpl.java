@@ -316,11 +316,11 @@ specifier|public
 specifier|final
 specifier|static
 name|XmldbURI
-name|PLUGINS_COLLETION_URI
+name|COLLETION_URI
 init|=
 name|XmldbURI
 operator|.
-name|SYSTEM_COLLECTION_URI
+name|SYSTEM
 operator|.
 name|append
 argument_list|(
@@ -463,7 +463,7 @@ name|broker
 operator|.
 name|getCollection
 argument_list|(
-name|PLUGINS_COLLETION_URI
+name|COLLETION_URI
 argument_list|)
 expr_stmt|;
 if|if
@@ -488,7 +488,7 @@ name|getOrCreateCollection
 argument_list|(
 name|txn
 argument_list|,
-name|PLUGINS_COLLETION_URI
+name|COLLETION_URI
 argument_list|)
 expr_stmt|;
 if|if
@@ -682,6 +682,38 @@ comment|//			configuration.save(broker);
 comment|//		} catch (PermissionDeniedException e) {
 comment|//			//LOG?
 comment|//		}
+for|for
+control|(
+name|Jack
+name|jack
+range|:
+name|jacks
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|jack
+operator|instanceof
+name|Startable
+condition|)
+block|{
+operator|(
+operator|(
+name|Startable
+operator|)
+name|jack
+operator|)
+operator|.
+name|startUp
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 specifier|public
 name|String
@@ -787,6 +819,7 @@ argument_list|(
 name|className
 argument_list|)
 expr_stmt|;
+comment|//TODO: if (jack instanceof Startable) { ((Startable) jack).startUp(broker); }
 block|}
 catch|catch
 parameter_list|(
