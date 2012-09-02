@@ -359,6 +359,9 @@ argument_list|(
 name|SYSTEM_COLLECTION
 argument_list|)
 decl_stmt|;
+comment|/** '/db/system' **/
+annotation|@
+name|Deprecated
 specifier|public
 specifier|final
 specifier|static
