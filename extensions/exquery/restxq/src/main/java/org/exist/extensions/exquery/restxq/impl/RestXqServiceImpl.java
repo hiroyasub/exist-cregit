@@ -675,6 +675,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -925,6 +926,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1091,6 +1093,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1223,6 +1226,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1261,6 +1265,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1304,6 +1309,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1327,7 +1333,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/*     private class ItemTypedValue extends AbstractTypedValue<Item> {          public ItemTypedValue(final Item value) {             super(Type.ITEM, value);         }     }*/
 specifier|private
 name|DocumentImpl
 name|parseAsXml
@@ -1439,6 +1444,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1447,6 +1453,7 @@ comment|//do nothing, we will default to trying to return a string below
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1484,9 +1491,11 @@ specifier|static
 name|StringValue
 name|parseAsString
 parameter_list|(
+specifier|final
 name|InputStream
 name|is
 parameter_list|,
+specifier|final
 name|String
 name|encoding
 parameter_list|)
@@ -1546,6 +1555,7 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|s
 init|=
