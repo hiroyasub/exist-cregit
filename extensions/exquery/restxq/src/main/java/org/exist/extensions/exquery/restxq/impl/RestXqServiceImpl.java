@@ -1329,6 +1329,11 @@ operator|new
 name|MemTreeBuilder
 argument_list|()
 decl_stmt|;
+name|builder
+operator|.
+name|startDocument
+argument_list|()
+expr_stmt|;
 specifier|final
 name|DocumentBuilderReceiver
 name|receiver
@@ -1354,6 +1359,11 @@ name|parse
 argument_list|(
 name|src
 argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|endDocument
+argument_list|()
 expr_stmt|;
 name|Document
 name|doc
