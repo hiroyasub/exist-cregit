@@ -1817,7 +1817,7 @@ literal|"'. Will re-examine if the missing module is added."
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|protected
 name|String
 name|getAbsoluteModuleHint
 parameter_list|(
@@ -1842,6 +1842,7 @@ name|ROOT_COLLECTION
 argument_list|)
 condition|)
 block|{
+comment|//absolute simple path
 return|return
 name|moduleHint
 return|;
@@ -1877,13 +1878,45 @@ literal|""
 argument_list|)
 return|;
 block|}
-else|else
+if|else if
+condition|(
+name|moduleHint
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI_PREFIX
+argument_list|)
+condition|)
 block|{
 return|return
+name|moduleHint
+operator|.
+name|replace
+argument_list|(
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI_PREFIX
+argument_list|,
+literal|""
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|//relative to the xqueryUri
+specifier|final
+name|XmldbURI
+name|xqueryPath
+init|=
 name|xqueryUri
 operator|.
 name|removeLastSegment
 argument_list|()
+decl_stmt|;
+return|return
+name|xqueryPath
 operator|.
 name|append
 argument_list|(
