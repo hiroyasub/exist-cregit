@@ -272,9 +272,9 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|XQUERY_LOCATION
+name|XQUERY_URI
 init|=
-literal|"xquery-location"
+literal|"xquery-uri"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -334,7 +334,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"get-resource-functions"
+literal|"resource-functions"
 argument_list|,
 name|RestXqModule
 operator|.
@@ -468,7 +468,7 @@ name|addAttribute
 argument_list|(
 literal|null
 argument_list|,
-name|XQUERY_LOCATION
+name|XQUERY_URI
 argument_list|,
 literal|""
 argument_list|,
