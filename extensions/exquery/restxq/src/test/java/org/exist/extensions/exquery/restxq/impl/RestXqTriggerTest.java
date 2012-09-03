@@ -7,6 +7,10 @@ begin_package
 package|package
 name|org
 operator|.
+name|exist
+operator|.
+name|extensions
+operator|.
 name|exquery
 operator|.
 name|restxq
