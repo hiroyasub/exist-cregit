@@ -189,15 +189,12 @@ operator|+
 literal|"@google.com"
 return|;
 return|return
-name|id
+name|uri
 operator|.
-name|replace
-argument_list|(
-literal|"https://"
-argument_list|,
-literal|"/"
-argument_list|)
+name|getAuthority
+argument_list|()
 return|;
+comment|//		return id.replace("https://", "/");
 block|}
 specifier|public
 name|AccountImpl
