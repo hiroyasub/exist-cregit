@@ -225,14 +225,7 @@ operator|.
 name|getConnectionFactory
 argument_list|()
 decl_stmt|;
-name|String
-name|destination
-init|=
-name|jmc
-operator|.
-name|getDestination
-argument_list|()
-decl_stmt|;
+comment|//String destination = jmc.getDestination();
 name|MyListener
 name|myListener
 init|=

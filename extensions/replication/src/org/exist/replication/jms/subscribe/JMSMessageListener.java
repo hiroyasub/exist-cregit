@@ -2226,14 +2226,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
-name|XmldbURI
-name|docURI
-init|=
-name|sourcePath
-operator|.
-name|lastSegment
-argument_list|()
-decl_stmt|;
+comment|//XmldbURI docURI = sourcePath.lastSegment();
 name|DBBroker
 name|broker
 init|=
@@ -2406,22 +2399,8 @@ name|getResourcePath
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|XmldbURI
-name|colURI
-init|=
-name|sourcePath
-operator|.
-name|removeLastSegment
-argument_list|()
-decl_stmt|;
-name|XmldbURI
-name|docURI
-init|=
-name|sourcePath
-operator|.
-name|lastSegment
-argument_list|()
-decl_stmt|;
+comment|//XmldbURI colURI = sourcePath.removeLastSegment();
+comment|//XmldbURI docURI = sourcePath.lastSegment();
 name|Map
 argument_list|<
 name|String
@@ -3248,22 +3227,8 @@ name|getResourcePath
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|XmldbURI
-name|sourceColURI
-init|=
-name|sourcePath
-operator|.
-name|removeLastSegment
-argument_list|()
-decl_stmt|;
-name|XmldbURI
-name|sourceDocURI
-init|=
-name|sourcePath
-operator|.
-name|lastSegment
-argument_list|()
-decl_stmt|;
+comment|//XmldbURI sourceColURI = sourcePath.removeLastSegment();
+comment|//XmldbURI sourceDocURI = sourcePath.lastSegment();
 name|XmldbURI
 name|destPath
 init|=

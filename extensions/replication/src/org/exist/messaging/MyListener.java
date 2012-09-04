@@ -257,14 +257,7 @@ name|getJMSType
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|NodeImpl
-name|report
-init|=
-name|createReport
-argument_list|(
-name|message
-argument_list|)
-decl_stmt|;
+comment|//NodeImpl report = createReport(message);
 name|Item
 name|content
 init|=
@@ -522,9 +515,7 @@ argument_list|(
 literal|"execute"
 argument_list|)
 expr_stmt|;
-name|Sequence
-name|ret
-init|=
+comment|/* Sequence ret = */
 name|ref
 operator|.
 name|evalFunction
@@ -535,7 +526,7 @@ literal|null
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// Never reaches here, due to NPE.
 name|LOG
 operator|.
