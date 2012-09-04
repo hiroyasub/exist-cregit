@@ -133,6 +133,8 @@ block|,
 name|MOVE
 block|,
 name|COPY
+block|,
+name|METADATA
 block|}
 comment|/**      * Types of exist-db resources      */
 specifier|public
