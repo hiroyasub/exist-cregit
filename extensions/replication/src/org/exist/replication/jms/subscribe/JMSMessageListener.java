@@ -944,6 +944,9 @@ name|em
 argument_list|)
 expr_stmt|;
 break|break;
+comment|//            case METADATA;
+comment|//                updateMetadataDocument(em);
+comment|//                break;
 case|case
 name|DELETE
 case|:
