@@ -816,6 +816,8 @@ name|RestXqService
 name|service
 parameter_list|)
 block|{
+comment|//TODO consider a pause before writting to disk of maybe 1 second or so
+comment|//to allow updates to batched together i.e. when one xquery has many resource functions
 name|updateRegistryOnDisk
 argument_list|(
 name|service
@@ -837,6 +839,8 @@ name|RestXqService
 name|service
 parameter_list|)
 block|{
+comment|//TODO consider a pause before writting to disk of maybe 1 second or so
+comment|//to allow updates to batched together i.e. when one xquery has many resource functions
 name|updateRegistryOnDisk
 argument_list|(
 name|service
