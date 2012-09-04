@@ -682,7 +682,10 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|CREATE_UPDATE
+name|CREATE
+case|:
+case|case
+name|UPDATE
 case|:
 comment|// Create dirs if not existent
 name|dir
@@ -992,7 +995,10 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|CREATE_UPDATE
+name|CREATE
+case|:
+case|case
+name|UPDATE
 case|:
 try|try
 block|{

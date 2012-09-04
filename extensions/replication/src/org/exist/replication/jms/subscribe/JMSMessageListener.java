@@ -933,7 +933,10 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|CREATE_UPDATE
+name|CREATE
+case|:
+case|case
+name|UPDATE
 case|:
 name|createDocument
 argument_list|(
@@ -1017,7 +1020,10 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|CREATE_UPDATE
+name|CREATE
+case|:
+case|case
+name|UPDATE
 case|:
 name|createCollection
 argument_list|(

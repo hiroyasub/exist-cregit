@@ -124,7 +124,9 @@ specifier|public
 enum|enum
 name|ResourceOperation
 block|{
-name|CREATE_UPDATE
+name|CREATE
+block|,
+name|UPDATE
 block|,
 name|DELETE
 block|,
