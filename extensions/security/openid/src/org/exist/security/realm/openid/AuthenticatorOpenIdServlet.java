@@ -582,31 +582,12 @@ name|proxyProps
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
-name|this
-operator|.
 name|manager
 operator|=
 operator|new
 name|ConsumerManager
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ConsumerException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ServletException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
 name|manager
 operator|.
 name|setAssociations
@@ -2236,7 +2217,13 @@ name|OpenIDException
 name|e
 parameter_list|)
 block|{
-comment|//XXX: present error to the user
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2244,7 +2231,13 @@ name|ConfigurationException
 name|e
 parameter_list|)
 block|{
-comment|//XXX: present error to the user
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2252,7 +2245,13 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-comment|//XXX: present error to the user
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2260,7 +2259,13 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
-comment|//XXX: present error to the user
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
