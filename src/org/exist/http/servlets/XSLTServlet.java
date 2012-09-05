@@ -21,6 +21,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|FilenameUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|log4j
 operator|.
 name|Logger
@@ -679,27 +693,7 @@ name|java
 operator|.
 name|net
 operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URLConnection
+name|*
 import|;
 end_import
 
@@ -1884,8 +1878,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|// TODO looks like a fall back to filesystem. Will work for Unix, not for win32?
-comment|// TODO or is it a relative path to .......
+comment|// Check if stylesheet contains an URI. If not, try to resolve from file system
 if|if
 condition|(
 name|stylesheet
@@ -1900,6 +1893,18 @@ operator|.
 name|STRING_NOT_FOUND
 condition|)
 block|{
+comment|// replace double slash
+name|stylesheet
+operator|=
+name|stylesheet
+operator|.
+name|replaceAll
+argument_list|(
+literal|"//"
+argument_list|,
+literal|"/"
+argument_list|)
+expr_stmt|;
 name|File
 name|f
 init|=
@@ -1931,37 +1936,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// TODO cannot read file, what does this mean?
-if|if
-condition|(
-name|f
-operator|.
-name|isAbsolute
-argument_list|()
-condition|)
-block|{
+comment|// if the stylesheet path is absolute, it must be resolved relative to the webapp root
+comment|// f.isAbsolute is problematic on windows.
 if|if
 condition|(
 name|stylesheet
 operator|.
 name|startsWith
 argument_list|(
-literal|"//"
+literal|"/"
 argument_list|)
 condition|)
 block|{
-name|stylesheet
-operator|=
-name|stylesheet
-operator|.
-name|replaceFirst
-argument_list|(
-literal|"//"
-argument_list|,
-literal|"/"
-argument_list|)
-expr_stmt|;
-block|}
 name|String
 name|url
 init|=
@@ -2020,6 +2006,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// relative path is relative to the current working directory
 name|f
 operator|=
 operator|new
@@ -2074,7 +2061,8 @@ return|;
 block|}
 block|}
 block|}
-comment|// TODO please explain what happens here
+comment|// Try to figure out the base directory of the stylesheet file.
+comment|// This is required to locate resources imported within the stylesheet.
 name|String
 name|base
 decl_stmt|;
