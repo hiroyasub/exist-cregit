@@ -1907,7 +1907,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Created document in database      */
+comment|/**      *  Metadata is updated in database      */
 specifier|private
 name|void
 name|updateMetadataDocument
@@ -1916,7 +1916,9 @@ name|eXistMessage
 name|em
 parameter_list|)
 block|{
-comment|// to fill in
+comment|// Permissions
+comment|// Mimetype
+comment|// owner/groupname
 block|}
 comment|/**      * Remove document from database      */
 specifier|private
