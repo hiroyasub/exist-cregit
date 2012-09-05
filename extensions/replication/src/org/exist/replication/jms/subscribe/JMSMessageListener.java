@@ -944,9 +944,15 @@ name|em
 argument_list|)
 expr_stmt|;
 break|break;
-comment|//            case METADATA;
-comment|//                updateMetadataDocument(em);
-comment|//                break;
+case|case
+name|METADATA
+case|:
+name|updateMetadataDocument
+argument_list|(
+name|em
+argument_list|)
+expr_stmt|;
+break|break;
 case|case
 name|DELETE
 case|:
@@ -1900,6 +1906,17 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Created document in database      */
+specifier|private
+name|void
+name|updateMetadataDocument
+parameter_list|(
+name|eXistMessage
+name|em
+parameter_list|)
+block|{
+comment|// to fill in
 block|}
 comment|/**      * Remove document from database      */
 specifier|private
