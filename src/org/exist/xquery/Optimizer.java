@@ -71,6 +71,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Type
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -919,6 +933,8 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// inside a filter expression, we can often replace a logical and with
+comment|// a chain of filters, which can then be further optimized
 name|Expression
 name|parent
 init|=
@@ -1182,6 +1198,31 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitGeneralComparison
+parameter_list|(
+name|GeneralComparison
+name|comparison
+parameter_list|)
+block|{
+comment|// Check if the left operand is a path expression ending in a
+comment|// text() step. This step is unnecessary and makes it hard
+comment|// to further optimize the expression. We thus try to remove
+comment|// the extra text() step automatically.
+comment|// TODO should insert a pragma instead of removing the step
+comment|// we don't know at this point if there's an index to use
+comment|//        Expression expr = comparison.getLeft();
+comment|//        if (expr instanceof PathExpr) {
+comment|//            PathExpr pathExpr = (PathExpr) expr;
+comment|//            Expression last = pathExpr.getLastExpression();
+comment|//            if (pathExpr.getLength()> 1&& last instanceof Step&& ((Step)last).getTest().getType() == Type.TEXT) {
+comment|//                pathExpr.remove(last);
+comment|//            }
+comment|//        }
 block|}
 specifier|public
 name|void

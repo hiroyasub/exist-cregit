@@ -712,23 +712,6 @@ name|XPathException
 block|{
 comment|//Nothing to do
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|insertAfter
-parameter_list|(
-name|Expression
-name|exprBefore
-parameter_list|,
-name|Expression
-name|newExpr
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-comment|//Nothing to do
-block|}
 comment|/* END RewritableExpression API */
 block|}
 end_class

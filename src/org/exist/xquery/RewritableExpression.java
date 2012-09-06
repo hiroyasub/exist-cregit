@@ -13,6 +13,10 @@ name|xquery
 package|;
 end_package
 
+begin_comment
+comment|/**  * To be implement by expressions which can be rewritten by the query  * optimizer.  */
+end_comment
+
 begin_interface
 specifier|public
 interface|interface
@@ -40,19 +44,6 @@ throws|throws
 name|XPathException
 function_decl|;
 specifier|public
-name|void
-name|insertAfter
-parameter_list|(
-name|Expression
-name|exprBefore
-parameter_list|,
-name|Expression
-name|newExpr
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
 name|Expression
 name|getPrevious
 parameter_list|(
@@ -63,10 +54,6 @@ function_decl|;
 specifier|public
 name|Expression
 name|getFirst
-parameter_list|()
-function_decl|;
-name|boolean
-name|allowMixedNodesInReturn
 parameter_list|()
 function_decl|;
 block|}
