@@ -1613,6 +1613,8 @@ name|valueIndex
 operator|.
 name|find
 argument_list|(
+literal|null
+argument_list|,
 name|Constants
 operator|.
 name|EQ
