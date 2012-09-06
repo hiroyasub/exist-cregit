@@ -504,10 +504,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|dir
+operator|.
+name|matches
+argument_list|(
+literal|"^[a-z]+:.*"
+argument_list|)
+condition|)
+block|{
+name|moduleLoadPath
+operator|=
+name|dir
+expr_stmt|;
+block|}
+if|else if
+condition|(
 name|parentContext
 operator|.
-name|getModuleLoadPath
-argument_list|()
+name|moduleLoadPath
 operator|.
 name|equals
 argument_list|(

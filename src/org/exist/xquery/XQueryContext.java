@@ -1466,7 +1466,7 @@ name|baseURISetInProlog
 init|=
 literal|false
 decl_stmt|;
-specifier|private
+specifier|protected
 name|String
 name|moduleLoadPath
 init|=
