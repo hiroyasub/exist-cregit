@@ -429,6 +429,11 @@ argument_list|(
 literal|"org.exist.storage.md.Plugin"
 argument_list|)
 expr_stmt|;
+name|addPlugin
+argument_list|(
+literal|"org.exist.scheduler.Plugin"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

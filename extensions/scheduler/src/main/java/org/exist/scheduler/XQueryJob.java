@@ -208,6 +208,7 @@ comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a> 
 end_comment
 
 begin_class
+specifier|public
 class|class
 name|XQueryJob
 implements|implements
@@ -217,6 +218,11 @@ name|quartz
 operator|.
 name|Job
 block|{
+specifier|public
+name|XQueryJob
+parameter_list|()
+block|{
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -253,9 +259,24 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"Job"
+name|Job
+operator|.
+name|DETAILS
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|description
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|JobExecutionException
+argument_list|(
+literal|"Internal error, job description missing, abort."
+argument_list|)
+throw|;
 if|if
 condition|(
 name|description
