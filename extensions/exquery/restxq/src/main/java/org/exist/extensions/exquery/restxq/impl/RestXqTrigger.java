@@ -1301,8 +1301,6 @@ name|rxsce
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|rxsce
 argument_list|)
 expr_stmt|;
 block|}
@@ -1478,6 +1476,18 @@ name|ExQueryException
 name|eqe
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|eqe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|eqe
+argument_list|)
+expr_stmt|;
 block|}
 comment|//remove the resolve dependecies from the missing dependencies
 synchronized|synchronized
