@@ -1382,6 +1382,11 @@ argument_list|()
 operator|.
 name|match
 argument_list|(
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+argument_list|,
 name|contextSequence
 operator|.
 name|getDocumentSet
@@ -2599,6 +2604,11 @@ name|index
 operator|.
 name|matchAll
 argument_list|(
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+argument_list|,
 name|docs
 argument_list|,
 name|nodes
@@ -2625,6 +2635,11 @@ name|index
 operator|.
 name|match
 argument_list|(
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+argument_list|,
 name|docs
 argument_list|,
 name|nodes

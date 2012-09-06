@@ -33,6 +33,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryWatchDog
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -3878,6 +3890,9 @@ specifier|public
 name|NodeSet
 name|find
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -3903,6 +3918,8 @@ return|return
 operator|(
 name|find
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -3926,6 +3943,9 @@ specifier|public
 name|NodeSet
 name|find
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -3954,6 +3974,8 @@ return|return
 operator|(
 name|find
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -3977,6 +3999,9 @@ specifier|public
 name|NodeSet
 name|find
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -4021,6 +4046,8 @@ condition|)
 block|{
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4063,6 +4090,8 @@ argument_list|)
 expr_stmt|;
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4086,6 +4115,8 @@ name|mixedIndex
 condition|)
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4112,6 +4143,9 @@ specifier|public
 name|NodeSet
 name|findAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -4134,6 +4168,8 @@ return|return
 operator|(
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4153,6 +4189,9 @@ specifier|public
 name|NodeSet
 name|findAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -4184,6 +4223,8 @@ argument_list|()
 decl_stmt|;
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4206,6 +4247,8 @@ argument_list|)
 expr_stmt|;
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4233,6 +4276,9 @@ specifier|private
 name|NodeSet
 name|findAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -4264,6 +4310,8 @@ return|return
 operator|(
 name|findAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|relation
 argument_list|,
 name|docs
@@ -4288,6 +4336,9 @@ specifier|private
 name|NodeSet
 name|findAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|int
 name|relation
 parameter_list|,
@@ -4394,6 +4445,13 @@ decl_stmt|;
 name|Value
 name|prefixKey
 decl_stmt|;
+name|watchDog
+operator|.
+name|proceed
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|qnames
@@ -4819,6 +4877,9 @@ specifier|public
 name|NodeSet
 name|match
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -4846,6 +4907,8 @@ return|return
 operator|(
 name|match
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -4869,6 +4932,9 @@ specifier|public
 name|NodeSet
 name|match
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -4902,6 +4968,8 @@ return|return
 operator|(
 name|match
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -4929,6 +4997,9 @@ specifier|public
 name|NodeSet
 name|match
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -4962,6 +5033,8 @@ return|return
 operator|(
 name|match
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -4989,6 +5062,9 @@ specifier|public
 name|NodeSet
 name|match
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -5041,6 +5117,8 @@ condition|)
 block|{
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5089,6 +5167,8 @@ argument_list|)
 expr_stmt|;
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5123,6 +5203,9 @@ specifier|public
 name|NodeSet
 name|matchAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -5153,6 +5236,8 @@ return|return
 operator|(
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5178,6 +5263,9 @@ specifier|public
 name|NodeSet
 name|matchAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -5220,6 +5308,8 @@ argument_list|()
 decl_stmt|;
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5248,6 +5338,8 @@ argument_list|)
 expr_stmt|;
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5281,6 +5373,9 @@ specifier|public
 name|NodeSet
 name|matchAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -5320,6 +5415,8 @@ return|return
 operator|(
 name|matchAll
 argument_list|(
+name|watchDog
+argument_list|,
 name|docs
 argument_list|,
 name|contextSet
@@ -5350,6 +5447,9 @@ specifier|public
 name|NodeSet
 name|matchAll
 parameter_list|(
+name|XQueryWatchDog
+name|watchDog
+parameter_list|,
 name|DocumentSet
 name|docs
 parameter_list|,
@@ -5731,6 +5831,13 @@ decl_stmt|;
 name|Value
 name|searchKey
 decl_stmt|;
+name|watchDog
+operator|.
+name|proceed
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|qnames

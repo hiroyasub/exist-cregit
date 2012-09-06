@@ -604,6 +604,15 @@ literal|"The query has been killed by the server."
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|timeout
+operator|!=
+name|Long
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
 specifier|final
 name|long
 name|elapsed
@@ -688,6 +697,7 @@ argument_list|,
 literal|"The query exceeded the predefined timeout and has been killed."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|public

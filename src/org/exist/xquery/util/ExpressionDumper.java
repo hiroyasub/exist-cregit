@@ -83,6 +83,15 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+if|if
+condition|(
+name|expr
+operator|==
+literal|null
+condition|)
+return|return
+literal|""
+return|;
 name|StringWriter
 name|writer
 init|=

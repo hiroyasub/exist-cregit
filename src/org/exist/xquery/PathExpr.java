@@ -1063,6 +1063,16 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+operator|.
+name|proceed
+argument_list|(
+name|expr
+argument_list|)
+expr_stmt|;
 comment|//TODO : maybe this could be detected by the parser ? -pb
 if|if
 condition|(
@@ -1314,6 +1324,16 @@ argument_list|(
 name|p
 argument_list|,
 name|seq
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|getWatchDog
+argument_list|()
+operator|.
+name|proceed
+argument_list|(
+name|expr
 argument_list|)
 expr_stmt|;
 name|Item
