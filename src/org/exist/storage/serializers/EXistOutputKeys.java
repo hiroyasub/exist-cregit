@@ -127,6 +127,15 @@ name|JSONP
 init|=
 literal|"jsonp"
 decl_stmt|;
+comment|/**      * JSON serialization: prefix XML attributes with a '@' when serializing      * them as JSON properties      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSON_PREFIX_ATTRIBUTES
+init|=
+literal|"prefix-attributes"
+decl_stmt|;
 block|}
 end_class
 
