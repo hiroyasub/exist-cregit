@@ -624,15 +624,13 @@ argument_list|(
 name|lblResourceType
 argument_list|)
 expr_stmt|;
+comment|//final JComboBox cmbResourceTypes = new JComboBox<ResourceType>(ResourceType.values());
 specifier|final
 name|JComboBox
 name|cmbResourceTypes
 init|=
 operator|new
 name|JComboBox
-argument_list|<
-name|ResourceType
-argument_list|>
 argument_list|(
 name|ResourceType
 operator|.
