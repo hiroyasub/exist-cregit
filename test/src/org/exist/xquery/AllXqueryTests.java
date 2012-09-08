@@ -156,6 +156,10 @@ block|,
 name|DeferredFunctionCallTest
 operator|.
 name|class
+block|,
+name|UnionTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
