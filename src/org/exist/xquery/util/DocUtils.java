@@ -163,6 +163,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|lock
 operator|.
 name|Lock
@@ -1061,7 +1073,6 @@ return|return
 name|document
 return|;
 block|}
-comment|/** 	 * Utility function to parse an input stream into an in-memory DOM document. 	 *  	 * @param context 	 * @param istream 	 * @return document 	 * @throws XPathException 	 */
 specifier|public
 specifier|static
 name|org
@@ -1082,10 +1093,9 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// we use eXist's in-memory DOM implementation
-name|XMLReader
-name|reader
-init|=
+return|return
+name|parse
+argument_list|(
 name|context
 operator|.
 name|getBroker
@@ -1093,6 +1103,42 @@ argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
+argument_list|,
+name|context
+argument_list|,
+name|istream
+argument_list|)
+return|;
+block|}
+comment|/** 	 * Utility function to parse an input stream into an in-memory DOM document. 	 *  	 * @param pool 	 * @param istream 	 * @return document 	 * @throws XPathException 	 */
+specifier|public
+specifier|static
+name|org
+operator|.
+name|exist
+operator|.
+name|memtree
+operator|.
+name|DocumentImpl
+name|parse
+parameter_list|(
+name|BrokerPool
+name|pool
+parameter_list|,
+name|XQueryContext
+name|context
+parameter_list|,
+name|InputStream
+name|istream
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|// we use eXist's in-memory DOM implementation
+name|XMLReader
+name|reader
+init|=
+name|pool
 operator|.
 name|getParserPool
 argument_list|()
