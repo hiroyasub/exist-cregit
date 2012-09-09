@@ -289,6 +289,10 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doOptimize
+condition|)
 name|contextSequence
 operator|.
 name|setSelfAsContext
