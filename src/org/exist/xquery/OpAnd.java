@@ -283,6 +283,26 @@ init|=
 name|getRight
 argument_list|()
 decl_stmt|;
+name|setContextId
+argument_list|(
+name|getExpressionId
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|contextSequence
+operator|.
+name|setSelfAsContext
+argument_list|(
+name|getContextId
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//            System.out.println("getContextId "+getContextId());
+comment|//            System.out.println("optimize "+optimize);
+comment|//            System.out.println("contextSequence "+contextSequence);
+comment|//
+comment|//            System.out.println("getParent() "+getParent());
+comment|//            System.out.println("left "+left);
 name|Sequence
 name|ls
 init|=
@@ -311,22 +331,65 @@ condition|)
 block|{
 if|if
 condition|(
-name|getParent
-argument_list|()
-operator|instanceof
-name|Predicate
+name|inPredicate
 condition|)
-name|result
+block|{
+comment|//            		System.out.println(Dependency.dependsOn(right, Dependency.CONTEXT_ITEM));
+name|NodeSet
+name|lr
+init|=
+name|ls
+operator|.
+name|toNodeSet
+argument_list|()
+decl_stmt|;
+name|lr
 operator|=
+name|lr
+operator|.
+name|getContextNodes
+argument_list|(
+name|getContextId
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//                    System.out.println("ls "+ls);
+comment|//                    System.out.println("lr "+lr);
+comment|//
+comment|//                    System.out.println("right "+right);
+name|Sequence
+name|rs
+init|=
 name|right
 operator|.
 name|eval
 argument_list|(
-name|ls
+name|lr
 argument_list|,
 literal|null
 argument_list|)
+decl_stmt|;
+name|NodeSet
+name|rr
+init|=
+name|rs
+operator|.
+name|toNodeSet
+argument_list|()
+decl_stmt|;
+name|result
+operator|=
+name|rr
+operator|.
+name|getContextNodes
+argument_list|(
+name|getContextId
+argument_list|()
+argument_list|)
 expr_stmt|;
+comment|//                    System.out.println("rs "+rs);
+comment|//                    System.out.println("rr "+result);
+block|}
 else|else
 block|{
 name|Sequence
