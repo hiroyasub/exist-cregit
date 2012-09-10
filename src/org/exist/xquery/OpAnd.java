@@ -292,6 +292,10 @@ expr_stmt|;
 if|if
 condition|(
 name|doOptimize
+operator|&&
+name|contextSequence
+operator|!=
+literal|null
 condition|)
 name|contextSequence
 operator|.
