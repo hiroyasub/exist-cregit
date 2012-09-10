@@ -1742,6 +1742,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// no index found for this collection
 if|if
 condition|(
 name|LOG
@@ -1767,6 +1768,22 @@ operator|+
 name|qname
 argument_list|)
 expr_stmt|;
+comment|// if enfoceIndexUse == "always", continue to check other collections
+comment|// for indexes. It is sufficient if one collection defines an index
+if|if
+condition|(
+name|enforceIndexUse
+operator|==
+literal|null
+operator|||
+operator|!
+literal|"always"
+operator|.
+name|equals
+argument_list|(
+name|enforceIndexUse
+argument_list|)
+condition|)
 return|return
 name|Type
 operator|.
@@ -1774,6 +1791,8 @@ name|ITEM
 return|;
 comment|// found a collection without index
 block|}
+else|else
+block|{
 name|int
 name|type
 init|=
@@ -1795,6 +1814,8 @@ name|indexType
 operator|=
 name|type
 expr_stmt|;
+comment|// if enforceIndexUse == "always", it is sufficient if one collection
+comment|// defines an index. Just return it.
 if|if
 condition|(
 name|enforceIndexUse
@@ -1819,6 +1840,8 @@ operator|!=
 name|type
 condition|)
 block|{
+comment|// found an index with a bad type. cannot optimize.
+comment|// TODO: should this continue checking other collections?
 if|if
 condition|(
 name|LOG
@@ -1859,6 +1882,7 @@ operator|.
 name|ITEM
 return|;
 comment|// found a collection with a different type
+block|}
 block|}
 block|}
 return|return
