@@ -3,7 +3,7 @@ begin_package
 package|package
 name|xquery
 operator|.
-name|or
+name|logicalOp
 package|;
 end_package
 
@@ -18,7 +18,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|OrTests
+name|LogicalOpTests
 extends|extends
 name|TestRunner
 block|{
@@ -30,7 +30,7 @@ name|getDirectory
 parameter_list|()
 block|{
 return|return
-literal|"test/src/xquery/or"
+literal|"test/src/xquery/logicalOp"
 return|;
 block|}
 block|}
