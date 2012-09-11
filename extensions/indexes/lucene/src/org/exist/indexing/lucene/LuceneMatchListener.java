@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2008-2012 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -939,8 +939,8 @@ name|NodeProxy
 name|p
 parameter_list|)
 block|{
-comment|// Collect the text content of all descendants of p. Remember the start offsets
-comment|// of the text nodes for later use.
+comment|// Collect the text content of all descendants of p.
+comment|// Remember the start offsets of the text nodes for later use.
 name|NodePath
 name|path
 init|=
@@ -1171,7 +1171,8 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// retrieve the Analyzer for the NodeProxy that was used for indexing and querying
+comment|// Retrieve the Analyzer for the NodeProxy that was used for
+comment|// indexing and querying.
 name|Analyzer
 name|analyzer
 init|=
@@ -1187,7 +1188,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// otherwise use system default Lucene analyzer (from conf.xml) to tokenize the text and find matching query terms
+comment|// Otherwise use system default Lucene analyzer (from conf.xml)
+comment|// to tokenize the text and find matching query terms.
 name|analyzer
 operator|=
 name|index
@@ -1288,9 +1290,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// phrase queries need to be handled differently to filter
-comment|// out wrong matches: only the phrase should be marked, not single
-comment|// words which may also occur elsewhere in the document
+comment|// Phrase queries need to be handled differently to filter
+comment|// out wrong matches: only the phrase should be marked, not
+comment|// single words which may also occur elsewhere in the document
 if|if
 condition|(
 name|query
@@ -1331,8 +1333,8 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-comment|// scan the following text and collect tokens to see if
-comment|// they are part of the phrase
+comment|// Scan the following text and collect tokens to see
+comment|// if they are part of the phrase.
 name|stream
 operator|.
 name|mark
@@ -1439,11 +1441,9 @@ block|}
 block|}
 else|else
 block|{
-name|stream
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
+comment|// Don't reset the token stream since we will
+comment|// miss matches. /ljo
+comment|//stream.reset();
 break|break;
 block|}
 block|}
@@ -1642,6 +1642,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// End of phrase handling
 block|}
 else|else
 block|{
