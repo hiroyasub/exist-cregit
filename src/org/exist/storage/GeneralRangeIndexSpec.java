@@ -128,11 +128,14 @@ try|try
 block|{
 name|type
 operator|=
+name|getSuperType
+argument_list|(
 name|Type
 operator|.
 name|getType
 argument_list|(
 name|typeStr
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
