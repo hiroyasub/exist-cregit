@@ -1,9 +1,7 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_package
 package|package
-name|org
-operator|.
-name|exist
+name|xquery
 operator|.
 name|xqdoc
 package|;
@@ -274,7 +272,7 @@ specifier|static
 name|String
 name|TEST_DIR
 init|=
-literal|"extensions/xqdoc/test/src/org/exist/xqdoc"
+literal|"extensions/xqdoc/test/src/xquery/xqdoc"
 decl_stmt|;
 specifier|private
 specifier|final
