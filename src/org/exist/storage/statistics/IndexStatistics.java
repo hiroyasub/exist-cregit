@@ -769,7 +769,7 @@ init|=
 operator|new
 name|byte
 index|[
-literal|1024
+literal|4096
 index|]
 decl_stmt|;
 name|int

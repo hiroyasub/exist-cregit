@@ -1901,6 +1901,8 @@ name|backup
 parameter_list|)
 throws|throws
 name|IOException
+throws|,
+name|EXistException
 function_decl|;
 specifier|public
 specifier|abstract
