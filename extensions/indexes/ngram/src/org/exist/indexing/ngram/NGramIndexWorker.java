@@ -6340,15 +6340,6 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Found ngram: "
-operator|+
-name|ngram
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

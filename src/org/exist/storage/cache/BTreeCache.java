@@ -276,11 +276,6 @@ name|resizeNeeded
 argument_list|()
 condition|)
 block|{
-name|accounting
-operator|.
-name|stats
-argument_list|()
-expr_stmt|;
 name|cacheManager
 operator|.
 name|requestMem
