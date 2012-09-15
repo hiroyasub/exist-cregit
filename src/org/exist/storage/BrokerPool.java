@@ -357,6 +357,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|repo
+operator|.
+name|ClasspathHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|scheduler
 operator|.
 name|Scheduler
@@ -2133,6 +2145,10 @@ name|watchdog
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|ClassLoader
+name|classLoader
+decl_stmt|;
 comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
 specifier|private
@@ -2182,6 +2198,18 @@ name|addObserver
 argument_list|(
 name|statusObserver
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|classLoader
+operator|=
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getContextClassLoader
+argument_list|()
 expr_stmt|;
 comment|//TODO : ensure that the instance name is unique ?
 comment|//WM: needs to be done in the configure method.
@@ -3778,6 +3806,13 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+name|ClasspathHelper
+operator|.
+name|updateClasspath
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|statusReporter
 operator|.
 name|setStatus
@@ -4252,6 +4287,18 @@ parameter_list|()
 block|{
 return|return
 name|pageSize
+return|;
+block|}
+comment|/**      * Returns the class loader used when this BrokerPool was configured.      *      * @return      */
+specifier|public
+name|ClassLoader
+name|getClassLoader
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|classLoader
 return|;
 block|}
 comment|/**      * Whether or not the database instance is being initialized.       *       * @return<code>true</code> is the database instance is being initialized      */
