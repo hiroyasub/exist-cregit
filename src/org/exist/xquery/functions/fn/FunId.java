@@ -1545,6 +1545,25 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDependencies
+parameter_list|()
+block|{
+comment|// fn:id can operate on the entire context sequence at once - unless the
+comment|// argument depends on the context item
+return|return
+name|getArgument
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getDependencies
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
