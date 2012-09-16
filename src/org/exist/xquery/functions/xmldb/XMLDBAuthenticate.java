@@ -974,6 +974,11 @@ argument_list|(
 literal|"Unable to authenticate user: "
 operator|+
 name|userName
+operator|+
+literal|" "
+operator|+
+name|getLocation
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -995,6 +1000,13 @@ argument_list|(
 literal|"Unable to authenticate user: "
 operator|+
 name|userName
+operator|+
+literal|" "
+operator|+
+name|getLocation
+argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -1035,7 +1047,10 @@ literal|"Unable to authenticate user: target collection "
 operator|+
 name|targetColl
 operator|+
-literal|" does not exist"
+literal|" does not exist "
+operator|+
+name|getLocation
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1083,12 +1098,59 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|getLocation
+argument_list|()
+operator|+
+literal|" : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 name|BooleanValue
 operator|.
 name|FALSE
 return|;
 block|}
+block|}
+specifier|private
+name|String
+name|getLocation
+parameter_list|()
+block|{
+return|return
+literal|"@ "
+operator|+
+name|getContext
+argument_list|()
+operator|.
+name|getXacmlSource
+argument_list|()
+operator|.
+name|getKey
+argument_list|()
+operator|+
+literal|" ["
+operator|+
+name|getLine
+argument_list|()
+operator|+
+literal|":"
+operator|+
+name|getColumn
+argument_list|()
+operator|+
+literal|"]"
+return|;
 block|}
 comment|/** 	 * If there is a HTTP Session, then this will store the user object in the session under the key 	 * defined by XQueryContext.HTTP_SESSIONVAR_XMLDB_USER 	 *  	 * @param user	The User to cache in the session 	 * @param createSession	Create session? 	 */
 specifier|private
