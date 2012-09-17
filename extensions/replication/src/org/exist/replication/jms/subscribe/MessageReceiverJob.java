@@ -161,7 +161,7 @@ specifier|static
 name|String
 name|JOB_NAME
 init|=
-literal|"JMSReceiveJob"
+literal|"MessageReceiverJob"
 decl_stmt|;
 specifier|private
 name|String
@@ -214,14 +214,35 @@ operator|.
 name|fillActiveMQbrokerDefaults
 argument_list|()
 expr_stmt|;
-name|Properties
-name|contextProps
-init|=
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Starting subscription of '"
+operator|+
 name|parameters
 operator|.
-name|getInitialContextProps
+name|getSubscriberName
 argument_list|()
-decl_stmt|;
+operator|+
+literal|"' to '"
+operator|+
+name|parameters
+operator|.
+name|getTopic
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -232,6 +253,7 @@ name|getReport
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Setup listeners
 name|JMSMessageListener
 name|jmsListener
@@ -252,6 +274,14 @@ decl_stmt|;
 try|try
 block|{
 comment|// Setup context
+name|Properties
+name|contextProps
+init|=
+name|parameters
+operator|.
+name|getInitialContextProps
+argument_list|()
+decl_stmt|;
 name|Context
 name|context
 init|=
@@ -467,21 +497,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Sucessfull subscribed '"
-operator|+
-name|parameters
-operator|.
-name|getSubscriberName
-argument_list|()
-operator|+
-literal|"' to '"
-operator|+
-name|parameters
-operator|.
-name|getTopic
-argument_list|()
-operator|+
-literal|"'"
+literal|"Subscription was sucessful."
 argument_list|)
 expr_stmt|;
 block|}
@@ -495,9 +511,18 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Unable to subscribe: "
+operator|+
 name|t
 operator|.
 name|getMessage
+argument_list|()
+operator|+
+literal|";  "
+operator|+
+name|parameters
+operator|.
+name|getReport
 argument_list|()
 argument_list|,
 name|t
