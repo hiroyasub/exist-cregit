@@ -1001,6 +1001,22 @@ name|dependant
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//record the now missing dependency
+name|recordMissingDependency
+argument_list|(
+name|xqueryLocation
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|dependant
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
