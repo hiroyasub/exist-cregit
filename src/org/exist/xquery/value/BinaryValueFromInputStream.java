@@ -516,7 +516,7 @@ condition|)
 return|return;
 name|LOG
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"Closing input stream"
 argument_list|)

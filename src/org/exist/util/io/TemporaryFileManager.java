@@ -363,7 +363,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Deleted temporary file: "
 operator|+
@@ -378,7 +378,7 @@ else|else
 block|{
 name|LOG
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"Could not delete temporary file: "
 operator|+
@@ -494,7 +494,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Deleted temporary folder: "
 operator|+
