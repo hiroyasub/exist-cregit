@@ -1070,7 +1070,7 @@ operator|.
 name|getPrimaryPort
 argument_list|()
 operator|+
-literal|"/exist/eXide/"
+literal|"/exist/apps/eXide/"
 argument_list|)
 decl_stmt|;
 name|desktop
