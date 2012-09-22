@@ -865,6 +865,8 @@ literal|"NMCHAR"
 block|,
 literal|"WS"
 block|,
+literal|"XQuery XQDoc comment"
+block|,
 literal|"XQuery comment"
 block|,
 literal|"PREDEFINED_ENTITY_REF"

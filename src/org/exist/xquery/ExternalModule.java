@@ -49,6 +49,26 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -69,6 +89,14 @@ name|prefix
 parameter_list|,
 name|String
 name|namespace
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|setDescription
+parameter_list|(
+name|String
+name|desc
 parameter_list|)
 function_decl|;
 comment|/**      * Declare a new function. Called by the XQuery compiler      * when parsing a library module for every function declaration.      *       * @param func      */

@@ -10411,7 +10411,7 @@ operator|)
 return|;
 block|}
 comment|/**      * Compile Module      *      * @param   prefix              * @param   namespaceURI        * @param   location            * @param   source              *      * @return  The compiled module.      *      * @throws  XPathException      */
-specifier|private
+specifier|public
 name|ExternalModule
 name|compileModule
 parameter_list|(
@@ -10689,6 +10689,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|namespaceURI
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|modExternal
 operator|.

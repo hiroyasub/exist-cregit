@@ -19,37 +19,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeMap
+name|*
 import|;
 end_import
 
@@ -131,6 +101,12 @@ decl_stmt|;
 specifier|private
 name|String
 name|mPrefix
+decl_stmt|;
+specifier|private
+name|String
+name|description
+init|=
+literal|"User Defined Module"
 decl_stmt|;
 specifier|private
 name|boolean
@@ -281,8 +257,23 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"User defined module"
+name|description
 return|;
+block|}
+specifier|public
+name|void
+name|setDescription
+parameter_list|(
+name|String
+name|desc
+parameter_list|)
+block|{
+name|this
+operator|.
+name|description
+operator|=
+name|desc
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getReleaseVersion()      */
 specifier|public
@@ -1016,7 +1007,7 @@ return|return
 name|rootExpression
 return|;
 block|}
-specifier|private
+specifier|public
 name|boolean
 name|isPrivate
 parameter_list|(

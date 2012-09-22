@@ -242,6 +242,26 @@ return|return
 name|column
 return|;
 block|}
+specifier|public
+name|void
+name|setDoc
+parameter_list|(
+name|String
+name|doc
+parameter_list|)
+block|{
+comment|// implemented by subclasses
+block|}
+specifier|public
+name|String
+name|getDoc
+parameter_list|()
+block|{
+comment|// might be implemented by subclasses
+return|return
+literal|null
+return|;
+block|}
 comment|//	/* (non-Javadoc)
 comment|//	 * @see antlr.BaseAST#toString()
 comment|//	 */
