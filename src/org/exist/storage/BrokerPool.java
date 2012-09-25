@@ -855,6 +855,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|DISK_SPACE_MIN_ATTRIBUTE
+init|=
+literal|"minDiskSpace"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|DATA_DIR_ATTRIBUTE
 init|=
 literal|"files"
@@ -973,6 +981,14 @@ name|String
 name|PROPERTY_SHUTDOWN_DELAY
 init|=
 literal|"wait-before-shutdown"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|DISK_SPACE_MIN_PROPERTY
+init|=
+literal|"db-connection.diskSpaceMin"
 decl_stmt|;
 comment|//TODO : move elsewhere ?
 specifier|public
@@ -2638,6 +2654,15 @@ operator|new
 name|SyncTask
 argument_list|()
 decl_stmt|;
+name|syncTask
+operator|.
+name|configure
+argument_list|(
+name|conf
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|scheduler
 operator|.
 name|createPeriodicJob
