@@ -14,13 +14,13 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * 'Plug to' interface.  *   * Plugin manager must implement this interface   * and must have constructor with PluginsManager parameter.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * 'Plug by' interface.  *   * Plugin manager must implement this interface   * and must have constructor with PluginsManager as parameter.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_interface
 specifier|public
 interface|interface
-name|Jack
+name|Plug
 block|{
 comment|/** 	 * This method called during synchronization. 	 */
 specifier|public

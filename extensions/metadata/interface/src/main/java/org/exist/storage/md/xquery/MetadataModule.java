@@ -47,7 +47,7 @@ name|storage
 operator|.
 name|md
 operator|.
-name|Plugin
+name|MDStorageManager
 import|;
 end_import
 
@@ -333,7 +333,7 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-name|Plugin
+name|MDStorageManager
 operator|.
 name|NAMESPACE_URI
 return|;
@@ -345,7 +345,7 @@ name|getDefaultPrefix
 parameter_list|()
 block|{
 return|return
-name|Plugin
+name|MDStorageManager
 operator|.
 name|PREFIX
 return|;

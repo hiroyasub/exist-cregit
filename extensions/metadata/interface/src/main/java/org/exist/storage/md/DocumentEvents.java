@@ -224,7 +224,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//		System.out.println("afterCreateDocument "+document.getURI());
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
@@ -319,7 +319,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//		System.out.println("afterCopyDocument "+document.getURI());
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
@@ -377,7 +377,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//		System.out.println("afterMoveDocument "+oldUri+" to "+document.getURI());
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
@@ -432,7 +432,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//		System.out.println("afterDeleteDocument "+uri);
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
@@ -443,6 +443,44 @@ argument_list|(
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|beforeUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|afterUpdateDocumentMetadata
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
+name|Txn
+name|txn
+parameter_list|,
+name|DocumentImpl
+name|document
+parameter_list|)
+throws|throws
+name|TriggerException
+block|{
 block|}
 annotation|@
 name|Override

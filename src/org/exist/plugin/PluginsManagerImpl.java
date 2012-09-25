@@ -378,7 +378,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Jack
+name|Plug
 argument_list|>
 name|jacks
 init|=
@@ -387,7 +387,7 @@ name|HashMap
 argument_list|<
 name|String
 argument_list|,
-name|Jack
+name|Plug
 argument_list|>
 argument_list|()
 decl_stmt|;
@@ -426,12 +426,17 @@ expr_stmt|;
 comment|//Temporary for testing
 name|addPlugin
 argument_list|(
-literal|"org.exist.storage.md.Plugin"
+literal|"org.exist.scheduler.SchedulerManager"
 argument_list|)
 expr_stmt|;
 name|addPlugin
 argument_list|(
-literal|"org.exist.scheduler.Plugin"
+literal|"org.exist.storage.md.MDStorageManager"
+argument_list|)
+expr_stmt|;
+name|addPlugin
+argument_list|(
+literal|"org.exist.monitoring.MonitoringManager"
 argument_list|)
 expr_stmt|;
 block|}
@@ -600,13 +605,13 @@ name|Class
 argument_list|<
 name|?
 extends|extends
-name|Jack
+name|Plug
 argument_list|>
 name|plugin
 range|:
 name|listServices
 argument_list|(
-name|Jack
+name|Plug
 operator|.
 name|class
 argument_list|)
@@ -619,7 +624,7 @@ name|Constructor
 argument_list|<
 name|?
 extends|extends
-name|Jack
+name|Plug
 argument_list|>
 name|ctor
 init|=
@@ -632,7 +637,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|Jack
+name|Plug
 name|plgn
 init|=
 name|ctor
@@ -689,7 +694,7 @@ comment|//			//LOG?
 comment|//		}
 for|for
 control|(
-name|Jack
+name|Plug
 name|jack
 range|:
 name|jacks
@@ -759,7 +764,7 @@ name|Class
 argument_list|<
 name|?
 extends|extends
-name|Jack
+name|Plug
 argument_list|>
 name|plugin
 init|=
@@ -768,7 +773,7 @@ name|Class
 argument_list|<
 name|?
 extends|extends
-name|Jack
+name|Plug
 argument_list|>
 operator|)
 name|Class
@@ -782,7 +787,7 @@ name|Constructor
 argument_list|<
 name|?
 extends|extends
-name|Jack
+name|Plug
 argument_list|>
 name|ctor
 init|=
@@ -795,7 +800,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|Jack
+name|Plug
 name|plgn
 init|=
 name|ctor
@@ -832,7 +837,7 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-comment|//e.printStackTrace();
+comment|//			e.printStackTrace();
 block|}
 block|}
 specifier|public
@@ -842,7 +847,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -882,7 +887,7 @@ parameter_list|()
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1224,7 +1229,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1274,7 +1279,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1322,7 +1327,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1372,7 +1377,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1442,7 +1447,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1484,7 +1489,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1524,7 +1529,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1570,7 +1575,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1617,7 +1622,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1671,7 +1676,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1728,7 +1733,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1784,7 +1789,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1840,7 +1845,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1892,7 +1897,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1939,7 +1944,7 @@ name|SAXException
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -1985,7 +1990,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -2030,7 +2035,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -2076,7 +2081,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks
@@ -2121,7 +2126,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|Jack
+name|Plug
 name|plugin
 range|:
 name|jacks

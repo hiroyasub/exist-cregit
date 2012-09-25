@@ -115,7 +115,7 @@ name|exist
 operator|.
 name|plugin
 operator|.
-name|Jack
+name|Plug
 import|;
 end_import
 
@@ -214,9 +214,9 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|Plugin
+name|MDStorageManager
 implements|implements
-name|Jack
+name|Plug
 implements|,
 name|BackupHandler
 implements|,
@@ -328,7 +328,7 @@ name|VALUE
 decl_stmt|;
 specifier|protected
 specifier|static
-name|Plugin
+name|MDStorageManager
 name|_
 init|=
 literal|null
@@ -337,7 +337,7 @@ name|MetaData
 name|md
 decl_stmt|;
 specifier|public
-name|Plugin
+name|MDStorageManager
 parameter_list|(
 name|PluginsManager
 name|manager

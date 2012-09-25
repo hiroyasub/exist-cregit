@@ -77,7 +77,7 @@ name|storage
 operator|.
 name|md
 operator|.
-name|Plugin
+name|MDStorageManager
 import|;
 end_import
 
@@ -177,11 +177,11 @@ name|QName
 argument_list|(
 literal|"document-by-uuid"
 argument_list|,
-name|Plugin
+name|MDStorageManager
 operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|Plugin
+name|MDStorageManager
 operator|.
 name|PREFIX
 argument_list|)

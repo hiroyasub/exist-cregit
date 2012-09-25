@@ -398,7 +398,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
@@ -512,7 +512,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|Plugin
+name|MDStorageManager
 operator|.
 name|_
 operator|.
