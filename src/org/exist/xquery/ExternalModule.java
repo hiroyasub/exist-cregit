@@ -69,6 +69,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * An external library module implemented in XQuery and loaded  * through the "import module" directive.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -98,6 +108,27 @@ parameter_list|(
 name|String
 name|desc
 parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|addMetadata
+parameter_list|(
+name|String
+name|key
+parameter_list|,
+name|String
+name|value
+parameter_list|)
+function_decl|;
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getMetadata
+parameter_list|()
 function_decl|;
 comment|/**      * Declare a new function. Called by the XQuery compiler      * when parsing a library module for every function declaration.      *       * @param func      */
 specifier|public

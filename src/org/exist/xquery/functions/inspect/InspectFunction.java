@@ -258,7 +258,7 @@ literal|"the signature of the function"
 argument_list|)
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -270,7 +270,7 @@ argument_list|(
 literal|"argument"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -282,7 +282,7 @@ argument_list|(
 literal|"deprecated"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -294,7 +294,7 @@ argument_list|(
 literal|"description"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -306,7 +306,7 @@ argument_list|(
 literal|"returns"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -318,7 +318,7 @@ argument_list|(
 literal|"function"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -330,7 +330,7 @@ argument_list|(
 literal|"annotation"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|QName
@@ -342,7 +342,7 @@ argument_list|(
 literal|"value"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|QName
@@ -354,7 +354,7 @@ argument_list|(
 literal|"version"
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|QName
