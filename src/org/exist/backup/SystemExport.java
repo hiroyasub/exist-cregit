@@ -562,7 +562,7 @@ specifier|public
 class|class
 name|SystemExport
 block|{
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|Logger
@@ -1951,27 +1951,9 @@ name|TerminatedException
 throws|,
 name|PermissionDeniedException
 block|{
-if|if
-condition|(
-name|callback
-operator|!=
-literal|null
-condition|)
-block|{
-name|callback
-operator|.
-name|startCollection
-argument_list|(
-name|current
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        if( callback != null ) {
+comment|//            callback.startCollection( current.getURI().toString() );
+comment|//        }
 if|if
 condition|(
 operator|(
