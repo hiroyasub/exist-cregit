@@ -40,10 +40,14 @@ comment|/**  * The instance must start-up after configuration and   * shutdown a
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
 specifier|public
 interface|interface
 name|Startable
 block|{
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|startUp
