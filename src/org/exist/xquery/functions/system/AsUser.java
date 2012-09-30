@@ -512,7 +512,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|user
 argument_list|)
@@ -549,7 +549,7 @@ argument_list|)
 expr_stmt|;
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|oldUser
 argument_list|)
