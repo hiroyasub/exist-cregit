@@ -1054,7 +1054,7 @@ argument_list|()
 decl_stmt|;
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|broker
 operator|.
@@ -1105,7 +1105,7 @@ finally|finally
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|currentUser
 argument_list|)

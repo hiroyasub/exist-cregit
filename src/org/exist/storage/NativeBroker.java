@@ -593,18 +593,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|AbstractUnixStylePermission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|Account
 import|;
 end_import
@@ -1861,7 +1849,7 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|setUser
+name|setSubject
 argument_list|(
 name|pool
 operator|.
@@ -10769,7 +10757,7 @@ name|getSubject
 argument_list|()
 decl_stmt|;
 comment|//elevate getUser() to DBA_USER
-name|setUser
+name|setSubject
 argument_list|(
 name|pool
 operator|.

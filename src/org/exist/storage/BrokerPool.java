@@ -4947,7 +4947,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|subject
 argument_list|)
@@ -6630,7 +6630,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|securityManager
 operator|.
