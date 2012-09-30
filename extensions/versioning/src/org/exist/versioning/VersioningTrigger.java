@@ -896,7 +896,7 @@ try|try
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|broker
 operator|.
@@ -1667,7 +1667,7 @@ finally|finally
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|activeSubject
 argument_list|)
@@ -1730,7 +1730,7 @@ try|try
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|broker
 operator|.
@@ -2029,7 +2029,7 @@ finally|finally
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|activeSubject
 argument_list|)
@@ -2075,7 +2075,7 @@ try|try
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|broker
 operator|.
@@ -2719,7 +2719,7 @@ finally|finally
 block|{
 name|broker
 operator|.
-name|setUser
+name|setSubject
 argument_list|(
 name|activeSubject
 argument_list|)
