@@ -494,6 +494,24 @@ literal|"An error occurred during startup. Please check the logs."
 argument_list|)
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|BrokerPool
+operator|.
+name|SIGNAL_SHUTDOWN
+operator|.
+name|equals
+argument_list|(
+name|arg
+argument_list|)
+condition|)
+block|{
+name|launcher
+operator|.
+name|signalShutdown
+argument_list|()
+expr_stmt|;
+block|}
 else|else
 block|{
 name|setStatus
