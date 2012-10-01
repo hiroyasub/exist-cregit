@@ -55,6 +55,18 @@ name|exist
 operator|.
 name|numbering
 operator|.
+name|DLN
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|numbering
+operator|.
 name|NodeId
 import|;
 end_import
@@ -1844,6 +1856,38 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|next
+operator|==
+name|context
+condition|)
+block|{
+comment|// context items should not be shared between proxies,
+comment|// but for performance reason, if there's only a single
+comment|// context item, it will be shared. we thus have to create
+comment|// a copy before appending a new item.
+name|next
+operator|=
+operator|new
+name|ContextItem
+argument_list|(
+name|next
+operator|.
+name|getContextId
+argument_list|()
+argument_list|,
+name|next
+operator|.
+name|getNode
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|context
+operator|=
+name|next
+expr_stmt|;
+block|}
 name|next
 operator|.
 name|setNextContextItem
@@ -1922,15 +1966,14 @@ name|NodeProxy
 name|node
 parameter_list|)
 block|{
-name|context
-operator|=
+comment|//        context = node.getContext();
+name|deepCopyContext
+argument_list|(
 name|node
-operator|.
-name|getContext
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      */
+comment|/**      * Copy the context items from the given node into this node.      * Context items are used to keep track of context nodes inside predicates.      *      * @param node a<code>NodeProxy</code> value      */
 specifier|public
 name|void
 name|deepCopyContext
@@ -1943,11 +1986,40 @@ name|context
 operator|=
 literal|null
 expr_stmt|;
-name|ContextItem
-name|newContext
-init|=
+if|if
+condition|(
+name|node
+operator|.
+name|context
+operator|==
 literal|null
-decl_stmt|;
+condition|)
+return|return;
+if|if
+condition|(
+name|node
+operator|.
+name|context
+operator|.
+name|getNextDirect
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+comment|// if there's a single context item, we just
+comment|// copy a reference to it. addContextNode will take
+comment|// care of this and create a copy before appending
+comment|// a new item
+name|context
+operator|=
+name|node
+operator|.
+name|context
+expr_stmt|;
+block|}
+else|else
+block|{
 name|ContextItem
 name|next
 init|=
@@ -1955,22 +2027,9 @@ name|node
 operator|.
 name|context
 decl_stmt|;
-while|while
-condition|(
-name|next
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
+name|ContextItem
 name|newContext
-operator|==
-literal|null
-condition|)
-block|{
-name|newContext
-operator|=
+init|=
 operator|new
 name|ContextItem
 argument_list|(
@@ -1984,13 +2043,24 @@ operator|.
 name|getNode
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|context
 operator|=
 name|newContext
 expr_stmt|;
-block|}
-else|else
+name|next
+operator|=
+name|next
+operator|.
+name|getNextDirect
+argument_list|()
+expr_stmt|;
+while|while
+condition|(
+name|next
+operator|!=
+literal|null
+condition|)
 block|{
 name|newContext
 operator|.
@@ -2018,7 +2088,6 @@ operator|.
 name|getNextDirect
 argument_list|()
 expr_stmt|;
-block|}
 name|next
 operator|=
 name|next
@@ -2026,6 +2095,7 @@ operator|.
 name|getNextDirect
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      * @param addContextId an<code>int</code> value      */
