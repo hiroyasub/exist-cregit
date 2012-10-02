@@ -176,6 +176,14 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+name|Collection
+argument_list|<
+name|VariableDeclaration
+argument_list|>
+name|getVariableDeclarations
+parameter_list|()
+function_decl|;
 comment|/**      * Get the source object this module has been read from.      *      * This is required for query access control.      * @return The source object this module has been read from.      */
 specifier|public
 name|Source

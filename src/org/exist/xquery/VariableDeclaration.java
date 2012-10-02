@@ -142,6 +142,15 @@ operator|=
 name|expr
 expr_stmt|;
 block|}
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|qname
+return|;
+block|}
 comment|/** 	 * Set the sequence type of the variable. 	 *  	 * @param type 	 */
 specifier|public
 name|void
@@ -157,6 +166,15 @@ name|sequenceType
 operator|=
 name|type
 expr_stmt|;
+block|}
+specifier|public
+name|SequenceType
+name|getSequenceType
+parameter_list|()
+block|{
+return|return
+name|sequenceType
+return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
