@@ -67,7 +67,7 @@ init|=
 literal|7
 decl_stmt|;
 name|int
-name|COLON
+name|SIMPLE_COLON
 init|=
 literal|8
 decl_stmt|;
