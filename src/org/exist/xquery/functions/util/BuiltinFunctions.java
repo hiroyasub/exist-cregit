@@ -337,6 +337,8 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"sequence of function references"
 argument_list|)
+argument_list|,
+literal|"Use inspect:module-functions instead."
 argument_list|)
 block|,
 operator|new
@@ -392,6 +394,8 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"sequence of function references"
 argument_list|)
+argument_list|,
+literal|"Use inspect:module-functions instead."
 argument_list|)
 block|}
 decl_stmt|;
