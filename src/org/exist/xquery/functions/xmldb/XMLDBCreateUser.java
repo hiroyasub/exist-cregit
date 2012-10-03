@@ -455,7 +455,7 @@ literal|"Permission denied, calling user '"
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName

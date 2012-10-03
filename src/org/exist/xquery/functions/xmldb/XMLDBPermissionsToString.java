@@ -251,30 +251,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Subject
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -571,10 +547,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|se
-operator|.
-name|getMessage
-argument_list|()
+name|this
 argument_list|,
 name|se
 argument_list|)
