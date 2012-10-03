@@ -423,11 +423,6 @@ operator|new
 name|XPathException
 argument_list|(
 name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|pde
 argument_list|)
 throw|;
 block|}
