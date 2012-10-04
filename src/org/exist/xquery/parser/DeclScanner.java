@@ -545,17 +545,6 @@ operator|.
 name|getText
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found module: "
-operator|+
-name|moduleNamespace
-argument_list|)
-expr_stmt|;
 break|break;
 block|}
 case|case
