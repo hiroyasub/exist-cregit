@@ -2505,14 +2505,7 @@ name|getResourcePath
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|XmldbURI
-name|colURI
-init|=
-name|sourcePath
-operator|.
-name|removeLastSegment
-argument_list|()
-decl_stmt|;
+comment|//XmldbURI colURI = sourcePath.removeLastSegment();
 comment|//XmldbURI docURI = sourcePath.lastSegment();
 name|DBBroker
 name|broker
@@ -2556,13 +2549,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Open collection if possible, else abort
+comment|//collection = broker.openCollection(colURI, Lock.WRITE_LOCK);
 name|collection
 operator|=
 name|broker
 operator|.
 name|openCollection
 argument_list|(
-name|colURI
+name|sourcePath
 argument_list|,
 name|Lock
 operator|.

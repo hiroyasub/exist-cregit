@@ -809,7 +809,11 @@ name|DocumentImpl
 operator|.
 name|XML_FILE
 condition|?
-literal|"XML"
+name|eXistMessage
+operator|.
+name|ResourceType
+operator|.
+name|DOCUMENT
 else|:
 literal|"BINARY"
 operator|)
