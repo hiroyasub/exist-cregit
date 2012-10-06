@@ -735,7 +735,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|protected
+specifier|public
 name|long
 name|getTimeInMillis
 parameter_list|()
