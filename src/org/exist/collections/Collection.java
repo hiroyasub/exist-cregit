@@ -5742,7 +5742,7 @@ block|{
 comment|// mark is not supported: exception is expected, do nothing
 name|LOG
 operator|.
-name|error
+name|debug
 argument_list|(
 literal|"InputStream or CharacterStream underlying the InputSource does not support marking and therefore cannot be re-read."
 argument_list|)
