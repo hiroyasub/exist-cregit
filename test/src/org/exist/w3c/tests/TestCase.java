@@ -303,18 +303,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XQueryContext
 import|;
 end_import
@@ -797,7 +785,10 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-literal|"xmldb:exist:///db/XQTS"
+literal|"xmldb:exist://"
+operator|+
+name|getCollection
+argument_list|()
 argument_list|,
 literal|"admin"
 argument_list|,
@@ -822,6 +813,12 @@ block|}
 block|}
 block|}
 block|}
+specifier|protected
+specifier|abstract
+name|String
+name|getCollection
+parameter_list|()
+function_decl|;
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@
 name|After
