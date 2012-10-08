@@ -2368,6 +2368,7 @@ name|errorText
 argument_list|)
 throw|;
 block|}
+comment|// This delete is based on mime-type /ljo
 if|if
 condition|(
 name|resource

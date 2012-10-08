@@ -793,30 +793,19 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+comment|// We do not differ between DOCUMENT subtypes,
+comment|// mime-type is set in document metadata EXIST_RESOURCE_MIMETYPE. /ljo
 name|props
 operator|.
 name|put
 argument_list|(
 name|EXIST_RESOURCE_TYPE
 argument_list|,
-operator|(
-name|document
-operator|.
-name|getResourceType
-argument_list|()
-operator|==
-name|DocumentImpl
-operator|.
-name|XML_FILE
-condition|?
 name|eXistMessage
 operator|.
 name|ResourceType
 operator|.
 name|DOCUMENT
-else|:
-literal|"BINARY"
-operator|)
 argument_list|)
 expr_stmt|;
 name|props
