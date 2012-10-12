@@ -4686,7 +4686,7 @@ expr_stmt|;
 block|}
 name|doc
 operator|.
-name|read
+name|readWithMetadata
 argument_list|(
 name|istream
 argument_list|)
