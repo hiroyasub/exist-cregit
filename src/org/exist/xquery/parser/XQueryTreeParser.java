@@ -42862,7 +42862,16 @@ name|getFirstChild
 argument_list|()
 expr_stmt|;
 name|PathExpr
-name|kv
+name|key
+init|=
+operator|new
+name|PathExpr
+argument_list|(
+name|context
+argument_list|)
+decl_stmt|;
+name|PathExpr
+name|value
 init|=
 operator|new
 name|PathExpr
@@ -42876,7 +42885,7 @@ name|expr
 argument_list|(
 name|_t
 argument_list|,
-name|kv
+name|key
 argument_list|)
 expr_stmt|;
 name|_t
@@ -42889,7 +42898,7 @@ name|expr
 argument_list|(
 name|_t
 argument_list|,
-name|kv
+name|value
 argument_list|)
 expr_stmt|;
 name|_t
@@ -42900,7 +42909,9 @@ name|expr
 operator|.
 name|map
 argument_list|(
-name|kv
+name|key
+argument_list|,
+name|value
 argument_list|)
 expr_stmt|;
 name|_t
