@@ -1968,20 +1968,6 @@ name|void
 name|normalize
 parameter_list|()
 block|{
-throw|throw
-operator|(
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call normalize() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-operator|)
-throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String)      */
 specifier|public
