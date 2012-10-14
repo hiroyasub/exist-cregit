@@ -372,30 +372,7 @@ operator|.
 name|getUsableSpace
 argument_list|()
 decl_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Usable space on partition "
-operator|+
-name|partition
-operator|.
-name|getAbsolutePath
-argument_list|()
-operator|+
-literal|": "
-operator|+
-operator|(
-name|space
-operator|/
-literal|1024
-operator|/
-literal|1024
-operator|)
-operator|+
-literal|"mb"
-argument_list|)
-expr_stmt|;
+comment|//LOG.info("Usable space on partition " + partition.getAbsolutePath() + ": " + (space / 1024 / 1024) + "mb");
 return|return
 name|space
 operator|>
