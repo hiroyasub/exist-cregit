@@ -283,12 +283,7 @@ init|=
 name|getRight
 argument_list|()
 decl_stmt|;
-name|setContextId
-argument_list|(
-name|getExpressionId
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//            setContextId(getExpressionId());
 if|if
 condition|(
 name|doOptimize
@@ -305,12 +300,6 @@ name|getContextId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            System.out.println("getContextId "+getContextId());
-comment|//            System.out.println("optimize "+optimize);
-comment|//            System.out.println("contextSequence "+contextSequence);
-comment|//
-comment|//            System.out.println("getParent() "+getParent());
-comment|//            System.out.println("left "+left);
 name|Sequence
 name|ls
 init|=
@@ -342,7 +331,6 @@ condition|(
 name|inPredicate
 condition|)
 block|{
-comment|//            		System.out.println(Dependency.dependsOn(right, Dependency.CONTEXT_ITEM));
 name|NodeSet
 name|lr
 init|=
@@ -361,10 +349,6 @@ name|getContextId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//                    System.out.println("ls "+ls);
-comment|//                    System.out.println("lr "+lr);
-comment|//
-comment|//                    System.out.println("right "+right);
 name|Sequence
 name|rs
 init|=
@@ -395,8 +379,6 @@ name|getContextId
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//                    System.out.println("rs "+rs);
-comment|//                    System.out.println("rr "+result);
 block|}
 else|else
 block|{
