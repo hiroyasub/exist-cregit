@@ -26021,7 +26021,15 @@ name|getText
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// var.setCardinality(Cardinality.ZERO_OR_MORE);
+name|var
+operator|.
+name|setCardinality
+argument_list|(
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|)
+expr_stmt|;
 name|vars
 operator|.
 name|add
@@ -26094,6 +26102,15 @@ name|_t
 operator|.
 name|getFirstChild
 argument_list|()
+expr_stmt|;
+name|var
+operator|.
+name|setCardinality
+argument_list|(
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|)
 expr_stmt|;
 name|sequenceType
 argument_list|(
