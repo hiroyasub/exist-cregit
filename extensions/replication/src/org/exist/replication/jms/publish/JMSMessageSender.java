@@ -267,6 +267,41 @@ name|getConnectionFactory
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// Setup connection
+name|Connection
+name|connection
+init|=
+name|cf
+operator|.
+name|createConnection
+argument_list|()
+decl_stmt|;
+comment|// Set clientId
+name|connection
+operator|.
+name|setClientID
+argument_list|(
+name|parameters
+operator|.
+name|getClientId
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// TODO DW: should this be configurable?
+name|Session
+name|session
+init|=
+name|connection
+operator|.
+name|createSession
+argument_list|(
+literal|false
+argument_list|,
+name|Session
+operator|.
+name|AUTO_ACKNOWLEDGE
+argument_list|)
+decl_stmt|;
 comment|// Lookup topic
 name|Destination
 name|destination
@@ -321,41 +356,6 @@ name|errorText
 argument_list|)
 throw|;
 block|}
-comment|// Setup connection
-name|Connection
-name|connection
-init|=
-name|cf
-operator|.
-name|createConnection
-argument_list|()
-decl_stmt|;
-comment|// Set clientId
-name|connection
-operator|.
-name|setClientID
-argument_list|(
-name|parameters
-operator|.
-name|getClientId
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// TODO DW: should this be configurable?
-name|Session
-name|session
-init|=
-name|connection
-operator|.
-name|createSession
-argument_list|(
-literal|false
-argument_list|,
-name|Session
-operator|.
-name|AUTO_ACKNOWLEDGE
-argument_list|)
-decl_stmt|;
 comment|// Create message
 name|MessageProducer
 name|producer

@@ -497,7 +497,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Subscription was sucessful."
+literal|"Subscription was successful."
 argument_list|)
 expr_stmt|;
 block|}
@@ -511,7 +511,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to subscribe: "
+literal|"Unable to start subscription: "
 operator|+
 name|t
 operator|.
