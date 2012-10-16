@@ -321,6 +321,15 @@ range|:
 name|signatures
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|signature
+operator|.
+name|isPrivate
+argument_list|()
+condition|)
+block|{
 name|UserDefinedFunction
 name|func
 init|=
@@ -383,6 +392,7 @@ name|funcCall
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
