@@ -474,6 +474,9 @@ name|eXistMessage
 operator|.
 name|EXIST_RESOURCE_TYPE
 argument_list|)
+operator|.
+name|toUpperCase
+argument_list|()
 decl_stmt|;
 name|eXistMessage
 operator|.
@@ -506,6 +509,9 @@ name|eXistMessage
 operator|.
 name|EXIST_RESOURCE_OPERATION
 argument_list|)
+operator|.
+name|toUpperCase
+argument_list|()
 expr_stmt|;
 name|eXistMessage
 operator|.
