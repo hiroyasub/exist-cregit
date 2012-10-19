@@ -337,6 +337,7 @@ return|return
 name|metaData
 return|;
 block|}
+comment|/**      * Get one-liner report of message, including the JMS properties.      */
 specifier|public
 name|String
 name|getReport
@@ -465,6 +466,13 @@ literal|"'  "
 argument_list|)
 expr_stmt|;
 block|}
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"###  "
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
