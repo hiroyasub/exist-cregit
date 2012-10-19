@@ -272,7 +272,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"receiver is ready"
+literal|"Receiver is ready"
 argument_list|)
 expr_stmt|;
 block|}
