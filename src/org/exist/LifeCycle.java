@@ -17,18 +17,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|config
-operator|.
-name|Startable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -43,8 +31,6 @@ begin_interface
 specifier|public
 interface|interface
 name|LifeCycle
-extends|extends
-name|Startable
 block|{
 specifier|public
 name|void

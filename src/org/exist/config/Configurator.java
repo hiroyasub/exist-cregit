@@ -369,6 +369,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|LifeCycle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -2939,7 +2949,7 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|Startable
+name|LifeCycle
 condition|)
 block|{
 name|BrokerPool
@@ -2964,6 +2974,7 @@ name|e
 parameter_list|)
 block|{
 comment|//ignore if database is starting-up
+comment|//TODO: add to BrokerPool static list to activate when ready
 block|}
 if|if
 condition|(
@@ -2990,12 +3001,12 @@ argument_list|)
 expr_stmt|;
 operator|(
 operator|(
-name|Startable
+name|LifeCycle
 operator|)
 name|obj
 operator|)
 operator|.
-name|startUp
+name|start
 argument_list|(
 name|broker
 argument_list|)

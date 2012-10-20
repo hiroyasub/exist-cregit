@@ -1175,7 +1175,7 @@ control|)
 block|{
 name|realm
 operator|.
-name|startUp
+name|start
 argument_list|(
 name|broker
 argument_list|)

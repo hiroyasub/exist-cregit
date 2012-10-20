@@ -636,7 +636,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|startUp
+name|start
 parameter_list|(
 name|DBBroker
 name|broker
@@ -646,7 +646,7 @@ name|EXistException
 block|{
 name|super
 operator|.
-name|startUp
+name|start
 argument_list|(
 name|broker
 argument_list|)

@@ -51,19 +51,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|config
-operator|.
-name|Startable
+name|LifeCycle
 import|;
 end_import
 
@@ -131,18 +119,6 @@ name|GroupsManagement
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -160,7 +136,7 @@ name|AccountsManagement
 extends|,
 name|GroupsManagement
 extends|,
-name|Startable
+name|LifeCycle
 block|{
 specifier|public
 specifier|final
@@ -201,16 +177,6 @@ name|Group
 argument_list|>
 name|getRoles
 parameter_list|()
-function_decl|;
-specifier|public
-name|void
-name|startUp
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-throws|throws
-name|EXistException
 function_decl|;
 specifier|public
 name|Database

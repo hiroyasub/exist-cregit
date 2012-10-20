@@ -161,18 +161,6 @@ name|exist
 operator|.
 name|collections
 operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
 name|CollectionConfigurationManager
 import|;
 end_import
@@ -3503,7 +3491,7 @@ expr_stmt|;
 comment|//wake-up the plugins manager
 name|pluginManager
 operator|.
-name|startUp
+name|start
 argument_list|(
 name|broker
 argument_list|)
@@ -6095,7 +6083,9 @@ condition|)
 name|pluginManager
 operator|.
 name|sync
-argument_list|()
+argument_list|(
+name|broker
+argument_list|)
 expr_stmt|;
 name|lastMajorSync
 operator|=
@@ -6537,11 +6527,37 @@ name|pluginManager
 operator|!=
 literal|null
 condition|)
+try|try
+block|{
 name|pluginManager
 operator|.
-name|shutdown
-argument_list|()
+name|stop
+argument_list|(
+literal|null
+argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Error during plugin manager shutdown: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 comment|// closing down external indexes
 try|try
 block|{
@@ -6612,6 +6628,7 @@ else|else
 comment|//TODO : this broker is *not* marked as active and may be reused by another process !
 comment|//TODO : use get() then release the broker ?
 comment|// WM: deadlock risk if not all brokers returned properly.
+comment|//TODO: always createBroker? -dmitriy
 name|broker
 operator|=
 name|inactiveBrokers

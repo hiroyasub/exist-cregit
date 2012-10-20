@@ -13,6 +13,28 @@ name|plugin
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|LifeCycle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|config
+operator|.
+name|Configurable
+import|;
+end_import
+
 begin_comment
 comment|/**  * 'Plug by' interface.  *   * Plugin manager must implement this interface   * and must have constructor with PluginsManager as parameter.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -21,20 +43,11 @@ begin_interface
 specifier|public
 interface|interface
 name|Plug
-block|{
-comment|/** 	 * This method called during synchronization. 	 */
-specifier|public
-name|void
-name|sync
-parameter_list|()
-function_decl|;
-comment|/** 	 * This method called during shutdown. 	 */
-specifier|public
-name|void
-name|stop
-parameter_list|()
-function_decl|;
-block|}
+extends|extends
+name|Configurable
+extends|,
+name|LifeCycle
+block|{  }
 end_interface
 
 end_unit
