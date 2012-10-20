@@ -67,7 +67,9 @@ argument_list|)
 specifier|public
 class|class
 name|AllFulltextTests
-block|{ }
+block|{
+comment|//TODO: rewrite to use others indexes (FT will be removed)
+block|}
 end_class
 
 end_unit
