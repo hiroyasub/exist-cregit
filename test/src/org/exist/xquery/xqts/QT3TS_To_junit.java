@@ -370,7 +370,11 @@ name|startup
 argument_list|()
 expr_stmt|;
 comment|//            convertor.create();
-comment|//        	convertor.load();
+name|convertor
+operator|.
+name|load
+argument_list|()
+expr_stmt|;
 name|convertor
 operator|.
 name|create
