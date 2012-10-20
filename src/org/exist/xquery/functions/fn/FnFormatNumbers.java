@@ -1184,8 +1184,21 @@ break|break;
 case|case
 literal|2
 case|:
-comment|//XXX: error
-break|break;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|FnFormatNumbers
+operator|.
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XTDE1310
+argument_list|,
+literal|""
+argument_list|)
+throw|;
 case|case
 literal|3
 case|:
@@ -1263,8 +1276,21 @@ break|break;
 case|case
 literal|4
 case|:
-comment|//XXX: error
-break|break;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|FnFormatNumbers
+operator|.
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XTDE1310
+argument_list|,
+literal|""
+argument_list|)
+throw|;
 case|case
 literal|5
 case|:
@@ -1639,105 +1665,15 @@ name|mlMIN
 operator|=
 literal|1
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"prefix = "
-operator|+
-name|prefix
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"suffix = "
-operator|+
-name|suffix
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ds = "
-operator|+
-name|ds
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"isPercent = "
-operator|+
-name|isPercent
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"isPerMille = "
-operator|+
-name|isPerMille
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ml = "
-operator|+
-name|mlMAX
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"fl = "
-operator|+
-name|flMAX
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"mg = "
-operator|+
-name|mg
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"fg = "
-operator|+
-name|fg
-argument_list|)
-expr_stmt|;
+comment|//			System.out.println("prefix = "+prefix);
+comment|//			System.out.println("suffix = "+suffix);
+comment|//			System.out.println("ds = "+ds);
+comment|//			System.out.println("isPercent = "+isPercent);
+comment|//			System.out.println("isPerMille = "+isPerMille);
+comment|//			System.out.println("ml = "+mlMAX);
+comment|//			System.out.println("fl = "+flMAX);
+comment|//			System.out.println("mg = "+mg);
+comment|//			System.out.println("fg = "+fg);
 block|}
 block|}
 block|}
