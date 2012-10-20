@@ -709,7 +709,7 @@ decl_stmt|;
 comment|//TODO should be replaced with a naturally ordered List, we need to maintain the order of XML elements based on the order of class members!!!
 specifier|protected
 specifier|static
-name|ConfigurationAnnotatedFields
+name|AFields
 name|getConfigurationAnnotatedFields
 parameter_list|(
 name|Class
@@ -719,11 +719,11 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
-name|ConfigurationAnnotatedFields
+name|AFields
 name|fields
 init|=
 operator|new
-name|ConfigurationAnnotatedFields
+name|AFields
 argument_list|()
 decl_stmt|;
 for|for
@@ -754,7 +754,7 @@ operator|.
 name|addAttribute
 argument_list|(
 operator|new
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -790,7 +790,7 @@ operator|.
 name|addElement
 argument_list|(
 operator|new
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -834,7 +834,7 @@ argument_list|)
 condition|)
 block|{
 comment|//XXX: remove? this force to have annotation at superclass
-name|ConfigurationAnnotatedFields
+name|AFields
 name|superFields
 init|=
 name|getConfigurationAnnotatedFields
@@ -1393,7 +1393,7 @@ name|Configuration
 name|configuration
 parameter_list|)
 block|{
-name|ConfigurationAnnotatedFields
+name|AFields
 name|annotatedFields
 init|=
 name|getConfigurationAnnotatedFields
@@ -1436,7 +1436,7 @@ range|:
 name|properties
 control|)
 block|{
-name|ConfigurationAnnotatedField
+name|AField
 name|annotatedField
 init|=
 name|annotatedFields
@@ -1995,7 +1995,7 @@ try|try
 block|{
 for|for
 control|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -3740,7 +3740,7 @@ block|{
 return|return;
 comment|//UNDERSTAND: throw exception
 block|}
-name|ConfigurationAnnotatedFields
+name|AFields
 name|annotatedFields
 init|=
 name|getConfigurationAnnotatedFields
@@ -3751,7 +3751,7 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|?
 argument_list|>
@@ -4328,7 +4328,7 @@ init|=
 literal|true
 decl_stmt|;
 comment|//store field's values as attributes or elements depends on annotation
-name|ConfigurationAnnotatedFields
+name|AFields
 name|annotatedFields
 init|=
 name|getConfigurationAnnotatedFields
@@ -4344,7 +4344,7 @@ block|{
 comment|//pass one - extract just attributes
 for|for
 control|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -4439,7 +4439,7 @@ block|}
 comment|//pass two - just elements or text nodes
 for|for
 control|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -5031,7 +5031,7 @@ parameter_list|(
 name|Configurable
 name|instance
 parameter_list|,
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -5215,7 +5215,7 @@ name|String
 argument_list|>
 name|list
 parameter_list|,
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -5300,7 +5300,7 @@ parameter_list|,
 name|Field
 name|field
 parameter_list|,
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6828,17 +6828,17 @@ block|}
 specifier|private
 specifier|static
 class|class
-name|ConfigurationAnnotatedFields
+name|AFields
 implements|implements
 name|Iterable
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|>
 block|{
 specifier|private
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -6848,7 +6848,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -6858,7 +6858,7 @@ decl_stmt|;
 specifier|private
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6868,7 +6868,7 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6879,7 +6879,7 @@ specifier|public
 name|void
 name|addAttribute
 parameter_list|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -6902,7 +6902,7 @@ name|addAllAttributes
 parameter_list|(
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -6924,7 +6924,7 @@ specifier|public
 name|void
 name|addElement
 parameter_list|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6947,7 +6947,7 @@ name|addAllElements
 parameter_list|(
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6968,7 +6968,7 @@ block|}
 specifier|public
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -6983,7 +6983,7 @@ block|}
 specifier|public
 name|List
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -6996,7 +6996,7 @@ name|elements
 return|;
 block|}
 specifier|public
-name|ConfigurationAnnotatedField
+name|AField
 name|findByAnnotationValue
 parameter_list|(
 name|String
@@ -7005,7 +7005,7 @@ parameter_list|)
 block|{
 for|for
 control|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -7037,7 +7037,7 @@ block|}
 block|}
 for|for
 control|(
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -7076,7 +7076,7 @@ name|Override
 specifier|public
 name|Iterator
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|>
 name|iterator
 parameter_list|()
@@ -7085,14 +7085,14 @@ return|return
 operator|new
 name|Iterator
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|>
 argument_list|()
 block|{
 specifier|private
 name|Iterator
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
 argument_list|>
@@ -7107,7 +7107,7 @@ decl_stmt|;
 specifier|private
 name|Iterator
 argument_list|<
-name|ConfigurationAnnotatedField
+name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
 argument_list|>
@@ -7141,7 +7141,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|ConfigurationAnnotatedField
+name|AField
 name|next
 parameter_list|()
 block|{
@@ -7206,7 +7206,7 @@ block|}
 specifier|private
 specifier|static
 class|class
-name|ConfigurationAnnotatedField
+name|AField
 parameter_list|<
 name|T
 parameter_list|>
@@ -7222,7 +7222,7 @@ name|Field
 name|field
 decl_stmt|;
 specifier|public
-name|ConfigurationAnnotatedField
+name|AField
 parameter_list|(
 name|T
 name|annotation
