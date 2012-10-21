@@ -841,6 +841,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUp ENTERED"
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|database
@@ -853,8 +862,26 @@ operator|==
 literal|null
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUp no TS data"
+argument_list|)
+expr_stmt|;
 name|loadTS
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUp checking TS data"
+argument_list|)
 expr_stmt|;
 name|testCollection
 operator|=
@@ -889,6 +916,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUp PASSED"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|protected
 specifier|abstract
