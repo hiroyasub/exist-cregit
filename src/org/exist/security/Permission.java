@@ -112,6 +112,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
+init|=
+literal|0770
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DEFAULT_TEMPORARY_DOCUMENT_PERM
 init|=
 literal|0771

@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|PermissionDeniedException
+name|Permission
 import|;
 end_import
 
@@ -71,9 +71,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|realm
-operator|.
-name|Realm
+name|PermissionDeniedException
 import|;
 end_import
 
@@ -194,9 +192,9 @@ name|collection
 operator|.
 name|setPermissions
 argument_list|(
-name|Realm
+name|Permission
 operator|.
-name|DEFAULT_REALM_STORE_MODE
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 argument_list|)
 expr_stmt|;
 name|broker
