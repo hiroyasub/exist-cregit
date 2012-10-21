@@ -1769,7 +1769,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Metas NULL for document: "
+literal|"Metas NULL: "
 operator|+
 name|oldUri
 operator|+
@@ -1963,6 +1963,7 @@ name|m
 range|:
 name|sub
 control|)
+block|{
 name|newMs
 operator|.
 name|put
@@ -1978,6 +1979,7 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
