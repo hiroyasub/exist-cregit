@@ -300,47 +300,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// bv : Declare the grouping variable
-if|if
-condition|(
-name|groupVarName
-operator|!=
-literal|null
-condition|)
-block|{
-name|LocalVariable
-name|groupVar
-init|=
-operator|new
-name|LocalVariable
-argument_list|(
-name|QName
-operator|.
-name|parse
-argument_list|(
-name|context
-argument_list|,
-name|groupVarName
-argument_list|,
-literal|null
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|groupVar
-operator|.
-name|setSequenceType
-argument_list|(
-name|sequenceType
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|declareVariableBinding
-argument_list|(
-name|groupVar
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        // bv : Declare the grouping variable
+comment|//        if(groupVarName != null){
+comment|//            LocalVariable groupVar = new LocalVariable(QName.parse(context, groupVarName, null));
+comment|//            groupVar.setSequenceType(sequenceType);
+comment|//            context.declareVariableBinding(groupVar);
+comment|//        }
 comment|// bv : Declare grouping key variable(s)
 if|if
 condition|(
@@ -907,11 +872,6 @@ argument_list|)
 expr_stmt|;
 comment|// bv - Declare grouping variables and initiate grouped sequence
 name|LocalVariable
-name|groupVar
-init|=
-literal|null
-decl_stmt|;
-name|LocalVariable
 name|groupKeyVar
 index|[]
 init|=
@@ -931,40 +891,9 @@ name|GroupedValueSequenceTable
 argument_list|(
 name|groupSpecs
 argument_list|,
-name|toGroupVarName
+name|varName
 argument_list|,
 name|context
-argument_list|)
-expr_stmt|;
-name|groupVar
-operator|=
-operator|new
-name|LocalVariable
-argument_list|(
-name|QName
-operator|.
-name|parse
-argument_list|(
-name|context
-argument_list|,
-name|groupVarName
-argument_list|,
-literal|null
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|groupVar
-operator|.
-name|setSequenceType
-argument_list|(
-name|sequenceType
-argument_list|)
-expr_stmt|;
-name|context
-operator|.
-name|declareVariableBinding
-argument_list|(
-name|groupVar
 argument_list|)
 expr_stmt|;
 name|groupKeyVar
@@ -1821,6 +1750,22 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|mark
+operator|=
+name|context
+operator|.
+name|markLocalVariables
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|declareVariableBinding
+argument_list|(
+name|var
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Iterator
@@ -1861,14 +1806,15 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|groupVar
+comment|// set binding variable to current group
+name|var
 operator|.
 name|setValue
 argument_list|(
 name|currentGroup
 argument_list|)
 expr_stmt|;
-name|groupVar
+name|var
 operator|.
 name|checkType
 argument_list|()
@@ -1940,6 +1886,13 @@ argument_list|(
 literal|0
 argument_list|,
 literal|null
+argument_list|)
+expr_stmt|;
+name|context
+operator|.
+name|popLocalVariables
+argument_list|(
+name|mark
 argument_list|)
 expr_stmt|;
 block|}

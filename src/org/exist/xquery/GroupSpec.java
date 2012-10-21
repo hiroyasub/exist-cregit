@@ -19,6 +19,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|Collations
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -28,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A XQuery grouping specifier as specified in an "group by" clause (based on   * {@link org.exist.xquery.OrderSpec}).   *    * Used by {@link org.exist.xquery.BindingExpression}.    *  *     * @author boris   */
+comment|/**   * A XQuery grouping specifier as specified in an "group by" clause (based on   * {@link org.exist.xquery.OrderSpec}).   *    * Used by {@link org.exist.xquery.BindingExpression}.    *  * @author boris  * @author Wolfgang  */
 end_comment
 
 begin_class
@@ -57,6 +69,14 @@ name|keyVarName
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|String
+name|collation
+init|=
+name|Collations
+operator|.
+name|CODEPOINT
+decl_stmt|;
 specifier|public
 name|GroupSpec
 parameter_list|(
@@ -70,6 +90,27 @@ name|String
 name|keyVarName
 parameter_list|)
 block|{
+if|if
+condition|(
+name|groupExpr
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Spec: "If the GroupingSpec does not contain an ExprSingle, an implicit
+comment|// expression is created, consisting of a variable reference with the
+comment|// same name as the grouping variable."
+name|groupExpr
+operator|=
+operator|new
+name|VariableReference
+argument_list|(
+name|context
+argument_list|,
+name|keyVarName
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|expression
@@ -87,6 +128,21 @@ operator|.
 name|keyVarName
 operator|=
 name|keyVarName
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setCollation
+parameter_list|(
+name|String
+name|collation
+parameter_list|)
+block|{
+name|this
+operator|.
+name|collation
+operator|=
+name|collation
 expr_stmt|;
 block|}
 specifier|public

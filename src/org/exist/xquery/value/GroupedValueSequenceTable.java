@@ -195,12 +195,7 @@ argument_list|>
 name|iterate
 parameter_list|()
 block|{
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
-name|it
-init|=
+return|return
 name|this
 operator|.
 name|keySet
@@ -208,9 +203,6 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-decl_stmt|;
-return|return
-name|it
 return|;
 block|}
 comment|/** 	 * Add<code>item</code> in the correct<code>GroupedValueSequence</code>. 	 * Create correct GroupedValueSequence if needed. Insertion based on the 	 * group specs of a "group by" clause. 	 *  	 * @throws XPathException 	 */
@@ -374,9 +366,6 @@ block|{
 name|GroupedValueSequence
 name|currentGroup
 init|=
-operator|(
-name|GroupedValueSequence
-operator|)
 name|super
 operator|.
 name|get
