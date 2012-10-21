@@ -296,6 +296,16 @@ name|int
 name|getUserMask
 parameter_list|()
 function_decl|;
+comment|/**      * Set the umask of the user      */
+specifier|public
+name|void
+name|setUserMask
+parameter_list|(
+specifier|final
+name|int
+name|umask
+parameter_list|)
+function_decl|;
 specifier|public
 name|void
 name|setMetadataValue
