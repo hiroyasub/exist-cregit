@@ -1352,7 +1352,7 @@ literal|";\n\n"
 operator|+
 literal|"import org.exist.xquery.xqts.QT3TS_case;\n"
 operator|+
-literal|"import org.junit.Test;\n\n"
+literal|"import org.junit.*;\n\n"
 operator|+
 literal|"public class "
 operator|+
@@ -1360,7 +1360,7 @@ name|className
 operator|+
 literal|" extends QT3TS_case {\n"
 operator|+
-literal|"\tprivate String file = \""
+literal|"    private String file = \""
 operator|+
 name|file
 operator|+
@@ -1412,15 +1412,41 @@ name|out
 operator|.
 name|write
 argument_list|(
-literal|"\t/* "
+literal|"    /* "
 operator|+
 name|testName
 operator|+
-literal|" */"
+literal|" */\n"
 operator|+
-literal|"\t@Test\n"
-operator|+
-literal|"\tpublic void test_"
+literal|"    @Test\n"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|adoptString
+argument_list|(
+name|testName
+argument_list|)
+operator|.
+name|contains
+argument_list|(
+literal|"fold_left_008"
+argument_list|)
+condition|)
+block|{
+name|out
+operator|.
+name|write
+argument_list|(
+literal|"    @Ignore\n"
+argument_list|)
+expr_stmt|;
+block|}
+name|out
+operator|.
+name|write
+argument_list|(
+literal|"    public void test_"
 operator|+
 name|adoptString
 argument_list|(
@@ -1429,13 +1455,13 @@ argument_list|)
 operator|+
 literal|"() {\n"
 operator|+
-literal|"\ttestCase(file, \""
+literal|"        testCase(file, \""
 operator|+
 name|testName
 operator|+
-literal|"\");"
+literal|"\");\n"
 operator|+
-literal|"\t}\n\n"
+literal|"    }\n\n"
 argument_list|)
 expr_stmt|;
 block|}
