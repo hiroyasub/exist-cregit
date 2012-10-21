@@ -77,7 +77,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Group
+name|Account
 import|;
 end_import
 
@@ -89,7 +89,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Account
+name|Group
 import|;
 end_import
 
@@ -208,6 +208,42 @@ name|int
 name|id
 decl_stmt|;
 specifier|private
+name|XmldbURI
+name|homeCollection
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|Map
+argument_list|<
+name|SchemaType
+argument_list|,
+name|String
+argument_list|>
+name|metadata
+init|=
+operator|new
+name|HashMap
+argument_list|<
+name|SchemaType
+argument_list|,
+name|String
+argument_list|>
+argument_list|()
+decl_stmt|;
+specifier|private
+name|String
+name|password
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|String
+name|passwordDigest
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|Group
 name|defaultRole
 init|=
@@ -234,6 +270,7 @@ decl_stmt|;
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -251,6 +288,7 @@ block|}
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -269,9 +307,11 @@ block|}
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|String
 name|realmId
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -289,12 +329,15 @@ block|}
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|realmId
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -321,12 +364,15 @@ block|}
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|String
 name|realmId
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -349,9 +395,11 @@ block|}
 specifier|public
 name|UserAider
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -369,7 +417,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.security.Principal#getName() 	 */
+comment|/* (non-Javadoc)      * @see java.security.Principal#getName()      */
 annotation|@
 name|Override
 specifier|public
@@ -392,7 +440,7 @@ return|return
 name|realmId
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.Principal#getId() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.Principal#getId()      */
 annotation|@
 name|Override
 specifier|public
@@ -404,17 +452,19 @@ return|return
 name|id
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|Group
 name|role
 init|=
@@ -439,13 +489,14 @@ return|return
 name|role
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(org.exist.security.Group) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(org.exist.security.Group)      */
 annotation|@
 name|Override
 specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -456,9 +507,11 @@ name|group
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|addGroup
 argument_list|(
@@ -469,13 +522,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#remGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|remGroup
 parameter_list|(
+specifier|final
 name|String
 name|role
 parameter_list|)
@@ -488,13 +542,14 @@ name|role
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setGroups(java.lang.String[])      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setGroups
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|names
@@ -538,7 +593,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getGroups()      */
 annotation|@
 name|Override
 specifier|public
@@ -579,7 +634,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#hasDbaRole()      */
 annotation|@
 name|Override
 specifier|public
@@ -591,7 +646,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getPrimaryGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -605,9 +660,11 @@ name|defaultRole
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|defaultRole
 operator|.
@@ -615,13 +672,14 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#hasGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|hasGroup
 parameter_list|(
+specifier|final
 name|String
 name|group
 parameter_list|)
@@ -635,19 +693,14 @@ name|group
 argument_list|)
 return|;
 block|}
-specifier|private
-name|XmldbURI
-name|homeCollection
-init|=
-literal|null
-decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setHome
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|homeCollection
 parameter_list|)
@@ -659,7 +712,7 @@ operator|=
 name|homeCollection
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getHome()      */
 annotation|@
 name|Override
 specifier|public
@@ -671,7 +724,7 @@ return|return
 name|homeCollection
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getRealm() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */
 annotation|@
 name|Override
 specifier|public
@@ -683,30 +736,13 @@ return|return
 literal|null
 return|;
 block|}
-specifier|private
-name|Map
-argument_list|<
-name|SchemaType
-argument_list|,
-name|String
-argument_list|>
-name|metadata
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|SchemaType
-argument_list|,
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
 annotation|@
 name|Override
 specifier|public
 name|String
 name|getMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|)
@@ -726,9 +762,11 @@ specifier|public
 name|void
 name|setMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -784,16 +822,11 @@ return|return
 name|defaultRole
 return|;
 block|}
-specifier|private
-name|String
-name|password
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|void
 name|setEncodedPassword
 parameter_list|(
+specifier|final
 name|String
 name|passwd
 parameter_list|)
@@ -803,13 +836,14 @@ operator|=
 name|passwd
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setPassword(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setPassword
 parameter_list|(
+specifier|final
 name|String
 name|passwd
 parameter_list|)
@@ -819,7 +853,7 @@ operator|=
 name|passwd
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPassword() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -831,16 +865,11 @@ return|return
 name|password
 return|;
 block|}
-specifier|private
-name|String
-name|passwordDigest
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 name|void
 name|setPasswordDigest
 parameter_list|(
+specifier|final
 name|String
 name|password
 parameter_list|)
@@ -850,7 +879,7 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getDigestPassword() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getDigestPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -963,6 +992,7 @@ specifier|public
 name|void
 name|save
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -977,6 +1007,7 @@ specifier|public
 name|void
 name|assertCanModifyAccount
 parameter_list|(
+specifier|final
 name|Account
 name|user
 parameter_list|)
