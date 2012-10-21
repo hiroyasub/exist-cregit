@@ -382,7 +382,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  JMS listener for receiving JMS messages  *   * @author Dannes Wessels  */
+comment|/**  * JMS listener for receiving JMS messages  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -681,26 +681,6 @@ operator|)
 name|msg
 argument_list|)
 decl_stmt|;
-comment|// Report some details into logging
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|em
-operator|.
-name|getReport
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|Enumeration
 name|e
 init|=
@@ -756,6 +736,26 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|// Report some details into logging
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|em
+operator|.
+name|getReport
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// First step: distinct between update for documents and messsages
 switch|switch
@@ -1883,7 +1883,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Metadata is updated in database      */
+comment|/**      * Metadata is updated in database      */
 specifier|private
 name|void
 name|updateMetadataDocument
