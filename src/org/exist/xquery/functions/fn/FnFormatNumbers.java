@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2008-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id: Format_number.java 12001 2010-07-19 20:28:48Z ixitar $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -306,11 +306,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|NumericValue
 name|numericValue
 init|=
@@ -412,9 +414,11 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 name|NaN
 return|;
+block|}
 name|String
 name|minuSign
 init|=
@@ -439,6 +443,7 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 name|minuSign
 operator|+
@@ -452,6 +457,7 @@ name|f
 operator|.
 name|suffix
 return|;
+block|}
 name|NumericValue
 name|factor
 init|=
@@ -463,6 +469,7 @@ name|f
 operator|.
 name|isPercent
 condition|)
+block|{
 name|factor
 operator|=
 operator|new
@@ -471,12 +478,14 @@ argument_list|(
 literal|100
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|f
 operator|.
 name|isPerMille
 condition|)
+block|{
 name|factor
 operator|=
 operator|new
@@ -485,12 +494,14 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|factor
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|numericValue
@@ -520,6 +531,7 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
 block|}
 name|int
 name|pl
@@ -1074,6 +1086,7 @@ argument_list|)
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1089,6 +1102,7 @@ argument_list|,
 literal|"A sub-picture must contain at least one character that is an optional-digit-sign or a member of the decimal-digit-family."
 argument_list|)
 throw|;
+block|}
 name|int
 name|bmg
 init|=
