@@ -129,10 +129,6 @@ name|AnyURITest
 operator|.
 name|class
 block|,
-name|XQueryGroupByTest
-operator|.
-name|class
-block|,
 name|ConstructedNodesTest
 operator|.
 name|class
