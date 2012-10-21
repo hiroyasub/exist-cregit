@@ -35,6 +35,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * Container class for clustering messages.  *  * @author Dannes Wessels  */
 end_comment
@@ -444,6 +454,12 @@ condition|(
 name|payload
 operator|!=
 literal|null
+operator|&&
+name|payload
+operator|.
+name|length
+operator|>
+literal|0
 condition|)
 block|{
 name|sb
@@ -466,6 +482,27 @@ literal|"'  "
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Iterate over properties if present
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|keys
+init|=
+name|metaData
+operator|.
+name|keySet
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|keys
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -478,10 +515,7 @@ control|(
 name|String
 name|key
 range|:
-name|metaData
-operator|.
-name|keySet
-argument_list|()
+name|keys
 control|)
 block|{
 name|Object
@@ -526,6 +560,7 @@ argument_list|(
 literal|"'  "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
