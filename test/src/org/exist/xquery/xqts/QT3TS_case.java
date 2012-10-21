@@ -318,6 +318,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"loading QT3..."
+argument_list|)
+expr_stmt|;
 name|QT3TS_To_junit
 name|convertor
 init|=
@@ -336,6 +345,15 @@ name|convertor
 operator|.
 name|load
 argument_list|()
+expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"loaded QT3."
+argument_list|)
 expr_stmt|;
 block|}
 finally|finally
@@ -778,6 +796,17 @@ name|String
 name|tcName
 parameter_list|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"test "
+operator|+
+name|tcName
+argument_list|)
+expr_stmt|;
 name|DBBroker
 name|broker
 init|=

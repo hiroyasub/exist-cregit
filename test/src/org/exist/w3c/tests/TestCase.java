@@ -646,6 +646,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUpBeforeClass ENTERED"
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 if|if
@@ -655,6 +664,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Start up database..."
+argument_list|)
+expr_stmt|;
 name|database
 operator|=
 operator|new
@@ -712,6 +730,15 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Database ready."
+argument_list|)
+expr_stmt|;
 block|}
 name|inUse
 operator|++
@@ -729,7 +756,15 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//		System.out.println("setUpBeforeClass PASSED");
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"setUpBeforeClass PASSED"
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
@@ -752,7 +787,15 @@ block|{
 name|inUse
 operator|--
 expr_stmt|;
-comment|//		System.out.println("tearDownAfterClass PASSED");
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"tearDownAfterClass PASSED"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@
