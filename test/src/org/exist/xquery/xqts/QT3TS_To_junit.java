@@ -445,6 +445,17 @@ argument_list|,
 name|configuration
 argument_list|)
 expr_stmt|;
+name|init
+argument_list|()
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|init
+parameter_list|()
+throws|throws
+name|Exception
+block|{
 name|db
 operator|=
 name|BrokerPool
@@ -536,7 +547,7 @@ literal|"database was shutdown"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|public
 name|void
 name|load
 parameter_list|()
@@ -650,20 +661,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"******* loadDirectory "
-operator|+
-name|folder
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("******* loadDirectory "+folder.getName());
 if|if
 condition|(
 operator|!
@@ -784,20 +782,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"******* loadFile "
-operator|+
-name|file
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("******* loadFile "+file.getName());
 if|if
 condition|(
 name|file
@@ -1033,15 +1018,7 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|file
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(file);
 block|}
 specifier|private
 name|MimeTable
