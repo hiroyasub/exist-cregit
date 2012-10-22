@@ -252,8 +252,71 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+name|signatures
+index|[]
 init|=
+block|{
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"string-join"
+argument_list|,
+name|Function
+operator|.
+name|BUILTIN_FUNCTION_NS
+argument_list|)
+argument_list|,
+literal|"Returns a xs:string created by concatenating the members of the "
+operator|+
+literal|"$arg sequence using $separator as a separator. If the value of the separator is the zero-length "
+operator|+
+literal|"string, then the members of the sequence are concatenated without a separator. "
+operator|+
+literal|"The effect of calling the single-argument version of this function is the same as calling the "
+operator|+
+literal|"two-argument version with $separator set to a zero-length string."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"arg"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"The sequence to be joined to form the string. If it is empty, "
+operator|+
+literal|"a zero-length string is returned."
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the joined string"
+argument_list|)
+argument_list|)
+block|,
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -326,6 +389,7 @@ argument_list|,
 literal|"the joined string"
 argument_list|)
 argument_list|)
+block|}
 decl_stmt|;
 comment|/** 	 * 	 */
 specifier|public
@@ -333,6 +397,9 @@ name|FunStringJoin
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|FunctionSignature
+name|signature
 parameter_list|)
 block|{
 name|super
@@ -433,6 +500,18 @@ block|}
 name|String
 name|sep
 init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|getArgumentCount
+argument_list|()
+operator|==
+literal|2
+condition|)
+block|{
+name|sep
+operator|=
 name|args
 index|[
 literal|1
@@ -440,7 +519,7 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|sep
@@ -454,6 +533,7 @@ name|sep
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|StringBuilder
 name|out
 init|=
