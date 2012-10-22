@@ -185,18 +185,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xqj
-operator|.
-name|Marshaller
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|ErrorCodes
@@ -414,6 +402,14 @@ name|append
 argument_list|(
 literal|"QT3"
 argument_list|)
+decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|xquery3declaration
+init|=
+literal|"xquery version \"3.0\";\n"
 decl_stmt|;
 annotation|@
 name|Override
@@ -1688,6 +1684,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|xquery3declaration
+operator|+
 name|caseScript
 argument_list|,
 name|contextSequence
