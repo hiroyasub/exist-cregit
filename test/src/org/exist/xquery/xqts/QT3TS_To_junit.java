@@ -1458,6 +1458,13 @@ name|contains
 argument_list|(
 literal|"fn_deep_equal_node_args_5"
 argument_list|)
+operator|||
+name|adoptTestName
+operator|.
+name|contains
+argument_list|(
+literal|"fold_right_013"
+argument_list|)
 condition|)
 block|{
 name|out
