@@ -1990,11 +1990,12 @@ name|SAXException
 name|se
 parameter_list|)
 block|{
-comment|//could not parse to xml
-name|logger
-operator|.
-name|info
-argument_list|(
+comment|// could not parse to xml
+comment|// not an error in itself, it will be treated either as HTML,
+comment|// text or binary here below
+name|String
+name|msg
+init|=
 literal|"Request for URI '"
 operator|+
 name|method
@@ -2005,16 +2006,41 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"' Could not parse http response content as XML: "
+literal|"' Could not parse http response content as XML (will try html, text or fallback to binary): "
 operator|+
 name|se
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|logger
+operator|.
+name|debug
+argument_list|(
+name|msg
 argument_list|,
 name|se
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -2035,7 +2061,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"' Could not parse http response content as XML: "
+literal|"' Could not read http response content: "
 operator|+
 name|ioe
 operator|.
