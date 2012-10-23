@@ -868,6 +868,11 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+operator|(
+name|namespaceURI
+operator|==
+literal|null
+operator|||
 name|namespaceURI
 operator|.
 name|equals
@@ -877,6 +882,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 argument_list|)
+operator|)
 operator|&&
 name|localName
 operator|.
