@@ -27,6 +27,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -108,7 +118,7 @@ name|XmldbURL
 name|xmldbURL
 decl_stmt|;
 specifier|private
-name|BlockingOutputStream
+name|OutputStream
 name|bos
 decl_stmt|;
 specifier|private
@@ -122,7 +132,7 @@ parameter_list|(
 name|XmldbURL
 name|url
 parameter_list|,
-name|BlockingOutputStream
+name|OutputStream
 name|bos
 parameter_list|)
 block|{
@@ -147,7 +157,7 @@ parameter_list|,
 name|XmldbURL
 name|url
 parameter_list|,
-name|BlockingOutputStream
+name|OutputStream
 name|bos
 parameter_list|)
 block|{
@@ -238,9 +248,7 @@ comment|// NEEDED!
 name|bos
 operator|.
 name|close
-argument_list|(
-name|exception
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
