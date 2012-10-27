@@ -49,18 +49,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|jms
@@ -210,6 +198,7 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Helper method to give resources back      */
 specifier|private
 name|void
 name|closeSilent
