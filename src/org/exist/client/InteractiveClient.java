@@ -2119,7 +2119,16 @@ return|return
 name|current
 return|;
 block|}
-specifier|protected
+specifier|public
+name|Properties
+name|getProperties
+parameter_list|()
+block|{
+return|return
+name|properties
+return|;
+block|}
+specifier|public
 name|void
 name|reloadCollection
 parameter_list|()

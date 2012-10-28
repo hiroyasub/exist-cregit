@@ -222,6 +222,14 @@ name|boolean
 name|isEnabled
 parameter_list|()
 function_decl|;
+comment|/**      * Sets whether the account is enabled or disabled. Authentication on a disabled account is not possible.      *      * @param<code>true</code> if the account is enabled,<code>false</code> otherwise      */
+name|void
+name|setEnabled
+parameter_list|(
+name|boolean
+name|enabled
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

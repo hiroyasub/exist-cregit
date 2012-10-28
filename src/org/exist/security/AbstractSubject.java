@@ -119,7 +119,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -141,7 +141,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#addGroup(org.exist.security.Group) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(org.exist.security.Group)      */
 annotation|@
 name|Override
 specifier|public
@@ -163,7 +163,7 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#remGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#remGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -184,7 +184,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getGroups() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getGroups()      */
 annotation|@
 name|Override
 specifier|public
@@ -215,7 +215,7 @@ name|getGroupIds
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasDbaRole() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#hasDbaRole()      */
 annotation|@
 name|Override
 specifier|public
@@ -230,7 +230,7 @@ name|hasDbaRole
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPrimaryGroup() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getPrimaryGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -245,7 +245,7 @@ name|getPrimaryGroup
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getDefaultGroup() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getDefaultGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -260,7 +260,7 @@ name|getDefaultGroup
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#hasGroup(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#hasGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -280,7 +280,7 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setPassword(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setPassword(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -299,7 +299,7 @@ name|passwd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI)      */
 annotation|@
 name|Override
 specifier|public
@@ -318,7 +318,7 @@ name|homeCollection
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getHome() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getHome()      */
 annotation|@
 name|Override
 specifier|public
@@ -333,7 +333,7 @@ name|getHome
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getRealm() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */
 annotation|@
 name|Override
 specifier|public
@@ -348,7 +348,7 @@ name|getRealm
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getPassword() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -363,7 +363,7 @@ name|getPassword
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#getDigestPassword() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#getDigestPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -378,7 +378,7 @@ name|getDigestPassword
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.User#setGroups(java.lang.String[]) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.User#setGroups(java.lang.String[])      */
 annotation|@
 name|Override
 specifier|public
@@ -412,7 +412,7 @@ name|getRealmId
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.security.Principal#getId() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.security.Principal#getId()      */
 annotation|@
 name|Override
 specifier|public
@@ -427,7 +427,7 @@ name|getId
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.security.Principal#getName() 	 */
+comment|/* (non-Javadoc)      * @see java.security.Principal#getName()      */
 annotation|@
 name|Override
 specifier|public
@@ -442,7 +442,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.config.Configurable#isConfigured() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.config.Configurable#isConfigured()      */
 annotation|@
 name|Override
 specifier|public
@@ -457,7 +457,7 @@ name|isConfigured
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.config.Configurable#getConfiguration() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.config.Configurable#getConfiguration()      */
 annotation|@
 name|Override
 specifier|public
@@ -531,6 +531,25 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|void
+name|setEnabled
+parameter_list|(
+specifier|final
+name|boolean
+name|enabled
+parameter_list|)
+block|{
+name|account
+operator|.
+name|setEnabled
+argument_list|(
+name|enabled
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|boolean
 name|isEnabled
 parameter_list|()
@@ -575,6 +594,8 @@ name|getId
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Session
 name|getSession

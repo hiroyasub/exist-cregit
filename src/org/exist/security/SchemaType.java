@@ -23,11 +23,13 @@ interface|interface
 name|SchemaType
 block|{
 specifier|public
+specifier|abstract
 name|String
 name|getNamespace
 parameter_list|()
 function_decl|;
 specifier|public
+specifier|abstract
 name|String
 name|getAlias
 parameter_list|()
