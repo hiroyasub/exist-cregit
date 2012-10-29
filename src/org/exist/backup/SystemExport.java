@@ -802,7 +802,9 @@ name|getPluginsManager
 argument_list|()
 operator|.
 name|getBackupHandler
-argument_list|()
+argument_list|(
+name|LOG
+argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -1320,6 +1322,17 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"EXPORT: "
+operator|+
+name|message
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 specifier|static
