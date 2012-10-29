@@ -491,6 +491,8 @@ argument_list|(
 literal|"Error Occurred"
 argument_list|,
 literal|"An error occurred during startup. Please check the logs."
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
