@@ -571,16 +571,10 @@ if|if
 condition|(
 name|itemType
 operator|==
-name|Type
-operator|.
-name|NODE
-operator|||
-name|itemType
-operator|==
 name|type
 condition|)
 return|return;
-if|if
+if|else if
 condition|(
 name|itemType
 operator|==
@@ -597,7 +591,12 @@ name|itemType
 operator|=
 name|Type
 operator|.
-name|NODE
+name|getCommonSuperType
+argument_list|(
+name|type
+argument_list|,
+name|itemType
+argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
