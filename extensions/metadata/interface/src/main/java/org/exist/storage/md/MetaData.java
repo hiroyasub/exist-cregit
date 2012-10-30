@@ -326,6 +326,19 @@ name|void
 name|close
 parameter_list|()
 function_decl|;
+specifier|public
+specifier|abstract
+name|XmldbURI
+name|UUIDtoURI
+parameter_list|(
+name|String
+name|uuid
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 block|}
 end_class
 
