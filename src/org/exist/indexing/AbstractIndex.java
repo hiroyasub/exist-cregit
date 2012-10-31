@@ -91,6 +91,16 @@ name|ID
 init|=
 literal|"Give me an ID !"
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|getID
+parameter_list|()
+block|{
+return|return
+name|ID
+return|;
+block|}
 specifier|protected
 name|BrokerPool
 name|pool
