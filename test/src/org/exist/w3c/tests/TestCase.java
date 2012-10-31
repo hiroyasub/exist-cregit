@@ -668,15 +668,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUpBeforeClass ENTERED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("setUpBeforeClass ENTERED");
 try|try
 block|{
 if|if
@@ -784,15 +776,7 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUpBeforeClass PASSED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("setUpBeforeClass PASSED");
 block|}
 specifier|public
 specifier|abstract
@@ -821,15 +805,7 @@ name|inUse
 operator|--
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDownAfterClass PASSED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("tearDownAfterClass PASSED");
 block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@
@@ -841,15 +817,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUp ENTERED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("setUp ENTERED");
 if|if
 condition|(
 name|testCollection
@@ -948,15 +916,7 @@ block|}
 block|}
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUp PASSED"
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("setUp PASSED");
 block|}
 specifier|protected
 specifier|abstract
