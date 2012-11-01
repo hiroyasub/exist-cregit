@@ -434,7 +434,7 @@ name|usersTableModel
 operator|.
 name|removeRow
 argument_list|(
-name|i
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
