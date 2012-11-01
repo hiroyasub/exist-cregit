@@ -156,7 +156,7 @@ name|jh
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Initialize servlet.cd      */
+comment|/**      * Initialize servlet.      */
 specifier|public
 name|void
 name|init
