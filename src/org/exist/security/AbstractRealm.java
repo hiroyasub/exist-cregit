@@ -2432,6 +2432,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//update the metadata
+if|if
+condition|(
+name|account
+operator|.
+name|hashCode
+argument_list|()
+operator|!=
+name|updatingAccount
+operator|.
+name|hashCode
+argument_list|()
+condition|)
+block|{
 name|updatingAccount
 operator|.
 name|clearMetadata
@@ -2463,6 +2476,7 @@ name|key
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 operator|(
 operator|(
@@ -2611,6 +2625,19 @@ expr_stmt|;
 block|}
 block|}
 comment|//update the metadata
+if|if
+condition|(
+name|group
+operator|.
+name|hashCode
+argument_list|()
+operator|!=
+name|updatingGroup
+operator|.
+name|hashCode
+argument_list|()
+condition|)
+block|{
 name|updatingGroup
 operator|.
 name|clearMetadata
@@ -2642,6 +2669,7 @@ name|key
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|updatingGroup
 operator|.
