@@ -3052,6 +3052,26 @@ condition|)
 block|{
 return|return;
 block|}
+comment|//create the user
+name|createUser
+argument_list|()
+expr_stmt|;
+comment|//close the dialog
+name|setVisible
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|dispose
+argument_list|()
+expr_stmt|;
+block|}
+comment|//GEN-LAST:event_btnCreateActionPerformed
+specifier|protected
+name|void
+name|createUser
+parameter_list|()
+block|{
 comment|//1 - create personal group
 if|if
 condition|(
@@ -3092,7 +3112,8 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|userManagementService
+name|getUserManagementService
+argument_list|()
 operator|.
 name|addGroup
 argument_list|(
@@ -3200,6 +3221,19 @@ name|isSelected
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|userAider
+operator|.
+name|setUserMask
+argument_list|(
+operator|(
+name|Integer
+operator|)
+name|spnUmask
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//add the personal group to the user
 if|if
 condition|(
@@ -3260,7 +3294,8 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|userManagementService
+name|getUserManagementService
+argument_list|()
 operator|.
 name|addAccount
 argument_list|(
@@ -3318,7 +3353,8 @@ specifier|final
 name|Group
 name|group
 init|=
-name|userManagementService
+name|getUserManagementService
+argument_list|()
 operator|.
 name|getGroup
 argument_list|(
@@ -3419,17 +3455,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//4 - close the dialog
-name|setVisible
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|dispose
-argument_list|()
-expr_stmt|;
 block|}
-comment|//GEN-LAST:event_btnCreateActionPerformed
 specifier|private
 name|void
 name|cbPersonalGroupActionPerformed
@@ -3761,8 +3787,8 @@ literal|'0'
 argument_list|)
 return|;
 block|}
-specifier|private
-name|ListModel
+specifier|protected
+name|SortedListModel
 name|getAvailableGroupsListModel
 parameter_list|()
 block|{
@@ -3780,7 +3806,8 @@ name|String
 name|groupNames
 index|[]
 init|=
-name|userManagementService
+name|getUserManagementService
+argument_list|()
 operator|.
 name|getGroups
 argument_list|()
@@ -3809,15 +3836,34 @@ name|XMLDBException
 name|xmldbe
 parameter_list|)
 block|{
-comment|//TODO log?
+name|JOptionPane
+operator|.
+name|showMessageDialog
+argument_list|(
+name|this
+argument_list|,
+literal|"Could not get available groups: "
+operator|+
+name|xmldbe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+literal|"Create User Error"
+argument_list|,
+name|JOptionPane
+operator|.
+name|ERROR_MESSAGE
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 return|return
 name|availableGroupsModel
 return|;
 block|}
-specifier|private
-name|ListModel
+specifier|protected
+name|SortedListModel
 name|getMemberOfGroupsListModel
 parameter_list|()
 block|{
@@ -3842,6 +3888,15 @@ return|return
 name|memberOfGroupsModel
 return|;
 block|}
+specifier|protected
+name|UserManagementService
+name|getUserManagementService
+parameter_list|()
+block|{
+return|return
+name|userManagementService
+return|;
+block|}
 comment|// Variables declaration - do not modify//GEN-BEGIN:variables
 specifier|private
 name|javax
@@ -3859,7 +3914,7 @@ operator|.
 name|JButton
 name|btnClose
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -3875,7 +3930,7 @@ operator|.
 name|JButton
 name|btnRemoveGroup
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -3883,7 +3938,7 @@ operator|.
 name|JCheckBox
 name|cbDisabled
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4019,7 +4074,7 @@ operator|.
 name|JList
 name|lstMemberOfGroups
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4027,7 +4082,7 @@ operator|.
 name|JSpinner
 name|spnUmask
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4035,7 +4090,7 @@ operator|.
 name|JTextField
 name|txtDescription
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4043,7 +4098,7 @@ operator|.
 name|JTextField
 name|txtFullName
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4051,7 +4106,7 @@ operator|.
 name|JPasswordField
 name|txtPassword
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
@@ -4059,7 +4114,7 @@ operator|.
 name|JPasswordField
 name|txtPasswordConfirm
 decl_stmt|;
-specifier|private
+specifier|protected
 name|javax
 operator|.
 name|swing
