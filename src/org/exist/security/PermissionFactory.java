@@ -224,7 +224,8 @@ init|=
 name|Permission
 operator|.
 name|DEFAULT_RESOURCE_PERM
-operator|-
+operator|&
+operator|~
 name|currentSubject
 operator|.
 name|getUserMask
@@ -280,7 +281,8 @@ init|=
 name|Permission
 operator|.
 name|DEFAULT_COLLECTION_PERM
-operator|-
+operator|&
+operator|~
 name|currentSubject
 operator|.
 name|getUserMask
