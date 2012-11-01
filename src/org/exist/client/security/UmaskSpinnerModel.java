@@ -21,18 +21,6 @@ name|AbstractSpinnerModel
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
@@ -293,7 +281,8 @@ literal|01
 return|;
 block|}
 block|}
-specifier|private
+specifier|public
+specifier|static
 name|int
 name|octalUmaskToInt
 parameter_list|(
@@ -313,7 +302,8 @@ name|OCTAL_RADIX
 argument_list|)
 return|;
 block|}
-specifier|private
+specifier|public
+specifier|static
 name|String
 name|intToOctalUmask
 parameter_list|(
