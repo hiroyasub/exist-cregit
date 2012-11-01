@@ -137,6 +137,11 @@ argument_list|>
 name|getMetadataKeys
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|clearMetadata
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
