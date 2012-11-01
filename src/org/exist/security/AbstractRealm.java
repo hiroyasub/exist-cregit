@@ -2241,6 +2241,7 @@ throws|,
 name|EXistException
 block|{
 comment|//make sure we have permission to modify this account
+specifier|final
 name|Account
 name|user
 init|=
@@ -2258,6 +2259,7 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|//modify the account
+specifier|final
 name|Account
 name|updatingAccount
 init|=
@@ -2492,6 +2494,7 @@ throws|,
 name|EXistException
 block|{
 comment|//make sure we have permission to modify this account
+specifier|final
 name|Account
 name|user
 init|=
@@ -2640,7 +2643,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|group
+name|updatingGroup
 operator|.
 name|save
 argument_list|()
