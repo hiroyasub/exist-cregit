@@ -493,6 +493,8 @@ argument_list|(
 literal|"\">"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 for|for
 control|(
 name|Account
@@ -511,6 +513,28 @@ operator|+
 name|manager
 operator|.
 name|getUsername
+argument_list|()
+operator|+
+literal|"\"/>"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+literal|"<manager error=\""
+operator|+
+name|e
+operator|.
+name|getMessage
 argument_list|()
 operator|+
 literal|"\"/>"
