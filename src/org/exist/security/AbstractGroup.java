@@ -987,6 +987,7 @@ break|break;
 block|}
 block|}
 block|}
+comment|//this method used only at tests, don't use it other places
 specifier|protected
 name|void
 name|setManagers
