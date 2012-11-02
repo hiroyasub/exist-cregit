@@ -1153,6 +1153,17 @@ return|return
 name|metadataKeys
 return|;
 block|}
+specifier|public
+name|void
+name|clearMetadata
+parameter_list|()
+block|{
+name|metadata
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
