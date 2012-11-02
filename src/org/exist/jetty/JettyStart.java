@@ -750,7 +750,18 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|""
+literal|"Running as user '"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"user.name"
+argument_list|,
+literal|"(unknown user.name)"
+argument_list|)
+operator|+
+literal|"'"
 argument_list|)
 expr_stmt|;
 name|String
