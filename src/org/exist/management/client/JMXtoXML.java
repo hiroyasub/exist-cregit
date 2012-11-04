@@ -935,6 +935,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|connection
 operator|=
 name|servers
@@ -944,6 +945,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Connect to a remote JMX instance using address and port. 	 *  	 * @param address 	 * @param port 	 * @throws IOException 	 */
 specifier|public
@@ -1218,6 +1220,8 @@ operator|=
 name|instance
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -1352,6 +1356,7 @@ name|url
 operator|!=
 literal|null
 condition|)
+block|{
 name|builder
 operator|.
 name|addAttribute
@@ -1364,6 +1369,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|errcode
@@ -1606,6 +1612,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|className
 operator|=
 name|className
@@ -1617,6 +1624,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|QName
 name|qname
 init|=
@@ -1802,13 +1810,16 @@ name|object
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|object
 operator|instanceof
 name|TabularData
 condition|)
+block|{
 name|serialize
 argument_list|(
 name|builder
@@ -1819,12 +1830,14 @@ operator|)
 name|object
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|object
 operator|instanceof
 name|CompositeData
 condition|)
+block|{
 name|serialize
 argument_list|(
 name|builder
@@ -1835,6 +1848,7 @@ operator|)
 name|object
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|object
@@ -1842,6 +1856,7 @@ operator|instanceof
 name|Object
 index|[]
 condition|)
+block|{
 name|serialize
 argument_list|(
 name|builder
@@ -1853,7 +1868,9 @@ operator|)
 name|object
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|builder
 operator|.
 name|characters
@@ -1864,6 +1881,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void

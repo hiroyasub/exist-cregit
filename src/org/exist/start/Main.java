@@ -31,18 +31,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -112,6 +100,18 @@ operator|.
 name|util
 operator|.
 name|StringTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
 import|;
 end_import
 
@@ -411,17 +411,13 @@ name|?
 argument_list|>
 name|invoked_class
 init|=
-literal|null
-decl_stmt|;
-name|invoked_class
-operator|=
 name|classloader
 operator|.
 name|loadClass
 argument_list|(
 name|classname
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Class
 argument_list|<
 name|?
@@ -448,10 +444,6 @@ expr_stmt|;
 name|Method
 name|main
 init|=
-literal|null
-decl_stmt|;
-name|main
-operator|=
 name|invoked_class
 operator|.
 name|getDeclaredMethod
@@ -460,7 +452,7 @@ literal|"main"
 argument_list|,
 name|method_param_types
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|Object
 index|[]
 name|method_params
@@ -2721,8 +2713,7 @@ comment|// ignore
 block|}
 block|}
 block|}
-comment|// searching exist.jar failed, try conf.xml to have the configuration
-comment|// at least
+comment|// searching exist.jar failed, try conf.xml to have the configuration at least
 if|if
 condition|(
 name|_home_dir

@@ -789,11 +789,13 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|echo
 argument_list|(
 literal|"\nCurrently active threads:"
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|Iterator
