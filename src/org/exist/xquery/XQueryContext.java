@@ -9571,6 +9571,14 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// if location is not specified, try to resolve in expath repo
+if|if
+condition|(
+name|location
+operator|==
+literal|null
+condition|)
+block|{
 name|module
 operator|=
 name|resolveInEXPathRepository
@@ -9580,6 +9588,7 @@ argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|module
