@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the REST-style interface if eXist is running within a Servlet  * engine. The real work is done by class {@link org.exist.http.RESTServer}.  *   * @author wolf  */
+comment|/**  * Implements the REST-style interface if eXist is running within a Servlet  * engine. The real work is done by class {@link org.exist.http.RESTServer}.  *  * @author wolf  */
 end_comment
 
 begin_class
