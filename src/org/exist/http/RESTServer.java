@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -180,16 +170,6 @@ operator|.
 name|util
 operator|.
 name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|ServletInputStream
 import|;
 end_import
 
@@ -1490,7 +1470,7 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Handle GET request. In the simplest case just returns the document or 	 * binary resource specified in the path. If the path leads to a collection, 	 * a listing of the collection contents is returned. If it resolves to a 	 * binary resource with mime-type "application/xquery", this resource will 	 * be loaded and executed by the XQuery engine. 	 * 	 * The method also recognizes a number of predefined parameters: 	 * 	 *<ul> 	 *<li>_xpath or _query: if specified, the given query is executed on the 	 * current resource or collection.</li> 	 * 	 *<li>_howmany: defines how many items from the query result will be 	 * returned.</li> 	 * 	 *<li>_start: a start offset into the result set.</li> 	 * 	 *<li>_wrap: if set to "yes", the query results will be wrapped into a 	 * exist:result element.</li> 	 * 	 *<li>_indent: if set to "yes", the returned XML will be pretty-printed. 	 *</li> 	 * 	 *<li>_source: if set to "yes" and a resource with mime-type 	 * "application/xquery" is requested then the xquery will not be executed, 	 * instead the source of the document will be returned. Must be enabled in 	 * descriptor.xml with the following syntax<xquery-app><allow-source><xquery 	 * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li> 	 * 	 *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to 	 * the returned XML.</li> 	 * 	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 * @throws NotFoundException 	 */
+comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a      * binary resource with mime-type "application/xquery", this resource will      * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul><li>_xpath or _query: if specified, the given query is executed on      * the current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type      * "application/xquery" is requested then the xquery will not be executed,      * instead the source of the document will be returned. Must be enabled in      * descriptor.xml with the following syntax      *<xquery-app><allow-source><xquery      * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
 specifier|public
 name|void
 name|doGet
@@ -1526,6 +1506,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|request
 operator|.
 name|setCharacterEncoding
@@ -1533,6 +1514,7 @@ argument_list|(
 name|formEncoding
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|option
 decl_stmt|;
@@ -1576,6 +1558,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1585,6 +1568,7 @@ operator|+
 name|sessionId
 argument_list|)
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setStatus
@@ -1913,10 +1897,12 @@ argument_list|(
 literal|"yes"
 argument_list|)
 condition|)
+block|{
 name|typed
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -2183,6 +2169,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -2194,11 +2181,14 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+block|}
 name|String
 name|mimeType
 init|=
@@ -2455,6 +2445,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -2462,6 +2453,7 @@ argument_list|(
 literal|"Not allowed to read collection"
 argument_list|)
 throw|;
+block|}
 comment|// return a listing of the collection contents
 try|try
 block|{
@@ -2607,7 +2599,9 @@ name|XmldbURI
 operator|.
 name|EMPTY_URI
 condition|)
+block|{
 break|break;
+block|}
 name|resource
 operator|=
 name|broker
@@ -2951,6 +2945,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2963,6 +2958,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|MimeType
@@ -3027,6 +3023,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -3039,6 +3036,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -3089,7 +3087,9 @@ argument_list|,
 name|response
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|Properties
 name|outputProperties
 init|=
@@ -3134,6 +3134,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -3145,11 +3146,14 @@ argument_list|,
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+block|}
 name|DocumentImpl
 name|resource
 init|=
@@ -3375,6 +3379,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -3389,7 +3394,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Handles POST requests. If the path leads to a binary resource with 	 * mime-type "application/xquery", that resource will be read and executed 	 * by the XQuery engine. Otherwise, the request content is loaded and parsed 	 * as XML. It may either contain an XUpdate or a query request. 	 * 	 * @param broker 	 * @param request 	 * @param response 	 * @param path 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 * @throws NotFoundException  	 */
+block|}
+comment|/**      * Handles POST requests. If the path leads to a binary resource with      * mime-type "application/xquery", that resource will be read and executed      * by the XQuery engine. Otherwise, the request content is loaded and parsed      * as XML. It may either contain an XUpdate or a query request.      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
 specifier|public
 name|void
 name|doPost
@@ -3425,6 +3431,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|request
 operator|.
 name|setCharacterEncoding
@@ -3432,6 +3439,7 @@ argument_list|(
 name|formEncoding
 argument_list|)
 expr_stmt|;
+block|}
 name|Properties
 name|outputProperties
 init|=
@@ -3547,7 +3555,9 @@ name|XmldbURI
 operator|.
 name|EMPTY_URI
 condition|)
+block|{
 break|break;
+block|}
 name|resource
 operator|=
 name|broker
@@ -3852,6 +3862,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -3864,6 +3875,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// check the content type to see if its XML or a parameter string
 name|String
@@ -3897,6 +3909,7 @@ name|semicolon
 operator|>
 literal|0
 condition|)
+block|{
 name|requestType
 operator|=
 name|requestType
@@ -3911,6 +3924,7 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|// content type != application/x-www-form-urlencoded
 if|if
@@ -4085,6 +4099,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|start
@@ -4105,6 +4120,7 @@ parameter_list|)
 block|{
 comment|//
 block|}
+block|}
 name|option
 operator|=
 name|root
@@ -4120,6 +4136,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|howmany
@@ -4139,6 +4156,7 @@ name|e
 parameter_list|)
 block|{
 comment|//
+block|}
 block|}
 name|option
 operator|=
@@ -4165,10 +4183,12 @@ argument_list|(
 literal|"no"
 argument_list|)
 condition|)
+block|{
 name|enclose
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -4197,10 +4217,12 @@ argument_list|(
 literal|"no"
 argument_list|)
 condition|)
+block|{
 name|enclose
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 block|}
 name|option
@@ -4266,10 +4288,12 @@ argument_list|(
 literal|"yes"
 argument_list|)
 condition|)
+block|{
 name|typed
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 name|option
 operator|=
@@ -4489,6 +4513,7 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -4499,6 +4524,7 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|next
 operator|=
 name|next
@@ -4647,6 +4673,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -4656,6 +4683,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|node
 operator|=
@@ -4891,6 +4919,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|broker
 operator|.
 name|getAllXMLResources
@@ -4898,6 +4927,7 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|XUpdateProcessor
 name|processor
@@ -5042,6 +5072,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|cause
 operator|=
 name|e
@@ -5049,6 +5080,7 @@ operator|.
 name|getException
 argument_list|()
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -5474,7 +5506,7 @@ name|uri
 return|;
 block|}
 block|}
-comment|/** 	 * Creates an input source from a URL location with an optional known 	 * charset. 	 */
+comment|/**      * Creates an input source from a URL location with an optional known      * charset.      */
 specifier|private
 name|InputSource
 name|createInputSource
@@ -5548,7 +5580,7 @@ name|source
 return|;
 block|}
 block|}
-comment|/** 	 * Handles PUT requests. The request content is stored as a new resource at 	 * the specified location. If the resource already exists, it is overwritten 	 * if the user has write permissions. 	 * 	 * The resource type depends on the content type specified in the HTTP 	 * header. The content type will be looked up in the global mime table. If 	 * the corresponding mime type is not a know XML mime type, the resource 	 * will be stored as a binary resource. 	 * 	 * @param broker 	 * @param path 	 *            The path to which the file should be stored 	 * @param request 	 * @param response 	 * @throws BadRequestException 	 * @throws PermissionDeniedException 	 */
+comment|/**      * Handles PUT requests. The request content is stored as a new resource at      * the specified location. If the resource already exists, it is overwritten      * if the user has write permissions.      *      * The resource type depends on the content type specified in the HTTP      * header. The content type will be looked up in the global mime table. If      * the corresponding mime type is not a know XML mime type, the resource      * will be stored as a binary resource.      *      * @param broker      * @param path The path to which the file should be stored      * @param request      * @param response      * @throws BadRequestException      * @throws PermissionDeniedException      */
 specifier|public
 name|void
 name|doPut
@@ -5587,7 +5619,9 @@ argument_list|,
 name|response
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|TransactionManager
 name|transact
 init|=
@@ -5644,6 +5678,7 @@ name|lenstr
 operator|!=
 literal|null
 condition|)
+block|{
 name|len
 operator|=
 name|Long
@@ -5653,6 +5688,7 @@ argument_list|(
 name|lenstr
 argument_list|)
 expr_stmt|;
+block|}
 comment|// put may send a lot of data, so save it
 comment|// to a temporary file first.
 name|vtempFile
@@ -5934,6 +5970,7 @@ name|mime
 operator|!=
 literal|null
 condition|)
+block|{
 name|contentType
 operator|=
 name|mime
@@ -5941,6 +5978,7 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -5969,6 +6007,7 @@ name|transaction
 operator|==
 literal|null
 condition|)
+block|{
 name|transaction
 operator|=
 name|transact
@@ -5976,6 +6015,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|mime
@@ -6198,10 +6238,12 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 name|o
 operator|=
 name|e
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|BadRequestException
@@ -6331,7 +6373,9 @@ argument_list|,
 name|response
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|TransactionManager
 name|transact
 init|=
@@ -6470,6 +6514,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 name|doc
 operator|.
 name|getCollection
@@ -6487,7 +6532,9 @@ name|lastSegment
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|doc
 operator|.
 name|getCollection
@@ -6505,6 +6552,7 @@ name|lastSegment
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setStatus
@@ -6523,6 +6571,7 @@ operator|!=
 literal|null
 condition|)
 comment|//should not happen, just in case ...
+block|{
 name|transact
 operator|.
 name|commit
@@ -6530,6 +6579,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -6650,9 +6700,11 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|String
 name|xqueryType
 init|=
@@ -6790,7 +6842,9 @@ name|XmldbURI
 operator|.
 name|EMPTY_URI
 condition|)
+block|{
 break|break;
+block|}
 block|}
 comment|// xquery binary file found
 if|if
@@ -6922,10 +6976,12 @@ name|encoding
 operator|==
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+block|}
 name|InputStream
 name|is
 init|=
@@ -6983,6 +7039,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|content
 operator|.
 name|write
@@ -6994,6 +7051,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|xml
 init|=
@@ -7006,7 +7064,7 @@ return|return
 name|xml
 return|;
 block|}
-comment|/** 	 * TODO: pass request and response objects to XQuery. 	 * 	 * @throws XPathException 	 */
+comment|/**      * TODO: pass request and response objects to XQuery.      *      * @throws XPathException      */
 specifier|protected
 name|void
 name|search
@@ -7232,6 +7290,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|xquery
@@ -7243,7 +7302,9 @@ operator|.
 name|REST
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|compiled
@@ -7251,6 +7312,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -7301,6 +7363,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|compiled
 operator|=
 name|xquery
@@ -7312,6 +7375,7 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|compiled
@@ -7374,6 +7438,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -7392,6 +7457,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cache
@@ -7433,6 +7499,7 @@ operator|.
 name|isCommitted
 argument_list|()
 condition|)
+block|{
 name|response
 operator|.
 name|setIntHeader
@@ -7442,6 +7509,7 @@ argument_list|,
 name|sessionId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|writeResults
 argument_list|(
@@ -7518,7 +7586,9 @@ name|namespaces
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
 name|Namespace
@@ -7544,7 +7614,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Pass the request, response and session objects to the XQuery context. 	 * 	 * @param context 	 * @param request 	 * @param response 	 * @throws XPathException 	 */
+comment|/**      * Pass the request, response and session objects to the XQuery context.      *      * @param context      * @param request      * @param response      * @throws XPathException      */
 specifier|private
 name|HttpRequestWrapper
 name|declareVariables
@@ -7869,6 +7939,7 @@ name|prefix
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareNamespace
@@ -7878,13 +7949,16 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|localname
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 name|QName
 name|q
 decl_stmt|;
@@ -8035,7 +8109,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Directly execute an XQuery stored as a binary document in the database. 	 * @throws PermissionDeniedException  	 */
+comment|/**      * Directly execute an XQuery stored as a binary document in the database.      *      * @throws PermissionDeniedException      */
 specifier|private
 name|void
 name|executeXQuery
@@ -8365,7 +8439,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Directly execute an XProc stored as a XML document in the database. 	 * @throws PermissionDeniedException  	 */
+comment|/**      * Directly execute an XProc stored as a XML document in the database.      *      * @throws PermissionDeniedException      */
 specifier|private
 name|void
 name|executeXProc
@@ -8792,7 +8866,7 @@ name|long
 name|lastModified
 parameter_list|)
 block|{
-comment|/**              * Jetty ignores the milliseconds component - https://bugs.eclipse.org/bugs/show_bug.cgi?id=342712              * So lets work around this by rounding up to the nearest whole second              */
+comment|/**          * Jetty ignores the milliseconds component -          * https://bugs.eclipse.org/bugs/show_bug.cgi?id=342712 So lets work          * around this by rounding up to the nearest whole second          */
 name|long
 name|lastModifiedMillisComp
 init|=
@@ -8950,7 +9024,7 @@ argument_list|,
 name|lastModified
 argument_list|)
 expr_stmt|;
-comment|/** HTTP 1.1 RFC 2616 Section 14.25 **/
+comment|/**          * HTTP 1.1 RFC 2616 Section 14.25 *          */
 comment|//handle If-Modified-Since request header
 try|try
 block|{
@@ -8972,7 +9046,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|/*                          a) A date which is later than the server's                          current time is invalid.                          */
+comment|/*                  a) A date which is later than the server's                  current time is invalid.                  */
 if|if
 condition|(
 name|ifModifiedSince
@@ -8983,7 +9057,7 @@ name|currentTimeMillis
 argument_list|()
 condition|)
 block|{
-comment|/*                              b) If the variant has been modified since the If-Modified-Since                              date, the response is exactly the same as for a normal GET.                             */
+comment|/*                      b) If the variant has been modified since the If-Modified-Since                      date, the response is exactly the same as for a normal GET.                      */
 if|if
 condition|(
 name|lastModified
@@ -8991,7 +9065,7 @@ operator|<=
 name|ifModifiedSince
 condition|)
 block|{
-comment|/*                                  c) If the variant has not been modified since a valid If-                                  Modified-Since date, the server SHOULD return a 304 (Not                                  Modified) response.                                 */
+comment|/*                          c) If the variant has not been modified since a valid If-                          Modified-Since date, the server SHOULD return a 304 (Not                          Modified) response.                          */
 name|response
 operator|.
 name|setStatus
@@ -9320,6 +9394,7 @@ name|asMimeType
 operator|==
 literal|null
 condition|)
+block|{
 name|asMimeType
 operator|=
 name|MimeType
@@ -9329,6 +9404,7 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -9336,6 +9412,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -9345,6 +9422,7 @@ operator|+
 name|asMimeType
 argument_list|)
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setContentType
@@ -9559,7 +9637,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * @param response 	 * @param encoding 	 * @param query 	 * @param path 	 * @param e 	 * 	 */
+comment|/**      * @param response      * @param encoding      * @param query      * @param path      * @param e      *      */
 specifier|private
 name|void
 name|writeXPathExceptionHtml
@@ -9784,7 +9862,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param response 	 * @param encoding 	 * @param query 	 * @param path 	 * @param e 	 */
+comment|/**      * @param response      * @param encoding      * @param query      * @param path      * @param e      */
 specifier|private
 name|void
 name|writeXPathException
@@ -9988,7 +10066,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param response 	 * @param encoding 	 * @param updateCount 	 */
+comment|/**      * @param response      * @param encoding      * @param updateCount      */
 specifier|private
 name|void
 name|writeXUpdateResult
@@ -10086,7 +10164,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @param response 	 * @param encoding 	 * @param broker 	 * @param collection 	 */
+comment|/**      * @param response      * @param encoding      * @param broker      * @param collection      */
 specifier|protected
 name|void
 name|writeCollection
@@ -11012,7 +11090,9 @@ operator|.
 name|isCommitted
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 comment|// calculate number of results to return
 if|if
 condition|(
@@ -11045,6 +11125,7 @@ operator|>
 name|rlen
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -11052,6 +11133,7 @@ argument_list|(
 literal|"Start parameter out of range"
 argument_list|)
 throw|;
+block|}
 comment|// FD : correct bound evaluation
 if|if
 condition|(
@@ -11071,6 +11153,7 @@ operator|<=
 literal|0
 operator|)
 condition|)
+block|{
 name|howmany
 operator|=
 name|rlen
@@ -11079,6 +11162,7 @@ name|start
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -11331,6 +11415,7 @@ if|if
 condition|(
 name|wrap
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -11340,6 +11425,7 @@ argument_list|,
 literal|"xml"
 argument_list|)
 expr_stmt|;
+block|}
 name|Writer
 name|writer
 init|=
@@ -11549,6 +11635,7 @@ operator|>
 name|rlen
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -11556,6 +11643,7 @@ argument_list|(
 literal|"Start parameter out of range"
 argument_list|)
 throw|;
+block|}
 comment|// FD : correct bound evaluation
 if|if
 condition|(
@@ -11575,6 +11663,7 @@ operator|<=
 literal|0
 operator|)
 condition|)
+block|{
 name|howmany
 operator|=
 name|rlen
@@ -11583,6 +11672,7 @@ name|start
 operator|+
 literal|1
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -12075,15 +12165,19 @@ argument_list|)
 operator|)
 comment|//a xproc
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * @param query 	 * @param path 	 * @param e 	 */
+block|}
+comment|/**      * @param query      * @param path      * @param e      */
 specifier|private
 name|String
 name|formatXPathException
