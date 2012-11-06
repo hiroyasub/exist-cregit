@@ -3527,9 +3527,16 @@ expr_stmt|;
 block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
+comment|//XXX: don't do if READONLY mode
 if|if
 condition|(
 name|recovered
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+name|exportOnly
 condition|)
 block|{
 try|try
@@ -3560,6 +3567,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -3640,6 +3648,12 @@ name|SIGNAL_WRITABLE
 argument_list|)
 expr_stmt|;
 comment|//initialize configurations watcher trigger
+if|if
+condition|(
+operator|!
+name|exportOnly
+condition|)
+block|{
 try|try
 block|{
 name|initialiseTriggersForCollections
@@ -3671,6 +3685,7 @@ argument_list|,
 name|pde
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// remove temporary docs
 try|try
