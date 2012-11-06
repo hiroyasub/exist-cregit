@@ -1484,9 +1484,9 @@ name|ParserConfigurationException
 name|pce
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|SAXException
+name|listener
+operator|.
+name|error
 argument_list|(
 literal|"Could not initalise SAXParser for processing sub-collection: "
 operator|+
@@ -1498,10 +1498,8 @@ name|name
 argument_list|,
 literal|false
 argument_list|)
-argument_list|,
-name|pce
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1509,9 +1507,9 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|SAXException
+name|listener
+operator|.
+name|error
 argument_list|(
 literal|"Could not read sub-collection for processing: "
 operator|+
@@ -1519,10 +1517,8 @@ name|ioe
 operator|.
 name|getMessage
 argument_list|()
-argument_list|,
-name|ioe
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 block|}
 else|else
@@ -1915,13 +1911,11 @@ argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
-throw|throw
+return|return
 operator|new
-name|RuntimeException
-argument_list|(
-name|msg
-argument_list|)
-throw|;
+name|SkippedEntryDeferredPermission
+argument_list|()
+return|;
 block|}
 try|try
 block|{
