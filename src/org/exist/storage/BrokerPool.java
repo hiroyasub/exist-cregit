@@ -3877,6 +3877,13 @@ name|DBBroker
 name|sysBroker
 parameter_list|)
 block|{
+if|if
+condition|(
+name|startupTriggerClasses
+operator|==
+literal|null
+condition|)
+return|return;
 for|for
 control|(
 specifier|final
