@@ -304,7 +304,7 @@ specifier|static
 name|String
 name|EXPATH_REPO_DEFAULT
 init|=
-literal|"webapps/exist/WEB-INF/"
+literal|"webapp/WEB-INF/"
 operator|+
 name|EXPATH_REPO_DIR
 decl_stmt|;

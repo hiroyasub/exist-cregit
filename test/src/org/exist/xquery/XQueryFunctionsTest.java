@@ -5571,7 +5571,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"webapps/exist/"
+literal|"webapp/"
 operator|+
 name|BINARY_RESOURCE_FILENAME
 argument_list|)
@@ -5582,7 +5582,7 @@ operator|=
 operator|new
 name|File
 argument_list|(
-literal|"webapps/exist/"
+literal|"webapp/"
 operator|+
 name|BINARY_RESOURCE_FILENAME
 argument_list|)

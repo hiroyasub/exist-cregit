@@ -1355,7 +1355,7 @@ argument_list|(
 name|getExistDir
 argument_list|()
 argument_list|,
-literal|"webapps/exist/logo.jpg"
+literal|"webapp/logo.jpg"
 argument_list|)
 argument_list|,
 name|testCollection

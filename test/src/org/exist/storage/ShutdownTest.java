@@ -743,7 +743,7 @@ argument_list|)
 expr_stmt|;
 comment|// try to remove the database files
 comment|//        try {
-comment|//	        File dataDir = new File("webapps/exist/WEB-INF/data");
+comment|//	        File dataDir = new File("webapp/WEB-INF/data");
 comment|//	        File files[] = dataDir.listFiles(new FilenameFilter() {
 comment|//	        	public boolean accept(File dir, String name) {
 comment|//	        		if (name.endsWith(".dbx") || name.endsWith(".log"))

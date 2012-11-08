@@ -578,10 +578,10 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"webapps/exist/xqts/build.xml"
+literal|"webapp/xqts/build.xml"
 argument_list|)
 decl_stmt|;
-comment|//File xqtsFile = new File("webapps/exist/xqts/build.xml");
+comment|//File xqtsFile = new File("webapp/xqts/build.xml");
 name|Project
 name|p
 init|=

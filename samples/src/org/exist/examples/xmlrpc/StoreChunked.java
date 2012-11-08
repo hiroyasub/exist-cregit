@@ -201,7 +201,7 @@ comment|// TODO: Filename hardcoded
 name|String
 name|filename
 init|=
-literal|"webapps/exist/resources/admin2.png"
+literal|"webapp/resources/admin2.png"
 decl_stmt|;
 try|try
 block|{

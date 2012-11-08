@@ -1738,7 +1738,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"webapps/exist/WEB-INF/logs/exist.log"
+literal|"webapp/WEB-INF/logs/exist.log"
 argument_list|)
 decl_stmt|;
 if|if
