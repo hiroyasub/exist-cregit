@@ -1667,6 +1667,17 @@ name|groups
 parameter_list|,
 name|String
 name|home
+parameter_list|,
+name|Boolean
+name|enabled
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|metadata
 parameter_list|)
 throws|throws
 name|EXistException
