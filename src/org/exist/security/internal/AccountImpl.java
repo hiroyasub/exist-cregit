@@ -826,6 +826,7 @@ expr_stmt|;
 comment|//copy metadata
 for|for
 control|(
+specifier|final
 name|SchemaType
 name|metadataKey
 range|:
@@ -835,6 +836,7 @@ name|getMetadataKeys
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|metadataValue
 init|=
