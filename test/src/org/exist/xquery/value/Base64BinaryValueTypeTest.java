@@ -293,7 +293,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"webapp/logo.jpg"
+literal|"webapps/exist/logo.jpg"
 argument_list|)
 decl_stmt|;
 name|InputStream

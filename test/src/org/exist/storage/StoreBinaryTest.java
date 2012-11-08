@@ -240,7 +240,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"webapp/WEB-INF/data"
+literal|"webapps/exist/WEB-INF/data"
 argument_list|)
 decl_stmt|;
 name|File

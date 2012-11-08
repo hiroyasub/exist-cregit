@@ -267,7 +267,7 @@ specifier|static
 name|String
 name|directory
 init|=
-literal|"webapp/resources"
+literal|"webapps/exist/resources"
 decl_stmt|;
 comment|//private static File dir = new File(directory);
 specifier|public

@@ -520,7 +520,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"webapp/xqts/build.xml"
+literal|"webapps/exist/xqts/build.xml"
 argument_list|)
 decl_stmt|;
 name|Project

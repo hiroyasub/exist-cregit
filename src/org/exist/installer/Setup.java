@@ -851,7 +851,7 @@ name|File
 argument_list|(
 name|home
 argument_list|,
-literal|"webapp/WEB-INF/expathrepo"
+literal|"webapps/exist/WEB-INF/expathrepo"
 argument_list|)
 decl_stmt|;
 comment|// ensure the dir exists
