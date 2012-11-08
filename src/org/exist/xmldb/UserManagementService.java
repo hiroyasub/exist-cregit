@@ -383,13 +383,24 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Update existing account information      *      *@param  account             Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      * Update existing account information      *      * @param  account             Description of the Parameter      * @exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|updateAccount
 parameter_list|(
 name|Account
 name|account
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Update existing group information      *      * @param  group The group to update      * @throws XMLDBException if the group could not be updated      */
+specifier|public
+name|void
+name|updateGroup
+parameter_list|(
+name|Group
+name|group
 parameter_list|)
 throws|throws
 name|XMLDBException

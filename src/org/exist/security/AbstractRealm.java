@@ -2560,9 +2560,10 @@ literal|" does not exist"
 argument_list|)
 throw|;
 block|}
-comment|//check: add account to group
+comment|//check: add account to group managers
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:
@@ -2592,9 +2593,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//check: remove account from group
+comment|//check: remove account from group managers
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:
