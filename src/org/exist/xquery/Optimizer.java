@@ -71,20 +71,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util

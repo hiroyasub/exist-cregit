@@ -29,16 +29,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|Namespaces
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|QName
