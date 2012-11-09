@@ -282,6 +282,29 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|xars
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|autodeployDir
+operator|.
+name|getAbsolutePath
+argument_list|()
+operator|+
+literal|" does not exist."
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
+else|else
+block|{
 name|LOG
 operator|.
 name|info
@@ -295,6 +318,7 @@ operator|+
 literal|" app packages."
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|File
