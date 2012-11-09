@@ -6473,14 +6473,14 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"STORING CONFIGURATION collection = "
+literal|"Storing configuration "
 operator|+
 name|collection
 operator|.
 name|getURI
 argument_list|()
 operator|+
-literal|" document = "
+literal|"/"
 operator|+
 name|uri
 argument_list|)
