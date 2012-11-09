@@ -1027,6 +1027,12 @@ expr_stmt|;
 block|}
 return|return
 name|target
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|target
 operator|.
 name|getStringValue
 argument_list|()
@@ -1188,9 +1194,7 @@ comment|// otherwise copy all child directories to the target collection
 name|XmldbURI
 name|targetCollection
 init|=
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1290,6 +1294,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|targetCollection
+operator|==
+literal|null
+condition|)
+block|{
+comment|// no target means: package does not need to be deployed into database
+return|return
+literal|null
+return|;
 block|}
 name|ElementImpl
 name|permissions
