@@ -710,6 +710,8 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the description of the active function module identified by the namespace URI"
 argument_list|)
+argument_list|,
+literal|"Use inspect:inspect-module-uri instead."
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -803,6 +805,8 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the description of the active function module identified by the namespace URI"
 argument_list|)
+argument_list|,
+literal|"Use inspect:inspect-module-uri instead."
 argument_list|)
 decl_stmt|;
 specifier|private

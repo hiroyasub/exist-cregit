@@ -356,6 +356,8 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the signature of the function"
 argument_list|)
+argument_list|,
+literal|"Use inspect:inspect-function instead."
 argument_list|)
 decl_stmt|;
 specifier|private
