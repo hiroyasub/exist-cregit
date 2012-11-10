@@ -9,7 +9,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|http
+name|jetty
 package|;
 end_package
 
@@ -44,15 +44,19 @@ name|webapp
 operator|.
 name|WebAppContext
 block|{
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
 return|return
-literal|"eXist XML Database"
+literal|"eXist-db Open Source Native XML Database"
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|doStop
