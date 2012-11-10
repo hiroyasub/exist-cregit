@@ -702,6 +702,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|String
+index|[]
+name|getGroupMembers
+parameter_list|(
+name|String
+name|groupName
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 block|}
 end_interface
 
