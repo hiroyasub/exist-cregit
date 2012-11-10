@@ -2120,11 +2120,11 @@ name|Assert
 operator|.
 name|fail
 argument_list|(
-literal|"expected error code '"
+literal|"expected error code: '"
 operator|+
 name|extectedError
 operator|+
-literal|"' get '"
+literal|"', but got: '"
 operator|+
 name|e
 operator|.
