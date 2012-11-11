@@ -151,18 +151,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|VirtualTempFile
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|validation
 operator|.
 name|XmlLibraryChecker
@@ -210,16 +198,6 @@ operator|.
 name|servlet
 operator|.
 name|ServletException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|ServletInputStream
 import|;
 end_import
 
