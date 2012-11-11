@@ -1464,6 +1464,8 @@ argument_list|(
 name|packageDir
 argument_list|,
 name|targetCollection
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// run the post-setup query if present
@@ -2400,6 +2402,9 @@ name|directory
 parameter_list|,
 name|XmldbURI
 name|target
+parameter_list|,
+name|boolean
+name|inRootDir
 parameter_list|)
 block|{
 name|TransactionManager
@@ -2503,6 +2508,8 @@ argument_list|(
 name|directory
 argument_list|,
 name|collection
+argument_list|,
+name|inRootDir
 argument_list|)
 expr_stmt|;
 block|}
@@ -2572,6 +2579,8 @@ operator|.
 name|getName
 argument_list|()
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2587,6 +2596,9 @@ name|directory
 parameter_list|,
 name|Collection
 name|targetCollection
+parameter_list|,
+name|boolean
+name|inRootDir
 parameter_list|)
 block|{
 name|File
@@ -2627,13 +2639,8 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
-name|file
-operator|.
-name|isDirectory
-argument_list|()
+name|inRootDir
 operator|&&
-operator|!
 name|file
 operator|.
 name|getName
@@ -2643,6 +2650,15 @@ name|equals
 argument_list|(
 literal|"repo.xml"
 argument_list|)
+condition|)
+continue|continue;
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|isDirectory
+argument_list|()
 condition|)
 block|{
 name|MimeType
