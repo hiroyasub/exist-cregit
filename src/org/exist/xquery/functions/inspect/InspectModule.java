@@ -342,9 +342,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Compiles a module from source (without importing it) and returns an XML fragment describing the "
+literal|"Returns an XML fragment describing the "
 operator|+
-literal|"module and the functions/variables contained in it."
+literal|"module identified by the given URI and the functions/variables contained in it."
 argument_list|,
 operator|new
 name|SequenceType
@@ -587,11 +587,44 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+name|module
+operator|.
+name|isInternalModule
+argument_list|()
+condition|)
+block|{
+name|attribs
+operator|.
+name|addAttribute
+argument_list|(
+literal|""
+argument_list|,
+literal|"location"
+argument_list|,
+literal|"location"
+argument_list|,
+literal|"CDATA"
+argument_list|,
+literal|"java:"
+operator|+
+name|module
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
 name|isCalledAs
 argument_list|(
 literal|"inspect-module"
 argument_list|)
 condition|)
+block|{
 name|attribs
 operator|.
 name|addAttribute
@@ -613,28 +646,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-else|else
-name|attribs
-operator|.
-name|addAttribute
-argument_list|(
-literal|""
-argument_list|,
-literal|"location"
-argument_list|,
-literal|"location"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-name|module
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
+block|}
 name|int
 name|nodeNr
 init|=
