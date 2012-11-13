@@ -1653,10 +1653,13 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
+name|getTargetCollection
+argument_list|(
 name|target
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
