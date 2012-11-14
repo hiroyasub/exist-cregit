@@ -1234,13 +1234,6 @@ block|}
 block|}
 if|else if
 condition|(
-name|steps
-operator|.
-name|size
-argument_list|()
-operator|!=
-literal|1
-operator|&&
 name|lastStep
 operator|!=
 literal|null
