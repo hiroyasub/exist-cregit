@@ -708,6 +708,10 @@ block|}
 block|}
 if|else if
 condition|(
+name|firstStep
+operator|!=
+literal|null
+operator|&&
 name|lastStep
 operator|!=
 literal|null

@@ -1018,6 +1018,10 @@ operator|&&
 name|lastStep
 operator|!=
 literal|null
+operator|&&
+name|firstStep
+operator|!=
+literal|null
 condition|)
 block|{
 name|NodeTest

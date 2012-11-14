@@ -1126,6 +1126,10 @@ block|}
 block|}
 if|else if
 condition|(
+name|firstStep
+operator|!=
+literal|null
+operator|&&
 name|steps
 operator|.
 name|size
