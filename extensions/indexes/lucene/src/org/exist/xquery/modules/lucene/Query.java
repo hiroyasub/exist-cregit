@@ -857,6 +857,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|firstStep
+operator|!=
+literal|null
+operator|&&
 name|steps
 operator|.
 name|size
@@ -1002,7 +1006,19 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-else|else
+if|else if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|1
+operator|&&
+name|lastStep
+operator|!=
+literal|null
+condition|)
 block|{
 name|NodeTest
 name|test

@@ -35,6 +35,20 @@ name|QName
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|ErrorCodes
+operator|.
+name|ErrorCode
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment
@@ -1946,6 +1960,20 @@ argument_list|(
 literal|"XTDE1310"
 argument_list|,
 literal|" Invalid decimal format picture string."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FTDY0020
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FTDY0020"
+argument_list|,
+literal|""
 argument_list|)
 decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */

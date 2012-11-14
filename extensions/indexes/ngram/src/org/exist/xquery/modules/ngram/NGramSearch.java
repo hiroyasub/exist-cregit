@@ -211,37 +211,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|XMLChar
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|fn
-operator|.
-name|FunStringToCodepoints
 import|;
 end_import
 
@@ -1130,6 +1102,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|firstStep
+operator|!=
+literal|null
+operator|&&
 name|steps
 operator|.
 name|size
@@ -1256,7 +1232,19 @@ expr_stmt|;
 block|}
 block|}
 block|}
-else|else
+if|else if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|1
+operator|&&
+name|lastStep
+operator|!=
+literal|null
+condition|)
 block|{
 name|NodeTest
 name|test
@@ -2364,7 +2352,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FTDY0020: query string violates wildcard qualifier syntax"
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FTDY0020
+argument_list|,
+literal|"query string violates wildcard qualifier syntax"
 argument_list|)
 throw|;
 try|try
@@ -2410,7 +2404,19 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FTDY0020: query string violates wildcard qualifier syntax"
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FTDY0020
+argument_list|,
+literal|"query string violates wildcard qualifier syntax"
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|query
+argument_list|)
 argument_list|,
 name|nfe
 argument_list|)

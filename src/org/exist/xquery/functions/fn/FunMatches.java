@@ -1028,6 +1028,17 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|firstStep
+operator|!=
+literal|null
+operator|&&
+name|lastStep
+operator|!=
+literal|null
+condition|)
+block|{
 name|NodeTest
 name|test
 init|=
@@ -1130,6 +1141,7 @@ operator|.
 name|getAxis
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

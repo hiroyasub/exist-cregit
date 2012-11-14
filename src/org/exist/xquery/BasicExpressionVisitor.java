@@ -82,7 +82,7 @@ name|CastExpression
 name|expression
 parameter_list|)
 block|{
-comment|//Nothing todo
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -439,6 +439,26 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|steps
+operator|.
+name|size
+argument_list|()
+operator|-
+literal|1
+operator|!=
+name|i
+condition|)
+block|{
+name|steps
+operator|.
+name|add
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
