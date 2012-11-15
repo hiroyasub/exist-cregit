@@ -36,7 +36,6 @@ name|UmaskSpinnerModel
 extends|extends
 name|AbstractSpinnerModel
 block|{
-comment|//private int umask = Permission.DEFAULT_UMASK;
 specifier|private
 name|int
 name|umask
