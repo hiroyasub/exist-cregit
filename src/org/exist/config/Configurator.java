@@ -2337,7 +2337,7 @@ continue|continue;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Unconfigured instance ["
 operator|+
@@ -2459,7 +2459,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Configuration was removed, remove the object ["
 operator|+
