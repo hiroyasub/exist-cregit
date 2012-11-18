@@ -403,7 +403,7 @@ index|[
 name|i
 index|]
 index|[
-literal|1
+literal|2
 index|]
 operator|=
 name|accounts
@@ -979,6 +979,8 @@ operator|new
 name|GroupDialog
 argument_list|(
 name|userManagementService
+argument_list|,
+name|currentUser
 argument_list|)
 decl_stmt|;
 name|groupDialog
