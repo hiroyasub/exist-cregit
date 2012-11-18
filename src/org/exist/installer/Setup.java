@@ -357,47 +357,13 @@ argument_list|(
 name|passwd
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|query
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|installApps
-argument_list|(
-name|query
-argument_list|,
-name|args
-argument_list|,
-name|offset
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EXistException
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"An error occurred while installing apps: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//        if (query != null) {
+comment|//            try {
+comment|//                installApps(query, args, offset);
+comment|//            } catch (EXistException e) {
+comment|//                System.err.println("An error occurred while installing apps: " + e.getMessage());
+comment|//            }
+comment|//        }
 name|shutdown
 argument_list|(
 name|passwd
