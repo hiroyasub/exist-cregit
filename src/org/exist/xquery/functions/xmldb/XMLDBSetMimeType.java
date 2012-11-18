@@ -634,27 +634,22 @@ throw|;
 block|}
 block|}
 comment|// Get mime-type of resource
-name|String
-name|currentValue
+name|MimeType
+name|currentMimeType
 init|=
 name|getMimeTypeStoredResource
 argument_list|(
 name|pathUri
 argument_list|)
 decl_stmt|;
-name|MimeType
-name|currentMimeType
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
-name|currentValue
+name|currentMimeType
 operator|==
 literal|null
 condition|)
 block|{
-comment|// stored vresource has no mime-type (un expected(
+comment|// stored resource has no mime-type (unexpected situation)
 comment|// fall back to document name
 name|logger
 operator|.
@@ -664,7 +659,7 @@ literal|"Resource '"
 operator|+
 name|pathUri
 operator|+
-literal|"' has no mime-type"
+literal|"' has no mime-type, retrieve from document name."
 argument_list|)
 expr_stmt|;
 name|currentMimeType
@@ -676,20 +671,7 @@ argument_list|(
 name|pathUri
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|currentMimeType
-operator|=
-name|mimeTable
-operator|.
-name|getContentType
-argument_list|(
-name|currentValue
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Final check
+comment|// if extension based lookup still fails
 if|if
 condition|(
 name|currentMimeType
@@ -701,7 +683,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Unable to determine mime-type of stored resource '"
+literal|"Unable to determine mime-type from path '"
 operator|+
 name|pathUri
 operator|+
@@ -709,8 +691,9 @@ literal|"'."
 argument_list|)
 throw|;
 block|}
+block|}
 comment|// Check if mimeType are equivalent
-comment|// in cases value null is set
+comment|// in some cases value null is set, then allow to set to new value (repair action)
 if|if
 condition|(
 name|newMimeType
@@ -906,7 +889,7 @@ return|;
 block|}
 comment|/**      * Determine mimetype of currently stored resource. Copied from      * get-mime-type.      */
 specifier|private
-name|String
+name|MimeType
 name|getMimeTypeStoredResource
 parameter_list|(
 name|XmldbURI
@@ -915,7 +898,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|String
+name|MimeType
 name|returnValue
 init|=
 literal|null
@@ -1006,8 +989,9 @@ throw|;
 block|}
 else|else
 block|{
-name|returnValue
-operator|=
+name|String
+name|mimetype
+init|=
 operator|(
 operator|(
 name|DocumentImpl
@@ -1020,6 +1004,18 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
+decl_stmt|;
+name|returnValue
+operator|=
+name|MimeTable
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getContentType
+argument_list|(
+name|mimetype
+argument_list|)
 expr_stmt|;
 block|}
 block|}
