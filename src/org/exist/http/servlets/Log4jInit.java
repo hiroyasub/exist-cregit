@@ -185,12 +185,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|external
-operator|.
-name|org
-operator|.
 name|apache
 operator|.
 name|commons
