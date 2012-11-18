@@ -181,7 +181,7 @@ name|class
 operator|.
 name|getResource
 argument_list|(
-literal|"logo.jpg"
+literal|"logo.png"
 argument_list|)
 decl_stmt|;
 name|ImageIcon
