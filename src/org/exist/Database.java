@@ -433,7 +433,7 @@ name|CollectionConfigurationManager
 name|getConfigurationManager
 parameter_list|()
 function_decl|;
-comment|/** 	 * Master document triggers. 	 *   	 * @return 	 */
+comment|/** 	 * Master document triggers. 	 */
 specifier|public
 name|Collection
 argument_list|<
@@ -447,7 +447,7 @@ name|DocumentTrigger
 name|getDocumentTrigger
 parameter_list|()
 function_decl|;
-comment|/** 	 * Master Collection triggers. 	 *   	 * @return 	 */
+comment|/** 	 * Master Collection triggers. 	 */
 specifier|public
 name|Collection
 argument_list|<

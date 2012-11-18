@@ -1577,7 +1577,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @param broker      * @param docs      * @return      */
+comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @param broker      * @param docs      */
 specifier|private
 name|QName
 index|[]

@@ -315,7 +315,7 @@ name|boolean
 name|postOptimization
 parameter_list|)
 function_decl|;
-comment|/**      * Returns true if the expression object has not yet been reset, so      * {@link #resetState(boolean)} should be called.      * @return      */
+comment|/**      * Returns true if the expression object has not yet been reset, so      * {@link #resetState(boolean)} should be called.      */
 specifier|public
 name|boolean
 name|needsReset

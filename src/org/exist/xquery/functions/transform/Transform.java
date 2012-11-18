@@ -2521,7 +2521,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 block|}
-comment|/**      * @param stylesheetItem      * @param options      * @return      * @throws TransformerFactoryConfigurationError      * @throws XPathException      */
+comment|/**      * @param stylesheetItem      * @param options      * @throws TransformerFactoryConfigurationError      * @throws XPathException      */
 specifier|private
 name|TransformerHandler
 name|createHandler

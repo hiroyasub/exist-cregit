@@ -4397,7 +4397,7 @@ return|return
 name|pageSize
 return|;
 block|}
-comment|/**      * Returns the class loader used when this BrokerPool was configured.      *      * @return      */
+comment|/**      * Returns the class loader used when this BrokerPool was configured.      */
 specifier|public
 name|ClassLoader
 name|getClassLoader

@@ -2904,7 +2904,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * @param expr      * @return      * @throws XPathException      * @throws NullPointerException      * @throws IllegalArgumentException      */
+comment|/**      * @param expr      * @throws XPathException      * @throws NullPointerException      * @throws IllegalArgumentException      */
 specifier|private
 name|Source
 name|loadQueryFromURI

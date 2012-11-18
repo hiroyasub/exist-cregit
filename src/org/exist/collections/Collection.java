@@ -2210,7 +2210,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Retrieve all documents contained in this collections.      *      * If recursive is true, documents from sub-collections are      * included.      *      * @param broker      * @param docs      * @param recursive      * @param checkPermissions      * @return The set of documents.      */
+comment|/**      * Retrieve all documents contained in this collections.      *      * If recursive is true, documents from sub-collections are      * included.      *      * @return The set of documents.      */
 specifier|public
 name|MutableDocumentSet
 name|allDocs
@@ -9333,7 +9333,7 @@ return|return
 name|configuration
 return|;
 block|}
-comment|/**      * Should the collection configuration document be enabled      * for this collection? Called by {@link org.exist.storage.NativeBroker}      * before doing a reindex.      *      * @param enabled      */
+comment|/**      * Should the collection configuration document be enabled      * for this collection? Called by {@link org.exist.storage.NativeBroker}      * before doing a reindex.      *      * @param collectionConfigEnabled      */
 specifier|public
 name|void
 name|setCollectionConfigEnabled

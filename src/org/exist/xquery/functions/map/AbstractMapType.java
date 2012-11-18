@@ -452,7 +452,7 @@ return|return
 name|DEFAULT_COMPARATOR
 return|;
 block|}
-comment|/**      * Return the accessor function. Will be created on demand.      *      * @return      */
+comment|/**      * Return the accessor function. Will be created on demand.      */
 specifier|protected
 name|InternalFunctionCall
 name|getAccessorFunc

@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** generate statistics about the XML storage -   * used by {@link org.apache.cocoon.generation.StatusGenerator}  * @author jmv  */
+comment|/** generate statistics about the XML storage -   * used by org.apache.cocoon.generation.StatusGenerator  * @author jmv  */
 end_comment
 
 begin_class

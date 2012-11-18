@@ -12728,7 +12728,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**          * Search for the given key in the keys of this node.          * @param key          * @return          */
+comment|/**          * Search for the given key in the keys of this node.          */
 specifier|private
 name|int
 name|searchKey

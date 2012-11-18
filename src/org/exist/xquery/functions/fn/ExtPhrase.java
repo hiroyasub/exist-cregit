@@ -922,7 +922,7 @@ return|return
 name|r
 return|;
 block|}
-comment|/**      *       * @param context      * @param result      * @return      */
+comment|/**      *       * @param context      * @param result      *       */
 specifier|private
 name|Sequence
 name|patternMatch

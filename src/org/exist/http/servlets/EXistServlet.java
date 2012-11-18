@@ -728,7 +728,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @param request      * @return      */
+comment|/**      * @param request      */
 specifier|private
 name|String
 name|adjustPath

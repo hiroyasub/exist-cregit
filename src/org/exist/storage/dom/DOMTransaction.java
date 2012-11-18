@@ -120,7 +120,7 @@ specifier|private
 name|int
 name|mode
 decl_stmt|;
-comment|/**      * @deprecated : use other constructors      * @param owner      * @param f      */
+comment|/**      * @deprecated : use other constructors      */
 specifier|public
 name|DOMTransaction
 parameter_list|(
@@ -152,7 +152,7 @@ operator|.
 name|READ_LOCK
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>DOMTransaction</code> instance.      *      * @param owner an<code>Object</code> value      * @param f a<code>DOMFile</code> value      * @param mode an<code>int</code> value      */
+comment|/**      * Creates a new<code>DOMTransaction</code> instance.      *      * @param owner an<code>Object</code> value      * @param file a<code>DOMFile</code> value      * @param mode an<code>int</code> value      */
 specifier|public
 name|DOMTransaction
 parameter_list|(
@@ -180,7 +180,7 @@ operator|=
 name|mode
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>DOMTransaction</code> instance.      *      * @param owner an<code>Object</code> value      * @param f a<code>DOMFile</code> value      * @param mode an<code>int</code> value      * @param doc a<code>DocumentImpl</code> value      */
+comment|/**      * Creates a new<code>DOMTransaction</code> instance.      *      * @param owner an<code>Object</code> value      * @param file a<code>DOMFile</code> value      * @param mode an<code>int</code> value      * @param doc a<code>DocumentImpl</code> value      */
 specifier|public
 name|DOMTransaction
 parameter_list|(

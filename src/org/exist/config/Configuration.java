@@ -100,7 +100,7 @@ name|ID
 init|=
 literal|"id"
 decl_stmt|;
-comment|/**      * Return sub configuration by name.      *        * @param name      * @return      */
+comment|/**      * Return sub configuration by name.      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -109,7 +109,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**      * Return list of sub configurations by name.      *       * @param name      * @return      */
+comment|/**      * Return list of sub configurations by name.      *       * @param name      */
 specifier|public
 name|List
 argument_list|<
@@ -121,7 +121,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**      * Return set of properties configuration have.      *       * @return      */
+comment|/**      * Return set of properties configuration have.      *       */
 specifier|public
 name|Set
 argument_list|<
@@ -130,7 +130,7 @@ argument_list|>
 name|getProperties
 parameter_list|()
 function_decl|;
-comment|/**      * Check presents of setting by name.      *       * @param name      * @return      */
+comment|/**      * Check presents of setting by name.      *       * @param name      */
 specifier|public
 name|boolean
 name|hasProperty
@@ -139,7 +139,7 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**      * Return property string value.      *       * @param property      * @return      */
+comment|/**      * Return property string value.      *       * @param property      */
 specifier|public
 name|String
 name|getProperty
@@ -148,7 +148,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-comment|/**      * Return property map value.      *       * @param property      * @return      */
+comment|/**      * Return property map value.      *       * @param property      */
 specifier|public
 name|Map
 argument_list|<
@@ -162,7 +162,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-comment|/**      * Return property integer value.      *       * @param property      * @return      */
+comment|/**      * Return property integer value.      *       * @param property      *      */
 specifier|public
 name|Integer
 name|getPropertyInteger
@@ -171,7 +171,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-comment|/**      * Return property long value.      *       * @param property      * @return      */
+comment|/**      * Return property long value.      *       * @param property      *       */
 specifier|public
 name|Long
 name|getPropertyLong
@@ -180,7 +180,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-comment|/**      * Return property boolean value.      *       * @param property      * @return      */
+comment|/**      * Return property boolean value.      *       * @param property      *       */
 specifier|public
 name|Boolean
 name|getPropertyBoolean
@@ -189,7 +189,7 @@ name|String
 name|property
 parameter_list|)
 function_decl|;
-comment|/**      * Keep at internal map object associated with key.      *       * @param name      * @param object      * @return      */
+comment|/**      * Keep at internal map object associated with key.      *       * @param name      * @param object      *      */
 specifier|public
 name|Object
 name|putObject
@@ -201,7 +201,7 @@ name|Object
 name|object
 parameter_list|)
 function_decl|;
-comment|/**      * Get object associated by key from internal map.      *       * @param name      * @return      */
+comment|/**      * Get object associated by key from internal map.      *       * @param name      *       */
 specifier|public
 name|Object
 name|getObject
@@ -210,19 +210,19 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**      * Configuration name.      *       * @return      */
+comment|/**      * Configuration name.      *       *       */
 specifier|public
 name|String
 name|getName
 parameter_list|()
 function_decl|;
-comment|/**      * Return configuration's String value.      *        * @return      */
+comment|/**      * Return configuration's String value.      *        *       */
 specifier|public
 name|String
 name|getValue
 parameter_list|()
 function_decl|;
-comment|/**      * Return element associated with configuration.      *        * @return      */
+comment|/**      * Return element associated with configuration.      *        *       */
 specifier|public
 name|ElementAtExist
 name|getElement

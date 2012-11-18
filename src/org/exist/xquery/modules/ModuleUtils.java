@@ -560,7 +560,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param xml 	 *            The InputSource of XML 	 *  	 * @return The NodeValue of XML 	 */
+comment|/** 	 * Takes a InputSource of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param inputSource 	 *            The InputSource of XML 	 *  	 * @return The NodeValue of XML 	 */
 specifier|public
 specifier|static
 name|NodeValue

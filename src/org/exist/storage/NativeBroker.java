@@ -13929,7 +13929,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @doc src document      * @destination destination collection      * @newName the new name for the document      */
+comment|/**      * @param doc src document      * @param destination destination collection      * @param newName the new name for the document      */
 annotation|@
 name|Override
 specifier|public

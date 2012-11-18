@@ -1455,7 +1455,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Retrieve the current page      *       * @param p Description of the Parameter      * @return The current page      */
+comment|/**      * Retrieve the current page      *       * @param pointer Description of the Parameter      * @return The current page      */
 specifier|protected
 specifier|final
 name|DOMPage
@@ -8267,7 +8267,7 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**      * Retrieve node at virtual address.      *       * @param p The virtual address      * @return  The reference of the node      */
+comment|/**      * Retrieve node at virtual address.      *       * @param node The virtual address      * @return  The reference of the node      */
 specifier|protected
 name|long
 name|findValue
@@ -9895,7 +9895,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * Remove the overflow value.      *       * @param transaction   The current transaction      * @param pnum  The pointer to the value      */
+comment|/**      * Remove the overflow value.      *       * @param transaction   The current transaction      * @param pointer  The pointer to the value      */
 specifier|public
 name|void
 name|removeOverflowValue
@@ -10300,7 +10300,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *       * @param p      */
+comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      *       * @param pointer      */
 comment|//Seems to be unused -pb
 comment|//public void removeNode(long pointer) {
 comment|//removeNode(null, pointer);
@@ -11220,7 +11220,7 @@ name|decPageCount
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      *       * @param transaction      * @param p      */
+comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      */
 specifier|public
 name|void
 name|removeAll
@@ -11718,7 +11718,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Update the key/value pair where the value is found at address p.      *      * @param transaction       * @param p       * @param value       * @throws org.exist.util.ReadOnlyException       */
+comment|/**      * Update the key/value pair where the value is found at address p.       */
 specifier|public
 name|void
 name|update
@@ -13209,7 +13209,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Find a record within the page or the pages linked to it.      *       * @param p      * @return The record position in the page      */
+comment|/**      * Find a record within the page or the pages linked to it.      *       * @param pointer      * @return The record position in the page      */
 specifier|protected
 name|RecordPos
 name|findRecord
@@ -13408,7 +13408,7 @@ return|return
 name|lock
 return|;
 block|}
-comment|/**      * The current object owning this file.      *       * @param obj   The new ownerObject value      */
+comment|/**      * The current object owning this file.      *       * @param ownerObject   The new ownerObject value      */
 specifier|public
 specifier|synchronized
 specifier|final

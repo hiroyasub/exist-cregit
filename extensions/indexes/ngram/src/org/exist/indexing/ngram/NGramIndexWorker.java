@@ -2916,7 +2916,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @param broker      * @param docs      * @return      */
+comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @param broker      * @param docs      *       */
 specifier|private
 name|List
 argument_list|<
@@ -3968,7 +3968,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Split the given text string into ngrams. The size of an ngram is determined      * by counting the codepoints, not the characters. The resulting strings may      * thus be longer than the ngram size.      *      * @param text      * @return      */
+comment|/**      * Split the given text string into ngrams. The size of an ngram is determined      * by counting the codepoints, not the characters. The resulting strings may      * thus be longer than the ngram size.      *      * @param text      *       */
 specifier|public
 name|String
 index|[]

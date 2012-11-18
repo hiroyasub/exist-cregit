@@ -344,7 +344,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the Connection in      * @param   con      The connection to store      *      * @return  A unique ID representing the connection      */
+comment|/**      * Stores a Connection in the Context of an XQuery.      *      * @param   context  The Context of the XQuery to store the Connection in      * @param   ftp      The connection to store      *      * @return  A unique ID representing the connection      */
 specifier|public
 specifier|static
 specifier|synchronized

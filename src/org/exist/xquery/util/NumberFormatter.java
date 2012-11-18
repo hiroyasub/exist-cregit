@@ -102,7 +102,7 @@ name|OPTIONAL_DIGIT_SIGN
 init|=
 literal|'#'
 decl_stmt|;
-comment|/**      * Get the zero digit corresponding to the digit family of the given value.      * This method was taken from saxon {@link http://saxon.sourceforge.net/}.      *      * @param val      * @return      */
+comment|/**      * Get the zero digit corresponding to the digit family of the given value.      * This method was taken from saxon {@link<a href="http://saxon.sourceforge.net/">http://saxon.sourceforge.net/</a>}.      *      */
 specifier|public
 specifier|static
 name|int

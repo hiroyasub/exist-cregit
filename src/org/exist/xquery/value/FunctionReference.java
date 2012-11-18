@@ -198,7 +198,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Calls {@link FunctionCall#eval(Sequence)}.      *       * @param contextSequence      * @return      * @throws XPathException      */
+comment|/**      * Calls {@link FunctionCall#eval(Sequence)}.      */
 specifier|public
 name|Sequence
 name|eval
@@ -218,7 +218,7 @@ name|contextSequence
 argument_list|)
 return|;
 block|}
-comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      *       * @param contextSequence      * @param contextItem      * @param seq      * @return      * @throws XPathException      */
+comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      *       */
 specifier|public
 name|Sequence
 name|evalFunction

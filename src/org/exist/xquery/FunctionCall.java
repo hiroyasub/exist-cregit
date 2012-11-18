@@ -1754,7 +1754,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @see org.exist.xquery.PathExpr#resetState()      */
+comment|/**      * @see org.exist.xquery.PathExpr#resetState(boolean)      */
 annotation|@
 name|Override
 specifier|public

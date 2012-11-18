@@ -189,7 +189,7 @@ name|obj
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Create new java object by mapping instructions. 	 *  	 * @param className 	 * @param instance  	 * @param conf  	 */
+comment|/** 	 * Create new java object by mapping instructions. 	 */
 specifier|public
 specifier|static
 name|Object

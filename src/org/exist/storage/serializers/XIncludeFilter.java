@@ -3026,7 +3026,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Process xmlns() schema. We process these here, because namespace mappings should 	 * already been known when parsing the xpointer() expression. 	 *  	 * @param xpointer 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * Process xmlns() schema. We process these here, because namespace mappings should 	 * already been known when parsing the xpointer() expression. 	 */
 specifier|private
 name|String
 name|checkNamespaces

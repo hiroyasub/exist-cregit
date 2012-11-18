@@ -1244,7 +1244,7 @@ return|return
 name|stored
 return|;
 block|}
-comment|/**      * Check if path matches any of the exclude patterns.      *       * @param excludes      * @param path      * @return      */
+comment|/**      * Check if path matches any of the exclude patterns.      */
 specifier|private
 specifier|static
 name|boolean

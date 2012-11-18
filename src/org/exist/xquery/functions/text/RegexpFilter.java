@@ -1052,7 +1052,7 @@ name|flags
 argument_list|)
 return|;
 block|}
-comment|/**      * @param string      * @param pattern      * @param flags      * @return      * @throws XPathException      */
+comment|/**      * @param string      * @param pattern      * @param flags      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|match

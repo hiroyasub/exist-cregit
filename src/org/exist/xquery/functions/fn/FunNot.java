@@ -848,7 +848,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * @param contextSequence 	 * @param contextItem 	 * @param arg 	 * @return 	 * @throws XPathException 	 */
+comment|/** 	 * @param contextSequence 	 * @param contextItem 	 * @param arg 	 * @throws XPathException 	 */
 specifier|private
 name|Sequence
 name|evalBoolean

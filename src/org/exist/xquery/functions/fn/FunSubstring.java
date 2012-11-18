@@ -1075,7 +1075,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * fn:substring($sourceString, $startingLoc) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 *  	 * @return The StringValue of the substring 	 */
+comment|/** 	 * fn:substring($sourceString, $startingLoc) 	 *  	 * @see<a href="http://www.w3.org/TR/xpath-functions/#func-substring">w3.org</a> 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 *  	 * @return The StringValue of the substring 	 */
 specifier|private
 name|StringValue
 name|substring
@@ -1139,7 +1139,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** 	 * fn:substring($sourceString, $startingLoc, $length) 	 *  	 * @see http://www.w3.org/TR/xpath-functions/#func-substring 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 * @param length	The length of the substring 	 *  	 * @return The StringValue of the substring 	 */
+comment|/** 	 * fn:substring($sourceString, $startingLoc, $length) 	 *  	 * @see<a href="http://www.w3.org/TR/xpath-functions/#func-substring">http://www.w3.org/TR/xpath-functions/#func-substring</a> 	 *  	 * @param stringSource	The source string to substring 	 * @param startingLoc	The Starting Location for the substring, start       * index is 1 	 * @param length	The length of the substring 	 *  	 * @return The StringValue of the substring 	 */
 specifier|private
 name|StringValue
 name|substring

@@ -951,7 +951,7 @@ return|return
 name|fileList
 return|;
 block|}
-comment|/**      * @param value      * @return      */
+comment|/**      * @param value      */
 specifier|private
 name|String
 name|decode

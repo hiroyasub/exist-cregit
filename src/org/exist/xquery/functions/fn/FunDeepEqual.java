@@ -1958,7 +1958,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Return the number of real attributes in the map. Filter out      * xmlns namespace attributes.      *      * @param nnm      * @return      */
+comment|/**      * Return the number of real attributes in the map. Filter out      * xmlns namespace attributes.      */
 specifier|private
 specifier|static
 name|int

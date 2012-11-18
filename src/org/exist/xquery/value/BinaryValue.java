@@ -690,7 +690,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      *       * @return      * @throws XPathException      */
+comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      */
 specifier|public
 name|Object
 name|toJavaObject

@@ -1691,7 +1691,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>doQuery</code>      *      * @param broker a<code>DBBroker</code> value      * @param xpath a<code>String</code> value      * @param contextSet a<code>NodeSet</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>QueryResult</code> value      * @exception Exception if an error occurs      */
+comment|/**      * The method<code>doQuery</code>      *      * @param broker a<code>DBBroker</code> value      * @param contextSet a<code>NodeSet</code> value      * @param parameters a<code>HashMap</code> value      * @return a<code>QueryResult</code> value      * @exception Exception if an error occurs      */
 specifier|protected
 name|QueryResult
 name|doQuery
@@ -24559,7 +24559,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param start      * @param end      * @param broker      * @param docs      * @return      * @throws PermissionDeniedException      */
+comment|/**      * @param start      * @param end      * @param broker      * @param docs      * @throws PermissionDeniedException      */
 specifier|private
 name|Vector
 argument_list|<

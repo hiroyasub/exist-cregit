@@ -573,7 +573,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Get the fragment between two elements (normally milestone elements) of a document     * @param args 1. first node (e.g. pb[10])  2. second node (e.g.: pb[11]) 3. pathCompletion:    * open and closing tags before and after the fragment are appended (Default: true)     * 4. Display the namespace of the root node of the fragment (Default: false)    * @return the fragment between the two nodes    * @throws XPathException    */
+comment|/**    * Get the fragment between two elements (normally milestone elements) of a document     * @param contextSequence 1. first node (e.g. pb[10])  2. second node (e.g.: pb[11]) 3. pathCompletion:    * open and closing tags before and after the fragment are appended (Default: true)     * 4. Display the namespace of the root node of the fragment (Default: false)    * @return the fragment between the two nodes    * @throws XPathException    */
 specifier|public
 name|Sequence
 name|eval

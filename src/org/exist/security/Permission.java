@@ -420,7 +420,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write mode for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  modeStr                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated Setting permissions via string is not very efficient!      */
+comment|/**      *  Set mode using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write mode for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  str                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated Setting permissions via string is not very efficient!      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -446,7 +446,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode for others      *      *@param  mode  The new mode value      */
+comment|/**      *  Set mode for others      *      *@param  perm  The new mode value      */
 specifier|public
 name|void
 name|setOtherMode
@@ -457,7 +457,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode for the owner      *      *@param  mode  The new mode value      */
+comment|/**      *  Set mode for the owner      *      *@param  other  The new mode value      */
 specifier|public
 name|void
 name|setOwnerMode
