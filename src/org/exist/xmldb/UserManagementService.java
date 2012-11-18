@@ -442,6 +442,19 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+specifier|public
+name|void
+name|removeGroupManager
+parameter_list|(
+name|String
+name|groupName
+parameter_list|,
+name|String
+name|manager
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      *  Retrieve a list of all existing accounts.      *      *@return                     The accounts value      *@exception  XMLDBException  Description of the Exception      */
 specifier|public
 name|Account
@@ -625,16 +638,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 *  Update the specified user removing a group from user's group 	 *  Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@param  rmgroup             Description of group to remove  	 *@exception  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
-name|removeGroup
+name|removeGroupMember
 parameter_list|(
-name|Account
-name|user
-parameter_list|,
+specifier|final
 name|String
-name|rmgroup
+name|group
+parameter_list|,
+specifier|final
+name|String
+name|account
 parameter_list|)
 throws|throws
 name|XMLDBException
