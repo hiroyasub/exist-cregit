@@ -654,11 +654,26 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// stored vresource has no mime-type (un expected(
+comment|// fall back to document name
 name|logger
 operator|.
 name|debug
 argument_list|(
-literal|"Resource has no mime-type"
+literal|"Resource '"
+operator|+
+name|pathUri
+operator|+
+literal|"' has no mime-type"
+argument_list|)
+expr_stmt|;
+name|currentMimeType
+operator|=
+name|mimeTable
+operator|.
+name|getContentTypeFor
+argument_list|(
+name|pathUri
 argument_list|)
 expr_stmt|;
 block|}
@@ -674,6 +689,7 @@ name|currentValue
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Final check
 if|if
 condition|(
 name|currentMimeType
@@ -685,27 +701,28 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Unable to determine mime-type of stored resource."
+literal|"Unable to determine mime-type of stored resource '"
+operator|+
+name|pathUri
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
 comment|// Check if mimeType are equivalent
+comment|// in cases value null is set
 if|if
 condition|(
 name|newMimeType
 operator|.
 name|isXMLType
 argument_list|()
-operator|==
+operator|!=
 name|currentMimeType
 operator|.
 name|isXMLType
 argument_list|()
 condition|)
-block|{
-comment|// OK
-block|}
-else|else
 block|{
 throw|throw
 operator|new
@@ -887,7 +904,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/**      * Determine mimetype of currently stored resource. Copied from get-mime-type.      */
+comment|/**      * Determine mimetype of currently stored resource. Copied from      * get-mime-type.      */
 specifier|private
 name|String
 name|getMimeTypeStoredResource
