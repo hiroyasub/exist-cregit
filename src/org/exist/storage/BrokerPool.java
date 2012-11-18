@@ -357,6 +357,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|repo
+operator|.
+name|ExistRepository
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|scheduler
 operator|.
 name|Scheduler
@@ -664,6 +676,20 @@ operator|.
 name|xquery
 operator|.
 name|PerformanceStats
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|expath
+operator|.
+name|pkg
+operator|.
+name|repo
+operator|.
+name|PackageException
 import|;
 end_import
 
@@ -2152,6 +2178,12 @@ decl_stmt|;
 specifier|private
 name|ClassLoader
 name|classLoader
+decl_stmt|;
+specifier|private
+name|ExistRepository
+name|expathRepo
+init|=
+literal|null
 decl_stmt|;
 comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
@@ -3736,6 +3768,47 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+comment|// initialize expath repository so startup triggers can access it
+name|expathRepo
+operator|=
+name|ExistRepository
+operator|.
+name|getRepository
+argument_list|(
+name|this
+operator|.
+name|conf
+operator|.
+name|getExistHome
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|PackageException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to initialize expath repository: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" - this is not fatal, but "
+operator|+
+literal|"the package manager may not work."
+argument_list|)
+expr_stmt|;
+block|}
 name|callStartupTriggers
 argument_list|(
 operator|(
@@ -4521,6 +4594,15 @@ parameter_list|()
 block|{
 return|return
 name|conf
+return|;
+block|}
+specifier|public
+name|ExistRepository
+name|getExpathRepo
+parameter_list|()
+block|{
+return|return
+name|expathRepo
 return|;
 block|}
 comment|//TODO : rename as setShutdwonListener ?
