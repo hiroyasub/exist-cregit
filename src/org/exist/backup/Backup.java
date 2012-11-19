@@ -1476,13 +1476,8 @@ operator|.
 name|listResources
 argument_list|()
 decl_stmt|;
-name|Arrays
-operator|.
-name|sort
-argument_list|(
-name|resources
-argument_list|)
-expr_stmt|;
+comment|// do not sort: order is important because permissions need to be read in the same order below
+comment|// Arrays.sort( resources );
 name|UserManagementService
 name|mgtService
 init|=
