@@ -9744,6 +9744,16 @@ name|EditPropertiesDialog
 argument_list|(
 name|service
 argument_list|,
+name|client
+operator|.
+name|getProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"user"
+argument_list|)
+argument_list|,
 name|collection
 argument_list|,
 name|name
