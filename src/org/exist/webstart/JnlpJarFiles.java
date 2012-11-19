@@ -149,6 +149,8 @@ literal|"ws-commons-util-%latest%"
 block|,
 literal|"commons-pool-%latest%"
 block|,
+literal|"commons-io-%latest%"
+block|,
 literal|"excalibur-cli-%latest%"
 block|,
 literal|"jEdit-syntax"
