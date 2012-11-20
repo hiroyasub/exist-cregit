@@ -4553,7 +4553,7 @@ argument_list|()
 operator|.
 name|addPlugin
 argument_list|(
-literal|"org.exist.storage.md.Plugin"
+literal|"org.exist.storage.md.MDStorageManager"
 argument_list|)
 expr_stmt|;
 name|broker

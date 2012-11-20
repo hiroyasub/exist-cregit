@@ -425,6 +425,18 @@ literal|":"
 operator|+
 name|VALUE
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PREFIX_VALUE_IS_DOCUMENT
+init|=
+name|PREFIX
+operator|+
+literal|":"
+operator|+
+name|VALUE_IS_DOCUMENT
+decl_stmt|;
 specifier|protected
 specifier|static
 name|MDStorageManager
@@ -859,7 +871,7 @@ name|NAMESPACE_URI
 argument_list|,
 name|VALUE_IS_DOCUMENT
 argument_list|,
-name|PREFIX_VALUE
+name|PREFIX_VALUE_IS_DOCUMENT
 argument_list|,
 literal|"CDATA"
 argument_list|,
