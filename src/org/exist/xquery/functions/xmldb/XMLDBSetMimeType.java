@@ -798,10 +798,22 @@ expr_stmt|;
 if|if
 condition|(
 name|doc
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
+comment|// no document selected, abort
+name|txnManager
+operator|.
+name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// set new mime-type
 name|doc
 operator|.
 name|getMetadata
