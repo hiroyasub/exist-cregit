@@ -1088,31 +1088,10 @@ operator|!=
 name|owner_
 condition|)
 block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Possible lock problem: thread "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|+
-literal|" Released a lock on "
-operator|+
-name|getId
-argument_list|()
-operator|+
-literal|" it didn't hold."
-operator|+
-literal|" Either the thread was interrupted or it never acquired the lock."
-operator|+
-literal|" The lock was owned by: "
-operator|+
-name|owner_
-argument_list|)
-expr_stmt|;
+comment|//            LOG.warn("Possible lock problem: thread " + Thread.currentThread() +
+comment|//                " Released a lock on " + getId() + " it didn't hold." +
+comment|//                " Either the thread was interrupted or it never acquired the lock." +
+comment|//                " The lock was owned by: " + owner_);
 if|if
 condition|(
 name|DEBUG
