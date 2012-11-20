@@ -8595,7 +8595,9 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"user"
+name|InteractiveClient
+operator|.
+name|USER
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -9751,7 +9753,9 @@ argument_list|()
 operator|.
 name|getProperty
 argument_list|(
-literal|"user"
+name|InteractiveClient
+operator|.
+name|USER
 argument_list|)
 argument_list|,
 name|collection
