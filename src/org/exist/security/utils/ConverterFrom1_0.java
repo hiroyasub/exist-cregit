@@ -1017,13 +1017,6 @@ argument_list|(
 name|password
 argument_list|)
 expr_stmt|;
-name|new_account
-operator|.
-name|setHome
-argument_list|(
-name|home
-argument_list|)
-expr_stmt|;
 name|NodeList
 name|gl
 init|=

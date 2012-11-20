@@ -816,13 +816,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-name|home
-operator|=
-name|from_user
-operator|.
-name|getHome
-argument_list|()
-expr_stmt|;
 comment|//copy metadata
 for|for
 control|(
@@ -1011,12 +1004,6 @@ name|from_user
 operator|.
 name|name
 argument_list|)
-expr_stmt|;
-name|home
-operator|=
-name|from_user
-operator|.
-name|home
 expr_stmt|;
 comment|//copy metadata
 for|for

@@ -299,40 +299,6 @@ name|passwd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI)      */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setHome
-parameter_list|(
-name|XmldbURI
-name|homeCollection
-parameter_list|)
-block|{
-name|account
-operator|.
-name|setHome
-argument_list|(
-name|homeCollection
-argument_list|)
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getHome()      */
-annotation|@
-name|Override
-specifier|public
-name|XmldbURI
-name|getHome
-parameter_list|()
-block|{
-return|return
-name|account
-operator|.
-name|getHome
-argument_list|()
-return|;
-block|}
 comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */
 annotation|@
 name|Override

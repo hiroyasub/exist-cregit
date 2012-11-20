@@ -169,18 +169,6 @@ name|DBBroker
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
 begin_comment
 comment|/**  * Account details.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
@@ -206,12 +194,6 @@ specifier|private
 specifier|final
 name|int
 name|id
-decl_stmt|;
-specifier|private
-name|XmldbURI
-name|homeCollection
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|Map
@@ -705,37 +687,6 @@ name|containsKey
 argument_list|(
 name|group
 argument_list|)
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setHome(org.exist.xmldb.XmldbURI)      */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setHome
-parameter_list|(
-specifier|final
-name|XmldbURI
-name|homeCollection
-parameter_list|)
-block|{
-name|this
-operator|.
-name|homeCollection
-operator|=
-name|homeCollection
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getHome()      */
-annotation|@
-name|Override
-specifier|public
-name|XmldbURI
-name|getHome
-parameter_list|()
-block|{
-return|return
-name|homeCollection
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */

@@ -539,6 +539,8 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the home collection URI of user $user-id if one is assigned, otherwise the empty sequence"
 argument_list|)
+argument_list|,
+literal|"Users do not have home collections since 2.0. Will return /db."
 argument_list|)
 decl_stmt|;
 comment|/**      * @param context      * @param signature      */
@@ -783,10 +785,9 @@ block|{
 name|XmldbURI
 name|home
 init|=
-name|user
+name|XmldbURI
 operator|.
-name|getHome
-argument_list|()
+name|DB
 decl_stmt|;
 return|return
 literal|null
