@@ -328,11 +328,9 @@ decl_stmt|;
 name|XmldbURI
 name|home
 init|=
-name|subject
-operator|.
-name|getHome
-argument_list|()
+literal|null
 decl_stmt|;
+comment|//subject.getHome();
 if|if
 condition|(
 name|home
