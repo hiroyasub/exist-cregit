@@ -109,6 +109,8 @@ parameter_list|(
 name|String
 name|uri
 parameter_list|)
+throws|throws
+name|Exception
 function_decl|;
 specifier|public
 name|Session
