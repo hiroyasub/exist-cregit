@@ -343,7 +343,7 @@ operator|.
 name|SET_GET_FEATURES
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|protected
 name|Expression
 name|firstExpression
 init|=

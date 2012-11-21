@@ -315,6 +315,15 @@ argument_list|(
 name|index
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|expr
+operator|==
+literal|null
+condition|)
+return|return
+name|result
+return|;
 name|int
 name|level
 init|=
