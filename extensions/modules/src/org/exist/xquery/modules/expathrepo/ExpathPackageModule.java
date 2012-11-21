@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: CompressionModule.java 11884 2010-07-01 10:32:31Z deliriumsky $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for expath expathrepo  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author cutlass  * @version 1.0  */
+comment|/**  * XQuery Extension module for expath expathrepo  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author Wolfgang Meier  * @author cutlass  * @version 1.0  */
 end_comment
 
 begin_class
@@ -193,6 +193,36 @@ operator|.
 name|signatures
 index|[
 literal|2
+index|]
+argument_list|,
+name|Deploy
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Deploy
+operator|.
+name|signatures
+index|[
+literal|3
+index|]
+argument_list|,
+name|Deploy
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
+name|Deploy
+operator|.
+name|signatures
+index|[
+literal|4
 index|]
 argument_list|,
 name|Deploy

@@ -23,6 +23,16 @@ name|File
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for resolving package dependencies. Implementations may load  * packages e.g. from a public server or the file system.  */
 end_comment
@@ -40,6 +50,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

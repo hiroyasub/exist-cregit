@@ -120,6 +120,34 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|ErrorCode
+name|EXPDY005
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH005"
+argument_list|,
+literal|"Invalid repo URI"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCode
+name|EXPDY006
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH006"
+argument_list|,
+literal|"Failed to connect to public repo"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|String
 name|EXPATH_ERROR_NS
 init|=
