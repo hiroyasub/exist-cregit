@@ -334,6 +334,14 @@ return|return
 literal|null
 return|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -346,6 +354,7 @@ name|xri
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|resourcePath
 init|=
@@ -509,6 +518,14 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -521,6 +538,7 @@ name|xis
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|xis
 return|;

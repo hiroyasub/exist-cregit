@@ -651,6 +651,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -663,6 +664,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|resourceXmldbUri
 operator|=
 name|uri
@@ -1125,6 +1127,14 @@ condition|)
 block|{
 comment|// Returns the exact size, default behaviour for Finder,
 comment|// or when set by a system property
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1140,6 +1150,7 @@ operator|+
 name|isMacFinder
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Stream document to '/dev/null' and count bytes
 name|ByteCountOutputStream
 name|counter
@@ -1227,6 +1238,14 @@ comment|// Return the exact size by pre-serializing the document
 comment|// to a buffer first. isMacFinder is not needed
 try|try
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1240,6 +1259,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+block|}
 name|vtf
 operator|=
 operator|new
@@ -1331,6 +1351,14 @@ name|getContentLength
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1346,6 +1374,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|size
 return|;
@@ -1454,6 +1483,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1463,6 +1493,7 @@ operator|+
 name|resourceXmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|LockResult
 name|lr
 init|=
@@ -1615,6 +1646,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1628,6 +1660,7 @@ operator|+
 name|token
 argument_list|)
 expr_stmt|;
+block|}
 name|LockResult
 name|lr
 init|=
@@ -1810,6 +1843,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1819,6 +1853,7 @@ operator|+
 name|resourceXmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|existDocument
@@ -1914,6 +1949,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1923,6 +1959,7 @@ operator|+
 name|resourceXmldbUri
 argument_list|)
 expr_stmt|;
+block|}
 name|org
 operator|.
 name|exist
@@ -1992,6 +2029,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2005,6 +2043,7 @@ operator|+
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|destCollection
 init|=
@@ -2070,6 +2109,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2083,6 +2123,7 @@ operator|+
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|destCollection
 init|=

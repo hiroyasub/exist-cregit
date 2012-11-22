@@ -592,6 +592,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -604,6 +605,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|resourceXmldbUri
 operator|=
 name|uri
@@ -673,6 +675,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -682,6 +685,7 @@ operator|+
 name|childName
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Safe guard value
 if|if
 condition|(
@@ -910,6 +914,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -922,6 +927,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|allResources
 return|;
@@ -970,6 +976,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -979,6 +986,7 @@ operator|+
 name|createDate
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|createDate
 return|;
@@ -1004,6 +1012,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1015,6 +1024,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 name|existCollection
 operator|.
 name|delete
@@ -1043,6 +1053,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1058,6 +1069,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 name|CollectionResource
 name|collection
 init|=
@@ -1197,6 +1209,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1212,6 +1225,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|Resource
 name|resource
 init|=
@@ -1353,6 +1367,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1368,6 +1383,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|token
 init|=
@@ -1418,6 +1434,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1434,6 +1451,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|refreshLock
 argument_list|(
@@ -1468,6 +1486,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1483,6 +1502,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|LockInfo
 name|lockInfo
 init|=
@@ -1570,6 +1590,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1586,6 +1607,7 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -1600,6 +1622,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1611,6 +1634,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1639,6 +1663,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1661,6 +1686,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|destCollection
 init|=
@@ -1726,6 +1752,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1748,6 +1775,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|destCollection
 init|=

@@ -319,6 +319,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -334,6 +335,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Create uri inside database
 name|xmldbUri
 operator|=
@@ -462,6 +464,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -469,6 +472,7 @@ argument_list|(
 literal|"ignoring file"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -482,6 +486,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -493,6 +498,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -554,6 +560,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -566,6 +573,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Try to read as system user. Note that the actual user is not know
 comment|// yet. In MiltonResource the actual authentication and authorization
 comment|// is performed.
@@ -776,6 +784,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -788,6 +797,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|type
 return|;

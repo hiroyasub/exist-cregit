@@ -397,6 +397,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -406,6 +407,7 @@ operator|+
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|=
 name|pool
