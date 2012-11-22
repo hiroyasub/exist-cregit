@@ -1121,17 +1121,11 @@ decl_stmt|;
 name|HttpServletRequest
 name|request
 init|=
-operator|(
-name|HttpServletRequest
-operator|)
 name|servletRequest
 decl_stmt|;
 name|HttpServletResponse
 name|response
 init|=
-operator|(
-name|HttpServletResponse
-operator|)
 name|servletResponse
 decl_stmt|;
 if|if
@@ -2197,12 +2191,7 @@ expr_stmt|;
 name|int
 name|status
 init|=
-operator|(
-operator|(
-name|CachingResponseWrapper
-operator|)
 name|wrappedResponse
-operator|)
 operator|.
 name|getStatus
 argument_list|()
@@ -2288,6 +2277,12 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|data
+operator|!=
+literal|null
+condition|)
 name|modifiedRequest
 operator|.
 name|setAttribute
@@ -2346,6 +2341,15 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Error while processing "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2358,7 +2362,14 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"An error occurred while retrieving query results: "
+literal|"An error occurred while processing request to "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -2379,6 +2390,15 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Error while processing "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2391,7 +2411,14 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"An error occurred while executing the urlrewrite query: "
+literal|"An error occurred while processing request to "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -2414,6 +2441,15 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+literal|"Error while processing "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
 name|getMessage
@@ -2426,7 +2462,14 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"An error occurred: "
+literal|"An error occurred while processing request to "
+operator|+
+name|servletRequest
+operator|.
+name|getRequestURI
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|e
 operator|.
@@ -3010,6 +3053,15 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+operator|!
+name|response
+operator|.
+name|isCommitted
+argument_list|()
+condition|)
+block|{
 name|byte
 index|[]
 name|data
@@ -3066,6 +3118,7 @@ operator|.
 name|flushBuffer
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -4896,7 +4949,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"XQueryURLRewrite controller could not be found"
+literal|"XQueryURLRewrite controller could not be found for path: "
+operator|+
+name|path
 argument_list|)
 expr_stmt|;
 return|return
