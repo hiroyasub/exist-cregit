@@ -883,6 +883,13 @@ argument_list|)
 expr_stmt|;
 name|cmbGroupName
 operator|.
+name|setEnabled
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|cmbGroupName
+operator|.
 name|addActionListener
 argument_list|(
 operator|new
