@@ -1281,7 +1281,7 @@ specifier|static
 name|String
 name|URI_DEFAULT
 init|=
-literal|"xmldb:exist://localhost:8443/exist/xmlrpc"
+literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
 specifier|protected
 specifier|static
