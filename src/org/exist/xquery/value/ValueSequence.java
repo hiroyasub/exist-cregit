@@ -1860,6 +1860,12 @@ name|round
 argument_list|(
 operator|(
 name|size
+operator|==
+literal|0
+condition|?
+literal|1
+else|:
+name|size
 operator|*
 literal|3
 operator|)
