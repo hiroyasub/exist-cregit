@@ -370,6 +370,14 @@ name|aclTableModel
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|ERROR_TITLE
+init|=
+literal|"Edit Properties Error"
+decl_stmt|;
 comment|/**      * Creates new form PropertiesDialog      */
 specifier|public
 name|EditPropertiesDialog
@@ -694,7 +702,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -2233,42 +2241,42 @@ name|lblResourceValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<resource>"
 argument_list|)
 expr_stmt|;
 name|lblInternetMediaTypeValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<internet media type>"
 argument_list|)
 expr_stmt|;
 name|lblCreatedValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<created>"
 argument_list|)
 expr_stmt|;
 name|lblLastModifiedValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<last modified>"
 argument_list|)
 expr_stmt|;
 name|lblOwnerValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<owner>"
 argument_list|)
 expr_stmt|;
 name|lblGroupValue
 operator|.
 name|setText
 argument_list|(
-literal|"jLabel6"
+literal|"<group>"
 argument_list|)
 expr_stmt|;
 name|btnChangeOwner
@@ -4193,7 +4201,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -4334,7 +4342,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -4450,7 +4458,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -4765,7 +4773,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -4954,7 +4962,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -5164,7 +5172,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
@@ -5342,7 +5350,7 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-literal|"Edit Properties Error"
+name|ERROR_TITLE
 argument_list|,
 name|JOptionPane
 operator|.
