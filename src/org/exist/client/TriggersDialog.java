@@ -135,6 +135,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|swing
@@ -295,6 +305,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -330,7 +352,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dialog for viewing and editing Triggers in the Admin Client   *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-08-25  * @version 1.0  */
+comment|/**  * Dialog for viewing and editing Triggers in the Admin Client   *   * @author Adam Retter<adam.retter@googlemail.com>  * @serial 2012-11-24  * @version 1.1  */
 end_comment
 
 begin_class
@@ -372,9 +394,11 @@ decl_stmt|;
 specifier|public
 name|TriggersDialog
 parameter_list|(
+specifier|final
 name|String
 name|title
 parameter_list|,
+specifier|final
 name|InteractiveClient
 name|client
 parameter_list|)
@@ -391,6 +415,7 @@ operator|=
 name|client
 expr_stmt|;
 comment|//capture the frame's close event
+specifier|final
 name|WindowListener
 name|windowListener
 init|=
@@ -398,10 +423,13 @@ operator|new
 name|WindowAdapter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|windowClosing
 parameter_list|(
+specifier|final
 name|WindowEvent
 name|e
 parameter_list|)
@@ -454,6 +482,7 @@ name|setupComponents
 parameter_list|()
 block|{
 comment|//Dialog Content Panel
+specifier|final
 name|GridBagLayout
 name|grid
 init|=
@@ -470,6 +499,7 @@ name|grid
 argument_list|)
 expr_stmt|;
 comment|//Constraints for Layout
+specifier|final
 name|GridBagConstraints
 name|c
 init|=
@@ -494,6 +524,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 comment|//collection label
+specifier|final
 name|JLabel
 name|label
 init|=
@@ -560,7 +591,8 @@ name|label
 argument_list|)
 expr_stmt|;
 comment|//get the collections but not system collections
-name|ArrayList
+specifier|final
+name|List
 argument_list|<
 name|PrettyXmldbURI
 argument_list|>
@@ -575,6 +607,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -587,7 +620,8 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
-name|ArrayList
+specifier|final
+name|List
 argument_list|<
 name|PrettyXmldbURI
 argument_list|>
@@ -664,11 +698,23 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
-comment|//showErrorMessage(e.getMessage(), e);
+name|ClientFrame
+operator|.
+name|showErrorMessage
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 comment|//Create a combobox listing the collections
@@ -691,10 +737,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -702,6 +751,7 @@ block|{
 name|saveChanges
 argument_list|()
 expr_stmt|;
+specifier|final
 name|JComboBox
 name|cb
 init|=
@@ -786,6 +836,7 @@ name|cmbCollections
 argument_list|)
 expr_stmt|;
 comment|//Panel to hold controls relating to the Triggers Index
+specifier|final
 name|JPanel
 name|panelTriggers
 init|=
@@ -809,6 +860,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|GridBagLayout
 name|panelTriggersGrid
 init|=
@@ -856,6 +908,7 @@ operator|.
 name|SINGLE_SELECTION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scrollFullTextIndexes
 init|=
@@ -941,6 +994,7 @@ name|scrollFullTextIndexes
 argument_list|)
 expr_stmt|;
 comment|//Toolbar with add/delete buttons for Triggers
+specifier|final
 name|Box
 name|triggersToolbarBox
 init|=
@@ -950,6 +1004,7 @@ name|createHorizontalBox
 argument_list|()
 decl_stmt|;
 comment|//add button
+specifier|final
 name|JButton
 name|btnAddTrigger
 init|=
@@ -972,10 +1027,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -995,6 +1053,7 @@ name|btnAddTrigger
 argument_list|)
 expr_stmt|;
 comment|//delete button
+specifier|final
 name|JButton
 name|btnDeleteTrigger
 init|=
@@ -1017,10 +1076,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -1185,6 +1247,7 @@ argument_list|()
 condition|)
 block|{
 comment|//ask the user if they would like to save the changes
+specifier|final
 name|int
 name|result
 init|=
@@ -1254,16 +1317,18 @@ block|}
 comment|//THIS IS A COPY FROM ClientFrame
 comment|//TODO: share this code between the two classes
 specifier|private
-name|ArrayList
+name|List
 argument_list|<
 name|PrettyXmldbURI
 argument_list|>
 name|getCollections
 parameter_list|(
+specifier|final
 name|Collection
 name|root
 parameter_list|,
-name|ArrayList
+specifier|final
+name|List
 argument_list|<
 name|PrettyXmldbURI
 argument_list|>
@@ -1291,6 +1356,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|childCollections
@@ -1320,6 +1386,8 @@ name|i
 operator|++
 control|)
 block|{
+try|try
+block|{
 name|child
 operator|=
 name|root
@@ -1332,6 +1400,33 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|XMLDBException
+name|xmldbe
+parameter_list|)
+block|{
+if|if
+condition|(
+name|xmldbe
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|PermissionDeniedException
+condition|)
+block|{
+continue|continue;
+block|}
+else|else
+block|{
+throw|throw
+name|xmldbe
+throw|;
+block|}
+block|}
 name|getCollections
 argument_list|(
 name|child
@@ -1360,6 +1455,7 @@ name|void
 name|actionDeleteTrigger
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|iSelectedRow
 init|=
@@ -1390,6 +1486,7 @@ specifier|private
 name|void
 name|actionGetTriggers
 parameter_list|(
+specifier|final
 name|String
 name|collectionName
 parameter_list|)
@@ -1414,11 +1511,23 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
-name|xe
+name|xmldbe
 parameter_list|)
 block|{
-comment|//TODO: CONSIDER whether CollectionXConf Should throw xmldb exception at all?
+name|ClientFrame
+operator|.
+name|showErrorMessage
+argument_list|(
+name|xmldbe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|xmldbe
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -1449,25 +1558,33 @@ name|CENTER
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Component
 name|getTableCellRendererComponent
 parameter_list|(
+specifier|final
 name|JTable
 name|table
 parameter_list|,
+specifier|final
 name|Object
 name|value
 parameter_list|,
+specifier|final
 name|boolean
 name|isSelected
 parameter_list|,
+specifier|final
 name|boolean
 name|hasFocus
 parameter_list|,
+specifier|final
 name|int
 name|row
 parameter_list|,
+specifier|final
 name|int
 name|column
 parameter_list|)
@@ -1605,17 +1722,22 @@ name|fireTableDataChanged
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		* @see javax.swing.table.TableModel#isCellEditable() 		*/
+comment|/* (non-Javadoc)         * @see javax.swing.table.TableModel#isCellEditable()         */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setValueAt
 parameter_list|(
+specifier|final
 name|Object
 name|aValue
 parameter_list|,
+specifier|final
 name|int
 name|rowIndex
 parameter_list|,
+specifier|final
 name|int
 name|columnIndex
 parameter_list|)
@@ -1664,6 +1786,7 @@ specifier|public
 name|void
 name|removeRow
 parameter_list|(
+specifier|final
 name|int
 name|rowIndex
 parameter_list|)
@@ -1733,14 +1856,18 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		* @see javax.swing.table.TableModel#isCellEditable() 		*/
+comment|/* (non-Javadoc)         * @see javax.swing.table.TableModel#isCellEditable()         */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCellEditable
 parameter_list|(
+specifier|final
 name|int
 name|rowIndex
 parameter_list|,
+specifier|final
 name|int
 name|columnIndex
 parameter_list|)
@@ -1749,7 +1876,9 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 		* @see javax.swing.table.TableModel#getColumnCount() 		*/
+comment|/* (non-Javadoc)         * @see javax.swing.table.TableModel#getColumnCount()         */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getColumnCount
@@ -1761,11 +1890,14 @@ operator|.
 name|length
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see javax.swing.table.TableModel#getColumnName(int) 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.table.TableModel#getColumnName(int)          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getColumnName
 parameter_list|(
+specifier|final
 name|int
 name|column
 parameter_list|)
@@ -1777,7 +1909,9 @@ name|column
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see javax.swing.table.TableModel#getRowCount() 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.table.TableModel#getRowCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getRowCount
@@ -1796,14 +1930,18 @@ else|:
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see javax.swing.table.TableModel#getValueAt(int, int) 		 */
+comment|/* (non-Javadoc)          * @see javax.swing.table.TableModel#getValueAt(int, int)          */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getValueAt
 parameter_list|(
+specifier|final
 name|int
 name|rowIndex
 parameter_list|,
+specifier|final
 name|int
 name|columnIndex
 parameter_list|)
