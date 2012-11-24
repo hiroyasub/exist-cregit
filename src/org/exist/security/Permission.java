@@ -104,6 +104,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|DEFAULT_SYSTSEM_RESOURCE_PERM
+init|=
+literal|0770
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DEFAULT_SYSTEM_ETC_COLLECTION_PERM
 init|=
 literal|0755
@@ -114,7 +122,7 @@ specifier|static
 name|int
 name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 init|=
-literal|0770
+literal|0771
 decl_stmt|;
 specifier|public
 specifier|final
