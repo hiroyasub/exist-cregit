@@ -1691,8 +1691,10 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+name|Vector
+argument_list|<
 name|String
-index|[]
+argument_list|>
 name|getGroupMembers
 parameter_list|(
 specifier|final
