@@ -1602,11 +1602,14 @@ name|setIconImage
 argument_list|(
 name|InteractiveClient
 operator|.
-name|getExistIconImage
+name|getExistIcon
 argument_list|(
 name|getClass
 argument_list|()
 argument_list|)
+operator|.
+name|getImage
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|setupComponents
