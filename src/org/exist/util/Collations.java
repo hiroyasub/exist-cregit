@@ -135,6 +135,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XPathException
 import|;
 end_import
@@ -522,7 +534,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"err:XQST0038: The specified collator class "
+literal|"The specified collator class "
 operator|+
 name|uri
 operator|+
@@ -533,7 +545,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0038: The specified collator class "
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"The specified collator class "
 operator|+
 name|uri
 operator|+
@@ -564,7 +580,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"err:XQST0038: Unknown collation : '"
+literal|"Unknown collation : '"
 operator|+
 name|uri
 operator|+
@@ -575,7 +591,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0038: Unknown collation : '"
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
+literal|"Unknown collation : '"
 operator|+
 name|uri
 operator|+
