@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|client
-operator|.
-name|security
 package|;
 end_package
 
@@ -22,21 +20,18 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|DialogWithResponse
+name|DialogCompleteWithResponse
 parameter_list|<
 name|T
 parameter_list|>
 block|{
 specifier|public
 name|void
-name|addDialogCompleteWithResponseCallback
+name|complete
 parameter_list|(
 specifier|final
-name|DialogCompleteWithResponse
-argument_list|<
 name|T
-argument_list|>
-name|dialogCompleteWithResponseCallback
+name|response
 parameter_list|)
 function_decl|;
 block|}
