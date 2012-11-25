@@ -401,6 +401,11 @@ case|:
 case|case
 name|Type
 operator|.
+name|POSITIVE_INTEGER
+case|:
+case|case
+name|Type
+operator|.
 name|NON_POSITIVE_INTEGER
 case|:
 case|case
