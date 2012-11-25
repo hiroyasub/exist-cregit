@@ -35,20 +35,6 @@ name|QName
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|ErrorCodes
-operator|.
-name|ErrorCode
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment

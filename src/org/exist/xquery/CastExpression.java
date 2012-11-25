@@ -621,6 +621,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
 literal|"Cannot cast "
 operator|+
 name|Type
