@@ -485,16 +485,6 @@ begin_import
 import|import
 name|javax
 operator|.
-name|imageio
-operator|.
-name|ImageIO
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
 name|swing
 operator|.
 name|ImageIcon
@@ -14290,6 +14280,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|cnf
 parameter_list|)
@@ -14302,6 +14293,7 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|setStatus
@@ -14314,7 +14306,9 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|err
@@ -14329,6 +14323,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|cnf
 operator|.
 name|printStackTrace
