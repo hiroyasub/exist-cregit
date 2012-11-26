@@ -150,7 +150,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|name
+name|username
 argument_list|,
 name|password
 argument_list|,
@@ -188,7 +188,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|name
+name|username
 argument_list|,
 name|password
 argument_list|,
