@@ -1961,7 +1961,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-specifier|final
 name|String
 name|uri
 init|=
@@ -12411,7 +12410,6 @@ name|CommandlineOptions
 operator|.
 name|LOCAL_OPT
 case|:
-comment|//props.setProperty("uri", XmldbURI.EMBEDDED_SERVER_URI.toString());
 name|props
 operator|.
 name|setProperty
@@ -12421,6 +12419,20 @@ operator|.
 name|LOCAL_MODE
 argument_list|,
 literal|"TRUE"
+argument_list|)
+expr_stmt|;
+name|props
+operator|.
+name|setProperty
+argument_list|(
+literal|"uri"
+argument_list|,
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 break|break;
