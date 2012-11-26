@@ -12425,7 +12425,9 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"uri"
+name|InteractiveClient
+operator|.
+name|URI
 argument_list|,
 name|XmldbURI
 operator|.
