@@ -259,7 +259,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|LONG
+name|UNSIGNED_LONG
 argument_list|,
 name|Cardinality
 operator|.
@@ -314,7 +314,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|LONG
+name|UNSIGNED_LONG
 argument_list|,
 name|Cardinality
 operator|.
