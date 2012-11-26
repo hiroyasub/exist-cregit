@@ -1178,24 +1178,14 @@ name|String
 name|msg
 parameter_list|)
 block|{
-if|if
-condition|(
-name|this
-operator|.
-name|errorCode
-operator|==
-name|ErrorCodes
-operator|.
-name|ERROR
-condition|)
-block|{
+comment|//        if (this.errorCode == ErrorCodes.ERROR) {
 name|this
 operator|.
 name|errorCode
 operator|=
 name|errorCode
 expr_stmt|;
-block|}
+comment|//        }
 name|message
 operator|=
 name|msg
