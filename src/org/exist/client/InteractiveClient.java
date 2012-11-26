@@ -1282,6 +1282,14 @@ name|LOCAL_MODE
 init|=
 literal|"local-mode-opt"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NO_EMBED_MODE
+init|=
+literal|"NO_EMBED_MODE"
+decl_stmt|;
 comment|// values
 specifier|protected
 specifier|static
@@ -1323,6 +1331,13 @@ specifier|protected
 specifier|static
 name|String
 name|LOCAL_MODE_DEFAULT
+init|=
+literal|"FALSE"
+decl_stmt|;
+specifier|protected
+specifier|static
+name|String
+name|NO_EMBED_MODE_DEFAULT
 init|=
 literal|"FALSE"
 decl_stmt|;
@@ -1437,12 +1452,12 @@ expr_stmt|;
 name|defaultProps
 operator|.
 name|setProperty
-argument_list|(
+parameter_list|(
 name|SSL_ENABLE
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
+parameter_list|,
+name|SSL_ENABLE_DEFAULT
+parameter_list|)
+constructor_decl|;
 block|}
 specifier|protected
 specifier|static
@@ -12379,7 +12394,9 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"NO_EMBED_MODE"
+name|InteractiveClient
+operator|.
+name|NO_EMBED_MODE
 argument_list|,
 literal|"TRUE"
 argument_list|)
