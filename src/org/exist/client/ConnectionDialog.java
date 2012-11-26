@@ -157,18 +157,6 @@ name|SwingUtilities
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
@@ -258,6 +246,10 @@ parameter_list|,
 specifier|final
 name|DefaultConnectionSettings
 name|defaultConnectionSettings
+parameter_list|,
+specifier|final
+name|boolean
+name|embeddedByDefault
 parameter_list|)
 block|{
 name|super
@@ -289,6 +281,26 @@ expr_stmt|;
 name|initComponents
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|embeddedByDefault
+condition|)
+block|{
+name|cmbConnectionType
+operator|.
+name|setSelectedItem
+argument_list|(
+name|ConnectionType
+operator|.
+name|Embedded
+argument_list|)
+expr_stmt|;
+name|toggleRemoteEmbeddedDisplayTab
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|private
 name|ComboBoxModel
@@ -3629,6 +3641,22 @@ operator|.
 name|Remote
 operator|)
 decl_stmt|;
+name|toggleRemoteEmbeddedDisplayTab
+argument_list|(
+name|remote
+argument_list|)
+expr_stmt|;
+block|}
+comment|//GEN-LAST:event_cmbConnectionTypeActionPerformed
+specifier|private
+name|void
+name|toggleRemoteEmbeddedDisplayTab
+parameter_list|(
+specifier|final
+name|boolean
+name|remote
+parameter_list|)
+block|{
 comment|//remote controls
 name|lblServerUri
 operator|.
@@ -3745,7 +3773,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//GEN-LAST:event_cmbConnectionTypeActionPerformed
 specifier|private
 name|void
 name|btnSelectConfigurationActionPerformed

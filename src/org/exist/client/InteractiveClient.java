@@ -1284,6 +1284,14 @@ name|SSL_ENABLE
 init|=
 literal|"ssl-enable"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOCAL_MODE
+init|=
+literal|"local-mode-opt"
+decl_stmt|;
 comment|// values
 specifier|protected
 specifier|static
@@ -1299,6 +1307,7 @@ name|ENCODING
 init|=
 literal|"ISO-8859-1"
 decl_stmt|;
+comment|//TODO this should probably be UTF-8?
 specifier|protected
 specifier|static
 name|String
@@ -1317,6 +1326,13 @@ specifier|protected
 specifier|static
 name|String
 name|SSL_ENABLE_DEFAULT
+init|=
+literal|"FALSE"
+decl_stmt|;
+specifier|protected
+specifier|static
+name|String
+name|LOCAL_MODE_DEFAULT
 init|=
 literal|"FALSE"
 decl_stmt|;
@@ -1955,6 +1971,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|String
+name|uri
+init|=
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+name|InteractiveClient
+operator|.
+name|URI
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|startGUI
@@ -1963,21 +1992,19 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|setStatus
 argument_list|(
 literal|"connecting to "
 operator|+
-name|properties
-operator|.
-name|getProperty
-argument_list|(
-literal|"uri"
-argument_list|)
+name|uri
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Create database
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1996,6 +2023,7 @@ name|DRIVER
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -2032,6 +2060,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// secure empty configuration
+specifier|final
 name|String
 name|configuration
 init|=
@@ -2039,7 +2068,9 @@ name|properties
 operator|.
 name|getProperty
 argument_list|(
-literal|"configuration"
+name|InteractiveClient
+operator|.
+name|CONFIGURATION
 argument_list|)
 decl_stmt|;
 if|if
@@ -2048,13 +2079,13 @@ name|configuration
 operator|!=
 literal|null
 operator|&&
+operator|(
 operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|configuration
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
+operator|)
 condition|)
 block|{
 name|database
@@ -2078,21 +2109,7 @@ specifier|final
 name|String
 name|collectionUri
 init|=
-name|properties
-operator|.
-name|getProperty
-argument_list|(
-name|InteractiveClient
-operator|.
-name|URI
-argument_list|,
-name|XmldbURI
-operator|.
-name|EMBEDDED_SERVER_URI
-operator|.
-name|toString
-argument_list|()
-argument_list|)
+name|uri
 operator|+
 name|path
 decl_stmt|;
@@ -2134,12 +2151,7 @@ name|setStatus
 argument_list|(
 literal|"connected to "
 operator|+
-name|properties
-operator|.
-name|getProperty
-argument_list|(
-literal|"uri"
-argument_list|)
+name|uri
 operator|+
 literal|" as user "
 operator|+
@@ -12409,18 +12421,16 @@ name|CommandlineOptions
 operator|.
 name|LOCAL_OPT
 case|:
+comment|//props.setProperty("uri", XmldbURI.EMBEDDED_SERVER_URI.toString());
 name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"uri"
+name|InteractiveClient
+operator|.
+name|LOCAL_MODE
 argument_list|,
-name|XmldbURI
-operator|.
-name|EMBEDDED_SERVER_URI
-operator|.
-name|toString
-argument_list|()
+literal|"TRUE"
 argument_list|)
 expr_stmt|;
 break|break;
@@ -12433,7 +12443,9 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"user"
+name|InteractiveClient
+operator|.
+name|USER
 argument_list|,
 name|option
 operator|.
@@ -12464,7 +12476,9 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"password"
+name|InteractiveClient
+operator|.
+name|PASSWORD
 argument_list|,
 name|option
 operator|.
@@ -12494,7 +12508,9 @@ name|properties
 operator|.
 name|setProperty
 argument_list|(
-literal|"configuration"
+name|InteractiveClient
+operator|.
+name|CONFIGURATION
 argument_list|,
 name|option
 operator|.
