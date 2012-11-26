@@ -301,6 +301,12 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|txtPassword
+operator|.
+name|requestFocusInWindow
+argument_list|()
+expr_stmt|;
+comment|//set focus to password field
 block|}
 specifier|private
 name|ComboBoxModel
@@ -4284,6 +4290,12 @@ name|getConfiguration
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|txtPassword
+operator|.
+name|requestFocusInWindow
+argument_list|()
+expr_stmt|;
+comment|//set focus to password field
 block|}
 block|}
 comment|//GEN-LAST:event_lstFavouritesMouseClicked
