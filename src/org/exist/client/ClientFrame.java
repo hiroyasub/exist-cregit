@@ -15,22 +15,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|siemens
-operator|.
-name|ct
-operator|.
-name|exi
-operator|.
-name|values
-operator|.
-name|BooleanValue
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|awt
