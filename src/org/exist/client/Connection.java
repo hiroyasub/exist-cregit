@@ -13,6 +13,10 @@ name|client
 package|;
 end_package
 
+begin_comment
+comment|/**  * Represents the Connection detail for  * connecting to either a local or remote eXist-db instance  *   * You can have either:  *  1) Remote Connection, provide a uri and ssl flag.  *  2) Embedded Connection, provide a configuration file path.  *   * The two settings are mutually exclusive, when using Remote,  * configuration is set to "". Likewise when using  * Embedded, uri is set to "" and ssl is set to false  * TODO subclass into RemoteConnection and EmbeddedConnection  */
+end_comment
+
 begin_class
 specifier|public
 class|class
