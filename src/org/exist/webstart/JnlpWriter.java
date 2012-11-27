@@ -1310,6 +1310,21 @@ operator|=
 literal|"image/gif"
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|filename
+operator|.
+name|endsWith
+argument_list|(
+literal|".png"
+argument_list|)
+condition|)
+block|{
+name|type
+operator|=
+literal|"image/png"
+expr_stmt|;
+block|}
 else|else
 block|{
 name|type
