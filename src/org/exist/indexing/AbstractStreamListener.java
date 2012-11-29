@@ -298,6 +298,23 @@ name|IndexWorker
 name|getWorker
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
+specifier|public
+name|void
+name|metadata
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
+name|String
+name|key
+parameter_list|,
+name|Object
+name|value
+parameter_list|)
+block|{
+block|}
 block|}
 end_class
 
