@@ -261,6 +261,13 @@ literal|'N'
 decl_stmt|;
 specifier|final
 specifier|static
+name|int
+name|USE_SSL_OPT
+init|=
+literal|'S'
+decl_stmt|;
+specifier|final
+specifier|static
 name|CLOptionDescriptor
 name|OPTIONS
 index|[]
@@ -659,6 +666,20 @@ argument_list|,
 name|NO_EMBED_OPT
 argument_list|,
 literal|"do not make embedded mode available"
+argument_list|)
+block|,
+operator|new
+name|CLOptionDescriptor
+argument_list|(
+literal|"use-ssl"
+argument_list|,
+name|CLOptionDescriptor
+operator|.
+name|ARGUMENT_DISALLOWED
+argument_list|,
+name|USE_SSL_OPT
+argument_list|,
+literal|"Use SSL by default for remote connections"
 argument_list|)
 block|}
 decl_stmt|;
