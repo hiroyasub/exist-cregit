@@ -1992,6 +1992,16 @@ name|message
 operator|.
 name|indexOf
 argument_list|(
+literal|"XPTY0004"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
+name|message
+operator|.
+name|indexOf
+argument_list|(
 literal|"FORG0001"
 argument_list|)
 operator|>
@@ -2272,6 +2282,16 @@ block|}
 comment|//depends whether we have strict type checking or not
 name|assertTrue
 argument_list|(
+name|message
+operator|.
+name|indexOf
+argument_list|(
+literal|"XPTY0004"
+argument_list|)
+operator|>
+operator|-
+literal|1
+operator||
 name|message
 operator|.
 name|indexOf
