@@ -793,10 +793,8 @@ name|expression
 argument_list|,
 name|ErrorCodes
 operator|.
-name|FORG0001
+name|XPTY0004
 argument_list|,
-literal|""
-operator|+
 name|Type
 operator|.
 name|getTypeName
