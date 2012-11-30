@@ -11218,6 +11218,8 @@ argument_list|(
 name|InteractiveClient
 operator|.
 name|CONFIGURATION
+argument_list|,
+literal|""
 argument_list|)
 argument_list|)
 expr_stmt|;
