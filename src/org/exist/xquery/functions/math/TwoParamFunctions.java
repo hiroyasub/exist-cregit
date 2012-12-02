@@ -337,7 +337,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"power"
+literal|"pow"
 argument_list|,
 name|MathModule
 operator|.
