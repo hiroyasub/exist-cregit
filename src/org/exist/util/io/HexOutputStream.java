@@ -105,9 +105,11 @@ comment|/**      * Creates a HexOutputStream such that all data written is Hex-e
 specifier|public
 name|HexOutputStream
 parameter_list|(
+specifier|final
 name|OutputStream
 name|out
 parameter_list|,
+specifier|final
 name|boolean
 name|doEncode
 parameter_list|)
@@ -131,6 +133,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -168,13 +171,16 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 name|b
 index|[]
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -279,6 +285,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b

@@ -13057,6 +13057,7 @@ specifier|public
 name|void
 name|registerBinaryValueInstance
 parameter_list|(
+specifier|final
 name|BinaryValue
 name|binaryValue
 parameter_list|)
@@ -13127,6 +13128,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|BinaryValue
 name|bv
 range|:

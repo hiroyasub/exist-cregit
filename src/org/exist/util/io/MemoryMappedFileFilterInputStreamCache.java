@@ -247,6 +247,7 @@ specifier|private
 name|void
 name|increaseSize
 parameter_list|(
+specifier|final
 name|long
 name|bytes
 parameter_list|)
@@ -287,6 +288,7 @@ name|force
 argument_list|()
 expr_stmt|;
 comment|//TODO revisit this based on the comment below, I now believe setting position in map does work, but you have to have the correct offset added in as well! Adam
+specifier|final
 name|int
 name|position
 init|=
@@ -338,13 +340,16 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -391,6 +396,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -431,6 +437,7 @@ specifier|public
 name|byte
 name|get
 parameter_list|(
+specifier|final
 name|int
 name|off
 parameter_list|)
@@ -493,16 +500,20 @@ specifier|public
 name|void
 name|copyTo
 parameter_list|(
+specifier|final
 name|int
 name|cacheOffset
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)

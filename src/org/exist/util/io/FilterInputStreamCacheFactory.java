@@ -82,6 +82,7 @@ specifier|static
 name|FilterInputStreamCache
 name|getCacheInstance
 parameter_list|(
+specifier|final
 name|FilterInputStreamCacheConfiguration
 name|cacheConfiguration
 parameter_list|)
@@ -129,6 +130,7 @@ specifier|private
 name|FilterInputStreamCache
 name|instantiate
 parameter_list|(
+specifier|final
 name|FilterInputStreamCacheConfiguration
 name|cacheConfiguration
 parameter_list|)
@@ -193,6 +195,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|cnfe
 parameter_list|)
@@ -215,6 +218,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ie
 parameter_list|)
@@ -237,6 +241,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)

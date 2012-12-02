@@ -118,9 +118,11 @@ comment|/**      * @param cache The cache implementation      * @param src The s
 specifier|public
 name|CachingFilterInputStream
 parameter_list|(
+specifier|final
 name|FilterInputStreamCache
 name|cache
 parameter_list|,
+specifier|final
 name|InputStream
 name|src
 parameter_list|)
@@ -147,6 +149,7 @@ comment|/**      * Constructor which uses an existing CachingFilterInputStream a
 specifier|public
 name|CachingFilterInputStream
 parameter_list|(
+specifier|final
 name|CachingFilterInputStream
 name|cfis
 parameter_list|)
@@ -263,6 +266,7 @@ specifier|synchronized
 name|void
 name|mark
 parameter_list|(
+specifier|final
 name|int
 name|readLimit
 parameter_list|)
@@ -408,6 +412,7 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
@@ -434,13 +439,16 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -682,6 +690,7 @@ specifier|public
 name|long
 name|skip
 parameter_list|(
+specifier|final
 name|long
 name|n
 parameter_list|)

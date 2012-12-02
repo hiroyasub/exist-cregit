@@ -413,6 +413,7 @@ specifier|private
 name|void
 name|cleanupOldTempFolders
 parameter_list|(
+specifier|final
 name|File
 name|t
 parameter_list|)
@@ -462,6 +463,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|oldFolder
 range|:
@@ -479,6 +481,7 @@ specifier|private
 name|void
 name|deleteFolder
 parameter_list|(
+specifier|final
 name|File
 name|folder
 parameter_list|)

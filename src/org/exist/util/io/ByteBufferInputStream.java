@@ -69,6 +69,7 @@ decl_stmt|;
 specifier|public
 name|ByteBufferInputStream
 parameter_list|(
+specifier|final
 name|ByteBufferAccessor
 name|bufAccessor
 parameter_list|)
@@ -163,6 +164,7 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
@@ -209,6 +211,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|currentPosition
 init|=
@@ -244,10 +247,12 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
@@ -267,9 +272,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|END_OF_STREAM
 return|;
+block|}
 if|if
 condition|(
 name|len
@@ -277,11 +284,14 @@ operator|>
 name|available
 argument_list|()
 condition|)
+block|{
 name|len
 operator|=
 name|available
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|currentPosition
 init|=
@@ -332,6 +342,7 @@ specifier|synchronized
 name|void
 name|mark
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)

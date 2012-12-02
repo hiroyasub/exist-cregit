@@ -49,9 +49,11 @@ block|{
 specifier|public
 name|Base64OutputStream
 parameter_list|(
+specifier|final
 name|OutputStream
 name|out
 parameter_list|,
+specifier|final
 name|boolean
 name|doEncode
 parameter_list|)
