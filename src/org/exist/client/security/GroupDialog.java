@@ -181,7 +181,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"[a-zA-Z0-9\\-\\._]{3,}"
+literal|"[a-zA-Z0-9\\-\\._@]{3,}"
 argument_list|)
 decl_stmt|;
 specifier|private
