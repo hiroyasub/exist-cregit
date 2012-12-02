@@ -454,6 +454,12 @@ operator|.
 name|remove
 argument_list|(
 name|service
+operator|.
+name|getResourceFunction
+argument_list|()
+operator|.
+name|getXQueryLocation
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -506,6 +512,12 @@ operator|.
 name|remove
 argument_list|(
 name|service
+operator|.
+name|getResourceFunction
+argument_list|()
+operator|.
+name|getXQueryLocation
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
