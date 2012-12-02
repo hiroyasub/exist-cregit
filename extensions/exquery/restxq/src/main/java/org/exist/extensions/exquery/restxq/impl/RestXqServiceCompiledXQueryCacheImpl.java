@@ -35,6 +35,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayDeque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Deque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -46,16 +66,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
 import|;
 end_import
 
@@ -165,7 +175,7 @@ name|Map
 argument_list|<
 name|URI
 argument_list|,
-name|Stack
+name|Deque
 argument_list|<
 name|CompiledXQuery
 argument_list|>
@@ -177,7 +187,7 @@ name|HashMap
 argument_list|<
 name|URI
 argument_list|,
-name|Stack
+name|Deque
 argument_list|<
 name|CompiledXQuery
 argument_list|>
@@ -227,7 +237,7 @@ literal|null
 decl_stmt|;
 name|cacheLock
 operator|.
-name|readLock
+name|writeLock
 argument_list|()
 operator|.
 name|lock
@@ -236,7 +246,7 @@ expr_stmt|;
 try|try
 block|{
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|CompiledXQuery
 argument_list|>
@@ -275,7 +285,7 @@ finally|finally
 block|{
 name|cacheLock
 operator|.
-name|readLock
+name|writeLock
 argument_list|()
 operator|.
 name|unlock
@@ -355,7 +365,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|Stack
+name|Deque
 argument_list|<
 name|CompiledXQuery
 argument_list|>
@@ -378,7 +388,7 @@ block|{
 name|queries
 operator|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<
 name|CompiledXQuery
 argument_list|>
@@ -501,6 +511,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|RestXqService
 name|service
 range|:
