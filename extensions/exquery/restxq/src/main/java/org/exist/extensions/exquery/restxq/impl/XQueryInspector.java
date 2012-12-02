@@ -369,6 +369,20 @@ operator|.
 name|localFunctions
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Set
+argument_list|<
+name|URI
+argument_list|>
+name|xqueryLocations
+init|=
+operator|new
+name|HashSet
+argument_list|<
+name|URI
+argument_list|>
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|itFunctions
@@ -543,20 +557,15 @@ name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//add service and compiled query to the cache
-name|RestXqServiceCompiledXQueryCacheImpl
+comment|//record the xquerylocation
+name|xqueryLocations
 operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|returnCompiledQuery
+name|add
 argument_list|(
 name|resourceFunction
 operator|.
 name|getXQueryLocation
 argument_list|()
-argument_list|,
-name|compiled
 argument_list|)
 expr_stmt|;
 comment|//add the service to the list of services for this query
@@ -568,6 +577,29 @@ name|service
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+for|for
+control|(
+specifier|final
+name|URI
+name|xqueryLocation
+range|:
+name|xqueryLocations
+control|)
+block|{
+comment|//add service location and compiled query to the cache
+name|RestXqServiceCompiledXQueryCacheImpl
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|returnCompiledQuery
+argument_list|(
+name|xqueryLocation
+argument_list|,
+name|compiled
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch
