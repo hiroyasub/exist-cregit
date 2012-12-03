@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -268,14 +268,14 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"functionname"
+literal|"atan2"
 argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
 argument_list|)
 argument_list|,
-literal|"Description"
+literal|"Returns the angle theta from the conversion of rectangular coordinates (x, y) to polar coordinates (r, theta)."
 argument_list|,
 operator|new
 name|SequenceType
@@ -284,7 +284,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"arg1"
+literal|"y"
 argument_list|,
 name|Type
 operator|.
@@ -294,13 +294,13 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"About arg1"
+literal|"The y coordinate"
 argument_list|)
 block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"arg2"
+literal|"x"
 argument_list|,
 name|Type
 operator|.
@@ -310,7 +310,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"About arg2"
+literal|"The x coordinate"
 argument_list|)
 block|}
 argument_list|,
@@ -325,10 +325,83 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"About result."
+literal|"the theta component of the point (r, theta) in "
+operator|+
+literal|"polar coordinates that corresponds to the point (x, y) in Cartesian coordinates."
 argument_list|)
+argument_list|,
+literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#atan2"
 argument_list|)
-block|,      }
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"power"
+argument_list|,
+name|MathModule
+operator|.
+name|NAMESPACE_URI
+argument_list|)
+argument_list|,
+literal|"Returns the value of $value raised to the power of $power."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"value"
+argument_list|,
+name|Type
+operator|.
+name|DOUBLE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The value"
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"power"
+argument_list|,
+name|Type
+operator|.
+name|DOUBLE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The power to raise the value to"
+argument_list|)
+block|}
+argument_list|,
+operator|new
+name|FunctionReturnSequenceType
+argument_list|(
+name|Type
+operator|.
+name|DOUBLE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"the result"
+argument_list|)
+argument_list|,
+literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#pow"
+argument_list|)
+block|}
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public
@@ -528,11 +601,78 @@ operator|.
 name|DOUBLE
 argument_list|)
 decl_stmt|;
-comment|// Do it
+if|if
+condition|(
+literal|"atan2"
+operator|.
+name|equals
+argument_list|(
+name|functionName
+argument_list|)
+condition|)
+block|{
 name|calcValue
 operator|=
-literal|0.0
+name|Math
+operator|.
+name|atan2
+argument_list|(
+name|valueA
+operator|.
+name|getDouble
+argument_list|()
+argument_list|,
+name|valueB
+operator|.
+name|getDouble
+argument_list|()
+argument_list|)
 expr_stmt|;
+block|}
+if|else if
+condition|(
+literal|"power"
+operator|.
+name|equals
+argument_list|(
+name|functionName
+argument_list|)
+condition|)
+block|{
+name|calcValue
+operator|=
+name|Math
+operator|.
+name|pow
+argument_list|(
+name|valueA
+operator|.
+name|getDouble
+argument_list|()
+argument_list|,
+name|valueB
+operator|.
+name|getDouble
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"Function "
+operator|+
+name|functionName
+operator|+
+literal|" not found."
+argument_list|)
+throw|;
+block|}
 name|result
 operator|=
 operator|new
