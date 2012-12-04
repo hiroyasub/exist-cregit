@@ -3037,71 +3037,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-specifier|private
-name|String
-index|[]
-name|getDocumentPaths
-parameter_list|()
-block|{
-specifier|final
-name|String
-name|paths
-index|[]
-init|=
-operator|new
-name|String
-index|[
-name|documents
-operator|.
-name|size
-argument_list|()
-index|]
-decl_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
-for|for
-control|(
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
-name|iter
-init|=
-name|documents
-operator|.
-name|keySet
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|iter
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|paths
-index|[
-name|i
-index|]
-operator|=
-name|iter
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|paths
-return|;
-block|}
+comment|/*     private String[] getDocumentPaths() {         final String paths[] = new String[documents.size()];         int i = 0;         for (Iterator<String> iter = documents.keySet().iterator(); iter.hasNext(); i++) {             paths[i] = iter.next();         }         return paths;     }     */
 comment|/**      * Check if this collection may be safely removed from the      * cache. Returns false if there are ongoing write operations,      * i.e. one or more of the documents is locked for write.      *      * @return A boolean value where true indicates it may be unloaded.      */
 annotation|@
 name|Override
@@ -6562,7 +6498,7 @@ throws|,
 name|EXistException
 function_decl|;
 block|}
-comment|/**       * Validates an XML document et prepares it for further storage. Launches prepare and postValidate triggers.      * Since the process is dependant from the collection configuration, the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri         * @param data        *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
+comment|/**       * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,       * the collection acquires a write lock during the process.      *       * @param transaction      * @param broker      * @param docUri         * @param data        *       * @return An {@link IndexInfo} with a write lock on the document.       *       * @throws EXistException      * @throws PermissionDeniedException      * @throws TriggerException      * @throws SAXException      * @throws LockException      */
 specifier|public
 name|IndexInfo
 name|validateXMLResource
@@ -8969,8 +8905,6 @@ argument_list|,
 name|blob
 argument_list|)
 expr_stmt|;
-comment|// This is no longer needed as the dom.dbx isn't used
-comment|//broker.closeDocument();
 if|if
 condition|(
 name|oldDoc
@@ -9016,6 +8950,7 @@ name|isTriggersEnabled
 argument_list|()
 condition|)
 block|{
+comment|//Strange ! What is the "if" clause for ? -pb
 if|if
 condition|(
 name|oldDoc
@@ -9253,9 +9188,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|//System collection has no configuration
-comment|//if (DBBroker.SYSTEM_COLLECTION.equals(getURI().getRawCollectionPath()))
-comment|//    return null;
 name|CollectionConfigurationManager
 name|manager
 init|=
@@ -9284,7 +9216,9 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-comment|//TODO: AR: if a Trigger throws CollectionConfigurationException from its configure() method, is the rest of the collection configurartion (indexes etc.) ignored even though they might be fine?
+comment|//TODO: AR: if a Trigger throws CollectionConfigurationException
+comment|//from its configure() method, is the rest of the collection
+comment|//configuration (indexes etc.) ignored even though they might be fine?
 name|configuration
 operator|=
 name|manager
@@ -9328,12 +9262,11 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|//LOG.debug("Loaded configuration for collection:  " + getURI());
 return|return
 name|configuration
 return|;
 block|}
-comment|/**      * Should the collection configuration document be enabled      * for this collection? Called by {@link org.exist.storage.NativeBroker}      * before doing a reindex.      *      * @param collectionConfigEnabled      */
+comment|/**      * Should the collection configuration document be enabled      * for this collection? Called by {@link org.exist.storage.NativeBroker}      * before doing a re-index.      *      * @param collectionConfigEnabled      */
 specifier|public
 name|void
 name|setCollectionConfigEnabled
@@ -9407,7 +9340,7 @@ return|return
 name|created
 return|;
 block|}
-comment|/*** TODO why do we need this? is it just for the versioning trigger? If so we need to enable/disable specific triggers! ***/
+comment|/*** TODO why do we need this? is it just for the versioning trigger?      * If so we need to enable/disable specific triggers!      ***/
 specifier|public
 name|void
 name|setTriggersEnabled
@@ -9489,19 +9422,6 @@ operator|=
 name|reader
 expr_stmt|;
 block|}
-comment|//    /**
-comment|//     * If user-defined Reader is set, return it; otherwise return JAXP
-comment|//     * default XMLReader configured by eXist.
-comment|//     */
-comment|//    private XMLReader getReader(DBBroker broker) throws EXistException,
-comment|//            SAXException {
-comment|//
-comment|//        if(userReader != null){
-comment|//            return userReader;
-comment|//        }
-comment|//
-comment|//        return broker.getBrokerPool().getParserPool().borrowXMLReader();
-comment|//    }
 comment|/**       * Get xml reader from readerpool and setup validation when needed.      */
 specifier|private
 name|XMLReader
@@ -9830,7 +9750,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see java.util.Observable#deleteObservers()          */
+comment|/* (non-Javadoc)      * @see java.util.Observable#deleteObservers()      */
 annotation|@
 name|Override
 specifier|public
@@ -9850,7 +9770,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getKey()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#getKey()      */
 annotation|@
 name|Override
 specifier|public
@@ -9862,7 +9782,7 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#getReferenceCount()      */
 annotation|@
 name|Override
 specifier|public
@@ -9874,7 +9794,7 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.storage.cache.Cacheable#incReferenceCount()          */
+comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#incReferenceCount()      */
 annotation|@
 name|Override
 specifier|public

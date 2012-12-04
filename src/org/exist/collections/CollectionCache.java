@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -61,20 +71,6 @@ name|storage
 operator|.
 name|cache
 operator|.
-name|LRDCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|cache
-operator|.
 name|LRUCache
 import|;
 end_import
@@ -90,20 +86,6 @@ operator|.
 name|lock
 operator|.
 name|Lock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|hashtable
-operator|.
-name|Long2ObjectHashMap
 import|;
 end_import
 
@@ -144,16 +126,6 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -260,7 +232,6 @@ argument_list|,
 name|initialRefCount
 argument_list|)
 expr_stmt|;
-comment|//        LOG.info("Adding collection "+ collection.getURI() + ": " + map.size() + " of " + max);
 name|String
 name|name
 init|=
@@ -348,7 +319,7 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Overwritten to lock collections before they are removed. 	 */
+comment|/**      * Overwritten to lock collections before they are removed.      */
 specifier|protected
 name|void
 name|removeOne

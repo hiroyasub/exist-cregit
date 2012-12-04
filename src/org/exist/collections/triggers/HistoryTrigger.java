@@ -555,6 +555,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -574,6 +575,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -593,6 +595,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -640,6 +643,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -693,6 +697,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -774,6 +779,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -793,6 +799,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -812,6 +819,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -831,6 +839,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+comment|//Nothing to do
 block|}
 block|}
 end_class

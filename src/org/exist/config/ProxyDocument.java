@@ -109,7 +109,7 @@ name|getDatabase
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.i.dom.DocumentAtExist#getFirstChildFor(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.i.dom.DocumentAtExist#getFirstChildFor(int)      */
 specifier|public
 name|int
 name|getFirstChildFor
@@ -128,7 +128,7 @@ name|nodeNumber
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.i.dom.DocumentAtExist#getNextNodeNumber(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.i.dom.DocumentAtExist#getNextNodeNumber(int)      */
 specifier|public
 name|int
 name|getNextNodeNumber
@@ -149,7 +149,7 @@ name|nodeNr
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#adoptNode(org.w3c.dom.Node)      */
 specifier|public
 name|Node
 name|adoptNode
@@ -170,7 +170,7 @@ name|source
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createAttribute(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createAttribute(java.lang.String)      */
 specifier|public
 name|Attr
 name|createAttribute
@@ -191,7 +191,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createAttributeNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createAttributeNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|Attr
 name|createAttributeNS
@@ -217,7 +217,7 @@ name|qualifiedName
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createCDATASection(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createCDATASection(java.lang.String)      */
 specifier|public
 name|CDATASection
 name|createCDATASection
@@ -238,7 +238,7 @@ name|data
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createComment(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createComment(java.lang.String)      */
 specifier|public
 name|Comment
 name|createComment
@@ -257,7 +257,7 @@ name|data
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createDocumentFragment() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createDocumentFragment()      */
 specifier|public
 name|DocumentFragment
 name|createDocumentFragment
@@ -271,7 +271,7 @@ name|createDocumentFragment
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createElement(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createElement(java.lang.String)      */
 specifier|public
 name|Element
 name|createElement
@@ -292,7 +292,7 @@ name|tagName
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createElementNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createElementNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|Element
 name|createElementNS
@@ -318,7 +318,7 @@ name|qualifiedName
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createEntityReference(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createEntityReference(java.lang.String)      */
 specifier|public
 name|EntityReference
 name|createEntityReference
@@ -339,7 +339,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createProcessingInstruction(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createProcessingInstruction(java.lang.String, java.lang.String)      */
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
@@ -365,7 +365,7 @@ name|data
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#createTextNode(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#createTextNode(java.lang.String)      */
 specifier|public
 name|Text
 name|createTextNode
@@ -384,7 +384,7 @@ name|data
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getDoctype() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getDoctype()      */
 specifier|public
 name|DocumentType
 name|getDoctype
@@ -398,7 +398,7 @@ name|getDoctype
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getDocumentElement() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getDocumentElement()      */
 specifier|public
 name|Element
 name|getDocumentElement
@@ -412,7 +412,7 @@ name|getDocumentElement
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getDocumentURI() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getDocumentURI()      */
 specifier|public
 name|String
 name|getDocumentURI
@@ -426,7 +426,7 @@ name|getDocumentURI
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getDomConfig() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getDomConfig()      */
 specifier|public
 name|DOMConfiguration
 name|getDomConfig
@@ -440,7 +440,7 @@ name|getDomConfig
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getElementById(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getElementById(java.lang.String)      */
 specifier|public
 name|Element
 name|getElementById
@@ -459,7 +459,7 @@ name|elementId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getElementsByTagName(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getElementsByTagName(java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -478,7 +478,7 @@ name|tagname
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getElementsByTagNameNS(java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getElementsByTagNameNS(java.lang.String, java.lang.String)      */
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -502,7 +502,7 @@ name|localName
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getImplementation() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getImplementation()      */
 specifier|public
 name|DOMImplementation
 name|getImplementation
@@ -516,7 +516,7 @@ name|getImplementation
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getInputEncoding() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getInputEncoding()      */
 specifier|public
 name|String
 name|getInputEncoding
@@ -530,7 +530,7 @@ name|getInputEncoding
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getStrictErrorChecking() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getStrictErrorChecking()      */
 specifier|public
 name|boolean
 name|getStrictErrorChecking
@@ -544,7 +544,7 @@ name|getStrictErrorChecking
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getXmlEncoding() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getXmlEncoding()      */
 specifier|public
 name|String
 name|getXmlEncoding
@@ -558,7 +558,7 @@ name|getXmlEncoding
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getXmlStandalone() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getXmlStandalone()      */
 specifier|public
 name|boolean
 name|getXmlStandalone
@@ -572,7 +572,7 @@ name|getXmlStandalone
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#getXmlVersion() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#getXmlVersion()      */
 specifier|public
 name|String
 name|getXmlVersion
@@ -586,7 +586,7 @@ name|getXmlVersion
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#importNode(org.w3c.dom.Node, boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#importNode(org.w3c.dom.Node, boolean)      */
 specifier|public
 name|Node
 name|importNode
@@ -612,7 +612,7 @@ name|deep
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#normalizeDocument() 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#normalizeDocument()      */
 specifier|public
 name|void
 name|normalizeDocument
@@ -625,7 +625,7 @@ name|normalizeDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      */
 specifier|public
 name|Node
 name|renameNode
@@ -656,7 +656,7 @@ name|qualifiedName
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#setDocumentURI(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      */
 specifier|public
 name|void
 name|setDocumentURI
@@ -674,7 +674,7 @@ name|documentURI
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#setStrictErrorChecking(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#setStrictErrorChecking(boolean)      */
 specifier|public
 name|void
 name|setStrictErrorChecking
@@ -692,7 +692,7 @@ name|strictErrorChecking
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#setXmlStandalone(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#setXmlStandalone(boolean)      */
 specifier|public
 name|void
 name|setXmlStandalone
@@ -712,7 +712,7 @@ name|xmlStandalone
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Document#setXmlVersion(java.lang.String) 	 */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      */
 specifier|public
 name|void
 name|setXmlVersion
@@ -753,7 +753,6 @@ name|E
 name|object
 parameter_list|)
 block|{
-comment|//if (object instanceof DocumentAtExist) {
 name|document
 operator|=
 operator|(
@@ -768,8 +767,6 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-comment|//} else
-comment|//throw new IllegalArgumentException("Only DocumentAtExist allowed");
 block|}
 specifier|public
 name|NodeAtExist

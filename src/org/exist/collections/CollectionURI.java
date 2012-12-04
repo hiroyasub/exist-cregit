@@ -285,11 +285,6 @@ name|void
 name|removeLastSegment
 parameter_list|()
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|char
 name|c
 decl_stmt|;
