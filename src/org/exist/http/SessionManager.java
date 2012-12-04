@@ -145,7 +145,7 @@ class|class
 name|QueryResult
 block|{
 name|long
-name|created
+name|lastAccess
 decl_stmt|;
 name|String
 name|queryString
@@ -177,13 +177,29 @@ name|sequence
 expr_stmt|;
 name|this
 operator|.
-name|created
+name|lastAccess
 operator|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+block|}
+specifier|protected
+name|Sequence
+name|sequence
+parameter_list|()
+block|{
+name|lastAccess
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+return|return
+name|sequence
+return|;
 block|}
 block|}
 specifier|public
@@ -498,6 +514,7 @@ return|return
 name|cached
 operator|.
 name|sequence
+argument_list|()
 return|;
 comment|// wrong query
 return|return
@@ -581,7 +598,7 @@ index|[
 name|i
 index|]
 operator|.
-name|created
+name|lastAccess
 operator|>
 name|TIMEOUT
 condition|)
