@@ -814,6 +814,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|steps
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|Expression
 name|path
 init|=
