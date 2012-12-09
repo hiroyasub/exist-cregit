@@ -192,6 +192,14 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+comment|// if this is a top-level node constructor, it must depend on the context item, so
+comment|// an expression like //foo/<x/> will generate one<x> for every foo. However, if the
+comment|// constructor appears inside another constructor, we don't want it to be called once
+comment|// for every context item, so we just return a dependency on context set:
+if|if
+condition|(
+name|newDocumentContext
+condition|)
 return|return
 name|Dependency
 operator|.
@@ -200,6 +208,12 @@ operator||
 name|Dependency
 operator|.
 name|CONTEXT_ITEM
+return|;
+else|else
+return|return
+name|Dependency
+operator|.
+name|CONTEXT_SET
 return|;
 block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#returnsType()     */

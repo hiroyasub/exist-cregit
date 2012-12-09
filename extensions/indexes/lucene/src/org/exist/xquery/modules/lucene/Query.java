@@ -623,6 +623,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|steps
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|Expression
 name|path
 init|=
@@ -649,6 +654,9 @@ name|get
 argument_list|(
 literal|1
 argument_list|)
+operator|.
+name|simplify
+argument_list|()
 decl_stmt|;
 name|arg
 operator|=
@@ -692,8 +700,6 @@ name|mySignature
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|steps
-operator|.
 name|add
 argument_list|(
 name|arg
@@ -717,6 +723,9 @@ name|get
 argument_list|(
 literal|2
 argument_list|)
+operator|.
+name|simplify
+argument_list|()
 expr_stmt|;
 name|arg
 operator|=
