@@ -14182,7 +14182,6 @@ throw|;
 block|}
 if|if
 condition|(
-operator|!
 name|destination
 operator|.
 name|hasChildCollection
@@ -15167,7 +15166,6 @@ try|try
 block|{
 if|if
 condition|(
-operator|!
 name|destination
 operator|.
 name|hasChildCollection
