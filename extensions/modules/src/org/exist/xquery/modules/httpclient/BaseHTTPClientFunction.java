@@ -2359,6 +2359,12 @@ block|{
 name|BinaryValue
 name|binary
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|binary
+operator|=
 name|BinaryValueFromInputStream
 operator|.
 name|getInstance
@@ -2375,7 +2381,7 @@ argument_list|(
 name|body
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|builder
 operator|.
 name|characters
@@ -2386,6 +2392,24 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+comment|// free resources
+if|if
+condition|(
+name|binary
+operator|!=
+literal|null
+condition|)
+name|binary
+operator|.
+name|destroy
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
