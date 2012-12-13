@@ -14176,6 +14176,46 @@ literal|"'."
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+operator|!
+name|destination
+operator|.
+name|hasChildCollection
+argument_list|(
+name|this
+argument_list|,
+name|newName
+operator|.
+name|lastSegment
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"The collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' have collection '"
+operator|+
+name|newName
+operator|.
+name|lastSegment
+argument_list|()
+operator|+
+literal|"'. "
+operator|+
+literal|"Document with same name can't be created."
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|XmldbURI
 name|newURI
@@ -15123,6 +15163,46 @@ expr_stmt|;
 block|}
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|destination
+operator|.
+name|hasChildCollection
+argument_list|(
+name|this
+argument_list|,
+name|newName
+operator|.
+name|lastSegment
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"The collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' have collection '"
+operator|+
+name|newName
+operator|.
+name|lastSegment
+argument_list|()
+operator|+
+literal|"'. "
+operator|+
+literal|"Document with same name can't be created."
+argument_list|)
+throw|;
+block|}
 comment|// check if the move would overwrite a collection
 comment|//TODO : resolve URIs : destination.getURI().resolve(newName)
 specifier|final

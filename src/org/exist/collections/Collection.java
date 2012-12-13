@@ -7174,6 +7174,8 @@ name|transaction
 argument_list|,
 name|broker
 argument_list|,
+name|docUri
+argument_list|,
 name|oldDoc
 argument_list|)
 expr_stmt|;
@@ -8024,6 +8026,9 @@ parameter_list|,
 name|DBBroker
 name|broker
 parameter_list|,
+name|XmldbURI
+name|docUri
+parameter_list|,
 name|DocumentImpl
 name|oldDoc
 parameter_list|)
@@ -8233,6 +8238,41 @@ literal|"Execute permission is not granted on the Collection."
 argument_list|)
 throw|;
 block|}
+block|}
+if|if
+condition|(
+name|hasChildCollection
+argument_list|(
+name|broker
+argument_list|,
+name|docUri
+operator|.
+name|lastSegment
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"The collection '"
+operator|+
+name|getURI
+argument_list|()
+operator|+
+literal|"' have collection '"
+operator|+
+name|docUri
+operator|.
+name|lastSegment
+argument_list|()
+operator|+
+literal|"'. "
+operator|+
+literal|"Document with same name can't be created."
+argument_list|)
+throw|;
 block|}
 block|}
 comment|// Blob
@@ -8645,6 +8685,8 @@ argument_list|(
 name|transaction
 argument_list|,
 name|broker
+argument_list|,
+name|docUri
 argument_list|,
 name|oldDoc
 argument_list|)
