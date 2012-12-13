@@ -7170,13 +7170,16 @@ argument_list|)
 expr_stmt|;
 name|checkPermissionsForAddDocument
 argument_list|(
-name|transaction
+name|broker
 argument_list|,
+name|oldDoc
+argument_list|)
+expr_stmt|;
+name|checkCollectionConflict
+argument_list|(
 name|broker
 argument_list|,
 name|docUri
-argument_list|,
-name|oldDoc
 argument_list|)
 expr_stmt|;
 name|manageDocumentInformation
@@ -8020,15 +8023,11 @@ specifier|private
 name|void
 name|checkPermissionsForAddDocument
 parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-name|XmldbURI
-name|docUri
-parameter_list|,
+specifier|final
 name|DocumentImpl
 name|oldDoc
 parameter_list|)
@@ -8087,12 +8086,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"The document is locked by user "
+literal|"The document is locked by user '"
 operator|+
 name|lockUser
 operator|.
 name|getName
 argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -8147,7 +8148,11 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Document exists, but write permission is not granted."
+literal|"A resource with the same name already exists in the target collection '"
+operator|+
+name|path
+operator|+
+literal|"', and you do not have write access on that resource."
 argument_list|)
 throw|;
 block|}
@@ -8239,6 +8244,24 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+specifier|private
+name|void
+name|checkCollectionConflict
+parameter_list|(
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
+name|XmldbURI
+name|docUri
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+block|{
 if|if
 condition|(
 name|hasChildCollection
@@ -8254,23 +8277,21 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|EXistException
 argument_list|(
 literal|"The collection '"
 operator|+
 name|getURI
 argument_list|()
 operator|+
-literal|"' have collection '"
+literal|"' already has a sub-collection named '"
 operator|+
 name|docUri
 operator|.
 name|lastSegment
 argument_list|()
 operator|+
-literal|"'. "
-operator|+
-literal|"Document with same name can't be created."
+literal|"', you cannot create a Document with the same name as an existing collection."
 argument_list|)
 throw|;
 block|}
@@ -8299,6 +8320,8 @@ name|String
 name|mimeType
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -8356,6 +8379,8 @@ name|Date
 name|modified
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -8415,6 +8440,8 @@ name|long
 name|size
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -8474,6 +8501,8 @@ name|Date
 name|modified
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -8602,6 +8631,8 @@ name|Date
 name|modified
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException
@@ -8682,13 +8713,16 @@ argument_list|)
 expr_stmt|;
 name|checkPermissionsForAddDocument
 argument_list|(
-name|transaction
+name|broker
 argument_list|,
+name|oldDoc
+argument_list|)
+expr_stmt|;
+name|checkCollectionConflict
+argument_list|(
 name|broker
 argument_list|,
 name|docUri
-argument_list|,
-name|oldDoc
 argument_list|)
 expr_stmt|;
 name|manageDocumentInformation

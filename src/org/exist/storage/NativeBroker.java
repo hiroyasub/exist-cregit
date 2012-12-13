@@ -14017,7 +14017,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Account "
+literal|"Account '"
 operator|+
 name|getSubject
 argument_list|()
@@ -14025,12 +14025,14 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" have insufficient privileges to copy resource "
+literal|"' has insufficient privileges to copy the resource '"
 operator|+
 name|doc
 operator|.
 name|getFileURI
 argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -14057,7 +14059,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Account "
+literal|"Account '"
 operator|+
 name|getSubject
 argument_list|()
@@ -14065,12 +14067,14 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"have insufficient privileges to copy resource "
+literal|"' has insufficient privileges to copy the resource '"
 operator|+
 name|doc
 operator|.
 name|getFileURI
 argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -14157,7 +14161,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Account "
+literal|"Account '"
 operator|+
 name|getSubject
 argument_list|()
@@ -14165,7 +14169,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" have no execute access on the destination collection '"
+literal|"' does not have execute access on the destination collection '"
 operator|+
 name|destination
 operator|.
@@ -14194,7 +14198,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|EXistException
 argument_list|(
 literal|"The collection '"
 operator|+
@@ -14203,16 +14207,14 @@ operator|.
 name|getURI
 argument_list|()
 operator|+
-literal|"' have collection '"
+literal|"' already has a sub-collection named '"
 operator|+
 name|newName
 operator|.
 name|lastSegment
 argument_list|()
 operator|+
-literal|"'. "
-operator|+
-literal|"Document with same name can't be created."
+literal|"', you cannot create a Document with the same name as an existing collection."
 argument_list|)
 throw|;
 block|}
@@ -14269,7 +14271,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Account "
+literal|"Account '"
 operator|+
 name|getSubject
 argument_list|()
@@ -14277,7 +14279,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" have no write access on the destination collection '"
+literal|"' does not have write access on the destination collection '"
 operator|+
 name|destination
 operator|.
@@ -14307,7 +14309,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|EXistException
 argument_list|(
 literal|"Cannot copy resource to itself '"
 operator|+
@@ -14343,14 +14345,14 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Resource with same name exists in target collection '"
+literal|"A resource with the same name already exists in the target collection '"
 operator|+
 name|oldDoc
 operator|.
 name|getURI
 argument_list|()
 operator|+
-literal|"' and write is denied."
+literal|"', and you do not have write access on that resource."
 argument_list|)
 throw|;
 block|}

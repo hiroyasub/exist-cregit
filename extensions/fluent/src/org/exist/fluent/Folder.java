@@ -2067,6 +2067,28 @@ name|e
 argument_list|)
 throw|;
 block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseException
+argument_list|(
+literal|"failed to create document '"
+operator|+
+name|name
+operator|+
+literal|"' from source "
+operator|+
+name|source
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 finally|finally
 block|{
 name|inputStream
