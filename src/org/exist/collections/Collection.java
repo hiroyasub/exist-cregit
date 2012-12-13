@@ -704,7 +704,7 @@ specifier|private
 name|Permission
 name|permissions
 decl_stmt|;
-specifier|public
+specifier|private
 name|Collection
 parameter_list|(
 name|DBBroker
