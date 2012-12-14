@@ -1726,6 +1726,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// free resources
+name|var
+operator|.
+name|destroy
+argument_list|(
+name|resultSequence
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 finally|finally
