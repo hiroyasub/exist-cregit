@@ -4104,6 +4104,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// trigger a checkpoint after processing all startup triggers
+name|checkpoint
+operator|=
+literal|true
+expr_stmt|;
+name|triggerSync
+argument_list|(
+name|Sync
+operator|.
+name|MAJOR_SYNC
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Initialise system collections, if it doesn't exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions The permissions to set on the created collection      */
 specifier|private
