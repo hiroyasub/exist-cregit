@@ -8338,7 +8338,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//if ((dp.getPageHeader().getLsn() != Page.NO_PAGE&& requiresRedo(loggable, dp))&& loggable != null)
+if|if
+condition|(
+name|loggable
+operator|.
+name|getLsn
+argument_list|()
+operator|>
+name|dp
+operator|.
+name|getPageHeader
+argument_list|()
+operator|.
+name|getLsn
+argument_list|()
+condition|)
 name|dp
 operator|.
 name|getPageHeader
