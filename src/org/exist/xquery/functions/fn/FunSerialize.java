@@ -450,6 +450,15 @@ name|getArgumentCount
 argument_list|()
 operator|==
 literal|2
+operator|&&
+operator|!
+name|args
+index|[
+literal|1
+index|]
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 name|parseParameters
 argument_list|(
