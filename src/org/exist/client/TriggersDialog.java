@@ -414,6 +414,22 @@ name|client
 operator|=
 name|client
 expr_stmt|;
+name|this
+operator|.
+name|setIconImage
+argument_list|(
+name|InteractiveClient
+operator|.
+name|getExistIcon
+argument_list|(
+name|getClass
+argument_list|()
+argument_list|)
+operator|.
+name|getImage
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//capture the frame's close event
 specifier|final
 name|WindowListener
