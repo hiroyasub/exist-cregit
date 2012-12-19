@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -343,19 +343,6 @@ operator|.
 name|this
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|isSystemTraySupported
-argument_list|()
-condition|)
-name|utilityPanel
-operator|.
-name|setVisible
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 argument_list|)
@@ -480,6 +467,24 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|tray
+operator|.
+name|getTrayIcons
+argument_list|()
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+name|utilityPanel
+operator|.
+name|setVisible
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
@@ -585,6 +590,13 @@ operator|.
 name|setUndecorated
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|hiddenFrame
+operator|.
+name|setIconImage
+argument_list|(
+name|image
 argument_list|)
 expr_stmt|;
 specifier|final
