@@ -470,6 +470,10 @@ expr_stmt|;
 if|if
 condition|(
 name|tray
+operator|!=
+literal|null
+operator|&&
+name|tray
 operator|.
 name|getTrayIcons
 argument_list|()
