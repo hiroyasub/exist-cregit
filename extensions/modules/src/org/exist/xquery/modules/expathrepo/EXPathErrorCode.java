@@ -145,6 +145,21 @@ argument_list|,
 literal|"Failed to connect to public repo"
 argument_list|)
 decl_stmt|;
+comment|// other error thrown from expath library
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCode
+name|EXPDY007
+init|=
+operator|new
+name|EXPathErrorCode
+argument_list|(
+literal|"EXPATH00"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static

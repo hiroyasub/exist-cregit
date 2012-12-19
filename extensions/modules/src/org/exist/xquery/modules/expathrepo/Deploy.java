@@ -1120,7 +1120,7 @@ name|this
 argument_list|,
 name|EXPathErrorCode
 operator|.
-name|EXPDY006
+name|EXPDY007
 argument_list|,
 name|e
 operator|.
@@ -1143,7 +1143,7 @@ name|this
 argument_list|,
 name|EXPathErrorCode
 operator|.
-name|EXPDY006
+name|EXPDY007
 argument_list|,
 name|e
 operator|.
@@ -1166,7 +1166,7 @@ name|this
 argument_list|,
 name|EXPathErrorCode
 operator|.
-name|EXPDY006
+name|EXPDY007
 argument_list|,
 name|e
 operator|.
