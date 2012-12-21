@@ -597,6 +597,15 @@ argument_list|>
 name|findAllGroupNames
 parameter_list|()
 function_decl|;
+comment|/**     * Find all users visible to the invokingUser     */
+specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findAllUserNames
+parameter_list|()
+function_decl|;
 comment|/**     * Find groups by their group name     */
 specifier|public
 name|List

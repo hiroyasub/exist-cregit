@@ -260,6 +260,14 @@ name|groupName
 parameter_list|)
 function_decl|;
 specifier|public
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|findAllUserNames
+parameter_list|()
+function_decl|;
+specifier|public
 name|SecurityManager
 name|getSecurityManager
 parameter_list|()
