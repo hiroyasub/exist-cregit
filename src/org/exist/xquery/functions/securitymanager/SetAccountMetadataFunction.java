@@ -69,18 +69,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -282,7 +270,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The metadata attribute namespace as defined by axschema.org"
+literal|"The metadata attribute key."
 argument_list|)
 block|,
 operator|new
@@ -298,7 +286,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The metadata value"
+literal|"The metadata value,"
 argument_list|)
 block|}
 argument_list|,
@@ -319,9 +307,11 @@ decl_stmt|;
 specifier|public
 name|SetAccountMetadataFunction
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -340,16 +330,19 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -359,6 +352,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|currentUser
 init|=
@@ -505,15 +499,19 @@ specifier|private
 name|void
 name|setAccountMetadata
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|username
 parameter_list|,
+specifier|final
 name|String
 name|metadataAttributeNamespace
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -543,9 +541,8 @@ argument_list|(
 name|username
 argument_list|)
 decl_stmt|;
-specifier|final
-name|AXSchemaType
-name|axSchemaType
+name|SchemaType
+name|schemaType
 init|=
 name|AXSchemaType
 operator|.
@@ -556,7 +553,24 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|axSchemaType
+name|schemaType
+operator|==
+literal|null
+condition|)
+block|{
+name|schemaType
+operator|=
+name|EXistSchemaType
+operator|.
+name|valueOfNamespace
+argument_list|(
+name|metadataAttributeNamespace
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|schemaType
 operator|==
 literal|null
 condition|)
@@ -565,7 +579,7 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Unknown axschema.org attribute: "
+literal|"Unknown metadata attribute key: "
 operator|+
 name|metadataAttributeNamespace
 argument_list|)
@@ -575,7 +589,7 @@ name|account
 operator|.
 name|setMetadataValue
 argument_list|(
-name|axSchemaType
+name|schemaType
 argument_list|,
 name|value
 argument_list|)
@@ -592,6 +606,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -608,6 +623,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
