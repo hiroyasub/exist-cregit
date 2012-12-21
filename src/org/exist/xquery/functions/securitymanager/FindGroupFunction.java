@@ -278,12 +278,12 @@ specifier|private
 specifier|final
 specifier|static
 name|QName
-name|qnGetGroups
+name|qnListGroups
 init|=
 operator|new
 name|QName
 argument_list|(
-literal|"get-groups"
+literal|"list-groups"
 argument_list|,
 name|SecurityManagerModule
 operator|.
@@ -325,9 +325,9 @@ block|{
 operator|new
 name|FunctionSignature
 argument_list|(
-name|qnGetGroups
+name|qnListGroups
 argument_list|,
-literal|"Gets all groups"
+literal|"List all groups"
 argument_list|,
 literal|null
 argument_list|,
@@ -528,7 +528,7 @@ if|if
 condition|(
 name|isCalledAs
 argument_list|(
-name|qnGetGroups
+name|qnListGroups
 operator|.
 name|getLocalName
 argument_list|()
@@ -627,6 +627,7 @@ argument_list|(
 name|groupNames
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -636,6 +637,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|groupName
 range|:
