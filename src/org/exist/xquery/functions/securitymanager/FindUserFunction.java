@@ -43,18 +43,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|QName
@@ -350,10 +338,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_FIND_USERS_BY_USERNAME
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -396,7 +382,13 @@ argument_list|,
 literal|"The list of matching usernames"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_FIND_USERS_BY_NAME
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -439,7 +431,13 @@ argument_list|,
 literal|"The list of matching usernames"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_FIND_USERS_BY_NAME_PART
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -482,7 +480,13 @@ argument_list|,
 literal|"The list of matching usernames"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_LIST_USERS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -506,7 +510,6 @@ argument_list|,
 literal|"The list of users."
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|FindUserFunction

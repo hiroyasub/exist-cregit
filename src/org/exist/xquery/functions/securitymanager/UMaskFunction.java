@@ -294,10 +294,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_GET_UMASK
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -340,7 +338,13 @@ argument_list|,
 literal|"The umask of the users account expressed as an interger"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_SET_UMASK
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -397,7 +401,6 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|UMaskFunction

@@ -296,10 +296,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_GET_GROUP_MANAGERS
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -342,7 +340,13 @@ argument_list|,
 literal|"The list of group managers for the group $group"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_GROUP_MEMBERS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -385,7 +389,6 @@ argument_list|,
 literal|"The list of group members for the group $group"
 argument_list|)
 argument_list|)
-block|,     }
 decl_stmt|;
 specifier|public
 name|GroupMembershipFunctions
