@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2012 The eXist-db Project  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -106,7 +106,7 @@ specifier|public
 class|class
 name|FunctionSignature
 block|{
-comment|/** 	 * Default sequence type for function parameters. 	 */
+comment|/**      * Default sequence type for function parameters.      */
 specifier|public
 specifier|final
 specifier|static
@@ -125,7 +125,7 @@ operator|.
 name|ZERO_OR_MORE
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Empty array to specify if a function doesn't take any arguments. 	 */
+comment|/**      * Empty array to specify if a function doesn't take any arguments.      */
 specifier|public
 specifier|final
 specifier|static
@@ -218,6 +218,7 @@ decl_stmt|;
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|FunctionSignature
 name|other
 parameter_list|)
@@ -290,6 +291,7 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -309,13 +311,16 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|)
@@ -335,16 +340,20 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|,
+specifier|final
 name|boolean
 name|overloaded
 parameter_list|)
@@ -366,16 +375,20 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|)
@@ -397,19 +410,24 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|,
+specifier|final
 name|String
 name|deprecated
 parameter_list|)
@@ -433,7 +451,6 @@ name|deprecated
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          */
 specifier|public
 name|FunctionSignature
 parameter_list|(
@@ -508,22 +525,28 @@ block|}
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|,
+specifier|final
 name|boolean
 name|overloaded
 parameter_list|,
+specifier|final
 name|String
 name|deprecated
 parameter_list|)
@@ -547,23 +570,28 @@ name|deprecated
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new function signature. 	 *  	 * @param name the QName of the function. 	 * @param arguments the sequence types of all expected arguments 	 * @param returnType the sequence type returned by the function 	 * @param overloaded set to true if the function may expect additional parameters 	 */
+comment|/**      * Create a new function signature.      *       * @param name the QName of the function.      * @param arguments the sequence types of all expected arguments      * @param returnType the sequence type returned by the function      * @param overloaded set to true if the function may expect additional parameters      */
 specifier|public
 name|FunctionSignature
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|,
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
 parameter_list|,
+specifier|final
 name|SequenceType
 name|returnType
 parameter_list|,
+specifier|final
 name|boolean
 name|overloaded
 parameter_list|)
@@ -627,10 +655,12 @@ if|if
 condition|(
 name|isOverloaded
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 return|return
 name|arguments
 operator|!=
@@ -672,6 +702,7 @@ specifier|public
 name|void
 name|setReturnType
 parameter_list|(
+specifier|final
 name|SequenceType
 name|type
 parameter_list|)
@@ -695,6 +726,7 @@ specifier|public
 name|void
 name|setArgumentTypes
 parameter_list|(
+specifier|final
 name|SequenceType
 index|[]
 name|types
@@ -711,6 +743,7 @@ specifier|public
 name|void
 name|setAnnotations
 parameter_list|(
+specifier|final
 name|Annotation
 index|[]
 name|annotations
@@ -736,6 +769,7 @@ specifier|public
 name|void
 name|setDescription
 parameter_list|(
+specifier|final
 name|String
 name|description
 parameter_list|)
@@ -751,6 +785,7 @@ specifier|public
 name|void
 name|addMetadata
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|,
@@ -779,6 +814,7 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|old
 init|=
@@ -795,6 +831,7 @@ name|old
 operator|!=
 literal|null
 condition|)
+block|{
 comment|// if the key exists, simply append the new value
 name|value
 operator|=
@@ -804,6 +841,7 @@ literal|", "
 operator|+
 name|value
 expr_stmt|;
+block|}
 name|metadata
 operator|.
 name|put
@@ -818,6 +856,7 @@ specifier|public
 name|String
 name|getMetadata
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -828,9 +867,11 @@ name|metadata
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|metadata
 operator|.
@@ -926,6 +967,7 @@ name|boolean
 name|isPrivate
 parameter_list|()
 block|{
+specifier|final
 name|Annotation
 index|[]
 name|annotations
@@ -942,12 +984,14 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Annotation
 name|annot
 range|:
 name|annotations
 control|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -991,11 +1035,14 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1027,6 +1074,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|char
 name|var
 init|=
@@ -1055,6 +1103,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1062,6 +1111,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1140,6 +1190,7 @@ if|if
 condition|(
 name|isOverloaded
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1147,6 +1198,7 @@ argument_list|(
 literal|", ..."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|buf
 operator|.
@@ -1178,6 +1230,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
