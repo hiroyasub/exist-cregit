@@ -339,7 +339,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"The umask of the users account expressed as an interger"
+literal|"The umask of the users account expressed as an integer"
 argument_list|)
 argument_list|)
 decl_stmt|;
