@@ -77,6 +77,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|security
+operator|.
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -212,18 +224,6 @@ operator|.
 name|value
 operator|.
 name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SecurityManager
 import|;
 end_import
 
