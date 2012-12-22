@@ -246,10 +246,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_SET_ACCOUNT_METADATA
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -322,7 +320,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_SET_GROUP_METADATA
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -395,7 +399,6 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|SetPrincipalMetadataFunction

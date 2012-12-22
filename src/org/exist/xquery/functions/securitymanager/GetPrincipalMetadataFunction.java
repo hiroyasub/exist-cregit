@@ -411,10 +411,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_GET_ALL_ACCOUNT_METADATA_KEYS
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -438,7 +436,13 @@ argument_list|,
 literal|"The fully qualified metadata attribute key names"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_ACCOUNT_METADATA_KEYS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -481,7 +485,13 @@ argument_list|,
 literal|"The fully qualified metadata attribute key names"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_ACCOUNT_METADATA
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -540,7 +550,13 @@ argument_list|,
 literal|"The metadata value"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_ALL_GROUP_METADATA_KEYS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -564,7 +580,13 @@ argument_list|,
 literal|"The fully qualified metadata attribute key names"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_GROUP_METADATA_KEYS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -607,7 +629,13 @@ argument_list|,
 literal|"The fully qualified metadata attribute key names"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_GET_GROUP_METADATA
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -666,7 +694,6 @@ argument_list|,
 literal|"The metadata value"
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|GetPrincipalMetadataFunction
