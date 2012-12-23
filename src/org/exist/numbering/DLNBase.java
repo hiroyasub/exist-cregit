@@ -15,20 +15,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|io
-operator|.
-name|VariableByteInput
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -44,6 +30,20 @@ operator|.
 name|util
 operator|.
 name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|io
+operator|.
+name|VariableByteInput
 import|;
 end_import
 
@@ -141,13 +141,13 @@ name|initComponents
 argument_list|()
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
 name|int
 index|[]
 name|initComponents
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|size
 index|[]
@@ -290,6 +290,7 @@ block|}
 specifier|public
 name|DLNBase
 parameter_list|(
+specifier|final
 name|DLNBase
 name|dln
 parameter_list|)
@@ -343,13 +344,16 @@ block|}
 specifier|public
 name|DLNBase
 parameter_list|(
+specifier|final
 name|int
 name|units
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|startOffset
 parameter_list|)
@@ -360,6 +364,7 @@ name|units
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -369,6 +374,7 @@ operator|+
 name|units
 argument_list|)
 throw|;
+block|}
 name|int
 name|blen
 init|=
@@ -384,9 +390,11 @@ literal|8
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|blen
 expr_stmt|;
+block|}
 name|bits
 operator|=
 operator|new
@@ -420,14 +428,17 @@ block|}
 specifier|protected
 name|DLNBase
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|nbits
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|remainder
 init|=
@@ -435,6 +446,7 @@ name|nbits
 operator|%
 literal|8
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -466,6 +478,7 @@ name|len
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -481,6 +494,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|remainder
@@ -564,9 +578,11 @@ block|}
 specifier|public
 name|DLNBase
 parameter_list|(
+specifier|final
 name|short
 name|bitCnt
 parameter_list|,
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -588,9 +604,11 @@ literal|8
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|blen
 expr_stmt|;
+block|}
 name|bits
 operator|=
 operator|new
@@ -616,15 +634,19 @@ block|}
 specifier|public
 name|DLNBase
 parameter_list|(
+specifier|final
 name|byte
 name|prefixLen
 parameter_list|,
+specifier|final
 name|DLNBase
 name|previous
 parameter_list|,
+specifier|final
 name|short
 name|bitCnt
 parameter_list|,
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -646,9 +668,11 @@ literal|8
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|blen
 expr_stmt|;
+block|}
 name|bits
 operator|=
 operator|new
@@ -667,6 +691,7 @@ name|length
 operator|<
 name|prefixLen
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -683,6 +708,7 @@ name|toString
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -725,9 +751,11 @@ specifier|public
 name|void
 name|setLevelId
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|levelId
 parameter_list|)
@@ -749,9 +777,11 @@ specifier|public
 name|void
 name|addLevelId
 parameter_list|(
+specifier|final
 name|int
 name|levelId
 parameter_list|,
+specifier|final
 name|boolean
 name|isSubLevel
 parameter_list|)
@@ -763,11 +793,13 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|setNextBit
 argument_list|(
 name|isSubLevel
 argument_list|)
 expr_stmt|;
+block|}
 name|setCurrentLevelId
 argument_list|(
 name|levelId
@@ -780,6 +812,7 @@ name|void
 name|incrementLevelId
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|last
 init|=
@@ -837,10 +870,12 @@ name|levelId
 operator|<
 literal|1
 condition|)
+block|{
 name|levelId
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|setCurrentLevelId
 argument_list|(
 name|levelId
@@ -849,6 +884,7 @@ expr_stmt|;
 comment|// after decrementing, the DLN may need less bytes
 comment|// than before. Remove the unused bytes, otherwise binary
 comment|// comparisons may get wrong.
+specifier|final
 name|int
 name|len
 init|=
@@ -871,9 +907,11 @@ literal|8
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|blen
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|blen
@@ -883,6 +921,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|nbits
@@ -923,6 +962,7 @@ name|int
 name|levelId
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|units
 init|=
@@ -931,6 +971,7 @@ argument_list|(
 name|levelId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|numBits
 init|=
@@ -945,6 +986,7 @@ name|units
 operator|>
 literal|1
 condition|)
+block|{
 name|levelId
 operator|-=
 name|PER_COMPONENT_SIZE
@@ -954,6 +996,7 @@ operator|-
 literal|2
 index|]
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -1023,6 +1066,7 @@ name|int
 name|startBit
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|units
 init|=
@@ -1037,6 +1081,7 @@ name|startBit
 operator|+=
 name|units
 expr_stmt|;
+specifier|final
 name|int
 name|numBits
 init|=
@@ -1113,6 +1158,7 @@ name|units
 operator|>
 literal|1
 condition|)
+block|{
 name|id
 operator|+=
 name|PER_COMPONENT_SIZE
@@ -1122,6 +1168,7 @@ operator|-
 literal|2
 index|]
 expr_stmt|;
+block|}
 return|return
 name|id
 return|;
@@ -1158,6 +1205,7 @@ parameter_list|(
 name|int
 name|startBit
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|bits
@@ -1209,6 +1257,7 @@ specifier|public
 name|boolean
 name|isLevelSeparator
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1245,6 +1294,7 @@ specifier|public
 name|int
 name|getLevelCount
 parameter_list|(
+specifier|final
 name|int
 name|startOffset
 parameter_list|)
@@ -1271,6 +1321,7 @@ operator|<=
 name|bitIndex
 condition|)
 block|{
+specifier|final
 name|int
 name|units
 init|=
@@ -1327,14 +1378,18 @@ operator|)
 operator|==
 name|LEVEL_SEPARATOR
 condition|)
+block|{
 operator|++
 name|count
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 operator|++
 name|count
 expr_stmt|;
+block|}
 block|}
 return|return
 name|count
@@ -1345,6 +1400,7 @@ specifier|public
 name|int
 name|getSubLevelCount
 parameter_list|(
+specifier|final
 name|int
 name|startOffset
 parameter_list|)
@@ -1371,6 +1427,7 @@ operator|<=
 name|bitIndex
 condition|)
 block|{
+specifier|final
 name|int
 name|units
 init|=
@@ -1430,12 +1487,16 @@ operator|)
 operator|==
 name|LEVEL_SEPARATOR
 condition|)
+block|{
 break|break;
 block|}
+block|}
 else|else
+block|{
 operator|++
 name|count
 expr_stmt|;
+block|}
 block|}
 return|return
 name|count
@@ -1571,16 +1632,19 @@ operator|)
 operator|==
 name|LEVEL_SEPARATOR
 condition|)
+block|{
 name|lastOffset
 operator|=
 name|bit
 operator|+
 literal|1
 expr_stmt|;
+block|}
 operator|++
 name|bit
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|units
 init|=
@@ -1635,11 +1699,14 @@ name|bit
 operator|>
 literal|0
 condition|)
+block|{
 name|lastOffset
 operator|=
 operator|++
 name|bit
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|units
 init|=
@@ -1671,6 +1738,7 @@ specifier|private
 name|void
 name|setNextBit
 parameter_list|(
+specifier|final
 name|boolean
 name|value
 parameter_list|)
@@ -1691,6 +1759,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|new_bits
@@ -1731,6 +1800,7 @@ if|if
 condition|(
 name|value
 condition|)
+block|{
 name|bits
 index|[
 name|bitIndex
@@ -1750,7 +1820,9 @@ operator|&
 literal|7
 operator|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|bits
 index|[
 name|bitIndex
@@ -1774,12 +1846,14 @@ operator|)
 operator|)
 expr_stmt|;
 block|}
+block|}
 comment|/**      * Calculates the number of bits available in a bit set      * that uses the given number of units. These are the bits      * that can be actually used for the id, not including the      * trailing address bits.      *       * @param units      * @return number of bits available      */
 specifier|protected
 specifier|static
 name|int
 name|bitWidth
 parameter_list|(
+specifier|final
 name|int
 name|units
 parameter_list|)
@@ -1800,6 +1874,7 @@ specifier|static
 name|int
 name|getUnitsRequired
 parameter_list|(
+specifier|final
 name|int
 name|levelId
 parameter_list|)
@@ -1830,11 +1905,13 @@ index|[
 name|i
 index|]
 condition|)
+block|{
 return|return
 name|i
 operator|+
 literal|1
 return|;
+block|}
 block|}
 comment|// can't happen
 throw|throw
@@ -1850,6 +1927,7 @@ name|void
 name|compact
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|units
 init|=
@@ -1872,9 +1950,12 @@ literal|8
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|blen
 expr_stmt|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|nbits
@@ -1911,10 +1992,12 @@ specifier|public
 name|void
 name|serialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -1942,13 +2025,16 @@ specifier|static
 name|int
 name|getLengthInBytes
 parameter_list|(
+specifier|final
 name|int
 name|units
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|startOffset
 parameter_list|)
@@ -1971,6 +2057,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|DLNBase
 name|other
 parameter_list|)
@@ -1983,9 +2070,11 @@ name|other
 operator|.
 name|bitIndex
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|Arrays
 operator|.
@@ -2024,13 +2113,16 @@ specifier|public
 name|int
 name|compareBits
 parameter_list|(
+specifier|final
 name|DLNBase
 name|other
 parameter_list|,
+specifier|final
 name|int
 name|bitCount
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|bytes
 init|=
@@ -2038,6 +2130,7 @@ name|bitCount
 operator|/
 literal|8
 decl_stmt|;
+specifier|final
 name|int
 name|remaining
 init|=
@@ -2074,6 +2167,7 @@ index|[
 name|i
 index|]
 condition|)
+block|{
 return|return
 operator|(
 name|bits
@@ -2095,6 +2189,7 @@ operator|&
 literal|0xFF
 operator|)
 return|;
+block|}
 block|}
 return|return
 operator|(
@@ -2129,6 +2224,7 @@ specifier|public
 name|boolean
 name|startsWith
 parameter_list|(
+specifier|final
 name|DLNBase
 name|other
 parameter_list|)
@@ -2141,9 +2237,12 @@ name|bitIndex
 operator|>
 name|bitIndex
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|int
 name|bytes
 init|=
@@ -2153,6 +2252,7 @@ name|bitIndex
 operator|/
 literal|8
 decl_stmt|;
+specifier|final
 name|int
 name|remaining
 init|=
@@ -2191,9 +2291,11 @@ index|[
 name|i
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 operator|(
@@ -2228,6 +2330,7 @@ name|String
 name|debug
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2295,6 +2398,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2349,6 +2453,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2356,7 +2461,9 @@ argument_list|(
 literal|'.'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -2365,6 +2472,8 @@ literal|'/'
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|int
 name|id
 init|=
@@ -2402,6 +2511,7 @@ name|String
 name|toBitString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2409,6 +2519,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -2467,7 +2578,6 @@ block|}
 decl_stmt|;
 comment|/**      * Returns a string showing the bit representation      * of the given byte.      *       * @param b the byte to display      * @return string representation      */
 specifier|public
-specifier|final
 specifier|static
 name|String
 name|toBitString
@@ -2476,6 +2586,7 @@ name|byte
 name|b
 parameter_list|)
 block|{
+specifier|final
 name|char
 index|[]
 name|buf
@@ -2491,11 +2602,13 @@ name|charPos
 init|=
 literal|8
 decl_stmt|;
+specifier|final
 name|int
 name|radix
 init|=
 literal|2
 decl_stmt|;
+specifier|final
 name|int
 name|mask
 init|=
