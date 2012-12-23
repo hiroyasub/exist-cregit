@@ -397,7 +397,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|writer
+name|getWriter
+argument_list|()
 operator|.
 name|write
 argument_list|(
@@ -411,7 +412,8 @@ name|root
 operator|.
 name|serialize
 argument_list|(
-name|writer
+name|getWriter
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
@@ -423,7 +425,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|writer
+name|getWriter
+argument_list|()
 operator|.
 name|write
 argument_list|(

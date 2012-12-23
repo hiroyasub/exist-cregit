@@ -429,6 +429,7 @@ block|}
 specifier|public
 name|HTML5Writer
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -445,6 +446,7 @@ specifier|protected
 name|void
 name|writeDoctype
 parameter_list|(
+specifier|final
 name|String
 name|rootElement
 parameter_list|)
@@ -455,7 +457,9 @@ if|if
 condition|(
 name|doctypeWritten
 condition|)
+block|{
 return|return;
+block|}
 name|documentType
 argument_list|(
 name|rootElement
@@ -476,9 +480,11 @@ specifier|protected
 name|boolean
 name|isInlineTag
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|)
@@ -498,6 +504,7 @@ specifier|protected
 name|boolean
 name|needsEscape
 parameter_list|(
+specifier|final
 name|char
 name|ch
 parameter_list|)
@@ -511,6 +518,7 @@ argument_list|(
 name|currentTag
 argument_list|)
 condition|)
+block|{
 return|return
 operator|!
 operator|(
@@ -527,6 +535,7 @@ operator|==
 literal|'&'
 operator|)
 return|;
+block|}
 return|return
 name|super
 operator|.

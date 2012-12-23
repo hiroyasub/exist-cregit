@@ -157,6 +157,7 @@ specifier|public
 name|void
 name|setWriter
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -188,12 +189,15 @@ specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -212,9 +216,11 @@ argument_list|,
 name|localName
 argument_list|)
 condition|)
+block|{
 name|indent
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|startElement
@@ -245,6 +251,7 @@ specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -269,9 +276,11 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|indent
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|startElement
@@ -298,12 +307,15 @@ specifier|public
 name|void
 name|endElement
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -328,9 +340,11 @@ argument_list|,
 name|localName
 argument_list|)
 condition|)
+block|{
 name|indent
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|endElement
@@ -358,6 +372,7 @@ specifier|public
 name|void
 name|endElement
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -388,9 +403,11 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|indent
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|endElement
@@ -420,6 +437,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+specifier|final
 name|int
 name|start
 init|=
@@ -446,8 +464,10 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
 comment|// whitespace only: skip
+block|}
 if|if
 condition|(
 name|start
@@ -530,6 +550,7 @@ specifier|public
 name|void
 name|comment
 parameter_list|(
+specifier|final
 name|CharSequence
 name|data
 parameter_list|)
@@ -555,9 +576,11 @@ specifier|public
 name|void
 name|processingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -584,12 +607,15 @@ specifier|public
 name|void
 name|documentType
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -614,6 +640,7 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
+comment|//TODO This should probably be System.getProperty(:line.separator") //???
 name|sameline
 operator|=
 literal|false
@@ -626,6 +653,7 @@ specifier|public
 name|void
 name|setOutputProperties
 parameter_list|(
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -637,6 +665,7 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|option
 init|=
@@ -694,9 +723,11 @@ specifier|protected
 name|boolean
 name|isInlineTag
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|)
@@ -717,7 +748,10 @@ condition|(
 operator|!
 name|indent
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|spaces
 init|=
@@ -734,10 +768,12 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|indentChars
 operator|+=
 name|indentChars
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|characters
@@ -769,6 +805,7 @@ specifier|static
 name|boolean
 name|isWhiteSpace
 parameter_list|(
+specifier|final
 name|char
 name|ch
 parameter_list|)
