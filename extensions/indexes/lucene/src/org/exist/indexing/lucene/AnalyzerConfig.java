@@ -254,6 +254,14 @@ init|=
 literal|"class"
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|PARAM_VALUE_ENTRY
+init|=
+literal|"value"
+decl_stmt|;
+specifier|private
 name|Map
 argument_list|<
 name|String
@@ -1073,7 +1081,7 @@ name|attrs
 operator|.
 name|getNamedItem
 argument_list|(
-literal|"value"
+name|PARAM_VALUE_ENTRY
 argument_list|)
 operator|!=
 literal|null
@@ -1085,7 +1093,7 @@ name|attrs
 operator|.
 name|getNamedItem
 argument_list|(
-literal|"value"
+name|PARAM_VALUE_ENTRY
 argument_list|)
 operator|.
 name|getNodeValue
@@ -1580,7 +1588,7 @@ name|CollectionConfiguration
 operator|.
 name|NAMESPACE
 argument_list|,
-literal|"value"
+name|PARAM_VALUE_ENTRY
 argument_list|)
 decl_stmt|;
 for|for

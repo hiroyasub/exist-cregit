@@ -1252,6 +1252,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|namedIndexes
 operator|.
 name|put
@@ -1264,6 +1265,7 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
+block|}
 comment|// register index either by QName or path
 if|if
 condition|(
@@ -1308,6 +1310,7 @@ name|idxConf
 operator|==
 literal|null
 condition|)
+block|{
 name|paths
 operator|.
 name|put
@@ -1323,7 +1326,9 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|idxConf
 operator|.
 name|add
@@ -1331,6 +1336,7 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -1372,6 +1378,7 @@ name|inlineNodes
 operator|==
 literal|null
 condition|)
+block|{
 name|inlineNodes
 operator|=
 operator|new
@@ -1381,6 +1388,7 @@ name|QName
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|inlineNodes
 operator|.
 name|add
@@ -1428,6 +1436,7 @@ name|ignoreNodes
 operator|==
 literal|null
 condition|)
+block|{
 name|ignoreNodes
 operator|=
 operator|new
@@ -1437,6 +1446,7 @@ name|QName
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|ignoreNodes
 operator|.
 name|add
