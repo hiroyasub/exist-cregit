@@ -428,6 +428,26 @@ name|key
 argument_list|)
 return|;
 block|}
+specifier|public
+name|void
+name|delete
+parameter_list|(
+name|String
+name|key
+parameter_list|)
+block|{
+name|MetaDataImpl
+operator|.
+name|_
+operator|.
+name|delMeta
+argument_list|(
+name|uuid
+argument_list|,
+name|key
+argument_list|)
+expr_stmt|;
+block|}
 specifier|protected
 name|void
 name|update
@@ -536,6 +556,21 @@ block|}
 comment|//	public EntityCursor<MetaImpl> keys() {
 comment|//		return MetaDataImpl._.getMetaKeys(this);
 comment|//	}
+specifier|public
+name|void
+name|delete
+parameter_list|()
+block|{
+name|MetaDataImpl
+operator|.
+name|_
+operator|.
+name|delMetas
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|void
 name|restore

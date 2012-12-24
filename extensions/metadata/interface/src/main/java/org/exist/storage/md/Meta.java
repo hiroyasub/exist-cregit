@@ -44,6 +44,11 @@ name|String
 name|getObject
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|delete
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

@@ -375,6 +375,23 @@ return|return
 name|object
 return|;
 block|}
+specifier|public
+name|void
+name|delete
+parameter_list|()
+block|{
+name|MetaDataImpl
+operator|.
+name|_
+operator|.
+name|delMeta
+argument_list|(
+name|object
+argument_list|,
+name|key
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

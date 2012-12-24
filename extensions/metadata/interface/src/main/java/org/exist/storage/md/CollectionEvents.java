@@ -247,17 +247,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"beforeCreateCollection "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("beforeCreateCollection "+uri);
 block|}
 annotation|@
 name|Override
@@ -277,20 +267,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterCreateCollection "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterCreateCollection "+collection.getURI());
 try|try
 block|{
 name|MDStorageManager
@@ -365,20 +342,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterCopyCollection "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterCopyCollection "+collection.getURI());
 try|try
 block|{
 name|MDStorageManager
@@ -433,20 +397,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"beforeMoveCollection "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("beforeMoveCollection "+collection.getURI());
 try|try
 block|{
 for|for
@@ -549,24 +500,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterMoveCollection "
-operator|+
-name|oldUri
-operator|+
-literal|" to "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterMoveCollection "+oldUri+" to "+collection.getURI());
 name|MDStorageManager
 operator|.
 name|_
@@ -757,20 +691,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"beforeDeleteCollection "
-operator|+
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("beforeDeleteCollection "+collection.getURI());
 try|try
 block|{
 name|deleteCollectionRecursive
@@ -814,17 +735,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"afterDeleteCollection "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
+comment|//		System.out.println("afterDeleteCollection "+uri);
 try|try
 block|{
 name|MDStorageManager
