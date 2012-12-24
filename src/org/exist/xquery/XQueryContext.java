@@ -1058,6 +1058,22 @@ name|HTTP_SESSIONVAR_XMLDB_USER
 init|=
 literal|"_eXist_xmldb_user"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|HTTP_REQ_ATTR_USER
+init|=
+literal|"xquery.user"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|HTTP_REQ_ATTR_PASS
+init|=
+literal|"xquery.password"
+decl_stmt|;
 comment|// Static namespace/prefix mappings
 specifier|protected
 name|HashMap
@@ -8142,7 +8158,7 @@ name|req
 operator|.
 name|getAttribute
 argument_list|(
-literal|"xquery.user"
+name|HTTP_REQ_ATTR_USER
 argument_list|)
 decl_stmt|;
 name|Object
@@ -8152,7 +8168,7 @@ name|req
 operator|.
 name|getAttribute
 argument_list|(
-literal|"xquery.password"
+name|HTTP_REQ_ATTR_PASS
 argument_list|)
 decl_stmt|;
 if|if
@@ -8221,6 +8237,10 @@ block|}
 block|}
 else|else
 block|{
+return|return
+operator|(
+name|Subject
+operator|)
 name|req
 operator|.
 name|getSession
@@ -8230,7 +8250,7 @@ name|getAttribute
 argument_list|(
 name|HTTP_SESSIONVAR_XMLDB_USER
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 block|}
 block|}
