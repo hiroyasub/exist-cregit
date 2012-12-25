@@ -393,9 +393,11 @@ decl_stmt|;
 specifier|public
 name|GroupMembershipFunctions
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -414,10 +416,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -431,6 +435,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
+specifier|final
 name|String
 name|groupName
 init|=
@@ -447,6 +452,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SecurityManager
 name|manager
 init|=
@@ -474,6 +480,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Group
 name|group
 init|=
@@ -484,6 +491,7 @@ argument_list|(
 name|groupName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -493,6 +501,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Account
 name|groupManager
 range|:
@@ -533,6 +542,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -546,6 +556,7 @@ argument_list|(
 name|groupName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -555,6 +566,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|groupMember
 range|:
@@ -581,6 +593,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
