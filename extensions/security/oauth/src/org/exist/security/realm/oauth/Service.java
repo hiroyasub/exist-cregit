@@ -314,7 +314,7 @@ if|if
 condition|(
 name|provider
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"facebook"
 argument_list|)
@@ -328,7 +328,7 @@ if|else if
 condition|(
 name|provider
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"google"
 argument_list|)
@@ -379,7 +379,7 @@ if|if
 condition|(
 name|provider
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"facebook"
 argument_list|)
@@ -399,7 +399,7 @@ if|else if
 condition|(
 name|provider
 operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"google"
 argument_list|)
