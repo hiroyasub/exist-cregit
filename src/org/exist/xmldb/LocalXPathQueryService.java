@@ -1891,6 +1891,21 @@ argument_list|(
 name|moduleLoadPath
 argument_list|)
 expr_stmt|;
+else|else
+name|context
+operator|.
+name|setModuleLoadPath
+argument_list|(
+name|XmldbURI
+operator|.
+name|EMBEDDED_SERVER_URI_PREFIX
+operator|+
+name|collection
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// declare namespace/prefix mappings
 for|for
 control|(
