@@ -1366,10 +1366,13 @@ throws|throws
 name|XPathException
 block|{
 comment|//final String dependantModule = XmldbURI.create(moduleLoadPath).append(location).toString();
-specifier|final
 name|String
 name|dependantModule
-init|=
+decl_stmt|;
+try|try
+block|{
+name|dependantModule
+operator|=
 name|XmldbURI
 operator|.
 name|create
@@ -1379,6 +1382,8 @@ argument_list|()
 operator|.
 name|getModuleLoadPath
 argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 operator|.
 name|append
@@ -1388,7 +1393,19 @@ argument_list|)
 operator|.
 name|toString
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|ex
+parameter_list|)
+block|{
+name|dependantModule
+operator|=
+name|location
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|e
