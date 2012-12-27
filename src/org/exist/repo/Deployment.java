@@ -1500,6 +1500,13 @@ argument_list|(
 name|packageDir
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|repoXML
+operator|!=
+literal|null
+condition|)
+block|{
 name|ElementImpl
 name|target
 init|=
@@ -1616,6 +1623,10 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+return|return
+literal|null
+return|;
 block|}
 specifier|public
 name|String
