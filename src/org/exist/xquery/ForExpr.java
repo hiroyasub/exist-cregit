@@ -307,28 +307,38 @@ comment|//            groupVar.setSequenceType(sequenceType);
 comment|//            context.declareVariableBinding(groupVar);
 comment|//        }
 comment|// bv : Declare grouping key variable(s)
+comment|//        if (groupBy!= null){
+comment|//            for (int i=0;i<groupBy.length;i++){
+comment|//                LocalVariable groupKeyVar = new LocalVariable(QName.parse(context,
+comment|//                    groupBy[i].getKeyVarName(),null));
+comment|//                groupKeyVar.setSequenceType(sequenceType);
+comment|//                context.declareVariableBinding(groupKeyVar);
+comment|//            }
+comment|//        }
+comment|// Save the local variable stack
+name|LocalVariable
+name|mark
+init|=
+name|context
+operator|.
+name|markLocalVariables
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
-name|groupBy
+name|groupSpecs
 operator|!=
 literal|null
 condition|)
 block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|groupBy
-operator|.
-name|length
-condition|;
-name|i
-operator|++
+name|GroupSpec
+name|spec
+range|:
+name|groupSpecs
 control|)
 block|{
 name|LocalVariable
@@ -343,15 +353,10 @@ name|parse
 argument_list|(
 name|context
 argument_list|,
-name|groupBy
-index|[
-name|i
-index|]
+name|spec
 operator|.
 name|getKeyVarName
 argument_list|()
-argument_list|,
-literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -371,17 +376,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Save the local variable stack
-name|LocalVariable
-name|mark
-init|=
-name|context
-operator|.
-name|markLocalVariables
-argument_list|(
-literal|false
-argument_list|)
-decl_stmt|;
 try|try
 block|{
 name|contextInfo
@@ -667,37 +661,27 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|groupBy
+name|groupSpecs
 operator|!=
 literal|null
 condition|)
 block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|groupBy
-operator|.
-name|length
-condition|;
-name|i
-operator|++
+name|GroupSpec
+name|spec
+range|:
+name|groupSpecs
 control|)
-name|groupBy
-index|[
-name|i
-index|]
+block|{
+name|spec
 operator|.
 name|analyze
 argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|returnExpr
 operator|.
