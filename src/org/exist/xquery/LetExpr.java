@@ -991,6 +991,13 @@ block|}
 comment|//Check if we can speed up the processing of the "order by" clause.
 name|fastOrderBy
 operator|=
+operator|!
+operator|(
+name|in
+operator|instanceof
+name|DeferredFunctionCall
+operator|)
+operator|&&
 name|in
 operator|.
 name|isPersistentSet
@@ -1729,6 +1736,15 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+if|if
+condition|(
+operator|!
+operator|(
+name|resultSequence
+operator|instanceof
+name|DeferredFunctionCall
+operator|)
+condition|)
 name|actualReturnType
 operator|=
 name|resultSequence
