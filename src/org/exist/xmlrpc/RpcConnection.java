@@ -9929,6 +9929,13 @@ operator|.
 name|getDefaultGroup
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dg
+operator|!=
+literal|null
+condition|)
+block|{
 name|tab
 operator|.
 name|put
@@ -9965,6 +9972,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|tab
 operator|.
 name|put
