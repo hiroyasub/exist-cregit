@@ -830,7 +830,7 @@ expr_stmt|;
 comment|// store meta data into database
 name|broker
 operator|.
-name|storeXMLResource
+name|storeMetadata
 argument_list|(
 name|txn
 argument_list|,
