@@ -1381,6 +1381,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+comment|// signal status
 name|broker
 operator|.
 name|getBrokerPool
@@ -1393,6 +1394,22 @@ operator|+
 name|pkg
 operator|.
 name|getAbbrev
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|repo
+operator|.
+name|reportAction
+argument_list|(
+name|ExistRepository
+operator|.
+name|Action
+operator|.
+name|INSTALL
+argument_list|,
+name|pkg
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
