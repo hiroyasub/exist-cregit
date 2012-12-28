@@ -827,6 +827,17 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// store meta data into database
+name|broker
+operator|.
+name|storeXMLResource
+argument_list|(
+name|txn
+argument_list|,
+name|doc
+argument_list|)
+expr_stmt|;
+comment|// commit changes
 name|txnManager
 operator|.
 name|commit
