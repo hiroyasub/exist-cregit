@@ -327,6 +327,13 @@ argument_list|)
 expr_stmt|;
 name|dashboardButton
 operator|.
+name|setEnabled
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|dashboardButton
+operator|.
 name|addActionListener
 argument_list|(
 operator|new
@@ -370,6 +377,13 @@ argument_list|,
 literal|"exide.png"
 argument_list|,
 literal|"eXide"
+argument_list|)
+expr_stmt|;
+name|eXideButton
+operator|.
+name|setEnabled
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 name|eXideButton
