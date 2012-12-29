@@ -596,7 +596,7 @@ literal|"grammar"
 argument_list|,
 name|Type
 operator|.
-name|ANY_URI
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -608,7 +608,9 @@ literal|"a collection (path ends with '/') or a grammar document. "
 operator|+
 literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
 operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". The parameter can be passed as an xs:anyURI or a"
+operator|+
+literal|"document node."
 argument_list|)
 block|}
 argument_list|,
