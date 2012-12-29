@@ -4834,10 +4834,6 @@ literal|"java.util.List"
 argument_list|)
 condition|)
 block|{
-name|simple
-operator|=
-literal|false
-expr_stmt|;
 name|serializeList
 argument_list|(
 name|instance
@@ -4847,6 +4843,7 @@ argument_list|,
 name|serializer
 argument_list|)
 expr_stmt|;
+continue|continue;
 block|}
 if|else if
 condition|(
@@ -4863,10 +4860,6 @@ name|class
 argument_list|)
 condition|)
 block|{
-name|simple
-operator|=
-literal|false
-expr_stmt|;
 specifier|final
 name|Configurable
 name|subInstance
@@ -4888,6 +4881,7 @@ argument_list|,
 name|serializer
 argument_list|)
 expr_stmt|;
+continue|continue;
 block|}
 if|else if
 condition|(
@@ -4927,6 +4921,7 @@ argument_list|,
 name|serializer
 argument_list|)
 expr_stmt|;
+continue|continue;
 block|}
 else|else
 block|{
