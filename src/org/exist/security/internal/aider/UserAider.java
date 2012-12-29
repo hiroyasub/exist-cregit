@@ -173,6 +173,18 @@ begin_comment
 comment|/**  * Account details.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
+begin_comment
+comment|//TODO UserAider (and all *Aider classes) is evil and must be destroyed. Its too easy to use a UserAider to securityManager.updateAccount
+end_comment
+
+begin_comment
+comment|//and it turns out you have forgotten to set some property of the account and so it is removed from the configuration
+end_comment
+
+begin_comment
+comment|//Note by Adam Retter 2012-12-29
+end_comment
+
 begin_class
 specifier|public
 class|class
