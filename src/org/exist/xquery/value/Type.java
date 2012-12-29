@@ -1954,6 +1954,7 @@ specifier|static
 name|int
 name|getSuperType
 parameter_list|(
+specifier|final
 name|int
 name|subtype
 parameter_list|)
@@ -1968,9 +1969,12 @@ name|subtype
 operator|==
 name|NODE
 condition|)
+block|{
 return|return
 name|ITEM
 return|;
+block|}
+specifier|final
 name|int
 name|supertype
 init|=
@@ -1990,7 +1994,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"no supertype for "
+literal|"eXist does not define a super-type for the sub-type "
 operator|+
 name|getTypeName
 argument_list|(
