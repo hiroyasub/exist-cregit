@@ -725,6 +725,21 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EOL
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|,
+literal|"\n"
+argument_list|)
+decl_stmt|;
 specifier|protected
 specifier|static
 name|ConcurrentMap
@@ -2025,7 +2040,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Configuration error: \n"
+literal|"Configuration error: "
+operator|+
+name|EOL
 operator|+
 literal|" config: "
 operator|+
@@ -2034,13 +2051,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"\n"
+name|EOL
 operator|+
 literal|" property: "
 operator|+
 name|property
 operator|+
-literal|"\n"
+name|EOL
 operator|+
 literal|" message: "
 operator|+
@@ -3691,16 +3708,17 @@ name|serializer
 operator|.
 name|characters
 argument_list|(
-operator|new
-name|char
-index|[]
-block|{
-literal|'\n'
-block|}
+name|EOL
+operator|.
+name|toCharArray
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-literal|1
+name|EOL
+operator|.
+name|length
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|serializer
@@ -3998,16 +4016,17 @@ name|serializer
 operator|.
 name|characters
 argument_list|(
-operator|new
-name|char
-index|[]
-block|{
-literal|'\n'
-block|}
+name|EOL
+operator|.
+name|toCharArray
+argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-literal|1
+name|EOL
+operator|.
+name|length
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|serializer
@@ -4381,15 +4400,18 @@ specifier|static
 name|void
 name|serialize
 parameter_list|(
+specifier|final
 name|Configurable
 name|instance
 parameter_list|,
+specifier|final
 name|SAXSerializer
 name|serializer
 parameter_list|)
 throws|throws
 name|ConfigurationException
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -4425,6 +4447,7 @@ block|{
 return|return;
 comment|//UNDERSTAND: throw exception
 block|}
+specifier|final
 name|String
 name|configName
 init|=
@@ -4443,6 +4466,7 @@ decl_stmt|;
 try|try
 block|{
 comment|//open tag
+specifier|final
 name|QName
 name|qnConfig
 init|=
@@ -4471,6 +4495,7 @@ init|=
 literal|true
 decl_stmt|;
 comment|//store field's values as attributes or elements depends on annotation
+specifier|final
 name|AFields
 name|annotatedFields
 init|=
@@ -4487,6 +4512,7 @@ block|{
 comment|//pass one - extract just attributes
 for|for
 control|(
+specifier|final
 name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
@@ -4547,6 +4573,7 @@ block|{
 continue|continue;
 block|}
 comment|//now we just have attributes
+specifier|final
 name|String
 name|value
 init|=
@@ -4582,6 +4609,7 @@ block|}
 comment|//pass two - just elements or text nodes
 for|for
 control|(
+specifier|final
 name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
@@ -4691,6 +4719,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|tagName
 init|=
@@ -4715,6 +4744,7 @@ name|referenceBy
 operator|!=
 literal|null
 condition|)
+block|{
 name|comment
 operator|+=
 literal|" "
@@ -4723,7 +4753,9 @@ name|referenceBy
 operator|+
 literal|"=\"\"/>"
 expr_stmt|;
+block|}
 else|else
+block|{
 name|comment
 operator|+=
 literal|"></"
@@ -4732,6 +4764,25 @@ name|tagName
 operator|+
 literal|">"
 expr_stmt|;
+block|}
+name|serializer
+operator|.
+name|characters
+argument_list|(
+name|EOL
+operator|.
+name|toCharArray
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|EOL
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+specifier|final
 name|char
 index|[]
 name|ch
@@ -4741,22 +4792,6 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-name|serializer
-operator|.
-name|characters
-argument_list|(
-operator|new
-name|char
-index|[]
-block|{
-literal|'\n'
-block|}
-argument_list|,
-literal|0
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
 name|serializer
 operator|.
 name|comment
@@ -4777,6 +4812,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|typeName
 init|=
@@ -4831,6 +4867,7 @@ name|simple
 operator|=
 literal|false
 expr_stmt|;
+specifier|final
 name|Configurable
 name|subInstance
 init|=
@@ -4949,6 +4986,7 @@ condition|(
 name|simple
 condition|)
 block|{
+specifier|final
 name|QName
 name|qnSimple
 init|=
@@ -5017,6 +5055,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|tagName
 init|=
@@ -5041,6 +5080,7 @@ name|referenceBy
 operator|!=
 literal|null
 condition|)
+block|{
 name|comment
 operator|+=
 literal|" "
@@ -5049,7 +5089,9 @@ name|referenceBy
 operator|+
 literal|"=\"\"/>"
 expr_stmt|;
+block|}
 else|else
+block|{
 name|comment
 operator|+=
 literal|"></"
@@ -5058,6 +5100,25 @@ name|tagName
 operator|+
 literal|">"
 expr_stmt|;
+block|}
+name|serializer
+operator|.
+name|characters
+argument_list|(
+name|EOL
+operator|.
+name|toCharArray
+argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+name|EOL
+operator|.
+name|length
+argument_list|()
+argument_list|)
+expr_stmt|;
+specifier|final
 name|char
 index|[]
 name|ch
@@ -5067,22 +5128,6 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-name|serializer
-operator|.
-name|characters
-argument_list|(
-operator|new
-name|char
-index|[]
-block|{
-literal|'\n'
-block|}
-argument_list|,
-literal|0
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
 name|serializer
 operator|.
 name|comment
@@ -5101,6 +5146,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -5120,6 +5166,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -5148,6 +5195,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
