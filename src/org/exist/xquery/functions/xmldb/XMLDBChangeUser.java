@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SchemaType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|internal
 operator|.
 name|aider
@@ -609,6 +621,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -624,6 +637,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|oldUser
 init|=
@@ -666,6 +680,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|UserAider
 name|user
 init|=
@@ -676,8 +691,65 @@ name|oldUser
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+name|oldUser
+operator|.
+name|getPrimaryGroup
+argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//dont forget to set the default group
+comment|//copy the umask
+name|user
+operator|.
+name|setUserMask
+argument_list|(
+name|oldUser
+operator|.
+name|getUserMask
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//copy the metadata
+for|for
+control|(
+specifier|final
+name|SchemaType
+name|key
+range|:
+name|oldUser
+operator|.
+name|getMetadataKeys
+argument_list|()
+control|)
+block|{
+name|user
+operator|.
+name|setMetadataValue
+argument_list|(
+name|key
+argument_list|,
+name|oldUser
+operator|.
+name|getMetadataValue
+argument_list|(
+name|key
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|//copy the status
+name|user
+operator|.
+name|setEnabled
+argument_list|(
+name|oldUser
+operator|.
+name|isEnabled
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//change the password?
 if|if
 condition|(
 operator|!
@@ -729,6 +801,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|//change the groups?
 if|if
 condition|(
 operator|!
@@ -744,6 +817,7 @@ block|{
 comment|// set groups
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -800,6 +874,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -848,11 +923,18 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
-name|e
+name|xmldbe
 parameter_list|)
 block|{
-comment|/* ignore */
+name|logger
+operator|.
+name|warn
+argument_list|(
+name|xmldbe
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
