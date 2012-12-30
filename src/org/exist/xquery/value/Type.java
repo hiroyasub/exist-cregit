@@ -2037,6 +2037,30 @@ condition|)
 return|return
 name|type1
 return|;
+comment|// if one of the types is empty(), return the other type: optimizer is free to choose
+comment|// an optimization based on the more specific type.
+if|if
+condition|(
+name|type1
+operator|==
+name|Type
+operator|.
+name|EMPTY
+condition|)
+return|return
+name|type2
+return|;
+if|else if
+condition|(
+name|type2
+operator|==
+name|Type
+operator|.
+name|EMPTY
+condition|)
+return|return
+name|type1
+return|;
 comment|//TODO : optimize by swapping the arguments based on their numeric values ?
 comment|//Processing lower value first *should* reduce the size of the Set
 comment|//Collect type1's super-types
