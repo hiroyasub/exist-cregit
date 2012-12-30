@@ -292,29 +292,45 @@ specifier|private
 specifier|static
 specifier|final
 name|String
-name|deprecated1
+name|CONVENIENCE
 init|=
-literal|"Use the validation:jaxp-parse(), "
+literal|"This is the original and oldest validation "
 operator|+
-literal|"validation:jaxv() or validation:jing() functions."
+literal|"function of eXist-db. It basically wraps the jing library for .rnc/.rnc/.sch/.nvdl "
+operator|+
+literal|"grammar files and uses the jaxp functionality otherwise. "
 decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|deprecated2
+name|DEPRECATED_1
 init|=
-literal|"Use the validation:jaxp-parse-report(), "
+name|CONVENIENCE
 operator|+
-literal|"validation:jaxv-report() or validation:jing-report() functions."
+literal|"It is recommended to use the validation:jaxp-parse(), "
+operator|+
+literal|"validation:jaxv() or validation:jing() functions instead."
 decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|simpleFunctionTxt
+name|DEPRECATED_2
 init|=
-literal|"Validate xml. "
+name|CONVENIENCE
+operator|+
+literal|"It is recommended to use the validation:jaxp-parse-report(), "
+operator|+
+literal|"validation:jaxv-report() or validation:jing-report() functions instead."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FUNCTION_TEXT
+init|=
+literal|"Validate XML. "
 operator|+
 literal|"The grammar files (DTD, XML Schema) are resolved using the global "
 operator|+
@@ -324,9 +340,41 @@ specifier|private
 specifier|static
 specifier|final
 name|String
-name|extendedFunctionTxt
+name|EXTENDED_FUNCTION_TEXT
 init|=
-literal|"Validate document by using a specific grammar."
+literal|"Validate XML by using a specific grammar."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|GRAMMAR_DESCRIPTION
+init|=
+literal|"The reference to an OASIS catalog file (.xml), "
+operator|+
+literal|"a collection (path ends with '/') or a grammar document. "
+operator|+
+literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
+operator|+
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". The parameter can be passed as an xs:anyURI or a"
+operator|+
+literal|"document node."
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|INSTANCE_DESCRIPTION
+init|=
+literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|XML_REPORT_RETURN
+init|=
+literal|" An XML report is returned."
 decl_stmt|;
 specifier|private
 specifier|final
@@ -364,7 +412,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|simpleFunctionTxt
+name|FUNCTION_TEXT
 argument_list|,
 operator|new
 name|SequenceType
@@ -383,7 +431,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|INSTANCE_DESCRIPTION
 argument_list|)
 block|}
 argument_list|,
@@ -403,7 +451,7 @@ operator|.
 name|simplereportText
 argument_list|)
 argument_list|,
-name|deprecated1
+name|DEPRECATED_1
 argument_list|)
 block|,
 operator|new
@@ -423,7 +471,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|extendedFunctionTxt
+name|EXTENDED_FUNCTION_TEXT
 argument_list|,
 operator|new
 name|SequenceType
@@ -442,7 +490,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|INSTANCE_DESCRIPTION
 argument_list|)
 block|,
 operator|new
@@ -458,13 +506,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The reference to an OASIS catalog file (.xml), "
-operator|+
-literal|"a collection (path ends with '/') or a grammar document. "
-operator|+
-literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
-operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\"."
+name|GRAMMAR_DESCRIPTION
 argument_list|)
 block|}
 argument_list|,
@@ -484,7 +526,7 @@ operator|.
 name|simplereportText
 argument_list|)
 argument_list|,
-name|deprecated1
+name|DEPRECATED_1
 argument_list|)
 block|,
 operator|new
@@ -504,9 +546,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|simpleFunctionTxt
+name|FUNCTION_TEXT
 operator|+
-literal|" An  xml report is returned."
+name|XML_REPORT_RETURN
 argument_list|,
 operator|new
 name|SequenceType
@@ -525,7 +567,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|INSTANCE_DESCRIPTION
 argument_list|)
 block|}
 argument_list|,
@@ -545,7 +587,7 @@ operator|.
 name|xmlreportText
 argument_list|)
 argument_list|,
-name|deprecated2
+name|DEPRECATED_2
 argument_list|)
 block|,
 operator|new
@@ -565,9 +607,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-name|extendedFunctionTxt
+name|EXTENDED_FUNCTION_TEXT
 operator|+
-literal|" An xml report is returned."
+name|XML_REPORT_RETURN
 argument_list|,
 operator|new
 name|SequenceType
@@ -586,7 +628,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The document referenced as xs:anyURI or a node (element or returned by fn:doc())"
+name|INSTANCE_DESCRIPTION
 argument_list|)
 block|,
 operator|new
@@ -602,15 +644,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The reference to an OASIS catalog file (.xml), "
-operator|+
-literal|"a collection (path ends with '/') or a grammar document. "
-operator|+
-literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
-operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". The parameter can be passed as an xs:anyURI or a"
-operator|+
-literal|"document node."
+name|GRAMMAR_DESCRIPTION
 argument_list|)
 block|}
 argument_list|,
@@ -630,7 +664,7 @@ operator|.
 name|xmlreportText
 argument_list|)
 argument_list|,
-name|deprecated2
+name|DEPRECATED_2
 argument_list|)
 block|}
 decl_stmt|;
