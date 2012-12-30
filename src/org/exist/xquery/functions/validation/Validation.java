@@ -356,7 +356,7 @@ literal|"a collection (path ends with '/') or a grammar document. "
 operator|+
 literal|"Supported grammar documents extensions are \".dtd\" \".xsd\" "
 operator|+
-literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". The parameter can be passed as an xs:anyURI or a"
+literal|"\".rng\" \".rnc\" \".sch\" and \".nvdl\". The parameter can be passed as an xs:anyURI or a "
 operator|+
 literal|"document node."
 decl_stmt|;
