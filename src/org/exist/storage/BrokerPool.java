@@ -3780,9 +3780,6 @@ argument_list|(
 name|this
 operator|.
 name|conf
-operator|.
-name|getExistHome
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
