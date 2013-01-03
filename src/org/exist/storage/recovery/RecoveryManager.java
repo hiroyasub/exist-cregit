@@ -800,11 +800,6 @@ literal|"Database is in clean state."
 argument_list|)
 expr_stmt|;
 block|}
-name|cleanDirectory
-argument_list|(
-name|files
-argument_list|)
-expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -812,6 +807,14 @@ name|reader
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+comment|// remove .log files from directory even if recovery failed.
+comment|// Re-applying them on a second start up attempt would definitely damage the db, so we better
+comment|// delete them before user tries to launch again.
+name|cleanDirectory
+argument_list|(
+name|files
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1090,7 +1093,9 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Exception caught while redoing transactions. Aborting recovery."
+literal|"Exception caught while redoing transactions. Aborting recovery to avoid possible damage. "
+operator|+
+literal|"Before starting again, make sure to run a check via the emergency export tool."
 argument_list|,
 name|e
 argument_list|)
@@ -1117,7 +1122,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Recovery aborted"
+literal|"Recovery aborted. "
 argument_list|)
 throw|;
 block|}
@@ -1309,6 +1314,10 @@ name|runningTxns
 operator|.
 name|size
 argument_list|()
+operator|+
+literal|". Aborting recovery to avoid possible damage. "
+operator|+
+literal|"Before starting again, make sure to run a check via the emergency export tool."
 argument_list|,
 name|e
 argument_list|)
