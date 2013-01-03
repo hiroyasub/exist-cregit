@@ -1275,9 +1275,8 @@ specifier|final
 name|String
 name|ENCODING
 init|=
-literal|"ISO-8859-1"
+literal|"UTF-8"
 decl_stmt|;
-comment|//TODO this should probably be UTF-8?
 specifier|protected
 specifier|static
 specifier|final
