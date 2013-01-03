@@ -1194,6 +1194,19 @@ name|ANSI_WHITE
 init|=
 literal|"\033[0;37m"
 decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EOL
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
+decl_stmt|;
 comment|// properties
 comment|// keys
 specifier|public
@@ -1781,7 +1794,9 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"\n--- search commands ---"
+name|EOL
+operator|+
+literal|"--- search commands ---"
 argument_list|)
 expr_stmt|;
 name|messageln
@@ -1796,7 +1811,9 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"\n--- user management (may require dba rights) ---"
+name|EOL
+operator|+
+literal|"--- user management (may require dba rights) ---"
 argument_list|)
 expr_stmt|;
 name|messageln
@@ -4228,7 +4245,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|'\n'
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -5240,7 +5257,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nentered passwords differ. Try again..."
+name|EOL
+operator|+
+literal|"entered passwords differ. Try again..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -5696,7 +5715,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nentered passwords differ. Try again..."
+name|EOL
+operator|+
+literal|"entered passwords differ. Try again..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -5834,7 +5855,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\ntrying resource: "
+name|EOL
+operator|+
+literal|"trying resource: "
 operator|+
 name|args
 index|[
@@ -7381,17 +7404,23 @@ if|if
 condition|(
 name|xpath
 operator|.
-name|charAt
+name|substring
 argument_list|(
 name|xpath
 operator|.
 name|length
 argument_list|()
 operator|-
-literal|1
+name|EOL
+operator|.
+name|length
+argument_list|()
 argument_list|)
-operator|==
-literal|'\n'
+operator|.
+name|equals
+argument_list|(
+name|EOL
+argument_list|)
 condition|)
 block|{
 name|xpath
@@ -7407,7 +7436,10 @@ operator|.
 name|length
 argument_list|()
 operator|-
-literal|1
+name|EOL
+operator|.
+name|length
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -7438,7 +7470,14 @@ name|traceWriter
 operator|.
 name|write
 argument_list|(
-literal|"</query>\r\n"
+literal|"</query>"
+argument_list|)
+expr_stmt|;
+name|traceWriter
+operator|.
+name|write
+argument_list|(
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -9612,7 +9651,9 @@ operator|-
 name|start
 operator|)
 operator|+
-literal|"ms.\n"
+literal|"ms."
+operator|+
+name|EOL
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -10640,7 +10681,9 @@ operator|-
 name|start
 operator|)
 operator|+
-literal|"ms.\n"
+literal|"ms."
+operator|+
+name|EOL
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -11175,7 +11218,9 @@ operator|-
 name|start
 operator|)
 operator|+
-literal|"ms.\n"
+literal|"ms."
+operator|+
+name|EOL
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -13079,14 +13124,18 @@ name|traceWriter
 operator|.
 name|write
 argument_list|(
-literal|"<?xml version=\"1.0\"?>\r\n"
+literal|"<?xml version=\"1.0\"?>"
+operator|+
+name|EOL
 argument_list|)
 expr_stmt|;
 name|traceWriter
 operator|.
 name|write
 argument_list|(
-literal|"<query-log>\r\n"
+literal|"<query-log>"
+operator|+
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -13802,7 +13851,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|'\n'
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -13892,7 +13941,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|'\n'
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -15062,7 +15111,9 @@ block|}
 block|}
 name|messageln
 argument_list|(
-literal|"\ntype help or ? for help."
+name|EOL
+operator|+
+literal|"type help or ? for help."
 argument_list|)
 expr_stmt|;
 if|if
@@ -15991,6 +16042,7 @@ name|String
 name|getNotice
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -16043,21 +16095,56 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|", Copyright (C) 2001-2013 The eXist-db Project\n"
+literal|", Copyright (C) 2001-2013 The eXist-db Project"
 argument_list|)
 expr_stmt|;
 name|builder
 operator|.
 name|append
 argument_list|(
-literal|"eXist-db comes with ABSOLUTELY NO WARRANTY.\n"
+name|EOL
 argument_list|)
 expr_stmt|;
 name|builder
 operator|.
 name|append
 argument_list|(
-literal|"This is free software, and you are welcome to redistribute it\nunder certain conditions; for details read the license file.\n"
+literal|"eXist-db comes with ABSOLUTELY NO WARRANTY."
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|EOL
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"This is free software, and you are welcome to redistribute it"
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|EOL
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|"under certain conditions; for details read the license file."
+argument_list|)
+expr_stmt|;
+name|builder
+operator|.
+name|append
+argument_list|(
+name|EOL
 argument_list|)
 expr_stmt|;
 return|return
@@ -16143,7 +16230,7 @@ name|display
 argument_list|(
 name|msg
 operator|+
-literal|'\n'
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
@@ -16185,7 +16272,7 @@ name|display
 argument_list|(
 name|msg
 operator|+
-literal|'\n'
+name|EOL
 argument_list|)
 expr_stmt|;
 block|}
