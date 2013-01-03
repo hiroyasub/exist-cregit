@@ -331,9 +331,11 @@ name|attempt
 operator|>
 literal|2
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 try|try
 block|{
 name|read
@@ -412,11 +414,13 @@ operator|.
 name|isOpen
 argument_list|()
 condition|)
+block|{
 name|channel
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|channel
 operator|=
 literal|null
@@ -442,9 +446,11 @@ operator|.
 name|createNewFile
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -555,11 +561,13 @@ operator|.
 name|isOpen
 argument_list|()
 condition|)
+block|{
 name|channel
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|channel
 operator|=
 literal|null
@@ -719,9 +727,11 @@ name|channel
 operator|==
 literal|null
 condition|)
+block|{
 name|open
 argument_list|()
 expr_stmt|;
+block|}
 name|long
 name|now
 init|=
@@ -823,9 +833,11 @@ name|channel
 operator|==
 literal|null
 condition|)
+block|{
 name|open
 argument_list|()
 expr_stmt|;
+block|}
 name|channel
 operator|.
 name|read
@@ -895,6 +907,7 @@ argument_list|,
 name|MAGIC
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -907,6 +920,7 @@ literal|null
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|lastHeartbeat
 operator|=
 name|buf
@@ -984,6 +998,7 @@ name|e
 operator|!=
 literal|null
 condition|)
+block|{
 name|str
 operator|.
 name|append
@@ -999,6 +1014,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|message
 operator|=
 name|str
@@ -1013,6 +1029,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -1020,6 +1037,7 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|err
