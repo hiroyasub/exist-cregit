@@ -27,16 +27,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|awt
-operator|.
-name|Image
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|io
 operator|.
 name|BufferedOutputStream
@@ -199,16 +189,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|PushbackInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StreamTokenizer
 import|;
 end_import
@@ -294,16 +274,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -493,38 +463,6 @@ end_import
 
 begin_import
 import|import
-name|jline
-operator|.
-name|Completor
-import|;
-end_import
-
-begin_import
-import|import
-name|jline
-operator|.
-name|ConsoleReader
-import|;
-end_import
-
-begin_import
-import|import
-name|jline
-operator|.
-name|History
-import|;
-end_import
-
-begin_import
-import|import
-name|jline
-operator|.
-name|Terminal
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -556,6 +494,38 @@ operator|.
 name|transform
 operator|.
 name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
+name|jline
+operator|.
+name|Completor
+import|;
+end_import
+
+begin_import
+import|import
+name|jline
+operator|.
+name|ConsoleReader
+import|;
+end_import
+
+begin_import
+import|import
+name|jline
+operator|.
+name|History
+import|;
+end_import
+
+begin_import
+import|import
+name|jline
+operator|.
+name|Terminal
 import|;
 end_import
 
@@ -1293,6 +1263,7 @@ decl_stmt|;
 comment|// values
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|EDIT_CMD
 init|=
@@ -1300,6 +1271,7 @@ literal|"emacsclient -t $file"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|ENCODING
 init|=
@@ -1308,6 +1280,7 @@ decl_stmt|;
 comment|//TODO this should probably be UTF-8?
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|PASS
 init|=
@@ -1315,6 +1288,7 @@ literal|null
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI_DEFAULT
 init|=
@@ -1322,6 +1296,7 @@ literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|SSL_ENABLE_DEFAULT
 init|=
@@ -1329,6 +1304,7 @@ literal|"FALSE"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|LOCAL_MODE_DEFAULT
 init|=
@@ -1336,6 +1312,7 @@ literal|"FALSE"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|NO_EMBED_MODE_DEFAULT
 init|=
@@ -1343,6 +1320,7 @@ literal|"FALSE"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|USER_DEFAULT
 init|=
@@ -1359,6 +1337,7 @@ literal|5
 decl_stmt|;
 comment|// Set
 specifier|protected
+specifier|final
 specifier|static
 name|Properties
 name|defaultProps
@@ -1495,6 +1474,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
+specifier|final
 name|TreeSet
 argument_list|<
 name|String
@@ -1509,6 +1489,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|protected
+specifier|final
 name|LinkedList
 argument_list|<
 name|String
@@ -1580,6 +1561,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -1647,6 +1629,7 @@ name|ClientFrame
 name|frame
 decl_stmt|;
 specifier|private
+specifier|final
 specifier|static
 name|Logger
 name|LOG
@@ -1689,6 +1672,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1914,6 +1898,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
@@ -1921,6 +1906,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|InteractiveClient
 name|client
 init|=
@@ -1938,6 +1924,7 @@ argument_list|(
 name|args
 argument_list|)
 condition|)
+block|{
 name|System
 operator|.
 name|exit
@@ -1947,8 +1934,10 @@ argument_list|)
 expr_stmt|;
 comment|// return non-zero exit status on failure
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1976,6 +1965,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -2066,7 +2056,7 @@ expr_stmt|;
 comment|// secure empty configuration
 specifier|final
 name|String
-name|configuration
+name|configProp
 init|=
 name|properties
 operator|.
@@ -2079,13 +2069,13 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|configuration
+name|configProp
 operator|!=
 literal|null
 operator|&&
 operator|(
 operator|!
-name|configuration
+name|configProp
 operator|.
 name|isEmpty
 argument_list|()
@@ -2098,7 +2088,7 @@ name|setProperty
 argument_list|(
 literal|"configuration"
 argument_list|,
-name|configuration
+name|configProp
 argument_list|)
 expr_stmt|;
 block|}
@@ -2241,6 +2231,7 @@ name|key
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -2289,6 +2280,7 @@ specifier|private
 name|String
 name|getOwnerName
 parameter_list|(
+specifier|final
 name|Permission
 name|perm
 parameter_list|)
@@ -2302,10 +2294,13 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"?"
 return|;
+block|}
 else|else
+block|{
 return|return
 name|perm
 operator|.
@@ -2316,10 +2311,12 @@ name|getName
 argument_list|()
 return|;
 block|}
+block|}
 specifier|private
 name|String
 name|getGroupName
 parameter_list|(
+specifier|final
 name|Permission
 name|perm
 parameter_list|)
@@ -2333,10 +2330,13 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"?"
 return|;
+block|}
 else|else
+block|{
 return|return
 name|perm
 operator|.
@@ -2346,6 +2346,7 @@ operator|.
 name|getName
 argument_list|()
 return|;
+block|}
 block|}
 comment|/**      * Get list of resources contained in collection.      *      * @exception XMLDBException      *                         Description of the Exception      */
 specifier|protected
@@ -2361,10 +2362,13 @@ name|current
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|setProperties
 argument_list|()
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -2380,6 +2384,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|childCollections
 index|[]
@@ -2389,6 +2394,7 @@ operator|.
 name|listChildCollections
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|childResources
 index|[]
@@ -2412,15 +2418,11 @@ operator|.
 name|length
 index|]
 expr_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
 comment|//Collection child;
 name|Permission
 name|perm
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|ResourceDescriptor
@@ -2439,6 +2441,7 @@ name|length
 argument_list|)
 decl_stmt|;
 comment|// A list of ResourceDescriptor for the GUI
+specifier|final
 name|String
 name|cols
 index|[]
@@ -2448,6 +2451,11 @@ name|String
 index|[
 literal|4
 index|]
+decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -2570,6 +2578,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Date
 name|created
 init|=
@@ -2715,6 +2724,7 @@ name|perm
 operator|==
 literal|null
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -2724,6 +2734,8 @@ argument_list|(
 literal|"null"
 argument_list|)
 expr_stmt|;
+comment|//TODO this is not useful!
+block|}
 if|if
 condition|(
 name|properties
@@ -2785,6 +2797,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|resources
 index|[
 name|i
@@ -2800,6 +2813,8 @@ name|j
 index|]
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Date
 name|lastModificationTime
 init|=
@@ -2906,6 +2921,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|frame
 operator|.
 name|setResources
@@ -2914,15 +2930,18 @@ name|tableData
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/**      * Display document on screen, by 24 lines.      *      * @param str string containing the document.      */
 specifier|protected
 name|void
 name|more
 parameter_list|(
+specifier|final
 name|String
 name|str
 parameter_list|)
 block|{
+specifier|final
 name|LineNumberReader
 name|reader
 init|=
@@ -2956,6 +2975,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|in
@@ -2963,6 +2983,7 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
+block|}
 while|while
 condition|(
 operator|(
@@ -3024,7 +3045,9 @@ name|ch
 operator|==
 literal|'Q'
 condition|)
+block|{
 return|return;
+block|}
 block|}
 name|System
 operator|.
@@ -3039,6 +3062,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -3061,6 +3085,7 @@ specifier|protected
 name|boolean
 name|process
 parameter_list|(
+specifier|final
 name|String
 name|line
 parameter_list|)
@@ -3069,6 +3094,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|frame
 operator|.
 name|setPath
@@ -3076,6 +3102,8 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|args
 index|[]
@@ -3120,6 +3148,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|StreamTokenizer
 name|tok
 init|=
@@ -3163,6 +3192,7 @@ argument_list|,
 literal|0x20
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3227,6 +3257,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3271,9 +3302,11 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 try|try
 block|{
 name|XmldbURI
@@ -3281,6 +3314,7 @@ name|newPath
 init|=
 name|path
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|currUri
 init|=
@@ -3349,6 +3383,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|messageln
 argument_list|(
 name|resources
@@ -3358,11 +3393,9 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
-name|StringBuilder
-name|buf
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3380,12 +3413,14 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|StringBuilder
 name|buf
-operator|=
+init|=
 operator|new
 name|StringBuilder
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|int
 name|k
 init|=
@@ -3423,7 +3458,12 @@ name|resources
 index|[
 name|i
 index|]
-operator|+
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
@@ -3444,9 +3484,11 @@ name|resources
 operator|.
 name|length
 condition|)
+block|{
 name|i
 operator|--
 expr_stmt|;
+block|}
 name|messageln
 argument_list|(
 name|buf
@@ -3617,6 +3659,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|frame
 operator|.
 name|setPath
@@ -3627,6 +3670,7 @@ name|toCollectionPathURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -3671,6 +3715,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|XmldbURI
 name|src
 decl_stmt|,
@@ -3705,6 +3750,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3756,6 +3802,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|resource
 decl_stmt|;
@@ -3776,6 +3823,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3844,6 +3892,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|XmldbURI
 name|resource
 decl_stmt|;
@@ -3864,6 +3913,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3898,6 +3948,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|data
 decl_stmt|;
@@ -3913,6 +3964,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
+block|{
 name|data
 operator|=
 operator|(
@@ -3923,7 +3975,9 @@ operator|.
 name|getContent
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|data
 operator|=
 operator|new
@@ -3939,6 +3993,7 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|startGUI
@@ -3968,6 +4023,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|content
 init|=
@@ -4024,6 +4080,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -4048,12 +4105,15 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|messageln
 argument_list|(
 literal|"nothing found"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|messageln
 argument_list|(
 literal|"found "
@@ -4077,6 +4137,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 name|nextInSet
 operator|=
 literal|1
@@ -4115,6 +4176,7 @@ return|;
 block|}
 try|try
 block|{
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -4131,6 +4193,7 @@ index|]
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -4180,6 +4243,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -4204,12 +4268,15 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|messageln
 argument_list|(
 literal|"nothing found"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|messageln
 argument_list|(
 literal|"found "
@@ -4233,6 +4300,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 name|nextInSet
 operator|=
 literal|1
@@ -4240,6 +4308,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4306,6 +4375,7 @@ name|length
 operator|>
 literal|1
 condition|)
+block|{
 name|start
 operator|=
 name|Integer
@@ -4318,6 +4388,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|args
@@ -4326,6 +4397,7 @@ name|length
 operator|>
 literal|2
 condition|)
+block|{
 name|count
 operator|=
 name|Integer
@@ -4338,6 +4410,7 @@ literal|2
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|s
@@ -4381,12 +4454,14 @@ name|count
 operator|>
 name|s
 condition|)
+block|{
 name|count
 operator|=
 name|s
 operator|-
 name|start
 expr_stmt|;
+block|}
 name|nextInSet
 operator|=
 name|start
@@ -4412,6 +4487,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Resource
 name|r
 init|=
@@ -4426,6 +4502,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|frame
 operator|.
 name|display
@@ -4439,7 +4516,9 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|more
 argument_list|(
 operator|(
@@ -4451,6 +4530,7 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|messageln
 argument_list|(
@@ -4481,6 +4561,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -4527,6 +4608,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|XmldbURI
 name|collUri
 decl_stmt|;
@@ -4547,6 +4629,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4565,6 +4648,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -4580,6 +4664,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|newCollection
 init|=
@@ -4596,17 +4681,21 @@ name|newCollection
 operator|==
 literal|null
 condition|)
+block|{
 name|messageln
 argument_list|(
 literal|"could not create collection."
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|messageln
 argument_list|(
 literal|"created collection."
 argument_list|)
 expr_stmt|;
+block|}
 comment|// re-read current collection
 name|current
 operator|=
@@ -4674,6 +4763,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|boolean
 name|r
 init|=
@@ -4724,6 +4814,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|boolean
 name|r
 init|=
@@ -4774,6 +4865,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|boolean
 name|r
 init|=
@@ -4943,6 +5035,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|XmldbURI
 name|collUri
 decl_stmt|;
@@ -4963,6 +5056,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -5072,6 +5166,7 @@ return|;
 block|}
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5137,7 +5232,9 @@ argument_list|(
 name|p2
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|System
 operator|.
 name|out
@@ -5148,6 +5245,7 @@ literal|"\nentered passwords differ. Try again..."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|UserAider
 name|user
 init|=
@@ -5167,6 +5265,7 @@ argument_list|(
 name|p1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|groups
 init|=
@@ -5177,6 +5276,7 @@ argument_list|(
 literal|"enter groups: "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -5188,9 +5288,6 @@ argument_list|,
 literal|" ,"
 argument_list|)
 decl_stmt|;
-name|String
-name|group
-decl_stmt|;
 while|while
 condition|(
 name|tok
@@ -5199,13 +5296,15 @@ name|hasMoreTokens
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|String
 name|group
-operator|=
+init|=
 name|tok
 operator|.
 name|nextToken
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|group
@@ -5215,6 +5314,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|user
 operator|.
 name|addGroup
@@ -5222,6 +5322,7 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|mgtService
 operator|.
@@ -5246,6 +5347,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5284,6 +5386,7 @@ literal|"users"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5299,6 +5402,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|users
 index|[]
@@ -5360,6 +5464,7 @@ operator|+
 literal|"\t\t"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|groups
@@ -5411,6 +5516,7 @@ name|groups
 operator|.
 name|length
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -5420,6 +5526,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|System
 operator|.
@@ -5481,6 +5588,7 @@ return|;
 block|}
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5496,6 +5604,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -5579,7 +5688,9 @@ argument_list|(
 name|p2
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|System
 operator|.
 name|out
@@ -5616,6 +5727,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5671,10 +5783,9 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|Collection
 name|temp
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -5732,6 +5843,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Resource
 name|r
 init|=
@@ -5752,6 +5864,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5781,6 +5894,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|System
 operator|.
 name|err
@@ -5798,8 +5912,10 @@ literal|" not found."
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5829,6 +5945,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5925,6 +6042,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|Collection
 name|temp
 decl_stmt|;
@@ -5936,6 +6054,7 @@ name|length
 operator|==
 literal|4
 condition|)
+block|{
 name|temp
 operator|=
 name|current
@@ -5948,11 +6067,14 @@ literal|3
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|temp
 operator|=
 name|current
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|temp
@@ -5960,6 +6082,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -5975,6 +6098,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|u
 init|=
@@ -6036,6 +6160,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|Resource
 name|res
 init|=
@@ -6056,6 +6181,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -6071,6 +6197,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|u
 init|=
@@ -6183,6 +6310,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|Resource
 name|res
 init|=
@@ -6203,6 +6331,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -6218,6 +6347,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -6247,6 +6377,7 @@ argument_list|(
 literal|"lock"
 argument_list|)
 condition|)
+block|{
 name|mgtService
 operator|.
 name|lockResource
@@ -6256,7 +6387,9 @@ argument_list|,
 name|user
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|mgtService
 operator|.
 name|unlockResource
@@ -6264,6 +6397,7 @@ argument_list|(
 name|res
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -6304,6 +6438,7 @@ operator|+
 literal|"-----------"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexQueryService
 name|service
 init|=
@@ -6319,6 +6454,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Occurrences
 index|[]
 name|elements
@@ -6423,6 +6559,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|IndexQueryService
 name|service
 init|=
@@ -6450,6 +6587,7 @@ name|length
 operator|==
 literal|3
 condition|)
+block|{
 name|terms
 operator|=
 name|service
@@ -6469,7 +6607,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|terms
 operator|=
 name|service
@@ -6492,6 +6632,7 @@ literal|3
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|out
@@ -6512,9 +6653,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"--------------------------------------------"
-operator|+
-literal|"-----------"
+literal|"-------------------------------------------------------"
 argument_list|)
 expr_stmt|;
 for|for
@@ -6635,7 +6774,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 name|command
 operator|+=
 name|lastLine
@@ -6644,18 +6785,23 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EOFException
 name|e
 parameter_list|)
 block|{
+comment|//TODO report error?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//TODO report error?
 block|}
+specifier|final
 name|String
 name|xupdate
 init|=
@@ -6667,6 +6813,7 @@ name|command
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -6682,6 +6829,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|mods
 init|=
@@ -6717,6 +6865,7 @@ literal|"map"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -6731,6 +6880,7 @@ argument_list|,
 literal|"= "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 decl_stmt|;
@@ -6746,10 +6896,12 @@ argument_list|(
 literal|"="
 argument_list|)
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -6779,6 +6931,7 @@ name|nextToken
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|uri
 init|=
@@ -6818,6 +6971,7 @@ name|length
 operator|==
 literal|1
 condition|)
+block|{
 name|properties
 operator|.
 name|list
@@ -6827,9 +6981,12 @@ operator|.
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 try|try
 block|{
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -6867,6 +7024,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|String
 name|key
 init|=
@@ -6875,6 +7033,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|val
 init|=
@@ -6907,6 +7066,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -6927,6 +7087,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|args
@@ -6940,6 +7101,7 @@ literal|"shutdown"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|mgr
 init|=
@@ -7075,6 +7237,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -7083,6 +7246,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|ClientFrame
 operator|.
 name|showErrorMessage
@@ -7095,6 +7259,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|errorln
@@ -7204,7 +7369,6 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-specifier|final
 name|ResourceSet
 name|find
 parameter_list|(
@@ -7230,6 +7394,7 @@ argument_list|)
 operator|==
 literal|'\n'
 condition|)
+block|{
 name|xpath
 operator|=
 name|xpath
@@ -7246,12 +7411,14 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|traceWriter
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|traceWriter
@@ -7278,16 +7445,20 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
+comment|//TODO report error?
+block|}
 block|}
 name|String
 name|sortBy
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -7307,6 +7478,7 @@ operator|.
 name|STRING_NOT_FOUND
 condition|)
 block|{
+specifier|final
 name|String
 name|xp
 init|=
@@ -7360,6 +7532,7 @@ name|sortBy
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XPathQueryServiceImpl
 name|service
 init|=
@@ -7409,6 +7582,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -7429,17 +7603,11 @@ name|service
 operator|.
 name|setNamespace
 argument_list|(
-operator|(
-name|String
-operator|)
 name|mapping
 operator|.
 name|getKey
 argument_list|()
 argument_list|,
-operator|(
-name|String
-operator|)
 name|mapping
 operator|.
 name|getValue
@@ -7473,16 +7641,17 @@ return|;
 block|}
 comment|/** unused, for testing purposes ?? */
 specifier|private
-specifier|final
 name|void
 name|testQuery
 parameter_list|(
+specifier|final
 name|String
 name|queryFile
 parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -7514,6 +7683,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -7530,6 +7700,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -7563,6 +7734,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|queries
 operator|.
 name|add
@@ -7570,6 +7742,7 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -7626,6 +7799,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -7644,6 +7818,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7667,6 +7842,8 @@ name|QueryThread
 extends|extends
 name|Thread
 block|{
+specifier|private
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -7676,6 +7853,7 @@ decl_stmt|;
 specifier|public
 name|QueryThread
 parameter_list|(
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -7690,6 +7868,8 @@ operator|=
 name|queries
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7726,6 +7906,7 @@ literal|"password"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XPathQueryService
 name|service
 init|=
@@ -7768,6 +7949,7 @@ literal|"encoding"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Random
 name|r
 init|=
@@ -7779,9 +7961,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|String
-name|query
 decl_stmt|;
 for|for
 control|(
@@ -7798,8 +7977,10 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|String
 name|query
-operator|=
+init|=
 name|queries
 operator|.
 name|get
@@ -7814,7 +7995,7 @@ name|size
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|System
 operator|.
 name|out
@@ -7829,6 +8010,7 @@ operator|+
 name|query
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -7860,6 +8042,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -7898,6 +8081,7 @@ specifier|final
 name|Resource
 name|retrieve
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|resource
 parameter_list|)
@@ -7923,15 +8107,18 @@ specifier|final
 name|Resource
 name|retrieve
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|resource
 parameter_list|,
+specifier|final
 name|String
 name|indent
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -7966,16 +8153,17 @@ name|res
 return|;
 block|}
 specifier|private
-specifier|final
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|String
 name|pattern
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -8002,10 +8190,12 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|Resource
 name|resources
 index|[]
 decl_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -8022,6 +8212,7 @@ name|res
 operator|==
 literal|null
 condition|)
+block|{
 name|resources
 operator|=
 name|CollectionScanner
@@ -8035,6 +8226,7 @@ argument_list|,
 name|pattern
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|resources
@@ -8053,9 +8245,6 @@ operator|=
 name|res
 expr_stmt|;
 block|}
-name|Collection
-name|parent
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -8088,8 +8277,10 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Collection
 name|parent
-operator|=
+init|=
 name|resources
 index|[
 name|i
@@ -8097,7 +8288,7 @@ index|]
 operator|.
 name|getParentCollection
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|parent
 operator|.
 name|removeResource
@@ -8116,13 +8307,14 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-specifier|final
 name|void
 name|xupdate
 parameter_list|(
+specifier|final
 name|String
 name|resource
 parameter_list|,
+specifier|final
 name|String
 name|filename
 parameter_list|)
@@ -8131,6 +8323,7 @@ name|XMLDBException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -8165,6 +8358,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|String
 name|commands
 init|=
@@ -8177,6 +8371,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -8192,10 +8387,9 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|modifications
-init|=
-literal|0
 decl_stmt|;
 if|if
 condition|(
@@ -8203,6 +8397,7 @@ name|resource
 operator|==
 literal|null
 condition|)
+block|{
 name|modifications
 operator|=
 name|service
@@ -8212,7 +8407,9 @@ argument_list|(
 name|commands
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|modifications
 operator|=
 name|service
@@ -8224,6 +8421,7 @@ argument_list|,
 name|commands
 argument_list|)
 expr_stmt|;
+block|}
 name|messageln
 argument_list|(
 name|modifications
@@ -8235,16 +8433,17 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-specifier|final
 name|void
 name|rmcol
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|collection
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -8283,10 +8482,10 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-specifier|final
 name|void
 name|copy
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|source
 parameter_list|,
@@ -8296,6 +8495,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -8311,6 +8511,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|destName
 init|=
@@ -8319,6 +8520,7 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|destCol
 init|=
@@ -8368,6 +8570,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Resource
 name|srcDoc
 init|=
@@ -8383,6 +8586,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|resourcePath
 init|=
@@ -8461,13 +8665,13 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-specifier|final
 name|void
 name|reindex
 parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|IndexQueryService
 name|service
 init|=
@@ -8505,16 +8709,17 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-specifier|final
 name|void
 name|storeBinary
 parameter_list|(
+specifier|final
 name|String
 name|fileName
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -8532,6 +8737,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -8548,6 +8754,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BinaryResource
 name|resource
 init|=
@@ -8608,18 +8815,22 @@ specifier|synchronized
 name|boolean
 name|findRecursive
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|File
 name|dir
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|base
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|File
 name|files
 index|[]
@@ -8804,6 +9015,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|long
 name|start1
 init|=
@@ -8849,9 +9061,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" has an unknown "
-operator|+
-literal|"suffix. Cannot determine file type."
+literal|" has an unknown suffix. Cannot determine file type."
 argument_list|)
 expr_stmt|;
 name|mimeType
@@ -8978,6 +9188,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -9043,6 +9254,7 @@ operator|.
 name|separatorChar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -9056,10 +9268,6 @@ name|Resource
 name|document
 decl_stmt|;
 comment|// String xml;
-name|File
-name|files
-index|[]
-decl_stmt|;
 if|if
 condition|(
 name|current
@@ -9089,6 +9297,11 @@ name|observer
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|File
+name|files
+index|[]
+decl_stmt|;
 if|if
 condition|(
 name|file
@@ -9123,6 +9336,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|result
 init|=
@@ -9191,6 +9405,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|files
 operator|=
 name|DirectoryScanner
@@ -9200,9 +9415,8 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
-name|long
-name|start
-decl_stmt|;
+block|}
+specifier|final
 name|long
 name|start0
 init|=
@@ -9246,14 +9460,18 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
+name|long
 name|start
-operator|=
+init|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|mimeType
 operator|=
 name|MimeTable
@@ -9278,12 +9496,14 @@ name|mimeType
 operator|==
 literal|null
 condition|)
+block|{
 name|mimeType
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 name|document
 operator|=
 name|current
@@ -9436,18 +9656,22 @@ specifier|synchronized
 name|boolean
 name|findGZipRecursive
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|File
 name|dir
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|base
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|File
 name|files
 index|[]
@@ -9632,6 +9856,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|long
 name|start1
 init|=
@@ -9640,6 +9865,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|compressedName
 init|=
@@ -9656,6 +9882,7 @@ name|localName
 init|=
 name|compressedName
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|cSuffix
@@ -9688,6 +9915,7 @@ name|isuf
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|suf
 init|=
@@ -9758,9 +9986,7 @@ literal|"File "
 operator|+
 name|compressedName
 operator|+
-literal|" has an unknown "
-operator|+
-literal|"suffix. Cannot determine file type."
+literal|" has an unknown suffix. Cannot determine file type."
 argument_list|)
 expr_stmt|;
 name|mimeType
@@ -9894,6 +10120,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -9959,6 +10186,7 @@ operator|.
 name|separatorChar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -9972,10 +10200,6 @@ name|Resource
 name|document
 decl_stmt|;
 comment|// String xml;
-name|File
-name|files
-index|[]
-decl_stmt|;
 if|if
 condition|(
 name|current
@@ -10005,6 +10229,11 @@ name|observer
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|File
+name|files
+index|[]
+decl_stmt|;
 if|if
 condition|(
 name|file
@@ -10107,6 +10336,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|files
 operator|=
 name|DirectoryScanner
@@ -10116,9 +10346,8 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
-name|long
-name|start
-decl_stmt|;
+block|}
+specifier|final
 name|long
 name|start0
 init|=
@@ -10162,14 +10391,19 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
+name|long
 name|start
-operator|=
+init|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+specifier|final
 name|String
 name|compressedName
 init|=
@@ -10186,6 +10420,7 @@ name|localName
 init|=
 name|compressedName
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|cSuffix
@@ -10218,6 +10453,7 @@ name|isuf
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|suf
 init|=
@@ -10281,12 +10517,14 @@ name|mimeType
 operator|==
 literal|null
 condition|)
+block|{
 name|mimeType
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 name|document
 operator|=
 name|current
@@ -10477,6 +10715,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|ZipFile
 name|zfile
 init|=
@@ -10519,9 +10758,7 @@ name|observer
 argument_list|)
 expr_stmt|;
 block|}
-name|long
-name|start
-decl_stmt|;
+specifier|final
 name|long
 name|start0
 init|=
@@ -10538,6 +10775,7 @@ decl_stmt|;
 name|MimeType
 name|mimeType
 decl_stmt|;
+specifier|final
 name|Enumeration
 argument_list|<
 name|?
@@ -10577,6 +10815,7 @@ block|{
 name|number
 operator|++
 expr_stmt|;
+specifier|final
 name|ZipEntry
 name|ze
 init|=
@@ -10585,6 +10824,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|zeName
 init|=
@@ -10600,6 +10840,7 @@ argument_list|,
 literal|'/'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|pathSteps
@@ -10702,6 +10943,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -10749,6 +10991,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -10802,13 +11045,15 @@ operator|-
 literal|1
 index|]
 decl_stmt|;
+specifier|final
+name|long
 name|start
-operator|=
+init|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|mimeType
 operator|=
 name|MimeTable
@@ -10827,12 +11072,14 @@ name|mimeType
 operator|==
 literal|null
 condition|)
+block|{
 name|mimeType
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
 name|document
 operator|=
 name|base
@@ -10964,6 +11211,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -10985,6 +11233,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -11014,10 +11263,12 @@ specifier|synchronized
 name|boolean
 name|parse
 parameter_list|(
+specifier|final
 name|File
 index|[]
 name|files
 parameter_list|,
+specifier|final
 name|UploadDialog
 name|upload
 parameter_list|)
@@ -11032,6 +11283,7 @@ operator|.
 name|isVisible
 argument_list|()
 condition|)
+block|{
 name|upload
 operator|.
 name|setVisible
@@ -11039,6 +11291,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|current
@@ -11096,7 +11349,9 @@ operator|.
 name|isCancelled
 argument_list|()
 condition|)
+block|{
 break|break;
+block|}
 comment|// should replace the lines above
 name|store
 argument_list|(
@@ -11117,6 +11372,7 @@ name|current
 operator|instanceof
 name|Observable
 condition|)
+block|{
 operator|(
 operator|(
 name|Observable
@@ -11127,6 +11383,7 @@ operator|.
 name|deleteObservers
 argument_list|()
 expr_stmt|;
+block|}
 name|upload
 operator|.
 name|uploadCompleted
@@ -11140,6 +11397,7 @@ specifier|private
 name|long
 name|calculateFileSizes
 parameter_list|(
+specifier|final
 name|File
 index|[]
 name|files
@@ -11180,7 +11438,9 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|files
@@ -11191,6 +11451,7 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 name|size
 operator|+=
 name|calculateFileSizes
@@ -11204,7 +11465,9 @@ name|listFiles
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|size
 operator|+=
 name|files
@@ -11216,89 +11479,27 @@ name|length
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 return|return
 name|size
 return|;
 block|}
 comment|/*      * This is for a future GUI implementation of ZIP archive loads      */
-specifier|private
-name|long
-name|calculateFileSizes
-parameter_list|(
-name|ZipFile
-name|file
-parameter_list|)
-throws|throws
-name|XMLDBException
-block|{
-name|Enumeration
-argument_list|<
-name|?
-extends|extends
-name|ZipEntry
-argument_list|>
-name|e
-init|=
-name|file
-operator|.
-name|entries
-argument_list|()
-decl_stmt|;
-name|long
-name|size
-init|=
-literal|0
-decl_stmt|;
-while|while
-condition|(
-name|e
-operator|.
-name|hasMoreElements
-argument_list|()
-condition|)
-block|{
-name|ZipEntry
-name|ze
-init|=
-operator|(
-name|ZipEntry
-operator|)
-name|e
-operator|.
-name|nextElement
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|ze
-operator|.
-name|isDirectory
-argument_list|()
-condition|)
-name|size
-operator|+=
-name|ze
-operator|.
-name|getSize
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-name|size
-return|;
-block|}
+comment|/*private long calculateFileSizes(final ZipFile file) throws XMLDBException {     	final Enumeration<? extends ZipEntry> e = file.entries();         long size = 0;     	while(e.hasMoreElements()) {             final ZipEntry ze=(ZipEntry)e.nextElement();             if(!ze.isDirectory()) {                     size += ze.getSize();             }     	}     	         return size;     }*/
 comment|/**      * Pass to this method a java file object       * (may be a file or a directory), GUI object      * will create relative collections or resources      * recursively      */
 specifier|private
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|File
 name|file
 parameter_list|,
+specifier|final
 name|UploadDialog
 name|upload
 parameter_list|)
@@ -11311,7 +11512,9 @@ operator|.
 name|isCancelled
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 comment|// can't read there, inform client
 if|if
 condition|(
@@ -11336,6 +11539,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|XmldbURI
 name|filenameUri
 decl_stmt|;
@@ -11409,6 +11613,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -11437,6 +11642,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -11496,6 +11702,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// maybe a depth or recurs flag could be added here
+specifier|final
 name|File
 name|temp
 index|[]
@@ -11511,6 +11718,7 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 for|for
 control|(
 name|int
@@ -11540,6 +11748,7 @@ argument_list|,
 name|upload
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return;
 block|}
@@ -11631,6 +11840,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -11702,6 +11912,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -11727,12 +11938,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// should never arrive
 block|}
 specifier|private
 name|void
 name|mkcol
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|collPath
 parameter_list|)
@@ -11748,6 +11959,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 index|[]
 name|segments
@@ -11756,12 +11968,6 @@ name|collPath
 operator|.
 name|getPathSegments
 argument_list|()
-decl_stmt|;
-name|CollectionManagementServiceImpl
-name|mgtService
-decl_stmt|;
-name|Collection
-name|c
 decl_stmt|;
 name|XmldbURI
 name|p
@@ -11799,8 +12005,10 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Collection
 name|c
-operator|=
+init|=
 name|DatabaseManager
 operator|.
 name|getCollection
@@ -11828,7 +12036,7 @@ argument_list|(
 literal|"password"
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|c
@@ -11836,8 +12044,10 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
+name|CollectionManagementServiceImpl
 name|mgtService
-operator|=
+init|=
 operator|(
 name|CollectionManagementServiceImpl
 operator|)
@@ -11849,7 +12059,7 @@ literal|"CollectionManagementService"
 argument_list|,
 literal|"1.0"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|current
 operator|=
 name|mgtService
@@ -11864,10 +12074,12 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|current
 operator|=
 name|c
 expr_stmt|;
+block|}
 block|}
 name|path
 operator|=
@@ -11878,6 +12090,7 @@ specifier|protected
 name|Collection
 name|getCollection
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -11914,262 +12127,13 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** NEVER USED !!! Reads user password from given input stream. */
-specifier|private
-name|char
-index|[]
-name|readPassword
-parameter_list|(
-name|InputStream
-name|in
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|char
-index|[]
-name|lineBuffer
-decl_stmt|;
-name|char
-index|[]
-name|buf
-decl_stmt|;
-comment|// int i;
-name|buf
-operator|=
-name|lineBuffer
-operator|=
-operator|new
-name|char
-index|[
-literal|128
-index|]
-expr_stmt|;
-name|int
-name|room
-init|=
-name|buf
-operator|.
-name|length
-decl_stmt|;
-name|int
-name|offset
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|c
-decl_stmt|;
-name|loop
-label|:
-while|while
-condition|(
-literal|true
-condition|)
-switch|switch
-condition|(
-name|c
-operator|=
-name|in
-operator|.
-name|read
-argument_list|()
-condition|)
-block|{
-case|case
-operator|-
-literal|1
-case|:
-case|case
-literal|'\n'
-case|:
-break|break
-name|loop
-break|;
-case|case
-literal|'\r'
-case|:
-name|int
-name|c2
-init|=
-name|in
-operator|.
-name|read
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|c2
-operator|!=
-literal|'\n'
-operator|)
-operator|&&
-operator|(
-name|c2
-operator|!=
-operator|-
-literal|1
-operator|)
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|in
-operator|instanceof
-name|PushbackInputStream
-operator|)
-condition|)
-name|in
-operator|=
-operator|new
-name|PushbackInputStream
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
-operator|(
-operator|(
-name|PushbackInputStream
-operator|)
-name|in
-operator|)
-operator|.
-name|unread
-argument_list|(
-name|c2
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-break|break
-name|loop
-break|;
-default|default :
-if|if
-condition|(
-operator|--
-name|room
-operator|<
-literal|0
-condition|)
-block|{
-name|buf
-operator|=
-operator|new
-name|char
-index|[
-name|offset
-operator|+
-literal|128
-index|]
-expr_stmt|;
-name|room
-operator|=
-name|buf
-operator|.
-name|length
-operator|-
-name|offset
-operator|-
-literal|1
-expr_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|lineBuffer
-argument_list|,
-literal|0
-argument_list|,
-name|buf
-argument_list|,
-literal|0
-argument_list|,
-name|offset
-argument_list|)
-expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|lineBuffer
-argument_list|,
-literal|' '
-argument_list|)
-expr_stmt|;
-name|lineBuffer
-operator|=
-name|buf
-expr_stmt|;
-block|}
-name|buf
-index|[
-name|offset
-operator|++
-index|]
-operator|=
-operator|(
-name|char
-operator|)
-name|c
-expr_stmt|;
-break|break;
-block|}
-if|if
-condition|(
-name|offset
-operator|==
-literal|0
-condition|)
-return|return
-literal|null
-return|;
-name|char
-index|[]
-name|ret
-init|=
-operator|new
-name|char
-index|[
-name|offset
-index|]
-decl_stmt|;
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|buf
-argument_list|,
-literal|0
-argument_list|,
-name|ret
-argument_list|,
-literal|0
-argument_list|,
-name|offset
-argument_list|)
-expr_stmt|;
-name|Arrays
-operator|.
-name|fill
-argument_list|(
-name|buf
-argument_list|,
-literal|' '
-argument_list|)
-expr_stmt|;
-return|return
-name|ret
-return|;
-block|}
+comment|/*private char[] readPassword(InputStream in) throws IOException {                  char[] lineBuffer;         char[] buf;         // int i;                  buf = lineBuffer = new char[128];                  int room = buf.length;         int offset = 0;         int c;                  loop : while (true)             switch (c = in.read()) {                 case -1 :                 case '\n' :                     break loop;                 case '\r' :                     int c2 = in.read();                     if ((c2 != '\n')&& (c2 != -1)) {                         if (!(in instanceof PushbackInputStream))                             in = new PushbackInputStream(in);                                                  ((PushbackInputStream) in).unread(c2);                     } else                         break loop;                 default :                     if (--room< 0) {                         buf = new char[offset + 128];                         room = buf.length - offset - 1;                         System.arraycopy(lineBuffer, 0, buf, 0, offset);                         Arrays.fill(lineBuffer, ' ');                         lineBuffer = buf;                     }                     buf[offset++] = (char) c;                     break;             }                          if (offset == 0)                 return null;                          char[] ret = new char[offset];             System.arraycopy(buf, 0, ret, 0, offset);             Arrays.fill(buf, ' ');                          return ret;     }*/
 specifier|private
 name|Properties
 name|loadClientProperties
 parameter_list|()
 block|{
+specifier|final
 name|Properties
 name|clientProps
 init|=
@@ -12177,6 +12141,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|propFile
 init|=
@@ -12206,6 +12171,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|ex
 parameter_list|)
@@ -12263,6 +12229,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -12279,15 +12246,18 @@ specifier|protected
 name|CommandlineOptions
 name|getCommandlineOptions
 parameter_list|(
+specifier|final
 name|String
 name|args
 index|[]
 parameter_list|,
+specifier|final
 name|Properties
 name|props
 parameter_list|)
 block|{
 comment|// parse command-line options
+specifier|final
 name|CLArgsParser
 name|optParser
 init|=
@@ -12329,6 +12299,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|CLOption
@@ -12340,6 +12311,7 @@ operator|.
 name|getArguments
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CommandlineOptions
 name|cOpt
 init|=
@@ -12498,12 +12470,14 @@ name|cOpt
 operator|.
 name|passwdSpecified
 condition|)
+block|{
 name|cOpt
 operator|.
 name|needPasswd
 operator|=
 literal|true
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|CommandlineOptions
@@ -12585,6 +12559,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -12658,6 +12633,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|cOpt
 operator|.
 name|optionalArgs
@@ -12670,6 +12646,7 @@ name|getArgument
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|cOpt
 operator|.
 name|interactive
@@ -12738,6 +12715,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -12791,6 +12769,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -12850,6 +12829,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -12927,6 +12907,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -13013,6 +12994,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -13057,6 +13039,7 @@ name|CommandlineOptions
 operator|.
 name|TRACE_QUERIES_OPT
 case|:
+specifier|final
 name|String
 name|traceFile
 init|=
@@ -13065,6 +13048,7 @@ operator|.
 name|getArgument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|f
 init|=
@@ -13109,6 +13093,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e1
 parameter_list|)
@@ -13123,6 +13108,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e1
 parameter_list|)
@@ -13140,6 +13126,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -13205,6 +13192,7 @@ specifier|private
 name|boolean
 name|processCommandLineActions
 parameter_list|(
+specifier|final
 name|CommandlineOptions
 name|cOpt
 parameter_list|)
@@ -13416,6 +13404,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -13455,6 +13444,7 @@ name|optionOutputFile
 operator|!=
 literal|null
 condition|)
+block|{
 name|writeOutputFile
 argument_list|(
 name|cOpt
@@ -13467,7 +13457,9 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|out
@@ -13483,6 +13475,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -13553,6 +13546,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13622,6 +13616,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13680,6 +13675,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|arg
 range|:
@@ -13687,6 +13683,7 @@ name|cOpt
 operator|.
 name|optionalArgs
 control|)
+block|{
 try|try
 block|{
 name|parse
@@ -13697,6 +13694,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13726,6 +13724,7 @@ return|;
 block|}
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|cOpt
@@ -13750,6 +13749,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -13767,6 +13767,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -13840,6 +13841,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|BufferedReader
 name|stdin
 init|=
@@ -13855,6 +13857,7 @@ name|in
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -13878,15 +13881,22 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
 argument_list|(
 name|line
-operator|+
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|append
+argument_list|(
 literal|'\n'
 argument_list|)
 expr_stmt|;
+block|}
 name|cOpt
 operator|.
 name|optionXpath
@@ -13899,6 +13909,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -13934,6 +13945,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -13950,6 +13962,7 @@ name|maxResults
 operator|<=
 literal|0
 condition|)
+block|{
 name|maxResults
 operator|=
 operator|(
@@ -13960,6 +13973,7 @@ operator|.
 name|getSize
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cOpt
@@ -13991,6 +14005,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -14042,6 +14057,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -14053,6 +14069,7 @@ operator|.
 name|optionOutputFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BufferedOutputStream
 name|bos
 init|=
@@ -14062,6 +14079,7 @@ argument_list|(
 name|fos
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PrintStream
 name|ps
 init|=
@@ -14093,6 +14111,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -14159,6 +14178,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -14215,6 +14235,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -14239,6 +14260,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -14271,6 +14293,7 @@ specifier|private
 name|boolean
 name|getGuiLoginData
 parameter_list|(
+specifier|final
 name|Properties
 name|props
 parameter_list|)
@@ -14391,6 +14414,7 @@ specifier|public
 name|boolean
 name|run
 parameter_list|(
+specifier|final
 name|String
 name|args
 index|[]
@@ -14399,6 +14423,7 @@ throws|throws
 name|Exception
 block|{
 comment|// Get exist home directory
+specifier|final
 name|File
 name|home
 init|=
@@ -14417,6 +14442,7 @@ name|defaultProps
 argument_list|)
 expr_stmt|;
 comment|// get default configuration filename from the driver class and set it in properties
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -14435,6 +14461,7 @@ name|DRIVER
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Field
 name|CONF_XML
 init|=
@@ -14456,6 +14483,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|configuration
 init|=
@@ -14498,6 +14526,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// parse command-line options
+specifier|final
 name|CommandlineOptions
 name|cOpt
 init|=
@@ -14526,9 +14555,11 @@ condition|(
 operator|!
 name|quiet
 condition|)
+block|{
 name|printNotice
 argument_list|()
 expr_stmt|;
+block|}
 comment|// Fix "uri" property: Excalibur CLI can't parse dashes, so we need to URL encode them:
 name|properties
 operator|.
@@ -14561,6 +14592,7 @@ operator|&&
 name|startGUI
 condition|)
 block|{
+specifier|final
 name|boolean
 name|haveLoginData
 init|=
@@ -14613,6 +14645,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -14646,9 +14679,11 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|readQueryHistory
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cOpt
@@ -14680,6 +14715,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|History
 name|history
 init|=
@@ -14699,6 +14735,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -14725,6 +14762,7 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|setStatus
@@ -14734,7 +14772,9 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|err
@@ -14746,6 +14786,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 name|shutdown
 argument_list|(
 literal|false
@@ -14755,6 +14796,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|boolean
 name|processingOK
 init|=
@@ -14847,6 +14889,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -14955,6 +14998,7 @@ literal|"^.*Connection refused: connect.*"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|boolean
 name|haveLoginData
 init|=
@@ -14989,9 +15033,11 @@ else|else
 block|{
 if|if
 condition|(
+operator|!
 name|errorMessage
-operator|!=
-literal|""
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 comment|// No pattern match, but we have an error. stop here
@@ -15027,6 +15073,7 @@ operator|.
 name|openQueryGui
 condition|)
 block|{
+specifier|final
 name|QueryDialog
 name|qd
 init|=
@@ -15062,6 +15109,7 @@ condition|(
 operator|!
 name|startGUI
 condition|)
+block|{
 name|readlineInputLoop
 argument_list|(
 name|home
@@ -15070,25 +15118,29 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|frame
 operator|.
 name|displayPrompt
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|shutdown
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|String
 name|getExceptionMessage
@@ -15113,10 +15165,12 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|e
 operator|=
 name|cause
 expr_stmt|;
+block|}
 return|return
 name|e
 operator|.
@@ -15132,6 +15186,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|DocumentBuilderFactory
 name|factory
 init|=
@@ -15140,6 +15195,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilder
 name|builder
 init|=
@@ -15148,6 +15204,7 @@ operator|.
 name|newDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -15158,6 +15215,7 @@ argument_list|(
 name|queryHistoryFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nodes
 init|=
@@ -15186,6 +15244,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|query
 init|=
@@ -15199,6 +15258,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|value
 init|=
@@ -15253,6 +15313,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -15261,6 +15322,7 @@ if|if
 condition|(
 name|startGUI
 condition|)
+block|{
 name|ClientFrame
 operator|.
 name|showErrorMessage
@@ -15275,7 +15337,9 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|errorln
 argument_list|(
 literal|"Error while reading query history: "
@@ -15288,10 +15352,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|protected
 name|void
 name|addToHistory
 parameter_list|(
+specifier|final
 name|String
 name|query
 parameter_list|)
@@ -15322,6 +15388,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -15329,6 +15396,7 @@ block|{
 block|}
 try|try
 block|{
+specifier|final
 name|BufferedWriter
 name|writer
 init|=
@@ -15342,6 +15410,7 @@ name|queryHistoryFile
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -15383,6 +15452,7 @@ argument_list|()
 operator|>
 literal|20
 condition|)
+block|{
 name|p
 operator|=
 name|queryHistory
@@ -15392,6 +15462,8 @@ argument_list|()
 operator|-
 literal|20
 expr_stmt|;
+block|}
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -15419,6 +15491,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ListIterator
 argument_list|<
 name|String
@@ -15452,6 +15525,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|next
 init|=
@@ -15523,6 +15597,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -15539,6 +15614,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -15558,6 +15634,7 @@ specifier|public
 name|void
 name|readlineInputLoop
 parameter_list|(
+specifier|final
 name|String
 name|home
 parameter_list|)
@@ -15574,6 +15651,7 @@ while|while
 condition|(
 name|cont
 condition|)
+block|{
 try|try
 block|{
 if|if
@@ -15590,6 +15668,7 @@ argument_list|(
 literal|"true"
 argument_list|)
 condition|)
+block|{
 name|line
 operator|=
 name|console
@@ -15607,7 +15686,9 @@ operator|+
 name|ANSI_WHITE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|line
 operator|=
 name|console
@@ -15621,12 +15702,14 @@ operator|+
 literal|">"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|line
 operator|!=
 literal|null
 condition|)
+block|{
 name|cont
 operator|=
 name|process
@@ -15635,8 +15718,10 @@ name|line
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EOFException
 name|e
 parameter_list|)
@@ -15645,6 +15730,7 @@ break|break;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -15661,6 +15747,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -15675,6 +15762,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 try|try
 block|{
 name|console
@@ -15688,6 +15776,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -15723,6 +15812,7 @@ specifier|final
 name|void
 name|shutdown
 parameter_list|(
+specifier|final
 name|boolean
 name|force
 parameter_list|)
@@ -15733,6 +15823,7 @@ name|traceWriter
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|traceWriter
@@ -15750,13 +15841,16 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e1
 parameter_list|)
 block|{
 block|}
+block|}
 try|try
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|mgr
 init|=
@@ -15817,6 +15911,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -15838,7 +15933,6 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-specifier|final
 name|void
 name|printUsage
 parameter_list|()
@@ -15950,7 +16044,7 @@ name|builder
 operator|.
 name|append
 argument_list|(
-literal|", Copyright (C) 2001-2012 The eXist-db Project\n"
+literal|", Copyright (C) 2001-2013 The eXist-db Project\n"
 argument_list|)
 expr_stmt|;
 name|builder
@@ -15975,10 +16069,10 @@ argument_list|()
 return|;
 block|}
 specifier|private
-specifier|final
 name|void
 name|message
 parameter_list|(
+specifier|final
 name|String
 name|msg
 parameter_list|)
@@ -15997,6 +16091,7 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|display
@@ -16004,7 +16099,9 @@ argument_list|(
 name|msg
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|out
@@ -16016,11 +16113,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|private
-specifier|final
 name|void
 name|messageln
 parameter_list|(
+specifier|final
 name|String
 name|msg
 parameter_list|)
@@ -16039,6 +16137,7 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|display
@@ -16048,7 +16147,9 @@ operator|+
 literal|'\n'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|out
@@ -16060,11 +16161,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|private
-specifier|final
 name|void
 name|errorln
 parameter_list|(
+specifier|final
 name|String
 name|msg
 parameter_list|)
@@ -16077,6 +16179,7 @@ name|frame
 operator|!=
 literal|null
 condition|)
+block|{
 name|frame
 operator|.
 name|display
@@ -16086,7 +16189,9 @@ operator|+
 literal|'\n'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|err
@@ -16097,10 +16202,12 @@ name|msg
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|Collection
 name|resolveCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -16141,12 +16248,14 @@ specifier|private
 name|Resource
 name|resolveResource
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XmldbURI
 name|collectionPath
 init|=
@@ -16172,6 +16281,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|resourceName
 init|=
@@ -16180,6 +16290,7 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -16240,16 +16351,21 @@ name|CollectionCompleter
 implements|implements
 name|Completor
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|complete
 parameter_list|(
+specifier|final
 name|String
 name|buffer
 parameter_list|,
+specifier|final
 name|int
 name|cursor
 parameter_list|,
+specifier|final
 name|List
 name|candidates
 parameter_list|)
@@ -16264,6 +16380,7 @@ argument_list|(
 literal|' '
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|toComplete
 decl_stmt|;
@@ -16305,6 +16422,7 @@ literal|0
 expr_stmt|;
 block|}
 comment|//            System.out.println("\nbuffer: '" + toComplete + "'; cursor: " + cursor);
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -16354,6 +16472,7 @@ argument_list|(
 name|toComplete
 argument_list|)
 condition|)
+block|{
 name|candidates
 operator|.
 name|add
@@ -16361,6 +16480,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -16377,6 +16497,7 @@ name|ProgressObserver
 implements|implements
 name|Observer
 block|{
+specifier|final
 name|ProgressBar
 name|elementsProgress
 init|=
@@ -16391,6 +16512,7 @@ name|lastObservable
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|ProgressBar
 name|parseProgress
 init|=
@@ -16400,6 +16522,7 @@ argument_list|(
 literal|"storing nodes   "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ProgressBar
 name|wordsProgress
 init|=
@@ -16409,17 +16532,22 @@ argument_list|(
 literal|"storing words   "
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|Observable
 name|o
 parameter_list|,
+specifier|final
 name|Object
 name|obj
 parameter_list|)
 block|{
+specifier|final
 name|ProgressIndicator
 name|ind
 init|=
@@ -16438,6 +16566,7 @@ name|o
 operator|!=
 name|lastObservable
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -16445,12 +16574,14 @@ operator|.
 name|println
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|o
 operator|instanceof
 name|ElementIndex
 condition|)
+block|{
 name|elementsProgress
 operator|.
 name|set
@@ -16466,12 +16597,14 @@ name|getMax
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|o
 operator|instanceof
 name|TextSearchEngine
 condition|)
+block|{
 name|wordsProgress
 operator|.
 name|set
@@ -16487,7 +16620,9 @@ name|getMax
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parseProgress
 operator|.
 name|set
@@ -16503,6 +16638,7 @@ name|getMax
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|lastObservable
 operator|=
 name|o
@@ -16513,15 +16649,18 @@ specifier|private
 name|void
 name|writeOutputFile
 parameter_list|(
+specifier|final
 name|String
 name|fileName
 parameter_list|,
+specifier|final
 name|Object
 name|data
 parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -16531,6 +16670,7 @@ argument_list|(
 name|fileName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileOutputStream
 name|os
 init|=
@@ -16567,6 +16707,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -16613,13 +16754,16 @@ parameter_list|(
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|,
+specifier|final
 name|int
 name|width
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -16638,6 +16782,7 @@ argument_list|()
 operator|>
 name|width
 condition|)
+block|{
 name|s1
 operator|=
 name|s1
@@ -16651,6 +16796,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -16689,6 +16835,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -16696,6 +16843,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -16715,15 +16863,18 @@ specifier|static
 name|String
 name|formatString
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|int
 index|[]
 name|sizes
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -16798,6 +16949,7 @@ condition|;
 name|j
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -16813,6 +16965,7 @@ name|j
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 for|for
 control|(
@@ -16839,6 +16992,7 @@ condition|;
 name|j
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -16846,6 +17000,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|buf
@@ -16860,6 +17015,7 @@ name|Properties
 name|getSystemProperties
 parameter_list|()
 block|{
+specifier|final
 name|Properties
 name|sysProperties
 init|=
@@ -16889,6 +17045,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
