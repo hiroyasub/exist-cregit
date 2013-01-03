@@ -2644,6 +2644,9 @@ argument_list|(
 name|perm
 argument_list|)
 argument_list|,
+literal|"c"
+operator|+
+operator|(
 operator|(
 name|perm
 operator|instanceof
@@ -2673,6 +2676,7 @@ name|perm
 operator|.
 name|toString
 argument_list|()
+operator|)
 argument_list|,
 name|created
 argument_list|)
@@ -2887,6 +2891,9 @@ argument_list|(
 name|perm
 argument_list|)
 argument_list|,
+literal|"-"
+operator|+
+operator|(
 operator|(
 name|perm
 operator|instanceof
@@ -2916,6 +2923,7 @@ name|perm
 operator|.
 name|toString
 argument_list|()
+operator|)
 argument_list|,
 name|lastModificationTime
 argument_list|)
