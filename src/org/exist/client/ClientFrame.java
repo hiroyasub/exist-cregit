@@ -1510,6 +1510,7 @@ name|JTable
 name|fileman
 decl_stmt|;
 specifier|private
+specifier|final
 name|ResourceTableModel
 name|resources
 init|=
@@ -1526,16 +1527,7 @@ name|JPopupMenu
 name|shellPopup
 decl_stmt|;
 specifier|private
-name|InteractiveClient
-name|client
-decl_stmt|;
-specifier|private
-name|XmldbURI
-name|path
-init|=
-literal|null
-decl_stmt|;
-specifier|private
+specifier|final
 name|ProcessThread
 name|process
 init|=
@@ -1544,23 +1536,37 @@ name|ProcessThread
 argument_list|()
 decl_stmt|;
 specifier|private
+name|Preferences
+name|preferences
+decl_stmt|;
+specifier|private
+name|XmldbURI
+name|path
+init|=
+literal|null
+decl_stmt|;
+specifier|private
 name|Properties
 name|properties
 decl_stmt|;
 specifier|private
-name|Preferences
-name|preferences
+specifier|final
+name|InteractiveClient
+name|client
 decl_stmt|;
 comment|/**      * @throws java.awt.HeadlessException      */
 specifier|public
 name|ClientFrame
 parameter_list|(
+specifier|final
 name|InteractiveClient
 name|client
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|,
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -1621,10 +1627,13 @@ operator|new
 name|WindowAdapter
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|windowClosing
 parameter_list|(
+specifier|final
 name|WindowEvent
 name|ev
 parameter_list|)
@@ -1673,6 +1682,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// create the toolbar
+specifier|final
 name|JToolBar
 name|toolbar
 init|=
@@ -1726,10 +1736,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -1794,10 +1807,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -1816,6 +1832,7 @@ name|XMLDBException
 name|e1
 parameter_list|)
 block|{
+comment|//TODO report message
 block|}
 block|}
 block|}
@@ -1877,10 +1894,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -1945,10 +1965,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2013,10 +2036,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2086,10 +2112,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2179,10 +2208,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2247,10 +2279,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2325,10 +2360,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2393,10 +2431,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2418,6 +2459,7 @@ name|button
 argument_list|)
 expr_stmt|;
 comment|// the split pane separates the resource view table from the shell
+specifier|final
 name|JSplitPane
 name|split
 init|=
@@ -2470,6 +2512,7 @@ operator|.
 name|ON
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DropTarget
 name|filemanDropTarget
 init|=
@@ -2791,6 +2834,7 @@ name|JMenuBar
 name|createMenuBar
 parameter_list|()
 block|{
+specifier|final
 name|JMenuBar
 name|menubar
 init|=
@@ -2798,6 +2842,7 @@ operator|new
 name|JMenuBar
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JMenu
 name|fileMenu
 init|=
@@ -2878,10 +2923,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -2950,10 +2998,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3098,10 +3149,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3170,10 +3224,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3242,10 +3299,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3314,10 +3374,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3385,10 +3448,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3462,10 +3528,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3530,10 +3599,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3627,10 +3699,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3649,6 +3724,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenu
 name|toolsMenu
 init|=
@@ -3728,10 +3804,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3805,10 +3884,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3886,10 +3968,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -3958,10 +4043,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4006,10 +4094,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4088,10 +4179,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4180,10 +4274,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4230,10 +4327,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4254,6 +4354,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenu
 name|connectMenu
 init|=
@@ -4311,10 +4412,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4426,6 +4530,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenu
 name|optionsMenu
 init|=
@@ -4495,10 +4600,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4541,10 +4649,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e1
 parameter_list|)
 block|{
+comment|//TODO report error
 block|}
 block|}
 block|}
@@ -4594,10 +4704,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4640,10 +4753,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e1
 parameter_list|)
 block|{
+comment|//TODO report error
 block|}
 block|}
 block|}
@@ -4656,6 +4771,7 @@ argument_list|(
 name|check
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenu
 name|HelpMenu
 init|=
@@ -4713,10 +4829,13 @@ operator|new
 name|ActionListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
@@ -4830,6 +4949,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|u
 parameter_list|)
@@ -4911,6 +5031,7 @@ specifier|public
 name|void
 name|setPath
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|currentPath
 parameter_list|)
@@ -4925,6 +5046,7 @@ name|void
 name|displayPrompt
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|pathString
 init|=
@@ -5013,16 +5135,19 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
 block|{
+comment|//TODO show error
 block|}
 block|}
 specifier|protected
 name|void
 name|display
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -5088,16 +5213,19 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
 block|{
+comment|//TODO show error
 block|}
 block|}
 specifier|protected
 name|void
 name|setResources
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|ResourceDescriptor
@@ -5117,6 +5245,7 @@ specifier|protected
 name|void
 name|setStatus
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -5133,6 +5262,7 @@ specifier|protected
 name|void
 name|setEditable
 parameter_list|(
+specifier|final
 name|boolean
 name|enabled
 parameter_list|)
@@ -5153,10 +5283,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent) */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|keyPressed
 parameter_list|(
+specifier|final
 name|KeyEvent
 name|e
 parameter_list|)
@@ -5172,10 +5305,13 @@ literal|false
 expr_stmt|;
 block|}
 comment|/** @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent) */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|keyReleased
 parameter_list|(
+specifier|final
 name|KeyEvent
 name|e
 parameter_list|)
@@ -5191,10 +5327,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|keyTyped
 parameter_list|(
+specifier|final
 name|KeyEvent
 name|e
 parameter_list|)
@@ -5210,6 +5349,7 @@ specifier|synchronized
 name|void
 name|type
 parameter_list|(
+specifier|final
 name|KeyEvent
 name|e
 parameter_list|)
@@ -5293,11 +5433,13 @@ argument_list|()
 operator|<=
 name|commandStart
 condition|)
+block|{
 name|e
 operator|.
 name|consume
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|KeyEvent
@@ -5315,9 +5457,11 @@ name|KeyEvent
 operator|.
 name|KEY_PRESSED
 condition|)
+block|{
 name|historyBack
 argument_list|()
 expr_stmt|;
+block|}
 name|e
 operator|.
 name|consume
@@ -5340,9 +5484,11 @@ name|KeyEvent
 operator|.
 name|KEY_PRESSED
 condition|)
+block|{
 name|historyForward
 argument_list|()
 expr_stmt|;
+block|}
 name|e
 operator|.
 name|consume
@@ -5385,6 +5531,7 @@ argument_list|()
 operator|<
 name|commandStart
 condition|)
+block|{
 name|shell
 operator|.
 name|setCaretPosition
@@ -5395,6 +5542,7 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -5428,24 +5576,30 @@ argument_list|()
 operator|<=
 name|commandStart
 condition|)
+block|{
 name|e
 operator|.
 name|consume
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 break|break;
 block|}
 block|}
 comment|/** @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent) */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|actionPerformed
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|cmd
 init|=
@@ -5463,11 +5617,13 @@ argument_list|(
 name|CUT
 argument_list|)
 condition|)
+block|{
 name|shell
 operator|.
 name|cut
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|cmd
@@ -5477,11 +5633,13 @@ argument_list|(
 name|COPY
 argument_list|)
 condition|)
+block|{
 name|shell
 operator|.
 name|copy
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|cmd
@@ -5491,11 +5649,13 @@ argument_list|(
 name|PASTE
 argument_list|)
 condition|)
+block|{
 name|shell
 operator|.
 name|paste
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
@@ -5528,6 +5688,7 @@ specifier|private
 name|void
 name|goUpAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -5556,10 +5717,12 @@ specifier|private
 name|void
 name|newCollectionAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|newCol
 init|=
@@ -5585,6 +5748,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|command
 init|=
@@ -5610,108 +5774,6 @@ argument_list|(
 name|command
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-specifier|private
-name|void
-name|newServerURIAction
-parameter_list|(
-name|String
-name|newURI
-parameter_list|)
-block|{
-if|if
-condition|(
-name|newURI
-operator|==
-literal|null
-condition|)
-name|newURI
-operator|=
-name|JOptionPane
-operator|.
-name|showInputDialog
-argument_list|(
-name|this
-argument_list|,
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.99"
-argument_list|)
-comment|//$NON-NLS-1$
-operator|+
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.100"
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|//$NON-NLS-1$
-if|if
-condition|(
-name|newURI
-operator|!=
-literal|null
-condition|)
-block|{
-name|properties
-operator|.
-name|setProperty
-argument_list|(
-literal|"uri"
-argument_list|,
-name|newURI
-argument_list|)
-expr_stmt|;
-comment|//$NON-NLS-1$
-try|try
-block|{
-name|client
-operator|.
-name|shutdown
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|client
-operator|.
-name|connect
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|showErrorMessage
-argument_list|(
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.102"
-argument_list|)
-operator|+
-name|newURI
-operator|+
-name|Messages
-operator|.
-name|getString
-argument_list|(
-literal|"ClientFrame.103"
-argument_list|)
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//$NON-NLS-1$ //$NON-NLS-2$
-block|}
 block|}
 block|}
 comment|/**      * Returns an array of user-selected resources.      */
@@ -5785,6 +5847,7 @@ specifier|private
 name|void
 name|removeAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -5839,6 +5902,7 @@ name|YES_OPTION
 condition|)
 block|{
 comment|//$NON-NLS-1$
+specifier|final
 name|Runnable
 name|removeTask
 init|=
@@ -5846,11 +5910,14 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
+specifier|final
 name|ProgressMonitor
 name|monitor
 init|=
@@ -5914,6 +5981,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|ResourceDescriptor
 name|resource
 init|=
@@ -5932,6 +6000,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -5964,6 +6033,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -5984,6 +6054,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -6014,6 +6085,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -6046,7 +6118,9 @@ operator|.
 name|isCanceled
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 block|}
 try|try
 block|{
@@ -6058,6 +6132,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -6107,8 +6182,6 @@ decl_stmt|;
 name|PrettyXmldbURI
 index|[]
 name|collections
-init|=
-literal|null
 decl_stmt|;
 comment|//get an array of collection paths
 try|try
@@ -6392,6 +6465,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -6507,6 +6581,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -6683,6 +6758,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -6726,6 +6802,7 @@ specifier|private
 name|void
 name|copyAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -6741,8 +6818,6 @@ decl_stmt|;
 name|PrettyXmldbURI
 index|[]
 name|collections
-init|=
-literal|null
 decl_stmt|;
 comment|//get an array of collection paths
 try|try
@@ -6800,6 +6875,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -6817,6 +6893,7 @@ expr_stmt|;
 return|return;
 block|}
 comment|//prompt the user for a destination collection from the list
+specifier|final
 name|Object
 name|val
 init|=
@@ -6861,7 +6938,9 @@ name|val
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|XmldbURI
 name|destinationPath
@@ -6876,6 +6955,7 @@ operator|.
 name|getTargetURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Runnable
 name|moveTask
 init|=
@@ -6883,6 +6963,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -6890,6 +6972,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -7026,6 +7109,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -7194,6 +7278,7 @@ specifier|private
 name|void
 name|reindexAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -7208,6 +7293,7 @@ operator|.
 name|getSelectedRows
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ResourceDescriptor
 index|[]
 name|res
@@ -7374,6 +7460,7 @@ index|[]
 init|=
 name|res
 decl_stmt|;
+specifier|final
 name|Runnable
 name|reindexThread
 init|=
@@ -7381,6 +7468,8 @@ operator|new
 name|Runnable
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7402,6 +7491,7 @@ name|WAIT_CURSOR
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexQueryService
 name|service
 decl_stmt|;
@@ -7441,6 +7531,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|ResourceDescriptor
 name|next
 init|=
@@ -7497,6 +7588,7 @@ comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -7542,11 +7634,13 @@ specifier|private
 name|void
 name|uploadAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
 comment|// TODO store last file choose in properties
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -7691,6 +7785,7 @@ name|void
 name|run
 parameter_list|()
 block|{
+specifier|final
 name|UploadDialog
 name|upload
 init|=
@@ -7751,6 +7846,7 @@ specifier|private
 name|boolean
 name|deleteDirectory
 parameter_list|(
+specifier|final
 name|File
 name|target
 parameter_list|)
@@ -7763,6 +7859,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|children
@@ -7789,6 +7886,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|boolean
 name|success
 init|=
@@ -8171,6 +8269,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -8191,6 +8290,7 @@ comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8211,6 +8311,7 @@ comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -8231,6 +8332,7 @@ comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -8255,10 +8357,12 @@ specifier|private
 name|void
 name|restoreAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -8338,6 +8442,7 @@ name|APPROVE_OPTION
 condition|)
 block|{
 comment|//$NON-NLS-1$
+specifier|final
 name|File
 name|f
 init|=
@@ -8361,6 +8466,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JPanel
 name|askPass
 init|=
@@ -8393,6 +8499,7 @@ name|NORTH
 argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
+specifier|final
 name|JPasswordField
 name|passInput
 init|=
@@ -8451,6 +8558,7 @@ operator|.
 name|YES_OPTION
 condition|)
 block|{
+specifier|final
 name|String
 name|newDbaPass
 init|=
@@ -8474,6 +8582,7 @@ name|getPassword
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|restoreFile
 init|=
@@ -8691,6 +8800,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -8708,6 +8818,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -8817,6 +8928,7 @@ specifier|private
 name|void
 name|editUsersAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -8864,6 +8976,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -8892,6 +9005,7 @@ specifier|private
 name|void
 name|exportAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -8905,7 +9019,10 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|row
 init|=
@@ -8914,6 +9031,7 @@ operator|.
 name|getSelectedRow
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ResourceDescriptor
 name|desc
 init|=
@@ -8931,7 +9049,10 @@ operator|.
 name|isCollection
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -9017,6 +9138,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -9051,21 +9173,28 @@ name|JOptionPane
 operator|.
 name|NO_OPTION
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Resource
 name|resource
 decl_stmt|;
+specifier|final
 name|FileOutputStream
 name|os
 decl_stmt|;
+specifier|final
 name|BufferedWriter
 name|writer
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|contentSerializer
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -9205,6 +9334,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -9229,9 +9359,11 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+comment|//TODO finally close os
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -9262,10 +9394,12 @@ specifier|private
 name|void
 name|editIndexesAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
+specifier|final
 name|IndexDialog
 name|dialog
 init|=
@@ -9295,10 +9429,12 @@ specifier|private
 name|void
 name|editTriggersAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
+specifier|final
 name|TriggersDialog
 name|dialog
 init|=
@@ -9323,6 +9459,7 @@ name|void
 name|editPolicies
 parameter_list|()
 block|{
+specifier|final
 name|Collection
 name|systemCollection
 decl_stmt|;
@@ -9342,6 +9479,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -9363,6 +9501,7 @@ return|return;
 block|}
 try|try
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|dim
 init|=
@@ -9406,6 +9545,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -9425,6 +9565,7 @@ expr_stmt|;
 comment|//$NON-NLS-1$
 return|return;
 block|}
+specifier|final
 name|XACMLEditor
 name|editor
 init|=
@@ -9446,10 +9587,12 @@ specifier|private
 name|void
 name|findAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -9458,6 +9601,7 @@ operator|.
 name|getCollection
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QueryDialog
 name|dialog
 init|=
@@ -9483,6 +9627,7 @@ specifier|private
 name|void
 name|setPermAction
 parameter_list|(
+specifier|final
 name|ActionEvent
 name|ev
 parameter_list|)
@@ -9498,9 +9643,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -9509,6 +9657,7 @@ operator|.
 name|getCollection
 argument_list|()
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -9550,6 +9699,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|int
 name|row
 init|=
@@ -9575,10 +9725,9 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Permission
 name|perm
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -9588,6 +9737,7 @@ name|isCollection
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Collection
 name|coll
 init|=
@@ -9625,6 +9775,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -9738,6 +9889,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -9818,6 +9970,7 @@ literal|".."
 argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
+specifier|final
 name|Account
 name|account
 init|=
@@ -10023,6 +10176,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -10073,9 +10227,12 @@ name|commandStart
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|String
 name|command
 init|=
@@ -10137,6 +10294,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
@@ -10163,6 +10321,7 @@ operator|.
 name|previous
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|item
 init|=
@@ -10182,7 +10341,9 @@ name|item
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 if|if
@@ -10194,6 +10355,7 @@ argument_list|()
 operator|>
 name|commandStart
 condition|)
+block|{
 name|doc
 operator|.
 name|remove
@@ -10208,6 +10370,7 @@ operator|-
 name|commandStart
 argument_list|)
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|insertString
@@ -10222,6 +10385,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
@@ -10272,6 +10436,7 @@ argument_list|()
 operator|>
 name|commandStart
 condition|)
+block|{
 name|doc
 operator|.
 name|remove
@@ -10286,6 +10451,7 @@ operator|-
 name|commandStart
 argument_list|)
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|insertString
@@ -10300,6 +10466,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
@@ -10382,10 +10549,13 @@ name|TableMouseListener
 extends|extends
 name|MouseAdapter
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mouseClicked
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
@@ -10400,6 +10570,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|int
 name|row
 init|=
@@ -10428,6 +10599,7 @@ argument_list|()
 condition|)
 block|{
 comment|// cd into collection
+specifier|final
 name|String
 name|command
 init|=
@@ -10485,6 +10657,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Resource
 name|doc
 init|=
@@ -10605,6 +10778,7 @@ comment|//doc will be closed in one of the dialogs above when they are closed
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|ex
 parameter_list|)
@@ -10655,13 +10829,17 @@ argument_list|<
 name|ResourceDescriptor
 argument_list|>
 block|{
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compare
 parameter_list|(
+specifier|final
 name|ResourceDescriptor
 name|desc1
 parameter_list|,
+specifier|final
 name|ResourceDescriptor
 name|desc2
 parameter_list|)
@@ -10695,6 +10873,7 @@ name|SUPERIOR
 return|;
 block|}
 else|else
+block|{
 return|return
 name|desc1
 operator|.
@@ -10709,6 +10888,7 @@ name|getName
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 class|class
@@ -10747,6 +10927,7 @@ specifier|public
 name|void
 name|setAction
 parameter_list|(
+specifier|final
 name|String
 name|action
 parameter_list|)
@@ -10768,10 +10949,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//TODO report error?
 block|}
 block|}
 name|this
@@ -10820,6 +11003,8 @@ literal|null
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see java.lang.Runnable#run()          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -10837,6 +11022,7 @@ name|action
 operator|==
 literal|null
 condition|)
+block|{
 try|try
 block|{
 synchronized|synchronized
@@ -10851,10 +11037,13 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//TODO report error?
+block|}
 block|}
 name|status
 operator|=
@@ -10961,6 +11150,7 @@ specifier|public
 name|void
 name|setData
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|ResourceDescriptor
@@ -10993,6 +11183,7 @@ specifier|public
 name|ResourceDescriptor
 name|getRow
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -11007,6 +11198,8 @@ argument_list|)
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getColumnCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getColumnCount
@@ -11019,6 +11212,8 @@ name|length
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getColumnName(int)          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getColumnName
@@ -11035,6 +11230,8 @@ index|]
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getRowCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getRowCount
@@ -11054,6 +11251,8 @@ argument_list|()
 return|;
 block|}
 comment|/*          * (non-Javadoc)          *          * @see javax.swing.table.TableModel#getValueAt(int, int)          */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getValueAt
@@ -11065,6 +11264,7 @@ name|int
 name|columnIndex
 parameter_list|)
 block|{
+specifier|final
 name|ResourceDescriptor
 name|row
 init|=
@@ -11556,9 +11756,11 @@ specifier|static
 name|void
 name|showErrorMessage
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|Throwable
 name|t
 parameter_list|)
@@ -11568,6 +11770,7 @@ name|scroll
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|JTextArea
 name|msgArea
 init|=
@@ -11616,6 +11819,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -11623,6 +11827,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -11639,6 +11844,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JTextArea
 name|stacktrace
 init|=
@@ -11709,6 +11915,7 @@ argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
 block|}
+specifier|final
 name|JOptionPane
 name|optionPane
 init|=
@@ -11739,6 +11946,7 @@ operator|.
 name|ERROR_MESSAGE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JDialog
 name|dialog
 init|=
@@ -11776,16 +11984,17 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 specifier|public
 specifier|static
 name|int
 name|showErrorMessageQuery
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|Throwable
 name|t
 parameter_list|)
@@ -11795,6 +12004,7 @@ name|scroll
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|JTextArea
 name|msgArea
 init|=
@@ -11843,6 +12053,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -11850,6 +12061,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -11866,6 +12078,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JTextArea
 name|stacktrace
 init|=
@@ -11936,6 +12149,7 @@ argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
 block|}
+specifier|final
 name|JOptionPane
 name|optionPane
 init|=
@@ -11975,6 +12189,7 @@ operator|.
 name|OK_CANCEL_OPTION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JDialog
 name|dialog
 init|=
@@ -12012,6 +12227,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 name|result
 init|=
@@ -12026,9 +12242,11 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -12045,10 +12263,13 @@ argument_list|()
 return|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.WindowFocusListener#windowGainedFocus(java.awt.event.WindowEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|windowGainedFocus
 parameter_list|(
+specifier|final
 name|WindowEvent
 name|e
 parameter_list|)
@@ -12058,50 +12279,65 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.WindowFocusListener#windowLostFocus(java.awt.event.WindowEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|windowLostFocus
 parameter_list|(
+specifier|final
 name|WindowEvent
 name|e
 parameter_list|)
 block|{
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mouseClicked
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
 block|{
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mouseEntered
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
 block|{
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mouseExited
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
 block|{
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mousePressed
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
@@ -12140,10 +12376,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/*      * (non-Javadoc)      *      * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mouseReleased
 parameter_list|(
+specifier|final
 name|MouseEvent
 name|e
 parameter_list|)
@@ -12187,6 +12426,8 @@ extends|extends
 name|FileFilter
 block|{
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#getDescription()          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -12203,10 +12444,13 @@ return|;
 comment|//$NON-NLS-1$
 block|}
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
+specifier|final
 name|File
 name|f
 parameter_list|)
@@ -12218,9 +12462,11 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 operator|!
 name|MimeTable
@@ -12244,6 +12490,8 @@ extends|extends
 name|FileFilter
 block|{
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#getDescription()          */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -12260,10 +12508,13 @@ return|;
 comment|//$NON-NLS-1$
 block|}
 comment|/* (non-Javadoc)          * @see javax.swing.filechooser.FileFilter#accept(java.io.File)          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
+specifier|final
 name|File
 name|f
 parameter_list|)
@@ -12275,9 +12526,11 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|MimeTable
 operator|.
@@ -12306,6 +12559,7 @@ specifier|public
 name|void
 name|dragEnter
 parameter_list|(
+specifier|final
 name|DropTargetDragEvent
 name|dtde
 parameter_list|)
@@ -12317,6 +12571,7 @@ specifier|public
 name|void
 name|dragOver
 parameter_list|(
+specifier|final
 name|DropTargetDragEvent
 name|dtde
 parameter_list|)
@@ -12328,6 +12583,7 @@ specifier|public
 name|void
 name|dropActionChanged
 parameter_list|(
+specifier|final
 name|DropTargetDragEvent
 name|dtde
 parameter_list|)
@@ -12339,6 +12595,7 @@ specifier|public
 name|void
 name|dragExit
 parameter_list|(
+specifier|final
 name|DropTargetEvent
 name|dte
 parameter_list|)
@@ -12350,6 +12607,7 @@ specifier|public
 name|void
 name|drop
 parameter_list|(
+specifier|final
 name|DropTargetDropEvent
 name|dtde
 parameter_list|)
@@ -12365,6 +12623,7 @@ operator|.
 name|ACTION_COPY_OR_MOVE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Transferable
 name|transferable
 init|=
@@ -12429,6 +12688,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|use
 parameter_list|)
@@ -12455,6 +12715,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|cnfe
 parameter_list|)
@@ -12481,6 +12742,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedFlavorException
 name|ufe
 parameter_list|)
@@ -12507,6 +12769,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -12539,6 +12802,7 @@ name|File
 argument_list|>
 name|getFilesWin32
 parameter_list|(
+specifier|final
 name|Transferable
 name|transferable
 parameter_list|)
@@ -12571,6 +12835,7 @@ name|File
 argument_list|>
 name|getFilesUnix
 parameter_list|(
+specifier|final
 name|Transferable
 name|transferable
 parameter_list|)
@@ -12591,6 +12856,7 @@ name|files
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|DataFlavor
 name|unixFileDataFlavour
 init|=
@@ -12600,6 +12866,7 @@ argument_list|(
 literal|"text/uri-list;class=java.lang.String"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|data
 init|=
@@ -12615,6 +12882,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|StringTokenizer
 name|st
 init|=
@@ -12633,6 +12901,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|token
 init|=
