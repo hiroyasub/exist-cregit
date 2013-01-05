@@ -624,6 +624,10 @@ decl_stmt|;
 if|if
 condition|(
 name|passed
+operator|==
+literal|null
+operator|||
+name|passed
 operator|.
 name|equals
 argument_list|(
