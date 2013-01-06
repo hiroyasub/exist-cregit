@@ -53,7 +53,7 @@ specifier|private
 name|String
 name|apiName
 decl_stmt|;
-comment|/** 	 * Contructs an XmldbURI from given URI. 	 * The provided URI must have the XMLDB_SCHEME ("xmldb") 	 * @param xmldbURI A string  	 * @throws URISyntaxException If the given string is not a valid xmldb URI. 	 */
+comment|/** 	 * Constructs an XmldbURI from given URI. The provided URI must have the       * XMLDB_SCHEME ("xmldb")      *  	 * @param xmldbURI A string  	 * @throws URISyntaxException If the given string is not a valid xmldb URI. 	 */
 specifier|protected
 name|FullXmldbURI
 parameter_list|(
@@ -92,6 +92,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Feeds private members      * @throws URISyntaxException      */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|parseURI
@@ -123,7 +125,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
-comment|//Put the "right" URI in the message ;-)
+block|{
 throw|throw
 operator|new
 name|URISyntaxException
@@ -138,6 +140,7 @@ argument_list|,
 literal|"xmldb URI scheme has no instance name"
 argument_list|)
 throw|;
+block|}
 name|String
 name|userInfo
 init|=
@@ -180,6 +183,7 @@ argument_list|(
 literal|"@"
 argument_list|)
 condition|)
+block|{
 name|userInfo
 operator|=
 name|userInfo
@@ -196,6 +200,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Eventually rewrite wrappedURI *without* user info
 if|if
@@ -250,6 +255,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|recomputed
 operator|.
 name|append
@@ -265,6 +271,7 @@ name|getPort
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|recomputed
 operator|.
 name|append
@@ -298,6 +305,8 @@ name|hadXmldbPrefix
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|splitPath
@@ -366,7 +375,7 @@ argument_list|()
 operator|!=
 name|NO_PORT
 condition|)
-comment|//Put the "right" URI in the message ;-)
+block|{
 throw|throw
 operator|new
 name|URISyntaxException
@@ -381,6 +390,7 @@ argument_list|,
 literal|"Local xmldb URI should not provide a port"
 argument_list|)
 throw|;
+block|}
 name|apiName
 operator|=
 name|API_LOCAL
@@ -537,6 +547,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** To be called each time a private member that interacts with the wrapped URI is modified. 	 * @throws URISyntaxException 	 */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|recomputeURI
@@ -563,6 +575,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -576,6 +589,7 @@ argument_list|(
 literal|"://"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//No userInfo
 if|if
 condition|(
@@ -584,6 +598,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -592,6 +607,7 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|getPort
@@ -599,6 +615,7 @@ argument_list|()
 operator|!=
 name|NO_PORT
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -609,12 +626,14 @@ name|getPort
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -622,6 +641,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : eventually use a prepend.root.collection system property
 if|if
 condition|(
@@ -630,6 +650,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -638,6 +659,7 @@ name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|wrappedURI
@@ -709,6 +731,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|context
@@ -725,6 +748,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|this
 operator|.
@@ -771,6 +795,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|URI
 name|getURI
@@ -780,6 +806,8 @@ return|return
 name|wrappedURI
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|URI
 name|getXmldbURI
@@ -799,6 +827,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInstanceName
@@ -811,6 +841,8 @@ name|getScheme
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getApiName
@@ -820,6 +852,8 @@ return|return
 name|apiName
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getContext
@@ -829,6 +863,8 @@ return|return
 name|context
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isAbsolute
@@ -841,13 +877,15 @@ name|isAbsolute
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isContextAbsolute
 parameter_list|()
 block|{
 name|String
-name|context
+name|currentContext
 init|=
 name|this
 operator|.
@@ -856,15 +894,17 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|currentContext
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
-name|context
+name|currentContext
 operator|.
 name|startsWith
 argument_list|(
@@ -872,13 +912,15 @@ literal|"/"
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|normalizeContext
 parameter_list|()
 block|{
 name|String
-name|context
+name|currentContext
 init|=
 name|this
 operator|.
@@ -887,13 +929,15 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|currentContext
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 name|URI
 name|uri
 init|=
@@ -901,7 +945,7 @@ name|URI
 operator|.
 name|create
 argument_list|(
-name|context
+name|currentContext
 argument_list|)
 decl_stmt|;
 try|try
@@ -953,6 +997,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|URI
 name|relativizeContext
@@ -967,6 +1013,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -974,8 +1021,9 @@ argument_list|(
 literal|"The provided URI is null"
 argument_list|)
 throw|;
+block|}
 name|String
-name|context
+name|currentContext
 init|=
 name|this
 operator|.
@@ -984,10 +1032,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|currentContext
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -995,6 +1044,7 @@ argument_list|(
 literal|"The current context is null"
 argument_list|)
 throw|;
+block|}
 name|URI
 name|contextURI
 decl_stmt|;
@@ -1002,7 +1052,7 @@ comment|//Adds a final slash if necessary
 if|if
 condition|(
 operator|!
-name|context
+name|currentContext
 operator|.
 name|endsWith
 argument_list|(
@@ -1016,7 +1066,7 @@ name|info
 argument_list|(
 literal|"Added a final '/' to '"
 operator|+
-name|context
+name|currentContext
 operator|+
 literal|"'"
 argument_list|)
@@ -1027,22 +1077,24 @@ name|URI
 operator|.
 name|create
 argument_list|(
-name|context
+name|currentContext
 operator|+
 literal|"/"
 argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|contextURI
 operator|=
 name|URI
 operator|.
 name|create
 argument_list|(
-name|context
+name|currentContext
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|contextURI
 operator|.
@@ -1052,6 +1104,8 @@ name|uri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|URI
 name|resolveContext
@@ -1070,6 +1124,7 @@ name|str
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1077,8 +1132,9 @@ argument_list|(
 literal|"The provided URI is null"
 argument_list|)
 throw|;
+block|}
 name|String
-name|context
+name|currentContext
 init|=
 name|this
 operator|.
@@ -1087,10 +1143,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|currentContext
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1098,14 +1155,12 @@ argument_list|(
 literal|"The current context is null"
 argument_list|)
 throw|;
-name|URI
-name|contextURI
-decl_stmt|;
-comment|//Adds a final slash if necessary
+block|}
+comment|// Add a final slash if necessary
 if|if
 condition|(
 operator|!
-name|context
+name|currentContext
 operator|.
 name|endsWith
 argument_list|(
@@ -1119,33 +1174,26 @@ name|info
 argument_list|(
 literal|"Added a final '/' to '"
 operator|+
-name|context
+name|currentContext
 operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|contextURI
-operator|=
-name|URI
-operator|.
-name|create
-argument_list|(
-name|context
-operator|+
+name|currentContext
+operator|+=
 literal|"/"
-argument_list|)
 expr_stmt|;
 block|}
-else|else
+name|URI
 name|contextURI
-operator|=
+init|=
 name|URI
 operator|.
 name|create
 argument_list|(
-name|context
+name|currentContext
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 name|contextURI
 operator|.
@@ -1155,6 +1203,8 @@ name|str
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|URI
 name|resolveContext
@@ -1171,6 +1221,7 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1178,8 +1229,9 @@ argument_list|(
 literal|"The provided URI is null"
 argument_list|)
 throw|;
+block|}
 name|String
-name|context
+name|currentContext
 init|=
 name|this
 operator|.
@@ -1188,10 +1240,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|context
+name|currentContext
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1199,14 +1252,12 @@ argument_list|(
 literal|"The current context is null"
 argument_list|)
 throw|;
-name|URI
-name|contextURI
-decl_stmt|;
-comment|//Adds a final slash if necessary
+block|}
+comment|// Add a final slash if necessary
 if|if
 condition|(
 operator|!
-name|context
+name|currentContext
 operator|.
 name|endsWith
 argument_list|(
@@ -1220,33 +1271,26 @@ name|info
 argument_list|(
 literal|"Added a final '/' to '"
 operator|+
-name|context
+name|currentContext
 operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-name|contextURI
-operator|=
-name|URI
-operator|.
-name|create
-argument_list|(
-name|context
-operator|+
+name|currentContext
+operator|+=
 literal|"/"
-argument_list|)
 expr_stmt|;
 block|}
-else|else
+name|URI
 name|contextURI
-operator|=
+init|=
 name|URI
 operator|.
 name|create
 argument_list|(
-name|context
+name|currentContext
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 name|contextURI
 operator|.
@@ -1265,6 +1309,7 @@ if|if
 condition|(
 name|hadXmldbPrefix
 condition|)
+block|{
 return|return
 name|XMLDB_URI_PREFIX
 operator|+
@@ -1273,7 +1318,9 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|wrappedURI
 operator|.
@@ -1281,7 +1328,10 @@ name|toString
 argument_list|()
 return|;
 block|}
+block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAuthority
@@ -1295,6 +1345,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getFragment() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getFragment
@@ -1308,6 +1360,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getPort() 	 */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPort
@@ -1321,6 +1375,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getQuery() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getQuery
@@ -1334,6 +1390,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawAuthority() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRawAuthority
@@ -1347,6 +1405,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getHost() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getHost
@@ -1360,6 +1420,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getUserInfo() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getUserInfo
@@ -1373,6 +1435,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawFragment() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRawFragment
@@ -1386,6 +1450,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawQuery() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRawQuery
@@ -1399,6 +1465,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawUserInfo() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getRawUserInfo
