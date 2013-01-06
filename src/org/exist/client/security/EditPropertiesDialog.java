@@ -3985,6 +3985,8 @@ name|AccessControlEntryDialog
 argument_list|(
 name|getUserManagementService
 argument_list|()
+argument_list|,
+literal|"Create Access Control Entry"
 argument_list|)
 decl_stmt|;
 name|aceDialog
@@ -4174,6 +4176,8 @@ name|AccessControlEntryDialog
 argument_list|(
 name|getUserManagementService
 argument_list|()
+argument_list|,
+literal|"Insert Access Control Entry (before...)"
 argument_list|)
 decl_stmt|;
 name|aceDialog
@@ -4384,6 +4388,8 @@ name|AccessControlEntryDialog
 argument_list|(
 name|getUserManagementService
 argument_list|()
+argument_list|,
+literal|"Insert Access Control Entry (after...)"
 argument_list|)
 decl_stmt|;
 name|aceDialog
