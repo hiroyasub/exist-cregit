@@ -504,6 +504,14 @@ operator|.
 name|createConnection
 argument_list|()
 expr_stmt|;
+comment|// Register for exceptions
+name|connection
+operator|.
+name|setExceptionListener
+argument_list|(
+name|exceptionListener
+argument_list|)
+expr_stmt|;
 comment|// Set clientId
 name|connection
 operator|.
@@ -608,13 +616,6 @@ name|jmsListener
 argument_list|)
 expr_stmt|;
 block|}
-name|connection
-operator|.
-name|setExceptionListener
-argument_list|(
-name|exceptionListener
-argument_list|)
-expr_stmt|;
 comment|// Start it all
 name|connection
 operator|.
