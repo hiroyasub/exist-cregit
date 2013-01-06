@@ -464,6 +464,16 @@ argument_list|(
 literal|"Scanning journal..."
 argument_list|)
 expr_stmt|;
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|reportStatus
+argument_list|(
+literal|"Unclean shutdown detected. Scanning log..."
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|position
@@ -745,6 +755,16 @@ literal|true
 expr_stmt|;
 try|try
 block|{
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|reportStatus
+argument_list|(
+literal|"Running recovery..."
+argument_list|)
+expr_stmt|;
 name|doRecovery
 argument_list|(
 name|txnsStarted
@@ -768,6 +788,18 @@ parameter_list|)
 block|{
 comment|// if restartOnError == true, we try to bring up the database even if there
 comment|// are errors. Otherwise, an exception is thrown, which will stop the db initialization
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|reportStatus
+argument_list|(
+name|BrokerPool
+operator|.
+name|SIGNAL_ABORTED
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|restartOnError

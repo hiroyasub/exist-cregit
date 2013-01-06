@@ -816,6 +816,15 @@ name|SIGNAL_SHUTDOWN
 init|=
 literal|"shutdown"
 decl_stmt|;
+comment|/*** recovery aborted, db stopped */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|SIGNAL_ABORTED
+init|=
+literal|"aborted"
+decl_stmt|;
 comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).       */
 specifier|public
 specifier|final

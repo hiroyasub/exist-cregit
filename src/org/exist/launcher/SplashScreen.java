@@ -453,6 +453,43 @@ if|else if
 condition|(
 name|BrokerPool
 operator|.
+name|SIGNAL_ABORTED
+operator|.
+name|equals
+argument_list|(
+name|arg
+argument_list|)
+condition|)
+block|{
+name|setVisible
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|launcher
+operator|.
+name|showMessageAndExit
+argument_list|(
+literal|"Startup aborted"
+argument_list|,
+literal|"eXist-db detected an error during recovery. This may not be fatal, "
+operator|+
+literal|"but to avoid possible damage, the db will now stop. Please consider "
+operator|+
+literal|"running a consistency check via the export tool and create "
+operator|+
+literal|"a backup if problems are reported. The db should come up again if you restart "
+operator|+
+literal|"it."
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|BrokerPool
+operator|.
 name|SIGNAL_WRITABLE
 operator|.
 name|equals
@@ -479,9 +516,9 @@ name|arg
 argument_list|)
 condition|)
 block|{
-name|setStatus
+name|setVisible
 argument_list|(
-literal|"An error occurred! Please check the logs."
+literal|false
 argument_list|)
 expr_stmt|;
 name|launcher

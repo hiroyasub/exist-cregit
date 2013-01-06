@@ -2396,7 +2396,13 @@ operator|.
 name|WARNING_MESSAGE
 argument_list|)
 expr_stmt|;
-comment|//System.exit(1);
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Ensure that stdout and stderr messages are also printed      * to the logs.      */
 specifier|private
