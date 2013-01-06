@@ -53,7 +53,7 @@ specifier|private
 name|String
 name|apiName
 decl_stmt|;
-comment|/** 	 * Constructs an XmldbURI from given URI. The provided URI must have the       * XMLDB_SCHEME ("xmldb")      *  	 * @param xmldbURI A string  	 * @throws URISyntaxException If the given string is not a valid xmldb URI. 	 */
+comment|/**      * Constructs an XmldbURI from given URI. The provided URI must have the      * XMLDB_SCHEME ("xmldb")      *      * @param xmldbURI A string      * @throws URISyntaxException If the given string is not a valid xmldb URI.      */
 specifier|protected
 name|FullXmldbURI
 parameter_list|(
@@ -91,7 +91,7 @@ name|mustHaveXMLDB
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Feeds private members      * @throws URISyntaxException      */
+comment|/**      * Feeds private members      *      * @throws URISyntaxException      */
 annotation|@
 name|Override
 specifier|protected
@@ -546,7 +546,7 @@ name|pathForSuper
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** To be called each time a private member that interacts with the wrapped URI is modified. 	 * @throws URISyntaxException 	 */
+comment|/**      * To be called each time a private member that interacts with the wrapped      * URI is modified.      *      * @throws URISyntaxException      */
 annotation|@
 name|Override
 specifier|protected
@@ -1300,6 +1300,8 @@ name|uri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1329,7 +1331,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getAuthority() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getAuthority()      */
 annotation|@
 name|Override
 specifier|public
@@ -1344,7 +1346,7 @@ name|getAuthority
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getFragment() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getFragment()      */
 annotation|@
 name|Override
 specifier|public
@@ -1359,7 +1361,7 @@ name|getFragment
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getPort() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getPort()      */
 annotation|@
 name|Override
 specifier|public
@@ -1374,7 +1376,7 @@ name|getPort
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getQuery() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getQuery()      */
 annotation|@
 name|Override
 specifier|public
@@ -1389,7 +1391,7 @@ name|getQuery
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawAuthority() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawAuthority()      */
 annotation|@
 name|Override
 specifier|public
@@ -1404,7 +1406,7 @@ name|getRawAuthority
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getHost() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getHost()      */
 annotation|@
 name|Override
 specifier|public
@@ -1419,7 +1421,7 @@ name|getHost
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getUserInfo() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getUserInfo()      */
 annotation|@
 name|Override
 specifier|public
@@ -1434,7 +1436,7 @@ name|getUserInfo
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawFragment() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawFragment()      */
 annotation|@
 name|Override
 specifier|public
@@ -1449,7 +1451,7 @@ name|getRawFragment
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawQuery() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawQuery()      */
 annotation|@
 name|Override
 specifier|public
@@ -1464,7 +1466,7 @@ name|getRawQuery
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.net.URI#getRawUserInfo() 	 */
+comment|/* (non-Javadoc)      * @see java.net.URI#getRawUserInfo()      */
 annotation|@
 name|Override
 specifier|public
