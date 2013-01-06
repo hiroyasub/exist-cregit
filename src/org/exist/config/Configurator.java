@@ -702,7 +702,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class handle all configuration needs: extracting and saving, reconfiguring& etc.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * This class handle all configuration needs: extracting and saving,  * reconfiguring& etc.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class
@@ -949,6 +949,7 @@ argument_list|(
 name|annotation
 argument_list|)
 condition|)
+block|{
 return|return
 name|field
 operator|.
@@ -957,10 +958,13 @@ argument_list|(
 name|annotation
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 specifier|public
 specifier|static
@@ -1019,9 +1023,11 @@ argument_list|(
 name|methodName
 argument_list|)
 condition|)
+block|{
 return|return
 name|method
 return|;
+block|}
 block|}
 block|}
 catch|catch
@@ -1104,9 +1110,11 @@ argument_list|(
 name|methodName
 argument_list|)
 condition|)
+block|{
 return|return
 name|method
 return|;
+block|}
 block|}
 block|}
 catch|catch
@@ -1211,9 +1219,11 @@ argument_list|(
 literal|"java.lang.String"
 argument_list|)
 condition|)
+block|{
 return|return
 name|method
 return|;
+block|}
 block|}
 block|}
 catch|catch
@@ -1254,9 +1264,11 @@ name|configuration
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Class
 argument_list|<
 name|?
@@ -1371,6 +1383,7 @@ name|configuredObjectReference
 operator|!=
 literal|null
 condition|)
+block|{
 name|configurable
 operator|=
 name|impl
@@ -1380,6 +1393,7 @@ operator|.
 name|get
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|configurable
@@ -1393,6 +1407,7 @@ name|configurable
 operator|!=
 name|instance
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1409,7 +1424,9 @@ name|configurable
 argument_list|)
 throw|;
 block|}
+block|}
 else|else
+block|{
 name|impl
 operator|.
 name|configuredObjectReference
@@ -1423,6 +1440,7 @@ argument_list|(
 name|instance
 argument_list|)
 expr_stmt|;
+block|}
 comment|//end (lock issue)
 block|}
 return|return
@@ -1918,10 +1936,12 @@ name|conf
 operator|==
 literal|null
 condition|)
+block|{
 name|conf
 operator|=
 name|configuration
 expr_stmt|;
+block|}
 name|value
 operator|=
 name|create
@@ -1939,6 +1959,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 name|value
 operator|=
 name|configuration
@@ -1948,6 +1969,7 @@ argument_list|(
 name|property
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -2019,6 +2041,7 @@ name|method
 operator|==
 literal|null
 condition|)
+block|{
 name|field
 operator|.
 name|set
@@ -2028,6 +2051,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -2746,6 +2770,7 @@ name|obj
 operator|!=
 literal|null
 condition|)
+block|{
 name|list
 operator|.
 name|add
@@ -2753,6 +2778,7 @@ argument_list|(
 name|obj
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2858,6 +2884,7 @@ name|obj
 operator|!=
 literal|null
 condition|)
+block|{
 name|list
 operator|.
 name|add
@@ -2865,6 +2892,7 @@ argument_list|(
 name|obj
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3038,9 +3066,11 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|obj
@@ -5831,9 +5861,11 @@ name|conf
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|conf
 return|;
+block|}
 comment|//XXX: locking required
 name|DocumentAtExist
 name|document
@@ -6045,10 +6077,12 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
+block|}
 name|ElementAtExist
 name|confElement
 init|=
@@ -6066,10 +6100,12 @@ name|confElement
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
+block|}
 name|conf
 operator|=
 operator|new
@@ -6106,9 +6142,11 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Configuration
 name|conf
 decl_stmt|;
@@ -6143,9 +6181,11 @@ name|conf
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|conf
 return|;
+block|}
 name|ElementAtExist
 name|confElement
 init|=
@@ -6163,10 +6203,12 @@ name|confElement
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
+block|}
 name|conf
 operator|=
 operator|new
@@ -6319,6 +6361,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -6333,6 +6376,7 @@ operator|+
 literal|" not found."
 argument_list|)
 throw|;
+block|}
 return|return
 name|save
 argument_list|(
@@ -6742,6 +6786,7 @@ name|fullURI
 operator|!=
 literal|null
 condition|)
+block|{
 name|saving
 operator|.
 name|remove
@@ -6749,12 +6794,14 @@ argument_list|(
 name|fullURI
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|txn
 operator|!=
 literal|null
 condition|)
+block|{
 name|transact
 operator|.
 name|abort
@@ -6762,6 +6809,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|error
@@ -6852,6 +6900,7 @@ name|conf
 operator|instanceof
 name|ConfigurationImpl
 condition|)
+block|{
 operator|(
 operator|(
 name|ConfigurationImpl
@@ -6863,6 +6912,7 @@ name|configuredObjectReference
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 name|hotConfigs
 operator|.
@@ -6888,7 +6938,9 @@ name|configuration
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|hotConfigs
