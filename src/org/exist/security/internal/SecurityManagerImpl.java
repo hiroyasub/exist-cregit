@@ -721,7 +721,7 @@ decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsElement
 argument_list|(
-literal|"Authentication-Entry-Point"
+literal|"authentication-entry-point"
 argument_list|)
 specifier|public
 specifier|final
@@ -1437,9 +1437,11 @@ name|group
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|group
@@ -1449,6 +1451,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ConfigurationException
@@ -1456,6 +1459,7 @@ argument_list|(
 literal|"Group must have realm id."
 argument_list|)
 throw|;
+block|}
 name|groupLocks
 operator|.
 name|getWriteLock
