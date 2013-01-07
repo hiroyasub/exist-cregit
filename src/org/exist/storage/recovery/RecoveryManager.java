@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2013 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -461,7 +461,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Scanning journal..."
+literal|"Unclean shutdown detected. Scanning journal..."
 argument_list|)
 expr_stmt|;
 name|broker
@@ -662,11 +662,12 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
-literal|"Last readable log entry lsn: "
+literal|"Last readable journal log entry lsn: "
 operator|+
 name|Lsn
 operator|.
@@ -676,7 +677,6 @@ name|lastLsn
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// if the last checkpoint record is not the last record in the file
 comment|// we need a recovery.
@@ -755,6 +755,13 @@ literal|true
 expr_stmt|;
 try|try
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Running recovery..."
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|getBrokerPool
@@ -804,31 +811,36 @@ if|if
 condition|(
 name|restartOnError
 condition|)
+block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Errors during recovery. Database will start up, but corruptions are likely."
+literal|"Aborting recovery. eXist-db detected an error during recovery. This may not be fatal. Database will start up, but corruptions are likely."
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Aborting recovery. eXist-db detected an error during recovery. This may not be fatal. Please consider running a consistency check via the export tool and create a backup if problems are reported. The db should come up again if you restart it."
+argument_list|)
+expr_stmt|;
 throw|throw
 name|e
 throw|;
 block|}
 block|}
-if|else if
-condition|(
+block|}
+else|else
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-name|LOG
-operator|.
-name|debug
+name|info
 argument_list|(
-literal|"Database is in clean state."
+literal|"Database is in clean state. Nothing to recover from the journal."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1080,6 +1092,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Redoing journal transaction"
+argument_list|)
+expr_stmt|;
 comment|//            LOG.debug("Redo: " + next.dump());
 comment|// redo the log entry
 name|next
@@ -1123,7 +1142,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception caught while redoing transactions. Aborting recovery to avoid possible damage. "
 operator|+
@@ -1140,7 +1159,7 @@ literal|null
 condition|)
 name|LOG
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"Log entry that caused the exception: "
 operator|+
