@@ -220,7 +220,7 @@ decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsElement
 argument_list|(
-literal|"principalPattern"
+literal|"principal-pattern"
 argument_list|)
 specifier|protected
 name|String
