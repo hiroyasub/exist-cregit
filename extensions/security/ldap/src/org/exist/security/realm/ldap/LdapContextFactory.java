@@ -226,6 +226,8 @@ specifier|private
 specifier|final
 name|boolean
 name|ssl
+init|=
+literal|false
 decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsElement
