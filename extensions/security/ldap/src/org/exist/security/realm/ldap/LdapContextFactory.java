@@ -305,6 +305,7 @@ decl_stmt|;
 specifier|public
 name|LdapContextFactory
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -357,9 +358,11 @@ specifier|public
 name|LdapContext
 name|getLdapContext
 parameter_list|(
+specifier|final
 name|String
 name|username
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|)
@@ -384,9 +387,11 @@ parameter_list|(
 name|String
 name|username
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -404,6 +409,7 @@ name|url
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -411,6 +417,7 @@ argument_list|(
 literal|"An LDAP URL must be specified of the form ldap://<hostname>:<port>"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|username
@@ -437,6 +444,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Hashtable
 argument_list|<
 name|String
