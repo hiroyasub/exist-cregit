@@ -123,6 +123,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by an InputStream  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
@@ -492,6 +504,9 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 specifier|final
 name|Sequence
 name|contextSequence
@@ -559,6 +574,13 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|context
+operator|.
+name|destroyBinaryValue
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

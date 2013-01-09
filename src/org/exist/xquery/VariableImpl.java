@@ -737,6 +737,9 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -751,6 +754,8 @@ name|value
 operator|.
 name|destroy
 argument_list|(
+name|context
+argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;

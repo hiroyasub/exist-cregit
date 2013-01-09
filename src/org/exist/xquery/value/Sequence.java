@@ -89,6 +89,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -373,6 +385,9 @@ comment|/**      * Clean up any resources used by the items in this sequence.   
 name|void
 name|destroy
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)

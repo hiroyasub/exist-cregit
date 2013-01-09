@@ -1212,6 +1212,9 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
 name|Sequence
 name|contextSequence
 parameter_list|)

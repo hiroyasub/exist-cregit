@@ -1715,6 +1715,8 @@ name|var
 operator|.
 name|destroy
 argument_list|(
+name|context
+argument_list|,
 name|resultSequence
 argument_list|)
 expr_stmt|;
