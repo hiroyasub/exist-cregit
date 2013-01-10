@@ -815,6 +815,19 @@ return|;
 comment|//UNDERSTAND: is it correct?
 block|}
 specifier|public
+name|File
+name|getCanonicalFile
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|this
+return|;
+comment|//        String canonPath = getCanonicalPath();
+comment|//        return new File(canonPath, fs.prefixLength(canonPath));
+block|}
+specifier|public
 name|String
 name|getName
 parameter_list|()
