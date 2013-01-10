@@ -643,6 +643,15 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
+name|setProperty
+argument_list|(
+literal|"http://xml.org/sax/properties/lexical-handler"
+argument_list|,
+name|receiver
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
 name|parse
 argument_list|(
 name|inputSource
