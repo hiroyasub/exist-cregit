@@ -1643,6 +1643,15 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|//For holding the environment variables
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|envs
+decl_stmt|;
 specifier|private
 name|AccessContext
 name|accessCtx
@@ -11165,6 +11174,36 @@ name|func
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Get environment variables. The variables shall not change       * during execution of query.      *       * @return Map of environment variables      */
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getEnvironmentVariables
+parameter_list|()
+block|{
+if|if
+condition|(
+name|envs
+operator|==
+literal|null
+condition|)
+block|{
+name|envs
+operator|=
+name|System
+operator|.
+name|getenv
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|envs
+return|;
 block|}
 comment|/* ----------------- Save state ------------------------ */
 specifier|private
