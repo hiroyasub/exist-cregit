@@ -35,6 +35,16 @@ name|FileOutputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -86,6 +96,21 @@ argument_list|,
 name|append
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|//XXX: xml upload back to db
+comment|//XXX: locking?
 block|}
 block|}
 end_class

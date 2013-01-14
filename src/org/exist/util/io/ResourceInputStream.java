@@ -35,6 +35,16 @@ name|FileNotFoundException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -46,6 +56,9 @@ name|ResourceInputStream
 extends|extends
 name|FileInputStream
 block|{
+name|Resource
+name|resource
+decl_stmt|;
 specifier|public
 name|ResourceInputStream
 parameter_list|(
@@ -63,6 +76,34 @@ name|getFile
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|resource
+operator|=
+name|file
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|resource
+operator|.
+name|isXML
+argument_list|()
+condition|)
+block|{
+comment|//XXX: cleanup tmp file
+block|}
+comment|//XXX: locking?
 block|}
 block|}
 end_class
