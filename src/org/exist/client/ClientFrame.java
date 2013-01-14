@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2012 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2013 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -5860,6 +5860,14 @@ init|=
 name|getSelectedResources
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Collection
+name|removeRootCollection
+init|=
+name|client
+operator|.
+name|current
+decl_stmt|;
 comment|// String cmd;
 if|if
 condition|(
@@ -6007,9 +6015,7 @@ init|=
 operator|(
 name|CollectionManagementServiceImpl
 operator|)
-name|client
-operator|.
-name|current
+name|removeRootCollection
 operator|.
 name|getService
 argument_list|(
@@ -6058,9 +6064,7 @@ specifier|final
 name|Resource
 name|res
 init|=
-name|client
-operator|.
-name|current
+name|removeRootCollection
 operator|.
 name|getResource
 argument_list|(
@@ -6073,9 +6077,7 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|client
-operator|.
-name|current
+name|removeRootCollection
 operator|.
 name|removeResource
 argument_list|(

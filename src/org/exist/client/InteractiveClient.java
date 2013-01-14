@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -9277,7 +9277,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-comment|//TODO : why is this test for ? Fileshould make it, shouldn't it ? -pb
+comment|//TODO : why is this test for ? File should make it, shouldn't it ? -pb
 name|fileName
 operator|=
 name|fileName
@@ -11327,6 +11327,12 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
+name|Collection
+name|uploadRootCollection
+init|=
+name|current
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -11346,7 +11352,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|current
+name|uploadRootCollection
 operator|instanceof
 name|Observable
 condition|)
@@ -11355,7 +11361,7 @@ operator|(
 operator|(
 name|Observable
 operator|)
-name|current
+name|uploadRootCollection
 operator|)
 operator|.
 name|addObserver
@@ -11407,7 +11413,7 @@ block|}
 comment|// should replace the lines above
 name|store
 argument_list|(
-name|current
+name|uploadRootCollection
 argument_list|,
 name|files
 index|[
@@ -11420,7 +11426,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|current
+name|uploadRootCollection
 operator|instanceof
 name|Observable
 condition|)
@@ -11429,7 +11435,7 @@ operator|(
 operator|(
 name|Observable
 operator|)
-name|current
+name|uploadRootCollection
 operator|)
 operator|.
 name|deleteObservers
