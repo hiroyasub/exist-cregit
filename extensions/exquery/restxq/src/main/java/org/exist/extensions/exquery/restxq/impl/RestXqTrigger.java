@@ -2107,6 +2107,13 @@ argument_list|(
 name|dependant
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|dependencies
+operator|!=
+literal|null
+condition|)
+block|{
 name|dependencies
 operator|.
 name|remove
@@ -2129,6 +2136,7 @@ argument_list|(
 name|dependant
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
