@@ -1611,6 +1611,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|evalDisabledParamList
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|evalDisabledParamList
 operator|.
