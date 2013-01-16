@@ -388,6 +388,23 @@ index|]
 argument_list|)
 condition|)
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Out-of-sequence request or cookie theft attack. Deleting session."
+argument_list|)
+expr_stmt|;
+name|seriesMap
+operator|.
+name|remove
+argument_list|(
+name|tokens
+index|[
+literal|0
+index|]
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
