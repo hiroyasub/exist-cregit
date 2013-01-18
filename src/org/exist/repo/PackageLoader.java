@@ -42,13 +42,16 @@ specifier|public
 interface|interface
 name|PackageLoader
 block|{
-comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @return a file containing the package or null if not found      */
+comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @param version the version to install      * @return a file containing the package or null if not found      */
 specifier|public
 name|File
 name|load
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|String
+name|version
 parameter_list|)
 throws|throws
 name|IOException
