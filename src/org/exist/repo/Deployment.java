@@ -1259,6 +1259,8 @@ operator|.
 name|Version
 argument_list|(
 name|semVer
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1301,6 +1303,8 @@ operator|.
 name|Version
 argument_list|(
 name|versionStr
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
