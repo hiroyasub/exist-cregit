@@ -438,9 +438,11 @@ comment|/**      * Create and Start a new Scheduler.      *      * @param   brok
 specifier|public
 name|Scheduler
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|brokerpool
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -461,6 +463,7 @@ name|config
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|SchedulerFactory
 name|schedulerFactory
 init|=
@@ -481,6 +484,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -626,6 +630,7 @@ name|is
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -681,6 +686,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -719,6 +725,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -825,6 +832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -850,6 +858,7 @@ specifier|public
 name|void
 name|shutdown
 parameter_list|(
+specifier|final
 name|boolean
 name|waitForJobsToComplete
 parameter_list|)
@@ -867,6 +876,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -938,14 +948,17 @@ specifier|private
 name|void
 name|createStartupJob
 parameter_list|(
+specifier|final
 name|UserJob
 name|job
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|)
 block|{
 comment|//Create the job details
+specifier|final
 name|JobDetail
 name|jobDetail
 init|=
@@ -969,6 +982,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Setup the job's data map
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -989,6 +1003,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//create the minimum quartz supporting classes to execute a job
+specifier|final
 name|SimpleTrigger
 name|trig
 init|=
@@ -1003,6 +1018,7 @@ argument_list|(
 name|jobDataMap
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JobExecutionContext
 name|jec
 init|=
@@ -1056,12 +1072,14 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|JobExecutionContext
 name|jec
 range|:
 name|startupJobs
 control|)
 block|{
+specifier|final
 name|org
 operator|.
 name|quartz
@@ -1113,6 +1131,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1149,12 +1168,15 @@ specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
+specifier|final
 name|long
 name|period
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|long
 name|delay
 parameter_list|)
@@ -1181,15 +1203,19 @@ specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
+specifier|final
 name|long
 name|period
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|long
 name|delay
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|)
@@ -1216,18 +1242,23 @@ specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
+specifier|final
 name|long
 name|period
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|long
 name|delay
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|,
+specifier|final
 name|int
 name|repeatCount
 parameter_list|)
@@ -1254,26 +1285,33 @@ specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
+specifier|final
 name|long
 name|period
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|long
 name|delay
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|,
+specifier|final
 name|int
 name|repeatCount
 parameter_list|,
+specifier|final
 name|boolean
 name|unschedule
 parameter_list|)
 block|{
 comment|//Create the job details
+specifier|final
 name|JobDetail
 name|jobDetail
 init|=
@@ -1297,6 +1335,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Setup the job's data map
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -1317,6 +1356,7 @@ name|unschedule
 argument_list|)
 expr_stmt|;
 comment|//setup a trigger for the job, millisecond based
+specifier|final
 name|SimpleTrigger
 name|trigger
 init|=
@@ -1360,6 +1400,7 @@ block|}
 else|else
 block|{
 comment|//start after period
+specifier|final
 name|Calendar
 name|start
 init|=
@@ -1422,6 +1463,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1462,9 +1504,11 @@ specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
+specifier|final
 name|String
 name|cronExpression
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|)
@@ -1485,12 +1529,15 @@ specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
+specifier|final
 name|String
 name|cronExpression
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|)
@@ -1513,20 +1560,25 @@ specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
+specifier|final
 name|String
 name|cronExpression
 parameter_list|,
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|,
+specifier|final
 name|boolean
 name|unschedule
 parameter_list|)
 block|{
 comment|//Create the job details
+specifier|final
 name|JobDetail
 name|jobDetail
 init|=
@@ -1550,6 +1602,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Setup the job's data map
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -1572,6 +1625,7 @@ expr_stmt|;
 try|try
 block|{
 comment|//setup a trigger for the job, Cron based
+specifier|final
 name|CronTrigger
 name|trigger
 init|=
@@ -1607,6 +1661,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParseException
 name|pe
 parameter_list|)
@@ -1639,6 +1694,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1679,9 +1735,11 @@ specifier|public
 name|boolean
 name|deleteJob
 parameter_list|(
+specifier|final
 name|String
 name|jobName
 parameter_list|,
+specifier|final
 name|String
 name|jobGroup
 parameter_list|)
@@ -1708,6 +1766,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1740,9 +1799,11 @@ specifier|public
 name|boolean
 name|pauseJob
 parameter_list|(
+specifier|final
 name|String
 name|jobName
 parameter_list|,
+specifier|final
 name|String
 name|jobGroup
 parameter_list|)
@@ -1771,6 +1832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1803,9 +1865,11 @@ specifier|public
 name|boolean
 name|resumeJob
 parameter_list|(
+specifier|final
 name|String
 name|jobName
 parameter_list|,
+specifier|final
 name|String
 name|jobGroup
 parameter_list|)
@@ -1834,6 +1898,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -1925,6 +1990,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ScheduledJobInfo
@@ -1941,6 +2007,7 @@ decl_stmt|;
 comment|//get the trigger groups
 for|for
 control|(
+specifier|final
 name|String
 name|triggerGroupName
 range|:
@@ -1954,6 +2021,7 @@ block|{
 comment|//get the trigger names for the trigger group
 for|for
 control|(
+specifier|final
 name|String
 name|triggerGroupTriggerName
 range|:
@@ -2012,6 +2080,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -2050,6 +2119,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ScheduledJobInfo
@@ -2065,6 +2135,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|JobExecutionContext
 name|jobExecutionCtx
 range|:
@@ -2120,6 +2191,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
@@ -2149,6 +2221,7 @@ name|void
 name|setupConfiguredJobs
 parameter_list|()
 block|{
+specifier|final
 name|Configuration
 operator|.
 name|JobConfig
@@ -2181,6 +2254,7 @@ return|return;
 block|}
 for|for
 control|(
+specifier|final
 name|Configuration
 operator|.
 name|JobConfig
@@ -2243,6 +2317,7 @@ block|}
 else|else
 block|{
 comment|//create an XQuery job
+specifier|final
 name|Subject
 name|guestUser
 init|=
@@ -2320,6 +2395,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|e
 parameter_list|)
@@ -2346,6 +2422,7 @@ block|{
 comment|//create a Java job
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -2362,6 +2439,7 @@ name|getResourceName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|jobObject
 init|=
@@ -2390,6 +2468,7 @@ operator|instanceof
 name|SystemTask
 condition|)
 block|{
+specifier|final
 name|SystemTask
 name|task
 init|=
@@ -2496,6 +2575,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2652,15 +2732,19 @@ specifier|private
 name|void
 name|setupJobDataMap
 parameter_list|(
+specifier|final
 name|JobDescription
 name|job
 parameter_list|,
+specifier|final
 name|JobDataMap
 name|jobDataMap
 parameter_list|,
+specifier|final
 name|Properties
 name|params
 parameter_list|,
+specifier|final
 name|boolean
 name|unschedule
 parameter_list|)
@@ -2769,8 +2853,9 @@ name|put
 argument_list|(
 literal|"unschedule"
 argument_list|,
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|unschedule
 argument_list|)

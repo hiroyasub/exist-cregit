@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface defined requirements for a Scheduleable job.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Interface defined requirements for a Scheduleable job.  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_interface
@@ -31,6 +31,7 @@ comment|/**      * Set the name of the job.      *      * @param  name  The job'
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)

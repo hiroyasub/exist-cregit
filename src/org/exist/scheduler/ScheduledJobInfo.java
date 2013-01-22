@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|quartz
@@ -63,18 +73,8 @@ name|Trigger
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Date
-import|;
-end_import
-
 begin_comment
-comment|/**  * Information about a Scheduled Job.  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Information about a Scheduled Job.  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -132,23 +132,23 @@ init|=
 literal|4
 decl_stmt|;
 specifier|private
+specifier|final
 name|Scheduler
 name|scheduler
-init|=
-literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|Trigger
 name|trigger
-init|=
-literal|null
 decl_stmt|;
 specifier|public
 name|ScheduledJobInfo
 parameter_list|(
+specifier|final
 name|Scheduler
 name|scheduler
 parameter_list|,
+specifier|final
 name|Trigger
 name|trigger
 parameter_list|)
@@ -173,12 +173,10 @@ name|getName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getJobName
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Job's Group.      *      * @return  the Job's Group      */
@@ -188,12 +186,10 @@ name|getGroup
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getJobGroup
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Name of the Job's Trigger.      *      * @return  the Name of the Job's Trigger      */
@@ -203,12 +199,10 @@ name|getTriggerName
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getName
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Start time of the Job.      *      * @return  the Start time of the Job      */
@@ -218,12 +212,10 @@ name|getStartTime
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getStartTime
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the End time of the Job.      *      * @return  the End time of the Job, or null of the job is Scheduled forever      */
@@ -233,12 +225,10 @@ name|getEndTime
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getEndTime
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Previous Fired time of the Job.      *      * @return  the time the Job was Previously Fired, or null if the job hasnt fired yet      */
@@ -248,12 +238,10 @@ name|getPreviousFireTime
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getPreviousFireTime
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Time the Job will Next be Fired.      *      * @return  the time the Job will Next be Fired, or null if the job wont fire again      */
@@ -263,12 +251,10 @@ name|getNextFireTime
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getNextFireTime
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Final Time the Job will be Fired.      *      * @return  the time the Job will be Fired for the Final time, or null if the job is Scheduled forever      */
@@ -278,12 +264,10 @@ name|getFinalFireTime
 parameter_list|()
 block|{
 return|return
-operator|(
 name|trigger
 operator|.
 name|getFinalFireTime
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Get the Expression that was used to configure the Triggers firing pattern.      *      * @return  The expression that was used to configure the Triggers firing pattern      */
@@ -302,7 +286,6 @@ block|{
 return|return
 operator|(
 operator|(
-operator|(
 name|CronTrigger
 operator|)
 name|trigger
@@ -310,7 +293,6 @@ operator|)
 operator|.
 name|getCronExpression
 argument_list|()
-operator|)
 return|;
 block|}
 if|else if
@@ -321,7 +303,6 @@ name|SimpleTrigger
 condition|)
 block|{
 return|return
-operator|(
 name|String
 operator|.
 name|valueOf
@@ -336,13 +317,10 @@ operator|.
 name|getRepeatInterval
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|/**      * Get the State of the Job's Trigger.      *      * @return  the TRIGGER_STATE_*      */
@@ -376,93 +354,64 @@ name|Trigger
 operator|.
 name|STATE_ERROR
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_ERROR
-operator|)
 return|;
-block|}
 case|case
 name|Trigger
 operator|.
 name|STATE_NONE
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_NONE
-operator|)
 return|;
-block|}
 case|case
 name|Trigger
 operator|.
 name|STATE_NORMAL
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_NORMAL
-operator|)
 return|;
-block|}
 case|case
 name|Trigger
 operator|.
 name|STATE_PAUSED
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_PAUSED
-operator|)
 return|;
-block|}
 case|case
 name|Trigger
 operator|.
 name|STATE_BLOCKED
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_BLOCKED
-operator|)
 return|;
-block|}
 case|case
 name|Trigger
 operator|.
 name|STATE_COMPLETE
 case|:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_COMPLETE
-operator|)
 return|;
-block|}
 default|default:
-block|{
 return|return
-operator|(
 name|TRIGGER_STATE_ERROR
-operator|)
 return|;
-block|}
 block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)
 block|{
 return|return
-operator|(
 name|TRIGGER_STATE_ERROR
-operator|)
 return|;
 block|}
 block|}

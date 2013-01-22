@@ -364,7 +364,7 @@ literal|"XQuery"
 decl_stmt|;
 specifier|private
 name|String
-name|jobName
+name|name
 decl_stmt|;
 specifier|private
 specifier|final
@@ -394,12 +394,15 @@ comment|/**      * Constructor for Creating a new XQuery User Job.      *      *
 specifier|public
 name|UserXQueryJob
 parameter_list|(
+specifier|final
 name|String
 name|jobName
 parameter_list|,
+specifier|final
 name|String
 name|xqueryResource
 parameter_list|,
+specifier|final
 name|Subject
 name|user
 parameter_list|)
@@ -425,7 +428,7 @@ condition|)
 block|{
 name|this
 operator|.
-name|jobName
+name|name
 operator|=
 name|DEFAULT_JOB_NAME_PREFIX
 operator|+
@@ -438,7 +441,7 @@ else|else
 block|{
 name|this
 operator|.
-name|jobName
+name|name
 operator|=
 name|jobName
 expr_stmt|;
@@ -453,7 +456,7 @@ name|getName
 parameter_list|()
 block|{
 return|return
-name|jobName
+name|name
 return|;
 block|}
 annotation|@
@@ -462,15 +465,16 @@ specifier|public
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
-name|jobName
+name|name
 parameter_list|)
 block|{
 name|this
 operator|.
-name|jobName
+name|name
 operator|=
-name|jobName
+name|name
 expr_stmt|;
 block|}
 comment|/**      * Returns the XQuery Resource for this Job.      *      * @return  The XQuery Resource for this Job      */
@@ -500,6 +504,7 @@ specifier|final
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|JobExecutionContext
 name|jec
 parameter_list|)
@@ -880,6 +885,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -925,6 +931,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Entry
 name|param
 range|:
@@ -1002,6 +1009,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -1014,6 +1022,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1033,6 +1042,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1054,6 +1064,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -1071,6 +1082,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1174,6 +1186,7 @@ specifier|private
 name|void
 name|abort
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -1192,15 +1205,18 @@ specifier|private
 name|void
 name|abort
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|boolean
 name|unschedule
 parameter_list|)
 throws|throws
 name|JobExecutionException
 block|{
+specifier|final
 name|JobExecutionException
 name|jaa
 init|=

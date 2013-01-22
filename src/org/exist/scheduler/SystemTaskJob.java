@@ -17,6 +17,30 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|SystemTask
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|quartz
 operator|.
 name|JobDataMap
@@ -47,28 +71,14 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|quartz
 operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|SystemTask
+name|StatefulJob
 import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a SystemTask Job Can be used by SystemTasks to schedule themselves as job's.  *  *<p>SystemTaskJobs may only have a Single Instance running in the scheduler at once, intersecting schedules will be queued.</p>  *  * @author  Adam Retter<adam.retter@devon.gov.uk>  */
+comment|/**  * Class to represent a SystemTask Job Can be used by SystemTasks to schedule themselves as job's.  *  *<p>SystemTaskJobs may only have a Single Instance running in the scheduler at once, intersecting schedules will be queued.</p>  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -78,10 +88,6 @@ name|SystemTaskJob
 implements|implements
 name|JobDescription
 implements|,
-name|org
-operator|.
-name|quartz
-operator|.
 name|StatefulJob
 block|{
 specifier|private
@@ -94,7 +100,7 @@ literal|"eXist.System"
 decl_stmt|;
 specifier|private
 name|String
-name|JOB_NAME
+name|name
 init|=
 literal|"SystemTask"
 decl_stmt|;
@@ -114,9 +120,11 @@ comment|/**      * Constructor for Creating a new SystemTask Job.      *      * 
 specifier|public
 name|SystemTaskJob
 parameter_list|(
+specifier|final
 name|String
 name|jobName
 parameter_list|,
+specifier|final
 name|SystemTask
 name|task
 parameter_list|)
@@ -136,7 +144,7 @@ condition|)
 block|{
 name|this
 operator|.
-name|JOB_NAME
+name|name
 operator|+=
 literal|": "
 operator|+
@@ -153,12 +161,14 @@ else|else
 block|{
 name|this
 operator|.
-name|JOB_NAME
+name|name
 operator|=
 name|jobName
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|String
@@ -166,27 +176,30 @@ name|getName
 parameter_list|()
 block|{
 return|return
-operator|(
-name|JOB_NAME
-operator|)
+name|name
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
-name|jobName
+name|name
 parameter_list|)
 block|{
 name|this
 operator|.
-name|JOB_NAME
+name|name
 operator|=
-name|jobName
+name|name
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|String
@@ -194,9 +207,7 @@ name|getGroup
 parameter_list|()
 block|{
 return|return
-operator|(
 name|JOB_GROUP
-operator|)
 return|;
 block|}
 comment|/**      * Returns the SystemTask for this Job.      *      * @return  The SystemTask for this Job      */
@@ -206,22 +217,24 @@ name|getSystemTask
 parameter_list|()
 block|{
 return|return
-operator|(
 name|task
-operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|JobExecutionContext
 name|jec
 parameter_list|)
 throws|throws
 name|JobExecutionException
 block|{
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -233,6 +246,7 @@ operator|.
 name|getJobDataMap
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -246,6 +260,7 @@ argument_list|(
 literal|"brokerpool"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SystemTask
 name|task
 init|=
@@ -276,6 +291,7 @@ operator|)
 condition|)
 block|{
 comment|//abort all triggers for this job
+specifier|final
 name|JobExecutionException
 name|jaa
 init|=
@@ -295,9 +311,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 throw|throw
-operator|(
 name|jaa
-operator|)
 throw|;
 block|}
 comment|//trigger the system task

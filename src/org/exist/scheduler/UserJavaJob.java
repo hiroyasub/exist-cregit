@@ -15,31 +15,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|quartz
+name|util
 operator|.
-name|JobDataMap
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|JobExecutionContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|JobExecutionException
+name|Map
 import|;
 end_import
 
@@ -57,11 +37,31 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|quartz
 operator|.
-name|Map
+name|JobDataMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|JobExecutionContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|JobExecutionException
 import|;
 end_import
 
@@ -78,17 +78,21 @@ extends|extends
 name|UserJob
 block|{
 comment|/**      * The execute method as called by the Quartz Scheduler.      *      * @param   jec  The execution context of the executing job      *      * @throws  JobExecutionException  if there was a problem with the job, this also describes to Quartz how to cleanup the job      */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|JobExecutionContext
 name|jec
 parameter_list|)
 throws|throws
 name|JobExecutionException
 block|{
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -101,6 +105,7 @@ name|getJobDataMap
 argument_list|()
 decl_stmt|;
 comment|//get the brokerpool from the data map
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -115,6 +120,7 @@ literal|"brokerpool"
 argument_list|)
 decl_stmt|;
 comment|//get any parameters from the data map
+specifier|final
 name|Map
 name|params
 init|=
@@ -141,6 +147,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|JobException
 name|je
 parameter_list|)
