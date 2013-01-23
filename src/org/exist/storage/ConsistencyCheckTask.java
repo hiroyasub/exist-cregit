@@ -407,6 +407,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|dir
 operator|=
 operator|new
@@ -427,6 +428,7 @@ argument_list|,
 name|exportDir
 argument_list|)
 expr_stmt|;
+block|}
 name|dir
 operator|.
 name|mkdirs
@@ -446,6 +448,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -455,6 +458,7 @@ operator|+
 name|exportDir
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|backup
 init|=
@@ -578,6 +582,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -641,13 +647,6 @@ condition|(
 name|paused
 condition|)
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
 name|LOG
 operator|.
 name|info
@@ -690,7 +689,6 @@ argument_list|,
 name|monitor
 argument_list|)
 expr_stmt|;
-comment|//        long start = System.currentTimeMillis();
 name|PrintWriter
 name|report
 init|=
@@ -720,22 +718,13 @@ operator|||
 name|incrementalCheck
 condition|)
 block|{
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Starting consistency check..."
 argument_list|)
 expr_stmt|;
-block|}
 name|report
 operator|=
 name|openLog
@@ -814,17 +803,9 @@ argument_list|(
 name|errors
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|error
 argument_list|(
 literal|"Errors found: "
 operator|+
@@ -834,7 +815,6 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|doBackup
 operator|=
 literal|true
@@ -847,40 +827,30 @@ name|errors
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|error
 argument_list|(
 literal|"Fatal errors were found: pausing the consistency check task."
 argument_list|)
 expr_stmt|;
-block|}
 name|paused
 operator|=
 literal|true
 expr_stmt|;
 block|}
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Finished consistency check"
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
 name|doBackup
-condition|)
-block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isInfoEnabled
-argument_list|()
 condition|)
 block|{
 name|LOG
@@ -890,7 +860,6 @@ argument_list|(
 literal|"Starting backup..."
 argument_list|)
 expr_stmt|;
-block|}
 name|SystemExport
 name|sysexport
 init|=
@@ -942,11 +911,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|LOG
-operator|.
-name|isInfoEnabled
-argument_list|()
-operator|&&
 name|lastExportedBackup
 operator|!=
 literal|null
@@ -965,6 +929,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Finished backup"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -1014,11 +985,13 @@ name|report
 operator|!=
 literal|null
 condition|)
+block|{
 name|report
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|agentInstance
 operator|.
 name|changeStatus
@@ -1305,6 +1278,7 @@ operator|.
 name|proceed
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|TerminatedException
@@ -1312,6 +1286,7 @@ argument_list|(
 literal|"consistency check terminated"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|(
@@ -1405,6 +1380,7 @@ operator|.
 name|proceed
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|TerminatedException
@@ -1412,10 +1388,12 @@ argument_list|(
 literal|"consistency check terminated"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|errorFound
 condition|)
+block|{
 name|log
 operator|.
 name|write
@@ -1423,6 +1401,7 @@ argument_list|(
 literal|"----------------------------------------------\n"
 argument_list|)
 expr_stmt|;
+block|}
 name|errorFound
 operator|=
 literal|false
