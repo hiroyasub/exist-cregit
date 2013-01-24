@@ -12830,9 +12830,10 @@ argument_list|()
 argument_list|,
 name|Permission
 operator|.
-name|READ
+name|EXECUTE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -12850,6 +12851,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|DocumentImpl
 name|doc
 init|=

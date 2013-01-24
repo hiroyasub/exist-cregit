@@ -29,13 +29,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|xml
+name|util
 operator|.
-name|sax
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|SAXException
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -231,11 +239,13 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|xml
 operator|.
-name|Date
+name|sax
+operator|.
+name|SAXException
 import|;
 end_import
 
@@ -361,6 +371,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * evaluate the call to the xquery function, it is really the main entry point of this class.      *      * @param   args             arguments from the function call      * @param   contextSequence  the Context Sequence to operate on (not used here internally!)      *      * @return  A sequence representing the result of the function call      *      * @throws  XPathException  DOCUMENT ME!      *      * @see     org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -403,8 +415,10 @@ name|iJobs
 init|=
 literal|0
 decl_stmt|;
+name|List
+argument_list|<
 name|String
-index|[]
+argument_list|>
 name|groups
 init|=
 name|scheduler
@@ -412,8 +426,10 @@ operator|.
 name|getJobGroupNames
 argument_list|()
 decl_stmt|;
+name|List
+argument_list|<
 name|ScheduledJobInfo
-index|[]
+argument_list|>
 name|scheduledJobs
 init|=
 name|scheduler
@@ -432,7 +448,8 @@ name|g
 operator|<
 name|groups
 operator|.
-name|length
+name|size
+argument_list|()
 condition|;
 name|g
 operator|++
@@ -443,9 +460,11 @@ condition|(
 name|userhasDBARole
 operator|||
 name|groups
-index|[
+operator|.
+name|get
+argument_list|(
 name|g
-index|]
+argument_list|)
 operator|.
 name|equals
 argument_list|(
@@ -468,9 +487,11 @@ operator|+
 literal|":group name=\""
 operator|+
 name|groups
-index|[
+operator|.
+name|get
+argument_list|(
 name|g
-index|]
+argument_list|)
 operator|+
 literal|"\">"
 argument_list|)
@@ -486,7 +507,8 @@ name|j
 operator|<
 name|scheduledJobs
 operator|.
-name|length
+name|size
+argument_list|()
 condition|;
 name|j
 operator|++
@@ -495,9 +517,11 @@ block|{
 if|if
 condition|(
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getGroup
 argument_list|()
@@ -505,9 +529,11 @@ operator|.
 name|equals
 argument_list|(
 name|groups
-index|[
+operator|.
+name|get
+argument_list|(
 name|g
-index|]
+argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -524,9 +550,11 @@ operator|+
 literal|":job name=\""
 operator|+
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getName
 argument_list|()
@@ -547,9 +575,11 @@ operator|+
 literal|":trigger name=\""
 operator|+
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getTriggerName
 argument_list|()
@@ -569,9 +599,11 @@ operator|.
 name|append
 argument_list|(
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getTriggerExpression
 argument_list|()
@@ -596,9 +628,11 @@ operator|.
 name|append
 argument_list|(
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getTriggerState
 argument_list|()
@@ -626,9 +660,11 @@ operator|new
 name|DateTimeValue
 argument_list|(
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getStartTime
 argument_list|()
@@ -653,9 +689,11 @@ name|Date
 name|endTime
 init|=
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getEndTime
 argument_list|()
@@ -697,9 +735,11 @@ name|Date
 name|previousTime
 init|=
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getPreviousFireTime
 argument_list|()
@@ -719,9 +759,11 @@ operator|new
 name|DateTimeValue
 argument_list|(
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getPreviousFireTime
 argument_list|()
@@ -747,9 +789,11 @@ name|Date
 name|nextTime
 init|=
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getNextFireTime
 argument_list|()
@@ -789,9 +833,11 @@ name|Date
 name|finalTime
 init|=
 name|scheduledJobs
-index|[
+operator|.
+name|get
+argument_list|(
 name|j
-index|]
+argument_list|)
 operator|.
 name|getFinalFireTime
 argument_list|()

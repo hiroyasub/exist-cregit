@@ -383,7 +383,23 @@ name|exist
 operator|.
 name|scheduler
 operator|.
-name|SystemTaskJob
+name|impl
+operator|.
+name|QuartzSchedulerImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|scheduler
+operator|.
+name|impl
+operator|.
+name|SystemTaskJobImpl
 import|;
 end_import
 
@@ -2567,7 +2583,7 @@ comment|//TODO : move this to initialize ? (cant as we need it for FileLockHeart
 name|scheduler
 operator|=
 operator|new
-name|Scheduler
+name|QuartzSchedulerImpl
 argument_list|(
 name|this
 argument_list|,
@@ -2699,7 +2715,7 @@ argument_list|(
 literal|2500
 argument_list|,
 operator|new
-name|SystemTaskJob
+name|SystemTaskJobImpl
 argument_list|(
 name|SyncTask
 operator|.
@@ -3939,7 +3955,7 @@ expr_stmt|;
 block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
 comment|//TODO : make it protected ?
-comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJob(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJob(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
+comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJobImpl(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJobImpl(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
 specifier|private
 name|void
 name|callStartupTriggers

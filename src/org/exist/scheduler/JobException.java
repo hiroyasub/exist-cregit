@@ -43,52 +43,32 @@ init|=
 literal|1567438994821964637L
 decl_stmt|;
 specifier|public
-specifier|final
-specifier|static
-name|int
+enum|enum
+name|JobExceptionAction
+block|{
 name|JOB_ABORT
-init|=
-literal|0
-decl_stmt|;
+block|,
 comment|//Abort this job, but continue scheduling
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|JOB_ABORT_THIS
-init|=
-literal|1
-decl_stmt|;
+block|,
 comment|//Abort this job and cancel this trigger
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|JOB_ABORT_ALL
-init|=
-literal|2
-decl_stmt|;
+block|,
 comment|//Abort this job and cancel all triggers
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|JOB_REFIRE
-init|=
-literal|3
-decl_stmt|;
 comment|//Refire this job now
+block|}
 specifier|private
 specifier|final
-name|int
-name|action
+name|JobExceptionAction
+name|jobExceptionAction
 decl_stmt|;
 specifier|public
 name|JobException
 parameter_list|(
 specifier|final
-name|int
-name|action
+name|JobExceptionAction
+name|jobExceptionAction
 parameter_list|,
 specifier|final
 name|String
@@ -102,12 +82,12 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|action
+name|jobExceptionAction
 operator|=
-name|action
+name|jobExceptionAction
 expr_stmt|;
 block|}
-comment|/**      * Should be called after this exception is caught it cleans up the job, with regards to the scheduler.      *      *<p>Jobs may be removed, refired immediately or left for their next execution</p>      *      * @throws  JobExecutionException  DOCUMENT ME!      */
+comment|/**      * Should be called after this exception is caught it cleans up the job, with regards to the scheduler.      *      *<p>Jobs may be removed, re-fired immediately or left for their next execution</p>      *      * @throws  JobExecutionException  DOCUMENT ME!      */
 specifier|public
 name|void
 name|cleanupJob
@@ -117,7 +97,7 @@ name|JobExecutionException
 block|{
 switch|switch
 condition|(
-name|action
+name|jobExceptionAction
 condition|)
 block|{
 case|case
