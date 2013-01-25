@@ -473,6 +473,8 @@ name|JobException
 argument_list|(
 name|JobException
 operator|.
+name|JobExceptionAction
+operator|.
 name|JOB_ABORT_THIS
 argument_list|,
 name|errorText
@@ -672,6 +674,8 @@ operator|new
 name|JobException
 argument_list|(
 name|JobException
+operator|.
+name|JobExceptionAction
 operator|.
 name|JOB_ABORT_THIS
 argument_list|,
