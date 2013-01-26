@@ -1008,8 +1008,31 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|//do nothing
-comment|//TODO do we need to check any permissions?
+if|if
+condition|(
+name|user
+operator|.
+name|getId
+argument_list|()
+operator|!=
+name|getId
+argument_list|()
+operator|&&
+operator|!
+name|user
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Permission denied to modify user"
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override
