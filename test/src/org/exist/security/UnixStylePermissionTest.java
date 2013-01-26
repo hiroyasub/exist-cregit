@@ -11,15 +11,73 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
-name|exist
+name|easymock
 operator|.
-name|security
+name|EasyMock
 operator|.
-name|internal
+name|expect
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|SecurityManagerImpl
+name|easymock
+operator|.
+name|classextension
+operator|.
+name|EasyMock
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|easymock
+operator|.
+name|classextension
+operator|.
+name|EasyMock
+operator|.
+name|replay
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|easymock
+operator|.
+name|classextension
+operator|.
+name|EasyMock
+operator|.
+name|verify
 import|;
 end_import
 
@@ -39,11 +97,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|exist
 operator|.
-name|IOException
+name|security
+operator|.
+name|internal
+operator|.
+name|SecurityManagerImpl
 import|;
 end_import
 
@@ -58,16 +120,6 @@ operator|.
 name|io
 operator|.
 name|VariableByteInput
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
 import|;
 end_import
 
@@ -98,16 +150,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -115,7 +157,7 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|assertTrue
+name|assertEquals
 import|;
 end_import
 
@@ -139,7 +181,7 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|assertEquals
+name|assertTrue
 import|;
 end_import
 
@@ -147,53 +189,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|easymock
+name|junit
 operator|.
-name|classextension
-operator|.
-name|EasyMock
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|classextension
-operator|.
-name|EasyMock
-operator|.
-name|expect
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|classextension
-operator|.
-name|EasyMock
-operator|.
-name|replay
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|classextension
-operator|.
-name|EasyMock
-operator|.
-name|verify
+name|Test
 import|;
 end_import
 
@@ -282,6 +280,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TestableUnixStylePermission
 name|permission
 init|=
@@ -479,6 +478,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -494,6 +494,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -630,6 +631,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -645,6 +647,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -781,6 +784,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -796,6 +800,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -965,6 +970,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -980,6 +986,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -1149,6 +1156,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -1164,6 +1172,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -1341,6 +1350,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -1356,6 +1366,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -1512,6 +1523,7 @@ argument_list|,
 name|mockUser
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -1527,6 +1539,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isValid
 init|=
@@ -2023,8 +2036,6 @@ decl_stmt|;
 name|Permission
 name|permission
 init|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2054,8 +2065,6 @@ name|getOwnerMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2089,8 +2098,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2120,8 +2127,6 @@ name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2211,8 +2216,6 @@ decl_stmt|;
 name|Permission
 name|permission
 init|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2242,8 +2245,6 @@ name|getOwnerMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2277,8 +2278,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2308,8 +2307,6 @@ name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2399,8 +2396,6 @@ decl_stmt|;
 name|Permission
 name|permission
 init|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2430,8 +2425,6 @@ name|getOwnerMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2465,8 +2458,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2498,8 +2489,6 @@ argument_list|)
 expr_stmt|;
 name|permission
 operator|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2529,8 +2518,6 @@ name|getMode
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|permission
-operator|=
 name|permission
 operator|=
 operator|new
@@ -2585,11 +2572,10 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
-name|permission
-operator|=
 operator|new
 name|TestableUnixStylePermissionWithCurrentSubject
 argument_list|(
@@ -2645,15 +2631,19 @@ block|{
 specifier|public
 name|TestableUnixStylePermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|int
 name|ownerId
 parameter_list|,
+specifier|final
 name|int
 name|ownerGroupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -2686,12 +2676,15 @@ specifier|public
 name|long
 name|encodeAsBitVector_testable
 parameter_list|(
+specifier|final
 name|int
 name|userId
 parameter_list|,
+specifier|final
 name|int
 name|groupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -2719,15 +2712,19 @@ block|{
 specifier|public
 name|TestableUnixStylePermissionWithCurrentSubject
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|int
 name|ownerId
 parameter_list|,
+specifier|final
 name|int
 name|ownerGroupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
