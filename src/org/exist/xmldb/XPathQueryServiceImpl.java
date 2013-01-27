@@ -121,6 +121,17 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Executes a query which is already stored in the database      *       * @param uri The URI of the query in the database      *       * @throws XMLDBException      */
+specifier|public
+name|ResourceSet
+name|executeStoredQuery
+parameter_list|(
+name|String
+name|uri
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      * Declare an external XPath variable and assign a value to it.      *       * A variable can be referenced inside an XPath expression as      *<b>$variable</b>. For example, if you declare a variable with      *       *<pre>      * 	declareVariable("name", "HAMLET");      *</pre>      *       * you may use the variable in an XPath expression as follows:      *       *<pre>      * 	//SPEECH[SPEAKER=$name]      *</pre>      *       * Any Java object may be passed as initial value. The query engine will try      * to map this into a corresponding XPath value. You may also pass an       * XMLResource as obtained from another XPath expression. This will be      * converted into a node.      *        * @param qname a valid QName by which the variable is identified. Any      * prefix should have been mapped to a namespace, i.e. if a variable is called      *<b>x:name</b>, there should be a prefix/namespace mapping for the prefix      * x      * @param initialValue the initial value, which is assigned to the variable      *       * @throws XMLDBException      */
 specifier|public
 name|void

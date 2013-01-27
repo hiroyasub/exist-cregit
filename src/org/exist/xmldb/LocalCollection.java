@@ -2599,6 +2599,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2614,29 +2615,9 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
-if|if
-condition|(
-operator|!
-name|checkPermissions
-argument_list|(
-name|collection
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-throw|throw
-operator|new
-name|XMLDBException
-argument_list|(
-name|ErrorCodes
-operator|.
-name|PERMISSION_DENIED
-argument_list|,
-literal|"Not allowed to read collection"
-argument_list|)
-throw|;
+block|}
+comment|//you only need execute access on the collection, this is enforced in broker.openCollection above!
+comment|/*if (!checkPermissions(collection, Permission.READ)) {                 throw new XMLDBException(ErrorCodes.PERMISSION_DENIED,                     "Not allowed to read collection");             }*/
 name|DocumentImpl
 name|document
 init|=
