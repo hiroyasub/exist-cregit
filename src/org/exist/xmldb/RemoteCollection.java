@@ -169,6 +169,18 @@ name|org
 operator|.
 name|apache
 operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|xmlrpc
 operator|.
 name|XmlRpcException
@@ -374,6 +386,21 @@ name|RemoteCollection
 implements|implements
 name|CollectionImpl
 block|{
+specifier|protected
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|RemoteCollection
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 comment|// Max size of a resource to be send to the server.
 comment|// If the resource exceeds this limit, the data is split into
 comment|// junks and uploaded to the server via the update() call
@@ -1494,6 +1521,8 @@ literal|true
 return|;
 block|}
 comment|/**      *  Returns a list of collection names naming all child collections of the      *  current collection. Only the name of the collection is returned - not      *  the entire path to the collection.      *      *@return                     Description of the Return Value      *@exception  XMLDBException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -1506,6 +1535,7 @@ comment|// Always refresh cache for latest set - if (childCollections == null)
 name|readCollection
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|coll
 index|[]
@@ -1529,6 +1559,7 @@ name|uri
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -1577,6 +1608,8 @@ return|return
 name|coll
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -1590,6 +1623,8 @@ name|listChildCollections
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -1598,6 +1633,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1623,6 +1659,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Object
 index|[]
 name|r
@@ -1640,6 +1677,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|resources
@@ -1675,6 +1713,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -3095,6 +3134,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -3104,6 +3144,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|Permission
 name|perm
@@ -3132,6 +3173,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3193,6 +3235,7 @@ expr_stmt|;
 try|try
 block|{
 comment|//TODO: Should this use the checked version instead?
+specifier|final
 name|RemoteCollection
 name|child
 init|=
@@ -3225,11 +3268,21 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
 comment|//TODO log?
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Ignoring error when retrieving child collection: "
+operator|+
+name|childName
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

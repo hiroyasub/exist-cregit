@@ -7264,6 +7264,7 @@ name|String
 argument_list|>
 name|getDocumentListing
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|collUri
 parameter_list|)
@@ -7309,6 +7310,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -7336,6 +7338,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -7347,12 +7350,14 @@ operator|+
 literal|" not found."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|vec
 return|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -7402,6 +7407,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -7411,6 +7417,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|factory
 operator|.
 name|getBrokerPool

@@ -12561,43 +12561,9 @@ return|return
 literal|null
 return|;
 block|}
-if|if
-condition|(
-operator|!
-name|collection
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to read collection '"
-operator|+
-name|collUri
-operator|+
-literal|"' by "
-operator|+
-name|getSubject
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|//if(!collection.getPermissions().validate(getSubject(), Permission.READ)) {
+comment|//throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getSubject().getName());
+comment|//}
 name|DocumentImpl
 name|doc
 init|=
@@ -12815,43 +12781,9 @@ return|;
 block|}
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|collection
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|EXECUTE
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to read collection '"
-operator|+
-name|collUri
-operator|+
-literal|"' by "
-operator|+
-name|getSubject
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|//if (!collection.getPermissions().validate(getSubject(), Permission.EXECUTE)) {
+comment|//    throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getSubject().getName());
+comment|//}
 name|DocumentImpl
 name|doc
 init|=
@@ -13670,7 +13602,9 @@ name|doctype
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|doctypeName
@@ -13716,6 +13650,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -13723,6 +13658,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -13828,6 +13764,7 @@ name|rootCollection
 operator|!=
 literal|null
 condition|)
+block|{
 name|rootCollection
 operator|.
 name|release
@@ -13837,6 +13774,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|//TODO : consider a better cooperation with Collection -pb
