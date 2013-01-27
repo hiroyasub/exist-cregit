@@ -295,10 +295,17 @@ name|doOptimize
 operator|=
 name|doOptimize
 operator|&&
+operator|(
 name|ls
 operator|.
 name|isPersistentSet
 argument_list|()
+operator|||
+name|ls
+operator|.
+name|isEmpty
+argument_list|()
+operator|)
 expr_stmt|;
 if|if
 condition|(
