@@ -879,33 +879,27 @@ name|void
 name|backup
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|AttributesImpl
 name|attrs
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"backup collection "
-operator|+
-name|colection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("backup collection "+colection.getURI());
 name|backup
 argument_list|(
 name|md
 operator|.
 name|getMetas
 argument_list|(
-name|colection
+name|collection
 operator|.
 name|getURI
 argument_list|()
@@ -922,7 +916,7 @@ name|void
 name|backup
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|SAXSerializer
 name|serializer
@@ -930,27 +924,21 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"backup collection "
-operator|+
-name|colection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("backup collection "+colection.getURI());
 name|backup
 argument_list|(
 name|md
 operator|.
 name|getMetas
 argument_list|(
-name|colection
+name|collection
 operator|.
 name|getURI
 argument_list|()
@@ -973,20 +961,14 @@ name|AttributesImpl
 name|attrs
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"backup document "
-operator|+
+if|if
+condition|(
 name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("backup document "+document.getURI());
 name|backup
 argument_list|(
 name|md
@@ -1015,20 +997,14 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"backup document "
-operator|+
+if|if
+condition|(
 name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("backup document "+document.getURI());
 name|backup
 argument_list|(
 name|md
@@ -1350,26 +1326,20 @@ name|void
 name|startCollectionRestore
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|Attributes
 name|atts
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"startCollectionRestore "
-operator|+
-name|colection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("startCollectionRestore "+colection.getURI());
 name|String
 name|uuid
 init|=
@@ -1394,7 +1364,7 @@ name|md
 operator|.
 name|replaceMetas
 argument_list|(
-name|colection
+name|collection
 operator|.
 name|getURI
 argument_list|()
@@ -1409,7 +1379,7 @@ name|md
 operator|.
 name|addMetas
 argument_list|(
-name|colection
+name|collection
 argument_list|)
 expr_stmt|;
 block|}
@@ -1420,7 +1390,7 @@ name|void
 name|endCollectionRestore
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|)
 block|{
 comment|//		System.out.println("endCollectionRestore "+colection.getURI());
@@ -1438,20 +1408,14 @@ name|Attributes
 name|atts
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"startDocument "
-operator|+
+if|if
+condition|(
 name|document
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
+operator|==
+literal|null
+condition|)
+return|return;
+comment|//		System.out.println("startDocument "+document.getURI());
 name|String
 name|uuid
 init|=
