@@ -4055,6 +4055,9 @@ operator|.
 name|valueOf
 argument_list|(
 name|strJobType
+operator|.
+name|toUpperCase
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
