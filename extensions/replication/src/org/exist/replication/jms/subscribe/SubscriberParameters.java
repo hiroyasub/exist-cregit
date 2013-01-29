@@ -37,7 +37,7 @@ name|replication
 operator|.
 name|shared
 operator|.
-name|ClientParameters
+name|ClientParameterException
 import|;
 end_import
 
@@ -47,9 +47,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|scheduler
+name|replication
 operator|.
-name|JobException
+name|shared
+operator|.
+name|ClientParameters
 import|;
 end_import
 
@@ -163,7 +165,7 @@ name|void
 name|processParameters
 parameter_list|()
 throws|throws
-name|JobException
+name|ClientParameterException
 block|{
 comment|// java.naming.factory.initial
 name|String
@@ -336,14 +338,8 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|JobException
+name|ClientParameterException
 argument_list|(
-name|JobException
-operator|.
-name|JobExceptionAction
-operator|.
-name|JOB_ABORT_THIS
-argument_list|,
 name|errorText
 argument_list|)
 throw|;
@@ -394,14 +390,8 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|JobException
+name|ClientParameterException
 argument_list|(
-name|JobException
-operator|.
-name|JobExceptionAction
-operator|.
-name|JOB_ABORT_THIS
-argument_list|,
 name|errorText
 argument_list|)
 throw|;
@@ -528,14 +518,8 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|JobException
+name|ClientParameterException
 argument_list|(
-name|JobException
-operator|.
-name|JobExceptionAction
-operator|.
-name|JOB_ABORT_THIS
-argument_list|,
 name|errorText
 argument_list|)
 throw|;
@@ -626,14 +610,8 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|JobException
+name|ClientParameterException
 argument_list|(
-name|JobException
-operator|.
-name|JobExceptionAction
-operator|.
-name|JOB_ABORT_THIS
-argument_list|,
 name|errorText
 argument_list|)
 throw|;
