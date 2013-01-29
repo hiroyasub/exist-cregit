@@ -136,14 +136,6 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|CONFIGURATION_JOB_PARAMETER_ELEMENT_NAME
-init|=
-literal|"parameter"
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|String
 name|JOB_NAME_ATTRIBUTE
 init|=
 literal|"name"

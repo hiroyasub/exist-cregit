@@ -164,6 +164,7 @@ argument_list|>
 argument_list|>
 name|extract
 parameter_list|(
+specifier|final
 name|Element
 name|parameters
 parameter_list|)
@@ -221,6 +222,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|namespace
 init|=
@@ -229,6 +231,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nlParameter
 init|=
@@ -269,6 +272,7 @@ argument_list|>
 argument_list|>
 name|extract
 parameter_list|(
+specifier|final
 name|NodeList
 name|nlParameter
 parameter_list|)
@@ -349,6 +353,7 @@ argument_list|>
 argument_list|>
 name|extractParameters
 parameter_list|(
+specifier|final
 name|NodeList
 name|nlParameter
 parameter_list|)
@@ -400,6 +405,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|param
 init|=
@@ -414,6 +420,7 @@ name|i
 argument_list|)
 decl_stmt|;
 comment|//TODO : rely on schema-driven validation -pb
+specifier|final
 name|String
 name|name
 init|=
@@ -435,6 +442,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -558,6 +566,7 @@ name|List
 argument_list|>
 name|getParameterChildParameters
 parameter_list|(
+specifier|final
 name|Element
 name|parameter
 parameter_list|)
@@ -580,6 +589,7 @@ name|List
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|childParameters
 init|=
@@ -606,6 +616,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nChildParameter
 init|=
@@ -623,6 +634,7 @@ operator|instanceof
 name|Element
 condition|)
 block|{
+specifier|final
 name|Element
 name|childParameter
 init|=
@@ -631,6 +643,7 @@ name|Element
 operator|)
 name|nChildParameter
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -688,6 +701,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -696,6 +710,7 @@ operator|.
 name|getAttributes
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|props
 init|=
@@ -721,6 +736,7 @@ name|a
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|attr
 init|=

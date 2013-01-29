@@ -637,6 +637,20 @@ name|exist
 operator|.
 name|util
 operator|.
+name|Configuration
+operator|.
+name|StartupTriggerConfig
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|hashtable
 operator|.
 name|MapRWLock
@@ -3836,7 +3850,7 @@ argument_list|(
 operator|(
 name|List
 argument_list|<
-name|String
+name|StartupTriggerConfig
 argument_list|>
 operator|)
 name|conf
@@ -3963,9 +3977,9 @@ parameter_list|(
 specifier|final
 name|List
 argument_list|<
-name|String
+name|StartupTriggerConfig
 argument_list|>
-name|startupTriggerClasses
+name|startupTriggerConfigs
 parameter_list|,
 specifier|final
 name|DBBroker
@@ -3974,18 +3988,20 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|startupTriggerClasses
+name|startupTriggerConfigs
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
 specifier|final
-name|String
-name|startupTriggerClass
+name|StartupTriggerConfig
+name|startupTriggerConfig
 range|:
-name|startupTriggerClasses
+name|startupTriggerConfigs
 control|)
 block|{
 try|try
@@ -4007,7 +4023,10 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-name|startupTriggerClass
+name|startupTriggerConfig
+operator|.
+name|getClazz
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -4024,6 +4043,11 @@ operator|.
 name|execute
 argument_list|(
 name|sysBroker
+argument_list|,
+name|startupTriggerConfig
+operator|.
+name|getParams
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -4039,7 +4063,7 @@ name|error
 argument_list|(
 literal|"Could not find StartupTrigger class: "
 operator|+
-name|startupTriggerClass
+name|startupTriggerConfig
 operator|+
 literal|". SKIPPING! "
 operator|+
@@ -4064,7 +4088,7 @@ name|error
 argument_list|(
 literal|"Could not instantiate StartupTrigger class: "
 operator|+
-name|startupTriggerClass
+name|startupTriggerConfig
 operator|+
 literal|". SKIPPING! "
 operator|+
@@ -4089,7 +4113,7 @@ name|error
 argument_list|(
 literal|"Could not access StartupTrigger class: "
 operator|+
-name|startupTriggerClass
+name|startupTriggerConfig
 operator|+
 literal|". SKIPPING! "
 operator|+
