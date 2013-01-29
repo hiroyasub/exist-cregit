@@ -366,9 +366,29 @@ literal|"xmldb:exist://"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
-comment|//TODO re-enable remote tests!!!
-comment|//params.add(new String[] { "xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc" });
+name|params
+operator|.
+name|add
+argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|"xmldb:exist://localhost:"
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|,
+literal|"8088"
+argument_list|)
+operator|+
+literal|"/xmlrpc"
+block|}
+argument_list|)
+expr_stmt|;
 return|return
 name|params
 return|;
