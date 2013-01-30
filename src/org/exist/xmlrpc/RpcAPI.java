@@ -522,6 +522,23 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
+name|Vector
+argument_list|<
+name|String
+argument_list|>
+name|getCollectionListing
+parameter_list|(
+specifier|final
+name|String
+name|collection
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|URISyntaxException
+function_decl|;
 comment|/** 	 *  Get a list of all documents contained in the database. 	 * 	 *@return  list of document paths 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|Vector
 argument_list|<
