@@ -250,6 +250,14 @@ name|COLUMN
 init|=
 literal|"column"
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MODULE_LOAD_PATH
+init|=
+literal|"module-load-path"
+decl_stmt|;
 comment|/** 	 * Return the database version. 	 *  	 * @return database version 	 */
 specifier|public
 name|String
