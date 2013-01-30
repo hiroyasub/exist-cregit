@@ -560,6 +560,18 @@ parameter_list|()
 throws|throws
 name|ApiException
 block|{
+name|chmodCol
+argument_list|(
+literal|"/db"
+argument_list|,
+literal|"rwxr-xr-x"
+argument_list|,
+name|ADMIN_UID
+argument_list|,
+name|ADMIN_PWD
+argument_list|)
+expr_stmt|;
+comment|//ensure /db is always 755
 name|removeAccount
 argument_list|(
 name|TEST_USER1_UID
