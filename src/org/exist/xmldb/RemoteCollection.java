@@ -427,6 +427,12 @@ operator|*
 literal|1024
 decl_stmt|;
 specifier|protected
+name|Permission
+name|permission
+init|=
+literal|null
+decl_stmt|;
+specifier|protected
 name|Map
 argument_list|<
 name|XmldbURI
@@ -440,12 +446,6 @@ decl_stmt|;
 specifier|protected
 name|XmldbURI
 name|path
-decl_stmt|;
-specifier|protected
-name|Permission
-name|permissions
-init|=
-literal|null
 decl_stmt|;
 specifier|protected
 name|RemoteCollection
@@ -468,9 +468,11 @@ decl_stmt|;
 specifier|public
 name|RemoteCollection
 parameter_list|(
+specifier|final
 name|XmlRpcClient
 name|client
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -490,12 +492,15 @@ block|}
 specifier|public
 name|RemoteCollection
 parameter_list|(
+specifier|final
 name|XmlRpcClient
 name|client
 parameter_list|,
+specifier|final
 name|RemoteCollection
 name|parent
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -528,6 +533,7 @@ specifier|protected
 name|void
 name|addChildCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|child
 parameter_list|)
@@ -540,9 +546,11 @@ name|childCollections
 operator|==
 literal|null
 condition|)
+block|{
 name|readCollection
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
 name|childCollections
@@ -565,6 +573,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -582,6 +591,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -608,6 +619,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -627,6 +639,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|createId
@@ -634,6 +648,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -675,6 +690,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -694,13 +710,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|createResource
 parameter_list|(
+specifier|final
 name|String
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -738,6 +758,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -763,6 +784,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteXMLResource
@@ -780,6 +802,7 @@ argument_list|,
 literal|null
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|type
@@ -789,6 +812,7 @@ argument_list|(
 literal|"BinaryResource"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteBinaryResource
@@ -798,7 +822,9 @@ argument_list|,
 name|newId
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -813,10 +839,14 @@ name|type
 argument_list|)
 throw|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|getChildCollection
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -860,6 +890,7 @@ specifier|public
 name|Collection
 name|getChildCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -881,6 +912,7 @@ specifier|protected
 name|Collection
 name|getChildCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|,
@@ -906,10 +938,9 @@ literal|false
 expr_stmt|;
 block|}
 comment|// stores reference to the collection found
+specifier|final
 name|Collection
 name|foundCollection
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -920,6 +951,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|foundCollection
 operator|=
 name|childCollections
@@ -929,7 +961,9 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|foundCollection
 operator|=
 name|childCollections
@@ -945,6 +979,7 @@ name|name
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if we did not find collection in cache set cache back to null to force full refresh
 if|if
 condition|(
@@ -972,6 +1007,8 @@ return|return
 name|foundCollection
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCollectionCount
@@ -999,6 +1036,8 @@ return|return
 name|rpcClient
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -1013,6 +1052,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|getParentCollection
@@ -1037,6 +1078,7 @@ name|ROOT_COLLECTION_URI
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|parentUri
 init|=
@@ -1076,6 +1118,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getPathURI
@@ -1098,10 +1142,13 @@ return|return
 name|path
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
 parameter_list|(
+specifier|final
 name|String
 name|property
 parameter_list|)
@@ -1114,9 +1161,11 @@ name|properties
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 name|String
@@ -1140,16 +1189,20 @@ name|properties
 operator|==
 literal|null
 condition|)
+block|{
 name|properties
 operator|=
 operator|new
 name|Properties
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|properties
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getResourceCount
@@ -1157,6 +1210,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1203,6 +1257,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1222,13 +1277,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Service
 name|getService
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|version
 parameter_list|)
@@ -1244,6 +1303,7 @@ argument_list|(
 literal|"XPathQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteXPathQueryService
@@ -1251,6 +1311,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1260,6 +1321,7 @@ argument_list|(
 literal|"XQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteXPathQueryService
@@ -1267,6 +1329,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1283,6 +1346,7 @@ argument_list|(
 literal|"CollectionManager"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteCollectionManagementService
@@ -1292,6 +1356,7 @@ argument_list|,
 name|rpcClient
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1301,6 +1366,7 @@ argument_list|(
 literal|"UserManagementService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteUserManagementService
@@ -1308,6 +1374,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1317,6 +1384,7 @@ argument_list|(
 literal|"DatabaseInstanceManager"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteDatabaseInstanceManager
@@ -1324,6 +1392,7 @@ argument_list|(
 name|rpcClient
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1333,6 +1402,7 @@ argument_list|(
 literal|"IndexQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteIndexQueryService
@@ -1342,6 +1412,7 @@ argument_list|,
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -1351,6 +1422,7 @@ argument_list|(
 literal|"XUpdateQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|RemoteXUpdateQueryService
@@ -1358,6 +1430,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
 throw|throw
 operator|new
 name|XMLDBException
@@ -1368,6 +1441,8 @@ name|NO_SUCH_SERVICE
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Service
 index|[]
@@ -1376,6 +1451,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Service
 index|[]
 name|services
@@ -1464,6 +1540,7 @@ specifier|protected
 name|boolean
 name|hasChildCollection
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1509,6 +1586,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isOpen
@@ -1554,9 +1633,6 @@ name|j
 init|=
 literal|0
 decl_stmt|;
-name|XmldbURI
-name|uri
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1583,13 +1659,15 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
+name|XmldbURI
 name|uri
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|coll
 index|[
 name|j
@@ -1737,6 +1815,8 @@ throw|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#getResources()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -1754,15 +1834,19 @@ specifier|private
 name|Permission
 name|getPermission
 parameter_list|(
+specifier|final
 name|String
 name|owner
 parameter_list|,
+specifier|final
 name|String
 name|group
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|ACEAider
@@ -1772,6 +1856,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -1803,6 +1888,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -1813,6 +1899,7 @@ name|perm
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ACEAider
 name|ace
 range|:
@@ -1854,6 +1941,7 @@ specifier|public
 name|Permission
 name|getSubCollectionPermissions
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1862,6 +1950,7 @@ name|PermissionDeniedException
 throws|,
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1894,6 +1983,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -1993,6 +2083,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -2002,6 +2093,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|getPermission
 argument_list|(
@@ -2023,6 +2115,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -2049,6 +2142,7 @@ specifier|public
 name|Permission
 name|getSubResourcePermissions
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -2057,6 +2151,7 @@ name|PermissionDeniedException
 throws|,
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -2089,6 +2184,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -2188,6 +2284,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -2197,6 +2294,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|getPermission
 argument_list|(
@@ -2218,6 +2316,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -2244,12 +2343,14 @@ specifier|public
 name|Long
 name|getSubCollectionCreationTime
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2303,6 +2404,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -2331,6 +2433,7 @@ specifier|public
 name|Resource
 name|getResource
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -2370,6 +2473,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2435,6 +2539,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -2499,6 +2604,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2589,6 +2695,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -2598,6 +2705,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|Permission
 name|perm
@@ -2769,6 +2877,7 @@ literal|"XMLResource"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|RemoteXMLResource
 name|r
 init|=
@@ -2864,6 +2973,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|RemoteBinaryResource
 name|r
 init|=
@@ -2968,6 +3078,7 @@ name|Collection
 argument_list|>
 argument_list|()
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3024,6 +3135,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -3045,6 +3157,7 @@ name|xre
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Object
 index|[]
 name|collections
@@ -3202,6 +3315,12 @@ name|pde
 argument_list|)
 throw|;
 block|}
+name|this
+operator|.
+name|permission
+operator|=
+name|perm
+expr_stmt|;
 name|String
 name|childName
 decl_stmt|;
@@ -3290,6 +3409,7 @@ specifier|public
 name|void
 name|registerService
 parameter_list|(
+specifier|final
 name|Service
 name|serv
 parameter_list|)
@@ -3310,6 +3430,7 @@ specifier|public
 name|void
 name|removeChildCollection
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3352,6 +3473,7 @@ specifier|public
 name|void
 name|removeChildCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -3364,9 +3486,11 @@ name|childCollections
 operator|==
 literal|null
 condition|)
+block|{
 name|readCollection
 argument_list|()
 expr_stmt|;
+block|}
 name|childCollections
 operator|.
 name|remove
@@ -3375,10 +3499,13 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|)
@@ -3481,6 +3608,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getCreationTime
@@ -3551,13 +3680,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
 parameter_list|(
+specifier|final
 name|String
 name|property
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -3570,12 +3703,14 @@ name|properties
 operator|==
 literal|null
 condition|)
+block|{
 name|properties
 operator|=
 operator|new
 name|Properties
 argument_list|()
 expr_stmt|;
+block|}
 name|properties
 operator|.
 name|setProperty
@@ -3586,10 +3721,13 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|)
@@ -3606,22 +3744,28 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|,
+specifier|final
 name|Date
 name|a
 parameter_list|,
+specifier|final
 name|Date
 name|b
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Object
 name|content
 init|=
@@ -3670,6 +3814,7 @@ operator|instanceof
 name|File
 condition|)
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -3686,6 +3831,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -3702,6 +3848,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|fileLength
 operator|=
 name|file
@@ -3914,12 +4061,14 @@ specifier|private
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|RemoteXMLResource
 name|res
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3929,6 +4078,7 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -3980,6 +4130,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4055,6 +4206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -4087,12 +4239,14 @@ specifier|private
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|RemoteBinaryResource
 name|res
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4106,6 +4260,7 @@ operator|.
 name|getContent
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -4157,6 +4312,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4240,6 +4396,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -4508,6 +4665,7 @@ name|fileName
 operator|!=
 literal|null
 condition|)
+block|{
 name|params
 operator|.
 name|add
@@ -4515,6 +4673,7 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
+block|}
 name|params
 operator|.
 name|add
@@ -4948,16 +5107,9 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|public
-name|Permission
-name|getPermissions
-parameter_list|()
-block|{
-return|return
-name|permissions
-return|;
-block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#isRemoteCollection()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRemoteCollection
@@ -4969,6 +5121,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTriggersEnabled
