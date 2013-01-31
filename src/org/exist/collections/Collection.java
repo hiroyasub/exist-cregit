@@ -9256,6 +9256,7 @@ specifier|public
 name|void
 name|setPermissions
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -9304,6 +9305,7 @@ specifier|public
 name|void
 name|setPermissions
 parameter_list|(
+specifier|final
 name|String
 name|mode
 parameter_list|)
@@ -9353,6 +9355,7 @@ specifier|public
 name|void
 name|setPermissions
 parameter_list|(
+specifier|final
 name|Permission
 name|permissions
 parameter_list|)
@@ -9396,6 +9399,7 @@ specifier|public
 name|CollectionConfiguration
 name|getConfiguration
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -9411,6 +9415,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|CollectionConfigurationManager
 name|manager
 init|=
@@ -9428,9 +9433,11 @@ name|manager
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|//Attempt to get configuration
 name|CollectionConfiguration
 name|configuration
@@ -9461,6 +9468,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)
@@ -9494,6 +9502,7 @@ specifier|public
 name|void
 name|setCollectionConfigEnabled
 parameter_list|(
+specifier|final
 name|boolean
 name|collectionConfigEnabled
 parameter_list|)
@@ -9519,6 +9528,7 @@ specifier|public
 name|void
 name|setAddress
 parameter_list|(
+specifier|final
 name|long
 name|addr
 parameter_list|)
@@ -9545,6 +9555,7 @@ specifier|public
 name|void
 name|setCreationTime
 parameter_list|(
+specifier|final
 name|long
 name|ms
 parameter_list|)
@@ -9568,6 +9579,7 @@ specifier|public
 name|void
 name|setTriggersEnabled
 parameter_list|(
+specifier|final
 name|boolean
 name|enabled
 parameter_list|)
@@ -9593,6 +9605,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -9636,6 +9649,7 @@ specifier|public
 name|void
 name|setReader
 parameter_list|(
+specifier|final
 name|XMLReader
 name|reader
 parameter_list|)
@@ -9650,12 +9664,15 @@ specifier|private
 name|XMLReader
 name|getReader
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|boolean
 name|validation
 parameter_list|,
+specifier|final
 name|CollectionConfiguration
 name|colconfig
 parameter_list|)
@@ -9673,6 +9690,7 @@ name|userReader
 return|;
 block|}
 comment|// Get reader from readerpool.
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -9694,6 +9712,7 @@ condition|(
 operator|!
 name|validation
 condition|)
+block|{
 name|XMLReaderObjectFactory
 operator|.
 name|setReaderValidationMode
@@ -9705,6 +9724,7 @@ argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|colconfig
@@ -9712,6 +9732,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|mode
 init|=
@@ -9740,12 +9761,15 @@ specifier|private
 name|void
 name|releaseReader
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|IndexInfo
 name|info
 parameter_list|,
+specifier|final
 name|XMLReader
 name|reader
 parameter_list|)
@@ -9771,8 +9795,11 @@ argument_list|()
 operator|>
 name|POOL_PARSER_THRESHOLD
 condition|)
+block|{
 return|return;
+block|}
 comment|// Get validation mode from static configuration
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -9781,6 +9808,7 @@ operator|.
 name|getConfiguration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|optionValue
 init|=
@@ -9796,6 +9824,7 @@ operator|.
 name|PROPERTY_VALIDATION_MODE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|validationMode
 init|=
@@ -9839,6 +9868,7 @@ specifier|synchronized
 name|void
 name|addObserver
 parameter_list|(
+specifier|final
 name|Observer
 name|o
 parameter_list|)
@@ -9850,7 +9880,9 @@ argument_list|(
 name|o
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|observers
@@ -9876,6 +9908,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Observer
 name|n
 index|[]
@@ -9926,6 +9959,7 @@ specifier|private
 name|boolean
 name|hasObserver
 parameter_list|(
+specifier|final
 name|Observer
 name|o
 parameter_list|)
@@ -9936,9 +9970,11 @@ name|observers
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -9965,9 +10001,11 @@ index|]
 operator|==
 name|o
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -9988,10 +10026,12 @@ name|observers
 operator|!=
 literal|null
 condition|)
+block|{
 name|observers
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.storage.cache.Cacheable#getKey()      */
 annotation|@
@@ -10056,6 +10096,7 @@ specifier|public
 name|void
 name|setReferenceCount
 parameter_list|(
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -10072,6 +10113,7 @@ specifier|public
 name|void
 name|setTimestamp
 parameter_list|(
+specifier|final
 name|int
 name|timestamp
 parameter_list|)
@@ -10102,6 +10144,7 @@ specifier|public
 name|boolean
 name|sync
 parameter_list|(
+specifier|final
 name|boolean
 name|syncJournal
 parameter_list|)
@@ -10129,6 +10172,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -10153,6 +10197,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -10191,6 +10236,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -10198,6 +10244,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|buf
 operator|.
@@ -10218,10 +10265,12 @@ specifier|public
 name|IndexSpec
 name|getIndexConfiguration
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|CollectionConfiguration
 name|conf
 init|=
@@ -10237,12 +10286,14 @@ name|conf
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|broker
 operator|.
 name|getIndexConfiguration
 argument_list|()
 return|;
+block|}
 comment|//... otherwise return the general config (the broker's one)
 return|return
 name|conf
@@ -10255,13 +10306,16 @@ specifier|public
 name|GeneralRangeIndexSpec
 name|getIndexByPathConfiguration
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodePath
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|IndexSpec
 name|idxSpec
 init|=
@@ -10291,13 +10345,16 @@ specifier|public
 name|QNameRangeIndexSpec
 name|getIndexByQNameConfiguration
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|IndexSpec
 name|idxSpec
 init|=
@@ -10327,10 +10384,12 @@ specifier|public
 name|FulltextIndexSpec
 name|getFulltextIndexConfiguration
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|IndexSpec
 name|idxSpec
 init|=
