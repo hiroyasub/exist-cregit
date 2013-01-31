@@ -314,6 +314,7 @@ decl_stmt|;
 specifier|public
 name|XMLDBSecurityTest
 parameter_list|(
+specifier|final
 name|String
 name|baseUri
 parameter_list|)
@@ -339,6 +340,7 @@ argument_list|>
 name|instances
 parameter_list|()
 block|{
+specifier|final
 name|LinkedList
 argument_list|<
 name|String
@@ -366,29 +368,8 @@ literal|"xmldb:exist://"
 block|}
 argument_list|)
 expr_stmt|;
-name|params
-operator|.
-name|add
-argument_list|(
-operator|new
-name|String
-index|[]
-block|{
-literal|"xmldb:exist://localhost:"
-operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|,
-literal|"8088"
-argument_list|)
-operator|+
-literal|"/xmlrpc"
-block|}
-argument_list|)
-expr_stmt|;
+comment|//params.add(new String[] { "xmldb:exist://localhost:" + System.getProperty("jetty.port", "8088") + "/xmlrpc" });
+comment|//TODO re-enable remote tests!!!
 return|return
 name|params
 return|;
@@ -410,6 +391,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -426,6 +408,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -466,6 +449,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -482,6 +466,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -528,6 +513,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -544,6 +530,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -584,6 +571,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -600,6 +588,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -641,6 +630,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -657,6 +647,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -667,6 +658,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -710,6 +702,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -726,6 +719,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -741,6 +735,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|guest
 init|=
@@ -779,6 +774,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -795,6 +791,7 @@ argument_list|,
 literal|"guest"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -805,6 +802,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -821,6 +819,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
+specifier|final
 name|Account
 name|test2
 init|=
@@ -852,6 +851,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -868,6 +868,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -883,6 +884,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|newCol
 init|=
@@ -908,6 +910,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -996,6 +999,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -1012,6 +1016,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -1044,6 +1049,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -1060,6 +1066,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -1099,6 +1106,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1115,6 +1123,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1148,6 +1157,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1164,6 +1174,7 @@ argument_list|,
 literal|"test1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1219,6 +1230,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1235,6 +1247,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -1245,6 +1258,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1280,6 +1294,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1296,6 +1311,7 @@ argument_list|,
 literal|"test1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -1306,6 +1322,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1349,6 +1366,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1365,6 +1383,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1381,6 +1400,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
+specifier|final
 name|Account
 name|test2
 init|=
@@ -1400,6 +1420,7 @@ argument_list|,
 literal|"users"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|perms
 init|=
@@ -1441,6 +1462,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -1457,6 +1479,7 @@ argument_list|,
 literal|"test2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -1467,6 +1490,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -1483,6 +1507,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// grant myself all rights ;-)
+specifier|final
 name|Account
 name|test2
 init|=
@@ -3955,6 +3980,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -4019,6 +4045,7 @@ name|test1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Account
 name|test2
 init|=
@@ -4296,18 +4323,14 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|e
+specifier|final
+name|XMLDBException
+name|xmldbe
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
-name|e
+name|xmldbe
 operator|.
 name|getMessage
 argument_list|()
@@ -4321,9 +4344,12 @@ specifier|public
 name|void
 name|cleanup
 parameter_list|()
+throws|throws
+name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -4340,6 +4366,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CollectionManagementService
 name|cms
 init|=
@@ -4355,6 +4382,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|secTest1
 init|=
@@ -4385,6 +4413,7 @@ literal|"securityTest1"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -4400,6 +4429,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|test1
 init|=
@@ -4425,6 +4455,7 @@ name|test1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Account
 name|test2
 init|=
@@ -4450,6 +4481,7 @@ name|test2
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Group
 name|group
 init|=
@@ -4478,18 +4510,14 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
-name|e
+name|xmldbe
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|fail
 argument_list|(
-name|e
+name|xmldbe
 operator|.
 name|getMessage
 argument_list|()
