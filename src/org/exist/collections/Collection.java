@@ -6701,6 +6701,7 @@ specifier|public
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
@@ -6708,6 +6709,7 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|docUri
 parameter_list|,
@@ -6737,35 +6739,6 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|getPermissionsNoLock
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to write collection: "
-operator|+
-name|path
-argument_list|)
-throw|;
-block|}
 return|return
 name|validateXMLResourceInternal
 argument_list|(
@@ -6787,6 +6760,7 @@ specifier|public
 name|void
 name|run
 parameter_list|(
+specifier|final
 name|IndexInfo
 name|info
 parameter_list|)
@@ -6795,6 +6769,7 @@ name|SAXException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -6819,6 +6794,7 @@ expr_stmt|;
 try|try
 block|{
 comment|/*                      * Note - we must close shield the input source,                      * else it can be closed by the Reader, so subsequently                      * when we try and read it in storeXmlInternal we will get                      * an exception.                      */
+specifier|final
 name|InputSource
 name|closeShieldedInputSource
 init|=
@@ -6837,6 +6813,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -6858,6 +6835,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7110,35 +7088,6 @@ name|LockException
 throws|,
 name|IOException
 block|{
-if|if
-condition|(
-operator|!
-name|getPermissionsNoLock
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to write collection: "
-operator|+
-name|path
-argument_list|)
-throw|;
-block|}
 return|return
 name|validateXMLResourceInternal
 argument_list|(
