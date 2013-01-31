@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -707,6 +707,7 @@ decl_stmt|;
 specifier|private
 name|Collection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -723,9 +724,11 @@ block|}
 specifier|public
 name|Collection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -810,12 +813,15 @@ specifier|public
 name|void
 name|addCollection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Collection
 name|child
 parameter_list|,
+specifier|final
 name|boolean
 name|isNew
 parameter_list|)
@@ -854,6 +860,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|XmldbURI
 name|childName
 init|=
@@ -875,6 +882,7 @@ argument_list|(
 name|childName
 argument_list|)
 condition|)
+block|{
 name|subCollections
 operator|.
 name|add
@@ -882,6 +890,7 @@ argument_list|(
 name|childName
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isNew
@@ -903,9 +912,11 @@ specifier|public
 name|boolean
 name|hasChildCollection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -974,9 +985,11 @@ decl_stmt|;
 specifier|protected
 name|CollectionEntry
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|,
+specifier|final
 name|Permission
 name|permissions
 parameter_list|)
@@ -1036,6 +1049,7 @@ specifier|protected
 name|void
 name|setCreated
 parameter_list|(
+specifier|final
 name|long
 name|created
 parameter_list|)
@@ -1060,6 +1074,7 @@ specifier|protected
 name|void
 name|setPermissions
 parameter_list|(
+specifier|final
 name|Permission
 name|permissions
 parameter_list|)
@@ -1081,6 +1096,7 @@ block|{
 specifier|public
 name|SubCollectionEntry
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -1102,6 +1118,7 @@ specifier|public
 name|void
 name|readMetadata
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1120,6 +1137,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -1184,6 +1202,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|)
@@ -1215,6 +1234,7 @@ block|{
 specifier|public
 name|DocumentEntry
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -1250,6 +1270,7 @@ specifier|public
 name|void
 name|readMetadata
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1261,6 +1282,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -1276,6 +1298,7 @@ name|CollectionEntry
 argument_list|>
 name|getEntries
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1381,6 +1404,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|document
 range|:
@@ -1423,9 +1447,11 @@ specifier|public
 name|CollectionEntry
 name|getSubCollectionEntry
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1498,9 +1524,11 @@ specifier|public
 name|CollectionEntry
 name|getResourceEntry
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1577,6 +1605,7 @@ specifier|public
 name|void
 name|release
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1595,9 +1624,11 @@ specifier|public
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Collection
 name|child
 parameter_list|)
