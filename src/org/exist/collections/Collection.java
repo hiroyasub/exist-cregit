@@ -7291,8 +7291,6 @@ argument_list|)
 expr_stmt|;
 name|checkCollectionConflict
 argument_list|(
-name|broker
-argument_list|,
 name|docUri
 argument_list|)
 expr_stmt|;
@@ -8362,10 +8360,6 @@ name|void
 name|checkCollectionConflict
 parameter_list|(
 specifier|final
-name|DBBroker
-name|broker
-parameter_list|,
-specifier|final
 name|XmldbURI
 name|docUri
 parameter_list|)
@@ -8376,10 +8370,10 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|hasChildCollection
+name|subCollections
+operator|.
+name|contains
 argument_list|(
-name|broker
-argument_list|,
 name|docUri
 operator|.
 name|lastSegment
@@ -8876,8 +8870,6 @@ argument_list|)
 expr_stmt|;
 name|checkCollectionConflict
 argument_list|(
-name|broker
-argument_list|,
 name|docUri
 argument_list|)
 expr_stmt|;
