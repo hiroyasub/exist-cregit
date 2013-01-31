@@ -217,6 +217,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Permission
 import|;
 end_import
@@ -242,18 +254,6 @@ operator|.
 name|security
 operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Account
 import|;
 end_import
 
@@ -643,15 +643,19 @@ comment|/**      * Create a collection with no parent (root collection).      * 
 specifier|public
 name|LocalCollection
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|BrokerPool
 name|brokerPool
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|collection
 parameter_list|,
+specifier|final
 name|AccessContext
 name|accessCtx
 parameter_list|)
@@ -679,15 +683,19 @@ parameter_list|(
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|BrokerPool
 name|brokerPool
 parameter_list|,
+specifier|final
 name|LocalCollection
 name|parent
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|,
+specifier|final
 name|AccessContext
 name|accessCtx
 parameter_list|)
@@ -700,11 +708,13 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
@@ -717,6 +727,7 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
 name|user
 operator|=
 name|brokerPool
@@ -727,6 +738,7 @@ operator|.
 name|getGuestSubject
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|user
@@ -757,12 +769,14 @@ name|path
 operator|==
 literal|null
 condition|)
+block|{
 name|path
 operator|=
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 expr_stmt|;
+block|}
 name|path
 operator|=
 name|path
@@ -787,12 +801,14 @@ specifier|protected
 name|Collection
 name|getCollectionWithLock
 parameter_list|(
+specifier|final
 name|int
 name|lockMode
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -839,6 +855,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -854,6 +871,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|.
 name|setReader
@@ -864,6 +882,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -887,6 +906,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -936,6 +956,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -954,6 +975,7 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -962,6 +984,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1000,6 +1023,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1015,6 +1039,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|broker
 operator|.
 name|saveCollection
@@ -1034,6 +1059,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1064,6 +1090,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1094,6 +1121,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1124,6 +1152,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -1160,6 +1189,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -1169,6 +1199,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -1192,6 +1223,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1216,6 +1248,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1238,6 +1271,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1253,6 +1287,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|.
 name|setReader
@@ -1266,6 +1301,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1289,6 +1325,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1332,9 +1369,11 @@ specifier|protected
 name|boolean
 name|checkOwner
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|Account
 name|account
 parameter_list|)
@@ -1360,9 +1399,11 @@ specifier|protected
 name|boolean
 name|checkPermissions
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|int
 name|perm
 parameter_list|)
@@ -1384,6 +1425,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Close the current collection. Calling this method will flush all      * open buffers to disk.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
@@ -1396,6 +1439,7 @@ condition|(
 name|needsSync
 condition|)
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1432,6 +1476,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1473,6 +1518,8 @@ block|}
 block|}
 block|}
 comment|/**      * Creates a unique name for a database resource      * Uniqueness is only guaranteed within the eXist instance      *       * The name is based on a hex encoded string of a random integer      * and will have the format xxxxxxxx.xml where x is in the range      * 0 to 9 and a to f       *       * @return the unique resource name       */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|createId
@@ -1481,6 +1528,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO: API change to XmldbURI ?
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1489,6 +1537,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1518,6 +1567,7 @@ expr_stmt|;
 name|XmldbURI
 name|id
 decl_stmt|;
+specifier|final
 name|Random
 name|rand
 init|=
@@ -1604,6 +1654,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1627,6 +1678,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1687,6 +1739,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//TODO: API change to XmldbURI?
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|createResource
@@ -1694,6 +1748,7 @@ parameter_list|(
 name|String
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -1706,11 +1761,14 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 name|id
 operator|=
 name|createId
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|XmldbURI
 name|idURI
 decl_stmt|;
@@ -1728,6 +1786,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1744,10 +1803,9 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Resource
 name|r
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1758,6 +1816,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
+block|{
 name|r
 operator|=
 operator|new
@@ -1772,6 +1831,7 @@ argument_list|,
 name|idURI
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|type
@@ -1781,6 +1841,7 @@ argument_list|(
 literal|"BinaryResource"
 argument_list|)
 condition|)
+block|{
 name|r
 operator|=
 operator|new
@@ -1795,7 +1856,9 @@ argument_list|,
 name|idURI
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1809,6 +1872,7 @@ operator|+
 name|type
 argument_list|)
 throw|;
+block|}
 operator|(
 operator|(
 name|AbstractEXistResource
@@ -1825,6 +1889,9 @@ name|r
 return|;
 block|}
 comment|//TODO: API change to XmldbURI ?
+comment|/**      *      * @param name      * @return      * @throws XMLDBException      */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -1848,6 +1915,7 @@ name|childName
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|childURI
 decl_stmt|;
@@ -1865,6 +1933,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1881,6 +1950,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1891,6 +1961,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1927,6 +1998,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1938,6 +2010,7 @@ argument_list|,
 literal|"You are not allowed to read this collection"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|collection
@@ -1949,6 +2022,7 @@ argument_list|,
 name|childURI
 argument_list|)
 condition|)
+block|{
 name|childName
 operator|=
 name|getPathURI
@@ -1960,8 +2034,10 @@ name|childURI
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1985,6 +2061,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2046,6 +2123,7 @@ name|childName
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|LocalCollection
@@ -2061,10 +2139,13 @@ argument_list|,
 name|accessCtx
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCollectionCount
@@ -2072,6 +2153,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2082,6 +2164,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2117,6 +2200,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 return|return
 name|collection
 operator|.
@@ -2125,13 +2209,17 @@ argument_list|(
 name|broker
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|0
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2155,6 +2243,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2215,6 +2304,8 @@ expr_stmt|;
 block|}
 block|}
 comment|//TODO: API change to XmldbURI?
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -2222,6 +2313,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2257,6 +2349,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -2284,9 +2378,11 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|parent
@@ -2295,6 +2391,7 @@ literal|null
 condition|)
 block|{
 comment|// load the collection to check if it is valid
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2343,6 +2440,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2358,6 +2456,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|parent
 operator|=
 operator|new
@@ -2380,6 +2479,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2403,6 +2503,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2434,6 +2535,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|getLock
@@ -2446,6 +2548,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -2480,6 +2583,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getPathURI
@@ -2489,10 +2594,13 @@ return|return
 name|path
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
 parameter_list|(
+specifier|final
 name|String
 name|property
 parameter_list|)
@@ -2508,16 +2616,20 @@ name|property
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|getResource
 parameter_list|(
+specifier|final
 name|String
 name|id
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2536,6 +2648,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|idURI
 decl_stmt|;
@@ -2618,6 +2731,7 @@ throw|;
 block|}
 comment|//you only need execute access on the collection, this is enforced in broker.openCollection above!
 comment|/*if (!checkPermissions(collection, Permission.READ)) {                 throw new XMLDBException(ErrorCodes.PERMISSION_DENIED,                     "Not allowed to read collection");             }*/
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2652,6 +2766,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Resource
 name|r
 decl_stmt|;
@@ -2666,6 +2781,7 @@ name|DocumentImpl
 operator|.
 name|XML_FILE
 condition|)
+block|{
 name|r
 operator|=
 operator|new
@@ -2680,6 +2796,7 @@ argument_list|,
 name|idURI
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|document
@@ -2691,6 +2808,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 name|r
 operator|=
 operator|new
@@ -2705,7 +2823,9 @@ argument_list|,
 name|idURI
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2717,6 +2837,7 @@ argument_list|,
 literal|"Unknown resource type"
 argument_list|)
 throw|;
+block|}
 operator|(
 operator|(
 name|AbstractEXistResource
@@ -2741,6 +2862,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2764,6 +2886,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2795,6 +2918,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -2804,6 +2928,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -2820,6 +2945,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getResourceCount
@@ -2827,6 +2954,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2837,6 +2965,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2873,10 +3002,13 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 else|else
+block|{
 return|return
 name|collection
 operator|.
@@ -2886,8 +3018,10 @@ name|broker
 argument_list|)
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2911,6 +3045,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2971,13 +3106,17 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Possible services: XPathQueryService, XQueryService,      * CollectionManagementService (CollectionManager), UserManagementService,      * DatabaseInstanceManager, XUpdateQueryService,  IndexQueryService,      * ValidationService. */
+annotation|@
+name|Override
 specifier|public
 name|Service
 name|getService
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|version
 parameter_list|)
@@ -2993,6 +3132,7 @@ argument_list|(
 literal|"XPathQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalXPathQueryService
@@ -3006,6 +3146,7 @@ argument_list|,
 name|accessCtx
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3015,6 +3156,7 @@ argument_list|(
 literal|"XQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalXPathQueryService
@@ -3028,6 +3170,7 @@ argument_list|,
 name|accessCtx
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3044,6 +3187,7 @@ argument_list|(
 literal|"CollectionManager"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalCollectionManagementService
@@ -3057,6 +3201,7 @@ argument_list|,
 name|accessCtx
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3066,6 +3211,7 @@ argument_list|(
 literal|"UserManagementService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalUserManagementService
@@ -3077,6 +3223,7 @@ argument_list|,
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3086,6 +3233,7 @@ argument_list|(
 literal|"DatabaseInstanceManager"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalDatabaseInstanceManager
@@ -3095,6 +3243,7 @@ argument_list|,
 name|brokerPool
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3104,6 +3253,7 @@ argument_list|(
 literal|"XUpdateQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalXUpdateQueryService
@@ -3115,6 +3265,7 @@ argument_list|,
 name|this
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|name
@@ -3124,6 +3275,7 @@ argument_list|(
 literal|"IndexQueryService"
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|LocalIndexQueryService
@@ -3135,6 +3287,7 @@ argument_list|,
 name|this
 argument_list|)
 return|;
+block|}
 throw|throw
 operator|new
 name|XMLDBException
@@ -3145,6 +3298,8 @@ name|NO_SUCH_SERVICE
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Service
 index|[]
@@ -3153,6 +3308,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Service
 index|[]
 name|services
@@ -3259,6 +3415,8 @@ return|return
 name|services
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isOpen
@@ -3281,6 +3439,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -3319,6 +3478,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|collections
@@ -3341,6 +3501,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -3383,6 +3544,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3408,6 +3570,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3474,6 +3637,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -3498,6 +3663,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -3563,6 +3729,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|XmldbURI
@@ -3581,6 +3748,7 @@ name|doc
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -3610,6 +3778,7 @@ argument_list|()
 expr_stmt|;
 comment|// Include only when (1) lockToken is present or (2)
 comment|// lockToken indicates that it is not a null resource
+specifier|final
 name|LockToken
 name|lock
 init|=
@@ -3654,6 +3823,7 @@ name|j
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|resources
@@ -3669,6 +3839,7 @@ index|]
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -3709,6 +3880,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3732,6 +3904,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3763,6 +3936,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -3772,6 +3946,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -3788,6 +3963,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 index|[]
@@ -3805,6 +3982,7 @@ specifier|public
 name|void
 name|registerService
 parameter_list|(
+specifier|final
 name|Service
 name|serv
 parameter_list|)
@@ -3821,10 +3999,13 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|)
@@ -3837,7 +4018,10 @@ name|res
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|XmldbURI
 name|resURI
 decl_stmt|;
@@ -3858,6 +4042,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3874,6 +4059,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -3892,6 +4078,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -3900,6 +4087,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -3917,6 +4105,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3926,6 +4115,7 @@ operator|+
 name|resURI
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|=
 name|brokerPool
@@ -3979,6 +4169,7 @@ argument_list|)
 throw|;
 block|}
 comment|//Check that the document exists
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -4033,6 +4224,7 @@ argument_list|(
 literal|"XMLResource"
 argument_list|)
 condition|)
+block|{
 name|collection
 operator|.
 name|removeXMLResource
@@ -4044,7 +4236,9 @@ argument_list|,
 name|resURI
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|collection
 operator|.
 name|removeBinaryResource
@@ -4056,6 +4250,7 @@ argument_list|,
 name|resURI
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -4066,6 +4261,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4096,6 +4292,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4126,6 +4323,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -4156,6 +4354,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4192,6 +4391,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|getLock
@@ -4204,6 +4404,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -4224,13 +4425,17 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
 parameter_list|(
+specifier|final
 name|String
 name|property
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -4247,10 +4452,13 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|resource
 parameter_list|)
@@ -4267,16 +4475,21 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|resource
 parameter_list|,
+specifier|final
 name|Date
 name|a
 parameter_list|,
+specifier|final
 name|Date
 name|b
 parameter_list|)
@@ -4303,6 +4516,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4315,6 +4529,7 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 operator|(
 operator|(
 name|LocalXMLResource
@@ -4366,6 +4581,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4378,6 +4594,7 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 operator|(
 operator|(
 name|LocalBinaryResource
@@ -4410,6 +4627,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -4426,6 +4644,7 @@ name|getResourceType
 argument_list|()
 argument_list|)
 throw|;
+block|}
 operator|(
 operator|(
 name|AbstractEXistResource
@@ -4446,12 +4665,14 @@ specifier|private
 name|void
 name|storeBinaryResource
 parameter_list|(
+specifier|final
 name|LocalBinaryResource
 name|res
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XmldbURI
 name|resURI
 decl_stmt|;
@@ -4488,12 +4709,31 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Subject
 name|subject
 init|=
 name|brokerPool
 operator|.
 name|getSubject
+argument_list|()
+decl_stmt|;
+specifier|final
+name|TransactionManager
+name|transact
+init|=
+name|brokerPool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Txn
+name|txn
+init|=
+name|transact
+operator|.
+name|beginTransaction
 argument_list|()
 decl_stmt|;
 name|Collection
@@ -4505,22 +4745,6 @@ name|DBBroker
 name|broker
 init|=
 literal|null
-decl_stmt|;
-name|TransactionManager
-name|transact
-init|=
-name|brokerPool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|Txn
-name|txn
-init|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
 decl_stmt|;
 try|try
 block|{
@@ -4576,6 +4800,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|long
 name|conLength
 init|=
@@ -4670,6 +4895,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4708,6 +4934,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|getLock
@@ -4720,6 +4947,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -4740,12 +4968,14 @@ specifier|private
 name|void
 name|storeXMLResource
 parameter_list|(
+specifier|final
 name|LocalXMLResource
 name|res
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XmldbURI
 name|resURI
 decl_stmt|;
@@ -4766,6 +4996,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4782,6 +5013,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -4790,11 +5022,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4803,6 +5031,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -4810,6 +5039,11 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
+decl_stmt|;
+name|DBBroker
+name|broker
+init|=
+literal|null
 decl_stmt|;
 try|try
 block|{
@@ -4835,6 +5069,7 @@ name|file
 operator|!=
 literal|null
 condition|)
+block|{
 name|uri
 operator|=
 name|res
@@ -4847,15 +5082,15 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
-name|IndexInfo
-name|info
-init|=
-literal|null
-decl_stmt|;
+block|}
 name|Collection
 name|collection
 init|=
 literal|null
+decl_stmt|;
+specifier|final
+name|IndexInfo
+name|info
 decl_stmt|;
 try|try
 block|{
@@ -4904,6 +5139,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Observer
 name|observer
 range|:
@@ -5041,6 +5277,7 @@ name|datecreated
 operator|!=
 literal|null
 condition|)
+block|{
 name|info
 operator|.
 name|getDocument
@@ -5059,6 +5296,7 @@ name|getTime
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|res
@@ -5067,6 +5305,7 @@ name|datemodified
 operator|!=
 literal|null
 condition|)
+block|{
 name|info
 operator|.
 name|getDocument
@@ -5086,6 +5325,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 if|if
@@ -5094,6 +5334,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -5103,6 +5344,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -5210,6 +5452,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5267,9 +5510,11 @@ specifier|private
 name|void
 name|setupParser
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|LocalXMLResource
 name|res
 parameter_list|)
@@ -5348,6 +5593,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -5355,6 +5601,8 @@ argument_list|(
 literal|"Converting HTML to XML using NekoHTML parser."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -5368,6 +5616,7 @@ argument_list|(
 literal|"org.cyberneko.html.parsers.SAXParser"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|htmlReader
 init|=
@@ -5408,6 +5657,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5446,6 +5696,8 @@ throw|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getCreationTime
@@ -5453,6 +5705,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -5493,10 +5746,13 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Add a new observer to the list. Observers are just passed      * on to the indexer to be notified about the indexing progress.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addObserver
 parameter_list|(
+specifier|final
 name|Observer
 name|o
 parameter_list|)
@@ -5511,6 +5767,7 @@ argument_list|(
 name|o
 argument_list|)
 condition|)
+block|{
 name|observers
 operator|.
 name|add
@@ -5519,7 +5776,10 @@ name|o
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.CollectionImpl#isRemoteCollection()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRemoteCollection
@@ -5536,6 +5796,7 @@ specifier|public
 name|void
 name|setReader
 parameter_list|(
+specifier|final
 name|XMLReader
 name|reader
 parameter_list|)
@@ -5552,6 +5813,7 @@ name|XmldbURI
 name|getURI
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|accessor
 init|=
@@ -5609,6 +5871,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -5619,16 +5882,20 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTriggersEnabled
 parameter_list|(
+specifier|final
 name|boolean
 name|triggersEnabled
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
