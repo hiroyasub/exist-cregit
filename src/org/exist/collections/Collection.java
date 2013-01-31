@@ -5646,6 +5646,7 @@ specifier|public
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
@@ -5751,11 +5752,13 @@ operator|.
 name|markSupported
 argument_list|()
 condition|)
+block|{
 name|is
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 specifier|final
@@ -5778,6 +5781,7 @@ operator|.
 name|markSupported
 argument_list|()
 condition|)
+block|{
 name|cs
 operator|.
 name|reset
@@ -5785,8 +5789,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5800,6 +5806,7 @@ literal|"InputStream or CharacterStream underlying the InputSource does not supp
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -5836,6 +5843,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5870,6 +5878,7 @@ specifier|public
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
@@ -5953,6 +5962,7 @@ name|SAXException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|CollectionConfiguration
 name|colconf
 init|=
@@ -5969,6 +5979,7 @@ argument_list|(
 name|broker
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -6010,6 +6021,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6044,9 +6056,11 @@ specifier|public
 name|void
 name|store
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
@@ -6162,18 +6176,23 @@ specifier|private
 name|void
 name|storeXMLInternal
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|IndexInfo
 name|info
 parameter_list|,
+specifier|final
 name|boolean
 name|privileged
 parameter_list|,
+specifier|final
 name|StoreBlock
 name|doParse
 parameter_list|)
@@ -6182,6 +6201,7 @@ name|EXistException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -6200,6 +6220,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -6214,6 +6235,7 @@ operator|+
 literal|" ..."
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Sanity check
 if|if
 condition|(
@@ -6235,6 +6257,7 @@ literal|"document is not locked for write !"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Database
 name|db
 init|=
@@ -6455,6 +6478,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 comment|//Is it a collection configuration file ?
+specifier|final
 name|XmldbURI
 name|docName
 init|=
@@ -6536,6 +6560,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -6555,6 +6580,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -6574,6 +6600,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)
@@ -6619,15 +6646,19 @@ specifier|public
 name|IndexInfo
 name|validateXMLResource
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|docUri
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
