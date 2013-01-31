@@ -7296,8 +7296,6 @@ argument_list|)
 expr_stmt|;
 name|manageDocumentInformation
 argument_list|(
-name|broker
-argument_list|,
 name|oldDoc
 argument_list|,
 name|document
@@ -8063,10 +8061,6 @@ specifier|private
 name|void
 name|manageDocumentInformation
 parameter_list|(
-specifier|final
-name|DBBroker
-name|broker
-parameter_list|,
 specifier|final
 name|DocumentImpl
 name|oldDoc
@@ -8875,8 +8869,6 @@ argument_list|)
 expr_stmt|;
 name|manageDocumentInformation
 argument_list|(
-name|broker
-argument_list|,
 name|oldDoc
 argument_list|,
 name|blob
