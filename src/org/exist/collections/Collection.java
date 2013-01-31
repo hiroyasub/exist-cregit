@@ -1785,9 +1785,11 @@ specifier|public
 name|void
 name|unlinkDocument
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1817,9 +1819,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission denied to remove"
-operator|+
-literal|" document from collection: "
+literal|"Permission denied to remove document from collection: "
 operator|+
 name|path
 argument_list|)
@@ -1847,6 +1847,7 @@ name|XmldbURI
 argument_list|>
 name|collectionIterator
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1876,9 +1877,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission to list sub-collections"
-operator|+
-literal|" denied on "
+literal|"Permission to list sub-collections denied on "
 operator|+
 name|this
 operator|.
@@ -1908,6 +1907,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1950,6 +1950,7 @@ name|XmldbURI
 argument_list|>
 name|collectionIteratorNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1979,9 +1980,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Permission to list sub-collections"
-operator|+
-literal|" denied on "
+literal|"Permission to list sub-collections denied on "
 operator|+
 name|this
 operator|.
@@ -2005,9 +2004,11 @@ name|Collection
 argument_list|>
 name|getDescendants
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Subject
 name|user
 parameter_list|)
@@ -2077,14 +2078,9 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|Collection
-name|child
-decl_stmt|;
-name|XmldbURI
-name|childName
-decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -2103,16 +2099,20 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|XmldbURI
 name|childName
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|//TODO : resolve URI !
+specifier|final
+name|Collection
 name|child
-operator|=
+init|=
 name|broker
 operator|.
 name|getCollection
@@ -2124,7 +2124,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|getPermissionsNoLock
@@ -2158,6 +2158,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 comment|//Recursive call
 name|collectionList
 operator|.
@@ -2176,8 +2177,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2216,12 +2219,15 @@ specifier|public
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|,
+specifier|final
 name|boolean
 name|recursive
 parameter_list|)
@@ -2246,15 +2252,19 @@ specifier|public
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|,
+specifier|final
 name|boolean
 name|recursive
 parameter_list|,
+specifier|final
 name|LockedDocumentMap
 name|protectedDocs
 parameter_list|)
@@ -2320,6 +2330,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2363,6 +2374,7 @@ block|{
 comment|// process the child collections
 for|for
 control|(
+specifier|final
 name|XmldbURI
 name|childName
 range|:
@@ -2417,6 +2429,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2434,18 +2447,23 @@ specifier|public
 name|DocumentSet
 name|allDocs
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|,
+specifier|final
 name|boolean
 name|recursive
 parameter_list|,
+specifier|final
 name|LockedDocumentMap
 name|lockMap
 parameter_list|,
+specifier|final
 name|int
 name|lockType
 parameter_list|)
@@ -2454,14 +2472,6 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 block|{
-name|List
-argument_list|<
-name|XmldbURI
-argument_list|>
-name|subColls
-init|=
-literal|null
-decl_stmt|;
 name|XmldbURI
 name|uris
 index|[]
@@ -2514,13 +2524,18 @@ expr_stmt|;
 comment|//Get a list of sub-collection URIs. We will process them
 comment|//after unlocking this collection.
 comment|//otherwise we may deadlock ourselves
+specifier|final
+name|List
+argument_list|<
+name|XmldbURI
+argument_list|>
 name|subColls
-operator|=
+init|=
 name|subCollections
 operator|.
 name|keys
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|subColls
@@ -2579,6 +2594,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2686,6 +2702,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2704,9 +2721,11 @@ specifier|public
 name|DocumentSet
 name|getDocuments
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|)
@@ -2771,6 +2790,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -2810,9 +2830,11 @@ specifier|public
 name|DocumentSet
 name|getDocumentsNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|)
@@ -2839,15 +2861,19 @@ specifier|public
 name|DocumentSet
 name|getDocuments
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|,
+specifier|final
 name|LockedDocumentMap
 name|lockMap
 parameter_list|,
+specifier|final
 name|int
 name|lockType
 parameter_list|)
@@ -2937,15 +2963,19 @@ specifier|private
 name|void
 name|addDocumentsToSet
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|,
+specifier|final
 name|LockedDocumentMap
 name|lockMap
 parameter_list|,
+specifier|final
 name|int
 name|lockType
 parameter_list|)
@@ -2954,6 +2984,7 @@ name|LockException
 block|{
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|doc
 range|:
@@ -3020,15 +3051,18 @@ specifier|private
 name|void
 name|addDocumentsToSet
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|MutableDocumentSet
 name|docs
 parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|doc
 range|:
@@ -3079,6 +3113,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|doc
 range|:
@@ -3095,9 +3130,11 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -3123,6 +3160,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Collection
 name|other
 parameter_list|)
@@ -3172,6 +3210,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -3225,6 +3264,7 @@ specifier|public
 name|int
 name|getChildCollectionCount
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -3281,6 +3321,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3320,6 +3361,7 @@ specifier|public
 name|boolean
 name|isEmpty
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -3381,6 +3423,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3420,9 +3463,11 @@ specifier|public
 name|DocumentImpl
 name|getDocument
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|path
 parameter_list|)
@@ -3517,6 +3562,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3558,9 +3604,11 @@ specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -3587,12 +3635,15 @@ specifier|public
 name|DocumentImpl
 name|getDocumentWithLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|,
+specifier|final
 name|int
 name|lockMode
 parameter_list|)
@@ -3701,9 +3752,11 @@ specifier|public
 name|DocumentImpl
 name|getDocumentNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|rawPath
 parameter_list|)
@@ -3771,6 +3824,7 @@ specifier|public
 name|void
 name|releaseDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -3801,9 +3855,11 @@ specifier|public
 name|void
 name|releaseDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -3832,6 +3888,7 @@ specifier|public
 name|int
 name|getDocumentCount
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -3888,6 +3945,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3926,6 +3984,7 @@ specifier|public
 name|int
 name|getDocumentCountNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -4043,6 +4102,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4092,9 +4152,11 @@ specifier|public
 name|boolean
 name|hasDocument
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -4147,9 +4209,11 @@ specifier|public
 name|boolean
 name|hasSubcollection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -4208,6 +4272,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4252,9 +4317,11 @@ specifier|public
 name|boolean
 name|hasSubcollectionNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -4307,6 +4374,7 @@ name|DocumentImpl
 argument_list|>
 name|iterator
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -4363,6 +4431,7 @@ name|DocumentImpl
 argument_list|>
 name|iteratorNoLock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -4417,9 +4486,11 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -4443,11 +4514,9 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|XmldbURI
-name|childCollectionURI
-decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -4466,13 +4535,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|XmldbURI
 name|childCollectionURI
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|ostream
 operator|.
 name|writeUTF
@@ -4524,9 +4595,11 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -4662,6 +4735,7 @@ specifier|public
 name|void
 name|addDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -4745,9 +4819,11 @@ specifier|public
 name|void
 name|removeCollection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|name
 parameter_list|)
@@ -4824,12 +4900,15 @@ specifier|public
 name|void
 name|removeXMLResource
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|docUri
 parameter_list|)
@@ -5133,12 +5212,15 @@ specifier|public
 name|void
 name|removeBinaryResource
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -5251,12 +5333,15 @@ specifier|public
 name|void
 name|removeBinaryResource
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
