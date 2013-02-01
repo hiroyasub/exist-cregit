@@ -589,31 +589,32 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)    */
+comment|/* Returns a collection from the given "uri".      * @deprecated  Although part of the xmldb API, the design is somewhat inconsistent.      * @see org.exist.xmldb.DatabaseImpl#getCollection(org.exist.xmldb.XmldbURI, java.lang.String, java.lang.String)      * @see org.xmldb.api.base.Database#getCollection(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Collection
 name|getCollection
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|,
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|XmldbURI
-name|xmldbURI
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 comment|//Ugly workaround for non-URI compliant collection names (most likely IRIs)
+specifier|final
 name|String
 name|newURIString
 init|=
@@ -626,8 +627,10 @@ argument_list|)
 decl_stmt|;
 comment|//Remember that DatabaseManager (provided in xmldb.jar) trims the leading "xmldb:" !!!
 comment|//... prepend it to have a real xmldb URI again...
+specifier|final
+name|XmldbURI
 name|xmldbURI
-operator|=
+init|=
 name|XmldbURI
 operator|.
 name|xmldbUriFor
@@ -638,10 +641,21 @@ name|XMLDB_URI_PREFIX
 operator|+
 name|newURIString
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+return|return
+name|getCollection
+argument_list|(
+name|xmldbURI
+argument_list|,
+name|user
+argument_list|,
+name|password
+argument_list|)
+return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -665,27 +679,20 @@ name|uri
 argument_list|)
 throw|;
 block|}
-return|return
-name|getCollection
-argument_list|(
-name|xmldbURI
-argument_list|,
-name|user
-argument_list|,
-name|password
-argument_list|)
-return|;
 block|}
 specifier|public
 name|Collection
 name|getCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|)
@@ -706,6 +713,7 @@ name|getApiName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|getLocalCollection
 argument_list|(
@@ -716,6 +724,7 @@ argument_list|,
 name|password
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|XmldbURI
@@ -730,6 +739,7 @@ name|getApiName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|getRemoteCollection
 argument_list|(
@@ -740,7 +750,9 @@ argument_list|,
 name|password
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -755,17 +767,21 @@ name|xmldbURI
 argument_list|)
 throw|;
 block|}
-comment|/**    * @param xmldbURI    * @param user    * @param password    * @return The collection    * @throws XMLDBException    */
+block|}
+comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
 specifier|private
 name|Collection
 name|getLocalCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|)
@@ -795,6 +811,7 @@ if|if
 condition|(
 name|autoCreate
 condition|)
+block|{
 name|configure
 argument_list|(
 name|xmldbURI
@@ -803,7 +820,9 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -815,6 +834,7 @@ argument_list|,
 literal|"Local database server is not running"
 argument_list|)
 throw|;
+block|}
 block|}
 name|BrokerPool
 name|pool
@@ -836,6 +856,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -854,6 +875,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Subject
 name|u
 init|=
@@ -868,9 +890,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Collection
-name|current
-init|=
+return|return
 operator|new
 name|LocalCollection
 argument_list|(
@@ -887,21 +907,11 @@ name|AccessContext
 operator|.
 name|XMLDB
 argument_list|)
-decl_stmt|;
-return|return
-operator|(
-name|current
-operator|!=
-literal|null
-operator|)
-condition|?
-name|current
-else|:
-literal|null
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -965,11 +975,12 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**    * @param xmldbURI    * @param user    * @param password    * @return The collection    * @throws XMLDBException    */
+comment|/**      * @param xmldbURI      * @param user      * @param password      * @return The collection      * @throws XMLDBException      */
 specifier|private
 name|Collection
 name|getRemoteCollection
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbURI
 parameter_list|,
@@ -1013,12 +1024,15 @@ name|password
 operator|==
 literal|null
 condition|)
+block|{
 name|password
 operator|=
 literal|""
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|String
 name|protocol
 init|=
@@ -1043,6 +1057,7 @@ name|ssl_verify_hostname
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|URL
 name|url
 init|=
@@ -1067,6 +1082,7 @@ name|getContext
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmlRpcClient
 name|rpcClient
 init|=
@@ -1093,6 +1109,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -1115,13 +1132,15 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+name|e
+throw|;
+comment|//return null;
 block|}
 block|}
 specifier|public
@@ -1129,15 +1148,18 @@ specifier|static
 name|Collection
 name|readCollection
 parameter_list|(
+specifier|final
 name|String
 name|c
 parameter_list|,
+specifier|final
 name|XmlRpcClient
 name|rpcClient
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XmldbURI
 name|path
 decl_stmt|;
@@ -1171,6 +1193,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|XmldbURI
 index|[]
 name|components
@@ -1188,6 +1211,7 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1204,6 +1228,7 @@ name|toString
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|XmldbURI
 name|rootName
 init|=
@@ -1223,21 +1248,22 @@ argument_list|(
 name|rootName
 argument_list|)
 condition|)
+block|{
 name|rootName
 operator|=
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 expr_stmt|;
+block|}
 name|Collection
 name|current
 init|=
-operator|new
 name|RemoteCollection
+operator|.
+name|instance
 argument_list|(
 name|rpcClient
-argument_list|,
-literal|null
 argument_list|,
 name|rootName
 argument_list|)
@@ -1282,6 +1308,7 @@ name|current
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1295,6 +1322,7 @@ operator|+
 name|c
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|current

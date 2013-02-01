@@ -1216,10 +1216,13 @@ argument_list|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xmldb.XQueryService#execute(org.exist.source.Source)      */
+annotation|@
+name|Override
 specifier|public
 name|ResourceSet
 name|execute
 parameter_list|(
+specifier|final
 name|Source
 name|source
 parameter_list|)
@@ -1228,6 +1231,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|xq
 init|=
@@ -1247,6 +1251,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

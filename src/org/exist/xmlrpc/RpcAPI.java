@@ -610,6 +610,19 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
+comment|/**          * Determines whether a Collection exists in the database          * and whether the user may open the collection          *           * @param collectionUri The URI of the collection of interest          *           * @return true if the collection exists and the user can open it, false if the collection does not exist          * @throws PermissionDeniedException If the user does not have permission to open the collection          */
+name|boolean
+name|existsAndCanOpenCollection
+parameter_list|(
+specifier|final
+name|String
+name|collectionUri
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 comment|/** 	 *  Describe a collection: returns a struct with the  following fields: 	 *   	 *<pre> 	 *	name				The name of the collection 	 *	 	 *	owner				The name of the user owning the collection. 	 *	 	 *	group				The group owning the collection. 	 *	 	 *	permissions	The permissions that apply to this collection (int value) 	 *	 	 *	created			The creation date of this collection (long value) 	 *	 	 *	collections		An array containing the names of all subcollections. 	 *	 	 *	documents		An array containing a struct for each document in the collection. 	 *</pre> 	 * 	 *	Each of the elements in the "documents" array is another struct containing the properties 	 *	of the document: 	 * 	 *<pre> 	 *	name				The full path of the document. 	 *	 	 *	owner				The name of the user owning the document. 	 *	 	 *	group				The group owning the document. 	 *	 	 *	permissions	The permissions that apply to this document (int) 	 *	 	 *	type					Type of the resource: either "XMLResource" or "BinaryResource" 	 *</pre> 	 * 	 *@param  rootCollection                 Description of the Parameter 	 *@return                                The collectionDesc value 	 *@exception  EXistException             Description of the Exception 	 *@exception  PermissionDeniedException  Description of the Exception 	 */
 name|HashMap
 argument_list|<

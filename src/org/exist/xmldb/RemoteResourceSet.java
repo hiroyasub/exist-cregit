@@ -45,7 +45,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|ArrayList
 import|;
 end_import
 
@@ -75,7 +75,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Properties
 import|;
 end_import
 
@@ -1185,10 +1185,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|getResource
 parameter_list|(
+specifier|final
 name|long
 name|pos
 parameter_list|)
@@ -1204,9 +1207,11 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// node or value?
 if|if
 condition|(
@@ -1225,6 +1230,7 @@ index|[]
 condition|)
 block|{
 comment|// node
+specifier|final
 name|Object
 index|[]
 name|v
@@ -1243,6 +1249,7 @@ operator|)
 name|pos
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|doc
 init|=
@@ -1254,6 +1261,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|s_id
 init|=
@@ -1265,6 +1273,7 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 decl_stmt|;
@@ -1282,6 +1291,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1303,31 +1313,55 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|RemoteCollection
 name|parent
-init|=
-operator|new
+decl_stmt|;
+if|if
+condition|(
+name|docUri
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|DB
+argument_list|)
+condition|)
+block|{
+name|parent
+operator|=
 name|RemoteCollection
+operator|.
+name|instance
 argument_list|(
 name|collection
 operator|.
 name|getClient
 argument_list|()
 argument_list|,
-literal|null
-argument_list|,
 name|docUri
 operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//fake to provide a RemoteCollection for local files that have been transferred by xml-rpc
+name|parent
+operator|=
+name|collection
+expr_stmt|;
+block|}
 name|parent
 operator|.
 name|properties
 operator|=
 name|outputProperties
 expr_stmt|;
+specifier|final
 name|RemoteXMLResource
 name|res
 init|=
@@ -1373,6 +1407,7 @@ argument_list|)
 operator|instanceof
 name|Resource
 condition|)
+block|{
 return|return
 operator|(
 name|Resource
@@ -1387,9 +1422,11 @@ operator|)
 name|pos
 argument_list|)
 return|;
+block|}
 else|else
 block|{
 comment|// value
+specifier|final
 name|RemoteXMLResource
 name|res
 init|=
