@@ -1543,6 +1543,17 @@ argument_list|,
 name|pkg
 argument_list|)
 expr_stmt|;
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getXQueryPool
+argument_list|()
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|String
 name|pkgName
 init|=

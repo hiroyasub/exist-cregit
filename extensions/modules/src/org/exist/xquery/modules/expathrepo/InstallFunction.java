@@ -803,6 +803,21 @@ argument_list|,
 name|pkg
 argument_list|)
 expr_stmt|;
+comment|// TODO: expath libs do not provide a way to see if there were any XQuery modules installed at all
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getXQueryPool
+argument_list|()
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|removed
 operator|=
 name|BooleanValue
