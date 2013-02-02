@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2011 The eXist-db Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist-db Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -47,7 +47,7 @@ name|security
 operator|.
 name|PermissionRequired
 operator|.
-name|IS_OWNER
+name|IS_MEMBER
 import|;
 end_import
 
@@ -61,7 +61,7 @@ name|security
 operator|.
 name|PermissionRequired
 operator|.
-name|IS_MEMBER
+name|IS_OWNER
 import|;
 end_import
 
@@ -121,6 +121,7 @@ implements|implements
 name|Permission
 block|{
 specifier|protected
+specifier|final
 name|SecurityManager
 name|sm
 decl_stmt|;
@@ -144,6 +145,7 @@ decl_stmt|;
 specifier|public
 name|UnixStylePermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|)
@@ -174,15 +176,19 @@ comment|/**      * Construct a permission with given user, group and permissions
 specifier|public
 name|UnixStylePermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|int
 name|ownerId
 parameter_list|,
+specifier|final
 name|int
 name|groupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -268,6 +274,7 @@ name|getSystemSubject
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|accountId
 init|=
@@ -297,6 +304,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -328,6 +336,7 @@ name|getSystemSubject
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|accountId
 init|=
@@ -358,10 +367,12 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -379,6 +390,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|accountId
 init|=
@@ -414,6 +426,7 @@ specifier|private
 name|void
 name|setOwnerId
 parameter_list|(
+specifier|final
 name|int
 name|ownerId
 parameter_list|)
@@ -485,10 +498,12 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|String
 name|groupName
 parameter_list|)
 block|{
+specifier|final
 name|Group
 name|group
 init|=
@@ -522,6 +537,7 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -549,6 +565,7 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -610,6 +627,7 @@ name|IS_DBA
 operator||
 name|IS_MEMBER
 argument_list|)
+specifier|final
 name|int
 name|groupId
 parameter_list|)
@@ -756,6 +774,7 @@ specifier|public
 name|void
 name|setMode
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -914,6 +933,7 @@ specifier|public
 name|void
 name|setSetUid
 parameter_list|(
+specifier|final
 name|boolean
 name|setUid
 parameter_list|)
@@ -983,6 +1003,7 @@ specifier|public
 name|void
 name|setSetGid
 parameter_list|(
+specifier|final
 name|boolean
 name|setGid
 parameter_list|)
@@ -1052,6 +1073,7 @@ specifier|public
 name|void
 name|setSticky
 parameter_list|(
+specifier|final
 name|boolean
 name|sticky
 parameter_list|)
@@ -1524,9 +1546,11 @@ specifier|public
 name|boolean
 name|validate
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1580,6 +1604,7 @@ return|;
 comment|//check owner mode
 block|}
 comment|//check group
+specifier|final
 name|int
 name|userGroupIds
 index|[]
@@ -1589,6 +1614,7 @@ operator|.
 name|getGroupIds
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|groupId
 init|=
@@ -1607,6 +1633,7 @@ operator|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|int
 name|userGroupId
 range|:
@@ -1662,7 +1689,6 @@ block|}
 return|return
 literal|false
 return|;
-comment|/*         if((permissionCheck& vector) == permissionCheck) { //check user and user mode             return true;    //matched both the username and the mode         } else if(((permissionCheck>>> 29)& (vector>>> 29)) == permissionCheck>>> 29) {             ///prevents fall-through, i.e. if the username matches and the mode didnt then stop comparrisons             return false;         }          //check group         int userGroupIds[] = user.getGroupIds();         for(int userGroupId : userGroupIds) {             permissionCheck = encodeAsBitVector(0, userGroupId, mode<< 3);             if((permissionCheck& vector) == permissionCheck) { //check group and group mode                 return true;             } else if((((permissionCheck>> 6)& 1048575)& ((vector>> 6)& 1048575)) == ((permissionCheck>> 6)& 1048575)) {                 ///prevents fall-through, i.e. if the grouname matches and the mode didnt then stop comparrisons                 return false;             }         }                  //check other         permissionCheck = encodeAsBitVector(0, 0, mode); //check other mode         if((permissionCheck& vector) == permissionCheck) {             return true;         }                  return false;*/
 block|}
 annotation|@
 name|Override
@@ -1670,6 +1696,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -1692,6 +1719,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -1753,6 +1781,7 @@ name|groupId
 operator|&
 literal|1048575
 expr_stmt|;
+specifier|final
 name|int
 name|setUid
 init|=
@@ -1764,6 +1793,7 @@ operator|)
 operator|&
 literal|1
 decl_stmt|;
+specifier|final
 name|int
 name|setGid
 init|=
@@ -1775,6 +1805,7 @@ operator|)
 operator|&
 literal|1
 decl_stmt|;
+specifier|final
 name|int
 name|sticky
 init|=
@@ -1786,6 +1817,7 @@ operator|)
 operator|&
 literal|1
 decl_stmt|;
+specifier|final
 name|int
 name|userPerm
 init|=
@@ -1797,6 +1829,7 @@ operator|)
 operator|&
 literal|7
 decl_stmt|;
+specifier|final
 name|int
 name|groupPerm
 init|=
@@ -1808,6 +1841,7 @@ operator|)
 operator|&
 literal|7
 decl_stmt|;
+specifier|final
 name|int
 name|otherPerm
 init|=
@@ -1970,6 +2004,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|int
 name|currentSubjectGroupId
 range|:
