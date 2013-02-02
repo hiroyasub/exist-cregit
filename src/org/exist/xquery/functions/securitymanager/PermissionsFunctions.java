@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist-db Permissions Functions  *  Copyright (C) 2011 Adam Retter<adam@existsolutions.com>  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $$  */
 end_comment
 
 begin_package
@@ -73,42 +73,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|SimpleACLPermission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|ACLPermission
 operator|.
 name|ACE_ACCESS_TYPE
@@ -137,6 +101,30 @@ name|exist
 operator|.
 name|security
 operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|PermissionFactory
 import|;
 end_import
@@ -152,6 +140,18 @@ operator|.
 name|PermissionFactory
 operator|.
 name|PermissionModifier
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SimpleACLPermission
 import|;
 end_import
 
@@ -604,10 +604,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_GET_PERMISSIONS
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -650,7 +648,13 @@ argument_list|,
 literal|"The permissions of the resource or collection"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_ADD_USER_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -725,7 +729,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the ACE e.g. 'rwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -739,7 +743,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_ADD_GROUP_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -814,7 +824,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the ACE e.g. 'rwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -828,7 +838,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_INSERT_USER_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -919,7 +935,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the ACE e.g. 'rwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -933,7 +949,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_INSERT_GROUP_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1024,7 +1046,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the ACE e.g. 'rwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -1038,7 +1060,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_MODIFY_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1113,7 +1141,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the ACE e.g. 'rwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -1127,7 +1155,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_REMOVE_ACE
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1184,7 +1218,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_CLEAR_ACL
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1225,7 +1265,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_CHMOD
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1268,7 +1314,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode to set on the resource or collection e.g. 'rwxrwxrwx'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -1282,7 +1328,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_CHOWN
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1325,7 +1377,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The name of the user owner to set on the resource or collection e.g. 'guest'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -1339,7 +1391,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_CHGRP
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1382,7 +1440,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The name of the user group owner to set on the resource or collection e.g. 'guest'"
 argument_list|)
-block|,             }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -1396,7 +1454,13 @@ operator|.
 name|ZERO
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_HAS_ACCESS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -1453,7 +1517,6 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 argument_list|)
-block|,     }
 decl_stmt|;
 specifier|final
 specifier|static
@@ -1486,10 +1549,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -1503,6 +1568,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -1916,7 +1982,7 @@ condition|)
 block|{
 name|result
 operator|=
-name|functionClearACE
+name|functionClearACL
 argument_list|(
 name|pathUri
 argument_list|)
@@ -2073,6 +2139,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2101,6 +2168,7 @@ operator|.
 name|DocumentImpl
 name|functionGetPermissions
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|pathUri
 parameter_list|)
@@ -2121,6 +2189,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2208,6 +2277,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2222,6 +2292,7 @@ name|SimpleACLPermission
 condition|)
 block|{
 comment|//add the ace
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=
@@ -2318,6 +2389,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2332,6 +2404,7 @@ name|SimpleACLPermission
 condition|)
 block|{
 comment|//insert the ace
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=
@@ -2422,6 +2495,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2436,6 +2510,7 @@ name|SimpleACLPermission
 condition|)
 block|{
 comment|//insert the ace
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=
@@ -2514,6 +2589,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2528,6 +2604,7 @@ name|SimpleACLPermission
 condition|)
 block|{
 comment|//remove the ace
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=
@@ -2568,7 +2645,7 @@ return|;
 block|}
 specifier|private
 name|Sequence
-name|functionClearACE
+name|functionClearACL
 parameter_list|(
 specifier|final
 name|XmldbURI
@@ -2598,6 +2675,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2612,6 +2690,7 @@ name|SimpleACLPermission
 condition|)
 block|{
 comment|//clear the acl
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=
@@ -2684,6 +2763,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2767,6 +2847,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -2883,6 +2964,7 @@ specifier|public
 name|void
 name|modify
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
@@ -3034,6 +3116,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|boolean
 name|hasAccess
 init|=
@@ -3060,6 +3143,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -3084,6 +3168,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3099,6 +3184,7 @@ specifier|private
 name|Permission
 name|getPermissions
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|pathUri
 parameter_list|)
@@ -3142,6 +3228,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -3206,10 +3293,12 @@ operator|.
 name|DocumentImpl
 name|permissionsToXml
 parameter_list|(
+specifier|final
 name|Permission
 name|permission
 parameter_list|)
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -3305,6 +3394,7 @@ operator|instanceof
 name|SimpleACLPermission
 condition|)
 block|{
+specifier|final
 name|SimpleACLPermission
 name|aclPermission
 init|=

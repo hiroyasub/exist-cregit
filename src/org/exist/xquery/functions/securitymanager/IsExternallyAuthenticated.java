@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2010 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: XMLDBIsAuthenticated.java 13941 2011-03-08 17:25:09Z shabanovd $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -16,18 +16,6 @@ operator|.
 name|securitymanager
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
 
 begin_import
 import|import
@@ -168,26 +156,11 @@ name|IsExternallyAuthenticated
 extends|extends
 name|BasicFunction
 block|{
-specifier|protected
-specifier|static
-specifier|final
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|IsExternallyAuthenticated
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
+name|FNS_IS_EXTERNALLY_AUTHENTICATED
 init|=
 operator|new
 name|FunctionSignature
@@ -206,7 +179,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the true() if current account is authenticated by external user, false() otherwise."
+literal|"Returns the true() if current account is authenticated by an external realm, false() otherwise."
 argument_list|,
 literal|null
 argument_list|,
@@ -228,9 +201,11 @@ decl_stmt|;
 specifier|public
 name|IsExternallyAuthenticated
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -243,14 +218,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|args
 index|[]
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)

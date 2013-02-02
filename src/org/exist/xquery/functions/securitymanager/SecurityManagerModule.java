@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist-db SecurityManager Module Extension  *  Copyright (C) 2012 Adam Retter<adam@existsolutions.com>  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -309,25 +309,7 @@ name|FunctionDef
 argument_list|(
 name|DeleteGroupFunction
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
-argument_list|,
-name|DeleteGroupFunction
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|DeleteGroupFunction
-operator|.
-name|signatures
-index|[
-literal|1
-index|]
+name|FNS_DELETE_GROUP
 argument_list|,
 name|DeleteGroupFunction
 operator|.
@@ -423,10 +405,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|0
-index|]
+name|FNS_GET_PERMISSIONS
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -438,10 +417,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|1
-index|]
+name|FNS_ADD_USER_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -453,10 +429,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|2
-index|]
+name|FNS_ADD_GROUP_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -468,10 +441,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|3
-index|]
+name|FNS_INSERT_USER_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -483,10 +453,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|4
-index|]
+name|FNS_INSERT_GROUP_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -498,10 +465,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|5
-index|]
+name|FNS_MODIFY_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -513,10 +477,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|6
-index|]
+name|FNS_REMOVE_ACE
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -528,10 +489,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|7
-index|]
+name|FNS_CLEAR_ACL
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -543,10 +501,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|8
-index|]
+name|FNS_CHMOD
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -558,10 +513,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|9
-index|]
+name|FNS_CHOWN
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -573,10 +525,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|10
-index|]
+name|FNS_CHGRP
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -588,10 +537,7 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|signatures
-index|[
-literal|11
-index|]
+name|FNS_HAS_ACCESS
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -603,7 +549,7 @@ name|FunctionDef
 argument_list|(
 name|IsExternallyAuthenticated
 operator|.
-name|signature
+name|FNS_IS_EXTERNALLY_AUTHENTICATED
 argument_list|,
 name|IsExternallyAuthenticated
 operator|.
