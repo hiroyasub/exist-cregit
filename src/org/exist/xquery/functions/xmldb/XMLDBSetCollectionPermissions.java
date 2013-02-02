@@ -258,21 +258,6 @@ name|XMLDBSetCollectionPermissions
 extends|extends
 name|XMLDBAbstractCollectionManipulator
 block|{
-specifier|protected
-specifier|static
-specifier|final
-name|Logger
-name|logger
-init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|XMLDBSetCollectionPermissions
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -379,7 +364,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The permissions"
 argument_list|)
-block|, 			}
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -392,6 +377,8 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+literal|"You should use sm:chown and sm:chmod from the SecurityManager Module instead."
 argument_list|)
 decl_stmt|;
 specifier|public
