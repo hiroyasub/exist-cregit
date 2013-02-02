@@ -142,9 +142,9 @@ name|diskSpaceMin
 init|=
 literal|64
 operator|*
-literal|1024
+literal|1024L
 operator|*
-literal|1024
+literal|1024L
 decl_stmt|;
 annotation|@
 name|Override
@@ -198,9 +198,9 @@ name|diskSpaceMin
 operator|=
 name|min
 operator|*
-literal|1024
+literal|1024L
 operator|*
-literal|1024
+literal|1024L
 expr_stmt|;
 name|File
 name|homeDir
