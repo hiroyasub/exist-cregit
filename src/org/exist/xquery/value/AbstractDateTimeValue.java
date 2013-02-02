@@ -1882,13 +1882,18 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -1912,9 +1917,14 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -1926,12 +1936,17 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|calendar
 operator|.
 name|clone
 argument_list|()
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -1943,12 +1958,17 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|calendar
 operator|.
 name|toGregorianCalendar
 argument_list|()
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -1957,7 +1977,11 @@ name|Date
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|calendar
 operator|.
 name|toGregorianCalendar
@@ -1966,6 +1990,7 @@ operator|.
 name|getTime
 argument_list|()
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException

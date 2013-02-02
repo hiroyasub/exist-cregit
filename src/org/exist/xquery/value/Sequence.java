@@ -299,12 +299,15 @@ parameter_list|)
 function_decl|;
 comment|/** 	 * Convert the value into an instance of the specified 	 * Java class. 	 *  	 * @param target 	 * @throws XPathException 	 */
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)

@@ -763,13 +763,19 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -787,9 +793,14 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -810,7 +821,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|Boolean
 operator|.
 name|valueOf
@@ -818,6 +833,7 @@ argument_list|(
 name|value
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -833,6 +849,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|StringValue
 name|v
 init|=
@@ -847,6 +864,9 @@ name|STRING
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|v
 operator|.
 name|value

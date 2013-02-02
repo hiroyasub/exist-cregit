@@ -1362,12 +1362,16 @@ comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(ja
 annotation|@
 name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -1386,6 +1390,9 @@ name|class
 argument_list|)
 condition|)
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
 if|else if
@@ -1408,9 +1415,14 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|value
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -1426,6 +1438,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|DoubleValue
 name|v
 init|=
@@ -1440,6 +1453,9 @@ name|DOUBLE
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 operator|new
 name|Double
 argument_list|(
@@ -1465,6 +1481,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|FloatValue
 name|v
 init|=
@@ -1479,6 +1496,9 @@ name|FLOAT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 operator|new
 name|Float
 argument_list|(
@@ -1503,6 +1523,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -1517,6 +1538,9 @@ name|LONG
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Long
 operator|.
 name|valueOf
@@ -1543,6 +1567,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -1557,6 +1582,9 @@ name|INT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Integer
 operator|.
 name|valueOf
@@ -1583,6 +1611,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -1597,6 +1626,9 @@ name|SHORT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Short
 operator|.
 name|valueOf
@@ -1626,6 +1658,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -1640,6 +1673,9 @@ name|BYTE
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Byte
 operator|.
 name|valueOf
@@ -1670,6 +1706,9 @@ name|class
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|Boolean
 operator|.
 name|valueOf
@@ -1710,6 +1749,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1717,7 +1757,11 @@ argument_list|(
 literal|"cannot convert string with length = 0 or length> 1 to Java character"
 argument_list|)
 throw|;
+block|}
 return|return
+operator|(
+name|T
+operator|)
 name|Character
 operator|.
 name|valueOf

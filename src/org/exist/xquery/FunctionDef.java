@@ -40,9 +40,11 @@ decl_stmt|;
 specifier|public
 name|FunctionDef
 parameter_list|(
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|,
+specifier|final
 name|Class
 argument_list|<
 name|?

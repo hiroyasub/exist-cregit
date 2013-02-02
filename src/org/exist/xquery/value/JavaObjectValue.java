@@ -298,13 +298,19 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -323,9 +329,14 @@ name|getClass
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|object
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -334,9 +345,14 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|object
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException

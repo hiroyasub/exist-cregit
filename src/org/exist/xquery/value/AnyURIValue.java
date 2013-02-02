@@ -1017,13 +1017,19 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -1043,6 +1049,9 @@ argument_list|)
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
 block|}
@@ -1056,6 +1065,9 @@ name|class
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|toXmldbURI
 argument_list|()
 return|;
@@ -1070,6 +1082,9 @@ name|class
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|toURI
 argument_list|()
 return|;
@@ -1086,6 +1101,9 @@ block|{
 try|try
 block|{
 return|return
+operator|(
+name|T
+operator|)
 operator|new
 name|URL
 argument_list|(
@@ -1138,6 +1156,9 @@ operator|.
 name|class
 condition|)
 return|return
+operator|(
+name|T
+operator|)
 name|uri
 return|;
 if|else if
@@ -1148,9 +1169,14 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|uri
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException

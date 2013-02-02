@@ -581,12 +581,15 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -605,6 +608,9 @@ argument_list|)
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
 block|}
@@ -618,6 +624,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -633,6 +640,9 @@ name|baos
 argument_list|)
 expr_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|baos
 operator|.
 name|toByteArray
@@ -641,6 +651,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -686,13 +697,19 @@ throw|;
 block|}
 comment|/**      * Return the underlying Java object for this binary value. Might be a File or byte[].      */
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|()
 throws|throws
 name|XPathException
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|toJavaObject
 argument_list|(
 name|byte

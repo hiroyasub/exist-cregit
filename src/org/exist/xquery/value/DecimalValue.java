@@ -2567,13 +2567,19 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -2591,9 +2597,14 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2602,9 +2613,14 @@ name|BigDecimal
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|value
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2619,7 +2635,11 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 operator|new
 name|Double
 argument_list|(
@@ -2629,6 +2649,7 @@ name|doubleValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2643,7 +2664,11 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 operator|new
 name|Float
 argument_list|(
@@ -2653,6 +2678,7 @@ name|floatValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2669,6 +2695,9 @@ name|class
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|Long
 operator|.
 name|valueOf
@@ -2705,6 +2734,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -2719,6 +2749,9 @@ name|INT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Integer
 operator|.
 name|valueOf
@@ -2748,6 +2781,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -2762,6 +2796,9 @@ name|SHORT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Short
 operator|.
 name|valueOf
@@ -2791,6 +2828,7 @@ operator|.
 name|class
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|v
 init|=
@@ -2805,6 +2843,9 @@ name|BYTE
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|T
+operator|)
 name|Byte
 operator|.
 name|valueOf
@@ -2828,6 +2869,9 @@ operator|.
 name|class
 condition|)
 return|return
+operator|(
+name|T
+operator|)
 name|getStringValue
 argument_list|()
 return|;
@@ -2840,6 +2884,9 @@ operator|.
 name|class
 condition|)
 return|return
+operator|(
+name|T
+operator|)
 name|Boolean
 operator|.
 name|valueOf

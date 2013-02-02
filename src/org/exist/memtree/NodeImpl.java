@@ -3332,13 +3332,19 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -3359,8 +3365,9 @@ condition|)
 block|{
 return|return
 operator|(
-name|this
+name|T
 operator|)
+name|this
 return|;
 block|}
 if|else if
@@ -3377,8 +3384,9 @@ condition|)
 block|{
 return|return
 operator|(
-name|this
+name|T
 operator|)
+name|this
 return|;
 block|}
 if|else if
@@ -3392,12 +3400,14 @@ condition|)
 block|{
 return|return
 operator|(
-name|this
+name|T
 operator|)
+name|this
 return|;
 block|}
 else|else
 block|{
+specifier|final
 name|StringValue
 name|v
 init|=
@@ -3409,14 +3419,12 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|v
 operator|.
 name|toJavaObject
 argument_list|(
 name|target
 argument_list|)
-operator|)
 return|;
 block|}
 block|}

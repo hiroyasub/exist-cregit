@@ -1408,6 +1408,7 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1426,6 +1427,7 @@ operator|+
 literal|"' to BigDecimal"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|x
@@ -1441,10 +1443,8 @@ name|Integer
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 return|return
-operator|(
-name|BigDecimal
-operator|)
 name|x
 operator|.
 name|toJavaObject
@@ -1454,7 +1454,9 @@ operator|.
 name|class
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|BigDecimal
@@ -1470,6 +1472,7 @@ name|getDouble
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

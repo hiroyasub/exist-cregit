@@ -851,13 +851,19 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toJavaObject(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
-name|Object
+parameter_list|<
+name|T
+parameter_list|>
+name|T
 name|toJavaObject
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
-name|?
+name|T
 argument_list|>
 name|target
 parameter_list|)
@@ -877,6 +883,9 @@ argument_list|)
 condition|)
 block|{
 return|return
+operator|(
+name|T
+operator|)
 name|this
 return|;
 block|}
@@ -979,6 +988,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
+name|T
+operator|)
 name|array
 return|;
 block|}
@@ -1037,6 +1049,9 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|(
+name|T
+operator|)
 name|l
 return|;
 block|}
@@ -1046,7 +1061,11 @@ operator|!
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
+operator|(
+name|T
+operator|)
 name|itemAt
 argument_list|(
 literal|0
@@ -1057,6 +1076,7 @@ argument_list|(
 name|target
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
