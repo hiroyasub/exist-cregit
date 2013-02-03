@@ -897,6 +897,7 @@ name|isArray
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -909,6 +910,7 @@ name|getComponentType
 argument_list|()
 decl_stmt|;
 comment|// assume single-dimensional, then double-check that instance really matches desired type
+specifier|final
 name|Object
 name|array
 init|=
@@ -932,9 +934,11 @@ argument_list|(
 name|array
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|int
 name|index
 init|=
@@ -942,6 +946,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -957,6 +962,7 @@ name|index
 operator|++
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -965,6 +971,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|obj
 init|=
@@ -1006,6 +1013,7 @@ name|class
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Item
