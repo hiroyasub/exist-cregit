@@ -9071,6 +9071,8 @@ name|mkdirs
 argument_list|()
 expr_stmt|;
 comment|//XXX: log first, rename second ??? -shabanovd
+comment|// DW: not sure a Fatal is required here. Copy and delete
+comment|// maybe?
 if|if
 condition|(
 name|fsSourceDir
