@@ -39,6 +39,12 @@ name|O
 name|resolve
 parameter_list|()
 function_decl|;
+comment|/**          * Get the name of the reference          */
+specifier|public
+name|String
+name|getName
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

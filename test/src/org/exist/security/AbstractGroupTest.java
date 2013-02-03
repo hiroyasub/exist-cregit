@@ -265,6 +265,8 @@ argument_list|(
 name|mockSecurityManager
 argument_list|,
 name|mockAccount
+argument_list|,
+literal|"mockAccount"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -385,6 +387,8 @@ argument_list|(
 name|mockSecurityManager
 argument_list|,
 name|mockAccount
+argument_list|,
+literal|"mockAccount"
 argument_list|)
 argument_list|)
 expr_stmt|;

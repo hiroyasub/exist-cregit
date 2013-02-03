@@ -2601,6 +2601,40 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Could not execute method on class "
+operator|+
+name|instance
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" for configuration '"
+operator|+
+name|conf
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' referenceBy '"
+operator|+
+name|referenceBy
+operator|+
+literal|"' for value '"
+operator|+
+name|value
+operator|+
+literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|method
 operator|=
 literal|null
