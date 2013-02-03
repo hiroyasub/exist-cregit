@@ -882,6 +882,14 @@ comment|// Log the query if it is not too large, but avoid
 comment|// dumping huge queries to the log
 if|if
 condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
 name|context
 operator|.
 name|getExpressionCount
@@ -916,6 +924,7 @@ operator|+
 literal|"[skipped: more than 150 expressions]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(

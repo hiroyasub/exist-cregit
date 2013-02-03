@@ -6513,11 +6513,21 @@ operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
+comment|// DW: only in debug mode
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|notificationService
 operator|.
 name|debug
 argument_list|()
 expr_stmt|;
+block|}
 comment|//Notify all running tasks that we are shutting down
 comment|//Shutdown the scheduler
 name|scheduler
