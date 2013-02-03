@@ -383,9 +383,9 @@ name|totalMem
 operator|=
 name|cacheSize
 operator|*
-literal|1024
+literal|1024L
 operator|*
-literal|1024
+literal|1024L
 expr_stmt|;
 name|Boolean
 name|checkMaxCache
@@ -485,7 +485,7 @@ operator|+
 operator|(
 name|totalMem
 operator|/
-literal|1024
+literal|1024L
 operator|)
 operator|+
 literal|"k "
@@ -556,7 +556,7 @@ name|format
 argument_list|(
 name|totalMem
 operator|/
-literal|1024
+literal|1024L
 argument_list|)
 operator|+
 literal|"k; totalPages: "
