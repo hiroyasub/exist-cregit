@@ -173,6 +173,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|FindUserFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -412,6 +428,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true() if the user exists, false() otherwise"
 argument_list|)
+argument_list|,
+name|FindUserFunction
+operator|.
+name|FNS_USER_EXISTS
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -510,6 +530,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The Primary Group of the User"
 argument_list|)
+argument_list|,
+name|FindGroupFunction
+operator|.
+name|FNS_GET_USER_PRIMARY_GROUP
 argument_list|)
 decl_stmt|;
 specifier|public

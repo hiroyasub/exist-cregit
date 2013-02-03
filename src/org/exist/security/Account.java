@@ -105,6 +105,16 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Set the primary group of the user      * If the user is not already in the group      * they will also be added      *      * @throws PermissionDeniedException      */
+name|void
+name|setPrimaryGroup
+parameter_list|(
+name|Group
+name|group
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 comment|/** 	 *  Remove the user to a group 	 *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it   	 * 	 *@param  group  The feature to be removed to the Group attribute 	 */
 annotation|@
 name|Override

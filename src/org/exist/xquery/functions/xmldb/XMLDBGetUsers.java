@@ -151,6 +151,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GroupMembershipFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
@@ -338,6 +354,10 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"The list of users in the group identified by $group-name"
 argument_list|)
+argument_list|,
+name|GroupMembershipFunctions
+operator|.
+name|FNS_GET_GROUP_MEMBERS
 argument_list|)
 decl_stmt|;
 specifier|public

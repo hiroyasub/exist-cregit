@@ -169,6 +169,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|AccountManagementFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -336,6 +352,10 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+name|AccountManagementFunction
+operator|.
+name|FNS_REMOVE_ACCOUNT
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 */

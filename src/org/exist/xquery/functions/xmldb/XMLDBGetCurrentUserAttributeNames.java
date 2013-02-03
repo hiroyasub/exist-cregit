@@ -61,6 +61,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GetPrincipalMetadataFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|*
@@ -138,7 +154,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the names of the attributes of the current user from the xquery context."
+literal|"Returns the names of the attributes of the current user."
 argument_list|,
 literal|null
 argument_list|,
@@ -156,7 +172,9 @@ argument_list|,
 literal|"the attribute names of the current user"
 argument_list|)
 argument_list|,
-literal|"Use securitymanager:get-account-metadata-keys() instead!"
+name|GetPrincipalMetadataFunction
+operator|.
+name|FNS_GET_ACCOUNT_METADATA_KEYS
 argument_list|)
 decl_stmt|;
 specifier|public

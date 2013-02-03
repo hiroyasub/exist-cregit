@@ -151,7 +151,28 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#remGroup(java.lang.String)      */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setPrimaryGroup
+parameter_list|(
+specifier|final
+name|Group
+name|group
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+block|{
+name|account
+operator|.
+name|setPrimaryGroup
+argument_list|(
+name|group
+argument_list|)
+expr_stmt|;
+block|}
+comment|/* (non-Javadoc)          * @see org.exist.security.User#remGroup(java.lang.String)          */
 annotation|@
 name|Override
 specifier|public

@@ -121,6 +121,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|PermissionsFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
@@ -360,6 +376,10 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the collection permissions"
 argument_list|)
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|FNS_GET_PERMISSIONS
 argument_list|)
 block|,
 operator|new
@@ -409,6 +429,10 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the resource permissions"
 argument_list|)
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|FNS_GET_PERMISSIONS
 argument_list|)
 block|}
 decl_stmt|;

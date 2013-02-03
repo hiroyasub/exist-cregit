@@ -121,6 +121,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GetPrincipalMetadataFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -246,7 +262,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the user-id of the current user from the xquery context."
+literal|"Returns the attribute of the current user account."
 argument_list|,
 operator|new
 name|SequenceType
@@ -283,7 +299,9 @@ argument_list|,
 literal|"the attribute value of the current user"
 argument_list|)
 argument_list|,
-literal|"Use securitymanager:get-account-metadata() instead!"
+name|GetPrincipalMetadataFunction
+operator|.
+name|FNS_GET_ACCOUNT_METADATA
 argument_list|)
 decl_stmt|;
 specifier|public

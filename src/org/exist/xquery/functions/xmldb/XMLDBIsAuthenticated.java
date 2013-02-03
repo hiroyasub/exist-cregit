@@ -227,7 +227,7 @@ argument_list|,
 literal|"true() if user from the xquery context is authenticated, false() otherwise"
 argument_list|)
 argument_list|,
-literal|"Use sm.is-externally-authenticated() function."
+literal|"Use sm:is-externally-authenticated() function."
 argument_list|)
 decl_stmt|;
 specifier|public

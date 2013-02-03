@@ -161,6 +161,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|AccountManagementFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -401,7 +417,7 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-literal|"$home-collection-uri has no effect since 2.0. User the simplified version."
+literal|"$home-collection-uri has no effect since 2.0. You should use the sm:create-account function from the SecurityManager module instead."
 argument_list|)
 block|,
 operator|new
@@ -501,6 +517,10 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+name|AccountManagementFunction
+operator|.
+name|FNS_CREATE_ACCOUNT_WITH_PERSONAL_GROUP_WITH_METADATA
 argument_list|)
 block|}
 decl_stmt|;

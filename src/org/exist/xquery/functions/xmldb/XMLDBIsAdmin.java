@@ -157,6 +157,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GroupMembershipFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -346,6 +362,10 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"true() if user has DBA role, false() otherwise"
 argument_list|)
+argument_list|,
+name|GroupMembershipFunctions
+operator|.
+name|FNS_IS_DBA
 argument_list|)
 decl_stmt|;
 specifier|public

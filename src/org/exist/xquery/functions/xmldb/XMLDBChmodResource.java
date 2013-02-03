@@ -109,6 +109,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|PermissionsFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -319,7 +335,7 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The mode as xs:integer"
 argument_list|)
-block|, 			      }
+block|,         }
 argument_list|,
 operator|new
 name|SequenceType
@@ -332,6 +348,10 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|FNS_CHMOD
 argument_list|)
 decl_stmt|;
 specifier|public

@@ -207,6 +207,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GroupManagementFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -385,7 +401,9 @@ argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
 argument_list|,
-literal|"Use xmldb:create-group($group, $group-manager-username) instead."
+name|GroupManagementFunction
+operator|.
+name|FNS_CREATE_GROUP
 argument_list|)
 block|,
 operator|new
@@ -457,6 +475,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
+argument_list|,
+name|GroupManagementFunction
+operator|.
+name|FNS_CREATE_GROUP_WITH_MANAGERS_WITH_METADATA
 argument_list|)
 block|, }
 decl_stmt|;

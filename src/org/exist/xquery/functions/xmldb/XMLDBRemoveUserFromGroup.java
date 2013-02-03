@@ -167,6 +167,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|GroupMembershipFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -348,6 +364,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
+argument_list|,
+name|GroupMembershipFunctions
+operator|.
+name|FNS_REMOVE_GROUP_MEMBER
 argument_list|)
 decl_stmt|;
 comment|/**      * @param context      */

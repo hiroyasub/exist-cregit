@@ -447,7 +447,7 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-literal|"$home-collection has no effect since 2.0. User the simplified version."
+literal|"$home-collection has no effect since 2.0. Use either sm:passwd for changing a password or sm:add-group-member to add a user to a group or sm:remove-group-member to remove a user from a group."
 argument_list|)
 block|,
 operator|new
@@ -549,6 +549,8 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+literal|"Use either sm:passwd for changing a password or sm:add-group-member to add a user to a group or sm:remove-group-member to remove a user from a group."
 argument_list|)
 block|}
 decl_stmt|;

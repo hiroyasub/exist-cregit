@@ -161,6 +161,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|PermissionsFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
@@ -308,7 +324,7 @@ literal|"value into a string. The returned string shows the permissions followin
 operator|+
 literal|"the Unix conventions, i.e. all permissions set is returned as "
 operator|+
-literal|"rwurwurwu, where the first three chars are for user permissions, "
+literal|"rwxrwxrwx, where the first three chars are for user permissions, "
 operator|+
 literal|"followed by group and other users. 'r' denotes read, 'w' write and 'u' update "
 operator|+
@@ -348,6 +364,10 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the permissions as string 'rwu' for, user, group and other"
 argument_list|)
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|FNS_OCTAL_TO_MODE
 argument_list|)
 block|,
 operator|new
@@ -371,7 +391,7 @@ literal|"Converts the resource or collection permissions, $permissions-string, "
 operator|+
 literal|"into an integer representation suitable for use with set-permissions functions. "
 operator|+
-literal|"The permissions string should be in the format 'rwurwurwu' where r is read, w is write and u is update."
+literal|"The permissions string should be in the format 'rwxrwxrwx' where r is read, w is write and u is update."
 argument_list|,
 operator|new
 name|SequenceType
@@ -407,6 +427,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"The permissions integer"
 argument_list|)
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|FNS_MODE_TO_OCTAL
 argument_list|)
 block|}
 decl_stmt|;

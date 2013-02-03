@@ -157,6 +157,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|FindGroupFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -320,6 +336,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
+argument_list|,
+name|FindGroupFunction
+operator|.
+name|FNS_GROUP_EXISTS
 argument_list|)
 block|,     }
 decl_stmt|;
