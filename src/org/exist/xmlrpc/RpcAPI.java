@@ -1609,8 +1609,11 @@ name|String
 argument_list|>
 name|groups
 parameter_list|,
-name|boolean
+name|Boolean
 name|isEnabled
+parameter_list|,
+name|Integer
+name|umask
 parameter_list|,
 name|Map
 argument_list|<
@@ -1668,6 +1671,9 @@ name|groups
 parameter_list|,
 name|Boolean
 name|isEnabled
+parameter_list|,
+name|Integer
+name|umask
 parameter_list|,
 name|Map
 argument_list|<
