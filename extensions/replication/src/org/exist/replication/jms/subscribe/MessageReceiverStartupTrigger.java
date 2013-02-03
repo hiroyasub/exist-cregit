@@ -178,6 +178,13 @@ name|Session
 name|session
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Closing JMS session, connection and context"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|session
