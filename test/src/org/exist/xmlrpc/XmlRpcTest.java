@@ -237,6 +237,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Permission
+import|;
+end_import
+
 begin_comment
 comment|/**  * JUnit test for XMLRPC interface methods.  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author ljo  */
 end_comment
@@ -2989,6 +3001,15 @@ operator|.
 name|add
 argument_list|(
 literal|true
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+name|Permission
+operator|.
+name|DEFAULT_UMASK
 argument_list|)
 expr_stmt|;
 name|params
