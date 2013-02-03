@@ -634,6 +634,7 @@ specifier|public
 name|boolean
 name|isManager
 parameter_list|(
+specifier|final
 name|Account
 name|account
 parameter_list|)
@@ -651,6 +652,7 @@ range|:
 name|managers
 control|)
 block|{
+specifier|final
 name|Account
 name|acc
 init|=
@@ -684,16 +686,37 @@ specifier|protected
 name|void
 name|_addManager
 parameter_list|(
+specifier|final
 name|Account
 name|account
 parameter_list|)
 block|{
+comment|//check the manager is not already present
+for|for
+control|(
+specifier|final
+name|Reference
+argument_list|<
+name|SecurityManager
+argument_list|,
+name|Account
+argument_list|>
+name|manager
+range|:
+name|managers
+control|)
+block|{
 if|if
 condition|(
-operator|!
-name|managers
+name|manager
 operator|.
-name|contains
+name|resolve
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
 argument_list|(
 name|account
 operator|.
@@ -702,6 +725,10 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+return|return;
+block|}
+block|}
+comment|//add the manager
 name|managers
 operator|.
 name|add
@@ -724,7 +751,6 @@ name|account
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
