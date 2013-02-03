@@ -848,6 +848,15 @@ name|metadataValue
 argument_list|)
 expr_stmt|;
 block|}
+comment|//copy umask
+name|setUserMask
+argument_list|(
+name|from_user
+operator|.
+name|getUserMask
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|from_user
