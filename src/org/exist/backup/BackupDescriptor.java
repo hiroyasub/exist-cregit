@@ -214,6 +214,12 @@ name|SAXException
 throws|,
 name|ParserConfigurationException
 function_decl|;
+name|File
+name|getRepoBackup
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_interface
 

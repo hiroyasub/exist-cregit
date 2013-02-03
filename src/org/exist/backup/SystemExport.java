@@ -51,6 +51,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|repo
+operator|.
+name|RepoBackup
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|ACLPermission
@@ -1177,6 +1189,16 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+comment|//            File repoBackup = RepoBackup.backup(broker);
+comment|//            output.addToRoot(RepoBackup.REPO_ARCHIVE, repoBackup);
+comment|//
+comment|//            try {
+comment|//                boolean deleted = repoBackup.delete();
+comment|//                if (!deleted)
+comment|//                    repoBackup.deleteOnExit();
+comment|//            } catch (Exception e) {
+comment|//                // do not abort if delete fails
+comment|//            }
 name|Date
 name|date
 init|=
