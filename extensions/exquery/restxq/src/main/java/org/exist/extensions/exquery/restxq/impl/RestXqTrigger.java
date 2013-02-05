@@ -987,6 +987,22 @@ control|)
 block|{
 try|try
 block|{
+comment|//TODO This null check is a temporary workaround
+comment|//as a NPE in the URI class was reported by Wolf
+comment|//where dependant was null. I can only imagine
+comment|//that another thread interrupted and removed it
+comment|//from the hashmap that it comes from.
+comment|//its quite possible the use of synchronized around
+comment|//the various maps in this class is not sufficient in scope
+comment|//and we should move to some locks and operating over closures
+comment|//on the maps.
+if|if
+condition|(
+name|dependant
+operator|!=
+literal|null
+condition|)
+block|{
 name|getRegistry
 argument_list|(
 name|broker
@@ -1017,6 +1033,7 @@ name|dependant
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
