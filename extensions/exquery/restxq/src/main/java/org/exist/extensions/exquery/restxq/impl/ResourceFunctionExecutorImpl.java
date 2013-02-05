@@ -641,6 +641,18 @@ name|org
 operator|.
 name|exquery
 operator|.
+name|http
+operator|.
+name|HttpRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exquery
+operator|.
 name|restxq
 operator|.
 name|Namespace
@@ -789,6 +801,15 @@ operator|.
 name|ANNOTATION_NS
 argument_list|)
 decl_stmt|;
+comment|//TODO generalise with RequestModule
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|EXQ_REQUEST_ATTR
+init|=
+literal|"exquery-request"
+decl_stmt|;
 specifier|private
 specifier|final
 name|BrokerPool
@@ -864,6 +885,10 @@ argument_list|<
 name|TypedArgumentValue
 argument_list|>
 name|arguments
+parameter_list|,
+specifier|final
+name|HttpRequest
+name|request
 parameter_list|)
 throws|throws
 name|RestXqServiceException
@@ -958,6 +983,16 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+comment|//set the request object - can later be used by the EXQuery Request Module
+name|xqueryContext
+operator|.
+name|setAttribute
+argument_list|(
+name|EXQ_REQUEST_ATTR
+argument_list|,
+name|request
+argument_list|)
+expr_stmt|;
 comment|//TODO this is a workaround?
 name|declareVariables
 argument_list|(

@@ -383,6 +383,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"jetty.port"
+argument_list|,
+literal|"8088"
 argument_list|)
 operator|+
 literal|"/rest"
@@ -400,6 +402,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"jetty.port"
+argument_list|,
+literal|"8088"
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -562,11 +566,11 @@ literal|"xquery version \"1.0\";\n"
 operator|+
 literal|"declare option exist:serialize \"method=text media-type=text/text\";\n"
 operator|+
-literal|"import module namespace req=\"http://exist-db.org/xquery/request\";\n"
+literal|"import module namespace request=\"http://exist-db.org/xquery/request\";\n"
 operator|+
 literal|"import module namespace t=\"http://test.foo\" at \"module.xq\";\n"
 operator|+
-literal|"let $param := req:get-parameter('p', ())\n"
+literal|"let $param := request:get-parameter('p', ())\n"
 operator|+
 literal|"return\n"
 operator|+
