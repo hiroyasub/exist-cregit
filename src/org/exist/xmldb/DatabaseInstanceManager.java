@@ -102,13 +102,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
-name|void
-name|restorePkgRepo
-parameter_list|()
-throws|throws
-name|XMLDBException
-function_decl|;
 block|}
 end_interface
 
