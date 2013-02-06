@@ -499,10 +499,7 @@ decl_stmt|;
 comment|// Only write if debug mode
 if|if
 condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
+literal|true
 condition|)
 block|{
 name|String
@@ -592,7 +589,7 @@ block|}
 comment|// Write to log
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 name|label
 operator|+
