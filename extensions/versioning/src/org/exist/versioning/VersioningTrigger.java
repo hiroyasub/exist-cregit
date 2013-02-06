@@ -877,6 +877,10 @@ block|{
 if|if
 condition|(
 name|documentPath
+operator|==
+literal|null
+operator|||
+name|documentPath
 operator|.
 name|startsWith
 argument_list|(
@@ -2055,6 +2059,10 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|documentPath
+operator|==
+literal|null
+operator|||
 name|documentPath
 operator|.
 name|startsWith
