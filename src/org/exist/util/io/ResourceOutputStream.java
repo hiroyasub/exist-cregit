@@ -56,6 +56,10 @@ name|ResourceOutputStream
 extends|extends
 name|FileOutputStream
 block|{
+specifier|private
+name|Resource
+name|resource
+decl_stmt|;
 specifier|public
 name|ResourceOutputStream
 parameter_list|(
@@ -72,6 +76,10 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|resource
+operator|=
+name|file
 expr_stmt|;
 block|}
 specifier|public
@@ -96,6 +104,10 @@ argument_list|,
 name|append
 argument_list|)
 expr_stmt|;
+name|resource
+operator|=
+name|file
+expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -107,6 +119,11 @@ block|{
 name|super
 operator|.
 name|close
+argument_list|()
+expr_stmt|;
+name|resource
+operator|.
+name|freeFile
 argument_list|()
 expr_stmt|;
 comment|//XXX: xml upload back to db

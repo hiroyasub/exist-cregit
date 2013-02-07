@@ -93,6 +93,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|resource
+operator|.
+name|freeFile
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|resource
