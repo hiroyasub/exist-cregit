@@ -566,7 +566,7 @@ name|SystemModule
 operator|.
 name|PREFIX
 operator|+
-literal|":tracing-enalbed XQuery function"
+literal|":tracing-enabled XQuery function"
 argument_list|)
 expr_stmt|;
 name|logger
