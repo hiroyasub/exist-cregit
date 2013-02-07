@@ -456,6 +456,15 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+name|context
+operator|.
+name|setContextSequencePosition
+argument_list|(
+literal|0
+argument_list|,
+name|seq
+argument_list|)
+expr_stmt|;
 comment|// If the current step is an // abbreviated step, we have to treat the predicate
 comment|// specially to get the context position right. //a[1] translates
 comment|//to /descendant-or-self::node()/a[1], so we need to return the
